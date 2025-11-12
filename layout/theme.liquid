@@ -55,6 +55,8 @@
     --alpha-button-border: 1;
     --alpha-link: 0.85;
     --alpha-badge-border: 0.1;
+    /* Disable decorative sparkle overlay to avoid loading sparkle.gif */
+    --sparkle: none;
     /* Add any other variables needed */
   }
 
@@ -1777,7 +1779,7 @@ button.product-form__submit.button--full-width.button--secondary:hover {
 
     /* Force the text and check mark to stay white on mobile */
     .announcement-bar span {
-      content: ✔ Free Shipping ✔ Best Prices ✔ Top Quality ✔ Easy Returns ✔ Secure Checkout; 
+       
         color: #FFFFFF !important; /* Force white text on mobile */
     }
 
@@ -1895,145 +1897,5 @@ button.product-form__submit.button--full-width.button--secondary:hover {
   }
 }
 </style>
-<div id="dlm-agent-root"></div>
-<script defer src="{{ 'agent.js' | asset_url }}"></script>
 </body>
 </html>
-
-<style>
-/* Target the specific div class */
-.product__description.rte.quick-add-hidden {
-    padding: 20px; /* Add padding inside the description box */
-    margin-top: 30px; /* Add margin to create space from the content above */
-    border: 1px solid #e0e0e0; /* Light gray border around the description */
-    border-radius: 8px; /* Rounded corners for a cleaner look */
-    background-color: #f9f9f9; /* Light background to make the section stand out */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
-
-/* Decorative separator between description and product details */
-.product__description.rte.quick-add-hidden + .product-details {
-    margin-top: 40px; /* Space above product details */
-    padding-top: 20px;
-    border-top: 2px dashed #ccc; /* Decorative dashed line separator */
-}
-
-/* Adjust spacing between the column and the product description */
-.product-right-column {
-    margin-left: 20px; /* Space between the right column and the product description */
-    padding-right: 15px; /* Ensure space inside the column */
-}
-
-/* Add hover effect for subtle interaction */
-.product__description.rte.quick-add-hidden:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
-}
-
-</style>
-
-<style>
-
-.size-chart-wrapper p {
-    margin: 0.1em 0;
-}
-
-.size-chart-wrapper strong {
-    font-weight: bold;
-}
-
-.size-chart-wrapper {
-  margin-bottom: 10px; /* Adjust this value for more or less space */
-}
-
-.size-select option[value=""] {
-  color: #999;
-}
-
-</style>
-
-
-<style>
-/* Mobile View Only */
-@media screen and (max-width: 749px) {
-  .product__media {
-    /* Remove or adjust aspect-ratio if it's causing issues */
-    /* aspect-ratio: 5 / 7 !important; */
-    width: 100%;
-    height: auto;
-    overflow: visible;
-  }
-
-  .product__media img {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    object-fit: contain; /* Change from 'cover' to 'contain' */
-  }
-
-  .product__media video {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    object-fit: cover;
-  }
-}
-</style>
-
-
-<style>
- /* Target the product description images to ensure no scroll and proper fit */
-.product__description img {
-    max-width: 100% !important; /* Ensure the image fits within the container */
-    height: auto !important; /* Maintain aspect ratio */
-    display: block !important; /* Remove any inline-block behaviors */
-    margin: 0 auto !important; /* Center the image horizontally */
-    overflow: hidden !important; /* Prevent any overflow or scrolls */
-    border: none !important; /* Remove any borders */
-}
-
-/* Target the product description container to ensure no scrollbars */
-.product__description {
-    overflow: hidden !important; /* Disable scrolling */
-    max-width: 100% !important; /* Ensure the content doesn't overflow */
-    text-align: left !important; /* Center the content within the description */
-}
- 
-</style>
-
-<style>
-/* Desktop View Only */
-@media screen and (min-width: 750px) {
-  /* Main Product Image */
-  .product__media {
-    /* Removed aspect-ratio */
-    overflow: visible; /* Ensure the container shows all content */
-  }
-  
-  .product__media img {
-    width: 100%;
-    height: auto;
-    max-width: none;
-    max-height: none;
-    object-fit: contain; /* Keep the image aspect ratio intact */
-  }
-}
-</style>
-<style>
-@media only screen and (max-width: 749px) {
-  #SectionHeading-template--14889729130593__collection_list_PX36Hk {
-    margin-top: 30px !important;
-  }
-}
-
-</style>
-
-<style>
-@media screen and (min-width: 1024px) {
-  #ProductInfo-template--14889729294433__main.product__info-container.product__column-sticky {
-    position: sticky !important;
-    top: 150px !important; /* Adjust this value to move it further down */
-    margin-top: 0 !important;
-  }
-}
-
-</style>

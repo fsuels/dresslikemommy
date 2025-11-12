@@ -28,7 +28,7 @@
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 
 {%- if card_product and card_product != empty -%}
-  {%- liquid
+{%- liquid
     assign ratio = 1
     if card_product.featured_media and media_aspect_ratio == 'portrait'
       assign ratio = 0.8
@@ -38,7 +38,14 @@
     if ratio == 0 or ratio == null
       assign ratio = 1
     endif
-  -%}
+-%}
+
+{%- comment -%} Free shipping badge {%- endcomment -%}
+<div class="card__badge bottom left">
+  <span class="badge">Ships free</span>
+  {%- if settings.sold_out_badge_color_scheme != blank and card_product.available == false -%}
+  {%- endif -%}
+</div>
   <div class="card-wrapper product-card-wrapper underline-links-hover">
     <div
       class="

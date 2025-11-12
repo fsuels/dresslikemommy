@@ -19,10 +19,13 @@ Coding conventions
 - JavaScript: Plain ES modules in assets/, avoid framework dependencies unless justified.
 - Analytics: Push to window.dataLayer only; destination wiring (GA4/GTM/Meta) is configured outside the theme.
 
-Agent roadmap (from paper)
-- L1→L2 Product Finder (front-end widget + App Proxy backend).
-- Merchandiser (bundles/threshold nudges); Support (policy RAG); SEO/meta enrichment; Experiment harness + LM judge.
+Agent usage policy
+- No AI UI on the live website. The assistant is developer-side only (this terminal).
+- Any backend agent code in this repo is for development/reference and must not be referenced from the theme.
+
+Agent roadmap (from paper, dev-only)
+- L1→L2 Product Finder (dev tool): offline analysis to propose improvements and content; no site widget.
+- Merchandiser/Support/SEO agents used as operators’ tools in development; outputs are reviewed and merged manually.
 
 Testing
 - Start with targeted manual checks; if adding tests, keep them lightweight and colocated under ops/tests/ (do not add frameworks unless agreed).
-

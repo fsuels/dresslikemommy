@@ -133,6 +133,16 @@
           }
         </style>
       {%- endif -%}
+    {%- else -%}
+      <div
+        class="announcement-bar{% if section.settings.show_social %} announcement-bar--one-announcement{% endif %}"
+        role="region"
+        aria-label="{{ 'sections.header.announcement' | t }}"
+      >
+        <p class="announcement-bar__message h5">
+          <span>Free shipping on all clothing • 2d processing • 7–10d delivery</span>
+        </p>
+      </div>
     {%- endif -%}
     <div class="localization-wrapper">
       {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}

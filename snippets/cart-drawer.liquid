@@ -70,7 +70,10 @@
           {% render 'icon-close' %}
         </button>
       </div>
-      {% render 'progress-bar' %}
+      <div class="cart-drawer__shipping-note">
+        <p class="caption-large" aria-live="polite">Standard shipping: Free</p>
+        <p class="caption">Est. delivery: 2 business days processing + 7–10 business days</p>
+      </div>
       <cart-drawer-items
         {% if cart == empty %}
           class=" is-empty"
@@ -494,14 +497,12 @@
           </div>
 
           <small class="tax-note caption-large rte">
-            {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-              {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
-            {%- elsif cart.taxes_included -%}
-              {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
-            {%- elsif shop.shipping_policy.body != blank -%}
-              {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+            {%- if cart.taxes_included -%}
+              Taxes included. Standard shipping: Free.
+              {%- if shop.shipping_policy.body != blank -%} <a href="{{ shop.shipping_policy.url }}">See shipping policy</a>.{%- endif -%}
             {%- else -%}
-              {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+              Taxes calculated at checkout. Standard shipping: Free.
+              {%- if shop.shipping_policy.body != blank -%} <a href="{{ shop.shipping_policy.url }}">See shipping policy</a>.{%- endif -%}
             {%- endif -%}
           </small>
         </div>
@@ -526,18 +527,4 @@
     </div>
   </div>
 </cart-drawer>
-<script>
-(function(){
-  const thresholdCents = 5000; // NEEDS_DATA: set your free shipping threshold in cents
-  function setProgress(total){
-    const c=document.querySelector('.progress-bar-container'); if(!c) return;
-    const v=c.querySelector('.progress-bar-value');
-    if(total>=thresholdCents){ c.classList.remove('hidden'); v.style.width='100%'; c.setAttribute('aria-label','Free shipping unlocked'); return; }
-    const pct=Math.max(0, Math.min(100, Math.floor((total/thresholdCents)*100)));
-    c.classList.remove('hidden'); v.style.width=pct+'%';
-  }
-  function fetchTotal(){ fetch('/cart.js').then(r=>r.json()).then(j=>setProgress(j.total_price)).catch(()=>{}); }
-  document.addEventListener('DOMContentLoaded', fetchTotal);
-  if(window.subscribe){ subscribe('cart-update', ()=>fetchTotal()); }
-})();
-</script>
+{%- comment -%} Removed free-shipping progress bar logic; all clothing ships free. {%- endcomment -%}

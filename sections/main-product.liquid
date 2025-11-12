@@ -163,6 +163,9 @@
                     price_class: 'price--large'
                   -%}
                 </div>
+                <div class="product__shipping-reassurance caption" aria-live="polite">
+                  Standard shipping: Free · Est. delivery: 2 business days processing + 7–10 business days
+                </div>
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
                     <span>{{ 'products.product.volume_pricing.note' | t }}</span>
@@ -772,20 +775,38 @@
  <div class="payment-section">
   <span class="payment-title">Safe Payment Options</span>
   <div class="payment-methods">
-    <img src="{{ 'Apple_Pay.svg' | asset_url }}" height="35" alt="Apple Pay" / loading="lazy" width="300" height="300">
-    <img src="{{ 'American_Express.svg' | asset_url }}" height="40" alt="American Express" / loading="lazy" width="300" height="300">
-    <img src="{{ 'Visa_Inc._logo.svg' | asset_url }}" height="35" alt="Visa" / loading="lazy" width="300" height="300">
-    <img src="{{ 'Discover_Card.svg' | asset_url }}" height="35" alt="Discover" / loading="lazy" width="300" height="300">
-    <img src="{{ 'Maestro.svg' | asset_url }}" height="35" alt="Maestro" / loading="lazy" width="300" height="300">
-    <img src="{{ 'PayPal.svg' | asset_url }}" height="35" alt="PayPal" / loading="lazy" width="300" height="300">
-    <img src="{{ 'Venmo.svg' | asset_url }}" height="25" alt="Venmo" / loading="lazy" width="300" height="300">
-    <img src="{{ 'Google_Pay.svg' | asset_url }}" height="25" alt="Google Pay" / loading="lazy" width="300" height="300">
-    <img src="{{ 'Mastercard.svg' | asset_url }}" height="35" alt="Mastercard" / loading="lazy" width="300" height="300">
-    <img src="{{ 'Meta._logo.svg' | asset_url }}" height="25" alt="Meta" / loading="lazy" width="300" height="300">
-    <img src="{{ 'Diners_Club.svg' | asset_url }}" height="20" alt="Diners Club" / loading="lazy" width="300" height="300">
-    <img src="{{ 'JCB.svg' | asset_url }}" height="25" alt="JCB" / loading="lazy" width="300" height="300">
-    <img src="{{ 'ShopPay.svg' | asset_url }}" height="25" alt="ShopPay" / loading="lazy" width="300" height="300">
-    <img src="{{ 'cashapp.svg' | asset_url }}" height="25" alt="Cash App" / loading="lazy" width="300" height="300">
+    <img src="{{ 'Apple_Pay.svg' | asset_url }}" alt="Apple Pay" loading="lazy">
+    <img src="{{ 'American_Express.svg' | asset_url }}" alt="American Express" loading="lazy">
+    <img src="{{ 'Visa_Inc._logo.svg' | asset_url }}" alt="Visa" loading="lazy">
+    <img src="{{ 'Discover_Card.svg' | asset_url }}" alt="Discover" loading="lazy">
+    <img src="{{ 'Maestro.svg' | asset_url }}" alt="Maestro" loading="lazy">
+    <img src="{{ 'PayPal.svg' | asset_url }}" alt="PayPal" loading="lazy">
+    <img src="{{ 'Venmo.svg' | asset_url }}" alt="Venmo" loading="lazy">
+    <img src="{{ 'Google_Pay.svg' | asset_url }}" alt="Google Pay" loading="lazy">
+    <img src="{{ 'Mastercard.svg' | asset_url }}" alt="Mastercard" loading="lazy">
+    <img src="{{ 'Meta._logo.svg' | asset_url }}" alt="Meta" loading="lazy">
+    <img src="{{ 'Diners_Club.svg' | asset_url }}" alt="Diners Club" loading="lazy">
+    <img src="{{ 'JCB.svg' | asset_url }}" alt="JCB" loading="lazy">
+    <img src="{{ 'ShopPay.svg' | asset_url }}" alt="ShopPay" loading="lazy">
+    <img src="{{ 'cashapp.svg' | asset_url }}" alt="Cash App" loading="lazy">
+  </div>
+
+  <button class="collapsible">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1a936f" width="24px" height="24px">
+      <path d="M0 0h24v24H0z" fill="none"/>
+      <path d="M12 2l9 4v6c0 5.5-3.6 10.1-9 11-5.4-.9-9-5.5-9-11V6l9-4z"/>
+    </svg>
+    Shipping Info
+    <span class="toggle-icon">+</span>
+  </button>
+  <div class="content">
+    <h2>Shipping Info</h2>
+    <p>We ship directly from our overseas partner warehouse in China.</p>
+    <ul>
+      <li>Processing time: 2 business days</li>
+      <li>Delivery time: 7–10 business days (after processing)</li>
+    </ul>
+    <p>Times may vary during peak periods. You’ll receive tracking once your order ships.</p>
   </div>
 </div>
       <p>We accept all major credit and debit cards. Your card details are secure and never shared with our partners. You can easily manage your saved cards anytime. For any transaction inquiries, please contact your card issuer.
@@ -2646,4 +2667,3 @@
   ]
 }
 {% endschema %}
-
