@@ -152,14 +152,7 @@
             <span style="color: gray; font-weight: bold;">sold</span>
             <div id="sold-message-text" class="ribbon"></div>
         </div>
-                  <h1>{{ product.title | escape }}</h1>
-
-                  
-                  <a href="{{ product.url }}" class="product__title">
-                    <h2 class="h1">
-                      {{ product.title | escape }}
-                    </h2>
-                  </a>
+                  <h1 class="product__title-text">{{ product.title | escape }}</h1>
                 </div>
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
@@ -336,6 +329,10 @@
 </button>
 </quantity-input>
 
+{%- if product.selected_or_first_available_variant.inventory_management == 'shopify' and product.selected_or_first_available_variant.inventory_quantity > 0 and product.selected_or_first_available_variant.inventory_quantity <= 5 -%}
+  <p class="caption" role="status">Low stock: {{ product.selected_or_first_available_variant.inventory_quantity }} left</p>
+{%- endif -%}
+{% comment %}
 <div id="urgency-message" style="display: flex; align-items: center; color: orange; font-weight: bold; margin-left: 10px;">
     <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;">
         <g fill="none" stroke="orange" stroke-width="5">
@@ -525,6 +522,7 @@
         document.getElementById('sold-message-text').innerText = randomMessage; // Display the sold message
     });
 </script>
+{% endcomment %}
 
 
 
@@ -2648,6 +2646,4 @@
   ]
 }
 {% endschema %}
-
-
 

@@ -70,6 +70,7 @@
           {% render 'icon-close' %}
         </button>
       </div>
+      {% render 'progress-bar' %}
       <cart-drawer-items
         {% if cart == empty %}
           class=" is-empty"
@@ -525,3 +526,18 @@
     </div>
   </div>
 </cart-drawer>
+<script>
+(function(){
+  const thresholdCents = 5000; // NEEDS_DATA: set your free shipping threshold in cents
+  function setProgress(total){
+    const c=document.querySelector('.progress-bar-container'); if(!c) return;
+    const v=c.querySelector('.progress-bar-value');
+    if(total>=thresholdCents){ c.classList.remove('hidden'); v.style.width='100%'; c.setAttribute('aria-label','Free shipping unlocked'); return; }
+    const pct=Math.max(0, Math.min(100, Math.floor((total/thresholdCents)*100)));
+    c.classList.remove('hidden'); v.style.width=pct+'%';
+  }
+  function fetchTotal(){ fetch('/cart.js').then(r=>r.json()).then(j=>setProgress(j.total_price)).catch(()=>{}); }
+  document.addEventListener('DOMContentLoaded', fetchTotal);
+  if(window.subscribe){ subscribe('cart-update', ()=>fetchTotal()); }
+})();
+</script>

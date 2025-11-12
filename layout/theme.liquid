@@ -16,7 +16,6 @@
 <link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'section-collection-list.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'base.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-slideshow.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'customer.css' | asset_url }}" media="print" onload="this.media='all'">
   <meta charset="utf-8">
@@ -43,7 +42,7 @@
 
   <!-- Other Meta Tags -->
   <meta name="theme-color" content="{{ settings.color_theme }}">
-  <meta name="author" content="Your Store Name">
+  <meta name="author" content="{{ shop.name }}">
 
   {{ content_for_header }}
 {% include 'product-meta-tags' %}
@@ -544,11 +543,10 @@
   <script defer src="{{ 'constants.js' | asset_url }}"></script>
   <script defer src="{{ 'pubsub.js' | asset_url }}"></script>
   <script defer src="{{ 'global.js' | asset_url }}"></script>
+  <script defer src="{{ 'analytics.js' | asset_url }}"></script>
   {%- if settings.animations_reveal_on_scroll -%}
     <script defer src="{{ 'animations.js' | asset_url }}"></script>
   {%- endif -%}
-
-  {{ content_for_header }}
 
   {%- liquid
     assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
@@ -1791,33 +1789,116 @@ button.product-form__submit.button--full-width.button--secondary:hover {
 
 
 
-<script>var cb = function() {
-var l = document.createElement('link'); l.rel = 'stylesheet';
-l.href = 'PATH_TO_COMBINED_CSS_FILE';
-var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
-};
-var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-webkitRequestAnimationFrame || msRequestAnimationFrame;
-if (raf) raf(cb);
-else window.addEventListener('load', cb);</script>    
+<!-- Removed placeholder CSS loader -->
 
 
 
     
     
-
-</body>
-</html>
 
 <style>
+/* Moved inline CSS from tail for validity */
 @media screen and (max-width: 767px) {
     .title-wrapper-with-link {
         margin-top: 20px; /* Adjust this value as needed to move it down */
     }
 }
 
-  
+/* Target the specific div class */
+.product__description.rte.quick-add-hidden {
+    padding: 20px;
+    margin-top: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Decorative separator between description and product details */
+.product__description.rte.quick-add-hidden + .product-details {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px dashed #ccc;
+}
+/* Adjust spacing between the column and the product description */
+.product-right-column {
+    margin-left: 20px;
+    padding-right: 15px;
+}
+/* Add hover effect for subtle interaction */
+.product__description.rte.quick-add-hidden:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+/* Size chart helpers */
+.size-chart-wrapper p { margin: 0.1em 0; }
+.size-chart-wrapper strong { font-weight: bold; }
+.size-chart-wrapper { margin-bottom: 10px; }
+.size-select option[value=""] { color: #999; }
+/* Mobile View Only */
+@media screen and (max-width: 749px) {
+  .product__media {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .product__media img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .product__media video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+  }
+}
+/* Product description images fit */
+.product__description img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+    border: none !important;
+}
+.product__description {
+    overflow: hidden !important;
+    max-width: 100% !important;
+    text-align: left !important;
+}
+/* Desktop View Only */
+@media screen and (min-width: 750px) {
+  .product__media {
+    overflow: visible;
+  }
+  .product__media img {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+  }
+}
+/* Margins for section heading on small screens */
+@media only screen and (max-width: 749px) {
+  #SectionHeading-template--14889729130593__collection_list_PX36Hk {
+    margin-top: 30px !important;
+  }
+}
+/* Sticky product info on desktop */
+@media screen and (min-width: 1024px) {
+  #ProductInfo-template--14889729294433__main.product__info-container.product__column-sticky {
+    position: sticky !important;
+    top: 150px !important;
+    margin-top: 0 !important;
+  }
+}
 </style>
+<div id="dlm-agent-root"></div>
+<script defer src="{{ 'agent.js' | asset_url }}"></script>
+</body>
+</html>
 
 <style>
 /* Target the specific div class */
