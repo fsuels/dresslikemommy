@@ -1,0 +1,102 @@
+{%- unless product.has_only_default_variant -%}
+  <variant-selects
+    id="variant-selects-{{ section.id }}"
+    data-section="{{ section.id }}"
+    data-url="{{ product.url }}"
+    {% if update_url == false %}
+      data-update-url="false"
+    {% endif %}
+    {{ block.shopify_attributes }}
+  >
+    {%- for option in product.options_with_values -%}
+      {%- liquid
+        assign swatch_count = option.values | map: 'swatch' | compact | size
+        assign picker_type = block.settings.picker_type
+
+        if swatch_count > 0 and block.settings.swatch_shape != 'none'
+          if block.settings.picker_type == 'dropdown'
+            assign picker_type = 'swatch_dropdown'
+          else
+            assign picker_type = 'swatch'
+          endif
+        endif
+      -%}
+      {%- if picker_type == 'swatch' -%}
+        <fieldset class="js product-form__input product-form__input--swatch">
+          <legend class="form__label">
+            {{ option.name }}:
+            <span data-selected-swatch-value="{{ option.name }}">
+              {{- option.selected_value -}}
+            </span>
+          </legend>
+          {% render 'product-variant-options',
+            product: product,
+            option: option,
+            block: block,
+            picker_type: picker_type
+          %}
+        </fieldset>
+      {%- elsif picker_type == 'button' -%}
+        <fieldset class="js product-form__input product-form__input--pill">
+          <legend class="form__label">{{ option.name }}</legend>
+          {% render 'product-variant-options',
+            product: product,
+            option: option,
+            block: block,
+            picker_type: picker_type
+          %}
+        </fieldset>
+      {%- else -%}
+        <div class="product-form__input product-form__input--dropdown">
+          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+            {{ option.name }}
+          </label>
+          <div class="select">
+            {%- if picker_type == 'swatch_dropdown' -%}
+              <span
+                data-selected-dropdown-swatch="options[{{ option.name | escape }}]"
+                class="dropdown-swatch"
+              >
+                {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
+              </span>
+            {%- endif -%}
+            {% assign option_downcased = option.name | downcase %}
+            <select
+              id="Option-{{ section.id }}-{{ forloop.index0 }}"
+              class="select__select {% if option_downcased contains 'size' %} size-select {% endif %}"
+              name="options[{{ option.name | escape }}]"
+              form="{{ product_form_id }}"
+            >
+              {%- comment -%}
+                **Insert Default "Select Size" Option**
+              {%- endcomment -%}
+              {%- if option.name contains 'Size' or option.name contains 'size' -%}
+                <option value="" disabled selected>Select Size</option>
+              {%- endif -%}
+              
+              {% render 'product-variant-options',
+                product: product,
+                option: option,
+                block: block,
+                picker_type: picker_type
+              %}
+            </select>
+            {% render 'icon-caret' %}
+          </div>
+        </div>
+        <!-- Insert Size Conversion Message and Size Chart Wrapper Here -->
+        {% if forloop.first %}
+          <div id="size-conversion-message" style="margin-top: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;"></div>
+          <div class="size-chart-wrapper" style="margin-top: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: white;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+            </div>
+            <div id="size-chart-content" style="margin-top: 5px; font-size: 14px; color: #333; line-height: 1.6;"></div>
+          </div>
+        {% endif %}
+      {%- endif -%}
+    {%- endfor -%}
+    <script type="application/json">
+      {{ product.variants | json }}
+    </script>
+  </variant-selects>
+{%- endunless -%}

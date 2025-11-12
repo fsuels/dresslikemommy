@@ -1,0 +1,23 @@
+{% unless template == 'index' or template == 'cart' or template == 'list-collections' %}
+<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+  <a href="/" title="Home" class="mobile-hide">Home</a>
+  <span aria-hidden="true" class="mobile-hide">&rsaquo;</span>
+  <a href="/collections/{{ product.metafields.custom.category1 | handleize }}" title="{{ product.metafields.custom.category1 | default: "Mommy and Me" }}" class="mobile-hide">{{ product.metafields.custom.category1 | default: "Mommy and Me" }}</a>
+  <span aria-hidden="true" class="mobile-hide">&rsaquo;</span>
+  <a href="/collections/{{ product.metafields.custom.subcategory | handleize }}" title="{{ product.metafields.custom.subcategory }}">{{ product.metafields.custom.subcategory | default: "Dresses" }}</a>
+  
+  {% assign subcategories = product.metafields.custom.subcategory2 | split: ',' %}
+  
+  {% if subcategories.size > 0 %}
+    <span aria-hidden="true">&rsaquo;</span>
+    <span>
+      {% for subcategory in subcategories %}
+        {% assign subcategory = subcategory | strip %}
+        {% unless subcategory == '' %}
+          <a href="/collections/{{ subcategory | handleize }}">{{ subcategory }}</a>{% if forloop.last == false %} / {% endif %}
+        {% endunless %}
+      {% endfor %}
+    </span>
+  {% endif %}
+</nav>
+{% endunless %}

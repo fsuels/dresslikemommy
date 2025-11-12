@@ -1,0 +1,250 @@
+{% assign main_all = collection.metafields.custom.mainall | split: ',' %}
+{% assign product_tags = collection.metafields.custom.product_tag | split: ',' %}
+{% assign current_tag = collection.title %}
+{% assign main_category = main_all[0] %}
+{% assign sub_category = main_all[1] %}
+
+<style>
+/* Common styles */
+.breadcrumb-wrapper {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  height: auto;
+
+}
+
+.breadcrumb-sub-category {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  font: 14px Arial, sans-serif;
+}
+
+.breadcrumb a,
+.breadcrumb-dropdown ul li a {
+  color: #000000 !important;
+  font: 14px Arial, sans-serif;
+  text-decoration: none;
+  transition: color 0.3s, text-decoration 0.3s; /* Smooth transition */
+}
+
+.breadcrumb a:hover,
+.breadcrumb-dropdown ul li a:hover,
+.breadcrumb-sub-category:hover {
+  text-decoration: underline;
+  color: inherit; /* Maintain the current text color */
+}
+
+.facets__summary .icon-caret {
+    right: 0;
+}
+
+summary .icon-caret {
+    position: absolute;
+    height: .6rem;
+    width: .6rem; /* Ensure the width is also set */
+    right: 1.5rem;
+    top: calc(50% - .3rem); /* Adjusted to center vertically */
+    fill: currentColor; /* Ensures it takes the current text color */
+}
+
+.breadcrumb-sub-category .icon-caret,
+.breadcrumb-dropdown svg {
+    width: 1rem; /* Adjust the width as needed */
+    height: 1rem; /* Adjust the height as needed */
+    vertical-align: middle; /* Aligns the icon vertically with text */
+    margin-left: .5rem; /* Adds some space between text and icon */
+    fill: currentColor; /* Uses the current color */
+}
+
+.breadcrumb-dropdown {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  z-index: 9999; /* Ensure dropdown is on top */
+  font: 14px Arial, sans-serif;
+}
+
+.breadcrumb-dropdown ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb-dropdown ul li {
+  padding: 8px 16px;
+  text-align: left;
+}
+
+.breadcrumb-dropdown ul li a {
+  display: block;
+  text-align: center;
+}
+
+/* Mobile specific styles */
+@media (max-width: 990px) {
+  .breadcrumb-wrapper {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    background-color: #ffffff !important;
+    margin-bottom: 0px; /* Adjust as needed to move it closer to the title */
+    margin-top: -65px;    /* Adjust if needed to move it closer from the top */
+    padding: 0px;       /* Reset padding if needed */
+    z-index: 1;
+}
+
+  a {
+    font: 14px Arial, sans-serif !important;
+}
+
+  .breadcrumb a {
+    color: #000000 !important;
+    font: 14px Arial, sans-serif;
+  }
+
+  .breadcrumb-sub-category {
+    font: 14px Arial, sans-serif;
+    padding: 0px;
+  }
+
+  .breadcrumb-dropdown {
+    right: 166px;
+    margin-top: -17px;
+    width: 160px; /* Adjust the width as needed */
+  }
+
+  .breadcrumb-dropdown ul li {
+    text-align: center;
+  }
+
+  .breadcrumb-dropdown ul li a {
+    padding: 1px;
+    font: 14px Arial, sans-serif;
+  }
+
+  .collection-hero__text-wrapper {
+    background-color: #ffffff !important;
+
+  }
+
+  .collection-hero__text-wrapper h1 {
+    color: #000000;
+
+  }
+
+  .collection-hero__text-wrapper {
+    margin-top: 0px /* Adjust the value as needed */!important;
+    padding-top: 40px /* Optional: use padding instead of margin if preferred */!important;
+    padding: 0px;
+    padding-bottom: -80px/* Adjust the value as needed */!important;
+    margin-top: 0px;
+    border: 0px;
+    z-index: 2;
+    text-align: center; 
+  }
+}
+
+/* Desktop specific styles */
+@media (min-width: 991px) {
+  .breadcrumb-wrapper {
+    /* Add any additional desktop-specific styles if needed */
+  }
+
+  .collection-hero__text-wrapper {
+    margin-top: 0px; /* Adjust the value as needed */
+    padding-top: 50px; /* Optional: use padding instead of margin if preferred */
+  }
+
+  .collection-hero__title {
+    font-size: 30px; /* Decrease the font size */
+    text-align: center; /* Center the text */
+    margin: 0 auto; /* Ensure the margins are set to auto for proper centering */
+    text-decoration: none;
+  }
+    a {
+    font: 14px Arial, sans-serif !important;
+}
+
+  .collection-hero__inner.page-width.scroll-trigger.animate--fade-in {
+    padding: 10px 0px; /* Adjust the top and bottom padding */
+  }
+
+  .collection-hero__text-wrapper {
+    padding: 10px 0px; /* Adjust the top and bottom padding */
+  }
+
+  .breadcrumb-dropdown {
+    margin-left: -36px;
+    width: 350px;
+    background-color: #FFFFFF;
+  }
+}
+</style>
+
+<div class="breadcrumb-wrapper">
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+    <a href="/collections/{{ main_category | handleize }}">{{ main_category }}</a>
+    <span> > </span>
+    <span class="breadcrumb-sub-category">{{ sub_category }}
+      <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6" width="10" height="6">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
+      </svg>
+    </span>
+    <div class="breadcrumb-dropdown">
+      <ul>
+        {% for tag in product_tags %}
+          {% unless tag == current_tag %}
+            <li><a href="/collections/{{ tag | handleize }}">{{ tag }}</a></li>
+          {% endunless %}
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<div class="overlay" style="display:none;"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var breadcrumbSubCategory = document.querySelector('.breadcrumb-sub-category');
+    var breadcrumbDropdown = document.querySelector('.breadcrumb-dropdown');
+    var overlay = document.querySelector('.overlay');
+    var dropdownLinks = breadcrumbDropdown.querySelectorAll('a');
+    var isDropdownOpen = false;
+
+    breadcrumbSubCategory.addEventListener('click', function(event) {
+        event.stopPropagation();
+        isDropdownOpen = !isDropdownOpen;
+        breadcrumbDropdown.style.display = isDropdownOpen ? 'block' : 'none';
+        overlay.style.display = isDropdownOpen ? 'block' : 'none';
+    });
+
+    overlay.addEventListener('click', function() {
+        breadcrumbDropdown.style.display = 'none';
+        overlay.style.display = 'none';
+        isDropdownOpen = false;
+    });
+
+    dropdownLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            breadcrumbDropdown.style.display = 'none';
+            overlay.style.display = 'none';
+            isDropdownOpen = false;
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!breadcrumbSubCategory.contains(event.target) && !breadcrumbDropdown.contains(event.target)) {
+            breadcrumbDropdown.style.display = 'none';
+            overlay.style.display = 'none';
+            isDropdownOpen = false;
+        }
+    });
+});
+</script>
