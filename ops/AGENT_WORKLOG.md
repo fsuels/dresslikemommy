@@ -308,3 +308,28 @@ Open TODOs (next session)
 - templates/index.json: Wired outfit story blocks to live collection/product URLs (dresses, heart sweaters, swim sets) so CTAs stop pointing to placeholders; imagery still needs uploading via theme editor.
 - assets/analytics.js / section markup already tracking outfit CTA clicks—no extra code needed after URL updates.
 - templates/index.json: Dropped in a branded rich-text block (“Why families choose Dress Like Mommy”) using the existing rich-text section so the homepage has editorial copy + About link beneath the outfit stories.
+Session: Mobile sticky CTA
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- snippets/mobile-sticky-cta.liquid + layout/theme.liquid: Added a mobile-only floating CTA (“Need matching looks fast? Shop sets”) that links to family sets and emits mobile_cta analytics events.
+Session: New arrivals carousel
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/home-new-arrivals.liquid (new): Collection-driven slider highlighting the latest products with CTA tracking support.
+- templates/index.json: Inserted the new arrivals section after the outfit stories with copy + collection defaults.
+
+Open TODOs (next session)
+1) Populate the “new-arrivals” collection with actual fresh SKUs or point the section to a curated collection.
+2) Consider tying the carousel to analytics (homepage_cta_click already fires) for reporting in GA4.
+Session: Collection grid consolidation
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/home-gift-bundles.liquid & home-occasion-grid.liquid (new): Replaced two repetitive collection-list rows with curated Gift Bundles + Match by Occasion modules, each with CTA tracking.
+- templates/index.json: Removed collection_list_EiNf6T / collection_list_BHDW3K entries, inserted the new sections, and updated the hero secondary CTA to “Shop family sets.”
+
+Open TODOs (next session)
+1) Upload imagery for bundle/occasion cards and link to final curated collections.
+2) Review remaining collection-list rows (PX36Hk, QW3Byc) for similar consolidation once new assets are ready.

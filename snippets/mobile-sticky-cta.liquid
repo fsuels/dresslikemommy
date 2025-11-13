@@ -1,0 +1,55 @@
+{% if template == 'index' %}
+  {% style %}
+    .mobile-sticky-cta {
+      position: fixed;
+      bottom: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 2.5rem);
+      max-width: 520px;
+      background: rgb(var(--color-foreground));
+      color: rgb(var(--color-background));
+      border-radius: 999px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      z-index: 50;
+      font-weight: 600;
+    }
+
+    .mobile-sticky-cta__text {
+      font-size: 0.95rem;
+    }
+
+    .mobile-sticky-cta__button {
+      background: rgb(var(--color-background));
+      color: rgb(var(--color-foreground));
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    @media screen and (min-width: 750px) {
+      .mobile-sticky-cta {
+        display: none;
+      }
+    }
+  {% endstyle %}
+
+  <div class="mobile-sticky-cta">
+    <span class="mobile-sticky-cta__text">Need matching looks fast?</span>
+    <a
+      href="/collections/family-sets"
+      class="mobile-sticky-cta__button"
+      data-cta-id="mobile_sticky_shop"
+      data-cta-scope="mobile_cta"
+    >
+      Shop sets
+    </a>
+  </div>
+{% endif %}
