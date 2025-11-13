@@ -109,6 +109,15 @@ Changes applied (evidence-first)
 - snippets/cart-notification.liquid:30 and snippets/quick-order-list.liquid:165 — Both surfaces now render the reusable `shipping-estimate-inline` block so the instant modal and bulk-order tooling echo the same “Delivers to XX by…” copy.
 - sections/shipping-faq.liquid (new) and assets/theme-inline-overrides.css:230 — Added a dedicated shipping FAQ section (with schema + FAQ blocks) and lightweight styles so policy/FAQ pages can drop in the shared SLA + region list without bespoke markup.
 - templates/page.shipping.json / templates/page.faq.json — New page templates that append the Shipping FAQ section beneath the standard page content so merchants can assign their Shipping Policy + FAQ pages without re-building blocks.
+- ops/SHIPPING_SLA.md — Playbook covering the new Theme Settings, where the snippet is consumed, and how to sync Shopify’s admin shipping policy text with the canonical SLA.
+
+Session: Featured product + script polish
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/featured-product.liquid:131 & assets/theme-inline-overrides.css:224 — Featured Product (home hero) now renders `shipping-estimate-inline`, so the same “Delivers to …” copy appears even when products are highlighted outside the PDP.
+- assets/shipping-promises.js:1 — ETA strings now use ASCII hyphens, the summary text mirrors the detailed phrasing, and the shopper’s country name (fallback “Worldwide”) is used instead of only the ISO code.
+- layout/theme.liquid:1374 — `data-customer-country-name` defaults to “Worldwide” rather than the shop name, ensuring clean fallback text when localization data isn’t available.
 
 Open TODOs (next session)
 1) Product Finder Agent (from paper L1+L2)

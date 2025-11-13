@@ -53,15 +53,16 @@
   const today = new Date();
   const etaStart = addBusinessDays(today, totalMin);
   const etaEnd = addBusinessDays(today, totalMax);
-  const etaString = `${formatDate(etaStart)}–${formatDate(etaEnd)}`;
-  const detailCopy = `Delivers to ${countryCode} by ${etaString}`;
+  const etaString = `${formatDate(etaStart)}-${formatDate(etaEnd)}`;
+  const destinationLabel = countryName && countryName.length ? countryName : countryCode;
+  const detailCopy = `Delivers to ${destinationLabel} by ${etaString}`;
 
   document.querySelectorAll('[data-shipping-estimate-text]').forEach((node) => {
     node.textContent = detailCopy;
   });
 
   document.querySelectorAll('[data-shipping-summary]').forEach((node) => {
-    node.textContent = `Free shipping • ${etaString}`;
+    node.textContent = detailCopy;
   });
 
   const holidayLabel = config?.holidayCutoff?.label?.trim();

@@ -31,6 +31,7 @@
 
 {%- liquid
   assign product = section.settings.product
+  assign shipping_snippet_rendered = false
 -%}
 
 {% comment %} TODO: assign `product.selected_or_first_available_variant` to variable and replace usage to reduce verbosity {% endcomment %}
@@ -132,6 +133,12 @@
                       {{ form | payment_terms }}
                     {%- endform -%}
                   </div>
+                {%- endif -%}
+                {%- if product and shipping_snippet_rendered == false -%}
+                  <div class="featured-product__shipping" aria-live="polite">
+                    {% render 'shipping-estimate-inline', context: 'featured-product', label: 'Shipping & delivery' %}
+                  </div>
+                  {%- assign shipping_snippet_rendered = true -%}
                 {%- endif -%}
               {%- when 'sku' -%}
                 <p
@@ -412,14 +419,19 @@
                     </p>
                   </div>
                 {%- endif -%}
-              {%- when 'icon-with-text' -%}
-                {% render 'icon-with-text', block: block %}
-            {%- endcase -%}
-          {%- endfor -%}
-          <a
-            {% if product == blank %}
-              role="link" aria-disabled="true"
-            {% else %}
+            {%- when 'icon-with-text' -%}
+              {% render 'icon-with-text', block: block %}
+        {%- endcase -%}
+      {%- endfor -%}
+      {%- if product and shipping_snippet_rendered == false -%}
+        <div class="featured-product__shipping" aria-live="polite">
+          {% render 'shipping-estimate-inline', context: 'featured-product', label: 'Shipping & delivery' %}
+        </div>
+      {%- endif -%}
+      <a
+        {% if product == blank %}
+          role="link" aria-disabled="true"
+        {% else %}
               href="{{ product.url }}"
             {% endif %}
             class="link product__view-details animate-arrow"

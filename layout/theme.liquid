@@ -1371,7 +1371,7 @@
     data-experiment-flags="{{ experiment_flags_attr }}"
     {% if experiment_notes != blank %}data-experiment-notes="{{ experiment_notes | escape }}"{% endif %}
     data-customer-country="{{ localization.country.iso_code | default: 'US' }}"
-    data-customer-country-name="{{ localization.country.name | default: shop.name }}">
+    data-customer-country-name="{{ localization.country.name | default: 'Worldwide' }}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
