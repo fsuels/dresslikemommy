@@ -217,3 +217,19 @@ Date: 2025-11-13
 
 Changes applied (evidence-first)
 - sections/hero-family-fit.liquid: Added responsive rules (aspect ratio swap, stacked CTAs, badge columns, shipping layout) so the upgraded hero layout holds up on mobile viewports too (sections/hero-family-fit.liquid:1-220).
+Session: Hero tracking + poster fallback
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/hero-family-fit.liquid: Added poster fallback logic plus hero data attributes so analytics can detect the section/video reliably (sections/hero-family-fit.liquid:1-220).
+- assets/analytics.js: Introduced hero analytics (CTA click + video view events via IntersectionObserver) and a shared push helper so we can see engagement on the homepage hero (assets/analytics.js:1-120).
+
+Open TODOs (next session)
+1) Capture/upload hero poster stills and set ideo_poster_image to improve LCP on low-bandwidth sessions.
+2) Decide how hero analytics should feed into GA4/GTM once IDs are available (still pending in TODO list).
+Session: Poster URL support
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/hero-family-fit.liquid: Added ideo_poster_custom URL support so locally uploaded CDN images can be used as posters even before the theme is published (sections/hero-family-fit.liquid:1-220).
+- templates/index.json: Set the desktop poster URL + mobile fallback image using the provided Shopify File URLs, matching the new Sora stills (templates/index.json:1).

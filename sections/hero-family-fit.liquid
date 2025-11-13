@@ -241,7 +241,7 @@
   endif
 -%}
 
-<section class="hero-family-fit section-{{ section.id }}-hero color-{{ section.settings.color_scheme }} gradient">
+<section class="hero-family-fit section-{{ section.id }}-hero color-{{ section.settings.color_scheme }} gradient" data-hero-id="family-fit" data-hero-section="{{ section.id }}">
   <div class="page-width">
     <div class="hero-family-fit__grid{% if reverse_layout %} hero-family-fit__grid--media-left{% endif %}">
       <div class="hero-family-fit__content{% if animate %} scroll-trigger animate--slide-in{% endif %}">
@@ -301,6 +301,20 @@
 
       {%- if has_media -%}
         <div class="hero-family-fit__media{% if animate %} scroll-trigger animate--slide-in{% endif %}">
+          {%- assign poster_image = section.settings.video_poster_image -%}
+          {%- assign poster_url = '' -%}
+          {%- if section.settings.video_poster_custom != blank -%}
+            {%- assign poster_url = section.settings.video_poster_custom -%}
+          {%- else -%}
+            {%- if poster_image == blank and has_desktop_image -%}
+              {%- assign poster_image = section.settings.desktop_image -%}
+            {%- elsif poster_image == blank and has_mobile_image -%}
+              {%- assign poster_image = section.settings.mobile_image -%}
+            {%- endif -%}
+            {%- if poster_image != blank -%}
+              {%- assign poster_url = poster_image | image_url: width: 1600 -%}
+            {%- endif -%}
+          {%- endif -%}
           {%- if has_desktop_video or has_mobile_video -%}
             <div class="hero-family-fit__video">
               <video
@@ -308,10 +322,9 @@
                 loop
                 muted
                 playsinline
-                {% if section.settings.video_poster_image != blank %}
-                  poster="{{ section.settings.video_poster_image | image_url: width: 1600 }}"
-                {% elsif has_desktop_image %}
-                  poster="{{ section.settings.desktop_image | image_url: width: 1600 }}"
+                data-hero-video="primary"
+                {% if poster_url != blank %}
+                  poster="{{ poster_url }}"
                 {% endif %}
               >
                 {%- if has_mobile_video -%}
@@ -395,6 +408,12 @@
       "id": "video_poster_image",
       "label": "Video poster image",
       "info": "Fallback image shown before playback. Recommended 3200x1800."
+    },
+    {
+      "type": "url",
+      "id": "video_poster_custom",
+      "label": "Video poster URL",
+      "info": "Optional CDN image to use as poster (overrides image picker)."
     },
     {
       "type": "range",

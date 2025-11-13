@@ -1,5 +1,11 @@
 window.dataLayer = window.dataLayer || [];
 (function(){
+  function pushToDataLayer(payload){
+    try {
+      window.dataLayer.push(payload);
+    } catch(e) {}
+  }
+
   function pushViewItem(){
     try {
       var el = document.querySelector('script[id^="ProductJSON-"]');
@@ -10,15 +16,56 @@ window.dataLayer = window.dataLayer || [];
       var variantId = (p.current_variant_id) || (p.variants && p.variants[0] && p.variants[0].id) || null;
       var currencyMeta = document.querySelector('meta[property="og:price:currency"]');
       var currency = (currencyMeta && currencyMeta.content) || 'USD';
-      window.dataLayer.push({
+      pushToDataLayer({
         event: 'view_item',
         ecommerce: { items: [{ item_id: p.id, item_name: p.title, item_variant: variantId, price: price, currency: currency }] }
       });
     } catch(e) {}
   }
 
+  function initHeroAnalytics(){
+    var hero = document.querySelector('[data-hero-id="family-fit"]');
+    if(!hero) return;
+    var sectionId = hero.getAttribute('data-hero-section');
+    var heroId = 'family_fit';
+    var video = hero.querySelector('[data-hero-video]');
+
+    if(video && 'IntersectionObserver' in window){
+      var viewed = false;
+      var observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(viewed) return;
+          if(entry.isIntersecting && entry.intersectionRatio >= 0.6){
+            viewed = true;
+            pushToDataLayer({
+              event: 'hero_video_view',
+              heroId: heroId,
+              sectionId: sectionId
+            });
+            observer.disconnect();
+          }
+        });
+      }, { threshold: [0.6] });
+      observer.observe(video);
+    }
+
+    document.addEventListener('click', function(evt){
+      var btn = evt.target && evt.target.closest && evt.target.closest('[data-cta-id]');
+      if(!btn) return;
+      if(!hero.contains(btn)) return;
+      pushToDataLayer({
+        event: 'hero_cta_click',
+        heroId: heroId,
+        sectionId: sectionId,
+        ctaId: btn.getAttribute('data-cta-id'),
+        ctaText: btn.textContent.trim()
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function(){
     pushViewItem();
+    initHeroAnalytics();
   });
 
 if (typeof subscribe === 'function') {
@@ -38,14 +85,14 @@ if (typeof subscribe === 'function') {
           var price = (typeof priceCents === 'number' ? priceCents : parseFloat(priceCents)) / 100;
           var currencyMeta = document.querySelector('meta[property="og:price:currency"]');
           var currency = (currencyMeta && currencyMeta.content) || 'USD';
-          window.dataLayer.push({
+          pushToDataLayer({
             event: 'add_to_cart',
             ecommerce: { items: [{ item_id: p.id, item_name: p.title, item_variant: variantId || (p.variants?.[0]?.id), price: price, currency: currency, quantity: 1 }]}
           });
           return;
         }
-        window.dataLayer.push({ event: 'add_to_cart' });
-      } catch(e) { window.dataLayer.push({ event: 'add_to_cart' }); }
+        pushToDataLayer({ event: 'add_to_cart' });
+      } catch(e) { pushToDataLayer({ event: 'add_to_cart' }); }
     });
   } catch(e) {}
 }
@@ -53,7 +100,7 @@ if (typeof subscribe === 'function') {
   document.addEventListener('click', function(e){
     var t = e.target;
     if (t && t.name === 'checkout') {
-      window.dataLayer.push({ event: 'begin_checkout' });
+      pushToDataLayer({ event: 'begin_checkout' });
     }
   });
 })();
