@@ -17,7 +17,7 @@
 
   .hero-family-fit__grid {
     display: grid;
-    gap: 2.5rem;
+    gap: 3rem;
     align-items: center;
   }
 
@@ -35,21 +35,40 @@
     }
   }
 
+  .hero-family-fit__content {
+    max-width: 560px;
+  }
+
   .hero-family-fit__eyebrow {
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 0.85rem;
+    letter-spacing: 0.28em;
+    font-size: 0.8rem;
     margin-bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-family-fit__eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.4;
   }
 
   .hero-family-fit__heading {
     margin: 0 0 1rem;
+    font-size: clamp(2.25rem, 3vw, 3.2rem);
+    line-height: 1.1;
   }
 
   .hero-family-fit__body {
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
     line-height: 1.6;
+    color: rgba(var(--color-foreground), 0.85);
   }
 
   .hero-family-fit__shipping {
@@ -59,27 +78,51 @@
     font-size: 0.95rem;
     margin: 0 0 1.5rem;
   }
+    background: rgba(var(--color-foreground), 0.04);
+    border-radius: 999px;
+    padding: 0.75rem 1.25rem;
+  }
 
   .hero-family-fit__ctas {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-family-fit__badge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.75rem;
   }
 
   .hero-family-fit__badges {
-    margin: 2rem 0 0;
+    margin: 0;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
     list-style: none;
+    display: contents;
   }
 
   .hero-family-fit__badge {
-    border: 1px solid rgba(var(--color-foreground), 0.2);
+    border: 1px solid rgba(var(--color-foreground), 0.12);
+    border-radius: 16px;
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: rgba(var(--color-background), 0.7);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .hero-family-fit__badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
     border-radius: 999px;
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
+    background: currentColor;
+    opacity: 0.5;
   }
 
   .hero-family-fit__media picture,
@@ -95,6 +138,8 @@
     position: relative;
     border-radius: {{ settings.media_radius }}px;
     overflow: hidden;
+    box-shadow: 0 35px 60px rgba(0, 0, 0, 0.2);
+    aspect-ratio: 16 / 9;
   }
 
   .hero-family-fit__video video {
@@ -111,6 +156,40 @@
     pointer-events: none;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.05) 100%);
     opacity: {{ video_overlay_alpha }};
+  }
+
+  @media screen and (max-width: 989px) {
+    .hero-family-fit__grid {
+      gap: 2rem;
+    }
+
+    .hero-family-fit__content {
+      max-width: none;
+    }
+
+    .hero-family-fit__video {
+      aspect-ratio: 3 / 4;
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-family-fit__shipping {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .hero-family-fit__ctas {
+      flex-direction: column;
+    }
+
+    .hero-family-fit__ctas .button {
+      width: 100%;
+      text-align: center;
+    }
+
+    .hero-family-fit__badge-grid {
+      grid-template-columns: 1fr;
+    }
   }
 {%- endstyle -%}
 
@@ -208,13 +287,15 @@
         </div>
 
         {%- if section.blocks.size > 0 -%}
-          <ul class="hero-family-fit__badges" role="list">
-            {%- for block in section.blocks -%}
-              <li class="hero-family-fit__badge" {{ block.shopify_attributes }}>
-                {{ block.settings.text }}
-              </li>
-            {%- endfor -%}
-          </ul>
+          <div class="hero-family-fit__badge-grid">
+            <ul class="hero-family-fit__badges" role="list">
+              {%- for block in section.blocks -%}
+                <li class="hero-family-fit__badge" {{ block.shopify_attributes }}>
+                  {{ block.settings.text }}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
         {%- endif -%}
       </div>
 
@@ -418,21 +499,21 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 100,
+      "max": 120,
       "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 32
+      "default": 64
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 100,
+      "max": 120,
       "step": 4,
       "unit": "px",
       "label": "Bottom padding",
-      "default": 32
+      "default": 52
     }
   ],
   "blocks": [

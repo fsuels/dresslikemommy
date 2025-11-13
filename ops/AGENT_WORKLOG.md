@@ -197,3 +197,23 @@ Open TODOs (next session)
 2) Extend analytics (ssets/analytics.js) to fire events when the new hero CTAs are clicked and when the video enters the viewport.
 - sections/hero-family-fit.liquid: Converted the video/image boolean checks into Liquid-safe conditional assignments so theme dev no longer errors on != blank expressions (sections/hero-family-fit.liquid:129-140).
 - sections/hero-family-fit.liquid: Set has_media via chained conditionals instead of or expressions so Liquid accepts the assignment in strict mode (sections/hero-family-fit.liquid:141).
+Session: Hero visual polish
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/hero-family-fit.liquid: Elevated desktop styling—larger typography, badge grid, refined shipping pill, video shadow/aspect ratio, and higher padding defaults—so the hero reads like a premium landing section (sections/hero-family-fit.liquid:1-220).
+
+Open TODOs (next session)
+1) Confirm hero spacing on mobile after these desktop-focused tweaks and adjust responsive rules if needed.
+2) Add poster stills once exported to keep LCP healthy on low-bandwidth devices.
+Session: Hero icon fix
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- snippets/icon-delivery-truck.liquid (new): Added a reusable delivery truck icon so the hero shipping pill renders without Liquid errors (snippets/icon-delivery-truck.liquid:1).
+- templates/index.json: Pointed the secondary CTA to /collections/family-sets so the hero button reaches a live collection instead of the missing gift-finder page (templates/index.json:1).
+Session: Hero mobile polish
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/hero-family-fit.liquid: Added responsive rules (aspect ratio swap, stacked CTAs, badge columns, shipping layout) so the upgraded hero layout holds up on mobile viewports too (sections/hero-family-fit.liquid:1-220).
