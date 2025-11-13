@@ -144,6 +144,18 @@
       "offerCount": {{ product.variants.size }},
       "offers": [{{ offers_list }}]
     }
+    {%- assign rating_drop = product.metafields.reviews.rating.value -%}
+    {%- assign rating_count = product.metafields.reviews.rating_count -%}
+    {%- if rating_drop != blank and rating_count != blank and rating_count > 0 -%},
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": {{ rating_drop.rating | json }},
+      "ratingCount": {{ rating_count | json }},
+      "reviewCount": {{ rating_count | json }},
+      "bestRating": {{ rating_drop.scale_max | default: 5 | json }},
+      "worstRating": 1
+    }
+    {%- endif -%}
   }
   </script>
 {%- endif -%}

@@ -1,0 +1,238 @@
+{%- liquid
+  assign restrict_handle = section.settings.restrict_handle | strip
+  if restrict_handle != blank and collection and collection.handle != restrict_handle
+    assign skip_render = true
+  endif
+-%}
+
+{%- unless skip_render -%}
+  {{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+  {%- style -%}
+    .collection-intro {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+
+    .collection-intro__content {
+      max-width: 58rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .collection-intro__links {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .collection-intro__card {
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--inputs-radius, 12px);
+      text-decoration: none;
+    }
+
+    .collection-intro__card:hover,
+    .collection-intro__card:focus-visible {
+      border-color: currentColor;
+    }
+
+    .collection-intro__card-heading {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 0.35rem;
+    }
+
+    .collection-intro__card-description {
+      margin: 0;
+      color: rgba(18, 18, 18, 0.75);
+      font-size: 0.95rem;
+    }
+
+  {%- endstyle -%}
+
+  <div class="collection-intro color-{{ section.settings.color_scheme }} gradient">
+    <div class="section-{{ section.id }}-padding page-width">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="caption-with-letter-spacing">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.intro_richtext != blank -%}
+        <div class="collection-intro__content rte">
+          {{ section.settings.intro_richtext }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        {%- if section.settings.links_heading != blank -%}
+          <h2 class="h4">{{ section.settings.links_heading | escape }}</h2>
+        {%- endif -%}
+        <div class="collection-intro__links">
+          {%- for block in section.blocks -%}
+            {%- assign link_url = block.settings.link -%}
+            {%- if link_url != blank -%}
+              <a
+                class="collection-intro__card"
+                href="{{ link_url }}"
+                {{ block.shopify_attributes }}
+              >
+            {%- else -%}
+              <div class="collection-intro__card" {{ block.shopify_attributes }}>
+            {%- endif -%}
+                <p class="collection-intro__card-heading">
+                  {{- block.settings.title | escape -}}
+                </p>
+                {%- if block.settings.description != blank -%}
+                  <p class="collection-intro__card-description">
+                    {{- block.settings.description | escape -}}
+                  </p>
+                {%- endif -%}
+            {%- if link_url != blank -%}
+              </a>
+            {%- else -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Collection intro + links",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Mommy & me style guide"
+    },
+    {
+      "type": "text",
+      "id": "restrict_handle",
+      "label": "Only show on collection handle",
+      "info": "Leave blank to show on every collection. Enter the handle (e.g., mommy-and-me-dresses) to limit rendering."
+    },
+    {
+      "type": "richtext",
+      "id": "intro_richtext",
+      "label": "Intro copy",
+      "default": "<p>Matching Mommy & Me dresses should feel effortless. Layer floaty maxi dresses for mom with twirl-ready minis and you have a one-and-done look for photoshoots or brunch. Need alternates? Our <a href=\\\"/collections/matching-family-pajamas\\\">matching family pajamas</a> keep cozy nights coordinated, and <a href=\\\"/collections/mommy-and-me-swimsuits\\\">family swimsuits</a> bring the same vibe to beach days.</p>"
+    },
+    {
+      "type": "text",
+      "id": "links_heading",
+      "label": "Links heading",
+      "default": "Plan the rest of the look"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Link card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Matching family pajamas"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Cozy coordinated sets for tree-trimming nights."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Collection intro + links",
+      "blocks": [
+        {
+          "type": "link",
+          "settings": {
+            "title": "Matching family pajamas",
+            "description": "Cozy sets for Christmas Eve and movie nights.",
+            "link": "/collections/matching-family-pajamas"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "title": "Family swimsuits",
+            "description": "Resort-ready looks for pool days and getaways.",
+            "link": "/collections/mommy-and-me-swimsuits"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "title": "Family photo outfits (Fall/Winter)",
+            "description": "Palette ideas, layering tips, and posing prompts.",
+            "link": "/blogs/style-journal/family-photo-outfits-fall-winter"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "title": "Matching Christmas pajamas sizing",
+            "description": "How to nail fits for every family member.",
+            "link": "/blogs/style-journal/matching-christmas-pajamas-sizing"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -333,3 +333,24 @@ Changes applied (evidence-first)
 Open TODOs (next session)
 1) Upload imagery for bundle/occasion cards and link to final curated collections.
 2) Review remaining collection-list rows (PX36Hk, QW3Byc) for similar consolidation once new assets are ready.
+Session: Mommy & Me collection intro + schema ratings
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/collection-intro-links.liquid:1-176 - New reusable section that renders a rich intro plus configurable adjacent collection/content hub links so key collections can keep their intros server-rendered instead of JS widgets.
+- templates/collection.mommy-and-me.json:1-63 - Dedicated collection template that inserts the new intro section between the banner and product grid with defaults tailored to Mommy & Me Dresses (links to Pajamas, Swimsuits, photo-guide, and sizing guide).
+- snippets/jsonld-seo.liquid:124-148 - Product JSON-LD now emits aggregateRating/reviewCount when Judge.me metafields exist so Google can ingest the same star data we show onsite.
+
+Open TODOs (next session)
+1) In Shopify admin, assign collection.mommy-and-me to the Mommy & Me Dresses collection and tweak the intro copy/links as merchandising updates roll in.
+2) Once Judge.me review counts publish, rerun Rich Results Test to confirm aggregateRating validates (needs at least 1 review).
+Session: Mommy & Me intro gating
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/collection-intro-links.liquid:1-210 - Added restrict_handle control so the intro module only renders when the current collection handle matches, enabling us to include it globally without duplicating templates.
+- templates/collection.json:1 - Inserted the intro-links section between the banner and grid with restrict_handle set to mommy-and-me-dresses so the SEO copy/links automatically display for that collection while staying hidden elsewhere.
+
+Open TODOs (next session)
+1) Preview the Mommy & Me collection in the theme editor to confirm the intro renders and tweak copy if needed.
+2) Re-run Rich Results Test once Judge.me ratings populate to ensure the aggregateRating block validates.
