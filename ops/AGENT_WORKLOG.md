@@ -259,3 +259,38 @@ Open TODOs (next session)
 1) Run Rich Results Test/SDTT on the local preview to confirm the new JSON-LD passes Google validation, then remove the external app from the store.
 2) Use the enhanced shipping JSON log to capture the malformed payload and finish fixing the parse error.
 - snippets/shipping-promise-data.liquid: Switched to splitting on an actual newline/carriage return so shipping_promises parses correctly and stops injecting stray country codes into the JSON payload (snippets/shipping-promise-data.liquid:1).
+Session: Home best sellers
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/home-best-sellers.liquid (new): Added a four-card product storytelling section with CTA hooks, badge copy, and responsive layout so the homepage highlights actual SKUs instead of only collection tiles.
+- templates/index.json: Inserted the new best sellers section at the top (placeholder products + copy) so merch ops can populate real SKUs next session.
+
+Open TODOs (next session)
+1) Populate the best-seller blocks with live products and adjust badge copy once merchandising approves the lineup.
+2) Instrument best-seller CTAs in assets/analytics.js (similar to the hero events) to measure clicks.
+Session: Trust strip + Judge.me
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/home-reassurance.liquid (new): Three-column trust module highlighting shipping, reviews, exchanges with icon support.
+- templates/index.json: Inserted reassurance row + Judge.me carousel block below the hero/best sellers ordering for stronger social proof.
+- snippets/icon-star.liquid & icon-refresh.liquid: Lightweight icons for the reassurance cards.
+- config/settings_data.json: Enabled the Judge.me carousel app block for the homepage.
+
+Open TODOs (next session)
+1) Style/tune Judge.me block settings (carousel theme, review count) in Shopify admin.
+2) Add analytics hooks for reassurance CTAs and Judge.me carousel interactions.
+Session: Best sellers wiring + CTA analytics
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- templates/index.json: Filled the four best-seller blocks with live product handles + tuned copy/CTAs; reassurance cards now link to Shipping/FAQ/Reviews anchors.
+- sections/home-reassurance.liquid & sections/home-best-sellers.liquid: Added CTA data attributes and optional buttons so analytics can capture clicks.
+- sections/hero-family-fit.liquid: Tag hero buttons with data-cta-scope for the new analytics hook.
+- assets/analytics.js: Centralized CTA listener emitting homepage_cta_click + existing hero events, capturing product handle and scope.
+- snippets/icon-star.liquid / icon-refresh.liquid: (already noted) supporting reassurance icons.
+
+Open TODOs (next session)
+1) In Shopify Admin, configure the Judge.me homepage carousel (colors, review count) so it matches the theme branding.
+2) Consider adding an Outfit Builder section or editorial copy block to continue diversifying the homepage after Best Sellers + trust row.

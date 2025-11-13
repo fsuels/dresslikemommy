@@ -49,23 +49,39 @@ window.dataLayer = window.dataLayer || [];
       observer.observe(video);
     }
 
+  }
+
+  function initHomepageCtas(){
     document.addEventListener('click', function(evt){
       var btn = evt.target && evt.target.closest && evt.target.closest('[data-cta-id]');
       if(!btn) return;
-      if(!hero.contains(btn)) return;
+      var scope = btn.getAttribute('data-cta-scope') || '';
       pushToDataLayer({
-        event: 'hero_cta_click',
-        heroId: heroId,
-        sectionId: sectionId,
+        event: 'homepage_cta_click',
         ctaId: btn.getAttribute('data-cta-id'),
-        ctaText: btn.textContent.trim()
+        ctaScope: scope,
+        ctaText: btn.textContent.trim(),
+        destination: btn.getAttribute('href') || '',
+        productHandle: btn.getAttribute('data-product-handle') || ''
       });
+
+      if(scope === 'hero'){
+        var heroEl = btn.closest('[data-hero-id]');
+        pushToDataLayer({
+          event: 'hero_cta_click',
+          heroId: heroEl ? heroEl.getAttribute('data-hero-id') : 'family_fit',
+          sectionId: heroEl ? heroEl.getAttribute('data-hero-section') : undefined,
+          ctaId: btn.getAttribute('data-cta-id'),
+          ctaText: btn.textContent.trim()
+        });
+      }
     });
   }
 
   document.addEventListener('DOMContentLoaded', function(){
     pushViewItem();
     initHeroAnalytics();
+    initHomepageCtas();
   });
 
 if (typeof subscribe === 'function') {

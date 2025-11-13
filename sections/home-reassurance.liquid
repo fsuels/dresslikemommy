@@ -1,0 +1,226 @@
+{%- comment -%}
+  Three-column reassurance row for key benefits.
+{%- endcomment -%}
+
+{%- style -%}
+  .home-reassurance-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .home-reassurance-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .home-reassurance__grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .home-reassurance__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .home-reassurance__card {
+    border-radius: 24px;
+    padding: 1.75rem;
+    background: rgba(var(--color-background), 1);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .home-reassurance__heading {
+    margin-bottom: 0.5rem;
+  }
+
+  .home-reassurance__subheading {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: rgba(var(--color-foreground), 0.7);
+    max-width: 520px;
+  }
+
+  .home-reassurance__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(var(--color-foreground), 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+{%- endstyle -%}
+
+<section class="color-{{ section.settings.color_scheme }} gradient home-reassurance-{{ section.id }}">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <div class="title-wrapper-with-link">
+        <div>
+          <h2 class="home-reassurance__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+          {% if section.settings.subheading != blank %}
+            <p class="home-reassurance__subheading">{{ section.settings.subheading }}</p>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="home-reassurance__grid">
+      {%- for block in section.blocks -%}
+        <article class="home-reassurance__card" {{ block.shopify_attributes }}>
+          {% if block.settings.icon != 'none' %}
+            <div class="home-reassurance__icon">
+              {% case block.settings.icon %}
+                {% when 'truck' %}{% render 'icon-delivery-truck' %}
+                {% when 'star' %}{% render 'icon-star' %}
+                {% when 'exchange' %}{% render 'icon-refresh' %}
+              {% endcase %}
+            </div>
+          {% endif %}
+          <h3 class="{{ section.settings.card_heading_size }}">{{ block.settings.title }}</h3>
+          <p class="rte">{{ block.settings.description }}</p>
+          {% if block.settings.cta_label != blank and block.settings.cta_link != blank %}
+            <div>
+              <a
+                href="{{ block.settings.cta_link }}"
+                class="link underlined-link"
+                data-cta-id="reassurance_cta"
+                data-cta-scope="reassurance"
+                data-reassurance-title="{{ block.settings.title | escape }}"
+              >
+                {{ block.settings.cta_label }}
+              </a>
+            </div>
+          {% endif %}
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home reassurance",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Dress together with confidence"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Why 30k+ families trust Dress Like Mommy for matching outfits."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h2", "label": "Medium" },
+        { "value": "h1", "label": "Large" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "card_heading_size",
+      "label": "Card heading size",
+      "options": [
+        { "value": "h4", "label": "Small" },
+        { "value": "h3", "label": "Standard" }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "star", "label": "Star" },
+            { "value": "exchange", "label": "Exchange" }
+          ],
+          "default": "star"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Free shipping always"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "2-3 day processing + tracked delivery worldwide."
+        },
+        {
+          "type": "url",
+          "id": "cta_link",
+          "label": "CTA link"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA label",
+          "default": "Learn more"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Home reassurance",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}
