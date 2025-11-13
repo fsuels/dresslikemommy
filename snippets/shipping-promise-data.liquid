@@ -1,0 +1,36 @@
+{%- assign processing_min = settings.shipping_processing_days_min | default: 2 -%}
+{%- assign processing_max = settings.shipping_processing_days_max | default: processing_min -%}
+{%- assign transit_min = settings.shipping_transit_days_min | default: 7 -%}
+{%- assign transit_max = settings.shipping_transit_days_max | default: transit_min -%}
+
+{%- assign shipping_lines = settings.shipping_promises | to_string | split: "\n" -%}
+{%- assign region_json = '' -%}
+{%- assign region_delim = '' -%}
+{%- for line in shipping_lines -%}
+  {%- assign trimmed = line | strip -%}
+  {%- if trimmed != blank -%}
+    {%- assign parts = trimmed | split: ':' -%}
+    {%- assign iso = parts[0] | strip | upcase -%}
+    {%- assign range = parts[1] | default: '' | strip -%}
+    {%- assign range_parts = range | split: '-' -%}
+    {%- assign region_min = range_parts[0] | strip | default: transit_min -%}
+    {%- assign region_max = range_parts[1] | strip | default: transit_max -%}
+    {%- capture region_json -%}{{ region_json }}{{ region_delim }}{"iso":"{{ iso }}","min":{{ region_min }},"max":{{ region_max }}}{%- endcapture -%}
+    {%- assign region_delim = ',' -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign holiday_label = settings.shipping_holiday_cutoff_label | to_string | strip -%}
+{%- assign holiday_date = settings.shipping_holiday_cutoff_date | to_string | strip -%}
+
+<script id="shipping-promise-data" type="application/json">
+{
+  "processing": { "min": {{ processing_min }}, "max": {{ processing_max }} },
+  "transit": { "min": {{ transit_min }}, "max": {{ transit_max }} },
+  "regions": [{{ region_json }}],
+  "holidayCutoff": {
+    "label": {{ holiday_label | json }},
+    "date": {{ holiday_date | json }}
+  }
+}
+</script>

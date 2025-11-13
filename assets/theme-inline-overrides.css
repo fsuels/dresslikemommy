@@ -1,0 +1,477 @@
+/* Inline overrides migrated from layout/theme.liquid */
+
+option[value="manual"],
+option[value="title-ascending"],
+option[value="title-descending"],
+option[value="created-ascending"],
+option[value="created-descending"] {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .share-button__button,
+  .wishlist-button__button {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: transparent !important; /* Ensure no background color interferes */
+    border: none !important; /* Remove borders */
+    filter: none !important; /* Ensure no filter is applied */
+    transition: none !important; /* Disable any transition */
+    vertical-align: middle; /* Align vertically in the middle */
+  }
+
+  .wishlist-button__button {
+    margin-left: -105px !important; /* Adjust this value to position the wishlist button next to the share button */
+    top: 49px !important; /* Adjust this value to move the wishlist button up */
+    margin-bottom: 0 !important;
+    
+  }
+
+  .share-button__button {
+    margin-left: -80px !important; /* Adjust this value to position the wishlist button next to the share button */
+    top: 45px !important; /* Adjust this value to move the wishlist button up */
+    margin-bottom: 0 !important;
+    
+  }
+  .product__info-container {
+    margin-top: -94px; /* Adjust this value as needed */
+    padding-bottom: 0; /* Remove bottom padding if necessary */
+  }
+
+  
+  .share-button__button img {
+    width: 20px; /* Set the width of the icon */
+    height: 20px; /* Set the height of the icon */
+    filter: none !important;
+    background-color: transparent !important; /* Ensure no background color interferes */
+    border: none !important; /* Remove borders */
+    transition: none !important; /* Disable any transition */
+  }
+}
+
+/* Ensure slider buttons and image counter are properly aligned in mobile view */
+@media only screen and (max-width: 767px) {
+    .slider-container {
+        position: relative; /* Ensure the container is relative */
+    }
+
+    /* Target only the slider buttons */
+    .slider-buttons {
+        position: absolute !important;
+        bottom: -22px !important; /* Position at the bottom */
+        left: 50% !important;    /* Move to horizontal center */
+        transform: translateX(-50%) !important; /* Center horizontally */
+        z-index: 10; /* Ensure it's on top of the image */
+    }
+}
+
+.share-button__button {
+  display: inline-block !important;
+  margin-right: 10px !important; /* Adjust the spacing as needed */
+  position: absolute !important;
+  top: -30px !important; /* Adjust this value to move the buttons up */
+  left: 320px !important; /* Adjust this value to position the share button */
+  background-color: transparent !important; /* Ensure no background color interferes */
+  border: none !important; /* Remove borders */
+  filter: none !important; /* Ensure no filter is applied */
+  transition: none !important; /* Disable any transition */
+}
+
+.share-button__button.desktop-only {
+  display: none !important;
+}
+
+/* Desktop view (default) */
+.breadcrumb {
+  font-size: 12px; /* Adjust the size as needed */
+  text-transform: capitalize;
+  display: block; /* Ensure breadcrumb is displayed */
+  padding-left: 50px; /* Adjust padding for desktop view */
+}
+
+.breadcrumb a {
+  font-size: 12px; /* Adjust the size as needed */
+  text-transform: capitalize;
+  display: inline-block;
+  margin: 0; /* Remove margin */
+  padding: 0; /* Remove padding */
+}
+
+.breadcrumb span {
+  margin: 0 5px; /* Adjust the space between separators */
+}
+
+/* Mobile view adjustments */
+@media only screen and (max-width: 767px) {
+  .breadcrumb {
+    font-size: 13px; /* Adjust the size for mobile view */
+    padding-left: 12px; /* Adjust padding for mobile view */
+    display: block !important; /* Ensure breadcrumb is displayed */
+    visibility: visible !important; /* Ensure breadcrumb is visible */
+    margin-top: 50px; /* Add margin-top to move the breadcrumb down */
+
+  }
+
+  .breadcrumb a {
+    font-size: 13px; /* Adjust the size for mobile view */
+    margin-bottom: 4px; /* Remove margin */
+    margin-left: 0px; /* Remove margin */
+    margin-right: 0px; /* Remove margin */
+    margin-top: 4px; /* Remove margin */
+    padding-right: 0px; /* Remove padding */
+    padding-left: 0px; /* Remove padding */
+    padding-top: 15px; /* Remove padding */
+    padding-bottom: 15px; /* Remove padding */
+
+  }
+
+  .breadcrumb span {
+    margin: 0 2px; /* Adjust the space between separators for mobile */
+  }
+
+  /* Hide specific parts in mobile view */
+  .breadcrumb .mobile-hide {
+    display: none !important;
+  }
+}
+
+/* Decrease the size of the product page title */
+.product__title h1,
+.product__title h2 {
+  font-size: 16px;
+} /* Increase the size of the product page price and change its color to orange */
+.price--large,
+.price-item--regular {
+  font-size: 16px !important;
+  font-weight: bold!important;
+  color: #ff6600 !important;
+} /* Increase size and make bold for variant picker */
+.product-form__input label,
+.product-form__input .radio__label,
+.product-form__input .swatch__label,
+.product-form__input .swatch__item,
+.product-form__input .variant-input__label,
+.product-form__input .variant-input__option {
+  font-size: 16px !important;
+  font-weight: bold !important;
+} /* Increase the font size of the variant picker options */
+.product-form__input select,
+.product-form__input select option {
+  font-size: 18px !important;
+  font-weight: normal !important;
+} /* Change text color to orange and add bottom border on hover */
+ul li a:hover {
+  color: #ff6600 !important;
+} /* Header padding adjustment */
+.header {
+  padding: 0 10px !important;
+  margin: 0; /* Ensure no unwanted margins */
+  
+
+} /* Add to cart button styling */
+button.product-form__submit.button--full-width.button--secondary {
+  background-color: #f39c12 !important;
+  color: #fff !important;
+  border: none;
+  padding: 15px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button.product-form__submit.button--full-width.button--secondary:hover {
+  background-color: #e67e22 !important;
+}
+.predictive-search {
+  margin-top: -0px; /* Adjust this value as needed */
+  position: relative;
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.header__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  cursor: pointer;
+}
+.header__icon svg {
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Ensure SVG doesn't interfere */
+}
+
+.header__icon--account, .header__icon--cart {
+  width: 74px; /* Adjust to match the width of your button */
+  height: 54px; /* Adjust to match the height of your button */
+}
+
+.overlapping-element {
+  pointer-events: none;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 767px) {
+    div.collection-hero__text-wrapper {
+        margin-left: 5px;   /* Adjust as needed */
+    }
+
+    h1.collection-hero__title {
+        margin-top: 5px;   /* Adjust as needed */
+        font-size: 20px;    /* Adjust font size */
+    }
+}
+
+/* Desktop view adjustments */
+@media (min-width: 768px) {
+    a.cart-item__name.h4.break {
+        max-width: 600px; /* Set a max width for the title */
+        white-space: nowrap; /* Prevent text from wrapping */
+        overflow: hidden; /* Hide overflow */
+        text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
+    }
+}
+
+/* Mobile view adjustments */
+@media (max-width: 767px) {
+    .slider-component#GalleryViewer-template--18068973781217_main.slider-mobile-gutter,
+    .product__media-wrapper { /* Replace with your actual classes */
+        width: 100%;            /* Ensure the container covers the full width */
+        height: auto;           /* Automatically adjust the height */
+        max-width: 100%;        /* Ensure the container does not exceed the full width */
+        overflow: hidden;       /* Prevent the image from being moved around */
+        position: relative;     /* Ensure container positions correctly */
+    }
+
+    .slider-component#GalleryViewer-template--18068973781217_main.slider-mobile-gutter img,
+    .product__media-wrapper img { /* Replace with your actual image classes */
+        width: 100%;            /* Ensure the image covers the full width */
+        height: 100%;           /* Ensure the image covers the full height */
+        object-fit: cover;      /* Cover the entire container */
+        display: block;         /* Ensure proper layout */
+    }
+}
+
+/* Adjust the page background color to purple */
+.page-width.utility-bar__grid {
+    background-color: #2E2E2E !important;  /* Navy blue background color */
+    width: 100% !important;  /* Ensure the full page width */
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+}
+
+/* Announcement bar styling */
+.announcement-bar {
+    height: 35px !important;
+    line-height: 35px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: #2E2E2E !important;
+    margin: 0 auto !important;
+    padding: 10px 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Change the text color and check mark inside the span to white */
+.announcement-bar span {
+    color: #FFFFFF !important; /* Set the text to white */
+}
+
+/* Adjust the color of check marks */
+.announcement-bar span::before {
+    color: #FFFFFF !important; /* Set the check mark color to white */
+}
+
+/* Media query for mobile responsiveness */
+@media (max-width: 767px) {
+    .announcement-bar {
+        height: 35px !important; /* Adjust height for mobile */
+        padding: 10px 0 !important; /* Ensure padding remains consistent */
+    }
+
+    /* Force the text and check mark to stay white on mobile */
+    .announcement-bar span {
+       
+        color: #FFFFFF !important; /* Force white text on mobile */
+    }
+
+    .announcement-bar span::before {
+        color: #FFFFFF !important; /* Force white checkmarks on mobile */
+    }
+}
+
+/* Moved inline CSS from tail for validity */
+@media screen and (max-width: 767px) {
+    .title-wrapper-with-link {
+        margin-top: 20px; /* Adjust this value as needed to move it down */
+    }
+}
+
+/* Target the specific div class */
+.product__description.rte.quick-add-hidden {
+    padding: 20px;
+    margin-top: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Decorative separator between description and product details */
+.product__description.rte.quick-add-hidden + .product-details {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px dashed #ccc;
+}
+/* Adjust spacing between the column and the product description */
+.product-right-column {
+    margin-left: 20px;
+    padding-right: 15px;
+}
+/* Add hover effect for subtle interaction */
+.product__description.rte.quick-add-hidden:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+/* Size chart helpers */
+.size-chart-wrapper p { margin: 0.1em 0; }
+.size-chart-wrapper strong { font-weight: bold; }
+.size-chart-wrapper { margin-bottom: 10px; }
+.size-select option[value=""] { color: #999; }
+/* Mobile View Only */
+@media screen and (max-width: 749px) {
+  .product__media {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .product__media img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .product__media video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+  }
+}
+/* Product description images fit */
+.product__description img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+    border: none !important;
+}
+.product__description {
+    overflow: hidden !important;
+    max-width: 100% !important;
+    text-align: left !important;
+}
+/* Desktop View Only */
+@media screen and (min-width: 750px) {
+  .product__media {
+    overflow: visible;
+  }
+  .product__media img {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+  }
+}
+/* Margins for section heading on small screens */
+@media only screen and (max-width: 749px) {
+  #SectionHeading-template--14889729130593__collection_list_PX36Hk {
+    margin-top: 30px !important;
+  }
+}
+/* Sticky product info on desktop */
+@media screen and (min-width: 1024px) {
+  #ProductInfo-template--14889729294433__main.product__info-container.product__column-sticky {
+    position: sticky !important;
+    top: 150px !important;
+    margin-top: 0 !important;
+  }
+}
+
+.shipping-estimate {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  background: #fff;
+  margin-top: 0.5rem;
+}
+
+.shipping-estimate__icon {
+  color: #1a936f;
+}
+
+.shipping-estimate__label {
+  font-weight: 600;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.shipping-estimate__value,
+.shipping-estimate__note {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.shipping-estimate__note {
+  color: #d35400;
+}
+
+.shipping-promise-list {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+}
+
+.shipping-faq__accordion {
+  margin-top: 1.5rem;
+}
+
+.shipping-faq__item {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  background: #fff;
+}
+
+.shipping-faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.shipping-faq__answer {
+  margin-top: 0.5rem;
+}
+
+.shipping-delay-banner {
+  background: #fff3e0;
+  color: #5f3700;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.shipping-delay-banner__text {
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+}

@@ -36,6 +36,9 @@
       </div>
       <div id="cart-notification-product" class="cart-notification-product"></div>
       <div class="cart-notification__links">
+        <div class="cart-notification__shipping">
+          {% render 'shipping-estimate-inline', context: 'cart-notification', label: 'Delivery estimate' %}
+        </div>
         <a
           href="{{ routes.cart_url }}"
           id="cart-notification-button"

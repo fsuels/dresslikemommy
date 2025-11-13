@@ -140,7 +140,7 @@
         aria-label="{{ 'sections.header.announcement' | t }}"
       >
         <p class="announcement-bar__message h5">
-          <span>Free shipping on all clothing • 2d processing • 7–10d delivery</span>
+          <span>Free shipping on all clothing · <span data-shipping-summary>Processing {{ settings.shipping_processing_days_min }}–{{ settings.shipping_processing_days_max }} business days + {{ settings.shipping_transit_days_min }}–{{ settings.shipping_transit_days_max }} business days transit</span></span>
         </p>
       </div>
     {%- endif -%}
