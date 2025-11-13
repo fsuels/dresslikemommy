@@ -294,3 +294,17 @@ Changes applied (evidence-first)
 Open TODOs (next session)
 1) In Shopify Admin, configure the Judge.me homepage carousel (colors, review count) so it matches the theme branding.
 2) Consider adding an Outfit Builder section or editorial copy block to continue diversifying the homepage after Best Sellers + trust row.
+Session: Outfit stories module
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/home-outfit-stories.liquid (new): Story-driven module with imagery, tags, and CTA hooks to highlight curated looks.
+- templates/index.json: Inserted the outfit stories block after the reassurance row with placeholder links; best-seller blocks now reference real product handles and tuned copy.
+- assets/analytics.js + section CTA attributes: Extended the central CTA listener so best sellers, reassurance, hero, and outfit stories emit homepage_cta_click events with product handles/scope.
+
+Open TODOs (next session)
+1) Upload curated imagery for each outfit story and refine the lookbook page links.
+2) In Shopify admin, style the Judge.me carousel to match the trust row.
+- templates/index.json: Wired outfit story blocks to live collection/product URLs (dresses, heart sweaters, swim sets) so CTAs stop pointing to placeholders; imagery still needs uploading via theme editor.
+- assets/analytics.js / section markup already tracking outfit CTA clicks—no extra code needed after URL updates.
+- templates/index.json: Dropped in a branded rich-text block (“Why families choose Dress Like Mommy”) using the existing rich-text section so the homepage has editorial copy + About link beneath the outfit stories.
