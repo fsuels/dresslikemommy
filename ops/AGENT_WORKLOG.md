@@ -354,3 +354,13 @@ Changes applied (evidence-first)
 Open TODOs (next session)
 1) Preview the Mommy & Me collection in the theme editor to confirm the intro renders and tweak copy if needed.
 2) Re-run Rich Results Test once Judge.me ratings populate to ensure the aggregateRating block validates.
+Session: Collection H1 override
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/main-collection-banner.liquid:15-76, 94-119 - Added optional override_title_handle/override_title settings so we can output a custom H1 when a specific collection handle is detected.
+- templates/collection.json:1 - Configured the banner override to emit “Mommy & Me Dresses” when the handle is mommy-and-me-dresses, aligning the H1 with the new SEO intro block.
+
+Open TODOs (next session)
+1) Preview the Mommy & Me collection locally to confirm the new H1 renders and adjust the string if brand wants different copy.
+2) If other collections need bespoke H1s, duplicate the override settings with their handles before publishing.

@@ -11,10 +11,18 @@
 
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
   <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    {%- liquid
+      assign override_handle = section.settings.override_title_handle | strip
+      assign override_title = section.settings.override_title | strip
+      assign display_title = collection.title | escape
+      if override_handle != blank and override_title != blank and collection and collection.handle == override_handle
+        assign display_title = override_title
+      endif
+    -%}
     <div class="collection-hero__text-wrapper">
       <h1 class="collection-hero__title">
         <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
-        {{- collection.title | escape -}}
+        {{- display_title -}}
       </h1>
 
       {%- if section.settings.show_collection_description -%}
@@ -72,6 +80,18 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "override_title_handle",
+      "label": "Custom title handle",
+      "info": "Optional. Provide a collection handle to override the H1 for only that collection."
+    },
+    {
+      "type": "text",
+      "id": "override_title",
+      "label": "Custom H1",
+      "info": "H1 text to use when the handle above matches."
     }
   ]
 }
