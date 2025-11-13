@@ -130,3 +130,70 @@ Open TODOs (next session)
    - NEEDS_DATA: GA4/GTM/Meta IDs and consent mode decisions.
 4) Shopify admin shipping policy
    - Update the admin-managed Shipping Policy + FAQ content so the live policy page reflects the new SLA (2–3d processing + region-specific transit windows).
+Session: Homepage hero foundation
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/hero-family-fit.liquid (new)
+  - Built a reusable hero section with schema controls, shipping reassurance that auto-pulls theme shipping settings, and CTA buttons tagged with data-cta-id hooks for upcoming analytics (sections/hero-family-fit.liquid:1).
+  - Added optional badge blocks plus layout/color controls so Merchandiser Agent can tell seasonal stories without duplicating markup.
+- templates/index.json:1
+  - Registered hero_family_fit_FvXq4J at the top of the homepage order with copy/CTA defaults and starter badge text so every visit now opens with a value-prop instead of a wall of collection tiles.
+
+Open TODOs (next session)
+1) Drop in approved desktop/mobile hero imagery (or video) for hero_family_fit_FvXq4J once creative is finalized.
+2) Extend assets/analytics.js to emit select_promotion events for data-cta-id="hero_primary"/"hero_secondary" clicks so we can measure engagement.
+3) Continue Merchandiser Agent plan: add best-seller/product storytelling sections beneath the hero to diversify the fold (ref. templates/index.json:1).
+Session: Sora hero prompt kit
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- GPT/sora.md: Added detailed Sora prompts for desktop video, mobile video, and still exports so creative partners can generate approved hero assets without re-briefing (GPT/sora.md:1).
+
+Open TODOs (next session)
+1) Produce hero media via Sora using the new prompts and upload the selected files to the theme settings for hero_family_fit_FvXq4J.
+Session: Sora prompt refinement (beach shoot)
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- GPT/sora.md: Updated both video prompts to reflect a white European-American family in luxe resort styling so visual direction matches the latest creative request (GPT/sora.md:1).
+
+Open TODOs (next session)
+1) Generate the updated beach-shoot hero media via Sora and apply assets to hero_family_fit_FvXq4J once approved.
+Session: Sora prompt refinement (matching catalog)
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- GPT/sora.md: Updated prompts to reference actual catalog looks (Blue Coconut swim + lavender floral maxis) so the generated hero imagery mirrors live inventory (GPT/sora.md:1).
+
+Open TODOs (next session)
+1) Render new hero media via Sora using the catalog-specific prompts and upload assets to hero_family_fit_FvXq4J once approved.
+Session: Sora prompt refinement (family-safe)
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- GPT/sora.md: Adjusted prompts to emphasize modest layering (tankini tops under maxi wrap skirts, shirts for men/boys) to keep Sora within nudity guardrails while retaining catalog accuracy (GPT/sora.md:1).
+Session: Sora prompt refinement (modesty guardrail)
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- GPT/sora.md: Reworded prompts to feature fully covered maxi dresses and linen sets (no swimwear language) so Sora stops flagging the content as suggestive (GPT/sora.md:1).
+Session: Hero liquid compat fix
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/hero-family-fit.liquid: Replaced the boolean expression assignment with a Liquid-safe conditional so the theme server stops throwing Expected end_of_string but found comparison during shopify theme dev (sections/hero-family-fit.liquid:105).
+- sections/hero-family-fit.liquid: Also converted the layout == 'media_left' assignment to a Liquid-safe conditional so dev server can parse the section without comparison expressions (sections/hero-family-fit.liquid:109).
+- sections/hero-family-fit.liquid: Added a non-empty default for the shipping_message schema field to satisfy Shopify's schema validator (sections/hero-family-fit.liquid:64).
+Session: Hero video support
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/hero-family-fit.liquid: Added native video support (desktop/mobile MP4 URLs, poster image, overlay opacity) and rendering logic so the Family Fit hero can autoplay the new Sora footage with graceful fallbacks (sections/hero-family-fit.liquid:1-220).
+- templates/index.json: Wired the section settings to the Shopify CDN videos (desktop + portrait orientations) and enabled the overlay defaults (templates/index.json:1).
+
+Open TODOs (next session)
+1) Upload desktop/mobile poster stills and set the ideo_poster_image field once final frame grabs are ready.
+2) Extend analytics (ssets/analytics.js) to fire events when the new hero CTAs are clicked and when the video enters the viewport.
+- sections/hero-family-fit.liquid: Converted the video/image boolean checks into Liquid-safe conditional assignments so theme dev no longer errors on != blank expressions (sections/hero-family-fit.liquid:129-140).
+- sections/hero-family-fit.liquid: Set has_media via chained conditionals instead of or expressions so Liquid accepts the assignment in strict mode (sections/hero-family-fit.liquid:141).
