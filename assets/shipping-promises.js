@@ -6,7 +6,7 @@
   try {
     config = JSON.parse(dataElement.textContent || '{}');
   } catch (error) {
-    console.warn('[shipping-promises] Invalid JSON payload', error);
+    console.warn('[shipping-promises] Invalid JSON payload', error, dataElement.textContent);
     return;
   }
 

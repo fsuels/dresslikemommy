@@ -3,7 +3,13 @@
 {%- assign transit_min = settings.shipping_transit_days_min | default: 7 -%}
 {%- assign transit_max = settings.shipping_transit_days_max | default: transit_min -%}
 
-{%- assign shipping_lines = settings.shipping_promises | to_string | split: "\n" -%}
+{%- capture newline -%}
+
+{%- endcapture -%}
+{%- assign shipping_raw = settings.shipping_promises | to_string -%}
+{%- capture carriage -%}{%- endcapture -%}
+{%- assign shipping_raw = shipping_raw | replace: carriage, '' -%}
+{%- assign shipping_lines = shipping_raw | split: newline -%}
 {%- assign region_json = '' -%}
 {%- assign region_delim = '' -%}
 {%- for line in shipping_lines -%}

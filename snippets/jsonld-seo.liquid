@@ -1,0 +1,149 @@
+{%- comment -%}
+  Outputs JSON-LD for Organization, WebSite, Breadcrumbs, and Product data
+  to replace the external JSON-LD for SEO app.
+{%- endcomment -%}
+
+{%- assign social_handles = 'social_facebook_link|social_instagram_link|social_youtube_link|social_tiktok_link|social_twitter_link|social_pinterest_link|social_tumblr_link|social_vimeo_link' | split: '|' -%}
+{%- assign same_as_output = '' -%}
+{%- assign same_as_delim = '' -%}
+{%- for handle in social_handles -%}
+  {%- assign link = settings[handle] -%}
+  {%- if link != blank -%}
+    {%- capture same_as_output -%}{{ same_as_output }}{{ same_as_delim }}{{ link | strip | json }}{%- endcapture -%}
+    {%- assign same_as_delim = ',' -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign organization_logo = '' -%}
+{%- if settings.logo != blank -%}
+  {%- assign organization_logo = settings.logo | image_url: width: 600 -%}
+{%- elsif shop.brand.logo != blank -%}
+  {%- assign organization_logo = shop.brand.logo | image_url: width: 600 -%}
+{%- endif -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.url | json }}{% if organization_logo != blank %},
+  "logo": {{ organization_logo | json }}{% endif %}{% if shop.email != blank %},
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": {{ shop.email | json }}
+  }]{% endif %}{% if same_as_output != blank %},
+  "sameAs": [{{ same_as_output }}]{% endif %}
+}
+</script>
+
+{%- assign search_target = shop.url | append: '/search?q={search_term_string}' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.url | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {{ search_target | json }},
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+{%- assign breadcrumb_items = '' -%}
+{%- assign breadcrumb_position = 1 -%}
+{%- assign breadcrumb_home_name = 'general.breadcrumbs.home' | t | default: 'Home' -%}
+{%- capture breadcrumb_items -%}
+{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ breadcrumb_home_name | json }},"item":{{ shop.url | json }}}
+{%- endcapture -%}
+{%- assign breadcrumb_position = breadcrumb_position | plus: 1 -%}
+
+{%- if template contains 'collection' and collection -%}
+  {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ collection.title | json }},"item":{{ collection.url | prepend: shop.url | json }}}{%- endcapture -%}
+{%- elsif template contains 'product' and product -%}
+  {%- assign primary_collection = collection -%}
+  {%- if primary_collection == blank and product.collections.size > 0 -%}
+    {%- assign primary_collection = product.collections | first -%}
+  {%- endif -%}
+  {%- if primary_collection -%}
+    {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ primary_collection.title | json }},"item":{{ primary_collection.url | prepend: shop.url | json }}}{%- endcapture -%}
+    {%- assign breadcrumb_position = breadcrumb_position | plus: 1 -%}
+  {%- endif -%}
+  {%- assign product_breadcrumb_url = canonical_url | default: shop.url | append: product.url -%}
+  {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ product.title | json }},"item":{{ product_breadcrumb_url | json }}}{%- endcapture -%}
+{%- endif -%}
+
+{%- if breadcrumb_items contains '"position":2' or template contains 'product' -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{{ breadcrumb_items }}]
+  }
+  </script>
+{%- endif -%}
+
+{%- if template contains 'product' and product -%}
+  {%- assign product_url = canonical_url | default: shop.url | append: product.url -%}
+  {%- assign product_description = product.description | strip_html | strip | truncate: 500 -%}
+  {%- assign product_images = '' -%}
+  {%- assign image_delim = '' -%}
+  {%- for media in product.media limit: 10 -%}
+    {%- assign media_url = media.preview_image | image_url: width: 1200 -%}
+    {%- if media_url != blank -%}
+      {%- capture product_images -%}{{ product_images }}{{ image_delim }}{{ media_url | json }}{%- endcapture -%}
+      {%- assign image_delim = ',' -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if product_images == '' and product.featured_image != blank -%}
+    {%- assign fallback_image = product.featured_image | image_url: width: 1200 -%}
+    {%- assign product_images = fallback_image | json -%}
+  {%- endif -%}
+
+  {%- assign currency_code = cart.currency | default: shop.currency -%}
+  {%- assign low_price = product.price_min | times: 0.01 -%}
+  {%- assign high_price = product.price_max | times: 0.01 -%}
+  {%- assign offers_list = '' -%}
+  {%- assign offer_delim = '' -%}
+  {%- for variant in product.variants limit: 20 -%}
+    {%- assign variant_price = variant.price | times: 0.01 -%}
+    {%- capture offers_list -%}{{ offers_list }}{{ offer_delim }}{
+      "@type": "Offer",
+      "priceCurrency": {{ currency_code | json }},
+      "price": {{ variant_price | json }},
+      "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+      "url": {{ product_url | json }},
+      "sku": {{ variant.sku | default: variant.id | json }},
+      "itemCondition": "https://schema.org/NewCondition"
+    }{%- endcapture -%}
+    {%- assign offer_delim = ',' -%}
+  {%- endfor -%}
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "description": {{ product_description | json }},
+    "url": {{ product_url | json }},
+    {% if product_images != '' %}
+    "image": [{{ product_images }}],
+    {% endif %}
+    "sku": {{ product.selected_or_first_available_variant.sku | default: product.selected_or_first_available_variant.id | json }},
+    "brand": {
+      "@type": "Brand",
+      "name": {{ product.vendor | default: shop.name | json }}
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": {{ currency_code | json }},
+      "lowPrice": {{ low_price | json }},
+      "highPrice": {{ high_price | json }},
+      "offerCount": {{ product.variants.size }},
+      "offers": [{{ offers_list }}]
+    }
+  }
+  </script>
+{%- endif -%}

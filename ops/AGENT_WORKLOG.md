@@ -233,3 +233,29 @@ Date: 2025-11-13
 Changes applied (evidence-first)
 - sections/hero-family-fit.liquid: Added ideo_poster_custom URL support so locally uploaded CDN images can be used as posters even before the theme is published (sections/hero-family-fit.liquid:1-220).
 - templates/index.json: Set the desktop poster URL + mobile fallback image using the provided Shopify File URLs, matching the new Sora stills (templates/index.json:1).
+Session: Analytics plumbing
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- config/settings_schema.json & config/settings_data.json: Added GA4 + GTM theme settings with empty defaults so IDs can be managed per-environment (config/settings_schema.json:1550, config/settings_data.json:1).
+- layout/theme.liquid: Injected conditional GA4/gtag scripts plus GTM script/noscript when IDs are present (layout/theme.liquid:1-1500).
+
+Open TODOs (next session)
+1) Populate nalytics_ga4_id / nalytics_gtm_id via theme settings once the client supplies IDs.
+2) After IDs are live, verify events via GA4 DebugView and GTM preview to ensure the new hero events flow through.
+- config/settings_data.json: Populated analytics_ga4_id with G-N4EQNK0MMB (local preview only) so gtag uses the correct Measurement ID during development.
+- templates/index.json: Cleared mobile_image (null) so Shopify stops erroring on external CDN URLs; relying on video_poster_custom for the mobile poster instead.
+- config/settings_data.json: Reset shipping_promises to the default newline list (US/CA/GB/AU/DE) to stop shipping-promises.js from throwing JSON parse errors.
+Session: Built-in JSON-LD + analytics plumbing
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- config/settings_data.json: Disabled the json-ld-for-seo app embed block so the theme no longer loads the external script (config/settings_data.json:1).
+- snippets/jsonld-seo.liquid (new): Emits Organization, WebSite/SearchAction, BreadcrumbList, and Product schema directly from theme data so we control structured data without the app (snippets/jsonld-seo.liquid:1).
+- layout/theme.liquid: Injects the new JSON-LD snippet in <head> so every page gets the correct schema (layout/theme.liquid:1-120).
+- assets/shipping-promises.js: Expanded the JSON parse warning to include the raw payload for easier debugging (assets/shipping-promises.js:1).
+
+Open TODOs (next session)
+1) Run Rich Results Test/SDTT on the local preview to confirm the new JSON-LD passes Google validation, then remove the external app from the store.
+2) Use the enhanced shipping JSON log to capture the malformed payload and finish fixing the parse error.
+- snippets/shipping-promise-data.liquid: Switched to splitting on an actual newline/carriage return so shipping_promises parses correctly and stops injecting stray country codes into the JSON payload (snippets/shipping-promise-data.liquid:1).

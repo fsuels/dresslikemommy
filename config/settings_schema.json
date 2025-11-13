@@ -1565,5 +1565,24 @@
         "info": "Optional context passed to experiments.js and ops/tests/experiments.md prompts."
       }
     ]
+  },
+  {
+    "name": "Analytics",
+    "settings": [
+      {
+        "type": "text",
+        "id": "analytics_ga4_id",
+        "label": "GA4 Measurement ID",
+        "placeholder": "G-XXXXXXXXXX",
+        "info": "Leave blank to disable direct GA4 tagging."
+      },
+      {
+        "type": "text",
+        "id": "analytics_gtm_id",
+        "label": "Google Tag Manager Container ID",
+        "placeholder": "GTM-XXXXXXX",
+        "info": "When set, standard GTM script + noscript tags are injected sitewide."
+      }
+    ]
   }
 ]
