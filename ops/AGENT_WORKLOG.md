@@ -364,3 +364,79 @@ Changes applied (evidence-first)
 Open TODOs (next session)
 1) Preview the Mommy & Me collection locally to confirm the new H1 renders and adjust the string if brand wants different copy.
 2) If other collections need bespoke H1s, duplicate the override settings with their handles before publishing.
+Session: Collection intros for Pajamas + Swim
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- templates/collection.json:1 - Added two more collection-intro-links instances scoped to matching-family-pajamas and mommy-and-me-swimsuits handles, each with unique copy + internal links to adjacent collections/guides so all high-value categories get the 23-sentence intro treatment.
+- sections/main-collection-banner.liquid:14-76, 103-132 - Expanded the custom H1 override settings to support three handle/title pairs so Dresses, Pajamas, and Swimsuits can each keep distinct, crawlable headings from a single banner section.
+
+Open TODOs (next session)
+1) Preview Pajamas and Swimsuits collections locally to tweak the new intro copy/links and confirm the handle-specific H1s render as expected.
+2) If more than three collections need bespoke H1s, extend the schema again or consider a snippets-based lookup to avoid hard limits.
+Session: PDP ratings surfaced on PLP
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- templates/collection.json:1 - Enabled show_rating on the product grid so Judge.me stars appear on collection cards as soon as review metafields populate, keeping on-page UX consistent with the new aggregateRating JSON-LD.
+
+Open TODOs (next session)
+1) After review data syncs, QA the collection grid to ensure rating stars render cleanly and adjust spacing if cards feel crowded.
+2) If certain collections should hide ratings, toggle show_rating off per-section in the theme editor.
+Session: Collection H1 overrides via blocks
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/main-collection-banner.liquid:14-63, 94-132 - Replaced the fixed override settings with reusable title_override blocks so we can map any collection handle to a custom H1 without editing the section again.
+- templates/collection.json:1 - Added banner blocks for dresses/pajamas/swimsuits so the default collection template now manages all three overrides through the new block pattern.
+- templates/collection.mommy-and-me.json:1-63 - Mirrored the block-based override (and enabled show_rating) so the dedicated template stays compatible if merchants continue using it.
+
+Open TODOs (next session)
+1) If additional collections need bespoke H1s, add new title_override blocks instead of editing the section schema.
+2) Audit other collection templates (if any) to ensure they either inherit the default or define their own overrides.
+Session: Collection intro scalability
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- sections/collection-intro-links.liquid:1-210 - Section now supports handle-specific intro_config blocks plus handle-targeted link cards, so we can manage unlimited collection intros + adjacent links from one section instead of spinning up duplicate instances.
+- templates/collection.json:1 - Collapsed to a single intro section populated with configs for Dresses, Pajamas, Swimsuits, Tops, Sweaters, One-Piece Swimsuits, and the Christmas sub-collections (pajamas/sweaters/tops), each with internal links to adjacent categories + guides.
+- templates/collection.mommy-and-me.json:1-63 - Updated to use the new block-driven intro (and ratings) so the dedicated template stays compatible if it's assigned.
+
+Open TODOs (next session)
+1) In Theme Editor, add intro_config blocks for any remaining high-value collections (e.g., Couples, Daddy & Me, Maternity) using the new pattern and plug in their handles/copy.
+2) QA the rendered intro on each targeted collection to ensure the right copy + cards appear, adjusting link handles if Shopify uses different slugs.
+Session: Additional collection coverage
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- templates/collection.json:1 - Added banner title overrides and intro_config/link blocks for family-sets, mens, swim-accessories, one-piece-suits, tops, sweaters, and the Christmas sub-collections so every high-traffic collection now receives unique H1s plus tailored intros/adjacent links.
+- sections/collection-intro-links.liquid:1-230 - Refactored the section into handle-aware intro_config + link blocks and filtered rendering, enabling the template updates above without spawning duplicate sections.
+
+Open TODOs (next session)
+1) In Theme Editor, input copy/link data for any remaining collections (e.g., couples, maternity, daddy-and-me) by adding more intro_config + link blocks; reuse the new schema.
+2) Spot-check a few collections (family-sets, mens, swim-accessories) in preview to ensure the correct intro + link cards display; adjust handle strings if Shopify slugs differ.
+Session: Couples/Maternity/Daddy intros
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- templates/collection.json:1 - Added banner overrides plus intro_config/link blocks for the couples, maternity, and daddy-and-me handles so those collections now show bespoke H1s, copy, and adjacent links (tying into dresses, mens, pajamas, swim, and family sets).
+
+Open TODOs (next session)
+1) Confirm Shopify uses the expected handles (couples, maternity, daddy-and-me); adjust the block handle strings in the template if store slugs differ.
+2) Preview each collection locally to ensure the new intros and link cards render cleanly on desktop/mobile.
+Session: Banner block limit
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- templates/collection.json:1 - Trimmed banner title_override blocks to eight (Dresses, Pajamas, Swim, Family Sets, Mens, Couples, Maternity, Daddy & Me) to stay under Shopify’s 10 block limit; other collections rely on default collection titles for now.
+
+Open TODOs (next session)
+1) If additional custom H1s are needed, consider splitting them into different templates or adding/deleting blocks via Theme Editor rather than exceeding the limit.
+Session: Intro split for block limits
+Date: 2025-11-13
+
+Changes applied (evidence-first)
+- templates/collection.json:1 - Split the intro copy into two sections (intro-links-primary for Dresses/Pajamas/Swim/Tops/Sweaters and intro-links-secondary for Family Sets/Mens/Couples/Maternity/Daddy & Me) to stay under Shopify’s 40-block cap while keeping all requested handles covered.
+
+Open TODOs (next session)
+1) If more handles need dedicated intros later, add them to intro-links-secondary (or create a third section) rather than exceeding the block limit.
