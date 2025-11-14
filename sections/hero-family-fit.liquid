@@ -64,6 +64,19 @@
     line-height: 1.1;
   }
 
+  .hero-family-fit__subheading {
+    font-size: clamp(1.15rem, 2.3vw, 1.55rem);
+    line-height: 1.4;
+    font-weight: 600;
+    margin: 0 0 1rem;
+    color: rgba(var(--color-foreground), 0.9);
+    max-width: 36ch;
+  }
+
+  .hero-family-fit__subheading strong {
+    font-weight: 700;
+  }
+
   .hero-family-fit__body {
     margin-bottom: 1rem;
     font-size: 1.1rem;
@@ -290,6 +303,8 @@
         {%- endif -%}
 
         <h1 class="hero-family-fit__heading {{ section.settings.heading_size }}">Matching outfits for your whole family.</h1>
+
+        <p class="hero-family-fit__subheading"><strong>Photoready outfits that actually fit every family member.</strong></p>
 
         <div class="hero-family-fit__body rte">
           <p>Coordinated looks for moms, dads, kids &amp; babies&mdash;from beach days to holiday photos.</p>

@@ -559,3 +559,22 @@ Changes applied (evidence-first)
 
 Open TODOs (next session)
 1) None.
+
+Session: Hero differentiator subheading
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- sections/hero-family-fit.liquid:64-115,291-309 - Added a bold hero subheading plus responsive typography so the differentiator copy stays readable on mobile.
+
+Open TODOs (next session)
+1) Preview the homepage hero on small-screen breakpoints in Theme Editor to confirm the new subheading wraps cleanly against imagery.
+
+Session: Announcement bar benefit refresh
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- sections/announcement-bar.liquid:1-190 - Replaced the carousel structure with a single configurable benefit message + link, added new schema settings, and wired in the new CSS asset so the copy centers and stays legible on all breakpoints.
+- assets/announcement-bar-benefit.css:1-32 - Added responsive styles for .announcement-bar--single and its message class so the copy wraps cleanly on mobile while remaining centered on desktop.
+
+Open TODOs (next session)
+1) Preview the announcement bar in Theme Editor (desktop + mobile) to confirm the merchant-selected copy fits within the new width constraints and adjust the text if truncation appears.
