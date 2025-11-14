@@ -440,20 +440,4 @@ Changes applied (evidence-first)
 
 Open TODOs (next session)
 1) If more handles need dedicated intros later, add them to intro-links-secondary (or create a third section) rather than exceeding the block limit.
-Session: Homepage hero + Mommy intro refresh
-Date: 2025-11-14
 
-Changes applied (evidence-first)
-- templates/index.json:1 - Replaced the hero_family_fit_FvXq4J block copy to emphasize photo-ready, inclusive sets and updated the CTA labels per brief.
-- templates/collection.json:1 - Updated the intro-mommy-dresses intro_richtext to the new styling guidance copy.
-
-Open TODOs (next session)
-1) None.
-Session: Hero copy emphasis
-Date: 2025-11-14
-
-Changes applied (evidence-first)
-- sections/hero-family-fit.liquid:61-84,248-258 - Hardcoded a new H1/subheadline plus a benefits line so the homepage hero speaks directly to matching family outfits per CRO request.
-
-Open TODOs (next session)
-1) None.

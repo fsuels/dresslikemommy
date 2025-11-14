@@ -40,9 +40,29 @@
     endif
 -%}
 
-{%- comment -%} Free shipping badge {%- endcomment -%}
+{%- comment -%} Free shipping + matching set badges {%- endcomment -%}
 <div class="card__badge bottom left">
-  <span class="badge">Ships free</span>
+  <span class="badge badge--shipping">Ships free</span>
+
+  {%- comment -%}
+    Detect products that have both mother and child variants so we can
+    highlight true matching sets directly on the product card.
+  {%- endcomment -%}
+  {%- assign has_mom = false -%}
+  {%- assign has_child = false -%}
+  {%- for v in card_product.variants -%}
+    {%- if v.title contains 'Mother ' -%}
+      {%- assign has_mom = true -%}
+    {%- endif -%}
+    {%- if v.title contains 'Child ' -%}
+      {%- assign has_child = true -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if has_mom and has_child -%}
+    <span class="badge badge--matching">Matching set</span>
+  {%- endif -%}
+
   {%- if settings.sold_out_badge_color_scheme != blank and card_product.available == false -%}
   {%- endif -%}
 </div>
@@ -173,6 +193,12 @@
             {%- endif -%}
 
             <span class="caption-large light">{{ block.settings.description | escape }}</span>
+
+            {%- if family_group_id and card_product.metafields.custom.family_group_id == family_group_id -%}
+              <div class="card__family-tag caption">
+                Part of this family set
+              </div>
+            {%- endif -%}
 
             {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
               {% liquid

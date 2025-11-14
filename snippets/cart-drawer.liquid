@@ -73,6 +73,9 @@
       <div class="cart-drawer__shipping-note">
         <p class="caption-large" aria-live="polite">Standard shipping: Free</p>
         {% render 'shipping-estimate-inline', context: 'cart-drawer', label: 'Est. delivery' %}
+        <p class="caption-large cart-drawer__returns-note">
+          30-day returns on clothing
+        </p>
       </div>
       <cart-drawer-items
         {% if cart == empty %}
@@ -142,6 +145,12 @@
                           <a href="{{ item.url }}" class="cart-item__name h4 break">
                             {{- item.product.title | escape -}}
                           </a>
+
+                          {%- if item.product.metafields.custom.family_group_id != blank -%}
+                            <p class="cart-item__family-tag caption">
+                              Part of a matching family set
+                            </p>
+                          {%- endif -%}
 
                           {%- if item.original_price != item.final_price -%}
                             <div class="cart-item__discounted-prices">

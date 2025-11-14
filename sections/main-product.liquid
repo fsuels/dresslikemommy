@@ -153,6 +153,25 @@
             <div id="sold-message-text" class="ribbon"></div>
         </div>
                   <h1 class="product__title-text">{{ product.title | escape }}</h1>
+
+                  {%- if product.metafields.reviews.rating.value -%}
+                    {%- liquid
+                      assign rating_value = product.metafields.reviews.rating.value.rating
+                      assign rating_max   = product.metafields.reviews.rating.value.scale_max
+                      assign rating_count = product.metafields.reviews.rating.value.count
+                    -%}
+                    <div class="product-rating-summary">
+                      <span class="product-rating-summary__stars">
+                        {{ rating_value | round: 1 }} / {{ rating_max }}
+                      </span>
+                      <span class="product-rating-summary__count">
+                        ({{ rating_count }} review{% if rating_count != 1 %}s{% endif %})
+                      </span>
+                      <a class="product-rating-summary__link" href="#judgeme_product_reviews">
+                        Read reviews
+                      </a>
+                    </div>
+                  {%- endif -%}
                 </div>
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
@@ -165,6 +184,9 @@
                 </div>
                 <div class="product__shipping-reassurance" aria-live="polite">
                   {% render 'shipping-estimate-inline', context: 'pdp', label: 'Shipping & delivery' %}
+                  <p class="product__shipping-note">
+                    Free standard shipping on all clothing · 30-day returns
+                  </p>
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
@@ -870,6 +892,7 @@
                   </div>
                 {%- endif -%}
               {%- when 'complementary' -%}
+                {%- assign family_group_id = product.metafields.custom.family_group_id -%}
                 <product-recommendations
                   class="complementary-products quick-add-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
                   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.product_list_limit }}&intent=complementary"
@@ -943,7 +966,8 @@
                                         quick_add: quick_add,
                                         section_id: section.id,
                                         horizontal_class: true,
-                                        horizontal_quick_add: true
+                                        horizontal_quick_add: true,
+                                        family_group_id: family_group_id
                                       %}
                                     </li>
                                   {%- endfor -%}
@@ -1604,7 +1628,7 @@
         {
           "type": "text",
           "id": "block_heading",
-          "default": "Pairs well with",
+          "default": "Complete the family look",
           "label": "t:sections.main-product.blocks.complementary_products.settings.heading.label"
         },
         {

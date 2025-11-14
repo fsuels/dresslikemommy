@@ -1,7 +1,33 @@
 window.dataLayer = window.dataLayer || [];
 (function(){
+  function getExperimentContext(){
+    try {
+      var cfg = window.experimentConfig || {};
+      var enabled = !!cfg.enabled;
+      var flags = [];
+      if (cfg.flags && typeof cfg.flags === 'object') {
+        for (var key in cfg.flags) {
+          if (!Object.prototype.hasOwnProperty.call(cfg.flags, key)) continue;
+          if (cfg.flags[key]) flags.push(key);
+        }
+      } else if (Array.isArray(cfg.flags)) {
+        flags = cfg.flags;
+      }
+      return {
+        experiments_enabled: enabled,
+        experiment_flags: flags
+      };
+    } catch(e) {
+      return {};
+    }
+  }
+
   function pushToDataLayer(payload){
     try {
+      var exp = getExperimentContext();
+      if (exp && Object.keys(exp).length) {
+        payload = Object.assign({}, exp, payload);
+      }
       window.dataLayer.push(payload);
     } catch(e) {}
   }

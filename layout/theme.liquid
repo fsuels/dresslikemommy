@@ -951,21 +951,19 @@
   }
 
 @media screen and (max-width: 767px) {
-    .card__heading a,
-    .cart__product-title,
-    .checkout__product-title {
-        display: -webkit-box; /* Necessary for webkit-line-clamp to work */
-        -webkit-line-clamp: 1; /* Limit to 2 lines */
-        -webkit-box-orient: vertical; /* Box orientation set to vertical */
-        text-overflow: ellipsis; /* Add ellipsis for truncated text */
-        overflow: hidden; /* Hide text that overflows */
-        white-space: normal; /* Allow text to wrap */
-        max-width: 100%; /* Let the title take full width */
-        font-size: 10px !important; /* Ensure font size is applied */
-        line-height: 1.2;
- 
-    }
-    
+  .card__heading a,
+  .cart__product-title,
+  .checkout__product-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* allow up to two lines */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: normal;
+    max-width: 100%;
+    font-size: 13px !important;
+    line-height: 1.3;
+  }
 }
 
 

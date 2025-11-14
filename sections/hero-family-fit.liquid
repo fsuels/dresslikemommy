@@ -71,6 +71,11 @@
     color: rgba(var(--color-foreground), 0.85);
   }
 
+  .hero-family-fit__benefits {
+    margin-top: 0.5rem;
+    color: rgba(var(--color-foreground), 0.75);
+  }
+
   .hero-family-fit__shipping {
     display: flex;
     gap: 0.75rem;
@@ -249,13 +254,17 @@
           <p class="hero-family-fit__eyebrow">{{ section.settings.eyebrow }}</p>
         {%- endif -%}
 
-        {%- if section.settings.heading != blank -%}
-          <h1 class="hero-family-fit__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h1>
-        {%- endif -%}
+        <h1 class="hero-family-fit__heading {{ section.settings.heading_size }}">Matching outfits for your whole family.</h1>
 
-        {%- if section.settings.body != blank -%}
-          <div class="hero-family-fit__body rte">{{ section.settings.body }}</div>
-        {%- endif -%}
+        <div class="hero-family-fit__body rte">
+          <p>Coordinated looks for moms, dads, kids &amp; babies&mdash;from beach days to holiday photos.</p>
+          <p class="caption-large hero-family-fit__benefits">
+            Coordinated sets&nbsp;&middot;&nbsp;
+            Mix-and-match sizes&nbsp;&middot;&nbsp;
+            Fast shipping&nbsp;&middot;&nbsp;
+            Hassle-free exchanges
+          </p>
+        </div>
 
         {%- if shipping_copy != blank -%}
           <p class="hero-family-fit__shipping">
