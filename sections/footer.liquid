@@ -22,6 +22,22 @@
       assign only_empty_brand = true
     endif
   -%}
+  <div class="footer__trust-row page-width">
+    {%- if section.settings.payment_enable -%}
+      <div class="footer__trust-icons" aria-hidden="true">
+        <ul class="list list-payment" role="list">
+          {%- for type in shop.enabled_payment_types limit: 6 -%}
+            <li class="list-payment__item">
+              {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+    <p class="footer__trust-copy">
+      Secure checkout &middot; 30-day exchanges &middot; Support replies within 1 business day
+    </p>
+  </div>
   {%- if section.blocks.size > 0
     or section.settings.newsletter_enable
     or section.settings.show_social
@@ -150,6 +166,9 @@
               {%- if section.settings.newsletter_heading != blank -%}
                 <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
               {%- endif -%}
+              <p class="footer-block__subheading">
+                Get early access to matching drops &amp; holiday sales — plus 10% off your first order.
+              </p>
               {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
                 <input type="hidden" name="contact[tags]" value="newsletter">
                 <div class="newsletter-form__field-wrapper">
