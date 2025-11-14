@@ -1,165 +1,149 @@
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+﻿{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign featured_collection = section.settings.collection
+  if featured_collection == blank
+    assign featured_collection = collections['family-favorites']
+  endif
+
+  assign has_products = false
+  if featured_collection and featured_collection.all_products_count > 0
+    assign has_products = true
+  endif
+
+  assign product_limit = section.settings.products_to_show | default: 8
+  assign columns_desktop = section.settings.products_per_row | default: 4
+-%}
 
 {%- style -%}
-  .best-sellers-{{ section.id }} {
+  .family-faves-{{ section.id }} {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
-    .best-sellers-{{ section.id }} {
+    .family-faves-{{ section.id }} {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
 
-  .best-sellers__heading {
+  .family-faves__heading {
     margin-bottom: 0.25rem;
   }
 
-  .best-sellers__subheading {
-    margin-top: 0;
-    margin-bottom: 2rem;
+  .family-faves__subheading {
+    margin: 0 0 1.5rem;
     color: rgba(var(--color-foreground), 0.75);
-    max-width: 520px;
+    max-width: 560px;
   }
 
-  .best-sellers__grid {
-    display: grid;
-    gap: 1.5rem;
+  .family-faves__card-wrapper {
+    position: relative;
   }
 
-  @media screen and (min-width: 990px) {
-    .best-sellers__grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-  }
-
-  .best-sellers__card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background: #fff;
-    border-radius: 22px;
-    padding: 1.25rem;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
-  }
-
-  .best-sellers__card-media {
-    margin-bottom: 1rem;
-  }
-
-  .best-sellers__card-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9rem;
-    color: rgba(var(--color-foreground), 0.7);
-    margin-bottom: 0.75rem;
-  }
-
-  .best-sellers__pill {
-    border: 1px solid rgba(var(--color-foreground), 0.15);
-    padding: 0.25rem 0.75rem;
-    border-radius: 999px;
-    font-size: 0.8rem;
-  }
-
-  .best-sellers__cta {
-    margin-top: 1rem;
-    text-align: right;
-  }
-
-  .best-sellers__cta-link {
+  .family-faves__badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2;
+    padding: 0.15rem 0.65rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 999px;
+    background: rgba(var(--color-background), 0.9);
+    color: rgba(var(--color-foreground), 0.95);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
   }
 
-  .best-sellers__cta-link svg {
-    width: 16px;
-    height: 16px;
+  .family-faves__empty {
+    text-align: center;
+    padding: 2rem;
+    border: 1px dashed rgba(var(--color-foreground), 0.2);
+    border-radius: 16px;
   }
 
-  @media screen and (max-width: 989px) {
-    .best-sellers__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media screen and (max-width: 749px) {
-    .best-sellers__grid {
-      grid-template-columns: 1fr;
-    }
+  .family-faves__slider-buttons {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
   }
 {%- endstyle -%}
 
-{%- assign products = section.settings.collection.products | default: section.settings.fallback_products -%}
-
-<section class="color-{{ section.settings.color_scheme }} gradient best-sellers-{{ section.id }}">
+<section class="color-{{ section.settings.color_scheme }} gradient family-faves-{{ section.id }}">
   <div class="page-width">
     <div class="title-wrapper-with-link title-wrapper--self-padded-mobile">
       <div>
-        <h2 class="best-sellers__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+        <h2 class="family-faves__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
         {% if section.settings.subheading != blank %}
-          <p class="best-sellers__subheading">{{ section.settings.subheading }}</p>
+          <p class="family-faves__subheading">{{ section.settings.subheading }}</p>
         {% endif %}
       </div>
       {% if section.settings.view_all_link != blank %}
-        <a href="{{ section.settings.view_all_link }}" class="link underlined-link" data-cta-id="best_sellers_view_all">
+        <a href="{{ section.settings.view_all_link }}" class="link underlined-link" data-cta-id="family_faves_view_all">
           {{ section.settings.view_all_label }}
         </a>
       {% endif %}
     </div>
 
-    <div class="best-sellers__grid">
-      {%- for block in section.blocks -%}
-        {%- assign product = block.settings.product -%}
-        {%- if product == blank -%}
-          {%- continue -%}
-        {%- endif -%}
+    {% if has_products %}
+      <slider-component class="slider-mobile-gutter">
+        <ul
+          id="Slider-{{ section.id }}"
+          class="contains-card contains-card--product grid grid--{{ columns_desktop }}-col-desktop grid--2-col-tablet-down slider slider--tablet"
+          role="list"
+        >
+          {%- for product in featured_collection.products limit: product_limit -%}
+            {%- assign highlight_badge = '' -%}
+            {%- for tag in product.tags -%}
+              {%- assign tag_downcase = tag | downcase -%}
+              {%- if tag_downcase == 'bestseller' or tag_downcase == 'best seller' -%}
+                {%- assign highlight_badge = 'Bestseller' -%}
+                {%- break -%}
+              {%- elsif tag_downcase == 'new' -%}
+                {%- assign highlight_badge = 'New' -%}
+                {%- break -%}
+              {%- elsif tag_downcase == 'limited' or tag_downcase == 'limited edition' -%}
+                {%- assign highlight_badge = 'Limited' -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
 
-        <div class="best-sellers__card" {{ block.shopify_attributes }}>
-          <div class="best-sellers__card-media">
-            {% render 'card-product',
-              card_product: product,
-              media_aspect_ratio: 'square',
-              show_rating: true,
-              section_id: section.id,
-              show_secondary_image: true,
-              image_ratio: 'square'
-            %}
-          </div>
-          <div class="best-sellers__card-meta">
-            <span class="best-sellers__pill">
-              {% if block.settings.badge != blank %}
-                {{ block.settings.badge }}
-              {% else %}
-                {{ 'sections.featured_collection.shop_now' | t }}
-              {% endif %}
-            </span>
-            <span>{{ product.vendor | default: shop.name }}</span>
-          </div>
-          <div>
-            <p class="rte">{{ block.settings.description }}</p>
-            <div class="best-sellers__cta">
-              <a
-                href="{{ product.url }}"
-                class="best-sellers__cta-link"
-                data-cta-id="best_sellers_product"
-                data-cta-scope="best_sellers"
-                data-product-handle="{{ product.handle }}"
-              >
-                {{ block.settings.cta_label }}
-                {% render 'icon-arrow' %}
-              </a>
-            </div>
-          </div>
+            <li id="Slide-{{ section.id }}-{{ forloop.index }}" class="slider__slide">
+              <div class="family-faves__card-wrapper">
+                {% if highlight_badge != blank %}
+                  <span class="family-faves__badge">{{ highlight_badge }}</span>
+                {% endif %}
+
+                {% render 'card-product',
+                  card_product: product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  show_secondary_image: true,
+                  show_rating: true,
+                  quick_add: true,
+                  section_id: section.id
+                %}
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+        <div class="slider-buttons family-faves__slider-buttons">
+          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}">
+            {% render 'icon-caret' %}
+          </button>
+          <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}">
+            {% render 'icon-caret' %}
+          </button>
         </div>
-      {%- endfor -%}
-    </div>
+      </slider-component>
+    {% else %}
+      <div class="family-faves__empty">
+        {{ 'sections.home_best_sellers.empty_state' | t | default: 'Assign the Family Favorites collection to populate this carousel.' }}
+      </div>
+    {% endif %}
   </div>
 </section>
 
@@ -170,19 +154,20 @@
     {
       "type": "collection",
       "id": "collection",
-      "label": "Fallback collection (if blocks empty)"
+      "label": "Family favorites collection",
+      "info": "Uses the Family Favorites collection if left blank."
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Family favorites this week"
+      "default": "Family favorites right now"
     },
     {
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Coordinated outfits shoppers can’t stop adding to cart."
+      "default": "Coordinated outfits families keep reviewing 5 stars."
     },
     {
       "type": "select",
@@ -209,7 +194,36 @@
       "type": "text",
       "id": "view_all_label",
       "label": "View all label",
-      "default": "Shop all best sellers"
+      "default": "Shop all favorites"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 8,
+      "max": 12,
+      "step": 1,
+      "label": "Products to show",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "products_per_row",
+      "min": 3,
+      "max": 5,
+      "step": 1,
+      "label": "Desktop columns",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        { "value": "square", "label": "Square" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "adapt", "label": "Adapt" }
+      ],
+      "default": "square"
     },
     {
       "type": "range",
@@ -232,47 +246,9 @@
       "default": 48
     }
   ],
-  "blocks": [
-    {
-      "type": "product",
-      "name": "Product",
-      "settings": [
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Product"
-        },
-        {
-          "type": "text",
-          "id": "badge",
-          "label": "Badge text",
-          "default": "Trending"
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Short description",
-          "default": "Matching set loved for comfy fabrics and photo-ready prints."
-        },
-        {
-          "type": "text",
-          "id": "cta_label",
-          "label": "CTA label",
-          "default": "View set"
-        }
-      ]
-    }
-  ],
-  "max_blocks": 4,
   "presets": [
     {
-      "name": "Home best sellers",
-      "blocks": [
-        { "type": "product" },
-        { "type": "product" },
-        { "type": "product" },
-        { "type": "product" }
-      ]
+      "name": "Home best sellers"
     }
   ]
 }

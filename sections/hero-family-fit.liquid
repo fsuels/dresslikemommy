@@ -65,7 +65,7 @@
   }
 
   .hero-family-fit__body {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-size: 1.1rem;
     line-height: 1.6;
     color: rgba(var(--color-foreground), 0.85);
@@ -99,6 +99,41 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 0.75rem;
+  }
+
+  .hero-family-fit__cta-group {
+    margin-top: 1rem;
+  }
+
+  .hero-family-fit__cta-primary {
+    min-width: 220px;
+  }
+
+  .hero-family-fit__secondary-links {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .hero-family-fit__trust-badges {
+    margin-top: 0.75rem;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(var(--color-foreground), 0.75);
+  }
+
+  .hero-family-fit__trust-badges li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
   }
 
   .hero-family-fit__badges {
@@ -273,28 +308,31 @@
           </p>
         {%- endif -%}
 
-        <div class="hero-family-fit__ctas">
-          {%- if section.settings.primary_label != blank and section.settings.primary_link != blank -%}
-            <a
-              href="{{ section.settings.primary_link }}"
-              class="button button--primary"
-              data-cta-id="hero_primary"
-              data-cta-scope="hero"
-            >
-              {{ section.settings.primary_label }}
-            </a>
-          {%- endif -%}
+        <div class="hero-family-fit__cta-group">
+          <a
+            href="{{ section.settings.primary_link | default: '/collections/family-sets' }}"
+            class="button button--primary hero-family-fit__cta-primary"
+            data-cta-id="hero_primary"
+            data-cta-scope="hero"
+          >
+            Shop Matching Sets
+          </a>
 
-          {%- if section.settings.secondary_label != blank and section.settings.secondary_link != blank -%}
-            <a
-              href="{{ section.settings.secondary_link }}"
-              class="button button--secondary"
-              data-cta-id="hero_secondary"
-              data-cta-scope="hero"
-            >
-              {{ section.settings.secondary_label }}
-            </a>
-          {%- endif -%}
+          <div class="hero-family-fit__secondary-links">
+            <a class="link underlined-link" href="/collections/dresses">Shop Mommy &amp; Me Dresses</a>
+            <a class="link underlined-link" href="/collections/family-sets">See Family Photo Outfits</a>
+          </div>
+
+          <ul class="hero-family-fit__trust-badges" role="list">
+            <li>
+              <span aria-hidden="true">●</span>
+              <span>30k+ 5-star reviews</span>
+            </li>
+            <li>
+              <span aria-hidden="true">●</span>
+              <span>Free exchanges on matching sets</span>
+            </li>
+          </ul>
         </div>
 
         {%- if section.blocks.size > 0 -%}

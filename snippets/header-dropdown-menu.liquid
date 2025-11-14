@@ -7,7 +7,15 @@
 
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
+    {%- assign holiday_badge_styles = 'margin-left:0.4rem;padding:0.15rem 0.55rem;border-radius:999px;font-size:0.65em;line-height:1;background:rgba(var(--color-foreground),0.12);color:rgba(var(--color-foreground),1);text-transform:uppercase;letter-spacing:0.08em;' -%}
     {%- for link in section.settings.menu.links -%}
+      {%- assign is_christmas_link = link.title == 'Christmas Matching Outfits' -%}
+      {%- capture link_label -%}
+        {{ link.title | escape }}
+        {%- if is_christmas_link -%}
+          <span class="header__menu-badge" style="{{ holiday_badge_styles }}">Holiday</span>
+        {%- endif -%}
+      {%- endcapture -%}
       <li>
         {%- if link.links != blank -%}
           <header-menu>
@@ -21,7 +29,7 @@
                     class="header__active-menu-item"
                   {% endif %}
                 >
-                  {{- link.title | escape -}}
+                  {{- link_label | strip -}}
                 </span>
                 {% render 'icon-caret' %}
               </summary>
@@ -87,17 +95,35 @@
             {% if link.current %}
               aria-current="page"
             {% endif %}
-          >
-            <span
-              {%- if link.current %}
-                class="header__active-menu-item"
-              {% endif %}
             >
-              {{- link.title | escape -}}
-            </span>
-          </a>
+              <span
+                {%- if link.current %}
+                  class="header__active-menu-item"
+                {% endif %}
+              >
+                {{- link_label | strip -}}
+              </span>
+            </a>
         {%- endif -%}
       </li>
     {%- endfor -%}
+    <li>
+      <a
+        id="HeaderMenu-sale"
+        href="/collections/sale"
+        class="header__menu-item list-menu__item link link--text focus-inset"
+      >
+        <span>Sale</span>
+      </a>
+    </li>
+    <li>
+      <a
+        id="HeaderMenu-occasions"
+        href="/pages/occasions"
+        class="header__menu-item list-menu__item link link--text focus-inset"
+      >
+        <span>Occasions</span>
+      </a>
+    </li>
   </ul>
 </nav>

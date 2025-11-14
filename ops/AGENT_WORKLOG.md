@@ -457,3 +457,68 @@ Changes applied (evidence-first)
 
 Open TODOs (next session)
 1) None.
+Session: Hero CTA refresh
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- sections/hero-family-fit.liquid:85-124,268-298 - Reworked the CTA block to use a single "Shop Matching Sets" primary button, secondary text links, and a trust-badge row with spacing tuned per brief.
+
+Open TODOs (next session)
+1) None.
+Session: Nav enhancements
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- snippets/header-dropdown-menu.liquid:10-107 - Appended Sale and Occasions links, and added a Holiday badge next to the Christmas Matching Outfits nav item while reusing existing menu classes.
+
+Open TODOs (next session)
+1) Mirror the Sale/Occasions additions (and Holiday badge) in the mobile menu drawer if desired so navigation stays consistent on all breakpoints.
+Session: Family favorites upgrade
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- sections/home-best-sellers.liquid:1-213 - Rebuilt the section to pull at least eight items from the Family Favorites collection, display them in a slider-ready grid with tag-driven badges, quick add buttons, review stars, and compare-at pricing handled by the standard card-product snippet, plus schema settings for collection handle fallback.
+
+Open TODOs (next session)
+1) Confirm the family-favorites collection handle exists (or assign one) so the carousel is populated without manual Theme Editor input.
+Session: Home favorites schema patch
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- sections/home-best-sellers.liquid:180-188 - Expanded the products_per_row range (min 3, max 5) so the schema validates with at least three steps.
+
+Open TODOs (next session)
+1) None.
+Session: Home favorites translation
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- locales/en.default.json - Added sections.home_best_sellers.empty_state copy so the new carousel empty state renders without missing translation errors.
+
+Open TODOs (next session)
+1) None.
+Session: Reassurance + UGC refresh
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- sections/home-reassurance.liquid:1-230 - Added review-row support, updated copy handling, and appended a UGC slider fed by a configurable collection plus styling hooks.
+- templates/index.json:1 - Updated reassurance card copy, turned on the reviews badge/link for the 30k+ block, and wired the new UGC slider to the family-sets collection (8 tiles).
+
+Open TODOs (next session)
+1) Swap the UGC collection handle to a gallery of real customer photos (current placeholder uses family-sets until the curated collection exists).
+Session: UGC sizing fix
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- sections/home-reassurance.liquid:32-133 - Resized the UGC slider to a narrow horizontal strip by using auto-flow columns and smaller square tiles so the customer photos no longer blow up full width.
+
+Open TODOs (next session)
+1) None.
+Session: UGC sizing tweak 2
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- sections/home-reassurance.liquid:48-80 - Increased the UGC carousel tile width (120-160px) and radius so the customer photos present larger without overwhelming the reassurance row.
+
+Open TODOs (next session)
+1) None.
