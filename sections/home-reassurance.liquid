@@ -47,7 +47,7 @@
   .home-reassurance__subheading {
     margin-top: 0;
     margin-bottom: 2rem;
-    color: rgba(var(--color-foreground), 0.7);
+    color: var(--dlm-text-muted);
     max-width: 520px;
   }
 
@@ -80,6 +80,12 @@
     margin-top: 0.25rem;
   }
 
+  .home-reassurance__rating-note {
+    font-size: 0.9rem;
+    color: rgba(var(--color-foreground), 0.75);
+    margin-top: 0.35rem;
+  }
+
   .home-reassurance__ugc {
     margin-top: 2rem;
   }
@@ -89,6 +95,50 @@
     font-size: 1rem;
     font-weight: 600;
     color: rgba(var(--color-foreground), 0.75);
+  }
+
+  .home-reassurance__snippets {
+    margin-top: 2rem;
+    border-radius: 20px;
+    background: rgba(var(--color-background), 0.85);
+    border: 1px solid rgba(var(--color-foreground), 0.1);
+    padding: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .home-reassurance__snippet {
+    flex: 1 1 calc(25% - 1rem);
+    min-width: 220px;
+    border-radius: 14px;
+    background: rgba(var(--color-background), 1);
+    padding: 1rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .home-reassurance__snippet-rating {
+    font-weight: 700;
+    color: rgba(var(--color-foreground), 0.85);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.95rem;
+  }
+
+  .home-reassurance__snippet-quote {
+    margin: 0;
+    font-size: 0.95rem;
+    color: rgba(var(--color-foreground), 0.9);
+  }
+
+  .home-reassurance__snippet-meta {
+    font-size: 0.85rem;
+    color: rgba(var(--color-foreground), 0.65);
+    font-weight: 600;
   }
 
   .home-reassurance__ugc-rail {
@@ -108,8 +158,9 @@
     width: auto;
   }
 
-  .home-reassurance__ugc-image {
+  .home-reassurance__ugc-link {
     display: block;
+    position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 16px;
@@ -117,11 +168,47 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }
 
-  .home-reassurance__ugc-image img {
+  .home-reassurance__ugc-link img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+  }
+
+  .home-reassurance__ugc-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0.75rem;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.55) 100%);
+    opacity: 0;
+    transition: opacity var(--duration-short) ease;
+  }
+
+  .home-reassurance__ugc-link:hover .home-reassurance__ugc-overlay,
+  .home-reassurance__ugc-link:focus-visible .home-reassurance__ugc-overlay {
+    opacity: 1;
+  }
+
+  .home-reassurance__ugc-overlay span {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  @media screen and (max-width: 749px) {
+    .home-reassurance__snippets {
+      flex-direction: column;
+    }
+
+    .home-reassurance__snippet {
+      min-width: auto;
+    }
   }
 {%- endstyle -%}
 
@@ -191,6 +278,9 @@
                 {{ reviews_link_label }}
               </a>
             {%- endif -%}
+            <p class="home-reassurance__rating-note">
+              {{ block.settings.rating_note | default: 'Colors and fits are tested for real family photoshoots.' }}
+            </p>
           {%- else -%}
             <p class="rte">{{ block.settings.description }}</p>
           {%- endif -%}
@@ -211,6 +301,43 @@
         </article>
       {%- endfor -%}
     </div>
+
+    {%- assign snippet_raw = section.settings.review_snippets | split: '\n' -%}
+    {%- assign snippet_count = 0 -%}
+    {%- assign snippets_exist = false -%}
+    {%- for snippet_line in snippet_raw -%}
+      {%- assign clean_line = snippet_line | strip -%}
+      {%- if clean_line != blank -%}
+        {%- assign snippets_exist = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if snippets_exist -%}
+      {%- if section.settings.review_snippets_heading != blank -%}
+        <p class="home-reassurance__ugc-heading">{{ section.settings.review_snippets_heading }}</p>
+      {%- endif -%}
+      <div class="home-reassurance__snippets">
+        {%- for snippet_line in snippet_raw -%}
+          {%- assign clean_line = snippet_line | strip -%}
+          {%- if clean_line == blank -%}{%- continue -%}{%- endif -%}
+          {%- if snippet_count >= 13 -%}{%- break -%}{%- endif -%}
+          {%- assign parts = clean_line | split: '|' -%}
+          {%- assign rating_value = parts[0] | default: '5.0' -%}
+          {%- assign quote_text = parts[1] | default: 'Loved the fit and fabric.' -%}
+          {%- assign meta_text = parts[2] | default: 'Verified buyer' -%}
+          {%- assign snippet_count = snippet_count | plus: 1 -%}
+          <article class="home-reassurance__snippet" aria-label="Rated {{ rating_value }} out of 5: {{ quote_text | strip }}">
+            <div class="home-reassurance__snippet-rating">
+              {% render 'icon-star' %}
+              <span>{{ rating_value }}</span>
+            </div>
+            <p class="home-reassurance__snippet-quote">“{{ quote_text | strip }}”</p>
+            <span class="home-reassurance__snippet-meta">{{ meta_text | strip }}</span>
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
 
     {%- if section.settings.ugc_collection != blank -%}
       {%- assign ugc_limit = section.settings.ugc_photo_limit | default: 6 -%}
@@ -233,11 +360,14 @@
                   <li class="slider__slide">
                     <a
                       href="{{ product.url }}"
-                      class="home-reassurance__ugc-image"
-                      aria-label="{{ product.title | escape }}"
+                      class="home-reassurance__ugc-link"
+                      aria-label="Shop this look: {{ product.title | escape }}"
                     >
                       {%- assign ugc_alt = product.featured_media.alt | default: product.title -%}
                       {{ product.featured_media | image_url: width: 600 | image_tag: loading: 'lazy', alt: ugc_alt }}
+                      <span class="home-reassurance__ugc-overlay">
+                        <span>Shop this look</span>
+                      </span>
                     </a>
                   </li>
                 {%- endif -%}
@@ -318,6 +448,22 @@
     {
       "type": "header",
       "content": "UGC carousel"
+    },
+    {
+      "type": "header",
+      "content": "Review snippets"
+    },
+    {
+      "type": "text",
+      "id": "review_snippets_heading",
+      "label": "Snippets heading",
+      "default": "30k+ families share why they love us"
+    },
+    {
+      "type": "textarea",
+      "id": "review_snippets",
+      "label": "Snippets (rating|quote|name)",
+      "default": "5.0|Fits perfectly for our photo shoot.|Maya, CA\n4.9|Soft fabrics & no itchy seams for the kids.|Danielle, TX\n5.0|Shipping was faster than expected!|Erica, NY\n4.8|Matchy but still stylish for parents.|Leo, IL\n5.0|Exchange process was effortless.|Priya, WA\n4.9|Grandma, mom, and baby all loved the fit.|Angela, ON\n5.0|True-to-size for my tall husband.|Sara, FL\n4.8|Colors looked amazing in photos.|Michelle, CO\n5.0|Customer service was so helpful with sizing.|Tanya, GA\n4.9|Quality rivals boutique brands.|Kristen, NJ\n5.0|My teens actually like matching now.|Megan, CA\n4.9|Fabric feels luxe but washes easily.|Allie, OR\n5.0|Best matching sets we’ve bought yet.|Verified buyer"
     },
     {
       "type": "collection",
@@ -423,6 +569,12 @@
           "id": "reviews_link_label",
           "label": "Reviews link label",
           "default": "Read customer reviews"
+        },
+        {
+          "type": "text",
+          "id": "rating_note",
+          "label": "Rating reassurance note",
+          "default": "Colors and fits are tested for real family photoshoots."
         },
         {
           "type": "url",

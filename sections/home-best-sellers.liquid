@@ -11,8 +11,26 @@
     assign has_products = true
   endif
 
+  assign fallback_collection = collections['family-sets']
+  assign use_fallback = false
+
   assign product_limit = section.settings.products_to_show | default: 8
   assign columns_desktop = section.settings.products_per_row | default: 4
+
+  if has_products
+    assign display_collection = featured_collection
+  elsif request.design_mode == false and fallback_collection and fallback_collection.all_products_count > 0
+    assign use_fallback = true
+    assign display_collection = fallback_collection
+    assign has_products = true
+    assign product_limit = 4
+  endif
+
+  unless display_collection
+    assign display_collection = featured_collection
+  endunless
+
+  assign render_section = has_products or request.design_mode
 -%}
 
 {%- style -%}
@@ -34,7 +52,7 @@
 
   .family-faves__subheading {
     margin: 0 0 1.5rem;
-    color: rgba(var(--color-foreground), 0.75);
+    color: var(--dlm-text-muted);
     max-width: 560px;
   }
 
@@ -71,8 +89,15 @@
     justify-content: flex-end;
     gap: 0.5rem;
   }
+
+  .family-faves__fallback-note {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+    color: var(--dlm-text-subtle);
+  }
 {%- endstyle -%}
 
+{% if render_section %}
 <section class="color-{{ section.settings.color_scheme }} gradient family-faves-{{ section.id }}">
   <div class="page-width">
     <div class="title-wrapper-with-link title-wrapper--self-padded-mobile">
@@ -80,6 +105,9 @@
         <h2 class="family-faves__heading section-heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
         {% if section.settings.subheading != blank %}
           <p class="family-faves__subheading">{{ section.settings.subheading }}</p>
+        {% endif %}
+        {% if use_fallback %}
+          <p class="family-faves__fallback-note">Showing top-rated matching sets while Family Favorites updates.</p>
         {% endif %}
       </div>
       {% if section.settings.view_all_link != blank %}
@@ -96,7 +124,7 @@
           class="contains-card contains-card--product grid grid--{{ columns_desktop }}-col-desktop grid--2-col-tablet-down slider slider--tablet"
           role="list"
         >
-          {%- for product in featured_collection.products limit: product_limit -%}
+          {%- for product in display_collection.products limit: product_limit -%}
             {%- assign highlight_badge = '' -%}
             {%- for tag in product.tags -%}
               {%- assign tag_downcase = tag | downcase -%}
@@ -139,13 +167,14 @@
           </button>
         </div>
       </slider-component>
-    {% else %}
+    {% elsif request.design_mode %}
       <div class="family-faves__empty">
         {{ 'sections.home_best_sellers.empty_state' | t | default: 'Assign the Family Favorites collection to populate this carousel.' }}
       </div>
     {% endif %}
   </div>
 </section>
+{% endif %}
 
 {% schema %}
 {

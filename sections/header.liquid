@@ -186,7 +186,7 @@
           <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
             {%- if settings.logo != blank -%}
               <div class="header__heading-logo-wrapper">
-                {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+                {%- assign logo_alt = 'Dress Like Mommy  Matching family outfits' -%}
                 {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
                 {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
                 {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
@@ -226,7 +226,7 @@
           <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
             {%- if settings.logo != blank -%}
               <div class="header__heading-logo-wrapper">
-                {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+                {%- assign logo_alt = 'Dress Like Mommy  Matching family outfits' -%}
                 {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
                 {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
                 {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
@@ -519,6 +519,59 @@
       "id": "menu",
       "default": "main-menu",
       "label": "t:sections.header.settings.menu.label"
+    },
+    {
+      "type": "header",
+      "content": "Occasions mega menu"
+    },
+    {
+      "type": "text",
+      "id": "occasions_title",
+      "label": "Occasions label",
+      "default": "Occasions"
+    },
+    {
+      "type": "link_list",
+      "id": "occasions_menu",
+      "label": "Occasions menu",
+      "info": "Select a menu containing links such as Christmas photos, Beach vacation, Birthday parties, or Everyday matching. Linked collection images will be used as thumbnails when available."
+    },
+    {
+      "type": "header",
+      "content": "Sale link"
+    },
+    {
+      "type": "text",
+      "id": "sale_label",
+      "label": "Sale label",
+      "default": "Sale"
+    },
+    {
+      "type": "collection",
+      "id": "sale_collection",
+      "label": "Sale collection"
+    },
+    {
+      "type": "url",
+      "id": "sale_link",
+      "label": "Sale link override",
+      "info": "Optional custom URL for the Sale badge (defaults to the selected collection or /collections/last-chance)."
+    },
+    {
+      "type": "header",
+      "content": "Size & fit guide link"
+    },
+    {
+      "type": "text",
+      "id": "size_guide_label",
+      "label": "Link label",
+      "default": "Size & Fit Guide"
+    },
+    {
+      "type": "url",
+      "id": "size_guide_link",
+      "label": "Link URL",
+      "default": "/pages/size-fit-guide"
     },
     {
       "type": "select",

@@ -1,5 +1,66 @@
 /* Inline overrides migrated from layout/theme.liquid */
 
+:root {
+    --dlm-color-button-rgb: 23, 18, 45;
+    --dlm-text-strong: rgba(var(--color-foreground), 0.95);
+    --dlm-text-muted: rgba(var(--color-foreground), 0.82);
+    --dlm-text-subtle: rgba(var(--color-foreground), 0.65);
+}
+
+body {
+    color: var(--dlm-text-strong);
+}
+
+.section-band,
+.section-band p,
+.section-band .section-subheading,
+.section-band .caption,
+.section-band h2,
+.section-band h3 {
+    color: inherit;
+}
+
+.section-band .section-subheading,
+.section-band p {
+    color: var(--dlm-text-muted);
+}
+
+.section-band .caption,
+.section-band .caption-large {
+    color: var(--dlm-text-subtle);
+}
+
+.button--primary,
+.shopify-payment-button__button--unbranded,
+.button.button--primary {
+    --color-button: var(--dlm-color-button-rgb);
+    --color-button-text: 255, 255, 255;
+    --alpha-button-background: 1;
+    --alpha-button-border: 1;
+    border-color: rgba(var(--dlm-color-button-rgb), 1);
+}
+
+.button--primary:hover,
+.shopify-payment-button__button--unbranded:hover,
+.button.button--primary:hover {
+    filter: brightness(0.92);
+}
+
+.button--secondary,
+.button.button--secondary {
+    --color-button: var(--dlm-color-button-rgb);
+    --color-button-text: var(--dlm-color-button-rgb);
+    background: transparent;
+    color: rgb(var(--dlm-color-button-rgb));
+    border-color: rgba(var(--dlm-color-button-rgb), 0.6);
+}
+
+.button--secondary:hover,
+.button.button--secondary:hover {
+    background: rgba(var(--dlm-color-button-rgb), 0.08);
+    color: rgb(var(--dlm-color-button-rgb));
+}
+
 option[value="manual"],
 option[value="title-ascending"],
 option[value="title-descending"],
@@ -298,9 +359,30 @@ button.product-form__submit.button--full-width.button--secondary:hover {
         color: #FFFFFF !important; /* Force white text on mobile */
     }
 
-    .announcement-bar span::before {
+.announcement-bar span::before {
         color: #FFFFFF !important; /* Force white checkmarks on mobile */
     }
+}
+
+.header__menu-item--sale .header__sale-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.15rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: rgba(var(--color-foreground), 0.08);
+    color: rgb(var(--color-foreground));
+    border: 1px solid rgba(var(--color-foreground), 0.15);
+}
+
+.header__sale-dot {
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: currentColor;
+    display: inline-flex;
 }
 
 /* Moved inline CSS from tail for validity */
@@ -600,17 +682,23 @@ button.product-form__submit.button--full-width.button--secondary:hover {
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  padding: 0.65rem 1rem;
+  padding: 0.65rem 1.2rem;
   min-height: 44px;
   min-width: 44px;
   border-radius: 28px;
   font-weight: 600;
-  background: rgba(0, 0, 0, 0.06);
-  transition: background 0.25s ease, transform 0.2s ease;
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  background: rgba(var(--color-foreground), 0.08);
+  color: rgb(var(--color-foreground));
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-.link--cta-block:hover {
-  background: rgba(0, 0, 0, 0.14);
+.link--cta-block:hover,
+.link--cta-block:focus-visible {
+  background: rgba(var(--color-foreground), 0.15);
+  border-color: rgba(var(--color-foreground), 0.35);
+  color: rgb(var(--color-foreground));
   transform: translateY(-1px);
 }
 
@@ -624,8 +712,20 @@ button.product-form__submit.button--full-width.button--secondary:hover {
 .header__menu-item:focus-visible,
 .menu-drawer__menu-item:focus-visible,
 .slider-button:focus-visible,
-.home-reassurance__card a:focus-visible {
+.home-reassurance__card a:focus-visible,
+.home-outfits__card-link:focus-visible,
+.home-outfits__thumb:focus-visible,
+.home-reassurance__ugc-link:focus-visible {
   outline: 2px solid var(--dlm-accent-color);
   outline-offset: 3px;
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 0 5px rgba(245, 108, 108, 0.35);
+}
+
+/* Alternating home section backgrounds */
+body.template-index main .shopify-section.section-band:nth-of-type(odd) {
+  background: rgba(var(--color-background), 1);
+}
+
+body.template-index main .shopify-section.section-band:nth-of-type(even) {
+  background: rgba(var(--color-foreground), 0.035);
 }

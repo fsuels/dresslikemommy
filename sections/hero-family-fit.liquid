@@ -58,6 +58,20 @@
     opacity: 0.4;
   }
 
+  .hero-family-fit__seasonal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(var(--color-foreground), 0.08);
+    color: rgba(var(--color-foreground), 0.8);
+    margin-bottom: 0.85rem;
+  }
+
   .hero-family-fit__heading {
     margin: 0 0 1rem;
     font-size: clamp(2.25rem, 3vw, 3.2rem);
@@ -69,7 +83,7 @@
     line-height: 1.4;
     font-weight: 600;
     margin: 0 0 1rem;
-    color: rgba(var(--color-foreground), 0.9);
+    color: var(--dlm-text-strong);
     max-width: 36ch;
   }
 
@@ -81,12 +95,12 @@
     margin-bottom: 1rem;
     font-size: 1.1rem;
     line-height: 1.6;
-    color: rgba(var(--color-foreground), 0.85);
+    color: var(--dlm-text-muted);
   }
 
   .hero-family-fit__benefits {
     margin-top: 0.5rem;
-    color: rgba(var(--color-foreground), 0.75);
+    color: var(--dlm-text-subtle);
   }
 
   .hero-family-fit__shipping {
@@ -95,10 +109,40 @@
     align-items: center;
     font-size: 0.95rem;
     margin: 0 0 1.5rem;
-  }
     background: rgba(var(--color-foreground), 0.04);
     border-radius: 999px;
     padding: 0.75rem 1.25rem;
+    color: var(--dlm-text-muted);
+  }
+
+  .hero-family-fit__shipping span {
+    color: var(--dlm-text-muted);
+  }
+
+  .hero-family-fit__proof {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--dlm-text-strong);
+    margin: 0;
+  }
+
+  .hero-family-fit__proof-star {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .hero-family-fit__proof-star svg {
+    width: 1rem;
+    height: 1rem;
+    display: block;
+  }
+
+  .hero-family-fit__proof-rating {
+    color: var(--dlm-text-subtle);
+    font-weight: 500;
   }
 
   .hero-family-fit__ctas {
@@ -116,37 +160,81 @@
 
   .hero-family-fit__cta-group {
     margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
 
   .hero-family-fit__cta-primary {
     min-width: 220px;
+    margin-bottom: 0.25rem;
   }
 
   .hero-family-fit__secondary-links {
-    margin-top: 0.5rem;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    flex-direction: column;
+    gap: 0.35rem;
     font-size: 0.95rem;
+    color: rgba(var(--color-foreground), 0.7);
   }
 
-  .hero-family-fit__trust-badges {
-    margin-top: 0.75rem;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: rgba(var(--color-foreground), 0.75);
-  }
-
-  .hero-family-fit__trust-badges li {
+  .hero-family-fit__secondary-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
+  }
+
+  .hero-family-fit__secondary-link:hover,
+  .hero-family-fit__secondary-link:focus-visible {
+    color: rgba(var(--color-foreground), 0.9);
+  }
+
+  .hero-family-fit__trust-strip {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: 18px;
+    border: 1px solid rgba(var(--color-foreground), 0.12);
+    background: rgba(var(--color-background), 0.85);
+  }
+
+  .hero-family-fit__trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1 1 180px;
+    min-width: 180px;
+  }
+
+  .hero-family-fit__trust-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(var(--color-foreground), 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-family-fit__trust-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .hero-family-fit__trust-caption {
+    font-size: 0.8rem;
+    color: rgba(var(--color-foreground), 0.65);
+    font-weight: 500;
   }
 
   .hero-family-fit__badges {
@@ -292,6 +380,9 @@
   if section.settings.layout == 'media_left'
     assign reverse_layout = true
   endif
+
+  assign hero_badge_blocks = section.blocks | where: 'type', 'badge'
+  assign hero_trust_blocks = section.blocks | where: 'type', 'trust'
 -%}
 
 <section class="hero-family-fit section-{{ section.id }}-hero color-{{ section.settings.color_scheme }} gradient" data-hero-id="family-fit" data-hero-section="{{ section.id }}">
@@ -300,6 +391,10 @@
       <div class="hero-family-fit__content{% if animate %} scroll-trigger animate--slide-in{% endif %}">
         {%- if section.settings.eyebrow != blank -%}
           <p class="hero-family-fit__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.seasonal_badge != blank -%}
+          <p class="hero-family-fit__seasonal-badge">{{ section.settings.seasonal_badge | escape }}</p>
         {%- endif -%}
 
         <h1 class="hero-family-fit__heading {{ section.settings.heading_size }}">Matching outfits for your whole family.</h1>
@@ -324,6 +419,20 @@
         {%- endif -%}
 
         <div class="hero-family-fit__cta-group">
+          {%- if section.settings.social_proof_text != blank or section.settings.social_proof_rating != blank -%}
+            <p class="hero-family-fit__proof">
+              <span class="hero-family-fit__proof-star" aria-hidden="true">
+                {% render 'icon-star' %}
+              </span>
+              {%- if section.settings.social_proof_text != blank -%}
+                <span>{{ section.settings.social_proof_text | escape }}</span>
+              {%- endif -%}
+              {%- if section.settings.social_proof_rating != blank -%}
+                <span class="hero-family-fit__proof-rating">{{ section.settings.social_proof_rating | escape }}</span>
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+
           <a
             href="{{ section.settings.primary_link | default: '/collections/family-sets' }}"
             class="button button--primary hero-family-fit__cta-primary"
@@ -334,26 +443,39 @@
           </a>
 
           <div class="hero-family-fit__secondary-links">
-            <a class="link underlined-link" href="/collections/dresses">Shop Mommy &amp; Me Dresses</a>
-            <a class="link underlined-link" href="/collections/family-sets">See Family Photo Outfits</a>
+            <a class="hero-family-fit__secondary-link link link--text" href="/collections/dresses">Shop Mommy &amp; Me Dresses</a>
+            <a class="hero-family-fit__secondary-link link link--text" href="/collections/family-sets">See Family Photo Outfits</a>
           </div>
 
-          <ul class="hero-family-fit__trust-badges" role="list">
-            <li>
-              <span aria-hidden="true">●</span>
-              <span>30k+ 5-star reviews</span>
-            </li>
-            <li>
-              <span aria-hidden="true">●</span>
-              <span>Free exchanges on matching sets</span>
-            </li>
-          </ul>
+          {%- if hero_trust_blocks.size > 0 -%}
+            <div class="hero-family-fit__trust-strip" role="list">
+              {%- for block in hero_trust_blocks -%}
+                <div class="hero-family-fit__trust-item" role="listitem">
+                  {%- if block.settings.icon != 'none' -%}
+                    <span class="hero-family-fit__trust-icon" aria-hidden="true">
+                      {%- case block.settings.icon -%}
+                        {%- when 'truck' -%}{% render 'icon-delivery-truck' %}
+                        {%- when 'exchange' -%}{% render 'icon-refresh' %}
+                        {%- when 'star' -%}{% render 'icon-star' %}
+                      {%- endcase -%}
+                    </span>
+                  {%- endif -%}
+                  <div class="hero-family-fit__trust-copy">
+                    <span>{{ block.settings.title }}</span>
+                    {%- if block.settings.subtitle != blank -%}
+                      <span class="hero-family-fit__trust-caption">{{ block.settings.subtitle }}</span>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
         </div>
 
-        {%- if section.blocks.size > 0 -%}
+        {%- if hero_badge_blocks.size > 0 -%}
           <div class="hero-family-fit__badge-grid">
             <ul class="hero-family-fit__badges" role="list">
-              {%- for block in section.blocks -%}
+              {%- for block in hero_badge_blocks -%}
                 <li class="hero-family-fit__badge" {{ block.shopify_attributes }}>
                   {{ block.settings.text }}
                 </li>
@@ -503,6 +625,28 @@
     },
     {
       "type": "text",
+      "id": "seasonal_badge",
+      "label": "Seasonal badge",
+      "default": "Holiday 2025 collection"
+    },
+    {
+      "type": "header",
+      "content": "Social proof"
+    },
+    {
+      "type": "text",
+      "id": "social_proof_text",
+      "label": "Proof text",
+      "default": "Loved by 30,000+ families"
+    },
+    {
+      "type": "text",
+      "id": "social_proof_rating",
+      "label": "Proof rating",
+      "default": "4.8/5 average rating"
+    },
+    {
+      "type": "text",
       "id": "primary_label",
       "label": "Primary button label",
       "default": "Shop Mommy & Me"
@@ -610,6 +754,37 @@
           "id": "text",
           "label": "Badge text",
           "default": "30k families styled"
+        }
+      ]
+    },
+    {
+      "type": "trust",
+      "name": "Trust item",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "star", "label": "Star" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "exchange", "label": "Exchange" },
+            { "value": "none", "label": "None" }
+          ],
+          "default": "star"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Primary text",
+          "default": "30k+ happy families"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Supporting text",
+          "default": "Real five-star reviews"
         }
       ]
     }

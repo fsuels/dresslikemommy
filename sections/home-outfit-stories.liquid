@@ -38,8 +38,14 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(10, 10, 10, 0.2) 0%, rgba(10, 10, 10, 0.75) 70%);
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.1) 0%, rgba(10, 10, 10, 0.55) 65%);
     z-index: 1;
+  }
+
+  .home-outfits__card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
   }
 
   .home-outfits__card-image {
@@ -53,23 +59,30 @@
 
   .home-outfits__card-content {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     padding: 2rem;
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
     width: 100%;
+    pointer-events: none;
+  }
+
+  .home-outfits__card-content > * {
+    pointer-events: auto;
   }
 
   .home-outfits__card-title {
     font-size: clamp(1.5rem, 2.2vw, 2.2rem);
     margin: 0;
+    text-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   }
 
   .home-outfits__card-description {
     margin: 0;
     font-size: 1rem;
     max-width: 320px;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
   }
 
   .home-outfits__thumb-row {
@@ -101,6 +114,7 @@
   .home-outfits__cta .button {
     --color-button: #fff;
     --color-button-text: #111;
+    pointer-events: auto;
   }
 {% endstyle %}
 
@@ -126,7 +140,15 @@
         {%- assign card_image = block.settings.image | default: moment_collection.featured_image -%}
         {%- assign product_limit = 4 -%}
         {%- assign button_label = block.settings.cta_label | default: 'Shop ' | append: block.settings.title | append: ' collection' -%}
+        {%- assign collection_url = moment_collection.url | default: block.settings.cta_link -%}
         <article class="home-outfits__card" {{ block.shopify_attributes }}>
+          {% if collection_url != blank %}
+            <a
+              href="{{ collection_url }}"
+              class="home-outfits__card-link"
+              aria-label="{{ block.settings.title | escape }}: {{ button_label | strip }}"
+            ></a>
+          {% endif %}
           {% if card_image != blank %}
             {{ card_image | image_url: width: 1400 | image_tag: class: 'home-outfits__card-image', loading: 'lazy', sizes: '(max-width: 989px) 100vw, 33vw', widths: '600, 900, 1400' }}
           {% else %}
@@ -151,14 +173,18 @@
                 {% endfor %}
               </div>
             {% endif %}
-            <div class="home-outfits__cta">
-              {% assign collection_url = moment_collection.url | default: block.settings.cta_link %}
-              {% if collection_url != blank %}
-                <a href="{{ collection_url }}" class="button button--primary" data-cta-id="outfit_cta" data-cta-scope="outfits">
+            {% if collection_url != blank %}
+              <div class="home-outfits__cta">
+                <a
+                  href="{{ collection_url }}"
+                  class="button button--primary"
+                  data-cta-id="outfit_cta"
+                  data-cta-scope="outfits"
+                >
                   {{ button_label | strip }}
                 </a>
-              {% endif %}
-            </div>
+              </div>
+            {% endif %}
           </div>
         </article>
       {% endfor %}
