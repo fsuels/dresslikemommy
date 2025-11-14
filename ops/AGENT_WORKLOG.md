@@ -522,3 +522,40 @@ Changes applied (evidence-first)
 
 Open TODOs (next session)
 1) None.
+Session: Homepage hierarchy styling
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- sections/home-best-sellers.liquid:52, home-reassurance.liquid:67, home-outfit-stories.liquid:123, sections/collection-list.liquid:32 - Tagged section headings with a shared section-heading class so typography + accent styles can be unified.
+- sections/home-reassurance.liquid:62 & home-outfit-stories.liquid:112 - Wrapped reassurance + Match the moment sections in a muted band background for clearer separation.
+- assets/theme-inline-overrides.css:520+ - Added accent underline styling, stronger heading scale/weight, and section band background helper classes.
+- assets/section-collection-list.css:32+ - Enhanced collection tile visuals (clickable, overlay labels, hover CTA/badge) which also benefits the Mommy & Me + Christmas tiles.
+
+Open TODOs (next session)
+1) Validate the new section bands against all color schemes to ensure contrast remains acceptable.
+Session: Card-collection syntax fix
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- snippets/card-collection.liquid:5-8 - Guarded the `collection_available` assignment so Liquid no longer evaluates `card_collection != blank` directly in environments where the variable isn’t defined, resolving the syntax error.
+
+Open TODOs (next session)
+1) None.
+Session: Collection tile centering
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- assets/section-collection-list.css:54-74 - Reintroduced aspect-ratio padding on `.collection-card__media` and absolutely positioned the child image so thumbnails stay centered/cropped within the new overlay design.
+
+Open TODOs (next session)
+1) None.
+Session: Homepage accessibility polish
+Date: 2025-11-14
+
+Changes applied (evidence-first)
+- sections/home-reassurance.liquid:188-206 - Converted rating + CTA links into padded `link--cta-block` buttons so they meet 44px tap targets.
+- assets/theme-inline-overrides.css:520-610 - Darkened secondary text/link colors, added CTA block utility, and defined focus-visible outlines for nav links, buttons, and cards.
+- assets/section-collection-list.css:54-74 - Ensured the new collection tile overlays keep imagery centered via aspect-ratio padding.
+
+Open TODOs (next session)
+1) None.

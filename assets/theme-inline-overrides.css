@@ -528,3 +528,104 @@ button.product-form__submit.button--full-width.button--secondary:hover {
 .cart-item__family-tag {
   margin-top: 0.25rem;
 }
+
+:root {
+  --dlm-accent-color: #f56c6c;
+  --dlm-band-muted: #f7f4ef;
+}
+
+.template-index .section-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: clamp(2.1rem, 3vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.template-index .section-heading::after {
+  content: '';
+  display: inline-flex;
+  width: 72px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--dlm-accent-color);
+}
+
+.section-band {
+  position: relative;
+}
+
+.section-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  z-index: -1;
+}
+
+.section-band--muted::before {
+  background: var(--dlm-band-muted);
+}
+
+.collection-card-link--disabled {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.template-index .home-reassurance__subheading,
+.template-index .home-outfits__card-description,
+.template-index .family-faves__subheading,
+.template-index .home-reassurance__card p {
+  color: rgba(var(--color-foreground), 0.88);
+}
+
+.template-index .link,
+.template-index .link:visited,
+.template-index .underlined-link {
+  color: #1e1b3b;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(30, 27, 59, 0.4);
+}
+
+.template-index .link:hover,
+.template-index .underlined-link:hover {
+  color: #131026;
+  text-decoration-color: currentColor;
+}
+
+.link--cta-block {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.65rem 1rem;
+  min-height: 44px;
+  min-width: 44px;
+  border-radius: 28px;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.06);
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.link--cta-block:hover {
+  background: rgba(0, 0, 0, 0.14);
+  transform: translateY(-1px);
+}
+
+.home-reassurance__rating-link {
+  text-decoration: none;
+}
+
+.button:focus-visible,
+.link:focus-visible,
+.collection-card-link:focus-visible,
+.header__menu-item:focus-visible,
+.menu-drawer__menu-item:focus-visible,
+.slider-button:focus-visible,
+.home-reassurance__card a:focus-visible {
+  outline: 2px solid var(--dlm-accent-color);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 0 5px rgba(245, 108, 108, 0.35);
+}

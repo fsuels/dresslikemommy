@@ -125,12 +125,12 @@
   }
 {%- endstyle -%}
 
-<section class="color-{{ section.settings.color_scheme }} gradient home-reassurance-{{ section.id }}">
+<section class="color-{{ section.settings.color_scheme }} gradient home-reassurance-{{ section.id }} section-band section-band--muted">
   <div class="page-width">
     {% if section.settings.heading != blank %}
       <div class="title-wrapper-with-link">
         <div>
-          <h2 class="home-reassurance__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+          <h2 class="home-reassurance__heading section-heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
           {% if section.settings.subheading != blank %}
             <p class="home-reassurance__subheading">{{ section.settings.subheading }}</p>
           {% endif %}
@@ -185,7 +185,7 @@
             {%- if block.settings.reviews_link != blank -%}
               <a
                 href="{{ block.settings.reviews_link }}"
-                class="link underlined-link home-reassurance__rating-link"
+                class="link underlined-link home-reassurance__rating-link link--cta-block"
                 data-cta-id="reassurance_reviews"
               >
                 {{ reviews_link_label }}
@@ -199,7 +199,7 @@
             <div>
               <a
                 href="{{ block.settings.cta_link }}"
-                class="link underlined-link"
+                class="link underlined-link link--cta-block"
                 data-cta-id="reassurance_cta"
                 data-cta-scope="reassurance"
                 data-reassurance-title="{{ block.settings.title | escape }}"

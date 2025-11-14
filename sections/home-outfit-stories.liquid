@@ -23,53 +23,92 @@
   }
 
   .home-outfits__card {
-    border-radius: 24px;
+    border-radius: 28px;
     overflow: hidden;
-    background: rgba(var(--color-background), 1);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+    position: relative;
+    min-height: 420px;
+    box-shadow: 0 40px 60px rgba(0, 0, 0, 0.15);
+    color: #fff;
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    align-items: flex-end;
+    isolation: isolate;
   }
 
-  .home-outfits__media img {
+  .home-outfits__card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.2) 0%, rgba(10, 10, 10, 0.75) 70%);
+    z-index: 1;
+  }
+
+  .home-outfits__card-image {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
     object-fit: cover;
+    z-index: 0;
   }
 
-  .home-outfits__content {
-    padding: 1.5rem;
+  .home-outfits__card-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    height: 100%;
+    gap: 0.85rem;
+    width: 100%;
   }
 
-  .home-outfits__tags {
+  .home-outfits__card-title {
+    font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+    margin: 0;
+  }
+
+  .home-outfits__card-description {
+    margin: 0;
+    font-size: 1rem;
+    max-width: 320px;
+  }
+
+  .home-outfits__thumb-row {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
 
-  .home-outfits__tag {
-    border-radius: 999px;
-    padding: 0.35rem 0.85rem;
-    font-size: 0.75rem;
-    border: 1px solid rgba(var(--color-foreground), 0.18);
+  .home-outfits__thumb {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+  }
+
+  .home-outfits__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .home-outfits__cta {
-    margin-top: auto;
+    margin-top: 0.5rem;
+  }
+
+  .home-outfits__cta .button {
+    --color-button: #fff;
+    --color-button-text: #111;
   }
 {% endstyle %}
 
-<section class="home-outfits-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+<section class="home-outfits-{{ section.id }} color-{{ section.settings.color_scheme }} gradient section-band section-band--muted">
   <div class="page-width">
     <div class="title-wrapper-with-link">
       <div>
-        <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+        <h2 class="section-heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
         {% if section.settings.subheading != blank %}
           <p class="home-reassurance__subheading">{{ section.settings.subheading }}</p>
         {% endif %}
@@ -83,40 +122,43 @@
 
     <div class="home-outfits__grid">
       {% for block in section.blocks %}
+        {%- assign moment_collection = block.settings.collection -%}
+        {%- assign card_image = block.settings.image | default: moment_collection.featured_image -%}
+        {%- assign product_limit = 4 -%}
+        {%- assign button_label = block.settings.cta_label | default: 'Shop ' | append: block.settings.title | append: ' collection' -%}
         <article class="home-outfits__card" {{ block.shopify_attributes }}>
-          {% if block.settings.image != blank %}
-            <div class="home-outfits__media">
-              {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400, 600, 900', sizes: '(max-width: 989px) 100vw, 33vw' }}
-            </div>
+          {% if card_image != blank %}
+            {{ card_image | image_url: width: 1400 | image_tag: class: 'home-outfits__card-image', loading: 'lazy', sizes: '(max-width: 989px) 100vw, 33vw', widths: '600, 900, 1400' }}
+          {% else %}
+            <div class="home-outfits__card-image" style="background: var(--color-foreground); opacity: 0.4;"></div>
           {% endif %}
-          <div class="home-outfits__content">
-            {% if block.settings.tags != blank %}
-              <div class="home-outfits__tags">
-                {% assign tags = block.settings.tags | split: ',' %}
-                {% for tag in tags %}
-                  <span class="home-outfits__tag">{{ tag | strip }}</span>
+          <div class="home-outfits__card-content">
+        {% if block.settings.tags != blank %}
+          <p class="caption-with-letter-spacing text-uppercase">{{ block.settings.tags }}</p>
+        {% endif %}
+            <h3 class="home-outfits__card-title">{{ block.settings.title }}</h3>
+            {% if block.settings.description != blank %}
+              <p class="home-outfits__card-description">{{ block.settings.description }}</p>
+            {% endif %}
+            {% if moment_collection != blank and moment_collection.products_count > 0 %}
+              <div class="home-outfits__thumb-row">
+                {% for product in moment_collection.products limit: product_limit %}
+                  {% if product.featured_media != blank %}
+                    <a class="home-outfits__thumb" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+                      {{ product.featured_media | image_url: width: 160 | image_tag: loading: 'lazy', alt: product.featured_media.alt | default: product.title }}
+                    </a>
+                  {% endif %}
                 {% endfor %}
               </div>
             {% endif %}
-            <h3>{{ block.settings.title }}</h3>
-            <p class="rte">{{ block.settings.description }}</p>
-            {% if block.settings.product_1 != blank or block.settings.product_2 != blank %}
-              <ul class="list-unstyled">
-                {% if block.settings.product_1 != blank %}
-                  <li><a href="{{ block.settings.product_1 }}" class="link" data-cta-id="outfit_product" data-cta-scope="outfits">Shop look</a></li>
-                {% endif %}
-                {% if block.settings.product_2 != blank %}
-                  <li><a href="{{ block.settings.product_2 }}" class="link" data-cta-id="outfit_product" data-cta-scope="outfits">Shop accessories</a></li>
-                {% endif %}
-              </ul>
-            {% endif %}
-            {% if block.settings.cta_label != blank and block.settings.cta_link != blank %}
-              <div class="home-outfits__cta">
-                <a href="{{ block.settings.cta_link }}" class="button button--tertiary" data-cta-id="outfit_cta" data-cta-scope="outfits">
-                  {{ block.settings.cta_label }}
+            <div class="home-outfits__cta">
+              {% assign collection_url = moment_collection.url | default: block.settings.cta_link %}
+              {% if collection_url != blank %}
+                <a href="{{ collection_url }}" class="button button--primary" data-cta-id="outfit_cta" data-cta-scope="outfits">
+                  {{ button_label | strip }}
                 </a>
-              </div>
-            {% endif %}
+              {% endif %}
+            </div>
           </div>
         </article>
       {% endfor %}
@@ -193,52 +235,48 @@
       "type": "story",
       "name": "Outfit story",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Coastal brunch"
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Description",
-          "default": "Linen blends and pastel accessories keep everyone cool and polished."
-        },
-        {
-          "type": "text",
-          "id": "tags",
-          "label": "Tags (comma-separated)",
-          "default": "Brunch, Coastal, Spring"
-        },
-        {
-          "type": "url",
-          "id": "product_1",
-          "label": "Primary product link"
-        },
-        {
-          "type": "url",
-          "id": "product_2",
-          "label": "Secondary product link"
-        },
-        {
-          "type": "url",
-          "id": "cta_link",
-          "label": "CTA link"
-        },
-        {
-          "type": "text",
-          "id": "cta_label",
-          "label": "CTA label",
-          "default": "View guide"
-        }
-      ]
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero image"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Moment collection"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Coastal brunch sets"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Short description",
+      "default": "Pastel linens + breezy suits for patio brunch photos."
+    },
+    {
+      "type": "text",
+      "id": "tags",
+      "label": "Eyebrow label",
+      "default": "Brunch moment"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Shop collection"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Fallback CTA link",
+      "info": "Used if the collection is blank."
     }
+  ]
+}
   ],
   "max_blocks": 3,
   "presets": [
