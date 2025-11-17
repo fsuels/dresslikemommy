@@ -30,7 +30,10 @@
     assign display_collection = featured_collection
   endunless
 
-  assign render_section = has_products or request.design_mode
+  assign render_section = false
+  if has_products or request.design_mode
+    assign render_section = true
+  endif
 -%}
 
 {%- style -%}
