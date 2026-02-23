@@ -11,26 +11,10 @@
 
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
   <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    {%- liquid
-      assign display_title = collection.title | escape
-
-      if collection and section.blocks.size > 0
-        for block in section.blocks
-          if block.type == 'title_override'
-            assign handle_override = block.settings.handle | strip
-            assign title_override = block.settings.title | strip
-            if handle_override != blank and title_override != blank and collection.handle == handle_override
-              assign display_title = title_override | escape
-              break
-            endif
-          endif
-        endfor
-      endif
-    -%}
     <div class="collection-hero__text-wrapper">
       <h1 class="collection-hero__title">
         <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
-        {{- display_title -}}
+        {{- collection.title | escape -}}
       </h1>
 
       {%- if section.settings.show_collection_description -%}
@@ -89,27 +73,6 @@
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     }
-  ],
-  "blocks": [
-    {
-      "type": "title_override",
-      "name": "Title override",
-      "settings": [
-        {
-          "type": "text",
-          "id": "handle",
-          "label": "Collection handle",
-          "info": "Enter the collection handle (e.g., mommy-and-me-dresses)."
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Custom H1",
-          "info": "Title to display when the handle matches."
-        }
-      ]
-    }
-  ],
-  "max_blocks": 10
+  ]
 }
 {% endschema %}

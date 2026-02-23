@@ -1305,27 +1305,67 @@ class ProductRecommendations extends HTMLElement {
     super();
   }
 
+  buildFallbackUrl(url) {
+    try {
+      const parsedUrl = new URL(url, window.location.origin);
+      parsedUrl.searchParams.set('intent', 'related');
+      return parsedUrl.toString();
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  fetchRecommendations(url) {
+    return fetch(url)
+      .then((response) => response.text())
+      .then((text) => {
+        const html = document.createElement('div');
+        html.innerHTML = text;
+        const recommendations = html.querySelector('product-recommendations');
+        const hasRecommendationMarkup = recommendations && recommendations.innerHTML.trim().length > 0;
+
+        return {
+          html,
+          hasRecommendationMarkup,
+          markup: hasRecommendationMarkup ? recommendations.innerHTML : '',
+        };
+      });
+  }
+
   connectedCallback() {
     const handleIntersection = (entries, observer) => {
       if (!entries[0].isIntersecting) return;
       observer.unobserve(this);
 
-      fetch(this.dataset.url)
-        .then((response) => response.text())
-        .then((text) => {
-          const html = document.createElement('div');
-          html.innerHTML = text;
-          const recommendations = html.querySelector('product-recommendations');
-
-          if (recommendations && recommendations.innerHTML.trim().length) {
-            this.innerHTML = recommendations.innerHTML;
+      this.fetchRecommendations(this.dataset.url)
+        .then((result) => {
+          if (result.hasRecommendationMarkup) {
+            this.innerHTML = result.markup;
+            return result;
           }
 
+          if (this.classList.contains('complementary-products')) {
+            const fallbackUrl = this.buildFallbackUrl(this.dataset.url);
+            if (fallbackUrl && fallbackUrl !== this.dataset.url) {
+              return this.fetchRecommendations(fallbackUrl).then((fallbackResult) => {
+                if (fallbackResult.hasRecommendationMarkup) {
+                  this.innerHTML = fallbackResult.markup;
+                }
+                return fallbackResult;
+              });
+            }
+          }
+
+          return result;
+        })
+        .then((finalResult) => {
           if (!this.querySelector('slideshow-component') && this.classList.contains('complementary-products')) {
             this.remove();
+            return;
           }
 
-          if (html.querySelector('.grid__item')) {
+          if (finalResult && finalResult.html && finalResult.html.querySelector('.grid__item')) {
             this.classList.add('product-recommendations--loaded');
           }
         })

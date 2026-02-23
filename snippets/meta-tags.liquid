@@ -3,6 +3,7 @@
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
   assign og_description = page_description | default: shop.description | default: shop.name
+  assign should_noindex = false
 
   if request.page_type == 'product'
     assign og_type = 'product'
@@ -11,7 +12,15 @@
   elsif request.page_type == 'password'
     assign og_url = request.origin
   endif
+
+  if request.page_type == 'search' or request.page_type == 'cart' or request.page_type == '404'
+    assign should_noindex = true
+  endif
 %}
+
+{%- if should_noindex -%}
+  <meta name="robots" content="noindex, nofollow">
+{%- endif -%}
 
 <meta property="og:site_name" content="{{ shop.name }}">
 <meta property="og:url" content="{{ og_url }}">
@@ -37,6 +46,3 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title | escape }}">
 <meta name="twitter:description" content="{{ og_description | escape }}">
-{%- if request.page_type == 'search' or request.page_type == 'cart' or request.page_type == '404' or request.page_type == 'password' -%}
-  <meta name="robots" content="noindex,follow">
-{%- endif -%}

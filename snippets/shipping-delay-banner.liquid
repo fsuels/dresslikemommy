@@ -1,9 +1,0 @@
-{% if settings.shipping_delay_banner_enabled and settings.shipping_delay_banner_message != blank %}
-  <section class="shipping-delay-banner" role="status" aria-live="polite">
-    <div class="page-width">
-      <p class="shipping-delay-banner__text">
-        {{ settings.shipping_delay_banner_message | strip | escape }}
-      </p>
-    </div>
-  </section>
-{% endif %}

@@ -1,0 +1,58 @@
+{% comment %}
+  Extra Schema.org structured data for DressLikeMommy.com
+  Adds BreadcrumbList + Organization (Product schema already in theme)
+  Added: 2026-01-27
+{% endcomment %}
+
+{% if product %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ shop.url }}"
+    }
+    {% if product.collections.size > 0 %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ product.collections.first.title | json }},
+      "item": "{{ shop.url }}{{ product.collections.first.url }}"
+    }
+    {% endif %}
+    ,{
+      "@type": "ListItem",
+      "position": {% if product.collections.size > 0 %}3{% else %}2{% endif %},
+      "name": {{ product.title | json }},
+      "item": "{{ shop.url }}{{ product.url }}"
+    }
+  ]
+}
+</script>
+{% endif %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Dress Like Mommy",
+  "url": "https://dresslikemommy.com",
+  "logo": "{{ 'dlm-square-logo.png' | asset_url }}",
+  "sameAs": [
+    "https://www.facebook.com/dresslikemommy",
+    "https://www.instagram.com/dresslikemommy",
+    "https://www.pinterest.com/dresslikemommy"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-786-309-6006",
+    "contactType": "customer service",
+    "email": "info@dresslikemommy.com",
+    "availableLanguage": "English"
+  }
+}
+</script>

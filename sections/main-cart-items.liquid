@@ -79,7 +79,26 @@
 
               <tbody>
                 {%- for item in cart.items -%}
-                  <tr class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
+                  <tr
+                    class="cart-item"
+                    id="CartItem-{{ item.index | plus: 1 }}"
+                    data-cart-item="true"
+                    data-line-key="{{ item.key | escape }}"
+                    data-variant-id="{{ item.variant.id }}"
+                    data-product-id="{{ item.product.id }}"
+                    data-product-handle="{{ item.product.handle | escape }}"
+                    data-item-name="{{ item.product.title | escape }}"
+                    data-item-brand="{{ item.product.vendor | escape }}"
+                    data-item-variant="{{ item.sku | default: item.variant.title | default: item.variant.id | escape }}"
+                    data-price-cents="{{ item.final_price }}"
+                    data-quantity="{{ item.quantity }}"
+                    data-category1="{{ item.product.metafields.custom.category1 | escape }}"
+                    data-subcategory="{{ item.product.metafields.custom.subcategory | escape }}"
+                    data-subcategory2="{{ item.product.metafields.custom.subcategory2 | escape }}"
+                    data-type="{{ item.product.metafields.custom.type | default: item.product.type | escape }}"
+                    data-style="{{ item.product.metafields.custom.style | escape }}"
+                    data-pattern="{{ item.product.metafields.custom.pattern | escape }}"
+                  >
                     <td class="cart-item__media">
                       {% if item.image %}
                         {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}

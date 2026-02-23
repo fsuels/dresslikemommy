@@ -28,7 +28,7 @@
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 
 {%- if card_product and card_product != empty -%}
-{%- liquid
+  {%- liquid
     assign ratio = 1
     if card_product.featured_media and media_aspect_ratio == 'portrait'
       assign ratio = 0.8
@@ -38,35 +38,56 @@
     if ratio == 0 or ratio == null
       assign ratio = 1
     endif
--%}
 
-{%- comment -%} Free shipping + matching set badges {%- endcomment -%}
-<div class="card__badge bottom left">
-  <span class="badge badge--shipping">Ships free</span>
-
-  {%- comment -%}
-    Detect products that have both mother and child variants so we can
-    highlight true matching sets directly on the product card.
-  {%- endcomment -%}
-  {%- assign has_mom = false -%}
-  {%- assign has_child = false -%}
-  {%- for v in card_product.variants -%}
-    {%- if v.title contains 'Mother ' -%}
-      {%- assign has_mom = true -%}
-    {%- endif -%}
-    {%- if v.title contains 'Child ' -%}
-      {%- assign has_child = true -%}
-    {%- endif -%}
-  {%- endfor -%}
-
-  {%- if has_mom and has_child -%}
-    <span class="badge badge--matching">Matching set</span>
-  {%- endif -%}
-
-  {%- if settings.sold_out_badge_color_scheme != blank and card_product.available == false -%}
-  {%- endif -%}
-</div>
-  <div class="card-wrapper product-card-wrapper underline-links-hover">
+    assign card_category1 = card_product.metafields.custom.category1 | default: '' | strip
+    assign card_subcategory = card_product.metafields.custom.subcategory | default: '' | strip
+    assign card_subcategory2 = card_product.metafields.custom.subcategory2 | default: '' | strip
+    assign card_type = card_product.metafields.custom.type | default: card_product.type | default: '' | strip
+    assign card_style = card_product.metafields.custom.style | default: '' | strip
+    assign card_pattern = card_product.metafields.custom.pattern | default: '' | strip
+    for tag in card_product.tags
+      assign normalized_tag = tag | strip
+      assign normalized_tag_downcase = normalized_tag | downcase
+      if card_category1 == blank and normalized_tag_downcase contains 'category1:'
+        assign card_category1 = normalized_tag | split: ':' | last | strip
+      elsif card_category1 == blank and normalized_tag_downcase contains 'category:'
+        assign card_category1 = normalized_tag | split: ':' | last | strip
+      endif
+      if card_subcategory == blank and normalized_tag_downcase contains 'subcategory:'
+        assign card_subcategory = normalized_tag | split: ':' | last | strip
+      endif
+      if card_subcategory2 == blank and normalized_tag_downcase contains 'subcategory2:'
+        assign card_subcategory2 = normalized_tag | split: ':' | last | strip
+      endif
+      if card_type == blank and normalized_tag_downcase contains 'type:'
+        assign card_type = normalized_tag | split: ':' | last | strip
+      endif
+      if card_style == blank and normalized_tag_downcase contains 'style:'
+        assign card_style = normalized_tag | split: ':' | last | strip
+      endif
+      if card_pattern == blank and normalized_tag_downcase contains 'pattern:'
+        assign card_pattern = normalized_tag | split: ':' | last | strip
+      endif
+    endfor
+  -%}
+  <div
+    class="card-wrapper product-card-wrapper underline-links-hover"
+    data-analytics-product-card="true"
+    data-analytics-product-id="{{ card_product.id }}"
+    data-analytics-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
+    data-analytics-handle="{{ card_product.handle | escape }}"
+    data-analytics-title="{{ card_product.title | escape }}"
+    data-analytics-vendor="{{ card_product.vendor | escape }}"
+    data-analytics-variant="{{ card_product.selected_or_first_available_variant.sku | default: card_product.selected_or_first_available_variant.title | default: card_product.selected_or_first_available_variant.id | escape }}"
+    data-analytics-price-cents="{{ card_product.selected_or_first_available_variant.price }}"
+    data-analytics-category1="{{ card_category1 | escape }}"
+    data-analytics-subcategory="{{ card_subcategory | escape }}"
+    data-analytics-subcategory2="{{ card_subcategory2 | escape }}"
+    data-analytics-type="{{ card_type | escape }}"
+    data-analytics-style="{{ card_style | escape }}"
+    data-analytics-pattern="{{ card_pattern | escape }}"
+    data-analytics-section-id="{{ section_id | escape }}"
+  >
     <div
       class="
         card card--{{ settings.card_style }}
@@ -83,31 +104,30 @@
         class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
-        {%- if card_product.featured_media -%}
-          <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
-            <div class="media media--transparent media--hover-effect">
-              {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
-              <img
-                srcset="
-                  {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
-                  {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
-                  {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
-                  {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
-                  {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
-                  {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
-                  {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
-                "
-                src="{{ card_product.featured_media | image_url: width: 533 }}"
-                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                alt="{{ card_product.featured_media.alt | escape }}"
-                class="motion-reduce"
-                {% unless lazy_load == false %}
-                  loading="lazy"
-                {% endunless %}
-                width="{{ card_product.featured_media.width }}"
-                height="{{ card_product.featured_media.height }}"
-              >
-              {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+  {%- if card_product.featured_media -%}
+<div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
+  <div class="media media--transparent media--hover-effect">
+    {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+    <img
+      srcset="
+        {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+        {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+        {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+        {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+        {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+        {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+        {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
+      "
+      src="{{ card_product.featured_media | image_url: width: 533 }}"
+      sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+      alt="{{ card_product.featured_media.alt | escape }}"
+      class="motion-reduce"
+      {% unless lazy_load == false %}loading="lazy"{% endunless %}
+      width="{{ card_product.featured_media.width }}"
+      height="{{ card_product.featured_media.height }}"
+    >
+    {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+
 
               {%- if card_product.media[1] != null and show_secondary_image -%}
                 <img
@@ -124,7 +144,7 @@
                   sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                   alt=""
                   class="motion-reduce"
-                  loading="lazy"
+                  {% unless lazy_load == false %}loading="lazy"{% endunless %}
                   width="{{ card_product.media[1].width }}"
                   height="{{ card_product.media[1].height }}"
                 >
@@ -193,12 +213,6 @@
             {%- endif -%}
 
             <span class="caption-large light">{{ block.settings.description | escape }}</span>
-
-            {%- if family_group_id and card_product.metafields.custom.family_group_id == family_group_id -%}
-              <div class="card__family-tag caption">
-                Part of this family set
-              </div>
-            {%- endif -%}
 
             {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
               {% liquid
@@ -487,15 +501,14 @@
                                   {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
                                   {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
                                 "
-                                src="{{ card_product.featured_media | image_url: width: 533 }}"
-                                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                                alt="{{ card_product.featured_media.alt | escape }}"
-                                class="motion-reduce"
-                                {% unless lazy_load == false %}
-                                  loading="lazy"
-                                {% endunless %}
-                                width="{{ card_product.featured_media.width }}"
-                                height="{{ card_product.featured_media.height }}"
+src="{{ card_product.featured_media | image_url: width: 533 }}"
+sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+alt="{{ card_product.featured_media.alt | escape }}"
+class="motion-reduce"
+{% unless lazy_load == false %}loading="lazy"{% endunless %}
+width="{{ card_product.featured_media.width }}"
+height="{{ card_product.featured_media.height }}"
+
                               >
                               {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
                             </div>

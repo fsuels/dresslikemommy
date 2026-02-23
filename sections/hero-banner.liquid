@@ -1,0 +1,179 @@
+{%- style -%}
+  .hero-banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: {{ section.settings.height }}px;
+    background-color: {{ section.settings.bg_color }};
+    overflow: hidden;
+  }
+  .hero-banner__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,{{ section.settings.overlay_opacity | divided_by: 100.0 }});
+  }
+  .hero-banner__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 700px;
+  }
+  .hero-banner__heading {
+    color: {{ section.settings.text_color }};
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 12px;
+  }
+  .hero-banner__subheading {
+    color: {{ section.settings.text_color }};
+    font-size: clamp(14px, 2.5vw, 18px);
+    margin: 0 0 24px;
+    opacity: 0.9;
+  }
+  .hero-banner__cta {
+    display: inline-block;
+    background: {{ section.settings.button_color }};
+    color: {{ section.settings.button_text_color }};
+    padding: 14px 36px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .hero-banner__cta:hover {
+    opacity: 0.9;
+  }
+{%- endstyle -%}
+
+<div class="hero-banner">
+  {%- if section.settings.image != blank -%}
+    <img
+      src="{{ section.settings.image | image_url: width: 1920 }}"
+      srcset="
+        {{ section.settings.image | image_url: width: 750 }} 750w,
+        {{ section.settings.image | image_url: width: 1200 }} 1200w,
+        {{ section.settings.image | image_url: width: 1920 }} 1920w
+      "
+      sizes="100vw"
+      alt="{{ section.settings.heading | escape }}"
+      width="{{ section.settings.image.width }}"
+      height="{{ section.settings.image.height }}"
+      loading="eager"
+      fetchpriority="high"
+      class="hero-banner__image"
+    >
+  {%- endif -%}
+  <div class="hero-banner__overlay"></div>
+  <div class="hero-banner__content">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="hero-banner__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="hero-banner__subheading">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link }}" class="hero-banner__cta">
+        {{ section.settings.button_label }}
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "section-hero-banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Matching Outfits for the Whole Family",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Create unforgettable moments in coordinated style. Free shipping on every order.",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "SHOP NOW",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "min": 300,
+      "max": 700,
+      "step": 50,
+      "default": 500,
+      "unit": "px",
+      "label": "Section height"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "default": 30,
+      "unit": "%",
+      "label": "Overlay darkness"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "default": "#2E2E2E",
+      "label": "Background color (no image fallback)"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#FFFFFF",
+      "label": "Text color"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "default": "#f39c12",
+      "label": "Button color"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "default": "#FFFFFF",
+      "label": "Button text color"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

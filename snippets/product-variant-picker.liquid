@@ -86,11 +86,9 @@
         </div>
         <!-- Insert Size Conversion Message and Size Chart Wrapper Here -->
         {% if forloop.first %}
-          <div id="size-conversion-message" style="margin-top: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;"></div>
-          <div class="size-chart-wrapper" style="margin-top: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: white;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-            </div>
-            <div id="size-chart-content" style="margin-top: 5px; font-size: 14px; color: #333; line-height: 1.6;"></div>
+          <div id="size-conversion-message"></div>
+          <div class="size-chart-wrapper">
+            <div id="size-chart-content"></div>
           </div>
         {% endif %}
       {%- endif -%}

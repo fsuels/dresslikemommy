@@ -31,7 +31,6 @@
 
 {%- liquid
   assign product = section.settings.product
-  assign shipping_snippet_rendered = false
 -%}
 
 {% comment %} TODO: assign `product.selected_or_first_available_variant` to variable and replace usage to reduce verbosity {% endcomment %}
@@ -133,12 +132,6 @@
                       {{ form | payment_terms }}
                     {%- endform -%}
                   </div>
-                {%- endif -%}
-                {%- if product and shipping_snippet_rendered == false -%}
-                  <div class="featured-product__shipping" aria-live="polite">
-                    {% render 'shipping-estimate-inline', context: 'featured-product', label: 'Shipping & delivery' %}
-                  </div>
-                  {%- assign shipping_snippet_rendered = true -%}
                 {%- endif -%}
               {%- when 'sku' -%}
                 <p
@@ -419,19 +412,14 @@
                     </p>
                   </div>
                 {%- endif -%}
-            {%- when 'icon-with-text' -%}
-              {% render 'icon-with-text', block: block %}
-        {%- endcase -%}
-      {%- endfor -%}
-      {%- if product and shipping_snippet_rendered == false -%}
-        <div class="featured-product__shipping" aria-live="polite">
-          {% render 'shipping-estimate-inline', context: 'featured-product', label: 'Shipping & delivery' %}
-        </div>
-      {%- endif -%}
-      <a
-        {% if product == blank %}
-          role="link" aria-disabled="true"
-        {% else %}
+              {%- when 'icon-with-text' -%}
+                {% render 'icon-with-text', block: block %}
+            {%- endcase -%}
+          {%- endfor -%}
+          <a
+            {% if product == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
               href="{{ product.url }}"
             {% endif %}
             class="link product__view-details animate-arrow"
@@ -460,59 +448,6 @@
   </script>
   <script src="{{ 'product-model.js' | asset_url }}" defer></script>
 {%- endif -%}
-
-{%- liquid
-  if product.selected_or_first_available_variant.featured_media
-    assign seo_media = product.selected_or_first_available_variant.featured_media
-  else
-    assign seo_media = product.featured_media
-  endif
--%}
-
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org/",
-    "@type": "Product",
-    "name": {{ product.title | json }},
-    "url": {{ request.origin | append: product.url | json }},
-    {% if seo_media -%}
-      "image": [
-        {{ seo_media | image_url: width: 1920 | prepend: "https:" | json }}
-      ],
-    {%- endif %}
-    "description": {{ product.description | strip_html | json }},
-    {% if product.selected_or_first_available_variant.sku != blank -%}
-      "sku": {{ product.selected_or_first_available_variant.sku | json }},
-    {%- endif %}
-    "brand": {
-      "@type": "Brand",
-      "name": {{ product.vendor | json }}
-    },
-    "offers": [
-      {%- for variant in product.variants -%}
-        {
-          "@type" : "Offer",
-          {%- if variant.sku != blank -%}
-            "sku": {{ variant.sku | json }},
-          {%- endif -%}
-          {%- if variant.barcode.size == 12 -%}
-              "gtin12": {{ variant.barcode | json }},
-          {%- endif -%}
-          {%- if variant.barcode.size == 13 -%}
-            "gtin13": {{ variant.barcode | json }},
-          {%- endif -%}
-          {%- if variant.barcode.size == 14 -%}
-            "gtin14": {{ variant.barcode | json }},
-          {%- endif -%}
-          "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
-          "price" : {{ variant.price | divided_by: 100.00 | json }},
-          "priceCurrency" : {{ cart.currency.iso_code | json }},
-          "url" : {{ request.origin | append: variant.url | json }}
-        }{% unless forloop.last %},{% endunless %}
-      {%- endfor -%}
-    ]
-  }
-</script>
 
 {% if product.media.size > 0 %}
   <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>

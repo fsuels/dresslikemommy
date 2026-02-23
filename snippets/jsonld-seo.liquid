@@ -105,10 +105,38 @@
   {%- assign currency_code = cart.currency | default: shop.currency -%}
   {%- assign low_price = product.price_min | times: 0.01 -%}
   {%- assign high_price = product.price_max | times: 0.01 -%}
+  {%- assign taxonomy_category1 = product.metafields.custom.category1 | default: '' | strip -%}
+  {%- assign taxonomy_subcategory = product.metafields.custom.subcategory | default: '' | strip -%}
+  {%- assign taxonomy_type = product.metafields.custom.type | default: product.type | default: '' | strip -%}
+  {%- assign taxonomy_style = product.metafields.custom.style | default: '' | strip -%}
+  {%- assign taxonomy_pattern = product.metafields.custom.pattern | default: '' | strip -%}
+  {%- for tag in product.tags -%}
+    {%- assign normalized_tag = tag | strip -%}
+    {%- assign normalized_tag_downcase = normalized_tag | downcase -%}
+    {%- if taxonomy_category1 == blank and normalized_tag_downcase contains 'category1:' -%}
+      {%- assign taxonomy_category1 = normalized_tag | split: ':' | last | strip -%}
+    {%- elsif taxonomy_category1 == blank and normalized_tag_downcase contains 'category:' -%}
+      {%- assign taxonomy_category1 = normalized_tag | split: ':' | last | strip -%}
+    {%- endif -%}
+    {%- if taxonomy_subcategory == blank and normalized_tag_downcase contains 'subcategory:' -%}
+      {%- assign taxonomy_subcategory = normalized_tag | split: ':' | last | strip -%}
+    {%- endif -%}
+    {%- if taxonomy_type == blank and normalized_tag_downcase contains 'type:' -%}
+      {%- assign taxonomy_type = normalized_tag | split: ':' | last | strip -%}
+    {%- endif -%}
+    {%- if taxonomy_style == blank and normalized_tag_downcase contains 'style:' -%}
+      {%- assign taxonomy_style = normalized_tag | split: ':' | last | strip -%}
+    {%- endif -%}
+    {%- if taxonomy_pattern == blank and normalized_tag_downcase contains 'pattern:' -%}
+      {%- assign taxonomy_pattern = normalized_tag | split: ':' | last | strip -%}
+    {%- endif -%}
+  {%- endfor -%}
   {%- assign offers_list = '' -%}
   {%- assign offer_delim = '' -%}
   {%- for variant in product.variants limit: 20 -%}
     {%- assign variant_price = variant.price | times: 0.01 -%}
+    {%- assign variant_barcode = variant.barcode | default: '' | strip | replace: ' ', '' | replace: '-', '' -%}
+    {%- assign variant_barcode_size = variant_barcode | size -%}
     {%- capture offers_list -%}{{ offers_list }}{{ offer_delim }}{
       "@type": "Offer",
       "priceCurrency": {{ currency_code | json }},
@@ -116,6 +144,18 @@
       "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
       "url": {{ product_url | json }},
       "sku": {{ variant.sku | default: variant.id | json }},
+      {%- if variant_barcode != blank and variant_barcode_size == 8 -%}
+      "gtin8": {{ variant_barcode | json }},
+      {%- endif -%}
+      {%- if variant_barcode != blank and variant_barcode_size == 12 -%}
+      "gtin12": {{ variant_barcode | json }},
+      {%- endif -%}
+      {%- if variant_barcode != blank and variant_barcode_size == 13 -%}
+      "gtin13": {{ variant_barcode | json }},
+      {%- endif -%}
+      {%- if variant_barcode != blank and variant_barcode_size == 14 -%}
+      "gtin14": {{ variant_barcode | json }},
+      {%- endif -%}
       "itemCondition": "https://schema.org/NewCondition"
     }{%- endcapture -%}
     {%- assign offer_delim = ',' -%}
@@ -136,6 +176,9 @@
       "@type": "Brand",
       "name": {{ product.vendor | default: shop.name | json }}
     },
+    {%- if taxonomy_category1 != blank -%}
+    "category": {{ taxonomy_category1 | json }},
+    {%- endif -%}
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": {{ currency_code | json }},
@@ -144,6 +187,31 @@
       "offerCount": {{ product.variants.size }},
       "offers": [{{ offers_list }}]
     }
+    {%- assign taxonomy_additional_properties = '' -%}
+    {%- assign taxonomy_additional_properties_separator = '' -%}
+    {%- if taxonomy_category1 != blank -%}
+      {%- capture taxonomy_additional_properties -%}{{ taxonomy_additional_properties }}{{ taxonomy_additional_properties_separator }}{"@type":"PropertyValue","name":"Category1","value":{{ taxonomy_category1 | json }}}{%- endcapture -%}
+      {%- assign taxonomy_additional_properties_separator = ',' -%}
+    {%- endif -%}
+    {%- if taxonomy_subcategory != blank -%}
+      {%- capture taxonomy_additional_properties -%}{{ taxonomy_additional_properties }}{{ taxonomy_additional_properties_separator }}{"@type":"PropertyValue","name":"SubCategory","value":{{ taxonomy_subcategory | json }}}{%- endcapture -%}
+      {%- assign taxonomy_additional_properties_separator = ',' -%}
+    {%- endif -%}
+    {%- if taxonomy_type != blank -%}
+      {%- capture taxonomy_additional_properties -%}{{ taxonomy_additional_properties }}{{ taxonomy_additional_properties_separator }}{"@type":"PropertyValue","name":"Type","value":{{ taxonomy_type | json }}}{%- endcapture -%}
+      {%- assign taxonomy_additional_properties_separator = ',' -%}
+    {%- endif -%}
+    {%- if taxonomy_style != blank -%}
+      {%- capture taxonomy_additional_properties -%}{{ taxonomy_additional_properties }}{{ taxonomy_additional_properties_separator }}{"@type":"PropertyValue","name":"Style","value":{{ taxonomy_style | json }}}{%- endcapture -%}
+      {%- assign taxonomy_additional_properties_separator = ',' -%}
+    {%- endif -%}
+    {%- if taxonomy_pattern != blank -%}
+      {%- capture taxonomy_additional_properties -%}{{ taxonomy_additional_properties }}{{ taxonomy_additional_properties_separator }}{"@type":"PropertyValue","name":"Pattern","value":{{ taxonomy_pattern | json }}}{%- endcapture -%}
+      {%- assign taxonomy_additional_properties_separator = ',' -%}
+    {%- endif -%}
+    {%- if taxonomy_additional_properties != blank -%},
+    "additionalProperty": [{{ taxonomy_additional_properties }}]
+    {%- endif -%}
     {%- assign rating_drop = product.metafields.reviews.rating.value -%}
     {%- assign rating_count = product.metafields.reviews.rating_count -%}
     {%- if rating_drop != blank and rating_count != blank and rating_count > 0 -%},

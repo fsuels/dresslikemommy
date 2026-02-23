@@ -1,56 +1,11 @@
-<style>
-.ribbon {
-    display: inline-block;
-    padding: 1px 3px; /* Reverted padding for original height */
-    background-color: #F4EBDD;
-    color: #333;
-    font-weight: bold;
-    margin-left: 10px;
-    border: 1px solid #EAD8C3;
-    position: relative;
-    font-size: 14px;
-    line-height: 1.2; /* Original line-height */
-    border-radius: 10px; /* Rounded corners */
-    white-space: nowrap; /* Prevent text from wrapping */
-    font-family: 'Arial', sans-serif; /* Use a modern font */
-}
-
-#sold-message {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    color: #555; /* Use a subtle color */
-    font-family: 'Arial', sans-serif; /* Use a modern font */
-}
-
-#sold-message img {
-    margin-right: 5px;
-}
-
-#sold-number {
-    margin-right: 5px;
-}
-
-#sold-message-text {
-    margin-left: 5px;
-    padding: 1px 3px; /* Reverted padding for original height */
-    background-color: #F4EBDD;
-    color: #333;
-    border: 1px solid #EAD8C3;
-    border-radius: 10px; /* Rounded corners */
-    white-space: nowrap;
-    font-size: 14px;
-}
-
-</style>
-
-
 <section
   id="MainProduct-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
   data-section="{{ section.id }}"
 >
-  {% include 'breadcrumbs' %}
+  <div class="page-width page-width--product-breadcrumbs">
+    {% include 'breadcrumbs' %}
+  </div>
 
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
@@ -115,7 +70,7 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-  <div class="page-width">
+  <div class="page-width page-width--product-main">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
@@ -130,6 +85,36 @@
 
 
  {%- assign product_form_id = 'product-form-' | append: section.id -%}
+ {%- assign taxonomy_category1 = product.metafields.custom.category1 | default: '' | strip -%}
+ {%- assign taxonomy_subcategory = product.metafields.custom.subcategory | default: '' | strip -%}
+ {%- assign taxonomy_subcategory2 = product.metafields.custom.subcategory2 | default: '' | strip -%}
+ {%- assign taxonomy_type = product.metafields.custom.type | default: product.type | default: '' | strip -%}
+ {%- assign taxonomy_style = product.metafields.custom.style | default: '' | strip -%}
+ {%- assign taxonomy_pattern = product.metafields.custom.pattern | default: '' | strip -%}
+ {%- for tag in product.tags -%}
+   {%- assign normalized_tag = tag | strip -%}
+   {%- assign normalized_tag_downcase = normalized_tag | downcase -%}
+   {%- if taxonomy_category1 == blank and normalized_tag_downcase contains 'category1:' -%}
+     {%- assign taxonomy_category1 = normalized_tag | split: ':' | last | strip -%}
+   {%- elsif taxonomy_category1 == blank and normalized_tag_downcase contains 'category:' -%}
+     {%- assign taxonomy_category1 = normalized_tag | split: ':' | last | strip -%}
+   {%- endif -%}
+   {%- if taxonomy_subcategory == blank and normalized_tag_downcase contains 'subcategory:' -%}
+     {%- assign taxonomy_subcategory = normalized_tag | split: ':' | last | strip -%}
+   {%- endif -%}
+   {%- if taxonomy_subcategory2 == blank and normalized_tag_downcase contains 'subcategory2:' -%}
+     {%- assign taxonomy_subcategory2 = normalized_tag | split: ':' | last | strip -%}
+   {%- endif -%}
+   {%- if taxonomy_type == blank and normalized_tag_downcase contains 'type:' -%}
+     {%- assign taxonomy_type = normalized_tag | split: ':' | last | strip -%}
+   {%- endif -%}
+   {%- if taxonomy_style == blank and normalized_tag_downcase contains 'style:' -%}
+     {%- assign taxonomy_style = normalized_tag | split: ':' | last | strip -%}
+   {%- endif -%}
+   {%- if taxonomy_pattern == blank and normalized_tag_downcase contains 'pattern:' -%}
+     {%- assign taxonomy_pattern = normalized_tag | split: ':' | last | strip -%}
+   {%- endif -%}
+ {%- endfor -%}
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
@@ -144,33 +129,21 @@
                 </p>
               {%- when 'title' -%}
                 <div class="product__title" {{ block.shopify_attributes }}>
-
-                   <!-- Units Sold Message -->
-        <div id="sold-message" style="display: flex; align-items: center; margin-bottom: 10px;">
-            <img src="{{ 'fire.svg' | asset_url }}" alt="Flame Icon" style="width: 24px; height: 24px; margin-right: 5px;" loading="lazy" width="300" height="300">
-            <span id="sold-number" style="color: gray; font-weight: bold; margin-right: 5px;"></span>
-            <span style="color: gray; font-weight: bold;">sold</span>
-            <div id="sold-message-text" class="ribbon"></div>
-        </div>
                   <h1 class="product__title-text">{{ product.title | escape }}</h1>
-
-                  {%- if product.metafields.reviews.rating.value -%}
-                    {%- liquid
-                      assign rating_value = product.metafields.reviews.rating.value.rating
-                      assign rating_max   = product.metafields.reviews.rating.value.scale_max
-                      assign rating_count = product.metafields.reviews.rating.value.count
-                    -%}
-                    <div class="product-rating-summary">
-                      <span class="product-rating-summary__stars">
-                        {{ rating_value | round: 1 }} / {{ rating_max }}
-                      </span>
-                      <span class="product-rating-summary__count">
-                        ({{ rating_count }} review{% if rating_count != 1 %}s{% endif %})
-                      </span>
-                      <a class="product-rating-summary__link" href="#judgeme_product_reviews">
-                        Read reviews
-                      </a>
-                    </div>
+                  {%- if taxonomy_type != blank or taxonomy_style != blank or taxonomy_pattern != blank -%}
+                    <p class="product__text caption">
+                      {%- if taxonomy_type != blank -%}
+                        Type: {{ taxonomy_type | escape }}
+                      {%- endif -%}
+                      {%- if taxonomy_style != blank -%}
+                        {%- if taxonomy_type != blank -%} | {% endif -%}
+                        Style: {{ taxonomy_style | escape }}
+                      {%- endif -%}
+                      {%- if taxonomy_pattern != blank -%}
+                        {%- if taxonomy_type != blank or taxonomy_style != blank -%} | {% endif -%}
+                        Pattern: {{ taxonomy_pattern | escape }}
+                      {%- endif -%}
+                    </p>
                   {%- endif -%}
                 </div>
               {%- when 'price' -%}
@@ -182,18 +155,17 @@
                     price_class: 'price--large'
                   -%}
                 </div>
-                <div class="product__shipping-reassurance" aria-live="polite">
-                  {% render 'shipping-estimate-inline', context: 'pdp', label: 'Shipping & delivery' %}
-                  <p class="product__shipping-note">
-                    Free standard shipping on all clothing · 30-day returns
-                  </p>
-                </div>
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
                     <span>{{ 'products.product.volume_pricing.note' | t }}</span>
                   </div>
                 {%- endif -%}
-                <div class="product__tax caption rte">
+                <!-- Free shipping inline badge -->
+                <div class="free-shipping-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 18H3a1 1 0 01-1-1V7a1 1 0 011-1h10l4 4v7a1 1 0 01-1 1h-2"/><circle cx="7" cy="18" r="2"/><circle cx="15" cy="18" r="2"/><path d="M17 6h4l2 4v5h-2"/></svg>
+                  Free shipping on all orders
+                </div>
+                <div class="product__tax caption rte" style="display:none;">
                   {%- if cart.taxes_included -%}
                     {{ 'products.product.include_taxes' | t }}
                   {%- endif -%}
@@ -352,202 +324,7 @@
     </span>
     {% render 'icon-plus' %}
 </button>
-</quantity-input>
-
-{%- if product.selected_or_first_available_variant.inventory_management == 'shopify' and product.selected_or_first_available_variant.inventory_quantity > 0 and product.selected_or_first_available_variant.inventory_quantity <= 5 -%}
-  <p class="caption" role="status">Low stock: {{ product.selected_or_first_available_variant.inventory_quantity }} left</p>
-{%- endif -%}
-{% comment %}
-<div id="urgency-message" style="display: flex; align-items: center; color: orange; font-weight: bold; margin-left: 10px;">
-    <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;">
-        <g fill="none" stroke="orange" stroke-width="5">
-            <path d="M25 15 L75 15 Q70 25 70 35 Q70 45 50 55 Q30 45 30 35 Q30 25 25 15 Z"/>
-            <path d="M25 85 L75 85 Q70 75 70 65 Q70 55 50 45 Q30 55 30 65 Q30 75 25 85 Z"/>
-            <path d="M50 55 L50 45"/>
-        </g>
-    </svg>
-    <span id="urgency-text">Only <span id="urgency-number"></span> left</span>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var productId = '{{ product.id }}'; // Get the current product ID
-
-        // Urgency number logic
-        var urgencyKey = 'urgencyNumbers-' + productId; // Create a unique key for each product
-        var urgencyNumbers = sessionStorage.getItem(urgencyKey);
-
-        if (!urgencyNumbers) {
-            urgencyNumbers = Math.floor(Math.random() * 10) + 1; // Generate a random number between 10 and 1
-            sessionStorage.setItem(urgencyKey, urgencyNumbers); // Save the number to session storage with the unique key
-        }
-        document.getElementById('urgency-number').innerText = urgencyNumbers; // Display the urgency number
-
-        // Units sold logic
-        var soldKey = 'soldNumbers-' + productId; // Create a unique key for each product
-        var soldMessages = [
-           "Almost sold out",
-"Limited time deal",
-"8+ bought today",
-"5 added to carts today",
-"Selling fast!",
-"Few left in stock",
-"Limited stock – hurry!",
-"Popular choice",
-"High demand product",
-"Stock running low",
-"Hot item!",
-"5+ bought today",            
-"Just a few left",
-"Trending now!",
-"Customer favorite",
-"Limited edition",
-"Nearly gone!",
-"Buy before it’s gone",
-"Last chance!",
-"Act now!",
-"Hot pick!",
-"Top-rated item",
-"Just restocked!",
-"High demand!",
-"Exclusive offer",
-"Top choice",
-"New collection",
-"Special deal",
-"Must-have item",
-"Fresh stock",
-"Don’t miss out",
-"Grab it now",
-"Selling out fast",
-"Get it now!",
-"Hot deal!",
-"Limited offer",
-"Highly recommended",
-"Exclusive item",
-"New arrival",
-"Popular now",
-"Trending item",
-"Best seller",
-"Limited supply",
-"Act fast!",
-"Stock almost gone",
-"Order now!",
-"Trending fashion",
-"Top seller",
-"In high demand",
-"Popular item",
-"Limited quantity",
-"Must-have fashion",
-"Top-rated product",
-"New and hot",
-"Just in!",
-"Fresh arrival",
-"Popular buy",
-"Hot item",
-"Limited run",
-"Exclusive deal",
-"Popular pick",
-"Hot trend",
-"Best choice",
-"Few left",
-"Trending pick",
-"Top-rated",
-"Limited stock",
-"10+ bought today",
-"Hurry!",
-"Exclusive",
-"Bestseller",
-"Selling quickly",
-"Top buy",
-"Limited edition",
-"Fresh trend",
-"3 added to carts today",
-"Popular trend",
-"In demand",
-"Popular now",
-"Limited release",
-"New and hot",
-"Best value",
-"Hot right now",
-"Don’t wait!",
-"Get it fast",
-"Top fashion",
-"Hot buy",
-"15 added to carts today",
-"Exclusive stock",
-"Trending fast",
-"Bestselling",
-"Top item",
-"Limited availability",
-"Just in stock",
-"Must-have now",
-"Best pick",
-"Hot product",
-"25+ purchased since yesterday",          
-"Trending hot",
-"High in demand",
-"Fresh and hot",
-"Bestselling now",
-"3 added to carts today",          
-"New stock",
-"Trending hot item",
-"Top trend",
-"Just a few items left",
-"Limited quantities remaining",
-"Hurry, almost out of stock!",
-"New fashion arrival",
-"Hot pick this season",
-"Just restocked",
-"Fastest selling item",
-"Exclusive offer",
-"Highly recommended",
-"Limited time offer",
-"5 added to carts today",          
-"25+ bought today",          
-"Must-have item",
-"Fresh in stock",
-"Hot deal, save now",
-"Fresh in stock, newly arrived",
-"Don’t miss out, buy now",
-"Limited edition, exclusive",
-"10+ purchased today",
-"5 added to carts today",
-"20+ bought this week",
-"75 added to wishlists today",
-"120+ sold in the last 24 hours",
-"90+ people viewed today",
-"15+ bought in the past week",
-"60+ added to favorites today",
-"180+ ordered this week",
-"80+ bought in the last 12 hours",
-"20+ customers purchased today",
-"45 added to carts in the last hour",
-"250+ bought this month",
-"70 added to wishlists in the past day",
-"95+ bought in the past 48 hours",
-"65+ people viewed in the last hour",
-"130+ sold in the past day",
-"55+ added to carts this morning",
-"20+ orders placed this week",
-"85+ purchased since yesterday"          
-        ];
-
-        var soldNumbers = sessionStorage.getItem(soldKey);
-        if (!soldNumbers) {
-            soldNumbers = Math.floor(Math.random() * 100) + 10; // Generate a random number between 10 and 100
-            sessionStorage.setItem(soldKey, soldNumbers); // Save the number to session storage with the unique key
-        }
-        document.getElementById('sold-number').innerText = soldNumbers; // Display the sold number
-
-        var randomMessage = sessionStorage.getItem(soldKey + '-message');
-        if (!randomMessage) {
-            randomMessage = soldMessages[Math.floor(Math.random() * soldMessages.length)];
-            sessionStorage.setItem(soldKey + '-message', randomMessage); // Save the message to session storage with the unique key
-        }
-        document.getElementById('sold-message-text').innerText = randomMessage; // Display the sold message
-    });
-</script>
-{% endcomment %}
+                    </quantity-input>
 
 
 
@@ -742,6 +519,36 @@
                   show_pickup_availability: true
                 -%}
 
+                {%- comment -%} Trust badges — visible immediately below Add to Cart {%- endcomment -%}
+                <div class="trust-badges">
+                  <div class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    <span>5,000+ Happy Families</span>
+                  </div>
+                  <div class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span>Secure Checkout</span>
+                  </div>
+                  <div class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                    <span>30-Day Returns</span>
+                  </div>
+                  <div class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>Quality Guarantee</span>
+                  </div>
+                </div>
+
+                {%- comment -%} Low stock urgency — only shows when inventory is low {%- endcomment -%}
+                {%- if product.selected_or_first_available_variant.inventory_management == 'shopify'
+                  and product.selected_or_first_available_variant.inventory_quantity > 0
+                  and product.selected_or_first_available_variant.inventory_quantity <= 10
+                -%}
+                  <div class="low-stock-urgency">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Only {{ product.selected_or_first_available_variant.inventory_quantity }} left in stock — order soon!
+                  </div>
+                {%- endif -%}
 
 <!-- Additional Info Links -->
 <div class="additional-info">
@@ -757,11 +564,10 @@
     <span class="toggle-icon">X</span>
   </button>
   <div class="content" style="display: block;">
-    {% render 'shipping-estimate-inline', context: 'pdp-accordion', label: 'Standard delivery' %}
-    <p>Orders leave our partner warehouse within {{ settings.shipping_processing_days_min }}–{{ settings.shipping_processing_days_max }} business days.</p>
-    <p>Typical transit windows by destination:</p>
-    {% render 'shipping-promise-list' %}
-    <p class="caption">Transit windows exclude processing time and can extend slightly during peak holidays. Tracking details arrive as soon as your parcel leaves the warehouse.</p>
+    <div id="delivery-info-content">
+      <p>Standard: FREE<br>Delivery: <span id="standard-delivery-range"></span>, 75.4% within 11 days<br>Courier company: DHL eCommerce, etc.</p>
+      <p>Express: $14.90 or FREE (orders over $80)<br>Delivery: <span id="express-delivery-range"></span>, 75.4% within 7 days<br>Courier company: FedEx</p>
+    </div>
   </div>
 </div>
 
@@ -798,32 +604,20 @@
  <div class="payment-section">
   <span class="payment-title">Safe Payment Options</span>
   <div class="payment-methods">
-    {% if shop.enabled_payment_types.size > 0 %}
-      <ul class="list-payment list-unstyled" role="list">
-        {% for type in shop.enabled_payment_types %}
-          <li class="list-payment__item">
-            {{ type | payment_type_svg_tag: class: 'list-payment__image' }}
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  </div>
-
-  <button class="collapsible">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1a936f" width="24px" height="24px">
-      <path d="M0 0h24v24H0z" fill="none"/>
-      <path d="M12 2l9 4v6c0 5.5-3.6 10.1-9 11-5.4-.9-9-5.5-9-11V6l9-4z"/>
-    </svg>
-    Shipping Info
-    <span class="toggle-icon">+</span>
-  </button>
-  <div class="content">
-    <h2>Shipping Info</h2>
-    {% render 'shipping-estimate-inline', context: 'pdp-shipping', label: 'Where & when' %}
-    <p>Everything ships from our primary partner facility after {{ settings.shipping_processing_days_min }}–{{ settings.shipping_processing_days_max }} business days of hand-off preparation.</p>
-    <p>Transit windows by destination:</p>
-    {% render 'shipping-promise-list' %}
-    <p>Delays are rare but possible during customs inspections or peak holiday volume. Tracking details arrive as soon as your parcel is scanned by the carrier.</p>
+    <img src="{{ 'Apple_Pay.svg' | asset_url }}" height="35" alt="Apple Pay" loading="lazy" width="300" height="300">
+    <img src="{{ 'American_Express.svg' | asset_url }}" height="40" alt="American Express" loading="lazy" width="300" height="300">
+    <img src="{{ 'Visa_Inc._logo.svg' | asset_url }}" height="35" alt="Visa" loading="lazy" width="300" height="300">
+    <img src="{{ 'Discover_Card.svg' | asset_url }}" height="35" alt="Discover" loading="lazy" width="300" height="300">
+    <img src="{{ 'Maestro.svg' | asset_url }}" height="35" alt="Maestro" loading="lazy" width="300" height="300">
+    <img src="{{ 'PayPal.svg' | asset_url }}" height="35" alt="PayPal" loading="lazy" width="300" height="300">
+    <img src="{{ 'Venmo.svg' | asset_url }}" height="25" alt="Venmo" loading="lazy" width="300" height="300">
+    <img src="{{ 'Google_Pay.svg' | asset_url }}" height="25" alt="Google Pay" loading="lazy" width="300" height="300">
+    <img src="{{ 'Mastercard.svg' | asset_url }}" height="35" alt="Mastercard" loading="lazy" width="300" height="300">
+    <img src="{{ 'Meta._logo.svg' | asset_url }}" height="25" alt="Meta" loading="lazy" width="300" height="300">
+    <img src="{{ 'Diners_Club.svg' | asset_url }}" height="20" alt="Diners Club" loading="lazy" width="300" height="300">
+    <img src="{{ 'JCB.svg' | asset_url }}" height="25" alt="JCB" loading="lazy" width="300" height="300">
+    <img src="{{ 'ShopPay.svg' | asset_url }}" height="25" alt="ShopPay" loading="lazy" width="300" height="300">
+    <img src="{{ 'cashapp.svg' | asset_url }}" height="25" alt="Cash App" loading="lazy" width="300" height="300">
   </div>
 </div>
       <p>We accept all major credit and debit cards. Your card details are secure and never shared with our partners. You can easily manage your saved cards anytime. For any transaction inquiries, please contact your card issuer.
@@ -892,7 +686,6 @@
                   </div>
                 {%- endif -%}
               {%- when 'complementary' -%}
-                {%- assign family_group_id = product.metafields.custom.family_group_id -%}
                 <product-recommendations
                   class="complementary-products quick-add-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
                   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.product_list_limit }}&intent=complementary"
@@ -966,8 +759,7 @@
                                         quick_add: quick_add,
                                         section_id: section.id,
                                         horizontal_class: true,
-                                        horizontal_quick_add: true,
-                                        family_group_id: family_group_id
+                                        horizontal_quick_add: true
                                       %}
                                     </li>
                                   {%- endfor -%}
@@ -1096,53 +888,29 @@
       <script src="{{ 'product-model.js' | asset_url }}" defer></script>
     {%- endif -%}
 
-    {%- liquid
-      if product.selected_or_first_available_variant.featured_media
-        assign seo_media = product.selected_or_first_available_variant.featured_media
-      else
-        assign seo_media = product.featured_media
-      endif
-    -%}
-
-    <script type="application/ld+json">
+    <script type="application/json" id="ProductAnalyticsData-{{ section.id }}">
       {
-        "@context": "http://schema.org/",
-        "@type": "Product",
-        "name": {{ product.title | json }},
-        "url": {{ request.origin | append: product.url | json }},
-        {% if seo_media -%}
-          "image": [
-            {{ seo_media | image_url: width: 1920 | prepend: "https:" | json }}
-          ],
-        {%- endif %}
-        "description": {{ product.description | strip_html | json }},
-        {% if product.selected_or_first_available_variant.sku != blank -%}
-          "sku": {{ product.selected_or_first_available_variant.sku | json }},
-        {%- endif %}
-        "brand": {
-          "@type": "Brand",
-          "name": {{ product.vendor | json }}
-        },
-        "offers": [
+        "id": {{ product.id | json }},
+        "handle": {{ product.handle | json }},
+        "title": {{ product.title | json }},
+        "vendor": {{ product.vendor | json }},
+        "currency": {{ cart.currency.iso_code | json }},
+        "category1": {{ taxonomy_category1 | json }},
+        "subcategory": {{ taxonomy_subcategory | json }},
+        "subcategory2": {{ taxonomy_subcategory2 | json }},
+        "type": {{ taxonomy_type | json }},
+        "style": {{ taxonomy_style | json }},
+        "pattern": {{ taxonomy_pattern | json }},
+        "selected_variant_id": {{ product.selected_or_first_available_variant.id | json }},
+        "variants": [
           {%- for variant in product.variants -%}
             {
-              "@type" : "Offer",
-              {%- if variant.sku != blank -%}
-                "sku": {{ variant.sku | json }},
-              {%- endif -%}
-              {%- if variant.barcode.size == 12 -%}
-                "gtin12": {{ variant.barcode }},
-              {%- endif -%}
-              {%- if variant.barcode.size == 13 -%}
-                "gtin13": {{ variant.barcode }},
-              {%- endif -%}
-              {%- if variant.barcode.size == 14 -%}
-                "gtin14": {{ variant.barcode }},
-              {%- endif -%}
-              "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
-              "price" : {{ variant.price | divided_by: 100.00 | json }},
-              "priceCurrency" : {{ cart.currency.iso_code | json }},
-              "url" : {{ request.origin | append: variant.url | json }}
+              "id": {{ variant.id | json }},
+              "title": {{ variant.title | json }},
+              "sku": {{ variant.sku | json }},
+              "barcode": {{ variant.barcode | json }},
+              "price_cents": {{ variant.price | json }},
+              "available": {{ variant.available | json }}
             }{% unless forloop.last %},{% endunless %}
           {%- endfor -%}
         ]
@@ -1151,7 +919,32 @@
   </div>
 </section>
 
-                            
+{%- comment -%} Sticky mobile Add to Cart bar {%- endcomment -%}
+{%- if product.available -%}
+<div class="sticky-mobile-atc" id="StickyMobileATC">
+  <span class="sticky-mobile-atc__price">{{ product.selected_or_first_available_variant.price | money }}</span>
+  <button class="sticky-mobile-atc__btn" onclick="document.querySelector('.product-form__submit')?.click()">
+    ADD TO CART
+  </button>
+</div>
+<script>
+  // Show sticky bar when original ATC scrolls out of view
+  (function() {
+    var sticky = document.getElementById('StickyMobileATC');
+    if (!sticky || window.innerWidth > 749) return;
+    var atcBtn = document.querySelector('.product-form__submit');
+    if (!atcBtn) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        sticky.classList.toggle('visible', !entry.isIntersecting);
+      });
+    }, { threshold: 0 });
+    observer.observe(atcBtn);
+  })();
+</script>
+{%- endif -%}
+
+
 {% schema %}
 {
   "name": "t:sections.main-product.name",
@@ -1628,7 +1421,7 @@
         {
           "type": "text",
           "id": "block_heading",
-          "default": "Complete the family look",
+          "default": "Pairs well with",
           "label": "t:sections.main-product.blocks.complementary_products.settings.heading.label"
         },
         {

@@ -70,13 +70,6 @@
           {% render 'icon-close' %}
         </button>
       </div>
-      <div class="cart-drawer__shipping-note">
-        <p class="caption-large" aria-live="polite">Standard shipping: Free</p>
-        {% render 'shipping-estimate-inline', context: 'cart-drawer', label: 'Est. delivery' %}
-        <p class="caption-large cart-drawer__returns-note">
-          30-day returns on clothing
-        </p>
-      </div>
       <cart-drawer-items
         {% if cart == empty %}
           class=" is-empty"
@@ -121,7 +114,27 @@
 
                   <tbody role="rowgroup">
                     {%- for item in cart.items -%}
-                      <tr id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item" role="row">
+                      <tr
+                        id="CartDrawer-Item-{{ item.index | plus: 1 }}"
+                        class="cart-item"
+                        role="row"
+                        data-cart-item="true"
+                        data-line-key="{{ item.key | escape }}"
+                        data-variant-id="{{ item.variant.id }}"
+                        data-product-id="{{ item.product.id }}"
+                        data-product-handle="{{ item.product.handle | escape }}"
+                        data-item-name="{{ item.product.title | escape }}"
+                        data-item-brand="{{ item.product.vendor | escape }}"
+                        data-item-variant="{{ item.sku | default: item.variant.title | default: item.variant.id | escape }}"
+                        data-price-cents="{{ item.final_price }}"
+                        data-quantity="{{ item.quantity }}"
+                        data-category1="{{ item.product.metafields.custom.category1 | escape }}"
+                        data-subcategory="{{ item.product.metafields.custom.subcategory | escape }}"
+                        data-subcategory2="{{ item.product.metafields.custom.subcategory2 | escape }}"
+                        data-type="{{ item.product.metafields.custom.type | default: item.product.type | escape }}"
+                        data-style="{{ item.product.metafields.custom.style | escape }}"
+                        data-pattern="{{ item.product.metafields.custom.pattern | escape }}"
+                      >
                         <td class="cart-item__media" role="cell" headers="CartDrawer-ColumnProductImage">
                           {% if item.image %}
                             {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
@@ -145,12 +158,6 @@
                           <a href="{{ item.url }}" class="cart-item__name h4 break">
                             {{- item.product.title | escape -}}
                           </a>
-
-                          {%- if item.product.metafields.custom.family_group_id != blank -%}
-                            <p class="cart-item__family-tag caption">
-                              Part of a matching family set
-                            </p>
-                          {%- endif -%}
 
                           {%- if item.original_price != item.final_price -%}
                             <div class="cart-item__discounted-prices">
@@ -506,12 +513,14 @@
           </div>
 
           <small class="tax-note caption-large rte">
-            {%- if cart.taxes_included -%}
-              Taxes included. Standard shipping: Free.
-              {%- if shop.shipping_policy.body != blank -%} <a href="{{ shop.shipping_policy.url }}">See shipping policy</a>.{%- endif -%}
+            {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+              {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+            {%- elsif cart.taxes_included -%}
+              {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+            {%- elsif shop.shipping_policy.body != blank -%}
+              {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
             {%- else -%}
-              Taxes calculated at checkout. Standard shipping: Free.
-              {%- if shop.shipping_policy.body != blank -%} <a href="{{ shop.shipping_policy.url }}">See shipping policy</a>.{%- endif -%}
+              {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
             {%- endif -%}
           </small>
         </div>
@@ -536,4 +545,3 @@
     </div>
   </div>
 </cart-drawer>
-{%- comment -%} Removed free-shipping progress bar logic; all clothing ships free. {%- endcomment -%}
