@@ -72,84 +72,14 @@
   {%- endif -%}
 </div>
 
-{%- comment -%}
-  ============================================================
-  MOBILE DROPDOWN SEARCH — icon in header, search slides down
-  ============================================================
-{%- endcomment -%}
-<div id="mobile-search-dropdown" class="mobile-search-dropdown" aria-hidden="true">
-  <div class="mobile-search-dropdown__inner">
-    {%- if settings.predictive_search_enabled -%}
-      <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
-    {%- else -%}
-      <search-form class="search-modal__form">
-    {%- endif -%}
-    <form action="{{ routes.search_url }}" method="get" role="search" class="search mobile-search-dropdown__form">
-      <div class="field">
-        <input
-          class="search__input field__input"
-          id="MobileSearchDropdown"
-          type="search"
-          name="q"
-          value="{{ search.terms | escape }}"
-          placeholder="{{ 'general.search.search' | t }}"
-          {%- if settings.predictive_search_enabled -%}
-            role="combobox"
-            aria-expanded="false"
-            aria-owns="predictive-search-results-mobile"
-            aria-controls="predictive-search-results-mobile"
-            aria-haspopup="listbox"
-            aria-autocomplete="list"
-            autocorrect="off"
-            autocomplete="off"
-            autocapitalize="off"
-            spellcheck="false"
-          {%- endif -%}
-        >
-        <label class="field__label" for="MobileSearchDropdown">{{ 'general.search.search' | t }}</label>
-        <input type="hidden" name="options[prefix]" value="last">
-        <button
-          type="reset"
-          class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
-          aria-label="{{ 'general.search.reset' | t }}"
-        >
-          <svg class="icon icon-close" aria-hidden="true" focusable="false">
-            <use xlink:href="#icon-reset">
-          </svg>
-        </button>
-        <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
-          <svg class="icon icon-search" aria-hidden="true" focusable="false">
-            <use href="#icon-search">
-          </svg>
-        </button>
-      </div>
-
-      {%- if settings.predictive_search_enabled -%}
-        <div class="predictive-search predictive-search--header predictive-search--mobile-dropdown" tabindex="-1" data-predictive-search>
-          <div class="predictive-search__loading-state">
-            <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-              <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-            </svg>
-          </div>
-        </div>
-        <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
-      {%- endif -%}
-    </form>
-    {%- if settings.predictive_search_enabled -%}
-      </predictive-search>
-    {%- else -%}
-      </search-form>
-    {%- endif -%}
-  </div>
-</div>
-
 <style>
 /* ========================================
-   MOBILE: Hide full-width search bar,
-   show icon-triggered dropdown instead
+   MOBILE: Hide full-width search bar.
+   The search icon in the header (from header-search.liquid)
+   opens Shopify's built-in search modal with predictive search.
    ======================================== */
 @media (max-width: 990px) {
-  /* Hide the old full-width green search bar */
+  /* Hide the old full-width green/pink search bars */
   .EzfyHeaderSearch--mobile,
   .EzfyHeaderSearch--desktop {
     display: none !important;
@@ -159,99 +89,69 @@
     overflow: hidden !important;
   }
 
-  /* Show the search icon in header (added via header.liquid) */
-  .mobile-search-toggle {
+  /* Show the mobile search icon (rendered from header-search.liquid) */
+  .mobile-header-search-icon {
+    display: flex !important;
+    align-items: center;
+    order: -1; /* Place it near the hamburger (left side) */
+  }
+  /* Force the details-modal and header__search to be visible inside our wrapper */
+  .mobile-header-search-icon details-modal,
+  .mobile-header-search-icon details-modal.header__search,
+  .mobile-header-search-icon .header__search {
+    display: inline-flex !important;
+    line-height: 0;
+  }
+  .mobile-header-search-icon .header__icon--search {
     display: flex !important;
     align-items: center;
     justify-content: center;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0 0.6rem;
-    margin-left: -0.4rem;
-    color: rgb(var(--color-foreground));
+    padding: 0 0.4rem;
   }
-  .mobile-search-toggle svg {
-    width: 2.2rem;
-    height: 2.2rem;
+  .mobile-header-search-icon .header__icon--search .icon {
+    width: 2rem;
+    height: 2rem;
   }
 
-  /* Dropdown search panel — hidden by default */
-  .mobile-search-dropdown {
-    display: block;
-    position: absolute;
-    top: 100%;
+  /* Style the search modal to look like a dropdown on mobile */
+  .mobile-header-search-icon .search-modal.modal__content {
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    bottom: 0;
+    z-index: 999;
     background: #fff;
-    border-bottom: 1px solid #e5e5e5;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.2s ease;
   }
-
-  .mobile-search-dropdown.is-open {
-    max-height: 500px;
-    opacity: 1;
-    overflow: visible;
+  .mobile-header-search-icon .search-modal__content {
+    padding: 1rem 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
-
-  .mobile-search-dropdown__inner {
-    padding: 10px 1.5rem 12px;
-  }
-
-  .mobile-search-dropdown__form {
-    margin-top: 0 !important;
-    width: 100% !important;
-  }
-  .mobile-search-dropdown__form > .field {
+  .mobile-header-search-icon .search-modal__form,
+  .mobile-header-search-icon .search-modal__form > * {
     width: 100% !important;
     max-width: 100% !important;
   }
-
-  .mobile-search-dropdown .search-modal__form,
-  .mobile-search-dropdown .search-modal__form > * {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .mobile-search-dropdown .search__input {
-    height: 40px;
+  .mobile-header-search-icon .search__input {
+    height: 44px;
     font-size: 16px;
-    padding: 5px 10px;
     border-radius: 8px;
-    border: 1px solid #ddd;
-    background: #f8f8f8;
   }
-
-  .mobile-search-dropdown .search__input:focus {
-    border-color: #121212;
-    background: #fff;
-    outline: none;
-  }
-
-  .mobile-search-dropdown .predictive-search--mobile-dropdown {
+  .mobile-header-search-icon .search-modal__close-button {
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%;
-    background: #fff;
-    z-index: 101;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-radius: 0 0 8px 8px;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
   }
-
-  /* Make header position relative for the dropdown to anchor */
-  .header-wrapper {
+  .mobile-header-search-icon .predictive-search--header {
+    width: 100% !important;
+    max-width: 100% !important;
     position: relative;
-  }
-
-  /* Fix: old mobile CSS that added big margin / messed with search form */
-  .search-modal__form {
-    margin-top: 0;
+    top: auto;
+    left: auto;
+    right: auto;
   }
 
   body {
@@ -267,10 +167,7 @@
 
 /* Desktop: hide mobile-only elements */
 @media (min-width: 991px) {
-  .mobile-search-toggle {
-    display: none !important;
-  }
-  .mobile-search-dropdown {
+  .mobile-header-search-icon {
     display: none !important;
   }
   .EzfyHeaderSearch--mobile {
@@ -319,43 +216,3 @@
   max-height: {{ predictive_search_height }}px !important;
 }
 </style>
-
-<script>
-/* Mobile search dropdown toggle */
-document.addEventListener('DOMContentLoaded', function() {
-  var toggle = document.querySelector('.mobile-search-toggle');
-  var dropdown = document.getElementById('mobile-search-dropdown');
-  var input = document.getElementById('MobileSearchDropdown');
-
-  if (!toggle || !dropdown) return;
-
-  toggle.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    var isOpen = dropdown.classList.contains('is-open');
-
-    if (isOpen) {
-      dropdown.classList.remove('is-open');
-      dropdown.setAttribute('aria-hidden', 'true');
-      toggle.setAttribute('aria-expanded', 'false');
-    } else {
-      dropdown.classList.add('is-open');
-      dropdown.setAttribute('aria-hidden', 'false');
-      toggle.setAttribute('aria-expanded', 'true');
-      /* Focus the input after animation */
-      setTimeout(function() {
-        if (input) input.focus();
-      }, 200);
-    }
-  });
-
-  /* Close when clicking outside */
-  document.addEventListener('click', function(e) {
-    if (!dropdown.contains(e.target) && !toggle.contains(e.target)) {
-      dropdown.classList.remove('is-open');
-      dropdown.setAttribute('aria-hidden', 'true');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-});
-</script>
