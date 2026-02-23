@@ -937,6 +937,45 @@
     color: #ffffff !important;
   }
 
+  /* Mobile: collection page adjustments */
+  @media screen and (max-width: 749px) {
+    /* Hide breadcrumbs on mobile — title already shows the page name */
+    .collection-breadcrumb {
+      display: none !important;
+    }
+    /* Small gap between search bar and pills */
+    .page-width--collection-breadcrumbs {
+      padding-top: 10px;
+      margin-top: 0;
+    }
+    /* Hide collection hero on mobile — active pill already shows the collection name */
+    .collection-hero {
+      display: none !important;
+    }
+    /* Horizontal scroll for pills */
+    .collection-category-nav__tabs-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+      margin: 0 -1.5rem;
+      padding: 0 1.5rem;
+    }
+    .collection-category-nav__tabs-wrap::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+    .collection-category-nav__tabs {
+      flex-wrap: nowrap;
+      padding: 0.5rem 0;
+      gap: 0.6rem;
+    }
+    .collection-category-nav__tab {
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding: 6px 14px;
+      font-size: 12px;
+    }
+  }
+
   header {
     padding: 10px 20px; /* Adjust as needed */
     background-color: #FDFFFE;
@@ -1716,33 +1755,30 @@
 
 /* Mobile view adjustments */
 @media only screen and (max-width: 767px) {
-  .breadcrumb {
-    font-size: 13px; /* Adjust the size for mobile view */
-    padding-left: 12px; /* Adjust padding for mobile view */
-    display: block !important; /* Ensure breadcrumb is displayed */
-    visibility: visible !important; /* Ensure breadcrumb is visible */
-    margin-top: 50px; /* Add margin-top to move the breadcrumb down */
-
+  /* Hide collection breadcrumbs on mobile — the title + active pill already show the page */
+  .collection-breadcrumb {
+    display: none !important;
   }
 
-  .breadcrumb a {
-    font-size: 13px; /* Adjust the size for mobile view */
-    margin-bottom: 4px; /* Remove margin */
-    margin-left: 0px; /* Remove margin */
-    margin-right: 0px; /* Remove margin */
-    margin-top: 4px; /* Remove margin */
-    padding-right: 0px; /* Remove padding */
-    padding-left: 0px; /* Remove padding */
-    padding-top: 15px; /* Remove padding */
-    padding-bottom: 15px; /* Remove padding */
+  /* Non-collection breadcrumbs (product pages, etc.) can still show */
+  .breadcrumb:not(.collection-breadcrumb) {
+    font-size: 13px;
+    padding-left: 12px;
+    display: block !important;
+    visibility: visible !important;
+    margin-top: 10px;
+  }
 
+  .breadcrumb:not(.collection-breadcrumb) a {
+    font-size: 13px;
+    margin: 4px 0;
+    padding: 0;
   }
 
   .breadcrumb span {
-    margin: 0 2px; /* Adjust the space between separators for mobile */
+    margin: 0 2px;
   }
 
-  /* Hide specific parts in mobile view */
   .breadcrumb .mobile-hide {
     display: none !important;
   }
@@ -2967,15 +3003,17 @@ a {
   </style>
 
   <style>
-/* Mobile view adjustments */
+/* Mobile view adjustments — collection pages */
 @media (max-width: 767px) {
-    div.collection-hero__text-wrapper {
-        margin-left: 5px;   /* Adjust as needed */
+    /* Hide the collection title on mobile — the active pill already shows the name */
+    .collection-hero {
+        display: none !important;
     }
 
-    h1.collection-hero__title {
-        margin-top: 5px;   /* Adjust as needed */
-        font-size: 20px;    /* Adjust font size */
+    /* Small gap between search bar and pills */
+    .page-width--collection-breadcrumbs {
+        margin-top: 0;
+        padding-top: 10px;
     }
 }
 
