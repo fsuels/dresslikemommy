@@ -2914,32 +2914,35 @@ a {
     </style>
 
  <style>
-.header__icon {
-  display: flex;
+/* Normalize account/cart icon size + click targets */
+.header__icon--account,
+.header__icon--cart {
+  width: 4.4rem;
+  height: 4.4rem;
+  min-width: 4.4rem;
+  min-height: 4.4rem;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0px;
-  cursor: pointer;
-}
-.header__icon svg {
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Ensure SVG doesn't interfere */
+  padding: 0;
 }
 
-.header__icon--account, .header__icon--cart {
-  width: 74px;
-  height: 54px;
-}
-
-/* Make cart bag icon proportional — its viewBox is 40x40 but icon only uses center ~60% */
+.header__icon--account svg,
 .header__icon--cart svg {
-  width: 28px !important;
-  height: 28px !important;
+  width: 2.2rem !important;
+  height: 2.2rem !important;
+  pointer-events: none;
 }
 
-.overlapping-element {
-  pointer-events: none;
+/* Cart glyph sits smaller in its viewBox, so nudge it slightly larger */
+.header__icon--cart svg {
+  width: 4.4rem !important;
+  height: 4.4rem !important;
+}
+
+/* Remove Dawn's negative right margin so cart/account hit areas don't overlap */
+.header__icon--cart {
+  margin-right: 0 !important;
 }
   </style>
 

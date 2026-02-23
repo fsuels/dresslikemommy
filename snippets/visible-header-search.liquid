@@ -148,6 +148,19 @@
   max-width: 100% !important;
 }
 
+/* Keep header icon hit areas clear: only the visible search UI should capture clicks */
+.EzfyHeaderSearch--desktop > predictive-search.search-modal__form,
+.EzfyHeaderSearch--desktop > search-form.search-modal__form {
+  pointer-events: none;
+}
+
+.EzfyHeaderSearch--desktop > predictive-search.search-modal__form > .search-modal__form,
+.EzfyHeaderSearch--desktop > search-form.search-modal__form > .search-modal__form,
+.EzfyHeaderSearch--desktop > predictive-search.search-modal__form [data-predictive-search],
+.EzfyHeaderSearch--desktop > search-form.search-modal__form [data-predictive-search] {
+  pointer-events: auto;
+}
+
 .predictive-search {
   max-height: {{ predictive_search_height }}px !important;
 }

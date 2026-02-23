@@ -84,12 +84,39 @@
       <p class="hero-banner__subheading">{{ section.settings.subheading }}</p>
     {%- endif -%}
     {%- if section.settings.button_label != blank -%}
-      <a href="{{ section.settings.button_link }}" class="hero-banner__cta">
+      <a
+        href="{{ section.settings.button_link }}"
+        class="hero-banner__cta"
+        id="HeroBannerCta-{{ section.id }}"
+        data-scroll-target="categories-section"
+      >
         {{ section.settings.button_label }}
       </a>
     {%- endif -%}
   </div>
 </div>
+
+{%- if section.settings.button_label != blank -%}
+  <script>
+    (() => {
+      const cta = document.getElementById('HeroBannerCta-{{ section.id }}');
+      if (!cta) return;
+
+      cta.addEventListener('click', (event) => {
+        const targetId = cta.dataset.scrollTarget;
+        const targetElement = targetId ? document.getElementById(targetId) : null;
+        if (!targetElement) return;
+
+        event.preventDefault();
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        targetElement.scrollIntoView({
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+          block: 'start'
+        });
+      });
+    })();
+  </script>
+{%- endif -%}
 
 {% schema %}
 {

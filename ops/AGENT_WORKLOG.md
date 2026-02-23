@@ -313,3 +313,112 @@ Changes applied (evidence-first)
 
 Validation snapshot
 - Confirmed both CSV files are untracked locally and now matched by `.gitignore` rules.
+
+Session: Homepage Shop Now scroll-to-categories behavior
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-home-shopnow-smooth-scroll-categories
+
+Changes applied (evidence-first)
+- `sections/collection-list.liquid` - Added optional `anchor_id` section setting and wired it to output an HTML id on the section wrapper (handleized), enabling a stable in-page scroll target without changing layout/styling.
+- `templates/index.json` - Set `anchor_id` to `categories-section` on the homepage `collection_list_PX36Hk` section (the “Mommy & Me” categories block) and updated hero button link fallback from `/collections/all` to `#categories-section`.
+- `sections/hero-banner.liquid` - Updated the hero CTA markup with a scoped id/data target and added a native click handler that:
+  - prevents default navigation when `#categories-section` exists,
+  - smoothly scrolls via `scrollIntoView({ behavior: 'smooth', block: 'start' })`,
+  - respects reduced-motion preferences by switching to `behavior: 'auto'`.
+
+Validation snapshot
+- Confirmed `categories-section` is defined on the homepage categories section through `anchor_id`.
+- Confirmed hero CTA script targets `categories-section`, calls `preventDefault()`, and uses native `scrollIntoView`.
+- Confirmed no styling/layout rules were changed as part of this request.
+
+Session: Local dev homepage blank due stale theme dev runtime
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-local-dev-homepage-empty-main
+
+Changes applied (evidence-first)
+- No theme code changes were required.
+- Diagnosed local runtime discrepancy: existing `shopify theme dev` process on `127.0.0.1:9292` was serving an empty `<main>` (`content_for_layout` blank) while template files still contained homepage sections.
+- Confirmed a fresh `shopify theme dev` session rendered hero + categories correctly.
+- Restarted `shopify theme dev` on port `9292` and verified homepage now includes:
+  - `shopify-section-template--...__hero_banner_main`
+  - `shopify-section-template--...__collection_list_PX36Hk`
+
+Validation snapshot
+- Before restart: `curl http://127.0.0.1:9292/` showed empty `<main id="MainContent">`.
+- After restart: `curl http://127.0.0.1:9292/` includes hero/collection-list markup and matching request logs from CLI.
+
+Session: Reapply homepage Shop Now smooth-scroll after theme replacement
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-reapply-home-shopnow-scroll-after-theme-replace
+
+Changes applied (evidence-first)
+- `sections/collection-list.liquid` - Re-added optional `anchor_id` setting and wrapper id output (`id="{{ section_anchor_id }}"`) so homepage category blocks can be targeted by in-page scroll.
+- `sections/hero-banner.liquid` - Re-added CTA id/data attributes and click handler that:
+  - prevents default navigation when the target exists,
+  - calls `scrollIntoView({ behavior: 'smooth', block: 'start' })`,
+  - falls back to `behavior: 'auto'` for reduced-motion users.
+- `templates/index.json` - Re-set homepage hero CTA link to `#categories-section` and re-set `collection_list_PX36Hk.settings.anchor_id` to `categories-section`.
+
+Validation snapshot
+- Local render (`http://127.0.0.1:9292/`) now includes:
+  - hero CTA `href="#categories-section"`,
+  - CTA script with `preventDefault()` + `scrollIntoView`,
+  - categories wrapper `id="categories-section"`.
+
+Session: Header account/cart icon proportion and hit-area fix
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-header-icon-proportion-hitarea-fix
+
+Changes applied (evidence-first)
+- `layout/theme.liquid` - Replaced conflicting custom header icon CSS block that previously forced uneven icon container dimensions (`74x54`) and cart-only scaling.
+- Added scoped normalization for `.header__icon--account` and `.header__icon--cart`:
+  - equalized icon hit area to `4.4rem x 4.4rem`,
+  - equalized base SVG size to `2.2rem`,
+  - applied slight cart glyph compensation (`2.4rem`) due bag icon viewBox density,
+  - kept `pointer-events: none` on SVG so link hitbox remains stable.
+
+Validation snapshot
+- Verified updated CSS block is present in local render output from `http://127.0.0.1:9292/`.
+- Verified legacy oversized values (`74px`, `54px`) are removed from `layout/theme.liquid`.
+
+Session: Header bag icon visual size increase
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-header-bag-icon-size-increase
+
+Changes applied (evidence-first)
+- `layout/theme.liquid` - Increased cart/bag SVG size override from `2.4rem` to `2.8rem` within `.header__icon--cart svg` while keeping the shared icon click target dimensions unchanged.
+
+Validation snapshot
+- Verified local render output on `http://127.0.0.1:9292/` includes `.header__icon--cart svg { width: 2.8rem; height: 2.8rem; }`.
+
+Session: Strong cart icon boost + hit-area spacing correction
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-header-cart-strong-boost-margin-fix
+
+Changes applied (evidence-first)
+- `layout/theme.liquid` - Increased cart icon SVG override from `2.8rem` to `4.4rem` because the cart glyph occupies a small fraction of its `40x40` viewBox and appeared visually undersized versus account icon.
+- `layout/theme.liquid` - Added `.header__icon--cart { margin-right: 0 !important; }` to neutralize Dawn's negative cart margin and prevent apparent hit-area overlap issues between account/cart.
+
+Validation snapshot
+- Verified local render output on `http://127.0.0.1:9292/` contains updated cart rules:
+  - `.header__icon--cart svg { width: 4.4rem !important; height: 4.4rem !important; }`
+  - `.header__icon--cart { margin-right: 0 !important; }`
+
+Session: Header account/cart click-area interception fix (search overlay)
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-header-icon-clickarea-overlay-fix
+
+Changes applied (evidence-first)
+- `snippets/visible-header-search.liquid` - Added scoped desktop pointer-event rules for the top-level search wrapper elements:
+  - set `pointer-events: none` on `.EzfyHeaderSearch--desktop > predictive-search.search-modal__form` and `.EzfyHeaderSearch--desktop > search-form.search-modal__form`,
+  - restored `pointer-events: auto` on the actual interactive descendants (inner `.search-modal__form` and predictive results container).
+- Purpose: prevent the full-width predictive-search wrapper from intercepting clicks in the header icon area while preserving existing search UI layout/styling.
+
+Validation snapshot
+- Playwright hit-testing before fix showed icon center points resolved to `PREDICTIVE-SEARCH.search-modal__form`.
+- Playwright hit-testing after fix resolves to the expected targets:
+  - account center -> `ACCOUNT-ICON.`
+  - cart center -> `A.header__icon header__icon--cart link focus-inset`
+- Functional click checks after fix:
+  - account icon click navigates to `/account/login`,
+  - cart icon click opens cart drawer (body class includes `overflow-hidden`, drawer inner receives focus).
