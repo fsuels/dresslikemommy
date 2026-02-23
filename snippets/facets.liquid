@@ -110,6 +110,13 @@
                 assign total_active_values = total_active_values | plus: filter.active_values.size
                 assign presentation = filter.presentation | default: default_presentation
 
+                comment
+                  Skip the Type / Product type filter — style nav is handled by category tabs
+                endcomment
+                if filter.label == 'Type' or filter.label == 'Product type'
+                  continue
+                endif
+
                 if presentation == 'image'
                   assign show_more_number = 12
                   assign visual_layout_class = 'facets-layout facets-layout-grid facets-layout-grid--' | append: presentation
@@ -519,6 +526,10 @@
                       assign visual_layout_class = 'facets-layout facets-layout-grid facets-layout-grid--' | append: presentation
                     else
                       assign visual_layout_class = 'facets-layout facets-layout-list facets-layout-list--' | append: presentation
+                    endif
+
+                    if filter.label == 'Type' or filter.label == 'Product type'
+                      continue
                     endif
                   %}
 

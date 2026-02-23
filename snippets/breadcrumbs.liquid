@@ -1,20 +1,20 @@
 {% unless template == 'index' or template == 'cart' or template == 'list-collections' %}
-<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
-  <a href="/" title="Home" class="mobile-hide">Home</a>
-  <span aria-hidden="true" class="mobile-hide">&rsaquo;</span>
-  <a href="/collections/{{ product.metafields.custom.category1 | handleize }}" title="{{ product.metafields.custom.category1 | default: "Mommy and Me" }}" class="mobile-hide">{{ product.metafields.custom.category1 | default: "Mommy and Me" }}</a>
-  <span aria-hidden="true" class="mobile-hide">&rsaquo;</span>
-  <a href="/collections/{{ product.metafields.custom.subcategory | handleize }}" title="{{ product.metafields.custom.subcategory }}">{{ product.metafields.custom.subcategory | default: "Dresses" }}</a>
+<nav class="breadcrumb product-breadcrumb" role="navigation" aria-label="breadcrumbs">
+  <a href="/" title="Home" class="product-breadcrumb__link mobile-hide">Home</a>
+  <span aria-hidden="true" class="product-breadcrumb__separator mobile-hide">&rsaquo;</span>
+  <a href="/collections/{{ product.metafields.custom.category1 | handleize }}" title="{{ product.metafields.custom.category1 | default: "Mommy and Me" }}" class="product-breadcrumb__link mobile-hide">{{ product.metafields.custom.category1 | default: "Mommy and Me" }}</a>
+  <span aria-hidden="true" class="product-breadcrumb__separator mobile-hide">&rsaquo;</span>
+  <a href="/collections/{{ product.metafields.custom.subcategory | handleize }}" title="{{ product.metafields.custom.subcategory }}" class="product-breadcrumb__link">{{ product.metafields.custom.subcategory | default: "Dresses" }}</a>
   
   {% assign subcategories = product.metafields.custom.subcategory2 | split: ',' %}
   
   {% if subcategories.size > 0 %}
-    <span aria-hidden="true">&rsaquo;</span>
-    <span>
+    <span aria-hidden="true" class="product-breadcrumb__separator">&rsaquo;</span>
+    <span class="product-breadcrumb__group">
       {% for subcategory in subcategories %}
         {% assign subcategory = subcategory | strip %}
         {% unless subcategory == '' %}
-          <a href="/collections/{{ subcategory | handleize }}">{{ subcategory }}</a>{% if forloop.last == false %} / {% endif %}
+          <a href="/collections/{{ subcategory | handleize }}" class="product-breadcrumb__link">{{ subcategory }}</a>{% if forloop.last == false %} <span class="product-breadcrumb__separator">/</span> {% endif %}
         {% endunless %}
       {% endfor %}
     </span>

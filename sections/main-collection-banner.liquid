@@ -17,8 +17,10 @@
         {{- collection.title | escape -}}
       </h1>
 
-      {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
+      {%- if section.settings.show_collection_description and collection.description != blank -%}
+        {%- unless collection.handle == 'new-women-outfits' -%}
+          <div class="collection-hero__description rte">{{ collection.description }}</div>
+        {%- endunless -%}
       {%- endif -%}
     </div>
 

@@ -422,3 +422,157 @@ Validation snapshot
 - Functional click checks after fix:
   - account icon click navigates to `/account/login`,
   - cart icon click opens cart drawer (body class includes `overflow-hidden`, drawer inner receives focus).
+
+Session: Collection/PDP breadcrumb consistency + filter readability pass
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-collection-pdp-breadcrumb-filter-readability
+
+Changes applied (evidence-first)
+- `snippets/collection-breadcrumbs.liquid` - Replaced the prior inline CSS/JS breadcrumb implementation with a semantic, lightweight breadcrumb:
+  - added explicit `Home` link and `&rsaquo;` separators,
+  - kept optional subcategory switching via native `<details>` dropdown,
+  - removed custom overlay script and conflicting `breadcrumb-sub-category`/`breadcrumb-dropdown` style blocks.
+- `assets/template-collection.css` - Added collection-scoped overrides to align collection breadcrumb styling with PDP breadcrumb intent and neutralize global uppercase/11px overrides:
+  - breadcrumb normalized to 12px medium-weight gray text with consistent spacing,
+  - subtle dropdown treatment for alternate subcategory links,
+  - filter labels/summaries/sort controls increased to ~13-14px with reduced letter-spacing and non-uppercase treatment.
+- `snippets/breadcrumbs.liquid` - Added semantic breadcrumb classes (`product-breadcrumb__*`) to PDP breadcrumb markup for cleaner targeting and future maintenance.
+- `assets/section-main-product.css` - Normalized PDP breadcrumb typography to the same 12px, medium-weight, gray visual system and explicitly overrode global uppercase breadcrumb rules.
+- `templates/product.json` - Removed legacy `main-product.custom_css` breadcrumb overrides to eliminate a conflicting styling source.
+
+Validation snapshot
+- Confirmed new collection breadcrumb snippet contains no inline `<style>` or `<script>` blocks.
+- Confirmed legacy collection breadcrumb classes (`breadcrumb-sub-category`, `breadcrumb-dropdown`) are no longer referenced in repository search.
+- Reviewed diffs for `snippets/collection-breadcrumbs.liquid`, `assets/template-collection.css`, `snippets/breadcrumbs.liquid`, `assets/section-main-product.css`, and `templates/product.json` for selector scope and Liquid syntax integrity.
+- No browser visual regression run in this session; manual storefront preview checks remain required for desktop/mobile collection and PDP views.
+
+Open TODOs (next session)
+1) In theme preview, verify collection breadcrumb alignment and dropdown behavior across collections with and without `custom.mainall`/`custom.product_tag` metafields.
+2) Validate filter readability on desktop/mobile in horizontal filter mode and ensure no unintended typography changes on non-collection templates.
+3) Confirm PDP breadcrumb and collection breadcrumb now render with matching visual rhythm (size/weight/color/separator) under existing global `layout/theme.liquid` custom CSS.
+
+Session: Rollback to prior approved breadcrumb/filter state
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-rollback-to-prior-approved-breadcrumb-state
+
+Changes applied (evidence-first)
+- Reverted `layout/theme.liquid` to the prior state before the root-cause cleanup pass.
+- Reverted `snippets/breadcrumbs.liquid` to the previous version that introduced only semantic class hooks (`product-breadcrumb__*`) without additional fallback/ARIA restructuring.
+- Reverted `snippets/collection-breadcrumbs.liquid` to the prior version (removed added `aria-current` attributes from the rollback pass).
+- Removed the superseded worklog entry for the reverted root-cause cleanup pass to keep continuity accurate.
+
+Validation snapshot
+- Confirmed current modified file set matches the earlier approved pass: `assets/section-main-product.css`, `assets/template-collection.css`, `snippets/breadcrumbs.liquid`, `snippets/collection-breadcrumbs.liquid`, `templates/product.json`, and this worklog.
+
+Session: Collection category navigation polish (tabs + mobile select)
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-collection-category-nav-tabs-polish
+
+Changes applied (evidence-first)
+- `snippets/collection-breadcrumbs.liquid` - Replaced the native `<details>` category switcher with a structured category navigation system:
+  - kept breadcrumb trail (`Home > Main category > Current`) as stable context,
+  - added horizontal pill tabs for category switching on tablet/desktop,
+  - added mobile-only styled `<select>` fallback for category switching,
+  - deduplicated category options by handle to avoid repeated links and preserve a single active current item.
+- `assets/template-collection.css` - Added collection-scoped styling for the new category nav:
+  - consistent typography via theme body font and normalized sizing/spacing,
+  - polished pill-tab visuals with subtle hover/focus/active transitions,
+  - lightweight staggered entry animation for tab items,
+  - responsive mobile select treatment aligned with collection breadcrumb rhythm.
+
+Validation snapshot
+- Confirmed new category nav selectors exist and are wired in both files via repository search (`collection-category-nav*`).
+- Confirmed legacy dropdown markup/classes are no longer present in `snippets/collection-breadcrumbs.liquid`.
+- Ran `shopify theme check --fail-level error`; command reports pre-existing theme errors in unrelated files (`sections/header.liquid`, `sections/main-list-collections.liquid`, `snippets/cjpod.liquid`, etc.).
+- `snippets/collection-breadcrumbs.liquid` returned warnings only (`HardcodedRoutes`), with no new syntax errors from this change.
+
+Open TODOs (next session)
+1) In theme preview, verify category tab overflow/scroll behavior on long category lists and confirm active-state contrast across all color schemes.
+2) On mobile (<750px), verify select navigation works on iOS/Android and that spacing remains balanced with horizontal filters enabled.
+3) Decide whether to replace hardcoded `/collections/...` links in breadcrumb/category nav with route-composed links to satisfy Theme Check style guidance.
+
+Session: Collection category nav redesign (high-contrast premium tabs)
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-collection-category-nav-premium-redesign
+
+Changes applied (evidence-first)
+- `snippets/collection-breadcrumbs.liquid` - Reworked category navigation logic for robust current/alternate category handling:
+  - computes and deduplicates category options by handle,
+  - reliably marks the current collection tab as active (including `Other` edge cases),
+  - only renders the category nav when alternates exist,
+  - keeps desktop tab nav + mobile select nav, both driven by the same deduped source list,
+  - uses `routes.collections_url` composition for category links.
+- `assets/template-collection.css` - Replaced prior low-contrast tab treatment with a high-contrast premium UI system:
+  - explicit surface/text tokens to keep labels legible in all states,
+  - elevated card container + scroll-fade tab rail for modern horizontal navigation,
+  - refined active/hover/focus states with stronger contrast and subtle motion,
+  - improved mobile select readability and interaction affordance,
+  - reduced-motion fallback for users with motion preferences.
+
+Validation snapshot
+- Verified updated Liquid selectors/logic and nav classes are present in `snippets/collection-breadcrumbs.liquid`.
+- Verified updated CSS selectors and contrast-focused style rules are present in `assets/template-collection.css`.
+- `shopify theme check` still reports pre-existing repo-wide errors in unrelated files (e.g. `sections/header.liquid`, `sections/main-list-collections.liquid`, `snippets/cjpod.liquid`); no new syntax failures were introduced by this nav redesign.
+
+Open TODOs (next session)
+1) Visual QA in storefront preview on collections with long tag lists to verify horizontal rail overflow behavior and gradient edge treatment.
+2) Confirm category ordering/content in `custom.product_tag` metafields reflects intended merchandising order for tabs.
+3) If desired, add a lightweight page-transition on tab click (fade-out before navigation) after UX signoff.
+
+Session: Collection category nav redesign v2 (minimal editorial tabs)
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-collection-category-nav-minimal-editorial-v2
+
+Changes applied (evidence-first)
+- `assets/template-collection.css` - Replaced the heavy card/tab treatment with a cleaner modern navigation language:
+  - removed panel/gradient/chip aesthetic,
+  - introduced simple horizontal text tabs with animated underline indicator,
+  - kept all tab text high-contrast and fully visible at rest,
+  - simplified desktop interaction to color + underline only,
+  - refined mobile select to a clean, understated, high-legibility control.
+- `snippets/collection-breadcrumbs.liquid` - Removed decorative nav label markup to keep hierarchy minimal and content-focused while preserving robust category dedupe/current-state logic.
+
+Validation snapshot
+- Verified updated selectors and tab-state classes in `assets/template-collection.css` and `snippets/collection-breadcrumbs.liquid`.
+- No inline CSS/JS was introduced; navigation remains semantic and lightweight.
+- No browser visual run from terminal in this pass; storefront preview check required.
+
+Open TODOs (next session)
+1) Visual QA in storefront preview for desktop/mobile balance and confirm this minimal direction matches stakeholder preference.
+2) If still too plain, add one premium accent only (e.g. subtle active tab background or micro-separator) without reducing contrast.
+
+Session: Collection nav typography alignment to PDP breadcrumb
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-collection-nav-typography-match-pdp-breadcrumb
+
+Changes applied (evidence-first)
+- `assets/template-collection.css` - Updated collection category nav text system to match PDP breadcrumb typography conventions from `assets/section-main-product.css`:
+  - tabs set to `font-size: 1.2rem`, `font-weight: 500`, `line-height: 1.45`, `letter-spacing: 0`, non-uppercase,
+  - tab default/hover/active colors aligned to breadcrumb muted/foreground pattern,
+  - mobile select text adjusted to the same typography scale (`1.2rem`, `500`, `1.45`) for consistency.
+- Kept category switching UX intact (desktop tabs + mobile select), while focusing this pass on text-size/style parity.
+
+Validation snapshot
+- Verified updated typography values are present in `assets/template-collection.css` under `.collection-category-nav__tab` and `.collection-category-nav__select`.
+- No markup changes required for this alignment pass.
+
+Open TODOs (next session)
+1) Preview collection and product pages side-by-side to confirm perceived typographic parity under current global `layout/theme.liquid` overrides.
+2) If needed, normalize only vertical rhythm (padding/margins) without changing text size/style.
+
+Session: Remove collection style dropdown and unify category item sizing
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-collection-style-dropdown-removed-size-unified
+
+Changes applied (evidence-first)
+- `snippets/collection-breadcrumbs.liquid` - Removed mobile `<select>` category dropdown block entirely and made the category tab list the single navigation UI across breakpoints.
+- `assets/template-collection.css` - Removed obsolete `.collection-category-nav__select*` styles and tuned tab spacing/height so category items stay visually consistent (including mobile) with breadcrumb typography (`1.2rem`, `500`, `1.45`).
+
+Validation snapshot
+- Confirmed no `CollectionCategorySelect` markup remains in `snippets/collection-breadcrumbs.liquid`.
+- Confirmed no `.collection-category-nav__select` styles remain in `assets/template-collection.css`.
+- Collection category nav now renders only as tab links (no dropdown open state).
+
+Open TODOs (next session)
+1) Visual check in preview for long category lists on narrow screens (horizontal scroll usability).
+2) If needed, add subtle edge-fade cues for overflow while keeping typography unchanged.

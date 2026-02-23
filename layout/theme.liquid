@@ -907,14 +907,34 @@
     font-family: Arial, sans-serif;
   }
 
-  button, a {
-    color: #FFFFFF;
-    padding: 10px 15px;
-    display: inline-block;
-    font-size: 16px;
+  /* Category nav tabs styling */
+  .collection-category-nav__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    padding: 1rem 0;
+    margin: 0;
+  }
+  .collection-category-nav__tab {
+    color: #121212 !important;
+    background: #f3f3f3;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 500;
     text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: inline-block;
+  }
+  .collection-category-nav__tab:hover {
+    background: #121212;
+    color: #ffffff !important;
+  }
+  .collection-category-nav__tab.is-active {
+    background: #121212;
+    color: #ffffff !important;
   }
 
   header {

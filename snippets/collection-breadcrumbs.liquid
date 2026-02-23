@@ -1,250 +1,191 @@
-{% assign main_all = collection.metafields.custom.mainall | split: ',' %}
-{% assign product_tags = collection.metafields.custom.product_tag | split: ',' %}
-{% assign current_tag = collection.title %}
-{% assign main_category = main_all[0] %}
-{% assign sub_category = main_all[1] %}
+{% comment %}
+  Collection breadcrumbs with category navigation tabs.
+  Uses metafields:
+    - custom.category1: Parent category (e.g. "Mommy and Me"). Defaults to "Mommy and Me".
+    - custom.product_tag: Comma-separated style/sub-collection links.
+  Smart fallback: If product_tag contains top-level parent categories instead of
+  subcategories, automatically uses product types from the collection instead.
+  Cross-category collections (new-arrivals, etc.) show top-level category pills.
+{% endcomment %}
 
-<style>
-/* Common styles */
-.breadcrumb-wrapper {
-  position: relative;
-  display: inline-block;
-  padding: 0;
-  margin: 0;
-  line-height: 0;
-  height: auto;
+{% assign parent_category = collection.metafields.custom.category1 | default: 'Mommy and Me' | strip %}
+{% assign product_tags_raw = collection.metafields.custom.product_tag | default: '' %}
+{% assign product_tags = product_tags_raw | split: ',' %}
+{% assign current_collection_handle = collection.handle %}
+{% assign current_collection_label = collection.title | strip %}
+{% assign collections_base_url = routes.collections_url | append: '/' %}
 
-}
+{% comment %} --- Known top-level parent categories --- {% endcomment %}
+{% assign top_level_categories = 'mommy-and-me,family-matching,daddy-and-me,maternity,couples' %}
+{% assign top_level_labels = 'Mommy and Me,Daddy and Me,Couples,Maternity,Family Matching' %}
 
-.breadcrumb-sub-category {
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  background-color: #FFFFFF !important;
-  color: #000000 !important;
-  font: 14px Arial, sans-serif;
-}
+{% comment %} --- Cross-category / store-wide collections that should show top-level nav pills --- {% endcomment %}
+{% assign cross_category_handles = 'new-arrivals,shop,all,sale,bestsellers,new-women-outfits' %}
+{% assign is_cross_category = false %}
+{% if cross_category_handles contains current_collection_handle %}
+  {% assign is_cross_category = true %}
+{% endif %}
 
-.breadcrumb a,
-.breadcrumb-dropdown ul li a {
-  color: #000000 !important;
-  font: 14px Arial, sans-serif;
-  text-decoration: none;
-  transition: color 0.3s, text-decoration 0.3s; /* Smooth transition */
-}
+{% comment %} --- Determine pill source --- {% endcomment %}
+{% assign use_product_types = false %}
+{% assign use_top_level_pills = false %}
 
-.breadcrumb a:hover,
-.breadcrumb-dropdown ul li a:hover,
-.breadcrumb-sub-category:hover {
-  text-decoration: underline;
-  color: inherit; /* Maintain the current text color */
-}
+{% if is_cross_category %}
+  {% comment %} Store-wide collections: show main category pills {% endcomment %}
+  {% assign use_top_level_pills = true %}
+{% else %}
+  {% comment %} Check if product_tag data looks like top-level categories {% endcomment %}
+  {% assign tags_that_are_top_level = 0 %}
+  {% assign tags_total = 0 %}
+  {% for tag in product_tags %}
+    {% assign option_tag = tag | strip %}
+    {% if option_tag != blank %}
+      {% assign tags_total = tags_total | plus: 1 %}
+      {% assign option_handle = option_tag | handleize %}
+      {% if top_level_categories contains option_handle %}
+        {% assign tags_that_are_top_level = tags_that_are_top_level | plus: 1 %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
 
-.facets__summary .icon-caret {
-    right: 0;
-}
+  {% if tags_total == 0 %}
+    {% assign use_product_types = true %}
+  {% elsif tags_that_are_top_level > 0 %}
+    {% assign use_product_types = true %}
+  {% endif %}
+{% endif %}
 
-summary .icon-caret {
-    position: absolute;
-    height: .6rem;
-    width: .6rem; /* Ensure the width is also set */
-    right: 1.5rem;
-    top: calc(50% - .3rem); /* Adjusted to center vertically */
-    fill: currentColor; /* Ensures it takes the current text color */
-}
+{% comment %} --- Build the pill tab list --- {% endcomment %}
+{% assign pill_items = '' %}
 
-.breadcrumb-sub-category .icon-caret,
-.breadcrumb-dropdown svg {
-    width: 1rem; /* Adjust the width as needed */
-    height: 1rem; /* Adjust the height as needed */
-    vertical-align: middle; /* Aligns the icon vertically with text */
-    margin-left: .5rem; /* Adds some space between text and icon */
-    fill: currentColor; /* Uses the current color */
-}
+{% if use_top_level_pills %}
+  {% comment %} Use the main navigation categories as pills {% endcomment %}
+  {% assign pill_items = top_level_labels %}
+{% elsif use_product_types %}
+  {% comment %} Use collection.all_types to get ALL product types {% endcomment %}
+  {% for ptype in collection.all_types %}
+    {% assign ptype_stripped = ptype | strip %}
+    {% if ptype_stripped != blank %}
+      {% if pill_items == '' %}
+        {% assign pill_items = ptype_stripped %}
+      {% else %}
+        {% assign pill_items = pill_items | append: '|||' | append: ptype_stripped %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% else %}
+  {% comment %} Use metafield product_tag data {% endcomment %}
+  {% assign seen_tags = ',' %}
+  {% for tag in product_tags %}
+    {% assign option_tag = tag | strip %}
+    {% if option_tag != blank %}
+      {% assign option_handle = option_tag | handleize %}
+      {% capture option_token %},{{ option_handle }},{% endcapture %}
+      {% unless seen_tags contains option_token %}
+        {% assign seen_tags = seen_tags | append: option_handle | append: ',' %}
+        {% if pill_items == '' %}
+          {% assign pill_items = option_tag %}
+        {% else %}
+          {% assign pill_items = pill_items | append: '|||' | append: option_tag %}
+        {% endif %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
 
-.breadcrumb-dropdown {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  z-index: 9999; /* Ensure dropdown is on top */
-  font: 14px Arial, sans-serif;
-}
+{% comment %} Split pill_items — top-level uses comma, others use ||| {% endcomment %}
+{% if use_top_level_pills %}
+  {% assign pill_list = pill_items | split: ',' %}
+{% else %}
+  {% assign pill_list = pill_items | split: '|||' %}
+{% endif %}
 
-.breadcrumb-dropdown ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
+{% comment %} --- Clean up the collection label for pill display (strip common prefixes) --- {% endcomment %}
+{% assign pill_display_label = current_collection_label %}
+{% assign prefixes_to_strip = 'Mother Daughter ,Mommy and Me ,Matching ,Daddy and Me ,Family Matching ' %}
+{% assign prefix_list = prefixes_to_strip | split: ',' %}
+{% for prefix in prefix_list %}
+  {% assign prefix_stripped = prefix | strip %}
+  {% if pill_display_label contains prefix_stripped %}
+    {% assign pill_display_label = pill_display_label | remove: prefix_stripped | strip %}
+  {% endif %}
+{% endfor %}
+{% if pill_display_label == blank %}
+  {% assign pill_display_label = current_collection_label %}
+{% endif %}
 
-.breadcrumb-dropdown ul li {
-  padding: 8px 16px;
-  text-align: left;
-}
+{% comment %} --- Check if current collection is in the pill list (only count pills with products) --- {% endcomment %}
+{% assign has_alternate_categories = false %}
+{% assign current_in_options = false %}
+{% for item in pill_list %}
+  {% assign item_handle = item | strip | handleize %}
+  {% assign target_collection = collections[item_handle] %}
+  {% if item_handle == current_collection_handle %}
+    {% assign current_in_options = true %}
+  {% elsif target_collection and target_collection.products_count > 0 %}
+    {% assign has_alternate_categories = true %}
+  {% endif %}
+{% endfor %}
 
-.breadcrumb-dropdown ul li a {
-  display: block;
-  text-align: center;
-}
+{% comment %} --- Detect if breadcrumb parent should be hidden --- {% endcomment %}
+{% assign hide_parent = false %}
+{% assign parent_handle = parent_category | handleize %}
+{% if current_collection_handle == parent_handle %}
+  {% assign hide_parent = true %}
+{% endif %}
+{% if is_cross_category %}
+  {% assign hide_parent = true %}
+{% endif %}
 
-/* Mobile specific styles */
-@media (max-width: 990px) {
-  .breadcrumb-wrapper {
-    display: flex;
-    align-items: left;
-    justify-content: left;
-    background-color: #ffffff !important;
-    margin-bottom: 0px; /* Adjust as needed to move it closer to the title */
-    margin-top: -65px;    /* Adjust if needed to move it closer from the top */
-    padding: 0px;       /* Reset padding if needed */
-    z-index: 1;
-}
+<div class="page-width page-width--collection-breadcrumbs">
+  <nav class="breadcrumb collection-breadcrumb" aria-label="breadcrumbs">
+    <a href="{{ routes.root_url }}" title="Home" class="collection-breadcrumb__link mobile-hide">Home</a>
 
-  a {
-    font: 14px Arial, sans-serif !important;
-}
+    {% unless hide_parent %}
+      <span aria-hidden="true" class="collection-breadcrumb__separator mobile-hide">&rsaquo;</span>
+      <a href="{{ collections_base_url }}{{ parent_handle }}" class="collection-breadcrumb__link mobile-hide">
+        {{ parent_category }}
+      </a>
+    {% endunless %}
 
-  .breadcrumb a {
-    color: #000000 !important;
-    font: 14px Arial, sans-serif;
-  }
-
-  .breadcrumb-sub-category {
-    font: 14px Arial, sans-serif;
-    padding: 0px;
-  }
-
-  .breadcrumb-dropdown {
-    right: 166px;
-    margin-top: -17px;
-    width: 160px; /* Adjust the width as needed */
-  }
-
-  .breadcrumb-dropdown ul li {
-    text-align: center;
-  }
-
-  .breadcrumb-dropdown ul li a {
-    padding: 1px;
-    font: 14px Arial, sans-serif;
-  }
-
-  .collection-hero__text-wrapper {
-    background-color: #ffffff !important;
-
-  }
-
-  .collection-hero__text-wrapper h1 {
-    color: #000000;
-
-  }
-
-  .collection-hero__text-wrapper {
-    margin-top: 0px /* Adjust the value as needed */!important;
-    padding-top: 40px /* Optional: use padding instead of margin if preferred */!important;
-    padding: 0px;
-    padding-bottom: -80px/* Adjust the value as needed */!important;
-    margin-top: 0px;
-    border: 0px;
-    z-index: 2;
-    text-align: center; 
-  }
-}
-
-/* Desktop specific styles */
-@media (min-width: 991px) {
-  .breadcrumb-wrapper {
-    /* Add any additional desktop-specific styles if needed */
-  }
-
-  .collection-hero__text-wrapper {
-    margin-top: 0px; /* Adjust the value as needed */
-    padding-top: 50px; /* Optional: use padding instead of margin if preferred */
-  }
-
-  .collection-hero__title {
-    font-size: 30px; /* Decrease the font size */
-    text-align: center; /* Center the text */
-    margin: 0 auto; /* Ensure the margins are set to auto for proper centering */
-    text-decoration: none;
-  }
-    a {
-    font: 14px Arial, sans-serif !important;
-}
-
-  .collection-hero__inner.page-width.scroll-trigger.animate--fade-in {
-    padding: 10px 0px; /* Adjust the top and bottom padding */
-  }
-
-  .collection-hero__text-wrapper {
-    padding: 10px 0px; /* Adjust the top and bottom padding */
-  }
-
-  .breadcrumb-dropdown {
-    margin-left: -36px;
-    width: 350px;
-    background-color: #FFFFFF;
-  }
-}
-</style>
-
-<div class="breadcrumb-wrapper">
-  <nav class="breadcrumb" aria-label="breadcrumbs">
-    <a href="/collections/{{ main_category | handleize }}">{{ main_category }}</a>
-    <span> > </span>
-    <span class="breadcrumb-sub-category">{{ sub_category }}
-      <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6" width="10" height="6">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
-      </svg>
-    </span>
-    <div class="breadcrumb-dropdown">
-      <ul>
-        {% for tag in product_tags %}
-          {% unless tag == current_tag %}
-            <li><a href="/collections/{{ tag | handleize }}">{{ tag }}</a></li>
-          {% endunless %}
-        {% endfor %}
-      </ul>
-    </div>
+    <span aria-hidden="true" class="collection-breadcrumb__separator mobile-hide">&rsaquo;</span>
+    <span class="collection-breadcrumb__current">{{ current_collection_label }}</span>
   </nav>
+
+  {% if has_alternate_categories %}
+    <div class="collection-category-nav" role="navigation" aria-label="Collection categories">
+      <div class="collection-category-nav__tabs-wrap">
+        <ul class="collection-category-nav__tabs list-unstyled" role="list">
+          {% unless current_in_options %}
+            <li class="collection-category-nav__item">
+              <a href="{{ collection.url }}" class="collection-category-nav__tab is-active" aria-current="page">
+                {{ pill_display_label }}
+              </a>
+            </li>
+          {% endunless %}
+
+          {% for item in pill_list %}
+            {% assign item_label = item | strip %}
+            {% assign item_handle = item_label | handleize %}
+            {% assign target_collection = collections[item_handle] %}
+            {% comment %} Skip pills that link to empty or non-existent collections {% endcomment %}
+            {% if item_handle != current_collection_handle and target_collection.products_count == 0 %}
+              {% continue %}
+            {% endif %}
+            <li class="collection-category-nav__item">
+              <a
+                href="{{ collections_base_url }}{{ item_handle }}"
+                class="collection-category-nav__tab{% if item_handle == current_collection_handle %} is-active{% endif %}"
+                {% if item_handle == current_collection_handle %}
+                  aria-current="page"
+                {% endif %}
+              >
+                {{ item_label }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
 </div>
-
-<div class="overlay" style="display:none;"></div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var breadcrumbSubCategory = document.querySelector('.breadcrumb-sub-category');
-    var breadcrumbDropdown = document.querySelector('.breadcrumb-dropdown');
-    var overlay = document.querySelector('.overlay');
-    var dropdownLinks = breadcrumbDropdown.querySelectorAll('a');
-    var isDropdownOpen = false;
-
-    breadcrumbSubCategory.addEventListener('click', function(event) {
-        event.stopPropagation();
-        isDropdownOpen = !isDropdownOpen;
-        breadcrumbDropdown.style.display = isDropdownOpen ? 'block' : 'none';
-        overlay.style.display = isDropdownOpen ? 'block' : 'none';
-    });
-
-    overlay.addEventListener('click', function() {
-        breadcrumbDropdown.style.display = 'none';
-        overlay.style.display = 'none';
-        isDropdownOpen = false;
-    });
-
-    dropdownLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-            breadcrumbDropdown.style.display = 'none';
-            overlay.style.display = 'none';
-            isDropdownOpen = false;
-        });
-    });
-
-    document.addEventListener('click', function(event) {
-        if (!breadcrumbSubCategory.contains(event.target) && !breadcrumbDropdown.contains(event.target)) {
-            breadcrumbDropdown.style.display = 'none';
-            overlay.style.display = 'none';
-            isDropdownOpen = false;
-        }
-    });
-});
-</script>
