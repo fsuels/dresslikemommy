@@ -576,3 +576,724 @@ Validation snapshot
 Open TODOs (next session)
 1) Visual check in preview for long category lists on narrow screens (horizontal scroll usability).
 2) If needed, add subtle edge-fade cues for overflow while keeping typography unchanged.
+
+Session: Mobile search UX + mobile announcement rotator refinement
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-mobile-search-ux-announcement-rotator
+
+Changes applied (evidence-first)
+- `snippets/header-search.liquid`
+  - Added a new mobile-only empty state block (`.mobile-search-empty-state`) inside the search modal so tapping search on mobile shows a curated "Trending" list before typing.
+  - Added five quick links mirroring requested competitor-style behavior:
+    - Matching Family Outfits
+    - Bamboo Clothes
+    - Mommy and Me
+    - PAW Patrol Clothes
+    - Barbie Clothes
+- `snippets/visible-header-search.liquid`
+  - Removed the large legacy mobile override block that globally restyled mobile header/search/announcement behavior.
+  - Kept this snippet focused on its desktop search wrapper rules only.
+  - Scoped previous global selectors to `.EzfyHeaderSearch--desktop` to avoid affecting the mobile modal (`.search-modal__form`, `.predictive-search`, and predictive groups).
+- `assets/mobile-header-ux.css` (new)
+  - Added mobile-only search modal styling so the modal opens as a fixed overlay below the header (`margin-top: var(--header-height)`), preventing layout jump.
+  - Styled search input and predictive results for cleaner readability and spacing.
+  - Added styles for the new mobile trending list block.
+  - Added mobile announcement bar polish for single-line centered text and hidden slider arrows/localization in mobile view.
+- `assets/mobile-header-ux.js` (new)
+  - Added mobile behavior for search modal:
+    - toggles `body.mobile-search-open` while modal is open,
+    - focuses search input on open,
+    - shows/hides mobile empty state depending on input/predictive state,
+    - relabels suggestions heading to "Trending" on mobile.
+- `sections/header.liquid`
+  - Included `mobile-header-ux.css` and `mobile-header-ux.js` so the new mobile search UX is active site-wide.
+- `assets/mobile-announcement-rotator.js` (new)
+  - Added mobile announcement rotator logic for `|`-delimited messages.
+  - Rotates phrases with fade animation and adds contextual emoji prefixes (shipping/returns/secure) when none are present.
+- `sections/announcement-bar.liquid`
+  - Included `mobile-announcement-rotator.js`.
+- `layout/theme.liquid`
+  - Removed the old inline announcement/search block that included:
+    - deprecated hardcoded mobile announcement CSS,
+    - placeholder stylesheet loader (`PATH_TO_COMBINED_CSS_FILE`),
+    - older one-off rotating text script.
+
+Validation snapshot
+- JS syntax check passed:
+  - `node --check assets/mobile-header-ux.js`
+  - `node --check assets/mobile-announcement-rotator.js`
+- Confirmed placeholder loader string removed from active files.
+- `shopify theme check` run still returns many pre-existing repo-wide warnings/errors unrelated to this session (including existing parser issues in `sections/header.liquid` and other historical files).
+
+Open TODOs (next session)
+1) Visual QA in `shopify theme dev` mobile viewport (home + collection + product) for:
+   - search modal open/close transitions,
+   - empty-state visibility behavior,
+   - predictive search result spacing and scroll,
+   - announcement rotation cadence and text truncation.
+2) If desired, move trending terms from hardcoded Liquid list to a theme setting or metafield-backed source for merchant editing.
+3) If the mobile announcement bar green tone should match a specific brand token, update `#0f8f68` in `assets/mobile-header-ux.css`.
+
+Session: Mobile header alignment + announcement color revert
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-mobile-header-alignment-announcement-color-revert
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.css`
+  - Removed hardcoded green announcement background overrides so mobile announcement bar uses the pre-existing/original theme color.
+  - Preserved mobile announcement centering/one-line behavior while no longer forcing banner color.
+  - Added mobile header grid alignment rules to keep menu icon, search icon, logo, and right icons in a single proportional row:
+    - explicit 4-area grid (`drawer search heading icons`),
+    - explicit grid-area assignment for `header-drawer`, `.mobile-header-search-icon`, heading, and icon cluster,
+    - reduced/tuned mobile icon hit areas and glyph sizes,
+    - reduced/tuned mobile logo max width/height for visual balance.
+
+Validation snapshot
+- Verified no `#0f8f68` references remain in `assets/mobile-header-ux.css`.
+- Verified updated CSS is served by local preview (`mobile-header-ux.css` cache-busted asset URL).
+
+Open TODOs (next session)
+1) Visual QA on real devices (iPhone Safari + Android Chrome) to confirm logo centering against variable cart/account icon counts.
+2) If logo appears too small/large on specific phones, tweak `max-width: 10.8rem` and `max-height: 3.2rem` in `assets/mobile-header-ux.css`.
+
+Session: Mobile announcement bar full-bleed + compact height adjustment
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-mobile-announcement-fullbleed-compact
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.css`
+  - Updated mobile announcement bar to be full-bleed edge-to-edge by forcing `width: 100vw` and centering with viewport margins.
+  - Removed side inset on `.utility-bar__grid` (`padding-left/right: 0`) and forced `max-width: 100%`.
+  - Reduced banner height to roughly half of prior mobile value (`3.2rem -> 1.6rem`) across utility/grid/announcement wrappers.
+  - Enforced full centering (horizontal + vertical) for message text using flex alignment on `.announcement-bar__link` and `.announcement-bar__message`.
+  - Reduced message text size to keep readability inside the new compact banner height (`1.2rem -> 1rem`).
+
+Validation snapshot
+- Verified updated rules are present in `assets/mobile-header-ux.css` under the mobile media query.
+- Verified updated stylesheet is served in local preview (new cache-busted asset URL).
+
+Open TODOs (next session)
+1) Visual QA on narrow devices to confirm long rotating lines still read well at `1rem` in `1.6rem` height.
+2) If text feels too tight, increase only height slightly (e.g. `1.8rem`) while preserving edge-to-edge behavior.
+
+Session: Mobile cart icon proportional size adjustment
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-mobile-cart-icon-proportional-size
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.css`
+  - Kept shared mobile icon glyph sizing for menu/search/account at `2rem`.
+  - Increased only cart icon glyph size on mobile to `2.35rem` (`.header__icon--cart svg, .header__icon--cart .icon`) so cart appears visually proportional to menu/search.
+  - No layout-width or header grid changes were made in this pass.
+
+Validation snapshot
+- Verified updated cart selector values exist in `assets/mobile-header-ux.css`.
+- Verified updated stylesheet is served by local preview (new cache-busted asset URL).
+
+Session: Mobile cart icon size increase (second pass)
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-mobile-cart-icon-second-pass
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.css`
+  - Increased mobile cart glyph size from `2.35rem` to `2.5rem` for stronger visual parity with adjacent header controls.
+  - No other mobile header spacing/layout values were changed.
+
+Session: Desktop announcement banner full-width restoration
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-desktop-announcement-fullwidth-restored
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.css`
+  - Added a desktop-only (`min-width: 990px`) rule block to restore full-bleed announcement banner width:
+    - `announcement-bar-section` forced to viewport width (`100vw`) and centered with viewport margins,
+    - utility/grid/announcement wrappers forced to `width: 100%` and `max-width: 100%`,
+    - removed desktop side padding from `.utility-bar__grid`.
+  - Mobile (`max-width: 989px`) announcement behavior remains unchanged.
+
+Validation snapshot
+- Verified new desktop media query block is present in `assets/mobile-header-ux.css`.
+- Verified updated stylesheet is served in local preview (new cache-busted asset URL).
+
+Session: Mobile search opens below header like menu + reliable X toggle
+Date: 2026-02-23
+AGENT_CONTINUITY_ANCHOR: 2026-02-23-mobile-search-below-header-x-toggle
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.css`
+  - Updated mobile search open state to behave like a drawer under the header:
+    - `details[open] > .search-modal` now anchors at `top: var(--header-height)` (instead of fullscreen inset overlay),
+    - removed dimmed backdrop behavior for `.modal-overlay`,
+    - set panel border/shadow and capped panel height for drawer-style UX.
+  - Strengthened icon state toggling for mobile search trigger:
+    - closed state hides close icon,
+    - open state hides search icon and explicitly shows close (`X`) icon.
+
+Validation snapshot
+- Verified updated selectors in `assets/mobile-header-ux.css` under mobile media query.
+- Verified updated stylesheet is served in local preview (new cache-busted asset URL).
+
+Session: Mobile search drawer offset hardening + menu-like icon swap
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-search-offset-hardening
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.js`
+  - Added runtime mobile header metrics (`--mobile-header-bottom`, `--mobile-header-height`) based on `.section-header.getBoundingClientRect()`.
+  - Ensured metrics update on mobile init, search open, viewport resize, and mobile scroll while search is open.
+  - Set `--header-height` from the same measurement on mobile to avoid `0px` fallback when sticky header mode does not populate it.
+- `assets/mobile-header-ux.css`
+  - Updated mobile search drawer anchor to `top: var(--mobile-header-bottom, var(--header-height, 0px))` so the search panel opens below the header instead of covering it.
+  - Reworked mobile search icon state swap to menu-like behavior using visibility/opacity/scale transitions between `.modal__toggle-open` and `.modal__toggle-close`.
+  - Updated predictive search max-height calculations to use mobile header bottom offset for consistent available space.
+
+Validation snapshot
+- Verified updated rules exist in `assets/mobile-header-ux.css` under the mobile media query.
+- Verified `assets/mobile-header-ux.js` passes syntax check (`node --check assets/mobile-header-ux.js`).
+
+Open TODOs (next session)
+1) Run manual mobile QA in local preview to confirm search drawer no longer overlays header in both sticky-header enabled and disabled configurations.
+2) If any Safari-specific visual flicker appears during icon swap, add a `will-change: transform, opacity;` optimization on the toggle icons.
+
+Session: Mobile search icon swap visibility + input icon alignment refinement
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-search-icon-swap-alignment
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.css`
+  - Replaced mobile search toggle icon rules with menu-style icon swapping logic on the summary button:
+    - both search and close glyphs are absolutely positioned in the trigger,
+    - closed state hides `.icon-close`,
+    - open state hides `.icon-search` and shows `.icon-close`.
+  - Corrected mobile search input icon positioning:
+    - `.search__button` and `.reset__button` now vertically center via `top: 50%` + `transform: translateY(-50%)`,
+    - increased internal button hit box and centered icon alignment so icons no longer sit on the border.
+
+Validation snapshot
+- Verified updated selectors are present in `assets/mobile-header-ux.css`:
+  - toggle state rules at `details[open] > .header__icon--search ...`,
+  - centered field icon button placement for `.search__button` and `.reset__button`.
+
+Open TODOs (next session)
+1) Confirm on device that tapping mobile search shows the `X` immediately and consistently across repeated open/close cycles.
+2) If icon appears 1-2px high/low on a specific device, tweak `top` and/or `width/height` values in `assets/mobile-header-ux.css` only.
+
+Session: Mobile search field icon centering + focus color refinement
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-search-field-centering-focus-color
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.css`
+  - Improved search field internals so the search icon and reset icon sit visually centered within the rounded input:
+    - moved left icon inset inward (`left: 1.1rem`),
+    - tightened icon glyph size (`1.6rem`),
+    - centered buttons with explicit flex alignment and zero margin/padding.
+  - Replaced harsh orange focus/edge appearance with a softer neutral style:
+    - custom neutral border on `.field::after`,
+    - subtle neutral focus state on `.field:focus-within`,
+    - preserved existing rounded-pill look and mobile-only scope.
+
+Validation snapshot
+- Verified updated selectors and values are present in `assets/mobile-header-ux.css` (mobile media query block).
+
+Open TODOs (next session)
+1) Re-check on device after hard refresh to confirm icon sits fully inside the pill on all tested phone widths.
+2) If needed, fine-tune icon inset by ±0.1rem based on device-specific rendering.
+
+Session: Mobile search box cleanup (remove inner clear X + remove icon box)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-search-box-cleanup
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.css`
+  - Removed inner clear/reset button in mobile search field by hiding `.reset__button`.
+  - Reduced right-side input padding since clear button is no longer shown (`4.8rem -> 1.8rem`).
+  - Removed boxed/square appearance around the left search icon button across normal/focus states by forcing:
+    - transparent background,
+    - no border/radius/box-shadow/outline,
+    - no pseudo-element decoration on `.search__button`.
+
+Validation snapshot
+- Verified updated mobile selectors in `assets/mobile-header-ux.css`:
+  - `.mobile-header-search-icon .reset__button { display: none !important; }`
+  - focus-state neutralization for `.mobile-header-search-icon .search__button`.
+
+Open TODOs (next session)
+1) Confirm on-device that the search icon remains visually clean while focused/typing.
+2) If needed, adjust left icon inset by small increments (`left: 1.0rem` or `1.2rem`) for final pixel alignment.
+
+Session: Mobile search collections-first navigation + no page/article results
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-search-collections-routing
+
+Changes applied (evidence-first)
+- `snippets/header-search.liquid`
+  - Added a mobile empty-state block that replaces generic trending suggestions with collection shortcuts:
+    - Mommy and Me
+    - Daddy and Me
+    - Family Matching
+    - Couple Matching
+    - Maternity
+  - Each shortcut now resolves URL via layered fallback:
+    - candidate collection handles,
+    - then main menu links/child links (title-normalized with `& -> and`),
+    - then default `/collections/<handle>` fallback.
+  - Added `data-collection-fallback-url="{{ routes.all_products_collection_url }}"` to the search form for collection-context fallback navigation.
+  - Added hidden `<input name="type" value="product">` to keep full search submissions product-focused.
+- `assets/mobile-header-ux.js`
+  - Updated mobile search submit handling:
+    - first tries keyword/title match against collection shortcuts,
+    - then tries first predictive collection suggestion,
+    - otherwise falls back to the all-products collection URL with query (`q`) instead of routing to a generic search page.
+- `sections/predictive-search.liquid`
+  - Reworked predictive rendering to only output collection + product groups.
+  - Removed query/page/article groups and removed the “search for term” action block.
+  - Kept product cards linking directly to product URLs.
+- `assets/predictive-search.js`
+  - Predictive request now explicitly scopes resources to `product,collection` (limit per resource type) and hides unavailable products.
+- `sections/header.liquid`
+  - Mobile header search render now passes `menu_handle: section.settings.menu` to support menu-based shortcut URL resolution.
+- `snippets/visible-header-search.liquid`
+  - Added hidden `<input name="type" value="product">` for visible header search to prevent page/article result routing on full search submits.
+
+Validation snapshot
+- Verified JavaScript syntax:
+  - `node --check assets/mobile-header-ux.js`
+  - `node --check assets/predictive-search.js`
+- Verified updated collection shortcut mapping and fallback attributes in `snippets/header-search.liquid`.
+
+Open TODOs (next session)
+1) Manual mobile QA: test each shortcut and several typed queries to confirm routing lands on intended collections.
+2) If any shortcut lands on an unintended collection due to menu title overlap, tighten title matching from contains-based to exact per your store menu labels.
+
+Patch: Liquid condition compatibility fix for mobile collection shortcut matching
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-search-collections-routing-liquid-fix
+
+Changes applied (evidence-first)
+- `snippets/header-search.liquid`
+  - Replaced unsupported parenthesized Liquid `if` conditions with compatible boolean-assignment pattern (`*_title_matches`) before final branch checks.
+
+Validation snapshot
+- Ran `shopify theme check --fail-level error --output json` and confirmed no `snippets/header-search.liquid` parser errors remain.
+- Theme still reports unrelated pre-existing errors in other files (e.g., `sections/header.liquid`, `sections/main-list-collections.liquid`, `snippets/cjpod.liquid`, `tmp_products.json`).
+
+Session: Mobile header mutual-exclusion (search vs menu) to prevent dual X state
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-header-mutual-exclusion
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.js`
+  - Added mobile-only helper utilities to close open header panels via native summary click paths:
+    - close open mobile search details,
+    - close open mobile menu drawer details.
+  - Implemented top-level summary lookup without `:scope` selectors to reduce risk on older mobile browsers.
+  - Added `bindMobileMenuDrawer()` to enforce single active panel on mobile:
+    - when menu is opening, any open mobile search panel is closed first,
+    - on menu `toggle` open state, search is force-closed as a safety net.
+  - Updated mobile search `details.toggle` open branch:
+    - closes any other open search panel instance,
+    - closes an open menu drawer before keeping search open/focused.
+  - Updated `init()` to bind both menu drawer coordination and mobile search behavior.
+
+Validation snapshot
+- Verified JavaScript syntax:
+  - `node --check assets/mobile-header-ux.js`
+- Verified logic is mobile-scoped (`(max-width: 989px)`) and does not run on desktop.
+
+Open TODOs (next session)
+1) Manual mobile QA: open search then tap menu, and open menu then tap search; confirm only one close icon/state is visible at any time.
+2) Confirm behavior in sticky-header variants to ensure no focus-jump regressions when switching directly between menu and search.
+
+Session: Mobile announcement bar height increase for readability
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-announcement-height
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.css`
+  - Increased mobile-only announcement bar vertical space to reduce cramped text:
+    - `.announcement-bar-section .utility-bar` height/min-height: `1.6rem -> 2.2rem`
+    - `.announcement-bar-section .utility-bar .page-width.utility-bar__grid` height/min-height: `1.6rem -> 2.2rem`
+    - `.announcement-bar-section .announcement-bar, .announcement-bar-section .announcement-bar__announcement` height/min-height: `1.6rem -> 2.2rem`
+  - Relaxed message line box slightly for readability:
+    - `.announcement-bar-section .announcement-bar__message` line-height: `1 -> 1.2`
+
+Validation snapshot
+- Confirmed the updated values are present under the mobile media query (`max-width: 989px`) in `assets/mobile-header-ux.css`.
+
+Open TODOs (next session)
+1) Manual mobile QA on a physical device: verify the announcement text no longer appears vertically cramped.
+2) If final tuning is desired, adjust the shared height by +/- `0.1rem`.
+
+Session: Mobile cart icon scale + persistent cart count bubble
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-cart-bubble-polish
+
+Changes applied (evidence-first)
+- `sections/cart-icon-bubble.liquid`
+  - Added `cart_count` assignment and switched icon selection to `cart_count == 0` logic.
+  - Cart count bubble now always renders (including empty cart) and always prints the numeric count.
+  - Removed previous conditional that hid the bubble when cart was empty and removed the `<100` cap condition.
+- `sections/header.liquid`
+  - Updated header cart icon block to match the same `cart_count` logic used by `sections/cart-icon-bubble.liquid`.
+  - Header now renders count bubble for empty and non-empty carts, ensuring initial render consistency before AJAX section refreshes.
+- `assets/mobile-header-ux.css`
+  - Increased mobile cart bag icon size (`2.5rem -> 2.95rem`) for better visual proportion with neighboring icons.
+  - Added mobile-only badge styling for `.cart-count-bubble` (pill shape, gradient fill, stronger legibility, and elevated shadow).
+
+Validation snapshot
+- Ran `shopify theme check --fail-level error --output text`.
+- Theme check still reports multiple pre-existing repository errors/warnings (including existing parser/schema/content issues in other files such as `sections/header.liquid`, `sections/main-list-collections.liquid`, `sections/email-signup-banner.liquid`, `snippets/cjpod.liquid`, and `tmp_products.json`).
+- No command output indicated a new isolated syntax issue specific to the cart count changes.
+
+Open TODOs (next session)
+1) Mobile QA on device: confirm cart icon scale and badge position at narrow widths (320px, 375px, 430px).
+2) Functional QA: add/remove items and verify header count shows `0` when empty and increments/decrements correctly in both cart drawer and cart notification flows.
+3) If needed, fine-tune badge offset (`right`/`top`) by small increments for final pixel alignment with your selected logo/header spacing.
+
+Patch: Mobile cart icon size increase (follow-up user request)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-cart-bubble-polish-followup
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.css`
+  - Increased mobile cart icon container footprint for stronger visual presence:
+    - `.section-header .header__icon--cart` size set to `4.2rem` square.
+  - Increased bag glyph size further:
+    - `.section-header .header__icon--cart svg/.icon` from `2.95rem` to `3.45rem`.
+  - Rebalanced badge placement after icon scaling:
+    - `.cart-count-bubble` offset updated to `top: 0.08rem`, `right: -0.42rem`.
+
+Validation snapshot
+- Verified updated cart sizing and offset values are present under the mobile media query block in `assets/mobile-header-ux.css`.
+
+Open TODOs (next session)
+1) Confirm on-device that the larger cart icon does not clip at 320px width and still aligns with search/menu icons.
+2) If needed, fine-tune icon to `3.35rem` or `3.55rem` based on visual preference.
+
+Session: Mobile menu-to-search handoff hardening (menu X must revert immediately)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-menu-to-search-immediate-close
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.js`
+  - Added `forceCloseMobileMenuDrawer()` fallback to immediately clear mobile menu open state when switching actions:
+    - removes `open` and `menu-opening` states,
+    - clears submenu open states,
+    - restores menu summary `aria-expanded="false"`,
+    - removes mobile/tablet/desktop overflow lock classes and `.section-header.menu-open`.
+  - Updated `closeOpenMobileMenuDrawer()` to:
+    - attempt native `headerDrawer.closeMenuDrawer(...)` first,
+    - then force-close immediately if menu is still open (prevents persistent X icon while search opens).
+  - Added capture-phase click binding on mobile search summary so opening search closes menu before the search modal open path runs.
+  - Upgraded menu summary binding to capture phase for symmetric panel-switch behavior.
+
+Validation snapshot
+- Verified JavaScript syntax:
+  - `node --check assets/mobile-header-ux.js`
+- Verified this behavior remains mobile-scoped (`(max-width: 989px)`).
+
+Open TODOs (next session)
+1) Manual mobile QA: with menu open, tap search and confirm menu icon reverts to hamburger immediately while search opens.
+2) Regression QA: open/close menu repeatedly after search handoff and confirm drawer scroll lock always clears correctly.
+
+Patch: Mobile cart badge black + centered count + larger bag icon
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-cart-badge-black-centered
+
+Changes applied (evidence-first)
+- `assets/mobile-header-ux.css`
+  - Increased cart touch target and icon size again for better proportion:
+    - `.header__icon--cart` set to `4.6rem` square
+    - cart icon glyph set to `3.9rem`
+  - Changed item-count badge from red gradient to black:
+    - `background: #111111`
+    - replaced red shadow with neutral black shadow.
+  - Enforced stronger centering for count text in the badge:
+    - badge uses `display: grid; place-items: center;`
+    - count span uses full-width/height flex centering and zero padding/margins.
+  - Kept badge shape circular (`1.8rem x 1.8rem`, `border-radius: 50%`) and adjusted offset for alignment.
+
+Validation snapshot
+- Verified the new cart icon and badge rules are present under the mobile media query in `assets/mobile-header-ux.css`.
+
+Open TODOs (next session)
+1) On-device visual QA: verify badge remains centered for values `0-9` and still reads clearly.
+2) If 2-digit counts are common, decide whether to keep strict circle or switch to pill (`min-width`) for `10+`.
+
+Session: Mobile PDP breadcrumbs removed + larger media + balanced typography
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-media-typography-balance
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid`
+  - Added `small-hide` to the product breadcrumb wrapper:
+    - `<div class="page-width page-width--product-breadcrumbs">` -> `<div class="page-width page-width--product-breadcrumbs small-hide">`
+  - Effect: product breadcrumbs are hidden on mobile (`max-width: 749px`), reclaiming top-of-page space for media.
+- `layout/theme.liquid`
+  - Appended a new final mobile-only style block scoped to `.template-product` (`max-width: 749px`) that:
+    - removes horizontal constraints/gutters around the main product media container and slider,
+    - enforces full-width mobile media list items,
+    - tightens product info wrapper spacing,
+    - reduces mobile product title and price sizing,
+    - slightly tightens vertical spacing between product info blocks.
+
+Validation snapshot
+- Verified selectors and edits are present:
+  - `sections/main-product.liquid`: `page-width--product-breadcrumbs small-hide`
+  - `layout/theme.liquid`: new `.template-product` mobile override block at file end.
+
+Open TODOs (next session)
+1) Mobile QA on actual device (320/375/430 widths): confirm breadcrumbs are hidden and first product image appears visually larger.
+2) Visual QA for long product titles/pricing (including compare-at sale state) to confirm the new typography scale feels balanced.
+3) If needed, fine-tune title size by ±`0.1rem` and info wrapper side padding by ±`0.2rem`.
+
+Session: Mobile PDP size-chart first column sticky for horizontal scroll
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-size-chart-sticky-first-column
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - Added a mobile-only CSS block (`max-width: 749px`) to keep the first table column visible while horizontally scrolling product-description tables.
+  - Applied to `.template-product .product__description table` so size charts without `id="size-chart"` are also covered.
+  - Sticky behavior details:
+    - first `th`/`td` uses `position: sticky; left: 0;`
+    - white background + subtle right divider shadow for readability while columns scroll.
+
+Validation snapshot
+- Verified selectors and sticky rules are present in `layout/theme.liquid` near the top inline style area.
+- No automated theme validation run in this patch (manual mobile PDP QA still required).
+
+Open TODOs (next session)
+1) Manual QA on mobile product pages: horizontal-scroll size chart and confirm first column remains visible across varied chart widths.
+2) Check a non-size table in product descriptions to confirm sticky first column does not create unwanted visual overlap.
+
+Session: Mobile PDP full-bleed media polish + modern slider counter + balanced type scale
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-full-bleed-modern-counter-proportion-fix
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - Updated the final mobile-only (`max-width: 749px`) `.template-product` override block to improve above-the-fold PDP composition:
+    - Made gallery media visually edge-to-edge by removing mobile radius constraints and forcing product media images to fill (`width/height: 100%`, `object-fit: cover`) within the product media container.
+    - Added more vertical breathing room between media and product info (`product__media-list` bottom spacing + increased `product__info-wrapper` top padding).
+    - Reduced oversized mobile title and price typography to a more proportional premium scale.
+    - Redesigned mobile image counter/controls into a modern pill treatment:
+      - neutral translucent background + subtle border/shadow,
+      - circular arrow buttons,
+      - stronger counter hierarchy for current index.
+    - Explicitly overrode earlier absolute-position slider button rule on mobile (`left/bottom/transform` reset) so controls sit cleanly below the image.
+
+Validation snapshot
+- Verified the updated mobile block is present at the end of `layout/theme.liquid` and remains scoped to `.template-product` and `max-width: 749px`.
+- No automated browser visual diff in this patch; final confirmation requires manual mobile viewport QA.
+
+Open TODOs (next session)
+1) Manual QA on iPhone-class widths (320/375/390/430): confirm gallery feels full-bleed and image framing remains flattering across product aspect ratios.
+2) Validate counter/arrow controls for 1 image, 2+ images, and video media; ensure disabled arrow states still look intentional.
+3) If any products crop too aggressively, tune mobile media fit by switching to a softer frame (e.g., `object-position` per collection or section setting fallback).
+
+Patch: Mobile PDP remove residual side gutters from gallery (grid--peek override)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-gallery-side-gutter-elimination
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - Extended the final mobile PDP override block (`max-width: 749px`) to neutralize Dawn mobile `grid--peek` slider gutters that were still causing side whitespace:
+    - removed slider left scroll-padding for product media list,
+    - removed slider trailing pseudo-element spacing (`::after`),
+    - removed first-slide left offset,
+    - forced each media item to full-width sizing (`width/max-width/min-width/flex-basis: 100%`),
+    - removed mobile grid gaps on product media list.
+
+Validation snapshot
+- Verified new selectors exist in the final mobile `.template-product` override block in `layout/theme.liquid`.
+- Manual viewport QA still required to confirm edge-to-edge rendering on-device.
+
+Open TODOs (next session)
+1) Mobile QA on 320/375/390/430 widths: verify no side white space remains on first and subsequent slides.
+2) Confirm no horizontal page scroll appears after removing slider pseudo-end spacing.
+
+Patch: Mobile PDP force full-width media when constrain_to_viewport + contain are enabled
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-constrain-contain-full-width
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - In the final mobile `.template-product` override block, added explicit overrides for Dawn's constrained contain mode:
+    - forced `.product-media-container.constrain-height` and `.product-media-container.constrain-height.media-fit-contain` to `width/max-width: 100%`,
+    - reset side margins to `0`,
+    - restored image media box height behavior by resetting `.product__media` padding-top to full ratio (`var(--ratio-percent)`) inside constrained containers.
+  - Purpose: eliminate residual side white space caused by container width shrinking in mobile contain+constrained mode.
+
+Validation snapshot
+- Verified selectors are present in the final mobile product override block in `layout/theme.liquid`.
+- Manual mobile QA required to confirm visual result in preview/device after cache refresh.
+
+Open TODOs (next session)
+1) Hard-refresh preview and verify first/next gallery images are edge-to-edge on mobile widths.
+2) If any products become too tall after ratio reset, tune with a controlled mobile max-height while keeping width at 100%.
+
+Patch: Mobile PDP gallery edge-to-edge fix moved to core section stylesheet
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-edge-to-edge-core-css
+
+Changes applied (evidence-first)
+- `assets/section-main-product.css`
+  - Updated the native mobile PDP media slider rules (`max-width: 749px`) to remove side whitespace at the source:
+    - removed mobile negative-margin/peek sizing (`margin-left` and `width` hacks),
+    - forced product media slides to true full width (`width/max-width/min-width/flex-basis: 100%`),
+    - removed mobile slider left-scroll padding and trailing pseudo spacing,
+    - removed first-slide left offset from `grid--peek`,
+    - removed media grid gaps on mobile.
+  - Added explicit media image fill rules in the product media list (`object-fit: cover`) to keep visual coverage to both sides.
+  - Added constrained-media overrides on mobile so `constrain-height`/contain mode cannot shrink media width below 100%.
+
+Validation snapshot
+- Verified updated rules are present in `assets/section-main-product.css` in both mobile media blocks.
+- This patch applies through the section stylesheet directly (not reliant on `.template-product` wrapper classes).
+
+Open TODOs (next session)
+1) Hard-refresh mobile preview and verify the gallery is edge-to-edge on first and subsequent slides.
+2) If any image crops too aggressively, reduce crop by switching the mobile image fit rule from `cover` to `contain` while preserving full-width container behavior.
+
+Patch: Mobile PDP gallery counter redesigned as modern stepper
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-gallery-counter-stepper
+
+Changes applied (evidence-first)
+- `snippets/product-media-gallery.liquid`
+  - Converted the main product gallery mobile controls to a dedicated stepper variant:
+    - added `slider-buttons--product-stepper` class on the gallery control wrapper,
+    - added `slider-counter--product-stepper` class on the counter,
+    - added `--step-progress` inline CSS variable initialization from `media_count`,
+    - normalized the counter separator into a stylable element (`.slider-counter__separator`).
+- `assets/section-main-product.css`
+  - Added mobile-only (`max-width: 749px`) stepper styling scoped to product gallery controls:
+    - premium pill container treatment (border, soft gradient, blur, shadow),
+    - circular prev/next buttons with refined sizing and disabled/active states,
+    - numeric stepper typography with tabular numerals,
+    - progress track + animated fill driven by `--step-progress`.
+  - Selector scope uses `.page-width--product-main` (not `.template-product`) so styles still apply in this theme variant where `<body>` is not carrying template-type classes.
+- `assets/global.js`
+  - Extended `SliderComponent` with `updateStepperCounter()` and invoked it during `update()`.
+  - The method sets `--step-progress` from `currentPage/totalPages` so the visual stepper fill tracks slide position.
+
+Validation snapshot
+- Verified new stepper classes/selectors and JS hook are present via `rg`.
+- Ran syntax validation: `node --check assets/global.js` (passes).
+- Manual device/preview QA still required for final visual approval.
+
+Open TODOs (next session)
+1) Mobile QA on product pages (320/375/390/430 widths): confirm the stepper renders cleanly and updates correctly while swiping.
+2) Validate behavior for media edge cases: 1 image, 2 images, many images, and mixed image/video media.
+3) If legacy overrides in `layout/theme.liquid` visually conflict, consolidate/remove overlapping slider control rules there.
+
+Patch: Mobile PDP stepper visibility fix (always below image)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-stepper-visibility-fix
+
+Changes applied (evidence-first)
+- `snippets/product-media-gallery.liquid`
+  - Removed legacy `hide_mobile_slider` gating logic that hid controls in several mobile states.
+  - Updated stepper wrapper visibility so it now renders whenever `media_count > 0`.
+  - Added `slider-buttons--single-media` class for one-image products so the line/counter still appears cleanly.
+- `assets/section-main-product.css`
+  - Added single-image stepper styling:
+    - hides prev/next buttons for single-media case,
+    - keeps the counter/progress line visible and centered below the image.
+
+Validation snapshot
+- Verified updated selectors/classes are present in markup + CSS.
+- No JS changes required for this fix.
+
+Open TODOs (next session)
+1) Manual mobile QA: confirm stepper line is visible directly under gallery image on products with 1 image and with multiple images.
+2) If spacing feels tight/loose, adjust top margin on `.slider-buttons--product-stepper` by ±`0.2rem`.
+
+Patch: Mobile PDP explicit "more images" progress bar below gallery
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-more-images-progress-bar
+
+Changes applied (evidence-first)
+- `snippets/product-media-gallery.liquid`
+  - Added a dedicated mobile gallery progress element directly below the media slider when `media_count > 1`:
+    - shows current/total (`1 / N`),
+    - includes "Swipe for more photos" hint text,
+    - includes a separate progress track container (`data-gallery-stepper`) not tied to `.slider-buttons` legacy selectors.
+- `assets/section-main-product.css`
+  - Added mobile styling for `.product-media-progress*` classes to make the indicator clean, centered, and clearly below the image.
+- `assets/global.js`
+  - Extended `updateStepperCounter()` so it also updates the new `data-gallery-stepper` component:
+    - updates current/total text,
+    - updates progress width via `--media-progress`.
+
+Validation snapshot
+- Syntax check: `node --check assets/global.js` (passes).
+- Verified selectors/markup/JS hooks are present with `rg`.
+
+Open TODOs (next session)
+1) Mobile QA on live preview: verify the new progress bar is visible under the image and advances while swiping.
+2) If desired, shorten/replace hint text (e.g., "More photos") for a more minimal look.
+
+Patch: Mobile PDP image no-crop fix (prevent title-adjacent clipping)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-image-no-crop-fix
+
+Changes applied (evidence-first)
+- `assets/section-main-product.css`
+  - In the mobile PDP media rules (`max-width: 749px`), changed product media image fit from `object-fit: cover` to `object-fit: contain` so full image bounds render without bottom cropping.
+- `layout/theme.liquid`
+  - In the final mobile `.template-product` override block, removed mobile media cap by adding `max-height: none !important;` to `.product__media-wrapper` / `.slider-mobile-gutter`.
+  - Updated `.template-product .page-width--product-main .product__media img` from `object-fit: cover !important` to `object-fit: contain !important` and kept image width constrained to container (`max-width: 100% !important`).
+
+Validation snapshot
+- Verified selector updates are present with `rg` in both files:
+  - `assets/section-main-product.css` mobile media image rule now uses `contain`.
+  - `layout/theme.liquid` mobile product block now includes `max-height: none !important;` and `object-fit: contain !important;`.
+- Manual device QA still required in theme preview (mobile widths) to confirm no cropping across mixed aspect ratios.
+
+Open TODOs (next session)
+1) Hard-refresh mobile PDP and confirm first and subsequent gallery images are fully visible (no bottom crop) on 320/375/390/430 widths.
+2) Validate contain-mode appearance for very wide images; if letterboxing looks too strong, tune background/container treatment without reintroducing crop.
+
+Patch: Mobile PDP force-gap below gallery to prevent title overlap clipping
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-force-gap-below-gallery
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - Added a final mobile-only override block at end-of-file (ensures highest cascade priority over prior legacy mobile CSS) to:
+    - remove media wrapper clipping caps (`max-height: none !important; overflow: visible !important;`),
+    - push content below gallery down (`.product__media-wrapper { margin-bottom: 2.4rem !important; }` and `.product__info-wrapper { margin-top: 2.4rem !important; }`).
+  - Scope is `.page-width--product-main` (not `.template-product`) so it applies in this theme variant even when `<body>` template class is absent.
+
+Validation snapshot
+- Verified rule placement at true file end via `nl -ba layout/theme.liquid | tail`.
+- Verified selectors and values via `rg`.
+- Manual mobile preview QA still required to confirm visible full image bottom on affected products.
+
+Open TODOs (next session)
+1) Hard-refresh mobile preview and verify the bottom of image is fully visible before title on 320/375/390/430 widths.
+2) If spacing is too large, reduce gap values from `2.4rem` to `1.6rem` while keeping no overlap.
+
+Patch: Mobile PDP gallery indicator de-dup + live bottom progress
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-indicator-dedupe-live-progress
+
+Changes applied (evidence-first)
+- `snippets/product-media-gallery.liquid`
+  - Hid the top in-slider stepper on mobile by adding `small-hide` to `slider-buttons--product-stepper` (keeps DOM controls for slider JS but removes duplicate visual control on small screens).
+  - Scoped lower `product-media-progress` to mobile-only display with `medium-hide large-up-hide`.
+  - Removed the "Swipe for more photos" hint text from the lower `product-media-progress` meta row.
+- `assets/global.js`
+  - Fixed lower progress synchronization by resolving `[data-gallery-stepper]` from the parent `media-gallery` when running inside `GalleryViewer-*`.
+  - This makes lower `current/total` and `--media-progress` update while swiping/changing images.
+
+Validation snapshot
+- Syntax check: `node --check assets/global.js` (passes).
+- Verified updated selectors/markup/hooks with `rg` and `nl`.
+
+Open TODOs (next session)
+1) Manual mobile QA on product page: confirm only the lower indicator is visible, the hint text is gone, and both count and line progress update on each image swipe.
+2) If the lower indicator should be line-only (no numbers), remove `.product-media-progress__meta` entirely and keep only the track.

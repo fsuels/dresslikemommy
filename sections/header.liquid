@@ -38,6 +38,7 @@
 {%- endif -%}
 
 {% render 'visible-header-search', input_id: 'Search-In-Modal', device: 'desktop' %}
+{{ 'mobile-header-ux.css' | asset_url | stylesheet_tag }}
 
 <style>
   header-drawer {
@@ -136,6 +137,7 @@
 <script defer defer src="{{ 'details-modal.js' | asset_url }}" defer defer defer defer="defer"></script>
 <script defer defer src="{{ 'cart-notification.js' | asset_url }}" defer defer defer defer="defer"></script>
 <script defer defer src="{{ 'search-form.js' | asset_url }}" defer defer defer defer="defer"></script>
+<script src="{{ 'mobile-header-ux.js' | asset_url }}" defer="defer"></script>
 {%- if settings.cart_type == "drawer" -%}
   <script defer defer src="{{ 'cart-drawer.js' | asset_url }}" defer defer defer defer="defer"></script>
 {%- endif -%}
@@ -189,7 +191,7 @@
 
     {%- comment -%} Mobile search icon — shows on mobile next to hamburger, hidden on desktop via CSS {%- endcomment -%}
     <div class="mobile-header-search-icon">
-      {%- render 'header-search', input_id: 'MobileSearch' -%}
+      {%- render 'header-search', input_id: 'MobileSearch', menu_handle: section.settings.menu -%}
     </div>
     {%- if section.settings.logo_position != 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -315,22 +317,19 @@
       {%- endfor -%}
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+        {%- assign cart_count = cart.item_count | default: 0 -%}
         {%- liquid
-          if cart == empty
+          if cart_count == 0
             render 'icon-cart-empty'
           else
             render 'icon-cart'
           endif
         -%}
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-        {%- if cart != empty -%}
-          <div class="cart-count-bubble">
-            {%- if cart.item_count < 100 -%}
-              <span aria-hidden="true">{{ cart.item_count }}</span>
-            {%- endif -%}
-            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-          </div>
-        {%- endif -%}
+        <div class="cart-count-bubble">
+          <span aria-hidden="true">{{ cart_count }}</span>
+          <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart_count }}</span>
+        </div>
       </a>
     </div>
   

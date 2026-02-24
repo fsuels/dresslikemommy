@@ -3,6 +3,7 @@
 
   Accepts:
   - input_id: {String} Id for the search input element (required)
+  - menu_handle: {String} Navigation menu handle used to resolve collection URLs (optional)
 
   Usage:
 {% endcomment %}
@@ -39,7 +40,13 @@
         {%- else -%}
           <search-form class="search-modal__form">
         {%- endif -%}
-        <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+        <form
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+          class="search search-modal__form"
+          data-collection-fallback-url="{{ routes.all_products_collection_url }}"
+        >
           <div class="field">
             <input
               class="search__input field__input"
@@ -63,6 +70,7 @@
             >
             <label class="field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label>
             <input type="hidden" name="options[prefix]" value="last">
+            <input type="hidden" name="type" value="product">
             <button
               type="reset"
               class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
@@ -77,6 +85,80 @@
                 <use href="#icon-search">
               </svg>
             </button>
+          </div>
+
+          <div class="mobile-search-empty-state" data-mobile-search-empty-state hidden>
+            <p class="mobile-search-empty-state__title">Collections</p>
+            <ul class="mobile-search-empty-state__list list-unstyled" role="list">
+              {%- assign mobile_search_collection_targets = 'Mommy and Me::mommy-and-me,dresses::mommy,mother,mommy and me,mommy & me,mother and me|Daddy and Me::daddy-and-me,daddy-me-t-shirts::daddy,father,daddy and me,daddy & me,father and me|Family Matching::family-matching,family-sets::family matching,matching family,family,matching outfits,family sets|Couple Matching::couples,couple-matching::couple matching,couples,couple,his and hers,matching couple|Maternity::maternity::maternity,pregnancy,pregnant,mama' | split: '|' -%}
+              {%- for target in mobile_search_collection_targets -%}
+                {%- assign target_parts = target | split: '::' -%}
+                {%- assign collection_title = target_parts[0] | strip -%}
+                {%- assign collection_handle_candidates = target_parts[1] | split: ',' -%}
+                {%- assign collection_handle = collection_handle_candidates.first | strip -%}
+                {%- assign collection_keywords = target_parts[2] | strip -%}
+                {%- assign collection_url = routes.collections_url | append: '/' | append: collection_handle -%}
+
+                {%- for candidate_handle in collection_handle_candidates -%}
+                  {%- assign candidate_handle = candidate_handle | strip -%}
+                  {%- if collections[candidate_handle] != blank -%}
+                    {%- assign collection_handle = candidate_handle -%}
+                    {%- assign collection_url = collections[candidate_handle].url -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+                {%- if menu_handle != blank and linklists[menu_handle] != blank -%}
+                  {%- assign requested_title = collection_title | downcase | replace: '&', 'and' | replace: '-', ' ' | replace: '  ', ' ' | strip -%}
+                  {%- assign menu_match_found = false -%}
+
+                  {%- for menu_link in linklists[menu_handle].links -%}
+                    {%- assign menu_title = menu_link.title | downcase | replace: '&', 'and' | replace: '-', ' ' | replace: '  ', ' ' | strip -%}
+                    {%- assign menu_title_matches = false -%}
+                    {%- if menu_title == requested_title or menu_title contains requested_title or requested_title contains menu_title -%}
+                      {%- assign menu_title_matches = true -%}
+                    {%- endif -%}
+
+                    {%- if menu_title != blank and menu_title_matches -%}
+                      {%- assign collection_url = menu_link.url -%}
+                      {%- assign menu_match_found = true -%}
+                      {%- break -%}
+                    {%- endif -%}
+
+                    {%- if menu_link.links != blank -%}
+                      {%- for child_link in menu_link.links -%}
+                        {%- assign child_title = child_link.title | downcase | replace: '&', 'and' | replace: '-', ' ' | replace: '  ', ' ' | strip -%}
+                        {%- assign child_title_matches = false -%}
+                        {%- if child_title == requested_title or child_title contains requested_title or requested_title contains child_title -%}
+                          {%- assign child_title_matches = true -%}
+                        {%- endif -%}
+
+                        {%- if child_title != blank and child_title_matches -%}
+                          {%- assign collection_url = child_link.url -%}
+                          {%- assign menu_match_found = true -%}
+                          {%- break -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+
+                      {%- if menu_match_found -%}
+                        {%- break -%}
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endif -%}
+
+                <li class="mobile-search-empty-state__item">
+                  <a
+                    href="{{ collection_url }}"
+                    class="mobile-search-empty-state__link link link--text"
+                    data-collection-keywords="{{ collection_keywords | escape }}"
+                    data-collection-handle="{{ collection_handle | escape }}"
+                  >
+                    {{- collection_title -}}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
           </div>
 
           {%- if settings.predictive_search_enabled -%}

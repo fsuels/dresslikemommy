@@ -672,6 +672,7 @@ class SliderComponent extends HTMLElement {
       this.currentPageElement.textContent = this.currentPage;
       this.pageTotalElement.textContent = this.totalPages;
     }
+    this.updateStepperCounter();
 
     if (this.currentPage != previousPage) {
       this.dispatchEvent(
@@ -696,6 +697,35 @@ class SliderComponent extends HTMLElement {
       this.nextButton.setAttribute('disabled', 'disabled');
     } else {
       this.nextButton.removeAttribute('disabled');
+    }
+  }
+
+  updateStepperCounter() {
+    const stepperCounter = this.querySelector('.slider-counter--product-stepper');
+    let mediaProgress = this.querySelector('[data-gallery-stepper]');
+
+    // Mobile PDP progress is rendered as a sibling of GalleryViewer, not inside it.
+    if (!mediaProgress && this.id && this.id.startsWith('GalleryViewer-')) {
+      mediaProgress = this.closest('media-gallery')?.querySelector('[data-gallery-stepper]');
+    }
+
+    if (!stepperCounter && !mediaProgress) return;
+    if (!this.totalPages) return;
+
+    const currentPage = Number.isFinite(this.currentPage) ? this.currentPage : 1;
+    const totalPages = Number.isFinite(this.totalPages) && this.totalPages > 0 ? this.totalPages : 1;
+    const progress = Math.min(100, Math.max(0, (currentPage / totalPages) * 100));
+
+    if (stepperCounter) {
+      stepperCounter.style.setProperty('--step-progress', `${progress}%`);
+    }
+
+    if (mediaProgress) {
+      const currentElement = mediaProgress.querySelector('.product-media-progress__current');
+      const totalElement = mediaProgress.querySelector('.product-media-progress__total');
+      if (currentElement) currentElement.textContent = currentPage;
+      if (totalElement) totalElement.textContent = totalPages;
+      mediaProgress.style.setProperty('--media-progress', `${progress}%`);
     }
   }
 

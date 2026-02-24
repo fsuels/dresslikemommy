@@ -176,7 +176,16 @@ class PredictiveSearch extends SearchForm {
       return;
     }
 
-    fetch(`${routes.predictive_search_url}?q=${encodeURIComponent(searchTerm)}&section_id=predictive-search`, {
+    const searchParams = new URLSearchParams({
+      q: searchTerm,
+      section_id: 'predictive-search',
+      'resources[type]': 'product,collection',
+      'resources[limit]': '8',
+      'resources[limit_scope]': 'each',
+      'resources[options][unavailable_products]': 'hide',
+    });
+
+    fetch(`${routes.predictive_search_url}?${searchParams.toString()}`, {
       signal: this.abortController.signal,
     })
       .then((response) => {
