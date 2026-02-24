@@ -1297,3 +1297,492 @@ Validation snapshot
 Open TODOs (next session)
 1) Manual mobile QA on product page: confirm only the lower indicator is visible, the hint text is gone, and both count and line progress update on each image swipe.
 2) If the lower indicator should be line-only (no numbers), remove `.product-media-progress__meta` entirely and keep only the track.
+
+Patch: Mobile PDP product title size harmonization
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-title-size-harmonization
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - In the mobile product override block (`@media screen and (max-width: 767px)`), reduced title heading size for `.template-product .product__title h1, h2` from `1.72rem` to `1.44rem`.
+  - Tightened title typography to better match surrounding mobile PDP text:
+    - `line-height` changed from `1.34` to `1.3`
+    - `letter-spacing` changed from `-0.01em` to `0`
+
+Validation snapshot
+- Verified the mobile rule values are present via targeted `sed`/`rg` inspection in `layout/theme.liquid`.
+- Change is scoped to mobile-only product page title selectors; desktop title styles were not modified.
+
+Open TODOs (next session)
+1) Manual mobile preview QA on 320/375/390/430 widths to confirm title hierarchy now feels balanced against price and body text.
+2) If further reduction is desired, test `1.36rem` as the next step-down while keeping the same line-height.
+
+Patch: Mobile PDP title switched to breadcrumb-like typography
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-title-breadcrumb-style
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - Replaced the mobile PDP title rule (`@media screen and (max-width: 767px)`) with breadcrumb-style typography for `.template-product .product__title h1, h2`:
+    - `font-size: 1.1rem`
+    - `line-height: 1.45`
+    - `letter-spacing: 0.05em`
+    - `text-transform: uppercase`
+    - `color: #999`
+  - Tightened title block spacing by reducing `.template-product .product__title` margin-bottom from `1rem` to `0.7rem`.
+
+Validation snapshot
+- Verified updated values are present in the final mobile override block.
+- Change remains scoped to mobile product title selectors only.
+
+Open TODOs (next session)
+1) Manual mobile QA in preview to confirm the title now matches breadcrumb tone and no longer dominates the PDP.
+2) If title becomes too faint, keep size/spacing but darken to `#7d7d7d`.
+
+Patch: Mobile PDP size selection no-jump (disable variant auto-scroll on small screens)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-size-select-no-scroll
+
+Changes applied (evidence-first)
+- `assets/global.js`
+  - Updated variant media activation call to pass a mobile-only scroll guard:
+    - `setActiveMedia(..., { preventScroll: window.matchMedia('(max-width: 749px)').matches })`.
+- `assets/media-gallery.js`
+  - Extended `setActiveMedia()` to accept optional `options`.
+  - Added `preventScroll` handling so when true, it still updates active media/horizontal slider position but skips the `window.scrollTo(...)` jump.
+
+Why this addresses the issue
+- Size selection triggers variant updates, which call `setActiveMedia()`.
+- The prior behavior always attempted to scroll viewport back to media when media top was above viewport.
+- On mobile, that produced the visible “screen moves up” jump after selecting a size.
+
+Validation snapshot
+- Syntax checks pass:
+  - `node --check assets/global.js`
+  - `node --check assets/media-gallery.js`
+- Verified diff shows only the targeted mobile scroll guard changes.
+
+Open TODOs (next session)
+1) Manual mobile QA on product page (320/375/390/430 widths): select multiple sizes and confirm viewport position no longer jumps.
+2) Confirm desktop behavior is unchanged when variant switches update media.
+
+Patch: Variant selection no-jump expanded to color (always suppress variant-triggered viewport scroll)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-variant-color-no-scroll
+
+Changes applied (evidence-first)
+- `assets/global.js`
+  - Updated variant media activation call in `renderProductInfo()` to always pass:
+    - `setActiveMedia(..., { preventScroll: true })`
+  - This replaces the prior mobile-width-only condition so both size and color variant selections avoid viewport jump.
+
+Why this addresses the issue
+- Color selections frequently switch `featured_media`, which triggers `setActiveMedia()` from variant change flow.
+- Passing `preventScroll: true` for all variant-driven media switches prevents the gallery logic from calling `window.scrollTo(...)` during those updates.
+
+Validation snapshot
+- Syntax check: `node --check assets/global.js` (passes).
+- Verified callsite now uses `preventScroll: true`.
+
+Open TODOs (next session)
+1) Manual product-page QA on mobile: switch between multiple colors and sizes; confirm viewport no longer moves up.
+2) Quick desktop sanity check: verify variant image still updates correctly when selecting color.
+
+Patch: Mobile PDP first-image scroll-return clipping guard
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-first-image-scroll-clipping-guard
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - Extended the final mobile override block (`@media screen and (max-width: 749px)`) with additional PDP media stability rules scoped to `.page-width--product-main`:
+    - removed residual mobile max-height/overflow clipping from gallery containers (`.slider-mobile-gutter`, `.product__media-list`, `.product__media-item`, including first item),
+    - enforced stable image fitting (`width/height: 100%`, `object-fit: contain`, centered) for product media images,
+    - disabled mobile hover transform on product media images to avoid touch/scroll-state clipping artifacts.
+
+Why this addresses the issue
+- Prior theme-level mobile overrides in `layout/theme.liquid` included conflicting image/container constraints and transform behavior.
+- The new final-scoped override ensures the first visible image keeps the same framing after scrolling away and back, instead of rendering clipped.
+
+Validation snapshot
+- Verified the new rules are present at the end of `layout/theme.liquid` via `nl -ba` inspection.
+- No automated storefront visual test was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile QA on affected product pages (320/375/390/430 widths): scroll down and back up, confirm first image no longer appears cut.
+2) Confirm swipe to second/third media still works visually as expected and no new letterboxing regressions were introduced.
+
+Patch: Mobile PDP swipe restore (re-enable gallery horizontal overflow)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-swipe-restore-overflowx
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - In the final mobile PDP override block (`@media screen and (max-width: 749px)`), removed `.page-width--product-main .product__media-list` from the selector that forced `overflow: visible !important`.
+  - Added a dedicated `.page-width--product-main .product__media-list` rule to preserve clipping guard intent while restoring swipe container behavior:
+    - `max-height: none !important`
+    - `overflow-x: auto !important`
+    - `overflow-y: visible !important`
+
+Why this addresses the issue
+- Dawn mobile gallery swipe depends on the slider list (`.product__media-list.slider--mobile`) remaining horizontally scrollable.
+- The previous override forced `overflow: visible !important` on the list, overriding base slider overflow and preventing horizontal swipe.
+
+Validation snapshot
+- Verified the updated mobile CSS block in `layout/theme.liquid` now keeps `overflow-x: auto` on `.product__media-list`.
+- No automated storefront interaction test was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile QA on product page (320/375/390/430 widths): verify horizontal swipe between gallery images works again.
+2) Recheck the prior first-image clipping scenario (scroll down and back up) to confirm it remains fixed with this overflow adjustment.
+
+Patch: Mobile sticky ATC gated by required option selection
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-sticky-atc-choose-options-gate
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid`
+  - Replaced the prior mobile sticky ATC implementation (one-click pass-through to `.product-form__submit`) with a stateful sticky CTA scoped to the current section id.
+  - Added state logic:
+    - shows `Choose options` when required selectors (for example `Size`) are not selected,
+    - scrolls to and highlights the first missing option group on tap,
+    - switches to mirrored main CTA behavior/text once selections are complete,
+    - respects disabled main CTA state (`Sold out` / unavailable) once options are complete.
+  - Added sticky price synchronization to keep sticky price aligned with variant price changes in `#price-{{ section.id }}`.
+  - Kept existing intersection behavior (sticky only visible when primary ATC is out of viewport on mobile).
+- `layout/theme.liquid`
+  - Added mobile styles for new sticky states:
+    - `requires-options` visual treatment for sticky button,
+    - disabled sticky button styling,
+    - temporary highlight style for missing option group target (`.sticky-option-target--highlight`).
+
+Why this addresses the issue
+- The previous sticky bar could appear and trigger submit before shopper-selected variant options were complete, which is confusing with a forced blank size placeholder.
+- The new flow preserves sticky conversion intent while preventing premature add-to-cart by routing incomplete states to option selection first.
+
+Validation snapshot
+- Verified updated sticky markup/script and selectors in `sections/main-product.liquid`.
+- Verified corresponding mobile CSS states in `layout/theme.liquid`.
+- No automated browser test was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile QA on PDP (320/375/390/430 widths):
+   - initial sticky shows `Choose options` when size is blank,
+   - tap scrolls to size selector and highlight appears,
+   - after selecting size/color, sticky switches to `Add to cart` and submits correctly.
+2) Validate edge cases:
+   - single-variant products keep direct `Add to cart`,
+   - sold-out variants show disabled sticky CTA after full option selection,
+   - sticky price matches selected variant price.
+
+Patch: Mobile PDP title downsize with selector scope fix
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-title-downsize-page-width-scope
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - In the mobile PDP override block (`@media screen and (max-width: 749px)`), expanded the title selector to include:
+    - `.page-width--product-main .product__title h1`
+    - `.page-width--product-main .product__title h2`
+  - Kept existing `.template-product` selectors and updated mobile title typography to:
+    - `font-size: 1.2rem`
+    - `line-height: 1.35`
+    - `letter-spacing: 0.01em`
+    - `text-transform: none`
+
+Why this addresses the issue
+- The previous mobile title override depended on `.template-product`, while the current `<body>` class in `layout/theme.liquid` does not include template-specific classes.
+- Scoping to `.page-width--product-main` ensures the smaller title style applies on product pages in mobile viewport.
+
+Validation snapshot
+- Verified the updated selector/value block is present in `layout/theme.liquid` near the final mobile PDP overrides.
+- No browser-based visual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile QA on product page (320/375/390/430 widths): confirm title now appears much smaller and visually consistent with nearby PDP copy.
+2) If further reduction is needed, test `1.0rem` using the same `.page-width--product-main` selectors.
+
+Patch: Mobile PDP title and price visual rebalance (larger, polished hierarchy)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-title-price-visual-rebalance
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - In the final mobile PDP override block (`@media screen and (max-width: 749px)`), increased title prominence:
+    - `.template-product .product__title h1/h2` and `.page-width--product-main .product__title h1/h2` set to:
+      - `font-size: 1.45rem`
+      - `line-height: 1.28`
+      - `letter-spacing: 0`
+      - `font-weight: 600`
+      - `color: #1f1f1f`
+  - Slightly increased title spacing:
+    - `.template-product .product__title { margin-bottom: 0.8rem }`
+  - Rebalanced mobile price typography so it matches the larger title and still reads as primary:
+    - Added `.page-width--product-main` price selectors alongside existing `.template-product` selectors.
+    - Main price (`.price--large`, regular, sale) set to:
+      - `font-size: 1.82rem`
+      - `line-height: 1.22`
+      - `letter-spacing: -0.01em`
+      - `font-weight: 600`
+    - Compare-at sale price (`.price--on-sale .price-item--regular`) set to:
+      - `font-size: 1.3rem`
+
+Why this addresses the issue
+- The title is now noticeably bigger and more premium, while the price is scaled to keep a clean, intentional visual hierarchy.
+- Including `.page-width--product-main` ensures these mobile adjustments apply even when `.template-product` is not present on `<body>`.
+
+Validation snapshot
+- Verified updated selectors and values in `layout/theme.liquid` mobile block.
+- No browser-based visual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile QA on PDP (320/375/390/430 widths): confirm title/price balance feels right across short and long product names.
+2) If needed, fine-tune one notch:
+   - title to `1.38rem` for slightly calmer hierarchy, or
+   - price to `1.74rem` if it feels too dominant.
+
+Patch: Mobile PDP size column sticky scope fix for measurement tables
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-size-column-sticky-page-width-scope
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - Updated the existing mobile sticky-first-column table block (`@media screen and (max-width: 749px)`) to include `.page-width--product-main` selectors in addition to `.template-product`.
+  - Added sticky/scroll coverage to:
+    - `.page-width--product-main .product__description table`
+    - `.page-width--product-main #size-chart`
+  - Kept behavior unchanged for sticky first column:
+    - `position: sticky; left: 0;`
+    - white background and subtle separator shadow.
+
+Why this addresses the issue
+- The previous sticky-column rule depended on `.template-product`, but current theme `<body>` classes do not include template classes.
+- Scoping to `.page-width--product-main` ensures the `Size` (first) column remains visible while horizontally scrolling measurement tables on mobile PDP.
+
+Validation snapshot
+- Verified updated selector set exists in `layout/theme.liquid` in the mobile sticky table block near the top inline styles.
+- No browser-based mobile QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile QA on product page widths `320/375/390/430`: confirm `Size` column remains pinned while scrolling measurements.
+2) Check at least one non-size description table on mobile to confirm sticky first column still looks acceptable.
+
+Patch: Mobile PDP option controls spacing and border harmonization
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-options-spacing-border-harmonization
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - In the final mobile PDP override block (`@media screen and (max-width: 749px)`), added a scoped mobile-only options polish for:
+    - `variant-selects` container
+    - `.product-form__quantity` container
+    - nested select controls, labels, quantity input/buttons, and quantity helper text.
+  - Key style changes:
+    - Added consistent vertical spacing and internal padding for variant + quantity groups.
+    - Set `max-width: 100%` and `min-width: 0` for option groups to avoid cramped fit-content behavior on small screens.
+    - Simplified borders/shadows (`1px` subtle borders, `box-shadow: none`) on selects and quantity shell.
+    - Increased mobile control legibility (`font-size: 1.6rem` for select/quantity input) and tightened label spacing/letter-spacing for cleaner readability.
+    - Kept styling scoped to `.page-width--product-main .product__info-container` so desktop and non-PDP forms remain unaffected.
+
+Why this addresses the issue
+- The previous mobile options area inherited dense spacing and heavier visual treatment, which made size/color/quantity controls feel tight.
+- The new mobile-only block creates clear separation between controls, reduces visual noise from heavy borders/shadows, and improves tap/read comfort on smaller screens.
+
+Validation snapshot
+- Verified new selectors/rules are present at the end of `layout/theme.liquid` inside the final mobile media query.
+- No automated or browser-based QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile PDP QA (`320/375/390/430` widths): confirm size/color/quantity spacing is consistently airy and readable.
+2) Validate iOS/Android focus behavior on select and quantity controls (ensure no unintended clipping or overlap with sticky ATC).
+3) Check one product using pill/swatch option style to confirm the simplified radio border rule still looks correct.
+
+Session: PDP mobile sticky ATC gated by size+color selection
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-pdp-sticky-atc-size-color-gate
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid` - Updated the sticky mobile ATC script to require size/color option selection before the sticky bar can become visible on mobile.
+- `sections/main-product.liquid` - Added option-name/value parsing helpers so sticky gating detects `Size` and `Color/Colour` option groups across dropdown and radio-style pickers.
+- `sections/main-product.liquid` - Updated sticky visibility flow to use an explicit `canShowSticky` gate with IntersectionObserver state, preventing sticky CTA display until required selections are complete.
+- `sections/main-product.liquid` - Preserved existing behavior after required selections: price sync, disabled-state mirroring, and missing-option scroll/highlight fallback.
+
+Open TODOs (next session)
+1) QA on mobile preview with a few PDPs that use different option naming patterns (e.g., `Color`, `Colour`, products with only one option) to confirm gating and visibility transitions remain correct.
+
+Patch: Mobile PDP gallery counter corner placement and compact vertical spacing
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-gallery-counter-corner-compact-spacing
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - In the final mobile PDP style override block (`@media screen and (max-width: 749px)`), repositioned the gallery counter/progress presentation for mobile:
+    - Styled `.page-width--product-main .product-media-progress__meta` as a floating pill anchored at the lower-right corner area of the gallery image.
+    - Tightened `.product-media-progress` vertical margins and reduced track visual height to bring the progress bar closer to the image.
+  - Reduced empty vertical space between gallery and product details stack:
+    - `.page-width--product-main .product__media-wrapper { margin-bottom: 0.55rem !important; }`
+    - `.page-width--product-main .product__info-wrapper { margin-top: 0.35rem !important; }`
+  - Compacted product content stack spacing on mobile:
+    - `.page-width--product-main .product__title { margin-bottom: 0.6rem !important; }`
+    - `.page-width--product-main .product__info-container > * + * { margin-top: 1.05rem !important; }`
+
+Why this addresses the issue
+- The image count indicator is now visually attached to the image area instead of feeling detached below it.
+- The progress bar now sits much closer to the gallery, reducing perceived dead space.
+- The product title and subsequent PDP elements start higher and flow with tighter spacing for a more compact mobile layout.
+
+Validation snapshot
+- Verified the updated selectors and values exist in `layout/theme.liquid` within the mobile PDP override block.
+- No browser-based QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile QA on PDP at `320/375/390/430` widths:
+   - confirm counter badge appears in the bottom-right corner region of the image,
+   - confirm progress bar sits directly below with reduced gap.
+2) Validate compact spacing with long product titles and products that have many blocks (price badges, inventory, variant picker, quantity, buy buttons).
+3) If the counter overlaps edge content on very tall/narrow images, adjust only `bottom`/`right` offsets in `.product-media-progress__meta`.
+
+Patch: Mobile PDP share button anchored to image top-right
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-share-top-right-image
+
+Changes applied (evidence-first)
+- `snippets/product-media-gallery.liquid`
+  - Added a dedicated mobile share control directly inside the main media gallery slider markup:
+    - `<button class="share-button__button product__media-share medium-hide large-up-hide" data-mobile-share-button ...>`
+  - This places the control in the same DOM region as the product image, enabling reliable top-right overlay positioning on mobile.
+- `assets/media-gallery.js`
+  - Added `mobileShareButton` element lookup in the `media-gallery` custom element.
+  - Added click handling (`handleMobileShareClick`) for the new mobile share control:
+    - Uses `navigator.share` when available.
+    - Falls back to `navigator.clipboard.writeText(window.location.href)` with a short visual "copied" state class toggle.
+  - Kept existing gallery behavior intact; only added optional share handling.
+- `layout/theme.liquid`
+  - In the final inline style block:
+    - Added desktop hide rule for `.product__media-share` (`min-width: 750px`) so the new control is mobile-only.
+    - Added mobile-only rules (`max-width: 749px`) to:
+      - hide the default info-column share block (`.product__info-container > .share-button`) to avoid duplicate share icons,
+      - set `.slider-mobile-gutter` to `position: relative`,
+      - position `.product__media-share` at top-right (`top/right: 1.2rem`) with circular glass-style visual treatment,
+      - style icon size and copied-state appearance.
+- `sections/main-product.liquid`
+  - Removed the previously misplaced static `mobile-share` button that had been inserted inside complementary products slider controls (not the main product image area).
+
+Why this addresses the issue
+- The share control now lives in the product media gallery itself, so mobile positioning is anchored to the image region instead of unrelated sliders or global absolute offsets.
+- Mobile styling now consistently places the share button at the product image top-right while preserving visual balance with image content and the product info stack below.
+
+Validation snapshot
+- `node --check assets/media-gallery.js` passes (no syntax errors).
+- Verified selectors/anchors exist via search:
+  - `data-mobile-share-button` in `snippets/product-media-gallery.liquid` and `assets/media-gallery.js`
+  - `.product__media-share` and `.product__info-container > .share-button` rules in `layout/theme.liquid`
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile QA on PDP (`320/375/390/430` widths): confirm share button appears at image top-right and does not overlap critical image content.
+2) Tap-test share behavior on iOS Safari + Android Chrome:
+   - native share sheet opens where supported,
+   - clipboard fallback applies visible copied-state where native share is unavailable.
+3) Confirm desktop/tablet do not show the overlay share icon and that existing share behavior outside mobile remains acceptable.
+
+Patch: Mobile PDP share button compact size + centered icon + subtler top-corner placement
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-share-compact-centered-corner
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - In the mobile PDP share overlay block (`@media screen and (max-width: 749px)`), refined `.page-width--product-main .product__media-wrapper .product__media-share.share-button__button`:
+    - Reduced top-right offset from `1.2rem` to `0.8rem`.
+    - Reduced circular control diameter from `3.6rem` to `2.9rem` (`width/height/min-*`), with `!important` to reliably override older global rules.
+    - Added `padding: 0 !important` and `line-height: 0` to prevent any internal offset and keep icon centering exact.
+    - Softened visual prominence with slightly lighter background (`rgba(255, 255, 255, 0.86)`) and lower shadow (`0 0.5rem 1.2rem rgba(16, 18, 22, 0.14)`).
+  - Refined icon alignment for `.page-width--product-main .product__media-wrapper .product__media-share .icon`:
+    - Reduced icon size from `1.5rem` to `1.3rem`.
+    - Added `display: block`, `margin: 0`, and `flex: 0 0 auto` to keep the glyph perfectly centered inside the circular button.
+
+Why this addresses the issue
+- The share button occupies less visual space on mobile PDP.
+- The icon is centered by explicit flex/padding/line-height handling, removing baseline/margin drift.
+- The control sits closer to the top corner and appears less dominant over the product image.
+
+Validation snapshot
+- Verified updated selectors and values are present in `layout/theme.liquid` under the mobile PDP share overlay rules.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Mobile QA at `320/375/390/430` widths to confirm center alignment and non-overlap on varied product media.
+2) Tap-test share action to ensure interaction remains unchanged after style-only adjustments.
+
+Patch: Mobile PDP counter resized and pinned inside image bottom-right
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-counter-inside-image-bottom-right
+
+Changes applied (evidence-first)
+- `snippets/product-media-gallery.liquid`
+  - Moved the mobile gallery progress block (`.product-media-progress` with `data-gallery-stepper`) from a sibling of `#GalleryViewer-*` to inside the `slider-component` container.
+  - This makes the counter/progress overlay position relative to the actual image slider frame instead of the area below it.
+- `layout/theme.liquid`
+  - In the final mobile PDP override block (`@media screen and (max-width: 749px)`), updated mobile counter/progress styling:
+    - `.product-media-progress` is now `position: absolute` at the gallery bottom-right with bounded max width.
+    - `.product-media-progress__meta` was reduced in footprint (smaller min-width, padding, font-size, and tighter spacing) for a subtler counter badge.
+    - `.product-media-progress__track` was shortened and thinned to sit under the badge while staying inside the image area.
+    - Added `.product-media-progress__track::after` override to keep the progress fill legible against the image overlay treatment.
+
+Why this addresses the issue
+- The counter is now anchored inside the product image frame, bottom-right, instead of appearing outside/below image boundaries.
+- The counter badge is visibly smaller and less dominant while remaining readable.
+- The progress indicator remains attached to the counter and contained within the image area for consistent mobile navigation context.
+
+Validation snapshot
+- Verified markup location change in `snippets/product-media-gallery.liquid` (progress block now inside `slider-component`).
+- Verified mobile selectors/values in `layout/theme.liquid` for `.product-media-progress`, `.product-media-progress__meta`, and `.product-media-progress__track`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile QA on PDP (`320/375/390/430` widths): confirm the counter/track remain fully inside the image frame on first media and while swiping.
+2) Validate overlap behavior on very busy image corners; if needed, only tune `right`/`bottom` offsets in `.product-media-progress`.
+3) Confirm the counter remains visible when products include mixed media (image/video/model) in the gallery.
+
+Patch: Mobile PDP title-price spacing tightened for compact hierarchy
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-title-price-gap-tighten
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - In the final mobile PDP override block (`@media screen and (max-width: 749px)`), added a targeted adjacency rule:
+    - `.template-product .product__info-container .product__title + [id^='price-']`
+    - `.page-width--product-main .product__info-container .product__title + [id^='price-']`
+  - Set `margin-top: 0.35rem !important;` on the adjacent price block.
+
+Why this addresses the issue
+- The generic mobile stack rule (`.product__info-container > * + *`) still controls overall block rhythm.
+- The new adjacency override only reduces spacing when the price block directly follows the product title, making title and price visually cohesive without compressing unrelated PDP sections.
+
+Validation snapshot
+- Verified the new selector/value block exists in `layout/theme.liquid` within the mobile PDP styles.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile PDP QA at `320/375/390/430` widths to confirm title-to-price spacing feels compact and readable across short and long titles.
+2) Check one product where title is not immediately followed by price to confirm no unintended spacing regressions.
+
+Patch: Mobile PDP media stepper moved closer to image
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-stepper-closer-image
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - In the mobile product media reset block (`@media screen and (max-width: 749px)`), reduced:
+    - `.template-product .page-width--product-main .product__media-list` margin from `0 0 2.2rem` to `0 0 0.65rem`.
+
+Why this addresses the issue
+- The previous `2.2rem` bottom margin created excess vertical gap under the product image before the mobile stepper/progress indicator.
+- Lowering it to `0.65rem` pulls the indicator much closer to the image and uses mobile viewport height more efficiently.
+
+Validation snapshot
+- Confirmed updated value exists in `layout/theme.liquid`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile PDP QA at `320/375/390/430` widths to confirm the indicator now sits snugly under/against the image with no awkward gap.
+2) Verify no overlap regressions on products with mixed media ratios (portrait, landscape, video).

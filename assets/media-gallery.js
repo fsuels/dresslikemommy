@@ -8,8 +8,14 @@ if (!customElements.get('media-gallery')) {
           liveRegion: this.querySelector('[id^="GalleryStatus"]'),
           viewer: this.querySelector('[id^="GalleryViewer"]'),
           thumbnails: this.querySelector('[id^="GalleryThumbnails"]'),
+          mobileShareButton: this.querySelector('[data-mobile-share-button]'),
         };
         this.mql = window.matchMedia('(min-width: 750px)');
+
+        if (this.elements.mobileShareButton) {
+          this.elements.mobileShareButton.addEventListener('click', this.handleMobileShareClick.bind(this));
+        }
+
         if (!this.elements.thumbnails) return;
 
         this.elements.viewer.addEventListener('slideChanged', debounce(this.onSlideChanged.bind(this), 500));
@@ -28,7 +34,29 @@ if (!customElements.get('media-gallery')) {
         this.setActiveThumbnail(thumbnail);
       }
 
-      setActiveMedia(mediaId) {
+      handleMobileShareClick() {
+        const shareUrl = window.location.href;
+
+        if (navigator.share) {
+          navigator.share({ url: shareUrl, title: document.title }).catch(() => {});
+          return;
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard
+            .writeText(shareUrl)
+            .then(() => {
+              this.elements.mobileShareButton.classList.add('is-copied');
+              window.setTimeout(() => {
+                this.elements.mobileShareButton.classList.remove('is-copied');
+              }, 1400);
+            })
+            .catch(() => {});
+        }
+      }
+
+      setActiveMedia(mediaId, options = {}) {
+        const { preventScroll = false } = options;
         const activeMedia =
           this.elements.viewer.querySelector(`[data-media-id="${mediaId}"]`) ||
           this.elements.viewer.querySelector('[data-media-id]');
@@ -45,6 +73,7 @@ if (!customElements.get('media-gallery')) {
           if (!this.mql.matches || this.elements.thumbnails) {
             activeMedia.parentElement.scrollTo({ left: activeMedia.offsetLeft });
           }
+          if (preventScroll) return;
           const activeMediaRect = activeMedia.getBoundingClientRect();
           // Don't scroll if the image is already in view
           if (activeMediaRect.top > -0.5) return;

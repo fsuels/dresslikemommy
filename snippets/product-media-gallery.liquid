@@ -121,6 +121,14 @@
         {%- endunless -%}
       {%- endfor -%}
     </ul>
+    <button
+      type="button"
+      class="share-button__button product__media-share medium-hide large-up-hide"
+      data-mobile-share-button
+      aria-label="{{ 'sections.main-product.blocks.share.name' | t }}"
+    >
+      {% render 'icon-share' %}
+    </button>
     {%- liquid
       assign initial_step_progress = 100
       if media_count > 0
@@ -151,17 +159,17 @@
         {% render 'icon-caret' %}
       </button>
     </div>
-  </slider-component>
-  {%- if media_count > 1 -%}
-    <div class="product-media-progress medium-hide large-up-hide" data-gallery-stepper style="--media-progress: {{ initial_step_progress }}%;">
-      <div class="product-media-progress__meta">
-        <span class="product-media-progress__current">1</span>
-        <span class="product-media-progress__separator" aria-hidden="true">/</span>
-        <span class="product-media-progress__total">{{ media_count }}</span>
+    {%- if media_count > 1 -%}
+      <div class="product-media-progress medium-hide large-up-hide" data-gallery-stepper style="--media-progress: {{ initial_step_progress }}%;">
+        <div class="product-media-progress__meta">
+          <span class="product-media-progress__current">1</span>
+          <span class="product-media-progress__separator" aria-hidden="true">/</span>
+          <span class="product-media-progress__total">{{ media_count }}</span>
+        </div>
+        <span class="product-media-progress__track" aria-hidden="true"></span>
       </div>
-      <span class="product-media-progress__track" aria-hidden="true"></span>
-    </div>
-  {%- endif -%}
+    {%- endif -%}
+  </slider-component>
   {%- if first_3d_model -%}
     <button
       class="button button--full-width product__xr-button"

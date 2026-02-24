@@ -810,16 +810,6 @@
                               >
                                 {% render 'icon-caret' %}
                               </button>
-                  
-<!-- Add this inside the <div class="slider-buttons"> in the appropriate place -->
-  <button class="share-button__button mobile-share">
-    <svg width="13" height="12" viewBox="0 0 13 12" class="icon icon-share" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-      <path d="M1.625 8.125V10.2917C1.625 10.579 1.73914 10.8545 1.9423 11.0577C2.14547 11.2609 2.42102 11.375 2.70833 11.375H10.2917C10.579 11.375 10.8545 11.2609 11.0577 11.0577C11.2609 10.8545 11.375 10.579 11.375 10.2917V8.125" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.14775 1.27137C6.34301 1.0761 6.65959 1.0761 6.85485 1.27137L9.56319 3.9797C9.75845 4.17496 9.75845 4.49154 9.56319 4.6868C9.36793 4.88207 9.05135 4.88207 8.85609 4.6868L6.5013 2.33203L4.14652 4.6868C3.95126 4.88207 3.63468 4.88207 3.43942 4.6868C3.24415 4.49154 3.24415 4.17496 3.43942 3.9797L6.14775 1.27137Z" fill="currentColor"></path>
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 1.125C6.77614 1.125 7 1.34886 7 1.625V8.125C7 8.40114 6.77614 8.625 6.5 8.625C6.22386 8.625 6 8.40114 6 8.125V1.625C6 1.34886 6.22386 1.125 6.5 1.125Z" fill="currentColor"></path>
-    </svg>
-                             </button>
-                              
                             </div>
                           {%- endif -%}
                         </slideshow-component>
@@ -921,27 +911,325 @@
 
 {%- comment -%} Sticky mobile Add to Cart bar {%- endcomment -%}
 {%- if product.available -%}
-<div class="sticky-mobile-atc" id="StickyMobileATC">
-  <span class="sticky-mobile-atc__price">{{ product.selected_or_first_available_variant.price | money }}</span>
-  <button class="sticky-mobile-atc__btn" onclick="document.querySelector('.product-form__submit')?.click()">
-    ADD TO CART
-  </button>
-</div>
-<script>
-  // Show sticky bar when original ATC scrolls out of view
-  (function() {
-    var sticky = document.getElementById('StickyMobileATC');
-    if (!sticky || window.innerWidth > 749) return;
-    var atcBtn = document.querySelector('.product-form__submit');
-    if (!atcBtn) return;
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        sticky.classList.toggle('visible', !entry.isIntersecting);
+  <div class="sticky-mobile-atc" id="StickyMobileATC-{{ section.id }}">
+    <span class="sticky-mobile-atc__price" data-sticky-mobile-atc-price>
+      {{- product.selected_or_first_available_variant.price | money -}}
+    </span>
+    <button type="button" class="sticky-mobile-atc__btn" data-sticky-mobile-atc-button>
+      {{- 'products.product.add_to_cart' | t -}}
+    </button>
+  </div>
+  <script>
+    (function () {
+      var sticky = document.getElementById('StickyMobileATC-{{ section.id }}');
+      if (!sticky) return;
+
+      var mobileMedia = window.matchMedia('(max-width: 749px)');
+      var stickyBtn = sticky.querySelector('[data-sticky-mobile-atc-button]');
+      var stickyPrice = sticky.querySelector('[data-sticky-mobile-atc-price]');
+      var productForm = document.getElementById('product-form-{{ section.id }}');
+      var atcBtn = document.getElementById('ProductSubmitButton-{{ section.id }}');
+      var variantSelects = document.getElementById('variant-selects-{{ section.id }}');
+      var priceContainer = document.getElementById('price-{{ section.id }}');
+      var atcIsInViewport = true;
+      var canShowSticky = true;
+      var highlightedGroup = null;
+      var addToCartLabel = {{ 'products.product.add_to_cart' | t | json }};
+      var chooseOptionsLabel = 'Choose options';
+
+      if (!atcBtn && productForm) atcBtn = productForm.querySelector('[name="add"]');
+      if (!atcBtn || !stickyBtn) return;
+
+      function getButtonLabel() {
+        var labelNode = atcBtn.querySelector('span');
+        if (!labelNode) return addToCartLabel;
+        var labelText = labelNode.textContent ? labelNode.textContent.trim() : '';
+        return labelText || addToCartLabel;
+      }
+
+      function toggleStickyVisibility() {
+        sticky.classList.toggle('visible', mobileMedia.matches && !atcIsInViewport && canShowSticky);
+      }
+
+      function getOptionNameFromGroup(group) {
+        if (!group) return '';
+
+        var select = group.querySelector('select[name]');
+        if (select && select.name) {
+          var selectMatch = select.name.match(/^options\[(.+)\]$/);
+          return (selectMatch ? selectMatch[1] : select.name).trim();
+        }
+
+        var radio = group.querySelector('input[type="radio"][name]');
+        if (radio && radio.name) return radio.name.trim();
+
+        var label = group.querySelector('legend, label.form__label, .form__label');
+        if (!label || !label.textContent) return '';
+
+        var labelText = label.textContent.replace(/\s+/g, ' ').trim();
+        if (labelText.indexOf(':') > -1) labelText = labelText.split(':')[0];
+        return labelText.trim();
+      }
+
+      function getSelectedOptionValue(group) {
+        if (!group) return '';
+
+        var select = group.querySelector('select');
+        if (select) return (select.value || '').trim();
+
+        var checkedRadio = group.querySelector('input[type="radio"]:checked');
+        if (checkedRadio) return (checkedRadio.value || '').trim();
+
+        return '';
+      }
+
+      function getRequiredSelectionState() {
+        var selectionState = {
+          hasRequiredOptions: false,
+          hasSizeOption: false,
+          hasColorOption: false,
+          sizeSelected: false,
+          colorSelected: false,
+          isComplete: true,
+          missingRequiredOption: null,
+        };
+
+        if (!variantSelects) return selectionState;
+
+        var optionGroups = Array.from(variantSelects.querySelectorAll('.product-form__input'));
+        for (var i = 0; i < optionGroups.length; i += 1) {
+          var group = optionGroups[i];
+          var optionName = getOptionNameFromGroup(group).toLowerCase();
+          var selectedValue = getSelectedOptionValue(group);
+          var isSizeOption = /\bsize\b/.test(optionName);
+          var isColorOption = /colou?r/.test(optionName);
+
+          if (!isSizeOption && !isColorOption) continue;
+
+          selectionState.hasRequiredOptions = true;
+
+          if (isSizeOption) {
+            selectionState.hasSizeOption = true;
+            if (selectedValue !== '') {
+              selectionState.sizeSelected = true;
+            } else if (!selectionState.missingRequiredOption) {
+              selectionState.missingRequiredOption = {
+                group: group,
+                focusTarget: group.querySelector('select, input[type="radio"]'),
+                anchor: group.querySelector('label, legend, .form__label') || group,
+              };
+            }
+          }
+
+          if (isColorOption) {
+            selectionState.hasColorOption = true;
+            if (selectedValue !== '') {
+              selectionState.colorSelected = true;
+            } else if (!selectionState.missingRequiredOption) {
+              selectionState.missingRequiredOption = {
+                group: group,
+                focusTarget: group.querySelector('select, input[type="radio"]'),
+                anchor: group.querySelector('label, legend, .form__label') || group,
+              };
+            }
+          }
+        }
+
+        selectionState.isComplete =
+          (!selectionState.hasSizeOption || selectionState.sizeSelected) &&
+          (!selectionState.hasColorOption || selectionState.colorSelected);
+
+        if (selectionState.isComplete) {
+          selectionState.missingRequiredOption = null;
+        }
+
+        return selectionState;
+      }
+
+      function getFirstMissingOption() {
+        if (!variantSelects) return null;
+
+        var optionGroups = Array.from(variantSelects.querySelectorAll('.product-form__input'));
+        for (var i = 0; i < optionGroups.length; i += 1) {
+          var group = optionGroups[i];
+          var select = group.querySelector('select');
+          if (select && select.value === '') {
+            return {
+              group: group,
+              focusTarget: select,
+              anchor: group.querySelector('label, legend, .form__label') || group,
+            };
+          }
+
+          var radios = Array.from(group.querySelectorAll('input[type="radio"]'));
+          if (radios.length && !group.querySelector('input[type="radio"]:checked')) {
+            return {
+              group: group,
+              focusTarget: radios[0],
+              anchor: group.querySelector('legend, .form__label') || group,
+            };
+          }
+        }
+
+        return null;
+      }
+
+      function highlightOptionGroup(group) {
+        if (!group) return;
+
+        if (highlightedGroup && highlightedGroup !== group) {
+          highlightedGroup.classList.remove('sticky-option-target--highlight');
+        }
+
+        highlightedGroup = group;
+        group.classList.add('sticky-option-target--highlight');
+
+        window.setTimeout(function () {
+          group.classList.remove('sticky-option-target--highlight');
+          if (highlightedGroup === group) highlightedGroup = null;
+        }, 1400);
+      }
+
+      function scrollToMissingOption(missingOption) {
+        if (!missingOption) return;
+
+        highlightOptionGroup(missingOption.group);
+
+        var anchor = missingOption.anchor || missingOption.group || missingOption.focusTarget;
+        if (anchor && anchor.getBoundingClientRect) {
+          var offset = 112;
+          var topPosition = window.scrollY + anchor.getBoundingClientRect().top - offset;
+          window.scrollTo({ top: Math.max(topPosition, 0), behavior: 'smooth' });
+        }
+
+        if (missingOption.focusTarget && typeof missingOption.focusTarget.focus === 'function') {
+          try {
+            missingOption.focusTarget.focus({ preventScroll: true });
+          } catch (e) {
+            missingOption.focusTarget.focus();
+          }
+        }
+      }
+
+      function syncStickyPrice() {
+        if (!stickyPrice || !priceContainer) return;
+
+        var salePrice = priceContainer.querySelector('.price__sale .price-item--sale');
+        var regularPrice = priceContainer.querySelector('.price__regular .price-item--regular');
+        var fallbackPrice = priceContainer.querySelector('.price-item');
+        var activePrice = salePrice || regularPrice || fallbackPrice;
+
+        if (!activePrice || !activePrice.textContent) return;
+
+        var priceText = activePrice.textContent.replace(/\s+/g, ' ').trim();
+        if (priceText) stickyPrice.textContent = priceText;
+      }
+
+      function syncStickyState() {
+        var requiredSelectionState = getRequiredSelectionState();
+        var missingOption = getFirstMissingOption();
+        syncStickyPrice();
+
+        if (requiredSelectionState.hasRequiredOptions && !requiredSelectionState.isComplete) {
+          canShowSticky = false;
+          sticky.classList.add('requires-options');
+          stickyBtn.textContent = chooseOptionsLabel;
+          stickyBtn.removeAttribute('disabled');
+          toggleStickyVisibility();
+          return;
+        }
+
+        canShowSticky = true;
+
+        if (missingOption) {
+          sticky.classList.add('requires-options');
+          stickyBtn.textContent = chooseOptionsLabel;
+          stickyBtn.removeAttribute('disabled');
+          toggleStickyVisibility();
+          return;
+        }
+
+        sticky.classList.remove('requires-options');
+        stickyBtn.textContent = getButtonLabel();
+
+        if (atcBtn.hasAttribute('disabled')) {
+          stickyBtn.setAttribute('disabled', 'disabled');
+        } else {
+          stickyBtn.removeAttribute('disabled');
+        }
+
+        toggleStickyVisibility();
+      }
+
+      stickyBtn.addEventListener('click', function (event) {
+        var requiredSelectionState = getRequiredSelectionState();
+        if (requiredSelectionState.hasRequiredOptions && !requiredSelectionState.isComplete) {
+          event.preventDefault();
+          scrollToMissingOption(requiredSelectionState.missingRequiredOption || getFirstMissingOption());
+          return;
+        }
+
+        var missingOption = getFirstMissingOption();
+
+        if (missingOption) {
+          event.preventDefault();
+          scrollToMissingOption(missingOption);
+          return;
+        }
+
+        if (atcBtn.hasAttribute('disabled')) return;
+        atcBtn.click();
       });
-    }, { threshold: 0 });
-    observer.observe(atcBtn);
-  })();
-</script>
+
+      var visibilityObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            atcIsInViewport = entry.isIntersecting;
+            toggleStickyVisibility();
+          });
+        },
+        { threshold: 0 }
+      );
+      visibilityObserver.observe(atcBtn);
+
+      if (variantSelects) {
+        variantSelects.addEventListener('change', function () {
+          window.requestAnimationFrame(syncStickyState);
+        });
+      }
+
+      var atcObserver = new MutationObserver(syncStickyState);
+      atcObserver.observe(atcBtn, {
+        attributes: true,
+        attributeFilter: ['disabled'],
+        childList: true,
+        subtree: true,
+        characterData: true,
+      });
+
+      if (priceContainer) {
+        var priceObserver = new MutationObserver(syncStickyPrice);
+        priceObserver.observe(priceContainer, {
+          childList: true,
+          subtree: true,
+          characterData: true,
+        });
+      }
+
+      function handleViewportChange() {
+        if (!mobileMedia.matches) sticky.classList.remove('visible');
+        syncStickyState();
+      }
+
+      if (typeof mobileMedia.addEventListener === 'function') {
+        mobileMedia.addEventListener('change', handleViewportChange);
+      } else if (typeof mobileMedia.addListener === 'function') {
+        mobileMedia.addListener(handleViewportChange);
+      }
+
+      syncStickyState();
+    })();
+  </script>
 {%- endif -%}
 
 
