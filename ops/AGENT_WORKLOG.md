@@ -2622,3 +2622,125 @@ Why this addresses the issue
 Open TODOs (next session)
 1) If the same 401 token error recurs, fully reset CLI auth (`shopify auth logout` then `shopify auth login`) before restarting `shopify theme dev`.
 2) Prefer restarting `shopify theme dev` when local preview appears blank or unauthorized after long idle periods.
+
+Patch: PDP variant partial-selection label fix (color-first no longer shows unavailable)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-pdp-variant-partial-selection-choose-options
+
+Changes applied (evidence-first)
+- `assets/global.js`
+  - Updated `VariantSelects.onVariantChange()` so when no matching variant is found, it distinguishes between:
+    - incomplete option selection (e.g. `size` still blank), and
+    - truly unavailable combination.
+  - For incomplete selection, it now sets the submit button label to `window.variantStrings.chooseOptions` instead of `Unavailable`.
+  - Updated `setUnavailable()` signature to accept an optional button label argument, defaulting to `window.variantStrings.unavailable` for existing behavior.
+- `layout/theme.liquid`
+  - Added `chooseOptions` to `window.variantStrings`:
+    - `chooseOptions: {{ 'products.product.choose_options' | t }}`
+
+Why this addresses the request
+- Selecting color first while size is still unselected no longer shows `Unavailable` on the Add to cart button.
+- The button now shows `Choose options` until all required options are selected.
+
+Validation snapshot
+- Syntax check passed: `node --check assets/global.js`.
+- Verified diffs for `assets/global.js` and `layout/theme.liquid`.
+- No browser manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA: select Color first with Size still blank; confirm button label is `Choose options` (not `Unavailable`).
+2) Confirm actual unavailable combinations still show `Unavailable` as expected.
+
+Patch: Mobile PDP sticky ATC requires explicit Size+Color and hides over media
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-sticky-atc-size-color-media-visibility-gate
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid`
+  - Extended sticky-mobile-ATC gating to require explicit shopper confirmation for both Size and Color/Colour option groups before sticky can become visible.
+  - Added Color option parsing/state tracking (`isColorOptionGroup`, `getColorSelectionState`, `hasUserConfirmedColorSelection`) parallel to existing Size handling.
+  - Updated visibility flow so sticky remains hidden whenever any required option is incomplete/unconfirmed (including non-size/color missing options), instead of showing a `Choose options` sticky state.
+  - Added media viewport guard with IntersectionObserver on `#GalleryViewer-{{ section.id }}` / `#MediaGallery-{{ section.id }}` so sticky is hidden when main media is visible.
+  - Kept existing IntersectionObserver on primary ATC and reinforced combined visibility condition:
+    - mobile only,
+    - primary ATC out of viewport,
+    - main media out of viewport,
+    - required selections complete/confirmed.
+  - Hardened interactive option detection to ignore option groups hidden via CSS (`display: none` / `visibility: hidden`) so hidden single-value groups do not block sticky logic.
+
+Why this addresses the request
+- Sticky ATC no longer appears after selecting only Size; Color must also be explicitly selected.
+- Sticky now appears only when shopper scrolls down and the original ATC is out of view, with both required selections complete.
+- Scrolling back up to the main image hides sticky so it does not overlay media.
+- Scrolling back up to where the original ATC is visible keeps sticky hidden.
+
+Validation snapshot
+- Verified patch via `git diff -- sections/main-product.liquid`.
+- Reviewed updated sticky script flow with `nl -ba sections/main-product.liquid`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile PDP QA: select Size only; confirm sticky stays hidden until Color is explicitly selected.
+2) Manual mobile PDP QA: with Size+Color selected, scroll past primary ATC; confirm sticky appears only after ATC leaves viewport.
+3) Manual mobile PDP QA: scroll back up to gallery and then to ATC area; confirm sticky hides in both states.
+
+Patch: PDP desktop share button moved to media-overlay position
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-pdp-desktop-share-overlay-alignment
+
+Changes applied (evidence-first)
+- `snippets/product-media-gallery.liquid`
+  - Removed `medium-hide large-up-hide` from the gallery share button so the same media-overlay share control renders on desktop as well as mobile.
+- `layout/theme.liquid`
+  - Hid the legacy in-info share block for PDP across breakpoints:
+    - `.page-width--product-main .product__info-container > .share-button { display: none !important; }`
+  - Promoted media share positioning styles to shared scope (not mobile-only), so the gallery share button stays in the same overlay position on desktop and mobile.
+  - Kept a small desktop offset override (`top/right: 1rem`) and preserved copied-state styling.
+
+Why this addresses the request
+- Desktop now uses the same share button location pattern as mobile (overlay on product media).
+- The previous share button location in the product info column is suppressed.
+
+Validation snapshot
+- Verified diffs for:
+  - `snippets/product-media-gallery.liquid`
+  - `layout/theme.liquid`
+- No browser manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on desktop and mobile to confirm share button placement and click behavior (native share/copy fallback).
+2) Confirm no unwanted overlap with gallery controls on desktop across common viewport widths.
+
+Patch: Related products desktop carousel (3-up with centered cards)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-related-products-desktop-carousel-3-up-centered
+
+Changes applied (evidence-first)
+- `sections/related-products.liquid`
+  - Added desktop carousel gating for recommendations overflow:
+    - `show_desktop_slider = recommendations.products_count > 3`
+  - Forced desktop carousel viewport to 3 cards when enabled:
+    - `desktop_columns = 3`
+  - Wrapped related products list in `slider-component` and enabled slider classes when needed:
+    - mobile-only overflow keeps existing swipe behavior (`slider--mobile`)
+    - when desktop carousel is enabled, small screens use `slider--tablet` while desktop uses `slider--desktop` so desktop arrows remain visible
+  - Added desktop-only slider controls (prev/next + counter) with proper `aria-controls` and labels.
+- `assets/section-related-products.css`
+  - Added desktop centering rules so non-slider related-product cards are centered.
+  - Added scoped desktop slider overrides for this section to remove inherited first-slide left offset and trailing spacer.
+  - Added a scoped 3-up width rule for `.slider--desktop.grid--3-col-desktop` so three cards are centered and visible per viewport.
+
+Why this addresses the request
+- On desktop (`>=990px`), when “You may also like” has more than 3 products, it now behaves as a click-through carousel instead of wrapping products below.
+- The carousel view is constrained to 3 cards and centered in the section.
+
+Validation snapshot
+- Verified diffs for:
+  - `sections/related-products.liquid`
+  - `assets/section-related-products.css`
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP desktop QA: with 4+ recommendations, confirm only 3 cards are visible at once and next/prev buttons move through remaining products.
+2) Manual PDP desktop QA: confirm recommendation cards are centered and do not show unintended left/right offsets.
+3) Manual PDP mobile QA: confirm existing swipe behavior remains intact and no extra desktop controls appear.

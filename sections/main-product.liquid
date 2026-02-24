@@ -1375,17 +1375,23 @@
       var stickyBtn = sticky.querySelector('[data-sticky-mobile-atc-button]');
       var stickyPrice = sticky.querySelector('[data-sticky-mobile-atc-price]');
       var stickySize = sticky.querySelector('[data-sticky-mobile-atc-size]');
+      var mediaContainer =
+        document.getElementById('GalleryViewer-{{ section.id }}') ||
+        document.getElementById('MediaGallery-{{ section.id }}');
       var productForm = document.getElementById('product-form-{{ section.id }}');
       var atcBtn = document.getElementById('ProductSubmitButton-{{ section.id }}');
       var variantSelects = document.getElementById('variant-selects-{{ section.id }}');
       var priceContainer = document.getElementById('price-{{ section.id }}');
       var atcIsInViewport = true;
+      var mediaIsInViewport = !!mediaContainer;
       var canShowSticky = true;
       var hasUserConfirmedSizeSelection = false;
+      var hasUserConfirmedColorSelection = false;
       var highlightedGroup = null;
       var addToCartLabel = {{ 'products.product.add_to_cart' | t | json }};
       var chooseOptionsLabel = 'Choose options';
       var chooseSizeLabel = 'Select size';
+      var chooseColorLabel = 'Select color';
 
       if (!atcBtn && productForm) atcBtn = productForm.querySelector('[name="add"]');
       if (!atcBtn || !stickyBtn) return;
@@ -1411,7 +1417,7 @@
       }
 
       function toggleStickyVisibility() {
-        var shouldShow = mobileMedia.matches && !atcIsInViewport && canShowSticky;
+        var shouldShow = mobileMedia.matches && !atcIsInViewport && !mediaIsInViewport && canShowSticky;
         sticky.classList.toggle('visible', shouldShow);
         sticky.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
         syncBodyOffset(shouldShow);
@@ -1441,6 +1447,10 @@
         return /\bsize\b/.test(getOptionNameFromGroup(group).toLowerCase());
       }
 
+      function isColorOptionGroup(group) {
+        return /\bcolou?r\b/.test(getOptionNameFromGroup(group).toLowerCase());
+      }
+
       function getSelectedOptionValue(group) {
         if (!group) return '';
 
@@ -1454,19 +1464,24 @@
       }
 
       function isInteractiveOptionGroup(group) {
-        return !!group && !group.hidden;
+        if (!group || group.hidden) return false;
+
+        var computedStyle = window.getComputedStyle(group);
+        return computedStyle.display !== 'none' && computedStyle.visibility !== 'hidden';
       }
 
-      function markSizeSelectionFromEvent(event) {
+      function markRequiredSelectionFromEvent(event) {
         if (!event || !event.target) return;
 
         var control = event.target.closest('select, input[type="radio"]');
         if (!control) return;
 
         var group = control.closest('.product-form__input');
-        if (!group || !isInteractiveOptionGroup(group) || !isSizeOptionGroup(group)) return;
+        if (!group || !isInteractiveOptionGroup(group)) return;
 
-        hasUserConfirmedSizeSelection = getSelectedOptionValue(group) !== '';
+        var selectedValue = getSelectedOptionValue(group) !== '';
+        if (isSizeOptionGroup(group)) hasUserConfirmedSizeSelection = selectedValue;
+        if (isColorOptionGroup(group)) hasUserConfirmedColorSelection = selectedValue;
       }
 
       function getSizeSelectionState() {
@@ -1514,6 +1529,56 @@
 
         if (selectionState.isComplete) {
           selectionState.missingSizeOption = null;
+        }
+
+        return selectionState;
+      }
+
+      function getColorSelectionState() {
+        var selectionState = {
+          hasColorOption: false,
+          totalColorOptions: 0,
+          selectedColorValues: [],
+          isComplete: true,
+          missingColorOption: null,
+          firstColorOption: null,
+        };
+
+        if (!variantSelects) return selectionState;
+
+        var optionGroups = Array.from(variantSelects.querySelectorAll('.product-form__input'));
+        for (var i = 0; i < optionGroups.length; i += 1) {
+          var group = optionGroups[i];
+          if (!isInteractiveOptionGroup(group)) continue;
+          if (!isColorOptionGroup(group)) continue;
+
+          selectionState.hasColorOption = true;
+          selectionState.totalColorOptions += 1;
+          if (!selectionState.firstColorOption) {
+            selectionState.firstColorOption = {
+              group: group,
+              focusTarget: group.querySelector('select, input[type="radio"]'),
+              anchor: group.querySelector('label, legend, .form__label') || group,
+            };
+          }
+          var selectedValue = getSelectedOptionValue(group);
+          if (selectedValue !== '') {
+            selectionState.selectedColorValues.push(selectedValue);
+          } else if (!selectionState.missingColorOption) {
+            selectionState.missingColorOption = {
+              group: group,
+              focusTarget: group.querySelector('select, input[type="radio"]'),
+              anchor: group.querySelector('label, legend, .form__label') || group,
+            };
+          }
+        }
+
+        selectionState.isComplete =
+          !selectionState.hasColorOption ||
+          selectionState.selectedColorValues.length === selectionState.totalColorOptions;
+
+        if (selectionState.isComplete) {
+          selectionState.missingColorOption = null;
         }
 
         return selectionState;
@@ -1615,6 +1680,7 @@
 
       function syncStickyState() {
         var sizeSelectionState = getSizeSelectionState();
+        var colorSelectionState = getColorSelectionState();
         var missingOption = getFirstMissingOption();
         syncStickyPrice();
         syncStickySize(sizeSelectionState);
@@ -1628,9 +1694,17 @@
           return;
         }
 
-        canShowSticky = true;
+        if (colorSelectionState.hasColorOption && (!hasUserConfirmedColorSelection || !colorSelectionState.isComplete)) {
+          canShowSticky = false;
+          sticky.classList.add('requires-options');
+          stickyBtn.textContent = chooseColorLabel;
+          stickyBtn.removeAttribute('disabled');
+          toggleStickyVisibility();
+          return;
+        }
 
         if (missingOption) {
+          canShowSticky = false;
           sticky.classList.add('requires-options');
           stickyBtn.textContent = chooseOptionsLabel;
           stickyBtn.removeAttribute('disabled');
@@ -1638,6 +1712,7 @@
           return;
         }
 
+        canShowSticky = true;
         sticky.classList.remove('requires-options');
         stickyBtn.textContent = getButtonLabel();
 
@@ -1656,6 +1731,15 @@
           event.preventDefault();
           scrollToMissingOption(
             sizeSelectionState.missingSizeOption || sizeSelectionState.firstSizeOption || getFirstMissingOption()
+          );
+          return;
+        }
+
+        var colorSelectionState = getColorSelectionState();
+        if (colorSelectionState.hasColorOption && (!hasUserConfirmedColorSelection || !colorSelectionState.isComplete)) {
+          event.preventDefault();
+          scrollToMissingOption(
+            colorSelectionState.missingColorOption || colorSelectionState.firstColorOption || getFirstMissingOption()
           );
           return;
         }
@@ -1683,13 +1767,26 @@
       );
       visibilityObserver.observe(atcBtn);
 
+      if (mediaContainer) {
+        var mediaObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              mediaIsInViewport = entry.isIntersecting;
+              toggleStickyVisibility();
+            });
+          },
+          { threshold: 0 }
+        );
+        mediaObserver.observe(mediaContainer);
+      }
+
       if (variantSelects) {
         variantSelects.addEventListener('change', function (event) {
-          markSizeSelectionFromEvent(event);
+          markRequiredSelectionFromEvent(event);
           window.requestAnimationFrame(syncStickyState);
         });
         variantSelects.addEventListener('click', function (event) {
-          markSizeSelectionFromEvent(event);
+          markRequiredSelectionFromEvent(event);
           window.requestAnimationFrame(syncStickyState);
         });
       }

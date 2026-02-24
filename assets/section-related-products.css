@@ -5,3 +5,40 @@
 .related-products__heading {
   margin: 0 0 3rem;
 }
+
+.related-products slider-component {
+  display: block;
+}
+
+@media screen and (min-width: 990px) {
+  .related-products .grid:not(.slider) {
+    justify-content: center;
+  }
+
+  .related-products .grid:not(.slider) .grid__item {
+    flex-grow: 0;
+  }
+
+  .related-products .slider-component-desktop {
+    --desktop-margin-left-first-item: 0;
+  }
+
+  .related-products .slider.slider--desktop {
+    scroll-padding-left: 0;
+  }
+
+  .related-products .slider.slider--desktop .slider__slide:first-child {
+    margin-left: 0;
+    scroll-margin-left: 0;
+  }
+
+  .related-products .slider.slider--desktop::after {
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .related-products .slider.slider--desktop.grid--3-col-desktop .grid__item {
+    width: calc((100% - var(--grid-desktop-horizontal-spacing) * 2) / 3);
+    max-width: calc((100% - var(--grid-desktop-horizontal-spacing) * 2) / 3);
+  }
+}

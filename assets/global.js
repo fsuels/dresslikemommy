@@ -1003,8 +1003,11 @@ class VariantSelects extends HTMLElement {
     this.updateVariantStatuses();
 
     if (!this.currentVariant) {
+      const isOptionSelectionIncomplete = this.options.some((option) => option == null || option === '');
       this.toggleAddButton(true, '', true);
-      this.setUnavailable();
+      this.setUnavailable(
+        isOptionSelectionIncomplete ? window.variantStrings.chooseOptions : window.variantStrings.unavailable
+      );
     } else {
       this.updateURL();
       this.updateVariantInput();
@@ -1301,7 +1304,7 @@ class VariantSelects extends HTMLElement {
     if (!modifyClass) return;
   }
 
-  setUnavailable() {
+  setUnavailable(buttonText = window.variantStrings.unavailable) {
     const button = document.getElementById(`product-form-${this.dataset.section}`);
     const addButton = button.querySelector('[name="add"]');
     const addButtonText = button.querySelector('[name="add"] > span');
@@ -1314,7 +1317,7 @@ class VariantSelects extends HTMLElement {
     const qtyRules = document.getElementById(`Quantity-Rules-${this.dataset.section}`);
 
     if (!addButton) return;
-    addButtonText.textContent = window.variantStrings.unavailable;
+    addButtonText.textContent = buttonText;
     if (price) price.classList.add('hidden');
     if (inventory) inventory.classList.add('hidden');
     if (sku) sku.classList.add('hidden');
