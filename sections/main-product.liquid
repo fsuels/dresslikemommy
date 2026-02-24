@@ -1306,6 +1306,7 @@
       var priceContainer = document.getElementById('price-{{ section.id }}');
       var atcIsInViewport = true;
       var canShowSticky = true;
+      var hasUserConfirmedSizeSelection = false;
       var highlightedGroup = null;
       var addToCartLabel = {{ 'products.product.add_to_cart' | t | json }};
       var chooseOptionsLabel = 'Choose options';
@@ -1321,8 +1322,24 @@
         return labelText || addToCartLabel;
       }
 
+      function syncBodyOffset(isVisible) {
+        if (!document.body) return;
+
+        if (isVisible) {
+          document.body.classList.add('sticky-mobile-atc-visible');
+          document.body.style.setProperty('--sticky-mobile-atc-offset', sticky.offsetHeight + 'px');
+          return;
+        }
+
+        document.body.classList.remove('sticky-mobile-atc-visible');
+        document.body.style.removeProperty('--sticky-mobile-atc-offset');
+      }
+
       function toggleStickyVisibility() {
-        sticky.classList.toggle('visible', mobileMedia.matches && !atcIsInViewport && canShowSticky);
+        var shouldShow = mobileMedia.matches && !atcIsInViewport && canShowSticky;
+        sticky.classList.toggle('visible', shouldShow);
+        sticky.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
+        syncBodyOffset(shouldShow);
       }
 
       function getOptionNameFromGroup(group) {
@@ -1345,6 +1362,10 @@
         return labelText.trim();
       }
 
+      function isSizeOptionGroup(group) {
+        return /\bsize\b/.test(getOptionNameFromGroup(group).toLowerCase());
+      }
+
       function getSelectedOptionValue(group) {
         if (!group) return '';
 
@@ -1359,6 +1380,18 @@
 
       function isInteractiveOptionGroup(group) {
         return !!group && !group.hidden;
+      }
+
+      function markSizeSelectionFromEvent(event) {
+        if (!event || !event.target) return;
+
+        var control = event.target.closest('select, input[type="radio"]');
+        if (!control) return;
+
+        var group = control.closest('.product-form__input');
+        if (!group || !isInteractiveOptionGroup(group) || !isSizeOptionGroup(group)) return;
+
+        hasUserConfirmedSizeSelection = getSelectedOptionValue(group) !== '';
       }
 
       function getSizeSelectionState() {
@@ -1377,9 +1410,7 @@
         for (var i = 0; i < optionGroups.length; i += 1) {
           var group = optionGroups[i];
           if (!isInteractiveOptionGroup(group)) continue;
-          var optionName = getOptionNameFromGroup(group).toLowerCase();
-          var isSizeOption = /\bsize\b/.test(optionName);
-          if (!isSizeOption) continue;
+          if (!isSizeOptionGroup(group)) continue;
 
           selectionState.hasSizeOption = true;
           selectionState.totalSizeOptions += 1;
@@ -1513,7 +1544,7 @@
         syncStickyPrice();
         syncStickySize(sizeSelectionState);
 
-        if (sizeSelectionState.hasSizeOption && !sizeSelectionState.isComplete) {
+        if (sizeSelectionState.hasSizeOption && (!hasUserConfirmedSizeSelection || !sizeSelectionState.isComplete)) {
           canShowSticky = false;
           sticky.classList.add('requires-options');
           stickyBtn.textContent = chooseSizeLabel;
@@ -1546,7 +1577,7 @@
 
       stickyBtn.addEventListener('click', function (event) {
         var sizeSelectionState = getSizeSelectionState();
-        if (sizeSelectionState.hasSizeOption && !sizeSelectionState.isComplete) {
+        if (sizeSelectionState.hasSizeOption && (!hasUserConfirmedSizeSelection || !sizeSelectionState.isComplete)) {
           event.preventDefault();
           scrollToMissingOption(
             sizeSelectionState.missingSizeOption || sizeSelectionState.firstSizeOption || getFirstMissingOption()
@@ -1579,9 +1610,11 @@
 
       if (variantSelects) {
         variantSelects.addEventListener('change', function (event) {
+          markSizeSelectionFromEvent(event);
           window.requestAnimationFrame(syncStickyState);
         });
         variantSelects.addEventListener('click', function (event) {
+          markSizeSelectionFromEvent(event);
           window.requestAnimationFrame(syncStickyState);
         });
       }

@@ -2434,3 +2434,36 @@ Validation snapshot
 Open TODOs (next session)
 1) Manual desktop PDP QA at ~1024px, ~1440px, and ~1920px to confirm spacing matches the requested compact/centered feel.
 2) Validate both `media_position: left` and `media_position: right` products for balanced spacing.
+
+Patch: Mobile sticky ATC gated by explicit size selection + scroll-safe behavior
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-sticky-mobile-atc-size-gate-scroll-fix
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid`
+  - Updated sticky-mobile-ATC script state with `hasUserConfirmedSizeSelection` (default `false`) so sticky visibility is gated behind explicit shopper interaction with a Size option.
+  - Added `markSizeSelectionFromEvent(event)` and wired it to `variant-selects` `change`/`click` listeners to capture real size-choice interaction.
+  - Added `isSizeOptionGroup(group)` helper and reused it in size-state detection.
+  - Updated sticky visibility logic to keep sticky hidden when Size exists but has not been explicitly selected by the user (even if a variant is preselected in the DOM).
+  - Added body offset syncing when sticky is visible (`sticky-mobile-atc-visible` + `--sticky-mobile-atc-offset`) and `aria-hidden` sync on the sticky bar.
+- `layout/theme.liquid`
+  - In mobile sticky-ATC CSS block, added `body.template-product.sticky-mobile-atc-visible` bottom padding using `--sticky-mobile-atc-offset` + safe area inset.
+  - Added sticky interaction hardening for scroll behavior:
+    - `.sticky-mobile-atc` now uses `pointer-events: none` and `touch-action: pan-y`.
+    - `.sticky-mobile-atc__details` is non-interactive (`pointer-events: none`).
+    - `.sticky-mobile-atc__btn` remains clickable with `pointer-events: auto`, `touch-action: manipulation`, and reduced tap highlight.
+
+Why this addresses the issue
+- Sticky bar no longer appears before an explicit Size selection on the current product page, matching the requested behavior.
+- Sticky visibility still depends on main ATC leaving viewport.
+- Body bottom spacing and touch handling reduce mobile scroll interference from the fixed sticky bar.
+- On a different product page, the script state resets and sticky stays hidden until Size is selected again.
+
+Validation snapshot
+- Reviewed diffs for `sections/main-product.liquid` and `layout/theme.liquid`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile PDP QA: confirm sticky stays hidden until shopper explicitly selects Size.
+2) Manual mobile PDP QA: after Size selection + scroll past main ATC, confirm sticky appears and page scroll remains smooth in both directions.
+3) Manual navigation QA across multiple products to verify sticky selection state does not leak between PDPs.
