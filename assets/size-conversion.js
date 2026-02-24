@@ -3,14 +3,172 @@ document.addEventListener("DOMContentLoaded", function () {
   // ---------------------------------------------------------------------------
   // UNIT CONVERSION HELPERS
   // ---------------------------------------------------------------------------
-  const cmToInches = (cm) => (cm / 2.54).toFixed(2);
-  const kgToLbs    = (kg) => (kg * 2.20462).toFixed(2);
+  const UNIT_SYSTEM_STORAGE_KEY = "dlm_size_chart_unit_system";
+  const normalizeUnit = (unit) => String(unit || "").trim().toLowerCase();
+  const formatNumericValue = (num) => {
+    if (num === null || Number.isNaN(num)) return "";
+    return Number(num).toFixed(2).replace(/\.00$/, "").replace(/(\.\d)0$/, "$1");
+  };
+  const convertValueBetweenUnits = (num, fromUnit, toUnit) => {
+    const from = normalizeUnit(fromUnit);
+    const to   = normalizeUnit(toUnit);
+    if (!from || !to || from === to) return num;
+    if (from === "cm" && to === "in") return num / 2.54;
+    if (from === "in" && to === "cm") return num * 2.54;
+    if (from === "kg" && to === "lbs") return num * 2.20462;
+    if (from === "lbs" && to === "kg") return num / 2.20462;
+    return null;
+  };
+  const convertMeasurementText = (rawText, fromUnit, toUnit) => {
+    const text = String(rawText || "").trim();
+    if (!text) return "";
+    if (normalizeUnit(fromUnit) === normalizeUnit(toUnit)) return text;
+
+    const singleMatch = text.match(/^(-?\d+(?:\.\d+)?)$/);
+    if (singleMatch) {
+      const convertedSingle = convertValueBetweenUnits(parseFloat(singleMatch[1]), fromUnit, toUnit);
+      return convertedSingle === null ? null : formatNumericValue(convertedSingle);
+    }
+
+    const rangeMatch = text.match(/^(-?\d+(?:\.\d+)?)\s*([\-–])\s*(-?\d+(?:\.\d+)?)$/);
+    if (rangeMatch) {
+      const convertedMin = convertValueBetweenUnits(parseFloat(rangeMatch[1]), fromUnit, toUnit);
+      const convertedMax = convertValueBetweenUnits(parseFloat(rangeMatch[3]), fromUnit, toUnit);
+      if (convertedMin === null || convertedMax === null) return null;
+      return formatNumericValue(convertedMin) + rangeMatch[2] + formatNumericValue(convertedMax);
+    }
+
+    return null;
+  };
+  const getUnitForSystem = (sourceUnit, unitSystem) => {
+    const normalizedSource = normalizeUnit(sourceUnit);
+    if (!normalizedSource) return "";
+
+    if (unitSystem === "imperial") {
+      if (normalizedSource === "cm") return "in";
+      if (normalizedSource === "kg") return "lbs";
+    }
+
+    if (unitSystem === "metric") {
+      if (normalizedSource === "in" || normalizedSource === "inch" || normalizedSource === "inches") return "cm";
+      if (normalizedSource === "lb" || normalizedSource === "lbs") return "kg";
+    }
+
+    return sourceUnit;
+  };
+  const inferUnitFromText = (text) => {
+    const match = String(text || "").toLowerCase().match(/\b(cm|in|inch|inches|kg|lb|lbs)\b/);
+    if (!match) return "";
+    const token = match[1];
+    if (token === "inch" || token === "inches") return "in";
+    if (token === "lb") return "lbs";
+    return token;
+  };
+  const getStoredUnitSystem = () => {
+    try {
+      const stored = window.localStorage.getItem(UNIT_SYSTEM_STORAGE_KEY);
+      return stored === "imperial" || stored === "metric" ? stored : null;
+    } catch (_error) {
+      return null;
+    }
+  };
+  const storeUnitSystem = (system) => {
+    try {
+      window.localStorage.setItem(UNIT_SYSTEM_STORAGE_KEY, system);
+    } catch (_error) {
+      // no-op: localStorage may be unavailable
+    }
+  };
+  const stripTrailingUnit = (value, unit) => {
+    const text = String(value || "").trim();
+    const u    = String(unit || "").trim();
+    if (!u) return text;
+    const escaped = u.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return text.replace(new RegExp("\\s*" + escaped + "$", "i"), "").trim();
+  };
+  const pickPreferredUnitIndex = (units, unitSystem) => {
+    const normalizedUnits = units.map((u) => normalizeUnit(u));
+    const preferredTokens = unitSystem === "imperial"
+      ? ["in", "inch", "inches", "lbs", "lb"]
+      : ["cm", "kg"];
+    for (let i = 0; i < preferredTokens.length; i++) {
+      const index = normalizedUnits.indexOf(preferredTokens[i]);
+      if (index !== -1) return index;
+    }
+    return unitSystem === "imperial" ? Math.min(1, units.length - 1) : 0;
+  };
+  const getMeasurementForUnitSystem = (rawValue, units, unitSystem) => {
+    const unitList = Array.isArray(units) ? units.map((u) => String(u || "").trim()).filter(Boolean) : [];
+    const rawParts = String(rawValue || "").split("/").map((part) => part.trim()).filter(Boolean);
+
+    if (unitList.length < 2) {
+      if (rawParts.length >= 2) {
+        const inferredUnits = rawParts.map((part) => inferUnitFromText(part));
+        const usableUnits = inferredUnits.filter(Boolean);
+        if (usableUnits.length >= 2) {
+          const preferredIndex = pickPreferredUnitIndex(inferredUnits, unitSystem);
+          const preferredUnit  = inferredUnits[preferredIndex] || inferredUnits[0];
+          const selectedPart   = rawParts[preferredIndex] || rawParts[0];
+          return {
+            value: stripTrailingUnit(selectedPart, preferredUnit),
+            unit: preferredUnit,
+          };
+        }
+      }
+
+      const baseRaw = rawParts[0] || String(rawValue || "").trim();
+      const sourceUnit = unitList[0] || inferUnitFromText(baseRaw);
+      const targetUnit = getUnitForSystem(sourceUnit, unitSystem);
+      const base = stripTrailingUnit(baseRaw, sourceUnit);
+      const converted = convertMeasurementText(base, sourceUnit, targetUnit);
+      return {
+        value: converted !== null ? converted : base,
+        unit: targetUnit || sourceUnit,
+      };
+    }
+
+    const preferredIndex = pickPreferredUnitIndex(unitList, unitSystem);
+    const preferredUnit  = unitList[preferredIndex] || "";
+    const sourceUnit     = unitList[0] || "";
+
+    if (rawParts.length >= 2) {
+      const selectedPart = rawParts[preferredIndex] || rawParts[0];
+      return {
+        value: stripTrailingUnit(selectedPart, preferredUnit || sourceUnit),
+        unit: preferredUnit || sourceUnit,
+      };
+    }
+
+    const singlePart = rawParts[0] || String(rawValue || "").trim();
+    const strippedSingle = stripTrailingUnit(singlePart, sourceUnit);
+    if (preferredUnit) {
+      const convertedText = convertMeasurementText(strippedSingle, sourceUnit, preferredUnit);
+      if (convertedText !== null) {
+        return {
+          value: convertedText,
+          unit: preferredUnit,
+        };
+      }
+    }
+
+    return {
+      value: strippedSingle,
+      unit: sourceUnit,
+    };
+  };
+  const escapeHtml = (value) => String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
   // ---------------------------------------------------------------------------
   // DOM REFERENCES
   // ---------------------------------------------------------------------------
   const sizeSelect        = document.querySelector("select.size-select");
   const sizeChartWrapper  = document.querySelector(".size-chart-wrapper");
   const sizeChartContent  = document.getElementById("size-chart-content");
+  let selectedUnitSystem  = getStoredUnitSystem() || "metric";
   if (!sizeSelect) {
     console.error("Size dropdown not found.");
     return;
@@ -28,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const headerMap = {};
     for (let i = 0; i < headerCells.length; i++) {
       const headerText = headerCells[i].textContent.trim();
-      const regex      = /^(.+?)\\s*\\((.*?)\\)$/;
+      const regex      = /^(.+?)\s*\((.*?)\)$/;
       const match      = headerText.match(regex);
       if (match) {
         let measurementName = match[1].trim();
@@ -52,7 +210,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Also attaches raw Age and Height values to each entry for smart resolution.
   // ---------------------------------------------------------------------------
   const getFactorySizes = () => {
-    const sizeChartTable = document.getElementById("size-chart");
+    const sizeChartTable = document.querySelector(
+      "table#size-chart, table[id*='size-chart'], table[class*='size-chart']"
+    );
     const factorySizes   = {};
     if (!sizeChartTable) {
       console.error("Size chart table not found.");
@@ -92,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
         factorySizes[sizeName][measurementName] = { value: cellContent, units };
         // ── Harvest Age metadata for smart resolution ──
         if (measurementName.toLowerCase() === "age" && cellContent && cellContent !== "—") {
-          const ageNums = cellContent.match(/[\\d.]+/g);
+          const ageNums = cellContent.match(/[\d.]+/g);
           if (ageNums && ageNums.length >= 1) {
             factorySizes[sizeName]._meta.ageMin = parseFloat(ageNums[0]);
             factorySizes[sizeName]._meta.ageMax = parseFloat(ageNums[ageNums.length - 1]);
@@ -100,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         // ── Harvest Height metadata for smart resolution ──
         if (measurementName.toLowerCase() === "height" && cellContent && cellContent !== "—") {
-          const hNums = cellContent.match(/[\\d.]+/g);
+          const hNums = cellContent.match(/[\d.]+/g);
           if (hNums && hNums.length >= 1) {
             factorySizes[sizeName]._meta.heightMin = parseFloat(hNums[0]);
             factorySizes[sizeName]._meta.heightMax = parseFloat(hNums[hNums.length - 1]);
@@ -111,42 +271,14 @@ document.addEventListener("DOMContentLoaded", function () {
     return factorySizes;
   };
   // ---------------------------------------------------------------------------
-  // FORMAT MEASUREMENT WITH UNITS
-  // Handles single value, dual value (already split), and auto-conversion.
-  // ---------------------------------------------------------------------------
-  function formatMeasurementWithUnits(value, units) {
-    const parts = String(value).split("/").map((p) => p.trim());
-    // Already pre-split "88 / 34.6"
-    if (parts.length === 2 && units.length === 2) {
-      const alreadyHas0 = parts[0].toLowerCase().endsWith(units[0].toLowerCase());
-      const alreadyHas1 = parts[1].toLowerCase().endsWith(units[1].toLowerCase());
-      const p0 = alreadyHas0 ? parts[0] : `${parts[0]} ${units[0]}`;
-      const p1 = alreadyHas1 ? parts[1] : `${parts[1]} ${units[1]}`;
-      return `${p0} / ${p1}`;
-    }
-    // Single value, single unit — display raw
-    if (parts.length === 1 && units.length <= 1) {
-      return parts[0];
-    }
-    // Single stored value + dual units → auto-convert
-    if (parts.length === 1 && units.length === 2) {
-      const num = parseFloat(parts[0]);
-      if (!isNaN(num)) {
-        let converted;
-        if      (units[1].toLowerCase() === "in")  converted = cmToInches(num);
-        else if (units[1].toLowerCase() === "lbs") converted = kgToLbs(num);
-        else                                        converted = parts[0];
-        return `${parts[0]} ${units[0]} / ${converted} ${units[1]}`;
-      }
-      return `${parts[0]} ${units[0]}`;
-    }
-    return String(value);
-  }
-  // ---------------------------------------------------------------------------
   // NORMALIZE HELPER
   // ---------------------------------------------------------------------------
   function normalizeKey(s) {
-    return String(s || "").trim().replace(/\\s+/g, " ").toLowerCase();
+    return String(s || "")
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
   }
   // ---------------------------------------------------------------------------
   // ADULT TOKEN EXTRACTOR
@@ -154,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ---------------------------------------------------------------------------
   function extractAdultToken(label) {
     const m = String(label || "").toUpperCase()
-      .match(/\\b(XXXXL|XXXL|XXL|2XL|3XL|4XL|XL|XS|S|M|L)\\b/);
+      .match(/\b(XXXXL|XXXL|XXL|2XL|3XL|4XL|XL|XS|S|M|L)\b/);
     if (!m) return null;
     const raw = m[1];
     if (raw === "XXL")   return "2XL";
@@ -177,8 +309,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // ---------------------------------------------------------------------------
   function resolveByAgeRange(label, factorySizes) {
     // Extract age numbers from label, e.g. "Child 2-3 years" → [2, 3]
-    const ageMatch = String(label).match(/(\\d+)\\s*[-–]\\s*(\\d+)\\s*(?:yr|year|years|y\\.o\\.?)?/i)
-                  || String(label).match(/(\\d+)\\s*(?:yr|year|years|y\\.o\\.?)/i);
+    const ageMatch = String(label).match(/(\d+)\s*[-–]\s*(\d+)\s*(?:yr|year|years|y\.o\.?)?/i)
+                  || String(label).match(/(\d+)\s*(?:yr|year|years|y\.o\.?)/i);
     if (!ageMatch) return null;
     let labelAgeMin, labelAgeMax;
     if (ageMatch[2] !== undefined) {
@@ -229,8 +361,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Used as a tertiary fallback after age resolution fails.
   // ---------------------------------------------------------------------------
   function resolveByHeightRange(label, factorySizes) {
-    const hMatch = String(label).match(/(\\d{2,3})\\s*[-–]\\s*(\\d{2,3})\\s*cm/i)
-                || String(label).match(/(\\d{2,3})\\s*cm/i);
+    const hMatch = String(label).match(/(\d{2,3})\s*[-–]\s*(\d{2,3})\s*cm/i)
+                || String(label).match(/(\d{2,3})\s*cm/i);
     if (!hMatch) return null;
     let labelHMin, labelHMax;
     if (hMatch[2] !== undefined) {
@@ -268,6 +400,84 @@ document.addEventListener("DOMContentLoaded", function () {
         bestExact = isExact;
       }
     }
+    return bestKey ? { key: bestKey, isExact: bestExact } : null;
+  }
+  // ---------------------------------------------------------------------------
+  // AGE-LABEL RESOLVER (size-key fallback)
+  //
+  // Handles products where age is encoded in size-key labels themselves
+  // (e.g. "Baby 9 Months", "Child 1-2 years") and no dedicated Age column exists.
+  // ---------------------------------------------------------------------------
+  function extractAgeRangeInMonths(text) {
+    const label = String(text || "").toLowerCase();
+    if (!label) return null;
+
+    const monthRange = label.match(/(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)\s*(?:month|months|mo|mos|mth|mths)\b/i);
+    if (monthRange) {
+      return { min: parseFloat(monthRange[1]), max: parseFloat(monthRange[2]) };
+    }
+
+    const yearRange = label.match(/(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)\s*(?:year|years|yr|yrs|y)\b/i);
+    if (yearRange) {
+      return { min: parseFloat(yearRange[1]) * 12, max: parseFloat(yearRange[2]) * 12 };
+    }
+
+    const monthSingle = label.match(/(\d+(?:\.\d+)?)\s*(?:month|months|mo|mos|mth|mths)\b/i);
+    if (monthSingle) {
+      const value = parseFloat(monthSingle[1]);
+      return { min: value, max: value };
+    }
+
+    const yearSingle = label.match(/(\d+(?:\.\d+)?)\s*(?:year|years|yr|yrs|y)\b/i);
+    if (yearSingle) {
+      const value = parseFloat(yearSingle[1]) * 12;
+      return { min: value, max: value };
+    }
+
+    return null;
+  }
+  function resolveByAgeLabelInSizeKey(label, factorySizes) {
+    const targetRange = extractAgeRangeInMonths(label);
+    if (!targetRange) return null;
+
+    const targetMin = targetRange.min;
+    const targetMax = targetRange.max;
+    const targetMid = (targetMin + targetMax) / 2;
+
+    let bestKey   = null;
+    let bestScore = -Infinity;
+    let bestExact = false;
+
+    for (const key of Object.keys(factorySizes)) {
+      if (key === "_meta") continue;
+      const candidateRange = extractAgeRangeInMonths(key);
+      if (!candidateRange) continue;
+
+      const candMin = candidateRange.min;
+      const candMax = candidateRange.max;
+      const candMid = (candMin + candMax) / 2;
+
+      let score = 0;
+      let isExact = false;
+
+      const overlapMin = Math.max(targetMin, candMin);
+      const overlapMax = Math.min(targetMax, candMax);
+      if (overlapMax >= overlapMin) {
+        const overlapSize = overlapMax - overlapMin;
+        const targetSize = targetMax - targetMin || 1;
+        score += 50 + (overlapSize / targetSize) * 50;
+        isExact = (overlapSize / targetSize) >= 1.0;
+      }
+
+      score -= Math.abs(candMid - targetMid) * 0.5;
+
+      if (score > bestScore) {
+        bestScore = score;
+        bestKey = key;
+        bestExact = isExact;
+      }
+    }
+
     return bestKey ? { key: bestKey, isExact: bestExact } : null;
   }
   // ---------------------------------------------------------------------------
@@ -319,7 +529,15 @@ document.addEventListener("DOMContentLoaded", function () {
         : "Closest available size shown — exact measurements for this height are not available from the manufacturer.";
       return { key: heightResult.key, isExact: heightResult.isExact, note };
     }
-    // 6. Soft normalize fallback (case/whitespace insensitive)
+    // 6. Fallback by age embedded in size-key labels (e.g. "Baby 9 Months")
+    const ageLabelResult = resolveByAgeLabelInSizeKey(label, factorySizes);
+    if (ageLabelResult) {
+      const note = ageLabelResult.isExact
+        ? null
+        : "Closest available size shown — exact measurements for this age are not available from the manufacturer.";
+      return { key: ageLabelResult.key, isExact: ageLabelResult.isExact, note };
+    }
+    // 7. Soft normalize fallback (case/whitespace insensitive)
     const wanted = normalizeKey(label);
     for (const k of Object.keys(factorySizes)) {
       if (normalizeKey(k) === wanted) return { key: k, isExact: true, note: null };
@@ -350,10 +568,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // --- Build premium card HTML ---
     let htmlContent = '';
 
-    // Header with ruler icon and selected size name
+    // Header with ruler icon, selected size name, and unit toggle
     htmlContent += '<div class="sc-header">';
+    htmlContent += '<div class="sc-header__main">';
     htmlContent += '<svg class="sc-header__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0z"/><line x1="14.5" y1="12.5" x2="11.5" y2="9.5"/><line x1="11.5" y1="15.5" x2="8.5" y2="12.5"/><line x1="8.5" y1="18.5" x2="5.5" y2="15.5"/><line x1="17.5" y1="9.5" x2="14.5" y2="6.5"/></svg>';
-    htmlContent += '<span class="sc-header__title">Size Details — ' + selectedSize + '</span>';
+    htmlContent += '<span class="sc-header__title">Size Details - ' + escapeHtml(selectedSize) + '</span>';
+    htmlContent += '</div>';
+    htmlContent += '<div class="sc-unit-toggle" role="group" aria-label="Size chart units">';
+    htmlContent += '<button type="button" class="sc-unit-toggle__btn' + (selectedUnitSystem === "metric" ? ' is-active' : '') + '" data-sc-unit-system="metric" aria-pressed="' + (selectedUnitSystem === "metric") + '">cm</button>';
+    htmlContent += '<button type="button" class="sc-unit-toggle__btn' + (selectedUnitSystem === "imperial" ? ' is-active' : '') + '" data-sc-unit-system="imperial" aria-pressed="' + (selectedUnitSystem === "imperial") + '">in</button>';
+    htmlContent += '</div>';
     htmlContent += '</div>';
 
     // Approximate match note
@@ -374,45 +598,39 @@ document.addEventListener("DOMContentLoaded", function () {
       const value           = measurementData.value;
       if (!value || String(value).trim() === "" || String(value).trim() === "—") continue;
 
-      const parts = String(value).split("/").map(p => p.trim());
       const isEven = rowIndex % 2 === 0;
+      const display = getMeasurementForUnitSystem(value, units, selectedUnitSystem);
+      if (!display.value) continue;
 
       htmlContent += '<div class="sc-row' + (isEven ? ' sc-row--alt' : '') + '">';
-      htmlContent += '<span class="sc-row__label">' + measurementName + '</span>';
+      htmlContent += '<span class="sc-row__label">' + escapeHtml(measurementName) + '</span>';
       htmlContent += '<div class="sc-row__values">';
-
-      if (parts.length === 2 && units.length === 2) {
-        // Two pre-split values
-        const p0 = parts[0].toLowerCase().endsWith(units[0].toLowerCase()) ? parts[0] : parts[0] + ' ' + units[0];
-        const p1 = parts[1].toLowerCase().endsWith(units[1].toLowerCase()) ? parts[1] : parts[1] + ' ' + units[1];
-        htmlContent += '<span class="sc-pill">' + p0 + '</span>';
-        htmlContent += '<span class="sc-pill">' + p1 + '</span>';
-      } else if (parts.length === 1 && units.length === 2) {
-        // Single value, auto-convert
-        const num = parseFloat(parts[0]);
-        if (!isNaN(num)) {
-          let converted;
-          if (units[1].toLowerCase() === "in") converted = cmToInches(num);
-          else if (units[1].toLowerCase() === "lbs") converted = kgToLbs(num);
-          else converted = parts[0];
-          htmlContent += '<span class="sc-pill">' + parts[0] + ' ' + units[0] + '</span>';
-          htmlContent += '<span class="sc-pill">' + converted + ' ' + units[1] + '</span>';
-        } else {
-          htmlContent += '<span class="sc-pill">' + parts[0] + (units[0] ? ' ' + units[0] : '') + '</span>';
-        }
-      } else {
-        // Plain value
-        htmlContent += '<span class="sc-pill">' + String(value) + (units[0] ? ' ' + units[0] : '') + '</span>';
-      }
-
+      htmlContent += '<span class="sc-pill">' + escapeHtml(display.value) + '</span>';
       htmlContent += '</div>';
       htmlContent += '</div>';
       rowIndex++;
     }
+
+    if (rowIndex === 0) {
+      htmlContent += '<div class="sc-empty"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span>Size information not available for this selection.</span></div>';
+    }
+
     htmlContent += '</div>';
 
     sizeChartContent.innerHTML     = htmlContent;
     sizeChartWrapper.style.display = "block";
+
+    const unitToggleButtons = sizeChartContent.querySelectorAll("[data-sc-unit-system]");
+    unitToggleButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const nextSystem = button.getAttribute("data-sc-unit-system");
+        if (nextSystem !== "metric" && nextSystem !== "imperial") return;
+        if (nextSystem === selectedUnitSystem) return;
+        selectedUnitSystem = nextSystem;
+        storeUnitSystem(selectedUnitSystem);
+        updateSizeMessage();
+      });
+    });
   };
   // ---------------------------------------------------------------------------
   // INIT

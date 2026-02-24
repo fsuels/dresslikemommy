@@ -2467,3 +2467,158 @@ Open TODOs (next session)
 1) Manual mobile PDP QA: confirm sticky stays hidden until shopper explicitly selects Size.
 2) Manual mobile PDP QA: after Size selection + scroll past main ATC, confirm sticky appears and page scroll remains smooth in both directions.
 3) Manual navigation QA across multiple products to verify sticky selection state does not leak between PDPs.
+
+Patch: Hide desktop PDP media counter when thumbnail gallery is visible
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-hide-desktop-pdp-media-total-counter
+
+Changes applied (evidence-first)
+- `assets/section-main-product.css`
+  - In `@media screen and (min-width: 750px)`, added a rule to hide `.slider-counter--product-stepper` for `.product--thumbnail` and `.product--thumbnail_slider`.
+
+Why this addresses the issue
+- Removes the desktop/tablet image count indicator below the main product image when thumbnails are already visible as navigation.
+
+Validation snapshot
+- Verified added selector via `git diff` in `assets/section-main-product.css`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA at `>=750px`: confirm the media counter number is hidden for thumbnail layouts.
+2) Confirm thumbnail navigation remains visible and functional.
+
+Patch: Size chart streamlined to single-unit rows with cm/in toggle
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-size-chart-single-unit-toggle
+
+Changes applied (evidence-first)
+- `assets/size-conversion.js`
+  - Added a persistent unit-system preference (`metric`/`imperial`) stored in `localStorage` key `dlm_size_chart_unit_system`.
+  - Reworked size-chart rendering so each measurement row shows one value only, based on selected unit system.
+  - Added a chart-level unit toggle (`cm` / `in`) in the header; selecting a toggle rerenders rows using the chosen system.
+  - Moved units into row labels (e.g., `Bust (cm)` or `Bust (in)`), keeping value pills unit-free to avoid repeated unit text.
+  - Added robust dual-unit handling for split values (`x / y`) and single-source values via unit conversion helpers.
+  - Added HTML escaping for dynamic labels/values before injection.
+  - Preserved existing size-resolution flow (direct match, aliases, adult token normalization, age/height fallback).
+- `sections/main-product.liquid`
+  - Updated scoped size-chart styles under `#MainProduct-{{ section.id }} .dlm-reference-ui` to support the new unit toggle and compact one-line row layout.
+  - Added styles for `.sc-header__main`, `.sc-unit-toggle`, and `.sc-unit-toggle__btn` with active-state treatment.
+  - Tightened row/value typography so labels and values read as concise single lines.
+
+Why this addresses the request
+- Shopper now chooses unit once (cm or in) via a clear toggle.
+- Each measurement row renders only one unit at a time.
+- Unit appears once in the label, removing duplicate/repeated units in value output.
+
+Validation snapshot
+- Syntax check passed: `node --check assets/size-conversion.js`.
+- Reviewed updated selectors/logic with `nl -ba` output for both edited files.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on desktop/mobile: select size, toggle `cm`/`in`, confirm rows switch to one-unit output and labels update correctly.
+2) Verify products with pre-split dual values (`x / y`) and single-source values both render correctly in each unit mode.
+3) Confirm unit preference persistence across PDP reload/navigation behaves as desired.
+
+Patch: Related products mobile swipe carousel (You may also like)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-related-products-mobile-swipe-carousel
+
+Changes applied (evidence-first)
+- `sections/related-products.liquid`
+  - Added `component-slider.css` include so slider classes are available where this section renders.
+  - Added mobile slider gating logic:
+    - `columns_mobile_int = section.settings.columns_mobile | plus: 0`
+    - `show_mobile_slider = recommendations.products_count > columns_mobile_int`
+  - Updated the recommendations grid `<ul>` to include slider markup/classes when mobile overflow exists:
+    - Added `id="Slider-{{ section.id }}"`.
+    - Added `contains-card contains-card--product` and conditional `slider slider--mobile` classes.
+  - Updated each recommendation `<li>`:
+    - Added slide id `Slide-{{ section.id }}-{{ forloop.index }}`.
+    - Added conditional `slider__slide` class when mobile slider is enabled.
+
+Why this addresses the request
+- On mobile (`<=749px`), related products now render as a horizontal swipe row when there are more products than the configured mobile columns.
+- Desktop and non-overflow mobile layouts remain grid-based.
+
+Validation snapshot
+- Verified section diff with `git diff -- sections/related-products.liquid`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile PDP QA: confirm “You may also like” scrolls horizontally via swipe and no longer stacks as a long vertical list when overflow exists.
+2) Confirm desktop PDP layout remains unchanged for related products.
+
+Patch: Size-chart regression fix (conversion + resolver hardening)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-size-chart-regression-fix-conversion-and-coverage
+
+Changes applied (evidence-first)
+- `assets/size-conversion.js`
+  - Fixed multiple regex patterns that were over-escaped and failing to parse:
+    - Header unit extraction (`Bust (cm/in)` style headers)
+    - Numeric extraction for age/height metadata
+    - Adult token extraction
+    - Age and height range parsing in fallback resolvers
+    - Soft normalization whitespace handling
+  - Added reliable unit conversion behavior so toggle selection changes numeric values, not just UI state:
+    - Supports single numbers (`95`), ranges (`86-92`), and split values (`95 / 37.4`)
+    - Supports conversions for `cm<->in` and `kg<->lbs`
+  - Ensured row output is concise and non-redundant:
+    - Row labels now render measurement names only (no repeated `(cm/in)`)
+    - Value pills show numbers only (no repeated unit text)
+    - Unit context is controlled by the top toggle (`cm` / `in`)
+  - Expanded size-chart table discovery from strict `#size-chart` to robust fallback selectors:
+    - `table#size-chart`, `table[id*="size-chart"]`, `table[class*="size-chart"]`
+  - Added age-label fallback resolver for size keys when products encode age in size names (e.g. `Baby 9 Months`) but do not provide a dedicated Age column.
+  - Strengthened normalization for punctuation/case mismatch (`Mother.` vs `Mother`).
+
+Repository audit run
+- Audited `products_export_1 2_IMPORT_READY.csv` with a scripted pass over products containing `size-chart` references.
+- Results:
+  - Products with size-chart reference: `205`
+  - Products resolvable with machine-readable chart data after logic hardening: `197`
+  - Remaining unresolved: `8` (all are `no_table` cases where body has no parseable size table and appears to rely on image/static content).
+
+Why this addresses the report
+- Fixes the regression where many products could not resolve to chart rows due broken parsing.
+- Toggle now updates actual measurement numbers between metric/imperial where conversion data is available.
+- Removes repeated unit text in both label/value rows; toggle is now the single source of unit context.
+
+Validation snapshot
+- Syntax check passed: `node --check assets/size-conversion.js`.
+- Conversion behavior sanity-tested with representative values (`cm/in`, ranges, single-unit conversion) via Node script.
+- CSV-wide scripted coverage audit completed (details above).
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on affected products to verify live rendering/toggle behavior in browser.
+2) Decide handling for `no_table` products (8 handles): add machine-readable HTML tables or hide dynamic widget and show static fallback message/image intentionally.
+
+Addendum: Value-level unit inference for mixed chart formats
+Date: 2026-02-24
+- `assets/size-conversion.js`
+  - Added `inferUnitFromText()` fallback for products where units are embedded in value cells (e.g. `95 cm / 37.4 in`) but headers do not provide parseable unit metadata.
+  - This allows toggle-driven selection/conversion to still work and strips trailing unit text from displayed numbers.
+
+Patch: Local dev auth token expiration recovery
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-local-dev-auth-token-expiration-recovery
+
+Changes applied (evidence-first)
+- Diagnosed local preview auth failure at `http://127.0.0.1:9292`:
+  - `curl` returned `401 Unauthorized` with `www-authenticate: Bearer ... error="Invalid token"` and body: `The access token provided is expired, revoked, malformed, or invalid for other reasons.`
+- Confirmed stale long-running local dev process:
+  - `ps aux` showed `shopify theme dev` process `PID 25223` running >100 minutes and listening on port `9292`.
+- Recovered by restarting local dev runtime:
+  - Stopped stale process (`kill 25223`).
+  - Started fresh session: `shopify theme dev --store dresslikemommy-com.myshopify.com --host 127.0.0.1 --port 9292`.
+  - Re-verified `http://127.0.0.1:9292` returns `200 OK`.
+
+Why this addresses the issue
+- The local proxy was serving with an invalid/expired bearer token from a stale `theme dev` runtime.
+- Restarting `shopify theme dev` refreshed session auth and restored local access.
+
+Open TODOs (next session)
+1) If the same 401 token error recurs, fully reset CLI auth (`shopify auth logout` then `shopify auth login`) before restarting `shopify theme dev`.
+2) Prefer restarting `shopify theme dev` when local preview appears blank or unauthorized after long idle periods.
