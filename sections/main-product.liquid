@@ -912,9 +912,12 @@
 {%- comment -%} Sticky mobile Add to Cart bar {%- endcomment -%}
 {%- if product.available -%}
   <div class="sticky-mobile-atc" id="StickyMobileATC-{{ section.id }}">
-    <span class="sticky-mobile-atc__price" data-sticky-mobile-atc-price>
-      {{- product.selected_or_first_available_variant.price | money -}}
-    </span>
+    <div class="sticky-mobile-atc__details">
+      <span class="sticky-mobile-atc__price" data-sticky-mobile-atc-price>
+        {{- product.selected_or_first_available_variant.price | money -}}
+      </span>
+      <span class="sticky-mobile-atc__size" data-sticky-mobile-atc-size hidden></span>
+    </div>
     <button type="button" class="sticky-mobile-atc__btn" data-sticky-mobile-atc-button>
       {{- 'products.product.add_to_cart' | t -}}
     </button>
@@ -927,6 +930,7 @@
       var mobileMedia = window.matchMedia('(max-width: 749px)');
       var stickyBtn = sticky.querySelector('[data-sticky-mobile-atc-button]');
       var stickyPrice = sticky.querySelector('[data-sticky-mobile-atc-price]');
+      var stickySize = sticky.querySelector('[data-sticky-mobile-atc-size]');
       var productForm = document.getElementById('product-form-{{ section.id }}');
       var atcBtn = document.getElementById('ProductSubmitButton-{{ section.id }}');
       var variantSelects = document.getElementById('variant-selects-{{ section.id }}');
@@ -936,6 +940,8 @@
       var highlightedGroup = null;
       var addToCartLabel = {{ 'products.product.add_to_cart' | t | json }};
       var chooseOptionsLabel = 'Choose options';
+      var chooseSizeLabel = 'Select size';
+      var hasUserSelectedSize = false;
 
       if (!atcBtn && productForm) atcBtn = productForm.querySelector('[name="add"]');
       if (!atcBtn || !stickyBtn) return;
@@ -983,15 +989,14 @@
         return '';
       }
 
-      function getRequiredSelectionState() {
+      function getSizeSelectionState() {
         var selectionState = {
-          hasRequiredOptions: false,
           hasSizeOption: false,
-          hasColorOption: false,
-          sizeSelected: false,
-          colorSelected: false,
+          totalSizeOptions: 0,
+          selectedSizeValues: [],
           isComplete: true,
-          missingRequiredOption: null,
+          missingSizeOption: null,
+          firstSizeOption: null,
         };
 
         if (!variantSelects) return selectionState;
@@ -1000,50 +1005,63 @@
         for (var i = 0; i < optionGroups.length; i += 1) {
           var group = optionGroups[i];
           var optionName = getOptionNameFromGroup(group).toLowerCase();
-          var selectedValue = getSelectedOptionValue(group);
           var isSizeOption = /\bsize\b/.test(optionName);
-          var isColorOption = /colou?r/.test(optionName);
+          if (!isSizeOption) continue;
 
-          if (!isSizeOption && !isColorOption) continue;
-
-          selectionState.hasRequiredOptions = true;
-
-          if (isSizeOption) {
-            selectionState.hasSizeOption = true;
-            if (selectedValue !== '') {
-              selectionState.sizeSelected = true;
-            } else if (!selectionState.missingRequiredOption) {
-              selectionState.missingRequiredOption = {
-                group: group,
-                focusTarget: group.querySelector('select, input[type="radio"]'),
-                anchor: group.querySelector('label, legend, .form__label') || group,
-              };
-            }
+          selectionState.hasSizeOption = true;
+          selectionState.totalSizeOptions += 1;
+          if (!selectionState.firstSizeOption) {
+            selectionState.firstSizeOption = {
+              group: group,
+              focusTarget: group.querySelector('select, input[type="radio"]'),
+              anchor: group.querySelector('label, legend, .form__label') || group,
+            };
           }
-
-          if (isColorOption) {
-            selectionState.hasColorOption = true;
-            if (selectedValue !== '') {
-              selectionState.colorSelected = true;
-            } else if (!selectionState.missingRequiredOption) {
-              selectionState.missingRequiredOption = {
-                group: group,
-                focusTarget: group.querySelector('select, input[type="radio"]'),
-                anchor: group.querySelector('label, legend, .form__label') || group,
-              };
-            }
+          var selectedValue = getSelectedOptionValue(group);
+          if (selectedValue !== '') {
+            selectionState.selectedSizeValues.push(selectedValue);
+          } else if (!selectionState.missingSizeOption) {
+            selectionState.missingSizeOption = {
+              group: group,
+              focusTarget: group.querySelector('select, input[type="radio"]'),
+              anchor: group.querySelector('label, legend, .form__label') || group,
+            };
           }
         }
 
         selectionState.isComplete =
-          (!selectionState.hasSizeOption || selectionState.sizeSelected) &&
-          (!selectionState.hasColorOption || selectionState.colorSelected);
+          !selectionState.hasSizeOption ||
+          selectionState.selectedSizeValues.length === selectionState.totalSizeOptions;
 
         if (selectionState.isComplete) {
-          selectionState.missingRequiredOption = null;
+          selectionState.missingSizeOption = null;
         }
 
         return selectionState;
+      }
+
+      function getSizeGroupFromTarget(target) {
+        if (!target || !variantSelects || typeof target.closest !== 'function') return null;
+
+        var group = target.closest('.product-form__input');
+        if (!group || !variantSelects.contains(group)) return null;
+
+        var optionName = getOptionNameFromGroup(group).toLowerCase();
+        if (!/\bsize\b/.test(optionName)) return null;
+
+        return group;
+      }
+
+      function markUserSizeSelection(target, eventType) {
+        var sizeGroup = getSizeGroupFromTarget(target);
+        if (!sizeGroup) return;
+
+        if (eventType === 'click' && sizeGroup.querySelector('select')) return;
+
+        var selectedValue = getSelectedOptionValue(sizeGroup);
+        if (selectedValue !== '') {
+          hasUserSelectedSize = true;
+        }
       }
 
       function getFirstMissingOption() {
@@ -1125,15 +1143,30 @@
         if (priceText) stickyPrice.textContent = priceText;
       }
 
+      function syncStickySize(sizeSelectionState) {
+        if (!stickySize) return;
+
+        var currentSizeState = sizeSelectionState || getSizeSelectionState();
+        if (currentSizeState.hasSizeOption && currentSizeState.selectedSizeValues.length) {
+          stickySize.textContent = 'Size: ' + currentSizeState.selectedSizeValues.join(' / ');
+          stickySize.removeAttribute('hidden');
+          return;
+        }
+
+        stickySize.textContent = '';
+        stickySize.setAttribute('hidden', 'hidden');
+      }
+
       function syncStickyState() {
-        var requiredSelectionState = getRequiredSelectionState();
+        var sizeSelectionState = getSizeSelectionState();
         var missingOption = getFirstMissingOption();
         syncStickyPrice();
+        syncStickySize(sizeSelectionState);
 
-        if (requiredSelectionState.hasRequiredOptions && !requiredSelectionState.isComplete) {
+        if (sizeSelectionState.hasSizeOption && (!hasUserSelectedSize || !sizeSelectionState.isComplete)) {
           canShowSticky = false;
           sticky.classList.add('requires-options');
-          stickyBtn.textContent = chooseOptionsLabel;
+          stickyBtn.textContent = chooseSizeLabel;
           stickyBtn.removeAttribute('disabled');
           toggleStickyVisibility();
           return;
@@ -1162,10 +1195,12 @@
       }
 
       stickyBtn.addEventListener('click', function (event) {
-        var requiredSelectionState = getRequiredSelectionState();
-        if (requiredSelectionState.hasRequiredOptions && !requiredSelectionState.isComplete) {
+        var sizeSelectionState = getSizeSelectionState();
+        if (sizeSelectionState.hasSizeOption && (!hasUserSelectedSize || !sizeSelectionState.isComplete)) {
           event.preventDefault();
-          scrollToMissingOption(requiredSelectionState.missingRequiredOption || getFirstMissingOption());
+          scrollToMissingOption(
+            sizeSelectionState.missingSizeOption || sizeSelectionState.firstSizeOption || getFirstMissingOption()
+          );
           return;
         }
 
@@ -1193,7 +1228,12 @@
       visibilityObserver.observe(atcBtn);
 
       if (variantSelects) {
-        variantSelects.addEventListener('change', function () {
+        variantSelects.addEventListener('change', function (event) {
+          markUserSizeSelection(event.target, 'change');
+          window.requestAnimationFrame(syncStickyState);
+        });
+        variantSelects.addEventListener('click', function (event) {
+          markUserSizeSelection(event.target, 'click');
           window.requestAnimationFrame(syncStickyState);
         });
       }

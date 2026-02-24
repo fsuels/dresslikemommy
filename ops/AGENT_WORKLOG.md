@@ -1786,3 +1786,70 @@ Validation snapshot
 Open TODOs (next session)
 1) Manual mobile PDP QA at `320/375/390/430` widths to confirm the indicator now sits snugly under/against the image with no awkward gap.
 2) Verify no overlap regressions on products with mixed media ratios (portrait, landscape, video).
+
+Patch: Mobile PDP sticky ATC size-only visibility gate + selected size display
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-sticky-atc-size-only-with-size-label
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid`
+  - Updated sticky ATC markup to include a details container with:
+    - existing sticky price,
+    - new `data-sticky-mobile-atc-size` line for selected size text.
+  - Replaced the prior required-option gate function with `getSizeSelectionState()`:
+    - only options whose name matches `size` are considered for sticky visibility gating,
+    - sticky visibility is blocked until all size option groups have a selected value,
+    - tracks first missing size option for focus/scroll targeting.
+  - Added `syncStickySize()` to render `Size: <selected value>` in sticky ATC whenever size selection is complete.
+  - Updated sticky state and click handling:
+    - uses size-only gating for `canShowSticky`,
+    - keeps existing fallback behavior that prompts for any other missing option on tap.
+- `layout/theme.liquid`
+  - Added mobile sticky styles for:
+    - `.sticky-mobile-atc__details` (stacked price + size text),
+    - `.sticky-mobile-atc__size` (small uppercase size label with ellipsis handling).
+
+Why this addresses the issue
+- On mobile PDP, sticky ATC no longer appears until the shopper picks a size.
+- Once visible, sticky ATC now shows the currently selected size directly in the sticky bar.
+
+Validation snapshot
+- Verified modified markup/script blocks and selectors in `sections/main-product.liquid`.
+- Verified added sticky size styling in `layout/theme.liquid`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile PDP QA (`320/375/390/430` widths) for products using size dropdowns and size radio/pill pickers.
+2) Verify sticky ATC shows expected behavior when size is selected but another option (e.g., color) is not yet selected.
+3) Confirm long size labels truncate cleanly in `.sticky-mobile-atc__size` without crowding the CTA button.
+
+Patch: Mobile PDP sticky ATC hidden on initial load until explicit size interaction
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-mobile-pdp-sticky-atc-hide-on-load-until-size-click
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid`
+  - Added `hasUserSelectedSize` session flag in sticky ATC script, defaulting to `false` on page load.
+  - Updated sticky visibility gate so mobile sticky ATC remains hidden while either:
+    - size is not complete, or
+    - shopper has not explicitly interacted with a size option yet.
+  - Added size interaction tracking helpers:
+    - `getSizeGroupFromTarget(target)` to detect if an event target belongs to a size option group,
+    - `markUserSizeSelection(target, eventType)` to mark explicit size selection.
+  - Wired variant picker events:
+    - `change` marks size selection for dropdown/radio updates,
+    - `click` marks radio/pill/swatch taps (while intentionally ignoring dropdown click-only interactions).
+  - Extended size state object with `firstSizeOption` so fallback scroll targeting can still focus size controls when needed.
+
+Why this addresses the issue
+- Sticky ATC cannot appear at first load anymore, even if a size is preselected by theme defaults.
+- Sticky ATC appears only after the shopper has actively selected/interacted with size and the main Add to Cart button is out of viewport.
+
+Validation snapshot
+- Verified updated gate condition and event listeners in `sections/main-product.liquid`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual mobile QA for both size dropdown and size radio/pill products to confirm sticky remains hidden until explicit size interaction.
+2) Confirm preselected-size products do not show sticky until user taps/changes size.
+3) Verify no regressions when size is selected and a non-size option is still missing (sticky should show choose-options state only after size interaction).
