@@ -34,6 +34,375 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+    /* PDP screenshot-style hard override scoped to this product section */
+    #MainProduct-{{ section.id }} .dlm-reference-ui {
+      --dlm-surface-radius: 2.2rem;
+      --dlm-control-surface-padding: 0.75rem;
+      --dlm-card-bg: #e3e6ea;
+      --dlm-control-surface-bg: #d6dbe1;
+      --dlm-control-pill-bg: #e9ecef;
+      --dlm-control-pill-border: #bcc4ce;
+      width: 100%;
+      max-width: 100% !important;
+      padding: 2.2rem 1.8rem 2.6rem !important;
+      border: 0.1rem solid #e7eaee !important;
+      border-radius: var(--dlm-surface-radius) !important;
+      background: var(--dlm-card-bg) !important;
+      box-shadow: 0 1.4rem 3.2rem rgba(14, 18, 24, 0.1) !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+    }
+
+    #MainProduct-{{ section.id }} .product__info-wrapper {
+      padding: 0.7rem 1rem 1.4rem !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui > * + * {
+      margin-top: 1.65rem !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product__title {
+      margin-bottom: 0 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product__title h1,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product__title h2,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product__title-text {
+      margin: 0 !important;
+      font-size: 2.2rem !important;
+      line-height: 1.2 !important;
+      letter-spacing: -0.01em !important;
+      font-weight: 700 !important;
+      color: #0f1114 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product__title + [id^='price-'] {
+      margin-top: 0.75rem !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .price--large,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .price-item--regular,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .price .price-item--sale,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .price--on-sale .price-item--sale {
+      font-size: 2rem !important;
+      line-height: 1.15 !important;
+      letter-spacing: -0.01em !important;
+      font-weight: 500 !important;
+      color: #111418 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .free-shipping-badge {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.65rem !important;
+      margin-top: 0.9rem !important;
+      padding: 0.8rem 1.55rem !important;
+      border: 0 !important;
+      border-radius: 999px !important;
+      background: linear-gradient(180deg, #d3ecd8 0%, #c1e4cb 100%) !important;
+      color: #2e7656 !important;
+      font-size: 1.15rem !important;
+      font-weight: 500 !important;
+      letter-spacing: 0 !important;
+      line-height: 1 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .free-shipping-badge svg {
+      width: 1.65rem !important;
+      height: 1.65rem !important;
+      color: currentColor !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .installment,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .shopify-installments,
+    #MainProduct-{{ section.id }} .dlm-reference-ui shopify-payment-terms {
+      margin-top: 0.75rem !important;
+      font-size: 1.15rem !important;
+      line-height: 1.45 !important;
+      color: #7a8088 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      margin: 0 0 1.85rem 0 !important;
+      padding: var(--dlm-control-surface-padding) !important;
+      border: 0 !important;
+      border-radius: var(--dlm-surface-radius) !important;
+      background: var(--dlm-control-surface-bg) !important;
+      box-sizing: border-box !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: var(--dlm-control-surface-padding) !important;
+      border: 0 !important;
+      border-radius: var(--dlm-surface-radius) !important;
+      background: var(--dlm-control-surface-bg) !important;
+      box-shadow: none !important;
+      box-sizing: border-box !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input:last-child {
+      margin-bottom: 0 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input .form__label,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity__label {
+      margin-bottom: 0.8rem !important;
+      font-size: 1.05rem !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.04em !important;
+      text-transform: uppercase !important;
+      color: #171b20 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .quantity__rules-cart,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .quantity__rules {
+      display: none !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input .select,
+    #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input select {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input .select {
+      position: relative !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input .select:before,
+    #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input .select:after {
+      content: none !important;
+      box-shadow: none !important;
+      border: 0 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input select {
+      min-height: 5.9rem !important;
+      border: 0.14rem solid var(--dlm-control-pill-border) !important;
+      border-radius: 999px !important;
+      background: linear-gradient(180deg, #eef1f4 0%, var(--dlm-control-pill-bg) 100%) !important;
+      color: #171b21 !important;
+      font-size: 1.55rem !important;
+      font-weight: 500 !important;
+      letter-spacing: 0 !important;
+      line-height: 1.2 !important;
+      padding: 0 4.8rem 0 1.85rem !important;
+      box-shadow: 0 0.5rem 1.4rem rgba(14, 17, 22, 0.1) !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input select:focus {
+      border-color: #a8afba !important;
+      box-shadow: 0 0 0 0.2rem rgba(120, 127, 138, 0.18), 0 1rem 2.2rem rgba(14, 17, 22, 0.14) !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input .icon-caret {
+      top: 50% !important;
+      right: 1.75rem !important;
+      width: 1.35rem !important;
+      height: 1.35rem !important;
+      transform: translateY(-50%) !important;
+      color: #77808a !important;
+      pointer-events: none !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .size-chart-wrapper {
+      margin: 0.85rem 0 2.2rem !important;
+      border: 0.1rem solid #d8dde4 !important;
+      border-radius: 1.65rem !important;
+      background: #ffffff !important;
+      box-shadow: 0 1.5rem 3rem rgba(16, 20, 26, 0.16) !important;
+      overflow: hidden !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-header {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.8rem !important;
+      padding: 1.2rem 1.8rem !important;
+      background: linear-gradient(120deg, #2a303b 0%, #171d27 100%) !important;
+      color: #edf3f8 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-header__icon {
+      color: #edf2f7 !important;
+      width: 1.65rem !important;
+      height: 1.65rem !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-header__title {
+      font-size: 1.1rem !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.01em !important;
+      text-transform: uppercase !important;
+      color: #edf3f8 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-note {
+      margin: 0 !important;
+      padding: 0.85rem 1.8rem !important;
+      border-bottom: 0.1rem solid #e3e8ee !important;
+      background: #f7f9fc !important;
+      color: #687280 !important;
+      font-size: 1.05rem !important;
+      line-height: 1.45 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-table {
+      padding: 1.6rem 1.8rem 1.9rem !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row {
+      display: block !important;
+      margin: 0 0 1.7rem !important;
+      padding: 0 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row:last-child {
+      margin-bottom: 0 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row--alt,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row:hover {
+      background: transparent !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row__label {
+      display: block !important;
+      margin-bottom: 0.75rem !important;
+      font-size: 1.7rem !important;
+      line-height: 1.2 !important;
+      font-weight: 600 !important;
+      color: #13171d !important;
+      letter-spacing: 0 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row__values {
+      justify-content: flex-start !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-pill {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0.8rem 1.45rem !important;
+      border: 0 !important;
+      border-radius: 999px !important;
+      background: linear-gradient(180deg, #f0f1f4 0%, #e7e9ed 100%) !important;
+      box-shadow: inset 0 0.1rem 0 rgba(255, 255, 255, 0.95) !important;
+      color: #1f252d !important;
+      font-size: 1.45rem !important;
+      font-weight: 500 !important;
+      line-height: 1.25 !important;
+      letter-spacing: 0 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .price-per-item__container {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      flex-wrap: wrap !important;
+      gap: 0.75rem !important;
+      padding: 0.2rem !important;
+      border-radius: calc(var(--dlm-surface-radius) - 0.6rem) !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity {
+      width: 16.8rem !important;
+      max-width: 100% !important;
+      min-height: 5.6rem !important;
+      border: 0.14rem solid var(--dlm-control-pill-border) !important;
+      border-radius: 999px !important;
+      background: linear-gradient(180deg, #eef1f4 0%, var(--dlm-control-pill-bg) 100%) !important;
+      box-shadow: 0 0.5rem 1.4rem rgba(14, 17, 22, 0.1) !important;
+      padding: 0.35rem !important;
+      display: grid !important;
+      grid-template-columns: 3.4rem 1fr 3.4rem !important;
+      align-items: center !important;
+      box-sizing: border-box !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity:before,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity:after {
+      content: none !important;
+      box-shadow: none !important;
+      border: 0 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity__button {
+      width: 3rem !important;
+      height: 3rem !important;
+      min-width: 3rem !important;
+      min-height: 3rem !important;
+      margin: 0 !important;
+      border: 0 !important;
+      border-radius: 50% !important;
+      background: #d6dce4 !important;
+      color: #2a2f37 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity__button:hover {
+      background: #ccd4dd !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity__button svg {
+      width: 1.35rem !important;
+      height: 1.35rem !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity__input {
+      font-size: 1.45rem !important;
+      line-height: 1 !important;
+      font-weight: 500 !important;
+      color: #151a20 !important;
+    }
+
+    @media screen and (min-width: 990px) {
+      #MainProduct-{{ section.id }} .product__info-wrapper {
+        padding: 0.6rem 0.8rem 1.4rem !important;
+      }
+
+      #MainProduct-{{ section.id }} .dlm-reference-ui {
+        --dlm-surface-radius: 2.4rem;
+        padding: 2.8rem 2.4rem 3.2rem !important;
+        border-radius: var(--dlm-surface-radius) !important;
+      }
+
+      #MainProduct-{{ section.id }} .dlm-reference-ui .product__title h1,
+      #MainProduct-{{ section.id }} .dlm-reference-ui .product__title h2,
+      #MainProduct-{{ section.id }} .dlm-reference-ui .product__title-text {
+        font-size: 2.35rem !important;
+      }
+
+      #MainProduct-{{ section.id }} .dlm-reference-ui .price--large,
+      #MainProduct-{{ section.id }} .dlm-reference-ui .price-item--regular,
+      #MainProduct-{{ section.id }} .dlm-reference-ui .price .price-item--sale,
+      #MainProduct-{{ section.id }} .dlm-reference-ui .price--on-sale .price-item--sale {
+        font-size: 2.25rem !important;
+      }
+
+      #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input select {
+        min-height: 6rem !important;
+        font-size: 1.62rem !important;
+      }
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -80,7 +449,7 @@
           id="ProductInfo-{{ section.id }}"
           data-section="{{ section.id }}"
           data-url="{{ product.url }}"
-          class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
+          class="product__info-container dlm-reference-ui{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
         >
 
 
@@ -941,7 +1310,6 @@
       var addToCartLabel = {{ 'products.product.add_to_cart' | t | json }};
       var chooseOptionsLabel = 'Choose options';
       var chooseSizeLabel = 'Select size';
-      var hasUserSelectedSize = false;
 
       if (!atcBtn && productForm) atcBtn = productForm.querySelector('[name="add"]');
       if (!atcBtn || !stickyBtn) return;
@@ -989,6 +1357,10 @@
         return '';
       }
 
+      function isInteractiveOptionGroup(group) {
+        return !!group && !group.hidden;
+      }
+
       function getSizeSelectionState() {
         var selectionState = {
           hasSizeOption: false,
@@ -1004,6 +1376,7 @@
         var optionGroups = Array.from(variantSelects.querySelectorAll('.product-form__input'));
         for (var i = 0; i < optionGroups.length; i += 1) {
           var group = optionGroups[i];
+          if (!isInteractiveOptionGroup(group)) continue;
           var optionName = getOptionNameFromGroup(group).toLowerCase();
           var isSizeOption = /\bsize\b/.test(optionName);
           if (!isSizeOption) continue;
@@ -1040,36 +1413,13 @@
         return selectionState;
       }
 
-      function getSizeGroupFromTarget(target) {
-        if (!target || !variantSelects || typeof target.closest !== 'function') return null;
-
-        var group = target.closest('.product-form__input');
-        if (!group || !variantSelects.contains(group)) return null;
-
-        var optionName = getOptionNameFromGroup(group).toLowerCase();
-        if (!/\bsize\b/.test(optionName)) return null;
-
-        return group;
-      }
-
-      function markUserSizeSelection(target, eventType) {
-        var sizeGroup = getSizeGroupFromTarget(target);
-        if (!sizeGroup) return;
-
-        if (eventType === 'click' && sizeGroup.querySelector('select')) return;
-
-        var selectedValue = getSelectedOptionValue(sizeGroup);
-        if (selectedValue !== '') {
-          hasUserSelectedSize = true;
-        }
-      }
-
       function getFirstMissingOption() {
         if (!variantSelects) return null;
 
         var optionGroups = Array.from(variantSelects.querySelectorAll('.product-form__input'));
         for (var i = 0; i < optionGroups.length; i += 1) {
           var group = optionGroups[i];
+          if (!isInteractiveOptionGroup(group)) continue;
           var select = group.querySelector('select');
           if (select && select.value === '') {
             return {
@@ -1163,7 +1513,7 @@
         syncStickyPrice();
         syncStickySize(sizeSelectionState);
 
-        if (sizeSelectionState.hasSizeOption && (!hasUserSelectedSize || !sizeSelectionState.isComplete)) {
+        if (sizeSelectionState.hasSizeOption && !sizeSelectionState.isComplete) {
           canShowSticky = false;
           sticky.classList.add('requires-options');
           stickyBtn.textContent = chooseSizeLabel;
@@ -1196,7 +1546,7 @@
 
       stickyBtn.addEventListener('click', function (event) {
         var sizeSelectionState = getSizeSelectionState();
-        if (sizeSelectionState.hasSizeOption && (!hasUserSelectedSize || !sizeSelectionState.isComplete)) {
+        if (sizeSelectionState.hasSizeOption && !sizeSelectionState.isComplete) {
           event.preventDefault();
           scrollToMissingOption(
             sizeSelectionState.missingSizeOption || sizeSelectionState.firstSizeOption || getFirstMissingOption()
@@ -1229,11 +1579,9 @@
 
       if (variantSelects) {
         variantSelects.addEventListener('change', function (event) {
-          markUserSizeSelection(event.target, 'change');
           window.requestAnimationFrame(syncStickyState);
         });
         variantSelects.addEventListener('click', function (event) {
-          markUserSizeSelection(event.target, 'click');
           window.requestAnimationFrame(syncStickyState);
         });
       }

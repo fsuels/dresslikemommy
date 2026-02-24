@@ -116,24 +116,27 @@
 @media screen and (min-width: 990px) {
   .page-width--product-main,
   .page-width--product-breadcrumbs {
-    max-width: min(178rem, calc(100vw - 2.8rem));
-    padding-left: 1.4rem;
-    padding-right: 1.4rem;
+    max-width: min(136rem, calc(100vw - 8rem));
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .page-width--product-main .product--large:not(.product--no-media) .product__media-wrapper {
-    max-width: 70%;
-    width: calc(70% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 58%;
+    width: calc(58% - var(--grid-desktop-horizontal-spacing) / 2);
+    flex: 0 0 calc(58% - var(--grid-desktop-horizontal-spacing) / 2);
+    transform: none;
   }
 
   .page-width--product-main .product--large:not(.product--no-media) .product__info-wrapper {
-    max-width: 30%;
-    width: calc(30% - var(--grid-desktop-horizontal-spacing) / 2);
-    padding: 0 0 0 2.2rem;
+    max-width: 42%;
+    width: calc(42% - var(--grid-desktop-horizontal-spacing) / 2);
+    flex: 0 0 calc(42% - var(--grid-desktop-horizontal-spacing) / 2);
+    padding: 0 0 0 1.6rem;
   }
 
   .page-width--product-main .product--large:not(.product--no-media).product--right .product__info-wrapper {
-    padding: 0 2.2rem 0 0;
+    padding: 0 1.6rem 0 0;
   }
 
   .page-width--product-main .product__info-container > * + * {
@@ -144,36 +147,47 @@
 @media screen and (min-width: 1400px) {
   .page-width--product-main,
   .page-width--product-breadcrumbs {
-    max-width: min(184rem, calc(100vw - 2rem));
-    padding-left: 1rem;
-    padding-right: 1rem;
+    max-width: min(142rem, calc(100vw - 10rem));
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
   }
 
   .page-width--product-main .product--large:not(.product--no-media) .product__media-wrapper {
-    max-width: 72%;
-    width: calc(72% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 57%;
+    width: calc(57% - var(--grid-desktop-horizontal-spacing) / 2);
+    flex: 0 0 calc(57% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .page-width--product-main .product--large:not(.product--no-media) .product__info-wrapper {
-    max-width: 28%;
-    width: calc(28% - var(--grid-desktop-horizontal-spacing) / 2);
-    padding: 0 0 0 2rem;
+    max-width: 43%;
+    width: calc(43% - var(--grid-desktop-horizontal-spacing) / 2);
+    flex: 0 0 calc(43% - var(--grid-desktop-horizontal-spacing) / 2);
+    padding: 0 0 0 1.8rem;
   }
 
   .page-width--product-main .product--large:not(.product--no-media).product--right .product__info-wrapper {
-    padding: 0 2rem 0 0;
+    padding: 0 1.8rem 0 0;
   }
 }
 
 @media screen and (min-width: 1600px) {
+  .page-width--product-main,
+  .page-width--product-breadcrumbs {
+    max-width: min(146rem, calc(100vw - 12rem));
+    padding-left: 2.8rem;
+    padding-right: 2.8rem;
+  }
+
   .page-width--product-main .product--large:not(.product--no-media) .product__media-wrapper {
-    max-width: 74%;
-    width: calc(74% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 56%;
+    width: calc(56% - var(--grid-desktop-horizontal-spacing) / 2);
+    flex: 0 0 calc(56% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .page-width--product-main .product--large:not(.product--no-media) .product__info-wrapper {
-    max-width: 26%;
-    width: calc(26% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 44%;
+    width: calc(44% - var(--grid-desktop-horizontal-spacing) / 2);
+    flex: 0 0 calc(44% - var(--grid-desktop-horizontal-spacing) / 2);
     padding: 0 0 0 1.8rem;
   }
 
@@ -1418,7 +1432,8 @@ a.product__text {
 }
 
 .thumbnail img {
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -1467,7 +1482,7 @@ a.product__text {
 .thumbnail-list__item::before {
   content: '';
   display: block;
-  padding-bottom: 100%;
+  padding-bottom: 150%;
 }
 
 .product:not(.featured-product) .product__view-details {
@@ -1838,9 +1853,6 @@ ul li a::after, ul li .subcategory a::after {
 ul li a:hover::after, ul li .subcategory a:hover::after, ul li a.active::after, ul li .subcategory a.active::after {
   transform: scaleX(1); transform-origin: bottom left;
 }
-
-
-
 
 
 

@@ -1853,3 +1853,584 @@ Open TODOs (next session)
 1) Manual mobile QA for both size dropdown and size radio/pill products to confirm sticky remains hidden until explicit size interaction.
 2) Confirm preselected-size products do not show sticky until user taps/changes size.
 3) Verify no regressions when size is selected and a non-size option is still missing (sticky should show choose-options state only after size interaction).
+
+Patch: PDP info panel visual override + size details card aligned to reference design
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-pdp-info-panel-reference-style
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - Appended a final, end-of-file PDP style override block (after prior PDP/mobile overrides) scoped to:
+    - `.template-product .page-width--product-main .product__info-wrapper`
+    - `.template-product .page-width--product-main .product__info-container`
+  - Restyled the product info panel to a rounded elevated card treatment (container spacing, radius, border, shadow).
+  - Updated title/price hierarchy and spacing to match the requested reference look.
+  - Refined free-shipping badge styling to a larger green pill with icon alignment.
+  - Normalized installment text styling for the Shop Pay line.
+  - Reworked variant dropdown presentation (pill-shaped selects, larger typography, caret placement, focus ring).
+  - Removed legacy boxed wrappers around `variant-selects`/quantity controls in this final override layer.
+  - Restyled `.size-chart-wrapper` and `.sc-*` classes to a dark-header/white-card format with rounded metric pills.
+  - Restyled quantity control to pill layout with circular +/- buttons and centered numeric input.
+  - Added mobile adjustments (`max-width: 749px`) so desktop/mobile both follow the same visual language with tuned sizing.
+- `assets/size-conversion.js`
+  - Added robust value formatting helpers:
+    - `stripTrailingZeros()`
+    - `convertValueWithRange()` (handles numeric ranges for cm->in and kg->lbs conversion)
+    - `appendUnitIfMissing()`
+  - Updated `formatMeasurementWithUnits()` to output a single combined value string (instead of split dual pills).
+  - Updated generated size card header:
+    - icon changed to ruler-style,
+    - title format now `SIZE DETAILS — <SELECTED SIZE>`.
+  - Updated measurement row generation to:
+    - include units in label text (`Height (cm / in)`),
+    - render one `.sc-pill` per measurement row using formatted combined values.
+
+Why this addresses the issue
+- The final PDP override now controls the exact visual treatment of the requested area (title, price, shipping badge, Shop Pay text, size/color controls, size details card, quantity) in both mobile and desktop contexts.
+- Size detail values now render in the same one-pill-per-row format as the provided reference, including correct range conversions.
+
+Validation snapshot
+- Confirmed the final override block exists at the end of `layout/theme.liquid` (after earlier PDP override blocks), ensuring precedence.
+- Ran `node --check assets/size-conversion.js` successfully (no syntax errors).
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP visual QA on desktop and mobile (`320/375/390/430`, tablet, and full desktop widths) against the reference screenshot.
+2) Confirm size detail output on products where source chart values are single values, pre-split values, and ranges.
+3) Verify no regressions on products using pill/radio variant pickers (this override is dropdown-focused).
+
+Patch: PDP reference override moved into document head to ensure size chart styles apply
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-pdp-size-chart-override-head-placement-fix
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - Found `Final PDP visual override` style block placed after `</html>` (outside document structure).
+  - Moved that entire style block to immediately before `</head>` so it is loaded as normal page CSS.
+  - Confirmed line placement now:
+    - override starts around `layout/theme.liquid:1604`
+    - `</head>` closes after the block.
+
+Why this addresses the issue
+- CSS outside the document end is not guaranteed to apply consistently across browsers/caching states.
+- Moving the override into `<head>` ensures the size chart and PDP control restyling is consistently applied.
+
+Validation snapshot
+- Verified marker and structure via search:
+  - `Final PDP visual override` appears in head scope.
+  - `</body>`/`</html>` now occur after the override block, with no duplicate override block after them.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Hard-refresh PDP and manually confirm size chart visuals now match reference on desktop and mobile.
+2) If any single detail still differs, do a final pixel pass (header height, label weight, pill spacing).
+
+Patch: PDP style forced to closer screenshot match (v2 exact override)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-pdp-exact-screenshot-override-v2
+
+Changes applied (evidence-first)
+- `layout/theme.liquid`
+  - Added a new style block immediately before `</head>` labeled:
+    - `PDP exact screenshot override (highest priority)`
+  - This block intentionally re-overrides prior PDP styling for closer visual match to reference screenshot:
+    - lighter gray info panel container with rounded corners/shadow,
+    - adjusted title/price scale and spacing,
+    - green free-shipping capsule,
+    - subtler installment text,
+    - full-width rounded dropdown pills (size/color) with softer borders/shadows,
+    - dark-gradient size-details header,
+    - larger measurement labels,
+    - single rounded gray value pills,
+    - compact rounded quantity control with circular +/- buttons.
+- `assets/size-conversion.js`
+  - Updated conversion precision to 1 decimal:
+    - `cmToInches`: `toFixed(1)`
+    - `kgToLbs`: `toFixed(1)`
+  - This aligns generated values closer to screenshot format (e.g. `47.2-51.2`, `41.9-49.6`).
+
+Why this addresses the issue
+- Prior style layers were still visually too far from the target reference.
+- This v2 override is loaded after earlier theme PDP rules and is fully scoped to PDP selectors to force a closer screenshot match.
+
+Validation snapshot
+- Verified both markers exist in `layout/theme.liquid`:
+  - original final override,
+  - new `PDP exact screenshot override (highest priority)` block.
+- Ran `node --check assets/size-conversion.js` successfully.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Hard refresh and visually compare against screenshot at same viewport size.
+2) If still off, tune only the remaining deltas: title size/line-break, select height, header bar height, and pill font-size.
+
+Patch: Section-scoped PDP hard override for screenshot-style matching
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-main-product-section-scoped-hard-override
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid`
+  - Added section-scoped high-specificity CSS under the existing `{% style %}` block using selectors prefixed by:
+    - `#MainProduct-{{ section.id }} .dlm-reference-ui ...`
+  - Added class `dlm-reference-ui` to `<product-info>` container so override applies only to this PDP block.
+  - Force-styled target elements to match requested screenshot aesthetic:
+    - light gray rounded product info card + soft shadow,
+    - bold title / clean price hierarchy,
+    - soft green free-shipping capsule,
+    - uppercase option labels,
+    - large rounded dropdown pills (size/color) with subtle border/shadow,
+    - dark header size details card,
+    - larger measurement labels and gray rounded value pills,
+    - compact rounded quantity control with circular +/- buttons.
+- `assets/size-conversion.js`
+  - Kept 1-decimal conversion precision (`toFixed(1)`) for cm->in and kg->lbs to stay close to screenshot values.
+
+Why this addresses the issue
+- Previous global head styles were still being contested by multiple theme overrides.
+- This patch shifts control into the section itself with stronger scope + specificity, so the intended visual style should win for the exact product UI block.
+
+Validation snapshot
+- Verified `dlm-reference-ui` class is present on `product__info-container`.
+- Verified new scoped override selectors exist at top of `sections/main-product.liquid` style block.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Hard refresh PDP and verify screenshot alignment on mobile and desktop.
+2) If still off, tune only remaining deltas (title line-break weight, dropdown height, size-card header thickness, quantity width).
+
+Patch: Hide single-value Color/Style selectors on PDP variant picker
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-pdp-hide-single-color-style-options
+
+Changes applied (evidence-first)
+- `snippets/product-variant-picker.liquid`
+  - Added per-option detection for single-value Color/Style option sets:
+    - `option.values.size <= 1`
+    - option name contains `style`, `color`, or `colour` (case-insensitive).
+  - Added `hide_single_value_option` and applied `hidden aria-hidden="true"` on rendered picker wrappers for all picker types (`swatch`, `button`, `dropdown`).
+  - Kept the option markup in DOM (instead of removing it) so `variant-selects` index-based variant resolution continues to work.
+
+Why this addresses the issue
+- Customers no longer see a meaningless selector when Color/Style has only one possible value.
+- Variant matching logic remains intact because hidden controls still provide the full option list expected by theme JS.
+
+Validation snapshot
+- Verified updated condition and hidden attributes are present in `snippets/product-variant-picker.liquid`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on a product with one Color/Style value: confirm selector is hidden and add-to-cart still works.
+2) Manual PDP QA on a multi-color/multi-style product: confirm selectors still render and variant switching works.
+
+Patch: Restore PDP add-to-cart after single-value Color/Style hide regression
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-pdp-atc-regression-single-option-hide-fix
+
+Changes applied (evidence-first)
+- `snippets/product-variant-picker.liquid`
+  - Reworked single-value Color/Style hiding behavior:
+    - still detects `style`, `color`, `colour` options with `option.values.size <= 1`,
+    - now renders those options as hidden dropdown inputs (not hidden swatch/radio groups), ensuring a concrete selected value is always present for variant matching.
+  - Hidden single-value controls remain in DOM for index/order compatibility with variant resolution.
+- `assets/global.js`
+  - Hardened `VariantSelects.updateVariantStatuses()` to avoid null dereferences when no `:checked` node is present in a wrapper.
+  - Added `getOptionValue(wrapper)` helper with guarded value extraction (`select.value`, checked radio, checked option fallback).
+- `sections/main-product.liquid`
+  - Sticky mobile ATC option checks now skip hidden option groups (`group.hidden`) in:
+    - size-completion scanning,
+    - first-missing-option detection.
+
+Why this addresses the issue
+- Hidden single-value options no longer depend on radio checked state; variant matching receives stable option values.
+- Defensive guards prevent JS exceptions from interrupting variant/change-to-ATC flows.
+- Sticky ATC no longer blocks on intentionally hidden auto-selected option groups.
+
+Validation snapshot
+- Ran `node --check assets/global.js` successfully.
+- Verified patched selectors/logic in `snippets/product-variant-picker.liquid`, `assets/global.js`, and `sections/main-product.liquid`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on products with single-value Color/Style: verify both main and sticky ATC add correctly.
+2) Manual PDP QA on multi-option products: verify selectors render normally and variant switching remains correct.
+
+Patch: PDP size details hide empty/placeholder attributes
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-pdp-size-details-hide-empty-attributes
+
+Changes applied (evidence-first)
+- `assets/size-conversion.js`
+  - Added value guard helpers to normalize and classify placeholder content as missing (`-`, `—`, `–`, `--`, `---`, `n/a`, `na`, `none`, `null`, `not available`, `not applicable`, plus dash-only combinations like `- / -`).
+  - Reused these guards while reading chart rows so Age/Height metadata parsing ignores placeholder entries.
+  - Updated size-row rendering to skip any measurement whose label or value is missing/placeholder.
+  - Updated measurement formatting to avoid carrying placeholder fragments into output pills.
+  - Added no-data fallback when a resolved size row contains no valid measurement values after filtering, so the UI shows the existing unavailable message instead of an empty details card.
+  - Consolidated unavailable state HTML into `unavailableSizeMarkup()` for consistent fallback output.
+
+Why this addresses the issue
+- Size details now only render attributes with actual data.
+- Placeholder rows (including plain hyphen values) are omitted from the UI, keeping the section clean and relevant.
+- If all attributes for a selected size are placeholders, customers see a clear unavailable state instead of empty rows.
+
+Validation snapshot
+- Ran `node --check assets/size-conversion.js` successfully.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on products where size chart cells include `-`, `—`, and mixed placeholders like `- / -`; confirm those rows are hidden.
+2) Manual PDP QA on rows with real ranges (e.g. `120-130`) to confirm valid hyphenated values still render.
+
+Patch: PDP rounded container alignment + interactive background spacing
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-pdp-rounded-container-interactive-spacing
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid`
+  - Added shared PDP style tokens inside the section-scoped override:
+    - `--dlm-surface-radius` for consistent rounded shells.
+    - `--dlm-control-surface-padding` for breathing room around controls.
+  - Updated the outer `.dlm-reference-ui` card to use `border-radius: var(--dlm-surface-radius)` (desktop keeps larger radius by overriding the variable in the media query).
+  - Added explicit gray rounded control surfaces for interactive blocks:
+    - `variant-selects .product-form__input` now has gray background, matching rounded radius, and internal padding.
+    - `.product-form__quantity` now has gray background, matching rounded radius, and internal padding.
+  - Tightened quantity-control spacing so rounded buttons no longer visually touch the gray surface:
+    - added wrap/gap/padding on `.price-per-item__container`,
+    - added internal padding + box sizing on `.quantity`,
+    - reduced button size and grid columns for consistent inset spacing.
+
+Why this addresses the issue
+- The outer PDP card and internal interactive surfaces now share the same radius token, so curvature is visually consistent.
+- Interactive controls sit inside padded gray shells, which prevents rounded controls from overlapping/touching background edges.
+
+Validation snapshot
+- Verified updated selectors and tokens are present in `sections/main-product.liquid`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP visual QA on mobile + desktop to confirm radius consistency and control spacing match expectation.
+2) Verify variant dropdown caret alignment still looks correct with the new padded control surface wrapper.
+
+Patch: PDP remove square select rectangle + retune gray palette
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-pdp-remove-select-rectangle-retune-gray
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid`
+  - Added scoped color tokens for the PDP card and controls:
+    - `--dlm-card-bg`, `--dlm-control-surface-bg`, `--dlm-control-pill-bg`, `--dlm-control-pill-border`.
+  - Updated outer card and interactive surface backgrounds to use the new gray palette.
+  - Removed Dawn default square field chrome for the Size dropdown by disabling:
+    - `variant-selects .product-form__input .select:before`
+    - `variant-selects .product-form__input .select:after`
+  - Also disabled default quantity pseudo layers:
+    - `.product-form__quantity .quantity:before`
+    - `.product-form__quantity .quantity:after`
+  - Tuned select/quantity pill border, fill, and shadow to keep a soft rounded look without the square inner rectangle.
+
+Why this addresses the issue
+- The square rectangle in the screenshot came from Dawn `.select` pseudo-elements; they are now explicitly removed in this PDP scope.
+- Gray tones for the container and control backgrounds are now consistent and intentionally matched.
+
+Validation snapshot
+- Verified updated selectors and new color tokens exist in `sections/main-product.liquid`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Hard refresh PDP and confirm the Size area no longer shows any square rectangle on desktop/mobile.
+2) Confirm adjusted gray palette matches expected mock/reference and tweak token values only if needed.
+
+Patch: PDP add-to-cart reliability hardening (sticky + form fallback)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-pdp-atc-reliability-sticky-form-fallback
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid`
+  - Updated sticky mobile ATC gating to check only whether size options are complete (removed the extra `hasUserSelectedSize` requirement).
+  - Removed now-unused helper functions tied to explicit size-click tracking.
+  - Result: sticky ATC no longer blocks valid preselected size states.
+- `assets/product-form.js`
+  - Added constructor guards for missing form/submit button nodes to prevent hard runtime failures.
+  - Added `canRenderCart` capability checks before calling cart drawer methods (`getSectionsToRender`, `setActiveElement`, `renderContents`).
+  - Added fallback redirect to cart page when cart drawer/cart notification methods are unavailable.
+  - Result: add-to-cart still submits even if cart UI custom element methods are missing/uninitialized.
+- `snippets/product-variant-picker.liquid`
+  - Kept the Size placeholder option, but only marks it `selected` when `option.selected_value` is blank.
+  - Result: avoids conflicting selected states that can leave the picker in an inconsistent non-addable state on some browsers.
+
+Why this addresses the issue
+- Sticky ATC previously required explicit user interaction even when a valid size was already selected, which could prevent adds in real shopper flows.
+- Product form submit previously assumed cart drawer methods always existed; when they do not, submission could fail before `/cart/add` request handling completed.
+- Size dropdown placeholder no longer competes with real selected variants.
+
+Validation snapshot
+- Ran `node --check assets/product-form.js` successfully.
+- Verified removal of `hasUserSelectedSize`/`markUserSizeSelection` references in `sections/main-product.liquid`.
+- Verified updated placeholder selection logic in `snippets/product-variant-picker.liquid`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on mobile sticky ATC for products with preselected size and single-size variants.
+2) Manual PDP QA on desktop main ATC to confirm cart drawer render path and fallback behavior.
+3) Confirm variant defaults (including Size) show expected selected value on first load across Safari/Chrome.
+
+Patch: Variant change ATC fail-safe + null-guard hardening
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-variant-change-atc-failsafe-null-guards
+
+Changes applied (evidence-first)
+- `assets/global.js`
+  - In `onVariantChange()`, when a valid `currentVariant` exists, immediately syncs Add to Cart enabled/disabled state from variant availability before async section refresh.
+  - Added null guard in `updateVariantInput()` for missing hidden `input[name="id"]` nodes.
+  - Added fetch `.catch(...)` in `renderProductInfo()` to restore Add to Cart state from the selected variant if section refresh fails.
+  - Added guard in inventory visibility toggle to avoid dereferencing missing `inventorySource`.
+  - Hardened `toggleAddButton()` and `setUnavailable()` against missing button text node/form node.
+
+Why this addresses the issue
+- Previously, selecting a size could disable ATC while waiting on section refresh; if refresh failed/errored, the button could stay non-functional.
+- The new flow keeps button state aligned with the selected variant and recovers cleanly from async refresh failures.
+
+Validation snapshot
+- Ran `node --check assets/global.js` successfully.
+- Ran `node --check assets/product-form.js` successfully.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA: choose size, confirm main ATC becomes clickable immediately and adds to cart.
+2) Manual PDP QA: confirm variant switching still updates price/media and ATC sold-out state correctly.
+
+Patch: Single-color hide compatibility rewrite + ATC no-op safeguards
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-single-color-hide-compat-atc-noop-safeguards
+
+Changes applied (evidence-first)
+- `snippets/product-variant-picker.liquid`
+  - Reworked single-value Color/Style hiding to preserve original picker structures per picker type:
+    - swatch stays `fieldset` (hidden only via wrapper attributes),
+    - button stays `fieldset` (hidden only via wrapper attributes),
+    - dropdown stays dropdown (hidden only via wrapper attributes).
+  - Removed prior custom branch that converted hidden single-value options into forced dropdown markup.
+  - Moved size-chart insertion trigger from `forloop.first` to `option_downcased contains 'size'` to avoid missing chart container when first option is hidden color/style.
+- `assets/global.js`
+  - Added `getSingleOptionFallback(position)` and integrated it into `updateOptions()` and `updateVariantStatuses()`.
+  - If an option value is missing/blank but that option has exactly one variant value across product data, variant resolution now auto-fills that single value.
+  - This specifically hardens hidden single-option flows so ATC variant resolution cannot fail due an empty hidden selector value.
+- `assets/product-form.js`
+  - Added no-op click protections and stale-state recovery:
+    - exits early on actual `disabled` / `loading` states,
+    - clears stale `aria-disabled="true"` before submission attempt,
+    - guards spinner lookup.
+  - Added `fetchConfig` fallback if global helper is unavailable.
+  - Added `cart_add_url` resolution fallback to `window.routes` and native form submit fallback when unavailable.
+- `assets/size-conversion.js`
+  - Removed forced `sizeSelect.value = ''` reset on load.
+  - Keeps optional placeholder insertion but no longer programmatically clears an existing selected size.
+  - Initializes size chart by calling `updateSizeMessage()` without resetting dropdown state.
+
+Why this addresses the issue
+- The previous hidden-single-option implementation changed control type/shape and could desync option resolution in edge cases.
+- Variant resolution now has deterministic single-option fallback values for hidden controls.
+- Submit path now has hard fallbacks so button clicks cannot silently no-op due stale aria state or missing helpers.
+- Size conversion script no longer rewrites size state at load, reducing mismatch risk between visible selections and variant state.
+
+Validation snapshot
+- Ran `node --check assets/global.js` successfully.
+- Ran `node --check assets/product-form.js` successfully.
+- Ran `node --check assets/size-conversion.js` successfully.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on product with single Color + multiple sizes: select size then ATC (main + sticky).
+2) Manual PDP QA on product with multi-color: ensure selectors render and variant switching still works.
+3) Confirm size chart still appears for size dropdown when first option is hidden single-color/style.
+
+Patch: Product-form submit now resolves variant id directly from selectors
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-product-form-direct-variant-resolution-fallback
+
+Changes applied (evidence-first)
+- `assets/product-form.js`
+  - Added `resolveVariantFromSelectors()` to derive selected variant from current `variant-selects` controls + embedded variant JSON.
+  - Added `getSingleOptionValue()` fallback so hidden single-value options (like one Color/Style) still resolve deterministically.
+  - Added `syncVariantIdFromSelectors()` to force hidden `input[name="id"]` to the resolved variant before submit.
+  - On submit, button disabled state now re-synced from the resolved variant availability, preventing stale disabled/no-op states.
+
+Why this addresses the issue
+- Even if upstream variant UI state drifts (especially after hiding single-value Color/Style), product-form now computes and submits the correct variant id directly at click time.
+- This bypasses the failure mode where ATC click appears to do nothing because variant id/button state was stale.
+
+Validation snapshot
+- Ran `node --check assets/product-form.js` successfully.
+- Ran `node --check assets/global.js` successfully.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on a product with single Color + multiple Sizes (the original regression path).
+2) Confirm ATC request payload includes correct variant id after size selection.
+
+Patch: Emergency rollback of single-value Color/Style hiding
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-emergency-rollback-single-value-color-style-hide
+
+Changes applied (evidence-first)
+- `snippets/product-variant-picker.liquid`
+  - Disabled single-value Color/Style hide conditions by removing the dynamic `hide_single_value_option = true` branches.
+  - Picker wrappers still support the flag, but flag is now always false (no hiding occurs).
+
+Why this addresses the issue
+- This is the safest rollback to known picker behavior while preserving all ATC submit hardening.
+- It removes the most likely source of recent variant-resolution regressions tied to hidden single-option controls.
+
+Validation snapshot
+- Verified `hide_single_value_option` no longer receives true assignments.
+- Ran `node --check assets/product-form.js`, `assets/global.js`, and `assets/size-conversion.js` successfully.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA: choose size then Add to Cart on affected products.
+2) Reintroduce single-value option hiding only after adding explicit regression tests.
+
+Patch: Product-form ATC fallback path reset to Dawn baseline + hard cart fallback
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-product-form-baseline-fallback-cart-redirect
+
+Changes applied (evidence-first)
+- `assets/product-form.js`
+  - Removed the prior direct variant-resolution submit path (`resolveVariantFromSelectors` / `syncVariantIdFromSelectors`) and restored a Dawn-style submit flow.
+  - Kept safe constructor guards for missing `form`/submit button and guarded hidden variant-id input enabling.
+  - Added route resolver helper (`getRoute`) to support both `window.routes` and legacy `routes` globals.
+  - Added robust fallback helpers:
+    - `resetSubmitState(spinner)`
+    - `redirectToCartOrSubmit()`
+  - Submission now:
+    - blocks only true in-flight submissions (`loading`) and truly disabled button states,
+    - clears stale `aria-disabled` before a new attempt,
+    - falls back to native form submit when `cart_add_url` is missing,
+    - redirects to cart if AJAX/cart-render runtime path fails,
+    - removes stale `aria-disabled` in `finally` whenever button is not disabled.
+
+Why this addresses the issue
+- Prevents the silent no-op path where submit errors (route/cart-render/runtime) leave the shopper on PDP with no cart update.
+- Removes the more complex custom variant-resolution layer that introduced extra failure surfaces.
+- Ensures ATC falls back to a visible cart navigation instead of failing silently.
+
+Validation snapshot
+- Ran `node --check assets/product-form.js` successfully.
+- Ran `node --check assets/global.js` successfully.
+- Ran `node --check assets/size-conversion.js` successfully.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on affected product: choose size, click main ATC, verify cart count/drawer updates.
+2) Manual mobile QA for sticky ATC path on same product.
+3) If issue persists, capture browser console + network `/cart/add` response payload for one failed click.
+
+Patch: Hard rollback of ATC path to main-branch baseline behavior
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-hard-rollback-atc-to-main-baseline
+
+Changes applied (evidence-first)
+- Restored these files to exact `HEAD` (`main` @ `e0c7b96`) contents:
+  - `assets/product-form.js`
+  - `assets/global.js`
+  - `snippets/product-variant-picker.liquid`
+  - `assets/size-conversion.js`
+- This removed all uncommitted ATC-related experimental hardening/regression paths introduced after baseline.
+
+Why this addresses the issue
+- Re-establishes the same PDP ATC and cart-drawer interaction model that existed on main branch before the recent local ATC edits.
+- Removes redirect/fallback behaviors that could move shoppers away from PDP on submit-path errors.
+
+Validation snapshot
+- Ran `node --check assets/product-form.js` successfully.
+- Ran `node --check assets/global.js` successfully.
+- Ran `node --check assets/size-conversion.js` successfully.
+- Verified these files are no longer modified in `git status`.
+
+Open TODOs (next session)
+1) Manual PDP QA on affected product: select size then click main Add to Cart.
+2) Confirm cart drawer opens from right side and item count increments.
+3) If still failing, inspect any remaining non-ATC local modifications (`sections/main-product.liquid`, `layout/theme.liquid`) for runtime side effects.
+
+Patch: Product cards use full-image ratio in collections and recommendations
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-product-card-image-ratio-adapt-collections-recommendations
+
+Changes applied (evidence-first)
+- `templates/collection.json`
+  - Updated `sections.product-grid.settings.image_ratio` from `"portrait"` to `"adapt"`.
+- `templates/product.json`
+  - Updated `sections.main.blocks.complementary_main.settings.image_ratio` from `"square"` to `"adapt"`.
+  - Updated `sections.related-products.settings.image_ratio` from `"square"` to `"adapt"`.
+
+Why this addresses the issue
+- `adapt` uses each product image's native aspect ratio in card rendering, which avoids fixed-frame cropping from `square`/`portrait` and better preserves full dress/product visibility in listings and recommendations.
+
+Validation snapshot
+- Verified effective template settings with `rg`:
+  - `templates/collection.json` image ratio now `adapt`.
+  - `templates/product.json` recommendation image ratios now `adapt` for both complementary and related products blocks.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual QA on `/collections/*`: confirm product cards show full garments without top/bottom crop on desktop and mobile.
+2) Manual QA on PDP recommendations: confirm related/complementary cards show full products and spacing remains acceptable.
+3) If any card heights become visually inconsistent, adjust section-level columns or spacing instead of reintroducing fixed crop ratios.
+
+Patch: Product gallery thumbnails switched to portrait + no-crop rendering
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-product-thumbnails-portrait-no-crop
+
+Changes applied (evidence-first)
+- `assets/section-main-product.css`
+  - Changed product thumbnail tile ratio from square to portrait by updating `.thumbnail-list__item::before` padding from `100%` to `150%`.
+  - Changed `.thumbnail img` from `object-fit: cover` to `object-fit: contain` and added centered positioning to prevent thumbnail cropping.
+- `layout/theme.liquid`
+  - Updated desktop thumbnail-grid overrides under the 750px+ media query from `80x80` to `80x120` cells.
+  - Updated `.thumbnail.global-media-settings img` in that block to `height: 120px` and `object-fit: contain`.
+  - Updated additional desktop thumbnail override from `100x100` to `80x120` and switched `object-fit` from `cover` to `contain`.
+
+Why this addresses the request
+- Thumbnails are now portrait/vertical instead of square.
+- Thumbnail images use contain-mode rendering, so the full dress remains visible with no crop.
+
+Validation snapshot
+- Verified modified selectors and values via grep/diff:
+  - Portrait ratio (`padding-bottom: 150%`) for thumbnail items.
+  - Thumbnail dimensions set to portrait (`80x120`) in theme-level desktop overrides.
+  - Thumbnail image fit switched to `contain` in both base and override rules.
+- No browser manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA desktop/mobile: confirm all thumbnail media display full garment and spacing remains acceptable.
+2) Check hover zoom on thumbnails still feels intentional now that images are contain-fit.
+
+Patch: PDP desktop layout compact centering (image/details closer)
+Date: 2026-02-24
+AGENT_CONTINUITY_ANCHOR: 2026-02-24-pdp-desktop-compact-centered-columns
+
+Changes applied (evidence-first)
+- `assets/section-main-product.css`
+  - Updated desktop PDP container sizing (`.page-width--product-main` and `.page-width--product-breadcrumbs`) to a narrower centered layout:
+    - `990px+`: `max-width` from `min(178rem, calc(100vw - 2.8rem))` to `min(136rem, calc(100vw - 8rem))`.
+    - `1400px+`: `max-width` from `min(184rem, calc(100vw - 2rem))` to `min(142rem, calc(100vw - 10rem))`.
+    - `1600px+`: added explicit container cap `min(146rem, calc(100vw - 12rem))`.
+  - Rebalanced large-media desktop columns to bring product media and details visually closer while keeping outer whitespace:
+    - `990px+`: media/info `70/30` -> `58/42`.
+    - `1400px+`: media/info `72/28` -> `57/43`.
+    - `1600px+`: media/info `74/26` -> `56/44`.
+  - Reduced desktop info-wrapper side padding for tighter inter-column spacing:
+    - `2.2rem` -> `1.6rem` at `990px+`.
+    - `2rem` -> `1.8rem` at `1400px+`.
+  - Added explicit flex-basis values on media/info wrappers at desktop breakpoints and neutralized legacy media shift with `transform: none` on the large-media wrapper in this scope.
+
+Why this addresses the request
+- The PDP core content now stays in a tighter centered band on desktop, with extra whitespace pushed outward to the far left/right.
+- The image and product detail columns are proportioned closer together, reducing the perceived empty space between them.
+
+Validation snapshot
+- Verified updated desktop selectors and breakpoint values via `git diff -- assets/section-main-product.css`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual desktop PDP QA at ~1024px, ~1440px, and ~1920px to confirm spacing matches the requested compact/centered feel.
+2) Validate both `media_position: left` and `media_position: right` products for balanced spacing.
