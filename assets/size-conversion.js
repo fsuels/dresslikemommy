@@ -98,8 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
     return unitSystem === "imperial" ? Math.min(1, units.length - 1) : 0;
   };
   const getMeasurementForUnitSystem = (rawValue, units, unitSystem) => {
+    const sanitizedRawValue = String(rawValue || "").replace(/\s+and\s+below\b/gi, "").trim();
     const unitList = Array.isArray(units) ? units.map((u) => String(u || "").trim()).filter(Boolean) : [];
-    const rawParts = String(rawValue || "").split("/").map((part) => part.trim()).filter(Boolean);
+    const rawParts = sanitizedRawValue.split("/").map((part) => part.trim()).filter(Boolean);
 
     if (unitList.length < 2) {
       if (rawParts.length >= 2) {
@@ -116,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      const baseRaw = rawParts[0] || String(rawValue || "").trim();
+      const baseRaw = rawParts[0] || sanitizedRawValue;
       const sourceUnit = unitList[0] || inferUnitFromText(baseRaw);
       const targetUnit = getUnitForSystem(sourceUnit, unitSystem);
       const base = stripTrailingUnit(baseRaw, sourceUnit);
@@ -139,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
       };
     }
 
-    const singlePart = rawParts[0] || String(rawValue || "").trim();
+    const singlePart = rawParts[0] || sanitizedRawValue;
     const strippedSingle = stripTrailingUnit(singlePart, sourceUnit);
     if (preferredUnit) {
       const convertedText = convertMeasurementText(strippedSingle, sourceUnit, preferredUnit);
@@ -279,6 +280,19 @@ document.addEventListener("DOMContentLoaded", function () {
       .replace(/[^\w\s-]/g, "")
       .replace(/\s+/g, " ")
       .trim();
+  }
+  function getCompactMeasurementLabel(label) {
+    const raw = String(label || "").trim();
+    if (!raw) return "";
+
+    const explicitMap = {
+      "recommended height": "Height",
+      "recommended weight": "Weight",
+    };
+    const normalized = normalizeKey(raw);
+    if (explicitMap[normalized]) return explicitMap[normalized];
+
+    return raw;
   }
   // ---------------------------------------------------------------------------
   // ADULT TOKEN EXTRACTOR
@@ -588,9 +602,8 @@ document.addEventListener("DOMContentLoaded", function () {
       htmlContent += '</div>';
     }
 
-    // Measurement rows
-    htmlContent += '<div class="sc-table">';
-    let rowIndex = 0;
+    // Measurement rows in compact 2-row matrix (labels + values)
+    const measurements = [];
     for (const measurementName in factorySize) {
       if (measurementName === "_meta") continue;
       const measurementData = factorySize[measurementName];
@@ -598,23 +611,41 @@ document.addEventListener("DOMContentLoaded", function () {
       const value           = measurementData.value;
       if (!value || String(value).trim() === "" || String(value).trim() === "—") continue;
 
-      const isEven = rowIndex % 2 === 0;
       const display = getMeasurementForUnitSystem(value, units, selectedUnitSystem);
       if (!display.value) continue;
+      const normalizedMeasurementName = normalizeKey(measurementName);
+      let displayValue = display.value;
+      if (normalizedMeasurementName.includes("weight")) {
+        let displayUnit = normalizeUnit(display.unit);
+        if (displayUnit === "lb") displayUnit = "lbs";
+        if (displayUnit === "kg" || displayUnit === "lbs") {
+          const escapedUnit = displayUnit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          const hasUnitAlready = new RegExp("\\b" + escapedUnit + "\\b", "i").test(displayValue);
+          if (!hasUnitAlready) {
+            displayValue = displayValue + " " + displayUnit;
+          }
+        }
+      }
 
-      htmlContent += '<div class="sc-row' + (isEven ? ' sc-row--alt' : '') + '">';
-      htmlContent += '<span class="sc-row__label">' + escapeHtml(measurementName) + '</span>';
-      htmlContent += '<div class="sc-row__values">';
-      htmlContent += '<span class="sc-pill">' + escapeHtml(display.value) + '</span>';
-      htmlContent += '</div>';
-      htmlContent += '</div>';
-      rowIndex++;
+      measurements.push({
+        name: getCompactMeasurementLabel(measurementName),
+        value: displayValue,
+      });
     }
 
-    if (rowIndex === 0) {
+    htmlContent += '<div class="sc-table">';
+    if (measurements.length === 0) {
       htmlContent += '<div class="sc-empty"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span>Size information not available for this selection.</span></div>';
+    } else {
+      htmlContent += '<div class="sc-matrix" style="--sc-cols:' + measurements.length + ';">';
+      for (let i = 0; i < measurements.length; i++) {
+        htmlContent += '<span class="sc-matrix__cell sc-matrix__cell--label">' + escapeHtml(measurements[i].name) + '</span>';
+      }
+      for (let i = 0; i < measurements.length; i++) {
+        htmlContent += '<span class="sc-matrix__cell sc-matrix__cell--value"><span class="sc-pill">' + escapeHtml(measurements[i].value) + '</span></span>';
+      }
+      htmlContent += '</div>';
     }
-
     htmlContent += '</div>';
 
     sizeChartContent.innerHTML     = htmlContent;

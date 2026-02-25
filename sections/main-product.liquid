@@ -307,62 +307,71 @@
     }
 
     #MainProduct-{{ section.id }} .dlm-reference-ui .sc-table {
-      padding: 1.6rem 1.8rem 1.9rem !important;
+      padding: 1.05rem 1.2rem 1.25rem !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      scrollbar-width: thin !important;
     }
 
-    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      gap: 1rem !important;
-      margin: 0 0 1.7rem !important;
-      padding: 0 !important;
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-matrix {
+      --sc-cols: 1;
+      display: grid !important;
+      grid-template-columns: repeat(var(--sc-cols), minmax(7.1rem, 1fr)) !important;
+      gap: 0.5rem !important;
+      width: max-content !important;
+      min-width: 100% !important;
     }
 
-    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row:last-child {
-      margin-bottom: 0 !important;
-    }
-
-    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row--alt,
-    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row:hover {
-      background: transparent !important;
-    }
-
-    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row__label {
-      display: inline-flex !important;
-      align-items: center !important;
-      margin-bottom: 0 !important;
-      font-size: 1.55rem !important;
-      line-height: 1.2 !important;
-      font-weight: 600 !important;
-      color: #13171d !important;
-      letter-spacing: 0 !important;
-      flex: 1 1 auto !important;
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-matrix__cell {
       min-width: 0 !important;
     }
 
-    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row__values {
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-matrix__cell--label {
       display: inline-flex !important;
       align-items: center !important;
-      justify-content: flex-end !important;
-      margin-left: auto !important;
-      flex: 0 0 auto !important;
+      justify-content: center !important;
+      padding: 0.5rem 0.55rem !important;
+      border-radius: 0.9rem !important;
+      background: #e9edf2 !important;
+      color: #151a20 !important;
+      font-size: 1.08rem !important;
+      font-weight: 600 !important;
+      line-height: 1.15 !important;
+      text-align: center !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-matrix__cell--value {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
 
     #MainProduct-{{ section.id }} .dlm-reference-ui .sc-pill {
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
-      padding: 0.72rem 1.28rem !important;
+      width: 100% !important;
+      padding: 0.56rem 0.8rem !important;
       border: 0 !important;
       border-radius: 999px !important;
       background: linear-gradient(180deg, #f0f1f4 0%, #e7e9ed 100%) !important;
       box-shadow: inset 0 0.1rem 0 rgba(255, 255, 255, 0.95) !important;
       color: #1f252d !important;
-      font-size: 1.32rem !important;
+      font-size: 1.14rem !important;
       font-weight: 500 !important;
-      line-height: 1.25 !important;
+      line-height: 1.15 !important;
       letter-spacing: 0 !important;
+      white-space: nowrap !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-empty {
+      margin: 0 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.6rem !important;
+      color: #656f7d !important;
+      font-size: 1.12rem !important;
+      line-height: 1.35 !important;
     }
 
     @media screen and (max-width: 749px) {
@@ -374,16 +383,23 @@
         margin-left: auto !important;
       }
 
-      #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row {
-        gap: 0.8rem !important;
+      #MainProduct-{{ section.id }} .dlm-reference-ui .sc-table {
+        padding: 0.85rem 0.95rem 1.05rem !important;
       }
 
-      #MainProduct-{{ section.id }} .dlm-reference-ui .sc-row__label {
-        font-size: 1.45rem !important;
+      #MainProduct-{{ section.id }} .dlm-reference-ui .sc-matrix {
+        grid-template-columns: repeat(var(--sc-cols), minmax(6.4rem, 1fr)) !important;
+        gap: 0.45rem !important;
+      }
+
+      #MainProduct-{{ section.id }} .dlm-reference-ui .sc-matrix__cell--label {
+        padding: 0.42rem 0.48rem !important;
+        font-size: 0.98rem !important;
       }
 
       #MainProduct-{{ section.id }} .dlm-reference-ui .sc-pill {
-        font-size: 1.26rem !important;
+        padding: 0.48rem 0.66rem !important;
+        font-size: 1.02rem !important;
       }
     }
 

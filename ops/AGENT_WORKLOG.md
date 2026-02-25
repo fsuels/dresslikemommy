@@ -2744,3 +2744,187 @@ Open TODOs (next session)
 1) Manual PDP desktop QA: with 4+ recommendations, confirm only 3 cards are visible at once and next/prev buttons move through remaining products.
 2) Manual PDP desktop QA: confirm recommendation cards are centered and do not show unintended left/right offsets.
 3) Manual PDP mobile QA: confirm existing swipe behavior remains intact and no extra desktop controls appear.
+
+Patch: Product size-chart range cleanup (single-value normalization in CSV exports)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-size-chart-range-single-value-normalization
+
+Changes applied (evidence-first)
+- Updated size-chart values in both CSV product exports:
+  - `products_export_1 2_IMPORT_READY.csv`
+  - `products_export_1 2.csv`
+- Scope of edit was restricted to HTML table data cells (`<td>...</td>`) inside product body content.
+- For any numeric range inside a `<td>` (e.g., `a-b`), replaced it with a single midpoint value.
+  - Integer ranges were rounded to nearest whole number (half-up).
+  - Decimal ranges were rounded to the same decimal precision used by the source values.
+- Unit pair integrity was preserved by transforming each range in-place within its own unit string, e.g.:
+  - `60-65 cm / 23.6-25.6 in` -> `63 cm / 24.6 in`
+  - `5-7 kg / 11-15 lbs` -> `6 kg / 13 lbs`
+
+Validation snapshot
+- Programmatic scan after edit found no remaining numeric range patterns inside `<td>` cells in either file.
+- Spot checks confirmed cleaned values stayed correctly aligned by unit (`cm` with `in`, `kg` with `lbs`).
+- Git status shows only the two intended CSV files modified.
+
+Open TODOs (next session)
+1) If a different normalization preference is desired (e.g., lower bound instead of midpoint), rerun with updated rule.
+2) Optional: manual merch review of a few high-traffic products to confirm display/readability preferences.
+
+Patch: Size-chart values normalized to whole numbers (no decimals)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-size-chart-whole-number-normalization
+
+Changes applied (evidence-first)
+- Updated both CSV exports again:
+  - `products_export_1 2_IMPORT_READY.csv`
+  - `products_export_1 2.csv`
+- Scope remained restricted to `<td>...</td>` table cell content.
+- Converted all decimal numeric values inside table cells to whole numbers using half-up rounding.
+  - Examples:
+    - `63 cm / 24.6 in` -> `63 cm / 25 in`
+    - `6 kg / 12.1 lbs` -> `6 kg / 12 lbs`
+
+Validation snapshot
+- Post-change scans found zero decimal values remaining inside `<td>` cells in both files.
+- Spot checks confirm unit pairing remains intact (`cm` with `in`, `kg` with `lbs`).
+
+Open TODOs (next session)
+1) Optional merchandising pass to verify final rounded values read naturally for top products.
+
+Patch: Follow-up cleanup for residual size ranges outside table cells
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-size-range-followup-body-html-measurements
+
+Changes applied (evidence-first)
+- Addressed remaining measurement ranges that were outside `<td>` values in product Body HTML content for:
+  - `products_export_1 2_IMPORT_READY.csv`
+  - `products_export_1 2.csv`
+- Normalized additional patterns to single whole numbers (half-up), including:
+  - unit-tail ranges: `84-102cm`, `0.5-1 in`, `130–160 cm`
+  - dual-unit ranges: `80cm-95cm`
+  - measurement-keyword ranges without explicit trailing unit: `Bust: 90-120`, `Waist: 80-104`
+
+Validation snapshot
+- No remaining unit-based measurement ranges detected (`cm/in/kg/lbs/lb/g/mm` patterns).
+- No remaining keyword measurement ranges detected (`bust/waist/chest/hip/length/height/weight/...` with range form).
+- No remaining numeric ranges in `<td>` chart cells in either file.
+
+Open TODOs (next session)
+1) If merch wants age ranges preserved/changed differently in descriptive copy, handle separately from measurement values.
+
+Patch: PDP size-chart compact 2-row layout (header preserved)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-size-chart-compact-two-row-layout
+
+Changes applied (evidence-first)
+- Updated size-chart rendering in `assets/size-conversion.js`:
+  - Kept the existing header markup (`.sc-header`, title, and unit toggle) intact.
+  - Replaced stacked per-measurement rows with a compact 2-row matrix under the header:
+    - row 1: measurement labels
+    - row 2: measurement values
+  - New output classes: `.sc-matrix`, `.sc-matrix__cell--label`, `.sc-matrix__cell--value`.
+- Updated size-chart styles in `sections/main-product.liquid`:
+  - Replaced `.sc-row*` presentation styles with compact matrix styles.
+  - Tightened spacing and typography for mobile.
+  - Added horizontal overflow handling on `.sc-table` so columns remain readable on small screens.
+  - Preserved existing header styling and behavior.
+
+Validation snapshot
+- `node --check assets/size-conversion.js` passed (no syntax errors).
+- Diff review confirms edits are scoped to:
+  - `assets/size-conversion.js`
+  - `sections/main-product.liquid`
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on mobile and desktop: confirm two-row layout readability across products with many measurement columns.
+2) Validate long label behavior (e.g., "Upper Bust") and tune min column width if merchandising wants less horizontal scroll.
+
+Patch: Size-chart long-label compaction for mobile readability
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-size-chart-label-compaction
+
+Changes applied (evidence-first)
+- Updated `assets/size-conversion.js` to compact long measurement labels at render time:
+  - Exact replacements:
+    - `Recommended Height` -> `Rec. Height`
+    - `Recommended Weight` -> `Rec. Weight`
+  - Generic fallback:
+    - Any label starting with `Recommended` now renders as `Rec. ...`
+- Implemented helper: `getCompactMeasurementLabel(label)` and applied it when building size-chart matrix labels.
+- Source size-table/header data remains unchanged; this is display-only in the PDP size-chart UI.
+
+Validation snapshot
+- `node --check assets/size-conversion.js` passed (no syntax errors).
+- Verified helper usage in matrix label rendering path.
+
+Open TODOs (next session)
+1) Manual PDP QA: confirm compact labels are readable across products with recommendation columns.
+2) If desired, add more explicit short forms (e.g., `Rec. Chest`, `Rec. Hips`) via the same map.
+
+Patch: Size-chart label copy tweak (`Recommended Height/Weight` -> `Height/Weight`)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-size-chart-height-weight-label-copy
+
+Changes applied (evidence-first)
+- Updated display label mapping in `assets/size-conversion.js` (`getCompactMeasurementLabel`):
+  - `Recommended Height` now renders as `Height`
+  - `Recommended Weight` now renders as `Weight`
+- Removed the generic `Recommended -> Rec.` fallback, so only the two explicit labels are altered.
+- Data source and table headers remain unchanged; this is render-time UI text only.
+
+Validation snapshot
+- `node --check assets/size-conversion.js` passed (no syntax errors).
+- Verified mapping targets in file search output.
+
+Open TODOs (next session)
+1) Manual PDP QA to confirm these labels appear as expected on products that include recommendation fields.
+
+Patch: Removed "and below" from size-chart measurement values
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-remove-and-below-measurements
+
+Changes applied (evidence-first)
+- Updated CSV exports used for GPT/backfill content:
+  - `GPT/products_export_1.csv`
+  - `GPT/products_export_1_backfill.csv`
+- Removed trailing phrase `and below` from measurement cell values.
+  - Examples:
+    - `130 cm and below` -> `130 cm`
+    - `50 kg / 100 lbs and below` -> `50 kg / 100 lbs`
+
+Validation snapshot
+- Repository scan for `and below` now returns no matches.
+- Spot checks around edited size-chart blocks confirm expected output format.
+
+Open TODOs (next session)
+1) If this wording should also be removed in external copies not tracked here (Shopify admin content), apply the same cleanup there.
+
+Patch: Remove `and below` in active exports + show weight units in size-chart UI
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-size-chart-weight-units-and-below-cleanup
+
+Changes applied (evidence-first)
+- Updated active product export CSVs:
+  - `products_export_1 2.csv`
+  - `products_export_1 2_IMPORT_READY.csv`
+- Removed trailing `and below` phrases from measurement values.
+  - Examples:
+    - `130 cm and below` -> `130 cm`
+    - `50 kg / 100 lbs and below` -> `50 kg / 100 lbs`
+- Updated `assets/size-conversion.js` rendering behavior:
+  - Sanitizes any residual `and below` text at runtime before parsing (`getMeasurementForUnitSystem`).
+  - For measurement labels containing `weight`, appends explicit unit in value pills:
+    - metric -> `kg`
+    - imperial -> `lbs`
+  - Keeps header unit toggle labels (`cm` / `in`) unchanged.
+
+Validation snapshot
+- `node --check assets/size-conversion.js` passed.
+- `rg` scan confirms no `and below` remains in:
+  - `products_export_1 2.csv`
+  - `products_export_1 2_IMPORT_READY.csv`
+
+Open TODOs (next session)
+1) Manual PDP QA: verify weight pills display as `XX kg` / `YY lbs` when toggling units.
+2) If needed, mirror this cleanup in any external/off-repo CSV snapshots.
