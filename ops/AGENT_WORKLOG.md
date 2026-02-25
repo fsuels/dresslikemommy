@@ -4155,3 +4155,28 @@ Validation snapshot
 Open TODOs (next session)
 1) Publish the updated theme so the live homepage uses the adjusted desktop card sizing.
 2) Optional visual QA at desktop breakpoint to confirm spacing looks acceptable with 4 cards in a 5-column grid.
+
+Patch: Constrain PDP "You may also like" to same-collection products
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-related-products-same-collection-constraint
+
+Changes applied (evidence-first)
+- Updated `sections/related-products.liquid` so the "You may also like" cards no longer render from `recommendations.products`.
+- New source logic now selects one collection context for the current product:
+  - Use `collection` when present.
+  - If `collection` is blank, pick the smallest non-`all` collection from `product.collections` (favoring more specific collections).
+- Product rendering/counting now loops through `collection_for_related.products`, excluding the current PDP product.
+- Added a guard against cross-category mismatches:
+  - If both current product type and candidate product type are set, only matching types are shown.
+  - This prevents obvious mismatches like swimsuits showing sweaters/dresses.
+- Existing section structure, card rendering, slider behavior, and section settings remain unchanged.
+
+Validation snapshot
+- Local diff check confirms `sections/related-products.liquid` now:
+  - Computes `collection_for_related`
+  - Computes `related_products_count` from collection products
+  - Renders `card-product` with `collection_product` entries (not `recommendations.products`)
+
+Open TODOs (next session)
+1) Preview multiple PDPs in Theme Editor/storefront to confirm recommendations stay category-consistent for swimwear/dresses/sweaters.
+2) If any PDP has too few results due to strict type mismatch guard, decide whether to allow same-collection fallback without type matching for that subset.
