@@ -4112,3 +4112,46 @@ Validation snapshot
 Open TODOs (next session)
 1) Publish and verify these breadcrumb updates on production theme.
 2) If requested, apply the same shortened-label logic to family child-page pill labels (not changed in this patch).
+
+Patch: Hide empty collections in homepage collection-list sections
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-homepage-hide-empty-collection-cards
+
+Changes applied (evidence-first)
+- Updated `sections/collection-list.liquid` to render only non-empty collection blocks:
+  - Added `visible_block_count` pre-pass that counts blocks where `block.settings.collection` exists and `all_products_count > 0`.
+  - Added guard to skip per-block rendering when collection is blank or has zero products.
+  - Updated slider/count-dependent values to use `visible_block_count` instead of `section.blocks.size`.
+  - Wrapped section markup with `if visible_block_count > 0` so fully empty collection-list sections do not render.
+  - Updated slide IDs/animation order to stay sequential after skipped blocks.
+- Effect on homepage family strip: `family-pajamas` no longer renders when empty.
+
+Validation snapshot
+- Local preview checks:
+  - `curl -s http://127.0.0.1:9292/ | rg -n "family-pajamas|collections/family-pajamas"`
+    - No matches found.
+  - `curl -s http://127.0.0.1:9292/ | rg -n "Slide-template--17123390292065__collection_list_EiNf6T-" | head`
+    - Shows sequential slide IDs `1..4` for Family Matching list.
+
+Open TODOs (next session)
+1) Publish this theme update so live homepage stops showing empty collection cards.
+2) Optional QA in Theme Editor preview to confirm all collection-list sections still behave as expected on mobile slider.
+
+Patch: Match Daddy/Maternity/Couples homepage card size to other collection strips
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-homepage-daddy-section-card-size-match
+
+Changes applied (evidence-first)
+- Updated `templates/index.json` section `collection_list_BHDW3K` settings:
+  - `columns_desktop`: `4` -> `5`
+- Existing `image_ratio: "portrait"` remains unchanged.
+- This aligns desktop card sizing for `Daddy & Me - Maternity - Couples` with the two collection-list sections above (`Mommy & Me`, `Family Matching`), which already use 5 desktop columns.
+
+Validation snapshot
+- Local preview check:
+  - `curl -s http://127.0.0.1:9292/ | rg -n "collection_list_BHDW3K|grid--5-col-desktop"`
+- Verified `collection_list_BHDW3K` now renders with `grid--5-col-desktop`.
+
+Open TODOs (next session)
+1) Publish the updated theme so the live homepage uses the adjusted desktop card sizing.
+2) Optional visual QA at desktop breakpoint to confirm spacing looks acceptable with 4 cards in a 5-column grid.

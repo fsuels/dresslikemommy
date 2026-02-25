@@ -18,15 +18,22 @@
 
 {%- liquid
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
+  assign visible_block_count = 0
+  for block in section.blocks
+    if block.settings.collection != blank and block.settings.collection.all_products_count > 0
+      assign visible_block_count = visible_block_count | plus: 1
+    endif
+  endfor
   assign show_mobile_slider = false
   assign section_anchor_id = section.settings.anchor_id | strip | handleize
-  if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
+  if section.settings.swipe_on_mobile and visible_block_count > columns_mobile_int
     assign show_mobile_slider = true
   endif
 -%}
 
+{%- if visible_block_count > 0 -%}
 <div class="color-{{ section.settings.color_scheme }} gradient"{% if section_anchor_id != blank %} id="{{ section_anchor_id }}"{% endif %}>
-  <div class="collection-list-wrapper page-width isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
+  <div class="collection-list-wrapper page-width isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or visible_block_count > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
     {%- unless section.settings.title == blank -%}
       <div class="title-wrapper-with-link{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin">
         <h2
@@ -51,27 +58,32 @@
 
     <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <ul
-        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.size }}-items"
+        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ visible_block_count }}-items"
         id="Slider-{{ section.id }}"
         role="list"
       >
         {%- liquid
-          assign columns = section.blocks.size
+          assign columns = visible_block_count
           if columns > 3
             assign columns = 3
           endif
+          assign animation_order = 0
         -%}
         {%- for block in section.blocks -%}
+          {%- if block.settings.collection == blank or block.settings.collection.all_products_count == 0 -%}
+            {%- continue -%}
+          {%- endif -%}
+          {%- assign animation_order = animation_order | plus: 1 -%}
           <li
-            id="Slide-{{ section.id }}-{{ forloop.index }}"
+            id="Slide-{{ section.id }}-{{ animation_order }}"
             class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
-              style="--animation-order: {{ forloop.index }};"
+              style="--animation-order: {{ animation_order }};"
             {% endif %}
           >
-            {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+            {%- assign placeholder_image_index = animation_order | minus: 1 | modulo: 4 | plus: 1 -%}
             {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
             {% render 'card-collection',
               card_collection: block.settings.collection,
@@ -109,7 +121,7 @@
       {%- endif -%}
     </slider-component>
 
-    {%- if section.settings.show_view_all and section.blocks.size < collections.size -%}
+    {%- if section.settings.show_view_all and visible_block_count < collections.size -%}
       <div
         class="center collection-list-view-all{% if show_mobile_slider %} small-hide medium-hide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {% if settings.animations_reveal_on_scroll %}
@@ -128,6 +140,7 @@
     {%- endif -%}
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
