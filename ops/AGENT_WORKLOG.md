@@ -3326,3 +3326,155 @@ Validation snapshot
 Open TODOs (next session)
 1) Manual PDP QA on mobile and desktop to confirm color/size/quantity sections remain white through hover/focus/selection states.
 2) If reduced contrast is reported, adjust borders/shadows only (keep backgrounds white).
+
+Patch: PDP mobile title-gap removal + uniform white surfaces
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-mobile-gap-and-white-surfaces
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` scoped style block to remove mobile gap above the product title and tighten title/price proximity to media:
+  - Added mobile overrides under `@media screen and (max-width: 749px)`:
+    - `.product__media-list` bottom margin: tightened to `0.6rem`
+    - `.product__info-wrapper` top padding removed (`0 1rem 1.2rem`)
+    - `.dlm-reference-ui` top padding reduced (`1.1rem 1.4rem 1.9rem`)
+    - inter-block spacing reduced (`> * + *` from `1.65rem` to `1.2rem` on mobile)
+    - title-to-price spacing reduced (`0.75rem` to `0.45rem` on mobile)
+    - mobile `.share-button` hidden to prevent empty space before title when share block is first in block order.
+- Removed subtle card shading/block effect behind title/price area:
+  - `.dlm-reference-ui` border set to `0` and box-shadow set to `none`.
+  - Added white background enforcement for section/root info surfaces:
+    - `#MainProduct-{{ section.id }}`, `.gradient`, `.product__info-wrapper`, `.dlm-reference-ui`, `.product__title`, `[id^='price-']`, installment/payment-terms nodes.
+- Enforced pure white sizing/details surfaces (no gray fills):
+  - `.size-chart-wrapper` shadow removed.
+  - `.sc-header` converted from dark gradient to white with light border.
+  - `.sc-header__icon`, `.sc-header__title`, unit-toggle text colors adjusted for readability on white.
+  - `.sc-unit-toggle` background set to white.
+  - `.sc-unit-toggle__btn.is-active` shadow removed.
+  - `.sc-note` background changed to white.
+  - `.sc-table` background explicitly white.
+  - `.sc-pill` gradient/shadow removed (solid white).
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid` confirms all edits are scoped to the PDP inline style block.
+- No Liquid structure/logic changes were made (CSS-only behavior adjustment).
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on iOS Safari and Android Chrome: confirm there is no blank space above title and title/price sit closer to gallery.
+2) Verify white-background consistency around free shipping + payment terms text and throughout size details/measurement UI.
+3) If hiding mobile share is not desired, replace with a compact visible share treatment placed below price.
+
+Validation addendum: theme-check baseline status after PDP mobile white-surface patch
+Date: 2026-02-25
+
+- Ran: `shopify theme check --fail-level error --path .`
+- Result: non-zero due pre-existing repository issues in unrelated files (e.g., `sections/email-signup-banner.liquid`, `sections/header.liquid`, `sections/main-list-collections.liquid`).
+- `sections/main-product.liquid` surfaced warnings only (no new Liquid syntax errors introduced by this CSS-focused patch).
+
+Patch: PDP mobile image-to-title gap reduced ~70%
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-mobile-image-title-gap-minus-70
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` in the existing mobile override (`@media screen and (max-width: 749px)`) to compress vertical distance between gallery and title:
+  - `.product__media-list` bottom margin: `0.6rem -> 0.2rem`
+  - `.dlm-reference-ui` top padding: `1.1rem -> 0.35rem` (left/right/bottom unchanged)
+- No desktop selectors were changed.
+- No Liquid markup/logic changes were made.
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid` confirms only the targeted mobile spacing values were adjusted for this request.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Mobile QA on iOS/Android PDP to confirm the gallery-to-title gap is now visibly more compact (~70% reduction target).
+2) If spacing feels too tight on specific devices, increment `padding-top` from `0.35rem` to `0.45rem`.
+
+Patch: PDP mobile gallery-bottom gap hard collapse (follow-up)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-mobile-gap-hard-collapse-v2
+
+Changes applied (evidence-first)
+- Further tightened mobile spacing in `sections/main-product.liquid` (`@media screen and (max-width: 749px)`) to move title/content directly under the main image:
+  - `.product__media-list` bottom margin: `0.2rem -> 0`
+  - `.dlm-reference-ui` top padding: `0.35rem -> 0`
+  - Added collapse rules for gallery containers:
+    - `.product__media-wrapper`, `.slider-mobile-gutter` => `margin-bottom: 0`, `padding-bottom: 0`
+  - Hid the mobile gallery progress strip below image (which consumed vertical space):
+    - `.product-media-progress { display: none; margin: 0; }`
+- Existing mobile share suppression remains unchanged.
+
+Validation snapshot
+- `nl -ba sections/main-product.liquid` confirms updated mobile spacing rules are present at lines ~413-435.
+- No Liquid markup/logic changes were made.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify on real mobile viewport that title now sits immediately under image bottom without extra spacer area.
+2) If a progress indicator is still desired, re-add it as an in-image overlay (absolute positioned), not as a block below the image.
+
+Patch: PDP mobile gap reduction v3 (under-image controls + wrapper lift)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-mobile-gap-v3-wrapper-lift
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` mobile override (`@media screen and (max-width: 749px)`) to move title/content further upward:
+  - Added `margin-top: -1.6rem` to `.product__info-wrapper`.
+- Hidden remaining under-image controls that can occupy vertical space in mobile gallery:
+  - `[data-gallery-stepper]` / `.product-media-progress` hidden.
+  - `[data-mobile-share-button]` / `.product__media-share` hidden.
+- Existing zero-spacing rules retained:
+  - `.product__media-list` margin-bottom `0`
+  - `.product__media-wrapper` + `.slider-mobile-gutter` bottom margin/padding `0`
+  - `.dlm-reference-ui` top padding `0`
+
+Validation snapshot
+- `nl -ba sections/main-product.liquid` confirms new rules at lines ~418-441.
+- No Liquid markup/logic changes were made.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify with hard-refresh on mobile viewport; confirm title starts immediately below image area.
+2) If gap persists, it is likely inside media frame/aspect-fit; next step is mobile image fit override (`object-fit` / media ratio handling).
+
+Patch: PDP mobile gap reduction v4 (+30% upward shift)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-mobile-gap-v4-plus-30
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` mobile override to move content 30% further upward:
+  - `.product__info-wrapper` `margin-top: -1.6rem -> -2.1rem`
+- All other mobile gap-collapsing rules from v3 were left unchanged.
+
+Validation snapshot
+- `nl -ba sections/main-product.liquid` confirms the new `margin-top: -2.1rem !important` value.
+- No Liquid markup/logic changes were made.
+- No browser/device manual QA was run in this session.
+
+Patch: PDP mobile title size reduced by 50%
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-mobile-title-minus-50
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` mobile override (`@media screen and (max-width: 749px)`) with a title-size rule:
+  - `.dlm-reference-ui .product__title h1/h2/.product__title-text` => `font-size: 1.1rem !important`
+- This is 50% of the current base PDP title size (`2.2rem`) and applies on mobile only.
+
+Validation snapshot
+- `nl -ba sections/main-product.liquid` confirms the mobile rule is present at lines ~427-430.
+- No desktop title-size selectors were changed.
+- No browser/device manual QA was run in this session.
+
+Patch: PDP mobile title size tuned +20%
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-mobile-title-plus-20
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` mobile title-size override:
+  - `.dlm-reference-ui .product__title h1/h2/.product__title-text` `font-size: 1.1rem -> 1.32rem`
+- This is a 20% increase from the previous mobile title size.
+
+Validation snapshot
+- `nl -ba sections/main-product.liquid` confirms `font-size: 1.32rem !important` in mobile media query.
+- No desktop title rules changed.
+- No browser/device manual QA was run in this session.
