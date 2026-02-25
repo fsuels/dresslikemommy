@@ -103,14 +103,7 @@
           {%- endif -%}
         </div>
         {%- if show_desktop_slider -%}
-          <div
-            class="slider-counter caption slider-counter--product-stepper related-products__slider-stepper"
-            style="--step-progress: 100%;"
-          >
-            <span class="slider-counter--current">1</span>
-            <span class="slider-counter__separator" aria-hidden="true">/</span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ recommendations.products_count }}</span>
+          <div class="related-products__page-dots" role="tablist" aria-label="Carousel pages">
           </div>
         {%- endif -%}
       </slider-component>

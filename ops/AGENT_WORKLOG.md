@@ -3175,3 +3175,26 @@ Validation snapshot
 Open TODOs (next session)
 1) Manual PDP QA: select a size and verify the size chart reads clearly with the new compact height on desktop and mobile.
 2) If tap targets feel too small on mobile, slightly increase `.sc-unit-toggle__btn` height while keeping the rest compact.
+
+Patch: Local preview 401 invalid token recovery (theme dev session refresh)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-local-preview-invalid-token-recovery-v2
+
+Changes applied (evidence-first)
+- Confirmed stale local Shopify CLI runtime was returning:
+  - `HTTP/1.1 401 Unauthorized`
+  - `www-authenticate: Bearer ... error="Invalid token"`
+  - `error_description="The access token provided is expired, revoked, malformed, or invalid for other reasons"`
+- Stopped stale process listening on `127.0.0.1:9292`.
+- Restarted `shopify theme dev --store dresslikemommy-com.myshopify.com --host 127.0.0.1 --port 9292` in a fresh interactive session.
+- Verified recovery:
+  - Local preview endpoint now returns `HTTP/1.1 200 OK`.
+  - HTML now includes `<main id="MainContent"...>` and expected homepage sections.
+
+Validation snapshot
+- Local curl check passed after restart (`200 OK`).
+- Theme dev session reported preview URL and successful sync output.
+
+Open TODOs (next session)
+1) If invalid-token 401 recurs after long idle, restart `shopify theme dev` first.
+2) If restart no longer recovers, run `shopify auth logout` + `shopify auth login`, then start `shopify theme dev` again.

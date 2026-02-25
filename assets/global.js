@@ -651,7 +651,13 @@ class SliderComponent extends HTMLElement {
     this.slidesPerPage = Math.floor(
       (this.slider.clientWidth - this.sliderItemsToShow[0].offsetLeft) / this.sliderItemOffset
     );
-    this.totalPages = this.sliderItemsToShow.length - this.slidesPerPage + 1;
+    this.useGroupPagination = !!this.querySelector('.related-products__page-dots');
+    if (this.useGroupPagination) {
+      this.totalPages = Math.ceil(this.sliderItemsToShow.length / this.slidesPerPage);
+    } else {
+      this.totalPages = this.sliderItemsToShow.length - this.slidesPerPage + 1;
+    }
+    this.buildPageDots();
     this.update();
   }
 
@@ -666,7 +672,12 @@ class SliderComponent extends HTMLElement {
     if (!this.slider || !this.nextButton) return;
 
     const previousPage = this.currentPage;
-    this.currentPage = Math.round(this.slider.scrollLeft / this.sliderItemOffset) + 1;
+    if (this.useGroupPagination) {
+      const groupOffset = this.slidesPerPage * this.sliderItemOffset;
+      this.currentPage = Math.min(this.totalPages, Math.round(this.slider.scrollLeft / groupOffset) + 1);
+    } else {
+      this.currentPage = Math.round(this.slider.scrollLeft / this.sliderItemOffset) + 1;
+    }
 
     if (this.currentPageElement && this.pageTotalElement) {
       this.currentPageElement.textContent = this.currentPage;
@@ -701,7 +712,6 @@ class SliderComponent extends HTMLElement {
   }
 
   updateStepperCounter() {
-    const stepperCounter = this.querySelector('.slider-counter--product-stepper');
     let mediaProgress = this.querySelector('[data-gallery-stepper]');
 
     // Mobile PDP progress is rendered as a sibling of GalleryViewer, not inside it.
@@ -709,23 +719,65 @@ class SliderComponent extends HTMLElement {
       mediaProgress = this.closest('media-gallery')?.querySelector('[data-gallery-stepper]');
     }
 
-    if (!stepperCounter && !mediaProgress) return;
-    if (!this.totalPages) return;
-
-    const currentPage = Number.isFinite(this.currentPage) ? this.currentPage : 1;
-    const totalPages = Number.isFinite(this.totalPages) && this.totalPages > 0 ? this.totalPages : 1;
-    const progress = Math.min(100, Math.max(0, (currentPage / totalPages) * 100));
-
-    if (stepperCounter) {
-      stepperCounter.style.setProperty('--step-progress', `${progress}%`);
-    }
-
     if (mediaProgress) {
+      if (!this.totalPages) return;
+      const currentPage = Number.isFinite(this.currentPage) ? this.currentPage : 1;
+      const totalPages = Number.isFinite(this.totalPages) && this.totalPages > 0 ? this.totalPages : 1;
+      const progress = Math.min(100, Math.max(0, (currentPage / totalPages) * 100));
       const currentElement = mediaProgress.querySelector('.product-media-progress__current');
       const totalElement = mediaProgress.querySelector('.product-media-progress__total');
       if (currentElement) currentElement.textContent = currentPage;
       if (totalElement) totalElement.textContent = totalPages;
       mediaProgress.style.setProperty('--media-progress', `${progress}%`);
+    }
+
+    this.updatePageDots();
+  }
+
+  buildPageDots() {
+    const dotsContainer = this.querySelector('.related-products__page-dots');
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = '';
+    if (!this.totalPages || this.totalPages <= 1) {
+      dotsContainer.style.display = 'none';
+      return;
+    }
+    dotsContainer.style.display = '';
+    for (let i = 1; i <= this.totalPages; i++) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'related-products__page-dot' + (i === 1 ? ' active' : '');
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', `Go to page ${i}`);
+      dot.setAttribute('aria-selected', i === 1 ? 'true' : 'false');
+      dot.dataset.page = i;
+      dot.addEventListener('click', () => this.goToPage(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  updatePageDots() {
+    const dots = this.querySelectorAll('.related-products__page-dot');
+    if (!dots.length) return;
+    const currentPage = Number.isFinite(this.currentPage) ? this.currentPage : 1;
+    dots.forEach((dot) => {
+      const page = parseInt(dot.dataset.page, 10);
+      const isActive = page === currentPage;
+      dot.classList.toggle('active', isActive);
+      dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+  }
+
+  goToPage(page) {
+    if (!this.sliderItemOffset || !this.slidesPerPage) return;
+    if (page >= this.totalPages) {
+      // Last page: scroll to show the final group of items
+      const lastGroupStart = this.sliderItemsToShow.length - this.slidesPerPage;
+      const position = Math.max(0, lastGroupStart * this.sliderItemOffset);
+      this.setSlidePosition(position);
+    } else {
+      const position = (page - 1) * this.slidesPerPage * this.sliderItemOffset;
+      this.setSlidePosition(position);
     }
   }
 
@@ -736,7 +788,7 @@ class SliderComponent extends HTMLElement {
 
   onButtonClick(event) {
     event.preventDefault();
-    const step = event.currentTarget.dataset.step || 1;
+    const step = this.useGroupPagination ? this.slidesPerPage : (event.currentTarget.dataset.step || 1);
     this.slideScrollPosition =
       event.currentTarget.name === 'next'
         ? this.slider.scrollLeft + step * this.sliderItemOffset
