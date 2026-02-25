@@ -3478,3 +3478,91 @@ Validation snapshot
 - `nl -ba sections/main-product.liquid` confirms `font-size: 1.32rem !important` in mobile media query.
 - No desktop title rules changed.
 - No browser/device manual QA was run in this session.
+
+Patch: PDP mobile header/image gap compaction v5
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-mobile-header-image-gap-compact-v5
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` mobile override (`@media screen and (max-width: 749px)`) to make PDP media stack more compact:
+  - Added `.section-{{ section.id }}-padding { padding-top: 0 !important; }` to remove top section padding on mobile, pulling the gallery closer to the header.
+  - Tightened gallery-to-info transition by changing `.product__media-list` bottom margin from `0` to `-0.35rem`.
+  - Increased upward shift of content under gallery by changing `.product__info-wrapper`:
+    - `margin-top: -2.1rem -> -2.6rem`
+    - `padding: 0 1rem 1.2rem -> 0 1rem 1rem`
+- Desktop selectors were not changed.
+- No Liquid markup/logic changes were made.
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid` confirms only targeted mobile spacing rules changed.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify mobile PDP on iOS Safari and Android Chrome for tighter header-to-image spacing and reduced gap below media.
+2) If overlap occurs on small screens, relax `.product__info-wrapper` margin-top from `-2.6rem` to `-2.4rem`.
+
+Ops: Shopify local preview token error recovery
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-shopify-local-preview-token-recovery
+
+Actions taken (evidence-first)
+- Verified Shopify CLI is installed and usable (`shopify version` => `3.90.0`).
+- Verified theme/store linkage is intact (`shopify theme info`):
+  - Store: `dresslikemommy-com.myshopify.com`
+  - Development Theme ID: `#133283250273`
+- Found an existing stale local dev process bound to `127.0.0.1:9292`:
+  - PID `9616`, command `shopify theme dev --store dresslikemommy-com.myshopify.com --host 127.0.0.1 --port 9292`
+- Restarted local theme dev and confirmed fresh preview startup in a PTY session:
+  - Local preview: `http://127.0.0.1:9292`
+  - Share preview: `https://dresslikemommy-com.myshopify.com/?preview_theme_id=133283250273`
+- Verified local endpoint responds (`HTTP 200`) and returns full HTML payload.
+
+Notes
+- The token error appears consistent with a stale/expired local preview session; restarting `shopify theme dev` refreshed the session.
+
+Patch: PDP mobile media gap fix v6 (image top-align + tighter frame)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-mobile-gap-v6-image-top-align
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` mobile override (`@media screen and (max-width: 749px)`) to directly target image framing (not only wrapper spacing):
+  - Added `#MainProduct-{{ section.id }} .product__media-wrapper { margin-top: -0.35rem !important; }` to pull the gallery closer to header.
+  - Added `#MainProduct-{{ section.id }} .product-media-container.media-type-image .product__media { padding-top: min(var(--ratio-percent), 108%) !important; }` to cap overly tall media frame height on mobile.
+  - Added `#MainProduct-{{ section.id }} .product-media-container.media-type-image .product__media img { object-fit: cover !important; object-position: center top !important; }` to move visible image content upward and remove centered letterboxing effect.
+- Retained compact stack spacing:
+  - `.product__media-list` bottom margin remains `-0.35rem`
+  - `.product__info-wrapper` remains `margin-top: -2.6rem` with `padding-bottom: 1rem`
+- Desktop selectors were not changed.
+- No Liquid markup/logic changes were made.
+
+Validation snapshot
+- `nl -ba sections/main-product.liquid` confirms the new image-top-align rules at lines ~426-433.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify on physical mobile viewport that the blank gap above the first PDP image is removed and content below sits higher.
+2) If image crop is too aggressive on specific products, loosen to `object-fit: contain` while keeping `object-position: center top`.
+
+Patch: PDP mobile gap fix v7 (rollback image changes, layout shift only)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-mobile-gap-v7-layout-only
+
+Changes applied (evidence-first)
+- Reverted the prior image-framing edits in `sections/main-product.liquid` mobile CSS:
+  - Removed `padding-top` cap on `.product-media-container.media-type-image .product__media`.
+  - Removed `object-fit: cover` / `object-position` override on mobile image tag.
+- Applied layout-only upward movement (no image size/fit changes):
+  - Added `#shopify-section-{{ section.id }} { margin-top: -1.1rem !important; }`
+  - Updated `#MainProduct-{{ section.id }} .product__media-wrapper` `margin-top: -1rem !important`
+  - Updated `#MainProduct-{{ section.id }} .product__media-list` `margin-bottom: -0.5rem !important`
+  - Updated `#MainProduct-{{ section.id }} .product__info-wrapper` `margin-top: -2.9rem !important`
+- Desktop selectors were not changed.
+- No Liquid markup/logic changes were made.
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid` shows only mobile spacing/margin changes.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify mobile PDP that image rendering is restored while overall stack is moved upward.
+2) If still not enough upward shift, increase only wrapper/section negative margins (do not change image fit rules).

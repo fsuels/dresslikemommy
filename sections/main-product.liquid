@@ -411,13 +411,25 @@
     }
 
     @media screen and (max-width: 749px) {
+      #shopify-section-{{ section.id }} {
+        margin-top: -1.1rem !important;
+      }
+
+      .section-{{ section.id }}-padding {
+        padding-top: 0 !important;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-wrapper {
+        margin-top: -1rem !important;
+      }
+
       #MainProduct-{{ section.id }} .product__media-list {
-        margin-bottom: 0 !important;
+        margin-bottom: -0.5rem !important;
       }
 
       #MainProduct-{{ section.id }} .product__info-wrapper {
-        margin-top: -2.1rem !important;
-        padding: 0 1rem 1.2rem !important;
+        margin-top: -2.9rem !important;
+        padding: 0 1rem 1rem !important;
       }
 
       #MainProduct-{{ section.id }} .dlm-reference-ui {
