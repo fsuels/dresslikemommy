@@ -212,8 +212,8 @@ variant-selects {
   display: block;
   padding: 0.65rem 0.45rem 0.7rem;
   color: rgb(var(--color-foreground));
-  font-size: 1.4rem;
-  line-height: 1.2;
+  font-size: 1.15rem;
+  line-height: 1.15;
   text-align: center;
   font-weight: 500;
   word-break: break-word;
@@ -248,5 +248,33 @@ variant-selects {
     --color-image-option-width: 7.36rem;
     gap: 1rem;
   }
+
+  .product-form__input--color-image .color-image-option__name {
+    font-size: 1.2rem;
+  }
 }
 /* End custom styles for color image tile display type */
+
+.product-form__input.product-form__input--size-required {
+  border-radius: 1rem;
+  box-shadow: 0 0 0 0.22rem rgba(232, 93, 58, 0.26);
+}
+
+.product-form__input.product-form__input--size-required .form__label,
+.product-form__input.product-form__input--size-required legend {
+  color: #cf4a22;
+}
+
+.product-form__size-required-message {
+  margin: 0.75rem 0 0;
+  width: 100%;
+  color: #cf4a22;
+  font-size: 1.22rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+}
+
+.product-form__size-required-message[hidden] {
+  display: none !important;
+}

@@ -115,6 +115,139 @@
         <div class="size-chart-wrapper">
           <div id="size-chart-content"></div>
         </div>
+        {% liquid
+          assign has_swim_chart_image_pair = false
+          if product.description contains 'woman_86d0fc65-6aab-46ac-8dcd-8c274e23f4a7_1024x1024.jpg' and product.description contains 'child_ca8d901b-b6a6-4ff1-b96a-6dbe8472e5df_1024x1024.jpg'
+            assign has_swim_chart_image_pair = true
+          endif
+        %}
+        {% if has_swim_chart_image_pair %}
+          {% unless product.description contains 'size-chart' %}
+            <table id="size-chart" class="size-chart" style="display: none !important;" aria-hidden="true">
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>US Size</th>
+                  <th>Bust (cm/in)</th>
+                  <th>Waist (cm/in)</th>
+                  <th>Hips (cm/in)</th>
+                  <th>Height (cm/in)</th>
+                  <th>Weight (kg)</th>
+                  <th>Age</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>S</td>
+                  <td>4-6</td>
+                  <td>86.36-88.9 / 34-35</td>
+                  <td>66-68.58 / 26-27</td>
+                  <td>92.71-95.25 / 36.5-37.5</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>M</td>
+                  <td>8-10</td>
+                  <td>91.44-93.98 / 36-37</td>
+                  <td>71.12-73.66 / 28-29</td>
+                  <td>97.79-100.33 / 38.5-39.5</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>L</td>
+                  <td>12-14</td>
+                  <td>97.79-101.6 / 38.5-40</td>
+                  <td>77.47-81.28 / 30.5-32</td>
+                  <td>104.14-107.95 / 41-42.5</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>XL</td>
+                  <td>16-18</td>
+                  <td>105.41-109.22 / 41.5-43</td>
+                  <td>85.09-88.9 / 33.5-35</td>
+                  <td>111.76-115.57 / 44-45.5</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Child 2-3T</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>80-100 / 31.5-39.4</td>
+                  <td>10-15</td>
+                  <td>2-3</td>
+                </tr>
+                <tr>
+                  <td>Child 4-5T</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>102-110 / 40.2-43.3</td>
+                  <td>15.5-17.5</td>
+                  <td>4-5</td>
+                </tr>
+                <tr>
+                  <td>Child 5-6T</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>110-120 / 43.3-47.2</td>
+                  <td>17.5-20</td>
+                  <td>5-6</td>
+                </tr>
+                <tr>
+                  <td>Child 6-8T</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>120-130 / 47.2-51.2</td>
+                  <td>19-22.5</td>
+                  <td>6-8</td>
+                </tr>
+                <tr>
+                  <td>Child 8-10T</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>131-145 / 51.6-57.1</td>
+                  <td>22.5-31</td>
+                  <td>8-10</td>
+                </tr>
+                <tr>
+                  <td>Child 10-12T</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>145-153 / 57.1-60.2</td>
+                  <td>31-37.5</td>
+                  <td>10-12</td>
+                </tr>
+              </tbody>
+            </table>
+            <script>
+              window.DLM_SIZE_ALIASES = Object.assign({}, window.DLM_SIZE_ALIASES, {
+                "Child 3-4T": "Child 4-5T",
+                "Child 3-4 years": "Child 4-5T",
+                "Child 3-4 Years": "Child 4-5T"
+              });
+            </script>
+          {% endunless %}
+        {% endif %}
       {% endif %}
     {%- endfor -%}
     <script type="application/json">

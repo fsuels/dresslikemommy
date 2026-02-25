@@ -412,7 +412,7 @@
 
     @media screen and (max-width: 749px) {
       #shopify-section-{{ section.id }} {
-        margin-top: -1.1rem !important;
+        margin-top: 0 !important;
       }
 
       .section-{{ section.id }}-padding {
@@ -420,15 +420,15 @@
       }
 
       #MainProduct-{{ section.id }} .product__media-wrapper {
-        margin-top: -1rem !important;
+        margin-top: 0 !important;
       }
 
       #MainProduct-{{ section.id }} .product__media-list {
-        margin-bottom: -0.5rem !important;
+        margin-bottom: 1.2rem !important;
       }
 
       #MainProduct-{{ section.id }} .product__info-wrapper {
-        margin-top: -2.9rem !important;
+        margin-top: 0 !important;
         padding: 0 1rem 1rem !important;
       }
 
@@ -1509,6 +1509,7 @@
       var chooseOptionsLabel = 'Choose options';
       var chooseSizeLabel = 'Select size';
       var chooseColorLabel = 'Select color';
+      var sizeRequiredMessageText = 'Please select a size before adding to cart.';
 
       if (!atcBtn && productForm) atcBtn = productForm.querySelector('[name="add"]');
       if (!atcBtn || !stickyBtn) return;
@@ -1518,6 +1519,16 @@
         if (!labelNode) return addToCartLabel;
         var labelText = labelNode.textContent ? labelNode.textContent.trim() : '';
         return labelText || addToCartLabel;
+      }
+
+      function setButtonText(button, text) {
+        if (!button || !text) return;
+        var labelNode = button.querySelector('span');
+        if (!labelNode) return;
+        var nextText = String(text).trim();
+        if (!nextText) return;
+        if (labelNode.textContent && labelNode.textContent.trim() === nextText) return;
+        labelNode.textContent = nextText;
       }
 
       function syncBodyOffset(isVisible) {
@@ -1606,6 +1617,7 @@
           hasSizeOption: false,
           totalSizeOptions: 0,
           selectedSizeValues: [],
+          sizeOptionGroups: [],
           isComplete: true,
           missingSizeOption: null,
           firstSizeOption: null,
@@ -1621,6 +1633,7 @@
 
           selectionState.hasSizeOption = true;
           selectionState.totalSizeOptions += 1;
+          selectionState.sizeOptionGroups.push(group);
           if (!selectionState.firstSizeOption) {
             selectionState.firstSizeOption = {
               group: group,
@@ -1767,6 +1780,51 @@
         }
       }
 
+      function setSizePromptVisibility(group, shouldShow) {
+        if (!group) return;
+
+        var existingPrompt = group.querySelector('[data-size-required-message]');
+        if (!existingPrompt) {
+          existingPrompt = document.createElement('p');
+          existingPrompt.className = 'product-form__size-required-message';
+          existingPrompt.setAttribute('data-size-required-message', '');
+          existingPrompt.setAttribute('role', 'status');
+          existingPrompt.setAttribute('aria-live', 'polite');
+          existingPrompt.textContent = sizeRequiredMessageText;
+          group.appendChild(existingPrompt);
+        }
+
+        group.classList.toggle('product-form__input--size-required', shouldShow);
+        if (shouldShow) {
+          existingPrompt.removeAttribute('hidden');
+          return;
+        }
+
+        existingPrompt.setAttribute('hidden', 'hidden');
+      }
+
+      function syncSizePrompt(sizeSelectionState, showPrompt) {
+        var currentSizeState = sizeSelectionState || getSizeSelectionState();
+        var targetGroup =
+          showPrompt &&
+          (currentSizeState.missingSizeOption
+            ? currentSizeState.missingSizeOption.group
+            : currentSizeState.firstSizeOption
+              ? currentSizeState.firstSizeOption.group
+              : null);
+
+        currentSizeState.sizeOptionGroups.forEach(function (group) {
+          setSizePromptVisibility(group, !!targetGroup && group === targetGroup);
+        });
+
+        if (!showPrompt) return;
+
+        if (!atcBtn.hasAttribute('disabled')) {
+          atcBtn.setAttribute('disabled', 'disabled');
+        }
+        setButtonText(atcBtn, chooseSizeLabel);
+      }
+
       function syncStickyPrice() {
         if (!stickyPrice || !priceContainer) return;
 
@@ -1799,8 +1857,13 @@
         var sizeSelectionState = getSizeSelectionState();
         var colorSelectionState = getColorSelectionState();
         var missingOption = getFirstMissingOption();
+        var showSizePrompt =
+          sizeSelectionState.hasSizeOption &&
+          !sizeSelectionState.isComplete &&
+          (!colorSelectionState.hasColorOption || hasUserConfirmedColorSelection);
         syncStickyPrice();
         syncStickySize(sizeSelectionState);
+        syncSizePrompt(sizeSelectionState, showSizePrompt);
 
         if (sizeSelectionState.hasSizeOption && (!hasUserConfirmedSizeSelection || !sizeSelectionState.isComplete)) {
           canShowSticky = false;

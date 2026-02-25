@@ -4180,3 +4180,193 @@ Validation snapshot
 Open TODOs (next session)
 1) Preview multiple PDPs in Theme Editor/storefront to confirm recommendations stay category-consistent for swimwear/dresses/sweaters.
 2) If any PDP has too few results due to strict type mismatch guard, decide whether to allow same-collection fallback without type matching for that subset.
+
+Patch: Reduce PDP color-option label font size for mobile/desktop fit
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-color-picker-label-font-size
+
+Changes applied (evidence-first)
+- Updated `assets/component-product-variant-picker.css` for color-image option labels:
+  - `.product-form__input--color-image .color-image-option__name`
+    - `font-size`: `1.4rem` -> `1.15rem` (mobile/base)
+    - `line-height`: `1.2` -> `1.15`
+  - Added desktop breakpoint override under `@media (min-width: 750px)`:
+    - `.color-image-option__name { font-size: 1.2rem; }`
+- Purpose: reduce label text size so longer color names fit comfortably inside color-option tiles on smaller screens while staying readable on desktop.
+
+Validation snapshot
+- Local diff check confirms only color-image label typography was adjusted in `assets/component-product-variant-picker.css`.
+
+Open TODOs (next session)
+1) Visual QA on a PDP with long color names (mobile + desktop) to confirm labels no longer appear cut off.
+2) If any specific color names still crowd, consider a follow-up tweak to tile width/padding while preserving current layout density.
+
+Patch: PDP image-to-table size chart conversion (`mommy-me-vibrant-duo-tone...`)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-image-size-chart-conversion
+
+Changes applied (evidence-first)
+- Updated `snippets/product-variant-picker.liquid` inside the first-option size-chart block for handle `mommy-me-vibrant-duo-tone-one-piece-swimsuit-with-ring-accent-family-matching-swimwear-collection`:
+  - Added a hidden fallback `<table id="size-chart">` (guarded by `unless product.description contains 'size-chart'`) so `assets/size-conversion.js` can parse chart data even when PDP description only contains chart images.
+  - Table values were transcribed from the two embedded chart images in product description:
+    - `woman_86d0fc65-6aab-46ac-8dcd-8c274e23f4a7_1024x1024.jpg`
+    - `child_ca8d901b-b6a6-4ff1-b96a-6dbe8472e5df_1024x1024.jpg`
+  - Added handle-scoped alias bootstrap:
+    - `window.DLM_SIZE_ALIASES["Child 3-4T"] = "Child 4-5T"`
+    - This bridges the option/chart mismatch (dropdown has `Child 3-4T`, source chart row is `Child 4-5T`).
+
+Validation snapshot
+- Local preview render check confirms injected elements on target PDP:
+  - `curl -s http://127.0.0.1:9292/products/mommy-me-vibrant-duo-tone-one-piece-swimsuit-with-ring-accent-family-matching-swimwear-collection | grep -n "id=\"size-chart\"\\|window.DLM_SIZE_ALIASES\\|Child 5-6T"`
+- Programmatic option-to-row resolution check on rendered HTML reports no unresolved size options (`Mother S/M/L/XL`, `Child 2-3T`, `Child 3-4T`, `Child 4-5T`, `Child 6-8T`, `Child 8-10T`, `Child 10-12T`).
+- `shopify theme check --fail-level error --output text` still reports pre-existing repository errors/warnings in unrelated files; no new checker issue was tied specifically to this patch.
+
+Open TODOs (next session)
+1) Visual QA on the target PDP in browser: choose each size and confirm size card content/units are correct in both `cm` and `in` toggles.
+2) Confirm with merch team whether `Child 3-4T -> Child 4-5T` is the preferred mapping or if they want a manually curated dedicated `Child 3-4T` row.
+
+Patch: Active listing audit + generalized swim chart fallback trigger
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-active-listing-image-chart-audit-generalized-trigger
+
+Changes applied (evidence-first)
+- Updated `snippets/product-variant-picker.liquid` to remove the prior handle-only gate for the fallback hidden table and replace it with image-signature detection:
+  - chart-pair trigger now checks `product.description` for both:
+    - `woman_86d0fc65-6aab-46ac-8dcd-8c274e23f4a7_1024x1024.jpg`
+    - `child_ca8d901b-b6a6-4ff1-b96a-6dbe8472e5df_1024x1024.jpg`
+  - fallback table still only injects when description has no existing `size-chart` token (`unless product.description contains 'size-chart'`).
+- Extended alias bootstrap for this swim chart fallback:
+  - added `Child 3-4 years` and `Child 3-4 Years` to map to `Child 4-5T` (in addition to existing `Child 3-4T` mapping).
+
+Validation snapshot
+- Render check for target PDP confirms fallback table and alias script are injected with no Liquid syntax errors:
+  - `/products/mommy-me-vibrant-duo-tone-one-piece-swimsuit-with-ring-accent-family-matching-swimwear-collection`
+  - `table_count=1`, `alias=true`, `liquid_error=false`
+- Render check for the five active sibling swim PDPs that use the same chart images but already have inline `size-chart` markup confirms no duplicate fallback injection:
+  - each page reports `table_count=1`, `alias=false`, `liquid_error=false`.
+- Active catalog audit against `products_export_1 2.csv`:
+  - found 13 active size products with chart-like image filenames and no `size-chart` token in `Body (HTML)`.
+  - for this specific swim chart-image pair, only the target handle was missing table markup; all other handles with that pair already had `size-chart` in description.
+
+Open TODOs (next session)
+1) Decide whether to run full OCR transcription for the remaining 12 active image-chart products found by audit and add similar fallback tables per chart family.
+2) QA target swim PDP in-browser by selecting each size and confirming measurement card values + unit toggle output.
+
+Patch: PDP color-first flow now surfaces explicit size-required guidance
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-color-first-size-required-callout
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` sticky/product-option script:
+  - Added `showSizePrompt` gating that turns on only when a Size option is incomplete and Color has been explicitly confirmed (or no Color option exists).
+  - Added `syncSizePrompt()` + `setSizePromptVisibility()` helpers to:
+    - add/remove `product-form__input--size-required` on the missing Size option group,
+    - render a visible inline prompt (`Please select a size before adding to cart.`) inside that option group,
+    - force main PDP submit button label to `Select size` while this state is active.
+  - Extended size-state tracking with `sizeOptionGroups` so prompt toggling is deterministic and cleaned up when size is selected.
+- Updated `assets/component-product-variant-picker.css`:
+  - Added styles for `.product-form__input--size-required` highlight treatment.
+  - Added styles for `.product-form__size-required-message` (visible inline required text) and hidden state.
+
+Why this addresses the request
+- When shoppers choose Color first and Size is still missing, the UI now gives an obvious, immediate cue directly at the Size control plus a stronger button label (`Select size`) so the next action is unambiguous.
+
+Validation snapshot
+- Verified changes via diff inspection:
+  - `git diff -- sections/main-product.liquid assets/component-product-variant-picker.css`
+- Verified no whitespace/patch formatting issues:
+  - `git diff --check -- sections/main-product.liquid assets/component-product-variant-picker.css`
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA (desktop + mobile): select Color first and confirm Size field highlights, inline prompt appears, and main CTA reads `Select size`.
+2) Confirm prompt clears immediately after selecting Size and CTA returns to normal variant-driven text/state.
+3) Spot-check a PDP without Color option to confirm no regression in size-required behavior.
+- Additional validation run after patch:
+  - `shopify theme check --fail-level error --output text`
+  - Result: fails due pre-existing repository errors in unrelated files (e.g., `sections/email-signup-banner.liquid`, `sections/header.liquid`, `sections/main-list-collections.liquid`, plus existing warnings). No new theme-check error was isolated to this patch.
+
+Patch: PDP mobile scroll overlap fix under main image
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-mobile-scroll-overlap-fix
+
+Changes applied (evidence-first)
+- Updated mobile-only layout overrides in `sections/main-product.liquid` (`@media screen and (max-width: 749px)`) to remove forced overlap between gallery and product info content:
+  - `#shopify-section-{{ section.id }}` margin-top: `-1.1rem` -> `0`
+  - `.product__media-wrapper` margin-top: `-1rem` -> `0`
+  - `.product__media-list` margin-bottom: `-0.5rem` -> `1.2rem`
+  - `.product__info-wrapper` margin-top: `-2.9rem` -> `0`
+- Intent: prevent lower PDP content from sliding/appearing underneath the main product image during vertical swipe/scroll on mobile.
+
+Validation snapshot
+- Verified targeted diff:
+  - `git diff -- sections/main-product.liquid`
+- Verified updated rule block lines:
+  - `nl -ba sections/main-product.liquid | sed -n '410,442p'`
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Mobile QA on at least one PDP (iOS Safari + Android Chrome): swipe vertically from image area and confirm content scrolls naturally without tucking under the main image.
+2) If visual overlap styling is still desired, reintroduce with non-negative spacing only (padding/section spacing), not negative margins.
+
+Audit: Repo-driven SEO + content backlog (no code changes)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-seo-audit-backlog-only
+
+Scope completed
+- Performed a full repo-driven SEO audit focused on indexation, duplication/canonicals, crawlability, internal linking, structured data, and Core Web Vitals risk.
+- Built a route/template inventory from theme templates, sections, snippets, and config.
+- Ran `shopify theme check --fail-level error --output text` to validate syntax/lint blockers relevant to crawl/index behavior.
+- Cross-checked product handle coverage using `products_export_1 2.csv` and `products_export_1 2_IMPORT_READY.csv` for dynamic route cardinality context.
+
+Key deferred implementation items (from evidence)
+1) Remove homepage redirect behavior from `sections/main-404.liquid` to prevent soft-404 masking.
+2) Fix URL composition in `snippets/jsonld-seo.liquid` where `canonical_url` is appended with `product.url`.
+3) Expand noindex policy for customer/auth/password/gift-card contexts where applicable.
+4) Resolve syntax issue in `sections/main-list-collections.liquid` flagged by theme-check.
+5) Reduce/relocate large inline CSS payload in `layout/theme.liquid` and repeated card-level stylesheet tags in `snippets/card-product.liquid`.
+
+Notes
+- No source code edits were applied in this audit turn; outputs were backlog/report only.
+- Final audit response to user contains implementation-ready finding prompts for follow-on execution.
+
+Audit: Page-by-page CRO/UX/technical conversion audit (repo-evidence only, no code changes)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-cro-page-by-page-audit-report
+
+Scope completed
+- Built route/template inventory from `templates/*.json` + `templates/customers/*.json` and mapped highest-impact funnel surfaces.
+- Audited checkout entry points, cart/cart drawer, PDP, collection/search, home, account/auth, support/legal, and blog/content using repository evidence only.
+- Flagged unverifiable runtime behavior as `NEEDS_DATA` (checkout runtime, CWV field data, user behavior, backend responses).
+
+Key deferred implementation tracks (conversion-critical)
+1) PDP trust/urgency claims hardcoded without runtime proof (`sections/main-product.liquid`) should be validated or replaced with truthful dynamic/neutral messaging.
+2) Search form container appears malformed/incomplete in `sections/main-search.liquid`; verify rendered markup and search submission behavior.
+3) Header script tags include malformed duplicate attributes (`sections/header.liquid`), and `layout/theme.liquid` carries very large inline CSS with invalid rule(s), both likely affecting perf/maintainability.
+4) Breadcrumb URL generation risks dead/incorrect paths from metafield-handleized links (`snippets/breadcrumbs.liquid`, `snippets/collection-breadcrumbs.liquid`).
+5) Analytics metadata mismatch for product price fallback selector (`assets/analytics.js` vs `snippets/meta-tags.liquid`) should be aligned to reduce bad telemetry.
+
+Notes
+- No source code edits were applied in this turn beyond worklog documentation.
+- Final user-facing deliverable includes prioritized backlog, measurable metrics/guardrails, and implementation-ready prompts.
+
+Audit: Full page-by-page UX/CRO + design-system review (repo-evidence, implementation backlog)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-ux-cro-full-audit-implementation-backlog
+
+Scope completed
+- Completed a full route/template inventory and page-by-page UX/CRO review for Home, Collection/PLP, PDP, Search, Cart/Cart Drawer, Account/Auth, Blog/Article, Contact/Page, List Collections, 404, and Password.
+- Constrained findings to repository evidence only; marked areas as INSUFFICIENT_EVIDENCE where runtime/admin artifacts are missing (notably checkout, live page content managed in Shopify admin, and real-user performance field data).
+- Re-ran `shopify theme check --fail-level error --output text` to corroborate syntax/quality risks affecting UX reliability.
+
+Key deferred implementation tracks
+1) Fix structural/layout debt in `layout/theme.liquid` (styles after `</html>`, duplicated/meta anomalies, high-volume inline overrides) and reduce global override blast radius.
+2) Repair search UX reliability in `sections/main-search.liquid` (missing on-page search form markup) and simplify duplicate desktop search patterns in `snippets/visible-header-search.liquid` / header search stack.
+3) Replace or validate hardcoded PDP trust/urgency/shipping claims in `sections/main-product.liquid` and move static claims to configurable/verified data sources.
+4) Resolve syntax defects flagged by theme-check (`sections/main-list-collections.liquid`, `sections/header.liquid`, `sections/email-signup-banner.liquid`) before further visual iteration.
+5) Tighten collection/product breadcrumb robustness (`snippets/breadcrumbs.liquid`, `snippets/collection-breadcrumbs.liquid`) to avoid metafield-handleized dead links.
+6) Improve cart pre-checkout trust clarity (shipping ETA/returns/security near checkout CTA) in `sections/main-cart-footer.liquid` and `snippets/cart-drawer.liquid`.
+
+Notes
+- This turn produced audit/report output only; no theme feature code was modified.
+- Existing unrelated dirty worktree files were preserved as-is.
