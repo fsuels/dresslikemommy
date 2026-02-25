@@ -125,6 +125,27 @@
         {%- endunless -%}
       {%- endfor -%}
     </ul>
+    {%- if media_count > 1 -%}
+      <div class="product-gallery__nav-arrows">
+        <button
+          type="button"
+          class="product-gallery__arrow product-gallery__arrow--prev"
+          data-gallery-nav="prev"
+          aria-label="{{ 'general.slider.previous_slide' | t }}"
+          disabled
+        >
+          {% render 'icon-caret' %}
+        </button>
+        <button
+          type="button"
+          class="product-gallery__arrow product-gallery__arrow--next"
+          data-gallery-nav="next"
+          aria-label="{{ 'general.slider.next_slide' | t }}"
+        >
+          {% render 'icon-caret' %}
+        </button>
+      </div>
+    {%- endif -%}
     <button
       type="button"
       class="share-button__button product__media-share"

@@ -1836,13 +1836,15 @@ a.product__text {
   .recipient-form > input[type='checkbox']:checked + label .icon-checkmark {
     border: none;
   }
-  /* Increase font size of product description */
+}
+
+/* Increase font size of product description */
 .product__description.rte { font-size: 18px !important; margin-bottom: 0 !important; }
 
 /* Adjust thumbnail position and size on desktop */
 @media screen and (min-width: 750px) {
-  .product__media-wrapper { display: flex; flex-direction: column; order: -1; }
-  .product__info-wrapper { order: 1; padding-left: 20px; }
+  .product__media-wrapper { display: flex; flex-direction: column; }
+  .product__info-wrapper { padding-left: 20px; }
   .product__media-wrapper .product-single__thumbnail { width: 80px; margin-bottom: 10px; }
 }
 
@@ -1868,5 +1870,75 @@ ul li a::after, ul li .subcategory a::after {
 
 ul li a:hover::after, ul li .subcategory a:hover::after, ul li a.active::after, ul li .subcategory a.active::after {
   transform: scaleX(1); transform-origin: bottom left;
+}
+
+/* ── PDP gallery hover arrows (desktop only) ── */
+.product-gallery__nav-arrows {
+  display: none;
+}
+
+@media screen and (min-width: 990px) {
+  slider-component[id^="GalleryViewer-"] {
+    position: relative;
+  }
+
+  .product-gallery__nav-arrows {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  slider-component[id^="GalleryViewer-"]:hover .product-gallery__nav-arrows {
+    opacity: 1;
+  }
+
+  .product-gallery__arrow {
+    pointer-events: auto;
+    width: 4rem;
+    height: 4rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.15);
+    border-radius: 50%;
+    background: rgba(var(--color-background), 0.92);
+    color: rgb(var(--color-foreground));
+    box-shadow: 0 0.4rem 1.4rem rgba(var(--color-foreground), 0.12);
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.15s ease, background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-gallery__arrow:hover {
+    background: rgb(var(--color-background));
+    transform: scale(1.06);
+  }
+
+  .product-gallery__arrow .icon {
+    width: 1.1rem;
+    height: 0.8rem;
+  }
+
+  .product-gallery__arrow--prev .icon {
+    transform: rotate(90deg);
+  }
+
+  .product-gallery__arrow--next .icon {
+    transform: rotate(-90deg);
+  }
+
+  .product-gallery__arrow[disabled] {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 

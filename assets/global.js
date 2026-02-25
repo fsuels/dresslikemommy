@@ -642,6 +642,12 @@ class SliderComponent extends HTMLElement {
     this.slider.addEventListener('scroll', this.update.bind(this));
     this.prevButton.addEventListener('click', this.onButtonClick.bind(this));
     this.nextButton.addEventListener('click', this.onButtonClick.bind(this));
+
+    // Gallery overlay arrows (desktop hover arrows on PDP)
+    this.galleryPrev = this.querySelector('[data-gallery-nav="prev"]');
+    this.galleryNext = this.querySelector('[data-gallery-nav="next"]');
+    if (this.galleryPrev) this.galleryPrev.addEventListener('click', this.onGalleryArrowClick.bind(this));
+    if (this.galleryNext) this.galleryNext.addEventListener('click', this.onGalleryArrowClick.bind(this));
   }
 
   initPages() {
@@ -698,16 +704,29 @@ class SliderComponent extends HTMLElement {
 
     if (this.enableSliderLooping) return;
 
-    if (this.isSlideVisible(this.sliderItemsToShow[0]) && this.slider.scrollLeft === 0) {
+    const atStart = this.isSlideVisible(this.sliderItemsToShow[0]) && this.slider.scrollLeft === 0;
+    const atEnd = this.isSlideVisible(this.sliderItemsToShow[this.sliderItemsToShow.length - 1]);
+
+    if (atStart) {
       this.prevButton.setAttribute('disabled', 'disabled');
     } else {
       this.prevButton.removeAttribute('disabled');
     }
 
-    if (this.isSlideVisible(this.sliderItemsToShow[this.sliderItemsToShow.length - 1])) {
+    if (atEnd) {
       this.nextButton.setAttribute('disabled', 'disabled');
     } else {
       this.nextButton.removeAttribute('disabled');
+    }
+
+    // Sync gallery overlay arrows (PDP hover arrows)
+    if (this.galleryPrev || this.galleryNext) {
+      const mediaItems = this.slider
+        ? Array.from(this.slider.querySelectorAll(':scope > [data-media-id]'))
+        : [];
+      const activeItem = mediaItems.find((el) => el.classList.contains('is-active'));
+      const activeIndex = activeItem ? mediaItems.indexOf(activeItem) : 0;
+      this.updateGalleryArrows(activeIndex, mediaItems.length);
     }
   }
 
@@ -789,11 +808,60 @@ class SliderComponent extends HTMLElement {
   onButtonClick(event) {
     event.preventDefault();
     const step = this.useGroupPagination ? this.slidesPerPage : (event.currentTarget.dataset.step || 1);
-    this.slideScrollPosition =
-      event.currentTarget.name === 'next'
-        ? this.slider.scrollLeft + step * this.sliderItemOffset
-        : this.slider.scrollLeft - step * this.sliderItemOffset;
+    const isNext = event.currentTarget.name === 'next';
+    this.slideScrollPosition = isNext
+      ? this.slider.scrollLeft + step * this.sliderItemOffset
+      : this.slider.scrollLeft - step * this.sliderItemOffset;
     this.setSlidePosition(this.slideScrollPosition);
+  }
+
+  onGalleryArrowClick(event) {
+    event.preventDefault();
+    const mediaGallery = this.closest('media-gallery');
+    if (!mediaGallery) return;
+
+    // Only target the <li> slide elements, not inner buttons that also have data-media-id
+    const mediaItems = this.slider
+      ? Array.from(this.slider.querySelectorAll(':scope > [data-media-id]'))
+      : Array.from(this.querySelectorAll('li[data-media-id]'));
+    if (mediaItems.length < 2) return;
+
+    const activeItem = mediaItems.find((el) => el.classList.contains('is-active'));
+    const activeIndex = activeItem ? mediaItems.indexOf(activeItem) : 0;
+    const isNext = event.currentTarget.dataset.galleryNav === 'next';
+
+    let nextIndex;
+    if (isNext) {
+      nextIndex = Math.min(activeIndex + 1, mediaItems.length - 1);
+    } else {
+      nextIndex = Math.max(activeIndex - 1, 0);
+    }
+
+    if (nextIndex === activeIndex) return;
+
+    const nextMediaId = mediaItems[nextIndex].dataset.mediaId;
+    mediaGallery.setActiveMedia(nextMediaId);
+    this.updateGalleryArrows(nextIndex, mediaItems.length);
+
+    // Force lazy images to load when they become visible
+    const nextItem = mediaItems[nextIndex];
+    nextItem.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+      img.loading = 'eager';
+      if (!img.complete) img.src = img.src;
+    });
+  }
+
+  updateGalleryArrows(currentIndex, totalItems) {
+    if (this.galleryPrev) {
+      currentIndex <= 0
+        ? this.galleryPrev.setAttribute('disabled', 'disabled')
+        : this.galleryPrev.removeAttribute('disabled');
+    }
+    if (this.galleryNext) {
+      currentIndex >= totalItems - 1
+        ? this.galleryNext.setAttribute('disabled', 'disabled')
+        : this.galleryNext.removeAttribute('disabled');
+    }
   }
 
   setSlidePosition(position) {
