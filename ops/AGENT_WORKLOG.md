@@ -3763,3 +3763,43 @@ Validation snapshot
 Open TODOs (next session)
 1) Verify on `/cart` mobile view that no number overlays product title and only the intended price line remains in item details.
 2) Verify cart drawer mobile also remains clean after both patches.
+
+Patch: Collection category pills hide empty/missing collections
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-collection-pills-hide-empty-or-missing-collections
+
+Changes applied (evidence-first)
+- Updated `snippets/collection-breadcrumbs.liquid` pill filtering so category pills only render for collections that exist and contain products:
+  - In alternate-category detection, switched from `target_collection.products_count > 0` to `target_collection != blank and target_collection.all_products_count > 0`.
+  - In pill rendering loop, added strict skip condition for non-current pills:
+    - Skip when target collection is missing (`target_collection == blank`) or empty (`target_collection.all_products_count == 0`).
+  - Updated pill URL resolution to prefer canonical `target_collection.url` when available.
+- This prevents pills that would otherwise route to non-existent collection handles (and potentially redirect to homepage) from rendering.
+
+Validation snapshot
+- `git diff -- snippets/collection-breadcrumbs.liquid` confirms only pill filtering/url logic changed.
+- `nl -ba snippets/collection-breadcrumbs.liquid | sed -n '117,190p'` confirms the new skip conditions and URL assignment in the active nav loop.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify collection pages no longer show pills for empty/missing collections.
+2) Verify visible pills navigate to valid collection URLs and active state remains correct.
+
+Patch: Liquid syntax correction for collection pill skip condition
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-collection-pills-liquid-syntax-fix
+
+Changes applied (evidence-first)
+- Fixed invalid Shopify Liquid conditional syntax in `snippets/collection-breadcrumbs.liquid` pill loop:
+  - Replaced grouped boolean expression with nested `if` checks (Liquid-safe):
+    - If pill is not current collection and `target_collection == blank` -> `continue`
+    - If pill is not current collection and `target_collection.all_products_count == 0` -> `continue`
+- Kept prior behavior goal unchanged: only show pills for valid, non-empty collections.
+
+Validation snapshot
+- `nl -ba snippets/collection-breadcrumbs.liquid | sed -n '167,195p'` confirms the nested conditions are present and no grouped condition remains.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify collection page renders without Liquid parse errors.
+2) Verify empty/missing collection pills are hidden and active/current pill still renders.

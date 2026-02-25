@@ -122,7 +122,7 @@
   {% assign target_collection = collections[item_handle] %}
   {% if item_handle == current_collection_handle %}
     {% assign current_in_options = true %}
-  {% elsif target_collection and target_collection.products_count > 0 %}
+  {% elsif target_collection != blank and target_collection.all_products_count > 0 %}
     {% assign has_alternate_categories = true %}
   {% endif %}
 {% endfor %}
@@ -168,13 +168,22 @@
             {% assign item_label = item | strip %}
             {% assign item_handle = item_label | handleize %}
             {% assign target_collection = collections[item_handle] %}
-            {% comment %} Skip pills that link to empty or non-existent collections {% endcomment %}
-            {% if item_handle != current_collection_handle and target_collection.products_count == 0 %}
-              {% continue %}
+            {% comment %} Skip pills that link to missing or empty collections {% endcomment %}
+            {% if item_handle != current_collection_handle %}
+              {% if target_collection == blank %}
+                {% continue %}
+              {% endif %}
+              {% if target_collection.all_products_count == 0 %}
+                {% continue %}
+              {% endif %}
+            {% endif %}
+            {% assign pill_url = collections_base_url | append: item_handle %}
+            {% if target_collection != blank %}
+              {% assign pill_url = target_collection.url %}
             {% endif %}
             <li class="collection-category-nav__item">
               <a
-                href="{{ collections_base_url }}{{ item_handle }}"
+                href="{{ pill_url }}"
                 class="collection-category-nav__tab{% if item_handle == current_collection_handle %} is-active{% endif %}"
                 {% if item_handle == current_collection_handle %}
                   aria-current="page"
