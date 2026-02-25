@@ -3803,3 +3803,284 @@ Validation snapshot
 Open TODOs (next session)
 1) Verify collection page renders without Liquid parse errors.
 2) Verify empty/missing collection pills are hidden and active/current pill still renders.
+
+Patch: Daddy-me pills fallback to product types when child collections do not exist
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-daddy-me-pills-product-type-fallback
+
+Changes applied (evidence-first)
+- Updated `snippets/collection-breadcrumbs.liquid` to restore pills for collections like `/collections/daddy-me` when item groups (e.g., Tops, Trunks) exist but separate child collections do not:
+  - Added fallback detection after initial `pill_list` build:
+    - If not using top-level pills and not already in product-type mode, and zero valid non-empty target collections are found, switch to `collection.all_types` as pill source.
+  - In alternate-category detection, treat non-blank product-type entries as valid alternates when `use_product_types` is true.
+  - In pill render loop, skip missing/empty collection checks only for non-product-type mode.
+  - Added product-type pill URLs to current collection filter links:
+    - `{{ collection.url }}?filter.p.product_type={{ item_label | url_param_escape }}`
+- Existing rule to hide pills for missing/empty collection targets remains active for collection-link mode.
+
+Validation snapshot
+- `git diff -- snippets/collection-breadcrumbs.liquid` confirms only pill-source fallback and URL/skip logic were changed.
+- `nl -ba snippets/collection-breadcrumbs.liquid | sed -n '103,234p'` confirms fallback block and mode-specific render logic are present.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify `/collections/daddy-me` now shows pills for available product types (e.g., Tops, Trunks).
+2) Verify clicking a product-type pill applies the collection filter parameter and does not redirect to homepage.
+
+Patch: Daddy-me pill label override for T-Shirts
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-daddy-me-tshirts-pill-label-override
+
+Changes applied (evidence-first)
+- Updated `snippets/collection-breadcrumbs.liquid` pill render loop to rename only the `daddy-me` `t-shirts` pill label:
+  - Added `item_display_label` derived from `item_label`.
+  - Added scoped override condition:
+    - If `current_collection_handle == 'daddy-me'` and `item_handle == 't-shirts'`, display label becomes `Daddy & Me T-Shirts`.
+  - Kept filter/link behavior unchanged by continuing to use original `item_label` for URL parameter generation.
+
+Validation snapshot
+- `nl -ba snippets/collection-breadcrumbs.liquid | sed -n '200,232p'` confirms scoped label override and display variable usage.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify `/collections/daddy-me` shows `Daddy & Me T-Shirts` pill label.
+2) Verify pill still applies `filter.p.product_type=T-Shirts` and filters products correctly.
+
+Patch: Daddy-me T-Shirts label rollback (remove Daddy & Me prefix)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-daddy-me-tshirts-label-rollback
+
+Changes applied (evidence-first)
+- Updated `snippets/collection-breadcrumbs.liquid` display override for daddy collection pills:
+  - Replaced prior label override with scoped mapping:
+    - If `current_collection_handle == 'daddy-me'` and pill handle is `daddy-me-t-shirts`, display text is `T-Shirts`.
+- Kept existing pill source/filter behavior unchanged.
+
+Validation snapshot
+- `nl -ba snippets/collection-breadcrumbs.liquid | sed -n '200,207p'` confirms override now maps `daddy-me-t-shirts` -> `T-Shirts`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify `/collections/daddy-me` shows `T-Shirts` label (not `Daddy & Me T-Shirts`).
+2) Verify clicking the pill still filters correctly.
+
+Patch: Minimal daddy-me pill rename only
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-daddy-me-minimal-pill-rename-only
+
+Changes applied (evidence-first)
+- Reverted `snippets/collection-breadcrumbs.liquid` to `main` baseline, then applied a display-only rename in the existing pill loop:
+  - Added `item_display_label` alias.
+  - Added scoped mapping only on daddy collection page:
+    - If `current_collection_handle == 'daddy-me'` and `item_handle == 'daddy-me-t-shirts'`, display label is `T-Shirts`.
+  - Render now outputs `item_display_label`.
+- No pill source, filtering, URL routing, or empty-collection logic changed in this patch.
+
+Validation snapshot
+- `git diff -- snippets/collection-breadcrumbs.liquid` shows only the 3-line display alias/override + render variable swap.
+- `nl -ba snippets/collection-breadcrumbs.liquid | sed -n '167,197p'` confirms change is local to pill label text.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify `/collections/daddy-me` shows `T-Shirts` for the `daddy-me-t-shirts` pill.
+2) Verify all other pills/links behave exactly as before.
+
+Patch: Breadcrumb fix for daddy-me T-Shirts collection page
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-breadcrumb-fix-daddy-me-tshirts-page
+
+Changes applied (evidence-first)
+- Updated `snippets/collection-breadcrumbs.liquid` with a targeted breadcrumb override for `daddy-me-t-shirts`:
+  - Added `current_breadcrumb_label` (defaults to `collection.title`).
+  - If `current_collection_handle == 'daddy-me-t-shirts'`:
+    - Set `parent_category` to `Daddy & Me`.
+    - Set `current_breadcrumb_label` to `T-Shirts`.
+  - Updated breadcrumb current node to render `current_breadcrumb_label` instead of raw `collection.title`.
+- No pill navigation/link logic was changed in this patch.
+
+Validation snapshot
+- Local render verification via:
+  - `curl -s http://127.0.0.1:9292/collections/daddy-me-t-shirts | sed -n '10472,10496p'`
+- Output now shows:
+  - Parent link: `/collections/daddy-me` with label `Daddy & Me`
+  - Current crumb: `T-Shirts`
+
+Open TODOs (next session)
+1) Quick browser QA on desktop/mobile for `/collections/daddy-me-t-shirts` to confirm visual breadcrumb spacing and separators.
+2) Decide whether similar handle-specific breadcrumb normalization is needed for other `daddy-me-*` collections.
+
+Patch: Breadcrumb parent fix for trunks collection page
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-breadcrumb-fix-trunks-parent-daddy-me
+
+Changes applied (evidence-first)
+- Updated `snippets/collection-breadcrumbs.liquid` with a handle-specific parent override for `trunks`:
+  - If `current_collection_handle == 'trunks'`, set `parent_category` to `Daddy & Me`.
+- Existing `daddy-me-t-shirts` override remains unchanged.
+- No pill logic, current label logic, or collection filtering behavior changed in this patch.
+
+Validation snapshot
+- Local render verification via:
+  - `curl -s http://127.0.0.1:9292/collections/trunks | sed -n '10480,10496p'`
+- Output now shows:
+  - Parent link: `/collections/daddy-me` with label `Daddy & Me`
+  - Current crumb: `Trunks`
+
+Open TODOs (next session)
+1) Quick browser QA on desktop/mobile for `/collections/trunks` to confirm visual breadcrumb spacing and separators.
+2) Evaluate whether additional daddy-me child handles need the same parent override pattern.
+
+Patch: Daddy-me collection breadcrumb + pill nav normalization
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-daddy-me-breadcrumb-and-pill-normalization
+
+Changes applied (evidence-first)
+- Updated `snippets/collection-breadcrumbs.liquid` with a dedicated `daddy-me` branch:
+  - For `current_collection_handle == 'daddy-me'`:
+    - Set `parent_category` to `Daddy & Me`.
+    - Set `current_breadcrumb_label` to `Daddy & Me`.
+- Added a `daddy-me` pill list override to ensure consistent child category tabs:
+  - `pill_list = 'Daddy & Me T-Shirts|||Trunks'`.
+- Added a `daddy-me` guard to suppress the extra auto-inserted current tab so only child pills render:
+  - Set `current_in_options = true` after alternate-category detection.
+- Existing `daddy-me-t-shirts` and `trunks` parent breadcrumb overrides remain in place.
+
+Validation snapshot
+- Local render verification via:
+  - `curl -s http://127.0.0.1:9292/collections/daddy-me | sed -n '10470,10555p'`
+  - `curl -s http://127.0.0.1:9292/collections/daddy-me | rg -n "collection-category-nav__tab|collection-breadcrumb__current|/collections/daddy-me"`
+- Output now shows:
+  - Breadcrumb: `Home › Daddy & Me` (no intermediate parent crumb).
+  - Pills: `T-Shirts` linking to `/collections/daddy-me-t-shirts`, and `Trunks` linking to `/collections/trunks`.
+
+Open TODOs (next session)
+1) Browser QA on desktop/mobile for `/collections/daddy-me` to confirm nav wraps/scroll behavior for the two pill tabs.
+2) If needed, unify remaining daddy-me child handles under the same explicit-pill pattern.
+
+Patch: Match daddy pill labels on child collection pages
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-daddy-child-pill-label-normalization
+
+Changes applied (evidence-first)
+- Updated `snippets/collection-breadcrumbs.liquid` to keep daddy-related collection pills consistent across:
+  - `daddy-me`
+  - `daddy-me-t-shirts`
+  - `trunks`
+- Expanded the explicit pill list override to all three handles:
+  - `Daddy & Me T-Shirts|||Trunks`
+- Expanded display-label normalization so `daddy-me-t-shirts` pill text renders as `T-Shirts` on all three handles (not only on `daddy-me`).
+- Result: both child pages now show the same two pills as the parent page, with labels `T-Shirts` and `Trunks`.
+
+Validation snapshot
+- Local render checks:
+  - `curl -s http://127.0.0.1:9292/collections/daddy-me-t-shirts | sed -n '10500,10570p'`
+  - `curl -s http://127.0.0.1:9292/collections/trunks | sed -n '10500,10580p'`
+- Verified outputs:
+  - `/collections/daddy-me-t-shirts` pills: `T-Shirts` (active), `Trunks`
+  - `/collections/trunks` pills: `T-Shirts`, `Trunks` (active)
+
+Open TODOs (next session)
+1) Optional visual QA in browser for hover/active styling consistency on the two tabs across all three daddy handles.
+2) If required, mirror this explicit two-pill model for any additional daddy child collections.
+
+Patch: Couples breadcrumb normalization
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-couples-breadcrumb-normalization
+
+Changes applied (evidence-first)
+- Updated `snippets/collection-breadcrumbs.liquid` with a handle-specific couples override:
+  - If `current_collection_handle == 'couples'`:
+    - Set `parent_category` to `Couples`
+    - Set `current_breadcrumb_label` to `Couples`
+- This makes the breadcrumb render as `Home › Couples` by reusing existing `hide_parent` behavior (parent handle equals current handle).
+- No pill list logic or filter logic changed in this patch.
+
+Validation snapshot
+- Local render verification:
+  - `curl -s http://127.0.0.1:9292/collections/couples | sed -n '10470,10520p'`
+- Output now shows:
+  - `Home` link
+  - Current crumb `Couples`
+  - No intermediate `Mommy and Me` parent crumb
+
+Open TODOs (next session)
+1) Publish the updated theme so live `/collections/couples` reflects `Home › Couples`.
+2) Optional: apply the same breadcrumb normalization pattern to other top-level handles still inheriting `Mommy and Me`.
+
+Patch: Maternity breadcrumb normalization
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-maternity-breadcrumb-normalization
+
+Changes applied (evidence-first)
+- Updated `snippets/collection-breadcrumbs.liquid` with a handle-specific maternity override:
+  - If `current_collection_handle == 'maternity'`:
+    - Set `parent_category` to `Maternity`
+    - Set `current_breadcrumb_label` to `Maternity`
+- This reuses existing `hide_parent` behavior so breadcrumb renders as `Home › Maternity` without `Mommy and Me`.
+- No pill/filter behavior changed in this patch.
+
+Validation snapshot
+- Local render verification:
+  - `curl -s http://127.0.0.1:9292/collections/maternity | sed -n '10470,10518p'`
+- Output now shows:
+  - `Home` link
+  - Current crumb `Maternity`
+  - No intermediate parent crumb
+
+Open TODOs (next session)
+1) Publish the updated theme so live `/collections/maternity` reflects `Home › Maternity`.
+2) Optionally normalize any remaining top-level handles with inherited `Mommy and Me` parents.
+
+Patch: Family matching breadcrumb + pill normalization (`new-women-outfits` scope)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-family-matching-breadcrumb-pill-normalization
+
+Changes applied (evidence-first)
+- Updated `snippets/collection-breadcrumbs.liquid` for family matching collection routing logic:
+  - Added explicit handle overrides for `new-women-outfits` and `family-matching-outfits`:
+    - `parent_category = 'Family Matching'`
+    - `current_breadcrumb_label = 'Family Matching'`
+  - Added explicit pill list for those handles:
+    - `family-swimsuits`, `family-sets`, `family-pajamas`, `family-tops`, `family-sweaters`
+  - Added label normalization for those pills:
+    - `Swimsuits`, `Sets`, `Pajamas`, `Tops`, `Sweaters & Jackets`
+  - Ensured `current_in_options = true` for those handles so duplicate "current" pill is not injected.
+  - Forced `hide_parent = true` for those handles so breadcrumb renders as:
+    - `Home › Family Matching`
+  - Removed `new-women-outfits` from cross-category handle list so family-specific pill set is used instead of top-level category pills.
+- Updated `sections/main-collection-banner.liquid`:
+  - Extended description-hide condition to include both handles:
+    - `new-women-outfits`
+    - `family-matching-outfits`
+
+Validation snapshot
+- Local preview check confirmed for `/collections/new-women-outfits`:
+  - Breadcrumb: `Home › Family Matching`
+  - Pills shown with normalized labels from configured family list.
+- Data/source checks confirmed relevant handles exist in collections data:
+  - `new-women-outfits`, `family-swimsuits`, `family-sets`, `family-pajamas`, `family-tops`, `family-sweaters`
+
+Known constraint / deferred item
+- Requested URL rename from `/collections/new-women-outfits` to `/collections/family-matching-outfits` is not achievable purely in theme code.
+- Current live state check showed:
+  - `/collections/family-matching-outfits` redirects to `/collections/family-matching`.
+  - `/collections/family-matching` is 404.
+- This indicates Shopify Admin handle/redirect configuration must be corrected (collection handle + redirect rules).
+
+Open TODOs (next session)
+1) In Shopify Admin, set the target collection handle to `family-matching-outfits` (or intended final handle) and remove conflicting redirect to `/collections/family-matching`.
+2) Re-verify live page breadcrumb and pills after handle/redirect update.
+3) Confirm `family-pajamas` has products if the pajamas pill should always render (snippet skips empty/missing target collections by design).
+
+Addendum: Force-show family pill list (include Pajamas)
+Date: 2026-02-25
+
+Changes applied
+- Updated `snippets/collection-breadcrumbs.liquid` pill rendering loop to bypass the "skip empty/missing collection" filter for the explicit family list when current handle is:
+  - `new-women-outfits`
+  - `family-matching-outfits`
+- Effect: `family-pajamas` now renders as a visible pill (`Pajamas`) even when collection product count is currently zero.
+
+Validation
+- Local render check on `/collections/new-women-outfits` now shows:
+  - `Swimsuits`, `Sets`, `Pajamas`, `Tops`, `Sweaters & Jackets`

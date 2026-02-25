@@ -25,7 +25,7 @@
       </h1>
 
       {%- if section.settings.show_collection_description and collection.description != blank -%}
-        {%- unless collection.handle == 'new-women-outfits' -%}
+        {%- unless collection.handle == 'new-women-outfits' or collection.handle == 'family-matching-outfits' -%}
           <div class="collection-hero__description rte">{{ collection.description }}</div>
         {%- endunless -%}
       {%- endif -%}
