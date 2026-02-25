@@ -3301,3 +3301,28 @@ Validation snapshot
 
 Open TODOs (next session)
 1) Manual PDP QA: confirm new tile size feels correct and remains readable on mobile/desktop.
+
+Patch: PDP controls locked to white backgrounds (color/size/quantity)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-controls-hard-white-no-dynamic-bg
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` PDP scoped override to keep control section backgrounds white at all times:
+  - `--dlm-control-surface-bg`: `#f5f8ff -> #ffffff`
+  - dropdown/size select surface background: gradient -> `var(--dlm-control-pill-bg)`
+  - quantity capsule background: gradient -> `var(--dlm-control-pill-bg)`
+- Added explicit white-state overrides in the same scoped block for interaction states that previously changed visual color:
+  - size dropdown `:hover/:focus/:active` background stays white
+  - quantity +/- buttons `:hover/:focus/:focus-visible/:active` background stays white
+  - color-image tiles and media wrapper backgrounds stay white in default/checked/focus/hover states
+  - pill picker labels (default/checked/disabled) background stays white
+- Kept behavior logic intact (variant/quantity functionality unchanged); only visual background treatment was adjusted.
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid` confirms changes are scoped to the PDP style override block.
+- `rg` verification confirms `--dlm-control-surface-bg` now resolves to white and targeted interaction selectors are present.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on mobile and desktop to confirm color/size/quantity sections remain white through hover/focus/selection states.
+2) If reduced contrast is reported, adjust borders/shadows only (keep backgrounds white).

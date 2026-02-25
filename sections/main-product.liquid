@@ -40,7 +40,7 @@
       --dlm-surface-radius: 2.2rem;
       --dlm-control-surface-padding: 0.75rem;
       --dlm-card-bg: #ffffff;
-      --dlm-control-surface-bg: #f5f8ff;
+      --dlm-control-surface-bg: #ffffff;
       --dlm-control-pill-bg: #ffffff;
       --dlm-control-pill-border: #dfe8f5;
       width: 100%;
@@ -196,7 +196,7 @@
       min-height: 5.9rem !important;
       border: 0.14rem solid var(--dlm-control-pill-border) !important;
       border-radius: 999px !important;
-      background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%) !important;
+      background: var(--dlm-control-pill-bg) !important;
       color: #171b21 !important;
       font-size: 1.55rem !important;
       font-weight: 500 !important;
@@ -207,8 +207,29 @@
     }
 
     #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input select:focus {
+      background: var(--dlm-control-pill-bg) !important;
       border-color: #bfd0e6 !important;
       box-shadow: 0 0 0 0.2rem rgba(120, 127, 138, 0.18), 0 1rem 2.2rem rgba(14, 17, 22, 0.14) !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input select:hover,
+    #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input select:active {
+      background: var(--dlm-control-pill-bg) !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--pill input[type='radio'] + label,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--pill input[type='radio']:checked + label,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--pill input[type='radio']:disabled + label,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--pill input[type='radio'].disabled + label {
+      background: #ffffff !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image input[type='radio'] + .color-image-option__tile,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image input[type='radio']:checked + .color-image-option__tile,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image input[type='radio']:focus-visible + .color-image-option__tile,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image .color-image-option__tile:hover,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image .color-image-option__media {
+      background: #ffffff !important;
     }
 
     #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input .icon-caret {
@@ -415,13 +436,15 @@
       border-radius: calc(var(--dlm-surface-radius) - 0.6rem) !important;
     }
 
-    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity {
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity:hover,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity:focus-within {
       width: 16.8rem !important;
       max-width: 100% !important;
       min-height: 5.6rem !important;
       border: 0.14rem solid var(--dlm-control-pill-border) !important;
       border-radius: 999px !important;
-      background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%) !important;
+      background: var(--dlm-control-pill-bg) !important;
       box-shadow: 0 0.5rem 1.4rem rgba(14, 17, 22, 0.1) !important;
       padding: 0.35rem !important;
       display: grid !important;
@@ -443,14 +466,17 @@
       min-width: 3rem !important;
       min-height: 3rem !important;
       margin: 0 !important;
-      border: 0 !important;
+      border: 0.1rem solid var(--dlm-control-pill-border) !important;
       border-radius: 50% !important;
-      background: #ecf3ff !important;
+      background: var(--dlm-control-pill-bg) !important;
       color: #2a2f37 !important;
     }
 
-    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity__button:hover {
-      background: #e3edff !important;
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity__button:hover,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity__button:focus,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity__button:focus-visible,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity__button:active {
+      background: var(--dlm-control-pill-bg) !important;
     }
 
     #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__quantity .quantity__button svg {
