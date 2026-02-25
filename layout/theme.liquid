@@ -68,12 +68,19 @@
   {%- endif -%}
   {% endif %}
 
+  {%- liquid
+    assign resolved_page_title = page_title
+    if request.page_type == 'collection' and collection != blank and collection.handle == 'swimsuits'
+      assign resolved_page_title = 'Swimsuits'
+    endif
+  -%}
+
   <!-- Title and Meta Description for SEO -->
   <title>
-    {{ page_title }}
+    {{ resolved_page_title }}
     {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
     {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    {%- unless resolved_page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
   </title>
   {% if page_description %}
   <meta name="description" content="{{ page_description | escape }}">

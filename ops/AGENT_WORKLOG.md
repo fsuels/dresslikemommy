@@ -3566,3 +3566,110 @@ Validation snapshot
 Open TODOs (next session)
 1) Verify mobile PDP that image rendering is restored while overall stack is moved upward.
 2) If still not enough upward shift, increase only wrapper/section negative margins (do not change image fit rules).
+
+Patch: Swimsuits collection title override (homepage + collection page title)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-swimsuits-title-override
+
+Changes applied (evidence-first)
+- Added handle-based display override for collection `swimsuits` to render as `Swimsuits` in homepage collection cards:
+  - `snippets/card-collection.liquid`
+  - Introduced `card_collection_display_title` and replaced card title output + image alt fallback usage.
+- Added collection page heading override:
+  - `sections/main-collection-banner.liquid`
+  - Introduced `collection_display_title` and replaced H1 title output.
+- Added browser tab title override on collection page:
+  - `layout/theme.liquid`
+  - Introduced `resolved_page_title` and used it in `<title>` block for `request.page_type == 'collection'` + `collection.handle == 'swimsuits'`.
+- Added OG/Twitter title override for the same collection page:
+  - `snippets/meta-tags.liquid`
+  - Set `og_title = 'Swimsuits'` for `swimsuits` collection page.
+
+Validation snapshot
+- `git diff` confirms only the four targeted Liquid files were changed for this request.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify homepage collection tile label for `/collections/swimsuits` shows `Swimsuits`.
+2) Verify collection page H1 and browser tab title/OG title render as `Swimsuits`.
+
+Patch: Homepage collection heading centering + spacing normalization
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-homepage-collection-heading-center-spacing
+
+Changes applied (evidence-first)
+- Updated `assets/section-collection-list.css` for homepage collection-list sections only:
+  - Added `.template-index .section-collection-list .title-wrapper-with-link` overrides to center heading layout (`align-items: center`, `justify-content: center`, `text-align: center`) and normalize spacing with balanced vertical padding (`1.8rem` mobile / `2.2rem` desktop).
+  - Added `.template-index .section-collection-list .collection-list-title` centering (`text-align: center`) with zero margin.
+- Scope is limited to `.template-index` so non-homepage collection-list sections are unchanged.
+
+Validation snapshot
+- `git diff -- assets/section-collection-list.css` confirms only heading alignment/spacing rules were added.
+- `nl -ba assets/section-collection-list.css` confirms new rules at lines 10-28.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify homepage section titles (e.g., `Mommy & Me`, `Family Matching`) are centered with balanced spacing above and below on desktop and mobile.
+2) If spacing appears too loose/tight, adjust the two padding values in `assets/section-collection-list.css` while keeping them equal top/bottom.
+
+Patch: Homepage collection section divider (subtle separation)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-homepage-collection-divider-subtle
+
+Changes applied (evidence-first)
+- Updated `assets/section-collection-list.css` to add a subtle divider between homepage collection-list sections:
+  - Added `.template-index .section-collection-list .collection-list-wrapper::after` with a low-contrast rule (`0.1rem` line using `rgba(var(--color-foreground), 0.14)`).
+  - Divider is centered and constrained in width (`min(24rem, 34%)` mobile, `min(28rem, 28%)` desktop).
+  - Added vertical separation before divider (`margin-top: 2.2rem` mobile, `2.8rem` desktop).
+  - Excluded the last homepage collection-list section from rendering the divider via `.template-index .section-collection-list:last-of-type ...::after { content: none; }`.
+- Existing centered heading + balanced heading spacing rules were kept unchanged.
+
+Validation snapshot
+- `git diff -- assets/section-collection-list.css` confirms only homepage collection-list heading/divider styling was updated.
+- `nl -ba assets/section-collection-list.css` confirms divider rules at lines 24-48.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify divider visibility on homepage desktop/mobile and ensure it remains subtle against each color scheme.
+2) If divider appears too strong/light, tune only `rgba(..., 0.14)` value while keeping spacing and width unchanged.
+
+Patch: Homepage collection divider visibility tuned for desktop + mobile
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-homepage-collection-divider-desktop-visibility-tune
+
+Changes applied (evidence-first)
+- Updated homepage collection divider styling in `assets/section-collection-list.css` to make separation visible in both desktop and mobile:
+  - Increased divider contrast: `rgba(var(--color-foreground), 0.14) -> 0.22`.
+  - Increased mobile/default divider width: `min(24rem, 34%) -> min(52rem, calc(100% - 3rem))`.
+  - Increased desktop divider width: `min(28rem, 28%) -> min(64rem, calc(100% - 10rem))`.
+  - Slightly increased divider offset spacing (`margin-top` `2.2rem -> 2.4rem` mobile/default; `2.8rem -> 3rem` desktop).
+- Existing homepage-only scope and "hide divider on last collection section" behavior remain unchanged.
+
+Validation snapshot
+- `nl -ba assets/section-collection-list.css` confirms updated divider values at lines 28-48.
+- `git diff -- assets/section-collection-list.css` confirms targeted selector/value adjustments only.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify desktop homepage now clearly shows divider between collection sections.
+2) If still subtle on high-brightness displays, raise alpha from `0.22` to `0.26` without widening further.
+
+Patch: Desktop collection heading/divider fix (selector root-cause)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-desktop-collection-heading-divider-selector-fix
+
+Changes applied (evidence-first)
+- Root cause identified: prior heading/divider rules were scoped with `.template-index ...`, but `layout/theme.liquid` currently renders `<body>` without a `template-index` class, so those selectors never matched.
+- Updated `assets/section-collection-list.css` selectors to target actual rendered section wrappers:
+  - `.template-index .section-collection-list ...` -> `.section-collection-list ...`
+  - Applied to centered heading wrapper, centered heading text, and divider pseudo-element rules (including desktop media-query variants).
+- Kept desktop/mobile divider sizing and contrast values unchanged from prior tuning.
+
+Validation snapshot
+- `nl -ba assets/section-collection-list.css` confirms active selectors at lines 10-48 use `.section-collection-list`.
+- `rg` confirms no remaining `.template-index` references in this CSS block.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Hard-refresh desktop homepage and verify headings are centered and divider appears between collection sections.
+2) If global `section-collection-list` pages need different styling later, re-introduce homepage scoping via body class restoration in `layout/theme.liquid`.
