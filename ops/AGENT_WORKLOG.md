@@ -3116,3 +3116,62 @@ Validation snapshot
 
 Open TODOs (next session)
 1) Manual desktop PDP QA: confirm this 5% reduction matches the desired visual balance.
+
+Patch: PDP size chart labels background removed (text color preserved)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-size-chart-label-bg-removed
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` size chart label style:
+  - `.sc-matrix__cell--label` background changed from `#e9edf2` to `transparent`.
+- Kept label text color unchanged (`#151a20`).
+- Kept measurement value pill styling unchanged (`.sc-pill` gray gradient background remains intact).
+
+Validation snapshot
+- `rg -n "sc-matrix__cell--label|sc-pill" sections/main-product.liquid` confirms only the label background rule changed for this request.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA: select a size and verify label row has no gray background while value row remains gray.
+
+Patch: PDP size chart dark header compacted (~30% shorter)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-size-chart-header-compact-v1
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` dark size-details header sizing to reduce vertical footprint:
+  - `.sc-header` gap `1.2rem -> 0.8rem`
+  - `.sc-header` padding `1.2rem 1.8rem -> 0.8rem 1.8rem`
+  - `.sc-unit-toggle` padding `0.25rem -> 0.18rem`
+  - `.sc-unit-toggle__btn` height `2.55rem -> 1.8rem`
+- Left the rest of the size chart layout and measurement rows unchanged.
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid` confirms compacting changes are scoped to size chart header/toggle sizing rules.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA: select a size and verify dark header appears ~30% shorter while toggle remains easy to tap/click.
+
+Patch: PDP size chart overall height reduced by ~30%
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-size-chart-overall-height-minus-30
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` size-chart spacing and typography to reduce total rendered height by approximately 30% while preserving content and structure.
+- Key compacting adjustments include:
+  - Header/title/toggle density (`.sc-header`, `.sc-header__main`, `.sc-header__icon`, `.sc-header__title`, `.sc-unit-toggle`, `.sc-unit-toggle__btn`)
+  - Note row density (`.sc-note`)
+  - Table and matrix spacing (`.sc-table`, `.sc-matrix`, `.sc-matrix__cell--label`, `.sc-pill`, `.sc-empty`)
+  - Matching compact mobile overrides under `@media (max-width: 749px)` for `.sc-table`, `.sc-matrix`, label cells, and value pills.
+- Existing prior request behavior remains intact:
+  - Label row background stays removed (`.sc-matrix__cell--label` uses `background: transparent`).
+  - Value row gray pill background remains unchanged.
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid` confirms edits are scoped to size-chart style rules.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA: select a size and verify the size chart reads clearly with the new compact height on desktop and mobile.
+2) If tap targets feel too small on mobile, slightly increase `.sc-unit-toggle__btn` height while keeping the rest compact.
