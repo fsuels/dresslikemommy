@@ -291,6 +291,20 @@ cart-drawer-items {
 }
 
 @media screen and (max-width: 749px) {
+  .cart-drawer .cart-items thead th:nth-child(3),
+  .cart-drawer .cart-item__totals {
+    display: none;
+  }
+
+  .cart-drawer .cart-item__details {
+    grid-column: 2 / 5;
+  }
+
+  .cart-drawer .cart-item__name {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
   .cart-drawer .cart-item cart-remove-button {
     margin-left: 0;
   }

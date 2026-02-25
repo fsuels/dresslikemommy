@@ -3722,3 +3722,44 @@ Validation snapshot
 
 Open TODOs (next session)
 1) Confirm mobile homepage spacing between product cards and indicator row feels balanced across all collection carousel sections.
+
+Patch: Mobile cart drawer title readability (remove overlapping per-item number)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-mobile-cart-drawer-title-readability-no-overlay-number
+
+Changes applied (evidence-first)
+- Updated `assets/component-cart-drawer.css` mobile rules (`@media screen and (max-width: 749px)`) to prevent per-item number overlap in cart drawer:
+  - Hid the per-item total column on mobile: `.cart-drawer .cart-items thead th:nth-child(3), .cart-drawer .cart-item__totals { display: none; }`.
+  - Expanded details column to full remaining row width: `.cart-drawer .cart-item__details { grid-column: 2 / 5; }`.
+  - Ensured product titles wrap cleanly without collision: `.cart-drawer .cart-item__name { white-space: normal; overflow-wrap: anywhere; }`.
+- Scope is cart drawer + mobile only; desktop drawer and main cart page templates were not changed.
+
+Validation snapshot
+- `git diff -- assets/component-cart-drawer.css` confirms only the targeted mobile cart-drawer block was modified.
+- `nl -ba assets/component-cart-drawer.css | sed -n '293,311p'` confirms new rules are present in the intended mobile media query.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify on mobile cart drawer that product titles are fully readable and no numeric value overlaps the title line.
+2) Confirm cart drawer still behaves correctly for discounted items and long product names.
+
+Patch: Main mobile cart title overlap fix (remove top-right extra number)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-main-mobile-cart-title-overlap-number-fix
+
+Changes applied (evidence-first)
+- Updated `assets/component-cart-items.css` mobile rules (`@media screen and (max-width: 749px)`) to remove the extra per-line total number that overlaps the product title:
+  - Hid the mobile total header cell: `.cart-items thead th.medium-hide.large-up-hide { display: none; }`.
+  - Hid mobile line-total cell: `.cart-item__totals.medium-hide.large-up-hide { display: none; }`.
+  - Expanded item details area so title/content use full remaining row width: `.cart-item__details { grid-column: 2 / 5; }`.
+  - Ensured product names wrap safely for long titles: `.cart-item__name { white-space: normal; overflow-wrap: anywhere; }`.
+- This patch targets the main cart page mobile layout; previous cart drawer mobile patch in `assets/component-cart-drawer.css` remains in place.
+
+Validation snapshot
+- `git diff -- assets/component-cart-items.css` confirms only the intended mobile cart selectors were changed.
+- `nl -ba assets/component-cart-items.css | sed -n '218,277p'` confirms the rules are in the active mobile media query.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify on `/cart` mobile view that no number overlays product title and only the intended price line remains in item details.
+2) Verify cart drawer mobile also remains clean after both patches.
