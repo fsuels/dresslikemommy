@@ -754,7 +754,7 @@ class SliderComponent extends HTMLElement {
   }
 
   buildPageDots() {
-    const dotsContainer = this.querySelector('.related-products__page-dots');
+    const dotsContainer = this.querySelector('.related-products__page-dots, .slider-page-dots');
     if (!dotsContainer) return;
     dotsContainer.innerHTML = '';
     if (!this.totalPages || this.totalPages <= 1) {

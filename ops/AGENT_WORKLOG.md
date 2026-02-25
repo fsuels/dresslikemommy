@@ -3673,3 +3673,52 @@ Validation snapshot
 Open TODOs (next session)
 1) Hard-refresh desktop homepage and verify headings are centered and divider appears between collection sections.
 2) If global `section-collection-list` pages need different styling later, re-introduce homepage scoping via body class restoration in `layout/theme.liquid`.
+
+Patch: Homepage collection carousels use line indicators instead of fraction counter
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-homepage-collection-carousel-line-indicators
+
+Changes applied (evidence-first)
+- Updated homepage collection carousel controls to replace fraction counters with line-style page indicators:
+  - `sections/collection-list.liquid`
+  - Replaced the `slider-counter` (`current / total`) block with a dot container hook:
+    - `<div class="slider-page-dots collection-carousel__page-dots" ...></div>`
+- Applied the same control change to featured collection product carousels:
+  - `sections/featured-collection.liquid`
+  - Replaced the `slider-counter` fraction block with the same dot container hook.
+- Updated slider-component dot generation to support the new generic dot container class without changing collection carousel step behavior:
+  - `assets/global.js`
+  - Expanded `buildPageDots()` container lookup from `.related-products__page-dots` to `.related-products__page-dots, .slider-page-dots`.
+- Added shared line-indicator styling for collection carousels:
+  - `assets/component-slider.css`
+  - Added `.collection-carousel__page-dots` layout styles and line styles for generated `.related-products__page-dot` buttons (width/height/active/hover), matching the horizontal line treatment used in product recommendations UI.
+
+Validation snapshot
+- `git diff -- sections/collection-list.liquid sections/featured-collection.liquid assets/component-slider.css assets/global.js` confirms only targeted slider control markup/styles and dot-container lookup changed.
+- `rg -n "collection-carousel__page-dots|slider-page-dots"` confirms both homepage collection section types now include the line-indicator container class and the slider JS supports it.
+- `shopify theme check --fail-level error` remains non-zero due pre-existing repository issues in unrelated files (e.g., `sections/header.liquid`, `sections/main-list-collections.liquid`, `snippets/cjpod.liquid`, `sections/email-signup-banner.liquid`); no new errors tied to the edited files were identified in this run.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Verify on mobile homepage that each `collection-list` and `featured-collection` carousel shows line indicators (no `1/4` text).
+2) Verify arrows + swipe still work and active line updates correctly while sliding.
+
+Patch: Collection carousel indicator spacing from product cards
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-homepage-collection-indicator-spacing
+
+Changes applied (evidence-first)
+- Added a scoped slider-controls class to homepage collection carousels:
+  - `sections/collection-list.liquid`
+  - `sections/featured-collection.liquid`
+  - Updated controls wrapper from `slider-buttons` to `slider-buttons collection-carousel__slider-buttons`.
+- Added vertical spacing so indicator lines/arrows do not visually touch product cards:
+  - `assets/component-slider.css`
+  - Added `.collection-carousel__slider-buttons { margin-top: 0.8rem; }`.
+
+Validation snapshot
+- `git diff -- sections/collection-list.liquid sections/featured-collection.liquid assets/component-slider.css` confirms targeted spacing-only changes.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Confirm mobile homepage spacing between product cards and indicator row feels balanced across all collection carousel sections.

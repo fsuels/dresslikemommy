@@ -317,6 +317,37 @@ slider-component.slider-component-full-width {
   justify-content: center;
 }
 
+.collection-carousel__page-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0 0.8rem;
+}
+
+.collection-carousel__slider-buttons {
+  margin-top: 0.8rem;
+}
+
+.collection-carousel__page-dots .related-products__page-dot {
+  width: 2.4rem;
+  height: 0.3rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(var(--color-foreground), 0.2);
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.collection-carousel__page-dots .related-products__page-dot:hover {
+  background: rgba(var(--color-foreground), 0.4);
+}
+
+.collection-carousel__page-dots .related-products__page-dot.active {
+  background: rgb(var(--color-foreground));
+}
+
 @media screen and (min-width: 990px) {
   .slider:not(.slider--everywhere):not(.slider--desktop) + .slider-buttons {
     display: none;
