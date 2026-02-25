@@ -27,20 +27,21 @@
 
 {%- for value in option.values -%}
   {%- liquid
+    assign option_value_name = value | strip
     assign option_disabled = true
 
     for option1_name in variants_option1_arr
       case option.position
         when 1
-          if variants_option1_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+          if variants_option1_arr[forloop.index0] == option_value_name and variants_available_arr[forloop.index0]
             assign option_disabled = false
           endif
         when 2
-          if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+          if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == option_value_name and variants_available_arr[forloop.index0]
             assign option_disabled = false
           endif
         when 3
-          if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == product.selected_or_first_available_variant.option2 and variants_option3_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+          if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == product.selected_or_first_available_variant.option2 and variants_option3_arr[forloop.index0] == option_value_name and variants_available_arr[forloop.index0]
             assign option_disabled = false
           endif
       endcase
@@ -55,6 +56,42 @@
       assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
     else
       assign swatch_value = null
+    endif
+
+    assign color_tile_image = blank
+    if picker_type == 'color_image'
+      if value.swatch.image
+        assign color_tile_image = value.swatch.image
+      endif
+
+      if color_tile_image == blank
+        for variant in product.variants
+          assign variant_matches_option_value = false
+
+          case option.position
+            when 1
+              if variant.option1 == option_value_name
+                assign variant_matches_option_value = true
+              endif
+            when 2
+              if variant.option2 == option_value_name
+                assign variant_matches_option_value = true
+              endif
+            when 3
+              if variant.option3 == option_value_name
+                assign variant_matches_option_value = true
+              endif
+          endcase
+
+          if variant_matches_option_value and variant.featured_media and variant.featured_media.preview_image
+            assign color_tile_image = variant.featured_media.preview_image
+            break
+          elsif variant_matches_option_value and variant.featured_image
+            assign color_tile_image = variant.featured_image
+            break
+          endif
+        endfor
+      endif
     endif
   -%}
 
@@ -91,6 +128,45 @@
       shape: block.settings.swatch_shape,
       help_text: help_text
     %}
+  {%- elsif picker_type == 'color_image' -%}
+    <input
+      type="radio"
+      id="{{ input_id }}"
+      name="{{ option.name }}"
+      value="{{ value | escape }}"
+      form="{{ product_form_id }}"
+      {% if option.selected_value == value %}
+        checked
+      {% endif %}
+      {% if option_disabled %}
+        class="disabled"
+      {% endif %}
+    >
+    <label class="color-image-option__tile" for="{{ input_id }}">
+      <span class="color-image-option__media">
+        {% if color_tile_image != blank %}
+          <img
+            src="{{ color_tile_image | image_url: width: 240 }}"
+            alt="{{ value | escape }}"
+            width="96"
+            height="96"
+            loading="{% if option.selected_value == value %}eager{% else %}lazy{% endif %}"
+            class="color-image-option__image"
+          >
+        {% elsif swatch_value %}
+          <span
+            class="color-image-option__swatch-fallback"
+            style="--color-image-option-bg: {{ swatch_value }};{% if swatch_focal_point %} --color-image-option-focal-point: {{ swatch_focal_point }};{% endif %}"
+          ></span>
+        {% else %}
+          <span class="color-image-option__swatch-fallback color-image-option__swatch-fallback--empty"></span>
+        {% endif %}
+      </span>
+      <span class="color-image-option__name">
+        {{ value -}}
+      </span>
+      {{ label_unavailable }}
+    </label>
   {%- elsif picker_type == 'button' -%}
     <input
       type="radio"

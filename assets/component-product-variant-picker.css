@@ -150,3 +150,103 @@ variant-selects {
   }
 }
 /* End custom styles for Swatch display type */
+
+/* Custom styles for color image tile display type */
+.product-form__input--color-image {
+  --color-image-option-width: 7.04rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.product-form__input--color-image .form__label {
+  width: 100%;
+  margin: 0 0 0.4rem 0;
+}
+
+.product-form__input--color-image input[type='radio'] + .color-image-option__tile {
+  margin: 0;
+  width: var(--color-image-option-width);
+  border: 0.1rem solid rgba(var(--color-foreground), 0.18);
+  border-radius: 0.6rem;
+  background: rgb(var(--color-background));
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--duration-short) ease, box-shadow var(--duration-short) ease,
+    transform var(--duration-short) ease;
+}
+
+.product-form__input--color-image .color-image-option__media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: rgba(var(--color-foreground), 0.05);
+}
+
+.product-form__input--color-image .color-image-option__image,
+.product-form__input--color-image .color-image-option__swatch-fallback {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.product-form__input--color-image .color-image-option__image {
+  object-fit: cover;
+}
+
+.product-form__input--color-image .color-image-option__swatch-fallback {
+  background: var(--color-image-option-bg, rgba(var(--color-foreground), 0.08));
+  background-position: var(--color-image-option-focal-point, center);
+  background-size: cover;
+}
+
+.product-form__input--color-image .color-image-option__swatch-fallback--empty {
+  background: rgba(var(--color-foreground), 0.08);
+}
+
+.product-form__input--color-image .color-image-option__name {
+  display: block;
+  padding: 0.65rem 0.45rem 0.7rem;
+  color: rgb(var(--color-foreground));
+  font-size: 1.4rem;
+  line-height: 1.2;
+  text-align: center;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.product-form__input--color-image input[type='radio']:not(.disabled) + .color-image-option__tile:hover {
+  border-color: rgba(var(--color-foreground), 0.45);
+}
+
+.product-form__input--color-image input[type='radio']:checked + .color-image-option__tile {
+  border-color: rgb(var(--color-foreground));
+  box-shadow: 0 0 0 0.1rem rgb(var(--color-background)), 0 0 0 0.2rem rgb(var(--color-foreground));
+}
+
+.product-form__input--color-image input[type='radio']:focus-visible + .color-image-option__tile {
+  border-color: rgb(var(--color-foreground));
+  box-shadow: 0 0 0 0.2rem rgb(var(--color-background)), 0 0 0 0.45rem rgba(var(--color-foreground), 0.35);
+}
+
+.product-form__input--color-image input[type='radio'].disabled + .color-image-option__tile,
+.product-form__input--color-image input[type='radio']:disabled + .color-image-option__tile {
+  opacity: 0.45;
+}
+
+.product-form__input--color-image input[type='radio'].disabled + .color-image-option__tile .color-image-option__name,
+.product-form__input--color-image input[type='radio']:disabled + .color-image-option__tile .color-image-option__name {
+  text-decoration: line-through;
+}
+
+@media screen and (min-width: 750px) {
+  .product-form__input--color-image {
+    --color-image-option-width: 7.36rem;
+    gap: 1rem;
+  }
+}
+/* End custom styles for color image tile display type */

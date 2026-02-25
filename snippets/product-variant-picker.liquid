@@ -12,6 +12,8 @@
       {%- liquid
         assign swatch_count = option.values | map: 'swatch' | compact | size
         assign picker_type = block.settings.picker_type
+        assign option_name_downcased = option.name | downcase
+        assign is_color_option = false
 
         if swatch_count > 0 and block.settings.swatch_shape != 'none'
           if block.settings.picker_type == 'dropdown'
@@ -20,9 +22,32 @@
             assign picker_type = 'swatch'
           endif
         endif
+
+        if option_name_downcased contains 'color' or option_name_downcased contains 'colour'
+          assign is_color_option = true
+        endif
+
+        if is_color_option and block.settings.picker_type == 'dropdown'
+          assign picker_type = 'color_image'
+        endif
       -%}
       {%- if picker_type == 'swatch' -%}
         <fieldset class="js product-form__input product-form__input--swatch">
+          <legend class="form__label">
+            {{ option.name }}:
+            <span data-selected-swatch-value="{{ option.name }}">
+              {{- option.selected_value -}}
+            </span>
+          </legend>
+          {% render 'product-variant-options',
+            product: product,
+            option: option,
+            block: block,
+            picker_type: picker_type
+          %}
+        </fieldset>
+      {%- elsif picker_type == 'color_image' -%}
+        <fieldset class="js product-form__input product-form__input--color-image">
           <legend class="form__label">
             {{ option.name }}:
             <span data-selected-swatch-value="{{ option.name }}">
@@ -84,14 +109,13 @@
             {% render 'icon-caret' %}
           </div>
         </div>
-        <!-- Insert Size Conversion Message and Size Chart Wrapper Here -->
-        {% if forloop.first %}
-          <div id="size-conversion-message"></div>
-          <div class="size-chart-wrapper">
-            <div id="size-chart-content"></div>
-          </div>
-        {% endif %}
       {%- endif -%}
+      {% if forloop.first %}
+        <div id="size-conversion-message"></div>
+        <div class="size-chart-wrapper">
+          <div id="size-chart-content"></div>
+        </div>
+      {% endif %}
     {%- endfor -%}
     <script type="application/json">
       {{ product.variants | json }}

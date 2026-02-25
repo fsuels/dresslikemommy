@@ -3243,3 +3243,61 @@ Validation snapshot
 Open TODOs (next session)
 1) Manual PDP QA: verify dropdowns, quantity controls, and size-detail pills render with the lighter neutral/pastel look on desktop and mobile.
 2) If controls feel too low-contrast, slightly darken only `--dlm-control-pill-border` while keeping backgrounds light.
+
+Patch: PDP color selector converted to image tiles (color option only)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-color-image-tiles-v1
+
+Changes applied (evidence-first)
+- Updated `snippets/product-variant-picker.liquid` to detect `Color`/`Colour` option names and route those options to a dedicated picker mode (`color_image`) when the block picker type is `dropdown`.
+- Kept non-color options unchanged (e.g. size stays dropdown).
+- Updated `snippets/product-variant-options.liquid` to render `color_image` values as radio tiles:
+  - tile image source priority: `value.swatch.image` -> matching variant `featured_media.preview_image` -> matching variant `featured_image` -> fallback swatch color block.
+  - preserved native variant selection behavior (`input[type=radio]` + existing `variant-selects` JS flow).
+- Updated `assets/component-product-variant-picker.css` with scoped tile styles for `.product-form__input--color-image`:
+  - multi-column image tile grid
+  - selected, hover, focus-visible, and disabled visual states
+  - responsive tile sizing for mobile/desktop.
+
+Validation snapshot
+- `git diff -- snippets/product-variant-picker.liquid snippets/product-variant-options.liquid assets/component-product-variant-picker.css` confirms scope is limited to color picker rendering + styles.
+- Ran `shopify theme check --fail-level suggestion`; repository has pre-existing unrelated errors/warnings, and no new syntax errors were surfaced in the edited files.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA on products with color variants: verify each color tile shows the expected image and selecting a tile updates variant/media correctly.
+2) Validate products where color is option2/option3 still resolve the correct tile image.
+3) If desired, tune tile width/gap in `assets/component-product-variant-picker.css` to match the exact screenshot density.
+
+Patch: PDP color-image picker follow-up (preserve size chart mount)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-color-image-size-chart-mount-fix
+
+Changes applied (evidence-first)
+- Updated `snippets/product-variant-picker.liquid` to move the size-conversion/size-chart mount markup out of the dropdown-only branch.
+- `#size-conversion-message` and `.size-chart-wrapper` now render once on `forloop.first` regardless of option picker type.
+- This prevents loss of the size-chart mount when the first option is color and rendered as `color_image` tiles.
+
+Validation snapshot
+- `git diff -- snippets/product-variant-picker.liquid` confirms wrapper mount now sits after the picker branch, still guarded by `forloop.first`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA: confirm size chart still renders/updates on products where color is option1 and size is option2.
+
+Patch: PDP color-image tiles reduced by 20%
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-color-image-tiles-minus-20
+
+Changes applied (evidence-first)
+- Updated `assets/component-product-variant-picker.css` tile width tokens for `.product-form__input--color-image` by 20%:
+  - base width: `8.8rem -> 7.04rem`
+  - desktop width (`>= 750px`): `9.2rem -> 7.36rem`
+- Kept tile behavior/state styling unchanged (selected/hover/focus/disabled).
+
+Validation snapshot
+- `git diff -- assets/component-product-variant-picker.css` confirms only width-token reductions for color image tiles.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA: confirm new tile size feels correct and remains readable on mobile/desktop.
