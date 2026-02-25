@@ -10,6 +10,11 @@
   display: block;
 }
 
+.related-products .related-products__slider-arrows,
+.related-products .related-products__slider-stepper {
+  display: none;
+}
+
 @media screen and (min-width: 990px) {
   .related-products .grid:not(.slider) {
     justify-content: center;
@@ -40,5 +45,88 @@
   .related-products .slider.slider--desktop.grid--3-col-desktop .grid__item {
     width: calc((100% - var(--grid-desktop-horizontal-spacing) * 2) / 3);
     max-width: calc((100% - var(--grid-desktop-horizontal-spacing) * 2) / 3);
+  }
+
+  .related-products .related-products__slider-track {
+    position: relative;
+  }
+
+  .related-products .related-products__slider-arrows {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.6rem;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .related-products .related-products__slider-arrows .slider-button {
+    pointer-events: auto;
+    width: 4rem;
+    height: 4rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+    border-radius: 50%;
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    box-shadow: 0 0.4rem 1.4rem rgba(var(--color-foreground), 0.12);
+  }
+
+  .related-products .related-products__slider-arrows .slider-button .icon {
+    width: 1.1rem;
+    height: 0.8rem;
+  }
+
+  .related-products .related-products__slider-arrows .slider-button[disabled] {
+    opacity: 0.45;
+  }
+
+  .related-products .related-products__slider-stepper {
+    position: relative;
+    min-width: 8.2rem;
+    width: fit-content;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 0 1.1rem 0.5rem;
+    margin: 1.2rem auto 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .related-products .related-products__slider-stepper::before {
+    content: '';
+    position: absolute;
+    left: 1.1rem;
+    right: 1.1rem;
+    bottom: 0;
+    height: 0.24rem;
+    border-radius: 999px;
+    background: rgba(var(--color-foreground), 0.18);
+  }
+
+  .related-products .related-products__slider-stepper::after {
+    content: '';
+    position: absolute;
+    left: 1.1rem;
+    bottom: 0;
+    height: 0.24rem;
+    width: var(--step-progress, 100%);
+    border-radius: 999px;
+    background: rgb(var(--color-foreground));
+    transition: width 0.25s ease;
+  }
+
+  .related-products .related-products__slider-stepper .slider-counter__separator {
+    opacity: 0.35;
+  }
+
+  .related-products .related-products__slider-stepper .slider-counter--total {
+    opacity: 0.6;
   }
 }

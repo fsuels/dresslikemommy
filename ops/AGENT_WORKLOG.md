@@ -2928,3 +2928,191 @@ Validation snapshot
 Open TODOs (next session)
 1) Manual PDP QA: verify weight pills display as `XX kg` / `YY lbs` when toggling units.
 2) If needed, mirror this cleanup in any external/off-repo CSV snapshots.
+
+Patch: PDP related-products desktop carousel controls visibility
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-related-products-desktop-carousel-controls
+
+Changes applied (evidence-first)
+- Updated `sections/related-products.liquid`:
+  - Added a scoped class on the slider wrapper: `related-products__slider`.
+  - Replaced desktop control wrapper classes from `slider-buttons small-hide medium-hide` to `slider-buttons related-products__slider-buttons`.
+- Updated `assets/section-related-products.css`:
+  - Added section-scoped controls visibility rules so the related-products slider controls are hidden below desktop and explicitly shown on desktop (`>= 990px`).
+  - Added explicit desktop button styling (size, border, background, icon dimensions) to ensure next/prev arrows are visually obvious and clickable.
+
+Validation snapshot
+- Diff review confirms edits are scoped to:
+  - `sections/related-products.liquid`
+  - `assets/section-related-products.css`
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP desktop QA: confirm “You may also like” shows visible prev/next arrows and they move slides.
+2) Manual PDP mobile/tablet QA: confirm controls remain hidden and swipe behavior is unchanged.
+
+Patch: Added desktop stepper to PDP related-products carousel
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-related-products-desktop-stepper-added
+
+Changes applied (evidence-first)
+- Updated `sections/related-products.liquid` desktop controls:
+  - Converted the counter block to a stepper-compatible counter using `slider-counter--product-stepper`.
+  - Added `slider-counter__separator` class and initialized `--step-progress` inline style.
+- Updated `assets/section-related-products.css` desktop controls:
+  - Added scoped stepper UI styles (track + fill progress bar) for `.related-products__slider-buttons .slider-counter--product-stepper`.
+  - Kept existing desktop arrow controls visible and styled.
+
+Validation snapshot
+- Diff review confirms edits are scoped to:
+  - `sections/related-products.liquid`
+  - `assets/section-related-products.css`
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP desktop QA: verify stepper appears between arrows and progress fill updates when sliding.
+2) Manual PDP desktop QA: verify counter values map to slide pages (not raw product count) during navigation.
+
+Patch: Desktop related-products arrows moved onto carousel image area
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-related-products-overlay-arrows-on-track
+
+Changes applied (evidence-first)
+- Updated `sections/related-products.liquid` structure:
+  - Added `.related-products__slider-track` wrapper around the recommendations `<ul>`.
+  - Moved desktop prev/next buttons into `.related-products__slider-arrows` inside that track wrapper.
+  - Kept the stepper counter (`.related-products__slider-stepper`) below the track.
+- Updated `assets/section-related-products.css`:
+  - Added desktop overlay positioning for `.related-products__slider-arrows` so arrows render on top of the carousel image area.
+  - Right/left arrows are now positioned over the track edges and remain clickable via `pointer-events` handling.
+  - Preserved and scoped stepper styling under the track.
+
+Validation snapshot
+- Diff review confirms edits are scoped to:
+  - `sections/related-products.liquid`
+  - `assets/section-related-products.css`
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP desktop QA: verify right arrow is visible over the carousel image area and advances slides.
+2) Manual PDP desktop QA: verify left arrow appears after first advance and both arrows remain clickable.
+3) Manual PDP responsive QA: verify mobile/tablet behavior remains unchanged.
+
+Patch: PDP desktop hero image emphasis (larger media first impression)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-desktop-hero-image-emphasis
+
+Changes applied (evidence-first)
+- Updated `assets/section-main-product.css` desktop layout rebalance rules:
+  - Increased desktop PDP container width at `>= 990px`, `>= 1400px`, and `>= 1600px` breakpoints.
+  - Shifted product grid split to prioritize media on desktop for all configured media sizes:
+    - `>= 990px`: media/info `66/34`
+    - `>= 1400px`: media/info `67/33`
+    - `>= 1600px`: media/info `68/32`
+  - Reduced desktop info-column horizontal padding so media can occupy more of first-view horizontal space.
+  - Set desktop product row alignment to `align-items: flex-start` for a stronger top-aligned first impression.
+- Tightened breadcrumb vertical spacing in the same file so the main image starts visually closer to breadcrumb area on load.
+
+Validation snapshot
+- `git diff --check -- assets/section-main-product.css` passed (no whitespace errors).
+- Changes are scoped to `assets/section-main-product.css` only for this patch.
+
+Open TODOs (next session)
+1) Manual desktop PDP QA (>=990px): confirm the first media appears larger and starts close to breadcrumb area across representative products.
+2) Manual QA for `product--right` and alternate `media_size` settings to confirm info column spacing remains intentional.
+
+Patch: PDP desktop main image enlarged further (remove viewport cap + stronger media split)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-desktop-main-image-larger-v2
+
+Changes applied (evidence-first)
+- Updated `assets/section-main-product.css` desktop layout split to further prioritize media:
+  - `>= 990px`: media/info `70/30`
+  - `>= 1400px`: media/info `71/29`
+  - `>= 1600px`: media/info `72/28`
+- Added a desktop-only override for constrained media containers so the main image is no longer capped by viewport-fit height logic:
+  - Kept container width at full width.
+  - Forced constrained media padding back to natural ratio (`var(--ratio-percent)`) on desktop.
+
+Validation snapshot
+- Diff review confirms edits are scoped to `assets/section-main-product.css`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual desktop PDP QA: verify the hero image now matches the intended large visual weight relative to “You may also like”.
+2) If still too small for portrait assets, consider switching `main-product` setting `constrain_to_viewport` to `false` in the theme editor or template config.
+
+Patch: PDP first image now matches collection featured image source
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-initial-image-match-collection-featured
+
+Changes applied (evidence-first)
+- Updated `snippets/product-media-gallery.liquid`:
+  - Initial featured media on load now resolves from `product.featured_media` (same source used by collection product cards), with fallback to `product.selected_or_first_available_variant.featured_media`.
+  - Gallery first active slide, duplicate-skip logic, and thumbnail `aria-current` logic now use the new `featured_media` variable consistently.
+- Updated `snippets/product-media-modal.liquid`:
+  - Modal media ordering now uses the same `product.featured_media`-first logic for consistency with the gallery.
+
+Validation snapshot
+- Diff review confirms scope is limited to:
+  - `snippets/product-media-gallery.liquid`
+  - `snippets/product-media-modal.liquid`
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA: confirm first image on product page matches collection card image for products with variant-specific media.
+2) Manual variant-change QA: confirm selecting a variant still switches to that variant’s image after page load.
+
+Patch: PDP desktop hero image reduced by ~10% on request
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-hero-size-minus-10-percent
+
+Changes applied (evidence-first)
+- Updated `assets/section-main-product.css` desktop media/info column split to reduce hero image footprint by ~10% from the prior setting:
+  - `>= 990px`: `70/30` -> `63/37`
+  - `>= 1400px`: `71/29` -> `64/36`
+  - `>= 1600px`: `72/28` -> `65/35`
+- Kept the previously applied initial image source behavior (`product.featured_media` first) unchanged.
+
+Validation snapshot
+- Diff review confirms this patch only adjusts desktop width split variables in `assets/section-main-product.css`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual desktop PDP QA: confirm the hero image now feels correctly sized after the 10% reduction.
+
+Patch: PDP desktop hero image reduced by another ~10% on request
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-hero-size-minus-10-percent-v2
+
+Changes applied (evidence-first)
+- Updated `assets/section-main-product.css` desktop media/info split to reduce hero image footprint another ~10% from the prior setting:
+  - `>= 990px`: `63/37` -> `56/44`
+  - `>= 1400px`: `64/36` -> `57/43`
+  - `>= 1600px`: `65/35` -> `58/42`
+- Kept initial image source behavior unchanged (`product.featured_media` first).
+
+Validation snapshot
+- Diff review confirms this patch only adjusts desktop width split variables in `assets/section-main-product.css`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual desktop PDP QA: confirm this second 10% reduction matches the desired visual balance.
+
+Patch: PDP desktop hero image reduced by another ~5% on request
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-hero-size-minus-5-percent-v3
+
+Changes applied (evidence-first)
+- Updated `assets/section-main-product.css` desktop media/info split to reduce hero image footprint by another ~5% from the prior setting:
+  - `>= 990px`: `56/44` -> `53/47`
+  - `>= 1400px`: `57/43` -> `54/46`
+  - `>= 1600px`: `58/42` -> `55/45`
+- Kept initial image source behavior unchanged (`product.featured_media` first).
+
+Validation snapshot
+- Diff review confirms this patch only adjusts desktop width split variables in `assets/section-main-product.css`.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual desktop PDP QA: confirm this 5% reduction matches the desired visual balance.

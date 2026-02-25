@@ -33,8 +33,13 @@
       tabindex="0"
     >
       {%- liquid
-        if product.selected_or_first_available_variant.featured_media != null
-          assign media = product.selected_or_first_available_variant.featured_media
+        assign featured_media = product.featured_media
+        if featured_media == null
+          assign featured_media = product.selected_or_first_available_variant.featured_media
+        endif
+
+        if featured_media != null
+          assign media = featured_media
           render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: section.settings.hide_variants
         endif
       -%}
@@ -47,7 +52,7 @@
             assign variant_image = false
           endif
 
-          unless media.id == product.selected_or_first_available_variant.featured_media.id
+          unless media.id == featured_media.id
             render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: variant_image
           endunless
         -%}
