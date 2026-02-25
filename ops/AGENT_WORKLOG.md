@@ -3198,3 +3198,48 @@ Validation snapshot
 Open TODOs (next session)
 1) If invalid-token 401 recurs after long idle, restart `shopify theme dev` first.
 2) If restart no longer recovers, run `shopify auth logout` + `shopify auth login`, then start `shopify theme dev` again.
+
+Patch: PDP product info card background set to white
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-info-card-bg-white
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` in the scoped PDP override:
+  - `--dlm-card-bg` changed from `#e3e6ea` to `#ffffff`.
+- This affects `#MainProduct-{{ section.id }} .dlm-reference-ui` card background via `background: var(--dlm-card-bg) !important;`.
+- No other PDP gray controls (size selector, quantity control, size chart internals) were changed in this patch.
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid` shows a single-line color-token update.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA: confirm the product info panel now appears white and visually recedes against surrounding content on desktop and mobile.
+
+Patch: PDP product-detail controls lightened (dropdowns/buttons)
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-pdp-controls-lightened-v1
+
+Changes applied (evidence-first)
+- Updated `sections/main-product.liquid` to reduce remaining gray in product-detail control UI:
+  - `--dlm-control-surface-bg`: `#d6dbe1 -> #f5f8ff`
+  - `--dlm-control-pill-bg`: `#e9ecef -> #ffffff`
+  - `--dlm-control-pill-border`: `#bcc4ce -> #dfe8f5`
+- Updated dropdown/quantity pill gradients to white/light-pastel:
+  - `linear-gradient(180deg, #eef1f4 ... ) -> linear-gradient(180deg, #ffffff 0%, #f7faff 100%)`
+- Lightened focus/border accents and nearby supporting surfaces:
+  - select focus border `#a8afba -> #bfd0e6`
+  - size chart wrapper border `#d8dde4 -> #e6edf7`
+  - size chart value pill gradient `#f0f1f4/#e7e9ed -> #ffffff/#f6faff`
+- Lightened quantity +/- button states:
+  - button background `#d6dce4 -> #ecf3ff`
+  - button hover `#ccd4dd -> #e3edff`
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid` confirms updates are scoped to PDP control and adjacent detail-surface styling.
+- `rg` check confirms previous targeted gray tokens were removed from those edited rules.
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Manual PDP QA: verify dropdowns, quantity controls, and size-detail pills render with the lighter neutral/pastel look on desktop and mobile.
+2) If controls feel too low-contrast, slightly darken only `--dlm-control-pill-border` while keeping backgrounds light.
