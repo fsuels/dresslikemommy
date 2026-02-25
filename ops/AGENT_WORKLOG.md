@@ -4084,3 +4084,31 @@ Changes applied
 Validation
 - Local render check on `/collections/new-women-outfits` now shows:
   - `Swimsuits`, `Sets`, `Pajamas`, `Tops`, `Sweaters & Jackets`
+
+Patch: Family sub-collection breadcrumb normalization
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-family-subcollection-breadcrumb-normalization
+
+Changes applied (evidence-first)
+- Updated `snippets/collection-breadcrumbs.liquid` with explicit breadcrumb handle overrides for:
+  - `family-swimsuits` -> parent `Family Matching`, current `Swimsuits`
+  - `family-sets` -> parent `Family Matching`, current `Sets`
+  - `family-tops` -> parent `Family Matching`, current `Tops`
+  - `family-sweaters` -> parent `Family Matching`, current `Sweaters & Jackets`
+- This replaces inherited breadcrumb output from metafields (`Mommy and Me` + full collection title) for these handles.
+
+Validation snapshot
+- Local render checks:
+  - `curl -s http://127.0.0.1:9292/collections/family-swimsuits | sed -n '10490,10530p'`
+  - `curl -s http://127.0.0.1:9292/collections/family-sets | sed -n '10490,10530p'`
+  - `curl -s http://127.0.0.1:9292/collections/family-tops | sed -n '10490,10530p'`
+  - `curl -s http://127.0.0.1:9292/collections/family-sweaters | sed -n '10490,10530p'`
+- Verified breadcrumb results:
+  - `Home › Family Matching › Swimsuits`
+  - `Home › Family Matching › Sets`
+  - `Home › Family Matching › Tops`
+  - `Home › Family Matching › Sweaters & Jackets`
+
+Open TODOs (next session)
+1) Publish and verify these breadcrumb updates on production theme.
+2) If requested, apply the same shortened-label logic to family child-page pill labels (not changed in this patch).

@@ -30,6 +30,18 @@
 {% elsif current_collection_handle == 'maternity' %}
   {% assign parent_category = 'Maternity' %}
   {% assign current_breadcrumb_label = 'Maternity' %}
+{% elsif current_collection_handle == 'family-swimsuits' %}
+  {% assign parent_category = 'Family Matching' %}
+  {% assign current_breadcrumb_label = 'Swimsuits' %}
+{% elsif current_collection_handle == 'family-sets' %}
+  {% assign parent_category = 'Family Matching' %}
+  {% assign current_breadcrumb_label = 'Sets' %}
+{% elsif current_collection_handle == 'family-tops' %}
+  {% assign parent_category = 'Family Matching' %}
+  {% assign current_breadcrumb_label = 'Tops' %}
+{% elsif current_collection_handle == 'family-sweaters' %}
+  {% assign parent_category = 'Family Matching' %}
+  {% assign current_breadcrumb_label = 'Sweaters & Jackets' %}
 {% elsif current_collection_handle == 'new-women-outfits' or current_collection_handle == 'family-matching-outfits' %}
   {% assign parent_category = 'Family Matching' %}
   {% assign current_breadcrumb_label = 'Family Matching' %}
