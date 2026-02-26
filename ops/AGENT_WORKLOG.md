@@ -5131,3 +5131,206 @@ Open TODOs (manual QA)
 1) Click gallery arrows repeatedly on desktop/mobile and confirm counter increments by 1 each step (no skips).
 2) Verify counter remains fully inside the image bottom-right corner after swiping/clicking thumbnails and after viewport resize.
 3) Test on products with mixed media (image/video/model) to confirm stable placement and numbering.
+
+Session: Roll back mobile PDP stepper/share regression to pre-`fe7a254` state
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-mobile-stepper-share-rollback-pre-fe7a254
+
+Changes applied (evidence-first)
+- `assets/media-gallery.js`
+  - Restored from `cbfd1fb` to remove the recent dynamic share/counter positioning rewrite introduced in `fe7a254`.
+  - Removed added `ResizeObserver`/viewport listeners, inline `!important` corner positioning, and custom counter sync/position routines.
+- `assets/section-main-product.css`
+  - Restored from `6daab44` to remove overlay-style mobile progress counter restyling and duplicate desktop/mobile progress blocks added in `fe7a254`.
+- `sections/main-product.liquid`
+  - Restored from `8090ea9` to remove recent forced absolute positioning override for `.product__media-share.share-button__button` that replaced previous mobile behavior.
+- `snippets/product-media-gallery.liquid`
+  - Restored from `8090ea9` to reapply `medium-hide large-up-hide` on `.product-media-progress` (pre-regression visibility scope).
+
+Why
+- User requested rollback to prior commit behavior and removal of recent regression code for mobile PDP stepper/share controls.
+- `fe7a254` introduced the bulk of the new share/stepper positioning logic and CSS overrides tied to the reported regression.
+
+Validation snapshot
+- `node --check assets/media-gallery.js`
+- `git diff --check -- assets/media-gallery.js assets/section-main-product.css sections/main-product.liquid snippets/product-media-gallery.liquid`
+- `git diff --stat -- assets/media-gallery.js assets/section-main-product.css sections/main-product.liquid snippets/product-media-gallery.liquid`
+
+Open TODOs (manual QA)
+1) Hard refresh a mobile PDP and verify stepper/share now match pre-regression behavior.
+2) Swipe media on mobile and confirm there is no broken overlay positioning/jitter for gallery UI.
+3) Verify desktop PDP media controls still render as expected.
+
+Session: Restore desktop PDP stepper after rollback over-corrected
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-restore-desktop-stepper-after-rollback
+
+Changes applied (evidence-first)
+- `snippets/product-media-gallery.liquid`
+  - Kept `.product-media-progress` unscoped (no `medium-hide large-up-hide`) so desktop can render the custom stepper again.
+- `assets/section-main-product.css`
+  - Reintroduced desktop-only (`@media min-width: 750px`) stepper presentation block:
+    - hides default `.slider-buttons--product-stepper`,
+    - sets `.slider-mobile-gutter` as positioning context,
+    - overlays `.product-media-progress` in media bottom-right with glass style.
+- `assets/media-gallery.js`
+  - Reintroduced lightweight counter-sync logic only (`syncGalleryCounter`) and calls on:
+    - initial gallery setup,
+    - slide changes,
+    - thumbnail media activation (`setActiveMedia`).
+  - Kept the newer mobile share/counter runtime positioning code removed.
+
+Why
+- Prior rollback to pre-`fe7a254` removed the desktop stepper state the user expected.
+- This restores desktop stepper behavior without reintroducing the problematic mobile positioning rewrite.
+
+Validation snapshot
+- `node --check assets/media-gallery.js`
+- `git diff --check -- assets/media-gallery.js assets/section-main-product.css`
+- `nl -ba assets/section-main-product.css | sed -n '743,810p'`
+- `nl -ba assets/media-gallery.js | sed -n '19,123p'`
+
+Open TODOs (manual QA)
+1) Hard refresh desktop PDP and confirm bottom-right custom stepper is visible.
+2) Switch media via thumbnails/arrows and confirm index/progress updates each step.
+3) Confirm mobile PDP still follows the currently intended rollback behavior.
+
+Session: Mobile PDP share + stepper aligned to desktop corner pattern (responsive, scoped)
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-mobile-share-stepper-match-desktop-corners
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid`
+  - Replaced mobile-only hide rules for gallery share/stepper with section-scoped positioning and display rules inside the existing `@media (max-width: 749px)` block.
+  - Share button (`[data-mobile-share-button]` / `.product__media-share.share-button__button`) now renders at top-right with responsive inset using `clamp(...)`.
+  - Custom stepper (`[data-gallery-stepper]` / `.product-media-progress`) now renders at bottom-right with responsive inset using `clamp(...)`.
+  - Added section-scoped mobile visual styles for stepper meta/track to match desktop overlay styling while preserving existing desktop behavior.
+
+Why
+- User requested mobile share + stepper to be in the same position pattern as desktop, responsive, without touching unrelated behavior.
+- Existing mobile block was explicitly hiding both controls.
+
+Validation snapshot
+- `git diff --check -- sections/main-product.liquid`
+- `nl -ba sections/main-product.liquid | sed -n '512,582p'`
+
+Open TODOs (manual QA)
+1) Hard refresh mobile PDP and confirm share icon stays top-right of media across 320/375/390/430 widths.
+2) Swipe media and confirm stepper stays bottom-right and updates index/progress each slide.
+3) Confirm desktop PDP remains unchanged.
+
+Session: Re-lock desktop stepper state while keeping mobile-only share/stepper placement
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-relock-desktop-stepper-head-only-mobile-change
+
+Changes applied (evidence-first)
+- Restored desktop-impacting files back to repo `HEAD`:
+  - `assets/section-main-product.css`
+  - `assets/media-gallery.js`
+- Kept only mobile-specific edit in:
+  - `sections/main-product.liquid` (inside existing `@media (max-width: 749px)` block) for mobile share/stepper visibility and corner placement.
+
+Why
+- User reported desktop stepper moved.
+- Objective was to guarantee desktop is untouched from current baseline while preserving requested mobile-only behavior.
+
+Validation snapshot
+- `git status --short` shows only:
+  - `sections/main-product.liquid`
+  - `ops/AGENT_WORKLOG.md`
+- `git diff -- sections/main-product.liquid` confirms only mobile media-query block changes.
+
+Open TODOs (manual QA)
+1) Verify desktop stepper is back to its exact prior position.
+2) Verify mobile share + stepper stay in corner positions across viewport widths.
+
+Session: Mobile share button inset adjusted downward (no desktop impact)
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-mobile-share-downward-inset-only
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid`
+  - In existing mobile-only block (`@media screen and (max-width: 749px)`), increased share button top inset:
+    - `top: clamp(0.55rem, 2.4vw, 0.75rem)` -> `top: clamp(0.85rem, 3.6vw, 1.05rem)`
+  - No desktop selectors changed; `assets/media-gallery.js` and `assets/section-main-product.css` remained at `HEAD`.
+
+Why
+- User reported mobile share button partially outside image corner; requested moving it down while keeping behavior responsive and not affecting anything else.
+
+Validation snapshot
+- `git diff --check -- sections/main-product.liquid`
+- `nl -ba sections/main-product.liquid | sed -n '517,528p'`
+- `git status --short` (only `sections/main-product.liquid` + `ops/AGENT_WORKLOG.md` modified)
+
+Open TODOs (manual QA)
+1) Hard refresh mobile PDP and confirm share button sits fully inside image corner at 320/375/390/430 widths.
+2) Confirm desktop stepper/share placement is unchanged.
+
+Session: Mobile share icon forced further inside image corner (responsive + safe-area aware)
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-mobile-share-inside-corner-safe-area-offset
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid` (mobile-only block)
+  - Updated share button insets to use larger responsive offset plus media shadow + safe-area compensation:
+    - `top: calc((var(--media-shadow-vertical-offset...) + clamp(0.95rem, 4.2vw, 1.2rem) + env(safe-area-inset-top, 0px)))`
+    - `right: calc((var(--media-shadow-horizontal-offset...) + clamp(0.95rem, 4.2vw, 1.2rem) + env(safe-area-inset-right, 0px)))`
+
+Why
+- Prior top-only adjustment was insufficient; screenshot showed persistent clipping at the right edge.
+- This targets horizontal clipping directly while staying mobile-only and responsive.
+
+Validation snapshot
+- `git diff --check -- sections/main-product.liquid`
+- `nl -ba sections/main-product.liquid | sed -n '517,537p'`
+
+Open TODOs (manual QA)
+1) Hard refresh mobile PDP and verify full share circle is fully inside top-right image corner at 320/375/390/430 widths.
+2) Confirm desktop remains unchanged.
+
+Verification: Mobile share icon inside-image check via Playwright screenshots
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-mobile-share-verified-by-screenshots
+
+Evidence run
+- URL tested: `http://127.0.0.1:9292/products/daddy-and-me-i-have-created-a-monster-t-shirt`
+- Commands executed:
+  - `npx --yes playwright screenshot --device="iPhone 12" ... /tmp/dlm_shots/pdp_mobile_product_after.png`
+  - `npx --yes playwright screenshot --viewport-size="320,690" ... /tmp/dlm_shots/pdp_mobile_320_after.png`
+  - `npx --yes playwright screenshot --viewport-size="390,844" ... /tmp/dlm_shots/pdp_mobile_390_after.png`
+  - `npx --yes playwright screenshot --viewport-size="430,932" ... /tmp/dlm_shots/pdp_mobile_430_after.png`
+
+Result
+- Share icon is fully inside the image corner in all tested widths (320/390/430 and iPhone 12 device emulation).
+- Desktop-impacting files remain untouched in this patch.
+
+Session: Mobile PDP stepper pinned + hidden under open menu drawer
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-mobile-stepper-pinned-menu-overlay-fix
+
+Changes applied (evidence-first)
+- `assets/media-gallery.js`
+  - Updated `syncGalleryCounterPosition()` to use a mobile-only fixed corner inset path:
+    - on `max-width: 749px`, sets `right/bottom` from `getMobileCornerInsetPx()` and exits early,
+    - avoids per-slide frame-delta repositioning that caused counter drift/disappear while swiping.
+- `sections/main-product.liquid` (existing mobile-only `@media screen and (max-width: 749px)` block)
+  - Lowered mobile overlay z-index:
+    - share button `z-index: 10 -> 2`
+    - gallery stepper `z-index: 5 -> 1`
+  - Added drawer-open guard:
+    - when `body.overflow-hidden-mobile` is present, hide mobile share + stepper (`opacity: 0; visibility: hidden;`).
+
+Why
+- User reported mobile gallery stepper moving/disappearing between images.
+- User also reported stepper rendering above the open mobile menu drawer.
+
+Validation snapshot
+- `node --check assets/media-gallery.js`
+- `git diff --check -- assets/media-gallery.js sections/main-product.liquid`
+- `nl -ba assets/media-gallery.js | sed -n '226,262p'`
+- `nl -ba sections/main-product.liquid | sed -n '521,560p'`
+
+Open TODOs (manual QA)
+1) On mobile PDP, swipe through multiple media and confirm the stepper stays fixed in one bottom-right position.
+2) Open the mobile menu drawer on PDP and confirm share/stepper are not visible above the drawer/overlay.
+3) Confirm desktop PDP behavior remains unchanged.

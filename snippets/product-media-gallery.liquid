@@ -146,14 +146,6 @@
         </button>
       </div>
     {%- endif -%}
-    <button
-      type="button"
-      class="share-button__button product__media-share"
-      data-mobile-share-button
-      aria-label="{{ 'sections.main-product.blocks.share.name' | t }}"
-    >
-      {% render 'icon-share' %}
-    </button>
     {%- liquid
       assign initial_step_progress = 100
       if media_count > 0

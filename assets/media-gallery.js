@@ -227,6 +227,17 @@ if (!customElements.get('media-gallery')) {
         const mediaProgress = this.querySelector('[data-gallery-stepper]');
         if (!mediaProgress || !this.elements.viewer) return;
 
+        if (this.mobileViewportMql.matches) {
+          const inset = this.getMobileCornerInsetPx();
+          const roundedInset = Math.round(inset);
+          mediaProgress.style.setProperty('right', `${roundedInset}px`, 'important');
+          mediaProgress.style.setProperty('bottom', `${roundedInset}px`, 'important');
+          mediaProgress.style.setProperty('left', 'auto', 'important');
+          mediaProgress.style.setProperty('top', 'auto', 'important');
+          mediaProgress.style.setProperty('max-width', `calc(100% - ${roundedInset * 2}px)`, 'important');
+          return;
+        }
+
         const viewerRect = this.elements.viewer.getBoundingClientRect();
         const activeMediaItem =
           this.elements.viewer.querySelector('.product__media-list > .product__media-item.is-active') ||

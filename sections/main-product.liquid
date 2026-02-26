@@ -472,7 +472,11 @@
         transform: none !important;
       }
 
-      #MainProduct-{{ section.id }} .product__media-wrapper,
+      #MainProduct-{{ section.id }} .product__media-wrapper {
+        overflow: visible !important;
+        position: relative !important;
+      }
+
       #MainProduct-{{ section.id }} .slider-mobile-gutter,
       #MainProduct-{{ section.id }} .product__media-list,
       #MainProduct-{{ section.id }} .product__media-list .product__media-item,
@@ -511,16 +515,82 @@
 
       #MainProduct-{{ section.id }} .product__media-wrapper .slider-mobile-gutter {
         position: relative !important;
+        overflow: hidden !important;
       }
 
-      #MainProduct-{{ section.id }} .product__media-wrapper .product__media-share.share-button__button {
+      #MainProduct-{{ section.id }} [data-mobile-share-button],
+      #MainProduct-{{ section.id }} .product__media-share.share-button__button {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
         position: absolute !important;
-        top: 0.65rem !important;
-        right: 0.65rem !important;
-        bottom: auto !important;
+        top: 0.5rem !important;
+        right: 0.5rem !important;
         left: auto !important;
+        bottom: auto !important;
+        z-index: 2 !important;
         margin: 0 !important;
         transform: none !important;
+      }
+
+      #MainProduct-{{ section.id }} [data-gallery-stepper],
+      #MainProduct-{{ section.id }} .product-media-progress {
+        display: inline-flex !important;
+        position: absolute !important;
+        right: clamp(0.55rem, 2.4vw, 0.75rem) !important;
+        bottom: clamp(0.55rem, 2.4vw, 0.75rem) !important;
+        left: auto !important;
+        top: auto !important;
+        z-index: 1 !important;
+        width: auto !important;
+        max-width: calc(100% - 1.3rem) !important;
+        margin: 0 !important;
+        flex-direction: column !important;
+        align-items: flex-end !important;
+        gap: 0.24rem !important;
+        pointer-events: none !important;
+      }
+
+      body.overflow-hidden-mobile #MainProduct-{{ section.id }} [data-mobile-share-button],
+      body.overflow-hidden-mobile #MainProduct-{{ section.id }} .product__media-share.share-button__button,
+      body.overflow-hidden-mobile #MainProduct-{{ section.id }} [data-gallery-stepper],
+      body.overflow-hidden-mobile #MainProduct-{{ section.id }} .product-media-progress {
+        opacity: 0 !important;
+        visibility: hidden !important;
+      }
+
+      #MainProduct-{{ section.id }} .product-media-progress__meta {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.18rem !important;
+        min-width: 3.85rem !important;
+        padding: 0.28rem 0.56rem !important;
+        border: 0.1rem solid rgba(255, 255, 255, 0.34) !important;
+        border-radius: 999px !important;
+        background: rgba(16, 18, 22, 0.62) !important;
+        box-shadow: 0 0.45rem 1.1rem rgba(16, 18, 22, 0.2) !important;
+        backdrop-filter: blur(6px) !important;
+        -webkit-backdrop-filter: blur(6px) !important;
+        color: rgba(255, 255, 255, 0.94) !important;
+        font-size: 0.9rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.025em !important;
+        line-height: 1 !important;
+        font-variant-numeric: tabular-nums !important;
+      }
+
+      #MainProduct-{{ section.id }} .product-media-progress__track {
+        width: clamp(5rem, 22vw, 6.8rem) !important;
+        height: 0.2rem !important;
+        margin-right: 0 !important;
+        border-radius: 999px !important;
+        background: rgba(255, 255, 255, 0.36) !important;
+        overflow: hidden !important;
+      }
+
+      #MainProduct-{{ section.id }} .product-media-progress__track::after {
+        background: rgba(255, 255, 255, 0.92) !important;
       }
 
       #MainProduct-{{ section.id }} .dlm-reference-ui .share-button {
