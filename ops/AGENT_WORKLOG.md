@@ -4767,3 +4767,367 @@ Validation snapshot
 Open TODOs (manual QA)
 1) Compare footer link hover on homepage, collection, and product pages to confirm identical animation and thickness.
 2) Confirm PDP in-content list hover styles still work inside `.page-width--product-main`.
+
+Session: Restore PDP mobile media stepper indicator
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-restore-pdp-mobile-media-stepper
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid` - Removed the mobile-only CSS rule that hid `[data-gallery-stepper]` / `.product-media-progress` inside `@media screen and (max-width: 749px)`.
+
+Why
+- Git history shows this hide rule was introduced in commit `dc28161` (`Refine PDP mobile spacing and title sizing`).
+- The stepper markup and JS updater remain present (`snippets/product-media-gallery.liquid` + `assets/global.js`), so un-hiding this rule restores the mobile image stepper without changing gallery logic.
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid`
+- Confirmed only the stepper-hide block removal is present in the file diff.
+
+Open TODOs (manual QA)
+1) On a mobile PDP, swipe gallery images and confirm the stepper/progress indicator is visible and increments correctly.
+2) Confirm no layout shift in the media-to-info transition area on iPhone Safari and Android Chrome.
+
+Session: Restore PDP mobile media share button
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-restore-pdp-mobile-media-share
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid` - Removed the mobile-only CSS rule inside `@media screen and (max-width: 749px)` that hid `[data-mobile-share-button]` / `.product__media-share`.
+
+Why
+- The media share button markup and behavior already exist (`snippets/product-media-gallery.liquid` + `assets/media-gallery.js`) and desktop styling is already defined in `layout/theme.liquid`.
+- Unhiding this selector restores mobile share with the same media-overlay pattern as desktop, without changing share logic.
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid`
+- Confirmed only the mobile share hide block was removed.
+
+Open TODOs (manual QA)
+1) On mobile PDP, confirm the share icon appears at top-right of product media.
+2) Tap share icon on iOS Safari and Android Chrome to confirm native share sheet opens (or clipboard fallback marks copied).
+
+Session: Re-pin PDP mobile share button to prior top-right spot
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-repin-pdp-mobile-share-prior-spot
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid` - Added section-scoped mobile-only share positioning overrides under `@media screen and (max-width: 749px)`:
+  - `#MainProduct-{{ section.id }} .product__media-wrapper .slider-mobile-gutter { position: relative !important; }`
+  - `#MainProduct-{{ section.id }} .product__media-wrapper .product__media-share.share-button__button { position: absolute; top/right: 0.8rem; left/bottom: auto; transform: none; }`
+
+Why
+- Git history (`b5c3bf7` / `fc21512`) shows the intended mobile placement pattern is a top-right overlay with `0.8rem` offsets.
+- This section-scoped override restores that prior placement exactly on mobile while avoiding broader layout changes.
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid`
+- Confirmed the change is limited to share-button positioning overrides in the existing mobile media block.
+
+Open TODOs (manual QA)
+1) On mobile PDP (`320/375/390/430` widths), confirm share button is in the expected top-right spot.
+2) Tap share button to confirm native share/clipboard behavior still works.
+
+Session: Nudge PDP mobile share button tighter to top-right corner
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-mobile-share-corner-nudge
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid` - In the mobile section-scoped share-button positioning override, reduced offsets:
+  - `top: 0.8rem -> 0.4rem`
+  - `right: 0.8rem -> 0.4rem`
+
+Why
+- User requested the mobile share button be aligned further into the image's top-right corner.
+- This is a surgical position-only adjustment; share behavior and styling are unchanged.
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid`
+- Confirmed only mobile share position values were updated.
+
+Open TODOs (manual QA)
+1) Check mobile PDP at 320/375/390/430 widths and confirm top-right placement looks correct.
+2) Tap the share button to confirm native share / clipboard fallback still works.
+
+Session: PDP desktop image counter parity with mobile corner behavior
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-pdp-desktop-counter-mobile-corner-sync
+
+Changes applied (evidence-first)
+- `snippets/product-media-gallery.liquid`
+  - Removed `medium-hide large-up-hide` from `.product-media-progress` so the same gallery counter component can render on desktop as well as mobile.
+- `assets/section-main-product.css`
+  - Added desktop (`@media screen and (min-width: 750px)`) counter parity styles:
+    - hid the old desktop `slider-buttons--product-stepper` row,
+    - anchored `.product-media-progress` to the lower-right corner of the media frame,
+    - matched pill/track visual treatment to the mobile corner indicator.
+- `assets/media-gallery.js`
+  - Added `syncGalleryCounter(mediaId)` helper to update current/total/progress for `[data-gallery-stepper]`.
+  - Called `syncGalleryCounter(...)` from both `setActiveMedia()` and `onSlideChanged()` so desktop thumbnail/media changes keep the counter live.
+
+Why
+- Desktop and mobile were using different visible counter treatments.
+- Desktop media changes (especially thumbnail-driven) could bypass the slider progress updater path and leave the counter stale.
+- Using one counter UI with direct media-change sync keeps behavior consistent across breakpoints.
+
+Validation snapshot
+- `node --check assets/media-gallery.js`
+- `git diff --check -- snippets/product-media-gallery.liquid assets/media-gallery.js assets/section-main-product.css`
+- `git diff -- snippets/product-media-gallery.liquid assets/media-gallery.js assets/section-main-product.css`
+
+Open TODOs (manual QA)
+1) Desktop PDP (>=750px): click thumbnails and/or gallery arrows; confirm counter stays in the image corner and updates `current/total` on each change.
+2) Mobile PDP: swipe images and confirm existing corner counter behavior is unchanged.
+3) Variant switch QA: change color/variant and confirm counter updates to the active media index without scroll regressions.
+
+Session: Force mobile PDP share icon into exact top-right via final cascade block
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-mobile-share-final-cascade-fix
+
+Changes applied (evidence-first)
+- `layout/theme.liquid` - Added explicit mobile override inside the final `@media screen and (max-width: 749px)` share/style block:
+  - `.page-width--product-main .product__media-wrapper .product__media-share.share-button__button`
+  - `top: 0.4rem`, `right: 0.4rem`, `left/bottom: auto`, `transform: none`, `z-index: 8` (all `!important`).
+
+Why
+- Earlier section-level tweaks were being overridden by later-loaded share CSS in `layout/theme.liquid`.
+- Applying the position override in the last-loaded PDP share block ensures the mobile icon is pinned to the image top-right corner.
+
+Validation snapshot
+- `git diff -- layout/theme.liquid`
+- Confirmed only mobile share positioning declarations were added in the existing max-width block.
+
+Open TODOs (manual QA)
+1) Hard refresh mobile PDP and verify share icon sits flush in top-right corner of image.
+2) Tap share icon on iOS/Android to confirm native share/copy behavior remains intact.
+
+Session: PDP gallery counter inset inside image boundary
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-pdp-counter-inside-image-corner
+
+Changes applied (evidence-first)
+- `assets/section-main-product.css`
+  - In desktop PDP counter styles (`@media screen and (min-width: 750px)`), moved the corner counter further inward:
+    - `right`: `clamp(0.55rem, 1.5vw, 0.95rem)` -> `clamp(0.9rem, 2vw, 1.35rem)`
+    - `bottom`: `clamp(0.55rem, 1.5vw, 0.95rem)` -> `clamp(0.9rem, 2vw, 1.35rem)`
+    - `max-width`: `calc(100% - 1.4rem)` -> `calc(100% - 2.2rem)`
+  - Added `overflow: hidden;` on `.page-width--product-main .slider-mobile-gutter` in the same desktop block to keep the indicator clipped within the media frame.
+- `layout/theme.liquid`
+  - In mobile PDP counter styles (`@media screen and (max-width: 749px)`), moved the corner counter further inward:
+    - `right`: `clamp(0.55rem, 2.2vw, 0.85rem)` -> `clamp(0.9rem, 2.8vw, 1.15rem)`
+    - `bottom`: `clamp(0.55rem, 2.2vw, 0.85rem)` -> `clamp(0.9rem, 2.8vw, 1.15rem)`
+    - `max-width`: `calc(100% - 1.4rem)` -> `calc(100% - 2.2rem)`
+
+Why
+- Counter was visually too close to the edge and could appear to sit outside the image boundary.
+- Increasing inset and tightening max width keeps the badge/track fully inside the bottom-right image corner at both breakpoints.
+
+Validation snapshot
+- `git diff --check -- assets/section-main-product.css layout/theme.liquid`
+- `git diff -- assets/section-main-product.css layout/theme.liquid`
+
+Open TODOs (manual QA)
+1) Desktop PDP (`>=750px`): confirm counter pill/track now sits fully inside the image corner on first slide and after navigation.
+2) Mobile PDP (`<=749px`): confirm counter remains inside image corner and does not clip on 320/375/390/430 widths.
+3) Check products with very tall/portrait media to ensure inset still looks balanced.
+
+Session: Mobile PDP share icon inset to match top-right corner target
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-mobile-share-top-right-inset-adjust
+
+Changes applied (evidence-first)
+- `sections/main-product.liquid`
+  - In the existing mobile (`max-width: 749px`) section-scoped share-button position override, increased inset values:
+    - `top: 0.4rem -> 0.9rem`
+    - `right: 0.4rem -> 0.9rem`
+
+Why
+- User requested mobile PDP share icon placement to match the desired comp where the icon sits clearly in the image’s top-right corner (inside the frame, not hugging/bleeding the edge).
+- This is a surgical position-only change and keeps existing share behavior unchanged.
+
+Validation snapshot
+- `git diff -- sections/main-product.liquid`
+- Confirmed only mobile share position values were updated.
+
+Open TODOs (manual QA)
+1) Mobile PDP at 320/375/390/430 widths: confirm share icon appears inside the image top-right corner with balanced inset.
+2) Tap share icon on iOS/Android: confirm native share and clipboard fallback still work.
+
+Session: PDP gallery counter flush bottom-right corner alignment
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-pdp-counter-flush-bottom-right
+
+Changes applied (evidence-first)
+- `assets/section-main-product.css`
+  - In desktop counter styles (`@media screen and (min-width: 750px)`), set:
+    - `.product-media-progress { right: 0; bottom: 0; max-width: 100%; }`
+    - `.product-media-progress__track { margin-right: 0; }`
+- `layout/theme.liquid`
+  - In mobile counter styles (`@media screen and (max-width: 749px)`), set:
+    - `.product-media-progress { right: 0; bottom: 0; max-width: 100%; }`
+    - `.product-media-progress__track { margin-right: 0; }`
+
+Why
+- Request was to make the counter flush with both right and bottom edges of the media frame.
+- Removing corner insets + residual track right margin aligns the indicator exactly to the bottom-right corner.
+
+Validation snapshot
+- `git diff --check -- assets/section-main-product.css layout/theme.liquid`
+- `nl -ba assets/section-main-product.css | sed -n '762,806p'`
+- `nl -ba layout/theme.liquid | sed -n '4443,4488p'`
+
+Open TODOs (manual QA)
+1) Desktop PDP: confirm counter is exactly flush to right/bottom image edges while changing slides.
+2) Mobile PDP: confirm same flush alignment on 320/375/390/430 widths.
+3) Verify counter stays legible on very light and very dark product images.
+
+Session: PDP counter restored inside image bottom-right corner (post-regression)
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-pdp-counter-bottom-right-inside-regression-fix
+
+Changes applied (evidence-first)
+- `assets/section-main-product.css`
+  - Reworked the mobile (`@media screen and (max-width: 749px)`) counter block so it is an in-image overlay instead of a wide flow element:
+    - `.product-media-progress` now uses `position: absolute; right: 0.65rem; bottom: 0.65rem; width: auto; max-width: calc(100% - 1.3rem); margin: 0 !important; display: inline-flex; pointer-events: none;`
+    - `.product-media-progress__meta` restored to compact dark pill style for overlay legibility.
+    - `.product-media-progress__track` set to compact width with `margin-right: 0`.
+  - Kept desktop (`@media screen and (min-width: 750px)`) counter as in-image overlay with matching in-corner inset:
+    - `right: 0.65rem; bottom: 0.65rem; max-width: calc(100% - 1.3rem)`.
+- `layout/theme.liquid`
+  - Aligned mobile fallback counter values to the same inside-corner settings:
+    - `right: 0.65rem; bottom: 0.65rem; max-width: calc(100% - 1.3rem)` and track `margin-right: 0`.
+
+Why
+- A later mobile stylesheet block in `assets/section-main-product.css` was overriding overlay assumptions and could place the counter outside the image area.
+- Making that block explicitly overlay-positioned resolves the outside-of-image regression and keeps the counter in the image’s bottom-right corner.
+
+Validation snapshot
+- `git diff --check -- assets/section-main-product.css layout/theme.liquid`
+- `nl -ba assets/section-main-product.css | sed -n '683,738p'`
+- `nl -ba assets/section-main-product.css | sed -n '765,806p'`
+- `nl -ba layout/theme.liquid | sed -n '4444,4488p'`
+
+Open TODOs (manual QA)
+1) Mobile PDP (320/375/390/430): confirm counter is fully inside the image bottom-right on first and subsequent slides.
+2) Desktop PDP (>=750px): confirm bottom-right in-image placement remains stable while changing thumbnails/arrows.
+3) Confirm no overlap conflict with the top-right share button.
+
+Session: Mobile PDP share icon anchored to real image bounds via JS
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-mobile-share-bounds-sync-js
+
+Changes applied (evidence-first)
+- `assets/media-gallery.js`
+  - Added mobile-only share button positioning sync method: `syncMobileShareButtonPosition()`.
+  - Position now calculates from live gallery geometry (`viewer` vs `.product__media-list` bounds), then applies inline `top/right` so the icon is pinned to the image frame corner.
+  - Added listeners to keep position correct on:
+    - viewport resize,
+    - orientation changes,
+    - media query change (`max-width: 749px`),
+    - gallery slide changes.
+  - Added `disconnectedCallback()` cleanup for all added listeners.
+  - Kept existing share behavior unchanged (native share / clipboard fallback).
+
+Why
+- Static CSS offsets alone were not reliably matching the image frame in the current PDP layout/cascade.
+- Bounding-box-based positioning removes dependency on conflicting margins/padding and keeps icon tied to the actual media area.
+
+Validation snapshot
+- `node --check assets/media-gallery.js`
+- `git diff -- assets/media-gallery.js`
+
+Open TODOs (manual QA)
+1) Hard refresh mobile PDP and confirm share icon appears in the image top-right corner (320/375/390/430 widths).
+2) Swipe between gallery images and confirm the icon stays in the correct corner.
+3) Tap share icon to confirm native share/clipboard behavior remains intact.
+
+Session: Desktop counter aligned to match mobile visual corner offset
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-desktop-counter-match-mobile-visual-corner
+
+Changes applied (evidence-first)
+- `assets/section-main-product.css`
+  - Kept mobile (`@media screen and (max-width: 749px)`) counter inset unchanged at:
+    - `.product-media-progress { right: 0.65rem; bottom: 0.65rem; max-width: calc(100% - 1.3rem); }`
+  - Updated desktop (`@media screen and (min-width: 750px)`) counter inset to match the same visual position as mobile relative to actual media edge by compensating for Dawn media shadow paddings:
+    - `right: calc((var(--media-shadow-horizontal-offset, 0rem) * var(--media-shadow-visible, 0)) + 0.65rem)`
+    - `bottom: calc((var(--media-shadow-vertical-offset, 0rem) * var(--media-shadow-visible, 0)) + 0.65rem)`
+    - `max-width: calc(100% - (var(--media-shadow-horizontal-offset, 0rem) * var(--media-shadow-visible, 0)) - 1.3rem)`
+
+Why
+- Desktop gallery includes shadow spacing/padding that mobile does not; using raw `right/bottom` values can make the counter look offset/outside compared with mobile.
+- Compensating with existing shadow variables aligns desktop counter to the same apparent corner position as mobile.
+
+Validation snapshot
+- `git diff --check -- assets/section-main-product.css`
+- `nl -ba assets/section-main-product.css | sed -n '683,696p'`
+- `nl -ba assets/section-main-product.css | sed -n '765,772p'`
+
+Open TODOs (manual QA)
+1) Compare mobile vs desktop on the same product image and confirm counter appears in the same corner position.
+2) Confirm products using thumbnail/thumbnail_slider desktop layouts keep counter inside image bounds.
+
+Update (same session)
+- `assets/media-gallery.js`
+  - Adjusted `syncMobileShareButtonPosition()` to apply inline coordinates with `style.setProperty(..., 'important')` so dynamic mobile placement wins over existing theme-level `!important` share rules.
+
+Update (same session)
+- `assets/media-gallery.js`
+  - Refined mobile share positioning target to the active media frame (`.product__media-item.is-active .product__media`) instead of the entire media list.
+  - This pins the share icon inside the active image's top-right corner, matching desktop behavior more closely.
+  - Kept `!important` on inline `top/right/left/bottom` so this wins over existing theme CSS.
+
+Update (same session)
+- `assets/media-gallery.js`
+  - Increased mobile share inset from `12px` to `16px` so the icon stays fully inside the photo corner.
+  - Added post-layout re-sync triggers (`requestAnimationFrame`, `setTimeout`, `window load`) to correct any initial early measurement drift.
+  - Added `ResizeObserver` re-sync on gallery/viewer size changes for more stable corner locking.
+
+Update (same session)
+- `assets/media-gallery.js`
+  - Reworked mobile share corner logic to mirror the mobile counter inset instead of using media-frame geometry deltas.
+  - `syncMobileShareButtonPosition()` now uses one computed corner inset for both `top` and `right` so the icon stays near the top-right edge while resizing.
+  - Added `getMobileCornerInsetPx()`:
+    - Primary source: computed `right` value from `[data-gallery-stepper]` (counter),
+    - Fallback: `0.65rem` equivalent in px.
+
+Update (same session)
+- `sections/main-product.liquid`
+  - Matched mobile CSS fallback share inset to counter corner spacing:
+    - `top: 0.9rem -> 0.65rem`
+    - `right: 0.9rem -> 0.65rem`
+- `assets/media-gallery.js`
+  - Mobile share runtime positioning now uses the same corner inset as gallery counter (`[data-gallery-stepper]` computed `right`) to keep it close to the right edge across responsive widths.
+
+Session: PDP counter index jump + outside-corner regression hard fix
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-pdp-counter-jump-and-position-hard-fix
+
+Changes applied (evidence-first)
+- `assets/media-gallery.js`
+  - Fixed counter indexing source to only use top-level gallery slides:
+    - `syncGalleryCounter()` now reads `:scope > [data-media-id]` from the main slider list instead of all nested `[data-media-id]` descendants.
+    - This prevents index inflation/jumps (e.g., `1 -> 3`) caused by nested media elements carrying their own `data-media-id`.
+  - Added `syncGalleryCounterPosition()` and lifecycle hooks so counter position is recalculated against the active media frame on:
+    - initial load,
+    - slide changes,
+    - variant/media activation,
+    - resize/orientation changes.
+  - Added listener cleanup in `disconnectedCallback()` for new counter-position handlers/observer.
+- `assets/section-main-product.css`
+  - Restored desktop fallback counter inset to match mobile baseline values:
+    - `right: 0.65rem; bottom: 0.65rem; max-width: calc(100% - 1.3rem);`
+
+Why
+- Counter skipping values was a data-source bug (counting the wrong node set).
+- Counter appearing outside/misaligned was a layout-offset issue; dynamic position sync to the active media frame makes placement resilient across viewport/layout differences.
+
+Validation snapshot
+- `node --check assets/media-gallery.js`
+- `git diff --check -- assets/media-gallery.js assets/section-main-product.css`
+- `nl -ba assets/media-gallery.js | sed -n '202,251p'`
+- `nl -ba assets/section-main-product.css | sed -n '765,772p'`
+
+Open TODOs (manual QA)
+1) Click gallery arrows repeatedly on desktop/mobile and confirm counter increments by 1 each step (no skips).
+2) Verify counter remains fully inside the image bottom-right corner after swiping/clicking thumbnails and after viewport resize.
+3) Test on products with mixed media (image/video/model) to confirm stable placement and numbering.

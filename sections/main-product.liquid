@@ -509,15 +509,18 @@
         }
       }
 
-      #MainProduct-{{ section.id }} [data-gallery-stepper],
-      #MainProduct-{{ section.id }} .product-media-progress {
-        display: none !important;
-        margin: 0 !important;
+      #MainProduct-{{ section.id }} .product__media-wrapper .slider-mobile-gutter {
+        position: relative !important;
       }
 
-      #MainProduct-{{ section.id }} [data-mobile-share-button],
-      #MainProduct-{{ section.id }} .product__media-share {
-        display: none !important;
+      #MainProduct-{{ section.id }} .product__media-wrapper .product__media-share.share-button__button {
+        position: absolute !important;
+        top: 0.65rem !important;
+        right: 0.65rem !important;
+        bottom: auto !important;
+        left: auto !important;
+        margin: 0 !important;
+        transform: none !important;
       }
 
       #MainProduct-{{ section.id }} .dlm-reference-ui .share-button {
