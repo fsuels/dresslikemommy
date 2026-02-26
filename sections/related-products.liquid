@@ -156,6 +156,33 @@
               </div>
             {%- endif -%}
           </div>
+          {%- if show_mobile_slider or show_desktop_slider -%}
+            <div class="slider-buttons collection-carousel__slider-buttons related-products__mobile-slider-buttons">
+              <button
+                type="button"
+                class="slider-button slider-button--prev"
+                name="previous"
+                aria-label="{{ 'general.slider.previous_slide' | t }}"
+                aria-controls="Slider-{{ section.id }}"
+              >
+                {% render 'icon-caret' %}
+              </button>
+              <div
+                class="slider-page-dots collection-carousel__page-dots"
+                role="tablist"
+                aria-label="{{ 'general.slider.name' | t }}"
+              ></div>
+              <button
+                type="button"
+                class="slider-button slider-button--next"
+                name="next"
+                aria-label="{{ 'general.slider.next_slide' | t }}"
+                aria-controls="Slider-{{ section.id }}"
+              >
+                {% render 'icon-caret' %}
+              </button>
+            </div>
+          {%- endif -%}
           {%- if show_desktop_slider -%}
             <div class="related-products__page-dots" role="tablist" aria-label="Carousel pages">
             </div>

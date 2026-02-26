@@ -4370,3 +4370,52 @@ Key deferred implementation tracks
 Notes
 - This turn produced audit/report output only; no theme feature code was modified.
 - Existing unrelated dirty worktree files were preserved as-is.
+
+Patch: Reapply mobile PDP spacing + related-products controls after latest update regression
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-reapply-mobile-pdp-fixes-after-update
+
+Context
+- User reported previously accepted mobile fixes were lost after a recent update.
+- Confirmed regression in current files (`sections/main-product.liquid`, `sections/related-products.liquid`, `assets/section-related-products.css`).
+
+Changes reapplied (evidence-first)
+1) `sections/main-product.liquid` mobile PDP fixes (`@media screen and (max-width: 749px)`)
+- Restored header-to-image compaction:
+  - `#shopify-section-{{ section.id }} { margin-top: -1.1rem !important; }`
+  - `.template-product .section-header { margin-bottom: 0 !important; }`
+  - `.template-product .section-header + #shopify-section-{{ section.id }} { margin-top: -1.1rem !important; }`
+  - `#MainProduct-{{ section.id }} { margin-top: 0 !important; padding-top: 0 !important; }`
+- Restored image-to-content compaction:
+  - `.product__media-wrapper { margin-top: -1rem !important; }`
+  - `.product__media-list { margin-bottom: -0.5rem !important; }`
+  - `.product__info-wrapper { margin-top: -2.9rem !important; padding: 0 1rem 1rem !important; }`
+- Restored mobile media stability/top-align overrides:
+  - gallery flow + overflow guard rules,
+  - slider scroll behavior tuning + iOS snap relaxation,
+  - top-align media image content (`object-position: center top !important`).
+
+2) `sections/related-products.liquid` mobile controls restore
+- Re-added homepage-style mobile slider controls for "You may also like":
+  - `slider-buttons collection-carousel__slider-buttons related-products__mobile-slider-buttons`
+  - prev/next buttons + center `slider-page-dots collection-carousel__page-dots`
+- Kept desktop-only related-products page dots block (`show_desktop_slider`) intact.
+
+3) `assets/section-related-products.css` support for restored mobile controls
+- Added `.related-products__mobile-slider-buttons { margin-top: 1.2rem; }`
+- Added desktop hide rule for mobile controls (`@media (min-width: 990px)`).
+- Kept desktop-only related-products controls hidden by default in base styles.
+
+Validation snapshot
+- Verified targeted diffs:
+  - `git diff -- sections/main-product.liquid sections/related-products.liquid assets/section-related-products.css`
+- Verified patch hygiene:
+  - `git diff --check -- sections/main-product.liquid sections/related-products.liquid assets/section-related-products.css`
+- No browser/device manual QA run in this session.
+
+Open TODOs (next session)
+1) Hard-refresh mobile PDP and verify all three behaviors are restored:
+   - no blank gap above main image,
+   - reduced gap between image and title/content,
+   - homepage-style controls in "You may also like".
+2) If needed, fine-tune only spacing values (`-1.1/-1.0/-0.5/-2.9`) without changing control structure.

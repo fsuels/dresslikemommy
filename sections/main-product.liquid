@@ -412,7 +412,20 @@
 
     @media screen and (max-width: 749px) {
       #shopify-section-{{ section.id }} {
+        margin-top: -1.1rem !important;
+      }
+
+      .template-product .section-header {
+        margin-bottom: 0 !important;
+      }
+
+      .template-product .section-header + #shopify-section-{{ section.id }} {
+        margin-top: -1.1rem !important;
+      }
+
+      #MainProduct-{{ section.id }} {
         margin-top: 0 !important;
+        padding-top: 0 !important;
       }
 
       .section-{{ section.id }}-padding {
@@ -420,15 +433,15 @@
       }
 
       #MainProduct-{{ section.id }} .product__media-wrapper {
-        margin-top: 0 !important;
+        margin-top: -1rem !important;
       }
 
       #MainProduct-{{ section.id }} .product__media-list {
-        margin-bottom: 1.2rem !important;
+        margin-bottom: -0.5rem !important;
       }
 
       #MainProduct-{{ section.id }} .product__info-wrapper {
-        margin-top: 0 !important;
+        margin-top: -2.9rem !important;
         padding: 0 1rem 1rem !important;
       }
 
@@ -446,6 +459,54 @@
       #MainProduct-{{ section.id }} .slider-mobile-gutter {
         margin-bottom: 0 !important;
         padding-bottom: 0 !important;
+      }
+
+      /* Keep gallery and page scroll in the same flow on mobile (iOS/Android). */
+      #MainProduct-{{ section.id }} .product__media-wrapper,
+      #MainProduct-{{ section.id }} .slider-mobile-gutter,
+      #MainProduct-{{ section.id }} .product__media-list,
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-wrapper,
+      #MainProduct-{{ section.id }} .slider-mobile-gutter,
+      #MainProduct-{{ section.id }} .product__media-list,
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item,
+      #MainProduct-{{ section.id }} .product-media-container,
+      #MainProduct-{{ section.id }} .product-media-container .product__modal-opener,
+      #MainProduct-{{ section.id }} .product-media-container .product__media {
+        overflow: hidden !important;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-list.slider.slider--mobile {
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        scroll-snap-type: x proximity !important;
+        scroll-behavior: auto !important;
+        overscroll-behavior-x: contain;
+        overscroll-behavior-y: auto;
+      }
+
+      /* Keep portrait product photos flush to the top edge on mobile. */
+      #MainProduct-{{ section.id }} .product__media-list .product__media img,
+      #MainProduct-{{ section.id }} .product-media-container .media img {
+        object-position: center top !important;
+      }
+
+      /* iOS Safari: avoid snap-back jitter from strict snap behavior during touch scroll. */
+      @supports (-webkit-touch-callout: none) {
+        #MainProduct-{{ section.id }} .product__media-list.slider.slider--mobile {
+          scroll-snap-type: none !important;
+        }
+
+        #MainProduct-{{ section.id }} .product__media-list .product__media-item {
+          scroll-snap-align: none !important;
+        }
       }
 
       #MainProduct-{{ section.id }} [data-gallery-stepper],
