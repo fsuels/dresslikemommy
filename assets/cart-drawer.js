@@ -44,13 +44,45 @@ class CartDrawer extends HTMLElement {
       { once: true }
     );
 
-    document.body.classList.add('overflow-hidden');
+    this.lockScroll();
   }
 
   close() {
     this.classList.remove('active');
     removeTrapFocus(this.activeElement);
+    this.unlockScroll();
+  }
+
+  lockScroll() {
+    this.scrollPosition = window.scrollY;
+    document.documentElement.style.setProperty('--scroll-lock-top', `-${this.scrollPosition}px`);
+    document.documentElement.classList.add('overflow-hidden');
+    document.body.classList.add('overflow-hidden');
+
+    // iOS Safari: block touchmove on overlay to prevent background scroll
+    this._preventTouchMove = (e) => {
+      const drawerContent = this.querySelector('cart-drawer-items');
+      const drawerFooter = this.querySelector('.drawer__footer');
+      // Allow scrolling inside the drawer content and footer, block everywhere else
+      if (drawerContent && drawerContent.contains(e.target)) return;
+      if (drawerFooter && drawerFooter.contains(e.target)) return;
+      e.preventDefault();
+    };
+    this.addEventListener('touchmove', this._preventTouchMove, { passive: false });
+  }
+
+  unlockScroll() {
+    document.documentElement.classList.remove('overflow-hidden');
     document.body.classList.remove('overflow-hidden');
+    document.documentElement.style.removeProperty('--scroll-lock-top');
+
+    // Remove touchmove blocker
+    if (this._preventTouchMove) {
+      this.removeEventListener('touchmove', this._preventTouchMove);
+      this._preventTouchMove = null;
+    }
+
+    window.scrollTo(0, this.scrollPosition || 0);
   }
 
   setSummaryAccessibility(cartDrawerNote) {

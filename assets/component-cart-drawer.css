@@ -1,3 +1,34 @@
+/* Lock page scroll when cart drawer is open */
+html.overflow-hidden,
+html.overflow-hidden body {
+  overflow: hidden !important;
+  height: 100% !important;
+  overscroll-behavior: none !important;
+}
+
+/* iOS Safari: prevent background scroll with touch */
+html.overflow-hidden body {
+  position: fixed;
+  width: 100%;
+  top: var(--scroll-lock-top, 0);
+  touch-action: none;
+}
+
+/* Block touch scroll on the overlay area */
+.cart-drawer__overlay {
+  touch-action: none;
+}
+
+/* Prevent scroll chaining from drawer content to background */
+.drawer__inner {
+  overscroll-behavior: contain;
+}
+
+cart-drawer-items {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
 .drawer {
   position: fixed;
   z-index: 1000;
