@@ -4677,3 +4677,93 @@ Why this addresses the request
 Validation snapshot
 - `git diff -- assets/section-related-products.css`
 - `git diff --check -- assets/section-related-products.css`
+
+Patch: Remove related-products hover underline on PDP recommendation cards
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-related-products-hover-underline-removed
+
+Context
+- User requested removing the bottom line/underline that appears when hovering product cards in the PDP "You may also like" section.
+
+Changes applied
+- `assets/section-related-products.css`
+  - Added scoped override:
+    - `.related-products .underline-links-hover:hover a { text-decoration: none; }`
+
+Why this addresses the request
+- The underline was introduced by shared card hover styles (`.underline-links-hover:hover a`).
+- Scoping the override to `.related-products` removes the hover underline only in "You may also like" cards and leaves other card contexts unchanged.
+
+Validation snapshot
+- `git diff -- assets/section-related-products.css`
+- Verified only the scoped rule was added.
+
+Open TODOs (manual QA)
+1) On PDP desktop, hover related product cards and confirm no underline appears.
+2) Quick check collection cards still keep their existing hover behavior.
+
+Patch: Footer links inherit header-style hover underline with thinner text-width line
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-footer-links-thin-text-width-underline
+
+Context
+- User requested footer links use the same hover underline animation as header.
+- Footer underline should be thinner and match text width.
+
+Changes applied
+- `layout/theme.liquid`
+  - Updated footer text-link selectors to:
+    - `.footer .footer-block__details-content a`
+    - `.footer .copyright__content a`
+  - Added header-like `::after` underline animation (scaleX 0->1, same timing curve).
+  - Set underline thickness to `1px` (thinner than header's `1.5px`).
+  - Ensured underline tracks text width via `display: inline-flex` and `width: fit-content`.
+  - Scoped hover color + underline behavior to text links only.
+  - Neutralized default full-row menu link sizing for footer menu links:
+    - `.footer .footer-block__details-content .list-menu__item--link { min-height: auto; padding: 0; }`
+
+Why this addresses the request
+- Keeps the same animated reveal behavior as header links.
+- Uses a thinner underline in footer.
+- Prevents full-width underline across menu rows by sizing links to content width.
+
+Validation snapshot
+- `git diff -- layout/theme.liquid`
+- `git diff --check -- layout/theme.liquid`
+
+Open TODOs (manual QA)
+1) Hover footer menu links on desktop and confirm thin underline animates to text width.
+2) Confirm footer policy/copyright links behave the same.
+3) Confirm social icon links are unaffected.
+
+Patch: Normalize footer hover underline behavior across PDP/home/collection
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-footer-hover-consistency-all-templates
+
+Context
+- User reported footer hover underline looked different across templates.
+- Product pages showed a different footer link hover effect than homepage/collection.
+
+Root cause
+- `assets/section-main-product.css` had unscoped selectors (`ul li a...`) that applied globally when PDP assets loaded.
+- Those rules added hover `border-bottom` and pseudo-underline styles to footer links on PDP only.
+
+Changes applied
+- `assets/section-main-product.css`
+  - Scoped the hover underline block from global `ul li a...` selectors to PDP content only:
+    - `.template-product .page-width--product-main ul li a...`
+- `layout/theme.liquid`
+  - Added footer guard to prevent inherited hover borders from changing footer effect:
+    - `border-bottom: none !important;` on base + hover footer link rules.
+
+Why this addresses the request
+- Removes PDP-only bleed-over into footer link styles.
+- Ensures one consistent footer underline behavior on product, collection, and homepage templates.
+
+Validation snapshot
+- `git diff -- layout/theme.liquid assets/section-main-product.css`
+- `git diff --check -- layout/theme.liquid assets/section-main-product.css`
+
+Open TODOs (manual QA)
+1) Compare footer link hover on homepage, collection, and product pages to confirm identical animation and thickness.
+2) Confirm PDP in-content list hover styles still work inside `.page-width--product-main`.
