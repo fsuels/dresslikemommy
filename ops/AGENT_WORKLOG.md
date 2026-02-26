@@ -4497,3 +4497,183 @@ Open TODOs (next session)
 1) iPhone Safari + Android Chrome: verify mobile footer accordion/tap targets and spacing.
 2) Tablet/Desktop: verify footer block column alignment with different block counts.
 3) Confirm final contrast tuning against active color scheme in Theme Editor.
+
+Patch: Reapply PDP mobile scroll overlap fix after regression
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-reapply-pdp-mobile-scroll-overlap-fix
+
+Context
+- User reported the mobile PDP vertical-scroll fix was lost after a later update.
+- Confirmed regression in `sections/main-product.liquid` mobile block: negative margins for section/media/info wrappers were reintroduced.
+
+Changes reapplied (evidence-first)
+- Updated `sections/main-product.liquid` under `@media screen and (max-width: 749px)`:
+  - `#shopify-section-{{ section.id }}` `margin-top`: `-1.1rem` -> `0`
+  - `.template-product .section-header + #shopify-section-{{ section.id }}` `margin-top`: `-1.1rem` -> `0`
+  - `#MainProduct-{{ section.id }} .product__media-wrapper` `margin-top`: `-1rem` -> `0`
+  - `#MainProduct-{{ section.id }} .product__media-list` `margin-bottom`: `-0.5rem` -> `1.2rem`
+  - `#MainProduct-{{ section.id }} .product__info-wrapper` `margin-top`: `-2.9rem` -> `0`
+- No other selectors, JS logic, or desktop styles were changed.
+
+Why this addresses the issue
+- Removes mobile overlap offsets that made PDP content appear to slide underneath the main gallery image while vertical swiping/scrolling.
+
+Validation snapshot
+- Verified targeted diff:
+  - `git diff -- sections/main-product.liquid`
+- Verified no patch hygiene issues:
+  - `git diff --check -- sections/main-product.liquid`
+- No browser/device manual QA was run in this session.
+
+Open TODOs (next session)
+1) Mobile QA (iOS Safari + Android Chrome) on at least one PDP to confirm normal vertical scroll behavior and no content tucking under the main image.
+2) If extra visual compaction is desired later, use non-negative spacing only (padding/gap), not negative margins.
+
+Patch: PDP related-products image click-through fix
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-related-products-image-clickthrough-fix
+
+Context
+- User reported in PDP section "You may also like" that clicking product images did not navigate to the product page.
+
+Changes applied (evidence-first)
+- `snippets/card-product.liquid`
+  - Wrapped featured media block in a direct anchor:
+    - `href="{{ card_product.url }}"`
+    - `class="full-unstyled-link"`
+    - `aria-label="{{ card_product.title | escape }}"`
+  - Result: image area now has a real clickable link target, independent of title-link pseudo-element overlays.
+
+Why this addresses the issue
+- In this theme, image clickability could be lost when card-title link overlay behavior is affected by global CSS overrides.
+- Adding a direct media anchor ensures image clicks always navigate to the product URL in related/recommended card contexts.
+
+Validation snapshot
+- Verified targeted diff:
+  - `git diff -- snippets/card-product.liquid`
+- Verified patch hygiene:
+  - `git diff --check -- snippets/card-product.liquid`
+- Theme check scope note:
+  - Ran `shopify theme check --output json --fail-level crash`; repository has existing unrelated issues.
+  - Confirmed no offenses returned for `snippets/card-product.liquid`.
+
+Open TODOs (next session)
+1) Manual QA on PDP (desktop + mobile): click image and title in "You may also like" cards; both should navigate correctly.
+2) Optional cleanup follow-up: review global `.card__heading a` overflow/truncation overrides in `layout/theme.liquid` to reduce future click-overlay regressions.
+
+Patch correction: Reverted mobile PDP visual-spacing changes, kept scroll behavior fix only
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-pdp-visual-rollback-keep-scroll-fix-only
+
+Changes applied (evidence-first)
+- Reverted mobile PDP visual spacing/style adjustments in:
+  - `sections/main-product.liquid`
+  - `layout/theme.liquid`
+- Kept only a non-visual mobile scroll-stability fix in `assets/media-gallery.js`:
+  - In `setActiveMedia()`, skip page-level `window.scrollTo(...)` on mobile viewports.
+  - Desktop behavior remains unchanged.
+
+Why
+- User reported unintended mobile PDP visual regressions (header/image gap and changed image-title spacing).
+- This correction restores prior mobile layout appearance while retaining the iPhone/Android snap-back mitigation that does not alter page styling.
+
+Validation snapshot
+- Verified only behavior file remains modified:
+  - `git status --short assets/media-gallery.js sections/main-product.liquid layout/theme.liquid`
+- Verified patch formatting:
+  - `git diff --check -- assets/media-gallery.js`
+
+Open TODOs (next session)
+1) Confirm on iPhone Safari that touch-release no longer snaps page position while PDP visuals match prior design.
+2) Confirm same behavior on Android Chrome.
+
+Patch: Emergency correction for card-product media rendering regression
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-card-product-media-overlay-link-correction
+
+Context
+- After wrapping media in an anchor to fix related-product image click-through, user reported product card images were no longer showing.
+
+Corrective changes applied
+- `snippets/card-product.liquid`
+  - Removed media wrapper-anchor approach (which altered card media structure).
+  - Restored original media container structure.
+  - Added a dedicated media overlay link inside `.card__media`:
+    - `<a href="{{ card_product.url }}" class="full-width-link" ...>`
+  - Added hidden span inside that link to prevent global `a:empty { display: none; }` rule from disabling it.
+
+Why this addresses both issues
+- Keeps native card/media rendering behavior unchanged (images render as before).
+- Provides explicit clickable media target for navigation.
+- Avoids the repository's global empty-anchor suppression rule.
+
+Validation snapshot
+- Verified targeted diff and patch hygiene:
+  - `git diff -- snippets/card-product.liquid`
+  - `git diff --check -- snippets/card-product.liquid`
+
+Open TODOs
+1) Hard refresh PDP and verify: related-product images render and image clicks navigate.
+2) Quick smoke check on collection grids to ensure card image behavior remains normal.
+
+Patch: Restore card-product to known-good historical state (per user request)
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-restore-card-product-from-77f7799
+
+Context
+- User requested restoring the prior working implementation from roughly four commits back instead of new rework.
+
+Changes applied
+- Restored `snippets/card-product.liquid` exactly from commit `77f7799` using:
+  - `git checkout 77f7799 -- snippets/card-product.liquid`
+- This removes the temporary media-overlay/link wrapper experiments from this session.
+
+Validation snapshot
+- `git status --short` confirms `snippets/card-product.liquid` is no longer modified.
+- Verified restored section around featured media/card link structure in `snippets/card-product.liquid`.
+
+Notes
+- Other existing local changes were preserved (`assets/media-gallery.js`, `ops/AGENT_WORKLOG.md`).
+
+Patch: Restore collection-like full-card click behavior for product cards
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-product-card-full-card-click-overlay
+
+Context
+- User requested collection-page interaction parity: any click on a product card should navigate to the product page.
+- User explicitly asked not to redo title-link-only behavior.
+
+Changes applied
+- `snippets/card-product.liquid`
+  - Added `enable_full_card_link` flag (true unless `quick_add` is `standard` or `bulk`).
+  - Injected a top-level `.full-width-link` overlay inside `.card-wrapper` when `enable_full_card_link` is true:
+    - `href="{{ card_product.url }}"`
+    - includes visually hidden text so it is not affected by global `a:empty` rules.
+
+Why this addresses the issue
+- Makes the entire card clickable (image + text + empty card space), matching collection-style interaction.
+- Keeps quick-add card modes safe by disabling overlay there to avoid blocking controls.
+
+Validation snapshot
+- `git diff -- snippets/card-product.liquid`
+- `git diff --check -- snippets/card-product.liquid`
+
+Patch: Desktop-only related-products card size reduction
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-related-products-desktop-card-size-reduction
+
+Context
+- User requested "You may also like" product cards to be 30% smaller on desktop only.
+
+Changes applied
+- `assets/section-related-products.css`
+  - Added desktop-only rule under `@media screen and (min-width: 990px)`:
+    - `.related-products .product-card-wrapper { width: 70%; margin: 0 auto; }`
+
+Why this addresses the request
+- Limits the change to the related-products section (`.related-products`) and desktop breakpoint only.
+- Reduces card visual footprint by 30% while preserving existing slider/layout behavior.
+
+Validation snapshot
+- `git diff -- assets/section-related-products.css`
+- `git diff --check -- assets/section-related-products.css`

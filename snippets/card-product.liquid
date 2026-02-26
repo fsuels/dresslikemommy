@@ -69,6 +69,11 @@
         assign card_pattern = normalized_tag | split: ':' | last | strip
       endif
     endfor
+
+    assign enable_full_card_link = true
+    if quick_add == 'standard' or quick_add == 'bulk'
+      assign enable_full_card_link = false
+    endif
   -%}
   <div
     class="card-wrapper product-card-wrapper underline-links-hover"
@@ -88,6 +93,15 @@
     data-analytics-pattern="{{ card_pattern | escape }}"
     data-analytics-section-id="{{ section_id | escape }}"
   >
+    {%- if enable_full_card_link -%}
+      <a
+        href="{{ card_product.url }}"
+        class="full-width-link"
+        aria-label="{{ card_product.title | escape }}"
+      >
+        <span class="visually-hidden">{{ card_product.title | escape }}</span>
+      </a>
+    {%- endif -%}
     <div
       class="
         card card--{{ settings.card_style }}
