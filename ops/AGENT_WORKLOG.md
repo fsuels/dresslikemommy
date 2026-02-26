@@ -5488,3 +5488,30 @@ Validation snapshot
 Open TODOs (manual QA)
 1) Single-color PDP with mixed availability: verify hidden color value resolves the expected purchasable variant after size changes.
 2) Confirm sticky ATC appears after size selection on single-color PDP once main ATC/media visibility conditions are met.
+
+Ops: Recreated missing UX-TASK.MD handoff file
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-recreated-ux-task-md
+
+Changes applied
+- Recreated `/Users/fsuels/Projects/dresslikemommy/UX-TASK.MD` after file was missing.
+- Restored full multi-agent UX parallel execution instructions, task claim board, dependencies, and per-task implementation checklists.
+
+Notes
+- No theme feature code changed in this turn.
+
+Patch: CRO-TASK.MD recreation for multi-agent execution
+Date: 2026-02-25
+AGENT_CONTINUITY_ANCHOR: 2026-02-25-cro-task-md-recreated
+
+Scope completed
+- Recreated missing `CRO-TASK.MD` at repository root with full multi-agent CRO coordination instructions.
+
+Changes applied (evidence-first)
+- `/Users/fsuels/Projects/dresslikemommy/CRO-TASK.MD` recreated (495 lines).
+
+Validation snapshot
+- Confirmed file exists and line count via shell.
+
+Open TODOs / NEEDS_DATA
+1) If IDE still does not show file, refresh file explorer or reopen workspace root.
