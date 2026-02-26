@@ -14,6 +14,10 @@
         assign picker_type = block.settings.picker_type
         assign option_name_downcased = option.name | downcase
         assign is_color_option = false
+        assign hide_single_value_color_option = false
+        assign available_color_value_count = 0
+        assign seen_available_color_values = ''
+        assign single_available_color_value = blank
 
         if swatch_count > 0 and block.settings.swatch_shape != 'none'
           if block.settings.picker_type == 'dropdown'
@@ -30,8 +34,56 @@
         if is_color_option and block.settings.picker_type == 'dropdown'
           assign picker_type = 'color_image'
         endif
+
+        if is_color_option
+          for variant in product.variants
+            if variant.available
+              assign option_value_for_variant = blank
+              case option.position
+                when 1
+                  assign option_value_for_variant = variant.option1
+                when 2
+                  assign option_value_for_variant = variant.option2
+                when 3
+                  assign option_value_for_variant = variant.option3
+              endcase
+
+              if option_value_for_variant != blank
+                assign option_value_token = '|' | append: option_value_for_variant | append: '|'
+                unless seen_available_color_values contains option_value_token
+                  assign seen_available_color_values = seen_available_color_values | append: option_value_token
+                  assign available_color_value_count = available_color_value_count | plus: 1
+                  if single_available_color_value == blank
+                    assign single_available_color_value = option_value_for_variant
+                  endif
+                endunless
+              endif
+            endif
+          endfor
+
+          if available_color_value_count == 0
+            assign available_color_value_count = option.values | size
+          endif
+
+          if available_color_value_count <= 1
+            assign hide_single_value_color_option = true
+          endif
+        endif
       -%}
-      {%- if picker_type == 'swatch' -%}
+      {%- if hide_single_value_color_option -%}
+        {%- assign hidden_color_value = single_available_color_value | default: option.selected_value | default: option.values.first -%}
+        <select
+          class="visually-hidden"
+          name="options[{{ option.name | escape }}]"
+          form="{{ product_form_id }}"
+          hidden
+          aria-hidden="true"
+          tabindex="-1"
+          data-single-value-color-option="true"
+        >
+          <option value="{{ hidden_color_value | escape }}" selected>{{ hidden_color_value }}</option>
+        </select>
+      {%- elsif picker_type == 'swatch' -%}
         <fieldset class="js product-form__input product-form__input--swatch">
           <legend class="form__label">
             {{ option.name }}:

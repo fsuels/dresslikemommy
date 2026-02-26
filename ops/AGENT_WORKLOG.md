@@ -5442,3 +5442,49 @@ Validation snapshot
 Open TODOs (manual QA)
 1) Hard refresh a mobile PDP and confirm the first image share button appears in the exact same position as when swiping to other images.
 2) Tap share on image 1 and image 2+ to confirm native share / clipboard fallback still works on each slide.
+
+Session: Hide single-value Color option and keep sticky ATC unblocked
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-hide-single-color-option-and-unblock-sticky-atc
+
+Changes applied (evidence-first)
+- `snippets/product-variant-picker.liquid`
+  - Added Color option availability scan per option (based on available variants) to count unique available color values.
+  - When a Color/Colour option has only one available value, suppresses the visible color picker UI for that option.
+  - Injects a hidden preselected `<select name="options[...]">` for the suppressed Color option so Dawn `VariantSelects` still resolves a full variant option array and keeps add-to-cart/variant updates functional.
+
+Why
+- User requested that sticky ATC should not be blocked by color selection when only one color exists.
+- User requested that products with only one available color should not show a color selector; only size should be shown.
+- Hidden preselected select preserves variant matching logic while removing unnecessary color UI.
+
+Validation snapshot
+- `git diff -- snippets/product-variant-picker.liquid`
+- `git diff --check -- snippets/product-variant-picker.liquid`
+- `nl -ba snippets/product-variant-picker.liquid | sed -n '1,180p'`
+
+Open TODOs (manual QA)
+1) Mobile PDP, single-color product: select size and scroll past main ATC; confirm sticky ATC appears without requiring any color interaction.
+2) Single-color products: confirm color selector is not rendered and size selector still works.
+3) Multi-color products: confirm color selector still renders and variant selection/ATC behavior is unchanged.
+
+Follow-up: Single-color hidden option safety hardening
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-single-color-hidden-option-safety-hardening
+
+Changes applied (evidence-first)
+- `snippets/product-variant-picker.liquid`
+  - Added `single_available_color_value` capture while scanning available variants.
+  - Hidden preselected color select now prioritizes this true available value (`single_available_color_value`) before fallback values.
+
+Why
+- Prevents edge case where fallback selected/first value could be unavailable and accidentally break variant resolution when the visible single-color selector is suppressed.
+
+Validation snapshot
+- `git diff --check -- snippets/product-variant-picker.liquid`
+- `shopify theme check --output json --fail-level error` and filtered results confirm no offense entry for `snippets/product-variant-picker.liquid`.
+- Theme check still reports pre-existing repository errors in unrelated files (e.g., `sections/header.liquid`, `sections/main-list-collections.liquid`, `sections/email-signup-banner.liquid`, etc.).
+
+Open TODOs (manual QA)
+1) Single-color PDP with mixed availability: verify hidden color value resolves the expected purchasable variant after size changes.
+2) Confirm sticky ATC appears after size selection on single-color PDP once main ATC/media visibility conditions are met.
