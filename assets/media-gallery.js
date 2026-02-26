@@ -8,7 +8,7 @@ if (!customElements.get('media-gallery')) {
           liveRegion: this.querySelector('[id^="GalleryStatus"]'),
           viewer: this.querySelector('[id^="GalleryViewer"]'),
           thumbnails: this.querySelector('[id^="GalleryThumbnails"]'),
-          mobileShareButton: this.querySelector('[data-mobile-share-button]'),
+          mobileShareButtons: Array.from(this.querySelectorAll('[data-mobile-share-button]')),
         };
         this.mql = window.matchMedia('(min-width: 750px)');
         this.mobileViewportMql = window.matchMedia('(max-width: 749px)');
@@ -24,8 +24,10 @@ if (!customElements.get('media-gallery')) {
         this.mobileSwipeCancelHandler = this.handleMobileSwipeCancel.bind(this);
         this.mobileSwipeState = null;
 
-        if (this.elements.mobileShareButton) {
-          this.elements.mobileShareButton.addEventListener('click', this.mobileShareClickHandler);
+        if (this.elements.mobileShareButtons.length) {
+          this.elements.mobileShareButtons.forEach((button) => {
+            button.addEventListener('click', this.mobileShareClickHandler);
+          });
           if (this.elements.viewer) {
             this.syncMobileShareButtonPosition();
             window.requestAnimationFrame(() => this.syncMobileShareButtonPosition());
@@ -80,8 +82,10 @@ if (!customElements.get('media-gallery')) {
       }
 
       disconnectedCallback() {
-        if (this.elements.mobileShareButton) {
-          this.elements.mobileShareButton.removeEventListener('click', this.mobileShareClickHandler);
+        if (this.elements.mobileShareButtons.length) {
+          this.elements.mobileShareButtons.forEach((button) => {
+            button.removeEventListener('click', this.mobileShareClickHandler);
+          });
           if (this.elements.viewer) {
             this.elements.viewer.removeEventListener('slideChanged', this.viewerSlideChangeHandler);
           }
@@ -119,7 +123,8 @@ if (!customElements.get('media-gallery')) {
         this.syncMobileShareButtonPosition();
       }
 
-      handleMobileShareClick() {
+      handleMobileShareClick(event) {
+        const clickedButton = event?.currentTarget || null;
         const shareUrl = window.location.href;
 
         if (navigator.share) {
@@ -131,9 +136,10 @@ if (!customElements.get('media-gallery')) {
           navigator.clipboard
             .writeText(shareUrl)
             .then(() => {
-              this.elements.mobileShareButton.classList.add('is-copied');
+              if (!clickedButton) return;
+              clickedButton.classList.add('is-copied');
               window.setTimeout(() => {
-                this.elements.mobileShareButton.classList.remove('is-copied');
+                clickedButton.classList.remove('is-copied');
               }, 1400);
             })
             .catch(() => {});
@@ -179,22 +185,23 @@ if (!customElements.get('media-gallery')) {
       }
 
       syncMobileShareButtonPosition() {
-        const { mobileShareButton, viewer } = this.elements;
-        if (!mobileShareButton || !viewer) return;
+        const { mobileShareButtons, viewer } = this.elements;
+        if (!mobileShareButtons.length || !viewer) return;
+
+        const resetButtonPosition = (button) => {
+          button.style.removeProperty('top');
+          button.style.removeProperty('right');
+          button.style.removeProperty('left');
+          button.style.removeProperty('bottom');
+        };
 
         if (!this.mobileViewportMql.matches) {
-          mobileShareButton.style.removeProperty('top');
-          mobileShareButton.style.removeProperty('right');
-          mobileShareButton.style.removeProperty('left');
-          mobileShareButton.style.removeProperty('bottom');
+          mobileShareButtons.forEach(resetButtonPosition);
           return;
         }
 
-        const cornerInset = this.getMobileCornerInsetPx();
-        mobileShareButton.style.setProperty('top', `${Math.round(cornerInset)}px`, 'important');
-        mobileShareButton.style.setProperty('right', `${Math.round(cornerInset)}px`, 'important');
-        mobileShareButton.style.setProperty('left', 'auto', 'important');
-        mobileShareButton.style.setProperty('bottom', 'auto', 'important');
+        // Keep mobile share buttons aligned by CSS so the first slide matches subsequent slides.
+        mobileShareButtons.forEach(resetButtonPosition);
       }
 
       getMobileCornerInsetPx() {

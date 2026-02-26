@@ -5420,3 +5420,25 @@ Open TODOs (manual QA)
 1) On desktop PDP, click next repeatedly through the final image and confirm next goes to image 1.
 2) Click previous on image 1 and confirm it wraps to the last image.
 3) Verify mobile swipe behavior remains one-swipe-per-image.
+
+Session: Mobile PDP first-slide share button alignment parity
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-mobile-share-first-slide-parity
+
+Changes applied (evidence-first)
+- `assets/media-gallery.js`
+  - Replaced single-share lookup (`querySelector`) with multi-share lookup (`querySelectorAll`) so gallery logic no longer treats only the first slide's button as special.
+  - Bound/unbound mobile share click handlers for every `[data-mobile-share-button]` instance in the media gallery.
+  - Updated clipboard success state to apply to the clicked share button (`event.currentTarget`) instead of a hardcoded first button.
+  - Updated `syncMobileShareButtonPosition()` to clear inline corner overrides on all share buttons and defer positioning to existing CSS rules, keeping first-slide placement consistent with subsequent slides.
+
+Why
+- In production mobile view, only the first slide share button was receiving JS inline positioning, which caused first-image offset mismatch versus other images.
+
+Validation snapshot
+- `node --check assets/media-gallery.js`
+- `git diff -- assets/media-gallery.js`
+
+Open TODOs (manual QA)
+1) Hard refresh a mobile PDP and confirm the first image share button appears in the exact same position as when swiping to other images.
+2) Tap share on image 1 and image 2+ to confirm native share / clipboard fallback still works on each slide.
