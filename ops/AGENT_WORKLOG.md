@@ -5334,3 +5334,30 @@ Open TODOs (manual QA)
 1) On mobile PDP, swipe through multiple media and confirm the stepper stays fixed in one bottom-right position.
 2) Open the mobile menu drawer on PDP and confirm share/stepper are not visible above the drawer/overlay.
 3) Confirm desktop PDP behavior remains unchanged.
+
+Session: Mobile PDP share button follow-up sync across thumbnail + section styles
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-mobile-share-followup-sync-two-files
+
+Changes applied (evidence-first)
+- `snippets/product-thumbnail.liquid`
+  - Added mobile share button markup (`.share-button__button.product__media-share` with `data-mobile-share-button`) inside thumbnail media wrapper so each media frame has a local share anchor.
+- `sections/main-product.liquid` (mobile-only block)
+  - Set `.product-media-container` to `position: relative` for a stable absolute-positioning context.
+  - Updated mobile share placement/layering:
+    - `top: 0.5rem -> 1rem`
+    - `z-index: 2 -> 4`
+    - `pointer-events: auto` retained for tap behavior.
+  - Removed previous isolated `.product__media-wrapper` block and kept shared wrapper/list positioning rule.
+
+Why
+- User requested syncing remaining pending changes; these two files are the outstanding mobile share follow-up edits.
+
+Validation snapshot
+- `git diff --stat`
+- `git diff -- sections/main-product.liquid snippets/product-thumbnail.liquid`
+
+Open TODOs (manual QA)
+1) Hard refresh mobile PDP and verify share button appears on media frames and remains tappable.
+2) Swipe between images/videos and confirm share stays visually in the intended top-right position.
+3) Confirm no desktop regression from mobile-only CSS adjustments.
