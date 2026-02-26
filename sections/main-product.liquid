@@ -486,27 +486,21 @@
         overflow-x: auto !important;
         overflow-y: hidden !important;
         -webkit-overflow-scrolling: touch !important;
-        scroll-snap-type: x proximity !important;
+        scroll-snap-type: x mandatory !important;
         scroll-behavior: auto !important;
         overscroll-behavior-x: contain;
         overscroll-behavior-y: auto;
+        touch-action: pan-y pinch-zoom !important;
+      }
+
+      #MainProduct-{{ section.id }} .product__media-list.slider.slider--mobile .product__media-item {
+        scroll-snap-stop: always !important;
       }
 
       /* Keep portrait product photos flush to the top edge on mobile. */
       #MainProduct-{{ section.id }} .product__media-list .product__media img,
       #MainProduct-{{ section.id }} .product-media-container .media img {
         object-position: center top !important;
-      }
-
-      /* iOS Safari: avoid snap-back jitter from strict snap behavior during touch scroll. */
-      @supports (-webkit-touch-callout: none) {
-        #MainProduct-{{ section.id }} .product__media-list.slider.slider--mobile {
-          scroll-snap-type: none !important;
-        }
-
-        #MainProduct-{{ section.id }} .product__media-list .product__media-item {
-          scroll-snap-align: none !important;
-        }
       }
 
       #MainProduct-{{ section.id }} .product__media-wrapper .slider-mobile-gutter {
@@ -518,14 +512,14 @@
         position: relative !important;
       }
 
-      #MainProduct-{{ section.id }} [data-mobile-share-button],
-      #MainProduct-{{ section.id }} .product__media-share.share-button__button {
+      #MainProduct-{{ section.id }} .product-media-container [data-mobile-share-button],
+      #MainProduct-{{ section.id }} .product-media-container .product__media-share.share-button__button {
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
         position: absolute !important;
-        top: 1rem !important;
-        right: 0.5rem !important;
+        top: 2.5rem !important;
+        right: 1.2rem !important;
         left: auto !important;
         bottom: auto !important;
         z-index: 4 !important;

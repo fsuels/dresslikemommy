@@ -5361,3 +5361,40 @@ Open TODOs (manual QA)
 1) Hard refresh mobile PDP and verify share button appears on media frames and remains tappable.
 2) Swipe between images/videos and confirm share stays visually in the intended top-right position.
 3) Confirm no desktop regression from mobile-only CSS adjustments.
+
+Session: Mobile PDP one-swipe-per-image + infinite loop navigation
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-mobile-pdp-single-swipe-loop-gallery
+
+Changes applied (evidence-first)
+- `assets/media-gallery.js`
+  - Added mobile touch gesture control on PDP gallery slider:
+    - tracks touch start/move/end,
+    - prevents native horizontal momentum once horizontal intent is detected,
+    - advances exactly one media item per swipe (`cycleActiveMedia(step)`).
+  - Added `cycleActiveMedia(step)` helper with wrap-around indexing (`last -> first`, `first -> last`).
+  - Exposed the same cycle helper for external gallery controls (via `media-gallery` element methods).
+- `assets/global.js`
+  - Marked `GalleryViewer-*` slider instances as loop-enabled.
+  - Updated PDP previous/next button and overlay arrow handlers to use `mediaGallery.cycleActiveMedia(...)` when available.
+  - Removed end-clamp behavior for PDP gallery arrows and kept arrows enabled in loop mode.
+- `sections/main-product.liquid` (mobile-only block)
+  - Tightened product media snapping back to strict per-slide behavior:
+    - `scroll-snap-type: x mandatory`
+    - added `scroll-snap-stop: always` on media items
+    - removed prior iOS Safari override that disabled snap
+    - added `touch-action: pan-y pinch-zoom` for cleaner gesture arbitration.
+
+Why
+- User reported mobile PDP swipe momentum continuing across multiple images after one swipe.
+- Requested behavior: one swipe should move one image only, and navigation should continue from last image back to first.
+
+Validation snapshot
+- `node --check assets/media-gallery.js`
+- `node --check assets/global.js`
+- `git diff --check -- assets/media-gallery.js assets/global.js sections/main-product.liquid`
+
+Open TODOs (manual QA)
+1) On mobile PDP (real device), swipe left/right repeatedly and verify exactly one image change per swipe.
+2) On the last media item, swipe forward and confirm it wraps to the first item; from first, swipe backward and confirm wrap to last.
+3) Verify desktop PDP media navigation still works (buttons/arrows, no regressions in share/stepper placement).

@@ -18,6 +18,11 @@ if (!customElements.get('media-gallery')) {
         this.mobileShareLoadHandler = this.mobileSharePositionHandler;
         this.galleryCounterPositionHandler = debounce(this.syncGalleryCounterPosition.bind(this), 120);
         this.galleryCounterSlideHandler = debounce(this.syncGalleryCounterPosition.bind(this), 80);
+        this.mobileSwipeStartHandler = this.handleMobileSwipeStart.bind(this);
+        this.mobileSwipeMoveHandler = this.handleMobileSwipeMove.bind(this);
+        this.mobileSwipeEndHandler = this.handleMobileSwipeEnd.bind(this);
+        this.mobileSwipeCancelHandler = this.handleMobileSwipeCancel.bind(this);
+        this.mobileSwipeState = null;
 
         if (this.elements.mobileShareButton) {
           this.elements.mobileShareButton.addEventListener('click', this.mobileShareClickHandler);
@@ -59,6 +64,10 @@ if (!customElements.get('media-gallery')) {
           window.addEventListener('orientationchange', this.galleryCounterPositionHandler);
         }
 
+        if (this.elements.viewer && this.elements.viewer.slider) {
+          this.bindMobileSwipeHandlers();
+        }
+
         if (!this.elements.thumbnails) return;
 
         this.elements.viewer.addEventListener('slideChanged', debounce(this.onSlideChanged.bind(this), 500));
@@ -97,6 +106,7 @@ if (!customElements.get('media-gallery')) {
         window.removeEventListener('load', this.galleryCounterPositionHandler);
         window.removeEventListener('resize', this.galleryCounterPositionHandler);
         window.removeEventListener('orientationchange', this.galleryCounterPositionHandler);
+        this.unbindMobileSwipeHandlers();
       }
 
       onSlideChanged(event) {
@@ -197,6 +207,130 @@ if (!customElements.get('media-gallery')) {
 
         const rootFontSize = Number.parseFloat(window.getComputedStyle(document.documentElement).fontSize) || 16;
         return rootFontSize * 0.65;
+      }
+
+      bindMobileSwipeHandlers() {
+        if (!this.elements.viewer || !this.elements.viewer.slider || this.mobileSwipeHandlersBound) return;
+        this.elements.viewer.slider.addEventListener('touchstart', this.mobileSwipeStartHandler, { passive: true });
+        this.elements.viewer.slider.addEventListener('touchmove', this.mobileSwipeMoveHandler, { passive: false });
+        this.elements.viewer.slider.addEventListener('touchend', this.mobileSwipeEndHandler);
+        this.elements.viewer.slider.addEventListener('touchcancel', this.mobileSwipeCancelHandler);
+        this.mobileSwipeHandlersBound = true;
+      }
+
+      unbindMobileSwipeHandlers() {
+        if (!this.elements.viewer || !this.elements.viewer.slider || !this.mobileSwipeHandlersBound) return;
+        this.elements.viewer.slider.removeEventListener('touchstart', this.mobileSwipeStartHandler);
+        this.elements.viewer.slider.removeEventListener('touchmove', this.mobileSwipeMoveHandler);
+        this.elements.viewer.slider.removeEventListener('touchend', this.mobileSwipeEndHandler);
+        this.elements.viewer.slider.removeEventListener('touchcancel', this.mobileSwipeCancelHandler);
+        this.mobileSwipeHandlersBound = false;
+        this.mobileSwipeState = null;
+      }
+
+      handleMobileSwipeStart(event) {
+        if (!this.mobileViewportMql.matches || !event.touches || event.touches.length !== 1) {
+          this.mobileSwipeState = null;
+          return;
+        }
+        const touch = event.touches[0];
+        this.mobileSwipeState = {
+          startX: touch.clientX,
+          startY: touch.clientY,
+          lastX: touch.clientX,
+          lastY: touch.clientY,
+          horizontalIntent: false,
+        };
+      }
+
+      handleMobileSwipeMove(event) {
+        if (!this.mobileViewportMql.matches || !this.mobileSwipeState || !event.touches || !event.touches.length) return;
+        const touch = event.touches[0];
+        this.mobileSwipeState.lastX = touch.clientX;
+        this.mobileSwipeState.lastY = touch.clientY;
+        const deltaX = touch.clientX - this.mobileSwipeState.startX;
+        const deltaY = touch.clientY - this.mobileSwipeState.startY;
+
+        if (
+          !this.mobileSwipeState.horizontalIntent &&
+          Math.abs(deltaX) > 8 &&
+          Math.abs(deltaX) > Math.abs(deltaY)
+        ) {
+          this.mobileSwipeState.horizontalIntent = true;
+        }
+
+        if (this.mobileSwipeState.horizontalIntent) {
+          event.preventDefault();
+        }
+      }
+
+      handleMobileSwipeEnd(event) {
+        if (!this.mobileViewportMql.matches || !this.mobileSwipeState) {
+          this.mobileSwipeState = null;
+          return;
+        }
+        const touch = event.changedTouches && event.changedTouches.length ? event.changedTouches[0] : null;
+        const endX = touch ? touch.clientX : this.mobileSwipeState.lastX;
+        const endY = touch ? touch.clientY : this.mobileSwipeState.lastY;
+        const deltaX = endX - this.mobileSwipeState.startX;
+        const deltaY = endY - this.mobileSwipeState.startY;
+        const sliderWidth =
+          (this.elements.viewer && this.elements.viewer.slider && this.elements.viewer.slider.clientWidth) ||
+          window.innerWidth ||
+          0;
+        const swipeThreshold = Math.max(28, Math.round(sliderWidth * 0.08));
+        const isHorizontalSwipe = Math.abs(deltaX) >= swipeThreshold && Math.abs(deltaX) > Math.abs(deltaY);
+
+        if (isHorizontalSwipe) {
+          this.cycleActiveMedia(deltaX < 0 ? 1 : -1);
+        }
+
+        this.mobileSwipeState = null;
+      }
+
+      handleMobileSwipeCancel() {
+        this.mobileSwipeState = null;
+      }
+
+      getViewerMediaItems() {
+        if (!this.elements.viewer || !this.elements.viewer.slider) return [];
+        return Array.from(this.elements.viewer.slider.querySelectorAll(':scope > [data-media-id]'));
+      }
+
+      getActiveMediaIndex(mediaItems) {
+        const activeIndex = mediaItems.findIndex((item) => item.classList.contains('is-active'));
+        if (activeIndex >= 0) return activeIndex;
+
+        if (!this.elements.viewer || !this.elements.viewer.slider) return 0;
+        const currentScrollLeft = this.elements.viewer.slider.scrollLeft;
+        let closestIndex = 0;
+        let closestDistance = Number.POSITIVE_INFINITY;
+
+        mediaItems.forEach((item, index) => {
+          const distance = Math.abs(item.offsetLeft - currentScrollLeft);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+
+        return closestIndex;
+      }
+
+      cycleActiveMedia(step = 1) {
+        const mediaItems = this.getViewerMediaItems();
+        if (mediaItems.length < 2 || !Number.isFinite(step) || step === 0) return;
+
+        const activeIndex = this.getActiveMediaIndex(mediaItems);
+        const direction = step > 0 ? 1 : -1;
+        const targetIndex = (activeIndex + direction + mediaItems.length) % mediaItems.length;
+        const targetMediaId = mediaItems[targetIndex].dataset.mediaId;
+        if (!targetMediaId) return;
+
+        this.setActiveMedia(targetMediaId, { preventScroll: true });
+        if (this.elements.viewer && typeof this.elements.viewer.updateGalleryArrows === 'function') {
+          this.elements.viewer.updateGalleryArrows(targetIndex, mediaItems.length);
+        }
       }
 
       syncGalleryCounter(mediaId) {

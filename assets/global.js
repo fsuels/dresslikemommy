@@ -628,6 +628,8 @@ class SliderComponent extends HTMLElement {
     this.slider = this.querySelector('[id^="Slider-"]');
     this.sliderItems = this.querySelectorAll('[id^="Slide-"]');
     this.enableSliderLooping = false;
+    this.isProductGalleryViewer = this.id && this.id.startsWith('GalleryViewer-');
+    if (this.isProductGalleryViewer) this.enableSliderLooping = true;
     this.currentPageElement = this.querySelector('.slider-counter--current');
     this.pageTotalElement = this.querySelector('.slider-counter--total');
     this.prevButton = this.querySelector('button[name="previous"]');
@@ -648,6 +650,7 @@ class SliderComponent extends HTMLElement {
     this.galleryNext = this.querySelector('[data-gallery-nav="next"]');
     if (this.galleryPrev) this.galleryPrev.addEventListener('click', this.onGalleryArrowClick.bind(this));
     if (this.galleryNext) this.galleryNext.addEventListener('click', this.onGalleryArrowClick.bind(this));
+    if (this.isProductGalleryViewer) this.updateGalleryArrows(0, this.sliderItems.length);
   }
 
   initPages() {
@@ -807,6 +810,15 @@ class SliderComponent extends HTMLElement {
 
   onButtonClick(event) {
     event.preventDefault();
+    if (this.isProductGalleryViewer) {
+      const mediaGallery = this.closest('media-gallery');
+      const isNext = event.currentTarget.name === 'next';
+      if (mediaGallery && typeof mediaGallery.cycleActiveMedia === 'function') {
+        mediaGallery.cycleActiveMedia(isNext ? 1 : -1);
+        return;
+      }
+    }
+
     const step = this.useGroupPagination ? this.slidesPerPage : (event.currentTarget.dataset.step || 1);
     const isNext = event.currentTarget.name === 'next';
     this.slideScrollPosition = isNext
@@ -819,6 +831,11 @@ class SliderComponent extends HTMLElement {
     event.preventDefault();
     const mediaGallery = this.closest('media-gallery');
     if (!mediaGallery) return;
+    const isNext = event.currentTarget.dataset.galleryNav === 'next';
+    if (typeof mediaGallery.cycleActiveMedia === 'function') {
+      mediaGallery.cycleActiveMedia(isNext ? 1 : -1);
+      return;
+    }
 
     // Only target the <li> slide elements, not inner buttons that also have data-media-id
     const mediaItems = this.slider
@@ -828,16 +845,13 @@ class SliderComponent extends HTMLElement {
 
     const activeItem = mediaItems.find((el) => el.classList.contains('is-active'));
     const activeIndex = activeItem ? mediaItems.indexOf(activeItem) : 0;
-    const isNext = event.currentTarget.dataset.galleryNav === 'next';
 
     let nextIndex;
     if (isNext) {
-      nextIndex = Math.min(activeIndex + 1, mediaItems.length - 1);
+      nextIndex = (activeIndex + 1) % mediaItems.length;
     } else {
-      nextIndex = Math.max(activeIndex - 1, 0);
+      nextIndex = (activeIndex - 1 + mediaItems.length) % mediaItems.length;
     }
-
-    if (nextIndex === activeIndex) return;
 
     const nextMediaId = mediaItems[nextIndex].dataset.mediaId;
     mediaGallery.setActiveMedia(nextMediaId);
@@ -852,6 +866,12 @@ class SliderComponent extends HTMLElement {
   }
 
   updateGalleryArrows(currentIndex, totalItems) {
+    if (this.isProductGalleryViewer) {
+      if (this.galleryPrev) this.galleryPrev.removeAttribute('disabled');
+      if (this.galleryNext) this.galleryNext.removeAttribute('disabled');
+      return;
+    }
+
     if (this.galleryPrev) {
       currentIndex <= 0
         ? this.galleryPrev.setAttribute('disabled', 'disabled')
