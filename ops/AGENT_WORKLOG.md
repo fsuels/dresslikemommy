@@ -4419,3 +4419,81 @@ Open TODOs (next session)
    - reduced gap between image and title/content,
    - homepage-style controls in "You may also like".
 2) If needed, fine-tune only spacing values (`-1.1/-1.0/-0.5/-2.9`) without changing control structure.
+
+Patch: Homepage mobile Shop Now smooth-scroll + arrival cue
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-homepage-shop-now-smooth-scroll-arrival-cue
+
+Context
+- User reported the previously delivered homepage `SHOP NOW` behavior fixes were lost in a later update.
+- Confirmed `sections/hero-banner.liquid` had reverted to basic `scrollIntoView` without arrival cue/highlight logic.
+
+Changes reapplied (evidence-first)
+- `sections/hero-banner.liquid`
+  - Re-added mobile-targeted arrival cue animations for destination section and heading:
+    - `.hero-banner__scroll-target-highlight`
+    - `.hero-banner__scroll-target-heading-highlight`
+  - Replaced basic click handler with robust in-page scroll flow:
+    - target resolution from CTA hash (`href="#..."`) with `data-scroll-target` fallback,
+    - sticky-header-aware top offset calculation,
+    - smooth `window.scrollTo` behavior (with reduced-motion fallback),
+    - intersection-based arrival cue trigger (`IntersectionObserver`) + timeout fallback when observer is unavailable,
+    - repeat-tap-safe class reset/restart for cue animation.
+
+Why this addresses the issue
+- `SHOP NOW` now scrolls cleanly to the collections anchor and lands with the section title visible under sticky headers.
+- Users get a subtle visual confirmation when arriving at the target section.
+- Motion remains accessibility-safe via `prefers-reduced-motion` handling.
+
+Validation snapshot
+- Verified targeted diff:
+  - `git diff -- sections/hero-banner.liquid`
+- No browser/device manual QA run in this session.
+
+Open TODOs (next session)
+1) iPhone Safari homepage QA: tap `SHOP NOW`, confirm smooth scroll landing and brief arrival cue.
+2) Android Chrome homepage QA: confirm same behavior with no jitter.
+3) Re-verify desktop in-page anchor behavior remains unobtrusive.
+
+Patch: Reapply footer responsive alignment/contrast fixes after update regression
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-reapply-footer-responsive-fixes-after-update
+
+Context
+- User reported footer improvements were lost in a later update.
+- Confirmed regression: `assets/section-footer.css` and `sections/footer.liquid` had reverted to prior versions.
+
+Changes reapplied (evidence-first)
+1) `assets/section-footer.css`
+- Restored responsive footer structure:
+  - Mobile (`max-width: 749px`): one block per line, clear spacing between categories, larger tap targets.
+  - Tablet/Desktop (`min-width: 750px`): side-by-side column layout with consistent gaps.
+- Restored readability improvements for dark backgrounds:
+  - stronger foreground-driven text/link contrast across footer content.
+- Restored balanced icon sizing:
+  - normalized social icon container/icon dimensions,
+  - normalized payment icon item/icon dimensions.
+- Removed brittle section-specific newsletter selectors and kept reusable footer-level selectors.
+
+2) `sections/footer.liquid` mobile accordion script
+- Restored scoped heading selector to footer block headings only.
+- Restored safe guard when heading has no adjacent details content.
+- Restored keyboard accessibility improvement:
+  - `keydown` handler with `Enter`/`Space` support instead of broad `keypress`.
+
+Why this addresses the issue
+- Footer stays vertical and easy to tap on mobile, while becoming neat columns on larger screens.
+- Link/text contrast is more readable on darker footer backgrounds.
+- Social/payment rows have consistent icon scale and spacing, improving visual balance.
+
+Validation snapshot
+- Verified targeted diffs:
+  - `git diff -- assets/section-footer.css sections/footer.liquid`
+- Verified patch hygiene:
+  - `git diff --check -- assets/section-footer.css sections/footer.liquid`
+- No browser/device manual QA run in this session.
+
+Open TODOs (next session)
+1) iPhone Safari + Android Chrome: verify mobile footer accordion/tap targets and spacing.
+2) Tablet/Desktop: verify footer block column alignment with different block counts.
+3) Confirm final contrast tuning against active color scheme in Theme Editor.
