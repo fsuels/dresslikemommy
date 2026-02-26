@@ -143,6 +143,7 @@ if (!customElements.get('media-gallery')) {
       setActiveMedia(mediaId, options = {}) {
         const { preventScroll = false } = options;
         const isDesktopViewport = this.mql.matches;
+        const viewerSlider = this.elements.viewer?.slider || null;
         const activeMedia =
           this.elements.viewer.querySelector(`[data-media-id="${mediaId}"]`) ||
           this.elements.viewer.querySelector('[data-media-id]');
@@ -159,9 +160,8 @@ if (!customElements.get('media-gallery')) {
 
         this.preventStickyHeader();
         window.setTimeout(() => {
-          if (!isDesktopViewport || this.elements.thumbnails) {
-            activeMedia.parentElement.scrollTo({ left: activeMedia.offsetLeft });
-          }
+          const sliderToScroll = viewerSlider || activeMedia.parentElement;
+          if (sliderToScroll) sliderToScroll.scrollTo({ left: activeMedia.offsetLeft });
           if (preventScroll || !isDesktopViewport) return;
           const activeMediaRect = activeMedia.getBoundingClientRect();
           // Don't scroll if the image is already in view

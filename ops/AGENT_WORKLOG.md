@@ -5398,3 +5398,25 @@ Open TODOs (manual QA)
 1) On mobile PDP (real device), swipe left/right repeatedly and verify exactly one image change per swipe.
 2) On the last media item, swipe forward and confirm it wraps to the first item; from first, swipe backward and confirm wrap to last.
 3) Verify desktop PDP media navigation still works (buttons/arrows, no regressions in share/stepper placement).
+
+Session: Desktop PDP gallery loop navigation alignment (always scroll to wrapped slide)
+Date: 2026-02-26
+AGENT_CONTINUITY_ANCHOR: 2026-02-26-desktop-pdp-loop-scroll-alignment
+
+Changes applied (evidence-first)
+- `assets/media-gallery.js`
+  - In `setActiveMedia(...)`, removed desktop conditional gating that only scrolled when thumbnails existed.
+  - Updated behavior to always scroll the gallery viewer slider (fallback: parent list) to the selected media offset.
+
+Why
+- User requested desktop gallery navigation to loop reliably from last image to first.
+- Ensures wrapped target media is always brought into view on desktop when loop navigation advances.
+
+Validation snapshot
+- `node --check assets/media-gallery.js`
+- `git diff --check -- assets/media-gallery.js`
+
+Open TODOs (manual QA)
+1) On desktop PDP, click next repeatedly through the final image and confirm next goes to image 1.
+2) Click previous on image 1 and confirm it wraps to the last image.
+3) Verify mobile swipe behavior remains one-swipe-per-image.
