@@ -288,3 +288,40 @@ cart-items {
     gap: 1rem;
   }
 }
+
+/* Trust badges on cart page */
+.cart-page__trust-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  color: rgba(var(--color-foreground), 0.6);
+  letter-spacing: 0.02rem;
+}
+
+.trust-badge svg {
+  flex-shrink: 0;
+  color: rgba(var(--color-foreground), 0.45);
+}
+
+@media screen and (max-width: 749px) {
+  .cart-page__trust-badges {
+    gap: 0.8rem 1.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  .trust-badge {
+    font-size: 1.1rem;
+  }
+}
