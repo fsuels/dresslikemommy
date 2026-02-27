@@ -289,6 +289,83 @@ cart-items {
   }
 }
 
+/* Savings summary on cart page */
+.cart-savings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 1rem;
+  background: rgba(46, 125, 50, 0.08);
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  color: #2e7d32;
+}
+
+.cart-savings svg {
+  flex-shrink: 0;
+  color: #2e7d32;
+}
+
+/* Discount code field on cart page */
+.cart-page__discount {
+  margin-bottom: 1.5rem;
+}
+
+.cart-page__discount-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.4rem;
+  color: rgba(var(--color-foreground), 0.65);
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+.cart-page__discount-btn:hover {
+  color: rgb(var(--color-foreground));
+}
+
+.cart-page__discount-form {
+  display: none;
+  margin-top: 1rem;
+}
+
+.cart-page__discount-form.is-open {
+  display: block;
+}
+
+.cart-page__discount-input-wrap {
+  display: flex;
+  gap: 0.8rem;
+  max-width: 36rem;
+}
+
+.cart-page__discount-input {
+  flex: 1;
+  padding: 1rem 1.2rem;
+  font-size: 1.4rem;
+}
+
+.cart-page__discount-apply {
+  padding: 1rem 1.6rem;
+  font-size: 1.4rem;
+  min-height: unset;
+  min-width: unset;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 749px) {
+  .cart-page__discount-input-wrap {
+    max-width: 100%;
+  }
+}
+
 /* Trust badges on cart page */
 .cart-page__trust-badges {
   display: flex;

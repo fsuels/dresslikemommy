@@ -444,3 +444,102 @@ cart-remove-button .icon-remove {
     padding-left: 0;
   }
 }
+
+/* Cross-sell / "Complete the Look" on cart page */
+.cart-page__cross-sell {
+  padding: 2.5rem 0 0;
+  margin-top: 1rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+.cart-page__cross-sell-heading {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  margin: 0 0 1.5rem;
+  color: rgba(var(--color-foreground), 0.7);
+  font-weight: 600;
+}
+
+.cart-page__cross-sell-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.cart-page__cross-sell-item {
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-radius: 0.6rem;
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cart-page__cross-sell-item:hover {
+  border-color: rgba(var(--color-foreground), 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.cart-page__cross-sell-img-wrap {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: rgba(var(--color-foreground), 0.03);
+}
+
+.cart-page__cross-sell-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.cart-page__cross-sell-item:hover .cart-page__cross-sell-img {
+  transform: scale(1.05);
+}
+
+.cart-page__cross-sell-info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cart-page__cross-sell-name {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cart-page__cross-sell-price {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgba(var(--color-foreground), 0.8);
+}
+
+@media screen and (max-width: 749px) {
+  .cart-page__cross-sell-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .cart-page__cross-sell-heading {
+    font-size: 1.4rem;
+  }
+
+  .cart-page__cross-sell-info {
+    padding: 0.8rem;
+  }
+
+  .cart-page__cross-sell-name {
+    font-size: 1.2rem;
+  }
+
+  .cart-page__cross-sell-price {
+    font-size: 1.3rem;
+  }
+}
