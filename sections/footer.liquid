@@ -486,7 +486,7 @@
     {
       "type": "checkbox",
       "id": "show_policy",
-      "default": false,
+      "default": true,
       "label": "t:sections.footer.settings.show_policy.label"
     },
     {
@@ -580,6 +580,7 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 
     heading.addEventListener('keydown', (event) => {
+      // Only handle Enter and Space keys; ignore other key presses
       if (event.key !== 'Enter' && event.key !== ' ') {
         return
       }
