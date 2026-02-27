@@ -5717,3 +5717,25 @@ Verification:
 Open items:
 - Remaining 10 static `<style>` blocks are after `</html>`; extracting/moving those is deferred to avoid render-order/regression risk.
 - Visual QA still recommended on home, collection, product, cart, article, and 404 templates.
+
+### Task: Announcement bar schema translation-key support (Option B)
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-announcement-bar-schema-translation-key-support
+Changes:
+- `sections/announcement-bar.liquid`
+  - Updated announcement block `text` default from hardcoded English to translation key:
+    - `t:sections.announcement-bar.blocks.text.settings.text`
+- `locales/*.schema.json`
+  - Added key path `sections.announcement-bar.blocks.text.settings.text` under `sections.announcement-bar.blocks.text.settings` in every schema locale file to satisfy cross-locale matching checks.
+  - Set localized values in:
+    - `locales/es.schema.json`: `Bienvenido a nuestra tienda`
+    - `locales/fr.schema.json`: `Bienvenue dans notre boutique`
+  - Set fallback value `Welcome to our store` in the remaining schema locale files.
+
+Verification:
+- Confirmed `announcement-bar` block schema now references the translation key (no hardcoded default text).
+- Confirmed all schema locale files include the new key path used by the block default.
+- Ran `shopify theme check --fail-level error --output text`; no remaining `MatchingTranslations` error for `sections.announcement-bar.blocks.text.settings.text` (other pre-existing translation errors remain from unrelated keys).
+
+Open items:
+- Manual Theme Editor check recommended: add/reset announcement block text in EN/ES/FR contexts to confirm localized default appears as expected.
