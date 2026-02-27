@@ -5515,3 +5515,33 @@ Validation snapshot
 
 Open TODOs / NEEDS_DATA
 1) If IDE still does not show file, refresh file explorer or reopen workspace root.
+
+Session: Normalize variant option labels to prevent double-colon display
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-normalize-option-label-colons
+
+Changes applied (evidence-first)
+- `snippets/product-variant-picker.liquid`
+  - Added `option_label` normalization inside the option loop: trims whitespace and removes a trailing `:` when present before rendering legends.
+  - Updated swatch and color-image legends to render `{{ option_label }}:` so display remains a single colon.
+- `sections/cart-notification-product.liquid`
+  - Normalized `option.name` before rendering `<dt>` labels to avoid `::` in cart notification variant rows.
+- `sections/main-cart-items.liquid`
+  - Normalized `option.name` before rendering `<dt>` labels in main cart item variant rows.
+- `snippets/cart-drawer.liquid`
+  - Normalized `option.name` before rendering `<dt>` labels in cart drawer variant rows.
+- `sections/pickup-availability.liquid`
+  - Normalized `product_option.name` before rendering variant label/value text.
+
+Why
+- Product option names can include a trailing colon in Shopify admin (e.g., `Color:`). Existing templates appended another `:` in UI, producing `Color:: Pink`.
+- Normalizing trailing punctuation at render time guarantees consistent `Label: Value` output without requiring admin data changes.
+
+Validation snapshot
+- `git diff --check -- snippets/product-variant-picker.liquid sections/cart-notification-product.liquid sections/main-cart-items.liquid snippets/cart-drawer.liquid sections/pickup-availability.liquid`
+- `rg -n "\{\{\s*option\.name\s*\}\}\s*:|\{\{\s*option\.name\s*\|\s*escape\s*\}\}\s*:|\{\{\s*product_option\.name\s*\|\s*escape\s*\}\}\s*:" snippets sections` (no matches)
+
+Open TODOs (manual QA)
+1) PDP variant picker: verify `Color: Pink` (single colon) on products where option name in admin includes `Color:`.
+2) Cart drawer / cart page / cart notification: verify variant rows do not show double colons.
+3) Pickup availability drawer: verify option label/value formatting remains correct.

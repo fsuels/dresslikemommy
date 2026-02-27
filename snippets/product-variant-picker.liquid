@@ -13,6 +13,12 @@
         assign swatch_count = option.values | map: 'swatch' | compact | size
         assign picker_type = block.settings.picker_type
         assign option_name_downcased = option.name | downcase
+        assign option_label = option.name | strip
+        if option_label != blank and option_label | slice: -1 == ':'
+          assign option_label_length = option_label | size
+          assign option_label_without_trailing_colon_length = option_label_length | minus: 1
+          assign option_label = option_label | slice: 0, option_label_without_trailing_colon_length
+        endif
         assign is_color_option = false
         assign hide_single_value_color_option = false
         assign available_color_value_count = 0
@@ -86,7 +92,7 @@
       {%- elsif picker_type == 'swatch' -%}
         <fieldset class="js product-form__input product-form__input--swatch">
           <legend class="form__label">
-            {{ option.name }}:
+            {{ option_label }}:
             <span data-selected-swatch-value="{{ option.name }}">
               {{- option.selected_value -}}
             </span>
@@ -101,7 +107,7 @@
       {%- elsif picker_type == 'color_image' -%}
         <fieldset class="js product-form__input product-form__input--color-image">
           <legend class="form__label">
-            {{ option.name }}:
+            {{ option_label }}:
             <span data-selected-swatch-value="{{ option.name }}">
               {{- option.selected_value -}}
             </span>

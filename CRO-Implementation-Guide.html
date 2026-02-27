@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DressLikeMommy — How to Reach 10/10 on Every CRO Factor</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; color: #1a1a2e; line-height: 1.7; }
+  .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  h1 { font-size: 2rem; margin-bottom: 0.3rem; }
+  .subtitle { color: #666; margin-bottom: 2rem; }
+
+  /* Score chips */
+  .score-chip { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
+  .chip-now { background: #fff3e0; color: #e65100; }
+  .chip-goal { background: #e8f5e9; color: #2e7d32; }
+  .arrow-chip { color: #999; font-size: 0.9rem; }
+
+  /* Category sections */
+  .cat { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 2rem; overflow: hidden; border: 1px solid #eee; }
+  .cat-header { padding: 1.5rem; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+  .cat-header h2 { font-size: 1.3rem; }
+  .cat-body { padding: 1.5rem; }
+
+  /* Sub-sections */
+  .fix { border: 1px solid #e3e8ee; border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem; }
+  .fix:last-child { margin-bottom: 0; }
+  .fix-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem; }
+  .fix-num { background: #1565c0; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+  .fix-num.critical { background: #c62828; }
+  .fix-title { font-weight: 700; font-size: 1.05rem; }
+  .fix p { margin-bottom: 0.6rem; font-size: 0.95rem; color: #333; }
+  .fix p:last-child { margin-bottom: 0; }
+
+  /* Impact badge */
+  .impact { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05rem; padding: 0.15rem 0.5rem; border-radius: 3px; margin-left: 0.5rem; }
+  .impact-high { background: #ffebee; color: #c62828; }
+  .impact-med { background: #fff3e0; color: #e65100; }
+  .impact-low { background: #e3f2fd; color: #1565c0; }
+
+  /* Code blocks */
+  pre { background: #1e1e2e; color: #cdd6f4; padding: 1rem 1.25rem; border-radius: 8px; overflow-x: auto; font-size: 0.82rem; line-height: 1.6; margin: 0.75rem 0; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; }
+  code { font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.85rem; }
+  p code, li code { background: #f0f0f5; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.82rem; }
+
+  /* File path label */
+  .file-label { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: #666; background: #f5f5f5; padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.3rem; font-family: monospace; }
+
+  /* Section divider */
+  .section-divider { text-align: center; padding: 2.5rem 0 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15rem; color: #aaa; font-weight: 600; }
+
+  /* Lists */
+  ul { padding-left: 1.5rem; margin: 0.5rem 0; }
+  li { margin-bottom: 0.3rem; font-size: 0.95rem; }
+
+  @media (max-width: 640px) {
+    .cat-header { flex-direction: column; align-items: flex-start; }
+    pre { font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>How to Reach 10/10 on Every Factor</h1>
+<p class="subtitle">DressLikeMommy Cart & Checkout — Implementation Guide with exact code changes</p>
+
+<!-- ================================================================ -->
+<div class="section-divider">STRONG FACTORS — 8-9 → 10</div>
+<!-- ================================================================ -->
+
+<!-- ============================================ -->
+<!-- TRUST & SECURITY: 9 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>🛡️ Trust & Security</h2>
+    <div><span class="score-chip chip-now">Now: 9</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>You already have 4 trust badges, dynamic payment icons, and a lock on the CTA. To reach 10, add <strong>a real aggregate review rating</strong> and a <strong>satisfaction guarantee badge</strong>.</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num critical">1</span> <span class="fix-title">Add aggregate store rating near checkout CTA</span><span class="impact impact-high">High Impact</span></div>
+      <p>If you use Judge.me, Loox, Stamped, or similar, pull your real aggregate rating. This adds powerful third-party validation right before the purchase decision.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — above the checkout CTA (line ~609)</p>
+<pre>&lt;!-- Aggregate rating — add just before cart__ctas --&gt;
+&lt;div class="cart-drawer__social-proof"&gt;
+  &lt;svg width="14" height="14" viewBox="0 0 24 24" fill="#f5a623" stroke="none"&gt;
+    &lt;polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/&gt;
+  &lt;/svg&gt;
+  &lt;span&gt;Rated &lt;strong&gt;4.8/5&lt;/strong&gt; by 1,200+ families&lt;/span&gt;
+&lt;/div&gt;</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-drawer__social-proof {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0;
+  font-size: 1.2rem;
+  color: rgba(var(--color-foreground), 0.7);
+}
+.cart-drawer__social-proof svg { flex-shrink: 0; }</pre>
+      <p><strong>Important:</strong> Only use real numbers. Update these values to match your actual review data. If you use Judge.me, you can pull this dynamically with <code>{{ shop.metafields.judgeme.all_reviews_rating }}</code>.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">2</span> <span class="fix-title">Add satisfaction guarantee badge</span><span class="impact impact-med">Medium Impact</span></div>
+      <p>Replace the generic "SSL Encrypted" badge (which is a given for all Shopify stores) with a more conversion-focused "100% Satisfaction Guaranteed" badge.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — in the trust badges section (line ~640)</p>
+<pre>&lt;!-- Replace the SSL Encrypted badge with: --&gt;
+&lt;div class="trust-badge"&gt;
+  &lt;svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;
+    &lt;circle cx="12" cy="12" r="10"/&gt;
+    &lt;path d="M9 12l2 2 4-4"/&gt;
+  &lt;/svg&gt;
+  &lt;span&gt;100% Satisfaction Guaranteed&lt;/span&gt;
+&lt;/div&gt;</pre>
+      <p>Do the same replacement in <code>sections/main-cart-footer.liquid</code> to keep them consistent.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- PRICE TRANSPARENCY: 9 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>💰 Price Transparency</h2>
+    <div><span class="score-chip chip-now">Now: 9</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>Pricing is already strong. The gap is: (1) no explicit "Shipping: FREE" line in the totals, and (2) no per-item savings display.</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num critical">1</span> <span class="fix-title">Add explicit "Shipping: FREE" line in totals</span><span class="impact impact-high">High Impact</span></div>
+      <p>Since you offer free shipping on all orders, display it as a line item in the totals. Seeing "FREE" crossed-out-style or highlighted green is a proven conversion booster — it removes the #1 reason for cart abandonment (unexpected costs).</p>
+      <p class="file-label">snippets/cart-drawer.liquid — right above the totals div (line ~589)</p>
+<pre>&lt;!-- Explicit free shipping line --&gt;
+&lt;div class="cart-shipping-line"&gt;
+  &lt;span&gt;Shipping&lt;/span&gt;
+  &lt;span class="cart-shipping-free"&gt;FREE&lt;/span&gt;
+&lt;/div&gt;</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-shipping-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.7);
+}
+.cart-shipping-free {
+  font-weight: 700;
+  color: #2e7d32;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}</pre>
+      <p>Do the same in <code>sections/main-cart-footer.liquid</code> above the totals div.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">2</span> <span class="fix-title">Per-item savings inline</span><span class="impact impact-low">Lower Impact</span></div>
+      <p>Show per-item savings next to each discounted product so customers see value at every line.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — inside the line item price area (after line ~259)</p>
+<pre>{%- if item.original_line_price != item.final_line_price -%}
+  &lt;!-- Add this after the discounted prices block --&gt;
+  &lt;div class="cart-item__savings"&gt;
+    Save {{ item.original_line_price | minus: item.final_line_price | money }}
+  &lt;/div&gt;
+{%- endif -%}</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-item__savings {
+  font-size: 1.1rem;
+  color: #2e7d32;
+  font-weight: 600;
+  margin-top: 0.3rem;
+}</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- DRAWER/PAGE CONSISTENCY: 9 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>🔄 Drawer / Page Consistency</h2>
+    <div><span class="score-chip chip-now">Now: 9</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>The only gap is the cross-sell heading mismatch. Easy fix.</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">1</span> <span class="fix-title">Unify cross-sell heading</span><span class="impact impact-low">Lower Impact</span></div>
+      <p>Change the cart drawer heading from "You may also like" to "Complete the Look" (matching the cart page). "Complete the Look" is stronger for a fashion brand because it implies the customer's outfit isn't finished yet.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — line 475</p>
+<pre>&lt;!-- Change: --&gt;
+&lt;h3 class="cart-drawer__upsell-heading"&gt;You may also like&lt;/h3&gt;
+
+&lt;!-- To: --&gt;
+&lt;h3 class="cart-drawer__upsell-heading"&gt;Complete the Look&lt;/h3&gt;</pre>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">2</span> <span class="fix-title">Match every new feature in both locations</span><span class="impact impact-med">Medium Impact</span></div>
+      <p>As you add features from this guide (shipping line, social proof rating, low stock warnings, etc.), always add them to <strong>both</strong> the cart drawer and the cart page. Use the same class names, same Liquid logic, same copy. Every feature in this document should be implemented in both places.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- CTA DESIGN: 8 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>🔘 CTA Design & Placement</h2>
+    <div><span class="score-chip chip-now">Now: 8</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>Gaps: (1) no dynamic checkout / express payments, (2) no visual urgency on the CTA, (3) cart page CTA not visible above the fold on desktop.</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num critical">1</span> <span class="fix-title">Enable dynamic checkout buttons (Apple Pay, Google Pay, Shop Pay)</span><span class="impact impact-high">High Impact</span></div>
+      <p>Your code already supports this — <code>main-cart-footer.liquid</code> line 128 has the conditional <code>additional_checkout_buttons</code>. The issue is it may not be enabled in your Shopify settings.</p>
+      <p><strong>Steps in Shopify Admin:</strong></p>
+      <ul>
+        <li>Go to <strong>Settings → Payments</strong></li>
+        <li>Enable <strong>Shopify Payments</strong> (required for Apple Pay / Google Pay)</li>
+        <li>Go to <strong>Settings → Checkout → Order processing</strong></li>
+        <li>Check "Show dynamic checkout buttons"</li>
+      </ul>
+      <p>For the cart drawer, add the same block after the checkout CTA:</p>
+      <p class="file-label">snippets/cart-drawer.liquid — after the cart__ctas div (line ~623)</p>
+<pre>{%- if additional_checkout_buttons -%}
+  &lt;div class="cart__dynamic-checkout-buttons additional-checkout-buttons"
+       style="margin-top:0.8rem;"&gt;
+    {{ content_for_additional_checkout_buttons }}
+  &lt;/div&gt;
+{%- endif -%}</pre>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">2</span> <span class="fix-title">Add subtle CTA pulse animation</span><span class="impact impact-med">Medium Impact</span></div>
+      <p>A very subtle pulse draws the eye to the CTA. Keep it minimal — one pulse cycle, not infinite.</p>
+      <p class="file-label">assets/component-cart.css</p>
+<pre>@keyframes cta-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(var(--color-button), 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(var(--color-button), 0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--color-button), 0); }
+}
+
+.cart__checkout-button {
+  animation: cta-pulse 2s ease-in-out 1;  /* plays once, not infinite */
+}</pre>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">3</span> <span class="fix-title">Desktop sticky order summary sidebar</span><span class="impact impact-high">High Impact</span></div>
+      <p>On desktop, the CTA is far below the fold. Major retailers use a two-column layout: items left, sticky summary right. This is a bigger refactor — the summary stays visible as you scroll through items.</p>
+      <p class="file-label">assets/component-cart.css — modify the desktop layout</p>
+<pre>@media screen and (min-width: 990px) {
+  .cart__contents {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .cart__footer-wrapper:last-child {
+    position: sticky;
+    top: 2rem;
+    /* Remove the existing left-right flex layout */
+  }
+
+  .cart__footer-wrapper:last-child .cart__footer {
+    flex-direction: column;
+  }
+
+  .cart__footer-wrapper:last-child .cart__footer > * {
+    width: 100%;
+  }
+}</pre>
+      <p><strong>Note:</strong> This requires restructuring the page template slightly so the footer section renders inside the cart form's grid. This is a more involved change — test thoroughly.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- CART EDITING: 8 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>✏️ Cart Editing UX</h2>
+    <div><span class="score-chip chip-now">Now: 8</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>Gaps: (1) no undo after removing an item, (2) no variant change in-cart.</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num critical">1</span> <span class="fix-title">Add "Undo" toast after item removal</span><span class="impact impact-high">High Impact</span></div>
+      <p>When a customer removes an item, show a toast notification for 5 seconds that lets them undo it. Store the removed item's variant ID and quantity, then re-add on undo.</p>
+      <p class="file-label">assets/cart.js — inside the updateQuantity method, after the section render loop</p>
+<pre>// After: this.getSectionsToRender().forEach(...)
+// Add undo functionality when quantity is set to 0 (removal)
+if (parseInt(quantity) === 0) {
+  const removedItem = { line, variantId, quantity: quantityElement?.getAttribute('value') || 1 };
+  this.showUndoToast(removedItem);
+}</pre>
+      <p>Add this new method to the CartItems class:</p>
+<pre>showUndoToast(removedItem) {
+  // Remove any existing toast
+  document.querySelector('.cart-undo-toast')?.remove();
+
+  const toast = document.createElement('div');
+  toast.className = 'cart-undo-toast';
+  toast.innerHTML = `
+    Item removed.
+    &lt;button type="button" class="cart-undo-btn"&gt;Undo&lt;/button&gt;
+  `;
+  document.body.appendChild(toast);
+
+  // Animate in
+  requestAnimationFrame(() => toast.classList.add('is-visible'));
+
+  const undoBtn = toast.querySelector('.cart-undo-btn');
+  let timeout = setTimeout(() => {
+    toast.classList.remove('is-visible');
+    setTimeout(() => toast.remove(), 300);
+  }, 5000);
+
+  undoBtn.addEventListener('click', () => {
+    clearTimeout(timeout);
+    // Re-add the item via the Cart API
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: removedItem.variantId,
+        quantity: parseInt(removedItem.quantity)
+      })
+    })
+    .then(() =&gt; location.reload())
+    .catch(() =&gt; toast.remove());
+    toast.remove();
+  });
+}</pre>
+      <p class="file-label">assets/component-cart.css</p>
+<pre>.cart-undo-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #1a1a2e;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+.cart-undo-toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.cart-undo-btn {
+  background: none;
+  border: none;
+  color: #64b5f6;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 1.4rem;
+  padding: 0;
+}</pre>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">2</span> <span class="fix-title">In-cart variant selector for size changes</span><span class="impact impact-med">Medium Impact</span></div>
+      <p>For your matching family clothing, parents frequently need to adjust sizes. Add a size dropdown next to each cart item that swaps the variant via AJAX.</p>
+      <p>This is a more complex feature. The approach:</p>
+      <ul>
+        <li>For each cart item, fetch its product's available variants using <code>item.product.variants</code></li>
+        <li>Render a <code>&lt;select&gt;</code> dropdown showing all size options</li>
+        <li>On change, call <code>/cart/change.js</code> to update the line item's variant</li>
+      </ul>
+      <p class="file-label">snippets/cart-drawer.liquid — inside cart-item__details (after the variant options display)</p>
+<pre>{%- if item.product.variants.size > 1 -%}
+  &lt;div class="cart-item__variant-swap"&gt;
+    &lt;select class="cart-item__size-select"
+            data-line="{{ item.index | plus: 1 }}"
+            data-current-variant="{{ item.variant.id }}"
+            onchange="swapCartVariant(this)"&gt;
+      {%- for variant in item.product.variants -%}
+        &lt;option value="{{ variant.id }}"
+                {% if variant.id == item.variant.id %}selected{% endif %}
+                {% unless variant.available %}disabled{% endunless %}&gt;
+          {{ variant.title }}{% unless variant.available %} — Sold out{% endunless %}
+        &lt;/option&gt;
+      {%- endfor -%}
+    &lt;/select&gt;
+  &lt;/div&gt;
+{%- endif -%}</pre>
+      <p class="file-label">assets/cart.js — add as a global function</p>
+<pre>function swapCartVariant(select) {
+  const line = select.dataset.line;
+  const newVariantId = select.value;
+  const currentVariantId = select.dataset.currentVariant;
+  if (newVariantId === currentVariantId) return;
+
+  // Get current quantity
+  const qtyInput = document.querySelector(
+    `#Quantity-${line}, #Drawer-quantity-${line}`
+  );
+  const quantity = qtyInput ? parseInt(qtyInput.value) : 1;
+
+  // Remove old variant, then add new one
+  fetch('/cart/change.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ line: parseInt(line), quantity: 0 })
+  })
+  .then(() =&gt; fetch('/cart/add.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: parseInt(newVariantId), quantity })
+  }))
+  .then(() =&gt; location.reload());
+}</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ERROR HANDLING: 8 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>⚠️ Error Handling</h2>
+    <div><span class="score-chip chip-now">Now: 8</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>Gaps: (1) no auto-retry on network failure, (2) errors too small, (3) no visual "out of stock" state.</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">1</span> <span class="fix-title">Auto-retry on transient network errors</span><span class="impact impact-med">Medium Impact</span></div>
+      <p class="file-label">assets/cart.js — modify the .catch() in updateQuantity (around line 190)</p>
+<pre>// Replace the existing .catch() block with retry logic:
+.catch((error) =&gt; {
+  if (error instanceof TypeError && error.message === 'Failed to fetch' && !this._retried) {
+    // Auto-retry once after 2 seconds
+    this._retried = true;
+    setTimeout(() =&gt; {
+      this.updateQuantity(line, quantity, name, variantId);
+      this._retried = false;
+    }, 2000);
+    return;
+  }
+  this._retried = false;
+  this.querySelectorAll('.loading__spinner').forEach((overlay) =&gt;
+    overlay.classList.add('hidden')
+  );
+  const errors = document.getElementById('cart-errors')
+    || document.getElementById('CartDrawer-CartErrors');
+  if (error instanceof TypeError && error.message === 'Failed to fetch') {
+    errors.textContent = 'Unable to update cart — please check your connection and try again.';
+  } else {
+    errors.textContent = window.cartStrings.error;
+  }
+})</pre>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">2</span> <span class="fix-title">Visual "out of stock" state with notify-me</span><span class="impact impact-med">Medium Impact</span></div>
+      <p>When an item in the cart becomes unavailable, grey it out and offer a "Notify when back in stock" option.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — wrap the item image (line ~140)</p>
+<pre>{%- unless item.variant.available -%}
+  &lt;div class="cart-item__sold-out-overlay"&gt;Sold Out&lt;/div&gt;
+{%- endunless -%}</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-item__sold-out-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #c62828;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+.cart-item__media { position: relative; }</pre>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">3</span> <span class="fix-title">Make error messages more visible</span><span class="impact impact-low">Lower Impact</span></div>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-item__error-text {
+  font-size: 1.2rem;  /* was inherited small */
+  color: #c62828;
+  font-weight: 500;
+  display: block;
+  padding: 0.4rem 0.6rem;
+  background: #ffebee;
+  border-radius: 4px;
+  margin-top: 0.4rem;
+}</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- MOBILE: 8 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>📱 Mobile Optimization</h2>
+    <div><span class="score-chip chip-now">Now: 8</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>Gaps: (1) no swipe-to-remove, (2) cross-sell images small on mobile.</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">1</span> <span class="fix-title">Swipe-to-remove on cart items</span><span class="impact impact-med">Medium Impact</span></div>
+      <p>Add horizontal swipe detection on cart items in the drawer. When swiped left, reveal a red "Remove" background and remove the item.</p>
+      <p class="file-label">assets/cart.js — add at the end of the file</p>
+<pre>// Swipe-to-remove for mobile cart items
+if ('ontouchstart' in window) {
+  document.addEventListener('touchstart', function(e) {
+    const item = e.target.closest('.cart-item');
+    if (!item || !item.closest('cart-drawer')) return;
+
+    const startX = e.touches[0].clientX;
+    const startY = e.touches[0].clientY;
+    let moved = false;
+
+    function onMove(e) {
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+      if (Math.abs(dy) > Math.abs(dx)) return; // vertical scroll
+      if (dx < -30) {
+        moved = true;
+        item.style.transform = `translateX(${Math.max(dx, -100)}px)`;
+        item.style.transition = 'none';
+      }
+    }
+
+    function onEnd() {
+      document.removeEventListener('touchmove', onMove);
+      document.removeEventListener('touchend', onEnd);
+      if (moved) {
+        const currentX = parseInt(item.style.transform.replace(/[^-\d]/g, '')) || 0;
+        if (currentX < -60) {
+          item.style.transition = 'transform 0.2s, opacity 0.2s';
+          item.style.transform = 'translateX(-100%)';
+          item.style.opacity = '0';
+          setTimeout(() =&gt; {
+            const removeBtn = item.querySelector('cart-remove-button button');
+            if (removeBtn) removeBtn.click();
+          }, 200);
+        } else {
+          item.style.transition = 'transform 0.2s';
+          item.style.transform = '';
+        }
+      }
+    }
+
+    document.addEventListener('touchmove', onMove, { passive: true });
+    document.addEventListener('touchend', onEnd);
+  }, { passive: true });
+}</pre>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">2</span> <span class="fix-title">Larger cross-sell images on mobile</span><span class="impact impact-low">Lower Impact</span></div>
+      <p class="file-label">assets/component-cart-items.css</p>
+<pre>@media screen and (max-width: 749px) {
+  .cart-page__cross-sell-grid {
+    grid-template-columns: 1fr 1fr;  /* already 2-col */
+    gap: 1.2rem;
+  }
+  .cart-page__cross-sell-img-wrap {
+    aspect-ratio: 3/4;  /* taller ratio for clothing */
+  }
+  .cart-page__cross-sell-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- PERFORMANCE: 8 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>⚡ Performance</h2>
+    <div><span class="score-chip chip-now">Now: 8</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>Gaps: (1) no optimistic UI updates, (2) no skeleton loading.</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num critical">1</span> <span class="fix-title">Optimistic UI for quantity changes</span><span class="impact impact-high">High Impact</span></div>
+      <p>Update the displayed quantity and price immediately in the DOM before waiting for the server response. If the server returns a different value, reconcile. This makes the cart feel instant.</p>
+      <p class="file-label">assets/cart.js — at the top of updateQuantity method</p>
+<pre>updateQuantity(line, quantity, name, variantId) {
+  this.enableLoading(line);
+
+  // Optimistic UI: update quantity input immediately
+  const quantityElement =
+    document.getElementById(`Quantity-${line}`)
+    || document.getElementById(`Drawer-quantity-${line}`);
+  if (quantityElement) {
+    quantityElement.value = quantity;
+  }
+
+  // Optimistic UI: update line total immediately (approximate)
+  const lineItem = document.getElementById(`CartItem-${line}`)
+    || document.getElementById(`CartDrawer-Item-${line}`);
+  if (lineItem && parseInt(quantity) > 0) {
+    const priceCents = parseInt(lineItem.dataset.priceCents || 0);
+    const newTotal = priceCents * parseInt(quantity);
+    const priceEl = lineItem.querySelector('.price.price--end:last-child');
+    if (priceEl && priceCents > 0) {
+      // Format as currency (rough — server will correct)
+      priceEl.textContent = (newTotal / 100).toLocaleString('en-US', {
+        style: 'currency', currency: 'USD'
+      });
+    }
+  }
+
+  // ... rest of existing updateQuantity code (the fetch call) ...
+}</pre>
+      <p>The server response will replace the entire section HTML anyway, so this optimistic update just bridges the gap for the 200-500ms fetch delay.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">2</span> <span class="fix-title">Skeleton loading for cross-sell</span><span class="impact impact-low">Lower Impact</span></div>
+      <p>The cross-sell section is server-rendered so it loads with the page. But for the cart drawer (which fetches sections on update), add a skeleton placeholder.</p>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-drawer__upsell-item img[loading="lazy"] {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+@keyframes skeleton-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<div class="section-divider">ADEQUATE FACTORS — 6-7 → 10</div>
+<!-- ================================================================ -->
+
+<!-- ============================================ -->
+<!-- DISCOUNT EXPERIENCE: 7 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>🏷️ Discount & Promo Experience</h2>
+    <div><span class="score-chip chip-now">Now: 7</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>Gaps: (1) no inline validation (redirect to checkout breaks flow), (2) no error/success feedback, (3) no auto-applied discount display.</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num critical">1</span> <span class="fix-title">AJAX discount validation instead of redirect</span><span class="impact impact-high">High Impact</span></div>
+      <p>Currently, clicking "Apply" redirects to <code>/checkout?discount=CODE</code>. If the code is invalid, the user lands on checkout with a confusing error. Instead, validate the code via AJAX and show inline feedback.</p>
+      <p>Shopify doesn't have a public "validate discount" API, but you can use the cart API with a workaround: apply the code via <code>/discount/CODE</code> (which sets a cookie), then fetch the cart to see if the total changed.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — replace the onclick on the Apply button (line ~548)</p>
+<pre>&lt;button type="button" class="cart-drawer__discount-apply button button--secondary"
+        id="CartDrawer-DiscountApply"&gt;Apply&lt;/button&gt;
+&lt;div class="cart-drawer__discount-feedback" id="CartDrawer-DiscountFeedback"&gt;&lt;/div&gt;</pre>
+      <p class="file-label">assets/cart.js — add at the end</p>
+<pre>// Discount code AJAX validation
+document.addEventListener('click', function(e) {
+  const applyBtn = e.target.closest('[id$="DiscountApply"]');
+  if (!applyBtn) return;
+
+  const container = applyBtn.closest('[class*="discount"]');
+  const input = container.querySelector('input[type="text"]');
+  const feedback = container.querySelector('[id$="DiscountFeedback"]');
+  const code = input?.value?.trim();
+
+  if (!code) {
+    feedback.innerHTML = '&lt;span style="color:#c62828"&gt;Please enter a code&lt;/span&gt;';
+    return;
+  }
+
+  applyBtn.disabled = true;
+  applyBtn.textContent = 'Applying...';
+
+  // Step 1: Apply discount via Shopify's discount URL (sets cookie)
+  fetch(`/discount/${encodeURIComponent(code)}`, { redirect: 'follow' })
+    .then(() =&gt; fetch('/cart.js'))
+    .then(r =&gt; r.json())
+    .then(cart =&gt; {
+      // Check if any cart-level discount matches our code
+      const applied = cart.cart_level_discount_applications?.some(
+        d =&gt; d.title.toLowerCase() === code.toLowerCase()
+      );
+      if (applied || cart.total_discount > 0) {
+        feedback.innerHTML =
+          '&lt;span style="color:#2e7d32;font-weight:600"&gt;' +
+          '✓ Code applied! Saving ' + (cart.total_discount / 100).toFixed(2) +
+          '&lt;/span&gt;';
+        // Reload to show updated prices
+        setTimeout(() =&gt; location.reload(), 1000);
+      } else {
+        feedback.innerHTML =
+          '&lt;span style="color:#c62828"&gt;This code is not valid or has expired&lt;/span&gt;';
+      }
+      applyBtn.disabled = false;
+      applyBtn.textContent = 'Apply';
+    })
+    .catch(() =&gt; {
+      feedback.innerHTML =
+        '&lt;span style="color:#c62828"&gt;Something went wrong — please try again&lt;/span&gt;';
+      applyBtn.disabled = false;
+      applyBtn.textContent = 'Apply';
+    });
+});</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-drawer__discount-feedback {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  min-height: 1.6rem;
+}</pre>
+      <p>Apply the same pattern to the cart page discount field.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">2</span> <span class="fix-title">Show auto-applied discounts prominently</span><span class="impact impact-med">Medium Impact</span></div>
+      <p>When Shopify automatic discounts are active, show a prominent banner so customers know they're getting a deal without needing a code.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — in the footer area, above the discount code field</p>
+<pre>{%- if cart.cart_level_discount_applications.size > 0 -%}
+  &lt;div class="cart-auto-discount"&gt;
+    {%- for discount in cart.cart_level_discount_applications -%}
+      &lt;div class="cart-auto-discount__item"&gt;
+        &lt;svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2"&gt;&lt;path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/&gt;
+          &lt;line x1="7" y1="7" x2="7.01" y2="7"/&gt;&lt;/svg&gt;
+        &lt;strong&gt;{{ discount.title }}&lt;/strong&gt; applied — saving {{ discount.total_allocated_amount | money }}
+      &lt;/div&gt;
+    {%- endfor -%}
+  &lt;/div&gt;
+{%- endif -%}</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-auto-discount__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1rem;
+  background: rgba(46, 125, 50, 0.08);
+  border-radius: 0.4rem;
+  font-size: 1.2rem;
+  color: #2e7d32;
+  margin-bottom: 0.8rem;
+}</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- CROSS-SELL: 7 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>🛍️ Cross-sell & Upsell</h2>
+    <div><span class="score-chip chip-now">Now: 7</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>Gaps: (1) no quick-add button, (2) only uses first item's collection, (3) no Shopify Recommendations API.</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num critical">1</span> <span class="fix-title">Add quick "Add to Cart" button on cross-sell items</span><span class="impact impact-high">High Impact</span></div>
+      <p>This is the single biggest improvement for AOV. Currently, customers must visit the PDP to add a recommended item — most won't bother. A simple "Add" button removes that friction entirely.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — inside each upsell item (after the upsell-info div, line ~506)</p>
+<pre>&lt;!-- Replace the entire upsell item link with: --&gt;
+&lt;div class="cart-drawer__upsell-item"&gt;
+  {%- if product.featured_image -%}
+    &lt;a href="{{ product.url }}" tabindex="-1"&gt;
+      &lt;img src="{{ product.featured_image | image_url: width: 200 }}"
+           alt="{{ product.featured_image.alt | escape }}"
+           width="70" height="70" loading="lazy"
+           class="cart-drawer__upsell-img"&gt;
+    &lt;/a&gt;
+  {%- endif -%}
+  &lt;div class="cart-drawer__upsell-info"&gt;
+    &lt;a href="{{ product.url }}" class="cart-drawer__upsell-name"&gt;
+      {{ product.title | escape | split: ' | ' | first }}
+    &lt;/a&gt;
+    &lt;span class="cart-drawer__upsell-price"&gt;{{ product.price | money }}&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;button type="button" class="cart-drawer__upsell-add"
+          data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+          onclick="quickAddToCart(this)"
+          {% unless product.available %}disabled{% endunless %}&gt;
+    {%- if product.available -%}Add{%- else -%}Sold out{%- endif -%}
+  &lt;/button&gt;
+&lt;/div&gt;</pre>
+      <p class="file-label">assets/cart.js — add the quickAddToCart function</p>
+<pre>function quickAddToCart(btn) {
+  const variantId = btn.dataset.variantId;
+  btn.disabled = true;
+  btn.textContent = 'Adding...';
+
+  fetch('/cart/add.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ items: [{ id: parseInt(variantId), quantity: 1 }] })
+  })
+  .then(r =&gt; {
+    if (!r.ok) throw new Error('Failed');
+    return r.json();
+  })
+  .then(() =&gt; {
+    btn.textContent = '✓ Added';
+    btn.style.background = '#2e7d32';
+    btn.style.color = 'white';
+    // Refresh the cart drawer contents
+    fetch('/cart.js').then(r =&gt; r.json()).then(cart =&gt; {
+      publish(PUB_SUB_EVENTS.cartUpdate, { source: 'quick-add', cartData: cart });
+    });
+    setTimeout(() =&gt; location.reload(), 800);
+  })
+  .catch(() =&gt; {
+    btn.textContent = 'Error';
+    setTimeout(() =&gt; { btn.textContent = 'Add'; btn.disabled = false; }, 2000);
+  });
+}</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-drawer__upsell-add {
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  background: transparent;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.cart-drawer__upsell-add:hover:not(:disabled) {
+  background: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+}
+.cart-drawer__upsell-add:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}</pre>
+      <p>Apply the same pattern to the cart page cross-sell items.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">2</span> <span class="fix-title">Use Shopify Product Recommendations API</span><span class="impact impact-med">Medium Impact</span></div>
+      <p>Replace the collection-based approach with Shopify's ML-powered recommendations for smarter suggestions.</p>
+      <p class="file-label">assets/cart.js — load recommendations dynamically</p>
+<pre>// Fetch Shopify-powered recommendations for the first cart item
+document.addEventListener('DOMContentLoaded', function() {
+  const upsellGrid = document.getElementById('CartDrawer-Upsell');
+  if (!upsellGrid) return;
+
+  const firstItem = document.querySelector('[data-cart-item]');
+  if (!firstItem) return;
+
+  const productId = firstItem.dataset.productId;
+  fetch(`/recommendations/products.json?product_id=${productId}&limit=6&intent=related`)
+    .then(r =&gt; r.json())
+    .then(data =&gt; {
+      if (!data.products?.length) return;
+      // Filter out products already in cart
+      const cartIds = [...document.querySelectorAll('[data-cart-item]')]
+        .map(el =&gt; el.dataset.productId);
+      const recs = data.products.filter(p =&gt; !cartIds.includes(String(p.id))).slice(0, 3);
+
+      if (recs.length) {
+        upsellGrid.innerHTML = recs.map(p =&gt; `
+          &lt;div class="cart-drawer__upsell-item"&gt;
+            &lt;a href="${p.url}" tabindex="-1"&gt;
+              &lt;img src="${p.featured_image}${'&width=200'}" alt="${p.title}"
+                   width="70" height="70" loading="lazy" class="cart-drawer__upsell-img"&gt;
+            &lt;/a&gt;
+            &lt;div class="cart-drawer__upsell-info"&gt;
+              &lt;a href="${p.url}" class="cart-drawer__upsell-name"&gt;${p.title.split(' | ')[0]}&lt;/a&gt;
+              &lt;span class="cart-drawer__upsell-price"&gt;$${(p.price / 100).toFixed(2)}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;button type="button" class="cart-drawer__upsell-add"
+                    data-variant-id="${p.variants[0].id}"
+                    onclick="quickAddToCart(this)"&gt;Add&lt;/button&gt;
+          &lt;/div&gt;
+        `).join('');
+      }
+    });
+});</pre>
+      <p><strong>Keep the Liquid-rendered version as a fallback</strong> — the JS will replace it if recommendations load. If they don't (no data / slow connection), the existing collection-based suggestions remain.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- VISUAL HIERARCHY: 7 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>🎨 Visual Hierarchy & Layout</h2>
+    <div><span class="score-chip chip-now">Now: 7</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>Gaps: (1) no item count in cart title, (2) no sticky sidebar on desktop, (3) no color swatches for variants.</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">1</span> <span class="fix-title">Cart title with item count</span><span class="impact impact-med">Medium Impact</span></div>
+      <p class="file-label">sections/main-cart-items.liquid — line 31</p>
+<pre>&lt;!-- Change: --&gt;
+&lt;h1 class="title title--primary"&gt;{{ 'sections.cart.title' | t }}&lt;/h1&gt;
+
+&lt;!-- To: --&gt;
+&lt;h1 class="title title--primary"&gt;
+  {{ 'sections.cart.title' | t }}
+  {%- if cart.item_count > 0 -%}
+    &lt;span class="cart-item-count"&gt;({{ cart.item_count }}
+      {%- if cart.item_count == 1 %} item{% else %} items{% endif -%})&lt;/span&gt;
+  {%- endif -%}
+&lt;/h1&gt;</pre>
+      <p class="file-label">assets/component-cart.css</p>
+<pre>.cart-item-count {
+  font-weight: 400;
+  font-size: 0.7em;
+  color: rgba(var(--color-foreground), 0.5);
+}</pre>
+      <p>Do the same for the cart drawer heading in <code>snippets/cart-drawer.liquid</code> line 63.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">2</span> <span class="fix-title">Color swatch previews for variant options</span><span class="impact impact-med">Medium Impact</span></div>
+      <p>For clothing items, showing the actual color swatch next to "Color: Pink" helps customers visually confirm they have the right item. This reduces returns.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — inside the variant options loop (line ~190-198)</p>
+<pre>{%- for option in item.options_with_values -%}
+  &lt;div class="product-option"&gt;
+    &lt;dt&gt;{{ option.name }}:&lt;/dt&gt;
+    &lt;dd&gt;
+      {%- if option.name == 'Color' or option.name == 'Colour' -%}
+        &lt;span class="cart-item__color-swatch"
+              style="background: {{ option.value | handleize | replace: '-', '' }};"
+              title="{{ option.value }}"&gt;&lt;/span&gt;
+      {%- endif -%}
+      {{ option.value -}}
+    &lt;/dd&gt;
+  &lt;/div&gt;
+{%- endfor -%}</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-item__color-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.15);
+  vertical-align: middle;
+  margin-right: 0.3rem;
+}</pre>
+      <p><strong>Note:</strong> The <code>handleize</code> approach maps color names to CSS colors (e.g., "Pink" → "pink"). For custom colors like "Dusty Rose", you'll need a metafield or a swatch image approach instead.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">3</span> <span class="fix-title">Visually distinct totals area</span><span class="impact impact-low">Lower Impact</span></div>
+      <p>Make the totals section stand out more with a subtle background.</p>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-drawer__footer {
+  background: rgba(var(--color-foreground), 0.02);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 0 -1.5rem;
+}</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ACCESSIBILITY: 7 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>♿ Accessibility</h2>
+    <div><span class="score-chip chip-now">Now: 7</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>Gaps: (1) decorative SVGs missing aria-hidden, (2) savings not a live region, (3) cross-sell links lack aria-labels, (4) discount toggle uses inline onclick.</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">1</span> <span class="fix-title">Add aria-hidden to all decorative SVGs</span><span class="impact impact-med">Medium Impact</span></div>
+      <p>Every SVG icon in the trust badges, discount toggle, savings banner, checkout CTA, and continue shopping button is decorative (the text next to it conveys the meaning). Add <code>aria-hidden="true"</code> to each one.</p>
+      <p>In both <code>snippets/cart-drawer.liquid</code> and <code>sections/main-cart-footer.liquid</code>, find every inline SVG and add the attribute:</p>
+<pre>&lt;!-- Before: --&gt;
+&lt;svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"...&gt;
+
+&lt;!-- After: --&gt;
+&lt;svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"...&gt;</pre>
+      <p>This applies to approximately 12-15 SVGs across both files. Every decorative icon needs this.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">2</span> <span class="fix-title">Make savings summary a live region</span><span class="impact impact-med">Medium Impact</span></div>
+      <p class="file-label">snippets/cart-drawer.liquid — on the savings div (line ~583)</p>
+<pre>&lt;!-- Change: --&gt;
+&lt;div class="cart-savings"&gt;
+
+&lt;!-- To: --&gt;
+&lt;div class="cart-savings" role="status" aria-live="polite"&gt;</pre>
+      <p>Do the same in <code>sections/main-cart-footer.liquid</code>.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">3</span> <span class="fix-title">Descriptive aria-labels on cross-sell links</span><span class="impact impact-med">Medium Impact</span></div>
+      <p class="file-label">snippets/cart-drawer.liquid — on each upsell item link</p>
+<pre>&lt;!-- Change: --&gt;
+&lt;a href="{{ product.url }}" class="cart-drawer__upsell-item"&gt;
+
+&lt;!-- To: --&gt;
+&lt;a href="{{ product.url }}" class="cart-drawer__upsell-item"
+   aria-label="View {{ product.title | escape | split: ' | ' | first }} — {{ product.price | money }}"&gt;</pre>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">4</span> <span class="fix-title">Replace inline onclick with progressive enhancement</span><span class="impact impact-low">Lower Impact</span></div>
+      <p>Move the discount toggle behavior from inline <code>onclick</code> to a proper event listener. This ensures it works with JavaScript disabled (graceful degradation) and is cleaner.</p>
+      <p class="file-label">assets/cart.js — add at the end</p>
+<pre>// Progressive enhancement: discount code toggle
+document.querySelectorAll('[class*="discount-btn"]').forEach(btn =&gt; {
+  btn.addEventListener('click', function() {
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', !expanded);
+    const form = this.closest('[class*="discount"]').querySelector('[class*="discount-form"]');
+    if (form) form.classList.toggle('is-open');
+    // Focus the input when opening
+    if (!expanded) {
+      const input = form?.querySelector('input');
+      if (input) setTimeout(() =&gt; input.focus(), 100);
+    }
+  });
+});</pre>
+      <p>Then remove the inline <code>onclick</code> attribute from the discount buttons in both Liquid files. The JS will handle it.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<div class="section-divider">NEEDS WORK — 3-5 → 10</div>
+<!-- ================================================================ -->
+
+<!-- ============================================ -->
+<!-- EMPTY CART RECOVERY: 5 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>🛒 Empty Cart Recovery</h2>
+    <div><span class="score-chip chip-now">Now: 5</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>This is one of your biggest opportunity areas. An empty cart should be a <strong>shopping opportunity</strong>, not a dead end.</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num critical">1</span> <span class="fix-title">Show "Recently Viewed" products in empty cart</span><span class="impact impact-high">High Impact</span></div>
+      <p>Track recently viewed products in <code>localStorage</code> and display them when the cart is empty. These are the highest-converting recommendations because the customer already showed interest.</p>
+      <p class="file-label">assets/cart.js — add recently viewed tracking</p>
+<pre>// Track recently viewed products (call this on PDP pages)
+function trackRecentlyViewed(productData) {
+  const MAX = 10;
+  let recent = JSON.parse(localStorage.getItem('recently_viewed') || '[]');
+  // Remove if already exists, then add to front
+  recent = recent.filter(p =&gt; p.id !== productData.id);
+  recent.unshift(productData);
+  recent = recent.slice(0, MAX);
+  localStorage.setItem('recently_viewed', JSON.stringify(recent));
+}
+
+// Display recently viewed in empty cart state
+function renderRecentlyViewed(container) {
+  const recent = JSON.parse(localStorage.getItem('recently_viewed') || '[]');
+  if (!recent.length) return;
+
+  const html = `
+    &lt;div class="empty-cart__recently-viewed"&gt;
+      &lt;h3 class="empty-cart__section-heading"&gt;Recently Viewed&lt;/h3&gt;
+      &lt;div class="empty-cart__products-grid"&gt;
+        ${recent.slice(0, 4).map(p =&gt; `
+          &lt;a href="${p.url}" class="empty-cart__product"&gt;
+            &lt;img src="${p.image}" alt="${p.title}" width="120" height="120"
+                 loading="lazy" style="object-fit:cover;border-radius:6px;"&gt;
+            &lt;span class="empty-cart__product-title"&gt;${p.title.split(' | ')[0]}&lt;/span&gt;
+            &lt;span class="empty-cart__product-price"&gt;${p.price}&lt;/span&gt;
+          &lt;/a&gt;
+        `).join('')}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  `;
+  container.insertAdjacentHTML('beforeend', html);
+}</pre>
+      <p>Call <code>trackRecentlyViewed()</code> on your PDP (product page) and <code>renderRecentlyViewed()</code> inside the empty cart container. On the PDP, you'd output the product data as JSON:</p>
+      <p class="file-label">sections/main-product.liquid — at the bottom</p>
+<pre>&lt;script&gt;
+  if (typeof trackRecentlyViewed === 'function') {
+    trackRecentlyViewed({
+      id: {{ product.id }},
+      title: {{ product.title | json }},
+      url: {{ product.url | json }},
+      price: {{ product.price | money | json }},
+      image: {{ product.featured_image | image_url: width: 300 | json }}
+    });
+  }
+&lt;/script&gt;</pre>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num critical">2</span> <span class="fix-title">Show bestsellers when cart is empty</span><span class="impact impact-high">High Impact</span></div>
+      <p>If there are no recently viewed products (first visit), show your bestsellers. Use a specific collection handle.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — inside the empty cart state (line ~53, after the Continue Shopping button)</p>
+<pre>{%- comment -%} Bestsellers for empty cart {%- endcomment -%}
+{%- assign bestsellers = collections['best-sellers'] -%}
+{%- if bestsellers and bestsellers.products.size > 0 -%}
+  &lt;div class="empty-cart__bestsellers"&gt;
+    &lt;h3 class="empty-cart__section-heading"&gt;Popular with Families&lt;/h3&gt;
+    &lt;div class="empty-cart__products-grid"&gt;
+      {%- for product in bestsellers.products limit: 4 -%}
+        &lt;a href="{{ product.url }}" class="empty-cart__product"&gt;
+          {%- if product.featured_image -%}
+            &lt;img src="{{ product.featured_image | image_url: width: 300 }}"
+                 alt="{{ product.featured_image.alt | escape }}"
+                 width="120" height="150" loading="lazy"
+                 style="object-fit:cover;border-radius:6px;"&gt;
+          {%- endif -%}
+          &lt;span class="empty-cart__product-title"&gt;
+            {{ product.title | escape | split: ' | ' | first }}
+          &lt;/span&gt;
+          &lt;span class="empty-cart__product-price"&gt;{{ product.price | money }}&lt;/span&gt;
+        &lt;/a&gt;
+      {%- endfor -%}
+    &lt;/div&gt;
+  &lt;/div&gt;
+{%- endif -%}</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.empty-cart__section-heading {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  color: rgba(var(--color-foreground), 0.5);
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  text-align: center;
+}
+.empty-cart__products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 0 1rem;
+}
+.empty-cart__product {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+}
+.empty-cart__product img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+.empty-cart__product-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.empty-cart__product-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(var(--color-foreground), 0.7);
+}</pre>
+      <p><strong>Important:</strong> Create a "Best Sellers" collection in Shopify admin (with handle <code>best-sellers</code>) and populate it with your top products. Or use an existing popular collection.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">3</span> <span class="fix-title">Smart "Continue Shopping" link</span><span class="impact impact-low">Lower Impact</span></div>
+      <p>Change the "Continue shopping" link from the generic <code>/collections/all</code> to your most popular collection.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — line 43</p>
+<pre>&lt;!-- Change: --&gt;
+&lt;a href="{{ routes.all_products_collection_url }}" class="button"&gt;
+
+&lt;!-- To: --&gt;
+&lt;a href="/collections/matching-sets" class="button"&gt;</pre>
+      <p>Use whichever collection URL drives the most revenue. Same change on the cart page.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">4</span> <span class="fix-title">Empty cart promo offer</span><span class="impact impact-med">Medium Impact</span></div>
+      <p>Show a special incentive to get the customer to add something.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — in the empty cart state, before the Continue Shopping button</p>
+<pre>&lt;div class="empty-cart__promo"&gt;
+  &lt;p&gt;✨ Use code &lt;strong&gt;FAMILY10&lt;/strong&gt; for 10% off your first matching set!&lt;/p&gt;
+&lt;/div&gt;</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.empty-cart__promo {
+  text-align: center;
+  padding: 1rem 1.5rem;
+  background: rgba(var(--color-foreground), 0.03);
+  border: 1px dashed rgba(var(--color-foreground), 0.2);
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  font-size: 1.3rem;
+}</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- URGENCY & SCARCITY: 3 → 10 -->
+<!-- ============================================ -->
+<div class="cat">
+  <div class="cat-header">
+    <h2>⏰ Urgency & Scarcity</h2>
+    <div><span class="score-chip chip-now">Now: 3</span> <span class="arrow-chip">→</span> <span class="score-chip chip-goal">Goal: 10</span></div>
+  </div>
+  <div class="cat-body">
+    <p>This is your <strong>biggest gap</strong>. Zero urgency/scarcity elements means customers have no reason to buy <em>now</em> vs. "later" (which often means never).</p>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num critical">1</span> <span class="fix-title">Low-stock warnings on cart items</span><span class="impact impact-high">High Impact</span></div>
+      <p>Show a real "Only X left!" warning when inventory is low. This is truthful urgency based on actual stock data — not fake scarcity.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — inside each cart item row, after the variant options (line ~226)</p>
+<pre>{%- if item.variant.inventory_management == 'shopify'
+    and item.variant.inventory_policy == 'deny'
+    and item.variant.inventory_quantity <= 5
+    and item.variant.inventory_quantity > 0 -%}
+  &lt;div class="cart-item__low-stock"&gt;
+    &lt;svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2.5"&gt;
+      &lt;circle cx="12" cy="12" r="10"/&gt;
+      &lt;line x1="12" y1="8" x2="12" y2="12"/&gt;
+      &lt;line x1="12" y1="16" x2="12.01" y2="16"/&gt;
+    &lt;/svg&gt;
+    Only {{ item.variant.inventory_quantity }} left in stock
+  &lt;/div&gt;
+{%- endif -%}</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-item__low-stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.6rem;
+  background: #fff3e0;
+  color: #e65100;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+.cart-item__low-stock svg { flex-shrink: 0; color: #e65100; }</pre>
+      <p>Add the same in <code>sections/main-cart-items.liquid</code> inside each row. Adjust the threshold (5) to match your typical stock levels — for smaller boutiques, even 10 can be appropriate.</p>
+      <p><strong>Important:</strong> The <code>inventory_quantity</code> variable must be available. In your Shopify theme settings, make sure "Show inventory quantities" is enabled (or use the product metafield approach).</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num critical">2</span> <span class="fix-title">Estimated delivery date</span><span class="impact impact-high">High Impact</span></div>
+      <p>This is one of the top 3 highest-impact conversion elements in e-commerce. It answers the customer's #1 question: "When will I get this?" Show it prominently near the checkout button.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — just above the checkout CTA (line ~609)</p>
+<pre>&lt;!-- Estimated delivery date --&gt;
+&lt;div class="cart-delivery-estimate"&gt;
+  &lt;svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;
+    &lt;rect x="1" y="3" width="15" height="13"/&gt;
+    &lt;polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/&gt;
+    &lt;circle cx="5.5" cy="18.5" r="2.5"/&gt;
+    &lt;circle cx="18.5" cy="18.5" r="2.5"/&gt;
+  &lt;/svg&gt;
+  &lt;span&gt;
+    {%- assign today_epoch = 'now' | date: '%s' | plus: 0 -%}
+    {%- comment -%} Add 3-7 business days. Rough: add 5-9 calendar days {%- endcomment -%}
+    {%- assign deliver_by_epoch = today_epoch | plus: 777600 -%}&lt;!-- 9 days in seconds --&gt;
+    Order today, get it by &lt;strong&gt;{{ deliver_by_epoch | date: '%B %e' }}&lt;/strong&gt;
+  &lt;/span&gt;
+&lt;/div&gt;</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-delivery-estimate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1rem;
+  background: rgba(21, 101, 192, 0.06);
+  border-radius: 6px;
+  font-size: 1.2rem;
+  color: rgba(var(--color-foreground), 0.75);
+}
+.cart-delivery-estimate svg {
+  flex-shrink: 0;
+  color: #1565c0;
+}</pre>
+      <p>Add the same block in <code>sections/main-cart-footer.liquid</code> above the checkout button.</p>
+      <p><strong>Refine the date calculation:</strong> The simple approach above adds 9 calendar days. For more accuracy, use JavaScript to calculate based on actual business days and skip weekends. Or use a Shopify app that calculates real shipping estimates based on your carrier settings.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">3</span> <span class="fix-title">Sale countdown timer (when discounts are active)</span><span class="impact impact-med">Medium Impact</span></div>
+      <p>When a time-limited sale is active, show a countdown timer in the cart. This works best with scheduled Shopify automatic discounts.</p>
+      <p class="file-label">snippets/cart-drawer.liquid — above the totals area</p>
+<pre>&lt;!-- Sale countdown — set the end date via theme settings or metafield --&gt;
+{%- assign sale_end = settings.sale_end_date -%}
+{%- if sale_end and sale_end != blank -%}
+  &lt;div class="cart-sale-countdown" id="CartSaleCountdown" data-end="{{ sale_end }}"&gt;
+    &lt;svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2"&gt;
+      &lt;circle cx="12" cy="12" r="10"/&gt;
+      &lt;polyline points="12 6 12 12 16 14"/&gt;
+    &lt;/svg&gt;
+    Sale ends in &lt;strong id="CartCountdownTimer"&gt;--:--:--&lt;/strong&gt;
+  &lt;/div&gt;
+{%- endif -%}</pre>
+      <p class="file-label">assets/cart.js — countdown logic</p>
+<pre>// Sale countdown timer
+document.querySelectorAll('.cart-sale-countdown').forEach(el =&gt; {
+  const endDate = new Date(el.dataset.end).getTime();
+  const timerEl = el.querySelector('[id$="CountdownTimer"]');
+
+  function update() {
+    const now = Date.now();
+    const diff = endDate - now;
+    if (diff <= 0) {
+      el.remove();
+      return;
+    }
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    timerEl.textContent =
+      `${h}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
+  }
+
+  update();
+  setInterval(update, 1000);
+});</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-sale-countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.8rem;
+  background: #fff3e0;
+  border-radius: 0.4rem;
+  font-size: 1.2rem;
+  color: #e65100;
+}
+.cart-sale-countdown svg { color: #e65100; }</pre>
+      <p>To control this, add a <code>sale_end_date</code> setting to your theme settings (Settings → Theme editor → General settings). When no sale is active, leave it blank and the countdown won't appear.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-header"><span class="fix-num">4</span> <span class="fix-title">"Order within X hours" urgency line</span><span class="impact impact-med">Medium Impact</span></div>
+      <p>Add a time-based urgency message near the delivery estimate: "Order within 2h 15m for fastest shipping."</p>
+      <p class="file-label">assets/cart.js — dynamic cutoff time calculation</p>
+<pre>// "Order within X" urgency message
+document.querySelectorAll('.cart-delivery-estimate').forEach(el =&gt; {
+  const now = new Date();
+  // Same-day cutoff at 2 PM local time
+  const cutoff = new Date();
+  cutoff.setHours(14, 0, 0, 0);
+
+  if (now < cutoff) {
+    const diff = cutoff - now;
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+
+    const urgency = document.createElement('div');
+    urgency.className = 'cart-order-within';
+    urgency.innerHTML = `Order within &lt;strong&gt;${h}h ${m}m&lt;/strong&gt; for fastest processing`;
+    el.after(urgency);
+  }
+});</pre>
+      <p class="file-label">assets/component-cart-drawer.css</p>
+<pre>.cart-order-within {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #e65100;
+  margin-bottom: 0.8rem;
+}</pre>
+    </div>
+  </div>
+</div>
+
+<!-- Summary -->
+<div style="background: white; border-radius: 12px; padding: 2rem; margin-top: 2rem; border: 2px solid #1565c0;">
+  <h2 style="margin-bottom: 1rem;">Priority Implementation Order</h2>
+  <p style="margin-bottom: 1rem;">Based on impact-to-effort ratio, implement in this order:</p>
+  <ol style="padding-left: 1.5rem;">
+    <li style="margin-bottom: 0.5rem;"><strong>Low-stock warnings</strong> — 15 min, huge conversion lift (Urgency)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Estimated delivery date</strong> — 15 min, top 3 conversion factor (Urgency)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Quick-add on cross-sell items</strong> — 30 min, biggest AOV driver (Cross-sell)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>"Shipping: FREE" line in totals</strong> — 5 min, removes #1 abandonment reason (Price)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Bestsellers in empty cart</strong> — 20 min, recovers otherwise lost sessions (Empty Cart)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Aggregate store rating</strong> — 5 min, adds third-party validation (Trust)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>AJAX discount validation</strong> — 30 min, prevents checkout-redirect confusion (Discount)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Enable dynamic checkout (Apple Pay / Shop Pay)</strong> — 5 min in Shopify admin (CTA)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Undo toast on item removal</strong> — 20 min, reduces accidental removals (Cart Editing)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Auto-retry on network errors</strong> — 10 min, silent reliability boost (Errors)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Cart title with item count</strong> — 5 min, immediate context (Visual)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>aria-hidden on decorative SVGs</strong> — 15 min, WCAG compliance (Accessibility)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Recently viewed in empty cart (JS)</strong> — 30 min, best re-engagement (Empty Cart)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Swipe-to-remove on mobile</strong> — 20 min, native feel (Mobile)</li>
+    <li style="margin-bottom: 0.5rem;"><strong>Optimistic UI updates</strong> — 15 min, feels instant (Performance)</li>
+  </ol>
+  <p style="margin-top: 1.5rem; color: #666; font-size: 0.9rem;">Total estimated time: ~4-5 hours of development for all changes. The first 6 items alone (about 1.5 hours) will deliver roughly 70% of the total conversion impact.</p>
+</div>
+
+</div>
+</body>
+</html>

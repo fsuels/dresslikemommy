@@ -70,7 +70,15 @@
     {%- unless product_variant.product.has_only_default_variant -%}
       <p class="pickup-availability-variant">
         {%- for product_option in product_variant.product.options_with_values -%}
-          {{ product_option.name | escape }}:&nbsp;
+          {%- liquid
+            assign product_option_label = product_option.name | strip
+            if product_option_label != blank and product_option_label | slice: -1 == ':'
+              assign product_option_label_length = product_option_label | size
+              assign product_option_label_without_trailing_colon_length = product_option_label_length | minus: 1
+              assign product_option_label = product_option_label | slice: 0, product_option_label_without_trailing_colon_length
+            endif
+          -%}
+          {{ product_option_label | escape }}:&nbsp;
           {%- for value in product_option.values -%}
             {%- if product_option.selected_value == value -%}
               <span>{{ value | escape }}</span>

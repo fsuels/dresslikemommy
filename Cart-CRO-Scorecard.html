@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DressLikeMommy — Cart & Checkout CRO Scorecard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; color: #1a1a2e; line-height: 1.6; }
+  .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 3rem; }
+  .header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .header p { color: #666; font-size: 1rem; }
+  .header .date { font-size: 0.85rem; color: #999; margin-top: 0.3rem; }
+
+  /* Overall Score */
+  .overall { display: flex; align-items: center; justify-content: center; gap: 2rem; padding: 2rem; background: white; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 2.5rem; }
+  .overall-score { width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 800; color: white; }
+  .overall-info h2 { font-size: 1.5rem; margin-bottom: 0.3rem; }
+  .overall-info p { color: #666; max-width: 400px; }
+
+  /* Score Colors */
+  .score-high { background: linear-gradient(135deg, #2e7d32, #43a047); }
+  .score-mid { background: linear-gradient(135deg, #f57c00, #ff9800); }
+  .score-low { background: linear-gradient(135deg, #c62828, #e53935); }
+
+  /* Category Cards */
+  .category { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 1.5rem; overflow: hidden; border: 1px solid #eee; }
+  .category-header { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; cursor: pointer; user-select: none; transition: background 0.15s; }
+  .category-header:hover { background: #fafafa; }
+  .category-header h3 { font-size: 1.1rem; font-weight: 600; display: flex; align-items: center; gap: 0.6rem; }
+  .category-header .icon { font-size: 1.3rem; }
+  .score-badge { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 10px; font-weight: 800; font-size: 1.1rem; color: white; flex-shrink: 0; }
+  .score-9, .score-10 { background: #2e7d32; }
+  .score-8 { background: #43a047; }
+  .score-7 { background: #7cb342; }
+  .score-6 { background: #f9a825; }
+  .score-5 { background: #f57c00; }
+  .score-4 { background: #e64a19; }
+  .score-3 { background: #c62828; }
+
+  /* Expand/Collapse */
+  .category-body { display: none; padding: 0 1.5rem 1.5rem; border-top: 1px solid #f0f0f0; }
+  .category.open .category-body { display: block; }
+  .category-header .arrow { transition: transform 0.2s; font-size: 0.8rem; color: #999; }
+  .category.open .category-header .arrow { transform: rotate(180deg); }
+
+  /* Content Sections */
+  .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08rem; color: #999; font-weight: 600; margin: 1.25rem 0 0.5rem; }
+  .section-label:first-child { margin-top: 1rem; }
+  .detail-text { font-size: 0.95rem; color: #444; }
+  .detail-text p { margin-bottom: 0.6rem; }
+
+  /* Pros / Cons */
+  .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem; }
+  .pro-list, .con-list { list-style: none; }
+  .pro-list li, .con-list li { font-size: 0.9rem; padding: 0.35rem 0; padding-left: 1.4rem; position: relative; }
+  .pro-list li::before { content: "✓"; position: absolute; left: 0; color: #2e7d32; font-weight: 700; }
+  .con-list li::before { content: "✗"; position: absolute; left: 0; color: #c62828; font-weight: 700; }
+
+  /* Recommendations */
+  .recs { margin-top: 0.5rem; }
+  .rec-item { display: flex; gap: 0.75rem; padding: 0.75rem 1rem; background: #f0f7ff; border-radius: 8px; margin-bottom: 0.5rem; font-size: 0.9rem; align-items: flex-start; }
+  .rec-item .rec-num { background: #1565c0; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .rec-item.high-impact { background: #fff3e0; }
+  .rec-item.high-impact .rec-num { background: #e65100; }
+
+  /* Page Toggle */
+  .page-toggle { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; }
+  .toggle-btn { padding: 0.6rem 1.5rem; border: 2px solid #ddd; background: white; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+  .toggle-btn.active { border-color: #1a1a2e; background: #1a1a2e; color: white; }
+
+  /* Summary Bar */
+  .summary-bar { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center; }
+  .summary-stat { text-align: center; padding: 1rem 1.5rem; background: white; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); min-width: 120px; border: 1px solid #eee; }
+  .summary-stat .num { font-size: 1.8rem; font-weight: 800; }
+  .summary-stat .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05rem; color: #888; }
+  .green { color: #2e7d32; }
+  .orange { color: #f57c00; }
+  .red { color: #c62828; }
+
+  @media (max-width: 640px) {
+    .overall { flex-direction: column; text-align: center; }
+    .pros-cons { grid-template-columns: 1fr; }
+    .summary-bar { gap: 0.5rem; }
+    .summary-stat { min-width: 90px; padding: 0.8rem 1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Cart & Checkout CRO Scorecard</h1>
+    <p>DressLikeMommy — Comprehensive Conversion Factor Audit</p>
+    <p class="date">February 27, 2026 — Based on live code review</p>
+  </div>
+
+  <div class="overall">
+    <div class="overall-score score-mid" style="background: linear-gradient(135deg, #7cb342, #43a047);">7.3</div>
+    <div class="overall-info">
+      <h2>Good — Room to Grow</h2>
+      <p>Your cart experience covers the fundamentals well. Trust signals, price transparency, and error handling are strong. The biggest gains will come from urgency/scarcity, social proof, and cart recovery.</p>
+    </div>
+  </div>
+
+  <div class="summary-bar">
+    <div class="summary-stat"><div class="num green">5</div><div class="label">Strong (8-10)</div></div>
+    <div class="summary-stat"><div class="num orange">6</div><div class="label">Adequate (6-7)</div></div>
+    <div class="summary-stat"><div class="num red">4</div><div class="label">Needs Work (1-5)</div></div>
+  </div>
+
+  <div class="page-toggle">
+    <button class="toggle-btn active" onclick="filterCards('all', this)">All Factors (15)</button>
+    <button class="toggle-btn" onclick="filterCards('cart-page', this)">Cart Page</button>
+    <button class="toggle-btn" onclick="filterCards('cart-drawer', this)">Cart Drawer</button>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 1: CTA Design & Placement -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">🔘</span> CTA Design & Placement</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-8">8</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>The "Checkout" button uses a full-width primary button style with a lock icon SVG (signaling security), proper disabled state when cart is empty, and the button is disabled during cart updates to prevent stale-total submissions. On mobile, the cart page footer is sticky so the CTA is always visible.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>Lock icon builds security trust</li>
+          <li>Full-width button (high tap target)</li>
+          <li>Sticky footer on mobile (always visible)</li>
+          <li>Disabled during updates (prevents errors)</li>
+          <li>Cart drawer has single clear CTA</li>
+        </ul>
+        <ul class="con-list">
+          <li>No visual urgency (color, animation)</li>
+          <li>No secondary CTA (e.g., Apple Pay / Google Pay express)</li>
+          <li>Cart page CTA not above the fold on desktop</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item high-impact"><span class="rec-num">1</span> Add dynamic checkout buttons (Apple Pay, Google Pay, Shop Pay) — the code references <code>additional_checkout_buttons</code> but they may not be enabled in Shopify settings. Enable them to give customers express checkout with 1 tap.</div>
+        <div class="rec-item"><span class="rec-num">2</span> Consider a contrasting CTA color that stands out from the rest of the theme. The button should be the most visually dominant element in the footer area.</div>
+        <div class="rec-item"><span class="rec-num">3</span> On desktop, add a mini sticky checkout bar that appears as the user scrolls past the main CTA.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 2: Trust & Security Signals -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">🛡️</span> Trust & Security Signals</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-9">9</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>Both cart page and cart drawer now display identical trust badges: Secure Checkout (lock icon), SSL Encrypted (shield icon), Free Shipping (pin icon), and 30-Day Returns (checkmark icon). Payment method icons are dynamically rendered from Shopify's <code>shop.enabled_payment_types</code>, so they always reflect your actual payment processors. The lock icon is also embedded in the checkout CTA button itself.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>4 trust badges consistently shown</li>
+          <li>Dynamic payment icons (always accurate)</li>
+          <li>Lock icon on checkout button</li>
+          <li>Consistent between drawer and cart page</li>
+          <li>"We accept" label above payment icons</li>
+        </ul>
+        <ul class="con-list">
+          <li>No third-party trust seals (e.g., Norton, McAfee)</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item"><span class="rec-num">1</span> Consider adding a money-back guarantee badge with specific copy like "100% Satisfaction Guaranteed" — this converts better than generic security badges for family/fashion brands.</div>
+        <div class="rec-item"><span class="rec-num">2</span> If you have a Trustpilot, Google Reviews, or Judge.me rating, show the aggregate star rating near the checkout CTA (e.g., "Rated 4.8/5 by 1,200+ families").</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 3: Price Transparency -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">💰</span> Price Transparency</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-9">9</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>Estimated total is clearly displayed with currency. Tax and shipping policy notes are dynamically shown based on store settings (taxes included, shipping policy link, etc.). Individual line item prices show original vs. sale prices with strikethrough. Cart-level discounts are listed with their titles and amounts. The savings summary banner shows total savings when items are on sale.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>Clear "Estimated total" with currency code</li>
+          <li>Strikethrough on discounted items</li>
+          <li>Cart-level discounts listed by name</li>
+          <li>Savings summary ("You're saving $X")</li>
+          <li>Tax/shipping note adapts to store config</li>
+          <li>Unit pricing support for applicable products</li>
+        </ul>
+        <ul class="con-list">
+          <li>No per-item savings shown (only total)</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item"><span class="rec-num">1</span> Show per-item savings inline (e.g., "Save $5.00" next to each discounted item) — this reinforces value at the line-item level.</div>
+        <div class="rec-item"><span class="rec-num">2</span> Since you offer free shipping on all orders, consider making the "Free Shipping" note more prominent near the total — perhaps "Shipping: FREE" as its own line rather than just a trust badge.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 4: Discount / Promo Experience -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">🏷️</span> Discount & Promo Experience</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-7">7</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>Both cart drawer and cart page have a collapsible "Have a discount code?" field with a tag icon. When a code is entered, it redirects to <code>/checkout?discount=CODE</code> to pre-apply the discount. Line-level and cart-level discount applications are displayed with the discount icon and title. The savings summary aggregates all savings into one banner.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>Discount field on both drawer and page</li>
+          <li>Collapsible (doesn't clutter by default)</li>
+          <li>Applied discounts shown with names</li>
+          <li>Savings summary reinforces value</li>
+        </ul>
+        <ul class="con-list">
+          <li>No inline validation (user must go to checkout to see if code works)</li>
+          <li>No error message if code is invalid</li>
+          <li>No "remove discount" option</li>
+          <li>Redirect to checkout breaks flow if code fails</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item high-impact"><span class="rec-num">1</span> Use Shopify's AJAX discount API to validate the code in-place instead of redirecting to checkout. Show a green success message or red error inline — this prevents cart abandonment from failed codes.</div>
+        <div class="rec-item"><span class="rec-num">2</span> Add a loading spinner on the "Apply" button while validating to show the user something is happening.</div>
+        <div class="rec-item"><span class="rec-num">3</span> If you run frequent promotions, consider showing an auto-applied discount banner (e.g., "FAMILY20 auto-applied — 20% off!") when automatic discounts are active.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 5: Cross-sell / Upsell -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">🛍️</span> Cross-sell & Upsell</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-7">7</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>Cart drawer shows "You may also like" with 3 products from the first cart item's collection. Cart page shows "Complete the Look" with 4 products in a grid. Both exclude items already in cart. Products link to their PDPs. Images are lazy-loaded with hover zoom on cart page.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>Cross-sell on both drawer and page</li>
+          <li>Smart filtering (excludes items in cart)</li>
+          <li>Collection-based relevance</li>
+          <li>Clean, compact presentation</li>
+          <li>Hover effects for engagement</li>
+        </ul>
+        <ul class="con-list">
+          <li>No "Add to Cart" button (must visit PDP)</li>
+          <li>Only uses first item's collection (ignores rest)</li>
+          <li>No Shopify product recommendations API</li>
+          <li>No "frequently bought together" bundles</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item high-impact"><span class="rec-num">1</span> Add a quick "Add to Cart" button on each cross-sell item — requiring a PDP visit adds friction and most users won't click through. For your mommy-and-me products, this is especially important since customers often need matching items.</div>
+        <div class="rec-item"><span class="rec-num">2</span> Use Shopify's Product Recommendations API (<code>/recommendations/products.json?product_id=X</code>) for more intelligent suggestions based on purchase patterns rather than just collection membership.</div>
+        <div class="rec-item"><span class="rec-num">3</span> Consider a "Complete the Set" bundle offer with a small discount (e.g., "Add matching daughter dress — save 10%").</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 6: Cart Editing UX -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">✏️</span> Cart Editing UX</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-8">8</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>Quantity inputs use +/- buttons with proper min/max/step constraints from variant rules. Changes are debounced and update via AJAX without page reload. Remove buttons are clearly accessible. On mobile, the cart page shows "Remove" as underlined text (good touch target), while desktop uses an icon. The cart drawer shows loading spinners on the affected item during updates.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>AJAX updates (no page reload)</li>
+          <li>Debounced quantity changes</li>
+          <li>Loading spinners during updates</li>
+          <li>Quantity rules respected (min/max/step)</li>
+          <li>Mobile "Remove" text link (clear intent)</li>
+          <li>Volume pricing popover when applicable</li>
+        </ul>
+        <ul class="con-list">
+          <li>No undo after removing an item</li>
+          <li>No confirmation for item removal</li>
+          <li>Variant cannot be changed in-cart (must revisit PDP)</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item"><span class="rec-num">1</span> Add an "Undo" toast notification after removing an item (e.g., "Item removed. <u>Undo</u>"). This recovers accidental removals and reduces anxiety about deleting items.</div>
+        <div class="rec-item"><span class="rec-num">2</span> For your matching family clothing, allow size/variant changes directly in the cart (dropdown or quick selector) — parents often need to adjust sizes for their kids.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 7: Error Handling -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">⚠️</span> Error Handling</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-8">8</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>Error handling differentiates between Shopify API errors and network failures. Stock limit messages are specific ("Only 3 available — we've updated your quantity") rather than generic. Network errors show a clear connection message. Errors display inline next to the affected line item with a red error icon. The checkout button is disabled during updates to prevent stale-total submissions.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>Specific stock-limit messages</li>
+          <li>Network vs. API error differentiation</li>
+          <li>Inline errors per line item</li>
+          <li>ARIA role="alert" on error containers</li>
+          <li>Checkout disabled during updates</li>
+        </ul>
+        <ul class="con-list">
+          <li>No auto-retry on network failure</li>
+          <li>Error text is small and easy to miss</li>
+          <li>No "out of stock" visual state for items</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item"><span class="rec-num">1</span> Add an auto-retry mechanism for transient network errors (retry once after 2 seconds before showing the error message).</div>
+        <div class="rec-item"><span class="rec-num">2</span> If an item goes out of stock while in the cart, show a prominent visual state (greyed out image, "Sold Out" overlay) rather than just a small error message.</div>
+        <div class="rec-item"><span class="rec-num">3</span> Add a "Notify me when back in stock" option for out-of-stock items in the cart.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 8: Mobile Optimization -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">📱</span> Mobile Optimization</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-8">8</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>The cart page footer is sticky on mobile with a subtle box shadow, keeping the checkout CTA always visible. Touch targets for quantity buttons are 3.6rem (well above the 44px minimum). The cart drawer locks page scroll on iOS Safari with position:fixed and touch-action:none. Cart items use a responsive grid layout on mobile (image + details + quantity). Cross-sell grid switches from 4 columns to 2 on mobile.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>Sticky checkout footer on mobile</li>
+          <li>Large touch targets (3.6rem buttons)</li>
+          <li>iOS scroll lock (position:fixed technique)</li>
+          <li>Responsive grid layouts</li>
+          <li>Cart drawer overscroll-behavior: contain</li>
+          <li>Checkout button enlarged on mobile</li>
+        </ul>
+        <ul class="con-list">
+          <li>Cart drawer width (40rem) may feel narrow on tablets</li>
+          <li>No swipe-to-remove gesture</li>
+          <li>Cross-sell images may be too small on mobile</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item"><span class="rec-num">1</span> Add swipe-to-remove gesture on cart items in the drawer (common mobile pattern that reduces friction).</div>
+        <div class="rec-item"><span class="rec-num">2</span> Consider a bottom sheet pattern for the cart drawer on mobile instead of a side drawer — bottom sheets have higher engagement on mobile.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 9: Visual Hierarchy & Layout -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">🎨</span> Visual Hierarchy & Layout</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-7">7</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>The cart page uses a clean table layout on desktop with clear column headers. Product names are styled as h4 links. Prices use the theme's price styling with proper visual weight for sale vs. original prices. Variant options are differentiated from prices with lighter opacity. The totals section has clear visual separation with border-bottom on items.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>Clean table layout on desktop</li>
+          <li>Good price hierarchy (sale vs. original)</li>
+          <li>Clear section dividers</li>
+          <li>Product images are well-sized</li>
+          <li>Variant options visually subordinate to prices</li>
+        </ul>
+        <ul class="con-list">
+          <li>Cart page title "Your cart" doesn't show item count</li>
+          <li>No visual order summary sidebar on desktop</li>
+          <li>Totals area could be more visually distinct</li>
+          <li>No color/swatch preview for variant options</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item"><span class="rec-num">1</span> Add item count to the cart title (e.g., "Your Cart (3 items)") — this gives immediate context and sets expectations.</div>
+        <div class="rec-item"><span class="rec-num">2</span> On desktop, consider a two-column layout with items on the left and a sticky order summary on the right (like major retailers). This keeps the total and CTA visible while browsing items.</div>
+        <div class="rec-item"><span class="rec-num">3</span> Show color swatches next to variant options for your clothing items — visual confirmation reduces returns.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 10: Empty Cart Recovery -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">🛒</span> Empty Cart Recovery</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-5">5</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>When the cart is empty, the cart page shows "Your cart is empty" text with a "Continue shopping" button linking to all products. The cart drawer shows the same message with a close button and optional collection display (configurable in settings). If customer accounts are enabled and user is logged out, a login prompt is shown.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>"Continue shopping" CTA present</li>
+          <li>Login prompt for returning customers</li>
+          <li>Cart drawer supports collection display</li>
+        </ul>
+        <ul class="con-list">
+          <li>No product recommendations in empty cart</li>
+          <li>No recently viewed products</li>
+          <li>No bestsellers or featured items</li>
+          <li>"Continue shopping" links to /collections/all (generic)</li>
+          <li>No incentive to add items (no promo)</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item high-impact"><span class="rec-num">1</span> Show "Recently Viewed" products in the empty cart state — these are the highest-converting recommendations because the customer already showed interest.</div>
+        <div class="rec-item high-impact"><span class="rec-num">2</span> Display bestsellers or "Popular with Families" picks when the cart is empty to give customers a reason to keep shopping.</div>
+        <div class="rec-item"><span class="rec-num">3</span> Change "Continue shopping" to link to your most popular collection (e.g., /collections/matching-sets) instead of the generic all-products page.</div>
+        <div class="rec-item"><span class="rec-num">4</span> Consider showing an empty-cart-specific promo (e.g., "Use code FAMILY10 for 10% off your first order").</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 11: Loading & Performance -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">⚡</span> Loading & Performance</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-8">8</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>Cart updates use AJAX fetch with section rendering (Shopify's most efficient method). Scripts are defer-loaded. Loading spinners appear on affected line items during quantity changes. Images use lazy loading. The cart form uses the <code>critical-hidden</code> class pattern to prevent layout shifts. Cart note uses debounced input.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>AJAX section rendering (fast updates)</li>
+          <li>Deferred script loading</li>
+          <li>Per-item loading spinners</li>
+          <li>Lazy loaded images</li>
+          <li>Debounced inputs</li>
+          <li>PubSub event system for coordinated updates</li>
+        </ul>
+        <ul class="con-list">
+          <li>No optimistic UI updates (waits for server)</li>
+          <li>Cross-sell images load all at once</li>
+          <li>No skeleton loading states</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item"><span class="rec-num">1</span> Implement optimistic UI updates — update the quantity and price immediately in the UI while the AJAX request processes, then reconcile if the server response differs. This makes the cart feel instant.</div>
+        <div class="rec-item"><span class="rec-num">2</span> Add skeleton loading placeholders for the cross-sell section to prevent layout shift on slower connections.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 12: Accessibility -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">♿</span> Accessibility</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-7">7</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>Cart tables use proper semantic markup (thead, tbody, th with scope, role="table/row/rowgroup"). Visually hidden labels exist for quantity inputs. ARIA live regions announce cart changes (<code>role="status"</code>, <code>aria-live="polite"</code>). Cart drawer uses <code>role="dialog"</code> and <code>aria-modal="true"</code> with focus trapping. Remove buttons have descriptive aria-labels. Error containers use <code>role="alert"</code>. Discount toggle uses <code>aria-expanded</code>.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>Semantic table markup</li>
+          <li>ARIA live regions for cart updates</li>
+          <li>Focus trapping in cart drawer</li>
+          <li>Descriptive aria-labels on buttons</li>
+          <li>role="alert" on error containers</li>
+          <li>aria-expanded on collapsible sections</li>
+        </ul>
+        <ul class="con-list">
+          <li>Discount code field uses inline onclick (not progressive enhancement)</li>
+          <li>Cross-sell items lack descriptive aria-labels</li>
+          <li>Savings summary not announced to screen readers</li>
+          <li>Some SVG icons missing aria-hidden="true"</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item"><span class="rec-num">1</span> Add <code>aria-hidden="true"</code> to all decorative SVG icons (trust badges, discount tag icon, savings tag icon) to reduce screen reader noise.</div>
+        <div class="rec-item"><span class="rec-num">2</span> Make the savings summary an ARIA live region so it's announced when it appears after cart updates.</div>
+        <div class="rec-item"><span class="rec-num">3</span> Add descriptive aria-labels to cross-sell links (e.g., <code>aria-label="View Matching Floral Dress - $29.99"</code>).</div>
+        <div class="rec-item"><span class="rec-num">4</span> Refactor the discount code toggle from inline <code>onclick</code> to a proper JavaScript event listener with progressive enhancement.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 13: Cart Drawer ↔ Cart Page Consistency -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">🔄</span> Drawer / Page Consistency</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-9">9</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>After our optimizations, the cart drawer and cart page now share consistent features: trust badges (same 4), payment icons (same dynamic rendering), discount code field (same pattern), savings summary (same logic), cross-sell/upsell (same collection-based approach), and checkout CTA (same lock icon styling). The PubSub event system keeps both in sync when the cart updates.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>Same trust badges in both</li>
+          <li>Same payment icons in both</li>
+          <li>Same discount code pattern</li>
+          <li>Same savings summary logic</li>
+          <li>Cross-sell in both (3 items drawer, 4 items page)</li>
+          <li>PubSub keeps both in sync</li>
+        </ul>
+        <ul class="con-list">
+          <li>Cross-sell headings differ ("You may also like" vs. "Complete the Look")</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item"><span class="rec-num">1</span> Minor: align the cross-sell heading copy. "Complete the Look" is stronger for a fashion brand — consider using it in the drawer too. Or A/B test both.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 14: Urgency & Scarcity -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">⏰</span> Urgency & Scarcity</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-3">3</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>There are currently no urgency or scarcity elements in the cart experience. No low-stock indicators, no time-limited offers, no cart reservation timers, and no "X people are viewing this" indicators. The only urgency signal is the stock-limit error that appears after a user tries to add more than available — but this is reactive, not proactive.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>No fake urgency (honest approach)</li>
+        </ul>
+        <ul class="con-list">
+          <li>No low-stock warnings on items</li>
+          <li>No delivery date estimate</li>
+          <li>No limited-time offer display</li>
+          <li>No cart expiry / reservation timer</li>
+          <li>No "selling fast" indicators</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item high-impact"><span class="rec-num">1</span> Add real low-stock indicators using <code>item.variant.inventory_quantity</code>. When stock is below a threshold (e.g., 5), show "Only 3 left!" next to the item. This is truthful and creates genuine urgency.</div>
+        <div class="rec-item high-impact"><span class="rec-num">2</span> Add an estimated delivery date (e.g., "Order within 2 hrs, get it by March 3"). This is one of the highest-impact conversion elements — it answers "when will I get this?" which is a top customer concern.</div>
+        <div class="rec-item"><span class="rec-num">3</span> If you run time-limited sales, show a countdown timer in the cart when a sale discount is applied (e.g., "Sale ends in 4h 23m").</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CATEGORY 15: Social Proof -->
+  <!-- ============================================================ -->
+  <div class="category" data-scope="both">
+    <div class="category-header" onclick="this.parentElement.classList.toggle('open')">
+      <h3><span class="icon">⭐</span> Social Proof</h3>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="score-badge score-3">3</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="category-body">
+      <div class="section-label">Current State</div>
+      <div class="detail-text">
+        <p>There are no social proof elements in the cart experience. No product ratings, no review counts, no "X customers bought this" counters, no testimonial snippets, and no user-generated photos. The previous fake social proof claims ("2,847 happy families") were correctly removed during our initial fixes, but nothing real has replaced them.</p>
+      </div>
+      <div class="pros-cons">
+        <ul class="pro-list">
+          <li>No fake/misleading claims (honest)</li>
+        </ul>
+        <ul class="con-list">
+          <li>No product ratings in cart items</li>
+          <li>No aggregate store rating</li>
+          <li>No customer testimonials</li>
+          <li>No "X orders this week" (real data)</li>
+          <li>No user-generated content / photos</li>
+        </ul>
+      </div>
+      <div class="section-label">How to Improve</div>
+      <div class="recs">
+        <div class="rec-item high-impact"><span class="rec-num">1</span> Show star ratings on each cart item (pull from your reviews app — Judge.me, Loox, etc.). Even a simple "★★★★★ (47 reviews)" next to each product in the cart reinforces the purchase decision.</div>
+        <div class="rec-item high-impact"><span class="rec-num">2</span> Add a real aggregate store rating near the checkout CTA: "Trusted by 1,200+ families — 4.8/5 on Trustpilot" (only if you have the actual data to back it up).</div>
+        <div class="rec-item"><span class="rec-num">3</span> Show a short testimonial snippet near the checkout button (e.g., a rotating quote from a real customer review about the matching outfits).</div>
+        <div class="rec-item"><span class="rec-num">4</span> On the cross-sell items, show star ratings to increase click-through rate.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Toggle cards
+  function filterCards(scope, btn) {
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.category').forEach(card => {
+      if (scope === 'all') {
+        card.style.display = '';
+      } else {
+        const s = card.dataset.scope;
+        card.style.display = (s === 'both' || s === scope) ? '' : 'none';
+      }
+    });
+  }
+
+  // Open first card by default
+  document.querySelector('.category').classList.add('open');
+</script>
+</body>
+</html>
