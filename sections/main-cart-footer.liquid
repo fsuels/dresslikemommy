@@ -44,7 +44,7 @@
             <div class="cart-page__discount-toggle">
               <button type="button" class="cart-page__discount-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false'); this.closest('.cart-page__discount').querySelector('.cart-page__discount-form').classList.toggle('is-open');">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-                Have a discount code?
+                {{ 'sections.cart.discount_code_toggle' | t }}
               </button>
             </div>
             <div class="cart-page__discount-form">
@@ -121,8 +121,8 @@
                 {%- endif -%}
 
                 <div class="cart-page__shipping-line">
-                  <span>Shipping</span>
-                  <span class="cart-page__shipping-free">FREE</span>
+                  <span>{{ 'sections.cart.shipping_label' | t }}</span>
+                  <span class="cart-page__shipping-free">{{ 'sections.cart.shipping_free' | t }}</span>
                 </div>
                 <div class="totals">
                   <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>

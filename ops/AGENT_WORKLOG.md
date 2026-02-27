@@ -5933,3 +5933,36 @@ Verification:
 - Inspected resulting CSS cascade for menu drawer localization buttons:
   - Label and caret now render as flex children.
   - Caret no longer relies on absolute coordinates in this context.
+
+### Task: PDP size chart detection fix for Spanish/French size options
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-pdp-size-chart-es-fr-detection-fix
+Changes:
+- `snippets/product-variant-picker.liquid`
+  - Added locale-safe size-option detection by option name tokens (`size`, `talla`, `tamano`/`tamaño`, `taille`, `pointure`).
+  - Updated dropdown markup to mark detected size selectors with:
+    - `class="size-select"`
+    - `data-size-option="true"`
+    - `data-option-name="<normalized option name>"`
+  - Reused this detection for the injected placeholder option so size dropdown initialization is consistent in EN/ES/FR.
+- `assets/size-conversion.js`
+  - Added resilient size-label matcher (`size|sizes|talla|tallas|tamano|tamanos|taille|tailles|pointure|pointures`) with accent-safe normalization.
+  - Replaced hardcoded `select.size-select` lookup with `findSizeSelect()`:
+    - prefers `data-size-option="true"` / `.size-select`
+    - falls back to scanning option selectors by `options[...]` name.
+  - Updated size-chart table parsing to detect localized size headers via the same matcher (not only literal `size`).
+
+Why:
+- Size chart rendering depended on English-only string matching for both variant option names and table headers.
+- In ES/FR storefront context (`Talla` / `Taille`), the script could fail to bind to the size dropdown and never render chart details on selection.
+
+Verification:
+- `node --check assets/size-conversion.js` passed.
+- Confirmed diff coverage only touches:
+  - `snippets/product-variant-picker.liquid`
+  - `assets/size-conversion.js`
+- Confirmed new selectors/markers are present (`data-size-option`, locale-safe size token matcher).
+
+Open items:
+- Manual storefront QA recommended on product pages in EN/ES/FR:
+  - choose size and verify `.size-chart-wrapper` renders details immediately for each locale.

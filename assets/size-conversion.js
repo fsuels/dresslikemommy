@@ -163,10 +163,46 @@ document.addEventListener("DOMContentLoaded", function () {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+  const SIZE_LABEL_REGEX = /\b(size|sizes|talla|tallas|tamano|tamanos|taille|tailles|pointure|pointures)\b/;
+  const normalizeLabelText = (value) => {
+    const lowerCased = String(value || "").toLowerCase().trim();
+    if (!lowerCased) return "";
+    const deAccented = typeof lowerCased.normalize === "function"
+      ? lowerCased.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      : lowerCased;
+    return deAccented.replace(/[^a-z0-9]+/g, " ").trim();
+  };
+  const isSizeLikeLabel = (value) => SIZE_LABEL_REGEX.test(normalizeLabelText(value));
+  const getOptionNameFromSelect = (selectElement) => {
+    if (!selectElement) return "";
+
+    const fromDataAttribute = selectElement.getAttribute("data-option-name");
+    if (fromDataAttribute) return fromDataAttribute;
+
+    const selectName = String(selectElement.name || "").trim();
+    if (!selectName) return "";
+
+    const optionNameMatch = selectName.match(/^options\[(.+)\]$/);
+    if (optionNameMatch && optionNameMatch[1]) return optionNameMatch[1];
+
+    return selectName;
+  };
+  const findSizeSelect = () => {
+    const explicitSelector = document.querySelector("select[data-size-option='true'], select.size-select");
+    if (explicitSelector) return explicitSelector;
+
+    const optionSelects = document.querySelectorAll("select[name^='options[']");
+    for (let i = 0; i < optionSelects.length; i++) {
+      const optionName = getOptionNameFromSelect(optionSelects[i]);
+      if (isSizeLikeLabel(optionName)) return optionSelects[i];
+    }
+
+    return null;
+  };
   // ---------------------------------------------------------------------------
   // DOM REFERENCES
   // ---------------------------------------------------------------------------
-  const sizeSelect        = document.querySelector("select.size-select");
+  const sizeSelect        = findSizeSelect();
   const sizeChartWrapper  = document.querySelector(".size-chart-wrapper");
   const sizeChartContent  = document.getElementById("size-chart-content");
   let selectedUnitSystem  = getStoredUnitSystem() || "metric";
@@ -227,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Find the Size column index
     let sizeIndex = -1;
     for (let i = 0; i < headerCells.length; i++) {
-      if ((headerMap[i]?.name || "").toLowerCase().includes("size")) {
+      if (isSizeLikeLabel(headerMap[i]?.name || "")) {
         sizeIndex = i;
         break;
       }

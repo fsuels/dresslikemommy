@@ -14,6 +14,7 @@
         assign picker_type = block.settings.picker_type
         assign option_name_downcased = option.name | downcase
         assign option_label = option.name | strip
+        assign is_size_option = false
         assign option_last_char = option_label | slice: -1
         if option_label != blank and option_last_char == ':'
           assign option_label_length = option_label | size
@@ -40,6 +41,15 @@
 
         if is_color_option and block.settings.picker_type == 'dropdown'
           assign picker_type = 'color_image'
+        endif
+
+        if option_name_downcased contains 'size'
+          or option_name_downcased contains 'talla'
+          or option_name_downcased contains 'tamano'
+          or option_name_downcased contains 'tamaño'
+          or option_name_downcased contains 'taille'
+          or option_name_downcased contains 'pointure'
+          assign is_size_option = true
         endif
 
         if is_color_option
@@ -144,17 +154,20 @@
                 {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
               </span>
             {%- endif -%}
-            {% assign option_downcased = option.name | downcase %}
             <select
               id="Option-{{ section.id }}-{{ forloop.index0 }}"
-              class="select__select {% if option_downcased contains 'size' %} size-select {% endif %}"
+              class="select__select {% if is_size_option %} size-select {% endif %}"
               name="options[{{ option.name | escape }}]"
               form="{{ product_form_id }}"
+              data-option-name="{{ option_name_downcased | escape }}"
+              {% if is_size_option %}
+                data-size-option="true"
+              {% endif %}
             >
               {%- comment -%}
                 **Insert Default "Select Size" Option**
               {%- endcomment -%}
-              {%- if option.name contains 'Size' or option.name contains 'size' -%}
+              {%- if is_size_option -%}
                 <option value="" disabled selected>Select Size</option>
               {%- endif -%}
               
