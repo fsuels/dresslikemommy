@@ -94,8 +94,18 @@
         endif
       -%}
       {% if related_products_count > 0 %}
+        {%- assign related_products_heading = section.settings.heading | strip -%}
+        {%- assign related_products_heading_upcase = related_products_heading | upcase -%}
         <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
-          {{ section.settings.heading }}
+          {%- if related_products_heading == blank -%}
+            {{ 'sections.related_products.you_may_also_like' | t }}
+          {%- elsif related_products_heading contains 't:' -%}
+            {{ related_products_heading | remove_first: 't:' | t }}
+          {%- elsif related_products_heading_upcase == 'YOU MAY ALSO LIKE' -%}
+            {{ 'sections.related_products.you_may_also_like' | t }}
+          {%- else -%}
+            {{ related_products_heading }}
+          {%- endif -%}
         </h2>
         <slider-component
           class="slider-mobile-gutter related-products__slider{% if show_desktop_slider %} slider-component-desktop{% endif %}"

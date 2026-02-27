@@ -5819,3 +5819,38 @@ Why:
 Verification:
 - `node --check assets/cart.js` passed.
 - `shopify theme check --fail-level error --output text` executed; repository still has pre-existing unrelated errors (for example `sections/email-signup-banner.liquid` schema issue), and no new error introduced by this cart.js patch was observed.
+
+### Task: Product related heading + footer block heading localization hardening
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-product-footer-heading-localization
+Changes:
+- `sections/related-products.liquid`
+  - Added resilient heading rendering for localized text:
+    - Supports `t:` heading values.
+    - Maps legacy hardcoded `You may also like` to translation key `sections.related_products.you_may_also_like`.
+    - Falls back safely for blank/custom heading values.
+- `templates/product.json`
+  - Updated `related-products.settings.heading` from hardcoded English to `t:sections.related_products.you_may_also_like`.
+- `sections/footer.liquid`
+  - Added resilient footer block heading rendering:
+    - Supports `t:` heading values.
+    - Maps legacy hardcoded headings (`COMPANY INFO`, `HELP & SUPPORT`, `CUSTOMER CARE`) to translation keys under `sections.footer_headings.*`.
+- `sections/footer-group.json`
+  - Updated footer block heading settings to use `t:` keys:
+    - `t:sections.footer_headings.company_info`
+    - `t:sections.footer_headings.help_support`
+    - `t:sections.footer_headings.customer_care`
+- `locales/*.json` (all storefront locale files)
+  - Added:
+    - `sections.related_products.you_may_also_like`
+    - `sections.footer_headings.company_info`
+    - `sections.footer_headings.help_support`
+    - `sections.footer_headings.customer_care`
+  - Applied explicit localized values in `locales/es.json` and `locales/fr.json`; fallback English in remaining locales.
+
+Verification:
+- Confirmed all storefront locale files include the new keys.
+- Ran `shopify theme check --fail-level error --output text`; existing unrelated errors remain in repository baseline (for example `sections/email-signup-banner.liquid` schema issue), and no missing-translation errors were introduced for the new keys.
+
+Open items:
+- Judge.me strings (`Customer Reviews`, `Be the first to write a review`, `Write a review`) are app-managed and must be translated in Judge.me settings (`Settings -> Translations`).

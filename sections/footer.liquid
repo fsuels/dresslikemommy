@@ -56,7 +56,21 @@
                 {% endif %}
               >
                 {%- if block.settings.heading != blank -%}
-                  <h2 class="footer-block__heading inline-richtext">{{- block.settings.heading -}}</h2>
+                  {%- assign footer_block_heading = block.settings.heading | strip -%}
+                  {%- assign footer_block_heading_upcase = footer_block_heading | upcase -%}
+                  <h2 class="footer-block__heading inline-richtext">
+                    {%- if footer_block_heading contains 't:' -%}
+                      {{ footer_block_heading | remove_first: 't:' | t }}
+                    {%- elsif footer_block_heading_upcase == 'COMPANY INFO' -%}
+                      {{ 'sections.footer_headings.company_info' | t }}
+                    {%- elsif footer_block_heading_upcase == 'HELP & SUPPORT' -%}
+                      {{ 'sections.footer_headings.help_support' | t }}
+                    {%- elsif footer_block_heading_upcase == 'CUSTOMER CARE' -%}
+                      {{ 'sections.footer_headings.customer_care' | t }}
+                    {%- else -%}
+                      {{- footer_block_heading -}}
+                    {%- endif -%}
+                  </h2>
                 {%- endif -%}
 
                 {%- case block.type -%}
