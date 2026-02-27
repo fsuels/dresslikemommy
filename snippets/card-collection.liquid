@@ -33,7 +33,7 @@
 
   assign card_collection_display_title = card_collection.title
   if card_collection != blank and card_collection.handle == 'swimsuits'
-    assign card_collection_display_title = 'Swimsuits'
+    assign card_collection_display_title = 'sections.collection.swimsuits_override' | t
   endif
 -%}
 

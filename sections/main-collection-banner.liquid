@@ -4,7 +4,7 @@
 {%- liquid
   assign collection_display_title = collection.title
   if collection.handle == 'swimsuits'
-    assign collection_display_title = 'Swimsuits'
+    assign collection_display_title = 'sections.collection.swimsuits_override' | t
   endif
 -%}
 

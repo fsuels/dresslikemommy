@@ -5986,3 +5986,19 @@ Verification:
 
 Open items:
 - Preview QA on ES/FR PDPs to confirm numeric values change when switching between metric/imperial.
+
+### Task: Remove Size Guide page link from footer
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-footer-remove-size-guide-link
+Changes:
+- `sections/footer.liquid`
+  - Updated footer menu link rendering to skip links whose URL contains `/pages/size-guide`.
+
+Why:
+- Requested to remove the `Size Guide` page link (`/pages/size-guide`) from footer navigation without altering other footer menu items.
+
+Verification:
+- Confirmed the footer link loop now excludes any link URL matching `/pages/size-guide`.
+
+Open items:
+- None.

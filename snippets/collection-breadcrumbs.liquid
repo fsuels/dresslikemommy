@@ -8,7 +8,10 @@
   Cross-category collections (new-arrivals, etc.) show top-level category pills.
 {% endcomment %}
 
-{% assign parent_category = collection.metafields.custom.category1 | default: 'Mommy and Me' | strip %}
+{% assign parent_category = collection.metafields.custom.category1 | strip %}
+{% if parent_category == blank %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_mommy_me' | t %}
+{% endif %}
 {% assign product_tags_raw = collection.metafields.custom.product_tag | default: '' %}
 {% assign product_tags = product_tags_raw | split: ',' %}
 {% assign current_collection_handle = collection.handle %}
@@ -17,39 +20,39 @@
 {% assign collections_base_url = routes.collections_url | append: '/' %}
 
 {% if current_collection_handle == 'daddy-me' %}
-  {% assign parent_category = 'Daddy & Me' %}
-  {% assign current_breadcrumb_label = 'Daddy & Me' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_daddy_me' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.cat_daddy_me' | t %}
 {% elsif current_collection_handle == 'daddy-me-t-shirts' %}
-  {% assign parent_category = 'Daddy & Me' %}
-  {% assign current_breadcrumb_label = 'T-Shirts' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_daddy_me' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.label_tshirts' | t %}
 {% elsif current_collection_handle == 'trunks' %}
-  {% assign parent_category = 'Daddy & Me' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_daddy_me' | t %}
 {% elsif current_collection_handle == 'couples' %}
-  {% assign parent_category = 'Couples' %}
-  {% assign current_breadcrumb_label = 'Couples' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_couples' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.cat_couples' | t %}
 {% elsif current_collection_handle == 'maternity' %}
-  {% assign parent_category = 'Maternity' %}
-  {% assign current_breadcrumb_label = 'Maternity' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_maternity' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.cat_maternity' | t %}
 {% elsif current_collection_handle == 'family-swimsuits' %}
-  {% assign parent_category = 'Family Matching' %}
-  {% assign current_breadcrumb_label = 'Swimsuits' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.label_swimsuits' | t %}
 {% elsif current_collection_handle == 'family-sets' %}
-  {% assign parent_category = 'Family Matching' %}
-  {% assign current_breadcrumb_label = 'Sets' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.label_sets' | t %}
 {% elsif current_collection_handle == 'family-tops' %}
-  {% assign parent_category = 'Family Matching' %}
-  {% assign current_breadcrumb_label = 'Tops' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.label_tops' | t %}
 {% elsif current_collection_handle == 'family-sweaters' %}
-  {% assign parent_category = 'Family Matching' %}
-  {% assign current_breadcrumb_label = 'Sweaters & Jackets' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.label_sweaters' | t %}
 {% elsif current_collection_handle == 'new-women-outfits' or current_collection_handle == 'family-matching-outfits' %}
-  {% assign parent_category = 'Family Matching' %}
-  {% assign current_breadcrumb_label = 'Family Matching' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.cat_family_matching' | t %}
 {% endif %}
 
 {% comment %} --- Known top-level parent categories --- {% endcomment %}
 {% assign top_level_categories = 'mommy-and-me,family-matching,daddy-and-me,maternity,couples' %}
-{% assign top_level_labels = 'Mommy and Me,Daddy and Me,Couples,Maternity,Family Matching' %}
+{% capture top_level_labels %}{{ 'sections.breadcrumbs.cat_mommy_me' | t }},{{ 'sections.breadcrumbs.cat_daddy_me' | t }},{{ 'sections.breadcrumbs.cat_couples' | t }},{{ 'sections.breadcrumbs.cat_maternity' | t }},{{ 'sections.breadcrumbs.cat_family_matching' | t }}{% endcapture %}
 
 {% comment %} --- Cross-category / store-wide collections that should show top-level nav pills --- {% endcomment %}
 {% assign cross_category_handles = 'new-arrivals,shop,all,sale,bestsellers' %}
@@ -136,7 +139,8 @@
   or current_collection_handle == 'daddy-me-t-shirts'
   or current_collection_handle == 'trunks'
 %}
-  {% assign pill_list = 'Daddy & Me T-Shirts|||Trunks' | split: '|||' %}
+  {% capture daddy_pills %}{{ 'sections.breadcrumbs.label_daddy_tshirts' | t }}|||{{ 'sections.breadcrumbs.label_trunks' | t }}{% endcapture %}
+  {% assign pill_list = daddy_pills | split: '|||' %}
 {% endif %}
 
 {% if current_collection_handle == 'new-women-outfits' or current_collection_handle == 'family-matching-outfits' %}
@@ -145,7 +149,7 @@
 
 {% comment %} --- Clean up the collection label for pill display (strip common prefixes) --- {% endcomment %}
 {% assign pill_display_label = current_collection_label %}
-{% assign prefixes_to_strip = 'Mother Daughter ,Mommy and Me ,Matching ,Daddy and Me ,Family Matching ' %}
+{% capture prefixes_to_strip %}{{ 'sections.breadcrumbs.prefix_mother_daughter' | t }},{{ 'sections.breadcrumbs.prefix_mommy_me' | t }},{{ 'sections.breadcrumbs.prefix_matching' | t }},{{ 'sections.breadcrumbs.prefix_daddy_me' | t }},{{ 'sections.breadcrumbs.prefix_family_matching' | t }}{% endcapture %}
 {% assign prefix_list = prefixes_to_strip | split: ',' %}
 {% for prefix in prefix_list %}
   {% assign prefix_stripped = prefix | strip %}
@@ -197,7 +201,7 @@
 
 <div class="page-width page-width--collection-breadcrumbs">
   <nav class="breadcrumb collection-breadcrumb" aria-label="breadcrumbs">
-    <a href="{{ routes.root_url }}" title="Home" class="collection-breadcrumb__link mobile-hide">Home</a>
+    <a href="{{ routes.root_url }}" title="{{ 'sections.breadcrumbs.home' | t }}" class="collection-breadcrumb__link mobile-hide">{{ 'sections.breadcrumbs.home' | t }}</a>
 
     {% unless hide_parent %}
       <span aria-hidden="true" class="collection-breadcrumb__separator mobile-hide">&rsaquo;</span>
@@ -231,21 +235,21 @@
                 or current_collection_handle == 'daddy-me-t-shirts'
                 or current_collection_handle == 'trunks'
               %}
-                {% assign item_display_label = 'T-Shirts' %}
+                {% assign item_display_label = 'sections.breadcrumbs.label_tshirts' | t %}
               {% endif %}
             {% endif %}
             {% if current_collection_handle == 'new-women-outfits' or current_collection_handle == 'family-matching-outfits' %}
               {% case item_handle %}
                 {% when 'family-swimsuits' %}
-                  {% assign item_display_label = 'Swimsuits' %}
+                  {% assign item_display_label = 'sections.breadcrumbs.label_swimsuits' | t %}
                 {% when 'family-sets' %}
-                  {% assign item_display_label = 'Sets' %}
+                  {% assign item_display_label = 'sections.breadcrumbs.label_sets' | t %}
                 {% when 'family-pajamas' %}
-                  {% assign item_display_label = 'Pajamas' %}
+                  {% assign item_display_label = 'sections.breadcrumbs.label_pajamas' | t %}
                 {% when 'family-tops' %}
-                  {% assign item_display_label = 'Tops' %}
+                  {% assign item_display_label = 'sections.breadcrumbs.label_tops' | t %}
                 {% when 'family-sweaters' %}
-                  {% assign item_display_label = 'Sweaters & Jackets' %}
+                  {% assign item_display_label = 'sections.breadcrumbs.label_sweaters' | t %}
               {% endcase %}
             {% endif %}
             {% assign target_collection = collections[item_handle] %}
