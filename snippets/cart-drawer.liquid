@@ -638,14 +638,12 @@
             {{ 'sections.cart.checkout' | t }}
           </button>
 
-          {%- comment -%} Delivery + rating consolidated below CTA for reassurance {%- endcomment -%}
+          {%- comment -%} Delivery reassurance below CTA {%- endcomment -%}
           <div class="cart-drawer__checkout-reassurance">
             <span class="cart-drawer__reassurance-item">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-              Est. Delivery <strong><span class="js-delivery-date"></span></strong>
+              {{ 'sections.cart.est_delivery' | t }} <strong><span class="js-delivery-date"></span></strong>
             </span>
-            <span class="cart-drawer__reassurance-sep" aria-hidden="true">·</span>
-            <span class="cart-drawer__reassurance-item">★ 4.8/5 · 15,200+ families</span>
           </div>
         </div>
 
@@ -653,19 +651,19 @@
         <div class="cart-drawer__trust-strip">
           <span class="trust-strip__item">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <span class="trust-strip__label">Secure</span>
+            <span class="trust-strip__label">{{ 'sections.cart.trust.secure' | t }}</span>
           </span>
           <span class="trust-strip__item">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span class="trust-strip__label">Encrypted</span>
+            <span class="trust-strip__label">{{ 'sections.cart.trust.encrypted' | t }}</span>
           </span>
           <span class="trust-strip__item">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span class="trust-strip__label">Free Ship</span>
+            <span class="trust-strip__label">{{ 'sections.cart.trust.free_ship' | t }}</span>
           </span>
           <span class="trust-strip__item">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            <span class="trust-strip__label">30-Day Returns</span>
+            <span class="trust-strip__label">{{ 'sections.cart.trust.returns' | t }}</span>
           </span>
         </div>
 
@@ -681,7 +679,7 @@
         {%- comment -%} ── You may also like — moved below all checkout elements ── {%- endcomment -%}
         {%- if cart != empty -%}
           <div class="cart-drawer__upsell cart-drawer__upsell--compact">
-            <h3 class="cart-drawer__upsell-heading">You may also like</h3>
+            <h3 class="cart-drawer__upsell-heading">{{ 'sections.cart.you_may_also_like' | t }}</h3>
             <div class="cart-drawer__upsell-scroll" id="CartDrawer-Upsell">
               {%- assign first_item = cart.items | first -%}
               {%- assign upsell_count = 0 -%}

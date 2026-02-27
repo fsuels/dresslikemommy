@@ -5739,3 +5739,38 @@ Verification:
 
 Open items:
 - Manual Theme Editor check recommended: add/reset announcement block text in EN/ES/FR contexts to confirm localized default appears as expected.
+
+### Task: Product + cart translation hardening (including checkout-adjacent copy)
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-product-cart-translation-hardening
+Changes:
+- `sections/main-product.liquid`
+  - Replaced hardcoded trust badge labels with locale keys under `products.trust.*`.
+  - Replaced hardcoded low-stock urgency sentence with existing translated key `products.product.inventory_low_stock_show_count`.
+  - Replaced hardcoded Additional Info / Returns / Security copy with locale keys under `products.additional_info.*`.
+- `sections/main-cart-footer.liquid`
+  - Replaced hardcoded delivery, rating, trust labels, payment label, and cross-sell heading with locale keys under `sections.cart.*`.
+- `snippets/cart-drawer.liquid`
+  - Replaced hardcoded delivery, trust strip labels, and upsell heading with locale keys under `sections.cart.*`.
+- `locales/en.default.json`
+  - Added `products.trust`, `products.additional_info`, and new `sections.cart` translation keys used by product/cart templates.
+- `locales/*.json` (non-schema locale files)
+  - Added the same key paths for translation coverage across all published storefront languages (fallback English where missing).
+  - Added explicit localized values for `locales/es.json` and `locales/fr.json` for the newly added product/cart keys.
+
+Verification:
+- `shopify theme check --fail-level error --output text` executed.
+- Confirmed no remaining missing-translation diagnostics for:
+  - `products.trust.*`
+  - `products.additional_info.*`
+  - `sections.cart.trust.*`
+  - `sections.cart.order_today_delivery`
+  - `sections.cart.est_delivery`
+  - `sections.cart.store_rating_prefix`
+  - `sections.cart.store_rating_suffix`
+  - `sections.cart.we_accept`
+  - `sections.cart.complete_the_look`
+  - `sections.cart.you_may_also_like`
+
+Open items:
+- Shopify checkout page UI strings are platform-managed (Settings > Languages / Checkout & system translations) and are not rendered from theme section/snippet Liquid in non-Plus checkout. Theme-side work now covers cart + checkout-adjacent copy before redirect.

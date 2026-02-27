@@ -145,13 +145,13 @@
               {%- comment -%} Estimated delivery date — 10 business days (matches product page FREE Shipping) {%- endcomment -%}
               <div class="cart-page__delivery-estimate">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                Order today, Est. Delivery <strong><span class="js-delivery-date"></span></strong>
+                {{ 'sections.cart.order_today_delivery' | t }} <strong><span class="js-delivery-date"></span></strong>
               </div>
 
               {%- comment -%} Aggregate store rating — social proof {%- endcomment -%}
               <div class="cart-page__store-rating">
                 <span class="store-rating__stars" aria-hidden="true">★★★★★</span>
-                Rated <strong>4.8/5</strong> by 15,200+ families
+                {{ 'sections.cart.store_rating_prefix' | t }} <strong>4.8/5</strong> {{ 'sections.cart.store_rating_suffix' | t }}
               </div>
 
               <div class="cart__ctas" {{ block.shopify_attributes }}>
@@ -180,25 +180,25 @@
               <div class="cart-page__trust-badges">
                 <div class="trust-badge">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                  <span>Secure Checkout</span>
+                  <span>{{ 'sections.cart.trust.secure_checkout' | t }}</span>
                 </div>
                 <div class="trust-badge">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                  <span>SSL Encrypted</span>
+                  <span>{{ 'sections.cart.trust.ssl_encrypted' | t }}</span>
                 </div>
                 <div class="trust-badge">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  <span>Free Shipping</span>
+                  <span>{{ 'sections.cart.trust.free_shipping' | t }}</span>
                 </div>
                 <div class="trust-badge">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>30-Day Returns</span>
+                  <span>{{ 'sections.cart.trust.returns' | t }}</span>
                 </div>
               </div>
 
               <!-- Accepted payment methods (matches cart drawer) -->
               <div class="cart-page__payment-icons">
-                <span class="payment-icons__label">We accept</span>
+                <span class="payment-icons__label">{{ 'sections.cart.we_accept' | t }}</span>
                 <div class="payment-icons__list">
                   {%- for type in shop.enabled_payment_types -%}
                     {{ type | payment_type_svg_tag: class: 'payment-icon' }}
@@ -209,7 +209,7 @@
               {%- comment -%} Complete the Look — moved below all checkout elements {%- endcomment -%}
               {%- if cart != empty -%}
                 <div class="cart-page__cross-sell">
-                  <h2 class="cart-page__cross-sell-heading">Complete the Look</h2>
+                  <h2 class="cart-page__cross-sell-heading">{{ 'sections.cart.complete_the_look' | t }}</h2>
                   <div class="cart-page__cross-sell-grid">
                     {%- assign first_item = cart.items | first -%}
                     {%- assign cross_sell_count = 0 -%}
