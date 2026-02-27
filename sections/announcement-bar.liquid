@@ -12,6 +12,14 @@
   if section.blocks.size > 0
     assign announcement_bar = true
   endif
+  assign announcement_locale = request.locale.iso_code | downcase
+  assign announcement_default_promo = 'sections.announcements.default_promo' | t
+  assign announcement_default_promo_fallback_en = 'FREE SHIPPING ON ALL ORDERS | 30-DAY EASY RETURNS | SECURE CHECKOUT'
+  if announcement_locale contains 'es' and announcement_default_promo == announcement_default_promo_fallback_en
+    assign announcement_default_promo = 'ENVÍO GRATIS EN TODOS LOS PEDIDOS | DEVOLUCIONES FÁCILES DE 30 DÍAS | PAGO SEGURO'
+  elsif announcement_locale contains 'fr' and announcement_default_promo == announcement_default_promo_fallback_en
+    assign announcement_default_promo = 'LIVRAISON GRATUITE SUR TOUTES LES COMMANDES | RETOURS FACILES SOUS 30 JOURS | PAIEMENT SÉCURISÉ'
+  endif
 -%}
 
 {% if social_icons %}
@@ -50,7 +58,7 @@
                 and single_announcement_text_upcase contains '30-DAY EASY RETURNS'
                 and single_announcement_text_upcase contains 'SECURE CHECKOUT'
               -%}
-                {{ 'sections.announcements.default_promo' | t }}
+                {{ announcement_default_promo }}
               {%- else -%}
                 {{ single_announcement_text | escape }}
               {%- endif -%}
@@ -122,7 +130,7 @@
                           and announcement_text_upcase contains '30-DAY EASY RETURNS'
                           and announcement_text_upcase contains 'SECURE CHECKOUT'
                         -%}
-                          {{ 'sections.announcements.default_promo' | t }}
+                          {{ announcement_default_promo }}
                         {%- else -%}
                           {{ announcement_text | escape }}
                         {%- endif -%}

@@ -5880,3 +5880,19 @@ Why:
 
 Verification:
 - Ran `shopify theme check --fail-level error --output text`; repository retains existing unrelated baseline errors (for example `sections/email-signup-banner.liquid` schema issue), no new parser errors introduced by these edits.
+
+### Task: Announcement bar hard fallback for ES/FR locale resolution
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-announcement-bar-hard-fallback
+Changes:
+- `sections/announcement-bar.liquid`
+  - Added locale-aware hard fallback handling for `sections.announcements.default_promo`:
+    - If active locale is ES/FR and translation resolves to the legacy English promo string, force localized promo copy in render output.
+  - Updated both single-announcement and slider-announcement branches to use shared `announcement_default_promo` value.
+
+Why:
+- User reported top announcement banner appeared fixed earlier, then displayed English again.
+- This patch removes dependency on locale-file resolution reliability by enforcing localized output at render time for ES/FR when fallback returns English.
+
+Verification:
+- `shopify theme check --fail-level error --output text` run; baseline unrelated repository errors remain, and no new parser errors were introduced by this change.
