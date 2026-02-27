@@ -32,31 +32,36 @@ function trapFocus(container, elementToFocus = container) {
   removeTrapFocus();
 
   trapFocusHandlers.focusin = (event) => {
-    if (event.target !== container && event.target !== last && event.target !== first) return;
-
-    document.addEventListener('keydown', trapFocusHandlers.keydown);
-  };
-
-  trapFocusHandlers.focusout = function () {
-    document.removeEventListener('keydown', trapFocusHandlers.keydown);
+    // If focus moves outside the container, pull it back to the first element
+    if (!container.contains(event.target)) {
+      event.preventDefault();
+      first.focus();
+    }
   };
 
   trapFocusHandlers.keydown = function (event) {
     if (event.code.toUpperCase() !== 'TAB') return; // If not TAB key
+
+    // Re-query focusable elements in case DOM changed (e.g. cart update)
+    var currentElements = getFocusableElements(container);
+    var currentFirst = currentElements[0];
+    var currentLast = currentElements[currentElements.length - 1];
+
     // On the last focusable element and tab forward, focus the first element.
-    if (event.target === last && !event.shiftKey) {
+    if (event.target === currentLast && !event.shiftKey) {
       event.preventDefault();
-      first.focus();
+      currentFirst.focus();
     }
 
     //  On the first focusable element and tab backward, focus the last element.
-    if ((event.target === container || event.target === first) && event.shiftKey) {
+    if ((event.target === container || event.target === currentFirst) && event.shiftKey) {
       event.preventDefault();
-      last.focus();
+      currentLast.focus();
     }
   };
 
-  document.addEventListener('focusout', trapFocusHandlers.focusout);
+  // Keep keydown listener active at all times while trap is engaged
+  document.addEventListener('keydown', trapFocusHandlers.keydown);
   document.addEventListener('focusin', trapFocusHandlers.focusin);
 
   elementToFocus.focus();
@@ -134,7 +139,6 @@ function pauseAllMedia() {
 
 function removeTrapFocus(elementToFocus = null) {
   document.removeEventListener('focusin', trapFocusHandlers.focusin);
-  document.removeEventListener('focusout', trapFocusHandlers.focusout);
   document.removeEventListener('keydown', trapFocusHandlers.keydown);
 
   if (elementToFocus) elementToFocus.focus();

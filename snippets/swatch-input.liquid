@@ -41,6 +41,7 @@
 <label
   for="{{ id }}"
   title="{{ value }}"
+  aria-label="{{ value }}"
   class="swatch-input__label{% if shape == 'square' %} swatch-input__label--square{% endif %}"
 >
   {% render 'swatch', swatch: swatch, shape: shape %}

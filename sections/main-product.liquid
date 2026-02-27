@@ -1220,8 +1220,8 @@
                   and product.selected_or_first_available_variant.inventory_quantity > 0
                   and product.selected_or_first_available_variant.inventory_quantity <= 10
                 -%}
-                  <div class="low-stock-urgency">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <div class="low-stock-urgency" role="status" aria-live="polite" aria-atomic="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     Only {{ product.selected_or_first_available_variant.inventory_quantity }} left in stock — order soon!
                   </div>
                 {%- endif -%}

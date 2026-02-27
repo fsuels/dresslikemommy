@@ -54,8 +54,8 @@
                         <img
                           src="{{ product.featured_image | image_url: width: 200 }}"
                           alt="{{ product.featured_image.alt | escape }}"
-                          width="70"
-                          height="70"
+                          width="90"
+                          height="90"
                           loading="lazy"
                           class="cart-drawer__upsell-img"
                         >
@@ -234,7 +234,7 @@
                                     <dd>
                                       {%- assign option_name_lower = option.name | downcase -%}
                                       {%- if option_name_lower contains 'color' or option_name_lower contains 'colour' -%}
-                                        <span class="cart-item__color-swatch" style="background-color: {{ option.value | handleize }}" title="{{ option.value }}"></span>
+                                        <span class="cart-item__color-swatch" style="background-color: {{ option.value | handleize }}" title="{{ option.value }}" role="img" aria-label="{{ option.value }}"></span>
                                       {%- endif -%}
                                       {{ option.value -}}
                                       {%- unless forloop.last %}, {% endunless %}
@@ -287,7 +287,7 @@
                           {%- assign urgency_hash = item.product.id | times: 31 | plus: item.variant_id | modulo: 100 -%}
                           {%- if urgency_hash < 65 -%}
                             {%- assign stock_num = item.product.id | plus: item.variant_id | times: 7 | modulo: 8 | plus: 2 -%}
-                            <p class="cart-item__low-stock">
+                            <p class="cart-item__low-stock" role="status" aria-live="polite" aria-atomic="true">
                               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                               Only {{ stock_num }} left!
                             </p>
@@ -401,11 +401,11 @@
                               >
                                 <button
                                   type="button"
-                                  class="button button--tertiary cart-remove-button"
+                                  class="cart-drawer__trash-btn"
                                   aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}"
                                   data-variant-id="{{ item.variant.id }}"
                                 >
-                                  {% render 'icon-remove' %}
+                                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
                                 </button>
                               </cart-remove-button>
                             </div>
@@ -525,10 +525,10 @@
         </form>
 
         {%- if cart != empty -%}
-          <!-- You may also like -->
-          <div class="cart-drawer__upsell">
+          <!-- You may also like — compact horizontal scroll -->
+          <div class="cart-drawer__upsell cart-drawer__upsell--compact">
             <h3 class="cart-drawer__upsell-heading">You may also like</h3>
-            <div class="cart-drawer__upsell-grid" id="CartDrawer-Upsell">
+            <div class="cart-drawer__upsell-scroll" id="CartDrawer-Upsell">
               {%- comment -%} Get related products based on first cart item's collection {%- endcomment -%}
               {%- assign first_item = cart.items | first -%}
               {%- assign upsell_count = 0 -%}
@@ -550,8 +550,8 @@
                           <img
                             src="{{ product.featured_image | image_url: width: 200 }}"
                             alt="{{ product.featured_image.alt | escape }}"
-                            width="70"
-                            height="70"
+                            width="90"
+                            height="90"
                             loading="lazy"
                             class="cart-drawer__upsell-img"
                           >
@@ -571,27 +571,7 @@
         {%- endif -%}
       </cart-drawer-items>
       <div class="drawer__footer">
-        {%- if settings.show_cart_note -%}
-          <details id="Details-CartDrawer">
-            <summary>
-              <span class="summary__title">
-                {{ 'sections.cart.note' | t }}
-                {% render 'icon-caret' %}
-              </span>
-            </summary>
-            <cart-note class="cart__note field">
-              <label class="visually-hidden" for="CartDrawer-Note">{{ 'sections.cart.note' | t }}</label>
-              <textarea
-                id="CartDrawer-Note"
-                class="text-area text-area--resize-vertical field__input"
-                name="note"
-                placeholder="{{ 'sections.cart.note' | t }}"
-              >{{ cart.note }}</textarea>
-            </cart-note>
-          </details>
-        {%- endif -%}
-
-        <!-- Discount code field -->
+        {%- comment -%} ── Discount code (collapsible) ── {%- endcomment -%}
         <div class="cart-drawer__discount">
           <div class="cart-drawer__discount-toggle">
             <button type="button" class="cart-drawer__discount-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false'); this.closest('.cart-drawer__discount').querySelector('.cart-drawer__discount-form').classList.toggle('is-open');">
@@ -636,25 +616,20 @@
           </div>
         </div>
 
-        <!-- Start blocks -->
-        <!-- Subtotals -->
+        {%- comment -%} ── Order summary: shipping + savings + total ── {%- endcomment -%}
+        <div class="cart-drawer__summary">
+          {%- if cart.cart_level_discount_applications.size > 0 -%}
+            <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+              {%- for discount in cart.cart_level_discount_applications -%}
+                <li class="discounts__discount discounts__discount--end">
+                  {%- render 'icon-discount' -%}
+                  {{ discount.title }}
+                  (-{{ discount.total_allocated_amount | money }})
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
 
-        <div class="cart-drawer__footer" {{ block.shopify_attributes }}>
-          <div>
-            {%- if cart.cart_level_discount_applications.size > 0 -%}
-              <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
-                {%- for discount in cart.cart_level_discount_applications -%}
-                  <li class="discounts__discount discounts__discount--end">
-                    {%- render 'icon-discount' -%}
-                    {{ discount.title }}
-                    (-{{ discount.total_allocated_amount | money }})
-                  </li>
-                {%- endfor -%}
-              </ul>
-            {%- endif -%}
-          </div>
-
-          {%- comment -%} Savings summary — show total discount when items are on sale {%- endcomment -%}
           {%- assign total_savings = 0 -%}
           {%- for item in cart.items -%}
             {%- if item.original_line_price > item.final_line_price -%}
@@ -664,7 +639,7 @@
           {%- endfor -%}
           {%- if total_savings > 0 -%}
             <div class="cart-savings">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
               You're saving <strong>{{ total_savings | money }}</strong>
             </div>
           {%- endif -%}
@@ -673,6 +648,7 @@
             <span>Shipping</span>
             <span class="cart-drawer__shipping-free">FREE</span>
           </div>
+
           <div class="totals" role="status">
             <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
             <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
@@ -691,21 +667,8 @@
           </small>
         </div>
 
-        <!-- CTAs -->
-
-        {%- comment -%} Estimated delivery date — 11 business days (matches product page FREE Shipping lower bound) {%- endcomment -%}
-        <div class="cart-drawer__delivery-estimate">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          Order today, get it by <strong><span class="js-delivery-date"></span></strong>
-        </div>
-
-        {%- comment -%} Aggregate store rating — social proof {%- endcomment -%}
-        <div class="cart-drawer__store-rating">
-          <span class="store-rating__stars" aria-hidden="true">★★★★★</span>
-          Rated <strong>4.8/5</strong> by 15,200+ families
-        </div>
-
-        <div class="cart__ctas" {{ block.shopify_attributes }}>
+        {%- comment -%} ── Checkout CTA + delivery reassurance ── {%- endcomment -%}
+        <div class="cart__ctas">
           <button
             type="submit"
             id="CartDrawer-Checkout"
@@ -719,39 +682,40 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             {{ 'sections.cart.checkout' | t }}
           </button>
-        </div>
 
-        <!-- Continue Shopping link -->
-        <div class="cart-drawer__continue">
-          <button type="button" class="cart-drawer__continue-btn" onclick="this.closest('cart-drawer').close()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            Continue Shopping
-          </button>
-        </div>
-
-        <!-- Trust badges -->
-        <div class="cart-drawer__trust-badges">
-          <div class="trust-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <span>Secure Checkout</span>
-          </div>
-          <div class="trust-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>SSL Encrypted</span>
-          </div>
-          <div class="trust-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Free Shipping</span>
-          </div>
-          <div class="trust-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>30-Day Returns</span>
+          {%- comment -%} Delivery + rating consolidated below CTA for reassurance {%- endcomment -%}
+          <div class="cart-drawer__checkout-reassurance">
+            <span class="cart-drawer__reassurance-item">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              Get it by <strong><span class="js-delivery-date"></span></strong>
+            </span>
+            <span class="cart-drawer__reassurance-sep" aria-hidden="true">·</span>
+            <span class="cart-drawer__reassurance-item">★ 4.8/5 · 15,200+ families</span>
           </div>
         </div>
 
-        <!-- Accepted payment methods -->
+        {%- comment -%} ── Compact trust strip (icons only on mobile, text on desktop) ── {%- endcomment -%}
+        <div class="cart-drawer__trust-strip">
+          <span class="trust-strip__item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span class="trust-strip__label">Secure</span>
+          </span>
+          <span class="trust-strip__item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span class="trust-strip__label">Encrypted</span>
+          </span>
+          <span class="trust-strip__item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="trust-strip__label">Free Ship</span>
+          </span>
+          <span class="trust-strip__item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <span class="trust-strip__label">30-Day Returns</span>
+          </span>
+        </div>
+
+        {%- comment -%} ── Payment icons (compact, single row) ── {%- endcomment -%}
         <div class="cart-drawer__payment-icons">
-          <span class="payment-icons__label">We accept</span>
           <div class="payment-icons__list">
             {%- for type in shop.enabled_payment_types -%}
               {{ type | payment_type_svg_tag: class: 'payment-icon' }}

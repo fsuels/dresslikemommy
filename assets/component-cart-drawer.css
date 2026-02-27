@@ -142,8 +142,8 @@ cart-drawer:not(.is-empty) .cart-drawer__collection {
 }
 
 .drawer__footer {
-  border-top: 0.1rem solid rgba(var(--color-foreground), 0.2);
-  padding: 1.5rem 0;
+  border-top: 0.2rem solid rgba(var(--color-foreground), 0.12);
+  padding: 1rem 0 0.8rem;
 }
 
 cart-drawer-items.is-empty + .drawer__footer {
@@ -232,7 +232,7 @@ cart-drawer-items {
 
 .cart-drawer .cart-item {
   display: grid;
-  grid-template: repeat(2, auto) / repeat(4, 1fr);
+  grid-template: repeat(2, auto) / 9rem 1fr 1fr 1fr;
   gap: 1rem;
   margin-bottom: 0;
 }
@@ -449,17 +449,35 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   }
 }
 
-/* Trust badges in cart drawer */
-.cart-drawer__trust-badges {
+/* ── Compact trust strip (replaces old trust-badges) ── */
+.cart-drawer__trust-strip {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1rem 1.5rem;
-  margin-top: 1.2rem;
-  padding-top: 1.2rem;
-  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  gap: 0.4rem 1rem;
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.06);
 }
 
+.trust-strip__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 1rem;
+  color: rgba(var(--color-foreground), 0.45);
+}
+
+.trust-strip__item svg {
+  flex-shrink: 0;
+  color: rgba(var(--color-foreground), 0.35);
+}
+
+.trust-strip__label {
+  white-space: nowrap;
+}
+
+/* Legacy trust-badge class (used on cart page) */
 .trust-badge {
   display: flex;
   align-items: center;
@@ -523,12 +541,12 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1rem;
-  margin-bottom: 0.8rem;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.5rem;
   background: rgba(46, 125, 50, 0.08);
   border-radius: 0.4rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #2e7d32;
 }
 
@@ -537,13 +555,12 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   color: #2e7d32;
 }
 
-/* Payment icons */
+/* Payment icons — compact in drawer */
 .cart-drawer__payment-icons {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  justify-content: center;
+  margin-top: 0.4rem;
+  padding-bottom: 0.2rem;
 }
 
 .payment-icons__label {
@@ -557,20 +574,20 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.3rem;
 }
 
 .payment-icon {
-  width: 3.2rem;
-  height: 2rem;
-  opacity: 0.5;
+  width: 2.6rem;
+  height: 1.6rem;
+  opacity: 0.4;
 }
 
 /* Discount code field */
 .cart-drawer__discount {
-  padding: 0 0 1rem;
-  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
-  margin-bottom: 0.5rem;
+  padding: 0 0 0.6rem;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.06);
+  margin-bottom: 0.4rem;
 }
 
 .cart-drawer__discount-btn {
@@ -628,10 +645,10 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   white-space: nowrap;
 }
 
-/* Continue Shopping link */
+/* Continue Shopping link — kept for backward compat */
 .cart-drawer__continue {
   text-align: center;
-  margin-top: 0.8rem;
+  margin-top: 0.4rem;
 }
 
 .cart-drawer__continue-btn {
@@ -641,37 +658,80 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 1.2rem;
-  color: rgba(var(--color-foreground), 0.6);
+  font-size: 1.1rem;
+  color: rgba(var(--color-foreground), 0.5);
   text-decoration: underline;
   text-underline-offset: 0.3rem;
-  padding: 0.4rem 0;
+  padding: 0.3rem 0;
 }
 
 .cart-drawer__continue-btn:hover {
   color: rgb(var(--color-foreground));
 }
 
-/* Upsell section */
+/* Upsell section — compact horizontal scroll when --compact */
 .cart-drawer__upsell {
-  padding: 1.5rem 0 0.5rem;
+  padding: 1rem 0 0.5rem;
   border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .cart-drawer__upsell-heading {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  margin: 0 0 1rem;
-  color: rgba(var(--color-foreground), 0.6);
+  margin: 0 0 0.6rem;
+  color: rgba(var(--color-foreground), 0.5);
   font-weight: 600;
 }
 
+/* Default vertical grid (empty cart bestsellers) */
 .cart-drawer__upsell-grid {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+}
+
+/* Horizontal scroll for compact upsell (when cart has items) */
+.cart-drawer__upsell-scroll {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.4rem;
+  scrollbar-width: none;
+}
+
+.cart-drawer__upsell-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.cart-drawer__upsell--compact .cart-drawer__upsell-item {
+  flex: 0 0 auto;
+  width: 15rem;
+  scroll-snap-align: start;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.6rem;
+  gap: 0.5rem;
+}
+
+.cart-drawer__upsell--compact .cart-drawer__upsell-img {
+  width: 100%;
+  height: 9.5rem;
+  object-fit: cover;
+  border-radius: 0.4rem;
+}
+
+.cart-drawer__upsell--compact .cart-drawer__upsell-name {
+  font-size: 1.1rem;
+  -webkit-line-clamp: 1;
+}
+
+.cart-drawer__upsell--compact .cart-drawer__upsell-price {
+  font-size: 1.1rem;
 }
 
 .cart-drawer__upsell-item {
@@ -692,8 +752,8 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 }
 
 .cart-drawer__upsell-img {
-  width: 6rem;
-  height: 6rem;
+  width: 7rem;
+  height: 7rem;
   object-fit: cover;
   border-radius: 0.4rem;
   flex-shrink: 0;
@@ -741,29 +801,39 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   letter-spacing: 0.05rem;
 }
 
-/* Delivery estimate in cart drawer */
-.cart-drawer__delivery-estimate {
+/* ── Checkout reassurance (delivery + rating below CTA) ── */
+.cart-drawer__checkout-reassurance {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 1.2rem;
-  color: rgba(var(--color-foreground), 0.65);
-  margin-bottom: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.5rem;
+  margin-top: 0.6rem;
+  font-size: 1.1rem;
+  color: rgba(var(--color-foreground), 0.55);
+  text-align: center;
 }
 
-.cart-drawer__delivery-estimate svg {
+.cart-drawer__reassurance-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.cart-drawer__reassurance-item svg {
   flex-shrink: 0;
-  color: rgba(var(--color-foreground), 0.5);
+  color: rgba(var(--color-foreground), 0.45);
 }
 
-/* Store rating in cart drawer */
-.cart-drawer__store-rating {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 1.2rem;
-  color: rgba(var(--color-foreground), 0.6);
-  margin-bottom: 0.8rem;
+.cart-drawer__reassurance-sep {
+  color: rgba(var(--color-foreground), 0.3);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+/* ── Order summary section ── */
+.cart-drawer__summary {
+  margin-bottom: 0.5rem;
 }
 
 /* Discount success/error in cart drawer */
@@ -844,4 +914,64 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 .cart-drawer__upsell-item:hover {
   border-color: rgba(var(--color-foreground), 0.2);
   background: rgba(var(--color-foreground), 0.02);
+}
+
+/* ── Trash button (mobile-optimized remove) ── */
+.cart-drawer__trash-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: none;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  border-radius: 0.4rem;
+  cursor: pointer;
+  color: rgba(var(--color-foreground), 0.45);
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  min-width: 3.2rem;
+  min-height: 3.2rem;
+}
+
+.cart-drawer__trash-btn:hover {
+  color: #c62828;
+  border-color: rgba(194, 40, 40, 0.3);
+  background: rgba(194, 40, 40, 0.05);
+}
+
+.cart-drawer__trash-btn svg {
+  flex-shrink: 0;
+}
+
+/* Cart page trash button */
+.cart-page__trash-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  background: none;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  border-radius: 0.4rem;
+  cursor: pointer;
+  color: rgba(var(--color-foreground), 0.5);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.cart-page__trash-btn:hover {
+  color: #c62828;
+  border-color: rgba(194, 40, 40, 0.3);
+}
+
+/* Hide "Remove" text on mobile, show only trash icon */
+@media screen and (max-width: 749px) {
+  .cart-page__trash-btn .cart-remove-text {
+    display: none;
+  }
+  .cart-page__trash-btn {
+    padding: 0.5rem;
+    min-width: 3.2rem;
+    min-height: 3.2rem;
+    justify-content: center;
+  }
 }

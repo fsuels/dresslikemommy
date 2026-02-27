@@ -326,15 +326,14 @@ class CartItems extends HTMLElement {
 
 customElements.define('cart-items', CartItems);
 
-// Recently Viewed Products — track on product pages, render in empty cart
+/* ── Recently Viewed Products — lazy: only track on product pages, only render when empty cart containers exist ── */
 (function() {
   const STORAGE_KEY = 'dlm_recently_viewed';
   const MAX_ITEMS = 6;
 
-  // Track current product page
+  // Track current product page (lightweight — just localStorage write)
   if (window.location.pathname.startsWith('/products/')) {
     try {
-      const metaTag = document.querySelector('meta[property="og:url"]');
       const titleTag = document.querySelector('meta[property="og:title"]');
       const imageTag = document.querySelector('meta[property="og:image"]');
       const priceTag = document.querySelector('meta[property="product:price:amount"]');
@@ -342,63 +341,54 @@ customElements.define('cart-items', CartItems);
       if (titleTag) {
         const viewed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
         const url = window.location.pathname;
-        const newItem = {
-          url: url,
-          title: titleTag.content || '',
-          image: imageTag ? imageTag.content : '',
-          price: priceTag ? priceTag.content : '',
-          time: Date.now()
-        };
-
-        // Remove duplicate
         const filtered = viewed.filter(item => item.url !== url);
-        filtered.unshift(newItem);
-
-        // Keep max items
+        filtered.unshift({ url, title: titleTag.content || '', image: imageTag ? imageTag.content : '', price: priceTag ? priceTag.content : '', time: Date.now() });
         localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered.slice(0, MAX_ITEMS)));
       }
     } catch(e) { /* localStorage not available */ }
+    return; // Exit early — no rendering needed on product pages
   }
 
-  // Render recently viewed in empty cart
+  // Only render if empty-cart containers exist on page
   function renderRecentlyViewed() {
+    const drawerContainer = document.getElementById('CartDrawer-RecentlyViewed');
+    const pageContainer = document.getElementById('CartPage-RecentlyViewed');
+    if (!drawerContainer && !pageContainer) return; // No containers — skip entirely
+
     try {
       const viewed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
       if (viewed.length === 0) return;
 
-      // Cart drawer
-      const drawerContainer = document.getElementById('CartDrawer-RecentlyViewed');
-      const drawerGrid = document.getElementById('CartDrawer-RecentlyViewedGrid');
-      if (drawerContainer && drawerGrid) {
-        drawerGrid.innerHTML = viewed.slice(0, 3).map(function(item) {
-          return '<a href="' + item.url + '" class="cart-drawer__upsell-item">' +
-            (item.image ? '<img src="' + item.image + '" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img">' : '') +
-            '<div class="cart-drawer__upsell-info">' +
-            '<span class="cart-drawer__upsell-name">' + item.title.split(' | ')[0] + '</span>' +
-            (item.price ? '<span class="cart-drawer__upsell-price">$' + item.price + '</span>' : '') +
-            '</div></a>';
-        }).join('');
-        drawerContainer.style.display = '';
+      if (drawerContainer) {
+        const drawerGrid = document.getElementById('CartDrawer-RecentlyViewedGrid');
+        if (drawerGrid) {
+          drawerGrid.innerHTML = viewed.slice(0, 3).map(function(item) {
+            return '<a href="' + item.url + '" class="cart-drawer__upsell-item">' +
+              (item.image ? '<img src="' + item.image + '" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img">' : '') +
+              '<div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">' + item.title.split(' | ')[0] + '</span>' +
+              (item.price ? '<span class="cart-drawer__upsell-price">$' + item.price + '</span>' : '') +
+              '</div></a>';
+          }).join('');
+          drawerContainer.style.display = '';
+        }
       }
 
-      // Cart page
-      const pageContainer = document.getElementById('CartPage-RecentlyViewed');
-      const pageGrid = document.getElementById('CartPage-RecentlyViewedGrid');
-      if (pageContainer && pageGrid) {
-        pageGrid.innerHTML = viewed.slice(0, 4).map(function(item) {
-          return '<a href="' + item.url + '" class="cart-page__cross-sell-item">' +
-            (item.image ? '<div class="cart-page__cross-sell-img-wrap"><img src="' + item.image + '" alt="" width="150" height="150" loading="lazy" class="cart-page__cross-sell-img"></div>' : '') +
-            '<div class="cart-page__cross-sell-info">' +
-            '<span class="cart-page__cross-sell-name">' + item.title.split(' | ')[0] + '</span>' +
-            (item.price ? '<span class="cart-page__cross-sell-price">$' + item.price + '</span>' : '') +
-            '</div></a>';
-        }).join('');
-        pageContainer.style.display = '';
+      if (pageContainer) {
+        const pageGrid = document.getElementById('CartPage-RecentlyViewedGrid');
+        if (pageGrid) {
+          pageGrid.innerHTML = viewed.slice(0, 4).map(function(item) {
+            return '<a href="' + item.url + '" class="cart-page__cross-sell-item">' +
+              (item.image ? '<div class="cart-page__cross-sell-img-wrap"><img src="' + item.image + '" alt="" width="150" height="150" loading="lazy" class="cart-page__cross-sell-img"></div>' : '') +
+              '<div class="cart-page__cross-sell-info"><span class="cart-page__cross-sell-name">' + item.title.split(' | ')[0] + '</span>' +
+              (item.price ? '<span class="cart-page__cross-sell-price">$' + item.price + '</span>' : '') +
+              '</div></a>';
+          }).join('');
+          pageContainer.style.display = '';
+        }
       }
     } catch(e) { /* localStorage not available */ }
   }
 
-  // Run on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', renderRecentlyViewed);
   } else {
@@ -406,9 +396,10 @@ customElements.define('cart-items', CartItems);
   }
 })();
 
-// Swipe-to-remove on mobile
+/* ── Swipe-to-remove on mobile — only init on touch devices with cart items ── */
 (function() {
   if (!('ontouchstart' in window)) return;
+  if (!document.querySelector('.cart-item')) return; // No cart items — skip
 
   let startX = 0;
   let currentX = 0;
@@ -456,7 +447,25 @@ customElements.define('cart-items', CartItems);
 })();
 
 /* ── Delivery date calculation (11 business days — matches product page FREE Shipping lower bound) ── */
+/* Only runs when .js-delivery-date elements exist (cart has items) */
 (function() {
+  if (!document.querySelector('.js-delivery-date')) {
+    // Defer — elements may appear later when cart drawer opens
+    var checkLater = function() {
+      if (document.querySelector('.js-delivery-date')) initDeliveryDates();
+    };
+    document.addEventListener('cart:updated', checkLater);
+    var drawer = document.getElementById('CartDrawer');
+    if (drawer) {
+      new MutationObserver(function(mutations) {
+        if (document.querySelector('.js-delivery-date:empty')) initDeliveryDates();
+      }).observe(drawer, { childList: true, subtree: true });
+    }
+    return;
+  }
+  initDeliveryDates();
+
+  function initDeliveryDates() {
   function addBusinessDays(startDate, businessDays) {
     const date = new Date(startDate);
     let added = 0;
@@ -496,6 +505,7 @@ customElements.define('cart-items', CartItems);
   });
   const cartDrawer = document.getElementById('CartDrawer');
   if (cartDrawer) observer.observe(cartDrawer, { childList: true, subtree: true });
+  } /* end initDeliveryDates */
 })();
 
 if (!customElements.get('cart-note')) {
