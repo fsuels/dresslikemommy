@@ -180,6 +180,7 @@
 {% comment %} --- Detect if breadcrumb parent should be hidden --- {% endcomment %}
 {% assign hide_parent = false %}
 {% assign parent_handle = parent_category | handleize %}
+{% assign parent_collection = collections[parent_handle] %}
 {% if current_collection_handle == parent_handle %}
   {% assign hide_parent = true %}
 {% endif %}
@@ -187,6 +188,10 @@
   {% assign hide_parent = true %}
 {% endif %}
 {% if current_collection_handle == 'new-women-outfits' or current_collection_handle == 'family-matching-outfits' %}
+  {% assign hide_parent = true %}
+{% endif %}
+{% comment %} --- Hide parent link if parent collection doesn't exist --- {% endcomment %}
+{% if parent_collection == blank %}
   {% assign hide_parent = true %}
 {% endif %}
 

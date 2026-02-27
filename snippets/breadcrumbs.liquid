@@ -1,23 +1,60 @@
 {% unless template == 'index' or template == 'cart' or template == 'list-collections' %}
-<nav class="breadcrumb product-breadcrumb" role="navigation" aria-label="breadcrumbs">
-  <a href="/" title="Home" class="product-breadcrumb__link mobile-hide">Home</a>
-  <span aria-hidden="true" class="product-breadcrumb__separator mobile-hide">&rsaquo;</span>
-  <a href="/collections/{{ product.metafields.custom.category1 | handleize }}" title="{{ product.metafields.custom.category1 | default: "Mommy and Me" }}" class="product-breadcrumb__link mobile-hide">{{ product.metafields.custom.category1 | default: "Mommy and Me" }}</a>
-  <span aria-hidden="true" class="product-breadcrumb__separator mobile-hide">&rsaquo;</span>
-  <a href="/collections/{{ product.metafields.custom.subcategory | handleize }}" title="{{ product.metafields.custom.subcategory }}" class="product-breadcrumb__link">{{ product.metafields.custom.subcategory | default: "Dresses" }}</a>
-  
-  {% assign subcategories = product.metafields.custom.subcategory2 | split: ',' %}
-  
-  {% if subcategories.size > 0 %}
-    <span aria-hidden="true" class="product-breadcrumb__separator">&rsaquo;</span>
-    <span class="product-breadcrumb__group">
+  {% comment %} --- Hardened breadcrumb generation with collection existence checks --- {% endcomment %}
+  {% assign category1_label = product.metafields.custom.category1 | default: "Mommy and Me" %}
+  {% assign category1_handle = category1_label | handleize %}
+  {% assign category1_collection = collections[category1_handle] %}
+
+  {% assign subcategory_label = product.metafields.custom.subcategory | default: "Dresses" %}
+  {% assign subcategory_handle = subcategory_label | handleize %}
+  {% assign subcategory_collection = collections[subcategory_handle] %}
+
+  <nav class="breadcrumb product-breadcrumb" role="navigation" aria-label="breadcrumbs">
+    <a href="/" title="Home" class="product-breadcrumb__link mobile-hide">Home</a>
+
+    {% comment %} --- Category1 link only if collection exists --- {% endcomment %}
+    {% if category1_collection != blank %}
+      <span aria-hidden="true" class="product-breadcrumb__separator mobile-hide">&rsaquo;</span>
+      <a href="{{ category1_collection.url }}" title="{{ category1_label }}" class="product-breadcrumb__link mobile-hide">{{ category1_label }}</a>
+    {% endif %}
+
+    {% comment %} --- Subcategory link only if collection exists --- {% endcomment %}
+    {% if subcategory_collection != blank %}
+      <span aria-hidden="true" class="product-breadcrumb__separator mobile-hide">&rsaquo;</span>
+      <a href="{{ subcategory_collection.url }}" title="{{ subcategory_label }}" class="product-breadcrumb__link">{{ subcategory_label }}</a>
+    {% endif %}
+
+    {% assign subcategories = product.metafields.custom.subcategory2 | split: ',' %}
+
+    {% if subcategories.size > 0 %}
+      {% comment %} --- Build subcategory2 group with existence checks --- {% endcomment %}
+      {% assign valid_subcats = '' %}
       {% for subcategory in subcategories %}
-        {% assign subcategory = subcategory | strip %}
-        {% unless subcategory == '' %}
-          <a href="/collections/{{ subcategory | handleize }}" class="product-breadcrumb__link">{{ subcategory }}</a>{% if forloop.last == false %} <span class="product-breadcrumb__separator">/</span> {% endif %}
+        {% assign subcat_label = subcategory | strip %}
+        {% unless subcat_label == '' %}
+          {% assign subcat_handle = subcat_label | handleize %}
+          {% assign subcat_collection = collections[subcat_handle] %}
+          {% comment %} Only include if collection exists {% endcomment %}
+          {% if subcat_collection != blank %}
+            {% if valid_subcats == '' %}
+              {% assign valid_subcats = subcat_label %}
+            {% else %}
+              {% assign valid_subcats = valid_subcats | append: '|||' | append: subcat_label %}
+            {% endif %}
+          {% endif %}
         {% endunless %}
       {% endfor %}
-    </span>
-  {% endif %}
-</nav>
+
+      {% if valid_subcats != '' %}
+        <span aria-hidden="true" class="product-breadcrumb__separator">&rsaquo;</span>
+        <span class="product-breadcrumb__group">
+          {% assign valid_subcat_list = valid_subcats | split: '|||' %}
+          {% for subcat_label in valid_subcat_list %}
+            {% assign subcat_handle = subcat_label | handleize %}
+            {% assign subcat_collection = collections[subcat_handle] %}
+            <a href="{{ subcat_collection.url }}" class="product-breadcrumb__link">{{ subcat_label }}</a>{% if forloop.last == false %} <span class="product-breadcrumb__separator">/</span> {% endif %}
+          {% endfor %}
+        </span>
+      {% endif %}
+    {% endif %}
+  </nav>
 {% endunless %}
