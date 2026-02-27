@@ -5545,3 +5545,20 @@ Open TODOs (manual QA)
 1) PDP variant picker: verify `Color: Pink` (single colon) on products where option name in admin includes `Color:`.
 2) Cart drawer / cart page / cart notification: verify variant rows do not show double colons.
 3) Pickup availability drawer: verify option label/value formatting remains correct.
+
+Follow-up: Pickup availability colon-normalization parser fix
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-pickup-availability-colon-parser-fix
+
+Changes applied (evidence-first)
+- `sections/pickup-availability.liquid`
+  - Replaced Liquid condition `product_option_label != blank and product_option_label | slice: -1 == ':'` with parser-safe pattern:
+    - `assign product_option_last_char = product_option_label | slice: -1`
+    - `if product_option_label != blank and product_option_last_char == ':'`
+
+Why
+- Shopify upload parser reported: `Expected end_of_string but found pipe` for filter usage inside the compound `if` expression.
+
+Validation snapshot
+- `rg -n "\| slice: -1 == ':'" snippets sections` (no matches)
+- Live `shopify theme dev` sync log shows `Synced » update sections/pickup-availability.liquid` and subsequent product/home requests returning `200`.

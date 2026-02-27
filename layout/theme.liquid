@@ -1524,16 +1524,15 @@
       function calculateDeliveryDates() {
         const today = new Date();
 
-        // UPS GLOBAL: 8 business days total (incl. 2-3 processing)
-        const upsDate = addBusinessDays(today, 8);
+        // Premium Shipping (UPS): 7 business days
+        const upsDate = addBusinessDays(today, 7);
         const upsEl = document.getElementById('ups-delivery-date');
         if (upsEl) upsEl.textContent = formatDate(upsDate);
 
-        // DHL: 11-14 business days total (incl. 2-3 processing)
-        const dhlStart = addBusinessDays(today, 11);
-        const dhlEnd = addBusinessDays(today, 14);
-        const dhlEl = document.getElementById('dhl-delivery-range');
-        if (dhlEl) dhlEl.textContent = `${formatDate(dhlStart)} – ${formatDate(dhlEnd)}`;
+        // FREE Shipping: 10 business days
+        const dhlDate = addBusinessDays(today, 10);
+        const dhlEl = document.getElementById('dhl-delivery-date');
+        if (dhlEl) dhlEl.textContent = formatDate(dhlDate);
       }
 
       calculateDeliveryDates();

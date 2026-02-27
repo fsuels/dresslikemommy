@@ -446,7 +446,7 @@ customElements.define('cart-items', CartItems);
   });
 })();
 
-/* ── Delivery date calculation (11 business days — matches product page FREE Shipping lower bound) ── */
+/* ── Delivery date calculation (10 business days — matches product page FREE Shipping) ── */
 /* Only runs when .js-delivery-date elements exist (cart has items) */
 (function() {
   if (!document.querySelector('.js-delivery-date')) {
@@ -479,8 +479,8 @@ customElements.define('cart-items', CartItems);
 
   function updateDeliveryDates() {
     const today = new Date();
-    const deliveryDate = addBusinessDays(today, 11);
-    const options = { month: 'long', day: 'numeric' };
+    const deliveryDate = addBusinessDays(today, 10);
+    const options = { month: 'short', day: 'numeric' };
     const formatted = deliveryDate.toLocaleDateString('en-US', options);
     document.querySelectorAll('.js-delivery-date').forEach(function(el) {
       el.textContent = formatted;
