@@ -144,10 +144,32 @@ class CartItems extends HTMLElement {
 
         if (parsedState.errors) {
           quantityElement.value = quantityElement.getAttribute('value');
-          // Provide specific error messages based on Shopify's error response
+          // Map common Shopify error patterns to user-friendly messages
           let errorMessage = parsedState.errors;
           if (typeof parsedState.errors === 'string') {
             errorMessage = parsedState.errors;
+            // Provide specific, actionable error messages
+            if (errorMessage.toLowerCase().includes('sold out') || errorMessage.toLowerCase().includes('out of stock')) {
+              errorMessage = 'This item is sold out. Please try a different quantity.';
+            } else if (errorMessage.toLowerCase().includes('maximum') || errorMessage.toLowerCase().includes('max')) {
+              const match = errorMessage.match(/(\d+)/);
+              if (match) {
+                errorMessage = `You can add a maximum of ${match[1]} of this item to your cart.`;
+              } else {
+                errorMessage = 'You\'ve reached the maximum quantity for this item.';
+              }
+            } else if (errorMessage.toLowerCase().includes('minimum') || errorMessage.toLowerCase().includes('min')) {
+              const match = errorMessage.match(/(\d+)/);
+              if (match) {
+                errorMessage = `This item requires a minimum of ${match[1]} to be added.`;
+              } else {
+                errorMessage = 'This item requires a minimum quantity.';
+              }
+            } else if (errorMessage.toLowerCase().includes('inventory')) {
+              errorMessage = 'Not enough inventory available. Please try a smaller quantity.';
+            } else if (errorMessage.toLowerCase().includes('unavailable')) {
+              errorMessage = 'This item is temporarily unavailable. Please try again soon.';
+            }
           } else if (parsedState.description) {
             errorMessage = parsedState.description;
           }
@@ -209,11 +231,17 @@ class CartItems extends HTMLElement {
       .catch((error) => {
         this.querySelectorAll('.loading__spinner').forEach((overlay) => overlay.classList.add('hidden'));
         const errors = document.getElementById('cart-errors') || document.getElementById('CartDrawer-CartErrors');
-        // Differentiate network errors from other failures
-        if (error instanceof TypeError && error.message === 'Failed to fetch') {
-          errors.textContent = 'Unable to update cart — please check your connection and try again.';
+        // Differentiate error types with specific, actionable messaging
+        if (error instanceof TypeError) {
+          if (error.message === 'Failed to fetch' || error.message.includes('fetch')) {
+            errors.textContent = 'Unable to update cart — please check your internet connection and try again.';
+          } else {
+            errors.textContent = 'Something went wrong updating your cart. Please refresh the page and try again.';
+          }
+        } else if (error instanceof SyntaxError) {
+          errors.textContent = 'Server error updating cart. Please refresh and try again.';
         } else {
-          errors.textContent = window.cartStrings.error;
+          errors.textContent = window.cartStrings.error || 'Unable to update cart. Please try again.';
         }
       })
       .finally(() => {
