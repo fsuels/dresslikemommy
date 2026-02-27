@@ -33,7 +33,9 @@
         aria-label="{{ 'sections.header.announcement' | t }}"
         {{ block.shopify_attributes }}
       >
-        {%- if section.blocks.first.settings.text != blank -%}
+        {%- assign single_announcement_text = section.blocks.first.settings.text | strip -%}
+        {%- assign single_announcement_text_upcase = single_announcement_text | upcase -%}
+        {%- if single_announcement_text != blank -%}
           {%- if section.blocks.first.settings.link != blank -%}
             <a
               href="{{ section.blocks.first.settings.link }}"
@@ -41,7 +43,18 @@
             >
           {%- endif -%}
           <p class="announcement-bar__message h5">
-            <span>{{ section.blocks.first.settings.text | escape }}</span>
+            <span>
+              {%- if single_announcement_text contains 't:' -%}
+                {{ single_announcement_text | remove_first: 't:' | t }}
+              {%- elsif single_announcement_text_upcase contains 'FREE SHIPPING ON ALL ORDERS'
+                and single_announcement_text_upcase contains '30-DAY EASY RETURNS'
+                and single_announcement_text_upcase contains 'SECURE CHECKOUT'
+              -%}
+                {{ 'sections.announcements.default_promo' | t }}
+              {%- else -%}
+                {{ single_announcement_text | escape }}
+              {%- endif -%}
+            </span>
             {%- if section.blocks.first.settings.link != blank -%}
               {% render 'icon-arrow' %}
             {%- endif -%}
@@ -92,7 +105,9 @@
                   aria-label="{{ 'sections.header.announcement' | t }}"
                   {{ block.shopify_attributes }}
                 >
-                  {%- if block.settings.text != blank -%}
+                  {%- assign announcement_text = block.settings.text | strip -%}
+                  {%- assign announcement_text_upcase = announcement_text | upcase -%}
+                  {%- if announcement_text != blank -%}
                     {%- if block.settings.link != blank -%}
                       <a
                         href="{{ block.settings.link }}"
@@ -100,7 +115,18 @@
                       >
                     {%- endif -%}
                     <p class="announcement-bar__message h5">
-                      <span>{{ block.settings.text | escape }}</span>
+                      <span>
+                        {%- if announcement_text contains 't:' -%}
+                          {{ announcement_text | remove_first: 't:' | t }}
+                        {%- elsif announcement_text_upcase contains 'FREE SHIPPING ON ALL ORDERS'
+                          and announcement_text_upcase contains '30-DAY EASY RETURNS'
+                          and announcement_text_upcase contains 'SECURE CHECKOUT'
+                        -%}
+                          {{ 'sections.announcements.default_promo' | t }}
+                        {%- else -%}
+                          {{ announcement_text | escape }}
+                        {%- endif -%}
+                      </span>
                       {%- if block.settings.link != blank -%}
                         {% render 'icon-arrow' %}
                       {%- endif -%}

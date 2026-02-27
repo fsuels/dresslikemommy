@@ -5774,3 +5774,30 @@ Verification:
 
 Open items:
 - Shopify checkout page UI strings are platform-managed (Settings > Languages / Checkout & system translations) and are not rendered from theme section/snippet Liquid in non-Plus checkout. Theme-side work now covers cart + checkout-adjacent copy before redirect.
+
+### Task: Announcement bar localization hardening + config translation binding
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-announcement-bar-localization-hardening
+Changes:
+- `sections/header-group.json`
+  - Replaced hardcoded announcement text with locale reference:
+    - `t:sections.announcements.default_promo`
+- `sections/announcement-bar.liquid`
+  - Added resilient announcement rendering logic for both single and slider modes:
+    - If block text is a `t:` key, resolve and translate it at render time.
+    - If block text matches the legacy promo phrase pattern (free shipping + 30-day returns + secure checkout), render `sections.announcements.default_promo` via `| t`.
+    - Otherwise render original escaped text.
+- `locales/*.json`
+  - Added `sections.announcements.default_promo` key across all storefront locale files.
+  - Added localized values for:
+    - `locales/es.json`: `ENVÍO GRATIS EN TODOS LOS PEDIDOS | DEVOLUCIONES FÁCILES DE 30 DÍAS | PAGO SEGURO`
+    - `locales/fr.json`: `LIVRAISON GRATUITE SUR TOUTES LES COMMANDES | RETOURS FACILES SOUS 30 JOURS | PAIEMENT SÉCURISÉ`
+  - Added English fallback value for other locales.
+
+Verification:
+- Confirmed header group now uses `t:sections.announcements.default_promo`.
+- Confirmed all locale JSON files include `sections.announcements.default_promo`.
+- Ran `shopify theme check --fail-level error --output text`; no missing translation diagnostics for the new announcement key.
+
+Open items:
+- Judge.me review widget strings remain app-managed and must be translated in Judge.me settings (`Settings -> Translations`).
