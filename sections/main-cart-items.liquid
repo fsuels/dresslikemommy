@@ -553,7 +553,6 @@
                     <div class="cart-page__cross-sell-info">
                       <a href="{{ product.url }}" class="cart-page__cross-sell-name">{{ product.title | escape | split: ' | ' | first }}</a>
                       <span class="cart-page__cross-sell-price">{{ product.price | money }}</span>
-                      <a href="{{ product.url }}" class="cart-page__cross-sell-add-btn">Select Size →</a>
                     </div>
                   </div>
                   {%- assign cross_sell_count = cross_sell_count | plus: 1 -%}

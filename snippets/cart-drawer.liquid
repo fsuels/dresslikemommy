@@ -560,7 +560,6 @@
                       <div class="cart-drawer__upsell-info">
                         <a href="{{ product.url }}" class="cart-drawer__upsell-name">{{ product.title | escape | split: ' | ' | first }}</a>
                         <span class="cart-drawer__upsell-price">{{ product.price | money }}</span>
-                        <a href="{{ product.url }}" class="cart-drawer__upsell-add-btn">Select Size →</a>
                       </div>
                     </div>
                     {%- assign upsell_count = upsell_count | plus: 1 -%}
