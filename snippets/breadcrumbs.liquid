@@ -9,7 +9,7 @@
   {% assign subcategory_collection = collections[subcategory_handle] %}
 
   <nav class="breadcrumb product-breadcrumb" role="navigation" aria-label="breadcrumbs">
-    <a href="/" title="Home" class="product-breadcrumb__link mobile-hide">Home</a>
+    <a href="{{ routes.root_url }}" title="Home" class="product-breadcrumb__link mobile-hide">Home</a>
 
     {% comment %} --- Category1 link only if collection exists --- {% endcomment %}
     {% if category1_collection != blank %}

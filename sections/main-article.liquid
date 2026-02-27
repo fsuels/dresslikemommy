@@ -1,6 +1,6 @@
 {{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
 
-<article class="article-template" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="article-template" itemscope itemtype="https://schema.org/BlogPosting">
   {%- for block in section.blocks -%}
     {%- case block.type -%}
       {%- when '@app' -%}
@@ -59,7 +59,7 @@
             </span>
           {%- endif -%}
           {%- if block.settings.blog_show_author -%}
-            <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="https://schema.org/Person">
               <span itemprop="name">{{ article.author }}</span>
             </span>
           {%- endif -%}
@@ -279,7 +279,7 @@
 
 <script type="application/ld+json">
   {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "Article",
     "articleBody": {{ article.content | strip_html | json }},
     "mainEntityOfPage": {

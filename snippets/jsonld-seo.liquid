@@ -71,7 +71,11 @@
     {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ primary_collection.title | json }},"item":{{ primary_collection.url | prepend: shop.url | json }}}{%- endcapture -%}
     {%- assign breadcrumb_position = breadcrumb_position | plus: 1 -%}
   {%- endif -%}
-  {%- assign product_breadcrumb_url = canonical_url | default: shop.url | append: product.url -%}
+  {%- if canonical_url != blank -%}
+    {%- assign product_breadcrumb_url = canonical_url -%}
+  {%- else -%}
+    {%- assign product_breadcrumb_url = shop.url | append: product.url -%}
+  {%- endif -%}
   {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ product.title | json }},"item":{{ product_breadcrumb_url | json }}}{%- endcapture -%}
 {%- endif -%}
 
@@ -86,7 +90,11 @@
 {%- endif -%}
 
 {%- if template contains 'product' and product -%}
-  {%- assign product_url = canonical_url | default: shop.url | append: product.url -%}
+  {%- if canonical_url != blank -%}
+    {%- assign product_url = canonical_url -%}
+  {%- else -%}
+    {%- assign product_url = shop.url | append: product.url -%}
+  {%- endif -%}
   {%- assign product_description = product.description | strip_html | strip | truncate: 500 -%}
   {%- assign product_images = '' -%}
   {%- assign image_delim = '' -%}

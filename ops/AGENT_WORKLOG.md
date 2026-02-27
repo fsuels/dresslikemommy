@@ -5562,3 +5562,105 @@ Why
 Validation snapshot
 - `rg -n "\| slice: -1 == ':'" snippets sections` (no matches)
 - Live `shopify theme dev` sync log shows `Synced » update sections/pickup-availability.liquid` and subsequent product/home requests returning `200`.
+
+---
+
+## SEO Batch Execution — 2026-02-27
+
+### Task: TSEO-002
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-tseo-002
+Changes:
+- Fixed product_breadcrumb_url and product_url assignments in jsonld-seo.liquid
+- Replaced `canonical_url | default: shop.url | append: product.url` with conditional logic
+- When canonical_url is present, use it directly; otherwise construct from shop.url + product.url
+Verification:
+- No matches for old pattern in file
+Open items:
+- None
+
+### Task: TSEO-003
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-tseo-003
+Changes:
+- Expanded should_noindex in meta-tags.liquid to cover password pages
+- Added template contains 'customers/' check for account routes
+- Added robots noindex meta tag to gift_card.liquid head
+Verification:
+- Noindex rules confirmed for password, customer, gift card routes
+Open items:
+- None
+
+### Task: TSEO-005
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-tseo-005
+Changes:
+- Added collection-specific noindex policy in meta-tags.liquid
+- Noindex: tagged URLs (current_tags), filter params (filter.), sort params (sort_by=)
+- Indexable: base collection URLs and paginated-only URLs
+Verification:
+- Policy logic confirmed present in file
+Open items:
+- None
+
+### Task: TSEO-007
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-tseo-007
+Changes:
+- Removed 5 CSS includes from snippets/card-product.liquid
+- Added CSS includes to: main-collection-product-grid, main-search, featured-collection, related-products
+Verification:
+- No CSS includes remain in card-product snippet
+- All parent sections have the CSS includes
+Open items:
+- sections/main-product.liquid not edited (conflict avoidance); may need CSS includes if it renders card-product
+
+### Task: TSEO-009
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-tseo-009
+Changes:
+- Replaced hardcoded href="/" with href="{{ routes.root_url }}" in breadcrumbs.liquid
+Verification:
+- No hardcoded "/" paths remain
+Open items:
+- None
+
+### Task: TSEO-010
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-tseo-010
+Changes:
+- Added lazy_load parameter support to card-collection.liquid snippet
+- Changed hardcoded loading="lazy" to conditional based on lazy_load param
+- Passed lazy_load with index threshold in collection-list.liquid and main-list-collections.liquid
+Verification:
+- First 4 cards load eagerly, rest lazy
+Open items:
+- None
+
+### Task: TSEO-011
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-tseo-011
+Changes:
+- Removed unless/endunless block suppressing descriptions for new-women-outfits and family-matching-outfits
+Verification:
+- No handle-specific suppression remains
+Open items:
+- None
+
+### Task: TSEO-012
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-tseo-012
+Changes:
+- Changed http://schema.org to https://schema.org in main-article.liquid
+- Changed og:image protocol from http: to https: in meta-tags.liquid
+- Replaced placeholder "Your Store Name" with {{ shop.name | escape }} in theme.liquid
+Verification:
+- No http schema.org, no http og:image, no placeholder author
+Open items:
+- None
+
+### Skipped Tasks
+- TSEO-001: Redirect code not found in main-404.liquid (already clean)
+- TSEO-004: main-list-collections.liquid has valid syntax (no errors found)
+- TSEO-006: theme.liquid has 50+ dynamic style blocks; extraction too risky without visual testing
+- TSEO-008: Data-gated; missing locale structure and enabled locales info
