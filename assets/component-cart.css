@@ -430,3 +430,188 @@ cart-items {
     font-size: 1.1rem;
   }
 }
+
+/* Shipping FREE line on cart page */
+.cart-page__shipping-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  font-size: 1.4rem;
+  color: rgba(var(--color-foreground), 0.7);
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.06);
+  margin-bottom: 0.8rem;
+}
+
+.cart-page__shipping-free {
+  font-weight: 700;
+  color: #2e7d32;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+/* Delivery estimate on cart page */
+.cart-page__delivery-estimate {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.7);
+  margin-bottom: 0.8rem;
+}
+
+.cart-page__delivery-estimate svg {
+  flex-shrink: 0;
+  color: rgba(var(--color-foreground), 0.5);
+}
+
+/* Store rating on cart page */
+.cart-page__store-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.65);
+  margin-bottom: 1rem;
+}
+
+.store-rating__stars {
+  color: #f5a623;
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+}
+
+/* Discount success/error messages */
+.cart-page__discount-success {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.3rem;
+  color: #2e7d32;
+  padding: 0.6rem 0;
+}
+
+.cart-page__discount-error {
+  font-size: 1.2rem;
+  color: #c62828;
+  margin-top: 0.4rem;
+}
+
+/* Empty cart bestsellers */
+.cart-page__empty-bestsellers {
+  margin-top: 3rem;
+  text-align: left;
+}
+
+.cart-page__empty-section-title {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  margin: 0 0 1.5rem;
+  color: rgba(var(--color-foreground), 0.7);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Recently viewed section on cart page */
+.cart-page__recently-viewed {
+  margin-top: 2.5rem;
+  text-align: left;
+}
+
+/* Quick-add button on cross-sell */
+.cart-page__cross-sell-add-btn {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgb(var(--color-foreground));
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin-top: 0.4rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+  border-radius: 0.4rem;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  text-align: center;
+}
+
+.cart-page__cross-sell-add-btn:hover {
+  background: rgba(var(--color-foreground), 0.05);
+  border-color: rgba(var(--color-foreground), 0.4);
+}
+
+.cart-page__cross-sell-name {
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+}
+
+.cart-page__cross-sell-name:hover {
+  text-decoration: underline;
+}
+
+.cart-page__cross-sell-img-link {
+  display: block;
+}
+
+/* Undo toast */
+.cart-undo-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  background: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+  padding: 1rem 1.6rem;
+  border-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 1.4rem;
+  z-index: 1100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.cart-undo-toast.is-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.cart-undo-toast__btn {
+  background: transparent;
+  border: 0.1rem solid rgba(var(--color-background), 0.3);
+  color: rgb(var(--color-background));
+  padding: 0.4rem 1rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.cart-undo-toast__btn:hover {
+  background: rgba(var(--color-background), 0.15);
+}
+
+@media screen and (max-width: 749px) {
+  .cart-undo-toast {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    transform: translateY(100%);
+    justify-content: space-between;
+  }
+
+  .cart-undo-toast.is-visible {
+    transform: translateY(0);
+  }
+
+  .cart-page__delivery-estimate {
+    font-size: 1.2rem;
+  }
+
+  .cart-page__store-rating {
+    font-size: 1.2rem;
+  }
+}

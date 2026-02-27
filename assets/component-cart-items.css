@@ -543,3 +543,56 @@ cart-remove-button .icon-remove {
     font-size: 1.3rem;
   }
 }
+
+/* Low stock urgency indicator */
+.cart-item__low-stock {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #e65100;
+  margin-top: 0.5rem;
+}
+
+.cart-item__low-stock svg {
+  color: #e65100;
+  flex-shrink: 0;
+}
+
+/* Color swatch in variant options */
+.cart-item__color-swatch {
+  display: inline-block;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+  vertical-align: middle;
+  margin-right: 0.3rem;
+}
+
+/* Swipe-to-remove visual feedback */
+@media screen and (max-width: 749px) {
+  .cart-item {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cart-item::after {
+    content: 'Remove';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #c62828;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    z-index: -1;
+    border-radius: 0 0.4rem 0.4rem 0;
+  }
+}

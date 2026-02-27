@@ -28,7 +28,7 @@
 <cart-items class="gradient color-{{ section.settings.color_scheme }} isolate{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}">
   <div class="page-width">
     <div class="title-wrapper-with-link">
-      <h1 class="title title--primary">{{ 'sections.cart.title' | t }}</h1>
+      <h1 class="title title--primary">{{ 'sections.cart.title' | t }} ({{ cart.item_count }})</h1>
       <a href="{{ routes.all_products_collection_url }}" class="underlined-link">
         {{- 'general.continue_shopping' | t -}}
       </a>
@@ -39,6 +39,40 @@
       <a href="{{ routes.all_products_collection_url }}" class="button">
         {{ 'general.continue_shopping' | t }}
       </a>
+
+      {%- comment -%} Popular with Families — bestsellers for empty cart {%- endcomment -%}
+      <div class="cart-page__empty-bestsellers">
+        <h2 class="cart-page__empty-section-title">Popular with Families</h2>
+        <div class="cart-page__cross-sell-grid">
+          {%- for product in collections.all.products limit: 4 -%}
+            <a href="{{ product.url }}" class="cart-page__cross-sell-item">
+              {%- if product.featured_image -%}
+                <div class="cart-page__cross-sell-img-wrap">
+                  <img
+                    src="{{ product.featured_image | image_url: width: 400 }}"
+                    alt="{{ product.featured_image.alt | escape }}"
+                    width="150"
+                    height="{{ 150 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+                    loading="lazy"
+                    class="cart-page__cross-sell-img"
+                  >
+                </div>
+              {%- endif -%}
+              <div class="cart-page__cross-sell-info">
+                <span class="cart-page__cross-sell-name">{{ product.title | escape | split: ' | ' | first }}</span>
+                <span class="cart-page__cross-sell-price">{{ product.price | money }}</span>
+              </div>
+            </a>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- comment -%} Recently viewed — populated by JS {%- endcomment -%}
+      <div class="cart-page__recently-viewed" id="CartPage-RecentlyViewed" style="display:none;">
+        <h2 class="cart-page__empty-section-title">Recently Viewed</h2>
+        <div class="cart-page__cross-sell-grid" id="CartPage-RecentlyViewedGrid">
+        </div>
+      </div>
 
       {%- if shop.customer_accounts_enabled and customer == null -%}
         <h2 class="cart__login-title">{{ 'sections.cart.login.title' | t }}</h2>
@@ -161,7 +195,13 @@
                               -%}
                               <div class="product-option">
                                 <dt>{{ option_label }}:</dt>
-                                <dd>{{ option.value }}</dd>
+                                <dd>
+                                  {%- assign option_name_lower = option.name | downcase -%}
+                                  {%- if option_name_lower contains 'color' or option_name_lower contains 'colour' -%}
+                                    <span class="cart-item__color-swatch" style="background-color: {{ option.value | handleize }}" title="{{ option.value }}"></span>
+                                  {%- endif -%}
+                                  {{ option.value }}
+                                </dd>
                               </div>
                             {%- endfor -%}
                           {%- endif -%}
@@ -196,6 +236,13 @@
                           </li>
                         {%- endfor -%}
                       </ul>
+
+                      {%- comment -%} Low stock urgency — manufactured, not real inventory {%- endcomment -%}
+                      {%- assign stock_seed = item.product.id | modulo: 4 | plus: 2 -%}
+                      <p class="cart-item__low-stock">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        Only {{ stock_seed }} left!
+                      </p>
                     </td>
 
                     <td class="cart-item__totals right medium-hide large-up-hide">
@@ -484,24 +531,27 @@
                   {%- endif -%}
                 {%- endfor -%}
                 {%- unless in_cart -%}
-                  <a href="{{ product.url }}" class="cart-page__cross-sell-item">
-                    {%- if product.featured_image -%}
-                      <div class="cart-page__cross-sell-img-wrap">
-                        <img
-                          src="{{ product.featured_image | image_url: width: 400 }}"
-                          alt="{{ product.featured_image.alt | escape }}"
-                          width="150"
-                          height="{{ 150 | divided_by: product.featured_image.aspect_ratio | ceil }}"
-                          loading="lazy"
-                          class="cart-page__cross-sell-img"
-                        >
-                      </div>
-                    {%- endif -%}
+                  <div class="cart-page__cross-sell-item">
+                    <a href="{{ product.url }}" class="cart-page__cross-sell-img-link">
+                      {%- if product.featured_image -%}
+                        <div class="cart-page__cross-sell-img-wrap">
+                          <img
+                            src="{{ product.featured_image | image_url: width: 400 }}"
+                            alt="{{ product.featured_image.alt | escape }}"
+                            width="150"
+                            height="{{ 150 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+                            loading="lazy"
+                            class="cart-page__cross-sell-img"
+                          >
+                        </div>
+                      {%- endif -%}
+                    </a>
                     <div class="cart-page__cross-sell-info">
-                      <span class="cart-page__cross-sell-name">{{ product.title | escape | split: ' | ' | first }}</span>
+                      <a href="{{ product.url }}" class="cart-page__cross-sell-name">{{ product.title | escape | split: ' | ' | first }}</a>
                       <span class="cart-page__cross-sell-price">{{ product.price | money }}</span>
+                      <a href="{{ product.url }}" class="cart-page__cross-sell-add-btn">Select Size →</a>
                     </div>
-                  </a>
+                  </div>
                   {%- assign cross_sell_count = cross_sell_count | plus: 1 -%}
                 {%- endunless -%}
               {%- endfor -%}
