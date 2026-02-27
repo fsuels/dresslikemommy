@@ -143,7 +143,7 @@
               </div>
             {%- else -%}
               {%- comment -%} Estimated delivery date — 7-14 business days {%- endcomment -%}
-              {%- assign delivery_days = 12 -%}
+              {%- assign delivery_days = 13 -%}
               {%- assign seconds_in_day = 86400 -%}
               {%- assign delivery_seconds = delivery_days | times: seconds_in_day -%}
               {%- assign delivery_timestamp = 'now' | date: '%s' | plus: delivery_seconds -%}
