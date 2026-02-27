@@ -206,6 +206,53 @@
                 </div>
               </div>
 
+              {%- comment -%} Complete the Look — moved below all checkout elements {%- endcomment -%}
+              {%- if cart != empty -%}
+                <div class="cart-page__cross-sell">
+                  <h2 class="cart-page__cross-sell-heading">Complete the Look</h2>
+                  <div class="cart-page__cross-sell-grid">
+                    {%- assign first_item = cart.items | first -%}
+                    {%- assign cross_sell_count = 0 -%}
+                    {%- for collection in first_item.product.collections -%}
+                      {%- if cross_sell_count >= 4 -%}{%- break -%}{%- endif -%}
+                      {%- for product in collection.products limit: 8 -%}
+                        {%- if cross_sell_count >= 4 -%}{%- break -%}{%- endif -%}
+                        {%- assign in_cart = false -%}
+                        {%- for item in cart.items -%}
+                          {%- if item.product.id == product.id -%}
+                            {%- assign in_cart = true -%}
+                            {%- break -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+                        {%- unless in_cart -%}
+                          <div class="cart-page__cross-sell-item">
+                            <a href="{{ product.url }}" class="cart-page__cross-sell-img-link">
+                              {%- if product.featured_image -%}
+                                <div class="cart-page__cross-sell-img-wrap">
+                                  <img
+                                    src="{{ product.featured_image | image_url: width: 400 }}"
+                                    alt="{{ product.featured_image.alt | escape }}"
+                                    width="150"
+                                    height="{{ 150 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+                                    loading="lazy"
+                                    class="cart-page__cross-sell-img"
+                                  >
+                                </div>
+                              {%- endif -%}
+                            </a>
+                            <div class="cart-page__cross-sell-info">
+                              <a href="{{ product.url }}" class="cart-page__cross-sell-name">{{ product.title | escape | split: ' | ' | first }}</a>
+                              <span class="cart-page__cross-sell-price">{{ product.price | money }}</span>
+                            </div>
+                          </div>
+                          {%- assign cross_sell_count = cross_sell_count | plus: 1 -%}
+                        {%- endunless -%}
+                      {%- endfor -%}
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endif -%}
+
           {%- endcase -%}
         {% endfor %}
 

@@ -524,51 +524,6 @@
           <div id="CartDrawer-CartErrors" role="alert"></div>
         </form>
 
-        {%- if cart != empty -%}
-          <!-- You may also like — compact horizontal scroll -->
-          <div class="cart-drawer__upsell cart-drawer__upsell--compact">
-            <h3 class="cart-drawer__upsell-heading">You may also like</h3>
-            <div class="cart-drawer__upsell-scroll" id="CartDrawer-Upsell">
-              {%- comment -%} Get related products based on first cart item's collection {%- endcomment -%}
-              {%- assign first_item = cart.items | first -%}
-              {%- assign upsell_count = 0 -%}
-              {%- for collection in first_item.product.collections -%}
-                {%- if upsell_count >= 3 -%}{%- break -%}{%- endif -%}
-                {%- for product in collection.products limit: 6 -%}
-                  {%- if upsell_count >= 3 -%}{%- break -%}{%- endif -%}
-                  {%- assign in_cart = false -%}
-                  {%- for item in cart.items -%}
-                    {%- if item.product.id == product.id -%}
-                      {%- assign in_cart = true -%}
-                      {%- break -%}
-                    {%- endif -%}
-                  {%- endfor -%}
-                  {%- unless in_cart -%}
-                    <div class="cart-drawer__upsell-item">
-                      <a href="{{ product.url }}" class="cart-drawer__upsell-link" tabindex="-1" aria-hidden="true">
-                        {%- if product.featured_image -%}
-                          <img
-                            src="{{ product.featured_image | image_url: width: 200 }}"
-                            alt="{{ product.featured_image.alt | escape }}"
-                            width="90"
-                            height="90"
-                            loading="lazy"
-                            class="cart-drawer__upsell-img"
-                          >
-                        {%- endif -%}
-                      </a>
-                      <div class="cart-drawer__upsell-info">
-                        <a href="{{ product.url }}" class="cart-drawer__upsell-name">{{ product.title | escape | split: ' | ' | first }}</a>
-                        <span class="cart-drawer__upsell-price">{{ product.price | money }}</span>
-                      </div>
-                    </div>
-                    {%- assign upsell_count = upsell_count | plus: 1 -%}
-                  {%- endunless -%}
-                {%- endfor -%}
-              {%- endfor -%}
-            </div>
-          </div>
-        {%- endif -%}
       </cart-drawer-items>
       <div class="drawer__footer">
         {%- comment -%} ── Discount code (collapsible) ── {%- endcomment -%}
@@ -722,6 +677,51 @@
             {%- endfor -%}
           </div>
         </div>
+
+        {%- comment -%} ── You may also like — moved below all checkout elements ── {%- endcomment -%}
+        {%- if cart != empty -%}
+          <div class="cart-drawer__upsell cart-drawer__upsell--compact">
+            <h3 class="cart-drawer__upsell-heading">You may also like</h3>
+            <div class="cart-drawer__upsell-scroll" id="CartDrawer-Upsell">
+              {%- assign first_item = cart.items | first -%}
+              {%- assign upsell_count = 0 -%}
+              {%- for collection in first_item.product.collections -%}
+                {%- if upsell_count >= 3 -%}{%- break -%}{%- endif -%}
+                {%- for product in collection.products limit: 6 -%}
+                  {%- if upsell_count >= 3 -%}{%- break -%}{%- endif -%}
+                  {%- assign in_cart = false -%}
+                  {%- for item in cart.items -%}
+                    {%- if item.product.id == product.id -%}
+                      {%- assign in_cart = true -%}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                  {%- unless in_cart -%}
+                    <div class="cart-drawer__upsell-item">
+                      <a href="{{ product.url }}" class="cart-drawer__upsell-link" tabindex="-1" aria-hidden="true">
+                        {%- if product.featured_image -%}
+                          <img
+                            src="{{ product.featured_image | image_url: width: 200 }}"
+                            alt="{{ product.featured_image.alt | escape }}"
+                            width="90"
+                            height="90"
+                            loading="lazy"
+                            class="cart-drawer__upsell-img"
+                          >
+                        {%- endif -%}
+                      </a>
+                      <div class="cart-drawer__upsell-info">
+                        <a href="{{ product.url }}" class="cart-drawer__upsell-name">{{ product.title | escape | split: ' | ' | first }}</a>
+                        <span class="cart-drawer__upsell-price">{{ product.price | money }}</span>
+                      </div>
+                    </div>
+                    {%- assign upsell_count = upsell_count | plus: 1 -%}
+                  {%- endunless -%}
+                {%- endfor -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
       </div>
     </div>
   </div>
