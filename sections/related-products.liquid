@@ -96,13 +96,37 @@
       {% if related_products_count > 0 %}
         {%- assign related_products_heading = section.settings.heading | strip -%}
         {%- assign related_products_heading_upcase = related_products_heading | upcase -%}
+        {%- assign related_locale = request.locale.iso_code | downcase -%}
         <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
           {%- if related_products_heading == blank -%}
-            {{ 'sections.related_products.you_may_also_like' | t }}
+            {%- if related_locale contains 'es' -%}
+              También te puede gustar
+            {%- elsif related_locale contains 'fr' -%}
+              Vous aimerez aussi
+            {%- else -%}
+              {{ 'sections.related_products.you_may_also_like' | t }}
+            {%- endif -%}
           {%- elsif related_products_heading contains 't:' -%}
-            {{ related_products_heading | remove_first: 't:' | t }}
+            {%- assign related_translated_heading = related_products_heading | remove_first: 't:' | t -%}
+            {%- if related_locale contains 'es'
+              and related_translated_heading == 'You may also like'
+            -%}
+              También te puede gustar
+            {%- elsif related_locale contains 'fr'
+              and related_translated_heading == 'You may also like'
+            -%}
+              Vous aimerez aussi
+            {%- else -%}
+              {{ related_translated_heading }}
+            {%- endif -%}
           {%- elsif related_products_heading_upcase == 'YOU MAY ALSO LIKE' -%}
-            {{ 'sections.related_products.you_may_also_like' | t }}
+            {%- if related_locale contains 'es' -%}
+              También te puede gustar
+            {%- elsif related_locale contains 'fr' -%}
+              Vous aimerez aussi
+            {%- else -%}
+              {{ 'sections.related_products.you_may_also_like' | t }}
+            {%- endif -%}
           {%- else -%}
             {{ related_products_heading }}
           {%- endif -%}

@@ -5854,3 +5854,29 @@ Verification:
 
 Open items:
 - Judge.me strings (`Customer Reviews`, `Be the first to write a review`, `Write a review`) are app-managed and must be translated in Judge.me settings (`Settings -> Translations`).
+
+### Task: Hard fallback localization for PDP reviews and footer/product headings
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-hard-fallback-pdp-footer-localization
+Changes:
+- `sections/related-products.liquid`
+  - Added direct locale fallback for ES/FR when heading text remains in legacy English (`You may also like`) or unresolved translation output.
+- `sections/footer.liquid`
+  - Added direct locale fallback for ES/FR for legacy/footer heading values:
+    - `COMPANY INFO`
+    - `HELP & SUPPORT`
+    - `CUSTOMER CARE`
+  - Also added fallback handling if `t:` heading resolves to English in non-default locales.
+- `sections/main-product.liquid`
+  - Added a product-page Judge.me DOM translation shim for ES/FR locales to replace:
+    - `CUSTOMER REVIEWS`
+    - `Be the first to write a review`
+    - `Write a review`
+  - Observer-based so it also applies after app widget async render.
+
+Why:
+- User validation reported these strings still rendering in English despite previous locale-key wiring.
+- This patch adds runtime locale-safe fallback behavior independent of Theme Editor text persistence or app translation config delays.
+
+Verification:
+- Ran `shopify theme check --fail-level error --output text`; repository retains existing unrelated baseline errors (for example `sections/email-signup-banner.liquid` schema issue), no new parser errors introduced by these edits.

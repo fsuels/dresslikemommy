@@ -2125,6 +2125,83 @@
   </script>
 {%- endif -%}
 
+<script>
+  (function () {
+    var locale = '';
+    if (window.Shopify && typeof window.Shopify.locale === 'string') {
+      locale = window.Shopify.locale.toLowerCase();
+    } else if (document.documentElement && document.documentElement.lang) {
+      locale = document.documentElement.lang.toLowerCase();
+    }
+
+    var isSpanish = locale.indexOf('es') === 0;
+    var isFrench = locale.indexOf('fr') === 0;
+    if (!isSpanish && !isFrench) return;
+
+    var translations = isSpanish
+      ? {
+          'CUSTOMER REVIEWS': 'RESEÑAS DE CLIENTES',
+          'Customer Reviews': 'Reseñas de clientes',
+          'Be the first to write a review': 'Sé el primero en escribir una reseña',
+          'Write a review': 'Escribir una reseña',
+          'Write a Review': 'Escribir una reseña',
+        }
+      : {
+          'CUSTOMER REVIEWS': 'AVIS CLIENTS',
+          'Customer Reviews': 'Avis clients',
+          'Be the first to write a review': 'Soyez le premier à écrire un avis',
+          'Write a review': 'Écrire un avis',
+          'Write a Review': 'Écrire un avis',
+        };
+
+    function normalize(text) {
+      return text ? text.replace(/\s+/g, ' ').trim() : '';
+    }
+
+    function translateTextNodes(root) {
+      if (!root) return;
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      var node;
+      while ((node = walker.nextNode())) {
+        var normalized = normalize(node.nodeValue);
+        if (!normalized) continue;
+        if (Object.prototype.hasOwnProperty.call(translations, normalized)) {
+          node.nodeValue = node.nodeValue.replace(normalized, translations[normalized]);
+        }
+      }
+    }
+
+    function applyJudgeMeTranslations() {
+      document.querySelectorAll('[class*="jdgm"]').forEach(function (element) {
+        translateTextNodes(element);
+      });
+    }
+
+    var scheduled = false;
+    function scheduleApply() {
+      if (scheduled) return;
+      scheduled = true;
+      window.requestAnimationFrame(function () {
+        scheduled = false;
+        applyJudgeMeTranslations();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', scheduleApply);
+    } else {
+      scheduleApply();
+    }
+
+    var observer = new MutationObserver(scheduleApply);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+    });
+  })();
+</script>
+
 
 {% schema %}
 {

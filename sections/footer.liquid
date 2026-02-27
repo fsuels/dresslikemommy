@@ -58,15 +58,49 @@
                 {%- if block.settings.heading != blank -%}
                   {%- assign footer_block_heading = block.settings.heading | strip -%}
                   {%- assign footer_block_heading_upcase = footer_block_heading | upcase -%}
+                  {%- assign footer_locale = request.locale.iso_code | downcase -%}
                   <h2 class="footer-block__heading inline-richtext">
                     {%- if footer_block_heading contains 't:' -%}
-                      {{ footer_block_heading | remove_first: 't:' | t }}
+                      {%- assign footer_translated_heading = footer_block_heading | remove_first: 't:' | t -%}
+                      {%- if footer_locale contains 'es' and footer_translated_heading == 'Company info' -%}
+                        Información de la empresa
+                      {%- elsif footer_locale contains 'es' and footer_translated_heading == 'Help & support' -%}
+                        Ayuda y soporte
+                      {%- elsif footer_locale contains 'es' and footer_translated_heading == 'Customer care' -%}
+                        Atención al cliente
+                      {%- elsif footer_locale contains 'fr' and footer_translated_heading == 'Company info' -%}
+                        Informations sur l'entreprise
+                      {%- elsif footer_locale contains 'fr' and footer_translated_heading == 'Help & support' -%}
+                        Aide et assistance
+                      {%- elsif footer_locale contains 'fr' and footer_translated_heading == 'Customer care' -%}
+                        Service client
+                      {%- else -%}
+                        {{ footer_translated_heading }}
+                      {%- endif -%}
                     {%- elsif footer_block_heading_upcase == 'COMPANY INFO' -%}
-                      {{ 'sections.footer_headings.company_info' | t }}
+                      {%- if footer_locale contains 'es' -%}
+                        Información de la empresa
+                      {%- elsif footer_locale contains 'fr' -%}
+                        Informations sur l'entreprise
+                      {%- else -%}
+                        {{ 'sections.footer_headings.company_info' | t }}
+                      {%- endif -%}
                     {%- elsif footer_block_heading_upcase == 'HELP & SUPPORT' -%}
-                      {{ 'sections.footer_headings.help_support' | t }}
+                      {%- if footer_locale contains 'es' -%}
+                        Ayuda y soporte
+                      {%- elsif footer_locale contains 'fr' -%}
+                        Aide et assistance
+                      {%- else -%}
+                        {{ 'sections.footer_headings.help_support' | t }}
+                      {%- endif -%}
                     {%- elsif footer_block_heading_upcase == 'CUSTOMER CARE' -%}
-                      {{ 'sections.footer_headings.customer_care' | t }}
+                      {%- if footer_locale contains 'es' -%}
+                        Atención al cliente
+                      {%- elsif footer_locale contains 'fr' -%}
+                        Service client
+                      {%- else -%}
+                        {{ 'sections.footer_headings.customer_care' | t }}
+                      {%- endif -%}
                     {%- else -%}
                       {{- footer_block_heading -}}
                     {%- endif -%}
