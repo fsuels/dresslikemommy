@@ -12,6 +12,29 @@ class CartRemoveButton extends HTMLElement {
 
 customElements.define('cart-remove-button', CartRemoveButton);
 
+// Keep cart AJAX endpoints locale-aware so translated sections render in the active language.
+const getLocaleAwareRoute = (path) => {
+  if (typeof path !== 'string' || path.length === 0) return path;
+  if (!path.startsWith('/')) return path;
+
+  const shopifyRoutes = window.Shopify && window.Shopify.routes;
+  const shopifyRoot = shopifyRoutes && typeof shopifyRoutes.root === 'string' ? shopifyRoutes.root : '/';
+  if (!shopifyRoot || shopifyRoot === '/') return path;
+
+  const normalizedRoot = shopifyRoot.endsWith('/') ? shopifyRoot.slice(0, -1) : shopifyRoot;
+  if (!normalizedRoot || normalizedRoot === '/') return path;
+  if (path === normalizedRoot || path.indexOf(`${normalizedRoot}/`) === 0) return path;
+
+  return `${normalizedRoot}${path}`;
+};
+
+const localizedCartRoutes = {
+  cart_add_url: getLocaleAwareRoute(routes.cart_add_url),
+  cart_change_url: getLocaleAwareRoute(routes.cart_change_url),
+  cart_update_url: getLocaleAwareRoute(routes.cart_update_url),
+  cart_url: getLocaleAwareRoute(routes.cart_url),
+};
+
 class CartItems extends HTMLElement {
   constructor() {
     super();
@@ -53,7 +76,7 @@ class CartItems extends HTMLElement {
 
   onCartUpdate() {
     if (this.tagName === 'CART-DRAWER-ITEMS') {
-      fetch(`${routes.cart_url}?section_id=cart-drawer`)
+      fetch(`${localizedCartRoutes.cart_url}?section_id=cart-drawer`)
         .then((response) => response.text())
         .then((responseText) => {
           const html = new DOMParser().parseFromString(responseText, 'text/html');
@@ -70,7 +93,7 @@ class CartItems extends HTMLElement {
           console.error(e);
         });
     } else {
-      fetch(`${routes.cart_url}?section_id=main-cart-items`)
+      fetch(`${localizedCartRoutes.cart_url}?section_id=main-cart-items`)
         .then((response) => response.text())
         .then((responseText) => {
           const html = new DOMParser().parseFromString(responseText, 'text/html');
@@ -132,7 +155,7 @@ class CartItems extends HTMLElement {
       sections_url: window.location.pathname,
     });
 
-    fetch(`${routes.cart_change_url}`, { ...fetchConfig(), ...{ body } })
+    fetch(`${localizedCartRoutes.cart_change_url}`, { ...fetchConfig(), ...{ body } })
       .then((response) => {
         return response.text();
       })
@@ -335,7 +358,7 @@ class CartItems extends HTMLElement {
       const body = JSON.stringify({
         items: [{ id: parseInt(removedItemData.variantId), quantity: removedItemData.quantity }]
       });
-      fetch(`${routes.cart_add_url}`, { ...fetchConfig(), ...{ body } })
+      fetch(`${localizedCartRoutes.cart_add_url}`, { ...fetchConfig(), ...{ body } })
         .then((response) => response.json())
         .then(() => {
           removeToast();
@@ -509,7 +532,18 @@ customElements.define('cart-items', CartItems);
     const today = new Date();
     const deliveryDate = addBusinessDays(today, 10);
     const options = { month: 'short', day: 'numeric' };
-    const formatted = deliveryDate.toLocaleDateString('en-US', options);
+    const shopifyLocale = window.Shopify && window.Shopify.locale ? window.Shopify.locale : '';
+    const documentLang =
+      document.documentElement && typeof document.documentElement.getAttribute === 'function'
+        ? document.documentElement.getAttribute('lang') || ''
+        : '';
+    const activeLocale = shopifyLocale || documentLang || navigator.language || 'en-US';
+    let formatted;
+    try {
+      formatted = new Intl.DateTimeFormat(activeLocale, options).format(deliveryDate);
+    } catch (error) {
+      formatted = deliveryDate.toLocaleDateString('en-US', options);
+    }
     document.querySelectorAll('.js-delivery-date').forEach(function(el) {
       el.textContent = formatted;
     });
@@ -547,7 +581,7 @@ if (!customElements.get('cart-note')) {
           'input',
           debounce((event) => {
             const body = JSON.stringify({ note: event.target.value });
-            fetch(`${routes.cart_update_url}`, { ...fetchConfig(), ...{ body } });
+            fetch(`${localizedCartRoutes.cart_update_url}`, { ...fetchConfig(), ...{ body } });
           }, ON_CHANGE_DEBOUNCE_TIMER)
         );
       }

@@ -5801,3 +5801,21 @@ Verification:
 
 Open items:
 - Judge.me review widget strings remain app-managed and must be translated in Judge.me settings (`Settings -> Translations`).
+
+### Task: Cart locale-aware AJAX + localized delivery date formatting
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-cart-locale-aware-ajax-delivery-date
+Changes:
+- `assets/cart.js`
+  - Added locale-aware route helper for cart AJAX endpoints using `window.Shopify.routes.root` when available.
+  - Updated cart section refresh requests (`section_id=cart-drawer`, `section_id=main-cart-items`) to use locale-aware cart URL.
+  - Updated cart mutation requests (`cart_change`, `cart_add`, `cart_update`) to use locale-aware endpoints.
+  - Replaced hardcoded `toLocaleDateString('en-US', ...)` with locale-aware formatting based on `Shopify.locale` / document language.
+
+Why:
+- Cart and cart-drawer translation keys were already present, but AJAX section refreshes can still render English if cart endpoints resolve to default-language routes.
+- Delivery date month/day text (e.g., `Mar 13`) was hardcoded to English locale.
+
+Verification:
+- `node --check assets/cart.js` passed.
+- `shopify theme check --fail-level error --output text` executed; repository still has pre-existing unrelated errors (for example `sections/email-signup-banner.liquid` schema issue), and no new error introduced by this cart.js patch was observed.
