@@ -224,13 +224,13 @@
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const headerOffset = getHeaderOffset();
 
-        /* Scroll so the hero is fully off-screen: target sits flush under the header */
-        const heroBanner = cta.closest('.hero-banner');
-        const heroBottom = heroBanner
-          ? heroBanner.getBoundingClientRect().bottom + window.pageYOffset - headerOffset
+        /* Scroll so the hero is fully off-screen on both desktop and mobile */
+        const heroBanner = cta.closest('.section-hero-banner') || cta.closest('.hero-banner');
+        const heroRect = heroBanner ? heroBanner.getBoundingClientRect() : null;
+        const heroBottom = heroRect
+          ? heroRect.bottom + window.pageYOffset
           : 0;
-        const targetPos = targetElement.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-        const targetTop = Math.max(heroBottom, targetPos, 0);
+        const targetTop = Math.max(heroBottom, 0);
 
         if (arrivalObserver) {
           if (observedTarget) arrivalObserver.unobserve(observedTarget);
