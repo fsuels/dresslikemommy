@@ -184,7 +184,7 @@ window.dataLayer = window.dataLayer || [];
 
   function buildFallbackProductData() {
     var ogTitle = document.querySelector('meta[property="og:title"]');
-    var ogPrice = document.querySelector('meta[property="product:price:amount"]');
+    var ogPrice = document.querySelector('meta[property="og:price:amount"]') || document.querySelector('meta[property="product:price:amount"]');
     var category1Meta = document.querySelector('meta[name="custom-category1"]');
     var subcategoryMeta = document.querySelector('meta[name="custom-subcategory"]');
     var typeMeta = document.querySelector('meta[name="custom-type"]');
@@ -955,6 +955,132 @@ window.dataLayer = window.dataLayer || [];
     });
   }
 
+  function initCartErrorTracking() {
+    if (typeof subscribe !== 'function') return;
+
+    try {
+      subscribe(getCartUpdateEventName(), function (eventData) {
+        if (!eventData || !eventData.errors) return;
+
+        var errorMessage = normalizeText(eventData.errors);
+        if (!errorMessage) return;
+
+        pushToDataLayer({
+          event: 'cart_update_error',
+          error_message: errorMessage,
+          error_type: normalizeText(eventData.error_type) || 'unknown',
+          source: normalizeText(eventData.source),
+        });
+      });
+    } catch (e) {
+      // no-op
+    }
+  }
+
+  function initSearchTracking() {
+    document.addEventListener('submit', function (event) {
+      var form = event.target;
+      if (!form) return;
+
+      var searchInput = form.querySelector('input[type="search"]');
+      if (!searchInput) return;
+
+      var query = normalizeText(searchInput.value);
+      if (!query) return;
+
+      pushToDataLayer({
+        event: 'search_submit',
+        search_term: query,
+      });
+    });
+
+    if (window.location.pathname.indexOf('/search') === 0) {
+      var searchResults = document.querySelectorAll('[data-analytics-product-card="true"]');
+      var performedSearch = window.location.search.indexOf('q=') !== -1;
+
+      if (performedSearch && (!searchResults || !searchResults.length)) {
+        pushToDataLayer({
+          event: 'search_no_results',
+        });
+      }
+
+      document.addEventListener('click', function (event) {
+        var target = event.target;
+        if (!target || !target.closest) return;
+
+        var link = target.closest('a[href]');
+        if (!link) return;
+
+        var card = link.closest('[data-analytics-product-card="true"]');
+        if (!card) return;
+
+        var listContext = getListContext(card);
+        var item = buildCardItem(card, listContext);
+        if (!item) return;
+
+        pushToDataLayer({
+          event: 'search_result_click',
+          item_id: normalizeText(item.item_id),
+          item_name: normalizeText(item.item_name),
+          search_source: 'search_page',
+        });
+      });
+    }
+  }
+
+  function init404Tracking() {
+    if (window.location.pathname !== '/404' && window.location.pathname !== '/404.html' && window.location.pathname.indexOf('/404') !== 0) {
+      return;
+    }
+
+    pushToDataLayer({
+      event: 'page_404_view',
+      page_path: window.location.pathname,
+    });
+
+    document.addEventListener('click', function (event) {
+      var target = event.target;
+      if (!target || !target.closest) return;
+
+      var link = target.closest('a[href]');
+      if (!link) return;
+
+      var href = normalizeText(link.getAttribute('href'));
+      if (!href) return;
+
+      pushToDataLayer({
+        event: '404_recovery_click',
+        recovery_link: href,
+      });
+    });
+  }
+
+  function initContactFormTracking() {
+    var contactForm = document.getElementById('ContactForm');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function () {
+      pushToDataLayer({
+        event: 'contact_form_submit',
+      });
+    });
+
+    var successMessage = document.querySelector('.form-status-list.form__message');
+    if (successMessage && successMessage.textContent.indexOf('success') !== -1) {
+      pushToDataLayer({
+        event: 'contact_form_success',
+      });
+    }
+
+    var errorMessage = document.querySelector('.form-status.caption-large[role="alert"]');
+    if (errorMessage) {
+      pushToDataLayer({
+        event: 'contact_form_error',
+        has_error: true,
+      });
+    }
+  }
+
   function onDocumentReady() {
     pushViewItemOnce();
     initHeroAnalytics();
@@ -962,6 +1088,9 @@ window.dataLayer = window.dataLayer || [];
     initProductListTracking();
     initSelectItemTracking();
     initCartStateTracking();
+    initSearchTracking();
+    init404Tracking();
+    initContactFormTracking();
   }
 
   if (document.readyState === 'loading') {
@@ -972,4 +1101,5 @@ window.dataLayer = window.dataLayer || [];
 
   initProductAddToCartTracking();
   initCheckoutTracking();
+  initCartErrorTracking();
 })();
