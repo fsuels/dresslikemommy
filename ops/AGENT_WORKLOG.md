@@ -5896,3 +5896,40 @@ Why:
 
 Verification:
 - `shopify theme check --fail-level error --output text` run; baseline unrelated repository errors remain, and no new parser errors were introduced by this change.
+
+### Task: PDP mobile additional-info toggle icon duplication (`++` / `X−`)
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-pdp-toggle-icon-duplication-fix
+Changes:
+- `sections/main-product.liquid`
+  - Updated custom collapsible icon CSS so open state renders `X` (instead of `−`) via `.toggle-icon::after`.
+- `layout/theme.liquid`
+  - Removed JS text injection for `.toggle-icon` (`+`/`X`) in product-template collapsible handler.
+  - Kept `aria-expanded` + content visibility toggling; icon state now comes from a single CSS source of truth.
+
+Why:
+- PDP additional-info collapsibles were rendering duplicate symbols (`++` when closed, `X−` when open) because both CSS pseudo-content and JS `textContent` were outputting icon characters.
+
+Verification:
+- Inspected final rendered logic in repo:
+  - Closed state: `.collapsible .toggle-icon::after` => `+`
+  - Open state: `.collapsible[aria-expanded="true"] .toggle-icon::after` => `X`
+  - No remaining JS `toggle-icon` `textContent` writes in product collapsible script.
+
+### Task: Mobile menu localization caret overlap fix
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-mobile-menu-localization-caret-overlap-fix
+Changes:
+- `assets/component-localization-form.css`
+  - Updated `.menu-drawer__localization .localization-form__select` to use flex layout for button content.
+  - Moved localization caret icon in the mobile menu from absolute positioning to static flow (`position: static; margin-left: auto;`).
+  - Added text overflow handling on the selector label span to prevent icon/text collisions on narrow widths.
+
+Why:
+- In mobile menu drawer localization controls, the down-caret could overlap selector text (for country/currency and language), especially on narrow devices.
+- Keeping the caret in normal flow guarantees spacing between label text and icon.
+
+Verification:
+- Inspected resulting CSS cascade for menu drawer localization buttons:
+  - Label and caret now render as flex children.
+  - Caret no longer relies on absolute coordinates in this context.

@@ -391,15 +391,12 @@
         coll[i].addEventListener("click", function () {
           this.classList.toggle("active");
           var content = this.nextElementSibling;
-          var icon = this.querySelector('.toggle-icon');
           var isExpanded = content.style.display === "block";
           if (isExpanded) {
             content.style.display = "none";
-            icon.textContent = "+";
             this.setAttribute('aria-expanded', 'false');
           } else {
             content.style.display = "block";
-            icon.textContent = "X";
             this.setAttribute('aria-expanded', 'true');
           }
         });
@@ -411,7 +408,6 @@
         firstCollapsible.classList.add('active');
         var firstContent = firstCollapsible.nextElementSibling;
         firstContent.style.display = "block";
-        firstCollapsible.querySelector('.toggle-icon').textContent = "X";
         firstCollapsible.setAttribute('aria-expanded', 'true');
       }
 

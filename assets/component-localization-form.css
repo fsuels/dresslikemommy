@@ -427,7 +427,23 @@
 .menu-drawer__localization .localization-form__select {
   background-color: initial;
   margin-top: 0;
-  padding: 1rem 3.6rem 1rem 0rem;
+  padding: 1rem 1.6rem 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.menu-drawer__localization .localization-form__select > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu-drawer__localization .localization-form__select .icon-caret {
+  position: static;
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .menu-drawer__localization .localization-form {
