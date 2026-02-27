@@ -136,6 +136,20 @@
   {% render 'meta-tags' %}
   {% render 'jsonld-seo' %}
 
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dlmAnalyticsContext = window.dlmAnalyticsContext || {};
+    window.dlmAnalyticsContext.ga4_measurement_id = 'G-N4EQNK0MMB';
+    window.dlmAnalyticsContext.site_language = (function (rawLocale) {
+      var normalized = String(rawLocale || '').trim();
+      if (!normalized) return 'en';
+      return normalized.split(/[-_]/)[0].toLowerCase();
+    })({{ request.locale.iso_code | json }});
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag('set', 'site_language', window.dlmAnalyticsContext.site_language);
+    window.dataLayer.push({ site_language: window.dlmAnalyticsContext.site_language });
+  </script>
+
   <script defer src="{{ 'constants.js' | asset_url }}"></script>
   <script defer src="{{ 'pubsub.js' | asset_url }}"></script>
   <script defer src="{{ 'global.js' | asset_url }}"></script>
@@ -145,6 +159,53 @@
   {%- endif -%}
 
   {{ content_for_header }}
+
+  <script>
+    (function () {
+      var ctx = window.dlmAnalyticsContext || {};
+      var measurementId = String(ctx.ga4_measurement_id || 'G-N4EQNK0MMB').trim();
+      if (!measurementId) return;
+
+      function hasScriptForMeasurement(id) {
+        var scripts = document.querySelectorAll('script[src*="googletagmanager.com/gtag/js"]');
+        for (var i = 0; i < scripts.length; i += 1) {
+          var source = scripts[i].getAttribute('src') || '';
+          if (source.indexOf('id=' + id) !== -1 || source.indexOf('id=' + encodeURIComponent(id)) !== -1) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      function hasConfigForMeasurement(id) {
+        var layer = window.dataLayer || [];
+        for (var i = 0; i < layer.length; i += 1) {
+          var entry = layer[i];
+          if (entry && typeof entry === 'object' && entry[0] === 'config' && entry[1] === id) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      if (!hasScriptForMeasurement(measurementId)) {
+        var gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
+        document.head.appendChild(gaScript);
+      }
+
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('set', 'site_language', ctx.site_language || 'en');
+
+      if (!hasConfigForMeasurement(measurementId)) {
+        window.gtag('js', new Date());
+        window.gtag('config', measurementId, {
+          site_language: ctx.site_language || 'en',
+        });
+      }
+    })();
+  </script>
 
   {%- liquid
     assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'

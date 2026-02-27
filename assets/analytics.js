@@ -79,11 +79,26 @@ window.dataLayer = window.dataLayer || [];
     }
   }
 
+  function getSiteLanguage() {
+    var configuredLocale = normalizeText(
+      window.dlmAnalyticsContext && window.dlmAnalyticsContext.site_language
+    );
+    var shopifyLocale = normalizeText(window.Shopify && window.Shopify.locale);
+    var documentLocale = normalizeText(
+      document.documentElement && document.documentElement.getAttribute('lang')
+    );
+    var locale = configuredLocale || shopifyLocale || documentLocale || 'en';
+    var primaryLocale = normalizeText(locale.split(/[-_]/)[0]);
+    return (primaryLocale || locale).toLowerCase();
+  }
+
   function pushToDataLayer(payload) {
     if (!payload || typeof payload !== 'object') return;
     try {
       var experimentContext = getExperimentContext();
-      window.dataLayer.push(Object.assign({}, experimentContext, payload));
+      window.dataLayer.push(
+        Object.assign({}, experimentContext, { site_language: getSiteLanguage() }, payload)
+      );
     } catch (e) {
       // no-op
     }

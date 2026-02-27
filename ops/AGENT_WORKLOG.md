@@ -6002,3 +6002,69 @@ Verification:
 
 Open items:
 - None.
+
+### Task: GA4 locale parameter bootstrap + hreflang head tags
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-ga4-site-language-hreflang-bootstrap
+Changes:
+- `layout/theme.liquid`
+  - Added a pre-`content_for_header` analytics bootstrap script to:
+    - Initialize `window.dlmAnalyticsContext.site_language` from `request.locale.iso_code`.
+    - Ensure `window.dataLayer` exists early.
+    - Queue `gtag('set', 'site_language', <locale>)` so GA4 config/events can inherit locale.
+    - Push `{ site_language: <locale> }` into `dataLayer` for GTM variable mapping.
+- `assets/analytics.js`
+  - Added `getSiteLanguage()` resolver (context -> `Shopify.locale` -> `<html lang>` fallback).
+  - Updated `pushToDataLayer()` so every theme analytics event automatically includes `site_language`.
+- `snippets/meta-tags.liquid`
+  - Added `rel="alternate" hreflang` output for all `localization.available_languages`.
+  - Added `hreflang="x-default"` using the primary language URL.
+  - URLs are built from canonical path with locale-root normalization to avoid duplicated locale segments.
+
+Why:
+- GA4 locale segmentation requires `site_language` to be present when page-level tracking fires.
+- Hreflang tags were not emitted in `<head>`, limiting multilingual SEO clarity for search engines.
+
+Verification:
+- `node --check assets/analytics.js` passed.
+- Confirmed modified files:
+  - `layout/theme.liquid`
+  - `assets/analytics.js`
+  - `snippets/meta-tags.liquid`
+
+Open items:
+- GA4 Admin cleanup for stale key events (`checkout_complete`, `create_an_account`, `place_an_order`) must be done in GA4 UI; not theme-code controlled.
+- Purchase-event validation still requires a live test order and GA4 DebugView/Realtime check.
+- Manual multilingual SEO content review (titles/meta/nav/product/collection copy) remains operational QA outside repo-only edits.
+
+### Task: GA4 fallback tag coverage for locale-prefixed pages + site_language on config
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-ga4-locale-prefix-coverage-fallback
+Changes:
+- `layout/theme.liquid`
+  - Updated early analytics bootstrap to:
+    - Set `window.dlmAnalyticsContext.ga4_measurement_id = 'G-N4EQNK0MMB'`.
+    - Normalize locale to language token for analytics (`en`, `es`, `fr`, etc.) from `request.locale.iso_code`.
+    - Set `gtag('set', 'site_language', <lang>)` before `content_for_header` so existing GA config picks it up on initial page_view.
+  - Added post-`content_for_header` GA4 fallback initializer that:
+    - Detects whether `gtag.js` for `G-N4EQNK0MMB` is already present.
+    - Injects `https://www.googletagmanager.com/gtag/js?id=G-N4EQNK0MMB` when missing.
+    - Detects whether `gtag('config', 'G-N4EQNK0MMB', ...)` already exists in `dataLayer`.
+    - Calls `gtag('config', 'G-N4EQNK0MMB', { site_language: <lang> })` only when missing to avoid duplicate configs.
+
+Why:
+- Reported untagged locale-prefixed product URL (`/en-se/...`) indicates GA4 bootstrap may not be reliably present for every localized route.
+- This adds a theme-level fallback so locale subdirectory pages (`/es/`, `/fr/`, `/en-se/`, etc.) still receive GA4 configuration and page_view collection.
+- Ensures `site_language` is applied on GA4 config/page views as requested.
+
+Verification:
+- Reviewed final diff in `layout/theme.liquid` for measurement id + fallback logic.
+- Ran `shopify theme check --fail-level error --output text` and confirmed no new `layout/theme.liquid` parser errors; existing baseline repo translation errors remain.
+
+Open items:
+- Validate in live/preview with Tag Assistant on at least:
+  - `/products/...` (default locale)
+  - `/es/products/...`
+  - `/fr/products/...`
+  - `/en-se/products/mommy-and-me-matching-floral-print-jumpsuits-sleeveless-and-long-sleeve-options`
+- Confirm one `page_view` per load for `G-N4EQNK0MMB` and verify event parameter `site_language` equals expected locale token.

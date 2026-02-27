@@ -64,6 +64,50 @@
   <meta property="og:price:currency" content="{{ cart.currency.iso_code }}">
 {%- endif -%}
 
+{%- liquid
+  assign hreflang_origin = request.origin | default: shop.url
+  assign hreflang_canonical = canonical_url | default: request.url
+  assign hreflang_relative_path = hreflang_canonical | replace_first: hreflang_origin, ''
+  assign current_locale_root = request.locale.root_url | default: localization.language.root_url | default: routes.root_url | default: '/'
+  assign current_locale_root_with_slash = current_locale_root | append: '/'
+
+  if current_locale_root != '/'
+    if hreflang_relative_path == current_locale_root
+      assign hreflang_relative_path = '/'
+    elsif hreflang_relative_path contains current_locale_root_with_slash
+      assign hreflang_relative_path = hreflang_relative_path | remove_first: current_locale_root
+    endif
+  endif
+
+  if hreflang_relative_path == blank
+    assign hreflang_relative_path = '/'
+  endif
+
+  assign hreflang_primary_href = hreflang_canonical
+-%}
+
+{%- if localization.available_languages and localization.available_languages.size > 0 -%}
+  {%- for language in localization.available_languages -%}
+    {%- liquid
+      assign hreflang_href = hreflang_origin
+      assign language_root = language.root_url | default: '/'
+      if language_root == '/'
+        assign hreflang_href = hreflang_href | append: hreflang_relative_path
+      else
+        assign hreflang_href = hreflang_href | append: language_root
+        if hreflang_relative_path != '/'
+          assign hreflang_href = hreflang_href | append: hreflang_relative_path
+        endif
+      endif
+      if language.primary
+        assign hreflang_primary_href = hreflang_href
+      endif
+    -%}
+    <link rel="alternate" hreflang="{{ language.iso_code | downcase | escape }}" href="{{ hreflang_href | escape }}">
+  {%- endfor -%}
+  <link rel="alternate" hreflang="x-default" href="{{ hreflang_primary_href | escape }}">
+{%- endif -%}
+
 {%- if settings.social_twitter_link != blank -%}
   <meta name="twitter:site" content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}">
 {%- endif -%}
