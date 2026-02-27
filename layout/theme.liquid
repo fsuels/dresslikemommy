@@ -1510,21 +1510,30 @@
         return date.toLocaleDateString('en-US', options);
       }
 
+      function addBusinessDays(startDate, businessDays) {
+        const date = new Date(startDate);
+        let added = 0;
+        while (added < businessDays) {
+          date.setDate(date.getDate() + 1);
+          const day = date.getDay();
+          if (day !== 0 && day !== 6) added++; // skip weekends
+        }
+        return date;
+      }
+
       function calculateDeliveryDates() {
         const today = new Date();
 
-        const standardStart = new Date(today);
-        standardStart.setDate(today.getDate() + 10); // 10 days from today
-        const standardEnd = new Date(standardStart);
-        standardEnd.setDate(standardStart.getDate() + 3); // 3 days range
+        // UPS GLOBAL: 8 business days total (incl. 2-3 processing)
+        const upsDate = addBusinessDays(today, 8);
+        const upsEl = document.getElementById('ups-delivery-date');
+        if (upsEl) upsEl.textContent = formatDate(upsDate);
 
-        const expressStart = new Date(today);
-        expressStart.setDate(today.getDate() + 7); // 7 days from today
-        const expressEnd = new Date(expressStart);
-        expressEnd.setDate(expressStart.getDate() + 3); // 3 days range
-
-        document.getElementById('standard-delivery-range').textContent = `${formatDate(standardStart)}-${formatDate(standardEnd)}`;
-        document.getElementById('express-delivery-range').textContent = `${formatDate(expressStart)}-${formatDate(expressEnd)}`;
+        // DHL: 11-14 business days total (incl. 2-3 processing)
+        const dhlStart = addBusinessDays(today, 11);
+        const dhlEnd = addBusinessDays(today, 14);
+        const dhlEl = document.getElementById('dhl-delivery-range');
+        if (dhlEl) dhlEl.textContent = `${formatDate(dhlStart)} – ${formatDate(dhlEnd)}`;
       }
 
       calculateDeliveryDates();

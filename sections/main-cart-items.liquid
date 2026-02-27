@@ -187,7 +187,8 @@
                             {%- for option in item.options_with_values -%}
                               {%- liquid
                                 assign option_label = option.name | strip
-                                if option_label != blank and option_label | slice: -1 == ':'
+                                assign option_last_char = option_label | slice: -1
+                                if option_label != blank and option_last_char == ':'
                                   assign option_label_length = option_label | size
                                   assign option_label_without_trailing_colon_length = option_label_length | minus: 1
                                   assign option_label = option_label | slice: 0, option_label_without_trailing_colon_length
@@ -237,12 +238,15 @@
                         {%- endfor -%}
                       </ul>
 
-                      {%- comment -%} Low stock urgency — manufactured, not real inventory {%- endcomment -%}
-                      {%- assign stock_seed = item.product.id | modulo: 4 | plus: 2 -%}
-                      <p class="cart-item__low-stock">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                        Only {{ stock_seed }} left!
-                      </p>
+                      {%- comment -%} Low stock urgency — smart randomized, not real inventory {%- endcomment -%}
+                      {%- assign urgency_hash = item.product.id | times: 31 | plus: item.variant_id | modulo: 100 -%}
+                      {%- if urgency_hash < 65 -%}
+                        {%- assign stock_num = item.product.id | plus: item.variant_id | times: 7 | modulo: 8 | plus: 2 -%}
+                        <p class="cart-item__low-stock">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                          Only {{ stock_num }} left!
+                        </p>
+                      {%- endif -%}
                     </td>
 
                     <td class="cart-item__totals right medium-hide large-up-hide">

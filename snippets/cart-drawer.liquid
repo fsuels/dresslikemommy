@@ -222,7 +222,8 @@
                                 {%- for option in item.options_with_values -%}
                                   {%- liquid
                                     assign option_label = option.name | strip
-                                    if option_label != blank and option_label | slice: -1 == ':'
+                                    assign option_last_char = option_label | slice: -1
+                                    if option_label != blank and option_last_char == ':'
                                       assign option_label_length = option_label | size
                                       assign option_label_without_trailing_colon_length = option_label_length | minus: 1
                                       assign option_label = option_label | slice: 0, option_label_without_trailing_colon_length
@@ -282,12 +283,15 @@
                             {%- endfor -%}
                           </ul>
 
-                          {%- comment -%} Low stock urgency — manufactured, not real inventory {%- endcomment -%}
-                          {%- assign stock_seed = item.product.id | modulo: 4 | plus: 2 -%}
-                          <p class="cart-item__low-stock">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                            Only {{ stock_seed }} left!
-                          </p>
+                          {%- comment -%} Low stock urgency — smart randomized, not real inventory {%- endcomment -%}
+                          {%- assign urgency_hash = item.product.id | times: 31 | plus: item.variant_id | modulo: 100 -%}
+                          {%- if urgency_hash < 65 -%}
+                            {%- assign stock_num = item.product.id | plus: item.variant_id | times: 7 | modulo: 8 | plus: 2 -%}
+                            <p class="cart-item__low-stock">
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                              Only {{ stock_num }} left!
+                            </p>
+                          {%- endif -%}
                         </td>
 
                         <td class="cart-item__totals right" role="cell" headers="CartDrawer-ColumnTotal">
@@ -690,14 +694,10 @@
 
         <!-- CTAs -->
 
-        {%- comment -%} Estimated delivery date — 7-14 business days {%- endcomment -%}
-        {%- assign delivery_days = 13 -%}
-        {%- assign seconds_in_day = 86400 -%}
-        {%- assign delivery_seconds = delivery_days | times: seconds_in_day -%}
-        {%- assign delivery_timestamp = 'now' | date: '%s' | plus: delivery_seconds -%}
+        {%- comment -%} Estimated delivery date — 11 business days (matches product page FREE Shipping lower bound) {%- endcomment -%}
         <div class="cart-drawer__delivery-estimate">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          Order today, get it by <strong>{{ delivery_timestamp | date: '%B %e' }}</strong>
+          Order today, get it by <strong><span class="js-delivery-date"></span></strong>
         </div>
 
         {%- comment -%} Aggregate store rating — social proof {%- endcomment -%}
