@@ -1,0 +1,83 @@
+@media only screen and (min-width: 768px) {
+  .share-button__button,
+  .wishlist-button__button {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: transparent !important; /* Ensure no background color interferes */
+    border: none !important; /* Remove borders */
+    filter: none !important; /* Ensure no filter is applied */
+    transition: none !important; /* Disable any transition */
+    vertical-align: middle; /* Align vertically in the middle */
+  }
+
+  .wishlist-button__button {
+    margin-left: -105px !important; /* Adjust this value to position the wishlist button next to the share button */
+    top: 49px !important; /* Adjust this value to move the wishlist button up */
+    margin-bottom: 0 !important;
+    
+  }
+
+  .share-button__button {
+    margin-left: -80px !important; /* Adjust this value to position the wishlist button next to the share button */
+    top: 45px !important; /* Adjust this value to move the wishlist button up */
+    margin-bottom: 0 !important;
+    
+  }
+  
+.product__info-container {
+    margin-top: 0; /* Removed -94px that was hiding the product title behind the sticky header */
+    padding-bottom: 0;
+}
+
+  
+  .share-button__button img {
+    width: 20px; /* Set the width of the icon */
+    height: 20px; /* Set the height of the icon */
+    filter: none !important;
+    background-color: transparent !important; /* Ensure no background color interferes */
+    border: none !important; /* Remove borders */
+    transition: none !important; /* Disable any transition */
+  }
+}
+
+/* Ensure slider buttons and image counter are properly aligned in mobile view */
+@media only screen and (max-width: 767px) {
+    .slider-container {
+        position: relative; /* Ensure the container is relative */
+    }
+
+    /* Target only the slider buttons */
+    .slider-buttons {
+        position: absolute !important;
+        bottom: -22px !important; /* Position at the bottom */
+        left: 50% !important;    /* Move to horizontal center */
+        transform: translateX(-50%) !important; /* Center horizontally */
+        z-index: 10; /* Ensure it's on top of the image */
+    }
+}
+
+
+
+
+
+  .share-button__button {
+    display: inline-block !important;
+    margin-right: 10px !important; /* Adjust the spacing as needed */
+    position: absolute !important;
+    top: -30px !important; /* Adjust this value to move the buttons up */
+    background-color: transparent !important; /* Ensure no background color interferes */
+    border: none !important; /* Remove borders */
+    filter: none !important; /* Ensure no filter is applied */
+    transition: none !important; /* Disable any transition */
+  }
+
+  .share-button__button {
+    left: 320px !important; /* Adjust this value to position the share button */
+  }
+
+  .share-button__button.desktop-only {
+    display: none !important;
+  }
+}
+
+

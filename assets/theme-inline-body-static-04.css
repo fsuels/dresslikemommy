@@ -1,0 +1,618 @@
+/* =======================================================================
+   PRODUCT PAGE — ULTRA-PREMIUM BOUTIQUE REDESIGN
+   Inspired by: Pangaia, Allbirds, Dr. Squatch, Master & Dynamic
+   ======================================================================= */
+
+/* --- GLOBAL SMOOTH TRANSITIONS --- */
+.template-product * {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- BREADCRUMB: minimal, editorial --- */
+.breadcrumb, nav.breadcrumb {
+  font-size: 11px !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  color: #999 !important;
+  padding: 8px 0 !important;
+}
+.breadcrumb a { color: #999 !important; text-decoration: none !important; }
+.breadcrumb a:hover { color: #e85d3a !important; }
+
+/* --- PRODUCT TITLE: editorial, premium --- */
+.product__title h1,
+.product__title h2 {
+  font-size: 26px !important;
+  line-height: 1.3 !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.5px !important;
+  color: #1a1a1a !important;
+}
+/* Product type subtitle */
+.product__text.caption-with-letter-spacing {
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  color: #b0a8a3 !important;
+  font-weight: 500 !important;
+  margin-bottom: 4px !important;
+}
+
+/* --- PRICE: bold, confident --- */
+.price--large,
+.price-item--regular {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  color: #1a1a1a !important;
+  letter-spacing: -0.3px !important;
+}
+.price--on-sale .price-item--regular {
+  color: #bbb !important;
+  font-size: 18px !important;
+  text-decoration: line-through !important;
+  font-weight: 400 !important;
+}
+.price--on-sale .price-item--sale,
+.price .price-item--sale {
+  color: #e85d3a !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+}
+.badge--sale, .badge.price__badge-sale {
+  background: #e85d3a !important;
+  color: #fff !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.8px !important;
+  border-radius: 4px !important;
+  padding: 3px 8px !important;
+  text-transform: uppercase !important;
+}
+
+/* --- FREE SHIPPING BADGE: elegant pill --- */
+.free-shipping-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #2d7d5f;
+  background: linear-gradient(135deg, #f0faf5 0%, #e8f5ee 100%);
+  border: 1px solid #d4eddf;
+  border-radius: 20px;
+  padding: 5px 14px;
+  margin-top: 6px;
+  letter-spacing: 0.3px;
+}
+.free-shipping-badge svg {
+  width: 13px;
+  height: 13px;
+  color: #2d7d5f;
+}
+
+/* --- VARIANT LABELS: refined uppercase micro-labels --- */
+.product-form__input label,
+.product-form__input .form__label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.2px !important;
+  color: #1a1a1a !important;
+  margin-bottom: 8px !important;
+}
+
+/* --- VARIANT SELECTS: modern, clean --- */
+.product-form__input select {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  border: 1.5px solid #e0e0e0 !important;
+  border-radius: 8px !important;
+  padding: 13px 16px !important;
+  color: #333 !important;
+  background-color: #fafafa !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+.product-form__input select:hover {
+  border-color: #ccc !important;
+  background-color: #fff !important;
+}
+.product-form__input select:focus {
+  border-color: #1a1a1a !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.06) !important;
+  background-color: #fff !important;
+}
+
+/* --- QUANTITY: sleek pill shape --- */
+.quantity {
+  border-radius: 8px !important;
+  border: 1.5px solid #e0e0e0 !important;
+  overflow: hidden;
+}
+.quantity__button {
+  border: none !important;
+  background: transparent !important;
+}
+.quantity__button:hover {
+  background: #f5f5f5 !important;
+}
+
+/* --- SHOP PAY LINE: subtle --- */
+.shopify-installments, .installment {
+  font-size: 12px !important;
+  color: #999 !important;
+}
+
+/* --- SPACING: breathing room between blocks --- */
+.product__info-container > * + * {
+  margin-top: 14px;
+}
+
+/* --- HOVER LINK COLOR --- */
+ul li a:hover { color: #e85d3a !important; }
+
+/* --- HEADER PADDING --- */
+.header {
+  padding: 0 10px !important;
+  margin: 0;
+}
+
+/* ================================================
+   ADD TO CART — THE HERO BUTTON
+   ================================================ */
+button.product-form__submit.button--full-width {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 50px !important;
+  padding: 18px 32px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2.5px !important;
+  text-transform: uppercase !important;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+button.product-form__submit.button--full-width::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  transition: left 0.5s ease;
+}
+button.product-form__submit.button--full-width:hover {
+  background: linear-gradient(135deg, #e85d3a 0%, #d14e2e 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(232, 93, 58, 0.3);
+}
+button.product-form__submit.button--full-width:hover::after {
+  left: 100%;
+}
+button.product-form__submit.button--full-width:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(232, 93, 58, 0.2);
+}
+
+/* --- Shop Pay button: match rounding --- */
+.shopify-payment-button__button {
+  border-radius: 50px !important;
+  overflow: hidden;
+}
+.shopify-payment-button__more-options {
+  font-size: 11px !important;
+  color: #aaa !important;
+  letter-spacing: 0.3px !important;
+  margin-top: 6px !important;
+}
+
+/* ================================================
+   TRUST BADGES — ELEGANT ICON ROW
+   ================================================ */
+.trust-badges {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px 20px;
+  margin-top: 20px;
+  background: #fafafa;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+}
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #888;
+  text-align: center;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+.trust-badge svg {
+  width: 20px;
+  height: 20px;
+  color: #1a1a1a;
+  opacity: 0.7;
+}
+.trust-badge:hover svg {
+  color: #e85d3a;
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* ================================================
+   STICKY MOBILE ATC — GLASS EFFECT
+   ================================================ */
+.sticky-mobile-atc { display: none; }
+@media screen and (max-width: 749px) {
+  body.template-product.sticky-mobile-atc-visible {
+    padding-bottom: calc(var(--sticky-mobile-atc-offset, 8.8rem) + env(safe-area-inset-bottom));
+  }
+  .sticky-mobile-atc {
+    display: flex;
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    align-items: center; gap: 12px;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    touch-action: pan-y;
+  }
+  .sticky-mobile-atc__details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    pointer-events: none;
+  }
+  .sticky-mobile-atc.visible { transform: translateY(0); }
+  .sticky-mobile-atc__price {
+    font-weight: 600; font-size: 18px; color: #1a1a1a; white-space: nowrap;
+  }
+  .sticky-mobile-atc__size {
+    color: #5a5a5a;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    max-width: 34vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sticky-mobile-atc__btn {
+    flex: 1;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    color: #fff; border: none;
+    padding: 14px 16px; font-size: 12px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    border-radius: 50px; cursor: pointer; min-height: 48px;
+    pointer-events: auto;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .sticky-mobile-atc.requires-options .sticky-mobile-atc__btn {
+    background: linear-gradient(135deg, #f4f4f4 0%, #ececec 100%);
+    color: #1a1a1a;
+    letter-spacing: 1.2px;
+  }
+  .sticky-mobile-atc__btn[disabled] {
+    opacity: 0.58;
+    cursor: not-allowed;
+  }
+  .product-form__input.sticky-option-target--highlight {
+    border-radius: 10px;
+    box-shadow: 0 0 0 2px rgba(232, 93, 58, 0.28);
+    transition: box-shadow 0.22s ease;
+  }
+  .product-form__input.sticky-option-target--highlight .form__label,
+  .product-form__input.sticky-option-target--highlight legend {
+    color: #e85d3a !important;
+  }
+}
+
+/* ================================================
+   LOW STOCK URGENCY — SUBTLE, NOT AGGRESSIVE
+   ================================================ */
+.low-stock-urgency {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #c0392b;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 6px 12px;
+  background: #fef5f4;
+  border-radius: 6px;
+  border: 1px solid #fce0dc;
+  animation: pulse-urgency 3s ease-in-out infinite;
+}
+@keyframes pulse-urgency {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+
+/* ================================================
+   STICKY PRODUCT INFO — CLEAR HEADER
+   ================================================ */
+.product__column-sticky {
+  top: 90px !important;
+}
+
+/* ================================================
+   MAIN PRODUCT IMAGE — HOVER ZOOM
+   ================================================ */
+.product__media-item img,
+media-gallery .product__media img {
+  transition: transform 0.6s cubic-bezier(0.25, 0, 0.15, 1) !important;
+}
+.product__media-item:hover img,
+media-gallery .product__media:hover img {
+  transform: scale(1.05);
+}
+.product__media-item,
+.product__media {
+  overflow: hidden !important;
+  border-radius: 12px !important;
+}
+
+/* --- Thumbnails: rounded, elegant --- */
+.thumbnail.global-media-settings img {
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+.thumbnail:hover img {
+  transform: scale(1.08) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+.thumbnail[aria-current] {
+  border-radius: 8px !important;
+  border: 2px solid #1a1a1a !important;
+}
+
+/* ================================================
+   TOUCH TARGET FIXES — MOBILE
+   ================================================ */
+@media screen and (max-width: 749px) {
+  .header__icon, nav a, .facets__summary, .slider-button {
+    min-height: 44px; min-width: 44px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .list-menu__item a {
+    padding: 10px 12px; min-height: 44px;
+    display: flex; align-items: center;
+  }
+}
+
+/* ================================================
+   "YOU MAY ALSO LIKE" — PREMIUM EDITORIAL SECTION
+   ================================================ */
+
+/* Section heading: editorial centered with decorative line */
+.product-recommendations h2,
+.related-products h2,
+.product-recommendations .section-heading,
+section.product-recommendations .heading {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 3px !important;
+  color: #1a1a1a !important;
+  text-align: center !important;
+  margin-bottom: 32px !important;
+  padding-bottom: 16px !important;
+  position: relative !important;
+}
+.product-recommendations h2::after,
+.related-products h2::after {
+  content: '' !important;
+  display: block !important;
+  width: 40px !important;
+  height: 2px !important;
+  background: #e85d3a !important;
+  margin: 12px auto 0 !important;
+  border-radius: 2px !important;
+}
+
+/* Card container spacing */
+.product-recommendations .grid,
+.related-products .grid {
+  gap: 20px !important;
+}
+
+/* Cards: clean with subtle shadow */
+.product-recommendations .card,
+.related-products .card {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  border: 1px solid #f5f5f5 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  background: #fff !important;
+}
+.product-recommendations .card:hover,
+.related-products .card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.1) !important;
+  border-color: transparent !important;
+}
+
+/* Card images: zoom on hover */
+.product-recommendations .card .media img,
+.related-products .card .media img,
+.product-recommendations .card__media img,
+.related-products .card__media img {
+  transition: transform 0.5s cubic-bezier(0.25, 0, 0.15, 1) !important;
+}
+.product-recommendations .card:hover .media img,
+.related-products .card:hover .media img,
+.product-recommendations .card:hover .card__media img,
+.related-products .card:hover .card__media img {
+  transform: scale(1.06) !important;
+}
+.product-recommendations .card .media,
+.related-products .card .media,
+.product-recommendations .card__media,
+.related-products .card__media {
+  overflow: hidden !important;
+}
+
+/* Sale badge on cards */
+.product-recommendations .badge,
+.related-products .badge {
+  background: #1a1a1a !important;
+  color: #fff !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+}
+
+/* Card content area */
+.product-recommendations .card__content,
+.related-products .card__content,
+.product-recommendations .card__information,
+.related-products .card__information {
+  padding: 14px 16px !important;
+}
+
+/* Card titles */
+.product-recommendations .card__heading a,
+.related-products .card__heading a {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.2px !important;
+  color: #1a1a1a !important;
+  line-height: 1.4 !important;
+  text-transform: none !important;
+}
+.product-recommendations .card__heading a:hover,
+.related-products .card__heading a:hover {
+  color: #e85d3a !important;
+}
+
+/* Card prices */
+.product-recommendations .price-item,
+.related-products .price-item {
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
+.product-recommendations .price-item--regular,
+.related-products .price-item--regular {
+  color: #1a1a1a !important;
+}
+.product-recommendations .price--on-sale .price-item--regular,
+.related-products .price--on-sale .price-item--regular {
+  color: #bbb !important;
+  font-size: 12px !important;
+  text-decoration: line-through !important;
+}
+.product-recommendations .price-item--sale,
+.related-products .price-item--sale {
+  color: #e85d3a !important;
+}
+
+/* ================================================
+   CUSTOMER REVIEWS SECTION (Judge.me)
+   ================================================ */
+.jdgm-rev-widg, .spr-container {
+  border-top: 1px solid #f0f0f0 !important;
+  padding-top: 40px !important;
+  margin-top: 40px !important;
+}
+.jdgm-rev-widg__title, .spr-header-title,
+.product-reviews h2 {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 3px !important;
+  color: #1a1a1a !important;
+  text-align: center !important;
+}
+
+/* ================================================
+   COLLAPSIBLE ACCORDIONS — PREMIUM POLISH
+   ================================================ */
+.product__accordion .accordion__content,
+.product__accordion details[open] .accordion__content {
+  font-size: 13.5px !important;
+  line-height: 1.7 !important;
+  color: #555 !important;
+}
+details.accordion summary {
+  padding: 16px 0 !important;
+  border-top: 1px solid #eee !important;
+  cursor: pointer;
+}
+details.accordion summary h3,
+details.accordion summary .accordion__title {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  color: #1a1a1a !important;
+}
+
+/* ================================================
+   SELECTION INDICATOR — VISUAL FEEDBACK
+   ================================================ */
+.product-form__input input[type="radio"]:checked + label {
+  border-color: #1a1a1a !important;
+  box-shadow: 0 0 0 1px #1a1a1a !important;
+}
+
+/* ================================================
+   BUY WITH SHOP PAY — SOFTER PRESENCE
+   ================================================ */
+.shopify-payment-button {
+  opacity: 0.92;
+}
+.shopify-payment-button:hover {
+  opacity: 1;
+}
+
+/* ================================================
+   PAGE-LEVEL POLISH
+   ================================================ */
+/* Smooth scroll globally */
+html { scroll-behavior: smooth; }
+
+/* Remove focus outline blue, replace with subtle */
+*:focus-visible {
+  outline: 2px solid rgba(232, 93, 58, 0.4) !important;
+  outline-offset: 2px !important;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(232, 93, 58, 0.15);
+  color: #1a1a1a;
+}
+
+/* ================================================
+   GLOBAL SCROLLBAR — SUBTLE
+   ================================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #bbb; }
+
+.predictive-search {
+  margin-top: 0;
+  position: relative;
+  z-index: 1000;
+}

@@ -5664,3 +5664,56 @@ Open items:
 - TSEO-004: main-list-collections.liquid has valid syntax (no errors found)
 - TSEO-006: theme.liquid has 50+ dynamic style blocks; extraction too risky without visual testing
 - TSEO-008: Data-gated; missing locale structure and enabled locales info
+
+### Task: TSEO-006 (Conservative in-place extraction)
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-tseo-006-conservative-extraction
+Changes:
+- Extracted all non-Liquid inline `<style>` blocks from `layout/theme.liquid` into external assets while preserving source order and placement.
+- Added 24 new static CSS assets:
+  - `assets/theme-inline-static-01.css` through `assets/theme-inline-static-24.css`
+- Replaced each extracted `<style>` block with a same-position `<link rel="stylesheet" href="{{ 'theme-inline-static-XX.css' | asset_url }}">`.
+- Kept the single Liquid-dependent style block inline (`layout/theme.liquid` block with theme settings/font/color variables).
+Verification:
+- `layout/theme.liquid` now has exactly one inline style block (Liquid-dependent): lines 155-354.
+- 24 stylesheet link references to `theme-inline-static-*.css` are present in `layout/theme.liquid`.
+- No Liquid tokens were moved into extracted CSS assets (`{{`, `{%` absent in all new files).
+Open items:
+- Visual QA recommended across home, collection, product, cart, article, and 404 templates to confirm no render-order regressions.
+- If desired later, consolidate the 24 files into fewer bundles after visual parity is confirmed.
+
+### Task: TSEO-006 (Rollback after local preview validation failure)
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-tseo-006-rollback-after-preview-error
+Changes:
+- Reverted `layout/theme.liquid` to repository `HEAD` state.
+- Removed generated `assets/theme-inline-static-*.css` files from the previous extraction attempt.
+Why:
+- Local Shopify preview reported missing `{{ content_for_header }}` in a generated layout validation path (`layout/XXG5AYcx`), indicating the prior extraction attempt produced invalid layout structure.
+Verification:
+- `layout/theme.liquid` restored to 4618 lines with `{{ content_for_header }}` present in `<head>`.
+- No `assets/theme-inline-static-*.css` files remain.
+Open items:
+- Re-approach TSEO-006 only with guarded, in-head-only extraction and live visual checks after each small batch.
+
+### Task: TSEO-006 (Safe phased extraction, head + in-body only)
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-tseo-006-safe-phased-head-body
+Changes:
+- Extracted static inline CSS blocks from `layout/theme.liquid` that are in:
+  - `<head>` (excluding the Liquid-dependent settings block)
+  - between `<body>` and `</body>`
+- Added 14 static CSS assets:
+  - `assets/theme-inline-head-static-01.css` to `assets/theme-inline-head-static-05.css`
+  - `assets/theme-inline-body-static-01.css` to `assets/theme-inline-body-static-09.css`
+- Replaced extracted blocks with in-place stylesheet links to preserve cascade order at original insertion points.
+- Kept Liquid-dependent inline style block intact (`layout/theme.liquid` lines 155-354 after this change).
+- Kept post-`</html>` inline style blocks unchanged intentionally for safety.
+Verification:
+- `shopify theme dev -s dresslikemommy-com.myshopify.com --host 127.0.0.1 --port 9293 --path .` starts successfully and serves preview URL.
+- `layout/theme.liquid` still contains one `{{ content_for_header }}` inside `<head>`.
+- No Liquid tokens were moved into the 14 extracted CSS assets.
+- Inline style blocks reduced from 25 to 11 (1 Liquid-dependent + 10 post-`</html>` static blocks left in place).
+Open items:
+- Remaining 10 static `<style>` blocks are after `</html>`; extracting/moving those is deferred to avoid render-order/regression risk.
+- Visual QA still recommended on home, collection, product, cart, article, and 404 templates.
