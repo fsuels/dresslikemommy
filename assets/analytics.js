@@ -184,6 +184,7 @@ window.dataLayer = window.dataLayer || [];
 
   function buildFallbackProductData() {
     var ogTitle = document.querySelector('meta[property="og:title"]');
+    // Fallback: try both og:price:amount (legacy) and product:price:amount (standard OG)
     var ogPrice = document.querySelector('meta[property="og:price:amount"]') || document.querySelector('meta[property="product:price:amount"]');
     var category1Meta = document.querySelector('meta[name="custom-category1"]');
     var subcategoryMeta = document.querySelector('meta[name="custom-subcategory"]');
