@@ -130,7 +130,14 @@ class CartItems extends HTMLElement {
 
         if (parsedState.errors) {
           quantityElement.value = quantityElement.getAttribute('value');
-          this.updateLiveRegions(line, parsedState.errors);
+          // Provide specific error messages based on Shopify's error response
+          let errorMessage = parsedState.errors;
+          if (typeof parsedState.errors === 'string') {
+            errorMessage = parsedState.errors;
+          } else if (parsedState.description) {
+            errorMessage = parsedState.description;
+          }
+          this.updateLiveRegions(line, errorMessage);
           return;
         }
 
@@ -155,7 +162,13 @@ class CartItems extends HTMLElement {
           if (typeof updatedValue === 'undefined') {
             message = window.cartStrings.error;
           } else {
-            message = window.cartStrings.quantityError.replace('[quantity]', updatedValue);
+            // Provide a clearer message about why the quantity was adjusted
+            const requestedQty = parseInt(quantityElement.value);
+            if (updatedValue < requestedQty) {
+              message = `Only ${updatedValue} available — we've updated your quantity.`;
+            } else {
+              message = window.cartStrings.quantityError.replace('[quantity]', updatedValue);
+            }
           }
         }
         this.updateLiveRegions(line, message);
@@ -174,10 +187,15 @@ class CartItems extends HTMLElement {
 
         publish(PUB_SUB_EVENTS.cartUpdate, { source: 'cart-items', cartData: parsedState, variantId: variantId });
       })
-      .catch(() => {
+      .catch((error) => {
         this.querySelectorAll('.loading__spinner').forEach((overlay) => overlay.classList.add('hidden'));
         const errors = document.getElementById('cart-errors') || document.getElementById('CartDrawer-CartErrors');
-        errors.textContent = window.cartStrings.error;
+        // Differentiate network errors from other failures
+        if (error instanceof TypeError && error.message === 'Failed to fetch') {
+          errors.textContent = 'Unable to update cart — please check your connection and try again.';
+        } else {
+          errors.textContent = window.cartStrings.error;
+        }
       })
       .finally(() => {
         this.disableLoading(line);
@@ -213,6 +231,11 @@ class CartItems extends HTMLElement {
 
     [...cartItemElements, ...cartDrawerItemElements].forEach((overlay) => overlay.classList.remove('hidden'));
 
+    // Disable checkout buttons during cart update to prevent stale-total submissions
+    document.querySelectorAll('.cart__checkout-button').forEach((btn) => {
+      btn.setAttribute('disabled', 'disabled');
+    });
+
     document.activeElement.blur();
     this.lineItemStatusElement.setAttribute('aria-hidden', false);
   }
@@ -226,6 +249,11 @@ class CartItems extends HTMLElement {
 
     cartItemElements.forEach((overlay) => overlay.classList.add('hidden'));
     cartDrawerItemElements.forEach((overlay) => overlay.classList.add('hidden'));
+
+    // Re-enable checkout buttons after cart update completes
+    document.querySelectorAll('.cart__checkout-button').forEach((btn) => {
+      btn.removeAttribute('disabled');
+    });
   }
 }
 

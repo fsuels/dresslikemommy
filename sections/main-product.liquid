@@ -819,22 +819,8 @@
                 </p>
               {%- when 'title' -%}
                 <div class="product__title" {{ block.shopify_attributes }}>
-                  <h1 class="product__title-text">{{ product.title | escape }}</h1>
-                  {%- if taxonomy_type != blank or taxonomy_style != blank or taxonomy_pattern != blank -%}
-                    <p class="product__text caption">
-                      {%- if taxonomy_type != blank -%}
-                        Type: {{ taxonomy_type | escape }}
-                      {%- endif -%}
-                      {%- if taxonomy_style != blank -%}
-                        {%- if taxonomy_type != blank -%} | {% endif -%}
-                        Style: {{ taxonomy_style | escape }}
-                      {%- endif -%}
-                      {%- if taxonomy_pattern != blank -%}
-                        {%- if taxonomy_type != blank or taxonomy_style != blank -%} | {% endif -%}
-                        Pattern: {{ taxonomy_pattern | escape }}
-                      {%- endif -%}
-                    </p>
-                  {%- endif -%}
+                  {%- assign clean_title = product.title | escape | split: ' | ' | first -%}
+                  <h1 class="product__title-text">{{ clean_title }}</h1>
                 </div>
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
@@ -1212,20 +1198,20 @@
                 {%- comment -%} Trust badges — visible immediately below Add to Cart {%- endcomment -%}
                 <div class="trust-badges">
                   <div class="trust-badge">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                    <span>5,000+ Happy Families</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <span>Secure Checkout</span>
                   </div>
                   <div class="trust-badge">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    <span>Secure Checkout</span>
+                    <span>SSL Encrypted</span>
                   </div>
                   <div class="trust-badge">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
                     <span>30-Day Returns</span>
                   </div>
                   <div class="trust-badge">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    <span>Quality Guarantee</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>Free Shipping</span>
                   </div>
                 </div>
 
@@ -1242,7 +1228,7 @@
 
 <!-- Additional Info Links -->
 <div class="additional-info">
-  <button class="collapsible active">
+  <button class="collapsible active" aria-expanded="true" aria-controls="collapsible-shipping">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1D8656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="1" y="3" width="15" height="13"></rect>
       <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
@@ -1251,27 +1237,27 @@
       <path d="M1 13h15v4H1z"></path>
     </svg>
     Free Shipping Worldwide
-    <span class="toggle-icon">X</span>
+    <span class="toggle-icon" aria-hidden="true">X</span>
   </button>
-  <div class="content" style="display: block;">
+  <div class="content" id="collapsible-shipping" style="display: block;">
     <div id="delivery-info-content">
-      <p>Standard: FREE<br>Delivery: <span id="standard-delivery-range"></span>, 75.4% within 11 days<br>Courier company: DHL eCommerce, etc.</p>
-      <p>Express: $14.90 or FREE (orders over $80)<br>Delivery: <span id="express-delivery-range"></span>, 75.4% within 7 days<br>Courier company: FedEx</p>
+      <p>Standard: FREE<br>Delivery: <span id="standard-delivery-range"></span>, typically 7–14 business days<br>Courier: DHL eCommerce, etc.</p>
+      <p>Express: $14.90 or FREE (orders over $80)<br>Delivery: <span id="express-delivery-range"></span>, typically 3–7 business days<br>Courier: FedEx</p>
     </div>
   </div>
 </div>
 
 
 
-  <button class="collapsible">
+  <button class="collapsible" aria-expanded="false" aria-controls="collapsible-returns">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1a936f" width="24px" height="24px">
       <path d="M0 0h24v24H0z" fill="none"/>
       <path d="M21 5h-3V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v1H3c-1.1 0-1.99.9-1.99 2L1 19a2 2 0 0 0 2 2h14.01c1.1 0 1.99-.9 1.99-2V7a2 2 0 0 0-2-2zm-8 12H8v-2h5v-2H8v-2h5v-2l3 3-3 3z"/>
     </svg>
     Return Policy
-    <span class="toggle-icon">+</span>
+    <span class="toggle-icon" aria-hidden="true">+</span>
   </button>
-  <div class="content">
+  <div class="content" id="collapsible-returns">
     <h2>Return Policy</h2>
     <p>We gladly accept returns within 30 days of purchase.</p>
     <p>Items should be in their original condition and packaging to qualify for a full refund. Please note that buyers are responsible for return shipping costs.</p>
@@ -1280,34 +1266,23 @@
 
   </div>
 
-  <button class="collapsible">
+  <button class="collapsible" aria-expanded="false" aria-controls="collapsible-security">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1a936f" width="24px" height="24px">
       <path d="M0 0h24v24H0z" fill="none"/>
       <path d="M12 2L4 5v6c0 5 3.5 9.7 8 11 4.5-1.3 8-6 8-11V5l-8-3zm0 18c-3.9-1.1-7-5.5-7-9V6.3l7-2.6 7 2.6V11c0 3.5-3.1 7.9-7 9z"/>
       <path d="M10 16l5-5-1.4-1.4L10 13.2l-2.6-2.6L6 12l4 4z"/>
     </svg>
     Shopping Security
-    <span class="toggle-icon">+</span>
+    <span class="toggle-icon" aria-hidden="true">+</span>
   </button>
-  <div class="content">
+  <div class="content" id="collapsible-security">
     <div class="secure-section">
  <div class="payment-section">
   <span class="payment-title">Safe Payment Options</span>
   <div class="payment-methods">
-    <img src="{{ 'Apple_Pay.svg' | asset_url }}" height="35" alt="Apple Pay" loading="lazy" width="300" height="300">
-    <img src="{{ 'American_Express.svg' | asset_url }}" height="40" alt="American Express" loading="lazy" width="300" height="300">
-    <img src="{{ 'Visa_Inc._logo.svg' | asset_url }}" height="35" alt="Visa" loading="lazy" width="300" height="300">
-    <img src="{{ 'Discover_Card.svg' | asset_url }}" height="35" alt="Discover" loading="lazy" width="300" height="300">
-    <img src="{{ 'Maestro.svg' | asset_url }}" height="35" alt="Maestro" loading="lazy" width="300" height="300">
-    <img src="{{ 'PayPal.svg' | asset_url }}" height="35" alt="PayPal" loading="lazy" width="300" height="300">
-    <img src="{{ 'Venmo.svg' | asset_url }}" height="25" alt="Venmo" loading="lazy" width="300" height="300">
-    <img src="{{ 'Google_Pay.svg' | asset_url }}" height="25" alt="Google Pay" loading="lazy" width="300" height="300">
-    <img src="{{ 'Mastercard.svg' | asset_url }}" height="35" alt="Mastercard" loading="lazy" width="300" height="300">
-    <img src="{{ 'Meta._logo.svg' | asset_url }}" height="25" alt="Meta" loading="lazy" width="300" height="300">
-    <img src="{{ 'Diners_Club.svg' | asset_url }}" height="20" alt="Diners Club" loading="lazy" width="300" height="300">
-    <img src="{{ 'JCB.svg' | asset_url }}" height="25" alt="JCB" loading="lazy" width="300" height="300">
-    <img src="{{ 'ShopPay.svg' | asset_url }}" height="25" alt="ShopPay" loading="lazy" width="300" height="300">
-    <img src="{{ 'cashapp.svg' | asset_url }}" height="25" alt="Cash App" loading="lazy" width="300" height="300">
+    {%- for type in shop.enabled_payment_types -%}
+      {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+    {%- endfor -%}
   </div>
 </div>
       <p>We accept all major credit and debit cards. Your card details are secure and never shared with our partners. You can easily manage your saved cards anytime. For any transaction inquiries, please contact your card issuer.

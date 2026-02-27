@@ -1481,12 +1481,15 @@
           this.classList.toggle("active");
           var content = this.nextElementSibling;
           var icon = this.querySelector('.toggle-icon');
-          if (content.style.display === "block") {
+          var isExpanded = content.style.display === "block";
+          if (isExpanded) {
             content.style.display = "none";
             icon.textContent = "+";
+            this.setAttribute('aria-expanded', 'false');
           } else {
             content.style.display = "block";
             icon.textContent = "X";
+            this.setAttribute('aria-expanded', 'true');
           }
         });
       }
@@ -1498,6 +1501,7 @@
         var firstContent = firstCollapsible.nextElementSibling;
         firstContent.style.display = "block";
         firstCollapsible.querySelector('.toggle-icon').textContent = "X";
+        firstCollapsible.setAttribute('aria-expanded', 'true');
       }
 
       // Calculate delivery dates

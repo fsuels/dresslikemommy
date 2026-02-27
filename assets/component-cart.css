@@ -314,6 +314,34 @@ cart-items {
   color: rgba(var(--color-foreground), 0.45);
 }
 
+/* Payment icons on cart page (matching cart drawer) */
+.cart-page__payment-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.cart-page__payment-icons .payment-icons__label {
+  font-size: 1rem;
+  color: rgba(var(--color-foreground), 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.cart-page__payment-icons .payment-icons__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.cart-page__payment-icons .payment-icon {
+  height: 2.4rem;
+  width: auto;
+}
+
 @media screen and (max-width: 749px) {
   .cart-page__trust-badges {
     gap: 0.8rem 1.5rem;
