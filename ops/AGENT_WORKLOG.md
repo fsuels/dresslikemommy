@@ -5966,3 +5966,23 @@ Verification:
 Open items:
 - Manual storefront QA recommended on product pages in EN/ES/FR:
   - choose size and verify `.size-chart-wrapper` renders details immediately for each locale.
+
+### Task: PDP size-chart unit toggle conversion hardening (ES/FR unit labels)
+Date: 2026-02-27
+AGENT_CONTINUITY_ANCHOR: 2026-02-27-pdp-size-chart-unit-toggle-hardening
+Changes:
+- `assets/size-conversion.js`
+  - Added canonical unit normalization with accent-safe tokenization.
+  - Added synonym mapping for translated/common unit labels so conversions resolve to canonical units:
+    - Length: `cm`, `in/inch/inches`, `pulg/pulgada/pulgadas`, `po/pouce/pouces`
+    - Weight: `kg/kgs`, `lb/lbs`, `libra/libras`, `livre/livres`
+  - Upgraded unit inference in free-text values to use the expanded unit token set.
+
+Why:
+- UI toggle state changed but numbers stayed unchanged when headers/values used localized unit labels not recognized by the converter.
+
+Verification:
+- `node --check assets/size-conversion.js` passed.
+
+Open items:
+- Preview QA on ES/FR PDPs to confirm numeric values change when switching between metric/imperial.

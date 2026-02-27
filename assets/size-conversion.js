@@ -4,7 +4,25 @@ document.addEventListener("DOMContentLoaded", function () {
   // UNIT CONVERSION HELPERS
   // ---------------------------------------------------------------------------
   const UNIT_SYSTEM_STORAGE_KEY = "dlm_size_chart_unit_system";
-  const normalizeUnit = (unit) => String(unit || "").trim().toLowerCase();
+  const normalizeToken = (value) => {
+    const lowered = String(value || "").toLowerCase().trim();
+    if (!lowered) return "";
+    const deAccented = typeof lowered.normalize === "function"
+      ? lowered.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      : lowered;
+    return deAccented.replace(/[^a-z0-9]/g, "");
+  };
+  const normalizeUnit = (unit) => {
+    const token = normalizeToken(unit);
+    if (!token) return "";
+
+    if (token === "cm" || token === "cms" || token === "centimeter" || token === "centimeters" || token === "centimetre" || token === "centimetres") return "cm";
+    if (token === "in" || token === "inch" || token === "inches" || token === "pulg" || token === "pulgada" || token === "pulgadas" || token === "po" || token === "pouce" || token === "pouces") return "in";
+    if (token === "kg" || token === "kgs" || token === "kilogram" || token === "kilograms" || token === "kilogramme" || token === "kilogrammes") return "kg";
+    if (token === "lb" || token === "lbs" || token === "libra" || token === "libras" || token === "livre" || token === "livres") return "lbs";
+
+    return token;
+  };
   const formatNumericValue = (num) => {
     if (num === null || Number.isNaN(num)) return "";
     return Number(num).toFixed(2).replace(/\.00$/, "").replace(/(\.\d)0$/, "$1");
@@ -57,12 +75,45 @@ document.addEventListener("DOMContentLoaded", function () {
     return sourceUnit;
   };
   const inferUnitFromText = (text) => {
-    const match = String(text || "").toLowerCase().match(/\b(cm|in|inch|inches|kg|lb|lbs)\b/);
-    if (!match) return "";
-    const token = match[1];
-    if (token === "inch" || token === "inches") return "in";
-    if (token === "lb") return "lbs";
-    return token;
+    const normalizedText = String(text || "").toLowerCase();
+    const unitCandidates = [
+      "cm",
+      "cms",
+      "centimeter",
+      "centimeters",
+      "centimetre",
+      "centimetres",
+      "in",
+      "inch",
+      "inches",
+      "pulg",
+      "pulgada",
+      "pulgadas",
+      "po",
+      "pouce",
+      "pouces",
+      "kg",
+      "kgs",
+      "kilogram",
+      "kilograms",
+      "kilogramme",
+      "kilogrammes",
+      "lb",
+      "lbs",
+      "libra",
+      "libras",
+      "livre",
+      "livres",
+    ];
+
+    for (let i = 0; i < unitCandidates.length; i += 1) {
+      const token = unitCandidates[i];
+      const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const pattern = new RegExp("\\b" + escaped + "\\b", "i");
+      if (pattern.test(normalizedText)) return normalizeUnit(token);
+    }
+
+    return "";
   };
   const getStoredUnitSystem = () => {
     try {
