@@ -610,6 +610,7 @@
     <link rel="stylesheet" href="{{ 'theme-inline-body-static-01.css' | asset_url }}">
 
 {% if template.name == 'product' %}
+  <script>window.__dlmI18n = window.__dlmI18n || {}; window.__dlmI18n.selectSize = {{ 'products.product.select_size' | t | json }};</script>
   <script defer src="{{ 'size-conversion.js' | asset_url }}"></script>
 {% endif %}
 

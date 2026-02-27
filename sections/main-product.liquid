@@ -1626,10 +1626,10 @@
       var hasUserConfirmedColorSelection = false;
       var highlightedGroup = null;
       var addToCartLabel = {{ 'products.product.add_to_cart' | t | json }};
-      var chooseOptionsLabel = 'Choose options';
-      var chooseSizeLabel = 'Select size';
-      var chooseColorLabel = 'Select color';
-      var sizeRequiredMessageText = 'Please select a size before adding to cart.';
+      var chooseOptionsLabel = {{ 'products.product.choose_options' | t | json }};
+      var chooseSizeLabel = {{ 'products.product.select_size' | t | json }};
+      var chooseColorLabel = {{ 'products.product.select_color' | t | json }};
+      var sizeRequiredMessageText = {{ 'products.product.size_required_message' | t | json }};
 
       if (!atcBtn && productForm) atcBtn = productForm.querySelector('[name="add"]');
       if (!atcBtn || !stickyBtn) return;

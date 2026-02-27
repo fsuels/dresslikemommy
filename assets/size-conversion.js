@@ -758,7 +758,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!firstOption || firstOption.value !== "") {
       const opt      = document.createElement("option");
       opt.value      = "";
-      opt.textContent = "Select size";
+      opt.textContent = (window.__dlmI18n && window.__dlmI18n.selectSize) || "Select size";
       opt.disabled   = true;
       opt.selected   = true;
       sizeSelect.insertBefore(opt, sizeSelect.firstChild);
