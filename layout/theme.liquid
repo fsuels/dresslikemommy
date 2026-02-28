@@ -175,14 +175,6 @@
         return scriptBody.indexOf('google_tag_ids') !== -1;
       }
 
-      function hasAnyGtagScript() {
-        return !!document.querySelector('script[src*="googletagmanager.com/gtag/js"]');
-      }
-
-      function hasShopifyAnalyticsRuntime() {
-        return !!(window.ShopifyAnalytics || (window.Shopify && window.Shopify.analytics));
-      }
-
       function hasConfigForMeasurement(id) {
         var layer = window.dataLayer || [];
         for (var i = 0; i < layer.length; i += 1) {
@@ -196,13 +188,6 @@
 
       if (hasShopifyGoogleTagConfig(measurementId)) {
         return;
-      }
-
-      if (!hasAnyGtagScript() && !hasShopifyAnalyticsRuntime()) {
-        var gaScript = document.createElement('script');
-        gaScript.async = true;
-        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
-        document.head.appendChild(gaScript);
       }
 
       window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };

@@ -6419,3 +6419,28 @@ Verification:
 
 Open items:
 - Browser-side network validation still needed post-deploy to confirm `gtag/js` loads no longer include fallback duplicates.
+
+### Task: Final GA script de-dup fix (remove fallback `gtag/js` injection path)
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-ga-script-dedup-final-remove-loader
+Changes:
+- `layout/theme.liquid`
+  - Removed fallback DOM/script loader functions and script injection branch:
+    - removed `hasAnyGtagScript()`
+    - removed `hasShopifyAnalyticsRuntime()`
+    - removed `document.createElement('script')` path for `https://www.googletagmanager.com/gtag/js?...`
+  - Kept fallback behavior strictly to queue/config actions only (`gtag('set')`, optional `gtag('config')`) and only when Shopify Web Pixels Google-tag config is not detected.
+
+Why:
+- Duplicate `gtag/js` network loads persisted because fallback and Shopify both loaded Google tag library.
+- The robust fix is to let Shopify be the only script loader and never load `gtag/js` from theme fallback code.
+
+Verification:
+- Confirmed no `document.createElement('script')` loader remains in theme fallback analytics block.
+- Confirmed fallback still includes `send_page_view: false` when config is queued.
+- Ran `shopify theme check --path . --output json --fail-level crash`:
+  - no crash-level issues from this patch.
+  - command still reports pre-existing repo-wide warnings/errors unrelated to this change.
+
+Open items:
+- Browser-side verification still required after deploy to confirm exactly one set of `gtag/js` loads (Shopify-only).
