@@ -54,7 +54,11 @@
 
 {%- assign breadcrumb_items = '' -%}
 {%- assign breadcrumb_position = 1 -%}
-{%- assign breadcrumb_home_name = 'general.breadcrumbs.home' | t | default: 'Home' -%}
+{%- assign breadcrumb_home_name = 'sections.breadcrumbs.home' | t -%}
+{%- assign breadcrumb_home_name_downcase = breadcrumb_home_name | downcase -%}
+{%- if breadcrumb_home_name == blank or breadcrumb_home_name_downcase contains 'translation missing' -%}
+  {%- assign breadcrumb_home_name = 'Home' -%}
+{%- endif -%}
 {%- capture breadcrumb_items -%}
 {"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ breadcrumb_home_name | json }},"item":{{ shop.url | json }}}
 {%- endcapture -%}
@@ -110,7 +114,17 @@
     {%- assign product_images = fallback_image | json -%}
   {%- endif -%}
 
-  {%- assign currency_code = cart.currency | default: shop.currency -%}
+  {%- assign currency_code = cart.currency.iso_code -%}
+  {%- if currency_code == blank -%}
+    {%- assign currency_code = localization.country.currency.iso_code -%}
+  {%- endif -%}
+  {%- if currency_code == blank -%}
+    {%- assign currency_code = shop.currency.iso_code | default: shop.currency -%}
+  {%- endif -%}
+  {%- assign currency_code = currency_code | append: '' | strip | upcase -%}
+  {%- assign shipping_country_code = localization.country.iso_code | default: shop.address.country_code | append: '' | strip | upcase -%}
+  {%- assign price_valid_until_year = 'now' | date: '%Y' | plus: 1 -%}
+  {%- assign price_valid_until = price_valid_until_year | append: '-12-31' -%}
   {%- assign low_price = product.price_min | times: 0.01 -%}
   {%- assign high_price = product.price_max | times: 0.01 -%}
   {%- assign taxonomy_category1 = product.metafields.custom.category1 | default: '' | strip -%}
@@ -143,15 +157,17 @@
   {%- assign offer_delim = '' -%}
   {%- for variant in product.variants limit: 20 -%}
     {%- assign variant_price = variant.price | times: 0.01 -%}
+    {%- assign variant_sku_value = variant.sku | default: variant.id | append: '' | strip -%}
     {%- assign variant_barcode = variant.barcode | default: '' | strip | replace: ' ', '' | replace: '-', '' -%}
     {%- assign variant_barcode_size = variant_barcode | size -%}
     {%- capture offers_list -%}{{ offers_list }}{{ offer_delim }}{
       "@type": "Offer",
       "priceCurrency": {{ currency_code | json }},
       "price": {{ variant_price | json }},
+      "priceValidUntil": {{ price_valid_until | json }},
       "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
       "url": {{ product_url | json }},
-      "sku": {{ variant.sku | default: variant.id | json }},
+      "sku": {{ variant_sku_value | json }},
       {%- if variant_barcode != blank and variant_barcode_size == 8 -%}
       "gtin8": {{ variant_barcode | json }},
       {%- endif -%}
@@ -164,10 +180,51 @@
       {%- if variant_barcode != blank and variant_barcode_size == 14 -%}
       "gtin14": {{ variant_barcode | json }},
       {%- endif -%}
-      "itemCondition": "https://schema.org/NewCondition"
+      "itemCondition": "https://schema.org/NewCondition",
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        {%- if shipping_country_code != blank -%}
+        "applicableCountry": {{ shipping_country_code | json }},
+        {%- endif -%}
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 30,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/ReturnShippingFees"
+      },
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": 0,
+          "currency": {{ currency_code | json }}
+        },
+        {%- if shipping_country_code != blank -%}
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": {{ shipping_country_code | json }}
+        },
+        {%- endif -%}
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 2,
+            "maxValue": 2,
+            "unitCode": "d"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 7,
+            "maxValue": 10,
+            "unitCode": "d"
+          }
+        }
+      }
     }{%- endcapture -%}
     {%- assign offer_delim = ',' -%}
   {%- endfor -%}
+
+  {%- assign selected_sku_value = product.selected_or_first_available_variant.sku | default: product.selected_or_first_available_variant.id | append: '' | strip -%}
 
   <script type="application/ld+json">
   {
@@ -179,7 +236,7 @@
     {% if product_images != '' %}
     "image": [{{ product_images }}],
     {% endif %}
-    "sku": {{ product.selected_or_first_available_variant.sku | default: product.selected_or_first_available_variant.id | json }},
+    "sku": {{ selected_sku_value | json }},
     "brand": {
       "@type": "Brand",
       "name": {{ product.vendor | default: shop.name | json }}

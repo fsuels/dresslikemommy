@@ -1,7 +1,7 @@
 # Product Metadata Backfill Summary
 
 Input file: `products_export_1 2.csv`
-Output file: `products_export_1 2_working_backfill.csv`
+Output file: `products_export_1 2_IMPORT_READY.csv`
 Target products: `588` active handles
 
 ## Product-level coverage (active products)
@@ -11,6 +11,8 @@ Target products: `588` active handles
 | SEO Title | 1/588 (0.2%) | 588/588 (100.0%) |
 | SEO Description | 374/588 (63.6%) | 588/588 (100.0%) |
 | Google Shopping / Google Product Category | 0/588 (0.0%) | 588/588 (100.0%) |
+| Age group (product.metafields.shopify.age-group) | 17/588 (2.9%) | 588/588 (100.0%) |
+| Color (product.metafields.shopify.color-pattern) | 42/588 (7.1%) | 588/588 (100.0%) |
 | Category1 (product.metafields.custom.category1) | 339/588 (57.7%) | 588/588 (100.0%) |
 | SubCategory (product.metafields.custom.subcategory) | 339/588 (57.7%) | 588/588 (100.0%) |
 | SubCategory2 (product.metafields.custom.subcategory2) | 57/588 (9.7%) | 588/588 (100.0%) |
@@ -27,6 +29,9 @@ Target products: `588` active handles
 | Field | Before | After |
 |---|---:|---:|
 | Variant Barcode | 1649/13990 (11.8%) | 1649/13990 (11.8%) |
+| Google Shopping / Gender | 0/13990 (0.0%) | 13990/13990 (100.0%) |
+| Google Shopping / Age Group | 0/13990 (0.0%) | 13990/13990 (100.0%) |
+| Google Shopping / Condition | 0/13990 (0.0%) | 13990/13990 (100.0%) |
 | Google Shopping / MPN | 0/13990 (0.0%) | 12060/13990 (86.2%) |
 | Google Shopping / Custom Product | 0/13990 (0.0%) | 13990/13990 (100.0%) |
 | Google: Custom Product (product.metafields.mm-google-shopping.custom_product) | 0/13990 (0.0%) | 13990/13990 (100.0%) |
@@ -35,5 +40,8 @@ Target products: `588` active handles
 ## Notes
 
 - Active handles were normalized to controlled taxonomy values for Category1/SubCategory/SubCategory2/Type/Style/Pattern.
+- Google apparel attributes are backfilled at variant level (`Google Shopping / Gender`, `Google Shopping / Age Group`) with product-level age/color hints.
 - Missing GTINs were not fabricated. Rows without barcode are marked custom product and receive MPN from SKU when available.
+- Published state updates applied on target rows: `13727`.
+- Unsupported image URL replacements applied (`.webp` -> supported source): `30`.
 - Complementary/related/search boost fields are generated from taxonomy similarity and title keywords for immediate Search & Discovery seeding.

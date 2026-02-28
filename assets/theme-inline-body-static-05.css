@@ -519,6 +519,26 @@ button.button--secondary:hover {
   color: #999 !important;
   border-color: #444 !important;
 }
+.footer localization-form .disclosure__button.localization-form__select {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  line-height: 1.2 !important;
+  padding-right: 28px !important;
+}
+
+.footer localization-form .disclosure__button.localization-form__select .icon-caret {
+  position: absolute !important;
+  top: 50% !important;
+  right: 10px !important;
+  transform: translateY(-50%) !important;
+  margin: 0 !important;
+}
+
+.footer localization-form .disclosure__button[aria-expanded='true'] .icon-caret {
+  transform: translateY(-50%) rotate(180deg) !important;
+}
 /* Newsletter input in footer */
 .footer .newsletter-form__field-wrapper input {
   background: #2a2a2a !important;

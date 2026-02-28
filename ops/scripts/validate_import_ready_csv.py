@@ -13,10 +13,12 @@ from typing import Dict, Iterable, List, Sequence, Set, Tuple
 
 ROW_HANDLE = "Handle"
 ROW_STATUS = "Status"
+ROW_PUBLISHED = "Published"
 ROW_TAGS = "Tags"
 ROW_IMAGE_SRC = "Image Src"
 ROW_IMAGE_ALT = "Image Alt Text"
 ROW_IMAGE_POSITION = "Image Position"
+ROW_VARIANT_IMAGE = "Variant Image"
 ROW_OPTION1_VALUE = "Option1 Value"
 ROW_OPTION2_VALUE = "Option2 Value"
 ROW_OPTION3_VALUE = "Option3 Value"
@@ -24,6 +26,9 @@ ROW_VARIANT_SKU = "Variant SKU"
 ROW_VARIANT_BARCODE = "Variant Barcode"
 ROW_GOOGLE_MPN = "Google Shopping / MPN"
 ROW_GOOGLE_CUSTOM_PRODUCT = "Google Shopping / Custom Product"
+ROW_GOOGLE_CONDITION = "Google Shopping / Condition"
+ROW_GOOGLE_GENDER = "Google Shopping / Gender"
+ROW_GOOGLE_AGE_GROUP = "Google Shopping / Age Group"
 
 PRODUCT_SEO_TITLE = "SEO Title"
 PRODUCT_SEO_DESCRIPTION = "SEO Description"
@@ -49,6 +54,8 @@ PRODUCT_SEARCH_BOOSTS = (
 PRODUCT_GOOGLE_CUSTOM_METAFIELD = (
     "Google: Custom Product (product.metafields.mm-google-shopping.custom_product)"
 )
+PRODUCT_SHOPIFY_AGE_GROUP = "Age group (product.metafields.shopify.age-group)"
+PRODUCT_SHOPIFY_COLOR = "Color (product.metafields.shopify.color-pattern)"
 
 ACTIVE_STATUS = "active"
 REQUIRED_TAG_PREFIXES = (
@@ -61,6 +68,9 @@ REQUIRED_TAG_PREFIXES = (
 )
 VALID_RELATED_SETTINGS = {"only manual", "manual", "automatic"}
 VALID_GTIN_LENGTHS = {8, 12, 13, 14}
+SUPPORTED_IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif"}
+VALID_GENDER_VALUES = {"female", "male", "unisex"}
+VALID_AGE_GROUP_VALUES = {"newborn", "infant", "toddler", "kids", "adult"}
 HANDLE_PATTERN = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 
 
@@ -113,6 +123,22 @@ def first_non_blank(rows: Sequence[Dict[str, str]], column: str) -> str:
         if value:
             return value
     return ""
+
+
+def image_extension_from_url(url: str) -> str:
+    raw = clean(url)
+    if not raw:
+        return ""
+    base = raw.split("?", 1)[0].lower()
+    name = base.rsplit("/", 1)[-1]
+    if "." not in name:
+        return ""
+    return f".{name.rsplit('.', 1)[-1]}"
+
+
+def is_supported_image_url(url: str) -> bool:
+    extension = image_extension_from_url(url)
+    return bool(extension and extension in SUPPORTED_IMAGE_EXTENSIONS)
 
 
 def collect_target_handles(rows: Sequence[Dict[str, str]], all_statuses: bool) -> List[str]:
@@ -236,17 +262,24 @@ def main() -> None:
     required_columns = (
         ROW_HANDLE,
         ROW_STATUS,
+        ROW_PUBLISHED,
         ROW_TAGS,
         ROW_IMAGE_SRC,
         ROW_IMAGE_ALT,
         ROW_IMAGE_POSITION,
+        ROW_VARIANT_IMAGE,
         ROW_VARIANT_SKU,
         ROW_VARIANT_BARCODE,
         ROW_GOOGLE_MPN,
         ROW_GOOGLE_CUSTOM_PRODUCT,
+        ROW_GOOGLE_CONDITION,
+        ROW_GOOGLE_GENDER,
+        ROW_GOOGLE_AGE_GROUP,
         PRODUCT_SEO_TITLE,
         PRODUCT_SEO_DESCRIPTION,
         PRODUCT_GOOGLE_CATEGORY,
+        PRODUCT_SHOPIFY_AGE_GROUP,
+        PRODUCT_SHOPIFY_COLOR,
         PRODUCT_CATEGORY1,
         PRODUCT_SUBCATEGORY,
         PRODUCT_SUBCATEGORY2,
@@ -313,6 +346,44 @@ def main() -> None:
                 missing_handles,
                 args.max_samples,
             )
+
+    recommended_product_fields = (
+        PRODUCT_SHOPIFY_AGE_GROUP,
+        PRODUCT_SHOPIFY_COLOR,
+    )
+    for field in recommended_product_fields:
+        missing_handles: List[str] = []
+        for handle in target_handles:
+            handle_rows = rows_by_handle.get(handle, [])
+            if not handle_rows:
+                continue
+            value = first_non_blank(handle_rows, field)
+            if not value:
+                missing_handles.append(handle)
+        if missing_handles:
+            add_finding(
+                findings,
+                "WARN",
+                "missing_recommended_product_field",
+                f"{field} missing for {len(missing_handles)} handles",
+                missing_handles,
+                args.max_samples,
+            )
+
+    unpublished_target_handles: List[str] = []
+    for handle in target_handles:
+        published_value = first_non_blank(rows_by_handle.get(handle, []), ROW_PUBLISHED)
+        if not parse_bool_true(published_value):
+            unpublished_target_handles.append(handle)
+    if unpublished_target_handles:
+        add_finding(
+            findings,
+            "WARN",
+            "target_handle_unpublished",
+            f"Found {len(unpublished_target_handles)} target handles with Published != TRUE",
+            unpublished_target_handles,
+            args.max_samples,
+        )
 
     missing_prefix_handles: Dict[str, List[str]] = {prefix: [] for prefix in REQUIRED_TAG_PREFIXES}
     for handle in target_handles:
@@ -481,12 +552,18 @@ def main() -> None:
 
     rows_alt_without_src: List[str] = []
     rows_position_without_src: List[str] = []
+    unsupported_image_rows: List[str] = []
 
     malformed_gtin_rows: List[str] = []
     missing_custom_product_rows: List[str] = []
     missing_custom_metafield_rows: List[str] = []
     missing_mpn_rows: List[str] = []
     conflicting_custom_product_rows: List[str] = []
+    missing_gender_rows: List[str] = []
+    invalid_gender_rows: List[str] = []
+    missing_age_group_rows: List[str] = []
+    invalid_age_group_rows: List[str] = []
+    missing_condition_rows: List[str] = []
 
     for index, row in enumerate(rows, start=2):
         handle = clean(row.get(ROW_HANDLE, ""))
@@ -496,6 +573,7 @@ def main() -> None:
             continue
 
         image_src = clean(row.get(ROW_IMAGE_SRC, ""))
+        variant_image = clean(row.get(ROW_VARIANT_IMAGE, ""))
         image_alt = clean(row.get(ROW_IMAGE_ALT, ""))
         image_position = clean(row.get(ROW_IMAGE_POSITION, ""))
 
@@ -503,6 +581,10 @@ def main() -> None:
             rows_alt_without_src.append(f"row {index} ({handle})")
         if image_position and not image_src:
             rows_position_without_src.append(f"row {index} ({handle})")
+        if image_src and not is_supported_image_url(image_src):
+            unsupported_image_rows.append(f"row {index} ({handle}:{image_src})")
+        if variant_image and not is_supported_image_url(variant_image):
+            unsupported_image_rows.append(f"row {index} ({handle}:{variant_image})")
 
         if not is_variant_row(row):
             continue
@@ -512,6 +594,22 @@ def main() -> None:
         custom_product = parse_bool_true(row.get(ROW_GOOGLE_CUSTOM_PRODUCT, ""))
         custom_metafield = parse_bool_true(row.get(PRODUCT_GOOGLE_CUSTOM_METAFIELD, ""))
         mpn = clean(row.get(ROW_GOOGLE_MPN, ""))
+        gender = normalized_key(row.get(ROW_GOOGLE_GENDER, ""))
+        age_group = normalized_key(row.get(ROW_GOOGLE_AGE_GROUP, ""))
+        condition = normalized_key(row.get(ROW_GOOGLE_CONDITION, ""))
+
+        if not gender:
+            missing_gender_rows.append(f"row {index} ({handle})")
+        elif gender not in VALID_GENDER_VALUES:
+            invalid_gender_rows.append(f"row {index} ({handle}:{gender})")
+
+        if not age_group:
+            missing_age_group_rows.append(f"row {index} ({handle})")
+        elif age_group not in VALID_AGE_GROUP_VALUES:
+            invalid_age_group_rows.append(f"row {index} ({handle}:{age_group})")
+
+        if not condition:
+            missing_condition_rows.append(f"row {index} ({handle})")
 
         if barcode_raw:
             if barcode_normalized != barcode_raw or len(barcode_normalized) not in VALID_GTIN_LENGTHS:
@@ -542,6 +640,60 @@ def main() -> None:
             "image_position_without_src",
             f"Found {len(rows_position_without_src)} rows with Image Position but no Image Src",
             rows_position_without_src,
+            args.max_samples,
+        )
+    if unsupported_image_rows:
+        add_finding(
+            findings,
+            "WARN",
+            "unsupported_image_type",
+            f"Found {len(unsupported_image_rows)} rows with unsupported image URL extension",
+            unsupported_image_rows,
+            args.max_samples,
+        )
+    if missing_gender_rows:
+        add_finding(
+            findings,
+            "WARN",
+            "missing_google_gender",
+            f"Found {len(missing_gender_rows)} variant rows missing Google Shopping / Gender",
+            missing_gender_rows,
+            args.max_samples,
+        )
+    if invalid_gender_rows:
+        add_finding(
+            findings,
+            "WARN",
+            "invalid_google_gender",
+            f"Found {len(invalid_gender_rows)} variant rows with invalid Google Shopping / Gender value",
+            invalid_gender_rows,
+            args.max_samples,
+        )
+    if missing_age_group_rows:
+        add_finding(
+            findings,
+            "WARN",
+            "missing_google_age_group",
+            f"Found {len(missing_age_group_rows)} variant rows missing Google Shopping / Age Group",
+            missing_age_group_rows,
+            args.max_samples,
+        )
+    if invalid_age_group_rows:
+        add_finding(
+            findings,
+            "WARN",
+            "invalid_google_age_group",
+            f"Found {len(invalid_age_group_rows)} variant rows with invalid Google Shopping / Age Group value",
+            invalid_age_group_rows,
+            args.max_samples,
+        )
+    if missing_condition_rows:
+        add_finding(
+            findings,
+            "WARN",
+            "missing_google_condition",
+            f"Found {len(missing_condition_rows)} variant rows missing Google Shopping / Condition",
+            missing_condition_rows,
             args.max_samples,
         )
 

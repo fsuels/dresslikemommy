@@ -29,6 +29,22 @@
   if section.settings.swipe_on_mobile and visible_block_count > columns_mobile_int
     assign show_mobile_slider = true
   endif
+
+  assign localized_section_title = section.settings.title | strip
+  case localized_section_title
+    when 'Mommy & Me', 'Mommy and Me'
+      assign localized_section_title = 'sections.breadcrumbs.cat_mommy_me' | t
+    when 'Family Matching'
+      assign localized_section_title = 'sections.breadcrumbs.cat_family_matching' | t
+    when 'Daddy & Me - Maternity - Couples', 'Daddy and Me - Maternity - Couples'
+      capture localized_section_title
+        echo 'sections.breadcrumbs.cat_daddy_me' | t
+        echo ' - '
+        echo 'sections.breadcrumbs.cat_maternity' | t
+        echo ' - '
+        echo 'sections.breadcrumbs.cat_couples' | t
+      endcapture
+  endcase
 -%}
 
 {%- if visible_block_count > 0 -%}
@@ -40,7 +56,7 @@
           id="SectionHeading-{{ section.id }}"
           class="collection-list-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         >
-          {{ section.settings.title }}
+          {{ localized_section_title }}
         </h2>
 
         {%- if section.settings.show_view_all and show_mobile_slider -%}

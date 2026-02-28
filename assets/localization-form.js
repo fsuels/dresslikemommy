@@ -105,8 +105,31 @@ if (!customElements.get('localization-form')) {
       onItemClick(event) {
         event.preventDefault();
         const form = this.querySelector('form');
-        this.elements.input.value = event.currentTarget.dataset.value;
-        if (form) form.submit();
+        const targetValue = event.currentTarget.dataset.value;
+        const fallbackHref = (event.currentTarget.getAttribute('href') || '').trim();
+        const host = (window.location && window.location.hostname ? window.location.hostname : '').toLowerCase();
+        const isLocalhost = host === '127.0.0.1' || host === 'localhost';
+        const isLanguageSelector = this.elements.input && this.elements.input.name === 'locale_code';
+
+        // Shopify's local preview proxy can return 401 for /localization POST.
+        // On localhost, switch languages via locale root URLs instead of form submit.
+        if (isLocalhost && isLanguageSelector && fallbackHref && fallbackHref !== '#') {
+          window.location.assign(fallbackHref);
+          return;
+        }
+
+        if (this.elements.input && targetValue) {
+          this.elements.input.value = targetValue;
+        }
+
+        if (form && this.elements.input && targetValue) {
+          form.submit();
+          return;
+        }
+
+        if (fallbackHref && fallbackHref !== '#') {
+          window.location.assign(fallbackHref);
+        }
       }
 
       openSelector() {

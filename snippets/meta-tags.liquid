@@ -59,15 +59,31 @@
 {%- endif -%}
 
 {%- if request.page_type == 'product' -%}
-  <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
-  <meta property="product:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
-  <meta property="og:price:currency" content="{{ cart.currency.iso_code }}">
+  {%- assign product_price_amount = product.price | divided_by: 100.0 -%}
+  {%- assign product_price_currency = cart.currency.iso_code | default: localization.country.currency.iso_code | default: shop.currency -%}
+  <meta property="og:price:amount" content="{{ product_price_amount }}">
+  <meta property="product:price:amount" content="{{ product_price_amount }}">
+  <meta property="og:price:currency" content="{{ product_price_currency }}">
+  <meta property="product:price:currency" content="{{ product_price_currency }}">
 {%- endif -%}
 
 {%- liquid
-  assign hreflang_origin = request.origin | default: shop.url
+  assign hreflang_origin = shop.url | default: request.origin
   assign hreflang_canonical = canonical_url | default: request.url
   assign hreflang_relative_path = hreflang_canonical | replace_first: hreflang_origin, ''
+  if hreflang_relative_path == hreflang_canonical
+    assign request_origin_fallback = request.origin | default: ''
+    if request_origin_fallback != blank
+      assign hreflang_relative_path = hreflang_canonical | replace_first: request_origin_fallback, ''
+    endif
+  endif
+  if hreflang_relative_path == hreflang_canonical
+    assign canonical_without_scheme = hreflang_canonical | split: '://' | last
+    assign canonical_parts = canonical_without_scheme | split: '/'
+    assign canonical_path_parts = canonical_parts | slice: 1, 200
+    assign hreflang_relative_path = canonical_path_parts | join: '/'
+    assign hreflang_relative_path = '/' | append: hreflang_relative_path
+  endif
   assign current_locale_root = request.locale.root_url | default: localization.language.root_url | default: routes.root_url | default: '/'
   assign current_locale_root_with_slash = current_locale_root | append: '/'
 

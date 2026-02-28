@@ -5,6 +5,24 @@
     - localPosition: pass in the position in which the form is coming up to create specific IDs
 {%- endcomment -%}
 
+{%- liquid
+  assign current_locale_root = request.locale.root_url | default: localization.language.root_url | default: '/'
+  assign current_locale_root_with_slash = current_locale_root | append: '/'
+  assign locale_relative_path = request.path | default: '/'
+
+  if current_locale_root != '/'
+    if locale_relative_path == current_locale_root
+      assign locale_relative_path = '/'
+    elsif locale_relative_path contains current_locale_root_with_slash
+      assign locale_relative_path = locale_relative_path | remove_first: current_locale_root
+    endif
+  endif
+
+  if locale_relative_path == blank
+    assign locale_relative_path = '/'
+  endif
+-%}
+
 <div class="disclosure">
   <button
     type="button"
@@ -19,10 +37,17 @@
   <div class="disclosure__list-wrapper" hidden>
     <ul id="{{ localPosition }}List" role="list" class="disclosure__list list-unstyled">
       {%- for language in localization.available_languages -%}
+        {%- assign language_root_url = language.root_url | default: '/' -%}
+        {%- assign language_href = language_root_url -%}
+        {%- if language_root_url == '/' -%}
+          {%- assign language_href = locale_relative_path -%}
+        {%- elsif locale_relative_path != '/' -%}
+          {%- assign language_href = language_href | append: locale_relative_path -%}
+        {%- endif -%}
         <li class="disclosure__item" tabindex="-1">
           <a
             class="link link--text disclosure__link caption-large focus-inset"
-            href="#"
+            href="{{ language_href }}"
             hreflang="{{ language.iso_code }}"
             lang="{{ language.iso_code }}"
             {% if language.iso_code == localization.language.iso_code %}

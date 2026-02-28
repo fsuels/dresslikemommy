@@ -43,12 +43,7 @@
           assign picker_type = 'color_image'
         endif
 
-        if option_name_downcased contains 'size'
-          or option_name_downcased contains 'talla'
-          or option_name_downcased contains 'tamano'
-          or option_name_downcased contains 'tamaño'
-          or option_name_downcased contains 'taille'
-          or option_name_downcased contains 'pointure'
+        if option_name_downcased contains 'size' or option_name_downcased contains 'talla' or option_name_downcased contains 'tamano' or option_name_downcased contains 'tamaño' or option_name_downcased contains 'taille' or option_name_downcased contains 'pointure'
           assign is_size_option = true
         endif
 

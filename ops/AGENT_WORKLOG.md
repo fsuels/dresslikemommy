@@ -6068,3 +6068,329 @@ Open items:
   - `/fr/products/...`
   - `/en-se/products/mommy-and-me-matching-floral-print-jumpsuits-sleeveless-and-long-sleeve-options`
 - Confirm one `page_view` per load for `G-N4EQNK0MMB` and verify event parameter `site_language` equals expected locale token.
+
+### Task: Merchant feed remediation pass (gender/age/color + publish/image fixes)
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-merchant-feed-remediation-pass
+Changes:
+- `ops/scripts/backfill_product_metadata.py`
+  - Added apparel feed backfill for variant-level fields:
+    - `Google Shopping / Gender` (`female|male|unisex`)
+    - `Google Shopping / Age Group` (`newborn|infant|toddler|kids|adult`)
+    - `Google Shopping / Condition` (`new` when blank)
+  - Added product-level hints/backfill:
+    - `Age group (product.metafields.shopify.age-group)` from dominant inferred variant ages
+    - `Color (product.metafields.shopify.color-pattern)` from existing color data + color option extraction
+  - Added optional remediations via CLI flags:
+    - `--publish-targets` to force `Published=TRUE` for target rows
+    - `--replace-unsupported-images` to replace unsupported image URLs (e.g. `.webp`) with a supported image URL from the same handle
+    - `--target-only-rows` to output only target-handle rows for safer import scope
+  - Fixed variant enrichment guard so non-variant/image-only rows are no longer treated as barcode-less variants.
+- `ops/scripts/validate_import_ready_csv.py`
+  - Added validations for feed-critical columns and diagnostics:
+    - `Published` coverage on target handles
+    - unsupported image URL extensions for `Image Src`/`Variant Image`
+    - variant-level `Google Shopping / Gender`, `Google Shopping / Age Group`, and `Google Shopping / Condition`
+    - product-level recommended fields (`shopify.age-group`, `shopify.color-pattern`)
+- `products_export_1 2_IMPORT_READY.csv`
+  - Regenerated from `products_export_1 2.csv` using:
+    - `python3 ops/scripts/backfill_product_metadata.py --input "products_export_1 2.csv" --output "products_export_1 2_IMPORT_READY.csv" --summary "ops/products_export_1_2_active_backfill_summary.md" --publish-targets --replace-unsupported-images --target-only-rows`
+  - Applied remediations:
+    - `Published` updates on target rows: `13727`
+    - unsupported image replacements: `30`
+- `ops/products_export_1_2_active_backfill_summary.md`
+  - Updated coverage report (active handles):
+    - `Google Shopping / Gender`: `0/13990 -> 13990/13990`
+    - `Google Shopping / Age Group`: `0/13990 -> 13990/13990`
+    - `Google Shopping / Condition`: `0/13990 -> 13990/13990`
+    - `Age group (product.metafields.shopify.age-group)`: `17/588 -> 588/588`
+    - `Color (product.metafields.shopify.color-pattern)`: `42/588 -> 588/588`
+- `ops/import_ready_validation_report.md`
+  - Re-ran validator on regenerated import file; report now shows `Errors: 0` and `Warnings: 2` (residual GTIN/MPN data-quality warnings only).
+- `snippets/meta-tags.liquid`
+  - Hardened product OG price metadata:
+    - numeric amount from `product.price | divided_by: 100.0`
+    - resilient currency resolution (`cart.currency.iso_code` -> `localization.country.currency.iso_code` -> `shop.currency`)
+    - added `product:price:currency` meta.
+- `snippets/jsonld-seo.liquid`
+  - Hardened JSON-LD `priceCurrency` resolution to use ISO code fallback chain (`cart.currency.iso_code` -> `localization.country.currency.iso_code` -> `shop.currency`).
+
+Why:
+- Merchant diagnostics showed large-scale gaps in required/recommended apparel attributes plus page/image eligibility blockers.
+- Repo-side fixes can materially improve feed completeness and reduce false disapprovals before manual Merchant Center/UI remediation.
+
+Verification:
+- `python3 -m py_compile ops/scripts/backfill_product_metadata.py`
+- `python3 -m py_compile ops/scripts/validate_import_ready_csv.py`
+- `python3 ops/scripts/backfill_product_metadata.py --input "products_export_1 2.csv" --output "products_export_1 2_IMPORT_READY.csv" --summary "ops/products_export_1_2_active_backfill_summary.md" --publish-targets --replace-unsupported-images --target-only-rows`
+- `python3 ops/scripts/validate_import_ready_csv.py --input "products_export_1 2_IMPORT_READY.csv" --output "ops/import_ready_validation_report.md"`
+- `shopify theme check --fail-level error --output text` (baseline locale translation errors remain; no new parser issues introduced in touched snippets).
+
+Open items:
+- Merchant Center/UI-side actions still required (cannot be completed from repo):
+  - brand logo replacements (square/rectangular requirements)
+  - shipping service coverage by country / country setup completion
+  - policy review/appeal workflow for products currently `Not approved` / `Limited`
+  - optional program enrollments (Customer Reviews, Product Ratings program, BNPL, etc.)
+- Residual data warnings remain source-limited:
+  - malformed GTIN values (`44` rows)
+  - barcode-less rows missing MPN (`1886` rows) where SKU is absent in source export.
+
+### Task: Merchant logo compliance pack + upload runbook
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-merchant-logo-compliance-pack
+Changes:
+- Added a Merchant-ready logo pack under `ops/brand/`:
+  - `ops/brand/dlm-merchant-rectangular-1200x600.png` (PNG, 1200x600, 2:1)
+  - `ops/brand/dlm-merchant-square-1000x1000.png` (PNG, 1000x1000, 1:1)
+- Added upload/runbook doc:
+  - `ops/brand/GOOGLE_MERCHANT_LOGO_UPLOAD.md`
+  - Includes Merchant Center upload path, Shopify Brand fallback path, and Search Console association path.
+
+Why:
+- Merchant Center diagnostics flagged invalid rectangular and square logos.
+- User requested immediate, concrete files + steps to clear the branding policy issues.
+
+Verification:
+- Confirmed dimensions and file sizes locally:
+  - `dlm-merchant-rectangular-1200x600.png`: 1200x600, 285400 bytes
+  - `dlm-merchant-square-1000x1000.png`: 1000x1000, 205606 bytes
+- Ratios verified as exact `2.0` and `1.0`.
+
+Open items:
+- UI-side upload/review still required in Merchant Center (cannot be completed from repo).
+- If Merchant issue remains after upload, update Shopify `Settings -> Brand` with the same files and wait for Google channel resync.
+
+### Task: GSC product rich result schema hardening (currency/breadcrumb/SKU/offer metadata)
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-gsc-product-schema-hardening
+Changes:
+- `snippets/jsonld-seo.liquid`
+  - Fixed breadcrumb home translation source for JSON-LD breadcrumbs:
+    - Switched from `general.breadcrumbs.home` to `sections.breadcrumbs.home`.
+    - Added fallback guard to force `"Home"` when a translation lookup resolves to a `translation missing` string.
+  - Hardened `priceCurrency` resolution/serialization:
+    - Made fallback chain explicit (`cart.currency.iso_code` -> `localization.country.currency.iso_code` -> `shop.currency.iso_code|shop.currency`).
+    - Cast resolved currency to a plain uppercase string before JSON encoding to avoid `{"error":"json not allowed for this object"}` output.
+  - Enforced string-safe SKU output in Product + Offer JSON-LD:
+    - Variant SKU: `variant.sku | default: variant.id | append: '' | strip`.
+    - Product SKU: `product.selected_or_first_available_variant.sku | default: ...id | append: '' | strip`.
+  - Added `priceValidUntil` to each Offer using dynamic year-based value:
+    - `price_valid_until = <current year + 1>-12-31`.
+  - Added `hasMerchantReturnPolicy` to each Offer:
+    - `MerchantReturnFiniteReturnWindow`, `merchantReturnDays: 30`, `ReturnByMail`, `ReturnShippingFees`.
+  - Added `shippingDetails` (`OfferShippingDetails`) to each Offer:
+    - Free shipping rate (`MonetaryAmount.value: 0`) with resolved currency.
+    - Country-scoped destination when country code is available.
+    - Delivery time window (`handlingTime: 2d`, `transitTime: 7-10d`).
+
+Why:
+- GSC diagnostics reported invalid/weak Product rich result fields affecting offer eligibility and snippet quality.
+- Prior implementation could emit non-serializable currency object JSON on some contexts.
+- Additional offer metadata is needed to satisfy recurring Product snippet warnings.
+
+Verification:
+- `shopify theme check --output json --fail-level crash` and confirmed no offenses reported for `snippets/jsonld-seo.liquid`.
+- `shopify theme check --fail-level error --output text` still reports pre-existing repo-wide locale/schema errors unrelated to this patch.
+
+Open items:
+- Product feed issues that cannot be fixed purely in Liquid remain operational tasks:
+  - unavailable URLs, policy-review flags, and healthcare misclassification need Merchant Center + product content remediation.
+  - any remaining missing price/availability rows must be corrected in Shopify product data and re-synced to Google.
+- Follow-up:
+  - `locales/en.default.json`
+    - Added `general.breadcrumbs.home = "Home"` as a compatibility key for any legacy schema or app snippet still looking up that namespace.
+
+### Task: Fix Liquid upload error in variant picker (`Unknown tag 'or'`)
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-variant-picker-unknown-tag-or
+Changes:
+- `snippets/product-variant-picker.liquid`
+  - Fixed invalid multiline condition inside `{% liquid %}` block for size-option detection.
+  - Root cause: Liquid interpreted line-leading `or ...` as a standalone tag when split across lines.
+  - Resolution: collapsed the condition into a single valid `if ... or ...` statement.
+
+Why:
+- Shopify preview upload failed with:
+  - `Liquid syntax error (line 47): Unknown tag 'or'`
+
+Verification:
+- `curl http://127.0.0.1:9393` now returns storefront HTML (no upload error page).
+- `shopify theme check --output json --fail-level crash` returns no offenses for `snippets/product-variant-picker.liquid`.
+
+Open items:
+- None for this parser error.
+
+### Task: Locale URL hardening for hreflang generation (ES/FR switch debugging)
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-locale-hreflang-origin-hardening
+Changes:
+- `snippets/meta-tags.liquid`
+  - Hardened hreflang URL origin/path derivation to avoid malformed alternate URLs when `request.origin` differs from canonical domain (for example local `theme dev` proxy on `myshopify.com` with canonical on primary custom domain).
+  - Changed origin priority to `shop.url` first, then `request.origin` fallback.
+  - Added fallback parsing path extraction from canonical URL when direct `replace_first` does not strip origin.
+
+Why:
+- During ES/FR debugging, local preview rendered malformed hreflang URLs like:
+  - `https://dresslikemommy-com.myshopify.com/eshttps://www.dresslikemommy.com/`
+- This could cause bad locale URL navigation in preview contexts and pollute diagnostics.
+
+Verification:
+- `curl http://127.0.0.1:9393/` and `curl http://127.0.0.1:9393/es` now render clean alternate URLs:
+  - `https://www.dresslikemommy.com/`
+  - `https://www.dresslikemommy.com/es`
+  - `https://www.dresslikemommy.com/fr`
+- Live production curl checks for `https://www.dresslikemommy.com/es` and `/fr` return `HTTP 200` from terminal in this session.
+
+Open items:
+- User-reported browser `HTTP 401` on locale switch could not be reproduced from terminal; requires browser-side capture (exact failing URL + response headers) if issue persists.
+
+### Task: Footer language switch fix in local preview (`/localization` 401 fallback)
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-localization-localhost-fallback
+Changes:
+- `assets/localization-form.js`
+  - Added localhost-safe fallback in `onItemClick` for language selectors (`locale_code`):
+    - Detects `127.0.0.1` / `localhost`.
+    - Navigates directly to the selected language link (`/es`, `/fr`, etc.) instead of submitting `/localization` form.
+  - Kept existing form-submit behavior unchanged for non-local hosts.
+  - Added general fallback to direct link navigation when form/input value is not available.
+- `snippets/language-localization.liquid`
+  - Changed language option links from `href="#"` to `href="{{ language.root_url }}"` so fallback navigation has real locale targets.
+
+Why:
+- Local `shopify theme dev` proxy returns `HTTP 401 invalid_token` for POST `/localization` in this environment, causing language switch to land on `/localization` instead of locale pages.
+
+Verification:
+- Reproduced local issue via terminal POST:
+  - `POST http://127.0.0.1:9393/localization` -> `401 Unauthorized`.
+- Confirmed rendered language option links now include real locale paths in header/footer:
+  - `href="/es"`, `href="/fr"`.
+- Confirmed updated localhost fallback logic is present in served `localization-form.js`.
+
+Open items:
+- This specifically addresses local preview (`127.0.0.1:9393`) behavior; production keeps native Shopify localization form submit flow.
+
+### Task: Footer language selector caret alignment (arrow above text)
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-footer-language-caret-alignment
+Changes:
+- `assets/theme-inline-body-static-05.css`
+  - Added footer-scoped localization button alignment rules to keep text and caret vertically centered.
+  - Added explicit caret positioning (`top: 50%`, `translateY(-50%)`) and right offset for footer localization controls.
+  - Preserved expanded-state behavior with a footer override for rotated caret:
+    - `transform: translateY(-50%) rotate(180deg)` when `aria-expanded='true'`.
+
+Why:
+- Footer language selector displayed the caret too high relative to language text after broad theme overrides changed button typography/padding.
+
+Verification:
+- Confirmed CSS patch is present at `assets/theme-inline-body-static-05.css` around footer localization rules.
+- No Liquid/JS changes required for this visual alignment fix.
+
+Open items:
+- Visual confirmation in browser after cache refresh to ensure alignment is correct on both desktop and mobile.
+
+### Task: GA4 double `page_view` fallback fix + fallback loader de-dup hardening
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-ga4-double-pageview-fallback-fix
+Changes:
+- `layout/theme.liquid`
+  - Updated fallback GA4 config call to disable automatic pageview emission:
+    - Added `send_page_view: false` to `gtag('config', measurementId, ...)`.
+  - Hardened fallback `gtag/js` loader guard to reduce duplicate script injection when Shopify analytics is already active:
+    - Replaced measurement-specific DOM scan with `hasAnyGtagScript()`.
+    - Added `hasShopifyAnalyticsRuntime()` check (`window.ShopifyAnalytics` / `window.Shopify.analytics`).
+    - Fallback script injection now runs only when no existing `gtag/js` script exists and Shopify analytics runtime is absent.
+
+Why:
+- Fallback `gtag('config', ...)` without `send_page_view: false` auto-emits an extra GA4 `page_view`, causing double pageview counts when Shopify also sends explicit `page_view`.
+- Existing fallback loader could still inject redundant `gtag/js` in storefronts where Shopify loads analytics asynchronously.
+
+Verification:
+- Confirmed diff in `layout/theme.liquid` includes:
+  - `send_page_view: false` in fallback config.
+  - new guard functions and tightened injection condition.
+- No other files were changed for this fix.
+- Ran `shopify theme check --path . --output json --fail-level crash`:
+  - no crash-level offenses from this patch.
+  - command still reports pre-existing repo-wide warning/error offenses unrelated to this change.
+
+Open items:
+- Browser/network validation still needed in preview/live to confirm:
+  - only one `page_view` is received per page,
+  - duplicate `gtag/js` requests no longer appear in normal Shopify-managed paths.
+
+### Task: Preserve English PDP gallery layout across ES/FR locale switch
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-pdp-gallery-layout-locale-parity
+Changes:
+- `assets/theme-inline-head-static-03.css`
+  - Fixed desktop gallery layout selector that previously depended on translated `aria-label` text.
+  - Replaced:
+    - `media-gallery.product__column-sticky[aria-label="Gallery Viewer"]:has(.thumbnail-slider)`
+  - With:
+    - `media-gallery.product__column-sticky:has(.thumbnail-slider)`
+
+Why:
+- Product gallery markup uses a locale-translated `aria-label` (`products.product.media.gallery_viewer`), so English-only selector text matched only EN.
+- In ES/FR, that selector did not match, causing fallback layout behavior where thumbnails appeared below the main image instead of the English desktop arrangement.
+
+Verification:
+- Confirmed only one selector change in `assets/theme-inline-head-static-03.css`.
+- Confirmed no remaining `aria-label="Gallery Viewer"` selector references in theme assets.
+- Live-rendered EN/ES/FR product HTML already includes identical gallery structure/classes (`product--thumbnail_slider` + `thumbnail-slider`); this patch ensures CSS applies consistently regardless of locale label text.
+
+Open items:
+- Browser cache may retain old CSS briefly; hard refresh/cached asset bust check recommended during QA.
+
+### Task: Keep users on current page when switching language
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-language-switch-stay-on-page
+Changes:
+- `snippets/language-localization.liquid`
+  - Added locale-aware current-path normalization logic (`request.path` minus current locale root).
+  - Updated language option links to point to the equivalent path in the target locale instead of locale homepage root.
+    - Example behavior change: `/products/...` -> `/es/products/...` or `/fr/products/...`.
+
+Why:
+- Language picker links were using only `language.root_url` (`/`, `/es`, `/fr`).
+- If JS fallback path is used (or JS is blocked/errors), navigation goes to locale homepage, not the page user was on.
+- This made language switches appear to "kick users to homepage".
+
+Verification:
+- Confirmed `href` now uses computed `language_href` built from target locale root + current relative path.
+- Ran `shopify theme check --path . --output json --fail-level crash`:
+  - no crash-level issues from this patch.
+  - command still returns pre-existing repo-wide errors/warnings unrelated to this change.
+
+Open items:
+- Query-string preservation is not included in this patch (path is preserved). If needed, a follow-up can append current query params for collection/search state.
+
+### Task: Homepage category headings translation parity (EN/ES/FR)
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-homepage-heading-translation-parity
+Changes:
+- `sections/collection-list.liquid`
+  - Added localized heading normalization for homepage section titles that were hardcoded in `templates/index.json`:
+    - `Mommy & Me` / `Mommy and Me` -> `sections.breadcrumbs.cat_mommy_me`
+    - `Family Matching` -> `sections.breadcrumbs.cat_family_matching`
+    - `Daddy & Me - Maternity - Couples` (and `Daddy and Me - Maternity - Couples`) -> composed from:
+      - `sections.breadcrumbs.cat_daddy_me`
+      - `sections.breadcrumbs.cat_maternity`
+      - `sections.breadcrumbs.cat_couples`
+  - Updated title output to render `localized_section_title` instead of raw `section.settings.title`.
+
+Why:
+- Homepage headings came from static JSON settings and did not pass through locale translation keys, so ES/FR showed English text.
+- `templates/index.json` is auto-generated, so hardcoding translated copies there is brittle; section-level translation mapping is safer.
+
+Verification:
+- Confirmed exact source strings are present in `templates/index.json` and now intercepted in `sections/collection-list.liquid`.
+- Verified translation keys exist in `locales/en.default.json`, `locales/es.json`, and `locales/fr.json` under `sections.breadcrumbs.*`.
+- Ran `shopify theme check --path . --output json --fail-level crash`:
+  - no crash-level issues from this patch.
+  - command still reports pre-existing repo-wide warnings/errors unrelated to this change.
+
+Open items:
+- Mapping is intentionally scoped to current homepage title variants; if merchant text is changed in theme editor to new wording, add corresponding mapping or migrate those headings to explicit translation keys.
