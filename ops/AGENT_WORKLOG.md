@@ -6394,3 +6394,28 @@ Verification:
 
 Open items:
 - Mapping is intentionally scoped to current homepage title variants; if merchant text is changed in theme editor to new wording, add corresponding mapping or migrate those headings to explicit translation keys.
+
+### Task: GA loader de-dup refinement (skip fallback when Shopify Web Pixels already configures Google tags)
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-ga-loader-dedup-webpixels-guard
+Changes:
+- `layout/theme.liquid`
+  - Added `hasShopifyGoogleTagConfig(measurementId)` guard in the fallback analytics IIFE.
+  - Guard inspects `#web-pixels-manager-setup` script content and returns true when either:
+    - the fallback measurement ID is present, or
+    - Shopify's `google_tag_ids` config marker is present.
+  - Fallback now exits early when Shopify Web Pixels is already configured for Google tags, preventing fallback-side `gtag/js` injection/config in normal storefront paths.
+
+Why:
+- Duplicate `gtag/js` loads persisted due overlap between fallback loader and Shopify Web Pixels-managed Google tag setup.
+- In this storefront, Shopify Web Pixels explicitly includes Google tag IDs (`G-N4EQNK0MMB`, `AW-853411529`, `GT-WRH8Q3MD`), so fallback should not load/initialize GA in parallel.
+
+Verification:
+- Confirmed updated guard and early return are present in `layout/theme.liquid` fallback block.
+- Confirmed live storefront HTML contains `#web-pixels-manager-setup` with Google tag IDs in web pixel config payload.
+- Ran `shopify theme check --path . --output json --fail-level crash`:
+  - no crash-level issues from this patch.
+  - command still reports pre-existing repo-wide warnings/errors unrelated to this change.
+
+Open items:
+- Browser-side network validation still needed post-deploy to confirm `gtag/js` loads no longer include fallback duplicates.

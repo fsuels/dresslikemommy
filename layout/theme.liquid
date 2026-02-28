@@ -166,6 +166,15 @@
       var measurementId = String(ctx.ga4_measurement_id || 'G-N4EQNK0MMB').trim();
       if (!measurementId) return;
 
+      function hasShopifyGoogleTagConfig(id) {
+        var setupScript = document.getElementById('web-pixels-manager-setup');
+        if (!setupScript) return false;
+        var scriptBody = setupScript.textContent || '';
+        if (!scriptBody) return false;
+        if (id && scriptBody.indexOf(id) !== -1) return true;
+        return scriptBody.indexOf('google_tag_ids') !== -1;
+      }
+
       function hasAnyGtagScript() {
         return !!document.querySelector('script[src*="googletagmanager.com/gtag/js"]');
       }
@@ -183,6 +192,10 @@
           }
         }
         return false;
+      }
+
+      if (hasShopifyGoogleTagConfig(measurementId)) {
+        return;
       }
 
       if (!hasAnyGtagScript() && !hasShopifyAnalyticsRuntime()) {
