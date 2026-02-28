@@ -113,8 +113,10 @@
 <div class="hero-banner">
   {%- if section.settings.image != blank -%}
     <img
-      src="{{ section.settings.image | image_url: width: 1920 }}"
+      src="{{ section.settings.image | image_url: width: 1200 }}"
       srcset="
+        {{ section.settings.image | image_url: width: 480 }} 480w,
+        {{ section.settings.image | image_url: width: 640 }} 640w,
         {{ section.settings.image | image_url: width: 750 }} 750w,
         {{ section.settings.image | image_url: width: 1200 }} 1200w,
         {{ section.settings.image | image_url: width: 1920 }} 1920w

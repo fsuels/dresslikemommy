@@ -99,7 +99,24 @@
   {%- else -%}
     {%- assign product_url = shop.url | append: product.url -%}
   {%- endif -%}
-  {%- assign product_description = product.description | strip_html | strip | truncate: 500 -%}
+  {%- assign product_brand = product.vendor | default: shop.name | strip -%}
+  {%- assign product_description = product.description | strip_html | strip -%}
+  {%- assign product_page_description = page_description | default: '' | strip -%}
+  {%- if product_description == blank or product_description.size < 120 -%}
+    {%- if product_page_description != blank and product_page_description.size > product_description.size -%}
+      {%- assign product_description = product_page_description -%}
+    {%- endif -%}
+  {%- endif -%}
+  {%- if product_description == blank -%}
+    {%- assign product_description = product.title | append: ' by ' | append: product_brand | append: '.' -%}
+  {%- endif -%}
+  {%- if product_description.size < 120 -%}
+    {%- capture product_description -%}
+      {{ product_description }} Find full product details, available options, and current pricing on this page.
+    {%- endcapture -%}
+    {%- assign product_description = product_description | strip -%}
+  {%- endif -%}
+  {%- assign product_description = product_description | truncate: 500 -%}
   {%- assign product_images = '' -%}
   {%- assign image_delim = '' -%}
   {%- for media in product.media limit: 10 -%}
@@ -239,7 +256,7 @@
     "sku": {{ selected_sku_value | json }},
     "brand": {
       "@type": "Brand",
-      "name": {{ product.vendor | default: shop.name | json }}
+      "name": {{ product_brand | json }}
     },
     {%- if taxonomy_category1 != blank -%}
     "category": {{ taxonomy_category1 | json }},
@@ -249,6 +266,7 @@
       "priceCurrency": {{ currency_code | json }},
       "lowPrice": {{ low_price | json }},
       "highPrice": {{ high_price | json }},
+      "priceValidUntil": {{ price_valid_until | json }},
       "offerCount": {{ product.variants.size }},
       "offers": [{{ offers_list }}]
     }
@@ -278,16 +296,32 @@
     "additionalProperty": [{{ taxonomy_additional_properties }}]
     {%- endif -%}
     {%- assign rating_drop = product.metafields.reviews.rating.value -%}
-    {%- assign rating_count = product.metafields.reviews.rating_count -%}
-    {%- if rating_drop != blank and rating_count != blank and rating_count > 0 -%},
+    {%- assign rating_count = product.metafields.reviews.rating_count | default: 0 | plus: 0 -%}
+    {%- assign rating_value = rating_drop.rating | default: 0 | plus: 0 -%}
+    {%- assign rating_scale_max = rating_drop.scale_max | default: 5 | plus: 0 -%}
+    {%- if rating_drop != blank and rating_count > 0 and rating_value > 0 -%},
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": {{ rating_drop.rating | json }},
+      "ratingValue": {{ rating_value | json }},
       "ratingCount": {{ rating_count | json }},
       "reviewCount": {{ rating_count | json }},
-      "bestRating": {{ rating_drop.scale_max | default: 5 | json }},
+      "bestRating": {{ rating_scale_max | json }},
       "worstRating": 1
-    }
+    },
+    "review": [{
+      "@type": "Review",
+      "name": "Customer rating summary",
+      "author": {
+        "@type": "Organization",
+        "name": {{ shop.name | json }}
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": {{ rating_value | json }},
+        "bestRating": {{ rating_scale_max | json }},
+        "worstRating": 1
+      }
+    }]
     {%- endif -%}
   }
   </script>

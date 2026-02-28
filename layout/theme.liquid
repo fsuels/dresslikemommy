@@ -153,7 +153,35 @@
   <script defer src="{{ 'constants.js' | asset_url }}"></script>
   <script defer src="{{ 'pubsub.js' | asset_url }}"></script>
   <script defer src="{{ 'global.js' | asset_url }}"></script>
-  <script defer src="{{ 'analytics.js' | asset_url }}"></script>
+  <script>
+    (function () {
+      var analyticsUrl = {{ 'analytics.js' | asset_url | json }};
+      if (!analyticsUrl) return;
+      var hasLoaded = false;
+
+      function loadAnalytics() {
+        if (hasLoaded) return;
+        hasLoaded = true;
+        var script = document.createElement('script');
+        script.src = analyticsUrl;
+        script.defer = true;
+        script.dataset.dlmAnalytics = 'true';
+        document.head.appendChild(script);
+      }
+
+      function scheduleIdleLoad() {
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(loadAnalytics, { timeout: 2500 });
+        } else {
+          window.setTimeout(loadAnalytics, 1800);
+        }
+      }
+
+      window.addEventListener('load', scheduleIdleLoad, { once: true });
+      document.addEventListener('pointerdown', loadAnalytics, { once: true, passive: true, capture: true });
+      document.addEventListener('keydown', loadAnalytics, { once: true, capture: true });
+    })();
+  </script>
   {%- if settings.animations_reveal_on_scroll -%}
     <script defer src="{{ 'animations.js' | asset_url }}"></script>
   {%- endif -%}
@@ -186,19 +214,35 @@
         return false;
       }
 
-      if (hasShopifyGoogleTagConfig(measurementId)) {
-        return;
+      function queueFallbackConfig() {
+        if (hasShopifyGoogleTagConfig(measurementId)) {
+          return;
+        }
+
+        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+        window.gtag('set', 'site_language', ctx.site_language || 'en');
+
+        if (!hasConfigForMeasurement(measurementId)) {
+          window.gtag('js', new Date());
+          window.gtag('config', measurementId, {
+            site_language: ctx.site_language || 'en',
+            send_page_view: false,
+          });
+        }
       }
 
-      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-      window.gtag('set', 'site_language', ctx.site_language || 'en');
+      function scheduleFallback() {
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(queueFallbackConfig, { timeout: 3000 });
+        } else {
+          window.setTimeout(queueFallbackConfig, 1200);
+        }
+      }
 
-      if (!hasConfigForMeasurement(measurementId)) {
-        window.gtag('js', new Date());
-        window.gtag('config', measurementId, {
-          site_language: ctx.site_language || 'en',
-          send_page_view: false,
-        });
+      if (document.readyState === 'complete') {
+        scheduleFallback();
+      } else {
+        window.addEventListener('load', scheduleFallback, { once: true });
       }
     })();
   </script>
@@ -503,7 +547,8 @@
     });
   </script>
 {% endif %}
-    
+
+{% if template.name == 'product' %}
 <script>
   /**
    * DLM Size Policy (complete default)
@@ -585,9 +630,12 @@
     }
   };
 </script>
+{% endif %}
 
+{% if template.name == 'product' %}
 <link rel="stylesheet" href="{{ 'theme-inline-head-static-04.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'theme-inline-head-static-05.css' | asset_url }}">
+{% endif %}
 </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -701,6 +749,7 @@
 
 </style>
 
+{% if template.name == 'product' %}
 <style>
 /* --- Product description: warm, inviting card --- */
 .product__description.rte.quick-add-hidden {
@@ -948,6 +997,7 @@
   }
 }
 </style>
+{% endif %}
 <style>
 @media only screen and (max-width: 749px) {
   #SectionHeading-template--14889729130593__collection_list_PX36Hk {
@@ -957,6 +1007,7 @@
 
 </style>
 
+{% if template.name == 'product' %}
 <style>
 @media screen and (min-width: 1024px) {
   #ProductInfo-template--14889729294433__main.product__info-container.product__column-sticky {
@@ -1396,6 +1447,7 @@
   }
 }
 </style>
+{% endif %}
 
 </body>
 </html>

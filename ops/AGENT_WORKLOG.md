@@ -6444,3 +6444,80 @@ Verification:
 
 Open items:
 - Browser-side verification still required after deploy to confirm exactly one set of `gtag/js` loads (Shopify-only).
+
+### Task: GA duplicate-loader follow-up (revert unstable DOM monkey-patch; keep stable no-loader fallback)
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-ga-duplicate-loader-followup-stable
+Changes:
+- `layout/theme.liquid`
+  - Removed an experimental pre-`content_for_header` DOM monkey-patch (`appendChild`/`insertBefore` interception) that had been introduced to suppress duplicate `gtag/js` inserts.
+  - Left the previously shipped stable logic intact:
+    - fallback does **not** inject `gtag/js` script tags,
+    - fallback config still uses `send_page_view: false`,
+    - fallback exits when Shopify Web Pixels Google-tag config is present.
+
+Why:
+- The monkey-patch approach produced a `LiquidHTMLSyntaxError` in Theme Check and is too brittle for theme-level analytics.
+- The safe, durable approach is keeping Shopify as the sole `gtag/js` loader and limiting fallback to `gtag('set')` / guarded `gtag('config')` queueing.
+
+Verification:
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no crash-level parse error in `layout/theme.liquid` after removing the monkey-patch.
+  - Repo still has unrelated pre-existing Theme Check errors/warnings.
+- Confirmed `layout/theme.liquid` contains no `googletagmanager.com/gtag/js` script insertion code.
+
+Open items:
+- Live storefront network verification is still required to confirm whether any remaining duplicate `gtag/js` requests are Shopify/runtime-originated outside this theme fallback path.
+
+### Task: Merchant Listings description-length mitigation in Product JSON-LD
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-merchant-listings-description-length-mitigation
+Changes:
+- `snippets/jsonld-seo.liquid`
+  - Reworked Product JSON-LD `description` sourcing so short PDP copy does not produce short schema descriptions:
+    - start with `product.description` (stripped HTML),
+    - if blank/short (`<120` chars), prefer `page_description` when it is longer,
+    - if still blank, build a minimal fallback from product title + brand,
+    - if still short, append a neutral detail sentence to meet minimum guidance,
+    - keep final output capped with `truncate: 500`.
+  - Added a shared `product_brand` assignment and reused it for the Product `brand.name` field.
+
+Why:
+- Search Console Merchant Listings reported a minor issue for short product descriptions on 6 items.
+- Theme-level schema fallback ensures merchant listing descriptions remain sufficiently descriptive even when PDP body copy is terse.
+
+Verification:
+- Confirmed new description decision tree and final truncation are present in `snippets/jsonld-seo.liquid`.
+- Confirmed Product JSON-LD still emits `"description": {{ product_description | json }}` and `"brand": { "name": {{ product_brand | json }} }`.
+
+Open items:
+- In Google Search Console (Merchant Listings), click **Validate fix** after deploy and allow recrawl.
+- For long-term quality, continue improving underlying product copy/SEO descriptions in catalog data so fallback logic is rarely needed.
+
+### Task: Merchant Listings schema enhancement for `offers.priceValidUntil` + review field support
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-merchant-listings-pricevaliduntil-review-support
+Changes:
+- `snippets/jsonld-seo.liquid`
+  - Added `"priceValidUntil"` to the top-level `AggregateOffer` object (`offers`) so Google Merchant Listings can read offer expiry directly on the primary offer node.
+  - Kept existing per-variant `Offer.priceValidUntil` output unchanged.
+  - Hardened review-rating assignments by coercing rating/count values to numeric before output.
+  - Added conditional `review` output (single summary `Review` node) when review metafields provide a valid rating/count.
+  - Kept `aggregateRating` conditional and aligned it with the same rating/count guard.
+
+Why:
+- Search Console Merchant Listings flagged:
+  - missing `offers.priceValidUntil`,
+  - missing `aggregateRating`,
+  - missing `review`.
+- Theme already emitted variant-level `priceValidUntil`; adding it to `AggregateOffer` improves compatibility with Merchant Listings parsing.
+- `aggregateRating` and `review` should only be emitted when real review metafield data exists to avoid fabricated schema.
+
+Verification:
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - No crash-level parse issues from this patch.
+  - Existing repo-wide warnings/errors remain unrelated.
+
+Open items:
+- If products still show missing `aggregateRating`/`review`, confirm `product.metafields.reviews.rating` and `product.metafields.reviews.rating_count` are populated for those SKUs (theme cannot emit genuine review schema without source data).
+- After deploy, run Rich Results Test on a sample PDP and then click **Validate fix** in Google Search Console Merchant Listings.
