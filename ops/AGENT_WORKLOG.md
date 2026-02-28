@@ -6521,3 +6521,31 @@ Verification:
 Open items:
 - If products still show missing `aggregateRating`/`review`, confirm `product.metafields.reviews.rating` and `product.metafields.reviews.rating_count` are populated for those SKUs (theme cannot emit genuine review schema without source data).
 - After deploy, run Rich Results Test on a sample PDP and then click **Validate fix** in Google Search Console Merchant Listings.
+
+### Task: GA fallback language config restoration + runtime gtag/js dedupe guard
+Date: 2026-02-28
+AGENT_CONTINUITY_ANCHOR: 2026-02-28-ga-fallback-language-restore-runtime-dedupe
+Changes:
+- `layout/theme.liquid`
+  - Restored fallback GA4 language propagation behavior by removing the Web Pixels early-return gate that prevented fallback `gtag('config', ...)` from being queued.
+  - Replaced generic config-exists check with `hasLanguageConfigForMeasurement(...)` so fallback config is only skipped when an existing config for `G-N4EQNK0MMB` already includes `site_language`.
+  - Kept fallback `send_page_view: false` to avoid duplicate page_view emissions.
+  - Added a pre-`content_for_header` runtime guard that deduplicates dynamic `https://www.googletagmanager.com/gtag/js?id=...` script insertions by measurement/tag ID and proxies `load/error` lifecycle events for blocked duplicates.
+
+Why:
+- Regression: `site_language` stopped reaching GA4 payloads after fallback config suppression, causing `site_language = null` in collect requests.
+- Duplicate `gtag/js` requests persisted in storefront runtime despite removal of theme-side fallback loader, indicating additional duplicate insertion paths in runtime scripts.
+
+Verification:
+- Confirmed updated analytics logic is present in rendered preview HTML (`http://127.0.0.1:9393`) for `/`, `/es/`, `/fr/`, and `/en-se/`:
+  - `hasLanguageConfigForMeasurement(...)` present.
+  - fallback `gtag('config', measurementId, { site_language: ..., send_page_view: false })` present.
+  - pre-header dedupe guard (`patchInsertionMethod('appendChild'/'insertBefore')`) present.
+- Ran `shopify theme check --path . --output json --fail-level crash`:
+  - no crash-level parse error from this patch.
+  - repo still reports pre-existing warnings/errors unrelated to this change.
+
+Open items:
+- Browser/network validation still required in preview/live to confirm:
+  - fallback `config` reappears in `dataLayer` and `site_language` returns in `/g/collect` payloads,
+  - duplicate `gtag/js?id=...` loads are reduced to one per ID across `/`, `/es/`, `/fr/`, and `/en-se/`.

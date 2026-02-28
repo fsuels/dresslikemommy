@@ -186,6 +186,124 @@
     <script defer src="{{ 'animations.js' | asset_url }}"></script>
   {%- endif -%}
 
+  <script>
+    (function () {
+      var GTAG_HOSTNAME = 'www.googletagmanager.com';
+      var GTAG_PATHNAME = '/gtag/js';
+      var primaryScriptById = {};
+
+      function parseGtagId(srcValue) {
+        if (!srcValue) return '';
+        try {
+          var parsed = new URL(srcValue, window.location.href);
+          if (parsed.hostname !== GTAG_HOSTNAME || parsed.pathname !== GTAG_PATHNAME) return '';
+          return String(parsed.searchParams.get('id') || '').trim();
+        } catch (error) {
+          return '';
+        }
+      }
+
+      function dispatchScriptEvent(scriptNode, eventName) {
+        if (!scriptNode) return;
+        window.setTimeout(function () {
+          try {
+            var eventObject;
+            if (typeof Event === 'function') {
+              eventObject = new Event(eventName);
+            } else {
+              eventObject = document.createEvent('Event');
+              eventObject.initEvent(eventName, false, false);
+            }
+            scriptNode.dispatchEvent(eventObject);
+          } catch (error) {
+            // no-op
+          }
+        }, 0);
+      }
+
+      function trackPrimaryScript(id, scriptNode) {
+        if (!id || !scriptNode) return;
+        primaryScriptById[id] = scriptNode;
+        if (scriptNode.__dlmGtagTracked) return;
+
+        scriptNode.__dlmGtagTracked = true;
+        scriptNode.addEventListener('load', function () {
+          scriptNode.__dlmGtagLoaded = true;
+          scriptNode.__dlmGtagFailed = false;
+        });
+        scriptNode.addEventListener('error', function () {
+          scriptNode.__dlmGtagFailed = true;
+        });
+      }
+
+      function shouldBlockDuplicateScript(scriptNode) {
+        if (!scriptNode || scriptNode.tagName !== 'SCRIPT') return false;
+
+        var id = parseGtagId(scriptNode.getAttribute('src') || scriptNode.src);
+        if (!id) return false;
+
+        var primaryScript = primaryScriptById[id];
+        if (!primaryScript) {
+          trackPrimaryScript(id, scriptNode);
+          return false;
+        }
+
+        if (primaryScript.__dlmGtagLoaded) {
+          dispatchScriptEvent(scriptNode, 'load');
+        } else if (primaryScript.__dlmGtagFailed) {
+          dispatchScriptEvent(scriptNode, 'error');
+        } else {
+          primaryScript.addEventListener(
+            'load',
+            function () {
+              dispatchScriptEvent(scriptNode, 'load');
+            },
+            { once: true }
+          );
+          primaryScript.addEventListener(
+            'error',
+            function () {
+              dispatchScriptEvent(scriptNode, 'error');
+            },
+            { once: true }
+          );
+        }
+
+        return true;
+      }
+
+      function seedExistingScripts() {
+        var scripts = document.querySelectorAll('script[src*="googletagmanager.com/gtag/js"]');
+        for (var i = 0; i < scripts.length; i += 1) {
+          var scriptNode = scripts[i];
+          var id = parseGtagId(scriptNode.getAttribute('src') || scriptNode.src);
+          if (!id || primaryScriptById[id]) continue;
+          trackPrimaryScript(id, scriptNode);
+        }
+      }
+
+      function patchInsertionMethod(methodName) {
+        var originalMethod = Element.prototype[methodName];
+        if (typeof originalMethod !== 'function') return;
+
+        Element.prototype[methodName] = function (node, referenceNode) {
+          if (shouldBlockDuplicateScript(node)) {
+            return node;
+          }
+
+          if (methodName === 'insertBefore') {
+            return originalMethod.call(this, node, referenceNode);
+          }
+          return originalMethod.call(this, node);
+        };
+      }
+
+      seedExistingScripts();
+      patchInsertionMethod('appendChild');
+      patchInsertionMethod('insertBefore');
+    })();
+  </script>
+
   {{ content_for_header }}
 
   <script>
@@ -194,20 +312,25 @@
       var measurementId = String(ctx.ga4_measurement_id || 'G-N4EQNK0MMB').trim();
       if (!measurementId) return;
 
-      function hasShopifyGoogleTagConfig(id) {
-        var setupScript = document.getElementById('web-pixels-manager-setup');
-        if (!setupScript) return false;
-        var scriptBody = setupScript.textContent || '';
-        if (!scriptBody) return false;
-        if (id && scriptBody.indexOf(id) !== -1) return true;
-        return scriptBody.indexOf('google_tag_ids') !== -1;
-      }
-
-      function hasConfigForMeasurement(id) {
+      function hasLanguageConfigForMeasurement(id) {
         var layer = window.dataLayer || [];
         for (var i = 0; i < layer.length; i += 1) {
           var entry = layer[i];
           if (entry && typeof entry === 'object' && entry[0] === 'config' && entry[1] === id) {
+            var payload = entry[2];
+            if (payload && typeof payload === 'object' && String(payload.site_language || '').trim()) {
+              return true;
+            }
+          }
+        }
+        return false;
+      }
+
+      function hasJsCommand() {
+        var layer = window.dataLayer || [];
+        for (var i = 0; i < layer.length; i += 1) {
+          var entry = layer[i];
+          if (entry && typeof entry === 'object' && entry[0] === 'js') {
             return true;
           }
         }
@@ -215,15 +338,13 @@
       }
 
       function queueFallbackConfig() {
-        if (hasShopifyGoogleTagConfig(measurementId)) {
-          return;
-        }
-
         window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
         window.gtag('set', 'site_language', ctx.site_language || 'en');
 
-        if (!hasConfigForMeasurement(measurementId)) {
-          window.gtag('js', new Date());
+        if (!hasLanguageConfigForMeasurement(measurementId)) {
+          if (!hasJsCommand()) {
+            window.gtag('js', new Date());
+          }
           window.gtag('config', measurementId, {
             site_language: ctx.site_language || 'en',
             send_page_view: false,
