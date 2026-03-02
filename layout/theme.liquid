@@ -304,8 +304,6 @@
     })();
   </script>
 
-  {{ content_for_header }}
-
   <script>
     (function () {
       var ctx = window.dlmAnalyticsContext || {};
@@ -352,21 +350,11 @@
         }
       }
 
-      function scheduleFallback() {
-        if ('requestIdleCallback' in window) {
-          window.requestIdleCallback(queueFallbackConfig, { timeout: 3000 });
-        } else {
-          window.setTimeout(queueFallbackConfig, 1200);
-        }
-      }
-
-      if (document.readyState === 'complete') {
-        scheduleFallback();
-      } else {
-        window.addEventListener('load', scheduleFallback, { once: true });
-      }
+      queueFallbackConfig();
     })();
   </script>
+
+  {{ content_for_header }}
 
   {%- liquid
     assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
