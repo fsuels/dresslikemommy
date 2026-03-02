@@ -6523,6 +6523,29 @@ Open items:
 - Merchant Center disapprovals (`49`), product data attributes (gender/age_group/color/image quality/type), and unavailable URLs require Shopify admin/feed changes, not GSC-only changes.
 - 302-to-301 redirect normalization remains platform/configuration-level (URL/routing) and is not fully solvable from theme Liquid alone.
 
+### Task: New listing prompt hardening for complete Merchant + Shopify feed fields
+Date: 2026-03-02
+AGENT_CONTINUITY_ANCHOR: 2026-03-02-new-listing-prompt-hardening
+Changes:
+- `NEW-LISTING-ALL-FIELDS-PROMPT.md`
+  - Rewrote prompt to enforce strict QA gating for new listings.
+  - Added explicit no-placeholder rule and `MISSING_REQUIRED_DATA` fail-fast behavior.
+  - Added stricter SEO constraints (`seo_title` and `seo_description` target lengths).
+  - Aligned image requirements with feed-safe URL extensions and quality constraints.
+  - Added explicit URL availability checks to reduce unavailable-page issues.
+  - Expanded required output to include both generic Merchant fields and exact Shopify CSV columns used in this repo import workflow.
+  - Updated output contract to 5 sections, including explicit `MISSING_REQUIRED_DATA`.
+
+Why:
+- Operator requested this file be the source prompt for preventing recurring Merchant Center/GSC listing-data issues.
+- Previous prompt was useful but not strict enough on feed-safe formats, QA gates, and CSV column alignment.
+
+Verification:
+- Confirmed file now includes required Merchant fields, Shopify CSV columns, validation gates, and publish readiness rule (`READY_TO_PUBLISH=false` when any FAIL exists).
+
+Open items:
+- Prompt quality depends on complete input product brief; missing source data will still require manual follow-up questions before publishing.
+
 ### Task: Merchant Listings schema enhancement for `offers.priceValidUntil` + review field support
 Date: 2026-02-28
 AGENT_CONTINUITY_ANCHOR: 2026-02-28-merchant-listings-pricevaliduntil-review-support
