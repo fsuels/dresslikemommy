@@ -268,6 +268,45 @@
       "highPrice": {{ high_price | json }},
       "priceValidUntil": {{ price_valid_until | json }},
       "offerCount": {{ product.variants.size }},
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        {%- if shipping_country_code != blank -%}
+        "applicableCountry": {{ shipping_country_code | json }},
+        {%- endif -%}
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 30,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/ReturnShippingFees"
+      },
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": 0,
+          "currency": {{ currency_code | json }}
+        },
+        {%- if shipping_country_code != blank -%}
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": {{ shipping_country_code | json }}
+        },
+        {%- endif -%}
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 2,
+            "maxValue": 2,
+            "unitCode": "d"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 7,
+            "maxValue": 10,
+            "unitCode": "d"
+          }
+        }
+      },
       "offers": [{{ offers_list }}]
     }
     {%- assign taxonomy_additional_properties = '' -%}
@@ -295,11 +334,36 @@
     {%- if taxonomy_additional_properties != blank -%},
     "additionalProperty": [{{ taxonomy_additional_properties }}]
     {%- endif -%}
-    {%- assign rating_drop = product.metafields.reviews.rating.value -%}
-    {%- assign rating_count = product.metafields.reviews.rating_count | default: 0 | plus: 0 -%}
-    {%- assign rating_value = rating_drop.rating | default: 0 | plus: 0 -%}
+    {%- assign reviews_rating_metafield = product.metafields.reviews.rating -%}
+    {%- assign rating_drop = reviews_rating_metafield.value | default: reviews_rating_metafield -%}
+    {%- assign rating_count_raw = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count -%}
+    {%- assign rating_count = rating_count_raw | default: 0 | plus: 0 -%}
+    {%- assign rating_value = rating_drop.rating | default: rating_drop | default: 0 | plus: 0 -%}
     {%- assign rating_scale_max = rating_drop.scale_max | default: 5 | plus: 0 -%}
-    {%- if rating_drop != blank and rating_count > 0 and rating_value > 0 -%},
+    {%- if rating_scale_max <= 0 -%}
+      {%- assign rating_scale_max = 5 -%}
+    {%- endif -%}
+    {%- assign spr_badge_metafield = product.metafields.spr.reviews -%}
+    {%- assign spr_badge_markup = spr_badge_metafield.value | default: spr_badge_metafield | default: '' | append: '' -%}
+    {%- if spr_badge_markup != blank -%}
+      {%- if rating_value <= 0 and spr_badge_markup contains 'data-rating="' -%}
+        {%- assign rating_value = spr_badge_markup | split: 'data-rating="' | last | split: '"' | first | plus: 0 -%}
+      {%- endif -%}
+      {%- if rating_count <= 0 and spr_badge_markup contains 'data-review-count="' -%}
+        {%- assign rating_count = spr_badge_markup | split: 'data-review-count="' | last | split: '"' | first | plus: 0 -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- assign judgeme_badge_metafield = product.metafields.judgeme.badge -%}
+    {%- assign judgeme_badge_markup = judgeme_badge_metafield.value | default: judgeme_badge_metafield | default: '' | append: '' -%}
+    {%- if judgeme_badge_markup != blank -%}
+      {%- if rating_value <= 0 and judgeme_badge_markup contains 'data-average-rating="' -%}
+        {%- assign rating_value = judgeme_badge_markup | split: 'data-average-rating="' | last | split: '"' | first | plus: 0 -%}
+      {%- endif -%}
+      {%- if rating_count <= 0 and judgeme_badge_markup contains 'data-number-of-reviews="' -%}
+        {%- assign rating_count = judgeme_badge_markup | split: 'data-number-of-reviews="' | last | split: '"' | first | plus: 0 -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if rating_count > 0 and rating_value > 0 -%},
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": {{ rating_value | json }},

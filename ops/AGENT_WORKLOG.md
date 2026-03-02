@@ -6494,6 +6494,35 @@ Open items:
 - In Google Search Console (Merchant Listings), click **Validate fix** after deploy and allow recrawl.
 - For long-term quality, continue improving underlying product copy/SEO descriptions in catalog data so fallback logic is rarely needed.
 
+### Task: Merchant Listings schema hardening follow-up (review fallback + aggregate shipping/returns)
+Date: 2026-03-02
+AGENT_CONTINUITY_ANCHOR: 2026-03-02-merchant-listings-schema-hardening-followup
+Changes:
+- `snippets/jsonld-seo.liquid`
+  - Added `hasMerchantReturnPolicy` and `shippingDetails` directly to top-level `AggregateOffer` (in addition to variant-level `Offer` entries) to reduce parser ambiguity for Merchant Listings extractors.
+  - Hardened review/rating schema sourcing:
+    - supports both standard Shopify review metafield shapes (`product.metafields.reviews.rating` and `.value`),
+    - supports `rating_count` direct and `.value` forms,
+    - added fallback parsing for common review badge metafields:
+      - Shopify Product Reviews (`product.metafields.spr.reviews`) via `data-rating` and `data-review-count`,
+      - Judge.me (`product.metafields.judgeme.badge`) via `data-average-rating` and `data-number-of-reviews`.
+  - Kept strict guard so `aggregateRating` and `review` are emitted only when `rating_value > 0` and `rating_count > 0` (no fabricated review data).
+
+Why:
+- GSC guidance referenced missing `aggregateRating/review` and occasional missing merchant-offer subfields.
+- Theme-side hardening can improve extraction consistency where review app data exists in alternate metafield formats.
+
+Verification:
+- Confirmed updated AggregateOffer and rating fallback logic in `snippets/jsonld-seo.liquid`.
+- Ran `shopify theme check --path . --output json --fail-level crash`:
+  - no crash-level parse errors introduced by this patch,
+  - repo still contains pre-existing non-crash warnings/errors unrelated to this change.
+
+Open items:
+- `aggregateRating/review` still cannot be emitted for products with zero review data in Shopify/app metafields; those require collecting/importing real reviews.
+- Merchant Center disapprovals (`49`), product data attributes (gender/age_group/color/image quality/type), and unavailable URLs require Shopify admin/feed changes, not GSC-only changes.
+- 302-to-301 redirect normalization remains platform/configuration-level (URL/routing) and is not fully solvable from theme Liquid alone.
+
 ### Task: Merchant Listings schema enhancement for `offers.priceValidUntil` + review field support
 Date: 2026-02-28
 AGENT_CONTINUITY_ANCHOR: 2026-02-28-merchant-listings-pricevaliduntil-review-support
