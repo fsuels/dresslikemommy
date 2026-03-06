@@ -131,14 +131,15 @@
     {%- assign product_images = fallback_image | json -%}
   {%- endif -%}
 
-  {%- assign currency_code = cart.currency.iso_code -%}
-  {%- if currency_code == blank -%}
-    {%- assign currency_code = localization.country.currency.iso_code -%}
+  {%- assign shop_currency_code = shop.currency.iso_code | default: shop.currency | append: '' | strip | upcase | replace: ' ', '' | replace: '$', '' | replace: '.', '' | replace: '-', '' -%}
+  {%- assign currency_code = cart.currency.iso_code | default: localization.country.currency.iso_code | default: shop_currency_code -%}
+  {%- assign currency_code = currency_code | append: '' | strip | upcase | replace: ' ', '' | replace: '$', '' | replace: '.', '' | replace: '-', '' -%}
+  {%- if currency_code == blank or currency_code.size != 3 -%}
+    {%- assign currency_code = shop_currency_code -%}
   {%- endif -%}
-  {%- if currency_code == blank -%}
-    {%- assign currency_code = shop.currency.iso_code | default: shop.currency -%}
+  {%- if currency_code == blank or currency_code.size != 3 -%}
+    {%- assign currency_code = 'USD' -%}
   {%- endif -%}
-  {%- assign currency_code = currency_code | append: '' | strip | upcase -%}
   {%- assign shipping_country_code = localization.country.iso_code | default: shop.address.country_code | append: '' | strip | upcase -%}
   {%- assign price_valid_until_year = 'now' | date: '%Y' | plus: 1 -%}
   {%- assign price_valid_until = price_valid_until_year | append: '-12-31' -%}
@@ -343,24 +344,48 @@
     {%- if rating_scale_max <= 0 -%}
       {%- assign rating_scale_max = 5 -%}
     {%- endif -%}
+    {%- assign judgeme_average_rating_raw = product.metafields.judgeme.average_rating.value | default: product.metafields.judgeme.average_rating | default: product.metafields.judgeme.rating.value | default: product.metafields.judgeme.rating -%}
+    {%- if rating_value <= 0 and judgeme_average_rating_raw != blank -%}
+      {%- assign rating_value = judgeme_average_rating_raw | replace: ',', '.' | plus: 0 -%}
+    {%- endif -%}
+    {%- assign judgeme_review_count_raw = product.metafields.judgeme.reviews_count.value | default: product.metafields.judgeme.reviews_count | default: product.metafields.judgeme.review_count.value | default: product.metafields.judgeme.review_count -%}
+    {%- if rating_count <= 0 and judgeme_review_count_raw != blank -%}
+      {%- assign rating_count = judgeme_review_count_raw | replace: ',', '' | plus: 0 -%}
+    {%- endif -%}
     {%- assign spr_badge_metafield = product.metafields.spr.reviews -%}
     {%- assign spr_badge_markup = spr_badge_metafield.value | default: spr_badge_metafield | default: '' | append: '' -%}
     {%- if spr_badge_markup != blank -%}
       {%- if rating_value <= 0 and spr_badge_markup contains 'data-rating="' -%}
-        {%- assign rating_value = spr_badge_markup | split: 'data-rating="' | last | split: '"' | first | plus: 0 -%}
+        {%- assign rating_value = spr_badge_markup | split: 'data-rating="' | last | split: '"' | first | replace: ',', '.' | plus: 0 -%}
+      {%- elsif rating_value <= 0 and spr_badge_markup contains "data-rating='" -%}
+        {%- assign rating_value = spr_badge_markup | split: "data-rating='" | last | split: "'" | first | replace: ',', '.' | plus: 0 -%}
       {%- endif -%}
       {%- if rating_count <= 0 and spr_badge_markup contains 'data-review-count="' -%}
-        {%- assign rating_count = spr_badge_markup | split: 'data-review-count="' | last | split: '"' | first | plus: 0 -%}
+        {%- assign rating_count = spr_badge_markup | split: 'data-review-count="' | last | split: '"' | first | replace: ',', '' | plus: 0 -%}
+      {%- elsif rating_count <= 0 and spr_badge_markup contains "data-review-count='" -%}
+        {%- assign rating_count = spr_badge_markup | split: "data-review-count='" | last | split: "'" | first | replace: ',', '' | plus: 0 -%}
       {%- endif -%}
     {%- endif -%}
     {%- assign judgeme_badge_metafield = product.metafields.judgeme.badge -%}
     {%- assign judgeme_badge_markup = judgeme_badge_metafield.value | default: judgeme_badge_metafield | default: '' | append: '' -%}
     {%- if judgeme_badge_markup != blank -%}
       {%- if rating_value <= 0 and judgeme_badge_markup contains 'data-average-rating="' -%}
-        {%- assign rating_value = judgeme_badge_markup | split: 'data-average-rating="' | last | split: '"' | first | plus: 0 -%}
+        {%- assign rating_value = judgeme_badge_markup | split: 'data-average-rating="' | last | split: '"' | first | replace: ',', '.' | plus: 0 -%}
+      {%- elsif rating_value <= 0 and judgeme_badge_markup contains "data-average-rating='" -%}
+        {%- assign rating_value = judgeme_badge_markup | split: "data-average-rating='" | last | split: "'" | first | replace: ',', '.' | plus: 0 -%}
+      {%- elsif rating_value <= 0 and judgeme_badge_markup contains 'data-score="' -%}
+        {%- assign rating_value = judgeme_badge_markup | split: 'data-score="' | last | split: '"' | first | replace: ',', '.' | plus: 0 -%}
+      {%- elsif rating_value <= 0 and judgeme_badge_markup contains "data-score='" -%}
+        {%- assign rating_value = judgeme_badge_markup | split: "data-score='" | last | split: "'" | first | replace: ',', '.' | plus: 0 -%}
       {%- endif -%}
       {%- if rating_count <= 0 and judgeme_badge_markup contains 'data-number-of-reviews="' -%}
-        {%- assign rating_count = judgeme_badge_markup | split: 'data-number-of-reviews="' | last | split: '"' | first | plus: 0 -%}
+        {%- assign rating_count = judgeme_badge_markup | split: 'data-number-of-reviews="' | last | split: '"' | first | replace: ',', '' | plus: 0 -%}
+      {%- elsif rating_count <= 0 and judgeme_badge_markup contains "data-number-of-reviews='" -%}
+        {%- assign rating_count = judgeme_badge_markup | split: "data-number-of-reviews='" | last | split: "'" | first | replace: ',', '' | plus: 0 -%}
+      {%- elsif rating_count <= 0 and judgeme_badge_markup contains 'data-reviews-count="' -%}
+        {%- assign rating_count = judgeme_badge_markup | split: 'data-reviews-count="' | last | split: '"' | first | replace: ',', '' | plus: 0 -%}
+      {%- elsif rating_count <= 0 and judgeme_badge_markup contains "data-reviews-count='" -%}
+        {%- assign rating_count = judgeme_badge_markup | split: "data-reviews-count='" | last | split: "'" | first | replace: ',', '' | plus: 0 -%}
       {%- endif -%}
     {%- endif -%}
     {%- if rating_count > 0 and rating_value > 0 -%},

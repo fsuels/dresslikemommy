@@ -4,6 +4,7 @@
   assign og_type = 'website'
   assign og_description = page_description | default: shop.description | default: shop.name
   assign should_noindex = false
+  assign noindex_collection_facets = false
 
   if request.page_type == 'collection' and collection != blank and collection.handle == 'swimsuits'
     assign og_title = 'Swimsuits'
@@ -33,16 +34,19 @@
   if request.page_type == 'collection'
     if current_tags and current_tags.size > 0
       assign should_noindex = true
+      assign noindex_collection_facets = true
     endif
-    assign current_url_string = canonical_url | default: request.url
-    if current_url_string contains 'filter.' or current_url_string contains 'sort_by='
+    assign current_url_string = request.url | default: canonical_url | default: ''
+    assign current_query_string = request.query_string | default: ''
+    if current_url_string contains 'filter.' or current_url_string contains 'sort_by=' or current_query_string contains 'filter.' or current_query_string contains 'sort_by='
       assign should_noindex = true
+      assign noindex_collection_facets = true
     endif
   endif
 %}
 
 {%- if should_noindex -%}
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="noindex,{% if noindex_collection_facets %} follow{% else %} nofollow{% endif %}">
 {%- endif -%}
 
 <meta property="og:site_name" content="{{ shop.name }}">
@@ -60,7 +64,15 @@
 
 {%- if request.page_type == 'product' -%}
   {%- assign product_price_amount = product.price | divided_by: 100.0 -%}
-  {%- assign product_price_currency = cart.currency.iso_code | default: localization.country.currency.iso_code | default: shop.currency -%}
+  {%- assign shop_currency_code = shop.currency.iso_code | default: shop.currency | append: '' | strip | upcase | replace: ' ', '' | replace: '$', '' | replace: '.', '' | replace: '-', '' -%}
+  {%- assign product_price_currency = cart.currency.iso_code | default: localization.country.currency.iso_code | default: shop_currency_code -%}
+  {%- assign product_price_currency = product_price_currency | append: '' | strip | upcase | replace: ' ', '' | replace: '$', '' | replace: '.', '' | replace: '-', '' -%}
+  {%- if product_price_currency == blank or product_price_currency.size != 3 -%}
+    {%- assign product_price_currency = shop_currency_code -%}
+  {%- endif -%}
+  {%- if product_price_currency == blank or product_price_currency.size != 3 -%}
+    {%- assign product_price_currency = 'USD' -%}
+  {%- endif -%}
   <meta property="og:price:amount" content="{{ product_price_amount }}">
   <meta property="product:price:amount" content="{{ product_price_amount }}">
   <meta property="og:price:currency" content="{{ product_price_currency }}">

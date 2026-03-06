@@ -6601,3 +6601,80 @@ Open items:
 - Browser/network validation still required in preview/live to confirm:
   - fallback `config` reappears in `dataLayer` and `site_language` returns in `/g/collect` payloads,
   - duplicate `gtag/js?id=...` loads are reduced to one per ID across `/`, `/es/`, `/fr/`, and `/en-se/`.
+
+### Task: GSC crawl/indexability + review-schema extraction hardening
+Date: 2026-03-02
+AGENT_CONTINUITY_ANCHOR: 2026-03-02-gsc-crawl-indexability-review-schema-hardening
+Changes:
+- `snippets/meta-tags.liquid`
+  - Added a dedicated `noindex_collection_facets` flag to separate collection-facet behavior from account/cart/search utility pages.
+  - Changed faceted URL detection to inspect `request.url` and `request.query_string` before canonical fallback so live query params (`filter.*`, `sort_by`) are reliably detected.
+  - Updated robots behavior for collection facets/tags to `noindex, follow` (keeps low-value faceted URLs out of index while still allowing link discovery from those pages).
+  - Kept `noindex, nofollow` for utility/private pages (search, cart, 404, password, customer pages).
+
+- `snippets/jsonld-seo.liquid`
+  - Added direct Judge.me metafield fallbacks for rating and review count (`average_rating`, `rating`, `reviews_count`, `review_count`) before badge-markup parsing.
+  - Hardened badge parser for both Shopify Product Reviews and Judge.me by supporting both double-quoted and single-quoted data attributes.
+  - Added Judge.me fallback attributes (`data-score`, `data-reviews-count`) in addition to existing `data-average-rating` and `data-number-of-reviews`.
+  - Normalized numeric coercion for rating/count parsing (comma handling) before schema output.
+
+Why:
+- GSC scorecard flags both crawl inefficiency (high non-indexed/faceted variants) and missing product `aggregateRating/review` coverage.
+- Previous collection noindex detection could miss query params when canonical URLs were normalized.
+- Review app HTML attributes vary by app/theme runtime (quote style and attribute naming), which can cause false negatives in JSON-LD review extraction.
+
+Verification:
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no crash-level parse errors introduced by this patch.
+  - Repo still has existing non-crash warnings/errors unrelated to these edits.
+
+Open items:
+- 404 cleanup (`828`), 302→301 normalization, and server errors require Shopify admin URL redirects/platform config rather than theme Liquid alone.
+- `aggregateRating/review` can only appear where real review data exists; products with zero reviews still need review acquisition/import workflow.
+- After deploy, run Rich Results Test on sampled PDPs and click **Validate fix** for structured data + indexing validations in GSC.
+
+### Task: Hide empty collections from `/collections` listing page
+Date: 2026-03-03
+AGENT_CONTINUITY_ANCHOR: 2026-03-03-hide-empty-collections-listing
+Changes:
+- `sections/main-list-collections.liquid`
+  - Wrapped each rendered collection card in a guard:
+    - render only when `collection.all_products_count > 0`.
+  - Result: collections with zero products are no longer shown on the list-collections template (`/collections`).
+
+Why:
+- Storefront UX issue: empty collections were being shown in `/collections` and led users to pages with no products.
+
+Verification:
+- Confirmed Liquid diff contains the `all_products_count > 0` condition around collection card rendering.
+- Ran `shopify theme check --path . --output json --fail-level crash`:
+  - no crash-level parse failures introduced by this change,
+  - existing repo warnings/errors remain pre-existing and unrelated.
+
+Open items:
+- Pagination currently still paginates the full source `collections` set; with many empty collections, some pages can contain fewer cards than the page size. If needed, follow-up can build a pre-filtered collection list before paginate.
+
+### Task: Harden Product Schema and OG currency normalization for ISO 4217 compliance
+Date: 2026-03-03
+AGENT_CONTINUITY_ANCHOR: 2026-03-03-iso4217-currency-hardening
+Changes:
+- `snippets/jsonld-seo.liquid`
+  - Reworked `currency_code` resolution for `Product.offers` (`AggregateOffer` + variant `Offer` + `shippingDetails.shippingRate.currency`) to:
+    - normalize with trim/uppercase and removal of common formatting characters (`space`, `$`, `.`, `-`),
+    - fallback to sanitized shop currency when candidate is blank or not 3 characters,
+    - fallback to `"USD"` if shop currency is still invalid/blank.
+- `snippets/meta-tags.liquid`
+  - Applied the same normalization/fallback logic to `og:price:currency` and `product:price:currency` meta tags on PDPs.
+
+Why:
+- GSC Merchant Listings reported: `Invalid ISO 4217 currency code (in "offers")` for product rich results.
+- Live fetch for the reported URL currently emits `"USD"` in JSON-LD, which suggests either stale crawl data or intermittent currency formatting edge cases; this patch removes ambiguity by enforcing a strict sanitized 3-character code path.
+
+Verification:
+- Fetched live reported URL and confirmed current JSON-LD emits `"priceCurrency": "USD"` and shipping `"currency": "USD"` for all rendered offers.
+- Ran `shopify theme check --path . --output json --fail-level crash`:
+  - no crash-level parse failures introduced by this patch,
+  - existing repo warnings/errors remain pre-existing and unrelated.
+
+Open items:
+- After deploying this patch, rerun Google Rich Results Test on affected PDPs and then use **Validate fix** in Google Search Console for the `Invalid ISO 4217 currency code` issue.
