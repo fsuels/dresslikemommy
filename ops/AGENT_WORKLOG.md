@@ -6678,3 +6678,33 @@ Verification:
 
 Open items:
 - After deploying this patch, rerun Google Rich Results Test on affected PDPs and then use **Validate fix** in Google Search Console for the `Invalid ISO 4217 currency code` issue.
+
+### Task: Scope mixed-profile size chart resolution to the yellow floral family shirt/dress PDP
+Date: 2026-03-06
+AGENT_CONTINUITY_ANCHOR: 2026-03-06-mixed-profile-size-chart-scoping
+Changes:
+- `assets/size-conversion.js`
+  - Added product-handle scoped size config for `family-matching-shirt-and-dress-set-yellow-floral-for-a-springtime-look` so dropdown labels like `Father XL`, `Boy 2T`, `Mother M`, and `Girl 3-4T` resolve to the correct source-table row without affecting other PDPs.
+  - Added `Type`/`Style` select detection plus profile inference (`dad-shirt`, `son-shirt`, `mom-dress`, `daughter-dress`) from the selected type and size label.
+  - Added grouped-column detection for mixed vendor charts and filtered rendered measurements so grouped headers like `Son Shirt Bust` and `Mom Dress Length` only show for the active profile; ordinary one-profile charts continue to render unchanged.
+  - Updated compact measurement labels to strip grouped prefixes from the rendered UI (`Dad Shirt Bust` -> `Bust`, etc.) while preserving generic labels on other charts.
+  - Added explicit closest-available fallback handling for `Boy 12T` and `Girl 11-12T`, including a note that exact measurements are not available in the source chart.
+  - Scoped the size reset on `Type` change to the configured mixed-profile product only.
+
+Why:
+- This PDP uses a mixed table where one row contains shirt and dress measurements for multiple family roles, but the storefront options are split by `Type` and person-specific size labels. The old resolver could correctly pick a row but still render measurements from the wrong role.
+- The fix needed to be safe for already-working vendor charts, so both aliasing and grouped-column filtering were constrained instead of applied globally.
+
+Verification:
+- Ran `node --check assets/size-conversion.js` to confirm the updated script parses cleanly.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level failures attributable to this change.
+  - Repo still has pre-existing Theme Check errors/warnings in unrelated files (for example `snippets/cjpod.liquid`, several locale translation gaps, `sections/email-signup-banner.liquid`, and `tmp_products.json`).
+
+Open items:
+- Live preview/manual validation is still needed on the target PDP to confirm:
+  - `T-Shirt + Boy 2T` shows only son shirt fields,
+  - `T-Shirt + Father XL` shows only dad shirt fields,
+  - `Dress + Mother M` shows only mom dress fields,
+  - `Dress + Girl 3-4T` shows only daughter dress fields.
+- The source chart still stops at child `10T/150`; `Boy 12T` and `Girl 11-12T` remain nearest-row fallbacks until the merchant provides exact source measurements.

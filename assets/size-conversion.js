@@ -224,6 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return deAccented.replace(/[^a-z0-9]+/g, " ").trim();
   };
   const isSizeLikeLabel = (value) => SIZE_LABEL_REGEX.test(normalizeLabelText(value));
+  const isTypeLikeLabel = (value) => /\b(type|style)\b/.test(normalizeLabelText(value));
   const getOptionNameFromSelect = (selectElement) => {
     if (!selectElement) return "";
 
@@ -250,10 +251,61 @@ document.addEventListener("DOMContentLoaded", function () {
 
     return null;
   };
+  const findTypeSelect = () => {
+    const optionSelects = document.querySelectorAll("select[name^='options[']");
+    for (let i = 0; i < optionSelects.length; i++) {
+      const optionName = getOptionNameFromSelect(optionSelects[i]);
+      if (isTypeLikeLabel(optionName)) return optionSelects[i];
+    }
+    return null;
+  };
+  const getProductHandle = () => {
+    const match = window.location.pathname.match(/\/products\/([^/?#]+)/i);
+    return match ? match[1] : "";
+  };
+  const PRODUCT_HANDLE = getProductHandle();
+  const PRODUCT_SIZE_CONFIGS = {
+    "family-matching-shirt-and-dress-set-yellow-floral-for-a-springtime-look": {
+      aliases: {
+        "Father L": "L",
+        "Father XL": "XL",
+        "Father XXL": "XXL",
+        "Father 3XL": "3XL",
+        "Mother S": "S",
+        "Mother M": "M",
+        "Mother L": "L",
+        "Mother XL": "XL",
+        "Mother 2XL": "XXL",
+        "Boy 2T": "24M/90",
+        "Boy 4T": "4T/110",
+        "Boy 6T": "6T/130",
+        "Boy 8T": "8T/140",
+        "Boy 10T": "10T/150",
+        "Boy 12T": {
+          key: "10T/150",
+          isExact: false,
+          note: "Closest available size shown — exact measurements for this size are not available from the manufacturer.",
+        },
+        "Girl 1-2T": "24M/90",
+        "Girl 3-4T": "4T/110",
+        "Girl 5-6T": "6T/130",
+        "Girl 7-8T": "8T/140",
+        "Girl 9-10T": "10T/150",
+        "Girl 11-12T": {
+          key: "10T/150",
+          isExact: false,
+          note: "Closest available size shown — exact measurements for this size are not available from the manufacturer.",
+        },
+      },
+    },
+  };
+  const getActiveProductConfig = () => PRODUCT_SIZE_CONFIGS[PRODUCT_HANDLE] || null;
+  const GROUPED_PROFILE_REGEX = /^(son shirt|daughter dress|dad shirt|mom dress)\b/i;
   // ---------------------------------------------------------------------------
   // DOM REFERENCES
   // ---------------------------------------------------------------------------
   const sizeSelect        = findSizeSelect();
+  const typeSelect        = findTypeSelect();
   const sizeChartWrapper  = document.querySelector(".size-chart-wrapper");
   const sizeChartContent  = document.getElementById("size-chart-content");
   let selectedUnitSystem  = getStoredUnitSystem() || "metric";
@@ -372,14 +424,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const raw = String(label || "").trim();
     if (!raw) return "";
 
+    const cleaned = raw
+      .replace(/^dad shirt\s+/i, "")
+      .replace(/^son shirt\s+/i, "")
+      .replace(/^mom dress\s+/i, "")
+      .replace(/^daughter dress\s+/i, "");
+
     const explicitMap = {
       "recommended height": "Height",
       "recommended weight": "Weight",
+      "bst": "Bust",
+      "wist": "Waist",
     };
-    const normalized = normalizeKey(raw);
+    const normalized = normalizeKey(cleaned);
     if (explicitMap[normalized]) return explicitMap[normalized];
 
-    return raw;
+    return cleaned;
   }
   // ---------------------------------------------------------------------------
   // ADULT TOKEN EXTRACTOR
@@ -582,6 +642,56 @@ document.addEventListener("DOMContentLoaded", function () {
     return bestKey ? { key: bestKey, isExact: bestExact } : null;
   }
   // ---------------------------------------------------------------------------
+  // CONTEXT FILTERING
+  // Applies only when a factory row contains grouped columns like
+  // "Son Shirt Bust" and "Mom Dress Length".
+  // ---------------------------------------------------------------------------
+  function getSelectedProfile() {
+    const selectedSize = normalizeLabelText(sizeSelect ? sizeSelect.value : "");
+    const selectedType = normalizeLabelText(typeSelect ? typeSelect.value : "");
+
+    if (selectedType.includes("dress")) {
+      if (selectedSize.startsWith("mother")) return "mom-dress";
+      if (selectedSize.startsWith("girl")) return "daughter-dress";
+    }
+
+    if (
+      selectedType.includes("shirt")
+      || selectedType.includes("t shirt")
+      || selectedType.includes("tee")
+    ) {
+      if (selectedSize.startsWith("father")) return "dad-shirt";
+      if (selectedSize.startsWith("boy")) return "son-shirt";
+    }
+
+    if (selectedSize.startsWith("father")) return "dad-shirt";
+    if (selectedSize.startsWith("boy")) return "son-shirt";
+    if (selectedSize.startsWith("mother")) return "mom-dress";
+    if (selectedSize.startsWith("girl")) return "daughter-dress";
+
+    return "";
+  }
+  function factorySizeUsesGroupedProfiles(factorySize) {
+    return Object.keys(factorySize || {}).some((key) => {
+      if (key === "_meta") return false;
+      return GROUPED_PROFILE_REGEX.test(String(key));
+    });
+  }
+  function shouldDisplayMeasurement(selectedProfile, measurementName, factorySize) {
+    const raw = String(measurementName || "").trim();
+    const normalized = normalizeKey(raw);
+
+    if (!factorySizeUsesGroupedProfiles(factorySize)) return true;
+    if (normalized === "height" || normalized === "weight" || normalized === "age") return true;
+
+    if (selectedProfile === "son-shirt") return /^son shirt\b/i.test(raw);
+    if (selectedProfile === "daughter-dress") return /^daughter dress\b/i.test(raw);
+    if (selectedProfile === "dad-shirt") return /^dad shirt\b/i.test(raw);
+    if (selectedProfile === "mom-dress") return /^mom dress\b/i.test(raw);
+
+    return !GROUPED_PROFILE_REGEX.test(raw);
+  }
+  // ---------------------------------------------------------------------------
   // MASTER RESOLVER
   // Tries every strategy in order, returns { key, isExact, note } | null
   // ---------------------------------------------------------------------------
@@ -592,7 +702,28 @@ document.addEventListener("DOMContentLoaded", function () {
     if (factorySizes[label]) {
       return { key: label, isExact: true, note: null };
     }
-    // 2. Per-product explicit aliases (window.DLM_SIZE_ALIASES)
+
+    // 2. Product-scoped aliases for mixed-profile charts
+    const config = getActiveProductConfig();
+    if (config && config.aliases && config.aliases[label]) {
+      const aliasEntry = config.aliases[label];
+      const mapped = String(
+        typeof aliasEntry === "object" && aliasEntry !== null
+          ? aliasEntry.key
+          : aliasEntry
+      ).trim();
+      if (factorySizes[mapped]) {
+        const isExact = typeof aliasEntry === "object" && aliasEntry !== null && typeof aliasEntry.isExact === "boolean"
+          ? aliasEntry.isExact
+          : true;
+        const note = typeof aliasEntry === "object" && aliasEntry !== null
+          ? aliasEntry.note || null
+          : null;
+        return { key: mapped, isExact, note };
+      }
+    }
+
+    // 3. Global aliases remain available for other product-specific overrides
     const aliases = (window.DLM_SIZE_ALIASES && typeof window.DLM_SIZE_ALIASES === "object")
       ? window.DLM_SIZE_ALIASES : null;
     if (aliases && aliases[label]) {
@@ -601,7 +732,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return { key: mapped, isExact: true, note: null };
       }
     }
-    // 3. Adult token stripping ("Mother XL" → "XL", "Father XXL" → "2XL")
+
+    // 4. Adult token stripping ("Mother XL" → "XL", "Father XXL" → "2XL")
     const adultToken = extractAdultToken(label);
     if (adultToken) {
       const candidates = [
@@ -614,7 +746,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (factorySizes[c]) return { key: c, isExact: true, note: null };
       }
     }
-    // 4. Smart age-range resolution (e.g. "Child 2-3 years" → nearest age row)
+
+    // 5. Smart age-range resolution (e.g. "Child 2-3 years" → nearest age row)
     const ageResult = resolveByAgeRange(label, factorySizes);
     if (ageResult) {
       const note = ageResult.isExact
@@ -622,7 +755,8 @@ document.addEventListener("DOMContentLoaded", function () {
         : "Closest available size shown — exact measurements for this age are not available from the manufacturer.";
       return { key: ageResult.key, isExact: ageResult.isExact, note };
     }
-    // 5. Smart height-range resolution (e.g. "Child 110-120cm")
+
+    // 6. Smart height-range resolution (e.g. "Child 110-120cm")
     const heightResult = resolveByHeightRange(label, factorySizes);
     if (heightResult) {
       const note = heightResult.isExact
@@ -630,7 +764,8 @@ document.addEventListener("DOMContentLoaded", function () {
         : "Closest available size shown — exact measurements for this height are not available from the manufacturer.";
       return { key: heightResult.key, isExact: heightResult.isExact, note };
     }
-    // 6. Fallback by age embedded in size-key labels (e.g. "Baby 9 Months")
+
+    // 7. Fallback by age embedded in size-key labels (e.g. "Baby 9 Months")
     const ageLabelResult = resolveByAgeLabelInSizeKey(label, factorySizes);
     if (ageLabelResult) {
       const note = ageLabelResult.isExact
@@ -638,7 +773,8 @@ document.addEventListener("DOMContentLoaded", function () {
         : "Closest available size shown — exact measurements for this age are not available from the manufacturer.";
       return { key: ageLabelResult.key, isExact: ageLabelResult.isExact, note };
     }
-    // 7. Soft normalize fallback (case/whitespace insensitive)
+
+    // 8. Soft normalize fallback (case/whitespace insensitive)
     const wanted = normalizeKey(label);
     for (const k of Object.keys(factorySizes)) {
       if (normalizeKey(k) === wanted) return { key: k, isExact: true, note: null };
@@ -665,6 +801,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
     const factorySize = factorySizes[resolved.key];
+    const selectedProfile = getSelectedProfile();
 
     // --- Build premium card HTML ---
     let htmlContent = '';
@@ -693,6 +830,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const measurements = [];
     for (const measurementName in factorySize) {
       if (measurementName === "_meta") continue;
+      if (!shouldDisplayMeasurement(selectedProfile, measurementName, factorySize)) continue;
       const measurementData = factorySize[measurementName];
       const units           = measurementData.units;
       const value           = measurementData.value;
@@ -771,4 +909,10 @@ document.addEventListener("DOMContentLoaded", function () {
   insertSelectSizeOption();
   resetSizeSelect();
   sizeSelect.addEventListener("change", updateSizeMessage);
+  if (typeSelect && getActiveProductConfig()) {
+    typeSelect.addEventListener("change", function () {
+      sizeSelect.value = "";
+      updateSizeMessage();
+    });
+  }
 });
