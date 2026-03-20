@@ -6803,3 +6803,161 @@ Verification:
 Open items:
 - The current successful `9292` restart is attached to an interactive session because the non-TTY `nohup` restart path did not stay up.
 - If `9292` fails again with `401 Unauthorized`, rerun `shopify theme dev --store dresslikemommy-com.myshopify.com --host 127.0.0.1 --port 9292 --path .` in a normal terminal tab to refresh the preview token.
+
+### Task: Standardize PDP description and source size-chart presentation
+Date: 2026-03-20
+AGENT_CONTINUITY_ANCHOR: 2026-03-20-standardize-pdp-description-size-chart-presentation
+Changes:
+- `sections/main-product.liquid`
+  - Added a `data-product-description` hook and `product-copy` class to the rendered product description block so the PDP description can be enhanced consistently without changing the underlying Shopify content source.
+- `layout/theme.liquid`
+  - Added product-page loading for the new `assets/product-description.js`.
+  - Added product-page loading for the new `assets/component-product-description.css` after the existing inline product styles so the new presentation overrides the older description card styling cleanly.
+- `assets/product-description.js`
+  - Added a lightweight DOM formatter for PDP descriptions that:
+    - removes empty lists,
+    - promotes the first text block to a lead paragraph style,
+    - converts repeated short paragraphs into a structured highlights list when merchants do not explicitly use bullets,
+    - preserves existing bullet lists,
+    - wraps description tables in a dedicated card/scroll container without breaking the existing `#size-chart` table used by `assets/size-conversion.js`.
+- `assets/component-product-description.css`
+  - Added a standardized presentation layer for PDP descriptions:
+    - lead paragraph card,
+    - two-column desktop highlight list,
+    - refined paragraph typography,
+    - polished source size-chart table card with sticky first column and cleaner header/body styling,
+    - responsive mobile fallback,
+    - explicit `overflow: visible` override so the new card shadows are not clipped by earlier product-description CSS.
+
+Why:
+- Merchants want the long-form product story + bullet details + size table area to look consistent and more premium on desktop even when the Shopify editor input is not perfectly structured.
+- The live PDP example already arrives as `p + ul + table`, so the safest approach was to standardize rendering around those common patterns and add a heuristic fallback for short standalone paragraphs.
+
+Verification:
+- Ran `node --check assets/product-description.js`.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no crash-level parse failures from this change.
+  - Repo still reports many pre-existing non-crash warnings/errors and existing unrelated errors (for example `snippets/cjpod.liquid`, `tmp_products.json`, locale translation gaps, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, and `snippets/product-thumbnail.liquid`).
+- Confirmed local preview on `http://127.0.0.1:9292` is responding and its rendered PDP HTML now includes:
+  - `data-product-description` on the description block,
+  - `/assets/product-description.js`,
+  - `/assets/component-product-description.css`.
+
+Open items:
+- Browser visual validation is still needed on the target PDP to confirm the final desktop presentation of:
+  - the lead paragraph card,
+  - the highlights list layout,
+  - the source size-chart table styling and sticky first column.
+- The formatter is intentionally heuristic-based; the most consistent results will still come from merchant input that follows the pattern:
+  - intro paragraph,
+  - one bullet list or one short paragraph per feature,
+  - size table pasted as a real table.
+
+### Task: Follow-up hardening for PDP description presentation after merchant review
+Date: 2026-03-20
+AGENT_CONTINUITY_ANCHOR: 2026-03-20-pdp-description-presentation-followup-hardening
+Changes:
+- `assets/product-description.js`
+  - Added generated section headings for feature lists (`Why You'll Love It`) and for wrapped product tables / size charts.
+  - Added a descriptive subheading inside wrapped table cards (`Measurements from the supplier source table` for size charts).
+  - Fixed the list normalization helper so space-separated class names are applied token-by-token instead of causing a runtime `classList.add(...)` error.
+- `assets/component-product-description.css`
+  - Reworked the description feature list into a stronger single-column card layout with:
+    - no default bullets,
+    - explicit `::marker` suppression,
+    - custom checkmark badge,
+    - deeper padding, softer gradient fill, and stronger typography.
+  - Added section-heading styles so the copy area is visually segmented instead of appearing as one long blob of text.
+  - Added table-card header styling for the source size chart.
+
+Why:
+- Merchant review showed the earlier presentation still felt too close to the raw Shopify bullets and did not read as a professional standardized content block.
+- The follow-up focuses on making the feature area unmistakably designed rather than just lightly restyled.
+
+Verification:
+- Ran `node --check assets/product-description.js`.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no crash-level parse failures from this follow-up.
+  - Existing unrelated repo warnings/errors remain unchanged.
+- Ran browser-level preview checks with Playwright CLI against `http://127.0.0.1:9292` and confirmed the rendered page now waits successfully for:
+  - `.product-copy__section-heading`
+  - `.product-copy__table-header`
+  which confirms the enhanced description JS is executing in the preview theme.
+- Checked the currently published product page source at `https://www.dresslikemommy.com/products/blue-tropical-floral-family-matching-beach-dress-and-shirt-set?variant=43740401074273` and confirmed it still does not expose the new preview-only hooks/assets, so the published storefront would still show the older layout until these changes are deployed/published.
+
+Open items:
+- Merchant-facing validation should use the preview theme URL or a deployed theme version; checking the currently published storefront will still show the old product description presentation until this work is shipped.
+
+### Task: Fallback fix for raw Shopify bullets dropping text below marker
+Date: 2026-03-20
+AGENT_CONTINUITY_ANCHOR: 2026-03-20-pdp-raw-bullet-inline-fallback
+Changes:
+- `assets/component-product-description.css`
+  - Added a pre-enhancement fallback for raw description lists under `[data-product-description]` so direct Shopify markup like `ul > li > p` keeps the bullet and the text on the same line.
+  - Forced fallback lists to use `list-style-position: outside`.
+  - Forced fallback `li > p` blocks to `display: inline` with zero margin.
+  - Added matching mobile fallback padding adjustment.
+
+Why:
+- Merchant review screenshot showed the bullet marker on its own line with the text starting below it.
+- Root cause is the common Shopify rich-text structure `li > p`, combined with block paragraph rendering before the enhanced list/card presentation takes over.
+
+Verification:
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no crash-level parse failures from this CSS-only follow-up.
+  - Existing unrelated repo warnings/errors remain unchanged.
+
+Open items:
+- If the merchant is checking the currently published storefront instead of the preview/deployed version containing this patch, they will still see the old bullet behavior until the updated theme is shipped.
+
+### Task: Fix broken selector scope on PDP description enhancement CSS
+Date: 2026-03-20
+AGENT_CONTINUITY_ANCHOR: 2026-03-20-pdp-description-scope-fix
+Changes:
+- `assets/component-product-description.css`
+  - Replaced all `.template-product ...` selector scopes with direct `.product__description.rte.quick-add-hidden[data-product-description] ...` scopes.
+  - Kept the raw-list fallback and enhanced feature-list/table styles, but moved them onto selectors that actually exist in this theme.
+- Temporary browser debug script was created and removed after verification; no permanent test file was kept.
+
+Why:
+- Merchant review still showed the bullet marker above the text even after prior fixes.
+- Browser-level inspection confirmed the enhanced JS markup was present (`product-copy__section-heading`, `product-copy__highlights`), but computed styles were still the default Dawn values (`ul` display block, `li` display list-item, `p` display block).
+- Root cause: this theme’s product pages do not include a `template-product` class on the `body`, so none of the product-description enhancement CSS selectors matched.
+
+Verification:
+- Used Playwright in a browser context against `http://127.0.0.1:9292/products/blue-tropical-floral-family-matching-beach-dress-and-shirt-set?variant=43740401074273` and confirmed after the scope fix:
+  - heading display = `grid`
+  - list display = `grid`
+  - list style type = `none`
+  - first item display = `flex`
+  - first item padding-left = `54px`
+  - first item background = enhanced gradient card style
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no crash-level parse failures from this follow-up.
+  - Existing unrelated repo warnings/errors remain unchanged.
+
+Open items:
+- Merchant should hard-refresh the preview page after the scope fix because the CSS asset URL changed and browser cache can otherwise mask the update.
+
+### Task: Harden PDP list normalization against spacer paragraphs inside bullets
+Date: 2026-03-20
+AGENT_CONTINUITY_ANCHOR: 2026-03-20-pdp-list-item-spacer-cleanup
+Changes:
+- `assets/product-description.js`
+  - Added direct cleanup for empty `p`, `div`, and `span` nodes inside list items during list normalization.
+  - Added merging for multi-paragraph list items when a pasted Shopify bullet contains only paragraph children, so spacer paragraphs do not create a marker on one line and the real text below it.
+  - Kept cleanup limited to list items to avoid changing unrelated rich-text blocks.
+
+Why:
+- Merchant review reported that some listings still render a marker on its own line with the bullet text below it.
+- The exact preview URL supplied later rendered correctly in browser automation, which suggests the remaining edge case is malformed list-item markup in some descriptions rather than the CSS enhancement being absent.
+- Cleaning empty/spacer paragraphs inside `li` elements makes the formatter more tolerant of inconsistent pasted listing content.
+
+Verification:
+- Ran `node --check assets/product-description.js`.
+- Re-checked the supplied preview PDP URL in a browser context:
+  - `http://127.0.0.1:9292/products/matching-family-beach-outfits-with-floral-dresses-and-shorts?variant=43765460992097`
+  - Confirmed the page is using enhanced description markup/classes and styled list cards rather than raw bullets.
+
+Open items:
+- If a merchant still sees raw bullets on a specific preview PDP after refresh, capture that exact URL again because it is likely a different description markup pattern that still needs to be normalized.
