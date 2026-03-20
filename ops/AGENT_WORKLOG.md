@@ -6708,3 +6708,98 @@ Open items:
   - `Dress + Mother M` shows only mom dress fields,
   - `Dress + Girl 3-4T` shows only daughter dress fields.
 - The source chart still stops at child `10T/150`; `Boy 12T` and `Girl 11-12T` remain nearest-row fallbacks until the merchant provides exact source measurements.
+
+### Task: Filter size dropdown by selected type on family-matching PDPs
+Date: 2026-03-08
+AGENT_CONTINUITY_ANCHOR: 2026-03-08-filter-size-dropdown-by-type
+Changes:
+- `snippets/product-variant-picker.liquid`
+  - Added detection for products that include a `Type`/`Style` option and marked their size dropdowns with `data-hide-unavailable-options="true"`.
+  - Switched the size placeholder option to the existing `products.product.select_size` translation and removed the duplicate always-selected placeholder behavior.
+- `snippets/product-variant-options.liquid`
+  - Added `data-option-value-label` to dropdown options so JS can restore the original label after availability changes.
+  - For type-filtered size dropdowns, render unavailable values as hidden/disabled options instead of appending `- Unavailable`.
+- `assets/global.js`
+  - Reworked dependent dropdown availability to derive allowed values from the actual available variant combinations for all previously selected options.
+  - When an upstream option change invalidates a filtered size choice, the selector now clears back to the blank placeholder before variant resolution runs, which keeps the UI in a `Choose options` state instead of `Unavailable`.
+  - Kept a direct non-bubbling `change` dispatch on the reset select so size-chart logic listening on the select itself refreshes with the cleared state.
+
+Why:
+- Family-matching products with `Type` + `Size` were showing the opposite family-role sizes as `Unavailable` inside the same size dropdown, which is noisy and misleading.
+- Changing `Type` could leave a stale size value selected long enough for Dawn to treat the combination as a complete but invalid variant, surfacing `Unavailable` instead of prompting the customer to choose a new size.
+
+Verification:
+- Ran `node --check assets/global.js`.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level parse failures from this patch.
+  - Repo still reports many pre-existing non-crash warnings/errors and existing unrelated errors (for example `snippets/cjpod.liquid`, `tmp_products.json`, locale translation gaps, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, and `snippets/product-thumbnail.liquid`).
+- Queried the live product JSON for `blue-tropical-floral-family-matching-beach-dress-and-shirt-set` and confirmed the filtered size groups the new logic targets:
+  - `T-Shirt` -> `Father L`, `Father XL`, `Father XXL`, `Father 3XL`, `Boy 2T`, `Boy 4T`, `Boy 6T`, `Boy 8T`, `Boy 10T`, `Boy 12T`
+  - `Dress` -> `Mother S`, `Mother M`, `Mother L`, `Mother XL`, `Mother 2XL`, `Girl 1-2T`, `Girl 3-4T`, `Girl 5-6T`, `Girl 7-8T`, `Girl 9-10T`, `Girl 11-12T`
+- After follow-up debugging on local preview product `matching-family-beach-outfits-with-floral-dresses-and-shorts`, confirmed the backend variant matrix itself contains cross-type anomalies (`Dress / Father 4XL`, `Short / Mother 3XL`, etc.).
+- Verified the stricter family-role override on local preview now renders:
+  - `Dress` -> hidden `Father 4XL` and `Boy 2T`; visible `Mother 3XL`, `Mother 4XL`, and `Girl 11-12T`
+  - `Short` -> visible `Father 4XL` and `Boy 2T`; hidden `Mother 3XL`, `Mother 4XL`, and `Girl 11-12T`
+- Confirmed the expected filtered size sets for that local product are now:
+  - `Short` -> `Father L`, `Father XL`, `Father 2XL`, `Father 3XL`, `Father 4XL`, `Boy 2T`, `Boy 4T`, `Boy 6T`, `Boy 8T`, `Boy 10T`, `Boy 12T`
+  - `Dress` -> `Mother S`, `Mother M`, `Mother L`, `Mother XL`, `Mother 2XL`, `Mother 3XL`, `Mother 4XL`, `Girl 1-2T`, `Girl 3-4T`, `Girl 5-6T`, `Girl 7-8T`, `Girl 9-10T`, `Girl 11-12T`
+
+Open items:
+- Preview/manual browser validation is still needed on the target PDP to confirm:
+  - selecting `T-Shirt` shows only father/boy sizes,
+  - selecting `Dress` shows only mother/girl sizes,
+  - switching between `T-Shirt` and `Dress` resets the size field to `Select size`,
+  - the add-to-cart state shows `Choose options` rather than `Unavailable` after the type switch until a new size is picked.
+- Because the stricter filter intentionally overrides real variant combinations when they conflict with the family-role expectation, any legitimate backend product that intentionally mixes `Dress` with `Father/Boy` or `Short/Shirt` with `Mother/Girl` would need product-specific handling instead of the generic rule.
+
+### Task: Restore Shopify local preview on expected port 9292
+Date: 2026-03-20
+AGENT_CONTINUITY_ANCHOR: 2026-03-20-local-preview-9292-restored
+Changes:
+- No theme code changes.
+- Verified nothing was listening on `127.0.0.1:9292`.
+- Confirmed an older healthy Shopify CLI preview process was already running on `127.0.0.1:9393` for store `dresslikemommy-com.myshopify.com`.
+- Started a fresh interactive preview session from repo root:
+  - `shopify theme dev --store dresslikemommy-com.myshopify.com --host 127.0.0.1 --port 9292 --path .`
+- New local preview/session details:
+  - local preview: `http://127.0.0.1:9292`
+  - share preview: `https://dresslikemommy-com.myshopify.com/?preview_theme_id=133851742305`
+  - theme editor: `https://dresslikemommy-com.myshopify.com/admin/themes/133851742305/editor?hr=9292`
+
+Why:
+- User reported the expected localhost preview URL `http://127.0.0.1:9292` was not reachable.
+- Root cause was process state, not theme code: the only active local preview was bound to port `9393`, leaving `9292` unused.
+
+Verification:
+- `curl -I --max-time 8 http://127.0.0.1:9292` returned `HTTP/1.1 302 Found`, confirming the local preview endpoint is responding.
+- `shopify theme info --store dresslikemommy-com.myshopify.com` confirmed CLI/store linkage is healthy during this session.
+
+Open items:
+- The `theme dev` session on `9292` must remain running for the localhost preview URL to keep working.
+- There is still a separate long-running preview process on `127.0.0.1:9393`; leave it alone unless explicitly cleaning up old sessions.
+
+### Task: Refresh expired Shopify local preview token on port 9292
+Date: 2026-03-20
+AGENT_CONTINUITY_ANCHOR: 2026-03-20-local-preview-9292-token-refresh
+Changes:
+- No theme code changes.
+- Verified the existing `127.0.0.1:9292` listener was stale:
+  - `curl -I --max-time 8 http://127.0.0.1:9292` returned `HTTP/1.1 401 Unauthorized`
+  - response included `www-authenticate: Bearer ... error="Invalid token"`
+- Confirmed Shopify CLI/store linkage remained healthy with:
+  - `shopify theme info --store dresslikemommy-com.myshopify.com`
+- Stopped the stale preview process on `9292` and started a fresh interactive session:
+  - `shopify theme dev --store dresslikemommy-com.myshopify.com --host 127.0.0.1 --port 9292 --path .`
+- Attempted a plain detached restart with `nohup`, but Shopify CLI exited immediately without starting a listener, which indicates this command path still expects a TTY in this environment.
+
+Why:
+- User reported the localhost preview stopped working again after the earlier port restore.
+- Root cause changed from "nothing listening on 9292" to "stale preview process with an expired/revoked local token".
+
+Verification:
+- Fresh `curl -I --max-time 8 http://127.0.0.1:9292` returned `HTTP/1.1 200 OK`.
+- Response headers identified theme `133851742305`, confirming the refreshed local preview is serving the development theme again.
+
+Open items:
+- The current successful `9292` restart is attached to an interactive session because the non-TTY `nohup` restart path did not stay up.
+- If `9292` fails again with `401 Unauthorized`, rerun `shopify theme dev --store dresslikemommy-com.myshopify.com --host 127.0.0.1 --port 9292 --path .` in a normal terminal tab to refresh the preview token.

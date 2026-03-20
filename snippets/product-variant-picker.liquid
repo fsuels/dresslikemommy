@@ -1,4 +1,37 @@
 {%- unless product.has_only_default_variant -%}
+  {%- liquid
+    assign has_type_or_style_option = false
+    assign selected_type_value = blank
+    assign selected_type_family_group = blank
+    for product_option in product.options_with_values
+      assign product_option_name_downcased = product_option.name | downcase
+      if product_option_name_downcased contains 'type' or product_option_name_downcased contains 'style'
+        assign has_type_or_style_option = true
+        case product_option.position
+          when 1
+            assign selected_type_value = product.selected_or_first_available_variant.option1
+          when 2
+            assign selected_type_value = product.selected_or_first_available_variant.option2
+          when 3
+            assign selected_type_value = product.selected_or_first_available_variant.option3
+        endcase
+        break
+      endif
+    endfor
+
+    assign selected_type_value_downcased = selected_type_value | downcase
+    if selected_type_value_downcased contains 'dress' or selected_type_value_downcased contains 'skirt'
+      assign selected_type_family_group = 'female'
+    elsif selected_type_value_downcased contains 'shirt'
+      assign selected_type_family_group = 'male'
+    elsif selected_type_value_downcased contains 'tee'
+      assign selected_type_family_group = 'male'
+    elsif selected_type_value_downcased contains 'short'
+      assign selected_type_family_group = 'male'
+    elsif selected_type_value_downcased contains 'trunk'
+      assign selected_type_family_group = 'male'
+    endif
+  -%}
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
@@ -26,6 +59,7 @@
         assign available_color_value_count = 0
         assign seen_available_color_values = ''
         assign single_available_color_value = blank
+        assign hide_unavailable_dropdown_options = false
 
         if swatch_count > 0 and block.settings.swatch_shape != 'none'
           if block.settings.picker_type == 'dropdown'
@@ -45,6 +79,10 @@
 
         if option_name_downcased contains 'size' or option_name_downcased contains 'talla' or option_name_downcased contains 'tamano' or option_name_downcased contains 'tamaño' or option_name_downcased contains 'taille' or option_name_downcased contains 'pointure'
           assign is_size_option = true
+        endif
+
+        if is_size_option and has_type_or_style_option
+          assign hide_unavailable_dropdown_options = true
         endif
 
         if is_color_option
@@ -107,7 +145,9 @@
             product: product,
             option: option,
             block: block,
-            picker_type: picker_type
+            picker_type: picker_type,
+            hide_unavailable_dropdown_options: hide_unavailable_dropdown_options,
+            selected_type_family_group: selected_type_family_group
           %}
         </fieldset>
       {%- elsif picker_type == 'color_image' -%}
@@ -122,7 +162,9 @@
             product: product,
             option: option,
             block: block,
-            picker_type: picker_type
+            picker_type: picker_type,
+            hide_unavailable_dropdown_options: hide_unavailable_dropdown_options,
+            selected_type_family_group: selected_type_family_group
           %}
         </fieldset>
       {%- elsif picker_type == 'button' -%}
@@ -132,7 +174,9 @@
             product: product,
             option: option,
             block: block,
-            picker_type: picker_type
+            picker_type: picker_type,
+            hide_unavailable_dropdown_options: hide_unavailable_dropdown_options,
+            selected_type_family_group: selected_type_family_group
           %}
         </fieldset>
       {%- else -%}
@@ -158,19 +202,23 @@
               {% if is_size_option %}
                 data-size-option="true"
               {% endif %}
+              {% if hide_unavailable_dropdown_options %}
+                data-hide-unavailable-options="true"
+              {% endif %}
             >
-              {%- comment -%}
-                **Insert Default "Select Size" Option**
-              {%- endcomment -%}
               {%- if is_size_option -%}
-                <option value="" disabled selected>Select Size</option>
+                <option value="" disabled {% if option.selected_value == blank %}selected{% endif %}>
+                  {{- 'products.product.select_size' | t -}}
+                </option>
               {%- endif -%}
               
               {% render 'product-variant-options',
                 product: product,
                 option: option,
                 block: block,
-                picker_type: picker_type
+                picker_type: picker_type,
+                hide_unavailable_dropdown_options: hide_unavailable_dropdown_options,
+                selected_type_family_group: selected_type_family_group
               %}
             </select>
             {% render 'icon-caret' %}

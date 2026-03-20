@@ -1137,14 +1137,22 @@ class VariantSelects extends HTMLElement {
     this.addEventListener('change', this.onVariantChange);
   }
 
+  connectedCallback() {
+    this.updateOptions();
+    const selectionWasAdjusted = this.updateVariantStatuses();
+    if (selectionWasAdjusted) this.updateOptions();
+    this.updateMasterId();
+  }
+
   onVariantChange(event) {
     this.updateOptions();
+    const selectionWasAdjusted = this.updateVariantStatuses();
+    if (selectionWasAdjusted) this.updateOptions();
     this.updateMasterId();
     this.updateSelectedSwatchValue(event);
     this.toggleAddButton(true, '', false);
     this.updatePickupAvailability();
     this.removeErrorMessage();
-    this.updateVariantStatuses();
 
     if (!this.currentVariant) {
       const isOptionSelectionIncomplete = this.options.some((option) => option == null || option === '');
@@ -1169,6 +1177,97 @@ class VariantSelects extends HTMLElement {
         return Array.from(element.querySelectorAll('input')).find((radio) => radio.checked)?.value;
       }
     });
+  }
+
+  getSelectedValueForGroup(group) {
+    const select = group.querySelector('select');
+    if (select) return select.value;
+
+    return group.querySelector('input[type="radio"]:checked')?.value || '';
+  }
+
+  normalizeOptionText(value) {
+    return String(value || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+  }
+
+  getOptionNameFromGroup(group) {
+    const select = group.querySelector('select[name]');
+    if (select) {
+      if (select.dataset.optionName) return select.dataset.optionName;
+
+      const optionNameMatch = select.name.match(/^options\[(.+)\]$/);
+      return optionNameMatch ? optionNameMatch[1] : select.name;
+    }
+
+    const radio = group.querySelector('input[type="radio"][name]:checked') || group.querySelector('input[type="radio"][name]');
+    return radio ? radio.name : '';
+  }
+
+  getFamilyRoleGroupForTypeValue(value) {
+    const normalizedValue = this.normalizeOptionText(value);
+    if (!normalizedValue) return '';
+
+    if (normalizedValue.includes('dress') || normalizedValue.includes('skirt')) return 'female';
+    if (
+      normalizedValue.includes('shirt') ||
+      normalizedValue.includes('t shirt') ||
+      normalizedValue.includes('tshirt') ||
+      normalizedValue.includes('tee') ||
+      normalizedValue.includes('short') ||
+      normalizedValue.includes('trunk')
+    ) {
+      return 'male';
+    }
+
+    return '';
+  }
+
+  getFamilyRoleGroupForSizeValue(value) {
+    const normalizedValue = this.normalizeOptionText(value);
+    if (!normalizedValue) return '';
+
+    const firstToken = normalizedValue.split(' ')[0];
+    if (['father', 'dad', 'boy', 'son', 'man', 'men'].includes(firstToken)) return 'male';
+    if (['mother', 'mom', 'girl', 'daughter', 'woman', 'women'].includes(firstToken)) return 'female';
+
+    return '';
+  }
+
+  getSelectedTypeFamilyGroup(inputWrappers) {
+    for (const group of inputWrappers) {
+      const optionName = this.normalizeOptionText(this.getOptionNameFromGroup(group));
+      if (!optionName || (!optionName.includes('type') && !optionName.includes('style'))) continue;
+
+      return this.getFamilyRoleGroupForTypeValue(this.getSelectedValueForGroup(group));
+    }
+
+    return '';
+  }
+
+  isFilteredSizeValueAllowed(value, expectedFamilyGroup) {
+    if (!expectedFamilyGroup) return true;
+
+    const optionFamilyGroup = this.getFamilyRoleGroupForSizeValue(value);
+    if (!optionFamilyGroup) return true;
+
+    return optionFamilyGroup === expectedFamilyGroup;
+  }
+
+  getAvailableOptionValues(inputWrappers, optionIndex) {
+    return this.getVariantData()
+      .filter((variant) => {
+        if (!variant.available) return false;
+
+        return inputWrappers.slice(0, optionIndex).every((group, selectedIndex) => {
+          const selectedValue = this.getSelectedValueForGroup(group);
+          return !selectedValue || variant[`option${selectedIndex + 1}`] === selectedValue;
+        });
+      })
+      .map((variant) => variant[`option${optionIndex + 1}`])
+      .filter(Boolean);
   }
 
   updateMasterId() {
@@ -1229,22 +1328,27 @@ class VariantSelects extends HTMLElement {
   }
 
   updateVariantStatuses() {
-    const selectedOptionOneVariants = this.variantData.filter(
-      (variant) => this.querySelector(':checked').value === variant.option1
-    );
     const inputWrappers = [...this.querySelectorAll('.product-form__input')];
+    let selectionWasAdjusted = false;
+
     inputWrappers.forEach((option, index) => {
       if (index === 0) return;
+
       const optionInputs = [...option.querySelectorAll('input[type="radio"], option')];
-      const previousOptionSelected = inputWrappers[index - 1].querySelector(':checked').value;
-      const availableOptionInputsValue = selectedOptionOneVariants
-        .filter((variant) => variant.available && variant[`option${index}`] === previousOptionSelected)
-        .map((variantOption) => variantOption[`option${index + 1}`]);
-      this.setInputAvailability(optionInputs, availableOptionInputsValue);
+      const availableOptionInputsValue = this.getAvailableOptionValues(inputWrappers, index);
+
+      this.setInputAvailability(optionInputs, availableOptionInputsValue, option, inputWrappers);
+      selectionWasAdjusted =
+        this.resetUnavailableSelection(option, availableOptionInputsValue, inputWrappers) || selectionWasAdjusted;
     });
+
+    return selectionWasAdjusted;
   }
 
-  setInputAvailability(elementList, availableValuesList) {
+  setInputAvailability(elementList, availableValuesList, optionGroup, inputWrappers) {
+    const filteredDropdown = optionGroup.querySelector('select[data-hide-unavailable-options="true"]');
+    const expectedFamilyGroup = filteredDropdown ? this.getSelectedTypeFamilyGroup(inputWrappers) : '';
+
     elementList.forEach((element) => {
       const value = element.getAttribute('value');
       const availableElement = availableValuesList.includes(value);
@@ -1252,11 +1356,46 @@ class VariantSelects extends HTMLElement {
       if (element.tagName === 'INPUT') {
         element.classList.toggle('disabled', !availableElement);
       } else if (element.tagName === 'OPTION') {
+        const optionLabel = element.dataset.optionValueLabel || element.textContent.trim() || value;
+
+        if (value === '') {
+          element.hidden = false;
+          element.textContent = optionLabel;
+          return;
+        }
+
+        if (filteredDropdown) {
+          const shouldShowElement = availableElement && this.isFilteredSizeValueAllowed(value, expectedFamilyGroup);
+          element.hidden = !shouldShowElement;
+          element.disabled = !shouldShowElement;
+          element.textContent = optionLabel;
+          return;
+        }
+
+        element.hidden = false;
+        element.disabled = false;
         element.innerText = availableElement
-          ? value
-          : window.variantStrings.unavailable_with_option.replace('[value]', value);
+          ? optionLabel
+          : window.variantStrings.unavailable_with_option.replace('[value]', optionLabel);
       }
     });
+  }
+
+  resetUnavailableSelection(optionGroup, availableValuesList, inputWrappers) {
+    const select = optionGroup.querySelector('select[data-hide-unavailable-options="true"]');
+    if (!select || !select.value) return false;
+
+    const expectedFamilyGroup = this.getSelectedTypeFamilyGroup(inputWrappers);
+    if (
+      availableValuesList.includes(select.value) &&
+      this.isFilteredSizeValueAllowed(select.value, expectedFamilyGroup)
+    ) {
+      return false;
+    }
+
+    select.value = '';
+    select.dispatchEvent(new Event('change'));
+    return true;
   }
 
   updatePickupAvailability() {

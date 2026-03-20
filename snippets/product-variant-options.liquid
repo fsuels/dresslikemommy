@@ -29,6 +29,9 @@
   {%- liquid
     assign option_value_name = value | strip
     assign option_disabled = true
+    assign option_hidden_by_selected_type_family = false
+    assign option_value_family_group = blank
+    assign option_hidden_for_filtered_dropdown = false
 
     for option1_name in variants_option1_arr
       case option.position
@@ -46,6 +49,23 @@
           endif
       endcase
     endfor
+
+    if hide_unavailable_dropdown_options and selected_type_family_group != blank
+      assign option_value_first_token = option_value_name | downcase | split: ' ' | first
+      if option_value_first_token == 'father' or option_value_first_token == 'dad' or option_value_first_token == 'boy' or option_value_first_token == 'son' or option_value_first_token == 'man' or option_value_first_token == 'men'
+        assign option_value_family_group = 'male'
+      elsif option_value_first_token == 'mother' or option_value_first_token == 'mom' or option_value_first_token == 'girl' or option_value_first_token == 'daughter' or option_value_first_token == 'woman' or option_value_first_token == 'women'
+        assign option_value_family_group = 'female'
+      endif
+
+      if option_value_family_group != blank and option_value_family_group != selected_type_family_group
+        assign option_hidden_by_selected_type_family = true
+      endif
+    endif
+
+    if option_disabled or option_hidden_by_selected_type_family
+      assign option_hidden_for_filtered_dropdown = true
+    endif
 
     assign swatch_focal_point = null
     if value.swatch.image
@@ -188,8 +208,13 @@
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
     <option
       value="{{ value | escape }}"
+      data-option-value-label="{{ value | escape }}"
       {% if option.selected_value == value %}
         selected="selected"
+      {% endif %}
+      {% if hide_unavailable_dropdown_options and option_hidden_for_filtered_dropdown %}
+        disabled
+        hidden
       {% endif %}
       {% if swatch_value and picker_type == 'swatch_dropdown' %}
         data-option-swatch-value="{{ swatch_value }}"
@@ -198,7 +223,9 @@
         {% endif %}
       {% endif %}
     >
-      {% if option_disabled -%}
+      {% if hide_unavailable_dropdown_options and option_hidden_for_filtered_dropdown -%}
+        {{- value -}}
+      {%- elsif option_disabled -%}
         {{- 'products.product.value_unavailable' | t: option_value: value -}}
       {%- else -%}
         {{- value -}}
