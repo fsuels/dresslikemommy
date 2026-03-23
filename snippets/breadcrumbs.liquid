@@ -7,6 +7,12 @@
   {% assign subcategory_label = product.metafields.custom.subcategory | default: "Dresses" %}
   {% assign subcategory_handle = subcategory_label | handleize %}
   {% assign subcategory_collection = collections[subcategory_handle] %}
+  {% assign subcategory_display_label = subcategory_label %}
+  {% if subcategory_handle == 'daddy-me-t-shirts' %}
+    {% assign subcategory_display_label = 'Tees' %}
+  {% elsif subcategory_handle == 'daddy-me-shirts' %}
+    {% assign subcategory_display_label = 'Button-Downs' %}
+  {% endif %}
 
   <nav class="breadcrumb product-breadcrumb" role="navigation" aria-label="breadcrumbs">
     <a href="{{ routes.root_url }}" title="{{ 'sections.breadcrumbs.home' | t }}" class="product-breadcrumb__link mobile-hide">{{ 'sections.breadcrumbs.home' | t }}</a>
@@ -20,7 +26,7 @@
     {% comment %} --- Subcategory link only if collection exists --- {% endcomment %}
     {% if subcategory_collection != blank %}
       <span aria-hidden="true" class="product-breadcrumb__separator mobile-hide">&rsaquo;</span>
-      <a href="{{ subcategory_collection.url }}" title="{{ subcategory_label }}" class="product-breadcrumb__link">{{ subcategory_label }}</a>
+      <a href="{{ subcategory_collection.url }}" title="{{ subcategory_display_label }}" class="product-breadcrumb__link">{{ subcategory_display_label }}</a>
     {% endif %}
 
     {% assign subcategories = product.metafields.custom.subcategory2 | split: ',' %}

@@ -8,6 +8,13 @@
 
 {% include 'collection-breadcrumbs' %}
 
+{% if collection.handle == 'daddy-me'
+  or collection.handle == 'daddy-me-t-shirts'
+  or collection.handle == 'daddy-me-shirts'
+%}
+  <script src="{{ 'daddy-me-collection-filter.js' | asset_url }}" defer="defer"></script>
+{% endif %}
+
 
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}

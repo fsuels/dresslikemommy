@@ -6995,3 +6995,96 @@ Verification:
 
 Open items:
 - If another product still bypasses the standardized layout, inspect its exact description DOM first; remaining misses will likely be another copied-HTML wrapper pattern rather than a collection-specific template gap.
+
+### Task: Daddy & Me collection pill labels + explicit handle mapping
+Date: 2026-03-23
+AGENT_CONTINUITY_ANCHOR: 2026-03-23-daddy-me-pill-labels-handle-mapping
+Changes:
+- `snippets/collection-breadcrumbs.liquid`
+  - Added explicit Daddy & Me collection-nav detection for `daddy-me`, `daddy-me-t-shirts`, `daddy-me-shirts`, and `trunks`.
+  - Replaced the prior Daddy & Me pill override that inferred collection handles from translated labels with explicit `handle::label` entries.
+  - Renamed the Daddy & Me tee label to `Tees`.
+  - Added a future-ready `daddy-me-shirts::Button-Downs` pill slot.
+  - Set explicit breadcrumb labels for `daddy-me-t-shirts`, `daddy-me-shirts`, and `trunks`.
+
+Why:
+- Live storefront checks showed `/collections/daddy-me` was only surfacing `Trunks` even though Daddy & Me tee and button-down products also exist in the catalog.
+- The prior override only hardcoded two Daddy & Me pills and relied on handleizing the display label, which is brittle once labels diverge from collection handles.
+- `T-Shirts` and `Shirts` read too repetitive for this collection; `Tees` and `Button-Downs` better distinguish the graphic tee group from the tropical/button-up shirt group.
+
+Verification:
+- Checked the live Daddy & Me collection and supplied product examples to confirm Daddy tee products and button-down shirt products exist, while no dedicated `/collections/daddy-me-shirts` collection currently resolves live.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level parse failures and no `snippets/collection-breadcrumbs.liquid` syntax errors after the follow-up.
+  - Existing unrelated repo errors/warnings remain (`snippets/cjpod.liquid`, `tmp_products.json`, locale translation gaps, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, `snippets/product-thumbnail.liquid`, etc.).
+
+Open items:
+- The `Button-Downs` pill will only render once a `daddy-me-shirts` collection exists and has products; until then the Daddy & Me page will continue showing only the Daddy sub-collections that resolve successfully.
+- Manual preview QA is still needed on `daddy-me`, `daddy-me-t-shirts`, and any future `daddy-me-shirts` collection to confirm active-state behavior and pill ordering.
+
+### Task: Daddy & Me button-down fallback filter + override list
+Date: 2026-03-23
+AGENT_CONTINUITY_ANCHOR: 2026-03-23-daddy-me-button-down-fallback-filter
+Changes:
+- `snippets/collection-breadcrumbs.liquid`
+  - Kept the explicit Daddy & Me handle-to-label mapping for `Tees`, `Button-Downs`, and `Trunks`.
+  - Added a parent `All` pill state for `/collections/daddy-me`.
+  - Forced the `Button-Downs` pill to render on Daddy & Me even when the live `daddy-me-shirts` collection is missing.
+  - Routed that fallback pill to `/collections/daddy-me?dlm-daddy-filter=button-downs` and added `data-daddy-filter` hooks for theme-side filtering.
+- `sections/main-collection-product-grid.liquid`
+  - Added a deferred script include for the Daddy & Me parent collection only.
+- `assets/daddy-me-collection-filter.js`
+  - Added a client-side filter that hides non-matching cards on `/collections/daddy-me` when `dlm-daddy-filter=button-downs` is active.
+  - Matched button-down products by title text containing `shirt` or `shirts` while excluding `t-shirt`, `t shirts`, `tee`, and `tees`.
+  - Updated active pill state, count text, back/forward navigation handling, and AJAX collection refresh handling so the fallback behaves like a normal subcategory tab on the parent collection page.
+- `snippets/breadcrumbs.liquid`
+  - Added display-label mapping so product breadcrumbs show `Tees` and `Button-Downs` instead of the raw collection/metafield labels.
+- `ops/daddy_me_button_down_overrides.csv`
+  - Added an override CSV containing the exact 23 Daddy & Me button-down product handles found on the live collection page.
+  - Set `Category1` to `Daddy and Me`, `SubCategory` to `Daddy & Me Shirts`, `SubCategory2` to `Button-Downs`, and `Type` to `Tops` for future backfill/import use.
+
+Why:
+- Merchant clarification was that the Daddy & Me button-down group is not hypothetical; there are 23 live products that should all be classified under button-downs, and their titles consistently include `shirt` or `shirts`.
+- Live storefront checks confirmed those 23 products exist on `/collections/daddy-me`, but the store still has no live `/collections/daddy-me-shirts` collection to power a normal pill.
+- The theme-side fallback fixes the shopper-facing filter immediately, while the override CSV gives a clean source of truth for the eventual Shopify-side metadata/import cleanup.
+
+Verification:
+- Checked the live Daddy & Me collection and extracted the 23 button-down product handles using the merchant rule: title contains `shirt` or `shirts`, excluding tee variants.
+- Confirmed the supplied example products match that button-down rule.
+- Confirmed `/collections/daddy-me-shirts` still does not resolve live.
+- Ran `node --check assets/daddy-me-collection-filter.js`.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level parse failures from this follow-up.
+  - Existing unrelated repo errors/warnings remain (`snippets/cjpod.liquid`, `tmp_products.json`, locale translation gaps, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, `snippets/product-thumbnail.liquid`, etc.).
+
+Open items:
+- Manual preview QA is still needed on `/collections/daddy-me` to confirm the fallback pill behavior against the live card markup and any pagination/filter combinations.
+- The proper long-term fix is still to create/populate a real `daddy-me-shirts` collection or import the corrected product metadata in Shopify so the fallback query param is no longer needed.
+
+### Task: Exclude Daddy & Me button-down products from the tee collection page
+Date: 2026-03-23
+AGENT_CONTINUITY_ANCHOR: 2026-03-23-daddy-me-tees-exclude-button-downs
+Changes:
+- `sections/main-collection-product-grid.liquid`
+  - Expanded the Daddy & Me collection filter asset include to also load on `daddy-me-t-shirts` and future `daddy-me-shirts` collection pages.
+- `assets/daddy-me-collection-filter.js`
+  - Generalized the Daddy & Me collection filter to detect the current Daddy collection handle from the shared nav markup.
+  - Kept the parent `/collections/daddy-me` query-param fallback behavior for `Button-Downs`.
+  - Added automatic filtering on `/collections/daddy-me-t-shirts` so products whose titles match the button-down rule are hidden there.
+  - Added future-ready automatic filtering on `/collections/daddy-me-shirts` so the page would only show button-down titles if that collection is later created but still contains mixed products.
+
+Why:
+- Live storefront checks on `https://www.dresslikemommy.com/collections/daddy-me-t-shirts` showed the same 23 shirt/button-down products were also appearing in the tee collection.
+- The merchant requirement was to stop those 23 shirt-title products from appearing under `Tees`, even before Shopify-side collection cleanup is completed.
+- Extending the existing theme-side filter is the fastest safe fix because it reuses the same title rule already validated for the Daddy & Me button-down grouping.
+
+Verification:
+- Re-checked the live `daddy-me-t-shirts` collection and confirmed shirt/button-down handles currently appear there.
+- Ran `node --check assets/daddy-me-collection-filter.js`.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level parse failures from this follow-up.
+  - Existing unrelated repo errors/warnings remain (`snippets/cjpod.liquid`, `tmp_products.json`, locale translation gaps, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, `snippets/product-thumbnail.liquid`, etc.).
+
+Open items:
+- Manual preview QA is still needed on `/collections/daddy-me` and `/collections/daddy-me-t-shirts` to confirm the filtered counts and card visibility after collection faceting or pagination updates.
+- Shopify-side metadata and collection rules should still be corrected so the tee collection stops shipping mixed data to the theme in the first place.

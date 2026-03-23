@@ -18,15 +18,29 @@
 {% assign current_collection_label = collection.title | strip %}
 {% assign current_breadcrumb_label = current_collection_label %}
 {% assign collections_base_url = routes.collections_url | append: '/' %}
+{% assign is_daddy_collection_nav = false %}
+{% assign daddy_button_downs_filter_param = 'dlm-daddy-filter=button-downs' %}
+
+{% if current_collection_handle == 'daddy-me'
+  or current_collection_handle == 'daddy-me-t-shirts'
+  or current_collection_handle == 'daddy-me-shirts'
+  or current_collection_handle == 'trunks'
+%}
+  {% assign is_daddy_collection_nav = true %}
+{% endif %}
 
 {% if current_collection_handle == 'daddy-me' %}
   {% assign parent_category = 'sections.breadcrumbs.cat_daddy_me' | t %}
   {% assign current_breadcrumb_label = 'sections.breadcrumbs.cat_daddy_me' | t %}
 {% elsif current_collection_handle == 'daddy-me-t-shirts' %}
   {% assign parent_category = 'sections.breadcrumbs.cat_daddy_me' | t %}
-  {% assign current_breadcrumb_label = 'sections.breadcrumbs.label_tshirts' | t %}
+  {% assign current_breadcrumb_label = 'Tees' %}
+{% elsif current_collection_handle == 'daddy-me-shirts' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_daddy_me' | t %}
+  {% assign current_breadcrumb_label = 'Button-Downs' %}
 {% elsif current_collection_handle == 'trunks' %}
   {% assign parent_category = 'sections.breadcrumbs.cat_daddy_me' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.label_trunks' | t %}
 {% elsif current_collection_handle == 'couples' %}
   {% assign parent_category = 'sections.breadcrumbs.cat_couples' | t %}
   {% assign current_breadcrumb_label = 'sections.breadcrumbs.cat_couples' | t %}
@@ -135,11 +149,10 @@
   {% assign pill_list = pill_items | split: '|||' %}
 {% endif %}
 
-{% if current_collection_handle == 'daddy-me'
-  or current_collection_handle == 'daddy-me-t-shirts'
-  or current_collection_handle == 'trunks'
-%}
-  {% capture daddy_pills %}{{ 'sections.breadcrumbs.label_daddy_tshirts' | t }}|||{{ 'sections.breadcrumbs.label_trunks' | t }}{% endcapture %}
+{% if is_daddy_collection_nav %}
+  {% capture daddy_pills %}
+    daddy-me-t-shirts::Tees|||daddy-me-shirts::Button-Downs|||trunks::{{ 'sections.breadcrumbs.label_trunks' | t }}
+  {% endcapture %}
   {% assign pill_list = daddy_pills | split: '|||' %}
 {% endif %}
 
@@ -160,12 +173,17 @@
 {% if pill_display_label == blank %}
   {% assign pill_display_label = current_collection_label %}
 {% endif %}
+{% if current_collection_handle == 'daddy-me' and is_daddy_collection_nav %}
+  {% assign pill_display_label = 'All' %}
+{% endif %}
 
 {% comment %} --- Check if current collection is in the pill list (only count pills with products) --- {% endcomment %}
 {% assign has_alternate_categories = false %}
 {% assign current_in_options = false %}
 {% for item in pill_list %}
-  {% assign item_handle = item | strip | handleize %}
+  {% assign item_entry = item | strip %}
+  {% assign item_parts = item_entry | split: '::' %}
+  {% assign item_handle = item_parts.first | strip | handleize %}
   {% assign target_collection = collections[item_handle] %}
   {% if item_handle == current_collection_handle %}
     {% assign current_in_options = true %}
@@ -174,8 +192,7 @@
   {% endif %}
 {% endfor %}
 
-{% if current_collection_handle == 'daddy-me'
-  or current_collection_handle == 'new-women-outfits'
+{% if current_collection_handle == 'new-women-outfits'
   or current_collection_handle == 'family-matching-outfits'
 %}
   {% assign current_in_options = true %}
@@ -215,28 +232,39 @@
   </nav>
 
   {% if has_alternate_categories %}
-    <div class="collection-category-nav" role="navigation" aria-label="Collection categories">
+    <div
+      class="collection-category-nav"
+      role="navigation"
+      aria-label="Collection categories"
+      {% if is_daddy_collection_nav %}
+        data-daddy-collection-nav="true"
+        data-current-collection-handle="{{ current_collection_handle | escape }}"
+      {% endif %}
+    >
       <div class="collection-category-nav__tabs-wrap">
         <ul class="collection-category-nav__tabs list-unstyled" role="list">
           {% unless current_in_options %}
             <li class="collection-category-nav__item">
-              <a href="{{ collection.url }}" class="collection-category-nav__tab is-active" aria-current="page">
+              <a
+                href="{{ collection.url }}"
+                class="collection-category-nav__tab is-active"
+                aria-current="page"
+                {% if current_collection_handle == 'daddy-me' and is_daddy_collection_nav %}
+                  data-daddy-filter="all"
+                {% endif %}
+              >
                 {{ pill_display_label }}
               </a>
             </li>
           {% endunless %}
 
           {% for item in pill_list %}
-            {% assign item_label = item | strip %}
-            {% assign item_display_label = item_label %}
-            {% assign item_handle = item_label | handleize %}
-            {% if item_handle == 'daddy-me-t-shirts' %}
-              {% if current_collection_handle == 'daddy-me'
-                or current_collection_handle == 'daddy-me-t-shirts'
-                or current_collection_handle == 'trunks'
-              %}
-                {% assign item_display_label = 'sections.breadcrumbs.label_tshirts' | t %}
-              {% endif %}
+            {% assign item_entry = item | strip %}
+            {% assign item_parts = item_entry | split: '::' %}
+            {% assign item_handle = item_parts.first | strip | handleize %}
+            {% assign item_display_label = item_parts.last | strip %}
+            {% if item_parts.size == 1 %}
+              {% assign item_display_label = item_parts.first | strip %}
             {% endif %}
             {% if current_collection_handle == 'new-women-outfits' or current_collection_handle == 'family-matching-outfits' %}
               {% case item_handle %}
@@ -254,6 +282,7 @@
             {% endif %}
             {% assign target_collection = collections[item_handle] %}
             {% assign force_show_pill = false %}
+            {% assign item_filter_key = '' %}
             {% if current_collection_handle == 'new-women-outfits' or current_collection_handle == 'family-matching-outfits' %}
               {% if item_handle == 'family-swimsuits'
                 or item_handle == 'family-sets'
@@ -263,6 +292,10 @@
               %}
                 {% assign force_show_pill = true %}
               {% endif %}
+            {% endif %}
+            {% if is_daddy_collection_nav and item_handle == 'daddy-me-shirts' and target_collection == blank %}
+              {% assign force_show_pill = true %}
+              {% assign item_filter_key = 'button-downs' %}
             {% endif %}
             {% comment %} Skip pills that link to missing or empty collections {% endcomment %}
             {% if item_handle != current_collection_handle %}
@@ -276,7 +309,14 @@
               {% endunless %}
             {% endif %}
             {% assign pill_url = collections_base_url | append: item_handle %}
-            {% if target_collection != blank %}
+            {% if item_filter_key == 'button-downs' %}
+              {% assign daddy_parent_url = collections_base_url | append: 'daddy-me' %}
+              {% assign daddy_parent_collection = collections['daddy-me'] %}
+              {% if daddy_parent_collection != blank %}
+                {% assign daddy_parent_url = daddy_parent_collection.url %}
+              {% endif %}
+              {% assign pill_url = daddy_parent_url | append: '?' | append: daddy_button_downs_filter_param %}
+            {% elsif target_collection != blank %}
               {% assign pill_url = target_collection.url %}
             {% endif %}
             <li class="collection-category-nav__item">
@@ -285,6 +325,9 @@
                 class="collection-category-nav__tab{% if item_handle == current_collection_handle %} is-active{% endif %}"
                 {% if item_handle == current_collection_handle %}
                   aria-current="page"
+                {% endif %}
+                {% if item_filter_key != blank %}
+                  data-daddy-filter="{{ item_filter_key }}"
                 {% endif %}
               >
                 {{ item_display_label }}
