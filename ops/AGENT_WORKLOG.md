@@ -6961,3 +6961,37 @@ Verification:
 
 Open items:
 - If a merchant still sees raw bullets on a specific preview PDP after refresh, capture that exact URL again because it is likely a different description markup pattern that still needs to be normalized.
+
+### Task: Extend PDP description formatter to wrapped family-product descriptions
+Date: 2026-03-20
+AGENT_CONTINUITY_ANCHOR: 2026-03-20-pdp-wrapper-flattening
+Changes:
+- `assets/product-description.js`
+  - Replaced the narrow single-wrapper unwrapping helper with a broader structure normalizer for product descriptions.
+  - Added support for flattening safe direct-child wrapper `div` blocks that only contain normal rich-text content (`p`, `ul`, `ol`, `table`, `img`, `figure`, nested `div`, `br`).
+  - Allowed harmless alignment wrapper styles (`text-align: start|left`) so copied supplier HTML can still be normalized.
+  - Added removal of empty spacer blocks such as `div><br></div>`, direct `br` nodes, and empty `p`/`div` blocks that only contain `&nbsp;` or whitespace.
+
+Why:
+- Merchant review on `http://127.0.0.1:9292/products/father-son-matching-cotton-tropical-shirts-black-white-palm-print` showed the standardized description layout was still missing outside the earlier mommy-and-me examples.
+- Browser inspection showed the enhancement assets were loading, but the source description content for this product was wrapped in a plain outer `div` followed by spacer blocks, so the formatter never reached the inner paragraph, list, or table nodes.
+- Flattening safe wrappers makes the same standardized presentation apply across more collection/product content patterns without requiring listing-by-listing manual cleanup in Shopify.
+
+Verification:
+- Ran `node --check assets/product-description.js`.
+- Ran browser-level checks with Playwright against:
+  - `http://127.0.0.1:9292/products/father-son-matching-cotton-tropical-shirts-black-white-palm-print`
+  - `http://127.0.0.1:9292/products/blue-tropical-floral-family-matching-beach-dress-and-shirt-set?variant=43740401074273`
+  - `http://127.0.0.1:9292/products/matching-family-beach-outfits-with-floral-dresses-and-shorts?variant=43765460992097`
+  - Confirmed each now reports:
+    - enhanced lead paragraph present,
+    - section heading present,
+    - feature list rendered as `display: grid`,
+    - feature list items rendered as `display: flex`,
+    - size chart wrapped in `.product-copy__table-card`.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level parse failures from this follow-up.
+  - Existing unrelated repo errors/warnings remain, including `snippets/cjpod.liquid`, `tmp_products.json`, locale translation gaps, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, and `snippets/product-thumbnail.liquid`.
+
+Open items:
+- If another product still bypasses the standardized layout, inspect its exact description DOM first; remaining misses will likely be another copied-HTML wrapper pattern rather than a collection-specific template gap.

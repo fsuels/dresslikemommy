@@ -33,6 +33,59 @@ document.addEventListener("DOMContentLoaded", function () {
     return (text.match(/[.!?]/g) || []).length <= 2;
   };
 
+  const hasOnlySafeWrapperAttributes = function (element) {
+    return Array.from(element.attributes || []).every(function (attribute) {
+      if (/^(data-|aria-)/.test(attribute.name)) return true;
+      if (attribute.name !== "style") return false;
+
+      return /^text-align:\s*(start|left);?$/i.test(String(attribute.value || "").trim());
+    });
+  };
+
+  const isTransparentDescriptionWrapper = function (element) {
+    if (!element || element.tagName !== "DIV") return false;
+    if (!element.children.length) return false;
+    if (!hasOnlySafeWrapperAttributes(element)) return false;
+
+    return Array.from(element.children).every(function (child) {
+      return /^(P|DIV|UL|OL|TABLE|IMG|FIGURE|BR)$/.test(child.tagName);
+    });
+  };
+
+  const isEmptySpacerBlock = function (element) {
+    if (!element) return false;
+    if (element.tagName === "BR") return true;
+    if (!/^(P|DIV)$/.test(element.tagName)) return false;
+    if (element.querySelector("table, ul, ol, img, iframe, video, figure, blockquote")) return false;
+
+    return getTextContent(element) === "";
+  };
+
+  const normalizeDescriptionStructure = function (container) {
+    let changed = true;
+
+    while (changed) {
+      changed = false;
+
+      Array.from(container.children).forEach(function (child) {
+        if (!isTransparentDescriptionWrapper(child)) return;
+
+        while (child.firstChild) {
+          container.insertBefore(child.firstChild, child);
+        }
+
+        child.remove();
+        changed = true;
+      });
+
+      Array.from(container.children).forEach(function (child) {
+        if (!isEmptyList(child) && !isEmptySpacerBlock(child)) return;
+        child.remove();
+        changed = true;
+      });
+    }
+  };
+
   const cleanListItem = function (item) {
     if (!item || item.tagName !== "LI") return;
 
@@ -156,6 +209,8 @@ document.addEventListener("DOMContentLoaded", function () {
   descriptions.forEach(function (description) {
     if (description.dataset.productDescriptionReady === "true") return;
 
+    normalizeDescriptionStructure(description);
+
     let leadAssigned = false;
     let highlightsAssigned = false;
     let pendingFeatureParagraphs = [];
@@ -212,13 +267,8 @@ document.addEventListener("DOMContentLoaded", function () {
       pendingFeatureParagraphs = [];
     };
 
-    Array.from(description.querySelectorAll("ul, ol")).forEach(function (listElement) {
-      if (!isEmptyList(listElement)) return;
-      listElement.remove();
-    });
-
     Array.from(description.children).forEach(function (child) {
-      if (isEmptyList(child)) {
+      if (isEmptyList(child) || isEmptySpacerBlock(child)) {
         child.remove();
         return;
       }
