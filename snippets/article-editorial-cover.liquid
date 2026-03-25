@@ -1,0 +1,51 @@
+{%- liquid
+  assign article_handle = article.handle | default: article.url | split: '/' | last
+  assign cover_context = context | default: 'card'
+  assign cover_theme = 'neutral'
+  assign cover_label = 'Family Style Guide'
+  assign article_summary = article.excerpt | strip_html
+
+  if article_summary == blank
+    assign article_summary = article.content | strip_html
+  endif
+
+  if article_handle contains 'swimsuit' or article_handle contains 'beach'
+    assign cover_theme = 'shore'
+    assign cover_label = 'Vacation Swim Edit'
+  elsif article_handle contains 'vacation' or article_handle contains 'cruise' or article_handle contains 'disney'
+    assign cover_theme = 'travel'
+    assign cover_label = 'Travel Style Guide'
+  elsif article_handle contains 'mommy' or article_handle contains 'mother'
+    assign cover_theme = 'rose'
+    assign cover_label = 'Mommy & Me'
+  elsif article_handle contains 'daddy'
+    assign cover_theme = 'cobalt'
+    assign cover_label = 'Daddy & Me'
+  elsif article_handle contains 'pajama'
+    assign cover_theme = 'midnight'
+    assign cover_label = 'Cozy Family Edit'
+  elsif article_handle contains 'photo'
+    assign cover_theme = 'sage'
+    assign cover_label = 'Photo Styling'
+  elsif article_handle contains 'easter' or article_handle contains 'spring'
+    assign cover_theme = 'garden'
+    assign cover_label = 'Seasonal Dressing'
+  elsif article_handle contains 'reunion'
+    assign cover_theme = 'terracotta'
+    assign cover_label = 'Event Dressing'
+  endif
+-%}
+
+<div class="article-editorial-cover article-editorial-cover--{{ cover_theme }} article-editorial-cover--{{ cover_context }}">
+  <div class="article-editorial-cover__top">
+    <p class="article-editorial-cover__kicker">{{ cover_label }}</p>
+    <p class="article-editorial-cover__brand">Dress Like Mommy</p>
+  </div>
+  <div class="article-editorial-cover__body">
+    <p class="article-editorial-cover__journal">Style Journal</p>
+    <p class="article-editorial-cover__title">{{ article.title | escape }}</p>
+    {%- if cover_context == 'hero' and article_summary != blank -%}
+      <p class="article-editorial-cover__summary">{{ article_summary | truncatewords: 26 }}</p>
+    {%- endif -%}
+  </div>
+</div>

@@ -7088,3 +7088,317 @@ Verification:
 Open items:
 - Manual preview QA is still needed on `/collections/daddy-me` and `/collections/daddy-me-t-shirts` to confirm the filtered counts and card visibility after collection faceting or pagination updates.
 - Shopify-side metadata and collection rules should still be corrected so the tee collection stops shipping mixed data to the theme in the first place.
+
+### Task: Translation export/import audit and access requirements
+Date: 2026-03-25
+AGENT_CONTINUITY_ANCHOR: 2026-03-25-translation-audit-access-requirements
+Changes:
+- `ops/translation_audit_2026-03-25.md`
+  - Added an evidence-first audit of the Shopify translation exports in the repo and the claimed generated import CSVs located outside the repo.
+  - Confirmed the import CSVs are structurally valid against source keys, but only cover `0.85%` to `19.51%` of each locale rather than the full export.
+  - Documented translation-quality concerns where many generated rows still contain large English fragments.
+  - Documented current theme-locale gaps from `shopify theme check`, including missing theme translation keys across many locale JSON files and the remaining `general.breadcrumbs.home` gap in `es.json` and `fr.json`.
+
+Why:
+- The prior agent conversation claimed the multilingual import set was complete and ready for store upload. Repo evidence did not support that claim without direct file validation.
+- A clean handoff required separating three different concerns:
+  - source Shopify content translations,
+  - generated import CSV quality/coverage,
+  - theme locale JSON completeness.
+- The merchant also needs a concrete list of the permissions/access needed before any safe translation push or market-language publish can happen.
+
+Verification:
+- Audited source exports in `Dress_Like_Mommy_translations_Mar-24-2026/` and counted `600,914` total rows across `12` CSV files.
+- Validated claimed imports in `/Users/fsuels/project/Dresslikemommy/translations/`:
+  - `19` files found
+  - `74,361` total rows
+  - `0` locale mismatches
+  - `0` source-key mismatches
+- Quantified per-locale coverage and flagged English-heavy translated rows with an overlap heuristic.
+- Ran `shopify theme check --path . --output json --fail-level error` and summarized locale-related errors plus remaining unrelated repo errors.
+
+Open items:
+1) No Shopify import or publish was attempted in this session; safe rollout still requires admin or API access plus market/language QA.
+2) Before multilingual launch, complete the theme locale keys for the target languages and repair the remaining `general.breadcrumbs.home` gap in `es.json` and `fr.json`.
+3) Replace the partial import set with full-locale translation outputs that cover the entire export and pass QA for mixed-language leakage.
+4) If a future session is asked to automate translation pushes, prefer an app/API workflow over manual browser entry and request the minimum necessary Shopify credentials/scopes up front.
+
+### Task: Translation Helper app token exchange attempt
+Date: 2026-03-25
+AGENT_CONTINUITY_ANCHOR: 2026-03-25-translation-helper-token-exchange
+Changes:
+- No repo code changes in this step.
+- Attempted to exchange the newly provided install code for a Shopify Admin API access token using store domain `dresslikemommy-com.myshopify.com`.
+
+Why:
+- The translation rollout should move from browser-only workflow to Admin API workflow for safer, deterministic translation import and verification.
+
+Verification:
+- Confirmed the store domain in repo history and tooling references is `dresslikemommy-com.myshopify.com`.
+- Attempted `POST https://dresslikemommy-com.myshopify.com/admin/oauth/access_token` with the provided app credentials.
+- Shopify responded with:
+  - `invalid_request`
+  - `Missing or invalid client secret`
+
+Open items:
+1) The app credential set provided to the shell is not currently sufficient for token exchange. Request either:
+   - the current app `client_secret` plus a fresh authorization `code`, or
+   - a direct `SHOPIFY_ADMIN_ACCESS_TOKEN` if the app/admin UI exposes one.
+2) Because the client secret was pasted into chat, rotate that secret after a working token is issued.
+
+### Task: Translation Helper app token exchange success + API verification
+Date: 2026-03-25
+AGENT_CONTINUITY_ANCHOR: 2026-03-25-translation-helper-token-success
+Changes:
+- No repo code changes in this step.
+- Exchanged the app authorization code for a working Shopify Admin API token and stored it outside the repo at:
+  - `~/.config/dresslikemommy/translation-helper-token.json`
+- Verified the token by querying the Shopify Admin GraphQL API for store metadata, `shopLocales`, and one product's live ES/FR translations.
+
+Why:
+- The translation workflow can now move from browser-only inspection to deterministic Admin API verification and translation operations.
+
+Verification:
+- Token exchange succeeded against:
+  - `https://dresslikemommy-com.myshopify.com/admin/oauth/access_token`
+- Shopify returned a working access token with scope string:
+  - `write_locales,read_products,write_themes,write_translations`
+- Verified Admin API access with:
+  - `shop { name primaryDomain { url } }`
+  - `shopLocales { locale name primary published }`
+  - `translatableResource(resourceId: "...") { translations(locale: "es"/"fr") ... }`
+- Confirmed live store locale state through API:
+  - `en` primary + published
+  - `es` published
+  - `fr` published
+  - `ar`, `de`, `hi`, `id`, `it`, `ja`, `ko`, `nl`, `pl`, `pt-BR`, `ru`, `sv`, `th`, `tr`, `vi`, `zh-CN`, `zh-TW` present but unpublished
+- Confirmed live ES/FR translations exist for sample product `gid://shopify/Product/6506499013`.
+
+Open items:
+1) The actual granted scope string did not include `read_translations` or `read_themes`, but read-side GraphQL translation queries and locale queries are currently working.
+2) Rotate the app client secret because it was exposed in chat during setup.
+3) Next translation session can use the stored Admin API token to audit live coverage and build a proper full-locale translation/import pipeline.
+
+### Task: Style Journal rollout, live theme publish, and blog content pipeline
+Date: 2026-03-25
+AGENT_CONTINUITY_ANCHOR: 2026-03-25-style-journal-live-rollout
+Changes:
+- Theme/blog UX:
+  - Reworked the blog index in `sections/main-blog.liquid`, `snippets/article-card.liquid`, `assets/section-main-blog.css`, and `assets/component-article-card.css` so `/blogs/news` renders as an editorial `Style Journal` with a stronger header, intro copy, featured lead article, full-card imagery, full titles, improved excerpts, and cleaner CTA treatment.
+  - Reworked article pages in `sections/main-article.liquid` and `assets/section-blog-post.css` with a visible breadcrumb trail, stronger article header treatment, a collection CTA block, a related posts grid, and `BlogPosting`/breadcrumb JSON-LD support via `snippets/jsonld-seo.liquid`.
+  - Updated blog/article meta fallbacks in `layout/theme.liquid` and `snippets/meta-tags.liquid` so the `news` blog presents publicly as `Style Journal` with cleaner meta description fallbacks.
+  - Hid top-level blog links from the primary header navigation through `sections/header.liquid`, `sections/header-group.json`, `snippets/header-mega-menu.liquid`, `snippets/header-dropdown-menu.liquid`, and `snippets/header-drawer.liquid`.
+  - Kept discovery through the homepage featured-blog surface in `templates/index.json` and removed list-surface dates in `templates/blog.json` and `templates/index.json` so clustered publish dates do not make the journal feel mass-produced.
+- Content operations:
+  - Added repo-side journal workflow in `ops/content/style-journal/` with `strategy.md`, `README.md`, `editorial-calendar-q2-2026.md`, and `article-template.html`.
+  - Added `ops/scripts/publish_blog_articles.py` to publish frontmatter HTML drafts into Shopify via Admin GraphQL.
+    - Dry run works without credentials.
+    - Fixed `--publish` behavior so future `publish_date` values no longer conflict with immediate-publish runs.
+    - Added an explicit note that Shopify's current `articleCreate` / `articleUpdate` inputs do not expose article SEO title/meta description fields.
+  - Added `12` publish-ready article drafts under `ops/content/style-journal/articles/`:
+    - `8` net-new posts
+    - `4` rewrite drafts matching existing live article handles so they can be pushed with `--update-existing`
+
+Why:
+- The live storefront had indexed articles, but the journal still looked generic and low-trust, with weak card presentation and a `Blog` link sitting in the main conversion navigation.
+- For this store, the stronger strategy is product-first navigation plus content discovery from homepage blocks, internal links, related posts, footer/support navigation, and search indexing.
+- Traffic quality matters more than raw article count. The content pipeline was added so future publishing can be paced weekly and focused on high-intent topics instead of bulk AI listicles.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/publish_blog_articles.py`.
+- Ran `python3 ops/scripts/publish_blog_articles.py`.
+  - Result: dry run succeeded and found `12` valid drafts.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level parse failures from this journal pass; existing unrelated repo issues remain in legacy files/locales.
+- Pushed only the affected journal/theme files to development theme `#133851742305`.
+- Verified the development preview by requesting the preview-theme cookie and checking:
+  - `/blogs/news` now includes `main-blog__header`, `main-blog__featured`, and the updated article card media wrapper.
+  - `/blogs/news/the-complete-guide-to-family-matching-outfits` now includes `article-template__breadcrumb`, `article-template__shop-links`, `article-template__related`, and `BlogPosting` markup.
+- Pushed the same file set to live theme `#133290917985`.
+- Verified the public storefront now returns:
+  - `/blogs/news` with the new journal layout and no top-level `Blog` nav item in primary navigation HTML.
+  - `/blogs/news/the-complete-guide-to-family-matching-outfits` with the new breadcrumb, related-post, and shop-link structure.
+  - homepage HTML containing the featured-blog surface and `Style Journal` copy.
+
+Open items:
+- No Shopify Admin API credentials were available in the shell (`SHOPIFY_STORE_DOMAIN` / `SHOPIFY_ADMIN_ACCESS_TOKEN` were unset), so the `12` draft articles were prepared in-repo but not published or updated live in this session.
+- To push the rewrite drafts into existing articles later, run `ops/scripts/publish_blog_articles.py --update-existing --execute` with the required Shopify Admin credentials.
+- The strongest next content step is to replace the weakest existing live posts with the rewrite drafts first, then publish the new travel/summer articles on a weekly cadence instead of batching them on the same date.
+
+### Task: Install third-party autoresearch Codex skill
+Date: 2026-03-25
+AGENT_CONTINUITY_ANCHOR: 2026-03-25-autoresearch-skill-install
+Changes:
+- No theme or app code changes.
+- Installed the third-party Codex skill `autoresearch-universal` outside the repo at:
+  - `~/.codex/skills/autoresearch-universal`
+- Source repo used:
+  - `https://github.com/balukosuri/Andrej-Karpathy-s-Autoresearch-As-a-Universal-Skill`
+- Verified installed files:
+  - `SKILL.md`
+  - `README.md`
+  - `ARTICLE.md`
+
+Why:
+- User requested the Karpathy-style autoresearch skill to be installed locally and explained for future use in Codex.
+- The installed skill is not an official Andrej Karpathy Codex skill; it is a third-party skill derived from the autoresearch pattern described in Karpathy's `autoresearch` project.
+
+Verification:
+- Ran the local installer script:
+  - `python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py --repo balukosuri/Andrej-Karpathy-s-Autoresearch-As-a-Universal-Skill --path . --name autoresearch-universal`
+- Installer result:
+  - `Installed autoresearch-universal to /Users/fsuels/.codex/skills/autoresearch-universal`
+- Verified the installed skill header reports:
+  - `name: autoresearch-universal`
+  - description indicates it scans repos, proposes targets, defines binary evals, and runs a generate/eval/mutate loop
+
+Open items:
+- Codex must be restarted before the new skill is picked up automatically in future sessions.
+- The current collaboration mode is `Default`; the skill itself requires starting in Plan mode for discovery/metric setup before any loop execution.
+
+### Task: Harden Shopify translation pipeline for parallel locale workers
+Date: 2026-03-25
+AGENT_CONTINUITY_ANCHOR: 2026-03-25-parallel-shopify-translation-workers
+Changes:
+- Added new script:
+  - `ops/scripts/build_theme_locale.py`
+- Updated translation pipeline scripts:
+  - `ops/scripts/translation_utils.py`
+  - `ops/scripts/sync_shopify_translations.py`
+- Generated missing theme locale files:
+  - `locales/ar.json`
+  - `locales/hi.json`
+
+Why:
+- The first attempt to parallelize locale builds directly against Shopify GraphQL hit Admin API throttling.
+- The translation backend also failed on oversized HTML product descriptions and markup-heavy metafield rows, which made the locale batches brittle.
+- The store still lacked complete theme locale files for `ar` and `hi`, so those languages could not render theme UI safely.
+
+What changed:
+- `sync_shopify_translations.py`
+  - writes locale-batch-specific cache/report/jsonl artifacts instead of one shared path
+  - supports a cached live digest snapshot via `--live-map-path`
+  - supports `--fetch-live-map-only` so Shopify resource digests can be fetched once and reused by parallel offline workers
+  - retries GraphQL requests on `THROTTLED`
+  - records simple English-overlap QA samples in the generated reports
+- `translation_utils.py`
+  - chunks oversized strings before fallback translation so long `body_html` descriptions do not trip the 5k-character deep-translator limit
+  - marks markup-heavy rows as non-translatable instead of crashing the worker
+- `build_theme_locale.py`
+  - builds a full locale file from `locales/en.default.json` using the existing translation backend, glossary protection, and cache
+
+Verification:
+- Ran `python3 -m py_compile` on:
+  - `ops/scripts/translation_utils.py`
+  - `ops/scripts/sync_shopify_translations.py`
+  - `ops/scripts/build_theme_locale.py`
+- Warmed and saved a reusable Shopify digest snapshot at:
+  - `ops/content/shopify-live-digest-map.json`
+- Confirmed live snapshot counts include:
+  - `PRODUCT: 704`
+  - `PRODUCT_OPTION: 1299`
+  - `PRODUCT_OPTION_VALUE: 10710`
+  - `METAFIELD: 8939`
+  - `MEDIA_IMAGE: 6557`
+- Built new theme locale files:
+  - `ar: wrote locales/ar.json with 393 translated strings`
+  - `hi: wrote locales/hi.json with 393 translated strings`
+- Checked locale-specific theme errors from `shopify theme check --output json --fail-level error`:
+  - `locales/ar.json: 0`
+  - `locales/hi.json: 0`
+
+In-progress worker state:
+- Parallel content-build workers were relaunched against the cached live digest map with isolated artifacts:
+  - west: `es,fr,de,it,pt-BR`
+  - northern: `nl,pl,ru,sv,tr`
+  - asia: `ar,hi,id,th,vi`
+  - cjk: `ja,ko,zh-CN,zh-TW`
+- Current active artifacts:
+  - `ops/content/shopify-translation-cache-west.json`
+  - `ops/content/shopify-translation-cache-northern.json`
+  - `ops/content/shopify-translation-cache-asia.json`
+  - `ops/content/shopify-translation-cache-cjk.json`
+  - matching `shopify-translation-sync-report-*.json` and `shopify-translation-bulk-*.jsonl` files will be created on completion
+
+Open items:
+- The content workers are still running as of this entry; do not publish or import anything until the batch reports exist and QA has been reviewed.
+- After the reports land, sample-check the overlap QA output before running `--execute` against Shopify.
+- Theme locale files for `ar` and `hi` were machine-generated and should still get a quick merchandising-language review before pushing to live.
+
+### Task: Style Journal footer-only placement and editorial cover system
+Date: 2026-03-25
+AGENT_CONTINUITY_ANCHOR: 2026-03-25-style-journal-footer-only-covers
+Changes:
+- `templates/index.json`
+  - Removed the homepage `featured-blog` section so blog articles no longer surface on the homepage.
+- `sections/footer.liquid`
+- `sections/footer-group.json`
+  - Added one dedicated footer-only `Style Journal` link sourced from the `news` blog.
+  - Suppressed `/blogs/` links inside footer menus so the footer does not show duplicate blog links if Shopify admin menus already contain `Blog`.
+- `snippets/article-editorial-cover.liquid`
+- `snippets/article-card.liquid`
+- `sections/main-blog.liquid`
+- `sections/main-article.liquid`
+- `assets/component-article-card.css`
+- `assets/section-main-blog.css`
+- `assets/section-blog-post.css`
+  - Added a theme-side editorial cover system for `news` articles so the blog index and article hero no longer rely on repetitive stock-like featured photos.
+  - Cover styling now varies by article topic cluster (`mommy`, `daddy`, `swim`, `travel`, `photos`, `seasonal`, `reunion`, etc.) using different palettes and labels.
+
+Why:
+- Merchant requested that blog articles should not appear on the homepage and should only be linked from the footer.
+- Merchant also rejected the repetitive article-image look. Since Shopify Admin image updates were not part of this theme-only pass, a theme-side editorial cover system was the fastest way to give every article a cleaner and more distinct visual treatment.
+
+Verification:
+- Validated `templates/index.json` and `sections/footer-group.json` JSON after edits.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level parse failures from this pass; existing unrelated repo issues remain.
+- Pushed the changed files to development theme `#133851742305` and verified with preview-cookie requests that:
+  - homepage HTML no longer contains the `featured-blog` section
+  - homepage now contains exactly one `/blogs/news` anchor: `Style Journal`
+  - `/blogs/news` returns `article-editorial-cover--featured` and `article-editorial-cover--card`
+  - `/blogs/news/the-complete-guide-to-family-matching-outfits` returns `article-template__hero-cover` and `article-editorial-cover--hero`
+- Pushed the same file set to live theme `#133290917985`.
+- Verified public storefront HTML now shows:
+  - homepage with no blog strip and a single footer `Style Journal` link
+  - blog index with editorial cover markup
+  - article pages with the editorial hero cover still paired with breadcrumb and shop-link structure
+
+Open items:
+- This pass changes on-site visuals only. Shopify Admin article featured images and OG image tags still use the original article images unless they are updated separately in Shopify admin.
+- If a future session receives curated real photos or admin API access, the theme-side editorial covers can stay as the on-site system or be removed once stronger bespoke article imagery exists.
+
+### Task: Sync current 115-change worktree to main
+Date: 2026-03-25
+Changes:
+- Prepared the full current `git status -uall` worktree for commit on `main`.
+- Scope included 115 status entries across theme updates, new locale files, Style Journal content assets, redirect-audit artifacts, translation caches, Shopify translation export CSVs, and new ops scripts.
+- Left older local CRO feature branches untouched because this sync request matched the current 115-entry worktree on `main`.
+
+Verification:
+- Confirmed `git status --porcelain=v1 -uall | wc -l` returned `115`.
+- Ran `python3 -m py_compile ops/scripts/*.py`.
+- Ran `git diff --check`.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level failures from this sync set; existing repo issues and warnings remain outside this pass.
+- Confirmed the Shopify JSON/template and locale files in this change set parse correctly after ignoring Shopify's leading autogenerated comment block.
+
+Open items:
+- Local branches reported by `git branch --no-merged main` still exist as separate historical workstreams and were not merged as part of this commit.
+
+### Task: Sanitize generated translation artifacts for push protection
+Date: 2026-03-25
+Changes:
+- Replaced a Yandex translation token value in generated ops/cache artifacts before pushing `main`.
+- Sanitized:
+  - `Dress_Like_Mommy_translations_Mar-24-2026/Dress_Like_Mommy_translations_Mar-24-2026_4.csv`
+  - `ops/content/shopify-translation-cache-asia.json`
+  - `ops/content/shopify-translation-cache-west.json`
+  - `ops/content/shopify-translation-cache.json`
+  - `ops/content/shopify-live-digest-map.json`
+
+Why:
+- GitHub push protection rejected the sync commit because the generated artifacts contained a Yandex API token-like value.
+
+Verification:
+- Confirmed the exact `trnsl...` token no longer appears anywhere in the pushed artifact set with `rg -F`.

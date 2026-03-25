@@ -22,9 +22,14 @@
     assign article_title = article.title | escape
     assign article_excerpt = article.excerpt | strip_html
     assign article_image_alt = article.image.alt | default: article.title
+    assign use_editorial_cover = false
 
     if article_excerpt == blank
       assign article_excerpt = article.content | strip_html
+    endif
+
+    if article.url contains '/blogs/news/'
+      assign use_editorial_cover = true
     endif
   -%}
   <div class="article-card-wrapper card-wrapper underline-links-hover">
@@ -33,36 +38,40 @@
       aria-labelledby="Article-{{ article.id }}"
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%; --article-card-media-ratio: {{ ratio }};"
     >
-      {%- if show_image == true and article.image -%}
+      {%- if show_image == true and article.image or use_editorial_cover -%}
         <div
           class="card__inner article-card__inner ratio"
           style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%; --article-card-media-ratio: {{ ratio }};"
         >
           <a href="{{ article.url }}" class="article-card__image-wrapper card__media">
-            <div class="article-card__image media media--hover-effect">
-              {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
-              <img
-                srcset="
-                  {%- if article.image.width >= 165 -%}{{ article.image | image_url: width: 165 }} 165w,{%- endif -%}
-                  {%- if article.image.width >= 360 -%}{{ article.image | image_url: width: 360 }} 360w,{%- endif -%}
-                  {%- if article.image.width >= 533 -%}{{ article.image | image_url: width: 533 }} 533w,{%- endif -%}
-                  {%- if article.image.width >= 720 -%}{{ article.image | image_url: width: 720 }} 720w,{%- endif -%}
-                  {%- if article.image.width >= 1000 -%}{{ article.image | image_url: width: 1000 }} 1000w,{%- endif -%}
-                  {%- if article.image.width >= 1500 -%}{{ article.image | image_url: width: 1500 }} 1500w,{%- endif -%}
-                  {{ article.image | image_url }} {{ article.image.width }}w
-                "
-                src="{{ article.image | image_url: width: 720 }}"
-                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 120px) / 2), calc(100vw - 48px)"
-                alt="{{ article_image_alt | escape }}"
-                class="motion-reduce"
-                {% unless lazy_load == false %}
-                  loading="lazy"
-                {% endunless %}
-                width="{{ article.image.width }}"
-                height="{{ article.image.height }}"
-              >
-              {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
-            </div>
+            {%- if use_editorial_cover -%}
+              {% render 'article-editorial-cover', article: article, context: 'card' %}
+            {%- else -%}
+              <div class="article-card__image media media--hover-effect">
+                {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+                <img
+                  srcset="
+                    {%- if article.image.width >= 165 -%}{{ article.image | image_url: width: 165 }} 165w,{%- endif -%}
+                    {%- if article.image.width >= 360 -%}{{ article.image | image_url: width: 360 }} 360w,{%- endif -%}
+                    {%- if article.image.width >= 533 -%}{{ article.image | image_url: width: 533 }} 533w,{%- endif -%}
+                    {%- if article.image.width >= 720 -%}{{ article.image | image_url: width: 720 }} 720w,{%- endif -%}
+                    {%- if article.image.width >= 1000 -%}{{ article.image | image_url: width: 1000 }} 1000w,{%- endif -%}
+                    {%- if article.image.width >= 1500 -%}{{ article.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                    {{ article.image | image_url }} {{ article.image.width }}w
+                  "
+                  src="{{ article.image | image_url: width: 720 }}"
+                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 120px) / 2), calc(100vw - 48px)"
+                  alt="{{ article_image_alt | escape }}"
+                  class="motion-reduce"
+                  {% unless lazy_load == false %}
+                    loading="lazy"
+                  {% endunless %}
+                  width="{{ article.image.width }}"
+                  height="{{ article.image.height }}"
+                >
+                {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+              </div>
+            {%- endif -%}
           </a>
         </div>
       {%- endif -%}

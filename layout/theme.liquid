@@ -70,8 +70,44 @@
 
   {%- liquid
     assign resolved_page_title = page_title
+    assign resolved_page_description = page_description
+    assign collection_seo_display_title = blank
+    assign collection_seo_meta_description = blank
+
+    if request.page_type == 'collection' and collection != blank
+      capture collection_seo_display_title
+        render 'collection-seo-fallback', collection: collection, field: 'display_title'
+      endcapture
+      assign collection_seo_display_title = collection_seo_display_title | strip
+
+      capture collection_seo_meta_description
+        render 'collection-seo-fallback', collection: collection, field: 'meta_description'
+      endcapture
+      assign collection_seo_meta_description = collection_seo_meta_description | strip
+    endif
+
     if request.page_type == 'collection' and collection != blank and collection.handle == 'swimsuits'
       assign resolved_page_title = 'Swimsuits'
+    elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
+      assign resolved_page_title = 'Style Journal'
+    endif
+
+    if request.page_type == 'collection' and collection != blank
+      if collection.handle == 'all' or resolved_page_title == blank or resolved_page_title == collection.title
+        if collection_seo_display_title != blank
+          assign resolved_page_title = collection_seo_display_title
+        endif
+      endif
+    endif
+
+    if resolved_page_description == blank
+      if request.page_type == 'collection' and collection != blank and collection_seo_meta_description != blank
+        assign resolved_page_description = collection_seo_meta_description
+      elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
+        assign resolved_page_description = 'Outfit guides, styling tips, and shopping advice for mommy and me, daddy and me, and family matching looks.'
+      elsif request.page_type == 'article' and article != blank
+        assign resolved_page_description = article.excerpt | default: article.content | strip_html | truncatewords: 28
+      endif
     endif
   -%}
 
@@ -82,8 +118,8 @@
     {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
     {%- unless resolved_page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
   </title>
-  {% if page_description %}
-  <meta name="description" content="{{ page_description | escape }}">
+  {% if resolved_page_description %}
+  <meta name="description" content="{{ resolved_page_description | escape }}">
   {% endif %}
 
   <!-- Other Meta Tags -->
