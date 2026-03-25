@@ -2,9 +2,19 @@
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
+  capture collection_seo_display_title
+    render 'collection-seo-fallback', collection: collection, field: 'display_title'
+  endcapture
+  assign collection_seo_display_title = collection_seo_display_title | strip
+
+  capture collection_seo_body_description
+    render 'collection-seo-fallback', collection: collection, field: 'body_description'
+  endcapture
+  assign collection_seo_body_description = collection_seo_body_description | strip
+
   assign collection_display_title = collection.title
-  if collection.handle == 'swimsuits'
-    assign collection_display_title = 'sections.collection.swimsuits_override' | t
+  if collection_seo_display_title != blank
+    assign collection_display_title = collection_seo_display_title
   endif
 -%}
 
@@ -20,12 +30,15 @@
   <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     <div class="collection-hero__text-wrapper">
       <h1 class="collection-hero__title">
-        <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
         {{- collection_display_title | escape -}}
       </h1>
 
-      {%- if section.settings.show_collection_description and collection.description != blank -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
+      {%- if section.settings.show_collection_description -%}
+        {%- if collection.description != blank -%}
+          <div class="collection-hero__description rte">{{ collection.description }}</div>
+        {%- elsif collection_seo_body_description != blank -%}
+          <div class="collection-hero__description rte">{{ collection_seo_body_description }}</div>
+        {%- endif -%}
       {%- endif -%}
     </div>
 

@@ -1,0 +1,160 @@
+{%- liquid
+  assign collection_handle = collection.handle | default: ''
+  assign collection_title = collection.title | default: ''
+  assign effective_display_title = collection_title
+
+  case collection_handle
+    when 'all'
+      assign effective_display_title = 'All Matching Outfits for Families, Couples, Moms and Kids'
+    when 'swimsuits'
+      assign effective_display_title = 'sections.collection.swimsuits_override' | t
+    when 'dresses'
+      assign effective_display_title = 'Matching Dresses for Moms, Kids and Families'
+    when 'tops'
+      assign effective_display_title = 'Matching Tops and Tees for Coordinated Family Looks'
+    when 'pajamas'
+      assign effective_display_title = 'Matching Pajamas for Moms, Kids and Families'
+    when 'sweaters'
+      assign effective_display_title = 'Matching Sweaters and Jackets for Moms, Kids and Families'
+    when 'maxi-dresses'
+      assign effective_display_title = 'Matching Maxi Dresses for Moms and Daughters'
+    when 'jumpsuits'
+      assign effective_display_title = 'Matching Jumpsuits for Moms, Kids and Families'
+    when 'midi-dresses'
+      assign effective_display_title = 'Matching Midi Dresses for Moms and Daughters'
+    when 'mini-dresses'
+      assign effective_display_title = 'Matching Mini Dresses for Moms and Daughters'
+    when 'rompers'
+      assign effective_display_title = 'Matching Rompers for Babies, Kids and Families'
+    when 'sundresses'
+      assign effective_display_title = 'Matching Sundresses for Moms and Daughters'
+    when 'bottoms'
+      assign effective_display_title = 'Matching Bottoms for Moms, Kids and Families'
+    when 'skirts'
+      assign effective_display_title = 'Matching Skirts for Moms, Daughters and Family Sets'
+    when 'leggings'
+      assign effective_display_title = 'Matching Leggings for Moms, Kids and Family Sets'
+    when 'pants'
+      assign effective_display_title = 'Matching Pants for Moms, Kids and Family Sets'
+    when 'new-arrivals'
+      assign effective_display_title = 'New Matching Outfit Arrivals'
+    when 'new-matching-outfits'
+      assign effective_display_title = 'New Mommy and Me Matching Outfits'
+    when 'new-women-outfits'
+      assign effective_display_title = 'New Womens Matching Styles'
+    when 'maternity'
+      assign effective_display_title = 'Maternity Dresses and Nursing-Friendly Styles'
+    when 'popular-mommy-me-1'
+      assign effective_display_title = 'Popular Mommy and Me Matching Outfits'
+    when 'popular-family-matching'
+      assign effective_display_title = 'Popular Family Matching Outfits'
+    when 'trunks'
+      assign effective_display_title = 'Matching Swim Trunks for Dads, Boys and Families'
+    when 'fall-winter'
+      assign effective_display_title = 'Fall and Winter Matching Outfits'
+    when 'formal-dresses'
+      assign effective_display_title = 'Matching Formal Dresses for Moms, Daughters and Families'
+    when 'christmas-sweaters'
+      assign effective_display_title = 'Matching Christmas Sweaters for Families'
+    when 'christmas-tops'
+      assign effective_display_title = 'Matching Christmas Tops for Families'
+    when 'christmas-pajamas'
+      assign effective_display_title = 'Matching Christmas Pajamas for Families'
+    when 'valentines-day-matching-outfits-1'
+      assign effective_display_title = "Valentine's Day Matching Outfits"
+  endcase
+
+  assign audience_long = 'moms, kids, and coordinated family looks'
+  assign product_examples_short = 'dresses, tops, pajamas, swimwear, and seasonal layers'
+  assign occasion_label = 'family photos, holidays, vacations, and everyday wear'
+
+  if collection_handle == 'all'
+    assign audience_long = 'families, couples, moms, dads, and kids'
+    assign product_examples_short = 'mommy and me, daddy and me, couples, and family sets'
+  elsif collection_handle contains 'christmas'
+    assign audience_long = 'the whole family during the holiday season'
+    assign product_examples_short = 'festive pajamas, sweaters, tops, and holiday-ready sets'
+  elsif collection_handle contains 'valentines'
+    assign audience_long = 'families, couples, and moms with kids celebrating together'
+    assign product_examples_short = 'festive tops, dresses, pajamas, and coordinated sets'
+  elsif collection_handle contains 'mommy' or collection_handle == 'best-sellers' or collection_handle == 'popular-mommy-me-1' or collection_handle == 'new-matching-outfits'
+    assign audience_long = 'moms and daughters who want easy, photo-ready coordination'
+    assign product_examples_short = 'dresses, swimwear, pajamas, and photo-ready sets'
+  elsif collection_handle contains 'daddy'
+    assign audience_long = 'dads and kids who want easy matching looks'
+    assign product_examples_short = 'tees, shirts, swimwear, and coordinated sets'
+  elsif collection_handle contains 'couples'
+    assign audience_long = 'couples shopping for date nights, trips, holidays, and gifts'
+    assign product_examples_short = 'tees, pajamas, vacation looks, and giftable sets'
+  elsif collection_handle contains 'family' or collection_handle == 'matching-outfits' or collection_handle == 'popular-family-matching'
+    assign audience_long = 'the whole family, from babies and toddlers to parents'
+    assign product_examples_short = 'dresses, pajamas, swimwear, tops, and seasonal sets'
+  elsif collection_handle == 'maternity'
+    assign audience_long = 'pregnancy, nursing, and postpartum comfort'
+    assign product_examples_short = 'bump-friendly dresses, soft basics, and nursing-friendly silhouettes'
+  elsif collection_handle == 'trunks'
+    assign audience_long = 'dads, boys, and coordinated family swim looks'
+    assign product_examples_short = 'swim trunks, rash guards, and coordinated beach-ready styles'
+  endif
+
+  if collection_handle contains 'christmas'
+    assign occasion_label = 'Christmas morning, holiday photos, winter parties, and cozy nights in'
+  elsif collection_handle contains 'valentines'
+    assign occasion_label = "Valentine's Day photos, gifts, date nights, and special outings"
+  elsif collection_handle == 'fall-winter'
+    assign occasion_label = 'cool-weather outings, family photos, holiday events, and cozy weekends'
+  endif
+
+  if collection_handle == 'tops' or collection_handle contains 't-shirt' or collection_handle contains 'top'
+    assign product_examples_short = 'tops, tees, and easy everyday layers'
+  elsif collection_handle == 'pajamas' or collection_handle contains 'pajama'
+    assign product_examples_short = 'cozy sleepwear, holiday sets, and lounge-ready looks'
+  elsif collection_handle == 'swimsuits' or collection_handle contains 'swimsuit' or collection_handle == 'trunks'
+    assign product_examples_short = 'one-pieces, bikinis, rash guards, and swim trunks'
+  elsif collection_handle == 'sweaters' or collection_handle contains 'sweater' or collection_handle == 'fall-winter'
+    assign product_examples_short = 'cozy knits, jackets, and cold-weather layers'
+  elsif collection_handle == 'bottoms' or collection_handle == 'leggings' or collection_handle == 'pants' or collection_handle == 'skirts'
+    assign product_examples_short = 'leggings, skirts, pants, and mix-and-match separates'
+  elsif collection_handle == 'dresses' or collection_handle contains 'dress'
+    assign product_examples_short = 'casual styles, party looks, and photo-ready dresses'
+  elsif collection_handle == 'jumpsuits' or collection_handle == 'rompers'
+    assign product_examples_short = 'easy one-piece looks for play, travel, and photos'
+  elsif collection_handle == 'new-arrivals' or collection_handle contains 'new-'
+    assign product_examples_short = 'the latest dresses, sets, swimwear, and seasonal styles'
+  elsif collection_handle == 'best-sellers' or collection_handle contains 'popular'
+    assign product_examples_short = 'top-rated dresses, pajamas, swimwear, and coordinated sets'
+  endif
+
+  capture generated_meta_description
+    if collection_handle == 'all'
+      echo 'Shop all matching outfits in one place, including mommy and me, daddy and me, couples, and family sets. Comfortable styles with fast shipping.'
+    else
+      echo 'Shop '
+      echo effective_display_title | downcase
+      echo ' at Dress Like Mommy. Coordinated styles with comfortable fits for photos, holidays, and everyday wear.'
+    endif
+  endcapture
+  assign generated_meta_description = generated_meta_description | strip | strip_newlines | replace: '  ', ' '
+
+  capture generated_body_description
+    echo '<p>Explore our '
+    echo effective_display_title | escape
+    echo ' collection with '
+    echo product_examples_short | escape
+    echo ' designed for '
+    echo audience_long | escape
+    echo '. These coordinated styles make it easy to dress together for '
+    echo occasion_label | escape
+    echo '.</p>'
+    echo '<p>From soft fabrics and easy sizing to playful prints and polished color palettes, each look is chosen to help you match without sacrificing comfort. Shop Dress Like Mommy for pieces that photograph beautifully, feel great in real life, and work across seasons.</p>'
+  endcapture
+
+  case field
+    when 'display_title'
+      echo effective_display_title | strip
+    when 'meta_description'
+      echo generated_meta_description | truncate: 155, ''
+    when 'body_description'
+      echo generated_body_description
+  endcase
+-%}
