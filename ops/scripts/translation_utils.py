@@ -109,7 +109,17 @@ def markup_heavy_text(text):
 
 
 class TranslationBackend:
-    def __init__(self, cache_path, glossary_path=None, batch_size=40, pause_seconds=0.25, retries=3, request_timeout=20, batch_char_limit=3500):
+    def __init__(
+        self,
+        cache_path,
+        glossary_path=None,
+        batch_size=40,
+        pause_seconds=0.25,
+        retries=3,
+        request_timeout=20,
+        batch_char_limit=3500,
+        progress_interval=5,
+    ):
         self.cache_path = Path(cache_path)
         self.cache_path.parent.mkdir(parents=True, exist_ok=True)
         if self.cache_path.exists():
@@ -122,6 +132,7 @@ class TranslationBackend:
         self.retries = retries
         self.request_timeout = request_timeout
         self.batch_char_limit = batch_char_limit
+        self.progress_interval = progress_interval
 
     def _save_cache(self):
         self.cache_path.write_text(json.dumps(self.cache, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -296,7 +307,7 @@ class TranslationBackend:
     def translate_text(self, locale, text):
         return self._translate_single_uncached(locale, text)
 
-    def translate_many(self, locale, texts):
+    def translate_many(self, locale, texts, progress_label=None):
         locale_cache = self.cache.setdefault(locale, {})
         missing = []
         order = []
@@ -305,13 +316,23 @@ class TranslationBackend:
             if text not in locale_cache:
                 missing.append(text)
 
+        original_missing = len(missing)
         oversized = [text for text in missing if len(text) > 4500]
-        for text in oversized:
+        for idx, text in enumerate(oversized, start=1):
             locale_cache[text] = self._translate_single_uncached(locale, text)
+            if progress_label and (idx == 1 or idx % self.progress_interval == 0 or idx == len(oversized)):
+                completed = original_missing - len([item for item in missing if item not in locale_cache])
+                print(
+                    f"[progress] {progress_label} oversized={idx}/{len(oversized)} "
+                    f"completed={completed}/{original_missing} cache={len(locale_cache)}",
+                    flush=True,
+                )
         missing = [text for text in missing if text not in locale_cache]
 
         if missing:
-            for batch in self._iter_batches(missing):
+            batches = list(self._iter_batches(missing))
+            processed = original_missing - len(missing)
+            for batch_index, batch in enumerate(batches, start=1):
                 prepared = []
                 batch_replacements = []
                 for text in batch:
@@ -354,5 +375,16 @@ class TranslationBackend:
                 self._save_cache()
                 if self.pause_seconds:
                     time.sleep(self.pause_seconds)
+                processed += len(batch)
+                if progress_label and (
+                    batch_index == 1
+                    or batch_index % self.progress_interval == 0
+                    or batch_index == len(batches)
+                ):
+                    print(
+                        f"[progress] {progress_label} batch={batch_index}/{len(batches)} "
+                        f"completed={processed}/{original_missing} cache={len(locale_cache)}",
+                        flush=True,
+                    )
 
         return {text: locale_cache[text] for text in order}

@@ -162,3 +162,142 @@
     text-align: left;
   }
 }
+
+/* ── Featured Read Time ── */
+.main-blog__featured-read-time {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.45);
+}
+
+/* ── Newsletter Section ── */
+.main-blog__newsletter {
+  grid-column: 1 / -1;
+}
+
+.main-blog__newsletter-card {
+  padding: 3.2rem 2.4rem;
+  border-radius: 2.8rem;
+  background: linear-gradient(135deg, rgba(var(--color-foreground), 0.02) 0%, rgba(var(--color-foreground), 0.06) 100%);
+  text-align: center;
+}
+
+.main-blog__newsletter-eyebrow {
+  margin: 0 0 0.8rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.5);
+}
+
+.main-blog__newsletter-title {
+  margin: 0 0 1rem;
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  line-height: 1.1;
+}
+
+.main-blog__newsletter-text {
+  margin: 0 auto 2rem;
+  max-width: 52rem;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: rgba(var(--color-foreground), 0.7);
+}
+
+.main-blog__newsletter-form {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.main-blog__newsletter-field {
+  display: flex;
+  gap: 1rem;
+}
+
+.main-blog__newsletter-input {
+  flex: 1;
+  min-width: 0;
+  padding: 1.2rem 1.6rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  border-radius: 1.2rem;
+  font-size: 1.5rem;
+  background: rgb(var(--color-background));
+}
+
+.main-blog__newsletter-button {
+  flex-shrink: 0;
+  border-radius: 1.2rem;
+}
+
+@media screen and (max-width: 549px) {
+  .main-blog__newsletter-field {
+    flex-direction: column;
+  }
+}
+
+/* ── About the Style Journal ── */
+.main-blog__about {
+  margin-top: 4rem;
+}
+
+.main-blog__about-card {
+  padding: 3.2rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-radius: 2rem;
+  background: rgba(var(--color-foreground), 0.02);
+  text-align: center;
+}
+
+.main-blog__about-eyebrow {
+  margin: 0 0 0.8rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.5);
+}
+
+.main-blog__about-title {
+  margin: 0 0 1.6rem;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 700;
+}
+
+.main-blog__about-content p {
+  font-size: 1.5rem;
+  line-height: 1.7;
+  color: rgba(var(--color-foreground), 0.75);
+  max-width: 70rem;
+  margin: 0 auto 2.4rem;
+}
+
+.main-blog__about-stats {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.main-blog__about-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.main-blog__about-stat-number {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: rgb(var(--color-foreground));
+}
+
+.main-blog__about-stat-label {
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.5);
+}

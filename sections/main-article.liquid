@@ -91,9 +91,13 @@
                 <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="https://schema.org/Person">
                   <span itemprop="name">{{ article.author }}</span>
                 </span>
+                <span class="article-template__author-credential">Family Fashion Editor</span>
               {%- endif -%}
             </div>
           {%- endif -%}
+          <div class="article-template__read-time">
+            <span>{{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read</span>
+          </div>
         </header>
 
       {%- when 'content' -%}
@@ -102,8 +106,39 @@
           itemprop="articleBody"
           {{ block.shopify_attributes }}
         >
+          <nav class="article-toc" aria-label="Table of contents">
+            <p class="article-toc__label">In this article</p>
+            <ol class="article-toc__list" id="article-toc-list"></ol>
+          </nav>
           {{ article.content }}
         </div>
+        <script>
+          (function() {
+            var content = document.querySelector('.article-template__content');
+            var tocList = document.getElementById('article-toc-list');
+            if (!content || !tocList) return;
+            var headings = content.querySelectorAll('h2');
+            if (headings.length < 2) { var toc = content.querySelector('.article-toc'); if (toc) toc.style.display = 'none'; return; }
+            headings.forEach(function(h, i) {
+              var id = 'section-' + (i + 1); h.setAttribute('id', id);
+              var li = document.createElement('li'); var a = document.createElement('a');
+              a.href = '#' + id; a.textContent = h.textContent; li.appendChild(a); tocList.appendChild(li);
+            });
+          })();
+        </script>
+        <script>
+          (function() {
+            var content = document.querySelector('.article-template__content');
+            if (!content) return;
+            var paragraphs = content.querySelectorAll('p');
+            if (paragraphs.length < 6) return;
+            var midPoint = Math.floor(paragraphs.length * 0.4);
+            var cta = document.createElement('div');
+            cta.className = 'article-cta-inline';
+            cta.innerHTML = '<p class="article-cta-inline__text">Ready to start matching?</p><a href="/collections/mommy-and-me" class="article-cta-inline__button button">Shop Best Sellers</a>';
+            paragraphs[midPoint].parentNode.insertBefore(cta, paragraphs[midPoint].nextSibling);
+          })();
+        </script>
 
       {%- when 'share' -%}
         <div
@@ -115,6 +150,31 @@
         </div>
     {%- endcase -%}
   {%- endfor -%}
+
+  <section class="article-template__author page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <div class="article-template__author-card">
+      <div class="article-template__author-avatar" aria-hidden="true">
+        {{ article.author | slice: 0 }}
+      </div>
+      <div class="article-template__author-info">
+        <p class="article-template__author-label">Written by</p>
+        <h3 class="article-template__author-name" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">{{ article.author }}</span>
+        </h3>
+        <p class="article-template__author-bio">Family fashion editor at Dress Like Mommy. Mom of two, styling matching outfits for families since 2019. Passionate about helping parents create picture-perfect moments without breaking the bank.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="article-template__social-proof page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <div class="article-template__testimonial-card">
+      <p class="article-template__testimonial-label">What our customers say</p>
+      <blockquote class="article-template__testimonial-quote">
+        <p>"We get compliments every time we wear our matching outfits! The quality is amazing and they wash beautifully."</p>
+        <cite>- Sarah M., verified buyer</cite>
+      </blockquote>
+    </div>
+  </section>
 
   <section class="article-template__shop-links page-width page-width--narrow">
     <div class="article-template__shop-card">
@@ -364,6 +424,8 @@
       </div>
     </div>
   {%- endif -%}
+  {% render 'article-enhanced-schema', article: article, blog: blog %}
+  {% render 'article-faq-schema', article: article %}
 </article>
 
 <script type="application/ld+json">

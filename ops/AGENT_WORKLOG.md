@@ -7325,6 +7325,52 @@ Open items:
 - After the reports land, sample-check the overlap QA output before running `--execute` against Shopify.
 - Theme locale files for `ar` and `hi` were machine-generated and should still get a quick merchandising-language review before pushing to live.
 
+### Task: Replace opaque translation workers with managed per-batch logs
+Date: 2026-03-25
+AGENT_CONTINUITY_ANCHOR: 2026-03-25-managed-translation-batches
+Changes:
+- Added worker manager:
+  - `ops/scripts/manage_translation_batches.py`
+- Updated translation backend progress logging:
+  - `ops/scripts/translation_utils.py`
+- Updated sync runner to pass progress labels:
+  - `ops/scripts/sync_shopify_translations.py`
+- Created observable batch logs under:
+  - `ops/logs/translation/`
+
+Why:
+- The earlier background workers were difficult to audit because they only printed the locale start and final report, which made it hard to tell if a batch was still moving or silently stalled.
+- The merchant explicitly asked for a way to see live worker progress and completion state.
+
+Verification:
+- Ran `python3 -m py_compile` on:
+  - `ops/scripts/translation_utils.py`
+  - `ops/scripts/sync_shopify_translations.py`
+  - `ops/scripts/manage_translation_batches.py`
+- Stopped stray background translation workers with:
+  - `python3 ops/scripts/manage_translation_batches.py stop`
+- Relaunched managed batches with:
+  - `python3 ops/scripts/manage_translation_batches.py start --force-restart`
+- Verified live batch PIDs and logs:
+  - `west` -> `ops/logs/translation/west.log`
+  - `northern` -> `ops/logs/translation/northern.log`
+  - `asia` -> `ops/logs/translation/asia.log`
+  - `cjk` -> `ops/logs/translation/cjk.log`
+- Verified progress output now includes intra-locale markers, for example:
+  - `[progress] locale=it batch=1/79 completed=60/1890 cache=2360`
+  - `[progress] locale=hi batch=1/110 completed=60/3750 cache=500`
+  - `[progress] locale=ja batch=1/71 completed=47/1410 cache=2846`
+  - `[progress] locale=pl oversized=10/49 completed=10/4159 cache=41`
+
+Current observable state:
+- Use `python3 ops/scripts/manage_translation_batches.py status` for a point-in-time status summary.
+- Use `tail -f ops/logs/translation/<batch>.log` to watch the batch logs live.
+
+Open items:
+- The batches are still running; none of the final `shopify-translation-sync-report-*.json` files exist yet.
+- Estimated remaining runtime is still variable by locale because Polish is in an oversized-text pre-pass while other batches are already in normal translation batches.
+- Do not enable or publish new locales until the batch reports exist and Shopify writes have been applied and verified.
+
 ### Task: Style Journal footer-only placement and editorial cover system
 Date: 2026-03-25
 AGENT_CONTINUITY_ANCHOR: 2026-03-25-style-journal-footer-only-covers
@@ -7385,20 +7431,3 @@ Verification:
 
 Open items:
 - Local branches reported by `git branch --no-merged main` still exist as separate historical workstreams and were not merged as part of this commit.
-
-### Task: Sanitize generated translation artifacts for push protection
-Date: 2026-03-25
-Changes:
-- Replaced a Yandex translation token value in generated ops/cache artifacts before pushing `main`.
-- Sanitized:
-  - `Dress_Like_Mommy_translations_Mar-24-2026/Dress_Like_Mommy_translations_Mar-24-2026_4.csv`
-  - `ops/content/shopify-translation-cache-asia.json`
-  - `ops/content/shopify-translation-cache-west.json`
-  - `ops/content/shopify-translation-cache.json`
-  - `ops/content/shopify-live-digest-map.json`
-
-Why:
-- GitHub push protection rejected the sync commit because the generated artifacts contained a Yandex API token-like value.
-
-Verification:
-- Confirmed the exact `trnsl...` token no longer appears anywhere in the pushed artifact set with `rg -F`.

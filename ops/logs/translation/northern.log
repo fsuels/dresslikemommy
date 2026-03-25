@@ -1,0 +1,38 @@
+
+=== START 2026-03-25 03:47:19 batch=northern locales=nl,pl,ru,sv,tr ===
+/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+translating locale=nl unique_strings=4190
+translating locale=pl unique_strings=4190
+[progress] locale=pl oversized=1/49 completed=1/4159 cache=32
+[progress] locale=pl oversized=5/49 completed=5/4159 cache=36
+[progress] locale=pl oversized=10/49 completed=10/4159 cache=41
+[progress] locale=pl oversized=15/49 completed=15/4159 cache=46
+[progress] locale=pl oversized=20/49 completed=20/4159 cache=51
+[progress] locale=pl oversized=25/49 completed=25/4159 cache=56
+[progress] locale=pl oversized=30/49 completed=30/4159 cache=61
+[progress] locale=pl oversized=35/49 completed=35/4159 cache=66
+[progress] locale=pl oversized=40/49 completed=40/4159 cache=71
+[progress] locale=pl oversized=45/49 completed=45/4159 cache=76
+[progress] locale=pl oversized=49/49 completed=49/4159 cache=80
+[progress] locale=pl batch=1/116 completed=109/4159 cache=140
+[progress] locale=pl batch=5/116 completed=349/4159 cache=380
+[progress] locale=pl batch=10/116 completed=649/4159 cache=680
+[progress] locale=pl batch=15/116 completed=949/4159 cache=980
+[progress] locale=pl batch=20/116 completed=1249/4159 cache=1280
+Traceback (most recent call last):
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_translations.py", line 535, in <module>
+    main()
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_translations.py", line 486, in main
+    payload_by_resource, skipped_live, quality_counts, quality_samples = build_payload(candidates, digest_map, translator)
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_translations.py", line 382, in build_payload
+    translations[locale] = translator.translate_many(locale, unique, progress_label=f"locale={locale}")
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 362, in translate_many
+    translated_batch.append(self._translate_core(translator, text, locale))
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 257, in _translate_core
+    translated = "".join(translator.translate(segment) for segment in segments)
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 257, in <genexpr>
+    translated = "".join(translator.translate(segment) for segment in segments)
+  File "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/deep_translator/google.py", line 84, in translate
+    raise TranslationNotFound(text)
+deep_translator.exceptions.TranslationNotFound: Stylish blue family Christmas shirts featuring reindeer antlers, Santa hat, and holly graphics --> No translation was found using the current translator. Try another translator?

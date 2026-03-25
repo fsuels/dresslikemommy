@@ -1,0 +1,66 @@
+{%- comment -%}
+  Generates FAQ schema (JSON-LD) by extracting question-like headings from article content.
+  Designed for auto-injection in articles that contain FAQ-style sections.
+
+  Usage: {% render 'article-faq-schema', article: article %}
+{%- endcomment -%}
+
+{%- liquid
+  assign content_text = article.content
+  assign has_faq = false
+
+  if content_text contains '<h2>' or content_text contains '<h3>'
+    assign has_faq = true
+  endif
+-%}
+
+{%- if has_faq -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- assign faq_items = '' -%}
+    {%- assign h2_splits = content_text | split: '<h2>' -%}
+    {%- assign faq_count = 0 -%}
+    {%- for segment in h2_splits -%}
+      {%- if forloop.first -%}{% continue %}{%- endif -%}
+      {%- assign heading_text = segment | split: '</h2>' | first | strip_html | strip -%}
+      {%- if heading_text contains '?' -%}
+        {%- assign answer_raw = segment | split: '</h2>' | last -%}
+        {%- assign answer_text = answer_raw | split: '<h2>' | first | split: '<h3>' | first | strip_html | strip | truncatewords: 80 -%}
+        {%- if faq_count > 0 -%},{%- endif -%}
+        {
+          "@type": "Question",
+          "name": {{ heading_text | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ answer_text | json }}
+          }
+        }
+        {%- assign faq_count = faq_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- assign h3_splits = content_text | split: '<h3>' -%}
+    {%- for segment in h3_splits -%}
+      {%- if forloop.first -%}{% continue %}{%- endif -%}
+      {%- assign heading_text = segment | split: '</h3>' | first | strip_html | strip -%}
+      {%- if heading_text contains '?' -%}
+        {%- assign answer_raw = segment | split: '</h3>' | last -%}
+        {%- assign answer_text = answer_raw | split: '<h2>' | first | split: '<h3>' | first | strip_html | strip | truncatewords: 80 -%}
+        {%- if faq_count > 0 -%},{%- endif -%}
+        {
+          "@type": "Question",
+          "name": {{ heading_text | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ answer_text | json }}
+          }
+        }
+        {%- assign faq_count = faq_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}

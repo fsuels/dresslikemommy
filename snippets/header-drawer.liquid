@@ -25,6 +25,12 @@
                 {%- if section.settings.hide_blog_link_in_primary_nav and link.url contains '/blogs/' -%}
                   {% continue %}
                 {%- endif -%}
+                {%- liquid
+                  assign nav_link_title = link.title | escape
+                  if link.url contains '/blogs/'
+                    assign nav_link_title = 'Style Journal'
+                  endif
+                -%}
                 <li>
                   {%- if link.links != blank -%}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
@@ -32,7 +38,7 @@
                         id="HeaderDrawer-{{ link.handle }}"
                         class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
                       >
-                        {{ link.title | escape }}
+                        {{ nav_link_title }}
                         {% render 'icon-arrow' %}
                         {% render 'icon-caret' %}
                       </summary>
@@ -44,7 +50,7 @@
                         <div class="menu-drawer__inner-submenu">
                           <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
                             {% render 'icon-arrow' %}
-                            {{ link.title | escape }}
+                            {{ nav_link_title }}
                           </button>
                           <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                             {%- for childlink in link.links -%}

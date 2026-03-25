@@ -361,3 +361,220 @@
 .article-template__back:last-child {
   margin-bottom: 3.2rem;
 }
+
+/* ── Author Bio ── */
+.article-template__author {
+  margin-top: 4rem;
+}
+
+.article-template__author-card {
+  display: flex;
+  gap: 2rem;
+  padding: 2.4rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-radius: 2rem;
+  background: rgba(var(--color-foreground), 0.02);
+}
+
+.article-template__author-avatar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 50%;
+  background: rgba(var(--color-foreground), 0.08);
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgba(var(--color-foreground), 0.7);
+}
+
+.article-template__author-info {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.article-template__author-label {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.5);
+}
+
+.article-template__author-name {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.article-template__author-bio {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.65;
+  color: rgba(var(--color-foreground), 0.7);
+}
+
+/* ── Table of Contents ── */
+.article-toc {
+  margin-bottom: 3.2rem;
+  padding: 2.2rem 2.4rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-radius: 2rem;
+  background: rgba(var(--color-foreground), 0.02);
+}
+
+.article-toc__label {
+  margin: 0 0 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.5);
+}
+
+.article-toc__list {
+  margin: 0;
+  padding-left: 2rem;
+  list-style: decimal;
+}
+
+.article-toc__list li {
+  margin-bottom: 0.6rem;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+.article-toc__list a {
+  color: rgba(var(--color-foreground), 0.85);
+  text-decoration: none;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.article-toc__list a:hover {
+  color: rgb(var(--color-foreground));
+  border-color: rgba(var(--color-foreground), 0.4);
+}
+
+/* ── Mid-Article CTA ── */
+.article-cta-inline {
+  margin: 3.2rem auto;
+  padding: 2.4rem;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, rgba(var(--color-foreground), 0.03) 0%, rgba(var(--color-foreground), 0.06) 100%);
+  text-align: center;
+}
+
+.article-cta-inline__text {
+  margin: 0 0 1.2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: rgb(var(--color-foreground));
+}
+
+.article-cta-inline__button {
+  display: inline-block;
+}
+
+/* ── Improved Heading Hierarchy ── */
+.article-template__content h2 {
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 700;
+  margin-top: 4.8rem;
+  margin-bottom: 1.8rem;
+  padding-bottom: 1rem;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+.article-template__content h3 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 600;
+  margin-top: 3.2rem;
+  margin-bottom: 1.2rem;
+  color: rgba(var(--color-foreground), 0.9);
+}
+
+.article-template__content h4 {
+  font-size: clamp(1.6rem, 2.5vw, 2rem);
+  font-weight: 600;
+  margin-top: 2.4rem;
+  margin-bottom: 1rem;
+  color: rgba(var(--color-foreground), 0.82);
+}
+
+/* ── Shop Module Arrow ── */
+.article-template__shop-arrow {
+  font-size: 1.8rem;
+  transition: transform 0.2s ease;
+}
+
+.article-template__shop-link:hover .article-template__shop-arrow {
+  transform: translateX(0.4rem);
+}
+
+/* ── Read Time Tag ── */
+.article-template__read-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.5);
+}
+
+/* ── Author Credential Badge ── */
+.article-template__author-credential {
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.08rem;
+  color: rgba(var(--color-foreground), 0.55);
+  padding-left: 0.6rem;
+}
+
+/* ── Social Proof / Testimonial ── */
+.article-template__social-proof {
+  margin-top: 3.2rem;
+}
+
+.article-template__testimonial-card {
+  padding: 2.4rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-radius: 2rem;
+  background: rgba(var(--color-foreground), 0.02);
+  text-align: center;
+}
+
+.article-template__testimonial-label {
+  margin: 0 0 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.5);
+}
+
+.article-template__testimonial-quote {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.article-template__testimonial-quote p {
+  font-size: 1.7rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: rgba(var(--color-foreground), 0.8);
+  margin: 0 0 1rem;
+}
+
+.article-template__testimonial-quote cite {
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 600;
+  color: rgba(var(--color-foreground), 0.6);
+}

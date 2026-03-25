@@ -1,0 +1,87 @@
+{%- comment -%}
+  Enhanced Article schema with additional E-E-A-T signals, publisher info,
+  and breadcrumb structured data for blog articles.
+
+  Usage: {% render 'article-enhanced-schema', article: article, blog: blog %}
+{%- endcomment -%}
+
+{%- if article -%}
+{%- liquid
+  assign word_count = article.content | strip_html | split: ' ' | size
+  assign read_time = word_count | divided_by: 200 | at_least: 1
+-%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ request.origin }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Style Journal",
+      "item": "{{ request.origin }}{{ blog.url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ article.title | json }},
+      "item": "{{ request.origin }}{{ article.url }}"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ request.origin }}{{ article.url }}"
+  },
+  "headline": {{ article.title | json }},
+  "description": {{ article.excerpt | default: article.content | strip_html | truncatewords: 30 | json }},
+  {% if article.image %}
+  "image": {
+    "@type": "ImageObject",
+    "url": "https:{{ article.image | image_url: width: 1200 }}",
+    "width": 1200,
+    "height": {{ 1200 | divided_by: article.image.aspect_ratio | round }}
+  },
+  {% endif %}
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+  "dateModified": "{{ article.updated_at | default: article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+  "author": {
+    "@type": "Person",
+    "name": {{ article.author | json }},
+    "description": "Family fashion enthusiast and founder of Dress Like Mommy",
+    "url": "{{ request.origin }}/pages/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dress Like Mommy",
+    "url": "{{ request.origin }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ settings.logo | image_url: width: 600 }}"
+    }
+  },
+  "wordCount": {{ word_count }},
+  "timeRequired": "PT{{ read_time }}M",
+  "articleSection": "Family Fashion",
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "Blog",
+    "name": "Dress Like Mommy Style Journal",
+    "url": "{{ request.origin }}{{ blog.url }}"
+  }
+}
+</script>
+{%- endif -%}

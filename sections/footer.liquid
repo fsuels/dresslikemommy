@@ -120,7 +120,7 @@
                       <ul class="footer-block__details-content list-unstyled">
                         {%- for link in block.settings.menu.links -%}
                           {%- assign footer_link_url = link.url | downcase -%}
-                          {%- unless footer_link_url contains '/pages/size-guide' or footer_link_url contains '/blogs/' -%}
+                          {%- unless footer_link_url contains '/pages/size-guide' -%}
                             <li>
                               <a
                                 href="{{ link.url }}"
@@ -188,6 +188,18 @@
                 {%- endcase -%}
               </div>
             {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if journal_blog != blank and section.settings.show_journal_link -%}
+          <div class="footer-block grid__item footer-block--journal{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            <h2 class="footer-block__heading inline-richtext">{{ section.settings.journal_link_label | default: 'Style Journal' }}</h2>
+            <div class="footer-block__details-content rte">
+              <p>Family fashion tips, matching outfit ideas, and seasonal style guides.</p>
+              <a href="{{ journal_blog.url }}" class="link link--text list-menu__item list-menu__item--link">
+                Read the {{ section.settings.journal_link_label | default: 'Style Journal' }} &rarr;
+              </a>
+            </div>
           </div>
         {%- endif -%}
 

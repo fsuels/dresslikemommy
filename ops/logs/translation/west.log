@@ -1,0 +1,24 @@
+
+=== START 2026-03-25 03:47:19 batch=west locales=es,fr,de,it,pt-BR ===
+/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+translating locale=de unique_strings=4189
+translating locale=it unique_strings=4190
+[progress] locale=it batch=1/79 completed=60/1890 cache=2360
+[progress] locale=it batch=5/79 completed=300/1890 cache=2600
+Traceback (most recent call last):
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_translations.py", line 535, in <module>
+    main()
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_translations.py", line 486, in main
+    payload_by_resource, skipped_live, quality_counts, quality_samples = build_payload(candidates, digest_map, translator)
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_translations.py", line 382, in build_payload
+    translations[locale] = translator.translate_many(locale, unique, progress_label=f"locale={locale}")
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 362, in translate_many
+    translated_batch.append(self._translate_core(translator, text, locale))
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 257, in _translate_core
+    translated = "".join(translator.translate(segment) for segment in segments)
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 257, in <genexpr>
+    translated = "".join(translator.translate(segment) for segment in segments)
+  File "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/deep_translator/google.py", line 84, in translate
+    raise TranslationNotFound(text)
+deep_translator.exceptions.TranslationNotFound: WHOLESALE & DROP-SHIPPING --> No translation was found using the current translator. Try another translator?

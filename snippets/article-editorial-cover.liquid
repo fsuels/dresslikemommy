@@ -39,10 +39,10 @@
 <div class="article-editorial-cover article-editorial-cover--{{ cover_theme }} article-editorial-cover--{{ cover_context }}">
   <div class="article-editorial-cover__top">
     <p class="article-editorial-cover__kicker">{{ cover_label }}</p>
-    <p class="article-editorial-cover__brand">Dress Like Mommy</p>
+    {%- if cover_context == 'hero' or cover_context == 'featured' -%}<p class="article-editorial-cover__brand">Dress Like Mommy</p>{%- endif -%}
   </div>
   <div class="article-editorial-cover__body">
-    <p class="article-editorial-cover__journal">Style Journal</p>
+    {%- if cover_context == 'hero' -%}<p class="article-editorial-cover__journal">Style Journal</p>{%- endif -%}
     <p class="article-editorial-cover__title">{{ article.title | escape }}</p>
     {%- if cover_context == 'hero' and article_summary != blank -%}
       <p class="article-editorial-cover__summary">{{ article_summary | truncatewords: 26 }}</p>

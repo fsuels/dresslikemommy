@@ -104,7 +104,8 @@
           {%- endif -%}
 
           <div class="article-card__footer">
-            <a href="{{ article.url }}" class="article-card__read-more link">Read article</a>
+            <span class="article-card__read-time">{{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read</span>
+            <a href="{{ article.url }}" class="article-card__read-more link">Read article &rarr;</a>
           </div>
         </div>
 

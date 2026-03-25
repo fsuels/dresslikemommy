@@ -11,6 +11,12 @@
       {%- if section.settings.hide_blog_link_in_primary_nav and link.url contains '/blogs/' -%}
         {% continue %}
       {%- endif -%}
+      {%- liquid
+        assign nav_link_title = link.title | escape
+        if link.url contains '/blogs/'
+          assign nav_link_title = 'Style Journal'
+        endif
+      -%}
       <li>
         {%- if link.links != blank -%}
           <header-menu>
@@ -24,7 +30,7 @@
                     class="header__active-menu-item"
                   {% endif %}
                 >
-                  {{- link.title | escape -}}
+                  {{- nav_link_title -}}
                 </span>
                 {% render 'icon-caret' %}
               </summary>

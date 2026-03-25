@@ -379,7 +379,7 @@ def build_payload(candidates, digest_map, translator):
     for locale, texts in texts_by_locale.items():
         unique = list(dict.fromkeys(texts))
         print(f"translating locale={locale} unique_strings={len(unique)}", flush=True)
-        translations[locale] = translator.translate_many(locale, unique)
+        translations[locale] = translator.translate_many(locale, unique, progress_label=f"locale={locale}")
 
     payload_by_resource = defaultdict(list)
     quality_counts = Counter()

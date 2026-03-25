@@ -99,6 +99,9 @@
             <div class="main-blog__featured-meta caption-with-letter-spacing">
               {{ featured_article.published_at | time_tag: format: 'date' }}
             </div>
+            <span class="main-blog__featured-read-time">
+              {{ featured_article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read
+            </span>
           {%- endif -%}
           {%- if featured_excerpt != blank -%}
             <p class="main-blog__featured-excerpt">
@@ -140,6 +143,54 @@
     {%- if paginate.pages > 1 -%}
       {%- render 'pagination', paginate: paginate -%}
     {%- endif -%}
+
+    <section class="main-blog__about{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="main-blog__about-card">
+        <p class="main-blog__about-eyebrow">About the Style Journal</p>
+        <h2 class="main-blog__about-title">Real advice from real parents</h2>
+        <div class="main-blog__about-content">
+          <p>The Style Journal is written by our editorial team of parents who live and breathe family fashion. We test every outfit, research every trend, and share only what we would dress our own families in. Our guides are based on hands-on experience styling hundreds of matching family looks since 2019.</p>
+          <div class="main-blog__about-stats">
+            <div class="main-blog__about-stat">
+              <span class="main-blog__about-stat-number">500+</span>
+              <span class="main-blog__about-stat-label">Families styled</span>
+            </div>
+            <div class="main-blog__about-stat">
+              <span class="main-blog__about-stat-number">50+</span>
+              <span class="main-blog__about-stat-label">Styling guides</span>
+            </div>
+            <div class="main-blog__about-stat">
+              <span class="main-blog__about-stat-number">4.9/5</span>
+              <span class="main-blog__about-stat-label">Average rating</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-blog__newsletter">
+      <div class="main-blog__newsletter-card">
+        <p class="main-blog__newsletter-eyebrow">Stay in the loop</p>
+        <h2 class="main-blog__newsletter-title">Get styling tips + 10% off</h2>
+        <p class="main-blog__newsletter-text">Join our Style Journal newsletter for matching outfit inspiration, new arrivals, and an exclusive welcome discount.</p>
+        <form method="post" action="/contact#newsletter-blog" class="main-blog__newsletter-form">
+          <input type="hidden" name="form_type" value="customer">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="contact[tags]" value="newsletter,blog-signup">
+          <div class="main-blog__newsletter-field">
+            <input
+              type="email"
+              name="contact[email]"
+              placeholder="Your email address"
+              required
+              class="main-blog__newsletter-input field__input"
+              aria-label="Email address"
+            >
+            <button type="submit" class="main-blog__newsletter-button button">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </section>
   </div>
 {%- endpaginate -%}
 
