@@ -10,6 +10,7 @@
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
   {%- liquid
     assign has_social_icons = true
+    assign journal_blog = blogs['news']
     if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
       assign has_social_icons = false
     endif
@@ -119,7 +120,7 @@
                       <ul class="footer-block__details-content list-unstyled">
                         {%- for link in block.settings.menu.links -%}
                           {%- assign footer_link_url = link.url | downcase -%}
-                          {%- unless footer_link_url contains '/pages/size-guide' -%}
+                          {%- unless footer_link_url contains '/pages/size-guide' or footer_link_url contains '/blogs/' -%}
                             <li>
                               <a
                                 href="{{ link.url }}"
@@ -337,7 +338,14 @@
                 </li>
               {%- endif -%}
             {%- endfor -%}
+            {%- if journal_blog != blank and section.settings.show_journal_link -%}
+              <li>
+                <small class="copyright__content"><a href="{{ journal_blog.url }}">{{ section.settings.journal_link_label | escape }}</a></small>
+              </li>
+            {%- endif -%}
           </ul>
+        {%- elsif journal_blog != blank and section.settings.show_journal_link -%}
+          <small class="copyright__content"><a href="{{ journal_blog.url }}">{{ section.settings.journal_link_label | escape }}</a></small>
         {%- endif -%}
       </div>
     </div>
@@ -539,6 +547,18 @@
       "id": "show_policy",
       "default": true,
       "label": "t:sections.footer.settings.show_policy.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_journal_link",
+      "default": true,
+      "label": "Show Style Journal link"
+    },
+    {
+      "type": "text",
+      "id": "journal_link_label",
+      "default": "Style Journal",
+      "label": "Style Journal footer label"
     },
     {
       "type": "header",

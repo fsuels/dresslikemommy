@@ -72,18 +72,22 @@
         endif
       -%}
       <article class="main-blog__featured{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-        {%- if section.settings.show_image and featured_article.image -%}
+        {%- if section.settings.show_image -%}
           <a href="{{ featured_article.url }}" class="main-blog__featured-media">
-            {{
-              featured_article.image
-              | image_url: width: 1600
-              | image_tag:
-                class: 'main-blog__featured-image',
-                widths: '533, 720, 960, 1200, 1600',
-                sizes: '(min-width: 990px) calc((100vw - 14rem) * 0.58), calc(100vw - 3rem)',
-                loading: 'eager',
-                alt: featured_article.image.alt | default: featured_article.title
-            }}
+            {%- if blog.handle == 'news' -%}
+              {% render 'article-editorial-cover', article: featured_article, context: 'featured' %}
+            {%- elsif featured_article.image -%}
+              {{
+                featured_article.image
+                | image_url: width: 1600
+                | image_tag:
+                  class: 'main-blog__featured-image',
+                  widths: '533, 720, 960, 1200, 1600',
+                  sizes: '(min-width: 990px) calc((100vw - 14rem) * 0.58), calc(100vw - 3rem)',
+                  loading: 'eager',
+                  alt: featured_article.image.alt | default: featured_article.title
+              }}
+            {%- endif -%}
           </a>
         {%- endif -%}
         <div class="main-blog__featured-content">
