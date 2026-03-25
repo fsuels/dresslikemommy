@@ -2,6 +2,30 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
 
+{%- capture default_blog_intro -%}
+  <p>Outfit guides, styling ideas, and practical shopping advice for mommy and me, daddy and me, and full family matching looks.</p>
+{%- endcapture -%}
+
+{%- liquid
+  assign display_eyebrow = section.settings.eyebrow
+  assign display_title = section.settings.title_override | default: blog.title
+  assign display_intro = section.settings.intro
+
+  if blog.handle == 'news'
+    if display_eyebrow == blank
+      assign display_eyebrow = 'Style Journal'
+    endif
+
+    if section.settings.title_override == blank
+      assign display_title = 'Family Style Journal'
+    endif
+
+    if display_intro == blank
+      assign display_intro = default_blog_intro
+    endif
+  endif
+-%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -16,19 +40,84 @@
   }
 {%- endstyle -%}
 
-{%- paginate blog.articles by 6 -%}
+{%- paginate blog.articles by 7 -%}
+  {%- liquid
+    assign featured_article = blank
+    if section.settings.show_featured_post and paginate.current_page == 1 and blog.articles_count > 0
+      assign featured_article = blog.articles.first
+    endif
+  -%}
   <div class="main-blog page-width section-{{ section.id }}-padding">
-    <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {{ blog.title | escape }}
-    </h1>
+    <header class="main-blog__header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {%- if display_eyebrow != blank -%}
+        <p class="main-blog__eyebrow">{{ display_eyebrow | escape }}</p>
+      {%- endif -%}
+      <div class="main-blog__heading-group">
+        <h1 class="main-blog__title title--primary">
+          {{ display_title | escape }}
+        </h1>
+        {%- if display_intro != blank -%}
+          <div class="main-blog__intro rte">
+            {{ display_intro }}
+          </div>
+        {%- endif -%}
+      </div>
+    </header>
+
+    {%- if featured_article != blank -%}
+      {%- liquid
+        assign featured_excerpt = featured_article.excerpt | strip_html
+        if featured_excerpt == blank
+          assign featured_excerpt = featured_article.content | strip_html
+        endif
+      -%}
+      <article class="main-blog__featured{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {%- if section.settings.show_image and featured_article.image -%}
+          <a href="{{ featured_article.url }}" class="main-blog__featured-media">
+            {{
+              featured_article.image
+              | image_url: width: 1600
+              | image_tag:
+                class: 'main-blog__featured-image',
+                widths: '533, 720, 960, 1200, 1600',
+                sizes: '(min-width: 990px) calc((100vw - 14rem) * 0.58), calc(100vw - 3rem)',
+                loading: 'eager',
+                alt: featured_article.image.alt | default: featured_article.title
+            }}
+          </a>
+        {%- endif -%}
+        <div class="main-blog__featured-content">
+          <p class="main-blog__featured-kicker">Featured article</p>
+          <h2 class="main-blog__featured-title">
+            <a href="{{ featured_article.url }}">{{ featured_article.title | escape }}</a>
+          </h2>
+          {%- if section.settings.show_date -%}
+            <div class="main-blog__featured-meta caption-with-letter-spacing">
+              {{ featured_article.published_at | time_tag: format: 'date' }}
+            </div>
+          {%- endif -%}
+          {%- if featured_excerpt != blank -%}
+            <p class="main-blog__featured-excerpt">
+              {{ featured_excerpt | truncatewords: 42 }}
+            </p>
+          {%- endif -%}
+          <a href="{{ featured_article.url }}" class="main-blog__featured-link button button--secondary">
+            Read article
+          </a>
+        </div>
+      </article>
+    {%- endif -%}
 
     <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
       {%- for article in blog.articles -%}
+        {%- if featured_article != blank and forloop.first -%}
+          {% continue %}
+        {%- endif -%}
         <div
           class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
-            style="--animation-order: {{ forloop.index }};"
+            style="--animation-order: {{ forloop.index | plus: 1 }};"
           {% endif %}
         >
           {%- render 'article-card',
@@ -59,6 +148,30 @@
     {
       "type": "header",
       "content": "t:sections.main-blog.settings.header.content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "Style Journal",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "title_override",
+      "default": "Family Style Journal",
+      "label": "Display title"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "default": "<p>Outfit guides, styling ideas, and practical shopping advice for mommy and me, daddy and me, and full family matching looks.</p>",
+      "label": "Intro copy"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_featured_post",
+      "default": true,
+      "label": "Show featured first post"
     },
     {
       "type": "select",

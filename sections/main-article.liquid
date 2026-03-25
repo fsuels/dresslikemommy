@@ -1,6 +1,23 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign journal_label = blog.title
+  assign collections_root = routes.collections_url
+  if blog.handle == 'news'
+    assign journal_label = 'Style Journal'
+  endif
+-%}
+
 <article class="article-template" itemscope itemtype="https://schema.org/BlogPosting">
+  <nav class="article-template__breadcrumb page-width page-width--narrow" aria-label="breadcrumbs">
+    <a href="{{ routes.root_url }}">{{ 'sections.breadcrumbs.home' | t }}</a>
+    <span aria-hidden="true">&rsaquo;</span>
+    <a href="{{ blog.url }}">{{ journal_label }}</a>
+    <span aria-hidden="true">&rsaquo;</span>
+    <span>{{ article.title | escape }}</span>
+  </nav>
   {%- for block in section.blocks -%}
     {%- case block.type -%}
       {%- when '@app' -%}
@@ -44,24 +61,32 @@
 
       {%- when 'title' -%}
         <header
-          class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+          class="article-template__header page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
           {{ block.shopify_attributes }}
         >
+          <p class="article-template__eyebrow">{{ journal_label }}</p>
           <h1
             class="article-template__title"
             itemprop="headline"
           >
             {{ article.title | escape }}
           </h1>
-          {%- if block.settings.blog_show_date -%}
-            <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
-              {{- article.published_at | time_tag: format: 'date' -}}
-            </span>
-          {%- endif -%}
-          {%- if block.settings.blog_show_author -%}
-            <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="https://schema.org/Person">
-              <span itemprop="name">{{ article.author }}</span>
-            </span>
+          {%- if block.settings.blog_show_date or block.settings.blog_show_author -%}
+            <div class="article-template__meta caption-with-letter-spacing">
+              {%- if block.settings.blog_show_date -%}
+                <span
+                  class="{% if block.settings.blog_show_author %}circle-divider{% endif %}"
+                  itemprop="dateCreated pubdate datePublished"
+                >
+                  {{- article.published_at | time_tag: format: 'date' -}}
+                </span>
+              {%- endif -%}
+              {%- if block.settings.blog_show_author -%}
+                <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                  <span itemprop="name">{{ article.author }}</span>
+                </span>
+              {%- endif -%}
+            </div>
           {%- endif -%}
         </header>
 
@@ -85,6 +110,64 @@
     {%- endcase -%}
   {%- endfor -%}
 
+  <section class="article-template__shop-links page-width page-width--narrow">
+    <div class="article-template__shop-card">
+      <p class="article-template__shop-eyebrow">Shop the collections</p>
+      <h2 class="article-template__shop-title">Keep the inspiration moving</h2>
+      <div class="article-template__shop-grid">
+        <a href="{{ collections_root }}/mommy-and-me" class="article-template__shop-link">
+          <span>Mommy &amp; Me</span>
+          <span>Shop</span>
+        </a>
+        <a href="{{ collections_root }}/daddy-me" class="article-template__shop-link">
+          <span>Daddy &amp; Me</span>
+          <span>Shop</span>
+        </a>
+        <a href="{{ collections_root }}/family-sets" class="article-template__shop-link">
+          <span>Family Sets</span>
+          <span>Shop</span>
+        </a>
+        <a href="{{ collections_root }}/family-pajamas" class="article-template__shop-link">
+          <span>Family Pajamas</span>
+          <span>Shop</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {%- if blog.articles_count > 1 -%}
+    <section class="article-template__related page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="article-template__related-header">
+        <p class="article-template__related-eyebrow">Continue reading</p>
+        <h2 class="article-template__related-title">More from {{ journal_label }}</h2>
+      </div>
+      <div class="article-template__related-grid">
+        {%- assign related_articles_rendered = 0 -%}
+        {%- for related_article in blog.articles -%}
+          {%- if related_article.id == article.id -%}
+            {% continue %}
+          {%- endif -%}
+          <div class="article-template__related-item">
+            {%- render 'article-card',
+              blog: blog,
+              article: related_article,
+              media_height: 'medium',
+              media_aspect_ratio: 1.2,
+              show_image: true,
+              show_date: true,
+              show_author: false,
+              show_excerpt: true
+            -%}
+          </div>
+          {%- assign related_articles_rendered = related_articles_rendered | plus: 1 -%}
+          {%- if related_articles_rendered == 3 -%}
+            {% break %}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </section>
+  {%- endif -%}
+
   <div class="article-template__back element-margin-top center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <a href="{{ blog.url }}" class="article-template__link link animate-arrow">
       <span class="icon-wrap">{% render 'icon-arrow' %}</span>
@@ -98,7 +181,7 @@
         class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
       >
         {%- if article.comments_count > 0 -%}
-          {%- assign anchorId = '#Comments-' | append: article.id -%}
+          {%- assign anchor_id = '#Comments-' | append: article.id -%}
 
           <h2 id="Comments-{{ article.id }}" tabindex="-1">
             {{ 'blogs.article.comments' | t: count: article.comments_count }}
@@ -125,7 +208,7 @@
                   </footer>
                 </article>
               {%- endfor -%}
-              {% render 'pagination', paginate: paginate, anchor: anchorId %}
+              {% render 'pagination', paginate: paginate, anchor: anchor_id %}
             </div>
           {% endpaginate %}
         {%- endif -%}

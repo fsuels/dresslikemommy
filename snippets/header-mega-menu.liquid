@@ -8,6 +8,9 @@
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
+      {%- if section.settings.hide_blog_link_in_primary_nav and link.url contains '/blogs/' -%}
+        {% continue %}
+      {%- endif -%}
       <li>
         {%- if link.links != blank -%}
           <header-menu>

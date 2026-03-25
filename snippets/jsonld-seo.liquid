@@ -66,6 +66,16 @@
 
 {%- if template contains 'collection' and collection -%}
   {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ collection.title | json }},"item":{{ collection.url | prepend: shop.url | json }}}{%- endcapture -%}
+{%- elsif template contains 'blog' and blog -%}
+  {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ blog.title | json }},"item":{{ blog.url | prepend: shop.url | json }}}{%- endcapture -%}
+  {%- assign breadcrumb_position = breadcrumb_position | plus: 1 -%}
+  {%- if article -%}
+    {%- assign article_breadcrumb_url = canonical_url | default: '' -%}
+    {%- if article_breadcrumb_url == blank -%}
+      {%- assign article_breadcrumb_url = article.url | prepend: shop.url -%}
+    {%- endif -%}
+    {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ article.title | json }},"item":{{ article_breadcrumb_url | json }}}{%- endcapture -%}
+  {%- endif -%}
 {%- elsif template contains 'product' and product -%}
   {%- assign primary_collection = collection -%}
   {%- if primary_collection == blank and product.collections.size > 0 -%}
