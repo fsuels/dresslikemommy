@@ -123,6 +123,7 @@
     assign collection_seo_display_title = blank
     assign collection_seo_meta_title = blank
     assign collection_seo_meta_description = blank
+    assign collection_seo_force_theme = blank
     assign append_shop_name_to_title = true
 
     if request.page_type == 'collection' and collection != blank
@@ -140,6 +141,11 @@
         render 'collection-seo-fallback', collection: collection, field: 'meta_description'
       endcapture
       assign collection_seo_meta_description = collection_seo_meta_description | strip
+
+      capture collection_seo_force_theme
+        render 'collection-seo-fallback', collection: collection, field: 'force_theme_seo'
+      endcapture
+      assign collection_seo_force_theme = collection_seo_force_theme | strip
     endif
 
     if request.page_type == 'index'
@@ -151,7 +157,13 @@
     endif
 
     if request.page_type == 'collection' and collection != blank
-      if collection.handle == 'all' or collection.handle == 'swimsuits' or resolved_page_title == blank or resolved_page_title == collection.title
+      if collection_seo_force_theme == 'true'
+        if collection_seo_meta_title != blank
+          assign resolved_page_title = collection_seo_meta_title
+        elsif collection_seo_display_title != blank
+          assign resolved_page_title = collection_seo_display_title
+        endif
+      elsif collection.handle == 'all' or collection.handle == 'swimsuits' or resolved_page_title == blank or resolved_page_title == collection.title
         if collection_seo_meta_title != blank
           assign resolved_page_title = collection_seo_meta_title
         elsif collection_seo_display_title != blank
@@ -160,7 +172,9 @@
       endif
     endif
 
-    if resolved_page_description == blank
+    if request.page_type == 'collection' and collection != blank and collection_seo_force_theme == 'true' and collection_seo_meta_description != blank
+      assign resolved_page_description = collection_seo_meta_description
+    elsif resolved_page_description == blank
       if request.page_type == 'collection' and collection != blank and collection_seo_meta_description != blank
         assign resolved_page_description = collection_seo_meta_description
       elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
@@ -239,8 +253,14 @@
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
   {%- endunless -%}
 
+  {%- liquid
+    assign emit_organization_schema = false
+    if request.page_type == 'index' or template == 'index'
+      assign emit_organization_schema = true
+    endif
+  -%}
   {% render 'meta-tags', canonical_href: resolved_canonical_url, parameterized_product_noindex: parameterized_product_noindex %}
-  {% render 'jsonld-seo', canonical_href: resolved_canonical_url %}
+  {% render 'jsonld-seo', canonical_href: resolved_canonical_url, emit_organization_schema: emit_organization_schema %}
 
   <script>
     window.dataLayer = window.dataLayer || [];

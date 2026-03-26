@@ -1,0 +1,81 @@
+{%- comment -%}
+  Outputs FAQPage JSON-LD for product pages using sizing, shipping, and return-policy
+  content already present on the PDP.
+
+  Usage: {% render 'product-faq-schema', product: product %}
+{%- endcomment -%}
+
+{%- if product -%}
+  {%- liquid
+    assign has_size_option = false
+    for option in product.options_with_values
+      assign option_name = option.name | downcase
+      if option_name contains 'size' or option_name contains 'talla' or option_name contains 'taille' or option_name contains 'tamano' or option_name contains 'tamanho'
+        assign has_size_option = true
+        break
+      endif
+    endfor
+
+    assign faq_items = ''
+    assign faq_delimiter = ''
+
+    if has_size_option
+      capture faq_items
+        echo faq_items
+        echo faq_delimiter
+        echo '{"@type":"Question","name":"How do I choose the right size?","acceptedAnswer":{"@type":"Answer","text":"Use the Size Details chart on this page to compare measurements for the selected option. When available, the chart can be viewed in centimeters or inches."}}'
+      endcapture
+      assign faq_delimiter = ','
+    endif
+
+    capture shipping_answer
+      echo 'products.additional_info.free_shipping_label' | t
+      echo '. '
+      echo 'products.additional_info.estimated_delivery' | t
+      echo '. '
+      echo 'products.additional_info.faster_shipping_prefix' | t
+      echo ' '
+      echo 'products.additional_info.free_premium_shipping' | t
+      echo '.'
+    endcapture
+    assign shipping_answer = shipping_answer | strip | strip_newlines | replace: '  ', ' '
+
+    capture faq_items
+      echo faq_items
+      echo faq_delimiter
+      echo '{"@type":"Question","name":"How long does shipping take?","acceptedAnswer":{"@type":"Answer","text":'
+      echo shipping_answer | json
+      echo '}}'
+    endcapture
+    assign faq_delimiter = ','
+
+    capture return_answer
+      echo 'products.additional_info.return_policy_line_1' | t
+      echo ' '
+      echo 'products.additional_info.return_policy_line_2' | t
+      echo ' '
+      echo 'products.additional_info.return_policy_line_3' | t
+      echo ' '
+      echo 'products.additional_info.return_policy_line_4' | t
+    endcapture
+    assign return_answer = return_answer | strip | strip_newlines | replace: '  ', ' '
+
+    capture faq_items
+      echo faq_items
+      echo faq_delimiter
+      echo '{"@type":"Question","name":"What is the return policy?","acceptedAnswer":{"@type":"Answer","text":'
+      echo return_answer | json
+      echo '}}'
+    endcapture
+  -%}
+
+  {%- if faq_items != blank -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{{ faq_items }}]
+    }
+    </script>
+  {%- endif -%}
+{%- endif -%}

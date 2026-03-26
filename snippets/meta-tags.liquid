@@ -9,6 +9,7 @@
   assign collection_seo_display_title = blank
   assign collection_seo_meta_title = blank
   assign collection_seo_meta_description = blank
+  assign collection_seo_force_theme = blank
 
   if request.page_type == 'collection' and collection != blank
     capture collection_seo_display_title
@@ -26,7 +27,18 @@
     endcapture
     assign collection_seo_meta_description = collection_seo_meta_description | strip
 
-    if collection.handle == 'all' or collection.handle == 'swimsuits' or page_title == blank or page_title == collection.title
+    capture collection_seo_force_theme
+      render 'collection-seo-fallback', collection: collection, field: 'force_theme_seo'
+    endcapture
+    assign collection_seo_force_theme = collection_seo_force_theme | strip
+
+    if collection_seo_force_theme == 'true'
+      if collection_seo_meta_title != blank
+        assign og_title = collection_seo_meta_title
+      elsif collection_seo_display_title != blank
+        assign og_title = collection_seo_display_title
+      endif
+    elsif collection.handle == 'all' or collection.handle == 'swimsuits' or page_title == blank or page_title == collection.title
       if collection_seo_meta_title != blank
         assign og_title = collection_seo_meta_title
       elsif collection_seo_display_title != blank
@@ -34,7 +46,9 @@
       endif
     endif
 
-    if page_description == blank and collection_seo_meta_description != blank
+    if collection_seo_force_theme == 'true' and collection_seo_meta_description != blank
+      assign og_description = collection_seo_meta_description
+    elsif page_description == blank and collection_seo_meta_description != blank
       assign og_description = collection_seo_meta_description
     endif
   endif
@@ -88,6 +102,31 @@
       assign noindex_follow = true
     endif
   endif
+
+  assign social_image_url = blank
+  assign social_image_href = blank
+  assign social_image_width = blank
+  assign social_image_height = blank
+  assign social_image_alt = og_title
+
+  if request.page_type == 'index'
+    assign social_image_url = 'dlm-social-share-home-1200x628.jpg' | asset_url
+    assign social_image_width = 1200
+    assign social_image_height = 628
+  elsif page_image
+    assign social_image_url = page_image | image_url
+    assign social_image_width = page_image.width
+    assign social_image_height = page_image.height
+    assign social_image_alt = page_image.alt | default: og_title
+  endif
+
+  if social_image_url != blank
+    assign social_image_href = social_image_url | append: ''
+    assign social_image_href_prefix = social_image_href | slice: 0, 2
+    if social_image_href_prefix == '//'
+      assign social_image_href = 'https:' | append: social_image_href
+    endif
+  endif
 %}
 
 {%- if should_noindex -%}
@@ -100,11 +139,12 @@
 <meta property="og:type" content="{{ og_type }}">
 <meta property="og:description" content="{{ og_description | escape }}">
 
-{%- if page_image -%}
-  <meta property="og:image" content="https:{{ page_image | image_url }}">
-  <meta property="og:image:secure_url" content="https:{{ page_image | image_url }}">
-  <meta property="og:image:width" content="{{ page_image.width }}">
-  <meta property="og:image:height" content="{{ page_image.height }}">
+{%- if social_image_href != blank -%}
+  <meta property="og:image" content="{{ social_image_href }}">
+  <meta property="og:image:secure_url" content="{{ social_image_href }}">
+  <meta property="og:image:width" content="{{ social_image_width }}">
+  <meta property="og:image:height" content="{{ social_image_height }}">
+  <meta property="og:image:alt" content="{{ social_image_alt | escape }}">
 {%- endif -%}
 
 {%- if request.page_type == 'product' -%}
@@ -187,3 +227,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title | escape }}">
 <meta name="twitter:description" content="{{ og_description | escape }}">
+{%- if social_image_href != blank -%}
+  <meta name="twitter:image" content="{{ social_image_href }}">
+  <meta name="twitter:image:alt" content="{{ social_image_alt | escape }}">
+{%- endif -%}

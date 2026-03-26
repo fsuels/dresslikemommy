@@ -11,6 +11,11 @@
     render 'collection-seo-fallback', collection: collection, field: 'body_description'
   endcapture
   assign collection_seo_body_description = collection_seo_body_description | strip
+
+  capture collection_seo_force_theme
+    render 'collection-seo-fallback', collection: collection, field: 'force_theme_seo'
+  endcapture
+  assign collection_seo_force_theme = collection_seo_force_theme | strip
   assign collection_description_content = blank
 
   assign collection_display_title = collection.title
@@ -19,7 +24,9 @@
   endif
 
   if section.settings.show_collection_description
-    if collection.description != blank
+    if collection_seo_force_theme == 'true' and collection_seo_body_description != blank
+      assign collection_description_content = collection_seo_body_description
+    elsif collection.description != blank
       assign collection_description_content = collection.description
     elsif collection_seo_body_description != blank
       assign collection_description_content = collection_seo_body_description

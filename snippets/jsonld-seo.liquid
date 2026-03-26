@@ -1,8 +1,15 @@
 {%- comment -%}
-  Outputs JSON-LD for Organization, WebSite, Breadcrumbs, and Product data
+  Outputs JSON-LD for homepage Organization, WebSite, Breadcrumbs, and Product data
   to replace the external JSON-LD for SEO app.
 {%- endcomment -%}
 
+{%- liquid
+  assign schema_brand_name = 'Dress Like Mommy'
+  assign organization_schema_enabled = true
+  if emit_organization_schema == false
+    assign organization_schema_enabled = false
+  endif
+-%}
 {%- assign social_handles = 'social_facebook_link|social_instagram_link|social_youtube_link|social_tiktok_link|social_twitter_link|social_pinterest_link|social_tumblr_link|social_vimeo_link' | split: '|' -%}
 {%- assign resolved_canonical_url = canonical_href | default: canonical_url | default: '' -%}
 {%- assign same_as_output = '' -%}
@@ -21,22 +28,37 @@
 {%- elsif shop.brand.logo != blank -%}
   {%- assign organization_logo = shop.brand.logo | image_url: width: 600 -%}
 {%- endif -%}
+{%- assign organization_logo_prefix = organization_logo | slice: 0, 2 -%}
+{%- if organization_logo != blank and organization_logo_prefix == '//' -%}
+  {%- assign organization_logo = organization_logo | prepend: 'https:' -%}
+{%- endif -%}
+{%- if same_as_output == blank -%}
+  {%- capture same_as_output -%}
+    "https://www.facebook.com/dresslikemommy","https://www.instagram.com/dresslikemommy","https://www.pinterest.com/dresslikemommy"
+  {%- endcapture -%}
+{%- endif -%}
+{%- assign organization_email = shop.email | default: 'info@dresslikemommy.com' | strip -%}
+{%- assign organization_phone = '+1-786-309-6006' -%}
 
+{%- if organization_schema_enabled -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": {{ shop.name | json }},
+  "name": {{ schema_brand_name | json }},
   "url": {{ shop.url | json }}{% if organization_logo != blank %},
-  "logo": {{ organization_logo | json }}{% endif %}{% if shop.email != blank %},
+  "logo": {{ organization_logo | json }}{% endif %},
   "contactPoint": [{
     "@type": "ContactPoint",
     "contactType": "customer support",
-    "email": {{ shop.email | json }}
-  }]{% endif %}{% if same_as_output != blank %},
+    "telephone": {{ organization_phone | json }},
+    "email": {{ organization_email | json }},
+    "availableLanguage": ["English", "Spanish", "French"]
+  }]{% if same_as_output != blank %},
   "sameAs": [{{ same_as_output }}]{% endif %}
 }
 </script>
+{%- endif -%}
 
 {%- assign search_target = shop.url | append: '/search?q={search_term_string}' -%}
 <script type="application/ld+json">
@@ -118,7 +140,7 @@
   {%- else -%}
     {%- assign product_url = shop.url | append: product.url -%}
   {%- endif -%}
-  {%- assign product_brand = product.vendor | default: shop.name | strip -%}
+  {%- assign product_brand = schema_brand_name -%}
   {%- assign product_description = product.description | strip_html | strip -%}
   {%- assign product_page_description = page_description | default: '' | strip -%}
   {%- if product_description == blank or product_description.size < 120 -%}
@@ -140,6 +162,10 @@
   {%- assign image_delim = '' -%}
   {%- for media in product.media limit: 10 -%}
     {%- assign media_url = media.preview_image | image_url: width: 1200 -%}
+    {%- assign media_url_prefix = media_url | slice: 0, 2 -%}
+    {%- if media_url != blank and media_url_prefix == '//' -%}
+      {%- assign media_url = media_url | prepend: 'https:' -%}
+    {%- endif -%}
     {%- if media_url != blank -%}
       {%- capture product_images -%}{{ product_images }}{{ image_delim }}{{ media_url | json }}{%- endcapture -%}
       {%- assign image_delim = ',' -%}
@@ -147,6 +173,10 @@
   {%- endfor -%}
   {%- if product_images == '' and product.featured_image != blank -%}
     {%- assign fallback_image = product.featured_image | image_url: width: 1200 -%}
+    {%- assign fallback_image_prefix = fallback_image | slice: 0, 2 -%}
+    {%- if fallback_image != blank and fallback_image_prefix == '//' -%}
+      {%- assign fallback_image = fallback_image | prepend: 'https:' -%}
+    {%- endif -%}
     {%- assign product_images = fallback_image | json -%}
   {%- endif -%}
 
@@ -192,18 +222,19 @@
   {%- endfor -%}
   {%- assign offers_list = '' -%}
   {%- assign offer_delim = '' -%}
-  {%- for variant in product.variants limit: 20 -%}
+  {%- for variant in product.variants -%}
     {%- assign variant_price = variant.price | times: 0.01 -%}
     {%- assign variant_sku_value = variant.sku | default: variant.id | append: '' | strip -%}
     {%- assign variant_barcode = variant.barcode | default: '' | strip | replace: ' ', '' | replace: '-', '' -%}
     {%- assign variant_barcode_size = variant_barcode | size -%}
+    {%- assign variant_offer_url = product_url | append: '?variant=' | append: variant.id -%}
     {%- capture offers_list -%}{{ offers_list }}{{ offer_delim }}{
       "@type": "Offer",
       "priceCurrency": {{ currency_code | json }},
       "price": {{ variant_price | json }},
       "priceValidUntil": {{ price_valid_until | json }},
       "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
-      "url": {{ product_url | json }},
+      "url": {{ variant_offer_url | json }},
       "sku": {{ variant_sku_value | json }},
       {%- if variant_barcode != blank and variant_barcode_size == 8 -%}
       "gtin8": {{ variant_barcode | json }},
@@ -261,7 +292,10 @@
     {%- assign offer_delim = ',' -%}
   {%- endfor -%}
 
-  {%- assign selected_sku_value = product.selected_or_first_available_variant.sku | default: product.selected_or_first_available_variant.id | append: '' | strip -%}
+  {%- assign selected_variant = product.selected_or_first_available_variant -%}
+  {%- assign selected_sku_value = selected_variant.sku | default: selected_variant.id | append: '' | strip -%}
+  {%- assign selected_variant_barcode = selected_variant.barcode | default: '' | strip | replace: ' ', '' | replace: '-', '' -%}
+  {%- assign selected_variant_barcode_size = selected_variant_barcode | size -%}
 
   <script type="application/ld+json">
   {
@@ -274,6 +308,18 @@
     "image": [{{ product_images }}],
     {% endif %}
     "sku": {{ selected_sku_value | json }},
+    {%- if selected_variant_barcode != blank and selected_variant_barcode_size == 8 -%}
+    "gtin8": {{ selected_variant_barcode | json }},
+    {%- endif -%}
+    {%- if selected_variant_barcode != blank and selected_variant_barcode_size == 12 -%}
+    "gtin12": {{ selected_variant_barcode | json }},
+    {%- endif -%}
+    {%- if selected_variant_barcode != blank and selected_variant_barcode_size == 13 -%}
+    "gtin13": {{ selected_variant_barcode | json }},
+    {%- endif -%}
+    {%- if selected_variant_barcode != blank and selected_variant_barcode_size == 14 -%}
+    "gtin14": {{ selected_variant_barcode | json }},
+    {%- endif -%}
     "brand": {
       "@type": "Brand",
       "name": {{ product_brand | json }}
@@ -416,21 +462,7 @@
       "reviewCount": {{ rating_count | json }},
       "bestRating": {{ rating_scale_max | json }},
       "worstRating": 1
-    },
-    "review": [{
-      "@type": "Review",
-      "name": "Customer rating summary",
-      "author": {
-        "@type": "Organization",
-        "name": {{ shop.name | json }}
-      },
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": {{ rating_value | json }},
-        "bestRating": {{ rating_scale_max | json }},
-        "worstRating": 1
-      }
-    }]
+    }
     {%- endif -%}
   }
   </script>

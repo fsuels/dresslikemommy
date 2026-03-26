@@ -4,6 +4,60 @@
 
 {%- capture generated_rich_content -%}
   {%- case collection_handle -%}
+    {%- when 'mommy-and-me' -%}
+      <h2>Mommy and me outfits for family photos, vacations, birthdays, and everyday matching moments</h2>
+      <p>This collection is designed to own the broad mommy and me outfits search cluster, not just one product type. Shoppers land here looking for mommy and me outfits, mommy and me dresses, and matching sets that can work across family photos, birthday parties, vacations, beach days, and casual everyday wear. The goal is to make the page useful as the first stop, then let the shopper narrow into dresses, swimsuits, or other matching categories from there.</p>
+      <h3>How to shop this page faster</h3>
+      <ul>
+        <li>Start with dresses when the moment is a portrait session, brunch, party, or another polished event.</li>
+        <li>Move to swimwear when the trip centers on pool days, beach travel, or resort photos.</li>
+        <li>Use the broader outfit mix when you want the strongest year-round mommy-and-me landing page instead of a single occasion edit.</li>
+      </ul>
+      {%- if collections['dresses'] != blank -%}
+        <p><a href="{{ collections['dresses'].url }}">Shop matching dresses</a> for a dress-led edit built around photos, birthdays, and special occasions.</p>
+      {%- endif -%}
+      {%- if collections['family-swimsuits'] != blank -%}
+        <p><a href="{{ collections['family-swimsuits'].url }}">Browse family matching swimsuits</a> if the search is more beach- and pool-focused or needs more family members in the look.</p>
+      {%- endif -%}
+      {%- if collections['family-sets'] != blank -%}
+        <p><a href="{{ collections['family-sets'].url }}">See matching family vacation outfits</a> for travel-ready sets that expand beyond mom-and-daughter styling.</p>
+      {%- endif -%}
+    {%- when 'family-swimsuits' -%}
+      <h2>Family matching swimsuits for beach vacations, pool days, cruises, and summer photos</h2>
+      <p>This page is built around the highest-intent family swim terms: family matching swimsuits, matching family bathing suits, and coordinated family swimwear for vacations and warm-weather photos. The collection works best when the shopper wants the whole family to feel visually connected without having to piece together separate swim categories one by one.</p>
+      <h3>Why this page is different from a general swimwear collection</h3>
+      <ul>
+        <li>It is centered on full-family coordination instead of only mom-and-daughter swim looks.</li>
+        <li>It speaks directly to vacation, cruise, and beach-photo intent where matching swimwear is the main goal.</li>
+        <li>It gives shoppers a cleaner route into family swim outfits before they branch into trunks or broader matching collections.</li>
+      </ul>
+      {%- if collections['trunks'] != blank -%}
+        <p><a href="{{ collections['trunks'].url }}">Add matching trunks</a> when you need dad and boy swim pieces to complete the beach-day set.</p>
+      {%- endif -%}
+      {%- if collections['mommy-and-me'] != blank -%}
+        <p><a href="{{ collections['mommy-and-me'].url }}">Browse Mommy and Me outfits</a> if the main need is mom-and-daughter coordination beyond swimwear.</p>
+      {%- endif -%}
+      {%- if collections['family-sets'] != blank -%}
+        <p><a href="{{ collections['family-sets'].url }}">Shop family vacation outfits</a> when the coordinated look needs cover-up, travel, or beach-dinner support beyond the pool.</p>
+      {%- endif -%}
+    {%- when 'family-sets' -%}
+      <h2>Matching family vacation outfits and beach sets for travel, resort photos, and summer plans</h2>
+      <p>This collection is the best fit for matching family vacation outfits, matching family beach outfits, and other travel-led searches where the shopper wants the family coordinated before the trip starts. It is narrower than the broad family matching hub on purpose: this page should answer beach, cruise, resort, and warm-weather travel intent first.</p>
+      <h3>Best uses for this collection</h3>
+      <ul>
+        <li>Matching family outfits for beach vacations, cruises, all-inclusive trips, and destination photos.</li>
+        <li>Coordinated travel looks that feel polished without pushing everyone into identical pieces.</li>
+        <li>Summer sets that can move from daytime sightseeing into casual dinners or photo moments.</li>
+      </ul>
+      {%- if collections['family-swimsuits'] != blank -%}
+        <p><a href="{{ collections['family-swimsuits'].url }}">Pair these looks with family matching swimsuits</a> when the trip includes pool days, beach mornings, or waterpark time.</p>
+      {%- endif -%}
+      {%- if collections['matching-outfits'] != blank -%}
+        <p><a href="{{ collections['matching-outfits'].url }}">Need a broader family-matching page?</a> Visit the main family outfits collection for holidays, photos, and year-round coordination.</p>
+      {%- endif -%}
+      {%- if collections['mommy-and-me'] != blank -%}
+        <p><a href="{{ collections['mommy-and-me'].url }}">Browse Mommy and Me outfits</a> if the trip shopping is centered more on mom-and-daughter looks.</p>
+      {%- endif -%}
     {%- when 'daddy-me' -%}
       <h2>Daddy and me outfits built around shirts, tees, and easy photo-ready looks</h2>
       <p>Search demand around this category is concentrated on daddy and me shirts, daddy and me t shirts, daddy and me tees, and coordinated father-child outfits. This page is built to cover that full intent, from casual graphic tops to sharper collared looks that feel polished for portraits, vacations, and special events.</p>
@@ -25,12 +79,12 @@
         <p><a href="{{ collections['trunks'].url }}">Browse matching trunks</a> when the outfit needs a beach or pool-friendly add-on.</p>
       {%- endif -%}
     {%- when 'daddy-me-t-shirts' -%}
-      <h2>Daddy and me t-shirts and matching tees for casual, giftable coordination</h2>
-      <p>This collection is aimed at shoppers looking specifically for daddy and me t shirts, daddy and me tees, and easy father-child tops that work beyond one photo moment. These styles are the fastest fit for everyday wear, birthdays, Father's Day gifts, theme parks, and laid-back travel days.</p>
+      <h2>Daddy and me shirts and matching tees for casual, giftable coordination</h2>
+      <p>This collection is aimed at shoppers looking for daddy and me shirts, daddy and me t shirts, daddy and me tees, and easy father-child tops that work beyond one photo moment. These styles are the fastest fit for everyday wear, birthdays, Father's Day gifts, theme parks, and laid-back travel days.</p>
       <h3>Why this page matters</h3>
       <ul>
         <li>It narrows the daddy-and-kid category down to casual tops instead of mixing in every outfit type.</li>
-        <li>It aligns with high-intent searches around daddy and me t shirts and matching tees.</li>
+        <li>It aligns with high-intent searches around daddy and me shirts, daddy and me t shirts, and matching tees.</li>
         <li>It gives shoppers a simpler path when they want a quick, giftable matching look.</li>
       </ul>
       {%- if collections['daddy-me'] != blank -%}
@@ -71,8 +125,8 @@
         <p><a href="{{ collections['matching-couples-t-shirts'].url }}">Shop couple shirts and matching T-shirts</a> when you want an easy casual entry point into the category.</p>
       {%- endif -%}
     {%- when 'matching-couples-t-shirts' -%}
-      <h2>Couple shirts and couples matching t-shirts for casual, giftable coordination</h2>
-      <p>This collection targets shoppers looking for couple shirts, couple t shirts, couples t shirts, and other matching tops that are easy to wear for date nights, trips, holidays, concerts, and everyday outfits. It is the best entry point when the shopper intent is clearly about tees first.</p>
+      <h2>Couples matching shirts and T-shirts for casual, giftable coordination</h2>
+      <p>This collection targets shoppers looking for couples matching shirts, couple shirts, couple t shirts, and other matching tops that are easy to wear for date nights, trips, holidays, concerts, and everyday outfits. It is the best entry point when the shopper intent is clearly about tees first.</p>
       <h3>Why shoppers choose matching tees</h3>
       <ul>
         <li>They are easy to gift for anniversaries, honeymoons, vacations, and themed outings.</li>

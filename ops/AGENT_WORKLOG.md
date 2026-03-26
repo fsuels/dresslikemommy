@@ -8089,3 +8089,380 @@ Open items:
 - Do not publish the current `gap_fill` group until each draft has a real article `image_url`.
 - After deploy, verify one article page and one mapped collection page in-browser to confirm the new CTA injection, related reads, and collection hero guide cards render as expected.
 - After data starts flowing, use the new `style_journal_internal_link_click` event to identify the first 2-3 English winners before translating anything else.
+
+### Task: Product schema markup + PDP FAQ schema + homepage organization enrichment
+Date: 2026-03-26 08:48:50 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-product-schema-rich-snippet-enhancement
+Changes:
+- `layout/theme.liquid`
+  - Limited Organization-schema rendering to the homepage by passing an explicit `emit_organization_schema` flag into the shared JSON-LD snippet.
+- `snippets/jsonld-seo.liquid`
+  - Set schema brand output to `Dress Like Mommy` instead of the product vendor fallback, which was currently emitting `dresslikemommy.com` on live PDPs.
+  - Added homepage Organization fallback data for `sameAs`, `telephone`, and `contactPoint.availableLanguage` using repo-backed social/contact values when theme settings are blank.
+  - Normalized schema image/logo URLs to absolute `https:` URLs for richer parser compatibility.
+  - Expanded PDP Product schema so every variant offer is emitted, each offer uses a variant-specific URL, and the selected variant barcode is exposed as a top-level GTIN when present.
+  - Kept `aggregateRating` support for Shopify/Judge.me review metafields, but removed the previous placeholder summary `review` object so the markup no longer fabricates review content.
+- `snippets/product-faq-schema.liquid`
+  - Added a PDP-only FAQ JSON-LD helper for sizing, shipping, and return-policy questions using existing on-page product content and PDP functionality.
+- `sections/main-product.liquid`
+  - Rendered the new PDP FAQ schema helper on product pages.
+
+Why:
+- The live Product JSON-LD was already relatively complete, but it still had gaps that directly affect merchant-facing rich result coverage: homepage Organization lacked social/profile links, PDP brand output used the vendor domain string, only the selected SKU was exposed top-level, and the schema included a synthetic `review` object instead of real review content.
+- The store already shows shipping/returns information and a PDP size-details module, so adding FAQ JSON-LD at the theme level was the smallest path to broaden schema coverage without depending on an external app.
+
+Verification:
+- Confirmed the current live PDP source at `https://dresslikemommy.com/products/matching-dad-and-son-pink-orange-chevron-swim-trunks` before patching:
+  - Product schema already existed.
+  - Judge.me app blocks were installed.
+  - Homepage/Product Organization schema lacked `sameAs`.
+  - No FAQPage schema was present on the sampled PDP.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: the new schema files introduced no new parse errors.
+  - Existing repo-wide errors/warnings remain in unrelated files, including `snippets/cjpod.liquid`, `tmp_products.json`, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, `snippets/product-thumbnail.liquid`, locale translation-completeness checks, and long-standing warnings in `layout/theme.liquid` / `sections/main-product.liquid`.
+- Ran `git diff --check -- layout/theme.liquid snippets/jsonld-seo.liquid snippets/product-faq-schema.liquid sections/main-product.liquid ops/AGENT_WORKLOG.md`.
+  - Result: no whitespace or patch-format issues in the touched files.
+
+Open items:
+- Shopify Admin / theme preview deployment was not available in this shell, so Google Rich Results Test cannot be run against the patched code until the theme is uploaded or published.
+- After deploy, run Google Rich Results Test on:
+  - homepage
+  - one PDP with variants/barcodes
+  - one PDP that already has real product reviews
+- If the merchant wants FAQ rich-result eligibility to align more strictly with visible Q/A copy, add an on-page PDP FAQ block that mirrors the schema questions verbatim instead of relying on existing shipping/returns/size module content.
+
+### Task: Shopify product media cleanup tooling (audit, local prep, dry-run replace)
+Date: 2026-03-26 08:22:58 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-shopify-product-media-cleanup-tooling
+Changes:
+- `ops/scripts/shopify_product_media_cleanup.py`
+  - Added a dry-run-first operator script with `audit`, `prepare`, and `replace` subcommands.
+  - `audit` pages through active products, aggregates `MediaImage` usage by media id, records original file size + dimensions, flags oversized originals, and writes JSON/CSV reports under `tmp/shopify-media-cleanup/`.
+  - `prepare` refreshes each selected media id to get a fresh `originalSource.url`, downloads the originals locally, compresses them with Pillow using `conservative` / `balanced` / `aggressive` presets, and writes a replacement manifest without touching Shopify.
+  - `replace` reads the manifest, re-checks the live media snapshot for drift, and dry-runs by default; `--execute` stages uploads and updates the existing image in place with `fileUpdate` so product media references stay attached instead of delete/re-add churn.
+  - Kept replacement metadata conservative by omitting `alt` from the live update payload so the tool does not overwrite newer alt-text edits while swapping the underlying file.
+- Generated local artifacts in `tmp/shopify-media-cleanup/` for this session:
+  - `shopify-product-media-audit.json`
+  - `shopify-product-media-audit.csv`
+  - `shopify-product-media-flagged.csv`
+  - `shopify-product-media-replacement-manifest.json`
+  - `shopify-product-media-replace-results.json`
+
+Why:
+- The repo already has operator-side Shopify Admin automation patterns, but nothing focused on oversized original product images.
+- Replacing the existing `MediaImage` in place is lower risk than deleting and recreating product media because it preserves file relationships and avoids manual reordering work.
+- `originalSource.url` is short-lived, so the tool refreshes media ids during `prepare` instead of trusting stale audit URLs.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/shopify_product_media_cleanup.py`.
+  - Result: script compiled successfully.
+- Ran `python3 ops/scripts/shopify_product_media_cleanup.py audit --max-products 3 --sample-limit 5`.
+  - Result: live Shopify smoke test succeeded against the token fallback and wrote the expected audit artifacts.
+- Ran `python3 ops/scripts/shopify_product_media_cleanup.py audit`.
+  - Result: scanned `272` active products and `1551` unique media images; flagged `30` oversized originals totaling `112.47 MB`.
+  - Largest offenders in the report include:
+    - `gid://shopify/MediaImage/28150953508961` on `vintage-matching-flannel-princess-pjs` at `10.08 MB` / `2996x4196`
+    - `gid://shopify/MediaImage/30600381988961` on `family-matching-dress-and-t-shirt-set-summer-fun-for-the-whole-family` at `7.86 MB`
+    - `gid://shopify/MediaImage/30601684582497` on `family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun` at `7.55 MB`
+- Ran `python3 ops/scripts/shopify_product_media_cleanup.py prepare --preset balanced --limit 10`.
+  - Result: prepared `8` replacements out of the top `10` flagged items, reducing that subset from `54.27 MB` to `29.70 MB` (`24.57 MB`, `45.27%` saved).
+  - Two items were skipped because their savings fell below the preset threshold:
+    - `matching-family-beach-outfits-with-floral-dresses-and-shorts`
+    - `family-matching-cable-knit-sweaters-heart-embroidered-unisex-pullovers`
+- Ran `python3 ops/scripts/shopify_product_media_cleanup.py replace`.
+  - Result: dry run found `8` manifest entries ready for live replacement and `0` skipped in preflight.
+
+Open items:
+- `replace --execute` was intentionally not run in this session; the current manifest is built with the `balanced` preset and is ready if the merchant approves that quality level for live replacement.
+- The current tooling uses Pillow because the local shell does not have `ImageMagick`, `jpegoptim`, or `pngquant` installed. If stronger PNG optimization is needed later, add those binaries and extend `prepare` to prefer them.
+- The available audit thresholds default to `2.5 MB`, `3000 px`, or `8 MP`. Lower those flags for a broader cleanup pass after the first batch is visually reviewed.
+
+### Task: Internal linking structure audit (live crawl + theme cross-check)
+Date: 2026-03-26 08:42:39 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-internal-link-structure-audit
+Changes:
+- `ops/internal-link-structure-audit-2026-03-26.md`
+  - Added a live-site audit covering broken internal links, redirecting internal links, navigation SEO, product/blog cross-linking, and underlinked-page risks.
+  - Logged 33 verified broken article-body product links and 6 article-body redirect hops with exact source URLs and recommended replacements.
+  - Documented the current nav structure and the structural issue that `SHOP` routes to `/` instead of the collection directory at `/collections`.
+  - Captured the crawl finding that product descriptions currently expose no contextual internal product/collection links, and that only 24 of 254 article pages contain any raw HTML merch links.
+
+Why:
+- The store needed a production-truth internal-link audit rather than a theme-only guess, especially because many problematic links live in article content rather than Liquid templates.
+- A written audit artifact makes the verified broken-link set and fix order resumable for future sessions.
+
+Verification:
+- Live-crawled the default-locale sitemap inventory in the shell before anti-bot throttling triggered on the second pass.
+- Validated candidate broken destinations in-browser to separate true 404s from rate-limit false positives.
+- Cross-checked the footer/blog wiring and the article/product template behavior locally:
+  - `sections/footer.liquid` uses `blogs['news']`, not `/blogs/style-journal`.
+  - `sections/main-product.liquid` renders product-description HTML without injecting related collection/product links.
+  - `sections/main-article.liquid` renders raw article content and injects the inline CTA with JavaScript rather than server-rendering that link in the article body.
+
+Open items:
+- Product-level orphan detection is not fully certified yet because paginated collection pages could not be recrawled once the anti-bot verification page appeared in the shell. A browser-authenticated second pass is still needed before treating any product orphan list as final.
+- The direct path `/blogs/style-journal` still 404s, but this pass did not find any live internal link to it in the crawl or theme code. Recheck after future content imports if legacy article HTML is bulk-updated.
+
+### Task: Batch blog article featured-image backfill script
+Date: 2026-03-26 08:24:08 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-blog-article-featured-image-backfill
+Changes:
+- `ops/scripts/update_article_featured_images.py`
+  - Added a dedicated Shopify Admin updater for backfilling article featured images on the `news` blog.
+  - Implements the requested workflow:
+    - paginated article fetch
+    - Shopify Files image lookup using the provided filename substrings
+    - title-keyword image assignment logic
+    - GraphQL `articleUpdate` writes with 500 ms pacing
+    - REST fallback for image assignment if the GraphQL update path returns user errors
+    - final verification pass that recounts articles with and without images
+  - Defaults to the existing local token path `~/.config/dresslikemommy/translation-helper-token.json` but also accepts explicit `--access-token`.
+  - Emits per-article `[SUCCESS]` / `[FAIL]` logs during execution and prints assignment distribution before writes.
+
+Why:
+- The repo already had publishing helpers for new Style Journal drafts, but nothing that batch-fills missing featured images on existing live articles.
+- The user supplied exact title-matching and file-matching rules, so the cleanest path was a dedicated ops script instead of overloading the draft-publishing flow.
+- A separate script keeps the live-content backfill repeatable once a content-scoped Admin token is available.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/update_article_featured_images.py`.
+  - Result: script compiled successfully.
+- Ran `python3 ops/scripts/update_article_featured_images.py`.
+  - Result: failed immediately with `ACCESS_DENIED: Access denied for articles field.`
+  - The current local token file still lacks article/content scopes, so the script could not read or update blog articles in this session.
+
+Open items:
+- Before this script can run live, obtain a Shopify Admin API token for `dresslikemommy-com.myshopify.com` with article/content access:
+  - read scope for article discovery (`read_content` or equivalent current article-read scope)
+  - write scope for `articleUpdate` / REST article writes (`write_content` or equivalent current article-write scope)
+- Once a content-scoped token is available, run:
+  - `python3 ops/scripts/update_article_featured_images.py --execute`
+- After the live run, verify:
+  - target blog article count
+  - zero remaining null article images
+  - a small storefront spot-check of article pages / `og:image`
+
+### Task: Site speed + Core Web Vitals theme pass
+Date: 2026-03-26 08:33:40 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-site-speed-core-web-vitals-theme-pass
+Changes:
+- `sections/hero-banner.liquid`
+  - Replaced the manual hero `<img>` with Shopify `image_tag` so the first hero section can use responsive widths plus `preload: true`, `loading="eager"`, and `fetchpriority="high"` without hardcoding a separate preload tag.
+  - Scoped the high-priority behavior to the first section only, so later hero-banner uses do not steal bandwidth from the true LCP image.
+- `sections/header.liquid`
+  - Removed the duplicate CSS preload burst that was being emitted from the header section after `<body>`.
+  - Removed `preload: true` from both logo render paths so the logo no longer competes with the homepage hero for high-priority image fetches.
+- `layout/theme.liquid`
+  - Added a favicon fallback to the store logo when `settings.favicon` is blank, which addresses the live `/favicon.ico` 404 surfaced by Lighthouse.
+  - Deduplicated font preloads when the body and heading fonts resolve to the same font file.
+- `sections/collection-list.liquid`
+  - Changed collection-card eager loading so only first-section cards in the first mobile row can remain eager; lower sections now lazy load by default.
+- `sections/main-list-collections.liquid`
+  - Applied the same first-row-only eager-loading rule to the list-collections template.
+- `sections/featured-collection.liquid`
+  - Kept the first two product cards eager only when the featured collection is actually the first section on the page; otherwise the grid now stays lazy.
+- `snippets/card-collection.liquid`
+  - Added `fetchpriority="low"` and `decoding="async"` to lazy-loaded collection thumbnails.
+
+Why:
+- Live storefront HTML confirmed the homepage hero was still using a raw PNG-backed `<img>` while the header emitted a second set of preload hints for CSS and the logo, which can compete with the hero request and delay LCP.
+- A live mobile Lighthouse pass run on `2026-03-26 08:28 EDT` returned `Performance 94`, `Best Practices 54`, `FCP 1.4 s`, `LCP 2.1 s`, `TBT 210 ms`, `CLS 0.04`, and `Speed Index 2.3 s`.
+- That same Lighthouse run showed:
+  - `errors-in-console`: only the missing `https://www.dresslikemommy.com/favicon.ico` request
+  - `unused-javascript` / `bootup-time`: dominated by GTM / gtag / Facebook / Shopify web-pixel scripts rather than theme JS
+  - `image-delivery-insight`: still flags the hero and multiple collection thumbnails because the source uploads are large PNGs
+
+Verification:
+- Ran `git diff --check -- layout/theme.liquid sections/header.liquid sections/hero-banner.liquid sections/collection-list.liquid sections/main-list-collections.liquid sections/featured-collection.liquid snippets/card-collection.liquid`.
+  - Result: no whitespace or patch-format issues.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level parse failures from this pass.
+  - Existing repo-wide warnings/errors remain in unrelated files, including locale translation-completeness issues, `snippets/cjpod.liquid`, `tmp_products.json`, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, and `snippets/product-thumbnail.liquid`.
+- Ran a live mobile Lighthouse pass against `https://www.dresslikemommy.com/`.
+  - Result: confirmed the current live bottlenecks are favicon 404, large uploaded PNGs, and third-party/web-pixel JS rather than missing image dimensions.
+
+Open items:
+- These theme edits are local only until the theme is pushed and published in Shopify Admin.
+- TBT is now primarily an Admin-side script governance problem:
+  - GTM / multiple Google tags
+  - Facebook pixel
+  - Shopify web pixel script (`/cdn/wpm/...js`)
+  - Judge.me global storefront loader
+- Repo evidence shows `config/settings_data.json` still has the global Judge.me core block enabled:
+  - `shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8`
+  - Review in Theme Editor / App embeds whether that loader can be scoped more narrowly without breaking PDP badges/widgets.
+- To get another meaningful LCP / image-delivery win after deploy, replace the current homepage hero and collection card source uploads with smaller JPG/WebP-friendly assets in Shopify Files; the CDN is already serving WebP, but the original PNG uploads still leave avoidable bytes on the table.
+
+### Task: Homepage social sharing image remake (crisp text + explicit theme override)
+Date: 2026-03-26 08:31:26 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-homepage-social-share-image-remake
+Changes:
+- `assets/dlm-social-share-home-1200x628.jpg`
+  - Added a new homepage social sharing image at the exact target size (`1200x628`) using the existing golden-hour family photo as the base and freshly rendered non-AI typography for:
+    - `Dress Like Mommy`
+    - `Matching Outfits for the Whole Family`
+    - `Free Shipping · 30-Day Returns`
+    - CTA pill for `Shop Now` + `dresslikemommy.com`
+  - Exported as optimized JPG for preview performance (`106669` bytes).
+- `ops/scripts/build_social_share_image.py`
+  - Added a small Pillow-based builder so the OG image can be regenerated locally from a supplied source image instead of editing pixels manually each time.
+  - The script crops to the required aspect ratio, applies a warm left-panel gradient that fully covers the old blurry AI text, and draws the crisp type/button treatment with system fonts.
+- `snippets/meta-tags.liquid`
+  - Added an explicit homepage social image override so `request.page_type == 'index'` now serves the new theme asset instead of whatever Shopify currently exposes via `page_image`.
+  - Kept non-homepage behavior intact: products/articles/collections still use their existing `page_image`.
+  - Added `og:image:alt`, `twitter:image`, and `twitter:image:alt` output when a social image is available.
+
+Why:
+- The live homepage HTML on `2026-03-26` still referenced `https://www.dresslikemommy.com/cdn/shop/files/ChatGPT_Image_Mar_26_2026_07_00_46_AM.png?v=1774523101` at `1536x1024`, which contains soft AI-generated text.
+- Rebuilding the copy as real type fixes thumbnail legibility, and forcing the homepage to a theme asset removes dependence on the current Shopify social-image setting.
+- Using JPG instead of the current large PNG materially reduces preview payload size while preserving the photo-led look.
+
+Verification:
+- Ran `curl -L -A 'Mozilla/5.0' -s https://dresslikemommy.com | rg -n "og:image|twitter:image|twitter:card"`.
+  - Result: confirmed the live site is still serving the March 26 AI PNG (`1536x1024`) before this local theme change is deployed.
+- Ran `python3 ops/scripts/build_social_share_image.py --source tmp/og/current-og.png --output assets/dlm-social-share-home-1200x628.jpg`.
+  - Result: rendered the final asset successfully from the downloaded live source image.
+- Ran `python3 -m py_compile ops/scripts/build_social_share_image.py`.
+  - Result: script compiled successfully.
+- Ran `sips -g pixelWidth -g pixelHeight -g format assets/dlm-social-share-home-1200x628.jpg` and `stat -f '%z bytes' assets/dlm-social-share-home-1200x628.jpg`.
+  - Result: exact `1200x628` JPEG, `106669` bytes.
+- Ran `git diff --check -- snippets/meta-tags.liquid ops/scripts/build_social_share_image.py ops/AGENT_WORKLOG.md`.
+  - Result: no whitespace or patch-format issues in the touched text files.
+- Ran `shopify theme check --path . --output text --fail-level crash`.
+  - Result: repo-wide existing warnings/errors still surface in unrelated files, especially locale translation-completeness issues; this pass did not reveal a new parse failure tied to the social-image changes.
+
+Open items:
+- The new OG image is only local until the theme is pushed to Shopify.
+- After deploy, verify homepage source output includes:
+  - `og:image` -> `dlm-social-share-home-1200x628.jpg`
+  - `twitter:image` -> `dlm-social-share-home-1200x628.jpg`
+- Once the theme override is live, the older Shopify-hosted AI PNG can remain in Files, but it is no longer needed for homepage sharing.
+
+### Task: Google Search Console and keyword research plan
+Date: 2026-03-26 08:39:33 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-seo-keyword-research-plan
+Changes:
+- `ops/content/seo/google-keyword-research-2026-03-26.md`
+  - Added a concise SEO research brief for `dresslikemommy.com` covering evidence sources, keyword-family demand and competition tiers, structural SEO risks, public-signal low-hanging-fruit candidates, keyword ownership rules, and a seasonal refresh calendar.
+  - Documented the main SEO blockers visible from public data:
+    - severe blog cannibalization from repeated year-stamped seasonal articles
+    - overlapping collection intent between broad and narrow family, daddy, and couples pages
+    - empty collections on demand-rich themes such as pajamas and Christmas
+- `ops/content/seo/google-keyword-map-2026-03-26.csv`
+  - Added a spreadsheet-friendly page-to-keyword map with unique primary keywords for homepage, major collections, selected products, and core blog posts.
+  - Included recommended actions per URL so the SEO plan can move directly into implementation.
+
+Why:
+- The request was to produce a high-value keyword map and optimization plan for Google Search Console, autocomplete, and Trends inputs.
+- Authenticated Google Search Console property data was not available in this shell, so a public-data-first SEO plan was the fastest defensible path.
+- The site already has enough live sitemap, collection, product, and blog evidence to assign keywords and identify cannibalization risk without editing theme code first.
+
+Verification:
+- Checked the live sitemap index, collection sitemap, page sitemap, and blog sitemap to confirm the current URL inventory.
+- Used a real Chrome browser session against the live storefront to verify page titles, H1s, collection inventory visibility, and representative product/article URLs.
+- Queried Google autocomplete for the core keyword families via the US-localized suggest endpoint.
+- Confirmed that query-level Google Trends requests returned HTTP `429` from this network and that authenticated Google Search Console property data was not accessible in this session; documented both limits in the report.
+- Ran `git diff --check -- ops/content/seo/google-keyword-research-2026-03-26.md ops/content/seo/google-keyword-map-2026-03-26.csv ops/AGENT_WORKLOG.md`.
+  - Result: no whitespace or patch-format issues in the touched text files.
+
+Open items:
+- Once authenticated Google Search Console access is available, export top queries and pages and specifically filter positions `5-20` to replace the current `N/A` ranking column with real opportunity data.
+- Once Google Trends is accessible from a clean browser session, confirm seasonality windows for Easter, Mother's Day, July 4th, Halloween, and Christmas before turning the calendar into a publishing backlog.
+- Before shipping on-page SEO changes, decide whether to consolidate or redirect the repeated yearly seasonal blog posts instead of refreshing all of them independently.
+
+### Task: Theme-side SEO rewrite for top-priority collection pages
+Date: 2026-03-26 08:39:33 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-seo-top-collection-rewrite
+Changes:
+- `snippets/collection-seo-fallback.liquid`
+  - Rewrote the collection SEO title, meta title, meta description, and intro copy fallbacks for the five priority commercial collection handles from the keyword map:
+    - `mommy-and-me`
+    - `family-swimsuits`
+    - `family-sets`
+    - `daddy-me-t-shirts`
+    - `matching-couples-t-shirts`
+  - Shifted the copy to the exact target phrases assigned in the keyword map:
+    - `mommy and me outfits`
+    - `family matching swimsuits`
+    - `matching family vacation outfits`
+    - `daddy and me shirts`
+    - `couples matching shirts`
+  - Added a new `force_theme_seo` field so the theme can intentionally override stale Shopify Admin collection SEO text for these priority handles.
+- `layout/theme.liquid`
+  - Wired the new `force_theme_seo` flag into the collection title and meta-description resolver so the top-priority collection pages now use the theme-side SEO copy even if older Admin values are present.
+- `snippets/meta-tags.liquid`
+  - Applied the same `force_theme_seo` behavior to collection Open Graph and Twitter metadata so social previews stay aligned with the new search-targeted titles and descriptions.
+- `sections/main-collection-banner.liquid`
+  - Updated the collection hero description resolver so the same priority handles can prefer theme-side intro copy over older Admin collection descriptions.
+- `snippets/collection-seo-content.liquid`
+  - Added new long-form collection SEO sections for:
+    - `mommy-and-me`
+    - `family-swimsuits`
+    - `family-sets`
+  - Tightened the existing `daddy-me-t-shirts` and `matching-couples-t-shirts` long-form copy so it now targets the broader `shirts` phrasing, not only `t-shirts`.
+
+Why:
+- The keyword map identified these five collections as the fastest organic-growth pages to improve next.
+- Live storefront checks showed older Shopify Admin SEO fields were still surfacing on some of these pages, which would have made theme-only copy edits partially ineffective without an explicit override path.
+- The theme already had a handle-based collection SEO system, so extending that system was the lowest-risk way to apply the keyword map.
+
+Open items:
+- Manual storefront QA is still needed on the five updated collections after deployment to confirm the new title, meta description, H1, intro copy, and long-form SEO block all render as intended on desktop and mobile.
+- The broader collection `matching-outfits` still owns `family matching outfits`; this pass intentionally left it unchanged so `family-sets` can stay focused on travel and beach intent.
+
+### Task: Storefront pixel and app-embed evidence for remaining speed / Best Practices issues
+Date: 2026-03-26 09:02:11 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-storefront-pixel-audit
+Changes:
+- `ops/AGENT_WORKLOG.md`
+  - Logged the exact active storefront web pixels and remaining non-theme blockers observed in the live HTML and Lighthouse output after the theme performance pass was deployed.
+
+Why:
+- The remaining low Best Practices score is no longer explained by theme markup issues such as console errors or missing intrinsic image sizing; those were already addressed in the live theme.
+- The live storefront source now shows the active Shopify `webPixelsConfigList`, which is the cleanest evidence of which integrations still inject third-party scripts and cookies outside theme-file control.
+
+Evidence gathered:
+- Live mobile Lighthouse after deploy:
+  - Performance `97`
+  - Best Practices `58`
+  - LCP `2.29s`
+  - TBT `58.5ms`
+  - Console errors score `1` (no current console-error deduction)
+- Live Lighthouse still reports:
+  - Deprecated API warning from Shopify platform script:
+    - `https://www.dresslikemommy.com/cdn/shopifycloud/storefront/assets/shop_events_listener-3da45d37.js`
+    - warning: `AttributionReporting`
+  - Third-party cookie activity from:
+    - Shop App session
+    - Pinterest pixel
+    - Bing / Microsoft Ads
+  - Unused JavaScript from:
+    - `gtag/js?id=G-N4EQNK0MMB`
+    - `gtag/js?id=GT-WRH8Q3MD`
+    - `gtag/js?id=AW-853411529`
+    - `connect.facebook.net/en_US/fbevents.js`
+    - Shopify web pixels bundle `cdn/wpm/...js`
+- Live storefront HTML `webPixelsConfigList` includes these active pixels:
+  - Bing / Microsoft Ads pixel with tag `36005151`
+  - Judge.me app pixel
+  - Google tags pixel bundle with IDs:
+    - `G-N4EQNK0MMB`
+    - `AW-853411529`
+    - `GT-WRH8Q3MD`
+  - App pixel with `pixelCode` `CCGG1MRC77UB2PF1KBE0`
+    - likely TikTok based on code shape; inference only
+  - Facebook pixel `547553035448852`
+  - Pinterest tag `2620007050621`
+  - Shopify app pixel
+  - Shopify custom pixel
+- Live storefront HTML still renders the Judge.me global app block and loader:
+  - `shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8`
+  - `https://cdn.shopify.com/extensions/.../judgeme-421/assets/loader.js`
+
+Conclusions:
+- The remaining Best Practices penalties are primarily Admin/platform-owned, not theme-owned.
+- Removing them cleanly requires changes in Shopify Admin, especially:
+  - `Settings -> Customer events`
+  - app-specific channel settings for Google, Meta, Pinterest, Microsoft/Bing, and the app behind `pixelCode`
+  - `Online Store -> Themes -> Customize -> App embeds` for Judge.me
+- If Admin changes are not possible, the only remaining theme-side option is an aggressive script-deferral/blocking strategy for non-essential third-party pixels and Judge.me outside critical pages; that would improve lab scores but may reduce tracking fidelity and storefront review-widget behavior.

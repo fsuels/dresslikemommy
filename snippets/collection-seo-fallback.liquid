@@ -3,6 +3,7 @@
   assign collection_title = collection.title | default: ''
   assign effective_display_title = collection_title
   assign effective_meta_title = collection_title
+  assign force_theme_seo = false
 
   case collection_handle
     when 'all'
@@ -10,25 +11,25 @@
     when 'swimsuits'
       assign effective_display_title = 'Mommy and Me Swimsuits and Matching Family Swimwear'
     when 'mommy-and-me'
-      assign effective_display_title = 'Mommy and Me Dresses, Swimsuits and Matching Outfits'
+      assign effective_display_title = 'Mommy and Me Outfits, Dresses and Swimsuits'
     when 'dresses'
       assign effective_display_title = 'Mommy and Me Dresses and Matching Family Dresses'
     when 'family-swimsuits'
-      assign effective_display_title = 'Matching Family Bathing Suits and Swimsuits'
+      assign effective_display_title = 'Family Matching Swimsuits and Bathing Suits'
     when 'family-sets'
-      assign effective_display_title = 'Matching Family Outfits and Coordinated Sets'
+      assign effective_display_title = 'Matching Family Vacation Outfits and Beach Sets'
     when 'matching-outfits', 'family-matching', 'family-matching-outfits'
       assign effective_display_title = 'Matching Family Outfits for Photos, Holidays and Travel'
     when 'daddy-me'
       assign effective_display_title = 'Daddy and Me Shirts, Tees and Matching Outfits'
     when 'daddy-me-t-shirts'
-      assign effective_display_title = 'Daddy and Me T-Shirts and Matching Tees'
+      assign effective_display_title = 'Daddy and Me Shirts and Matching Tees'
     when 'daddy-me-shirts'
       assign effective_display_title = 'Dad and Son Matching Shirts, Dress Shirts and Hawaiian Shirts'
     when 'couples'
       assign effective_display_title = 'Couples Matching Outfits and Coordinated Sets'
     when 'matching-couples-t-shirts'
-      assign effective_display_title = 'Couple Shirts and Couples Matching T-Shirts'
+      assign effective_display_title = 'Couples Matching Shirts and T-Shirts'
     when 'mommy-and-me-easter-dresses', 'easter-matching-outfits', 'spring-matching-outfits'
       assign effective_display_title = 'Mommy and Me Easter Dresses and Spring Matching Outfits'
     when 'tops'
@@ -88,18 +89,28 @@
   assign effective_meta_title = effective_display_title
   if collection_handle == 'swimsuits'
     assign effective_meta_title = 'Mommy and Me Swimsuits | Mother Daughter Bathing Suits'
+  elsif collection_handle == 'mommy-and-me'
+    assign effective_meta_title = 'Mommy and Me Outfits | Dresses, Swimsuits and Matching Sets'
+  elsif collection_handle == 'family-swimsuits'
+    assign effective_meta_title = 'Family Matching Swimsuits | Matching Family Bathing Suits'
+  elsif collection_handle == 'family-sets'
+    assign effective_meta_title = 'Matching Family Vacation Outfits | Beach and Travel Sets'
   elsif collection_handle == 'daddy-me'
     assign effective_meta_title = 'Daddy and Me Shirts, Tees and Matching Outfits'
   elsif collection_handle == 'daddy-me-t-shirts'
-    assign effective_meta_title = 'Daddy and Me T-Shirts and Matching Tees'
+    assign effective_meta_title = 'Daddy and Me Shirts | Matching Tees for Dads and Kids'
   elsif collection_handle == 'daddy-me-shirts'
     assign effective_meta_title = 'Dad and Son Matching Shirts | Button-Up, Dress and Hawaiian'
   elsif collection_handle == 'couples'
     assign effective_meta_title = 'Couples Matching Outfits | Coordinated Looks for Him and Her'
   elsif collection_handle == 'matching-couples-t-shirts'
-    assign effective_meta_title = 'Couple Shirts and Couples Matching T-Shirts'
+    assign effective_meta_title = 'Couples Matching Shirts | Couple T-Shirts and Tees'
   elsif collection_handle == 'mommy-and-me-easter-dresses' or collection_handle == 'easter-matching-outfits' or collection_handle == 'spring-matching-outfits'
     assign effective_meta_title = 'Mommy and Me Easter Dresses | Spring Matching Outfits'
+  endif
+
+  if collection_handle == 'mommy-and-me' or collection_handle == 'family-swimsuits' or collection_handle == 'family-sets' or collection_handle == 'daddy-me-t-shirts' or collection_handle == 'matching-couples-t-shirts'
+    assign force_theme_seo = true
   endif
 
   assign audience_long = 'moms, kids, and coordinated family looks'
@@ -121,7 +132,10 @@
   elsif collection_handle == 'family-swimsuits'
     assign audience_long = 'families planning beach trips, pool days, cruises, and resort photos'
     assign product_examples_short = 'matching family bathing suits, one-pieces, bikinis, rash guards, cover-ups, and swim trunks'
-  elsif collection_handle == 'family-sets' or collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
+  elsif collection_handle == 'family-sets'
+    assign audience_long = 'families planning beach trips, cruises, resort travel, and warm-weather photo moments'
+    assign product_examples_short = 'matching family vacation outfits, beach sets, dresses, tops, and travel-ready coordinated looks'
+  elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
     assign audience_long = 'the whole family, from babies and toddlers to parents'
     assign product_examples_short = 'coordinated dresses, tops, swimwear, sets, and seasonal matching looks'
   elsif collection_handle == 'daddy-me'
@@ -187,7 +201,9 @@
     assign occasion_label = 'date nights, trips, holidays, engagement photos, anniversaries, and coordinated everyday wear'
   elsif collection_handle == 'matching-couples-t-shirts'
     assign occasion_label = 'weekend trips, concerts, gifts, date nights, themed outings, and casual everyday wear'
-  elsif collection_handle == 'family-sets' or collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
+  elsif collection_handle == 'family-sets'
+    assign occasion_label = 'beach trips, cruises, resort photos, summer vacations, and coordinated travel days'
+  elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
     assign occasion_label = 'family photos, holidays, vacations, reunions, and coordinated everyday wear'
   endif
 
@@ -223,7 +239,7 @@
     if collection_handle == 'all'
       echo 'Shop all matching outfits in one place, including mommy and me, daddy and me, couples, and family sets. Comfortable styles with fast shipping.'
     elsif collection_handle == 'mommy-and-me'
-      echo 'Shop mommy and me dresses, swimsuits, pajamas, and matching outfits for vacations, birthdays, family photos, and everyday wear.'
+      echo 'Shop mommy and me outfits, dresses, swimsuits, and matching sets for birthdays, family photos, vacations, and everyday twinning moments.'
     elsif collection_handle == 'mommy-and-me-easter-dresses' or collection_handle == 'easter-matching-outfits' or collection_handle == 'spring-matching-outfits'
       echo 'Shop mommy and me Easter dresses and spring matching outfits for church, brunch, egg hunts, family photos, and other seasonal celebrations.'
     elsif collection_handle == 'dresses'
@@ -231,21 +247,21 @@
     elsif collection_handle == 'swimsuits'
       echo 'Shop mommy and me swimsuits, mother daughter bathing suits, and matching family swimwear for beach trips, pool days, cruises, and summer photos.'
     elsif collection_handle == 'family-swimsuits'
-      echo 'Shop matching family bathing suits and swimsuits with coordinated styles for moms, dads, kids, beach trips, pool days, and resort travel.'
+      echo 'Shop family matching swimsuits and bathing suits for beach vacations, pool days, cruises, and summer photos with coordinated looks for moms, dads, and kids.'
     elsif collection_handle == 'family-sets'
-      echo 'Shop matching family outfits and coordinated sets for photos, holidays, vacations, reunions, and easy everyday family styling.'
+      echo 'Shop matching family vacation outfits and beach sets for cruises, resort trips, family photos, and coordinated summer travel looks.'
     elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
       echo 'Shop matching family outfits for photos, holidays, vacations, and everyday wear with coordinated styles for moms, dads, and kids.'
     elsif collection_handle == 'daddy-me'
       echo "Shop daddy and me shirts, t-shirts, tees, and matching outfits for family photos, Father's Day, vacations, and easy everyday coordination."
     elsif collection_handle == 'daddy-me-t-shirts'
-      echo 'Shop daddy and me t-shirts and matching tees for dads, sons, and little ones. Easy graphic styles for gifts, photos, vacations, and everyday wear.'
+      echo "Shop daddy and me shirts and matching tees for Father's Day, vacations, birthdays, photos, and easy everyday outfits for dads and kids."
     elsif collection_handle == 'daddy-me-shirts'
       echo 'Shop dad and son matching shirts, including button-up, dress shirt, and Hawaiian styles for vacations, photos, parties, and polished family outfits.'
     elsif collection_handle == 'couples'
       echo 'Shop couples matching outfits with coordinated sets, tops, pajamas, and vacation-ready looks for date nights, gifts, trips, and everyday wear.'
     elsif collection_handle == 'matching-couples-t-shirts'
-      echo 'Shop couple shirts and couples matching t-shirts for trips, date nights, gifts, holidays, and easy everyday matching.'
+      echo 'Shop couples matching shirts and couple t-shirts for date nights, trips, concerts, holidays, gifts, and easy everyday coordinated looks.'
     else
       echo 'Shop '
       echo effective_display_title | downcase
@@ -258,8 +274,8 @@
     if collection_handle == 'mommy-and-me'
       echo '<p>Shop our '
       echo effective_display_title | escape
-      echo ' collection for coordinated looks that feel polished in photos and easy to wear in real life. From everyday sets to vacation-ready styles, this page brings together the strongest mommy-and-me categories in one place.</p>'
-      echo '<p>Start with dresses for birthdays and family photos, add swimsuits for warm-weather trips, and build a matching wardrobe that stays comfortable through real family days.</p>'
+      echo ' collection when you want one place to compare mommy and me outfits for birthdays, family photos, vacations, and everyday twinning moments. This page brings together dresses, swimsuits, and matching sets built for moms and daughters who want coordinated looks that still feel easy to wear in real life.</p>'
+      echo '<p>Start with dresses for portraits and special occasions, move into swimsuits for beach and pool days, and use the broader outfit mix to build a matching wardrobe that works across seasons instead of only one event.</p>'
     elsif collection_handle == 'mommy-and-me-easter-dresses' or collection_handle == 'easter-matching-outfits' or collection_handle == 'spring-matching-outfits'
       echo '<p>Browse '
       echo effective_display_title | escape
@@ -278,9 +294,14 @@
     elsif collection_handle == 'family-swimsuits'
       echo '<p>Discover '
       echo effective_display_title | escape
-      echo ' built for beach vacations, pool days, cruises, and resort photos. These coordinated swim looks make it easier to dress moms, dads, girls, and boys around one clean color story.</p>'
-      echo '<p>Use matching family bathing suits when you want the fastest route to a polished summer look, then round out the wardrobe with cover-ups, trunks, and easy post-swim layers.</p>'
-    elsif collection_handle == 'family-sets' or collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
+      echo ' built for beach vacations, pool days, cruises, and summer photos. These coordinated swim looks make it easier to dress moms, dads, girls, and boys around one clear print, palette, or vacation-ready color story.</p>'
+      echo '<p>Use this page when the search starts with family matching swimsuits or matching family bathing suits, then round out the look with trunks, cover-ups, and easy post-swim layers for beach days and resort travel.</p>'
+    elsif collection_handle == 'family-sets'
+      echo '<p>Explore '
+      echo effective_display_title | escape
+      echo ' with coordinated looks designed for family vacations, beach trips, cruises, travel photos, and warm-weather outings. These sets help you create a clear family palette without forcing every person into the exact same piece.</p>'
+      echo '<p>Use this page for matching family vacation outfits and matching family beach outfits, then branch into broader family matching collections when you need more seasonal or non-travel-specific options.</p>'
+    elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
       echo '<p>Explore '
       echo effective_display_title | escape
       echo ' with coordinated looks for family photos, holidays, travel, and everyday wear. These sets help you create a clear family palette without forcing every person into the exact same piece.</p>'
@@ -293,8 +314,8 @@
     elsif collection_handle == 'daddy-me-t-shirts'
       echo '<p>Shop '
       echo effective_display_title | escape
-      echo " when you want casual, giftable matching tops for dads and kids. These styles are the fastest fit for everyday wear, themed trips, birthdays, and Father's Day moments that should feel coordinated without being overdone.</p>"
-      echo '<p>Start here for slogan tees and easy graphic styles, then move into dress shirts or Hawaiian sets if the occasion calls for a sharper look.</p>'
+      echo " when you want casual, giftable matching tops for dads and kids. This page is built around daddy and me shirts, matching tees, and easy everyday looks that work for Father's Day, birthdays, family trips, and quick photo moments.</p>"
+      echo '<p>Start here for slogan tees and easy graphic styles, then move into dress shirts or Hawaiian sets if the occasion calls for a sharper look or a more vacation-ready outfit.</p>'
     elsif collection_handle == 'daddy-me-shirts'
       echo '<p>Browse '
       echo effective_display_title | escape
@@ -308,8 +329,8 @@
     elsif collection_handle == 'matching-couples-t-shirts'
       echo '<p>Browse '
       echo effective_display_title | escape
-      echo ' for shoppers searching couple shirts, couple t shirts, and everyday matching tops. These styles work best when you want a casual, giftable coordinated look for trips, holidays, concerts, date nights, and photos.</p>'
-      echo '<p>Use this page for easy everyday matching, then step up to the broader couples collection if you want a fuller outfit built around more than tees.</p>'
+      echo ' for shoppers searching couples matching shirts, couple t shirts, and everyday coordinated tops. These styles work best when you want a casual, giftable look for trips, holidays, concerts, date nights, and photos.</p>'
+      echo '<p>Use this page for easy everyday matching, then step up to the broader couples collection if you want a fuller outfit built around more than tees alone.</p>'
     else
       echo '<p>Explore our '
       echo effective_display_title | escape
@@ -333,5 +354,9 @@
       echo generated_meta_description | truncate: 155, ''
     when 'body_description'
       echo generated_body_description
+    when 'force_theme_seo'
+      if force_theme_seo
+        echo 'true'
+      endif
   endcase
 -%}
