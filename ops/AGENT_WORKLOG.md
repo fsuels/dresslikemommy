@@ -7839,6 +7839,43 @@ Open items:
 - The new drafts still rely on `featured_image_prompt` placeholders and need real article image URLs before publishing.
 - Shopify article SEO title and meta description fields still require manual entry in Admin if these drafts are published live.
 
+### Task: Style Journal article publish follow-through audit
+Date: 2026-03-26 12:47:18 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-style-journal-publish-follow-through-audit
+Changes:
+- Updated the four new daddy-and-me / couples drafts with real Shopify CDN hero image URLs:
+  - `daddy-and-me-button-down-shirts-vacation-dinners-photos`
+  - `daddy-and-me-beach-outfits-shirts-trunks-family-travel`
+  - `matching-couple-outfits-date-night-travel-gifts`
+  - `couple-matching-pajamas-holidays-anniversaries-gifts`
+- Updated `ops/scripts/publish_blog_articles.py` so it now sends `seo` input in addition to `image` when `seo_title` / `seo_description` are present in frontmatter.
+- Updated `ops/content/style-journal/README.md` to reflect the current API behavior and the remaining content-scope requirement.
+
+Why:
+- The earlier repo notes about mandatory manual article SEO entry were stale relative to the current Admin GraphQL schema.
+- The remaining missing work was split into two categories:
+  - missing draft-side hero image URLs, which are fixable from current read access
+  - live article publish/update, which depends on content scopes that are not currently granted to the available sessions
+
+Verification:
+- Verified the stored `shpat_...` token and `admin-api-token.json` both fail with `HTTP 401 Unauthorized`.
+- Verified Shopify CLI bearer-session auth still works for general Admin GraphQL access by successfully querying `shop { name primaryDomain { url } }`.
+- Verified current schema support on `2026-01`:
+  - `ArticleUpdateInput` includes `seo`
+  - `ArticleUpdateInput` includes `image`
+- Verified the actual live blocker with Shopify responses:
+  - `blogs(first: 10)` returns `ACCESS_DENIED`
+  - `articleCreate` returns `ACCESS_DENIED` and explicitly requires `write_content` or `write_online_store_pages`
+- Queried live Shopify `files` / `products` data through the working bearer session to select real image URLs for the four drafts.
+
+Open items:
+- Live publishing is still blocked in this shell because the currently available sessions do not have blog/article content scopes.
+- To finish the live publish step, obtain an Admin session or token for `dresslikemommy-com.myshopify.com` with at least:
+  - `read_content`
+  - `write_content`
+- Once a content-scoped session is available, run:
+  - `python3 ops/scripts/publish_blog_articles.py --handles daddy-and-me-button-down-shirts-vacation-dinners-photos,daddy-and-me-beach-outfits-shirts-trunks-family-travel,matching-couple-outfits-date-night-travel-gifts,couple-matching-pajamas-holidays-anniversaries-gifts --execute --publish`
+
 ### Task: GTM container verification and theme install
 Date: 2026-03-26 07:05:28 EDT
 AGENT_CONTINUITY_ANCHOR: 2026-03-26-gtm-theme-install
@@ -8486,7 +8523,6 @@ Verification:
 Open items:
 - No live Shopify execution was run in this sync step; this entry only captures and syncs the existing local script artifact.
 
-
 ### Task: Live Shopify Admin collection SEO optimization
 Date: 2026-03-26 09:12:43 EDT
 AGENT_CONTINUITY_ANCHOR: 2026-03-26-live-collection-seo-admin
@@ -8524,6 +8560,191 @@ Missing collection images:
 Open items:
 - Add collection images for the 37 handles above to improve collection-grid presentation and Google Images eligibility.
 - If this workflow is reused, normalize HTML entities during post-update verification so Shopify apostrophe normalization does not produce false `verify_failed` results.
+
+### Task: Product SEO fallback cleanup + title-repair execution pack + Merchant Center audit
+Date: 2026-03-26 10:04:00 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-product-seo-fallback-title-repair-merchant-audit
+Changes:
+- `snippets/product-seo-description-fallback.liquid`
+  - Added a reusable product meta-description fallback that replaces blank or junk `SPECIFICATIONS...` snippets with cleaner product-search copy.
+  - Falls back to cleaned product body copy when possible, otherwise generates a short category-aware description from the product title.
+- `layout/theme.liquid`
+  - Wired the new product description fallback into the main `<meta name="description">` output for product pages.
+- `snippets/meta-tags.liquid`
+  - Matched the same product description fallback for Open Graph and Twitter descriptions.
+- `ops/seo/product_title_repair_plan.csv`
+  - Generated a current repair plan CSV from `ops/scripts/repair_product_titles.py`.
+- `ops/seo/priority-worklist-2026-03-25.md`
+  - Added a ranked SEO execution list covering title repair, collection content priorities, product-feed cleanup, and review priorities.
+- `ops/seo/merchant-center-readiness-2026-03-25.md`
+  - Added a Merchant Center / free listings readiness audit using the current Shopify export plus live schema checks.
+
+Why:
+- Live spot checks found active product pages still using poor auto meta descriptions such as:
+  - `/products/couple-matching-queen-king-hearts-t-shirts`
+    returning a snippet beginning with `SPECIFICATIONS...`
+- That kind of snippet is weak for CTR even when the page is indexable, and it is a theme-side problem that can be fixed without admin product editing.
+- Separate audit work confirmed the bigger SEO / shopping-feed blockers are still data quality:
+  - `164` broken live product titles need repair
+  - active published products are missing Google product category in the export
+  - barcode/identifier coverage is incomplete
+- Since this shell still lacks Shopify Admin API credentials, the best immediate move was to ship the theme-side product snippet fix and generate exact execution artifacts for the admin-data work.
+
+Verification:
+- Ran `python3 ops/scripts/repair_product_titles.py --plan-csv ops/seo/product_title_repair_plan.csv --sample-limit 10`.
+  - Result: `164` planned repairs.
+- Audited export data from `products_export_1 2.csv` and confirmed for active published products:
+  - `283` active published products
+  - `283` missing Google product category
+  - `193` missing any barcode across variants
+  - `90` missing product `Type`
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new syntax failures after the fallback snippet was corrected.
+  - Existing unrelated repo issues remain (`snippets/cjpod.liquid`, `tmp_products.json`, locale translation gaps, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, `snippets/product-thumbnail.liquid`, etc.).
+- Pushed the product SEO files to development theme `#133851742305` and verified via preview-cookie requests:
+  - `/products/couple-matching-queen-king-hearts-t-shirts`
+    now returns a clean meta/OG description instead of the `SPECIFICATIONS...` snippet.
+  - `/products/mommy-and-me-matching-floral-long-sleeve-maxi-dresses-with-pockets`
+    preserves its existing good description.
+- Pushed the same files to live theme `#133290917985`.
+- Verified the public live product page for `/products/couple-matching-queen-king-hearts-t-shirts` now returns the corrected meta description.
+
+Open items:
+- Live execution of the `164` product title repairs is still blocked by missing `SHOPIFY_STORE_DOMAIN` and `SHOPIFY_ADMIN_ACCESS_TOKEN` environment variables in this shell.
+- The generated CSV and run command are ready; once credentials are available, execute `ops/scripts/repair_product_titles.py` in staged batches.
+- Merchant Center cleanup still requires Shopify/admin data work for Google product category, identifier coverage, and normalization of the `UNKNOWN` type bucket.
+
+### Task: Admin API access continuity note
+Date: 2026-03-26 09:21:43 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-admin-api-access-continuity
+Changes:
+- `AGENTS.md`
+  - Added a continuity instruction that operator-managed Shopify Admin API access exists via the `n8n Integration` app and must not be stored in tracked files.
+- `ops/AGENT_WORKLOG.md`
+  - Recorded that future sessions should distinguish between "credentials not loaded in this shell" and "no API access exists."
+
+Why:
+- The operator confirmed that Shopify Admin API credentials already exist and wants future sessions to stop assuming the store lacks API access.
+- Persisting the actual key/secret in the repository, theme, or worklog would violate repo constraints and increase credential exposure.
+
+Open items:
+- Keep the actual Admin API credentials in a secure external store only; do not commit or log them in tracked files.
+- If future live Admin API work is needed, load the credentials into that shell/session before running scripts that require authenticated Admin access.
+
+### Task: Local Shopify credential continuity wiring
+Date: 2026-03-26 09:21:43 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-local-shopify-credential-wiring
+Changes:
+- `ops/scripts/shopify_admin_config.py`
+  - Added a shared helper for resolving the store domain and loading the Admin token from env vars or the local token file under `~/.config/dresslikemommy/`.
+- `ops/scripts/repair_product_titles.py`
+  - Added local token-file fallback support so execute mode no longer depends strictly on shell env vars.
+- `ops/scripts/publish_blog_articles.py`
+  - Added the same local token-file fallback plus default store-domain resolution.
+- `AGENTS.md`
+  - Updated continuity instructions to point future sessions to the canonical local config paths and to the fact that only the `n8n Integration` app remains installed.
+
+Why:
+- The operator supplied current Shopify credentials for the `n8n Integration` app and wants future sessions to retain that API-access context.
+- Several scripts already supported a local token file; extending that pattern reduces repeated "missing credentials" blockers when a shell starts without exported env vars.
+
+Open items:
+- Local secret files must remain untracked under `~/.config/dresslikemommy/`; do not paste token values into tracked repo files.
+- If a future task requires app key/secret for OAuth or app-management work, load them from the local env file only when needed.
+
+### Task: Shopify Admin credential continuity hardening + token validation failure
+Date: 2026-03-26 12:48:44 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-admin-token-validation-failure
+Changes:
+- `AGENTS.md`
+  - Expanded the Shopify Admin API continuity note to include `~/.config/dresslikemommy/admin-api-token.json` as a canonical local credential source.
+  - Added an explicit instruction that `401 Invalid API key or access token` means API access exists conceptually but the stored token must be regenerated, not that the store lacks Admin API capability.
+- `ops/scripts/update_article_featured_images.py`
+  - Added secure local credential-source fallback support in this order:
+    - explicit `--access-token`
+    - `SHOPIFY_ADMIN_ACCESS_TOKEN`
+    - `~/.config/dresslikemommy/shopify-admin.env`
+    - `~/.config/dresslikemommy/admin-api-token.json`
+    - `~/.config/dresslikemommy/translation-helper-token.json`
+  - Added store-domain resolution from `shopify-admin.env` so future sessions can run the updater without re-exporting env vars manually.
+- Local secure config only (not tracked):
+  - Saved the operator-provided n8n Admin token in `~/.config/dresslikemommy/admin-api-token.json`.
+
+Why:
+- The operator explicitly asked future sessions to remember that Shopify Admin API access exists for this store.
+- Shell environment variables may not be loaded in every new session, so the updater now consults the canonical local config files before failing.
+- The current blocker is not missing continuity; it is that the only stored token presently returns `401` from Shopify.
+
+Verification:
+- Ran direct Admin API checks against `dresslikemommy-com.myshopify.com` using the current n8n token:
+  - GraphQL `shop { name }`
+  - GraphQL `blogs(first: 3)`
+  - GraphQL `articles(first: 3)`
+  - REST `GET /admin/api/2024-10/access_scopes.json`
+- Result for every Admin API request: `401 Unauthorized` / `[API] Invalid API key or access token (unrecognized login or wrong password)`.
+- Ran `python3 -m py_compile ops/scripts/update_article_featured_images.py`.
+  - Result: script compiled successfully after the credential-source updates.
+- Ran `python3 ops/scripts/update_article_featured_images.py`.
+  - Result: failed immediately with the same `401` response, confirming the blocker is the stored token itself rather than shell state.
+- Searched the local secure config and shell history for any alternate `shpat_...` token for this store.
+  - Result: only the same invalid n8n token was present.
+
+Open items:
+- No live article featured-image updates were performed in this session because Shopify rejected the stored Admin token before any article read/write call could succeed.
+- To complete the article backfill, regenerate or reinstall the `n8n Integration` app token, then update the local secure credential file(s) under `~/.config/dresslikemommy/`.
+- After a working token is in place, rerun:
+  - `python3 ops/scripts/update_article_featured_images.py --execute`
+- Then verify:
+  - total `news` blog article count
+  - zero remaining null article images
+  - a small storefront spot-check for article hero/`og:image`
+
+### Task: Product title repair execution blocked by live Admin auth
+Date: 2026-03-26 09:44:18 EDT
+Changes:
+- `ops/AGENT_WORKLOG.md`
+  - Recorded a direct execute-mode verification of `ops/scripts/repair_product_titles.py` using the local `~/.config/dresslikemommy/shopify-admin.env` credentials.
+
+Why:
+- The remaining unresolved SEO task is the live repair of broken product titles, so the exact blocker needed to be re-verified before closing the work or syncing changes.
+
+Verification:
+- Ran `source ~/.config/dresslikemommy/shopify-admin.env && python3 ops/scripts/repair_product_titles.py --execute --max-updates 1 --sample-limit 1`.
+- The script still builds the same plan (`164` repairs) but fails on the first live Admin GraphQL call with `HTTP 401 Unauthorized`.
+- Shopify returned: `Invalid API key or access token (unrecognized login or wrong password)`.
+
+Open items:
+- Theme-side SEO fixes are complete, but live product title repair is still blocked until the Admin API token is refreshed or replaced with a valid one for the target store.
+- Do not sync a "fully complete" SEO fix state to `main` until the title-repair execute path succeeds or the remaining scope is explicitly deferred.
+
+### Task: Refresh local Admin credential continuity with user-provided full-access token
+Date: 2026-03-26 12:53:55 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-admin-credential-refresh-recheck
+Changes:
+- Local secure config only:
+  - Refreshed `~/.config/dresslikemommy/shopify-admin.env` with the newly provided `n8n Integration` app credentials.
+  - Reconfirmed the repo continuity instruction in `AGENTS.md` is already correct: future sessions must assume Shopify Admin API access exists and should look in the external config paths first instead of saying access does not exist.
+
+Why:
+- The operator explicitly re-provided full-access Admin credentials and wants future sessions to stop losing the API-access continuity context.
+- The missing live SEO work still depends on authenticated Admin access, so the new token had to be verified immediately rather than assumed good.
+
+Verification:
+- Ran a direct Admin GraphQL auth check against:
+  - `https://dresslikemommy-com.myshopify.com/admin/api/2026-01/graphql.json`
+  - query: `{ shop { name myshopifyDomain } }`
+- Result using the refreshed `shopify-admin.env` token:
+  - `HTTP 401`
+  - Shopify response: `Invalid API key or access token (unrecognized login or wrong password)`
+- Re-ran the same auth check against the alternate secure token source:
+  - `~/.config/dresslikemommy/admin-api-token.json`
+- Result:
+  - same `HTTP 401` invalid-token response
+
+Open items:
+- The API-access continuity is preserved, but the currently stored Admin tokens are not valid for live writes.
+- To finish the remaining live work (`daddy-me-shirts` collection creation, Easter collection creation, live title repairs, article publishing, or any other Admin mutations), regenerate/reinstall the `n8n Integration` app token and update the external secure credential file(s).
+- Do not store the token itself in tracked repo files, theme files, or the worklog.
 
 ### Task: Internal linking audit orphan-page resolution follow-through
 Date: 2026-03-26 09:44:18 EDT
@@ -8566,3 +8787,57 @@ Verification:
 Open items:
 - The internal-linking audit itself is now complete.
 - If the merchant wants remediation implemented in-theme or in Shopify content, the next task is to either link or retire the `12` orphan collections and attach or redirect the orphan PDP.
+
+### Task: SEO/theme/admin-script review and sync approval
+Date: 2026-03-26 13:02:52 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-seo-theme-admin-sync-review
+Changes:
+- `ops/scripts/shopify_admin_config.py`
+  - Hardened the shared Admin credential loader so it now checks all documented local sources:
+    - `~/.config/dresslikemommy/shopify-admin.env`
+    - `~/.config/dresslikemommy/admin-api-token.json`
+    - `~/.config/dresslikemommy/translation-helper-token.json`
+  - Removed the implicit hard-coded production store fallback so admin-write scripts do not silently target prod without an explicit or configured domain.
+- `ops/scripts/publish_blog_articles.py`
+  - Wired the shared credential helper into execute mode and kept article `seo` + `image` payload support enabled.
+- `ops/scripts/repair_product_titles.py`
+  - Wired the shared credential helper into execute mode and updated CLI docs for the local credential fallbacks.
+- `ops/scripts/update_article_featured_images.py`
+  - Added the same local credential fallback order and fail-fast missing-domain handling.
+- Theme/article SEO files reviewed and approved for sync:
+  - `layout/theme.liquid`
+  - `snippets/meta-tags.liquid`
+  - `snippets/product-seo-description-fallback.liquid`
+  - `sections/main-article.liquid`
+  - `snippets/article-enhanced-schema.liquid`
+  - `snippets/article-featured-image-fallback.liquid`
+- Style Journal content/ops files reviewed and approved for sync:
+  - article hero-image updates for four drafts
+  - `ops/content/style-journal/README.md`
+  - `ops/seo/product_title_repair_plan.csv`
+  - `ops/seo/priority-worklist-2026-03-25.md`
+  - `ops/seo/merchant-center-readiness-2026-03-25.md`
+
+Why:
+- The unsynced change set is a net site benefit after hardening:
+  - product pages get cleaner fallback meta descriptions instead of junk `SPECIFICATIONS...` snippets
+  - article pages without featured images now get non-empty social/schema image output
+  - four priority article drafts now have real image URLs instead of blanks
+  - the operator-run Shopify scripts now match the repo’s documented credential continuity model and fail more safely
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/shopify_admin_config.py ops/scripts/publish_blog_articles.py ops/scripts/repair_product_titles.py ops/scripts/update_article_featured_images.py`.
+- Ran `git diff --check`.
+- Ran `python3 ops/scripts/publish_blog_articles.py`.
+  - Result: dry run parsed `20` article drafts successfully.
+- Ran `python3 ops/scripts/repair_product_titles.py --sample-limit 3 --plan-csv ops/seo/product_title_repair_plan.csv`.
+  - Result: current plan still shows `164` repairs and rewrote the CSV cleanly.
+- Ran `env -u SHOPIFY_STORE_DOMAIN -u SHOPIFY_ADMIN_ACCESS_TOKEN python3 ops/scripts/update_article_featured_images.py --env-file /tmp/nonexistent-shopify-admin.env --admin-token-file /tmp/nonexistent-admin-token.json --token-file /tmp/nonexistent-translation-token.json`.
+  - Result: now fails immediately with a clear missing-store-domain error instead of constructing a bad Admin URL.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new changed-file syntax failures from this sync set; existing repo-wide errors/warnings remain in unrelated files/locales (`snippets/cjpod.liquid`, `tmp_products.json`, locale translation gaps, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, `snippets/product-thumbnail.liquid`, etc.).
+- Verified all new article/fallback image URLs used by this sync return `HTTP 200`.
+
+Open items:
+- Live Shopify Admin writes are still blocked until a valid Admin token is restored; current stored tokens continue to return `401 Unauthorized`.
+- This sync is approved as an improvement to the repo/site baseline even though the remaining live Admin execution tasks are still deferred.

@@ -75,15 +75,16 @@ python3 ops/scripts/build_style_journal_localization_queue.py \
 
 Notes:
 
-- The current shell does not expose Shopify admin credentials, so these drafts
-  were prepared but not published live in this session.
-- Shopify's current `articleCreate` and `articleUpdate` inputs do not expose
-  article SEO title/meta description fields. Keep `seo_title` and
-  `seo_description` in frontmatter as editorial guidance, and enter those
-  manually in Shopify admin when publishing if needed.
-- Several priority drafts still have blank `image_url` values. Keep using the
-  current cadence, but do not publish them until a real article image URL is in
-  place.
+- The current shell may have Shopify credentials loaded but still lack
+  article/content scopes. Live publish requires content access such as
+  `read_content` / `write_content`.
+- On the current Admin GraphQL version used by this repo, `articleCreate` and
+  `articleUpdate` accept both `seo` and `image` inputs. The publish script will
+  send `seo_title`, `seo_description`, `image_url`, and `image_alt`
+  automatically when they are present in frontmatter.
+- Several priority drafts started with blank `image_url` values. Keep using the
+  current cadence, but do not publish any draft until a real article image URL
+  is in place.
 - The theme now hides the `Blog` header link by default, so article discovery
   should come from the homepage journal section, internal links, footer/support
   links, and search indexing instead of the primary conversion nav.

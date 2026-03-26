@@ -432,6 +432,26 @@
   {% render 'article-faq-schema', article: article %}
 </article>
 
+{%- liquid
+  assign article_schema_image_url = blank
+  assign article_schema_image_width = blank
+  assign article_schema_image_height = blank
+
+  if article.image
+    assign article_schema_image_url = article.image | image_url: width: 1920 | prepend: 'https:'
+    assign article_schema_image_width = 1920
+    assign article_schema_image_height = 1920 | divided_by: article.image.aspect_ratio | round
+  endif
+-%}
+{%- if article.image == blank -%}
+  {%- capture article_schema_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
+  {%- capture article_schema_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
+  {%- capture article_schema_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
+  {%- assign article_schema_image_url = article_schema_image_url | strip -%}
+  {%- assign article_schema_image_width = article_schema_image_width | strip -%}
+  {%- assign article_schema_image_height = article_schema_image_height | strip -%}
+{%- endif -%}
+
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -445,9 +465,9 @@
     {% if article.excerpt != blank %}
       "description": {{ article.excerpt | strip_html | json }},
     {% endif %}
-    {% if article.image %}
+    {% if article_schema_image_url != blank %}
       "image": [
-        {{ article | image_url: width: 1920 | prepend: "https:" | json }}
+        {{ article_schema_image_url | json }}
       ],
     {% endif %}
     "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},

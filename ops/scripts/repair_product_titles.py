@@ -2,8 +2,9 @@
 """Repair Shopify product titles from a clean reference export.
 
 Default mode is dry-run. Live updates require:
-  - SHOPIFY_STORE_DOMAIN (for example: dresslikemommy-com.myshopify.com)
+  - SHOPIFY_STORE_DOMAIN (or the same value in ~/.config/dresslikemommy/shopify-admin.env)
   - SHOPIFY_ADMIN_ACCESS_TOKEN
+  - or a local token JSON under ~/.config/dresslikemommy/
 
 The script is intentionally conservative:
   - it targets active products by default,
@@ -27,6 +28,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Sequence, Tuple
 from urllib import error, request
+
+from shopify_admin_config import (
+    DEFAULT_ENV_PATH,
+    DEFAULT_STORE_DOMAIN,
+    DEFAULT_TOKEN_PATH,
+    load_access_token as load_shopify_access_token,
+    resolve_store_domain,
+)
 
 
 ROW_HANDLE = "Handle"
@@ -454,13 +463,6 @@ def execute_plan(
     return results
 
 
-def require_env(name: str) -> str:
-    value = clean(os.environ.get(name, ""))
-    if not value:
-        raise RuntimeError(f"Missing required environment variable: {name}")
-    return value
-
-
 def summarize_plan(metrics: Dict[str, int], plan: Sequence[PlannedRepair]) -> List[str]:
     lines = [
         f"Current export products: {metrics['current_products']}",
@@ -558,8 +560,17 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--store-domain",
-        default=os.environ.get("SHOPIFY_STORE_DOMAIN", ""),
-        help="Shopify myshopify domain. Falls back to SHOPIFY_STORE_DOMAIN.",
+        default=DEFAULT_STORE_DOMAIN,
+        help=(
+            "Shopify myshopify domain. Falls back to SHOPIFY_STORE_DOMAIN or "
+            "~/.config/dresslikemommy/shopify-admin.env."
+        ),
+    )
+    parser.add_argument(
+        "--token-file",
+        type=Path,
+        default=DEFAULT_TOKEN_PATH,
+        help=f"Local token file fallback (default: {DEFAULT_TOKEN_PATH}).",
     )
     parser.add_argument(
         "--api-version",
@@ -621,8 +632,15 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 0
 
     try:
-        store_domain = clean(args.store_domain) or require_env("SHOPIFY_STORE_DOMAIN")
-        access_token = require_env("SHOPIFY_ADMIN_ACCESS_TOKEN")
+        store_domain = resolve_store_domain(
+            args.store_domain,
+            env_path=DEFAULT_ENV_PATH,
+            fallback_domain=DEFAULT_STORE_DOMAIN,
+        )
+        access_token = load_shopify_access_token(
+            token_path=args.token_file,
+            env_path=DEFAULT_ENV_PATH,
+        )
     except Exception as exc:  # pragma: no cover - CLI error path
         print(f"Error: {exc}", file=sys.stderr)
         return 1

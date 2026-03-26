@@ -33,6 +33,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional
 
+from shopify_admin_config import (
+    DEFAULT_ENV_PATH,
+    DEFAULT_STORE_DOMAIN,
+    DEFAULT_TOKEN_PATH,
+    load_access_token as load_shopify_access_token,
+    resolve_store_domain,
+)
+
 
 DEFAULT_API_VERSION = os.environ.get("SHOPIFY_API_VERSION", "2026-01")
 DEFAULT_ARTICLES_DIR = Path("ops/content/style-journal/articles")
@@ -310,6 +318,11 @@ def build_article_input(draft: ArticleDraft, blog_id: Optional[str] = None, arti
             "url": draft.image_url,
             "altText": draft.image_alt or draft.title,
         }
+    if draft.seo_title or draft.seo_description:
+        article_input["seo"] = {
+            "title": draft.seo_title or draft.title,
+            "description": draft.seo_description or draft.summary,
+        }
 
     return article_input
 
@@ -330,8 +343,20 @@ def main() -> int:
     parser.add_argument("--articles-dir", default=str(DEFAULT_ARTICLES_DIR), help="Directory containing frontmatter HTML articles")
     parser.add_argument("--blog-handle", default=DEFAULT_BLOG_HANDLE, help="Shopify blog handle to publish into")
     parser.add_argument("--api-version", default=DEFAULT_API_VERSION, help="Shopify Admin API version")
-    parser.add_argument("--store-domain", default=os.environ.get("SHOPIFY_STORE_DOMAIN", ""), help="Store domain, e.g. dresslikemommy.myshopify.com")
+    parser.add_argument(
+        "--store-domain",
+        default=DEFAULT_STORE_DOMAIN,
+        help=(
+            "Store domain, e.g. dresslikemommy.myshopify.com. Falls back to "
+            "SHOPIFY_STORE_DOMAIN or ~/.config/dresslikemommy/shopify-admin.env."
+        ),
+    )
     parser.add_argument("--access-token", default=os.environ.get("SHOPIFY_ADMIN_ACCESS_TOKEN", ""), help="Shopify Admin API access token")
+    parser.add_argument(
+        "--token-file",
+        default=str(DEFAULT_TOKEN_PATH),
+        help=f"JSON file containing access_token (default: {DEFAULT_TOKEN_PATH})",
+    )
     parser.add_argument("--handles", default="", help="Comma-separated article handles to limit execution")
     parser.add_argument("--execute", action="store_true", help="Run live create/update mutations")
     parser.add_argument("--update-existing", action="store_true", help="Update an existing article with the same handle instead of skipping it")
@@ -346,13 +371,6 @@ def main() -> int:
         print("No drafts matched the requested scope.", file=sys.stderr)
         return 1
 
-    if any(draft.seo_title or draft.seo_description for draft in drafts):
-        print(
-            "Note: Shopify's current articleCreate/articleUpdate inputs do not expose article SEO title/description fields; "
-            "keep seo_title and seo_description in frontmatter for manual admin entry.",
-            file=sys.stderr,
-        )
-
     if not args.execute:
         print(f"Dry run: {len(drafts)} drafts found in {articles_dir}")
         for draft in drafts:
@@ -360,10 +378,19 @@ def main() -> int:
         print("Use --execute with Shopify credentials to publish.")
         return 0
 
-    store_domain = normalize_store_domain(args.store_domain)
-    access_token = args.access_token.strip()
-    if not store_domain or not access_token:
-        print("Missing Shopify credentials. Set SHOPIFY_STORE_DOMAIN and SHOPIFY_ADMIN_ACCESS_TOKEN or pass flags.", file=sys.stderr)
+    try:
+        store_domain = resolve_store_domain(
+            args.store_domain,
+            env_path=DEFAULT_ENV_PATH,
+            fallback_domain=DEFAULT_STORE_DOMAIN,
+        )
+        access_token = load_shopify_access_token(
+            args.access_token,
+            Path(args.token_file).expanduser(),
+            env_path=DEFAULT_ENV_PATH,
+        )
+    except Exception as exc:
+        print(str(exc), file=sys.stderr)
         return 1
 
     blog = find_blog(

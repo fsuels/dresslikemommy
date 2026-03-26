@@ -17,6 +17,7 @@ import argparse
 import json
 import os
 import re
+import shlex
 import sys
 import time
 import urllib.error
@@ -27,11 +28,14 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Tuple
 
 
-DEFAULT_STORE_DOMAIN = os.environ.get("SHOPIFY_STORE_DOMAIN", "dresslikemommy-com.myshopify.com")
+DEFAULT_CONFIG_DIR = Path.home() / ".config" / "dresslikemommy"
+DEFAULT_STORE_DOMAIN = os.environ.get("SHOPIFY_STORE_DOMAIN", "")
 DEFAULT_API_VERSION = os.environ.get("SHOPIFY_API_VERSION", "2024-10")
 DEFAULT_BLOG_HANDLE = os.environ.get("SHOPIFY_BLOG_HANDLE", "news")
 DEFAULT_BLOG_TITLE = os.environ.get("SHOPIFY_BLOG_TITLE", "News")
-DEFAULT_TOKEN_PATH = Path.home() / ".config" / "dresslikemommy" / "translation-helper-token.json"
+DEFAULT_ENV_PATH = DEFAULT_CONFIG_DIR / "shopify-admin.env"
+DEFAULT_ADMIN_TOKEN_PATH = DEFAULT_CONFIG_DIR / "admin-api-token.json"
+DEFAULT_TOKEN_PATH = DEFAULT_CONFIG_DIR / "translation-helper-token.json"
 PAGE_SIZE = 50
 UPDATE_DELAY_SECONDS = 0.5
 MAX_RETRIES = 3
@@ -176,6 +180,47 @@ def normalize_store_domain(raw_domain: str) -> str:
     return value.rstrip("/")
 
 
+def parse_env_assignments(env_file: Path) -> Dict[str, str]:
+    if not env_file.exists():
+        return {}
+
+    assignments: Dict[str, str] = {}
+    for raw_line in env_file.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("export "):
+            line = line[len("export ") :].strip()
+        key, separator, value = line.partition("=")
+        if not separator:
+            continue
+        parsed_value = value.strip()
+        if parsed_value:
+            try:
+                parts = shlex.split(parsed_value)
+            except ValueError:
+                parts = [parsed_value.strip("\"'")]
+            parsed_value = parts[0] if parts else ""
+        assignments[key.strip()] = parsed_value
+    return assignments
+
+
+def resolve_store_domain(explicit_domain: str, env_file: Path) -> str:
+    env_assignments = parse_env_assignments(env_file)
+    domain = normalize_store_domain(
+        explicit_domain
+        or os.environ.get("SHOPIFY_STORE_DOMAIN", "")
+        or env_assignments.get("SHOPIFY_STORE_DOMAIN", "")
+        or DEFAULT_STORE_DOMAIN
+    )
+    if not domain:
+        raise SystemExit(
+            "Missing Shopify store domain. Pass --store-domain or define SHOPIFY_STORE_DOMAIN "
+            f"in the shell or {env_file}."
+        )
+    return domain
+
+
 def normalize_text(value: str) -> str:
     return " " + re.sub(r"[^a-z0-9]+", " ", str(value or "").lower()).strip() + " "
 
@@ -195,21 +240,33 @@ def parse_numeric_id(gid: str) -> str:
     return gid.rsplit("/", 1)[-1]
 
 
-def load_access_token(access_token: str, token_file: Path) -> str:
+def load_access_token(access_token: str, env_file: Path, token_files: Iterable[Path]) -> str:
     if access_token.strip():
         return access_token.strip()
 
-    if not token_file.exists():
-        raise SystemExit(
-            "Missing Shopify Admin API token. Pass --access-token or place a token file at "
-            f"{token_file}."
-        )
+    env_token = os.environ.get("SHOPIFY_ADMIN_ACCESS_TOKEN", "").strip()
+    if env_token:
+        return env_token
 
-    payload = json.loads(token_file.read_text(encoding="utf-8"))
-    token = str(payload.get("access_token", "")).strip()
-    if not token:
-        raise SystemExit(f"Token file {token_file} does not contain access_token.")
-    return token
+    env_assignments = parse_env_assignments(env_file)
+    env_file_token = str(env_assignments.get("SHOPIFY_ADMIN_ACCESS_TOKEN", "")).strip()
+    if env_file_token:
+        return env_file_token
+
+    checked_paths: List[str] = []
+    for token_file in token_files:
+        checked_paths.append(str(token_file))
+        if not token_file.exists():
+            continue
+        payload = json.loads(token_file.read_text(encoding="utf-8"))
+        token = str(payload.get("access_token", "")).strip()
+        if token:
+            return token
+
+    raise SystemExit(
+        "Missing Shopify Admin API token. Pass --access-token, set SHOPIFY_ADMIN_ACCESS_TOKEN, "
+        f"or store it in {env_file} / one of: {', '.join(checked_paths)}."
+    )
 
 
 def format_graphql_errors(errors: List[Dict]) -> str:
@@ -532,11 +589,20 @@ def print_assignment_summary(assignments: Iterable[Assignment]) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--store-domain", default=DEFAULT_STORE_DOMAIN, help="Shopify store domain")
+    parser.add_argument(
+        "--store-domain",
+        default=DEFAULT_STORE_DOMAIN,
+        help=(
+            "Shopify store domain. Falls back to SHOPIFY_STORE_DOMAIN or "
+            "~/.config/dresslikemommy/shopify-admin.env."
+        ),
+    )
     parser.add_argument("--api-version", default=DEFAULT_API_VERSION, help="Shopify Admin API version")
     parser.add_argument("--blog-handle", default=DEFAULT_BLOG_HANDLE, help="Target blog handle filter")
     parser.add_argument("--blog-title", default=DEFAULT_BLOG_TITLE, help="Target blog title filter")
     parser.add_argument("--access-token", default=os.environ.get("SHOPIFY_ADMIN_ACCESS_TOKEN", ""), help="Shopify Admin API token")
+    parser.add_argument("--env-file", default=str(DEFAULT_ENV_PATH), help="Local env file containing Shopify credentials")
+    parser.add_argument("--admin-token-file", default=str(DEFAULT_ADMIN_TOKEN_PATH), help="Local JSON file containing access_token")
     parser.add_argument("--token-file", default=str(DEFAULT_TOKEN_PATH), help="JSON file containing access_token")
     parser.add_argument("--execute", action="store_true", help="Run live article updates")
     parser.add_argument("--limit", type=int, default=0, help="Limit the number of article updates")
@@ -544,8 +610,16 @@ def main() -> int:
     parser.add_argument("--no-rest-fallback", action="store_true", help="Disable REST fallback when GraphQL update fails")
     args = parser.parse_args()
 
-    store_domain = normalize_store_domain(args.store_domain)
-    access_token = load_access_token(args.access_token, Path(args.token_file).expanduser())
+    env_file = Path(args.env_file).expanduser()
+    store_domain = resolve_store_domain(args.store_domain, env_file)
+    access_token = load_access_token(
+        args.access_token,
+        env_file,
+        (
+            Path(args.admin_token_file).expanduser(),
+            Path(args.token_file).expanduser(),
+        ),
+    )
     client = ShopifyClient(store_domain=store_domain, access_token=access_token, api_version=args.api_version)
 
     try:

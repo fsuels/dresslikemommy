@@ -13,6 +13,7 @@ Continuity (resume work in new sessions)
 - Read ops/AGENT_WORKLOG.md (latest entries at bottom) to get current status, decisions, TODOs, and next steps.
 - Also review this AGENTS.md and the diffs in layout/theme.liquid, sections/main-product.liquid, snippets/cart-drawer.liquid, snippets/meta-tags.liquid, assets/analytics.js for context.
 - If context is tight, search for the string: AGENT_CONTINUITY_ANCHOR in the worklog to jump to the latest checkpoint.
+- Shopify Admin API continuity: operator-managed Admin API access exists via the `n8n Integration` app. Canonical local credential sources are `~/.config/dresslikemommy/shopify-admin.env`, `~/.config/dresslikemommy/admin-api-token.json`, and `~/.config/dresslikemommy/translation-helper-token.json`; credentials must stay outside the repo/worklog/theme files. If environment variables are unset in a future shell, describe that as "credentials not loaded in this shell" rather than "no API access exists." If a provided token starts returning `401 Invalid API key or access token`, treat that as "stored token requires regeneration/reinstall" rather than assuming the store lacks API access.
 
 Coding conventions
 - Liquid, snippets, sections: Prefer small, composable snippets. Avoid heavy inline <style> where possible.

@@ -138,6 +138,24 @@
   endif
 %}
 
+{%- if request.page_type == 'article' and article != blank and article.image == blank -%}
+  {%- capture article_fallback_social_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
+  {%- capture article_fallback_social_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
+  {%- capture article_fallback_social_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
+  {%- capture article_fallback_social_image_alt -%}{% render 'article-featured-image-fallback', article: article, field: 'alt' %}{%- endcapture -%}
+  {%- assign article_fallback_social_image_url = article_fallback_social_image_url | strip -%}
+  {%- assign article_fallback_social_image_width = article_fallback_social_image_width | strip -%}
+  {%- assign article_fallback_social_image_height = article_fallback_social_image_height | strip -%}
+  {%- assign article_fallback_social_image_alt = article_fallback_social_image_alt | strip -%}
+  {%- if article_fallback_social_image_url != blank -%}
+    {%- assign social_image_url = article_fallback_social_image_url -%}
+    {%- assign social_image_href = article_fallback_social_image_url -%}
+    {%- assign social_image_width = article_fallback_social_image_width -%}
+    {%- assign social_image_height = article_fallback_social_image_height -%}
+    {%- assign social_image_alt = article_fallback_social_image_alt | default: og_title -%}
+  {%- endif -%}
+{%- endif -%}
+
 {%- if should_noindex -%}
   <meta name="robots" content="noindex,{% if noindex_follow %} follow{% else %} nofollow{% endif %}">
 {%- endif -%}

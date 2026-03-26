@@ -1,0 +1,99 @@
+{%- liquid
+  assign article_source = article.title | append: ' ' | append: article.handle | downcase
+  assign image_key = 'FAMILY_RED'
+
+  if article_source contains 'valentine' or article_source contains 'heart' or article_source contains 'love'
+    assign image_key = 'HEARTS_PINK'
+  elsif article_source contains 'christmas' or article_source contains 'holiday' or article_source contains 'pajama'
+    assign image_key = 'SWEATERS'
+  elsif article_source contains 'new year' or article_source contains 'winter' or article_source contains 'cold' or article_source contains 'cozy' or article_source contains 'january' or article_source contains 'december'
+    assign image_key = 'SWEATERS'
+  elsif article_source contains 'thanksgiving' or article_source contains 'november'
+    assign image_key = 'SWEATERS'
+  elsif article_source contains 'halloween' or article_source contains 'costume' or article_source contains 'october'
+    assign image_key = 'LIFESTYLE'
+  elsif article_source contains 'fall' or article_source contains 'autumn' or article_source contains 'apple' or article_source contains 'september'
+    assign image_key = 'SWEATERS'
+  elsif article_source contains 'easter'
+    assign image_key = 'EASTER_MOM'
+  elsif article_source contains 'mother' or article_source contains 'mothers day' or article_source contains 'mother s day' or article_source contains 'mom day'
+    assign image_key = 'EASTER_MOM'
+  elsif article_source contains 'spring' or article_source contains 'floral' or article_source contains 'march' or article_source contains 'april'
+    assign image_key = 'GARDEN_FAMILY'
+  elsif article_source contains 'father' or article_source contains 'daddy' or article_source contains 'dad'
+    assign image_key = 'GARDEN_FAMILY'
+  elsif article_source contains '4th of july' or article_source contains 'fourth' or article_source contains 'patriotic' or article_source contains 'independence'
+    assign image_key = 'FAMILY_RED'
+  elsif article_source contains 'summer' or article_source contains 'beach' or article_source contains 'swim' or article_source contains 'vacation' or article_source contains 'july' or article_source contains 'june' or article_source contains 'august'
+    assign image_key = 'BEACH_DAD'
+  elsif article_source contains 'school' or article_source contains 'back to'
+    assign image_key = 'EASTER_MOM'
+  elsif article_source contains 'dress' and article_source contains 'mommy'
+    assign image_key = 'PINK_DRESS'
+  elsif article_source contains 'photo' or article_source contains 'portrait' or article_source contains 'picture'
+    assign image_key = 'FAMILY_GROUP'
+  elsif article_source contains 'budget' or article_source contains 'guide' or article_source contains 'complete' or article_source contains 'best' or article_source contains 'top' or article_source contains 'idea'
+    assign image_key = 'FAMILY_RED'
+  endif
+
+  assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/ChatGPT_Image_Mar_23_2026_03_06_20_AM.png'
+  assign image_width = 1024
+  assign image_height = 1536
+  assign image_alt = article.title | default: 'Dress Like Mommy Style Journal article image'
+
+  case image_key
+    when 'SWEATERS'
+      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/family-sweaters-1152x2048-fixed.png'
+      assign image_width = 1152
+      assign image_height = 2048
+    when 'EASTER_MOM'
+      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/mommy-me-easter-outfit-ideas-2026-hero.jpg'
+      assign image_width = 1318
+      assign image_height = 896
+    when 'FAMILY_RED'
+      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/ChatGPT_Image_Mar_23_2026_03_06_20_AM.png'
+      assign image_width = 1024
+      assign image_height = 1536
+    when 'GARDEN_FAMILY'
+      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/approve-image-1080x1920.png'
+      assign image_width = 1080
+      assign image_height = 1920
+    when 'PINK_DRESS'
+      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_44.png'
+      assign image_width = 756
+      assign image_height = 1344
+    when 'BEACH_DAD'
+      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_46.png'
+      assign image_width = 756
+      assign image_height = 1344
+    when 'SUMMER_PINK'
+      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_47.png'
+      assign image_width = 768
+      assign image_height = 1365
+    when 'HEARTS_PINK'
+      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_38.png'
+      assign image_width = 768
+      assign image_height = 1365
+    when 'LIFESTYLE'
+      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/fixed-size-1080x1920-from-upload.jpg'
+      assign image_width = 1080
+      assign image_height = 1920
+    when 'FAMILY_GROUP'
+      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/ChatGPT_Image_Mar_23_2026_02_48_47_AM.png'
+      assign image_width = 1024
+      assign image_height = 1536
+  endcase
+
+  case field
+    when 'key'
+      echo image_key
+    when 'width'
+      echo image_width
+    when 'height'
+      echo image_height
+    when 'alt'
+      echo image_alt
+    else
+      echo image_url
+  endcase
+-%}
