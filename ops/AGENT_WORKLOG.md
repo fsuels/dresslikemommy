@@ -7589,3 +7589,24 @@ Verification:
 
 Open items:
 - Shopify Admin translations and locale publication are complete, but storefront routing for newly published locales still depends on market web-presence assignment that requires `read_markets` / `write_markets` scopes outside the current token.
+
+### Task: GTM container verification and theme install
+Date: 2026-03-26 07:05:28 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-gtm-theme-install
+Changes:
+- `layout/theme.liquid`
+  - Verified the repo did not contain `GTM-5QVH4W3`, `gtm.js?id=...`, or the GTM noscript iframe before this pass.
+  - Added the standard Google Tag Manager bootstrap script in `<head>` for container `GTM-5QVH4W3`.
+  - Added the matching GTM noscript iframe immediately after the opening `<body>` tag.
+
+Why:
+- The theme already pushes analytics events into `window.dataLayer`, but GTM cannot load or read those events unless the container snippet is actually present in the storefront theme.
+- The user requested explicit verification against `layout/theme.liquid`; repo evidence showed the GTM container was missing entirely before this change.
+
+Verification:
+- Ran `rg -n "GTM-5QVH4W3|googletagmanager\\.com/ns\\.html|gtm\\.js\\?id=GTM-5QVH4W3" layout/theme.liquid -S`.
+  - Result: confirmed the head bootstrap and body noscript are now present in `layout/theme.liquid`.
+- Ran `git diff -- layout/theme.liquid`.
+  - Result: confirmed this pass only added the GTM head script and body noscript on top of existing in-progress theme changes.
+
+Open items:
