@@ -443,14 +443,14 @@
     assign article_schema_image_height = 1920 | divided_by: article.image.aspect_ratio | round
   endif
 -%}
-{%- if article.image == blank -%}
+{%- unless article.image -%}
   {%- capture article_schema_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
   {%- capture article_schema_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
   {%- capture article_schema_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
   {%- assign article_schema_image_url = article_schema_image_url | strip -%}
   {%- assign article_schema_image_width = article_schema_image_width | strip -%}
   {%- assign article_schema_image_height = article_schema_image_height | strip -%}
-{%- endif -%}
+{%- endunless -%}
 
 <script type="application/ld+json">
   {

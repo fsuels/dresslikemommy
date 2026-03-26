@@ -8841,3 +8841,20 @@ Verification:
 Open items:
 - Live Shopify Admin writes are still blocked until a valid Admin token is restored; current stored tokens continue to return `401 Unauthorized`.
 - This sync is approved as an improvement to the repo/site baseline even though the remaining live Admin execution tasks are still deferred.
+
+### Task: Article schema fallback guard normalization
+Date: 2026-03-26 13:06:31 EDT
+Changes:
+- `sections/main-article.liquid`
+  - Normalized the fallback-image guard from `if article.image == blank` to `unless article.image`.
+- `snippets/article-enhanced-schema.liquid`
+  - Matched the same guard normalization for the enhanced article schema snippet.
+
+Why:
+- This keeps the article image-fallback logic consistent with the social-image fallback guard and avoids relying on blank-comparison semantics for image objects.
+
+Verification:
+- Reviewed the resulting diff to confirm it is behavior-preserving except for the more robust presence check.
+
+Open items:
+- No additional open items beyond the existing Admin token / live-write blocker above.
