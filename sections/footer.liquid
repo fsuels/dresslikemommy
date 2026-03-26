@@ -215,7 +215,7 @@
                 <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
               {%- endif -%}
               {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
-                <input type="hidden" name="contact[tags]" value="newsletter">
+                <input type="hidden" name="contact[tags]" value="newsletter,footer-signup">
                 <div class="newsletter-form__field-wrapper">
                   <div class="field">
                     <input
@@ -252,7 +252,11 @@
                     </button>
                   </div>
                   {%- if form.errors -%}
-                    <small class="newsletter-form__message form__message" id="ContactFooter-error">
+                    <small
+                      class="newsletter-form__message form__message"
+                      id="ContactFooter-error"
+                      data-analytics-newsletter-state="error"
+                    >
                       {%- render 'icon-error' -%}
                       {{- form.errors.translated_fields.email | capitalize }}
                       {{ form.errors.messages.email -}}
@@ -265,6 +269,7 @@
                     id="ContactFooter-success"
                     tabindex="-1"
                     autofocus
+                    data-analytics-newsletter-state="success"
                   >
                     {% render 'icon-success' %}
                     {{- 'newsletter.success' | t }}

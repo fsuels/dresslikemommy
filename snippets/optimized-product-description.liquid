@@ -1,0 +1,22 @@
+{% comment %}
+  Sanitizes product description HTML for faster render on PDPs.
+
+  Accepts:
+  - description_html: Raw product description HTML
+{% endcomment %}
+
+{%- liquid
+  assign optimized_description = description_html | default: ''
+
+  if optimized_description != blank
+    assign optimized_description = optimized_description | remove: '<script src="//s3.amazonaws.com/cashe-js/17e542e29d504c7411.js"></script>'
+    assign optimized_description = optimized_description | remove: "<script src='//s3.amazonaws.com/cashe-js/17e542e29d504c7411.js'></script>"
+    assign optimized_description = optimized_description | remove: '<script src="https://s3.amazonaws.com/cashe-js/17e542e29d504c7411.js"></script>'
+    assign optimized_description = optimized_description | remove: "<script src='https://s3.amazonaws.com/cashe-js/17e542e29d504c7411.js'></script>"
+    assign optimized_description = optimized_description | remove: '<script src="http://s3.amazonaws.com/cashe-js/17e542e29d504c7411.js"></script>'
+    assign optimized_description = optimized_description | remove: "<script src='http://s3.amazonaws.com/cashe-js/17e542e29d504c7411.js'></script>"
+    assign optimized_description = optimized_description | replace: '<img ', '<img loading="lazy" decoding="async" fetchpriority="low" '
+  endif
+-%}
+
+{{ optimized_description }}

@@ -110,6 +110,15 @@
   }
 {%- endstyle -%}
 
+{%- liquid
+  assign hero_button_link = section.settings.button_link | default: ''
+  assign hero_button_scroll_target = blank
+  assign hero_button_link_first_char = hero_button_link | slice: 0, 1
+  if hero_button_link != blank and hero_button_link_first_char == '#'
+    assign hero_button_scroll_target = hero_button_link | remove_first: '#'
+  endif
+-%}
+
 <div class="hero-banner">
   {%- if section.settings.image != blank -%}
     <img
@@ -140,10 +149,12 @@
     {%- endif -%}
     {%- if section.settings.button_label != blank -%}
       <a
-        href="{{ section.settings.button_link }}"
+        href="{{ hero_button_link }}"
         class="hero-banner__cta"
         id="HeroBannerCta-{{ section.id }}"
-        data-scroll-target="categories-section"
+        {% if hero_button_scroll_target != blank %}
+          data-scroll-target="{{ hero_button_scroll_target }}"
+        {% endif %}
       >
         {{ section.settings.button_label }}
       </a>

@@ -1,0 +1,935 @@
+{%- liquid
+  assign mode = mode | default: ''
+  assign collections_root = routes.collections_url
+  assign journal_blog = blogs['news']
+
+  assign article_context_handle = article.handle | default: ''
+  assign collection_context_handle = collection.handle | default: ''
+
+  capture article_context_text
+    if article != blank
+      echo article.handle
+      echo ' '
+      echo article.title
+      echo ' '
+      if article.tags != blank
+        echo article.tags | join: ' '
+      endif
+    endif
+  endcapture
+  assign article_context_text = article_context_text | downcase
+
+  assign article_primary_collection_handle_raw = ''
+  assign article_supporting_collection_handles_raw = ''
+  assign article_related_article_handles_raw = ''
+  assign collection_style_journal_article_handles_raw = ''
+
+  if article != blank
+    assign article_primary_collection_handle_raw = article.metafields.custom.primary_collection_handle.value | default: article.metafields.custom.primary_collection_handle | append: '' | strip
+    assign article_supporting_collection_handles_raw = article.metafields.custom.supporting_collection_handles.value | default: article.metafields.custom.supporting_collection_handles | append: '' | strip
+    assign article_related_article_handles_raw = article.metafields.custom.related_article_handles.value | default: article.metafields.custom.related_article_handles | append: '' | strip
+  endif
+
+  if collection != blank
+    assign collection_style_journal_article_handles_raw = collection.metafields.custom.style_journal_article_handles.value | default: collection.metafields.custom.style_journal_article_handles | append: '' | strip
+  endif
+
+  assign collection_link_1_handle = ''
+  assign collection_link_1_title = ''
+  assign collection_link_1_caption = ''
+  assign collection_link_2_handle = ''
+  assign collection_link_2_title = ''
+  assign collection_link_2_caption = ''
+  assign collection_link_3_handle = ''
+  assign collection_link_3_title = ''
+  assign collection_link_3_caption = ''
+
+  case article_context_handle
+    when 'family-vacation-outfits-beach-cruise-resort'
+      assign collection_link_1_handle = 'matching-outfits'
+      assign collection_link_1_title = 'Matching Family Vacation Outfits'
+      assign collection_link_1_caption = 'Start with coordinated looks that can carry travel days, dinners, and family photos.'
+      assign collection_link_2_handle = 'family-sets'
+      assign collection_link_2_title = 'Family Matching Sets'
+      assign collection_link_2_caption = 'Shop the fastest route to a pulled-together family wardrobe when everyone needs to match.'
+      assign collection_link_3_handle = 'family-swimsuits'
+      assign collection_link_3_title = 'Matching Family Swimsuits'
+      assign collection_link_3_caption = 'Round out the trip wardrobe with coordinated swimwear for beach and pool days.'
+    when 'mommy-and-me-beach-dresses-vacation-photos'
+      assign collection_link_1_handle = 'mommy-and-me'
+      assign collection_link_1_title = 'Mommy & Me Vacation Outfits'
+      assign collection_link_1_caption = 'Shop the broad mommy-and-me assortment when you want coordinated looks beyond one dress style.'
+      assign collection_link_2_handle = 'dresses'
+      assign collection_link_2_title = 'Mommy & Me Dresses'
+      assign collection_link_2_caption = 'Compare breezy silhouettes for beach dinners, resort walks, and vacation photos.'
+      assign collection_link_3_handle = 'family-swimsuits'
+      assign collection_link_3_title = 'Matching Family Swimsuits'
+      assign collection_link_3_caption = 'Keep the vacation color story going when the trip also includes beach or pool time.'
+    when 'best-family-swimsuits-for-beach-vacations-and-pool-days'
+      assign collection_link_1_handle = 'family-swimsuits'
+      assign collection_link_1_title = 'Matching Family Swimsuits'
+      assign collection_link_1_caption = 'Shop coordinated swimwear for moms, dads, and kids in one place.'
+      assign collection_link_2_handle = 'swimsuits'
+      assign collection_link_2_title = 'Mommy & Me Swimsuits'
+      assign collection_link_2_caption = 'Start here when mom-and-daughter swim looks are the main priority.'
+      assign collection_link_3_handle = 'trunks'
+      assign collection_link_3_title = 'Matching Swim Trunks'
+      assign collection_link_3_caption = 'Add trunks for dads and boys to turn a pair into a full family swim look.'
+    when 'daddy-and-me-matching-shirts-summer-photos'
+      assign collection_link_1_handle = 'daddy-me'
+      assign collection_link_1_title = 'Daddy & Me Matching Outfits'
+      assign collection_link_1_caption = 'Start with the core daddy-and-me edit for summer photos, trips, and easy everyday coordination.'
+      assign collection_link_2_handle = 'tops'
+      assign collection_link_2_title = 'Matching Family Tops'
+      assign collection_link_2_caption = 'Use coordinated shirts and tees when you want a lighter, more casual family look.'
+      assign collection_link_3_handle = 'trunks'
+      assign collection_link_3_title = 'Matching Swim Trunks'
+      assign collection_link_3_caption = 'Bring in beach-ready pieces when the shirts are part of a summer travel wardrobe.'
+    when 'family-reunion-matching-shirts-outfit-ideas'
+      assign collection_link_1_handle = 'family-sets'
+      assign collection_link_1_title = 'Family Reunion Matching Sets'
+      assign collection_link_1_caption = 'Shop coordinated family sets when a larger group needs to look aligned quickly.'
+      assign collection_link_2_handle = 'matching-outfits'
+      assign collection_link_2_title = 'Matching Family Outfits'
+      assign collection_link_2_caption = 'Browse broader matching options for reunions, photos, and milestone gatherings.'
+      assign collection_link_3_handle = 'tops'
+      assign collection_link_3_title = 'Matching Family Tops'
+      assign collection_link_3_caption = 'Keep the reunion look casual and packable with coordinated tops and tees.'
+    when 'matching-family-outfits-for-disney-trips'
+      assign collection_link_1_handle = 'matching-outfits'
+      assign collection_link_1_title = 'Matching Family Outfits for Trips'
+      assign collection_link_1_caption = 'Start with coordinated outfits that can handle park days, travel, and photo stops.'
+      assign collection_link_2_handle = 'family-sets'
+      assign collection_link_2_title = 'Family Matching Sets'
+      assign collection_link_2_caption = 'Use ready-made sets when you want the full family coordinated without overplanning.'
+      assign collection_link_3_handle = 'tops'
+      assign collection_link_3_title = 'Matching Family Tops'
+      assign collection_link_3_caption = 'Shop lighter casual pieces that work well for warm days and long walks.'
+    when 'mommy-and-me-summer-dresses-for-vacations-and-photos'
+      assign collection_link_1_handle = 'mommy-and-me'
+      assign collection_link_1_title = 'Mommy & Me Summer Outfits'
+      assign collection_link_1_caption = 'Start with the broad mom-and-daughter collection for easy warm-weather coordination.'
+      assign collection_link_2_handle = 'dresses'
+      assign collection_link_2_title = 'Mommy & Me Dresses'
+      assign collection_link_2_caption = 'Compare summer dresses that work for birthdays, travel, and family photos.'
+      assign collection_link_3_handle = 'matching-outfits'
+      assign collection_link_3_title = 'Matching Family Outfits'
+      assign collection_link_3_caption = 'Extend the mommy-and-me look into a full family wardrobe when more people are joining.'
+    when 'matching-family-cruise-outfits-what-to-pack'
+      assign collection_link_1_handle = 'matching-outfits'
+      assign collection_link_1_title = 'Matching Cruise Outfits'
+      assign collection_link_1_caption = 'Shop travel-ready matching looks that work from embarkation to dinner and photo stops.'
+      assign collection_link_2_handle = 'family-sets'
+      assign collection_link_2_title = 'Family Matching Sets'
+      assign collection_link_2_caption = 'Use easy coordinated sets when you want packing to stay simple.'
+      assign collection_link_3_handle = 'family-swimsuits'
+      assign collection_link_3_title = 'Matching Family Swimsuits'
+      assign collection_link_3_caption = 'Cover pool and beach excursions with swimwear that fits the same trip palette.'
+    when 'the-complete-guide-to-family-matching-outfits'
+      assign collection_link_1_handle = 'matching-outfits'
+      assign collection_link_1_title = 'Matching Family Outfits'
+      assign collection_link_1_caption = 'Start with the broadest family-matching collection for photos, holidays, and everyday wear.'
+      assign collection_link_2_handle = 'family-sets'
+      assign collection_link_2_title = 'Family Matching Sets'
+      assign collection_link_2_caption = 'Shop coordinated sets when you want the whole group aligned without building every outfit from scratch.'
+      assign collection_link_3_handle = 'dresses'
+      assign collection_link_3_title = 'Mommy & Me Dresses'
+      assign collection_link_3_caption = 'Add dresses when moms and daughters are leading the color story.'
+    when 'what-to-wear-for-family-photos-matching-outfit-ideas'
+      assign collection_link_1_handle = 'matching-outfits'
+      assign collection_link_1_title = 'Matching Family Photo Outfits'
+      assign collection_link_1_caption = 'Start with coordinated looks that photograph cleanly across the whole group.'
+      assign collection_link_2_handle = 'dresses'
+      assign collection_link_2_title = 'Mommy & Me Dresses'
+      assign collection_link_2_caption = 'Use dresses when softer, more elevated portraits are the goal.'
+      assign collection_link_3_handle = 'family-sets'
+      assign collection_link_3_title = 'Family Matching Sets'
+      assign collection_link_3_caption = 'Choose family sets when you want full-group coordination to come together faster.'
+    when 'daddy-and-me-matching-outfits-the-ultimate-guide'
+      assign collection_link_1_handle = 'daddy-me'
+      assign collection_link_1_title = 'Daddy & Me Matching Outfits'
+      assign collection_link_1_caption = 'Shop the core daddy-and-me collection for shirts, trunks, and easy matching outfits.'
+      assign collection_link_2_handle = 'tops'
+      assign collection_link_2_title = 'Matching Family Tops'
+      assign collection_link_2_caption = 'Browse coordinated shirts and tees when you want lighter everyday matching.'
+      assign collection_link_3_handle = 'trunks'
+      assign collection_link_3_title = 'Matching Swim Trunks'
+      assign collection_link_3_caption = 'Add swim pieces when the daddy-and-me look also needs to work on vacation.'
+    when 'mother-daughter-matching-swimsuits-complete-guide-for-summer-2026'
+      assign collection_link_1_handle = 'swimsuits'
+      assign collection_link_1_title = 'Mother Daughter Matching Swimsuits'
+      assign collection_link_1_caption = 'Start with the main swim hub for mom-and-daughter sets and supporting family swim options.'
+      assign collection_link_2_handle = 'family-swimsuits'
+      assign collection_link_2_title = 'Matching Family Swimsuits'
+      assign collection_link_2_caption = 'Expand into full-family swimwear when the whole group is coordinating.'
+      assign collection_link_3_handle = 'mommy-and-me'
+      assign collection_link_3_title = 'Mommy & Me Matching Outfits'
+      assign collection_link_3_caption = 'Keep the matching look going beyond swim with related mommy-and-me outfits.'
+    when 'daddy-and-me-button-down-shirts-vacation-dinners-photos'
+      assign collection_link_1_handle = 'daddy-me'
+      assign collection_link_1_title = 'Daddy & Me Matching Outfits'
+      assign collection_link_1_caption = 'Shop the core daddy-and-me collection for shirts that work for dinners, photos, and vacations.'
+      assign collection_link_2_handle = 'tops'
+      assign collection_link_2_title = 'Matching Family Tops'
+      assign collection_link_2_caption = 'Compare lighter tops and shirts when the look needs to stay versatile.'
+      assign collection_link_3_handle = 'family-sets'
+      assign collection_link_3_title = 'Family Matching Sets'
+      assign collection_link_3_caption = 'Pull the full family into the same palette when the trip includes group photos.'
+    when 'matching-couple-outfits-date-night-travel-gifts'
+      assign collection_link_1_handle = 'couples'
+      assign collection_link_1_title = 'Matching Couple Outfits'
+      assign collection_link_1_caption = 'Start with the couples collection for date nights, travel, and giftable matching looks.'
+      assign collection_link_2_handle = 'tops'
+      assign collection_link_2_title = 'Matching Tops'
+      assign collection_link_2_caption = 'Use coordinated tops when you want a lighter matching look for trips or everyday wear.'
+      assign collection_link_3_handle = 'pajamas'
+      assign collection_link_3_title = 'Matching Pajamas'
+      assign collection_link_3_caption = 'Round out the matching wardrobe with cozier sets that work as gifts and staycations.'
+    when 'daddy-and-me-beach-outfits-shirts-trunks-family-travel'
+      assign collection_link_1_handle = 'daddy-me'
+      assign collection_link_1_title = 'Daddy & Me Matching Outfits'
+      assign collection_link_1_caption = 'Start with the daddy-and-me collection when beach travel still needs strong photo-ready shirts.'
+      assign collection_link_2_handle = 'trunks'
+      assign collection_link_2_title = 'Matching Swim Trunks'
+      assign collection_link_2_caption = 'Add trunks for dads and boys when the beach day is a core part of the travel wardrobe.'
+      assign collection_link_3_handle = 'family-swimsuits'
+      assign collection_link_3_title = 'Matching Family Swimsuits'
+      assign collection_link_3_caption = 'Expand into broader family swimwear when more than two people need to coordinate.'
+    when 'couple-matching-pajamas-holidays-anniversaries-gifts'
+      assign collection_link_1_handle = 'pajamas'
+      assign collection_link_1_title = 'Matching Pajamas'
+      assign collection_link_1_caption = 'Start with cozy matching pajama sets built for gifts, holidays, and anniversaries.'
+      assign collection_link_2_handle = 'couples'
+      assign collection_link_2_title = 'Matching Couple Outfits'
+      assign collection_link_2_caption = 'Keep the matching story going into date nights, travel, and everyday couple styling.'
+      assign collection_link_3_handle = 'sweaters'
+      assign collection_link_3_title = 'Matching Sweaters'
+      assign collection_link_3_caption = 'Add colder-weather layers when the matching plan stretches beyond sleepwear.'
+    when 'mother-daughter-matching-dresses-for-easter'
+      assign collection_link_1_handle = 'dresses'
+      assign collection_link_1_title = 'Mother Daughter Easter Dresses'
+      assign collection_link_1_caption = 'Start with the dresses collection for the cleanest spring assortment and Easter-ready silhouettes.'
+      assign collection_link_2_handle = 'mommy-and-me'
+      assign collection_link_2_title = 'Mommy & Me Matching Outfits'
+      assign collection_link_2_caption = 'Use the broader mommy-and-me collection when the Easter outfit needs related tops or extra looks.'
+      assign collection_link_3_handle = 'matching-outfits'
+      assign collection_link_3_title = 'Matching Family Outfits'
+      assign collection_link_3_caption = 'Bring the rest of the family into the same spring palette for brunch, church, and photos.'
+    when 'how-to-choose-mommy-and-me-matching-outfits-for-family-photos'
+      assign collection_link_1_handle = 'mommy-and-me'
+      assign collection_link_1_title = 'Mommy & Me Matching Outfits'
+      assign collection_link_1_caption = 'Start with the mommy-and-me collection when mom and daughter are leading the photo-session styling.'
+      assign collection_link_2_handle = 'dresses'
+      assign collection_link_2_title = 'Mommy & Me Dresses'
+      assign collection_link_2_caption = 'Use dresses when softer, more elevated family portraits are the goal.'
+      assign collection_link_3_handle = 'matching-outfits'
+      assign collection_link_3_title = 'Matching Family Outfits'
+      assign collection_link_3_caption = 'Extend the photo-day palette into the rest of the family without overmatching.'
+    when 'daddy-and-me-outfit-ideas-for-fathers-day'
+      assign collection_link_1_handle = 'daddy-me'
+      assign collection_link_1_title = 'Daddy & Me Matching Outfits'
+      assign collection_link_1_caption = 'Start with the daddy-and-me collection for Father’s Day brunch, photos, and gift-ready looks.'
+      assign collection_link_2_handle = 'tops'
+      assign collection_link_2_title = 'Matching Family Tops'
+      assign collection_link_2_caption = 'Use tops and shirts when the Father’s Day plan is more casual or weather-sensitive.'
+      assign collection_link_3_handle = 'family-sets'
+      assign collection_link_3_title = 'Family Matching Sets'
+      assign collection_link_3_caption = 'Pull the whole family into the same color story when the day includes group photos.'
+    when 'mommy-and-me-outfits-for-every-season-complete-guide'
+      assign collection_link_1_handle = 'mommy-and-me'
+      assign collection_link_1_title = 'Mommy & Me Matching Outfits'
+      assign collection_link_1_caption = 'Start with the core mommy-and-me collection when you want one year-round matching wardrobe.'
+      assign collection_link_2_handle = 'dresses'
+      assign collection_link_2_title = 'Mommy & Me Dresses'
+      assign collection_link_2_caption = 'Use dresses for spring events, birthdays, vacations, and family photos.'
+      assign collection_link_3_handle = 'family-pajamas'
+      assign collection_link_3_title = 'Family Matching Pajamas'
+      assign collection_link_3_caption = 'Round out the year with cozy matching looks for holidays and winter gifting.'
+  endcase
+
+  if article_primary_collection_handle_raw != blank
+    assign collection_link_1_handle = article_primary_collection_handle_raw
+    assign collection_link_1_title = ''
+    assign collection_link_1_caption = ''
+  endif
+
+  if article_supporting_collection_handles_raw != blank
+    assign collection_link_2_handle = ''
+    assign collection_link_2_title = ''
+    assign collection_link_2_caption = ''
+    assign collection_link_3_handle = ''
+    assign collection_link_3_title = ''
+    assign collection_link_3_caption = ''
+    assign article_supporting_collection_handle_list = article_supporting_collection_handles_raw | replace: ' | ', ',' | replace: '|', ',' | split: ','
+    for supporting_collection_handle in article_supporting_collection_handle_list
+      assign normalized_supporting_collection_handle = supporting_collection_handle | strip
+      if normalized_supporting_collection_handle == blank or normalized_supporting_collection_handle == collection_link_1_handle
+        continue
+      endif
+      if collection_link_2_handle == blank
+        assign collection_link_2_handle = normalized_supporting_collection_handle
+      elsif collection_link_3_handle == blank
+        assign collection_link_3_handle = normalized_supporting_collection_handle
+        break
+      endif
+    endfor
+  endif
+
+  if collection_link_1_handle == blank
+    if article_context_text contains 'swim'
+      if article_context_text contains 'mother daughter' or article_context_text contains 'mommy'
+        assign collection_link_1_handle = 'swimsuits'
+        assign collection_link_1_title = 'Mother Daughter Matching Swimsuits'
+        assign collection_link_1_caption = 'Start with the main swim hub for mom-and-daughter looks and supporting family swim options.'
+        assign collection_link_2_handle = 'family-swimsuits'
+        assign collection_link_2_title = 'Matching Family Swimsuits'
+        assign collection_link_2_caption = 'Expand the swim look into coordinated pieces for the rest of the family.'
+        assign collection_link_3_handle = 'mommy-and-me'
+        assign collection_link_3_title = 'Mommy & Me Matching Outfits'
+        assign collection_link_3_caption = 'Pair the swim story with related mommy-and-me outfits for the rest of the trip.'
+      else
+        assign collection_link_1_handle = 'family-swimsuits'
+        assign collection_link_1_title = 'Matching Family Swimsuits'
+        assign collection_link_1_caption = 'Shop the broadest family swimwear collection first.'
+        assign collection_link_2_handle = 'swimsuits'
+        assign collection_link_2_title = 'Mommy & Me Swimsuits'
+        assign collection_link_2_caption = 'Use the main swim hub for mom-and-daughter styles and broader swim coverage.'
+        assign collection_link_3_handle = 'trunks'
+        assign collection_link_3_title = 'Matching Swim Trunks'
+        assign collection_link_3_caption = 'Add trunks for dads and boys when the swim plan includes the full family.'
+      endif
+    elsif article_context_text contains 'daddy'
+      assign collection_link_1_handle = 'daddy-me'
+      assign collection_link_1_title = 'Daddy & Me Matching Outfits'
+      assign collection_link_1_caption = 'Start with the main daddy-and-me collection for shirts, tees, and easy sets.'
+      assign collection_link_2_handle = 'tops'
+      assign collection_link_2_title = 'Matching Family Tops'
+      assign collection_link_2_caption = 'Use tops and tees for lighter, more casual coordination.'
+      assign collection_link_3_handle = 'trunks'
+      assign collection_link_3_title = 'Matching Swim Trunks'
+      assign collection_link_3_caption = 'Add swim-ready pieces when the matching plan includes travel or beach time.'
+    elsif article_context_text contains 'couple'
+      assign collection_link_1_handle = 'couples'
+      assign collection_link_1_title = 'Matching Couple Outfits'
+      assign collection_link_1_caption = 'Start with the couples collection for date nights, trips, and giftable matching looks.'
+      assign collection_link_2_handle = 'tops'
+      assign collection_link_2_title = 'Matching Tops'
+      assign collection_link_2_caption = 'Use coordinated tops for lighter, easier everyday matching.'
+      assign collection_link_3_handle = 'pajamas'
+      assign collection_link_3_title = 'Matching Pajamas'
+      assign collection_link_3_caption = 'Add pajama sets for cozier matching moments and giftable pairs.'
+    elsif article_context_text contains 'mommy' or article_context_text contains 'mother daughter' or article_context_text contains 'dress'
+      if article_context_text contains 'dress'
+        assign collection_link_1_handle = 'dresses'
+        assign collection_link_1_title = 'Mommy & Me Dresses'
+        assign collection_link_1_caption = 'Browse dress-led matching looks for birthdays, vacations, and photos.'
+        assign collection_link_2_handle = 'mommy-and-me'
+        assign collection_link_2_title = 'Mommy & Me Matching Outfits'
+        assign collection_link_2_caption = 'Start with the broader mommy-and-me collection when you want more than dresses.'
+      else
+        assign collection_link_1_handle = 'mommy-and-me'
+        assign collection_link_1_title = 'Mommy & Me Matching Outfits'
+        assign collection_link_1_caption = 'Shop the main mom-and-daughter collection for easy coordinated looks.'
+        assign collection_link_2_handle = 'dresses'
+        assign collection_link_2_title = 'Mommy & Me Dresses'
+        assign collection_link_2_caption = 'Compare dress silhouettes for photos, trips, and polished everyday matching.'
+      endif
+      assign collection_link_3_handle = 'matching-outfits'
+      assign collection_link_3_title = 'Matching Family Outfits'
+      assign collection_link_3_caption = 'Extend the look into a full family wardrobe when more people are joining.'
+    else
+      assign collection_link_1_handle = 'matching-outfits'
+      assign collection_link_1_title = 'Matching Family Outfits'
+      assign collection_link_1_caption = 'Start with the broadest matching collection for families, trips, and photos.'
+      assign collection_link_2_handle = 'family-sets'
+      assign collection_link_2_title = 'Family Matching Sets'
+      assign collection_link_2_caption = 'Use coordinated sets when you want the whole family aligned quickly.'
+      assign collection_link_3_handle = 'dresses'
+      assign collection_link_3_title = 'Mommy & Me Dresses'
+      assign collection_link_3_caption = 'Add dress-led options when moms and daughters are leading the look.'
+    endif
+  endif
+
+  assign collection_link_1_object = blank
+  assign collection_link_2_object = blank
+  assign collection_link_3_object = blank
+
+  if collection_link_1_handle != blank
+    assign collection_link_1_object = collections[collection_link_1_handle]
+  endif
+  if collection_link_2_handle != blank
+    assign collection_link_2_object = collections[collection_link_2_handle]
+  endif
+  if collection_link_3_handle != blank
+    assign collection_link_3_object = collections[collection_link_3_handle]
+  endif
+
+  assign collection_link_1_url = blank
+  assign collection_link_2_url = blank
+  assign collection_link_3_url = blank
+
+  if collection_link_1_object != blank
+    assign collection_link_1_url = collection_link_1_object.url
+    if collection_link_1_title == blank
+      assign collection_link_1_title = collection_link_1_object.title
+    endif
+    if collection_link_1_caption == blank
+      assign collection_link_1_caption = collection_link_1_object.description | strip_html | truncatewords: 18
+    endif
+  endif
+  if collection_link_2_object != blank
+    assign collection_link_2_url = collection_link_2_object.url
+    if collection_link_2_title == blank
+      assign collection_link_2_title = collection_link_2_object.title
+    endif
+    if collection_link_2_caption == blank
+      assign collection_link_2_caption = collection_link_2_object.description | strip_html | truncatewords: 18
+    endif
+  endif
+  if collection_link_3_object != blank
+    assign collection_link_3_url = collection_link_3_object.url
+    if collection_link_3_title == blank
+      assign collection_link_3_title = collection_link_3_object.title
+    endif
+    if collection_link_3_caption == blank
+      assign collection_link_3_caption = collection_link_3_object.description | strip_html | truncatewords: 18
+    endif
+  endif
+
+  if collection_link_1_title != blank and collection_link_1_caption == blank
+    capture collection_link_1_caption
+      echo 'Shop '
+      echo collection_link_1_title
+      echo ' after this guide.'
+    endcapture
+    assign collection_link_1_caption = collection_link_1_caption | strip
+  endif
+  if collection_link_2_title != blank and collection_link_2_caption == blank
+    capture collection_link_2_caption
+      echo 'Compare '
+      echo collection_link_2_title
+      echo ' as a supporting category.'
+    endcapture
+    assign collection_link_2_caption = collection_link_2_caption | strip
+  endif
+  if collection_link_3_title != blank and collection_link_3_caption == blank
+    capture collection_link_3_caption
+      echo 'Keep the matching plan moving with '
+      echo collection_link_3_title
+      echo '.'
+    endcapture
+    assign collection_link_3_caption = collection_link_3_caption | strip
+  endif
+
+  assign inline_cta_url = collection_link_1_url | default: collections_root
+  assign inline_cta_label = collection_link_1_title | default: 'Shop matching collections'
+  assign inline_cta_text = 'Ready to shop the looks from this guide?'
+  assign inline_cta_collection_handle = collection_link_1_handle | default: ''
+
+  assign related_article_1_handle = ''
+  assign related_article_2_handle = ''
+  assign related_article_3_handle = ''
+
+  case article_context_handle
+    when 'family-vacation-outfits-beach-cruise-resort'
+      assign related_article_1_handle = 'best-family-swimsuits-for-beach-vacations-and-pool-days'
+      assign related_article_2_handle = 'matching-family-outfits-for-disney-trips'
+    when 'mommy-and-me-beach-dresses-vacation-photos'
+      assign related_article_1_handle = 'family-vacation-outfits-beach-cruise-resort'
+      assign related_article_2_handle = 'mother-daughter-matching-swimsuits-complete-guide-for-summer-2026'
+    when 'best-family-swimsuits-for-beach-vacations-and-pool-days'
+      assign related_article_1_handle = 'family-vacation-outfits-beach-cruise-resort'
+      assign related_article_2_handle = 'mommy-and-me-beach-dresses-vacation-photos'
+    when 'daddy-and-me-matching-shirts-summer-photos'
+      assign related_article_1_handle = 'family-vacation-outfits-beach-cruise-resort'
+      assign related_article_2_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+    when 'family-reunion-matching-shirts-outfit-ideas'
+      assign related_article_1_handle = 'the-complete-guide-to-family-matching-outfits'
+      assign related_article_2_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+    when 'matching-family-outfits-for-disney-trips'
+      assign related_article_1_handle = 'family-vacation-outfits-beach-cruise-resort'
+      assign related_article_2_handle = 'best-family-swimsuits-for-beach-vacations-and-pool-days'
+    when 'mommy-and-me-summer-dresses-for-vacations-and-photos'
+      assign related_article_1_handle = 'mommy-and-me-beach-dresses-vacation-photos'
+      assign related_article_2_handle = 'family-vacation-outfits-beach-cruise-resort'
+    when 'matching-family-cruise-outfits-what-to-pack'
+      assign related_article_1_handle = 'family-vacation-outfits-beach-cruise-resort'
+      assign related_article_2_handle = 'best-family-swimsuits-for-beach-vacations-and-pool-days'
+    when 'daddy-and-me-button-down-shirts-vacation-dinners-photos'
+      assign related_article_1_handle = 'daddy-and-me-matching-shirts-summer-photos'
+      assign related_article_2_handle = 'family-vacation-outfits-beach-cruise-resort'
+    when 'matching-couple-outfits-date-night-travel-gifts'
+      assign related_article_1_handle = 'couple-matching-pajamas-holidays-anniversaries-gifts'
+      assign related_article_2_handle = 'the-complete-guide-to-family-matching-outfits'
+    when 'daddy-and-me-beach-outfits-shirts-trunks-family-travel'
+      assign related_article_1_handle = 'best-family-swimsuits-for-beach-vacations-and-pool-days'
+      assign related_article_2_handle = 'matching-family-cruise-outfits-what-to-pack'
+    when 'couple-matching-pajamas-holidays-anniversaries-gifts'
+      assign related_article_1_handle = 'matching-couple-outfits-date-night-travel-gifts'
+      assign related_article_2_handle = 'the-complete-guide-to-family-matching-outfits'
+    when 'mother-daughter-matching-dresses-for-easter'
+      assign related_article_1_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+      assign related_article_2_handle = 'the-complete-guide-to-family-matching-outfits'
+    when 'how-to-choose-mommy-and-me-matching-outfits-for-family-photos'
+      assign related_article_1_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+      assign related_article_2_handle = 'the-complete-guide-to-family-matching-outfits'
+    when 'daddy-and-me-outfit-ideas-for-fathers-day'
+      assign related_article_1_handle = 'daddy-and-me-matching-shirts-summer-photos'
+      assign related_article_2_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+    when 'mommy-and-me-outfits-for-every-season-complete-guide'
+      assign related_article_1_handle = 'mother-daughter-matching-dresses-for-easter'
+      assign related_article_2_handle = 'mommy-and-me-beach-dresses-vacation-photos'
+      assign related_article_3_handle = 'how-to-choose-mommy-and-me-matching-outfits-for-family-photos'
+    when 'the-complete-guide-to-family-matching-outfits'
+      assign related_article_1_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+      assign related_article_2_handle = 'family-vacation-outfits-beach-cruise-resort'
+      assign related_article_3_handle = 'how-to-choose-mommy-and-me-matching-outfits-for-family-photos'
+    when 'what-to-wear-for-family-photos-matching-outfit-ideas'
+      assign related_article_1_handle = 'the-complete-guide-to-family-matching-outfits'
+      assign related_article_2_handle = 'how-to-choose-mommy-and-me-matching-outfits-for-family-photos'
+      assign related_article_3_handle = 'family-vacation-outfits-beach-cruise-resort'
+    when 'daddy-and-me-matching-outfits-the-ultimate-guide'
+      assign related_article_1_handle = 'daddy-and-me-matching-shirts-summer-photos'
+      assign related_article_2_handle = 'daddy-and-me-outfit-ideas-for-fathers-day'
+      assign related_article_3_handle = 'family-vacation-outfits-beach-cruise-resort'
+    when 'mother-daughter-matching-swimsuits-complete-guide-for-summer-2026'
+      assign related_article_1_handle = 'best-family-swimsuits-for-beach-vacations-and-pool-days'
+      assign related_article_2_handle = 'mommy-and-me-beach-dresses-vacation-photos'
+      assign related_article_3_handle = 'family-vacation-outfits-beach-cruise-resort'
+  endcase
+
+  if article_related_article_handles_raw != blank
+    assign related_article_1_handle = ''
+    assign related_article_2_handle = ''
+    assign related_article_3_handle = ''
+    assign article_related_article_handle_list = article_related_article_handles_raw | replace: ' | ', ',' | replace: '|', ',' | split: ','
+    for related_article_handle in article_related_article_handle_list
+      assign normalized_related_article_handle = related_article_handle | strip
+      if normalized_related_article_handle == blank or normalized_related_article_handle == article_context_handle
+        continue
+      endif
+      if related_article_1_handle == blank
+        assign related_article_1_handle = normalized_related_article_handle
+      elsif related_article_2_handle == blank
+        assign related_article_2_handle = normalized_related_article_handle
+      elsif related_article_3_handle == blank
+        assign related_article_3_handle = normalized_related_article_handle
+        break
+      endif
+    endfor
+  endif
+
+  if related_article_1_handle == blank
+    if article_context_text contains 'swim'
+      assign related_article_1_handle = 'best-family-swimsuits-for-beach-vacations-and-pool-days'
+      assign related_article_2_handle = 'family-vacation-outfits-beach-cruise-resort'
+      assign related_article_3_handle = 'mother-daughter-matching-swimsuits-complete-guide-for-summer-2026'
+    elsif article_context_text contains 'daddy'
+      assign related_article_1_handle = 'daddy-and-me-matching-shirts-summer-photos'
+      assign related_article_2_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+      assign related_article_3_handle = 'family-vacation-outfits-beach-cruise-resort'
+    elsif article_context_text contains 'couple'
+      assign related_article_1_handle = 'matching-couple-outfits-date-night-travel-gifts'
+      assign related_article_2_handle = 'couple-matching-pajamas-holidays-anniversaries-gifts'
+      assign related_article_3_handle = 'the-complete-guide-to-family-matching-outfits'
+    elsif article_context_text contains 'mommy' or article_context_text contains 'mother daughter' or article_context_text contains 'dress'
+      assign related_article_1_handle = 'how-to-choose-mommy-and-me-matching-outfits-for-family-photos'
+      assign related_article_2_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+      assign related_article_3_handle = 'the-complete-guide-to-family-matching-outfits'
+    else
+      assign related_article_1_handle = 'the-complete-guide-to-family-matching-outfits'
+      assign related_article_2_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+      assign related_article_3_handle = 'family-vacation-outfits-beach-cruise-resort'
+    endif
+  endif
+
+  assign guide_link_1_handle = ''
+  assign guide_link_1_caption = ''
+  assign guide_link_2_handle = ''
+  assign guide_link_2_caption = ''
+  assign guide_link_3_handle = ''
+  assign guide_link_3_caption = ''
+
+  case collection_context_handle
+    when 'matching-outfits', 'family-matching', 'family-matching-outfits'
+      assign guide_link_1_handle = 'the-complete-guide-to-family-matching-outfits'
+      assign guide_link_2_handle = 'family-vacation-outfits-beach-cruise-resort'
+      assign guide_link_3_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+    when 'family-sets'
+      assign guide_link_1_handle = 'the-complete-guide-to-family-matching-outfits'
+      assign guide_link_2_handle = 'family-reunion-matching-shirts-outfit-ideas'
+      assign guide_link_3_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+    when 'family-swimsuits'
+      assign guide_link_1_handle = 'best-family-swimsuits-for-beach-vacations-and-pool-days'
+      assign guide_link_2_handle = 'family-vacation-outfits-beach-cruise-resort'
+      assign guide_link_3_handle = 'matching-family-cruise-outfits-what-to-pack'
+    when 'swimsuits'
+      assign guide_link_1_handle = 'mother-daughter-matching-swimsuits-complete-guide-for-summer-2026'
+      assign guide_link_2_handle = 'best-family-swimsuits-for-beach-vacations-and-pool-days'
+      assign guide_link_3_handle = 'family-vacation-outfits-beach-cruise-resort'
+    when 'mommy-and-me'
+      assign guide_link_1_handle = 'mommy-and-me-summer-dresses-for-vacations-and-photos'
+      assign guide_link_2_handle = 'mommy-and-me-beach-dresses-vacation-photos'
+      assign guide_link_3_handle = 'how-to-choose-mommy-and-me-matching-outfits-for-family-photos'
+    when 'daddy-me'
+      assign guide_link_1_handle = 'daddy-and-me-matching-shirts-summer-photos'
+      assign guide_link_2_handle = 'daddy-and-me-outfit-ideas-for-fathers-day'
+      assign guide_link_3_handle = 'daddy-and-me-matching-outfits-the-ultimate-guide'
+    when 'dresses'
+      assign guide_link_1_handle = 'mother-daughter-matching-dresses-for-easter'
+      assign guide_link_2_handle = 'mommy-and-me-summer-dresses-for-vacations-and-photos'
+      assign guide_link_3_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+    when 'tops'
+      assign guide_link_1_handle = 'daddy-and-me-matching-shirts-summer-photos'
+      assign guide_link_2_handle = 'family-reunion-matching-shirts-outfit-ideas'
+      assign guide_link_3_handle = 'daddy-and-me-button-down-shirts-vacation-dinners-photos'
+    when 'trunks'
+      assign guide_link_1_handle = 'best-family-swimsuits-for-beach-vacations-and-pool-days'
+      assign guide_link_2_handle = 'daddy-and-me-beach-outfits-shirts-trunks-family-travel'
+      assign guide_link_3_handle = 'matching-family-cruise-outfits-what-to-pack'
+    when 'family-pajamas', 'pajamas'
+      assign guide_link_1_handle = 'couple-matching-pajamas-holidays-anniversaries-gifts'
+      assign guide_link_2_handle = 'mommy-and-me-outfits-for-every-season-complete-guide'
+      assign guide_link_3_handle = 'matching-couple-outfits-date-night-travel-gifts'
+    when 'couples'
+      assign guide_link_1_handle = 'matching-couple-outfits-date-night-travel-gifts'
+      assign guide_link_2_handle = 'couple-matching-pajamas-holidays-anniversaries-gifts'
+      assign guide_link_3_handle = 'the-complete-guide-to-family-matching-outfits'
+  endcase
+
+  if collection_style_journal_article_handles_raw != blank
+    assign guide_link_1_handle = ''
+    assign guide_link_2_handle = ''
+    assign guide_link_3_handle = ''
+    assign collection_style_journal_article_handle_list = collection_style_journal_article_handles_raw | replace: ' | ', ',' | replace: '|', ',' | split: ','
+    for guide_article_handle in collection_style_journal_article_handle_list
+      assign normalized_guide_article_handle = guide_article_handle | strip
+      if normalized_guide_article_handle == blank
+        continue
+      endif
+      if guide_link_1_handle == blank
+        assign guide_link_1_handle = normalized_guide_article_handle
+      elsif guide_link_2_handle == blank
+        assign guide_link_2_handle = normalized_guide_article_handle
+      elsif guide_link_3_handle == blank
+        assign guide_link_3_handle = normalized_guide_article_handle
+        break
+      endif
+    endfor
+  endif
+
+  if guide_link_1_handle == blank
+    if collection_context_handle contains 'swim'
+      assign guide_link_1_handle = 'best-family-swimsuits-for-beach-vacations-and-pool-days'
+      assign guide_link_2_handle = 'family-vacation-outfits-beach-cruise-resort'
+      assign guide_link_3_handle = 'matching-family-cruise-outfits-what-to-pack'
+    elsif collection_context_handle contains 'daddy' or collection_context_handle contains 'shirt' or collection_context_handle contains 'top'
+      assign guide_link_1_handle = 'daddy-and-me-matching-shirts-summer-photos'
+      assign guide_link_2_handle = 'daddy-and-me-outfit-ideas-for-fathers-day'
+      assign guide_link_3_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+    elsif collection_context_handle contains 'couple'
+      assign guide_link_1_handle = 'matching-couple-outfits-date-night-travel-gifts'
+      assign guide_link_2_handle = 'couple-matching-pajamas-holidays-anniversaries-gifts'
+      assign guide_link_3_handle = 'the-complete-guide-to-family-matching-outfits'
+    elsif collection_context_handle contains 'mommy' or collection_context_handle contains 'dress'
+      assign guide_link_1_handle = 'how-to-choose-mommy-and-me-matching-outfits-for-family-photos'
+      assign guide_link_2_handle = 'mother-daughter-matching-dresses-for-easter'
+      assign guide_link_3_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+    else
+      assign guide_link_1_handle = 'the-complete-guide-to-family-matching-outfits'
+      assign guide_link_2_handle = 'what-to-wear-for-family-photos-matching-outfit-ideas'
+      assign guide_link_3_handle = 'family-vacation-outfits-beach-cruise-resort'
+    endif
+  endif
+
+  assign guide_link_1_url = blank
+  assign guide_link_1_title = blank
+  assign guide_link_2_url = blank
+  assign guide_link_2_title = blank
+  assign guide_link_3_url = blank
+  assign guide_link_3_title = blank
+  assign related_article_1 = blank
+  assign related_article_2 = blank
+  assign related_article_3 = blank
+
+  if journal_blog != blank
+    for journal_article in journal_blog.articles
+      assign journal_article_excerpt = journal_article.excerpt | strip_html
+      if journal_article_excerpt == blank
+        assign journal_article_excerpt = journal_article.content | strip_html
+      endif
+
+      if guide_link_1_handle != blank and journal_article.handle == guide_link_1_handle
+        assign guide_link_1_url = journal_article.url
+        assign guide_link_1_title = journal_article.title
+        if guide_link_1_caption == blank
+          assign guide_link_1_caption = journal_article_excerpt | truncatewords: 18
+        endif
+      endif
+      if guide_link_2_handle != blank and journal_article.handle == guide_link_2_handle
+        assign guide_link_2_url = journal_article.url
+        assign guide_link_2_title = journal_article.title
+        if guide_link_2_caption == blank
+          assign guide_link_2_caption = journal_article_excerpt | truncatewords: 18
+        endif
+      endif
+      if guide_link_3_handle != blank and journal_article.handle == guide_link_3_handle
+        assign guide_link_3_url = journal_article.url
+        assign guide_link_3_title = journal_article.title
+        if guide_link_3_caption == blank
+          assign guide_link_3_caption = journal_article_excerpt | truncatewords: 18
+        endif
+      endif
+
+      if related_article_1_handle != blank and journal_article.handle == related_article_1_handle
+        assign related_article_1 = journal_article
+      endif
+      if related_article_2_handle != blank and journal_article.handle == related_article_2_handle
+        assign related_article_2 = journal_article
+      endif
+      if related_article_3_handle != blank and journal_article.handle == related_article_3_handle
+        assign related_article_3 = journal_article
+      endif
+    endfor
+  endif
+
+  if guide_link_1_title != blank and guide_link_1_caption == blank
+    capture guide_link_1_caption
+      echo 'Read '
+      echo guide_link_1_title
+      echo ' before you shop.'
+    endcapture
+    assign guide_link_1_caption = guide_link_1_caption | strip
+  endif
+  if guide_link_2_title != blank and guide_link_2_caption == blank
+    capture guide_link_2_caption
+      echo 'Read '
+      echo guide_link_2_title
+      echo ' before you shop.'
+    endcapture
+    assign guide_link_2_caption = guide_link_2_caption | strip
+  endif
+  if guide_link_3_title != blank and guide_link_3_caption == blank
+    capture guide_link_3_caption
+      echo 'Read '
+      echo guide_link_3_title
+      echo ' before you shop.'
+    endcapture
+    assign guide_link_3_caption = guide_link_3_caption | strip
+  endif
+-%}
+
+{%- if mode == 'article_inline_cta_data' -%}
+  <div
+    class="article-template__inline-cta-data"
+    hidden
+    data-inline-cta-text="{{ inline_cta_text | escape }}"
+    data-inline-cta-label="{{ inline_cta_label | escape }}"
+    data-inline-cta-url="{{ inline_cta_url | escape }}"
+    data-inline-cta-collection-handle="{{ inline_cta_collection_handle | escape }}"
+    data-inline-cta-article-handle="{{ article_context_handle | escape }}"
+  ></div>
+{%- elsif mode == 'article_collection_links' -%}
+  {%- if collection_link_1_url != blank or collection_link_2_url != blank or collection_link_3_url != blank -%}
+    <section class="article-template__shop-links page-width page-width--narrow">
+      <div class="article-template__shop-card">
+        <p class="article-template__shop-eyebrow">Shop the collections</p>
+        <h2 class="article-template__shop-title">Build the look from this guide</h2>
+        <div class="article-template__shop-grid">
+          {%- if collection_link_1_url != blank -%}
+            <a
+              href="{{ collection_link_1_url }}"
+              class="article-template__shop-link"
+              data-style-journal-link="true"
+              data-style-journal-link-type="collection"
+              data-style-journal-link-placement="article_endcap"
+              data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
+              data-style-journal-destination-handle="{{ collection_link_1_handle | escape }}"
+              data-style-journal-destination-title="{{ collection_link_1_title | escape }}"
+            >
+              <span class="article-template__shop-link-copy">
+                <span class="article-template__shop-link-title">{{ collection_link_1_title | escape }}</span>
+                <span class="article-template__shop-link-caption">{{ collection_link_1_caption | escape }}</span>
+              </span>
+              <span class="article-template__shop-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          {%- endif -%}
+          {%- if collection_link_2_url != blank -%}
+            <a
+              href="{{ collection_link_2_url }}"
+              class="article-template__shop-link"
+              data-style-journal-link="true"
+              data-style-journal-link-type="collection"
+              data-style-journal-link-placement="article_endcap"
+              data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
+              data-style-journal-destination-handle="{{ collection_link_2_handle | escape }}"
+              data-style-journal-destination-title="{{ collection_link_2_title | escape }}"
+            >
+              <span class="article-template__shop-link-copy">
+                <span class="article-template__shop-link-title">{{ collection_link_2_title | escape }}</span>
+                <span class="article-template__shop-link-caption">{{ collection_link_2_caption | escape }}</span>
+              </span>
+              <span class="article-template__shop-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          {%- endif -%}
+          {%- if collection_link_3_url != blank -%}
+            <a
+              href="{{ collection_link_3_url }}"
+              class="article-template__shop-link"
+              data-style-journal-link="true"
+              data-style-journal-link-type="collection"
+              data-style-journal-link-placement="article_endcap"
+              data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
+              data-style-journal-destination-handle="{{ collection_link_3_handle | escape }}"
+              data-style-journal-destination-title="{{ collection_link_3_title | escape }}"
+            >
+              <span class="article-template__shop-link-copy">
+                <span class="article-template__shop-link-title">{{ collection_link_3_title | escape }}</span>
+                <span class="article-template__shop-link-caption">{{ collection_link_3_caption | escape }}</span>
+              </span>
+              <span class="article-template__shop-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+{%- elsif mode == 'article_related_articles' -%}
+  {%- if related_article_1 != blank or related_article_2 != blank or related_article_3 != blank -%}
+    <section class="article-template__related page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="article-template__related-header">
+        <p class="article-template__related-eyebrow">Continue reading</p>
+        <h2 class="article-template__related-title">More from Style Journal</h2>
+      </div>
+      <div class="article-template__related-grid">
+        {%- if related_article_1 != blank and related_article_1.handle != article_context_handle -%}
+          <div
+            class="article-template__related-item"
+            data-style-journal-related-item="true"
+            data-style-journal-link-type="article"
+            data-style-journal-link-placement="article_continue_reading"
+            data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
+            data-style-journal-destination-handle="{{ related_article_1.handle | escape }}"
+            data-style-journal-destination-title="{{ related_article_1.title | escape }}"
+          >
+            {%- render 'article-card',
+              blog: journal_blog,
+              article: related_article_1,
+              media_height: 'medium',
+              media_aspect_ratio: 1.2,
+              show_image: true,
+              show_date: true,
+              show_author: false,
+              show_excerpt: true
+            -%}
+          </div>
+        {%- endif -%}
+        {%- if related_article_2 != blank and related_article_2.handle != article_context_handle and related_article_2.handle != related_article_1.handle -%}
+          <div
+            class="article-template__related-item"
+            data-style-journal-related-item="true"
+            data-style-journal-link-type="article"
+            data-style-journal-link-placement="article_continue_reading"
+            data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
+            data-style-journal-destination-handle="{{ related_article_2.handle | escape }}"
+            data-style-journal-destination-title="{{ related_article_2.title | escape }}"
+          >
+            {%- render 'article-card',
+              blog: journal_blog,
+              article: related_article_2,
+              media_height: 'medium',
+              media_aspect_ratio: 1.2,
+              show_image: true,
+              show_date: true,
+              show_author: false,
+              show_excerpt: true
+            -%}
+          </div>
+        {%- endif -%}
+        {%- if related_article_3 != blank and related_article_3.handle != article_context_handle and related_article_3.handle != related_article_1.handle and related_article_3.handle != related_article_2.handle -%}
+          <div
+            class="article-template__related-item"
+            data-style-journal-related-item="true"
+            data-style-journal-link-type="article"
+            data-style-journal-link-placement="article_continue_reading"
+            data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
+            data-style-journal-destination-handle="{{ related_article_3.handle | escape }}"
+            data-style-journal-destination-title="{{ related_article_3.title | escape }}"
+          >
+            {%- render 'article-card',
+              blog: journal_blog,
+              article: related_article_3,
+              media_height: 'medium',
+              media_aspect_ratio: 1.2,
+              show_image: true,
+              show_date: true,
+              show_author: false,
+              show_excerpt: true
+            -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </section>
+  {%- endif -%}
+{%- elsif mode == 'collection_guide_links' -%}
+  {%- if guide_link_1_url != blank or guide_link_2_url != blank or guide_link_3_url != blank -%}
+    <div class="collection-hero__journal">
+      <div class="collection-hero__journal-header">
+        <div>
+          <p class="collection-hero__journal-eyebrow">Style Journal</p>
+          <h2 class="collection-hero__journal-title">Read the guide before you shop</h2>
+        </div>
+        {%- if journal_blog != blank -%}
+          <a href="{{ journal_blog.url }}" class="collection-hero__journal-all">View all guides</a>
+        {%- endif -%}
+      </div>
+      <div class="collection-hero__journal-links">
+        {%- if guide_link_1_url != blank -%}
+          <a
+            href="{{ guide_link_1_url }}"
+            class="collection-hero__journal-link"
+            data-style-journal-link="true"
+            data-style-journal-link-type="article"
+            data-style-journal-link-placement="collection_guide"
+            data-style-journal-source-collection-handle="{{ collection_context_handle | escape }}"
+            data-style-journal-destination-handle="{{ guide_link_1_handle | escape }}"
+            data-style-journal-destination-title="{{ guide_link_1_title | escape }}"
+          >
+            <span class="collection-hero__journal-link-title">{{ guide_link_1_title | escape }}</span>
+            <span class="collection-hero__journal-link-caption">{{ guide_link_1_caption | escape }}</span>
+          </a>
+        {%- endif -%}
+        {%- if guide_link_2_url != blank -%}
+          <a
+            href="{{ guide_link_2_url }}"
+            class="collection-hero__journal-link"
+            data-style-journal-link="true"
+            data-style-journal-link-type="article"
+            data-style-journal-link-placement="collection_guide"
+            data-style-journal-source-collection-handle="{{ collection_context_handle | escape }}"
+            data-style-journal-destination-handle="{{ guide_link_2_handle | escape }}"
+            data-style-journal-destination-title="{{ guide_link_2_title | escape }}"
+          >
+            <span class="collection-hero__journal-link-title">{{ guide_link_2_title | escape }}</span>
+            <span class="collection-hero__journal-link-caption">{{ guide_link_2_caption | escape }}</span>
+          </a>
+        {%- endif -%}
+        {%- if guide_link_3_url != blank -%}
+          <a
+            href="{{ guide_link_3_url }}"
+            class="collection-hero__journal-link"
+            data-style-journal-link="true"
+            data-style-journal-link-type="article"
+            data-style-journal-link-placement="collection_guide"
+            data-style-journal-source-collection-handle="{{ collection_context_handle | escape }}"
+            data-style-journal-destination-handle="{{ guide_link_3_handle | escape }}"
+            data-style-journal-destination-title="{{ guide_link_3_title | escape }}"
+          >
+            <span class="collection-hero__journal-link-title">{{ guide_link_3_title | escape }}</span>
+            <span class="collection-hero__journal-link-caption">{{ guide_link_3_caption | escape }}</span>
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+{%- endif -%}

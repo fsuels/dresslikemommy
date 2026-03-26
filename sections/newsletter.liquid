@@ -45,8 +45,15 @@
           </div>
         {%- when 'email_form' -%}
           <div {{ block.shopify_attributes }}>
-            {% form 'customer', class: 'newsletter-form' %}
-              <input type="hidden" name="contact[tags]" value="newsletter">
+            {%- liquid
+              assign newsletter_tags = 'newsletter,site-signup'
+              if request.page_type == 'index'
+                assign newsletter_tags = 'newsletter,homepage-signup'
+              endif
+              assign newsletter_form_id = 'NewsletterSection-' | append: section.id
+            -%}
+            {% form 'customer', id: newsletter_form_id, class: 'newsletter-form' %}
+              <input type="hidden" name="contact[tags]" value="{{ newsletter_tags }}">
               <div
                 class="newsletter-form__field-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {% if settings.animations_reveal_on_scroll %}
@@ -89,7 +96,11 @@
                   </button>
                 </div>
                 {%- if form.errors -%}
-                  <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
+                  <small
+                    class="newsletter-form__message form__message"
+                    id="Newsletter-error--{{ section.id }}"
+                    data-analytics-newsletter-state="error"
+                  >
                     {%- render 'icon-error' -%}
                     {{- form.errors.translated_fields.email | capitalize }}
                     {{ form.errors.messages.email -}}
@@ -102,6 +113,7 @@
                   id="Newsletter-success--{{ section.id }}"
                   tabindex="-1"
                   autofocus
+                  data-analytics-newsletter-state="success"
                 >
                   {% render 'icon-success' -%}
                   {{- 'newsletter.success' | t }}

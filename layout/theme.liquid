@@ -29,7 +29,21 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme-color" content="">
-  <link rel="canonical" href="{{ canonical_url }}">
+  {%- liquid
+    assign resolved_canonical_url = canonical_url | default: request.url | default: request.origin
+    if request.page_type == 'product' and resolved_canonical_url contains '?'
+      assign resolved_canonical_url = resolved_canonical_url | split: '?' | first
+    endif
+
+    assign parameterized_product_noindex = false
+    if request.page_type == 'product'
+      assign request_query_string = request.query_string | default: ''
+      if request_query_string != blank
+        assign parameterized_product_noindex = true
+      endif
+    endif
+  -%}
+  <link rel="canonical" href="{{ resolved_canonical_url | escape }}">
  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
   {% if template == 'product' %}
@@ -80,13 +94,20 @@
     assign resolved_page_title = page_title
     assign resolved_page_description = page_description
     assign collection_seo_display_title = blank
+    assign collection_seo_meta_title = blank
     assign collection_seo_meta_description = blank
+    assign append_shop_name_to_title = true
 
     if request.page_type == 'collection' and collection != blank
       capture collection_seo_display_title
         render 'collection-seo-fallback', collection: collection, field: 'display_title'
       endcapture
       assign collection_seo_display_title = collection_seo_display_title | strip
+
+      capture collection_seo_meta_title
+        render 'collection-seo-fallback', collection: collection, field: 'meta_title'
+      endcapture
+      assign collection_seo_meta_title = collection_seo_meta_title | strip
 
       capture collection_seo_meta_description
         render 'collection-seo-fallback', collection: collection, field: 'meta_description'
@@ -95,15 +116,18 @@
     endif
 
     if request.page_type == 'index'
-      assign resolved_page_title = 'Mommy and Me Dresses, Swimsuits and Family Matching Outfits'
-      assign resolved_page_description = 'Shop mommy and me dresses, matching swimsuits, daddy and me looks, and family outfits for photos, vacations, holidays, and everyday wear.'
+      assign resolved_page_title = 'Mommy and Me Dresses | Family Matching Outfits'
+      assign resolved_page_description = 'Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes. Free shipping on all orders. Shop now.'
+      assign append_shop_name_to_title = false
     elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
       assign resolved_page_title = 'Style Journal'
     endif
 
     if request.page_type == 'collection' and collection != blank
       if collection.handle == 'all' or collection.handle == 'swimsuits' or resolved_page_title == blank or resolved_page_title == collection.title
-        if collection_seo_display_title != blank
+        if collection_seo_meta_title != blank
+          assign resolved_page_title = collection_seo_meta_title
+        elsif collection_seo_display_title != blank
           assign resolved_page_title = collection_seo_display_title
         endif
       endif
@@ -125,7 +149,9 @@
     {{ resolved_page_title }}
     {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
     {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-    {%- unless resolved_page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    {%- if append_shop_name_to_title -%}
+      {%- unless resolved_page_title contains shop.name -%} &ndash; {{ shop.name }}{%- endunless -%}
+    {%- endif -%}
   </title>
   {% if resolved_page_description %}
   <meta name="description" content="{{ resolved_page_description | escape }}">
@@ -178,8 +204,8 @@
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
   {%- endunless -%}
 
-  {% render 'meta-tags' %}
-  {% render 'jsonld-seo' %}
+  {% render 'meta-tags', canonical_href: resolved_canonical_url, parameterized_product_noindex: parameterized_product_noindex %}
+  {% render 'jsonld-seo', canonical_href: resolved_canonical_url %}
 
   <script>
     window.dataLayer = window.dataLayer || [];

@@ -1,0 +1,110 @@
+{%- liquid
+  assign collection_handle = collection.handle | default: ''
+-%}
+
+{%- capture generated_rich_content -%}
+  {%- case collection_handle -%}
+    {%- when 'daddy-me' -%}
+      <h2>Daddy and me outfits built around shirts, tees, and easy photo-ready looks</h2>
+      <p>Search demand around this category is concentrated on daddy and me shirts, daddy and me t shirts, daddy and me tees, and coordinated father-child outfits. This page is built to cover that full intent, from casual graphic tops to sharper collared looks that feel polished for portraits, vacations, and special events.</p>
+      <h3>What shoppers usually want from this page</h3>
+      <ul>
+        <li>Casual daddy and me tees for birthdays, gifts, theme trips, and everyday wear.</li>
+        <li>Collared or button-up shirt options that work for family photos, dinners, and dressier outings.</li>
+        <li>Warm-weather matching outfits that feel vacation-ready without looking costume-like.</li>
+      </ul>
+      <h3>How to shop the collection faster</h3>
+      <p>Start with tees if the goal is easy everyday coordination. If the occasion needs a cleaner, more polished finish, move into dress shirts, Hawaiian shirts, or other collared styles with more structure.</p>
+      {%- if collections['daddy-me-t-shirts'] != blank -%}
+        <p><a href="{{ collections['daddy-me-t-shirts'].url }}">Shop daddy and me t-shirts</a> for casual matching tops and giftable everyday styles.</p>
+      {%- endif -%}
+      {%- if collections['daddy-me-shirts'] != blank -%}
+        <p><a href="{{ collections['daddy-me-shirts'].url }}">Shop dad and son matching shirts</a> for button-up, dress shirt, and Hawaiian looks built around higher-intent shirt searches.</p>
+      {%- endif -%}
+      {%- if collections['trunks'] != blank -%}
+        <p><a href="{{ collections['trunks'].url }}">Browse matching trunks</a> when the outfit needs a beach or pool-friendly add-on.</p>
+      {%- endif -%}
+    {%- when 'daddy-me-t-shirts' -%}
+      <h2>Daddy and me t-shirts and matching tees for casual, giftable coordination</h2>
+      <p>This collection is aimed at shoppers looking specifically for daddy and me t shirts, daddy and me tees, and easy father-child tops that work beyond one photo moment. These styles are the fastest fit for everyday wear, birthdays, Father's Day gifts, theme parks, and laid-back travel days.</p>
+      <h3>Why this page matters</h3>
+      <ul>
+        <li>It narrows the daddy-and-kid category down to casual tops instead of mixing in every outfit type.</li>
+        <li>It aligns with high-intent searches around daddy and me t shirts and matching tees.</li>
+        <li>It gives shoppers a simpler path when they want a quick, giftable matching look.</li>
+      </ul>
+      {%- if collections['daddy-me'] != blank -%}
+        <p><a href="{{ collections['daddy-me'].url }}">Return to the full Daddy and Me collection</a> if you want tees, trunks, and dressier shirt options in one place.</p>
+      {%- endif -%}
+      {%- if collections['daddy-me-shirts'] != blank -%}
+        <p><a href="{{ collections['daddy-me-shirts'].url }}">Need a sharper look?</a> Browse dad and son matching shirts for button-up, dress-shirt, and Hawaiian styles.</p>
+      {%- endif -%}
+    {%- when 'daddy-me-shirts' -%}
+      <h2>Dad and son matching shirts for button-up, dress shirt, and Hawaiian searches</h2>
+      <p>This landing page is built around the highest-intent shirt queries in the daddy cluster: dad and son matching button up shirts, dad and son matching dress shirts, and father son matching hawaiian shirts. It is designed for shoppers who want more structure, collars, and occasion-ready styling than a casual tee collection can offer.</p>
+      <h3>Best occasions for these styles</h3>
+      <ul>
+        <li>Family photos, holiday gatherings, weddings, church, and dinners where collared shirts look more polished.</li>
+        <li>Beach trips, cruises, and resort travel where Hawaiian shirts or short-sleeve button-ups fit the setting.</li>
+        <li>Birthday and Father's Day gifts when the matching look should feel elevated, not novelty-only.</li>
+      </ul>
+      <h3>How this differs from daddy-and-me tees</h3>
+      <p>Expect more woven fabrics, cleaner collars, and dressier silhouettes. If the goal is soft casual graphics or everyday tops, the tee collection is the better starting point.</p>
+      {%- if collections['daddy-me'] != blank -%}
+        <p><a href="{{ collections['daddy-me'].url }}">Browse the full Daddy and Me collection</a> for broader outfit coverage across tees, trunks, and coordinated sets.</p>
+      {%- endif -%}
+      {%- if collections['daddy-me-t-shirts'] != blank -%}
+        <p><a href="{{ collections['daddy-me-t-shirts'].url }}">Shop daddy and me tees</a> if you want a softer, more casual matching option.</p>
+      {%- endif -%}
+    {%- when 'couples' -%}
+      <h2>Couples matching outfits for trips, date nights, holidays, and gifts</h2>
+      <p>The broad couple keyword family goes beyond tees alone. This page is designed as the main landing page for couples matching outfits and coordinated looks that can include tops, loungewear, vacation pieces, and casual sets for him and her.</p>
+      <h3>Popular shopping intents in this category</h3>
+      <ul>
+        <li>Couples matching outfits for travel, weekend plans, and social photos.</li>
+        <li>Giftable his-and-hers looks for anniversaries, honeymoons, and holiday moments.</li>
+        <li>Easy coordinated outfits that keep color and print aligned without forcing an identical head-to-toe look.</li>
+      </ul>
+      <h3>Where to start</h3>
+      <p>If the goal is a casual everyday outfit, matching T-shirts are the quickest win. If the goal is a fuller coordinated look, start with the broader couples collection and work outward based on the trip, season, or occasion.</p>
+      {%- if collections['matching-couples-t-shirts'] != blank -%}
+        <p><a href="{{ collections['matching-couples-t-shirts'].url }}">Shop couple shirts and matching T-shirts</a> when you want an easy casual entry point into the category.</p>
+      {%- endif -%}
+    {%- when 'matching-couples-t-shirts' -%}
+      <h2>Couple shirts and couples matching t-shirts for casual, giftable coordination</h2>
+      <p>This collection targets shoppers looking for couple shirts, couple t shirts, couples t shirts, and other matching tops that are easy to wear for date nights, trips, holidays, concerts, and everyday outfits. It is the best entry point when the shopper intent is clearly about tees first.</p>
+      <h3>Why shoppers choose matching tees</h3>
+      <ul>
+        <li>They are easy to gift for anniversaries, honeymoons, vacations, and themed outings.</li>
+        <li>They keep a coordinated look simple without requiring a full outfit purchase.</li>
+        <li>They work well for casual photos, travel days, and low-friction everyday wear.</li>
+      </ul>
+      <h3>Looking for more than T-shirts?</h3>
+      <p>Use the broader couples matching outfits page if you want a coordinated look that expands beyond tops into a more complete outfit story.</p>
+      {%- if collections['couples'] != blank -%}
+        <p><a href="{{ collections['couples'].url }}">Browse all couples matching outfits</a> for a broader mix of coordinated looks and occasions.</p>
+      {%- endif -%}
+    {%- when 'mommy-and-me-easter-dresses', 'easter-matching-outfits', 'spring-matching-outfits' -%}
+      <h2>Mommy and me Easter dresses and spring matching outfits for special occasions</h2>
+      <p>This page is built for Easter and spring-intent searches where the shopper already knows the occasion. The focus is on pastel palettes, florals, lighter fabrics, and photo-ready silhouettes that work for church, brunch, egg hunts, family portraits, and other seasonal celebrations.</p>
+      <h3>Best spring moments for matching outfits</h3>
+      <ul>
+        <li>Easter Sunday, church, brunch, and family gatherings.</li>
+        <li>Spring family photos, garden parties, and Mother's Day season.</li>
+        <li>Travel, showers, and warm-weather events that still need a polished look.</li>
+      </ul>
+      <h3>How to use this seasonal page</h3>
+      <p>Start with Easter dresses if you need a specific event outfit, then use the same collection to find spring matching outfits that can work again after the holiday.</p>
+      {%- if collections['mommy-and-me'] != blank -%}
+        <p><a href="{{ collections['mommy-and-me'].url }}">Browse the full Mommy and Me collection</a> if you want more year-round matching styles outside the Easter and spring window.</p>
+      {%- endif -%}
+      {%- if collections['dresses'] != blank -%}
+        <p><a href="{{ collections['dresses'].url }}">Shop matching dresses</a> for a broader dress-focused edit beyond seasonal spring styling.</p>
+      {%- endif -%}
+  {%- endcase -%}
+{%- endcapture -%}
+
+{%- case field -%}
+  {%- when 'rich_content' -%}
+    {{- generated_rich_content | strip -}}
+{%- endcase -%}

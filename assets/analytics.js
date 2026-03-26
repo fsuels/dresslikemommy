@@ -16,6 +16,7 @@ window.dataLayer = window.dataLayer || [];
     taxonomyCacheByVariantId: {},
     lastViewCartSignature: '',
     lastCheckoutTimestamp: 0,
+    newsletterStateKeys: {},
   };
 
   function safeParseJSON(input) {
@@ -1097,6 +1098,119 @@ window.dataLayer = window.dataLayer || [];
     }
   }
 
+  function getNewsletterTags(form) {
+    if (!form || !form.querySelector) return '';
+    var tagsInput = form.querySelector('input[name="contact[tags]"]');
+    return normalizeText(tagsInput && tagsInput.value);
+  }
+
+  function isNewsletterForm(form) {
+    if (!form || !form.tagName || form.tagName !== 'FORM') return false;
+
+    var formTypeInput = form.querySelector('input[name="form_type"]');
+    var formType = normalizeText(formTypeInput && formTypeInput.value);
+    var tags = getNewsletterTags(form).toLowerCase();
+
+    return formType === 'customer' && tags.indexOf('newsletter') !== -1;
+  }
+
+  function inferNewsletterSource(element) {
+    var form = element;
+    if (form && form.tagName !== 'FORM' && form.closest) {
+      form = form.closest('form');
+    }
+
+    var tags = getNewsletterTags(form).toLowerCase();
+    if (tags.indexOf('footer-signup') !== -1) return 'footer';
+    if (tags.indexOf('blog-signup') !== -1) return 'blog';
+    if (tags.indexOf('homepage-signup') !== -1) return 'homepage';
+    if (tags.indexOf('banner-signup') !== -1) return 'banner';
+    if (tags.indexOf('site-signup') !== -1) return 'site';
+
+    var formId = normalizeText(form && form.getAttribute('id'));
+    if (formId === 'ContactFooter') return 'footer';
+    if (formId === 'NewsletterBlog') return 'blog';
+    if (formId.indexOf('NewsletterSection-') === 0) return 'site';
+    if (formId.indexOf('EmailSignupBanner-') === 0) return 'banner';
+
+    return 'unknown';
+  }
+
+  function pushNewsletterStateEvents() {
+    var stateNodes = document.querySelectorAll('[data-analytics-newsletter-state]');
+    if (!stateNodes.length) return;
+
+    for (var i = 0; i < stateNodes.length; i += 1) {
+      var node = stateNodes[i];
+      var newsletterState = normalizeText(node.getAttribute('data-analytics-newsletter-state'));
+      if (!newsletterState) continue;
+
+      var source = inferNewsletterSource(node);
+      var key = [newsletterState, source, window.location.pathname].join('|');
+      if (state.newsletterStateKeys[key]) continue;
+
+      state.newsletterStateKeys[key] = true;
+      pushToDataLayer({
+        event: 'newsletter_signup_' + newsletterState,
+        newsletter_source: source,
+      });
+    }
+  }
+
+  function initNewsletterFormTracking() {
+    document.addEventListener('submit', function (event) {
+      var form = event.target;
+      if (!isNewsletterForm(form)) return;
+
+      pushToDataLayer({
+        event: 'newsletter_signup_submit',
+        newsletter_source: inferNewsletterSource(form),
+        newsletter_tags: getNewsletterTags(form),
+      });
+    });
+
+    pushNewsletterStateEvents();
+  }
+
+  function initStyleJournalLinkTracking() {
+    document.addEventListener('click', function (event) {
+      var target = event.target;
+      if (!target || !target.closest) return;
+
+      var directTrackedLink = target.closest('[data-style-journal-link]');
+      if (directTrackedLink) {
+        pushToDataLayer({
+          event: 'style_journal_internal_link_click',
+          style_journal_link_type: normalizeText(directTrackedLink.getAttribute('data-style-journal-link-type')),
+          style_journal_link_placement: normalizeText(directTrackedLink.getAttribute('data-style-journal-link-placement')),
+          style_journal_source_article_handle: normalizeText(directTrackedLink.getAttribute('data-style-journal-source-article-handle')),
+          style_journal_source_collection_handle: normalizeText(directTrackedLink.getAttribute('data-style-journal-source-collection-handle')),
+          style_journal_destination_handle: normalizeText(directTrackedLink.getAttribute('data-style-journal-destination-handle')),
+          style_journal_destination_title: normalizeText(directTrackedLink.getAttribute('data-style-journal-destination-title')),
+          destination: normalizeText(directTrackedLink.getAttribute('href')),
+        });
+        return;
+      }
+
+      var relatedItem = target.closest('[data-style-journal-related-item]');
+      if (!relatedItem) return;
+
+      var relatedAnchor = target.closest('a[href]') || relatedItem.querySelector('a[href]');
+      if (!relatedAnchor) return;
+
+      pushToDataLayer({
+        event: 'style_journal_internal_link_click',
+        style_journal_link_type: normalizeText(relatedItem.getAttribute('data-style-journal-link-type')),
+        style_journal_link_placement: normalizeText(relatedItem.getAttribute('data-style-journal-link-placement')),
+        style_journal_source_article_handle: normalizeText(relatedItem.getAttribute('data-style-journal-source-article-handle')),
+        style_journal_source_collection_handle: normalizeText(relatedItem.getAttribute('data-style-journal-source-collection-handle')),
+        style_journal_destination_handle: normalizeText(relatedItem.getAttribute('data-style-journal-destination-handle')),
+        style_journal_destination_title: normalizeText(relatedItem.getAttribute('data-style-journal-destination-title')),
+        destination: normalizeText(relatedAnchor.getAttribute('href')),
+      });
+    });
+  }
+
   function onDocumentReady() {
     pushViewItemOnce();
     initHeroAnalytics();
@@ -1107,6 +1221,8 @@ window.dataLayer = window.dataLayer || [];
     initSearchTracking();
     init404Tracking();
     initContactFormTracking();
+    initNewsletterFormTracking();
+    initStyleJournalLinkTracking();
   }
 
   if (document.readyState === 'loading') {

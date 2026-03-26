@@ -14,26 +14,38 @@
     %}
 {% endcomment %}
 
+{%- liquid
+  assign preview_image = media.preview_image
+  assign preview_alt = media.alt | default: preview_image.alt | escape
+-%}
+
 {%- if media.media_type == 'image' -%}
-  <!-- Image Rendering Code (unchanged) -->
   <img
     class="global-media-settings global-media-settings--no-shadow{% if variant_image %} product__media-item--variant{% endif %}"
-    srcset="{%- comment %}Your existing srcset code{% endcomment %}"
-    sizes="(min-width: 750px) calc(100vw - 22rem), 1100px"
-    src="{{ media.preview_image | image_url: width: 1445 }}"
-    alt="{{ media.alt | escape }}"
+    srcset="
+      {%- if preview_image.width >= 550 -%}{{ preview_image | image_url: width: 550 }} 550w,{%- endif -%}
+      {%- if preview_image.width >= 720 -%}{{ preview_image | image_url: width: 720 }} 720w,{%- endif -%}
+      {%- if preview_image.width >= 990 -%}{{ preview_image | image_url: width: 990 }} 990w,{%- endif -%}
+      {%- if preview_image.width >= 1100 -%}{{ preview_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+      {%- if preview_image.width >= 1445 -%}{{ preview_image | image_url: width: 1445 }} 1445w,{%- endif -%}
+      {%- if preview_image.width >= 1680 -%}{{ preview_image | image_url: width: 1680 }} 1680w,{%- endif -%}
+      {{ preview_image | image_url }} {{ preview_image.width }}w
+    "
+    sizes="(min-width: 1200px) 1100px, (min-width: 750px) calc(100vw - 12rem), calc(100vw - 4rem)"
+    src="{{ preview_image | image_url: width: 1100 }}"
+    alt="{{ preview_alt }}"
     loading="lazy"
-    width="1100"
-    height="{{ 1100 | divided_by: media.preview_image.aspect_ratio | ceil }}"
+    fetchpriority="low"
+    decoding="async"
+    width="{{ preview_image.width }}"
+    height="{{ preview_image.height }}"
     data-media-id="{{ media.id }}"
   >
 {%- else -%}
   {%- if media.media_type == 'model' -%}
-    <!-- 3D Model Rendering Code (unchanged) -->
     <div class="product-media-modal__model" data-media-id="{{ media.id }}">
       <product-model class="deferred-media media media--transparent global-media-settings global-media-settings--no-shadow" style="padding-top: min(calc(100vh - 12rem), 100%)">
   {%- else -%}
-    <!-- For Videos -->
     <deferred-media class="deferred-media media global-media-settings global-media-settings--no-shadow" style="padding-top: min(calc(100vh - 12rem), {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%)" data-media-id="{{ media.id }}">
   {%- endif -%}
 
@@ -46,13 +58,21 @@
         {%- endif -%}
       </span>
       <img
-        srcset="{%- comment %}Your existing srcset code{% endcomment %}"
-        src="{{ media | image_url: width: 550, height: 550 }}"
+        srcset="
+          {%- if preview_image.width >= 550 -%}{{ preview_image | image_url: width: 550 }} 550w,{%- endif -%}
+          {%- if preview_image.width >= 720 -%}{{ preview_image | image_url: width: 720 }} 720w,{%- endif -%}
+          {%- if preview_image.width >= 990 -%}{{ preview_image | image_url: width: 990 }} 990w,{%- endif -%}
+          {%- if preview_image.width >= 1100 -%}{{ preview_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+          {{ preview_image | image_url }} {{ preview_image.width }}w
+        "
+        src="{{ preview_image | image_url: width: 550 }}"
         sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
         loading="lazy"
-        width="576"
-        height="{{ 576 | divided_by: media.preview_image.aspect_ratio }}"
-        alt="{{ media.preview_image.alt | escape }}"
+        fetchpriority="low"
+        decoding="async"
+        width="{{ preview_image.width }}"
+        height="{{ preview_image.height }}"
+        alt="{{ preview_alt }}"
       >
     </button>
     <template>

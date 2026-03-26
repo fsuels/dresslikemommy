@@ -9,6 +9,8 @@ What is here:
   - Search and conversion strategy for the blog.
 - `editorial-calendar-q2-2026.md`
   - Recommended publish order and refresh cadence.
+- `custom-data.md`
+  - Shopify Admin metafields that override the repo-side fallback link mapping.
 - `article-template.html`
   - Reusable structure for future articles.
 - `articles/*.html`
@@ -47,6 +49,30 @@ python3 ops/scripts/publish_blog_articles.py \
   --publish
 ```
 
+6. Audit or publish the priority gap-fill batch:
+
+```bash
+python3 ops/scripts/publish_style_journal_group.py --group gap_fill
+```
+
+With credentials:
+
+```bash
+SHOPIFY_STORE_DOMAIN=your-store.myshopify.com \
+SHOPIFY_ADMIN_ACCESS_TOKEN=shpat_xxx \
+python3 ops/scripts/publish_style_journal_group.py \
+  --group gap_fill \
+  --execute \
+  --publish
+```
+
+7. Build a localization queue only after English winners are confirmed:
+
+```bash
+python3 ops/scripts/build_style_journal_localization_queue.py \
+  --winner-handles best-family-swimsuits-for-beach-vacations-and-pool-days,how-to-choose-mommy-and-me-matching-outfits-for-family-photos
+```
+
 Notes:
 
 - The current shell does not expose Shopify admin credentials, so these drafts
@@ -55,6 +81,9 @@ Notes:
   article SEO title/meta description fields. Keep `seo_title` and
   `seo_description` in frontmatter as editorial guidance, and enter those
   manually in Shopify admin when publishing if needed.
+- Several priority drafts still have blank `image_url` values. Keep using the
+  current cadence, but do not publish them until a real article image URL is in
+  place.
 - The theme now hides the `Blog` header link by default, so article discovery
   should come from the homepage journal section, internal links, footer/support
   links, and search indexing instead of the primary conversion nav.

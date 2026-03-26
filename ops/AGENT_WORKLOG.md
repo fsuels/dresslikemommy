@@ -7590,6 +7590,255 @@ Verification:
 Open items:
 - Shopify Admin translations and locale publication are complete, but storefront routing for newly published locales still depends on market web-presence assignment that requires `read_markets` / `write_markets` scopes outside the current token.
 
+### Task: Retention capture hardening and newsletter funnel measurement
+Date: 2026-03-26 06:30:18 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-retention-capture-hardening
+Changes:
+- `templates/index.json`
+  - Added a dedicated homepage `newsletter` section after the primary collection modules with first-order discount messaging so email capture is no longer limited to the footer.
+- `sections/footer-group.json`
+  - Replaced the generic footer newsletter heading with `Get 10% off your first order`.
+- `sections/footer.liquid`
+  - Tagged footer signups as `newsletter,footer-signup`.
+  - Added analytics state markers on newsletter success/error rendering so GA4 can distinguish successful vs failed footer submissions.
+- `sections/newsletter.liquid`
+  - Tagged newsletter section signups as `newsletter,homepage-signup` on the homepage and `newsletter,site-signup` elsewhere.
+  - Added analytics state markers on success/error rendering.
+- `sections/main-blog.liquid`
+  - Replaced the raw blog newsletter POST with Shopify's `form 'customer'` pattern so the blog signup now renders validation/success states.
+  - Preserved the `newsletter,blog-signup` tag and added analytics state markers.
+- `assets/section-main-blog.css`
+  - Added lightweight success/error styling for the blog newsletter messages.
+- `assets/analytics.js`
+  - Added `newsletter_signup_submit`, `newsletter_signup_success`, and `newsletter_signup_error` dataLayer events.
+  - Added source inference based on signup tags / form ids so footer, blog, and homepage signups can be segmented separately in GA4/GTM.
+
+Why:
+- The repo already had newsletter capture code, but it was buried in the footer and blog and had no dedicated homepage placement.
+- Existing analytics covered ecommerce behavior well, but there was no retention-funnel measurement for newsletter submits or outcomes, which made it impossible to quantify capture improvements in GA4.
+- The blog newsletter implementation had no visible confirmation/error state, which reduced trust and made debugging signup failures harder.
+
+Verification:
+- Ran `python3` JSON parsing against `templates/index.json` after stripping Shopify's generated comment header.
+  - Result: valid JSON.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level failures from this pass.
+  - Existing repo-wide theme-check issues remain in unrelated files (`cjpod.liquid`, `tmp_products.json`, translation completeness, `email-signup-banner.liquid` schema warning/error, etc.).
+- Reviewed the targeted diff for:
+  - `templates/index.json`
+  - `sections/footer-group.json`
+  - `sections/footer.liquid`
+  - `sections/newsletter.liquid`
+  - `sections/main-blog.liquid`
+  - `assets/section-main-blog.css`
+  - `assets/analytics.js`
+
+Open items:
+- This pass improves on-site capture and measurement only. It does not create Shopify Admin automations by itself.
+- The next admin-side step should be enabling a real welcome discount flow + abandoned checkout automation in Shopify Forms / Shopify Email so the new capture surfaces actually trigger lifecycle messaging.
+- Loyalty / referral remains outside the current theme pass and likely requires either a limited free app tier or a manual referral program.
+
+### Task: Product variant URL canonical consolidation
+Date: 2026-03-26 06:59:40 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-product-variant-canonical-consolidation
+Changes:
+- `layout/theme.liquid`
+  - Normalized product-page canonicals by deriving `resolved_canonical_url` from Shopify's `canonical_url` and stripping query parameters only when `request.page_type == 'product'`.
+  - Passed a new `parameterized_product_noindex` flag into `snippets/meta-tags.liquid` so duplicate product URLs loaded with query strings emit a stronger robots signal.
+- `snippets/meta-tags.liquid`
+  - Reused the normalized canonical for `og:url` and hreflang generation so social/alternate tags match the clean product URL.
+  - Added `noindex, follow` for parameterized product URLs while keeping the existing `noindex, nofollow` behavior for search/cart/404/password/customer routes.
+  - Preserved the existing collection facet/tag/sort `noindex, follow` behavior.
+
+Why:
+- Search Console evidence showed product variant URLs with `?variant=...&country=...&currency=...` being indexed separately, fragmenting impressions and authority across duplicate product URLs.
+- The theme already had collection duplicate controls, but product pages still needed a direct duplicate-indexing guard when query-string URLs are loaded.
+- The canonical cleanup is product-only to avoid breaking legitimate paginated canonicals such as collection `?page=2` URLs.
+
+Verification:
+- Reviewed the targeted diff for `layout/theme.liquid` and `snippets/meta-tags.liquid`.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level failures from this SEO pass.
+  - `layout/theme.liquid` and `snippets/meta-tags.liquid` only show pre-existing remote-asset warnings after the change.
+
+Open items:
+- Google retired the Search Console URL Parameters tool on March 28, 2022, so this consolidation is handled in-theme rather than through a Search Console parameter setting.
+- After deployment, request reindexing for a sample of affected product URLs in Search Console and monitor the canonical-selected URL / duplicate reports until the parameterized product URLs drop out.
+
+### Task: Homepage SEO priority 2 refresh
+Date: 2026-03-26 06:57:18 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-homepage-seo-priority-2
+Changes:
+- `layout/theme.liquid`
+  - Replaced the homepage-specific title override with `Mommy and Me Dresses | Family Matching Outfits` so the home `<title>` leads with the primary keyword and no longer appends the shop name suffix on `/`.
+  - Replaced the homepage-specific meta description with `Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes. Free shipping on all orders. Shop now.`
+- `snippets/meta-tags.liquid`
+  - Matched the homepage Open Graph and Twitter title/description to the new homepage SEO copy.
+- `templates/index.json`
+  - Added a new `rich-text` section immediately after the hero with indexable homepage copy covering `mommy and me dresses`, `mother daughter matching outfits`, and `family matching clothes`.
+  - Added descriptive internal links to `/collections/dresses`, `/collections/family-sets`, `/collections/family-swimsuits`, and `/collections/family-pajamas`.
+  - Preserved the existing in-progress homepage newsletter section already present in the worktree.
+
+Why:
+- The prior homepage title string was materially longer and broader, which diluted the strongest commercial keyword and risked truncation.
+- The homepage already drives the highest organic impression volume, so improving the title, description, and crawlable supporting copy is the fastest low-risk theme-side SEO lever.
+- The homepage collection modules were visually useful but did not provide a compact text block with exact-match query coverage and descriptive internal anchors.
+
+Verification:
+- Confirmed repo evidence for the free-shipping claim before using it in meta copy:
+  - `locales/en.default.json` contains `FREE shipping on all orders`.
+  - `sections/announcement-bar.liquid` normalizes the live promo copy to `FREE SHIPPING ON ALL ORDERS | 30-DAY EASY RETURNS | SECURE CHECKOUT`.
+- Ran `python3` JSON parsing against `templates/index.json` after stripping the Shopify comment header.
+  - Result: valid JSON.
+- Checked final copy lengths with `python3`.
+  - Result: homepage title length `46`, meta description length `128`.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: command exited successfully for crash-level validation.
+  - Existing repo-wide warnings/errors remain in unrelated files (`cjpod.liquid`, `tmp_products.json`, locale translation completeness, `email-signup-banner.liquid`, etc.).
+
+Open items:
+- The new homepage text lives in `templates/index.json`, so Shopify Theme Editor changes can overwrite it unless the same content is preserved in Admin.
+- This pass did not change homepage hero CTA copy; the new descriptive internal links are in the added rich-text section.
+- `templates/index.json` also contains a concurrent hero CTA change to `/collections/swimsuits` outside this pass; preserve or review it separately if homepage merchandising priorities shift.
+
+### Task: Swimsuits collection SEO priority 1 implementation
+Date: 2026-03-26 06:59:58 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-swimsuits-seo-priority-1
+Changes:
+- `layout/theme.liquid`
+  - Added a clean product-page canonical resolver so product pages now output `request.origin + product.url` instead of relying on potentially parameterized product URLs.
+  - Updated collection title resolution to prefer a dedicated `meta_title` fallback for SEO-targeted collection titles.
+  - Passed the resolved canonical into `meta-tags` and `jsonld-seo` so Open Graph/Twitter/schema stay aligned with the head canonical.
+- `snippets/meta-tags.liquid`
+  - Switched OG URL + hreflang canonical handling to the resolved canonical passed from the layout.
+  - Added collection `meta_title` fallback support so `/collections/swimsuits` can target a stronger SERP title without forcing the same string into every collection display context.
+- `snippets/jsonld-seo.liquid`
+  - Switched product/article canonical references in breadcrumbs + Product schema to the resolved canonical URL.
+- `snippets/collection-seo-fallback.liquid`
+  - Added a dedicated swimsuits `meta_title`: `Mommy and Me Swimsuits | Mother Daughter Bathing Suits`.
+  - Tightened swimsuits meta/body fallback copy to cover `mommy and me swimsuits`, `mother daughter bathing suits`, and broader family swim intent more explicitly.
+- `sections/main-collection-seo.liquid`
+  - Added a new bottom-of-collection SEO section that only renders on `/collections/swimsuits`.
+  - Includes long-form keyword-targeted copy, internal links to `/collections/family-swimsuits`, `/collections/trunks`, and `/collections/mommy-and-me`, plus an FAQ accordion.
+  - Emits FAQPage JSON-LD for the swimsuits collection.
+- `assets/section-collection-seo.css`
+  - Added layout + accordion styling for the new swimsuits SEO section.
+- `templates/collection.json`
+  - Inserted the new `main-collection-seo` section after the product grid.
+- `sections/hero-banner.liquid`
+  - Fixed hero CTA behavior so scroll-intercept only applies to hash links; non-hash links now navigate normally.
+- `templates/index.json`
+  - Updated the homepage hero CTA to link directly to `/collections/swimsuits` with `SHOP MATCHING SWIMSUITS`.
+- `sections/main-blog.liquid`
+  - Added a Style Journal spotlight card linking to `/collections/swimsuits` and `/collections/family-swimsuits`.
+- `assets/section-main-blog.css`
+  - Added styling for the new blog spotlight card and responsive CTA layout.
+- `sections/main-article.liquid`
+  - Added `Matching Swimsuits` and `Family Swim` links to the article collection-link block for stronger swim-collection internal linking from blog content.
+
+Why:
+- Search Console showed `/collections/swimsuits` is close to page-one positions across `mommy and me swimsuits`, `mother daughter swimsuits`, and related swim terms, so consolidating title/canonical/internal-link signals around that URL is the highest-ROI theme-side SEO move.
+- The existing collection fallback system already handled collection SEO, so extending it was the safest way to improve title/description coverage without introducing a second conflicting SEO path.
+- The collection page previously lacked bottom-of-page keyword-rich support copy and FAQ content, and homepage/blog internal links to the swim hub were weaker than they should be for this priority.
+
+Verification:
+- Ran `git diff --check`.
+  - Result: no whitespace or patch-format issues.
+- Ran `shopify theme check --output json --fail-level crash`.
+  - Result: no new crash-level problems on the files added/edited in this pass.
+  - Existing repo-wide errors/warnings remain in unrelated files, including:
+    - `snippets/cjpod.liquid`
+    - `tmp_products.json`
+    - `sections/email-signup-banner.liquid`
+    - `snippets/product-schema-extra.liquid`
+    - `snippets/product-thumbnail.liquid`
+    - multiple locale translation-completeness errors
+- Confirmed the second theme-check pass no longer reports the new blog spotlight links as `HardcodedRoutes`.
+
+Open items:
+- This pass is theme-side only. Shopify Admin SEO fields and any collection description stored in Admin can still override or compete with theme fallback behavior.
+- Manual preview QA is still needed on:
+  - `/collections/swimsuits` desktop + mobile,
+  - one product URL with a `?variant=` parameter to confirm the rendered canonical is clean,
+  - homepage hero CTA navigation,
+  - `/blogs/news` and one article page to confirm the new swim links fit the current layout.
+- `templates/index.json`, `sections/main-blog.liquid`, and `assets/section-main-blog.css` already had concurrent local edits in the worktree before this pass; preserve those when reviewing or cherry-picking.
+
+### Task: Theme-side page-speed hardening for product media and injected description assets
+Date: 2026-03-26 07:05:24 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-page-speed-hardening
+Changes:
+- Confirmed the current theme is already `Dawn` `14.0.0` via `config/settings_schema.json`, so the next speed wins are implementation-level rather than a theme swap.
+- `sections/main-product.liquid`
+  - Replaced the raw `{{ product.description }}` render with a new helper snippet so product descriptions can be sanitized before output.
+- `snippets/optimized-product-description.liquid`
+  - Added a dedicated helper that removes the legacy `cashe-js` script tag from rendered product descriptions.
+  - Added `loading="lazy"`, `decoding="async"`, and `fetchpriority="low"` to inline `<img>` tags embedded inside product description HTML.
+- `snippets/product-thumbnail.liquid`
+  - Added explicit `fetchpriority` and `decoding="async"` handling so the primary PDP image is prioritized while non-primary gallery images stay low priority.
+- `snippets/product-media.liquid`
+  - Replaced placeholder `srcset` comments with real responsive image candidates for product modal media.
+  - Lowered modal/media-poster priority with `fetchpriority="low"` and `decoding="async"` since those assets are offscreen until interaction.
+- `snippets/card-product.liquid`
+  - Added explicit low-priority lazy loading for non-critical product-card images.
+  - Stopped hover-state secondary images and hidden quick-add modal images from inheriting eager loading from above-the-fold cards.
+
+Why:
+- The repo’s local content digest (`ops/content/shopify-live-digest-map.json`) shows many live product descriptions still contain `//s3.amazonaws.com/cashe-js/17e542e29d504c7411.js` script tags plus multiple inline content images. Because the PDP rendered `product.description` directly, that legacy script and those inline images were eligible to load on product pages.
+- Collection/product cards were already lazy-loading many primary images, but hover-state secondary images and hidden quick-add modal images could still load too aggressively, especially for the first rendered cards in a section.
+- Shopify product images themselves are CDN-hosted and not stored as source files in this repo, so the safest theme-side “compression” available here is reducing unnecessary image fetches, using better responsive candidates, and lowering priority for offscreen media.
+
+Verification:
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level or syntax issues from this pass after fixing the helper snippet.
+  - Existing repo-wide errors/warnings remain in unrelated files, including `snippets/cjpod.liquid`, `tmp_products.json`, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, locale completeness, and a pre-existing translation-key error in `snippets/product-thumbnail.liquid`.
+- Reviewed the targeted diff for:
+  - `sections/main-product.liquid`
+  - `snippets/optimized-product-description.liquid`
+  - `snippets/product-thumbnail.liquid`
+  - `snippets/product-media.liquid`
+  - `snippets/card-product.liquid`
+
+Open items:
+- This pass improves theme-side delivery only. It does not recompress original Shopify product uploads in Admin.
+- The next admin-side speed task should be bulk-reviewing oversized product/media uploads and re-uploading or replacing the heaviest originals where needed.
+- The store still has active app/embed footprint from Judge.me-related blocks (`config/settings_data.json`, `templates/product.json`). I did not remove those automatically because that changes review UX and merchant functionality; app-removal should be a deliberate follow-up decision after checking conversion impact.
+
+### Task: Expand Style Journal coverage for daddy-and-me and couples clusters
+Date: 2026-03-26 07:14:42 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-style-journal-daddy-couples-expansion
+Changes:
+- Added four new publish-ready article drafts under `ops/content/style-journal/articles/`:
+  - `daddy-and-me-button-down-shirts-vacation-dinners-photos`
+  - `daddy-and-me-beach-outfits-shirts-trunks-family-travel`
+  - `matching-couple-outfits-date-night-travel-gifts`
+  - `couple-matching-pajamas-holidays-anniversaries-gifts`
+- Updated `ops/content/style-journal/strategy.md` to:
+  - note that couples-specific coverage is still thin relative to the other journal clusters
+  - add `/collections/trunks` to the daddy-and-me cluster
+  - add a dedicated `Couples and gifting` cluster with `couples`, `tops`, `pajamas`, and `sweaters`
+  - mark the four new handles as ready-to-publish drafts
+- Updated `ops/content/style-journal/editorial-calendar-q2-2026.md` to:
+  - extend the committed weekly publish schedule through June 17, 2026
+  - replace the late-Q2 gap-fill slots with the new daddy-and-me and couples drafts
+  - add internal-linking targets for all four new handles
+
+Why:
+- The repo already had strong family, travel, swim, and mommy-and-me coverage plus two daddy-and-me drafts, but no couples-specific Style Journal drafts.
+- These additions stay aligned with the repo’s current commercial collection structure, especially `/collections/daddy-me`, `/collections/trunks`, `/collections/couples`, `/collections/pajamas`, and `/collections/sweaters`.
+
+Verification:
+- Reviewed `ops/content/style-journal/article-template.html` and matched the new drafts to the existing frontmatter-plus-HTML schema.
+- Verified supporting collection handles against current repo references before linking:
+  - `templates/index.json` includes `couples`, `pajamas`, and `sweaters`
+  - `snippets/collection-breadcrumbs.liquid` and `sections/main-collection-product-grid.liquid` include `daddy-me`, `daddy-me-shirts`, and `trunks`
+- Ran `python3 ops/scripts/publish_blog_articles.py --handles daddy-and-me-button-down-shirts-vacation-dinners-photos,daddy-and-me-beach-outfits-shirts-trunks-family-travel,matching-couple-outfits-date-night-travel-gifts,couple-matching-pajamas-holidays-anniversaries-gifts`.
+  - Result: dry run found all 4 new drafts and accepted the frontmatter/body structure without requiring Shopify credentials.
+
+Open items:
+- The new drafts still rely on `featured_image_prompt` placeholders and need real article image URLs before publishing.
+- Shopify article SEO title and meta description fields still require manual entry in Admin if these drafts are published live.
+
 ### Task: GTM container verification and theme install
 Date: 2026-03-26 07:05:28 EDT
 AGENT_CONTINUITY_ANCHOR: 2026-03-26-gtm-theme-install
@@ -7610,3 +7859,233 @@ Verification:
   - Result: confirmed this pass only added the GTM head script and body noscript on top of existing in-progress theme changes.
 
 Open items:
+- This verifies and fixes the repo theme code only. The published Shopify theme must still receive this exact `layout/theme.liquid` version for GTM to work live.
+- After deploy, open one storefront page and confirm GTM preview detects container `GTM-5QVH4W3` on page load.
+
+### Task: Theme-side internal linking between Style Journal articles and collections
+Date: 2026-03-26 07:08:02 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-style-journal-internal-linking
+Changes:
+- `snippets/style-journal-internal-links.liquid`
+  - Added a shared mapping layer for Style Journal internal links.
+  - Maps article handles to primary/supporting collection CTAs with keyword-relevant anchor text and fallback rules for unmapped article titles/tags.
+  - Maps major collection handles back to specific Style Journal guide handles with fallback rules by collection topic.
+  - Resolves collection links through `collections[handle]` and resolves article links through `blogs['news'].articles` so unpublished guides are skipped instead of emitting dead links.
+- `sections/main-article.liquid`
+  - Replaced the generic six-link collection end-cap with the new article-aware collection CTA module.
+  - Replaced the fixed mid-article `/collections/mommy-and-me` injected CTA with data from the shared mapping snippet so each article points to its primary collection.
+  - Removed the now-unused `collections_root` assignment from the article template setup.
+- `sections/main-collection-banner.liquid`
+  - Added a reciprocal Style Journal guide module under the collection hero description so collection pages can link back into relevant blog content.
+- `assets/section-blog-post.css`
+  - Added styles for multi-line collection CTA cards on article pages.
+- `assets/component-collection-hero.css`
+  - Added styles for the new collection-side Style Journal guide panel and responsive guide card grid.
+
+Why:
+- Repo evidence already showed article bodies and planning docs should move readers into collections, but the live theme structure still used a generic article CTA and had no reciprocal collection-to-guide module.
+- `ops/content/style-journal/strategy.md` explicitly calls for clear article-to-collection links, and `ops/content/style-journal/editorial-calendar-q2-2026.md` provides the current article/guide cluster structure that this mapping now follows.
+- Using one shared snippet keeps article and collection linking logic aligned instead of letting separate hardcoded modules drift.
+
+Verification:
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: command exited successfully for crash-level validation after this pass.
+  - Existing repo-wide warnings/errors remain in unrelated files, including `snippets/cjpod.liquid`, `tmp_products.json`, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, locale translation completeness, and other pre-existing warnings.
+- Reviewed the targeted changes in:
+  - `snippets/style-journal-internal-links.liquid`
+  - `sections/main-article.liquid`
+  - `sections/main-collection-banner.liquid`
+  - `assets/section-blog-post.css`
+  - `assets/component-collection-hero.css`
+
+Open items:
+- The collection-side guide module only renders guides that are already present in `blogs['news']`. Draft handles that exist only under `ops/content/style-journal/articles/` will begin showing automatically once those articles are published in Shopify.
+- Manual storefront QA is still needed on at least:
+  - one published Style Journal article page, to confirm the new inline CTA and end-cap copy fit the current typography,
+  - `/collections/matching-outfits`,
+  - `/collections/mommy-and-me`,
+  - `/collections/swimsuits`.
+- If the merchant wants tighter control later, the next step is moving from handle-based mapping to article/collection metafields so merchants can edit reciprocal links in Admin without theme edits.
+
+### Task: SEO priority 3 landing-page support for Daddy, Couples, and Easter clusters
+Date: 2026-03-26 07:09:01 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-seo-priority-3-landing-pages
+Changes:
+- `snippets/collection-seo-fallback.liquid`
+  - Rewrote collection SEO title/meta/body fallbacks for:
+    - `daddy-me`
+    - `daddy-me-t-shirts`
+    - `daddy-me-shirts`
+    - `couples`
+    - `matching-couples-t-shirts`
+    - `mommy-and-me-easter-dresses`
+    - seasonal aliases `easter-matching-outfits` and `spring-matching-outfits`
+  - Added stronger query-targeted `meta_title` coverage for the Daddy, Couples, and Easter collection handles so collection SERP titles can target the untapped keyword clusters more precisely.
+- `snippets/collection-seo-content.liquid`
+  - Added long-form handle-based collection landing content for the same keyword clusters.
+  - Includes richer subtopic coverage and conditional internal links to related collections when those collection objects exist.
+- `sections/main-collection-seo.liquid`
+  - Preserved the existing swimsuits-specific SEO module and extended the section so it now also renders the new long-form SEO content snippet for supported Daddy, Couples, and Easter collection handles.
+  - Kept the existing FAQ/JSON-LD behavior limited to `/collections/swimsuits`.
+- `snippets/collection-breadcrumbs.liquid`
+  - Added Couples parent/child breadcrumb handling for `matching-couples-t-shirts`.
+  - Added a lightweight couples tab state so `/collections/couples` can behave as the parent landing page and `/collections/matching-couples-t-shirts` as the child T-shirts page when both collections exist.
+- `snippets/breadcrumbs.liquid`
+  - Normalized product breadcrumb display text for `matching-couples-t-shirts` to `T-Shirts`.
+- `snippets/header-search.liquid`
+  - Corrected the Daddy search target order to prefer the real `daddy-me` parent collection instead of falling through to the tee child.
+  - Added explicit fallback targets for dad-and-son shirt searches and couple T-shirt searches so mobile empty-state collection suggestions align with the new landing-page strategy.
+- `snippets/meta-tags.liquid`
+  - Added `dlm-daddy-filter=` to the collection noindex guard so the temporary Daddy button-down query-param fallback does not compete with base collection URLs in search.
+
+Why:
+- Search Console notes shared for this SEO priority show Daddy, Couples, and seasonal Easter keyword clusters generating impressions without dedicated landing-page coverage strong enough to rank.
+- The theme already had a handle-based collection SEO system, so extending that system was the safest way to add focused landing-page content without introducing a second conflicting collection SEO path.
+- Repo evidence also showed `/collections/daddy-me`, `/collections/couples`, and `/collections/matching-couples-t-shirts` already resolve live, while the dedicated `daddy-me-shirts` and Easter collection URLs still need Shopify Admin collection creation.
+
+Verification:
+- Live URL checks on `2026-03-26`:
+  - `200`: `/collections/daddy-me`
+  - `200`: `/collections/couples`
+  - `200`: `/collections/matching-couples-t-shirts`
+  - `404`: `/collections/daddy-me-shirts`
+  - `404`: `/collections/mommy-and-me-easter-dresses`
+- Ran `git diff --check`.
+  - Result: no whitespace or patch-format issues.
+- Parsed `templates/collection.json` with `python3` after stripping the Shopify comment header.
+  - Result: valid JSON.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level failures from this pass.
+  - Existing repo-wide warnings/errors remain in unrelated files, including `snippets/cjpod.liquid`, `tmp_products.json`, `sections/email-signup-banner.liquid`, locale translation completeness, and other pre-existing issues.
+
+Open items:
+- Theme-side SEO support is ready, but the actual `daddy-me-shirts` and Easter collection URLs still require real Shopify Admin collections with products before those landing pages can go live.
+- If a merchant-managed Shopify Admin collection description is populated, the hero description may still come from Admin; the new bottom-of-page SEO content will continue to render independently for supported handles.
+- Manual preview QA is still needed on:
+  - `/collections/daddy-me`
+  - `/collections/couples`
+  - `/collections/matching-couples-t-shirts`
+  - any future `/collections/daddy-me-shirts`
+  - any future Easter/spring collection handle using the new seasonal SEO support
+
+### Task: Style Journal SEO gap-fill strategy and draft expansion
+Date: 2026-03-26 07:11:36 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-style-journal-seo-gap-fill-drafts
+Changes:
+- `ops/content/style-journal/strategy.md`
+  - Added a query-backed opportunity section using the user-provided French and Spanish informational query notes.
+  - Added duplicate-avoidance rules, a staged localization rollout, and a keyword-to-CTA map for the new mommy-and-me, Easter, Father's Day, and seasonal pillar targets.
+  - Preserved the preexisting couples/daddy draft planning already present in the worktree and layered the new SEO priorities alongside it instead of replacing it.
+- `ops/content/style-journal/editorial-calendar-q2-2026.md`
+  - Preserved the existing committed Q2 schedule already in the worktree, including the preexisting late-May/June daddy-and-me and couples entries.
+  - Added a `Priority gap-fill additions` section that elevates:
+    - `mother-daughter-matching-dresses-for-easter`
+    - `best-family-swimsuits-for-beach-vacations-and-pool-days` retuned to target `best matching family swimsuits for summer 2026`
+    - `how-to-choose-mommy-and-me-matching-outfits-for-family-photos`
+    - `daddy-and-me-outfit-ideas-for-fathers-day`
+    - `mommy-and-me-outfits-for-every-season-complete-guide`
+  - Added translation review checkpoints and expanded the internal-linking matrix for the new handles.
+- `ops/content/style-journal/articles/best-family-swimsuits-for-beach-vacations-and-pool-days.html`
+  - Retuned the title, summary, SEO guidance, and lead/body copy to target `best matching family swimsuits for summer 2026` without creating a second swim article.
+- `ops/content/style-journal/articles/mother-daughter-matching-swimsuits-complete-guide-for-summer-2026.html`
+  - Updated the related-article anchor text so it matches the retuned summer-2026 family-swim positioning.
+- Added new publish-ready drafts:
+  - `ops/content/style-journal/articles/how-to-choose-mommy-and-me-matching-outfits-for-family-photos.html`
+  - `ops/content/style-journal/articles/mother-daughter-matching-dresses-for-easter.html`
+  - `ops/content/style-journal/articles/daddy-and-me-outfit-ideas-for-fathers-day.html`
+  - `ops/content/style-journal/articles/mommy-and-me-outfits-for-every-season-complete-guide.html`
+
+Why:
+- Existing Style Journal drafts already covered the broad family-photo pillar, the broad family-matching pillar, and swimwear, so the cleanest SEO move was to fill narrower gaps instead of duplicating those topics.
+- The user-provided query notes show multilingual informational demand already surfacing in French and Spanish, and repo evidence shows both `locales/es.json` and `locales/fr.json` already exist, so the strategy now includes a staged translation path instead of an English-only plan.
+- Repo evidence from `sections/main-article.liquid` and the recent worklog shows article merchandising is still generic at the theme level, so the new drafts put their main collection links directly in-body rather than depending on theme-side product mapping that does not exist yet.
+
+Verification:
+- Ran `python3 ops/scripts/publish_blog_articles.py`.
+  - Result: dry run succeeded and parsed 20 drafts from `ops/content/style-journal/articles`.
+- Ran `git diff --check --` against the touched Style Journal files.
+  - Result: no whitespace or patch-format issues in this content pass.
+
+Open items:
+- Shopify publication still requires Admin credentials, and article SEO title/meta description fields must still be entered manually in Shopify Admin because the current article GraphQL inputs do not expose those fields.
+- The preexisting late-May/June daddy-and-me and couples drafts remain in the worktree and in the committed-schedule section of the calendar; if the merchant wants to keep the one-post-per-week cadence, use the new `Priority gap-fill additions` section to reprioritize those slots before publishing.
+- Theme-level article merchandising remains generic. Article-specific product links are still manual/body-copy-only until a metafield-based merchandising system is added.
+
+### Task: Collection FAQ schema expansion + collection breadcrumb/product offer hardening
+Date: 2026-03-26 07:17:05 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-collection-faq-schema-breadcrumb-product-offer-hardening
+Changes:
+- `snippets/faq-schema-from-html.liquid`
+  - Added a reusable FAQ JSON-LD helper that extracts question/answer pairs from visible HTML content by scanning `<h2>`/`<h3>` headings ending in `?`.
+  - Emits `FAQPage` schema only when at least one real question/answer pair is found.
+- `sections/main-collection-banner.liquid`
+  - Consolidated collection description rendering into `collection_description_content`.
+  - Reused that exact visible description content as the source for FAQ schema generation, so collection descriptions with FAQ-style headings can now emit structured data without duplicating content.
+- `sections/main-collection-seo.liquid`
+  - Added the same FAQ-schema helper to rendered collection SEO rich content, so collection SEO sections with visible FAQ-style headings can now emit `FAQPage` JSON-LD automatically.
+  - Kept the existing explicit swimsuit FAQ schema unchanged for the dedicated swimsuit accordion block.
+- `snippets/jsonld-seo.liquid`
+  - Aligned collection `BreadcrumbList` names with the collection SEO display-title fallback when one exists, so collection rich results reflect the same title shown on-page.
+  - Added explicit aggregate `offers.availability` to Product JSON-LD so PDP offer coverage is clearer for price/availability rich-result parsers.
+
+Why:
+- The theme already had Product JSON-LD and collection breadcrumbs, but collection FAQ schema coverage was limited to the hardcoded swimsuit FAQ block.
+- Parsing visible collection description / SEO-body content avoids fabricating FAQ entries while expanding structured-data coverage to collection pages that actually surface FAQ content.
+- Using the same collection display-title fallback in breadcrumbs keeps collection schema naming consistent with the storefront H1 and SEO-title strategy already used elsewhere in the theme.
+
+Verification:
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level parse failures from this pass.
+  - Existing repo-wide warnings/errors remain in unrelated files, including locale translation-completeness issues, `snippets/cjpod.liquid`, `tmp_products.json`, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, and `snippets/product-thumbnail.liquid`.
+
+Open items:
+- After deploy, run Rich Results Test on one PDP and one collection page with visible FAQ content to confirm Google extracts Product, Breadcrumb, and FAQ schema as expected.
+- If future collection FAQ content is authored with non-heading patterns (for example `<summary>`-only accordions or strong-tag question labels), extend `snippets/faq-schema-from-html.liquid` to parse those visible formats too.
+
+### Task: Style Journal internal-linking follow-through (metafields, related reads, analytics, publish/localization ops)
+Date: 2026-03-26 08:07:32 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-style-journal-follow-through
+Changes:
+- `snippets/style-journal-internal-links.liquid`
+  - Expanded the shared link-mapping snippet to support merchant-editable metafield overrides before falling back to the repo-side handle map.
+  - Added article-side custom-data support for `custom.primary_collection_handle`, `custom.supporting_collection_handles`, and `custom.related_article_handles`.
+  - Added collection-side custom-data support for `custom.style_journal_article_handles`.
+  - Replaced chronological related-post assumptions with explicit related-article mapping for the main Style Journal clusters, including the current mommy-and-me, daddy-and-me, swim, and couples drafts.
+  - Added analytics data attributes to article end-cap collection links, collection-side guide links, and explicit related-article cards so downstream click measurement can stay consistent.
+- `sections/main-article.liquid`
+  - Swapped the hardcoded inline CTA target for snippet-provided CTA data so article CTAs follow the same merchant-editable/fallback mapping.
+  - Replaced the always-chronological “Continue reading” block with an explicit related-article render path and kept the old chronological loop only as a fallback when no mapped articles resolve.
+- `assets/analytics.js`
+  - Added `style_journal_internal_link_click` dataLayer pushes for the article inline CTA, article end-cap collection links, collection hero guide links, and explicit related-article cards.
+- `ops/content/style-journal/custom-data.md`
+  - Documented the Shopify Admin metafields needed to let merchants control article/collection link destinations without touching theme code.
+- `ops/scripts/publish_style_journal_group.py`
+  - Added a grouped publishing/audit helper for the current priority batches (`gap_fill`, `couples_rollout`) on top of the existing article publisher.
+- `ops/scripts/build_style_journal_localization_queue.py`
+  - Added a lightweight strategy gate that only produces a localization queue after winner article handles are supplied.
+- `ops/content/style-journal/README.md`
+  - Documented the new custom-data workflow, grouped publish helper, and localization-queue helper.
+
+Why:
+- The first internal-linking pass still required theme edits for every mapping change, left “Continue reading” generic, and had no measurement attached to the new article-to-collection paths.
+- Merchant-editable metafields let the merchandising/editorial team tune the linking graph in Shopify Admin while the repo-side mapping remains a safe fallback for unpublished or unconfigured content.
+- The publish/localization helpers turn strategy notes into repeatable operator workflows instead of leaving them as manual checklist items.
+
+Verification:
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level parse failures from this pass.
+  - Existing repo-wide warnings/errors remain in unrelated files, including locale translation-completeness issues, `snippets/cjpod.liquid`, `tmp_products.json`, `sections/email-signup-banner.liquid`, `snippets/product-schema-extra.liquid`, and `snippets/product-thumbnail.liquid`.
+- Ran `git diff --check --` against the touched Style Journal files.
+  - Result: no whitespace or patch-format issues.
+- Ran `python3 ops/scripts/publish_style_journal_group.py --group gap_fill`.
+  - Result: dry run succeeded and surfaced the current blocker that all four priority gap-fill drafts still have blank `image_url` values.
+- Ran `python3 ops/scripts/build_style_journal_localization_queue.py --winner-handles best-family-swimsuits-for-beach-vacations-and-pool-days,how-to-choose-mommy-and-me-matching-outfits-for-family-photos`.
+  - Result: generated the expected FR/ES rollout queue for the supplied winner set.
+- Ran `python3 -m py_compile ops/scripts/publish_style_journal_group.py ops/scripts/build_style_journal_localization_queue.py ops/scripts/publish_blog_articles.py`.
+  - Result: scripts compiled successfully.
+
+Open items:
+- Shopify Admin credentials are still not available in this shell, so none of the queued drafts were published live in this session.
+- Do not publish the current `gap_fill` group until each draft has a real article `image_url`.
+- After deploy, verify one article page and one mapped collection page in-browser to confirm the new CTA injection, related reads, and collection hero guide cards render as expected.
+- After data starts flowing, use the new `style_journal_internal_link_click` event to identify the first 2-3 English winners before translating anything else.

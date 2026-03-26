@@ -924,7 +924,7 @@
                     data-product-description
                     {{ block.shopify_attributes }}
                   >
-                    {{ product.description }}
+                    {% render 'optimized-product-description', description_html: product.description %}
                   </div>
                 {%- endif -%}
               {%- when 'sku' -%}

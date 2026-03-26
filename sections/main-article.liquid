@@ -4,7 +4,6 @@
 
 {%- liquid
   assign journal_label = blog.title
-  assign collections_root = routes.collections_url
   if blog.handle == 'news'
     assign journal_label = 'Style Journal'
   endif
@@ -112,6 +111,7 @@
           </nav>
           {{ article.content }}
         </div>
+        {% render 'style-journal-internal-links', mode: 'article_inline_cta_data', article: article %}
         <script>
           (function() {
             var content = document.querySelector('.article-template__content');
@@ -132,10 +132,30 @@
             if (!content) return;
             var paragraphs = content.querySelectorAll('p');
             if (paragraphs.length < 6) return;
+            var ctaData = document.querySelector('.article-template__inline-cta-data');
+            var ctaText = ctaData && ctaData.getAttribute('data-inline-cta-text') || 'Ready to start matching?';
+            var ctaLabel = ctaData && ctaData.getAttribute('data-inline-cta-label') || 'Shop Matching Outfits';
+            var ctaUrl = ctaData && ctaData.getAttribute('data-inline-cta-url') || '/collections/matching-outfits';
             var midPoint = Math.floor(paragraphs.length * 0.4);
             var cta = document.createElement('div');
             cta.className = 'article-cta-inline';
-            cta.innerHTML = '<p class="article-cta-inline__text">Ready to start matching?</p><a href="/collections/mommy-and-me" class="article-cta-inline__button button">Shop Best Sellers</a>';
+            var ctaCopy = document.createElement('p');
+            ctaCopy.className = 'article-cta-inline__text';
+            ctaCopy.textContent = ctaText;
+            var ctaLink = document.createElement('a');
+            ctaLink.href = ctaUrl;
+            ctaLink.className = 'article-cta-inline__button button';
+            ctaLink.textContent = ctaLabel;
+            if (ctaData) {
+              ctaLink.setAttribute('data-style-journal-link', 'true');
+              ctaLink.setAttribute('data-style-journal-link-type', 'collection');
+              ctaLink.setAttribute('data-style-journal-link-placement', 'article_inline_cta');
+              ctaLink.setAttribute('data-style-journal-source-article-handle', ctaData.getAttribute('data-inline-cta-article-handle') || '');
+              ctaLink.setAttribute('data-style-journal-destination-handle', ctaData.getAttribute('data-inline-cta-collection-handle') || '');
+              ctaLink.setAttribute('data-style-journal-destination-title', ctaLabel);
+            }
+            cta.appendChild(ctaCopy);
+            cta.appendChild(ctaLink);
             paragraphs[midPoint].parentNode.insertBefore(cta, paragraphs[midPoint].nextSibling);
           })();
         </script>
@@ -176,32 +196,16 @@
     </div>
   </section>
 
-  <section class="article-template__shop-links page-width page-width--narrow">
-    <div class="article-template__shop-card">
-      <p class="article-template__shop-eyebrow">Shop the collections</p>
-      <h2 class="article-template__shop-title">Keep the inspiration moving</h2>
-      <div class="article-template__shop-grid">
-        <a href="{{ collections_root }}/mommy-and-me" class="article-template__shop-link">
-          <span>Mommy &amp; Me</span>
-          <span>Shop</span>
-        </a>
-        <a href="{{ collections_root }}/daddy-me" class="article-template__shop-link">
-          <span>Daddy &amp; Me</span>
-          <span>Shop</span>
-        </a>
-        <a href="{{ collections_root }}/family-sets" class="article-template__shop-link">
-          <span>Family Sets</span>
-          <span>Shop</span>
-        </a>
-        <a href="{{ collections_root }}/family-pajamas" class="article-template__shop-link">
-          <span>Family Pajamas</span>
-          <span>Shop</span>
-        </a>
-      </div>
-    </div>
-  </section>
+  {% render 'style-journal-internal-links', mode: 'article_collection_links', article: article %}
 
-  {%- if blog.articles_count > 1 -%}
+  {%- capture explicit_related_articles_markup -%}
+    {% render 'style-journal-internal-links', mode: 'article_related_articles', article: article %}
+  {%- endcapture -%}
+  {%- assign explicit_related_articles_markup = explicit_related_articles_markup | strip -%}
+
+  {%- if explicit_related_articles_markup != blank -%}
+    {{ explicit_related_articles_markup }}
+  {%- elsif blog.articles_count > 1 -%}
     <section class="article-template__related page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <div class="article-template__related-header">
         <p class="article-template__related-eyebrow">Continue reading</p>

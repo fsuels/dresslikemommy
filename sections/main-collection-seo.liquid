@@ -1,0 +1,231 @@
+{% if collection != blank %}
+  {%- liquid
+    capture collection_seo_rich_content
+      render 'collection-seo-content', collection: collection, field: 'rich_content'
+    endcapture
+    assign collection_seo_rich_content = collection_seo_rich_content | strip
+  -%}
+
+  {% if collection.handle == 'swimsuits' %}
+    {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+    {{ 'section-collection-seo.css' | asset_url | stylesheet_tag }}
+
+    {%- liquid
+      assign related_family_swim_url = routes.collections_url | append: '/family-swimsuits'
+      assign related_trunks_url = routes.collections_url | append: '/trunks'
+      assign related_mommy_me_url = routes.collections_url | append: '/mommy-and-me'
+
+      assign faq_question_1 = 'What sizes do your matching swimsuits come in?'
+      assign faq_answer_1 = 'Sizing varies by style, so review the available variants and use the size chart on each product page before checkout. This collection covers coordinated swim options for moms and daughters, and some styles also connect you to broader family swim looks.'
+
+      assign faq_question_2 = 'Do you offer family sets for dad too?'
+      assign faq_answer_2 = 'Yes. If you want the full family look, shop the matching family swimsuits collection and the trunks collection to add coordinated pieces for dads and boys alongside the main mommy and me swim styles.'
+
+      assign faq_question_3 = 'What is the difference between mommy and me swimsuits and matching family swimwear?'
+      assign faq_answer_3 = 'Mommy and me swimsuits usually focus on mom-and-daughter pairings. Matching family swimwear expands that idea so you can build a coordinated look across more family members, including dad and boys when those styles are available.'
+
+      assign faq_question_4 = 'Where should I start if I want boys pieces too?'
+      assign faq_answer_4 = 'Start on this swimsuits page if you want the broadest swim assortment first, then use the related family swimsuits and trunks collections to narrow into full-family looks or dad-and-boy add-ons.'
+    -%}
+  {% endif %}
+
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {%- endstyle -%}
+
+  {% if collection.handle == 'swimsuits' %}
+    <section class="collection-seo page-width section-{{ section.id }}-padding">
+      <div class="collection-seo__panel color-{{ section.settings.color_scheme }} gradient">
+        <div class="collection-seo__content">
+          <p class="collection-seo__eyebrow">Swimwear Guide</p>
+          <h2 class="collection-seo__title">Mommy and Me Swimsuits, Mother Daughter Bathing Suits, and Matching Family Swimwear</h2>
+          <div class="collection-seo__copy">
+            <p>Finding mommy and me swimsuits is usually easier when one page covers the core mom-and-daughter styles and the related family options that can complete the look. This swimsuits collection is built to be that starting point. Shoppers land here looking for mommy and me bathing suits, mother daughter swimsuits, and coordinated summer outfits for beach trips, pool days, cruises, and warm-weather family photos. Instead of bouncing between disconnected categories, you can compare the main matching swim looks in one place and decide whether you only need a mom-and-daughter pairing or a fuller family setup.</p>
+            <p>Some families want classic mom and daughter matching swimsuits. Others want matching family bathing suits that can bring together mom, dad, girls, and boys in the same print or color story. That is why this collection sits next to <a href="{{ related_family_swim_url }}">Matching Family Swimsuits</a> and <a href="{{ related_trunks_url }}">Trunks</a>. Start with the widest swim assortment here, then use those related collections when you need dad and boy pieces or a more complete family swimwear setup. This keeps the main swimsuits page focused on the highest-intent swim searches while still giving shoppers a clear route into the supporting family swim categories.</p>
+            <p>Sizing and style needs vary from product to product, so the best way to shop is to open the product page, review the available variants, and use the size chart before checkout. If your goal is a vacation capsule, family photo outfit, or repeat-wear summer uniform, focus on coordinated prints and silhouettes that can work across more than one occasion. You can also pair this collection with the broader <a href="{{ related_mommy_me_url }}">Mommy &amp; Me</a> assortment when you want matching outfits beyond the pool or beach.</p>
+            <p>Parents often search different phrases for the same need: mommy and me swimsuits, mommy and me bathing suits, mother daughter swimsuits, and matching family swimwear. This page is designed to answer that keyword cluster in one destination. Use it when you want a high-level view of the swim assortment first, then follow the related links if you need a narrower path into full family sets or matching trunks. That gives searchers and shoppers the same thing: one clear swim hub with direct routes to the most relevant supporting collections.</p>
+          </div>
+        </div>
+
+        <aside class="collection-seo__aside" aria-label="Related swim collections">
+          <p class="collection-seo__aside-label">Shop related swim collections</p>
+          <a href="{{ related_family_swim_url }}" class="collection-seo__link-card">
+            <span class="collection-seo__link-title">Matching Family Swimsuits</span>
+            <span class="collection-seo__link-caption">Expand from mommy-and-me looks into coordinated swimwear for the full family.</span>
+          </a>
+          <a href="{{ related_trunks_url }}" class="collection-seo__link-card">
+            <span class="collection-seo__link-title">Trunks</span>
+            <span class="collection-seo__link-caption">Add matching swim trunks for dads and boys when you need a complete beach-day set.</span>
+          </a>
+          <a href="{{ related_mommy_me_url }}" class="collection-seo__link-card">
+            <span class="collection-seo__link-title">Mommy &amp; Me</span>
+            <span class="collection-seo__link-caption">Keep the coordinated look going beyond swimwear with matching outfits for other occasions.</span>
+          </a>
+        </aside>
+      </div>
+
+      <div class="collection-seo__faq-card color-{{ section.settings.color_scheme }} gradient">
+        <div class="collection-seo__faq-header">
+          <p class="collection-seo__eyebrow">Swimsuit FAQs</p>
+          <h2 class="collection-seo__faq-title">Questions parents ask before they order</h2>
+        </div>
+
+        <div class="collection-seo__faq-list">
+          <div class="accordion">
+            <details open>
+              <summary>
+                <div class="summary__title">
+                  <h3 class="accordion__title h4">{{ faq_question_1 }}</h3>
+                </div>
+                {% render 'icon-caret' %}
+              </summary>
+              <div class="accordion__content rte">
+                <p>Sizing varies by style, so review the available variants and use the size chart on each product page before checkout. This collection covers coordinated swim options for moms and daughters, and some styles also connect you to broader family swim looks.</p>
+              </div>
+            </details>
+          </div>
+
+          <div class="accordion">
+            <details>
+              <summary>
+                <div class="summary__title">
+                  <h3 class="accordion__title h4">{{ faq_question_2 }}</h3>
+                </div>
+                {% render 'icon-caret' %}
+              </summary>
+              <div class="accordion__content rte">
+                <p>Yes. If you want the full family look, shop the <a href="{{ related_family_swim_url }}">Matching Family Swimsuits</a> collection and the <a href="{{ related_trunks_url }}">Trunks</a> collection to add coordinated pieces for dads and boys alongside the main mommy and me swim styles.</p>
+              </div>
+            </details>
+          </div>
+
+          <div class="accordion">
+            <details>
+              <summary>
+                <div class="summary__title">
+                  <h3 class="accordion__title h4">{{ faq_question_3 }}</h3>
+                </div>
+                {% render 'icon-caret' %}
+              </summary>
+              <div class="accordion__content rte">
+                <p>Mommy and me swimsuits usually focus on mom-and-daughter pairings. Matching family swimwear expands that idea so you can build a coordinated look across more family members, including dad and boys when those styles are available.</p>
+              </div>
+            </details>
+          </div>
+
+          <div class="accordion">
+            <details>
+              <summary>
+                <div class="summary__title">
+                  <h3 class="accordion__title h4">{{ faq_question_4 }}</h3>
+                </div>
+                {% render 'icon-caret' %}
+              </summary>
+              <div class="accordion__content rte">
+                <p>Start on this swimsuits page if you want the broadest swim assortment first, then use the <a href="{{ related_family_swim_url }}">Matching Family Swimsuits</a> and <a href="{{ related_trunks_url }}">Trunks</a> collections to narrow into full-family looks or dad-and-boy add-ons.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": {{ faq_question_1 | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ faq_answer_1 | json }}
+          }
+        },
+        {
+          "@type": "Question",
+          "name": {{ faq_question_2 | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ faq_answer_2 | json }}
+          }
+        },
+        {
+          "@type": "Question",
+          "name": {{ faq_question_3 | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ faq_answer_3 | json }}
+          }
+        },
+        {
+          "@type": "Question",
+          "name": {{ faq_question_4 | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ faq_answer_4 | json }}
+          }
+        }
+      ]
+    }
+    </script>
+  {% elsif collection_seo_rich_content != blank %}
+    <section class="page-width page-width--narrow section-{{ section.id }}-padding">
+      <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        {{ collection_seo_rich_content }}
+      </div>
+    </section>
+
+    {% render 'faq-schema-from-html', content: collection_seo_rich_content %}
+  {% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Collection SEO content",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}

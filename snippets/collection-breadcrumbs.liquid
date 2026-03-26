@@ -19,6 +19,7 @@
 {% assign current_breadcrumb_label = current_collection_label %}
 {% assign collections_base_url = routes.collections_url | append: '/' %}
 {% assign is_daddy_collection_nav = false %}
+{% assign is_couples_collection_nav = false %}
 {% assign daddy_button_downs_filter_param = 'dlm-daddy-filter=button-downs' %}
 
 {% if current_collection_handle == 'daddy-me'
@@ -27,6 +28,12 @@
   or current_collection_handle == 'trunks'
 %}
   {% assign is_daddy_collection_nav = true %}
+{% endif %}
+
+{% if current_collection_handle == 'couples'
+  or current_collection_handle == 'matching-couples-t-shirts'
+%}
+  {% assign is_couples_collection_nav = true %}
 {% endif %}
 
 {% if current_collection_handle == 'daddy-me' %}
@@ -44,6 +51,9 @@
 {% elsif current_collection_handle == 'couples' %}
   {% assign parent_category = 'sections.breadcrumbs.cat_couples' | t %}
   {% assign current_breadcrumb_label = 'sections.breadcrumbs.cat_couples' | t %}
+{% elsif current_collection_handle == 'matching-couples-t-shirts' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_couples' | t %}
+  {% assign current_breadcrumb_label = 'T-Shirts' %}
 {% elsif current_collection_handle == 'maternity' %}
   {% assign parent_category = 'sections.breadcrumbs.cat_maternity' | t %}
   {% assign current_breadcrumb_label = 'sections.breadcrumbs.cat_maternity' | t %}
@@ -154,6 +164,8 @@
     daddy-me-t-shirts::Tees|||daddy-me-shirts::Button-Downs|||trunks::{{ 'sections.breadcrumbs.label_trunks' | t }}
   {% endcapture %}
   {% assign pill_list = daddy_pills | split: '|||' %}
+{% elsif is_couples_collection_nav %}
+  {% assign pill_list = 'matching-couples-t-shirts::T-Shirts' | split: '|||' %}
 {% endif %}
 
 {% if current_collection_handle == 'new-women-outfits' or current_collection_handle == 'family-matching-outfits' %}
@@ -174,6 +186,8 @@
   {% assign pill_display_label = current_collection_label %}
 {% endif %}
 {% if current_collection_handle == 'daddy-me' and is_daddy_collection_nav %}
+  {% assign pill_display_label = 'All' %}
+{% elsif current_collection_handle == 'couples' and is_couples_collection_nav %}
   {% assign pill_display_label = 'All' %}
 {% endif %}
 

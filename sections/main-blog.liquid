@@ -64,6 +64,22 @@
       </div>
     </header>
 
+    {%- if blog.handle == 'news' -%}
+      <section class="main-blog__spotlight{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <div class="main-blog__spotlight-card">
+          <div class="main-blog__spotlight-copy">
+            <p class="main-blog__spotlight-eyebrow">Seasonal collection</p>
+            <h2 class="main-blog__spotlight-title">Planning a beach day or family trip?</h2>
+            <p class="main-blog__spotlight-text">Shop mommy and me swimsuits, mother daughter bathing suits, and matching family swimwear for pool days, vacations, cruises, and summer photos.</p>
+          </div>
+          <div class="main-blog__spotlight-actions">
+            <a href="{{ routes.collections_url }}/swimsuits" class="button">Shop swimsuits</a>
+            <a href="{{ routes.collections_url }}/family-swimsuits" class="button button--secondary">Shop family swim</a>
+          </div>
+        </div>
+      </section>
+    {%- endif -%}
+
     {%- if featured_article != blank -%}
       {%- liquid
         assign featured_excerpt = featured_article.excerpt | strip_html
@@ -168,27 +184,57 @@
       </div>
     </section>
 
-    <section class="main-blog__newsletter">
+    <section class="main-blog__newsletter" id="newsletter-blog">
       <div class="main-blog__newsletter-card">
         <p class="main-blog__newsletter-eyebrow">Stay in the loop</p>
         <h2 class="main-blog__newsletter-title">Get styling tips + 10% off</h2>
         <p class="main-blog__newsletter-text">Join our Style Journal newsletter for matching outfit inspiration, new arrivals, and an exclusive welcome discount.</p>
-        <form method="post" action="/contact#newsletter-blog" class="main-blog__newsletter-form">
-          <input type="hidden" name="form_type" value="customer">
-          <input type="hidden" name="utf8" value="✓">
+        {% form 'customer', id: 'NewsletterBlog', class: 'main-blog__newsletter-form' %}
           <input type="hidden" name="contact[tags]" value="newsletter,blog-signup">
           <div class="main-blog__newsletter-field">
             <input
+              id="NewsletterBlog-email"
               type="email"
               name="contact[email]"
               placeholder="Your email address"
               required
               class="main-blog__newsletter-input field__input"
               aria-label="Email address"
+              value="{{ form.email }}"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              {% if form.errors %}
+                autofocus
+                aria-invalid="true"
+                aria-describedby="NewsletterBlog-error"
+              {% elsif form.posted_successfully? %}
+                aria-describedby="NewsletterBlog-success"
+              {% endif %}
             >
             <button type="submit" class="main-blog__newsletter-button button">Subscribe</button>
           </div>
-        </form>
+          {% if form.errors %}
+            <p
+              class="main-blog__newsletter-message main-blog__newsletter-message--error"
+              id="NewsletterBlog-error"
+              data-analytics-newsletter-state="error"
+            >
+              {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+            </p>
+          {% endif %}
+          {% if form.posted_successfully? %}
+            <p
+              class="main-blog__newsletter-message main-blog__newsletter-message--success"
+              id="NewsletterBlog-success"
+              tabindex="-1"
+              autofocus
+              data-analytics-newsletter-state="success"
+            >
+              {{ 'newsletter.success' | t }}
+            </p>
+          {% endif %}
+        {% endform %}
       </div>
     </section>
   </div>

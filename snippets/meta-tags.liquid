@@ -1,11 +1,13 @@
 {%- liquid
+  assign resolved_canonical_url = canonical_href | default: canonical_url | default: request.origin
   assign og_title = page_title | default: shop.name
-  assign og_url = canonical_url | default: request.origin
+  assign og_url = resolved_canonical_url
   assign og_type = 'website'
   assign og_description = page_description | default: shop.description | default: shop.name
   assign should_noindex = false
-  assign noindex_collection_facets = false
+  assign noindex_follow = false
   assign collection_seo_display_title = blank
+  assign collection_seo_meta_title = blank
   assign collection_seo_meta_description = blank
 
   if request.page_type == 'collection' and collection != blank
@@ -14,13 +16,20 @@
     endcapture
     assign collection_seo_display_title = collection_seo_display_title | strip
 
+    capture collection_seo_meta_title
+      render 'collection-seo-fallback', collection: collection, field: 'meta_title'
+    endcapture
+    assign collection_seo_meta_title = collection_seo_meta_title | strip
+
     capture collection_seo_meta_description
       render 'collection-seo-fallback', collection: collection, field: 'meta_description'
     endcapture
     assign collection_seo_meta_description = collection_seo_meta_description | strip
 
     if collection.handle == 'all' or collection.handle == 'swimsuits' or page_title == blank or page_title == collection.title
-      if collection_seo_display_title != blank
+      if collection_seo_meta_title != blank
+        assign og_title = collection_seo_meta_title
+      elsif collection_seo_display_title != blank
         assign og_title = collection_seo_display_title
       endif
     endif
@@ -31,8 +40,8 @@
   endif
 
   if request.page_type == 'index'
-    assign og_title = 'Mommy and Me Dresses, Swimsuits and Family Matching Outfits'
-    assign og_description = 'Shop mommy and me dresses, matching swimsuits, daddy and me looks, and family outfits for photos, vacations, holidays, and everyday wear.'
+    assign og_title = 'Mommy and Me Dresses | Family Matching Outfits'
+    assign og_description = 'Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes. Free shipping on all orders. Shop now.'
   elsif request.page_type == 'product'
     assign og_type = 'product'
   elsif request.page_type == 'article'
@@ -57,6 +66,11 @@
     assign should_noindex = true
   endif
 
+  if parameterized_product_noindex
+    assign should_noindex = true
+    assign noindex_follow = true
+  endif
+
   comment
     TSEO-005: Noindex collection pages with tags, filters, or sort params
     to prevent index bloat from faceted navigation variants.
@@ -65,19 +79,19 @@
   if request.page_type == 'collection'
     if current_tags and current_tags.size > 0
       assign should_noindex = true
-      assign noindex_collection_facets = true
+      assign noindex_follow = true
     endif
     assign current_url_string = request.url | default: canonical_url | default: ''
     assign current_query_string = request.query_string | default: ''
-    if current_url_string contains 'filter.' or current_url_string contains 'sort_by=' or current_query_string contains 'filter.' or current_query_string contains 'sort_by='
+    if current_url_string contains 'filter.' or current_url_string contains 'sort_by=' or current_url_string contains 'dlm-daddy-filter=' or current_query_string contains 'filter.' or current_query_string contains 'sort_by=' or current_query_string contains 'dlm-daddy-filter='
       assign should_noindex = true
-      assign noindex_collection_facets = true
+      assign noindex_follow = true
     endif
   endif
 %}
 
 {%- if should_noindex -%}
-  <meta name="robots" content="noindex,{% if noindex_collection_facets %} follow{% else %} nofollow{% endif %}">
+  <meta name="robots" content="noindex,{% if noindex_follow %} follow{% else %} nofollow{% endif %}">
 {%- endif -%}
 
 <meta property="og:site_name" content="{{ shop.name }}">
@@ -112,7 +126,7 @@
 
 {%- liquid
   assign hreflang_origin = shop.url | default: request.origin
-  assign hreflang_canonical = canonical_url | default: request.url
+  assign hreflang_canonical = resolved_canonical_url | default: request.url
   assign hreflang_relative_path = hreflang_canonical | replace_first: hreflang_origin, ''
   if hreflang_relative_path == hreflang_canonical
     assign request_origin_fallback = request.origin | default: ''

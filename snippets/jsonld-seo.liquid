@@ -4,6 +4,7 @@
 {%- endcomment -%}
 
 {%- assign social_handles = 'social_facebook_link|social_instagram_link|social_youtube_link|social_tiktok_link|social_twitter_link|social_pinterest_link|social_tumblr_link|social_vimeo_link' | split: '|' -%}
+{%- assign resolved_canonical_url = canonical_href | default: canonical_url | default: '' -%}
 {%- assign same_as_output = '' -%}
 {%- assign same_as_delim = '' -%}
 {%- for handle in social_handles -%}
@@ -65,12 +66,20 @@
 {%- assign breadcrumb_position = breadcrumb_position | plus: 1 -%}
 
 {%- if template contains 'collection' and collection -%}
-  {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ collection.title | json }},"item":{{ collection.url | prepend: shop.url | json }}}{%- endcapture -%}
+  {%- assign collection_breadcrumb_name = collection.title | strip -%}
+  {%- capture collection_seo_display_title -%}
+    {%- render 'collection-seo-fallback', collection: collection, field: 'display_title' -%}
+  {%- endcapture -%}
+  {%- assign collection_seo_display_title = collection_seo_display_title | strip -%}
+  {%- if collection_seo_display_title != blank -%}
+    {%- assign collection_breadcrumb_name = collection_seo_display_title -%}
+  {%- endif -%}
+  {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ collection_breadcrumb_name | json }},"item":{{ collection.url | prepend: shop.url | json }}}{%- endcapture -%}
 {%- elsif template contains 'blog' and blog -%}
   {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ blog.title | json }},"item":{{ blog.url | prepend: shop.url | json }}}{%- endcapture -%}
   {%- assign breadcrumb_position = breadcrumb_position | plus: 1 -%}
   {%- if article -%}
-    {%- assign article_breadcrumb_url = canonical_url | default: '' -%}
+    {%- assign article_breadcrumb_url = resolved_canonical_url | default: '' -%}
     {%- if article_breadcrumb_url == blank -%}
       {%- assign article_breadcrumb_url = article.url | prepend: shop.url -%}
     {%- endif -%}
@@ -85,8 +94,8 @@
     {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ primary_collection.title | json }},"item":{{ primary_collection.url | prepend: shop.url | json }}}{%- endcapture -%}
     {%- assign breadcrumb_position = breadcrumb_position | plus: 1 -%}
   {%- endif -%}
-  {%- if canonical_url != blank -%}
-    {%- assign product_breadcrumb_url = canonical_url -%}
+  {%- if resolved_canonical_url != blank -%}
+    {%- assign product_breadcrumb_url = resolved_canonical_url -%}
   {%- else -%}
     {%- assign product_breadcrumb_url = shop.url | append: product.url -%}
   {%- endif -%}
@@ -104,8 +113,8 @@
 {%- endif -%}
 
 {%- if template contains 'product' and product -%}
-  {%- if canonical_url != blank -%}
-    {%- assign product_url = canonical_url -%}
+  {%- if resolved_canonical_url != blank -%}
+    {%- assign product_url = resolved_canonical_url -%}
   {%- else -%}
     {%- assign product_url = shop.url | append: product.url -%}
   {%- endif -%}
@@ -277,6 +286,7 @@
       "priceCurrency": {{ currency_code | json }},
       "lowPrice": {{ low_price | json }},
       "highPrice": {{ high_price | json }},
+      "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
       "priceValidUntil": {{ price_valid_until | json }},
       "offerCount": {{ product.variants.size }},
       "hasMerchantReturnPolicy": {

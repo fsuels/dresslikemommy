@@ -40,6 +40,54 @@
   margin: 0;
 }
 
+.main-blog__spotlight {
+  grid-column: 1 / -1;
+}
+
+.main-blog__spotlight-card {
+  display: grid;
+  gap: 2rem;
+  padding: 2.8rem 2.2rem;
+  border-radius: 3rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  background: linear-gradient(140deg, rgba(var(--color-background), 1) 0%, rgba(var(--color-foreground), 0.04) 100%);
+  box-shadow: 0 2rem 4.4rem rgba(var(--color-shadow), 0.06);
+}
+
+.main-blog__spotlight-copy {
+  display: grid;
+  gap: 1rem;
+}
+
+.main-blog__spotlight-eyebrow {
+  margin: 0;
+  color: rgba(var(--color-foreground), 0.56);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+}
+
+.main-blog__spotlight-title {
+  margin: 0;
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  line-height: 1.08;
+}
+
+.main-blog__spotlight-text {
+  margin: 0;
+  max-width: 60rem;
+  color: rgba(var(--color-foreground), 0.74);
+  font-size: 1.6rem;
+  line-height: 1.75;
+}
+
+.main-blog__spotlight-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .main-blog__featured {
   display: grid;
   overflow: hidden;
@@ -131,6 +179,17 @@
 
   .main-blog__header {
     padding-bottom: 0.8rem;
+  }
+
+  .main-blog__spotlight-card {
+    grid-template-columns: minmax(0, 1.35fr) auto;
+    align-items: end;
+    padding: 3.2rem 3rem;
+  }
+
+  .main-blog__spotlight-actions {
+    justify-content: flex-end;
+    align-self: center;
   }
 
   .main-blog__featured {
@@ -233,7 +292,30 @@
   border-radius: 1.2rem;
 }
 
+.main-blog__newsletter-message {
+  margin: 1.2rem auto 0;
+  max-width: 48rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.main-blog__newsletter-message--success {
+  color: #1f6b3d;
+}
+
+.main-blog__newsletter-message--error {
+  color: #b42318;
+}
+
 @media screen and (max-width: 549px) {
+  .main-blog__spotlight-actions {
+    flex-direction: column;
+  }
+
+  .main-blog__spotlight-actions .button {
+    width: 100%;
+  }
+
   .main-blog__newsletter-field {
     flex-direction: column;
   }
