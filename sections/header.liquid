@@ -1,21 +1,3 @@
-<link rel="preload" href="{{ 'component-list-social.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'component-list-payment.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'component-rating.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'section-footer.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'mask-blobs.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'component-newsletter.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'quantity-popover.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'component-list-menu.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'quick-order-list.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'template-collection.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'component-volume-pricing.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'component-price.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'component-slider.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'component-card.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'section-collection-list.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'base.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'component-slideshow.css' | asset_url }}" as="style">
-<link rel="preload" href="{{ 'customer.css' | asset_url }}" as="style">
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -214,8 +196,7 @@
                   height: logo_height,
                   width: settings.logo_width,
                   alt: logo_alt,
-                  sizes: sizes,
-                  preload: true
+                  sizes: sizes
                 }}
               </div>
             {%- else -%}
@@ -254,8 +235,7 @@
                   height: logo_height,
                   width: settings.logo_width,
                   alt: logo_alt,
-                  sizes: sizes,
-                  preload: true
+                  sizes: sizes
                 }}
               </div>
             {%- else -%}

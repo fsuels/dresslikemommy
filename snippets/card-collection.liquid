@@ -35,6 +35,13 @@
   if card_collection != blank and card_collection.handle == 'swimsuits'
     assign card_collection_display_title = 'sections.collection.swimsuits_override' | t
   endif
+
+  assign card_collection_image_loading = 'lazy'
+  assign card_collection_image_fetchpriority = 'low'
+  if lazy_load == false
+    assign card_collection_image_loading = blank
+    assign card_collection_image_fetchpriority = blank
+  endif
 -%}
 
 <div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
@@ -76,7 +83,9 @@
               alt="{{ card_collection.featured_image.alt | default: card_collection_display_title | escape }}"
               height="{{ card_collection.featured_image.height }}"
               width="{{ card_collection.featured_image.width }}"
-              {% unless lazy_load == false %}loading="lazy"{% endunless %}
+              {% if card_collection_image_loading != blank %}loading="{{ card_collection_image_loading }}"{% endif %}
+              {% if card_collection_image_fetchpriority != blank %}fetchpriority="{{ card_collection_image_fetchpriority }}"{% endif %}
+              decoding="async"
               class="motion-reduce"
             >
           </div>

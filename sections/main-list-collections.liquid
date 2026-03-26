@@ -30,6 +30,13 @@
     >
       {%- for collection in collections -%}
         {%- if collection.all_products_count > 0 -%}
+          {%- liquid
+            assign eager_collection_card_count = section.settings.columns_mobile | plus: 0
+            assign collection_card_lazy_load = true
+            if section.index == 1 and forloop.index <= eager_collection_card_count
+              assign collection_card_lazy_load = false
+            endif
+          -%}
           <li
             class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.animations_reveal_on_scroll %}
@@ -41,7 +48,7 @@
               card_collection: collection,
               media_aspect_ratio: section.settings.image_ratio,
               columns: 3,
-              lazy_load: forloop.index > 4
+              lazy_load: collection_card_lazy_load
             %}
           </li>
         {%- endif -%}

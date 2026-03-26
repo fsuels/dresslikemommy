@@ -4,11 +4,38 @@
 <head>
   {% comment %}Google Tag Manager{% endcomment %}
   <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5QVH4W3');
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+      var hasLoaded = false;
+
+      function loadTagManager() {
+        if (hasLoaded) return;
+        hasLoaded = true;
+
+        var f = d.getElementsByTagName(s)[0];
+        var j = d.createElement(s);
+        var dl = l != 'dataLayer' ? '&l=' + l : '';
+
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      }
+
+      function scheduleIdleLoad() {
+        if ('requestIdleCallback' in w) {
+          w.requestIdleCallback(loadTagManager, { timeout: 3000 });
+        } else {
+          w.setTimeout(loadTagManager, 2000);
+        }
+      }
+
+      w.addEventListener('load', scheduleIdleLoad, { once: true });
+      d.addEventListener('pointerdown', loadTagManager, { once: true, passive: true, capture: true });
+      d.addEventListener('touchstart', loadTagManager, { once: true, passive: true, capture: true });
+      d.addEventListener('keydown', loadTagManager, { once: true, capture: true });
+    })(window, document, 'script', 'dataLayer', 'GTM-5QVH4W3');
   </script>
 <link rel="stylesheet" href="{{ 'component-list-social.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-list-payment.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -196,8 +223,16 @@
 
 
 
-  {%- if settings.favicon != blank -%}
-    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- liquid
+    assign resolved_favicon_url = blank
+    if settings.favicon != blank
+      assign resolved_favicon_url = settings.favicon | image_url: width: 32, height: 32
+    elsif settings.logo != blank
+      assign resolved_favicon_url = settings.logo | image_url: width: 32, height: 32, crop: 'center'
+    endif
+  -%}
+  {%- if resolved_favicon_url != blank -%}
+    <link rel="icon" type="image/png" href="{{ resolved_favicon_url }}">
   {%- endif -%}
 
   {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
@@ -635,16 +670,27 @@
     </style>
 
 
-    {%- unless settings.type_body_font.system? -%}
+    {%- liquid
+      assign body_font_preload_url = blank
+      assign header_font_preload_url = blank
+      unless settings.type_body_font.system?
+        assign body_font_preload_url = settings.type_body_font | font_url
+      endunless
+      unless settings.type_header_font.system?
+        assign header_font_preload_url = settings.type_header_font | font_url
+      endunless
+    -%}
+
+    {%- if body_font_preload_url != blank -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
-      <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+      <link rel="preload" as="font" href="{{ body_font_preload_url }}" type="font/woff2" crossorigin>
       {% comment %}theme-check-enable AssetPreload{% endcomment %}
-    {%- endunless -%}
-    {%- unless settings.type_header_font.system? -%}
+    {%- endif -%}
+    {%- if header_font_preload_url != blank and header_font_preload_url != body_font_preload_url -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
-      <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+      <link rel="preload" as="font" href="{{ header_font_preload_url }}" type="font/woff2" crossorigin>
       {% comment %}theme-check-enable AssetPreload{% endcomment %}
-    {%- endunless -%}
+    {%- endif -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
       {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}

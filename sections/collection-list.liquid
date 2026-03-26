@@ -101,12 +101,18 @@
           >
             {%- assign placeholder_image_index = animation_order | minus: 1 | modulo: 4 | plus: 1 -%}
             {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+            {%- liquid
+              assign collection_card_lazy_load = true
+              if section.index == 1 and animation_order <= columns_mobile_int
+                assign collection_card_lazy_load = false
+              endif
+            -%}
             {% render 'card-collection',
               card_collection: block.settings.collection,
               media_aspect_ratio: section.settings.image_ratio,
               columns: columns,
               placeholder_image: placeholder_image,
-              lazy_load: animation_order > 4
+              lazy_load: collection_card_lazy_load
             %}
           </li>
         {%- endfor -%}
