@@ -8466,3 +8466,22 @@ Conclusions:
   - app-specific channel settings for Google, Meta, Pinterest, Microsoft/Bing, and the app behind `pixelCode`
   - `Online Store -> Themes -> Customize -> App embeds` for Judge.me
 - If Admin changes are not possible, the only remaining theme-side option is an aggressive script-deferral/blocking strategy for non-essential third-party pixels and Judge.me outside critical pages; that would improve lab scores but may reduce tracking fidelity and storefront review-widget behavior.
+
+### Task: Sync remaining local ops script to main
+Date: 2026-03-26 09:01:02 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-sync-remaining-live-product-seo-script
+Changes:
+- `ops/scripts/optimize_live_product_seo.py`
+  - Added the previously untracked operator script to version control.
+  - The script provides a dry-run-first workflow for live Shopify product SEO updates, media alt-text updates, and taxonomy metafield updates, with `productUpdate` and `fileUpdate` GraphQL support plus audit/output files under `tmp/product-seo-optimization/`.
+
+Why:
+- The repository was otherwise clean on `main`, and this untracked ops script was the only remaining local change not yet synced.
+- Recording it in the worklog keeps the repo resumable and preserves continuity for the operator workflow it introduces.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/optimize_live_product_seo.py`.
+  - Result: script compiled successfully.
+
+Open items:
+- No live Shopify execution was run in this sync step; this entry only captures and syncs the existing local script artifact.
