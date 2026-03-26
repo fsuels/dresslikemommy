@@ -124,6 +124,7 @@
     assign collection_seo_meta_title = blank
     assign collection_seo_meta_description = blank
     assign collection_seo_force_theme = blank
+    assign product_seo_description = blank
     assign append_shop_name_to_title = true
 
     if request.page_type == 'collection' and collection != blank
@@ -146,6 +147,11 @@
         render 'collection-seo-fallback', collection: collection, field: 'force_theme_seo'
       endcapture
       assign collection_seo_force_theme = collection_seo_force_theme | strip
+    elsif request.page_type == 'product' and product != blank
+      capture product_seo_description
+        render 'product-seo-description-fallback', product: product, collection: collection, page_description: resolved_page_description
+      endcapture
+      assign product_seo_description = product_seo_description | strip
     endif
 
     if request.page_type == 'index'
@@ -174,6 +180,8 @@
 
     if request.page_type == 'collection' and collection != blank and collection_seo_force_theme == 'true' and collection_seo_meta_description != blank
       assign resolved_page_description = collection_seo_meta_description
+    elsif request.page_type == 'product' and product != blank and product_seo_description != blank
+      assign resolved_page_description = product_seo_description
     elsif resolved_page_description == blank
       if request.page_type == 'collection' and collection != blank and collection_seo_meta_description != blank
         assign resolved_page_description = collection_seo_meta_description

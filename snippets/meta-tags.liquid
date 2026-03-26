@@ -10,6 +10,7 @@
   assign collection_seo_meta_title = blank
   assign collection_seo_meta_description = blank
   assign collection_seo_force_theme = blank
+  assign product_seo_description = blank
 
   if request.page_type == 'collection' and collection != blank
     capture collection_seo_display_title
@@ -50,6 +51,14 @@
       assign og_description = collection_seo_meta_description
     elsif page_description == blank and collection_seo_meta_description != blank
       assign og_description = collection_seo_meta_description
+    endif
+  elsif request.page_type == 'product' and product != blank
+    capture product_seo_description
+      render 'product-seo-description-fallback', product: product, collection: collection, page_description: page_description
+    endcapture
+    assign product_seo_description = product_seo_description | strip
+    if product_seo_description != blank
+      assign og_description = product_seo_description
     endif
   endif
 

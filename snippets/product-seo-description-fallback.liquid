@@ -1,0 +1,51 @@
+{%- liquid
+  assign resolved_page_description = page_description | default: '' | strip
+
+  capture stripped_product_description
+    echo product.description | strip_html | replace: '&nbsp;', ' ' | replace: '&#160;', ' ' | strip_newlines
+  endcapture
+  assign stripped_product_description = stripped_product_description | replace: '  ', ' ' | replace: '  ', ' ' | replace: '  ', ' ' | strip
+
+  assign resolved_page_description_downcase = resolved_page_description | downcase
+  assign stripped_product_description_downcase = stripped_product_description | downcase
+  assign should_generate_fallback = false
+
+  if resolved_page_description == blank
+    assign should_generate_fallback = true
+  else
+    assign page_description_prefix = resolved_page_description_downcase | slice: 0, 20
+    if page_description_prefix contains 'specifications'
+      assign should_generate_fallback = true
+    endif
+  endif
+
+  if should_generate_fallback
+    assign generated_description = stripped_product_description
+    assign product_description_prefix = stripped_product_description_downcase | slice: 0, 20
+    if product_description_prefix contains 'specifications'
+      assign generated_description = ''
+    endif
+
+    if generated_description == blank or generated_description.size < 80
+      assign product_category_name = collection.title | default: product.type | default: ''
+      if product_category_name == blank and product.collections.size > 0
+        assign product_category_name = product.collections.first.title
+      endif
+      if product_category_name == blank
+        assign product_category_name = 'matching outfits'
+      endif
+
+      capture generated_description
+        echo 'Shop '
+        echo product.title | strip
+        echo ' at Dress Like Mommy. Explore '
+        echo product_category_name | downcase
+        echo ' with current pricing, size options, and shipping details.'
+      endcapture
+    endif
+
+    assign resolved_page_description = generated_description | strip | truncate: 155, ''
+  endif
+
+  echo resolved_page_description | strip
+-%}
