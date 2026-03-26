@@ -8699,6 +8699,56 @@ Open items:
   - zero remaining null article images
   - a small storefront spot-check for article hero/`og:image`
 
+### Task: Theme-side article image metadata fallback attempt
+Date: 2026-03-26 13:08:44 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-article-image-metadata-fallback-attempt
+Changes:
+- `snippets/article-featured-image-fallback.liquid`
+  - Added a title/handle-keyword-based fallback mapper that returns deterministic public Shopify CDN image URLs, dimensions, and alt text for Style Journal articles.
+- `snippets/meta-tags.liquid`
+  - Attempted to override generic article share images with keyword-matched fallback CDN images for article pages missing a real article image.
+- `snippets/article-enhanced-schema.liquid`
+  - Attempted to inject the same fallback image into `BlogPosting` schema when `article.image` is absent.
+- `sections/main-article.liquid`
+  - Attempted to inject the same fallback image into the additional `Article` JSON-LD block when `article.image` is absent.
+- Development theme only:
+  - Pushed the four files above to development theme `#133851742305` for runtime verification.
+
+Why:
+- The current Admin API token is still invalid, so a theme-side metadata fallback was the only remaining path that could potentially improve article share images without Admin article writes.
+- The storefront already uses editorial-cover components for `news` article cards and hero areas, so the metadata/schema layer was the remaining likely gap.
+
+Verification:
+- Confirmed the public CDN URLs for the candidate fallback images are reachable for the mapped Shopify Files assets, including:
+  - `family-sweaters-1152x2048-fixed.png`
+  - `mommy-me-easter-outfit-ideas-2026-hero.jpg`
+  - `ChatGPT_Image_Mar_23_2026_03_06_20_AM.png`
+  - `approve-image-1080x1920.png`
+  - `pomelli-image_44.png`
+  - `pomelli-image_46.png`
+  - `pomelli-image_47.png`
+  - `pomelli-image_38.png`
+  - `fixed-size-1080x1920-from-upload.jpg`
+  - `ChatGPT_Image_Mar_23_2026_02_48_47_AM.png`
+- Ran `shopify theme push` twice to development theme `#133851742305` with only:
+  - `snippets/article-featured-image-fallback.liquid`
+  - `snippets/meta-tags.liquid`
+  - `snippets/article-enhanced-schema.liquid`
+  - `sections/main-article.liquid`
+- Fetched preview article pages on the development theme and compared the rendered output for sample slugs such as:
+  - `best-matching-family-outfits-for-winter-2028`
+  - `new-year-new-matching-looks-family-fashion-for-2028`
+  - `mommy-and-me-valentines-day-dress-guide-2027`
+  - `mommy-and-me-easter-outfit-ideas-for-2027`
+- Result:
+  - the preview still emitted the same generic fallback `og:image` for the sampled no-image articles
+  - `BlogPosting` schema still omitted `image` for those sampled no-image articles
+  - the known article with a real article image (`mommy-and-me-easter-outfit-ideas-for-2027`) continued to emit its real image correctly
+
+Open items:
+- This theme-side fallback attempt did not materially change the sampled no-image article metadata in preview, so it was not pushed to the live theme.
+- The only reliable path still left for the original task is fixing Admin API authentication and running the real article-image backfill through Shopify Admin.
+
 ### Task: Product title repair execution blocked by live Admin auth
 Date: 2026-03-26 09:44:18 EDT
 Changes:
