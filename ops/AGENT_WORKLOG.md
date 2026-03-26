@@ -8524,3 +8524,45 @@ Missing collection images:
 Open items:
 - Add collection images for the 37 handles above to improve collection-grid presentation and Google Images eligibility.
 - If this workflow is reused, normalize HTML entities during post-update verification so Shopify apostrophe normalization does not produce false `verify_failed` results.
+
+### Task: Internal linking audit orphan-page resolution follow-through
+Date: 2026-03-26 09:44:18 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-internal-link-audit-orphan-resolution
+Changes:
+- `ops/internal-link-structure-audit-2026-03-26.md`
+  - Replaced the earlier caveat-only orphan section with a verified orphan-page result using published Storefront collection-product membership.
+  - Finalized the orphan collection list at `12` live collections:
+    - `/collections/bottoms`
+    - `/collections/christmas-pajamas`
+    - `/collections/christmas-sweaters`
+    - `/collections/christmas-tops`
+    - `/collections/leggings`
+    - `/collections/new-matching-outfits`
+    - `/collections/pants`
+    - `/collections/popular-family-matching`
+    - `/collections/popular-mommy-me-1`
+    - `/collections/skirts`
+    - `/collections/sundresses`
+    - `/collections/valentines-day-matching-outfits-1`
+  - Finalized the orphan product list at `1` live PDP:
+    - `/products/backless-striped-jumpsuit`
+  - Added explicit remediation guidance for both orphan collections and the orphan PDP.
+
+Why:
+- The initial storefront crawl overcalled product/collection orphans because `/collections` was not part of the first sitemap crawl and deeper shell crawling later hit anti-bot verification.
+- Combining the original crawl with the live `/collections` hub and Storefront API published collection membership reduced false positives and closed the main unfinished item from the audit.
+
+Verification:
+- Fetched the live `/collections` page and extracted `25` linked collection paths.
+- Queried the published Storefront collection graph and confirmed `41` live collections.
+- Queried the published Storefront product graph and compared it against the `225` product URLs in the default product sitemap.
+- Recomputed the orphan set by intersecting:
+  - original crawl candidates
+  - live homepage collection links
+  - live `/collections` links
+  - published collection-product membership
+- Result: `12` verified orphan collections and `1` verified orphan product (`backless-striped-jumpsuit`), with no remaining need for a browser-authenticated second crawl for this task.
+
+Open items:
+- The internal-linking audit itself is now complete.
+- If the merchant wants remediation implemented in-theme or in Shopify content, the next task is to either link or retire the `12` orphan collections and attach or redirect the orphan PDP.

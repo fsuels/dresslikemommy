@@ -9,7 +9,7 @@ Scope: live English storefront crawl of homepage, collection pages, product page
 - Crawled the default-locale sitemap inventory: 225 product URLs, 41 collection URLs, 17 pages, 255 blog/article URLs, plus the homepage.
 - Reviewed live navigation and collection directory pages in-browser.
 - Cross-checked the theme implementation for the footer blog link, product description rendering, and article internal-link rendering.
-- Important caveat: a second-pass shell crawl of paginated collection pages was blocked by anti-bot verification, so product-level orphan detection below is directional rather than fully certified.
+- Resolved the initial orphan-page false positives by combining the live `/collections` hub with Storefront API collection-product membership for published resources.
 
 ## Verified Broken Internal Links
 
@@ -129,14 +129,43 @@ Implementation note:
 
 ## Orphan / Underlinked Page Findings
 
-Verified:
+Verified structural issue:
 
-- I could verify the structural underlinking issue around the collection directory: `/collections` exists and exposes long-tail collections, but `SHOP` does not link to it from the homepage.
+- `/collections` exists and exposes long-tail collections, but `SHOP` does not link to it from the homepage.
 
-Directional, not fully certified:
+Verified orphan collections:
 
-- The first-pass crawl surfaced a large candidate set of underlinked products, but that overstates true product orphans because deeper collection pagination could not be recrawled after anti-bot verification triggered.
-- Use a browser-authenticated second-pass crawl of paginated collection pages before treating any product-level orphan list as final.
+- `https://www.dresslikemommy.com/collections/bottoms`
+- `https://www.dresslikemommy.com/collections/christmas-pajamas`
+- `https://www.dresslikemommy.com/collections/christmas-sweaters`
+- `https://www.dresslikemommy.com/collections/christmas-tops`
+- `https://www.dresslikemommy.com/collections/leggings`
+- `https://www.dresslikemommy.com/collections/new-matching-outfits`
+- `https://www.dresslikemommy.com/collections/pants`
+- `https://www.dresslikemommy.com/collections/popular-family-matching`
+- `https://www.dresslikemommy.com/collections/popular-mommy-me-1`
+- `https://www.dresslikemommy.com/collections/skirts`
+- `https://www.dresslikemommy.com/collections/sundresses`
+- `https://www.dresslikemommy.com/collections/valentines-day-matching-outfits-1`
+
+Recommended fix for orphan collections:
+
+- If these collections should remain live, add internal links from `/collections`, the homepage nav, or related collection/article hubs.
+- If they are legacy or duplicative, redirect or unpublish them instead of leaving them indexable but unlinked.
+
+Verified orphan product:
+
+- `https://www.dresslikemommy.com/products/backless-striped-jumpsuit`
+
+Why this product is a true orphan:
+
+- It appeared in the original sitemap crawl with no inbound internal links.
+- It is not assigned to any published collection in the live Storefront collection graph.
+
+Recommended fix for the orphan product:
+
+- Add it to at least one live collection such as `/collections/jumpsuits` or another relevant category.
+- Then make sure that collection is linked from `/collections` or another crawlable hub.
 
 ## Priority Fix Order
 
@@ -145,3 +174,4 @@ Directional, not fully certified:
 3. Point `SHOP` to `/collections` and keep the category directory crawlable from the homepage.
 4. Add server-rendered merch links to seasonal article templates, starting with Easter, swimsuits, Valentine's, and back-to-school clusters.
 5. Add contextual related-collection links inside product descriptions by category template or metafield.
+6. Resolve the 12 orphan collections and attach the orphan PDP `backless-striped-jumpsuit` to a linked collection or redirect it.
