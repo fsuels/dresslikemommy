@@ -86,14 +86,15 @@
       assign collection_seo_meta_description = collection_seo_meta_description | strip
     endif
 
-    if request.page_type == 'collection' and collection != blank and collection.handle == 'swimsuits'
-      assign resolved_page_title = 'Swimsuits'
+    if request.page_type == 'index'
+      assign resolved_page_title = 'Mommy and Me Dresses, Swimsuits and Family Matching Outfits'
+      assign resolved_page_description = 'Shop mommy and me dresses, matching swimsuits, daddy and me looks, and family outfits for photos, vacations, holidays, and everyday wear.'
     elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
       assign resolved_page_title = 'Style Journal'
     endif
 
     if request.page_type == 'collection' and collection != blank
-      if collection.handle == 'all' or resolved_page_title == blank or resolved_page_title == collection.title
+      if collection.handle == 'all' or collection.handle == 'swimsuits' or resolved_page_title == blank or resolved_page_title == collection.title
         if collection_seo_display_title != blank
           assign resolved_page_title = collection_seo_display_title
         endif

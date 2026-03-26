@@ -7,9 +7,19 @@
     when 'all'
       assign effective_display_title = 'All Matching Outfits for Families, Couples, Moms and Kids'
     when 'swimsuits'
-      assign effective_display_title = 'sections.collection.swimsuits_override' | t
+      assign effective_display_title = 'Mommy and Me Swimsuits and Matching Family Swimwear'
+    when 'mommy-and-me'
+      assign effective_display_title = 'Mommy and Me Dresses, Swimsuits and Matching Outfits'
     when 'dresses'
-      assign effective_display_title = 'Matching Dresses for Moms, Kids and Families'
+      assign effective_display_title = 'Mommy and Me Dresses and Matching Family Dresses'
+    when 'family-swimsuits'
+      assign effective_display_title = 'Matching Family Bathing Suits and Swimsuits'
+    when 'family-sets'
+      assign effective_display_title = 'Matching Family Outfits and Coordinated Sets'
+    when 'matching-outfits', 'family-matching', 'family-matching-outfits'
+      assign effective_display_title = 'Matching Family Outfits for Photos, Holidays and Travel'
+    when 'daddy-me'
+      assign effective_display_title = 'Daddy and Me Matching Shirts and Outfits'
     when 'tops'
       assign effective_display_title = 'Matching Tops and Tees for Coordinated Family Looks'
     when 'pajamas'
@@ -71,6 +81,18 @@
   if collection_handle == 'all'
     assign audience_long = 'families, couples, moms, dads, and kids'
     assign product_examples_short = 'mommy and me, daddy and me, couples, and family sets'
+  elsif collection_handle == 'mommy-and-me'
+    assign audience_long = 'moms and daughters shopping for photo-ready coordinated looks'
+    assign product_examples_short = 'mommy and me dresses, swimsuits, pajamas, and coordinated sets'
+  elsif collection_handle == 'swimsuits'
+    assign audience_long = 'moms, daughters, and families building coordinated swim looks'
+    assign product_examples_short = 'mommy and me swimsuits, one-pieces, bikinis, rash guards, and swim trunks'
+  elsif collection_handle == 'family-swimsuits'
+    assign audience_long = 'families planning beach trips, pool days, cruises, and resort photos'
+    assign product_examples_short = 'matching family bathing suits, one-pieces, bikinis, rash guards, cover-ups, and swim trunks'
+  elsif collection_handle == 'family-sets' or collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
+    assign audience_long = 'the whole family, from babies and toddlers to parents'
+    assign product_examples_short = 'coordinated dresses, tops, swimwear, sets, and seasonal matching looks'
   elsif collection_handle contains 'christmas'
     assign audience_long = 'the whole family during the holiday season'
     assign product_examples_short = 'festive pajamas, sweaters, tops, and holiday-ready sets'
@@ -103,6 +125,12 @@
     assign occasion_label = "Valentine's Day photos, gifts, date nights, and special outings"
   elsif collection_handle == 'fall-winter'
     assign occasion_label = 'cool-weather outings, family photos, holiday events, and cozy weekends'
+  elsif collection_handle == 'mommy-and-me'
+    assign occasion_label = 'family photos, birthdays, vacations, and everyday matching moments'
+  elsif collection_handle == 'swimsuits' or collection_handle == 'family-swimsuits'
+    assign occasion_label = 'beach trips, pool days, cruises, resort travel, and summer family photos'
+  elsif collection_handle == 'family-sets' or collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
+    assign occasion_label = 'family photos, holidays, vacations, reunions, and coordinated everyday wear'
   endif
 
   if collection_handle == 'tops' or collection_handle contains 't-shirt' or collection_handle contains 'top'
@@ -128,6 +156,20 @@
   capture generated_meta_description
     if collection_handle == 'all'
       echo 'Shop all matching outfits in one place, including mommy and me, daddy and me, couples, and family sets. Comfortable styles with fast shipping.'
+    elsif collection_handle == 'mommy-and-me'
+      echo 'Shop mommy and me dresses, swimsuits, pajamas, and matching outfits for vacations, birthdays, family photos, and everyday wear.'
+    elsif collection_handle == 'dresses'
+      echo 'Shop mommy and me dresses and matching family dresses for photos, parties, vacations, and polished everyday family moments.'
+    elsif collection_handle == 'swimsuits'
+      echo 'Shop mommy and me swimsuits and matching family swimwear for beach trips, pool days, cruises, and summer family photos.'
+    elsif collection_handle == 'family-swimsuits'
+      echo 'Shop matching family bathing suits and swimsuits with coordinated styles for moms, dads, kids, beach trips, pool days, and resort travel.'
+    elsif collection_handle == 'family-sets'
+      echo 'Shop matching family outfits and coordinated sets for photos, holidays, vacations, reunions, and easy everyday family styling.'
+    elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
+      echo 'Shop matching family outfits for photos, holidays, vacations, and everyday wear with coordinated styles for moms, dads, and kids.'
+    elsif collection_handle == 'daddy-me'
+      echo 'Shop daddy and me matching shirts and outfits for family photos, vacations, holidays, and easy everyday coordination.'
     else
       echo 'Shop '
       echo effective_display_title | downcase
@@ -137,16 +179,43 @@
   assign generated_meta_description = generated_meta_description | strip | strip_newlines | replace: '  ', ' '
 
   capture generated_body_description
-    echo '<p>Explore our '
-    echo effective_display_title | escape
-    echo ' collection with '
-    echo product_examples_short | escape
-    echo ' designed for '
-    echo audience_long | escape
-    echo '. These coordinated styles make it easy to dress together for '
-    echo occasion_label | escape
-    echo '.</p>'
-    echo '<p>From soft fabrics and easy sizing to playful prints and polished color palettes, each look is chosen to help you match without sacrificing comfort. Shop Dress Like Mommy for pieces that photograph beautifully, feel great in real life, and work across seasons.</p>'
+    if collection_handle == 'mommy-and-me'
+      echo '<p>Shop our '
+      echo effective_display_title | escape
+      echo ' collection for coordinated looks that feel polished in photos and easy to wear in real life. From everyday sets to vacation-ready styles, this page brings together the strongest mommy-and-me categories in one place.</p>'
+      echo '<p>Start with dresses for birthdays and family photos, add swimsuits for warm-weather trips, and build a matching wardrobe that stays comfortable through real family days.</p>'
+    elsif collection_handle == 'dresses'
+      echo '<p>Explore '
+      echo effective_display_title | escape
+      echo ' with silhouettes that work for family photos, parties, trips, and seasonal events. These coordinated dresses are chosen for moms, daughters, and families who want matching style without looking overdone.</p>'
+      echo '<p>Look for soft fabrics, easy movement, and prints or palettes that photograph well across different ages so the final outfit feels intentional, flattering, and wearable beyond one occasion.</p>'
+    elsif collection_handle == 'swimsuits'
+      echo '<p>Browse '
+      echo effective_display_title | escape
+      echo ' for beach days, pool outings, cruises, and summer travel. This collection is designed for shoppers who want matching swim looks that feel coordinated without sacrificing fit or comfort.</p>'
+      echo '<p>Choose from one-pieces, bikinis, rash guards, and complementary swim pieces that help moms, daughters, and the wider family stay aligned in photos and on the move.</p>'
+    elsif collection_handle == 'family-swimsuits'
+      echo '<p>Discover '
+      echo effective_display_title | escape
+      echo ' built for beach vacations, pool days, cruises, and resort photos. These coordinated swim looks make it easier to dress moms, dads, girls, and boys around one clean color story.</p>'
+      echo '<p>Use matching family bathing suits when you want the fastest route to a polished summer look, then round out the wardrobe with cover-ups, trunks, and easy post-swim layers.</p>'
+    elsif collection_handle == 'family-sets' or collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
+      echo '<p>Explore '
+      echo effective_display_title | escape
+      echo ' with coordinated looks for family photos, holidays, travel, and everyday wear. These sets help you create a clear family palette without forcing every person into the exact same piece.</p>'
+      echo '<p>Mix dresses, tops, swimwear, and seasonal layers to build matching family outfits that feel intentional, comfortable, and easy to shop across ages and sizes.</p>'
+    else
+      echo '<p>Explore our '
+      echo effective_display_title | escape
+      echo ' collection with '
+      echo product_examples_short | escape
+      echo ' designed for '
+      echo audience_long | escape
+      echo '. These coordinated styles make it easy to dress together for '
+      echo occasion_label | escape
+      echo '.</p>'
+      echo '<p>From soft fabrics and easy sizing to playful prints and polished color palettes, each look is chosen to help you match without sacrificing comfort. Shop Dress Like Mommy for pieces that photograph beautifully, feel great in real life, and work across seasons.</p>'
+    endif
   endcapture
 
   case field

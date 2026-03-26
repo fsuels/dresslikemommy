@@ -152,7 +152,12 @@ class ShopifyClient:
         with jsonl_path.open("rb") as handle:
             response = requests.post(target["url"], data=form, files={"file": (jsonl_path.name, handle, "text/jsonl")}, timeout=300)
             response.raise_for_status()
-        return target["resourceUrl"]
+        resource_url = target.get("resourceUrl") or ""
+        if "/admin/tmp/files/" in resource_url:
+            return resource_url.split("/admin/tmp/files/", 1)[-1]
+        if form.get("key"):
+            return form["key"]
+        return resource_url
 
     def run_bulk_mutation(self, staged_upload_path):
         mutation = """
@@ -194,6 +199,28 @@ class ShopifyClient:
         """
         return self.graphql(query)["currentBulkOperation"]
 
+    def bulk_operation_by_id(self, operation_id):
+        query = """
+        query BulkOperationById($id: ID!) {
+          node(id: $id) {
+            __typename
+            ... on BulkOperation {
+              id
+              status
+              errorCode
+              objectCount
+              fileSize
+              url
+              partialDataUrl
+            }
+          }
+        }
+        """
+        node = self.graphql(query, {"id": operation_id})["node"]
+        if not node or node.get("__typename") != "BulkOperation":
+            return None
+        return {key: value for key, value in node.items() if key != "__typename"}
+
     def poll_bulk_operation(self, operation_id):
         while True:
             current = self.current_bulk_operation()
@@ -201,7 +228,15 @@ class ShopifyClient:
                 print(f"bulk status={current['status']} objects={current.get('objectCount')}", flush=True)
                 time.sleep(3)
                 continue
-            return current
+            if current and current["id"] == operation_id:
+                return current
+
+            by_id = self.bulk_operation_by_id(operation_id)
+            if by_id and by_id["status"] in {"CREATED", "RUNNING", "CANCELING"}:
+                print(f"bulk status={by_id['status']} objects={by_id.get('objectCount')}", flush=True)
+                time.sleep(3)
+                continue
+            return by_id
 
     def enable_locale(self, locale):
         mutation = """
@@ -213,6 +248,19 @@ class ShopifyClient:
         }
         """
         data = self.graphql(mutation, {"locale": locale})["shopLocaleEnable"]
+        if data["userErrors"] and any(error.get("message") == "Locale has already been taken" for error in data["userErrors"]):
+            update_mutation = """
+            mutation UpdateLocale($locale: String!, $shopLocale: ShopLocaleInput!) {
+              shopLocaleUpdate(locale: $locale, shopLocale: $shopLocale) {
+                shopLocale { locale published }
+                userErrors { field message }
+              }
+            }
+            """
+            return self.graphql(update_mutation, {
+                "locale": locale,
+                "shopLocale": {"published": True},
+            })["shopLocaleUpdate"]
         return data
 
 

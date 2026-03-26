@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from concurrent.futures import ThreadPoolExecutor
 import json
 import re
 import signal
@@ -46,6 +47,29 @@ GOOGLE_TARGET_MAP = {
     "th": "th",
     "tr": "tr",
     "vi": "vi",
+    "zh-CN": "zh-CN",
+    "zh-TW": "zh-TW",
+}
+
+MYMEMORY_SOURCE_CODE = "en-GB"
+MYMEMORY_TARGET_MAP = {
+    "ar": "ar-SA",
+    "de": "de-DE",
+    "es": "es-ES",
+    "fr": "fr-FR",
+    "hi": "hi-IN",
+    "id": "id-ID",
+    "it": "it-IT",
+    "ja": "ja-JP",
+    "ko": "ko-KR",
+    "nl": "nl-NL",
+    "pl": "pl-PL",
+    "pt-BR": "pt-BR",
+    "ru": "ru-RU",
+    "sv": "sv-SE",
+    "th": "th-TH",
+    "tr": "tr-TR",
+    "vi": "vi-VN",
     "zh-CN": "zh-CN",
     "zh-TW": "zh-TW",
 }
@@ -119,6 +143,7 @@ class TranslationBackend:
         request_timeout=20,
         batch_char_limit=3500,
         progress_interval=5,
+        single_request_workers=6,
     ):
         self.cache_path = Path(cache_path)
         self.cache_path.parent.mkdir(parents=True, exist_ok=True)
@@ -133,12 +158,16 @@ class TranslationBackend:
         self.request_timeout = request_timeout
         self.batch_char_limit = batch_char_limit
         self.progress_interval = progress_interval
+        self.single_request_workers = single_request_workers
 
     def _save_cache(self):
         self.cache_path.write_text(json.dumps(self.cache, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     def _target_code(self, locale):
         return GOOGLE_TARGET_MAP.get(locale, locale)
+
+    def _mymemory_target_code(self, locale):
+        return MYMEMORY_TARGET_MAP.get(locale)
 
     def _protect(self, text, locale):
         replacements = []
@@ -257,7 +286,7 @@ class TranslationBackend:
         translated = "".join(translator.translate(segment) for segment in segments)
         return f"{lead}{self._restore(translated, replacements)}{trail}"
 
-    def _translate_single_uncached(self, locale, text):
+    def _translate_single_uncached(self, locale, text, save=True, skip_http_batch=False):
         locale_cache = self.cache.setdefault(locale, {})
         if text in locale_cache:
             return locale_cache[text]
@@ -271,14 +300,15 @@ class TranslationBackend:
 
         for attempt in range(1, self.retries + 1):
             try:
-                if len(protected) <= self.batch_char_limit:
+                if not skip_http_batch and len(protected) <= self.batch_char_limit:
                     translated_core = self._http_translate_batch(locale, [protected])[0]
                 else:
                     translator = GoogleTranslator(source="en", target=self._target_code(locale))
                     translated_core = "".join(translator.translate(segment) for segment in self._split_long_text(protected))
                 translated = f"{lead}{self._restore(translated_core, replacements)}{trail}"
                 locale_cache[text] = translated
-                self._save_cache()
+                if save:
+                    self._save_cache()
                 if self.pause_seconds:
                     time.sleep(self.pause_seconds)
                 return translated
@@ -291,17 +321,20 @@ class TranslationBackend:
         try:
             translated = self._call_with_timeout(lambda: self._translate_core(translator, text, locale))
         except Exception:
-            fallback = MyMemoryTranslator(source="en-US", target=self._target_code(locale))
             try:
+                target = self._mymemory_target_code(locale)
+                if not target:
+                    raise ValueError(f"No MyMemory locale mapping for {locale}")
+                fallback = MyMemoryTranslator(source=MYMEMORY_SOURCE_CODE, target=target)
                 translated = self._call_with_timeout(lambda: self._translate_core(fallback, text, locale))
             except Exception:
-                if markup_heavy_text(text):
-                    locale_cache[text] = None
+                locale_cache[text] = None
+                if save:
                     self._save_cache()
-                    return None
-                raise
+                return None
         locale_cache[text] = translated
-        self._save_cache()
+        if save:
+            self._save_cache()
         return translated
 
     def translate_text(self, locale, text):
@@ -319,8 +352,11 @@ class TranslationBackend:
         original_missing = len(missing)
         oversized = [text for text in missing if len(text) > 4500]
         for idx, text in enumerate(oversized, start=1):
-            locale_cache[text] = self._translate_single_uncached(locale, text)
-            if progress_label and (idx == 1 or idx % self.progress_interval == 0 or idx == len(oversized)):
+            locale_cache[text] = self._translate_single_uncached(locale, text, save=False)
+            should_checkpoint = idx == 1 or idx % self.progress_interval == 0 or idx == len(oversized)
+            if should_checkpoint:
+                self._save_cache()
+            if progress_label and should_checkpoint:
                 completed = original_missing - len([item for item in missing if item not in locale_cache])
                 print(
                     f"[progress] {progress_label} oversized={idx}/{len(oversized)} "
@@ -355,16 +391,19 @@ class TranslationBackend:
                         time.sleep(min(3.0, 0.6 * attempt))
 
                 if not isinstance(translated_batch, list) or len(translated_batch) != len(batch):
-                    translator = GoogleTranslator(source="en", target=self._target_code(locale))
-                    translated_batch = []
-                    for text in batch:
-                        try:
-                            translated_batch.append(self._translate_core(translator, text, locale))
-                        except Exception:
-                            if markup_heavy_text(text):
-                                translated_batch.append(None)
-                            else:
-                                raise
+                    workers = min(self.single_request_workers, len(batch))
+                    with ThreadPoolExecutor(max_workers=workers) as executor:
+                        translated_batch = list(
+                            executor.map(
+                                lambda text: self._translate_single_uncached(
+                                    locale,
+                                    text,
+                                    save=False,
+                                    skip_http_batch=True,
+                                ),
+                                batch,
+                            )
+                        )
                     for text, translated in zip(batch, translated_batch):
                         locale_cache[text] = translated
                 else:

@@ -7431,3 +7431,161 @@ Verification:
 
 Open items:
 - Local branches reported by `git branch --no-merged main` still exist as separate historical workstreams and were not merged as part of this commit.
+
+### Task: Recover Shopify translation batch sync after locale fallback crashes
+Date: 2026-03-25 13:50:18 EDT
+AGENT_CONTINUITY_ANCHOR: translation-batch-recovery-2026-03-25
+Changes:
+- Confirmed the four locale-group commands matched the repo batch definitions, so the launch shape was correct.
+- Verified three workers had crashed before producing final report/jsonl artifacts:
+  - `west` failed on `pt-BR`
+  - `asia` failed on `hi`
+  - `cjk` failed on `ko`
+- Patched `ops/scripts/translation_utils.py` so MyMemory fallback uses its own locale map and `en-GB` source code instead of reusing Google target codes.
+- Reduced cache checkpoint frequency during per-string fallback so resumed batches save progress per checkpoint/batch instead of rewriting the full cache file on every individual string.
+- Confirmed Google batch POSTs were returning HTTP 429 for the remaining untranslated strings, then updated the batch fallback path to fan out single-item Google page translations in parallel instead of serializing the whole fallback.
+- Kept the change surgical so existing cache files remain valid for restart/resume.
+
+Why:
+- The translation backend normalized locale codes only for Google Translate. When the code fell through to `MyMemoryTranslator`, it passed unsupported short codes such as `pt`, `hi`, and `ko`, which crashed the worker instead of marking the string as untranslated and continuing.
+- After the crash fix, resumed batches were still progressing too slowly because each fallback translation rewrote the entire cache JSON immediately. Checkpointed saves preserve resumability without that write amplification.
+- Google single-item page translations were still working while the batch endpoint was rate-limited, so parallel single-item fallback provides a workable recovery path without changing the translation source for the majority of successful requests.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/translation_utils.py ops/scripts/sync_shopify_translations.py ops/scripts/manage_translation_batches.py`.
+  - Result: success.
+- Confirmed the failing logs pointed to `LanguageNotSupportedException` for `pt`, `hi`, and `ko` before the patch.
+
+Open items:
+- Restart the batch workers with the patched backend so they resume from existing caches.
+- Monitor until each batch emits both `shopify-translation-sync-report-*.json` and `shopify-translation-bulk-*.jsonl`.
+- Verify cache counts and final reports before applying or publishing any locales.
+
+### Task: Apply Shopify translation batches and publish generated locales
+Date: 2026-03-26 05:13:23 EDT
+Changes:
+- Patched `ops/scripts/sync_shopify_translations.py` staged upload handling so bulk mutations use the staged upload `key` when Shopify returns a storage URL instead of an `/admin/tmp/files/...` resource path.
+- Patched `ops/scripts/sync_shopify_translations.py` bulk-operation polling so it falls back to `node(id: ...)` when `currentBulkOperation` returns `null` for an active operation.
+- Patched `ops/scripts/sync_shopify_translations.py` locale publishing so existing unpublished locales fall back from `shopLocaleEnable` to `shopLocaleUpdate(published: true)`.
+- Applied all four generated JSONL payloads through Shopify bulk mutations:
+  - `west` -> completed bulk operation `gid://shopify/BulkOperation/5355471798369`
+  - `northern` -> completed bulk operation `gid://shopify/BulkOperation/5355483496545`
+  - `asia` -> completed bulk operation `gid://shopify/BulkOperation/5355495424097`
+  - `cjk` -> completed bulk operation `gid://shopify/BulkOperation/5355510071393`
+- Published the locale records in Shopify admin for:
+  - `de`, `it`, `pt-BR`
+  - `nl`, `pl`, `ru`, `sv`, `tr`
+  - `ar`, `hi`, `id`, `th`, `vi`
+  - `ja`, `ko`, `zh-CN`, `zh-TW`
+
+Why:
+- The generated reports/jsonl files existed, but they had only been prepared locally; the storefront locales still needed Shopify bulk registration and locale publishing.
+- Shopify API behavior had drifted from the original script assumptions in two places:
+  - staged upload now returns a storage URL plus a `key`
+  - `currentBulkOperation` can return `null` while the operation is still retrievable and `RUNNING` by ID
+- The store already had locale records created, so direct `shopLocaleEnable` calls returned `Locale has already been taken` instead of publishing them.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/sync_shopify_translations.py ops/scripts/translation_utils.py ops/scripts/manage_translation_batches.py`.
+  - Result: success.
+- Verified all `shopLocales` now report `published: true` for the requested locales via Admin GraphQL.
+- Verified all four bulk operations completed successfully and emitted output URLs via Admin GraphQL.
+- Verified the public storefront theme remains locale-aware (`lang="{{ request.locale.iso_code }}"` in `layout/theme.liquid`), but the primary domain localization still reports only:
+  - `defaultLocale = en`
+  - `alternateLocales = [es, fr]`
+- Verified public storefront HTML still resolves `/de`, `/tr`, `/zh-CN`, and `?locale=de` to `<html ... lang="en">`, and the root `hreflang` tags still only expose `en`, `es`, and `fr`.
+
+Open items:
+- The Admin-side locale records and translation payloads are applied, but the primary domain web-presence routing is not yet attached for the newly published locales.
+- This token lacks the `read_markets` scope required to read `marketWebPresences` / `marketWebPresence` and therefore cannot discover the market web-presence IDs needed to attach the new locales to the live domain routing.
+- A follow-up step with a token/session that has `read_markets` and `write_markets` is required to associate the new locales with the primary domain web presence so the storefront serves them at public locale URLs and exposes them in `hreflang`.
+
+### Task: Organic search entry-point hardening from GA/Search Console findings
+Date: 2026-03-26 04:53:58 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-organic-entry-point-hardening
+Changes:
+- `layout/theme.liquid`
+  - Added an explicit homepage SEO title and meta description targeting the strongest commercial search themes already visible in Search Console: mommy and me dresses, swimsuits, and family matching outfits.
+  - Stopped forcing the `swimsuits` collection page title to the generic `Swimsuits` label so the collection SEO fallback can emit a search-targeted title instead.
+- `snippets/meta-tags.liquid`
+  - Aligned homepage Open Graph/Twitter metadata with the new homepage search positioning.
+  - Stopped forcing the `swimsuits` collection OG title to the generic `Swimsuits` label so social/search metadata stays consistent with the collection landing-page targeting.
+- `snippets/collection-seo-fallback.liquid`
+  - Added targeted display titles, meta descriptions, and body copy for the highest-opportunity collection handles:
+    - `mommy-and-me`
+    - `dresses`
+    - `swimsuits`
+    - `family-swimsuits`
+    - `family-sets`
+    - `matching-outfits` / `family-matching` / `family-matching-outfits`
+    - `daddy-me`
+  - Reframed those collection intros around buying-intent phrases already supported by the merchant's analytics notes, especially:
+    - `mommy and me dresses`
+    - `mommy and me swimsuits`
+    - `matching family bathing suits`
+    - `matching family outfits`
+- `templates/index.json`
+  - Rewrote the homepage hero heading/subheading so the visible copy better matches the search demand cluster while still reading like storefront merchandising copy.
+
+Why:
+- The repo already had meaningful technical SEO work in place, but the strongest traffic-growth gap was weak keyword targeting on the homepage and the top collection entry pages.
+- Search Console signals shared by the merchant show impressions are present but rankings/CTR are low, which makes title/description targeting and clearer collection-intent copy the fastest theme-side improvement.
+- This pass stays inside the theme architecture already in use: homepage metadata in `theme.liquid` and collection landing-page copy through `collection-seo-fallback`.
+
+Verification:
+- Ran `python3` JSON parsing against `templates/index.json` after stripping Shopify's generated comment header.
+  - Result: valid JSON.
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level failures from this pass.
+  - Existing repo-wide warnings/errors remain in unrelated files (`tmp_products.json`, locale translation completeness, `cjpod.liquid`, etc.).
+- Reviewed the targeted diff for:
+  - `layout/theme.liquid`
+  - `snippets/meta-tags.liquid`
+  - `snippets/collection-seo-fallback.liquid`
+  - `templates/index.json`
+
+Open items:
+- This pass improves theme-side metadata and landing-page copy only. It does not change Shopify Admin collection SEO fields if those are set manually.
+- Next measurement step should use Google Search Console + GA4 to compare the homepage, `/collections/dresses`, `/collections/swimsuits`, `/collections/family-swimsuits`, and `/collections/mommy-and-me` before/after CTR, impressions, and organic conversion rate.
+- If the merchant wants the next pass, the highest-value follow-up is content-to-collection measurement and stronger article-entry attribution for blog sessions that progress into collections.
+
+### Task: Style Journal audit review and implementation priorities
+Date: 2026-03-26
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-style-journal-audit-review
+Changes:
+- No storefront code changes in this session.
+- Reviewed the local Style Journal theme implementation and content pipeline against a third-party qualitative audit to separate confirmed issues from already-addressed items in source.
+
+Findings:
+- Confirmed structural issues:
+  - `sections/main-article.liquid` still injects a generic mid-article CTA to `/collections/mommy-and-me` and a generic four-link end-cap module for every article.
+  - `snippets/article-editorial-cover.liquid` still renders gradient/text placeholder covers for Style Journal cards/heroes when the `news` blog is used.
+  - `sections/header-group.json` currently sets `hide_blog_link_in_primary_nav` to `true`, so blog links are intentionally hidden from the primary header navigation.
+  - `ops/content/style-journal/article-template.html` and current article draft files are text-only; draft frontmatter supports only one optional hero image URL and the bodies contain no inline imagery/table/embed conventions.
+- Audit claims that appear stale relative to repo source:
+  - Article pages already render a table of contents, author bio block, and testimonial/social-proof block in `sections/main-article.liquid`.
+  - The blog index already includes an “About the Style Journal” authority section and newsletter capture in `sections/main-blog.liquid`.
+  - Local draft source files already use staggered 2026 publish dates rather than a single shared publish date.
+
+Recommended next implementation order:
+1) Expose Style Journal in primary navigation by disabling `hide_blog_link_in_primary_nav` and verifying the menu contains a blog entry.
+2) Replace placeholder editorial covers with real article/collection imagery by extending the article content model beyond the single optional hero image URL.
+3) Replace the generic inline CTA and generic end-cap link box with article-specific merchandising driven by article metafields or a handle-to-collection/product mapping.
+4) Extend the article source format and publish script to support reusable body modules: inline image, comparison table, FAQ, and featured products.
+5) Once the content model exists, backfill the highest-intent articles first (`family matching outfits`, budget/occasion/travel posts) with real visuals and shoppable blocks.
+
+### Task: Sync current 27-file worktree to main
+Date: 2026-03-26 06:25:25 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-main-sync-27-changes
+Changes:
+- Prepared the full 27-file translation and SEO worktree for commit directly on `main`, including generated translation caches, bulk JSONL payloads, sync reports, and translation logs.
+- Preserved the previously completed Python fixes in `ops/scripts/translation_utils.py` and `ops/scripts/sync_shopify_translations.py` that unblocked locale fallback handling and Shopify bulk-apply execution.
+- Preserved the theme-side SEO updates already present in `layout/theme.liquid`, `snippets/meta-tags.liquid`, `snippets/collection-seo-fallback.liquid`, and `templates/index.json`.
+
+Verification:
+- Reconfirmed `main` is the active branch and currently tracks `origin/main`.
+- Reconfirmed the worktree contains 27 intended changes before staging: 16 modified files and 11 untracked generated artifacts.
+- Next step after this note is validation, commit, and push of the current worktree to `origin/main`.
+
+Open items:
+- Shopify Admin translations and locale publication are complete, but storefront routing for newly published locales still depends on market web-presence assignment that requires `read_markets` / `write_markets` scopes outside the current token.

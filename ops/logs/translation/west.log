@@ -22,3 +22,498 @@ Traceback (most recent call last):
   File "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/deep_translator/google.py", line 84, in translate
     raise TranslationNotFound(text)
 deep_translator.exceptions.TranslationNotFound: WHOLESALE & DROP-SHIPPING --> No translation was found using the current translator. Try another translator?
+
+=== START 2026-03-25 05:22:03 batch=west locales=es,fr,de,it,pt-BR ===
+/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+translating locale=de unique_strings=4189
+translating locale=it unique_strings=4190
+[progress] locale=it batch=1/100 completed=60/3150 cache=1100
+[progress] locale=it batch=5/100 completed=300/3150 cache=1340
+[progress] locale=it batch=10/100 completed=600/3150 cache=1640
+[progress] locale=it batch=15/100 completed=900/3150 cache=1940
+[progress] locale=it batch=20/100 completed=1200/3150 cache=2240
+[progress] locale=it batch=25/100 completed=1500/3150 cache=2540
+[progress] locale=it batch=30/100 completed=1787/3150 cache=2827
+[progress] locale=it batch=35/100 completed=1949/3150 cache=2989
+[progress] locale=it batch=40/100 completed=2114/3150 cache=3154
+[progress] locale=it batch=45/100 completed=2235/3150 cache=3275
+[progress] locale=it batch=50/100 completed=2401/3150 cache=3441
+[progress] locale=it batch=55/100 completed=2600/3150 cache=3640
+[progress] locale=it batch=60/100 completed=2691/3150 cache=3731
+[progress] locale=it batch=65/100 completed=2766/3150 cache=3806
+[progress] locale=it batch=70/100 completed=2805/3150 cache=3845
+[progress] locale=it batch=75/100 completed=2833/3150 cache=3873
+[progress] locale=it batch=80/100 completed=2887/3150 cache=3927
+[progress] locale=it batch=85/100 completed=2919/3150 cache=3959
+[progress] locale=it batch=90/100 completed=2947/3150 cache=3987
+[progress] locale=it batch=95/100 completed=3028/3150 cache=4068
+[progress] locale=it batch=100/100 completed=3150/3150 cache=4190
+translating locale=pt-BR unique_strings=4190
+[progress] locale=pt-BR oversized=1/80 completed=1/4190 cache=1
+[progress] locale=pt-BR oversized=5/80 completed=5/4190 cache=5
+[progress] locale=pt-BR oversized=10/80 completed=10/4190 cache=10
+[progress] locale=pt-BR oversized=15/80 completed=15/4190 cache=15
+[progress] locale=pt-BR oversized=20/80 completed=20/4190 cache=20
+[progress] locale=pt-BR oversized=25/80 completed=25/4190 cache=25
+[progress] locale=pt-BR oversized=30/80 completed=30/4190 cache=30
+[progress] locale=pt-BR oversized=35/80 completed=35/4190 cache=35
+[progress] locale=pt-BR oversized=40/80 completed=40/4190 cache=40
+[progress] locale=pt-BR oversized=45/80 completed=45/4190 cache=45
+[progress] locale=pt-BR oversized=50/80 completed=50/4190 cache=50
+[progress] locale=pt-BR oversized=55/80 completed=55/4190 cache=55
+[progress] locale=pt-BR oversized=60/80 completed=60/4190 cache=60
+[progress] locale=pt-BR oversized=65/80 completed=65/4190 cache=65
+[progress] locale=pt-BR oversized=70/80 completed=70/4190 cache=70
+[progress] locale=pt-BR oversized=75/80 completed=75/4190 cache=75
+[progress] locale=pt-BR oversized=80/80 completed=80/4190 cache=80
+[progress] locale=pt-BR batch=1/116 completed=140/4190 cache=140
+[progress] locale=pt-BR batch=5/116 completed=380/4190 cache=380
+Traceback (most recent call last):
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 292, in _translate_single_uncached
+    translated = self._call_with_timeout(lambda: self._translate_core(translator, text, locale))
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 180, in _call_with_timeout
+    return fn()
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 292, in <lambda>
+    translated = self._call_with_timeout(lambda: self._translate_core(translator, text, locale))
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 257, in _translate_core
+    translated = "".join(translator.translate(segment) for segment in segments)
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 257, in <genexpr>
+    translated = "".join(translator.translate(segment) for segment in segments)
+  File "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/deep_translator/google.py", line 84, in translate
+    raise TranslationNotFound(text)
+deep_translator.exceptions.TranslationNotFound: Sleeveless Chevron Pattern Dress ___DLMTOK1___ - ___DLMTOK0___ --> No translation was found using the current translator. Try another translator?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_translations.py", line 535, in <module>
+    main()
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_translations.py", line 486, in main
+    payload_by_resource, skipped_live, quality_counts, quality_samples = build_payload(candidates, digest_map, translator)
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_translations.py", line 382, in build_payload
+    translations[locale] = translator.translate_many(locale, unique, progress_label=f"locale={locale}")
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 358, in translate_many
+    translated_batch.append(self._translate_single_uncached(locale, text))
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 294, in _translate_single_uncached
+    fallback = MyMemoryTranslator(source="en-US", target=self._target_code(locale))
+  File "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/deep_translator/mymemory.py", line 39, in __init__
+    super().__init__(
+  File "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/deep_translator/base.py", line 44, in __init__
+    self._source, self._target = self._map_language_to_code(source, target)
+  File "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/deep_translator/base.py", line 84, in _map_language_to_code
+    raise LanguageNotSupportedException(
+deep_translator.exceptions.LanguageNotSupportedException: pt --> No support for the provided language.
+Please select on of the supported languages:
+{'acehnese': 'ace-ID', 'afrikaans': 'af-ZA', 'akan': 'ak-GH', 'albanian': 'sq-AL', 'amharic': 'am-ET', 'antigua and barbuda creole english': 'aig-AG', 'arabic': 'ar-SA', 'arabic egyptian': 'ar-EG', 'aragonese': 'an-ES', 'armenian': 'hy-AM', 'assamese': 'as-IN', 'asturian': 'ast-ES', 'austrian german': 'de-AT', 'awadhi': 'awa-IN', 'ayacucho quechua': 'quy-PE', 'azerbaijani': 'az-AZ', 'bahamas creole english': 'bah-BS', 'bajan': 'bjs-BB', 'balinese': 'ban-ID', 'balkan gipsy': 'rm-RO', 'bambara': 'bm-ML', 'banjar': 'bjn-ID', 'bashkir': 'ba-RU', 'basque': 'eu-ES', 'belarusian': 'be-BY', 'belgian french': 'fr-BE', 'bemba': 'bem-ZM', 'bengali': 'bn-IN', 'bhojpuri': 'bho-IN', 'bihari': 'bh-IN', 'bislama': 'bi-VU', 'borana': 'gax-KE', 'bosnian': 'bs-BA', 'bosnian (cyrillic)': 'bs-Cyrl-BA', 'breton': 'br-FR', 'buginese': 'bug-ID', 'bulgarian': 'bg-BG', 'burmese': 'my-MM', 'catalan': 'ca-ES', 'catalan valencian': 'cav-ES', 'cebuano': 'ceb-PH', 'central atlas tamazight': 'tzm-MA', 'central aymara': 'ayr-BO', 'central kanuri (latin script)': 'knc-NG', 'chadian arabic': 'shu-TD', 'chamorro': 'ch-GU', 'cherokee': 'chr-US', 'chhattisgarhi': 'hne-IN', 'chinese simplified': 'zh-CN', 'chinese trad. (hong kong)': 'zh-HK', 'chinese traditional': 'zh-TW', 'chinese traditional macau': 'zh-MO', 'chittagonian': 'ctg-BD', 'chokwe': 'cjk-AO', 'classical greek': 'grc-GR', 'comorian ngazidja': 'zdj-KM', 'coptic': 'cop-EG', 'crimean tatar': 'crh-RU', 'crioulo upper guinea': 'pov-GW', 'croatian': 'hr-HR', 'czech': 'cs-CZ', 'danish': 'da-DK', 'dari': 'prs-AF', 'dimli': 'diq-TR', 'dutch': 'nl-NL', 'dyula': 'dyu-CI', 'dzongkha': 'dz-BT', 'eastern yiddish': 'ydd-US', 'emakhuwa': 'vmw-MZ', 'english': 'en-GB', 'english australia': 'en-AU', 'english canada': 'en-CA', 'english india': 'en-IN', 'english ireland': 'en-IE', 'english new zealand': 'en-NZ', 'english singapore': 'en-SG', 'english south africa': 'en-ZA', 'english us': 'en-US', 'esperanto': 'eo-EU', 'estonian': 'et-EE', 'ewe': 'ee-GH', 'fanagalo': 'fn-FNG', 'faroese': 'fo-FO', 'fijian': 'fj-FJ', 'filipino': 'fil-PH', 'finnish': 'fi-FI', 'flemish': 'nl-BE', 'fon': 'fon-BJ', 'french': 'fr-FR', 'french canada': 'fr-CA', 'french swiss': 'fr-CH', 'friulian': 'fur-IT', 'fula': 'ff-FUL', 'galician': 'gl-ES', 'gamargu': 'mfi-NG', 'garo': 'grt-IN', 'georgian': 'ka-GE', 'german': 'de-DE', 'gilbertese': 'gil-KI', 'glavda': 'glw-NG', 'greek': 'el-GR', 'grenadian creole english': 'gcl-GD', 'guarani': 'gn-PY', 'gujarati': 'gu-IN', 'guyanese creole english': 'gyn-GY', 'haitian creole french': 'ht-HT', 'halh mongolian': 'khk-MN', 'hausa': 'ha-NE', 'hawaiian': 'haw-US', 'hebrew': 'he-IL', 'higi': 'hig-NG', 'hiligaynon': 'hil-PH', 'hill mari': 'mrj-RU', 'hindi': 'hi-IN', 'hmong': 'hmn-CN', 'hungarian': 'hu-HU', 'icelandic': 'is-IS', 'igbo ibo': 'ibo-NG', 'igbo ig': 'ig-NG', 'ilocano': 'ilo-PH', 'indonesian': 'id-ID', 'inuktitut greenlandic': 'kl-GL', 'irish gaelic': 'ga-IE', 'italian': 'it-IT', 'italian swiss': 'it-CH', 'jamaican creole english': 'jam-JM', 'japanese': 'ja-JP', 'javanese': 'jv-ID', 'jingpho': 'kac-MM', "k'iche'": 'quc-GT', 'kabiyè': 'kbp-TG', 'kabuverdianu': 'kea-CV', 'kabylian': 'kab-DZ', 'kalenjin': 'kln-KE', 'kamba': 'kam-KE', 'kannada': 'kn-IN', 'kanuri': 'kr-KAU', 'karen': 'kar-MM', 'kashmiri (devanagari script)': 'ks-IN', 'kashmiri (arabic script)': 'kas-IN', 'kazakh': 'kk-KZ', 'khasi': 'kha-IN', 'khmer': 'km-KH', 'kikuyu kik': 'kik-KE', 'kikuyu ki': 'ki-KE', 'kimbundu': 'kmb-AO', 'kinyarwanda': 'rw-RW', 'kirundi': 'rn-BI', 'kisii': 'guz-KE', 'kongo': 'kg-CG', 'konkani': 'kok-IN', 'korean': 'ko-KR', 'northern kurdish': 'kmr-TR', 'kurdish sorani': 'ckb-IQ', 'kyrgyz': 'ky-KG', 'lao': 'lo-LA', 'latgalian': 'ltg-LV', 'latin': 'la-XN', 'latvian': 'lv-LV', 'ligurian': 'lij-IT', 'limburgish': 'li-NL', 'lingala': 'ln-LIN', 'lithuanian': 'lt-LT', 'lombard': 'lmo-IT', 'luba-kasai': 'lua-CD', 'luganda': 'lg-UG', 'luhya': 'luy-KE', 'luo': 'luo-KE', 'luxembourgish': 'lb-LU', 'maa': 'mas-KE', 'macedonian': 'mk-MK', 'magahi': 'mag-IN', 'maithili': 'mai-IN', 'malagasy': 'mg-MG', 'malay': 'ms-MY', 'malayalam': 'ml-IN', 'maldivian': 'dv-MV', 'maltese': 'mt-MT', 'mandara': 'mfi-CM', 'manipuri': 'mni-IN', 'manx gaelic': 'gv-IM', 'maori': 'mi-NZ', 'marathi': 'mr-IN', 'margi': 'mrt-NG', 'mari': 'mhr-RU', 'marshallese': 'mh-MH', 'mende': 'men-SL', 'meru': 'mer-KE', 'mijikenda': 'nyf-KE', 'minangkabau': 'min-ID', 'mizo': 'lus-IN', 'mongolian': 'mn-MN', 'montenegrin': 'sr-ME', 'morisyen': 'mfe-MU', 'moroccan arabic': 'ar-MA', 'mossi': 'mos-BF', 'ndau': 'ndc-MZ', 'ndebele': 'nr-ZA', 'nepali': 'ne-NP', 'nigerian fulfulde': 'fuv-NG', 'niuean': 'niu-NU', 'north azerbaijani': 'azj-AZ', 'sesotho': 'nso-ZA', 'northern uzbek': 'uzn-UZ', 'norwegian bokmål': 'nb-NO', 'norwegian nynorsk': 'nn-NO', 'nuer': 'nus-SS', 'nyanja': 'ny-MW', 'occitan': 'oc-FR', 'occitan aran': 'oc-ES', 'odia': 'or-IN', 'oriya': 'ory-IN', 'urdu': 'ur-PK', 'palauan': 'pau-PW', 'pali': 'pi-IN', 'pangasinan': 'pag-PH', 'papiamentu': 'pap-CW', 'pashto': 'ps-PK', 'persian': 'fa-IR', 'pijin': 'pis-SB', 'plateau malagasy': 'plt-MG', 'polish': 'pl-PL', 'portuguese': 'pt-PT', 'portuguese brazil': 'pt-BR', 'potawatomi': 'pot-US', 'punjabi': 'pa-IN', 'punjabi (pakistan)': 'pnb-PK', 'quechua': 'qu-PE', 'rohingya': 'rhg-MM', 'rohingyalish': 'rhl-MM', 'romanian': 'ro-RO', 'romansh': 'roh-CH', 'rundi': 'run-BI', 'russian': 'ru-RU', 'saint lucian creole french': 'acf-LC', 'samoan': 'sm-WS', 'sango': 'sg-CF', 'sanskrit': 'sa-IN', 'santali': 'sat-IN', 'sardinian': 'sc-IT', 'scots gaelic': 'gd-GB', 'sena': 'seh-ZW', 'serbian cyrillic': 'sr-Cyrl-RS', 'serbian latin': 'sr-Latn-RS', 'seselwa creole french': 'crs-SC', 'setswana (south africa)': 'tn-ZA', 'shan': 'shn-MM', 'shona': 'sn-ZW', 'sicilian': 'scn-IT', 'silesian': 'szl-PL', 'sindhi snd': 'snd-PK', 'sindhi sd': 'sd-PK', 'sinhala': 'si-LK', 'slovak': 'sk-SK', 'slovenian': 'sl-SI', 'somali': 'so-SO', 'sotho southern': 'st-LS', 'south azerbaijani': 'azb-AZ', 'southern pashto': 'pbt-PK', 'southwestern dinka': 'dik-SS', 'spanish': 'es-ES', 'spanish argentina': 'es-AR', 'spanish colombia': 'es-CO', 'spanish latin america': 'es-419', 'spanish mexico': 'es-MX', 'spanish united states': 'es-US', 'sranan tongo': 'srn-SR', 'standard latvian': 'lvs-LV', 'standard malay': 'zsm-MY', 'sundanese': 'su-ID', 'swahili': 'sw-KE', 'swati': 'ss-SZ', 'swedish': 'sv-SE', 'swiss german': 'de-CH', 'syriac (aramaic)': 'syc-TR', 'tagalog': 'tl-PH', 'tahitian': 'ty-PF', 'tajik': 'tg-TJ', 'tamashek (tuareg)': 'tmh-DZ', 'tamasheq': 'taq-ML', 'tamil india': 'ta-IN', 'tamil sri lanka': 'ta-LK', 'taroko': 'trv-TW', 'tatar': 'tt-RU', 'telugu': 'te-IN', 'tetum': 'tet-TL', 'thai': 'th-TH', 'tibetan': 'bo-CN', 'tigrinya': 'ti-ET', 'tok pisin': 'tpi-PG', 'tokelauan': 'tkl-TK', 'tongan': 'to-TO', 'tosk albanian': 'als-AL', 'tsonga': 'ts-ZA', 'tswa': 'tsc-MZ', 'tswana': 'tn-BW', 'tumbuka': 'tum-MW', 'turkish': 'tr-TR', 'turkmen': 'tk-TM', 'tuvaluan': 'tvl-TV', 'twi': 'tw-GH', 'udmurt': 'udm-RU', 'ukrainian': 'uk-UA', 'uma': 'ppk-ID', 'umbundu': 'umb-AO', 'uyghur uig': 'uig-CN', 'uyghur ug': 'ug-CN', 'uzbek': 'uz-UZ', 'venetian': 'vec-IT', 'vietnamese': 'vi-VN', 'vincentian creole english': 'svc-VC', 'virgin islands creole english': 'vic-US', 'wallisian': 'wls-WF', 'waray (philippines)': 'war-PH', 'welsh': 'cy-GB', 'west central oromo': 'gaz-ET', 'western persian': 'pes-IR', 'wolof': 'wo-SN', 'xhosa': 'xh-ZA', 'yiddish': 'yi-YD', 'yoruba': 'yo-NG', 'zulu': 'zu-ZA'}
+
+=== START 2026-03-25 13:51:13 batch=west locales=es,fr,de,it,pt-BR ===
+/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+translating locale=de unique_strings=4189
+translating locale=it unique_strings=4190
+translating locale=pt-BR unique_strings=4190
+
+=== START 2026-03-25 13:54:40 batch=west locales=es,fr,de,it,pt-BR ===
+/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+translating locale=de unique_strings=4189
+translating locale=it unique_strings=4190
+translating locale=pt-BR unique_strings=4190
+[progress] locale=pt-BR batch=1/110 completed=60/3733 cache=517
+
+=== START 2026-03-25 14:01:39 batch=west locales=es,fr,de,it,pt-BR ===
+/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+translating locale=de unique_strings=4189
+translating locale=it unique_strings=4190
+translating locale=pt-BR unique_strings=4190
+[progress] locale=pt-BR batch=1/109 completed=60/3673 cache=577
+[progress] locale=pt-BR batch=5/109 completed=300/3673 cache=817
+[progress] locale=pt-BR batch=10/109 completed=600/3673 cache=1117
+[progress] locale=pt-BR batch=15/109 completed=900/3673 cache=1417
+[progress] locale=pt-BR batch=20/109 completed=1200/3673 cache=1717
+[progress] locale=pt-BR batch=25/109 completed=1500/3673 cache=2017
+[progress] locale=pt-BR batch=30/109 completed=1800/3673 cache=2317
+[progress] locale=pt-BR batch=35/109 completed=2100/3673 cache=2617
+[progress] locale=pt-BR batch=40/109 completed=2361/3673 cache=2878
+[progress] locale=pt-BR batch=45/109 completed=2497/3673 cache=3014
+[progress] locale=pt-BR batch=50/109 completed=2667/3673 cache=3184
+[progress] locale=pt-BR batch=55/109 completed=2782/3673 cache=3299
+[progress] locale=pt-BR batch=60/109 completed=2984/3673 cache=3501
+[progress] locale=pt-BR batch=65/109 completed=3140/3673 cache=3657
+[progress] locale=pt-BR batch=70/109 completed=3256/3673 cache=3773
+[progress] locale=pt-BR batch=75/109 completed=3295/3673 cache=3812
+[progress] locale=pt-BR batch=80/109 completed=3332/3673 cache=3849
+[progress] locale=pt-BR batch=85/109 completed=3362/3673 cache=3879
+[progress] locale=pt-BR batch=90/109 completed=3417/3673 cache=3934
+[progress] locale=pt-BR batch=95/109 completed=3448/3673 cache=3965
+[progress] locale=pt-BR batch=100/109 completed=3475/3673 cache=3992
+[progress] locale=pt-BR batch=105/109 completed=3566/3673 cache=4083
+[progress] locale=pt-BR batch=109/109 completed=3673/3673 cache=4190
+translating locale=es unique_strings=1764
+[progress] locale=es oversized=1/1 completed=1/1764 cache=1
+[progress] locale=es batch=1/30 completed=61/1764 cache=61
+[progress] locale=es batch=5/30 completed=301/1764 cache=301
+[progress] locale=es batch=10/30 completed=601/1764 cache=601
+[progress] locale=es batch=15/30 completed=901/1764 cache=901
+[progress] locale=es batch=20/30 completed=1201/1764 cache=1201
+[progress] locale=es batch=25/30 completed=1501/1764 cache=1501
+[progress] locale=es batch=30/30 completed=1764/1764 cache=1764
+translating locale=fr unique_strings=1787
+[progress] locale=fr oversized=1/2 completed=1/1787 cache=1
+[progress] locale=fr oversized=2/2 completed=2/1787 cache=2
+[progress] locale=fr batch=1/30 completed=62/1787 cache=62
+[progress] locale=fr batch=5/30 completed=302/1787 cache=302
+[progress] locale=fr batch=10/30 completed=602/1787 cache=602
+[progress] locale=fr batch=15/30 completed=902/1787 cache=902
+[progress] locale=fr batch=20/30 completed=1202/1787 cache=1202
+[progress] locale=fr batch=25/30 completed=1502/1787 cache=1502
+[progress] locale=fr batch=30/30 completed=1787/1787 cache=1787
+{
+  "locales": [
+    "es",
+    "fr",
+    "de",
+    "it",
+    "pt-BR"
+  ],
+  "candidate_rows": 94563,
+  "candidate_unique_texts": {
+    "de": 4189,
+    "it": 4190,
+    "pt-BR": 4190,
+    "es": 2082,
+    "fr": 2105
+  },
+  "live_resource_counts": {
+    "ARTICLE": 10,
+    "BLOG": 1,
+    "COLLECTION": 41,
+    "COLLECTION_IMAGE": 4,
+    "DELIVERY_METHOD_DEFINITION": 4,
+    "FILTER": 4,
+    "LINK": 70,
+    "MEDIA_IMAGE": 6557,
+    "MENU": 20,
+    "METAFIELD": 8939,
+    "PAGE": 20,
+    "PRODUCT": 704,
+    "PRODUCT_OPTION": 1299,
+    "PRODUCT_OPTION_VALUE": 10710,
+    "SHOP": 1,
+    "SHOP_POLICY": 5
+  },
+  "source_skips": {
+    "already_translated": 28750,
+    "non_human:COLLECTION:body_html": 173,
+    "non_human:COLLECTION:handle": 205,
+    "type:COOKIE_BANNER": 125,
+    "type:FILTER_GROUP": 140,
+    "non_human:MEDIA_IMAGE:alt": 15035,
+    "non_human:METAFIELD:value": 12150,
+    "non_human:PRODUCT_OPTION_VALUE:name": 1118,
+    "non_human:SHOP_POLICY:body": 10,
+    "type:METAOBJECT": 445,
+    "non_human:ARTICLE:body_html": 30,
+    "non_human:ARTICLE:summary_html": 50,
+    "non_human:ARTICLE:handle": 50,
+    "non_human:BLOG:handle": 5,
+    "non_human:PAGE:handle": 100,
+    "non_human:PAGE:body_html": 46,
+    "type:ONLINE_STORE_THEME": 120,
+    "non_human:PACKING_SLIP_TEMPLATE:body": 5,
+    "non_human:PRODUCT:handle": 3520,
+    "non_human:PRODUCT:body_html": 784,
+    "non_human:PRODUCT:meta_description": 152,
+    "non_human:PRODUCT:product_type": 588
+  },
+  "live_skips": {
+    "missing_resource:METAFIELD": 2385,
+    "backend_failed:COLLECTION:meta_title": 4,
+    "backend_failed:COLLECTION:meta_description": 4,
+    "backend_failed:COLLECTION:body_html": 4,
+    "backend_failed:COLLECTION_IMAGE:alt": 8,
+    "backend_failed:FILTER:label": 1,
+    "backend_failed:LINK:title": 6,
+    "backend_failed:MEDIA_IMAGE:alt": 7090,
+    "backend_failed:METAFIELD:value": 14309,
+    "backend_failed:PRODUCT_OPTION:name": 632,
+    "backend_failed:PRODUCT_OPTION_VALUE:name": 2307,
+    "backend_failed:SHOP:meta_title": 1,
+    "backend_failed:SHOP:meta_description": 2,
+    "backend_failed:SHOP_POLICY:body": 7,
+    "backend_failed:ARTICLE:title": 10,
+    "backend_failed:ARTICLE:meta_title": 1,
+    "backend_failed:ARTICLE:meta_description": 4,
+    "backend_failed:BLOG:title": 1,
+    "backend_failed:MENU:title": 16,
+    "backend_failed:PAGE:title": 14,
+    "backend_failed:PAGE:body_html": 6,
+    "backend_failed:PAGE:meta_title": 5,
+    "backend_failed:PRODUCT:title": 757,
+    "backend_failed:PRODUCT:body_html": 373,
+    "backend_failed:PRODUCT:product_type": 339,
+    "backend_failed:PRODUCT:meta_description": 470,
+    "backend_failed:PRODUCT:meta_title": 58
+  },
+  "bulk_resource_count": 22536,
+  "bulk_translation_count": 65749,
+  "quality_overlap_threshold": 0.5,
+  "quality_overlap_counts": {
+    "de": 2112,
+    "pt-BR": 863,
+    "it": 1324
+  },
+  "quality_overlap_samples": {
+    "de": [
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/240128197",
+        "key": "title",
+        "default": "Tops",
+        "translated": "Tops",
+        "english_overlap_ratio": 1.0
+      },
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/362191685",
+        "key": "title",
+        "default": "Leggings",
+        "translated": "Leggings",
+        "english_overlap_ratio": 1.0
+      },
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/140995297377",
+        "key": "meta_title",
+        "default": "Dresslikemommy | Family Matching Sets",
+        "translated": "Dresslikemommy | Familienzuordnung Sets",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/140996411489",
+        "key": "title",
+        "default": "Daddy & Me T-Shirts",
+        "translated": "Papa und ich T-Shirts",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/156072083553",
+        "key": "title",
+        "default": "Fall & Winter",
+        "translated": "Herbst und Winter",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/321563525217",
+        "key": "title",
+        "default": "Christmas Tops",
+        "translated": "Weihnachten Tops",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/658263493",
+        "key": "title",
+        "default": "FAQs",
+        "translated": "FAQs",
+        "english_overlap_ratio": 1.0
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/713096965",
+        "key": "title",
+        "default": "Leggings",
+        "translated": "Leggings",
+        "english_overlap_ratio": 1.0
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/728422725",
+        "key": "title",
+        "default": "Tops",
+        "translated": "Tops",
+        "english_overlap_ratio": 1.0
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/252560998497",
+        "key": "title",
+        "default": "T-Shirts",
+        "translated": "T-Shirts",
+        "english_overlap_ratio": 1.0
+      }
+    ],
+    "pt-BR": [
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/240128197",
+        "key": "title",
+        "default": "Tops",
+        "translated": "Tops",
+        "english_overlap_ratio": 1.0
+      },
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/360521541",
+        "key": "title",
+        "default": "Maxi Dresses",
+        "translated": "Vestidos Maxi",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/360534085",
+        "key": "title",
+        "default": "Midi Dresses",
+        "translated": "Vestidos Midi",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/92758114401",
+        "key": "title",
+        "default": "Popular Mommy & Me",
+        "translated": "Popular Mamãe e eu",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/321563525217",
+        "key": "title",
+        "default": "Christmas Tops",
+        "translated": "Natal Tops",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/713348549",
+        "key": "title",
+        "default": "Maxi Dresses",
+        "translated": "Vestidos Maxi",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/713348613",
+        "key": "title",
+        "default": "Midi Dresses",
+        "translated": "Vestidos Midi",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/728422725",
+        "key": "title",
+        "default": "Tops",
+        "translated": "Tops",
+        "english_overlap_ratio": 1.0
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/252561850465",
+        "key": "title",
+        "default": "Shorts",
+        "translated": "Shorts",
+        "english_overlap_ratio": 1.0
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/263943716961",
+        "key": "title",
+        "default": "Tops",
+        "translated": "Tops",
+        "english_overlap_ratio": 1.0
+      }
+    ],
+    "it": [
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/360521541",
+        "key": "title",
+        "default": "Maxi Dresses",
+        "translated": "Abiti maxi",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/360534085",
+        "key": "title",
+        "default": "Midi Dresses",
+        "translated": "Abiti midi",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "COLLECTION",
+        "resource_id": "gid://shopify/Collection/360534277",
+        "key": "title",
+        "default": "Mini Dresses",
+        "translated": "Mini abiti",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/713348549",
+        "key": "title",
+        "default": "Maxi Dresses",
+        "translated": "Abiti maxi",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/713348613",
+        "key": "title",
+        "default": "Midi Dresses",
+        "translated": "Abiti midi",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/713348677",
+        "key": "title",
+        "default": "Mini Dresses",
+        "translated": "Mini abiti",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/474716799073",
+        "key": "title",
+        "default": "Blog",
+        "translated": "Blog",
+        "english_overlap_ratio": 1.0
+      },
+      {
+        "type": "LINK",
+        "resource_id": "gid://shopify/Link/482681192545",
+        "key": "title",
+        "default": "Blog",
+        "translated": "Blog",
+        "english_overlap_ratio": 1.0
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/54799204449",
+        "key": "alt",
+        "default": "Baseball Sweaters Matching Outfits - dresslikemommy.com",
+        "translated": "Abiti coordinati con maglioni da baseball - dresslikemommy.com",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/54799237217",
+        "key": "alt",
+        "default": "Baseball Sweaters Matching Outfits - dresslikemommy.com",
+        "translated": "Abiti coordinati con maglioni da baseball - dresslikemommy.com",
+        "english_overlap_ratio": 0.5
+      }
+    ]
+  },
+  "cache_path": "/Users/fsuels/Projects/dresslikemommy/ops/content/shopify-translation-cache-west.json",
+  "live_map_path": "/Users/fsuels/Projects/dresslikemommy/ops/content/shopify-live-digest-map.json",
+  "jsonl_path": "/Users/fsuels/Projects/dresslikemommy/ops/content/shopify-translation-bulk-west.jsonl"
+}

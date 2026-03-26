@@ -54,3 +54,475 @@ Traceback (most recent call last):
   File "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/deep_translator/google.py", line 84, in translate
     raise TranslationNotFound(text)
 deep_translator.exceptions.TranslationNotFound: Matching Pineapple Print One Piece Swimsuit - ___DLMTOK0___ --> No translation was found using the current translator. Try another translator?
+
+=== START 2026-03-25 05:22:03 batch=cjk locales=ja,ko,zh-CN,zh-TW ===
+/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+translating locale=ja unique_strings=4190
+[progress] locale=ja batch=1/76 completed=60/1710 cache=2559
+[progress] locale=ja batch=5/76 completed=300/1710 cache=2799
+[progress] locale=ja batch=10/76 completed=467/1710 cache=2966
+[progress] locale=ja batch=15/76 completed=651/1710 cache=3150
+[progress] locale=ja batch=20/76 completed=772/1710 cache=3271
+[progress] locale=ja batch=25/76 completed=927/1710 cache=3426
+[progress] locale=ja batch=30/76 completed=1133/1710 cache=3632
+[progress] locale=ja batch=35/76 completed=1243/1710 cache=3742
+[progress] locale=ja batch=40/76 completed=1322/1710 cache=3821
+[progress] locale=ja batch=45/76 completed=1356/1710 cache=3855
+[progress] locale=ja batch=50/76 completed=1387/1710 cache=3886
+[progress] locale=ja batch=55/76 completed=1443/1710 cache=3942
+[progress] locale=ja batch=60/76 completed=1475/1710 cache=3974
+[progress] locale=ja batch=65/76 completed=1503/1710 cache=4002
+[progress] locale=ja batch=70/76 completed=1528/1710 cache=4027
+[progress] locale=ja batch=75/76 completed=1703/1710 cache=4202
+[progress] locale=ja batch=76/76 completed=1710/1710 cache=4209
+translating locale=ko unique_strings=4190
+[progress] locale=ko oversized=1/80 completed=1/4190 cache=1
+[progress] locale=ko oversized=5/80 completed=5/4190 cache=5
+[progress] locale=ko oversized=10/80 completed=10/4190 cache=10
+[progress] locale=ko oversized=15/80 completed=15/4190 cache=15
+[progress] locale=ko oversized=20/80 completed=20/4190 cache=20
+[progress] locale=ko oversized=25/80 completed=25/4190 cache=25
+[progress] locale=ko oversized=30/80 completed=30/4190 cache=30
+[progress] locale=ko oversized=35/80 completed=35/4190 cache=35
+[progress] locale=ko oversized=40/80 completed=40/4190 cache=40
+[progress] locale=ko oversized=45/80 completed=45/4190 cache=45
+[progress] locale=ko oversized=50/80 completed=50/4190 cache=50
+[progress] locale=ko oversized=55/80 completed=55/4190 cache=55
+[progress] locale=ko oversized=60/80 completed=60/4190 cache=60
+[progress] locale=ko oversized=65/80 completed=65/4190 cache=65
+[progress] locale=ko oversized=70/80 completed=70/4190 cache=70
+[progress] locale=ko oversized=75/80 completed=75/4190 cache=75
+[progress] locale=ko oversized=80/80 completed=80/4190 cache=80
+[progress] locale=ko batch=1/116 completed=140/4190 cache=140
+[progress] locale=ko batch=5/116 completed=380/4190 cache=380
+[progress] locale=ko batch=10/116 completed=680/4190 cache=680
+[progress] locale=ko batch=15/116 completed=980/4190 cache=980
+[progress] locale=ko batch=20/116 completed=1280/4190 cache=1280
+Traceback (most recent call last):
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 292, in _translate_single_uncached
+    translated = self._call_with_timeout(lambda: self._translate_core(translator, text, locale))
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 180, in _call_with_timeout
+    return fn()
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 292, in <lambda>
+    translated = self._call_with_timeout(lambda: self._translate_core(translator, text, locale))
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 257, in _translate_core
+    translated = "".join(translator.translate(segment) for segment in segments)
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 257, in <genexpr>
+    translated = "".join(translator.translate(segment) for segment in segments)
+  File "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/deep_translator/google.py", line 84, in translate
+    raise TranslationNotFound(text)
+deep_translator.exceptions.TranslationNotFound: Red matching family shirts for Christmas showcasing a cute reindeer with antlers and Santa hat --> No translation was found using the current translator. Try another translator?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_translations.py", line 535, in <module>
+    main()
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_translations.py", line 486, in main
+    payload_by_resource, skipped_live, quality_counts, quality_samples = build_payload(candidates, digest_map, translator)
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_translations.py", line 382, in build_payload
+    translations[locale] = translator.translate_many(locale, unique, progress_label=f"locale={locale}")
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 358, in translate_many
+    translated_batch.append(self._translate_single_uncached(locale, text))
+  File "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py", line 294, in _translate_single_uncached
+    fallback = MyMemoryTranslator(source="en-US", target=self._target_code(locale))
+  File "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/deep_translator/mymemory.py", line 39, in __init__
+    super().__init__(
+  File "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/deep_translator/base.py", line 44, in __init__
+    self._source, self._target = self._map_language_to_code(source, target)
+  File "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/deep_translator/base.py", line 84, in _map_language_to_code
+    raise LanguageNotSupportedException(
+deep_translator.exceptions.LanguageNotSupportedException: ko --> No support for the provided language.
+Please select on of the supported languages:
+{'acehnese': 'ace-ID', 'afrikaans': 'af-ZA', 'akan': 'ak-GH', 'albanian': 'sq-AL', 'amharic': 'am-ET', 'antigua and barbuda creole english': 'aig-AG', 'arabic': 'ar-SA', 'arabic egyptian': 'ar-EG', 'aragonese': 'an-ES', 'armenian': 'hy-AM', 'assamese': 'as-IN', 'asturian': 'ast-ES', 'austrian german': 'de-AT', 'awadhi': 'awa-IN', 'ayacucho quechua': 'quy-PE', 'azerbaijani': 'az-AZ', 'bahamas creole english': 'bah-BS', 'bajan': 'bjs-BB', 'balinese': 'ban-ID', 'balkan gipsy': 'rm-RO', 'bambara': 'bm-ML', 'banjar': 'bjn-ID', 'bashkir': 'ba-RU', 'basque': 'eu-ES', 'belarusian': 'be-BY', 'belgian french': 'fr-BE', 'bemba': 'bem-ZM', 'bengali': 'bn-IN', 'bhojpuri': 'bho-IN', 'bihari': 'bh-IN', 'bislama': 'bi-VU', 'borana': 'gax-KE', 'bosnian': 'bs-BA', 'bosnian (cyrillic)': 'bs-Cyrl-BA', 'breton': 'br-FR', 'buginese': 'bug-ID', 'bulgarian': 'bg-BG', 'burmese': 'my-MM', 'catalan': 'ca-ES', 'catalan valencian': 'cav-ES', 'cebuano': 'ceb-PH', 'central atlas tamazight': 'tzm-MA', 'central aymara': 'ayr-BO', 'central kanuri (latin script)': 'knc-NG', 'chadian arabic': 'shu-TD', 'chamorro': 'ch-GU', 'cherokee': 'chr-US', 'chhattisgarhi': 'hne-IN', 'chinese simplified': 'zh-CN', 'chinese trad. (hong kong)': 'zh-HK', 'chinese traditional': 'zh-TW', 'chinese traditional macau': 'zh-MO', 'chittagonian': 'ctg-BD', 'chokwe': 'cjk-AO', 'classical greek': 'grc-GR', 'comorian ngazidja': 'zdj-KM', 'coptic': 'cop-EG', 'crimean tatar': 'crh-RU', 'crioulo upper guinea': 'pov-GW', 'croatian': 'hr-HR', 'czech': 'cs-CZ', 'danish': 'da-DK', 'dari': 'prs-AF', 'dimli': 'diq-TR', 'dutch': 'nl-NL', 'dyula': 'dyu-CI', 'dzongkha': 'dz-BT', 'eastern yiddish': 'ydd-US', 'emakhuwa': 'vmw-MZ', 'english': 'en-GB', 'english australia': 'en-AU', 'english canada': 'en-CA', 'english india': 'en-IN', 'english ireland': 'en-IE', 'english new zealand': 'en-NZ', 'english singapore': 'en-SG', 'english south africa': 'en-ZA', 'english us': 'en-US', 'esperanto': 'eo-EU', 'estonian': 'et-EE', 'ewe': 'ee-GH', 'fanagalo': 'fn-FNG', 'faroese': 'fo-FO', 'fijian': 'fj-FJ', 'filipino': 'fil-PH', 'finnish': 'fi-FI', 'flemish': 'nl-BE', 'fon': 'fon-BJ', 'french': 'fr-FR', 'french canada': 'fr-CA', 'french swiss': 'fr-CH', 'friulian': 'fur-IT', 'fula': 'ff-FUL', 'galician': 'gl-ES', 'gamargu': 'mfi-NG', 'garo': 'grt-IN', 'georgian': 'ka-GE', 'german': 'de-DE', 'gilbertese': 'gil-KI', 'glavda': 'glw-NG', 'greek': 'el-GR', 'grenadian creole english': 'gcl-GD', 'guarani': 'gn-PY', 'gujarati': 'gu-IN', 'guyanese creole english': 'gyn-GY', 'haitian creole french': 'ht-HT', 'halh mongolian': 'khk-MN', 'hausa': 'ha-NE', 'hawaiian': 'haw-US', 'hebrew': 'he-IL', 'higi': 'hig-NG', 'hiligaynon': 'hil-PH', 'hill mari': 'mrj-RU', 'hindi': 'hi-IN', 'hmong': 'hmn-CN', 'hungarian': 'hu-HU', 'icelandic': 'is-IS', 'igbo ibo': 'ibo-NG', 'igbo ig': 'ig-NG', 'ilocano': 'ilo-PH', 'indonesian': 'id-ID', 'inuktitut greenlandic': 'kl-GL', 'irish gaelic': 'ga-IE', 'italian': 'it-IT', 'italian swiss': 'it-CH', 'jamaican creole english': 'jam-JM', 'japanese': 'ja-JP', 'javanese': 'jv-ID', 'jingpho': 'kac-MM', "k'iche'": 'quc-GT', 'kabiyè': 'kbp-TG', 'kabuverdianu': 'kea-CV', 'kabylian': 'kab-DZ', 'kalenjin': 'kln-KE', 'kamba': 'kam-KE', 'kannada': 'kn-IN', 'kanuri': 'kr-KAU', 'karen': 'kar-MM', 'kashmiri (devanagari script)': 'ks-IN', 'kashmiri (arabic script)': 'kas-IN', 'kazakh': 'kk-KZ', 'khasi': 'kha-IN', 'khmer': 'km-KH', 'kikuyu kik': 'kik-KE', 'kikuyu ki': 'ki-KE', 'kimbundu': 'kmb-AO', 'kinyarwanda': 'rw-RW', 'kirundi': 'rn-BI', 'kisii': 'guz-KE', 'kongo': 'kg-CG', 'konkani': 'kok-IN', 'korean': 'ko-KR', 'northern kurdish': 'kmr-TR', 'kurdish sorani': 'ckb-IQ', 'kyrgyz': 'ky-KG', 'lao': 'lo-LA', 'latgalian': 'ltg-LV', 'latin': 'la-XN', 'latvian': 'lv-LV', 'ligurian': 'lij-IT', 'limburgish': 'li-NL', 'lingala': 'ln-LIN', 'lithuanian': 'lt-LT', 'lombard': 'lmo-IT', 'luba-kasai': 'lua-CD', 'luganda': 'lg-UG', 'luhya': 'luy-KE', 'luo': 'luo-KE', 'luxembourgish': 'lb-LU', 'maa': 'mas-KE', 'macedonian': 'mk-MK', 'magahi': 'mag-IN', 'maithili': 'mai-IN', 'malagasy': 'mg-MG', 'malay': 'ms-MY', 'malayalam': 'ml-IN', 'maldivian': 'dv-MV', 'maltese': 'mt-MT', 'mandara': 'mfi-CM', 'manipuri': 'mni-IN', 'manx gaelic': 'gv-IM', 'maori': 'mi-NZ', 'marathi': 'mr-IN', 'margi': 'mrt-NG', 'mari': 'mhr-RU', 'marshallese': 'mh-MH', 'mende': 'men-SL', 'meru': 'mer-KE', 'mijikenda': 'nyf-KE', 'minangkabau': 'min-ID', 'mizo': 'lus-IN', 'mongolian': 'mn-MN', 'montenegrin': 'sr-ME', 'morisyen': 'mfe-MU', 'moroccan arabic': 'ar-MA', 'mossi': 'mos-BF', 'ndau': 'ndc-MZ', 'ndebele': 'nr-ZA', 'nepali': 'ne-NP', 'nigerian fulfulde': 'fuv-NG', 'niuean': 'niu-NU', 'north azerbaijani': 'azj-AZ', 'sesotho': 'nso-ZA', 'northern uzbek': 'uzn-UZ', 'norwegian bokmål': 'nb-NO', 'norwegian nynorsk': 'nn-NO', 'nuer': 'nus-SS', 'nyanja': 'ny-MW', 'occitan': 'oc-FR', 'occitan aran': 'oc-ES', 'odia': 'or-IN', 'oriya': 'ory-IN', 'urdu': 'ur-PK', 'palauan': 'pau-PW', 'pali': 'pi-IN', 'pangasinan': 'pag-PH', 'papiamentu': 'pap-CW', 'pashto': 'ps-PK', 'persian': 'fa-IR', 'pijin': 'pis-SB', 'plateau malagasy': 'plt-MG', 'polish': 'pl-PL', 'portuguese': 'pt-PT', 'portuguese brazil': 'pt-BR', 'potawatomi': 'pot-US', 'punjabi': 'pa-IN', 'punjabi (pakistan)': 'pnb-PK', 'quechua': 'qu-PE', 'rohingya': 'rhg-MM', 'rohingyalish': 'rhl-MM', 'romanian': 'ro-RO', 'romansh': 'roh-CH', 'rundi': 'run-BI', 'russian': 'ru-RU', 'saint lucian creole french': 'acf-LC', 'samoan': 'sm-WS', 'sango': 'sg-CF', 'sanskrit': 'sa-IN', 'santali': 'sat-IN', 'sardinian': 'sc-IT', 'scots gaelic': 'gd-GB', 'sena': 'seh-ZW', 'serbian cyrillic': 'sr-Cyrl-RS', 'serbian latin': 'sr-Latn-RS', 'seselwa creole french': 'crs-SC', 'setswana (south africa)': 'tn-ZA', 'shan': 'shn-MM', 'shona': 'sn-ZW', 'sicilian': 'scn-IT', 'silesian': 'szl-PL', 'sindhi snd': 'snd-PK', 'sindhi sd': 'sd-PK', 'sinhala': 'si-LK', 'slovak': 'sk-SK', 'slovenian': 'sl-SI', 'somali': 'so-SO', 'sotho southern': 'st-LS', 'south azerbaijani': 'azb-AZ', 'southern pashto': 'pbt-PK', 'southwestern dinka': 'dik-SS', 'spanish': 'es-ES', 'spanish argentina': 'es-AR', 'spanish colombia': 'es-CO', 'spanish latin america': 'es-419', 'spanish mexico': 'es-MX', 'spanish united states': 'es-US', 'sranan tongo': 'srn-SR', 'standard latvian': 'lvs-LV', 'standard malay': 'zsm-MY', 'sundanese': 'su-ID', 'swahili': 'sw-KE', 'swati': 'ss-SZ', 'swedish': 'sv-SE', 'swiss german': 'de-CH', 'syriac (aramaic)': 'syc-TR', 'tagalog': 'tl-PH', 'tahitian': 'ty-PF', 'tajik': 'tg-TJ', 'tamashek (tuareg)': 'tmh-DZ', 'tamasheq': 'taq-ML', 'tamil india': 'ta-IN', 'tamil sri lanka': 'ta-LK', 'taroko': 'trv-TW', 'tatar': 'tt-RU', 'telugu': 'te-IN', 'tetum': 'tet-TL', 'thai': 'th-TH', 'tibetan': 'bo-CN', 'tigrinya': 'ti-ET', 'tok pisin': 'tpi-PG', 'tokelauan': 'tkl-TK', 'tongan': 'to-TO', 'tosk albanian': 'als-AL', 'tsonga': 'ts-ZA', 'tswa': 'tsc-MZ', 'tswana': 'tn-BW', 'tumbuka': 'tum-MW', 'turkish': 'tr-TR', 'turkmen': 'tk-TM', 'tuvaluan': 'tvl-TV', 'twi': 'tw-GH', 'udmurt': 'udm-RU', 'ukrainian': 'uk-UA', 'uma': 'ppk-ID', 'umbundu': 'umb-AO', 'uyghur uig': 'uig-CN', 'uyghur ug': 'ug-CN', 'uzbek': 'uz-UZ', 'venetian': 'vec-IT', 'vietnamese': 'vi-VN', 'vincentian creole english': 'svc-VC', 'virgin islands creole english': 'vic-US', 'wallisian': 'wls-WF', 'waray (philippines)': 'war-PH', 'welsh': 'cy-GB', 'west central oromo': 'gaz-ET', 'western persian': 'pes-IR', 'wolof': 'wo-SN', 'xhosa': 'xh-ZA', 'yiddish': 'yi-YD', 'yoruba': 'yo-NG', 'zulu': 'zu-ZA'}
+
+=== START 2026-03-25 13:51:13 batch=cjk locales=ja,ko,zh-CN,zh-TW ===
+/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+translating locale=ja unique_strings=4190
+translating locale=ko unique_strings=4190
+
+=== START 2026-03-25 13:54:40 batch=cjk locales=ja,ko,zh-CN,zh-TW ===
+/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+translating locale=ja unique_strings=4190
+translating locale=ko unique_strings=4190
+[progress] locale=ko batch=1/93 completed=60/2718 cache=1532
+
+=== START 2026-03-25 14:01:39 batch=cjk locales=ja,ko,zh-CN,zh-TW ===
+/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+translating locale=ja unique_strings=4190
+translating locale=ko unique_strings=4190
+[progress] locale=ko batch=1/92 completed=60/2658 cache=1592
+[progress] locale=ko batch=5/92 completed=300/2658 cache=1832
+[progress] locale=ko batch=10/92 completed=600/2658 cache=2132
+[progress] locale=ko batch=15/92 completed=900/2658 cache=2432
+[progress] locale=ko batch=20/92 completed=1200/2658 cache=2732
+[progress] locale=ko batch=25/92 completed=1387/2658 cache=2919
+[progress] locale=ko batch=30/92 completed=1539/2658 cache=3071
+[progress] locale=ko batch=35/92 completed=1708/2658 cache=3240
+[progress] locale=ko batch=40/92 completed=1828/2658 cache=3360
+[progress] locale=ko batch=45/92 completed=2061/2658 cache=3593
+[progress] locale=ko batch=50/92 completed=2168/2658 cache=3700
+[progress] locale=ko batch=55/92 completed=2264/2658 cache=3796
+[progress] locale=ko batch=60/92 completed=2298/2658 cache=3830
+[progress] locale=ko batch=65/92 completed=2325/2658 cache=3857
+[progress] locale=ko batch=70/92 completed=2385/2658 cache=3917
+[progress] locale=ko batch=75/92 completed=2413/2658 cache=3945
+[progress] locale=ko batch=80/92 completed=2445/2658 cache=3977
+[progress] locale=ko batch=85/92 completed=2470/2658 cache=4002
+[progress] locale=ko batch=90/92 completed=2638/2658 cache=4170
+[progress] locale=ko batch=92/92 completed=2658/2658 cache=4190
+translating locale=zh-CN unique_strings=4190
+[progress] locale=zh-CN oversized=1/80 completed=1/4190 cache=1
+[progress] locale=zh-CN oversized=5/80 completed=5/4190 cache=5
+[progress] locale=zh-CN oversized=10/80 completed=10/4190 cache=10
+[progress] locale=zh-CN oversized=15/80 completed=15/4190 cache=15
+[progress] locale=zh-CN oversized=20/80 completed=20/4190 cache=20
+[progress] locale=zh-CN oversized=25/80 completed=25/4190 cache=25
+[progress] locale=zh-CN oversized=30/80 completed=30/4190 cache=30
+[progress] locale=zh-CN oversized=35/80 completed=35/4190 cache=35
+[progress] locale=zh-CN oversized=40/80 completed=40/4190 cache=40
+[progress] locale=zh-CN oversized=45/80 completed=45/4190 cache=45
+[progress] locale=zh-CN oversized=50/80 completed=50/4190 cache=50
+[progress] locale=zh-CN oversized=55/80 completed=55/4190 cache=55
+[progress] locale=zh-CN oversized=60/80 completed=60/4190 cache=60
+[progress] locale=zh-CN oversized=65/80 completed=65/4190 cache=65
+[progress] locale=zh-CN oversized=70/80 completed=70/4190 cache=70
+[progress] locale=zh-CN oversized=75/80 completed=75/4190 cache=75
+[progress] locale=zh-CN oversized=80/80 completed=80/4190 cache=80
+[progress] locale=zh-CN batch=1/116 completed=140/4190 cache=140
+[progress] locale=zh-CN batch=5/116 completed=380/4190 cache=380
+[progress] locale=zh-CN batch=10/116 completed=680/4190 cache=680
+[progress] locale=zh-CN batch=15/116 completed=980/4190 cache=980
+[progress] locale=zh-CN batch=20/116 completed=1280/4190 cache=1280
+[progress] locale=zh-CN batch=25/116 completed=1580/4190 cache=1580
+[progress] locale=zh-CN batch=30/116 completed=1880/4190 cache=1880
+[progress] locale=zh-CN batch=35/116 completed=2180/4190 cache=2180
+[progress] locale=zh-CN batch=40/116 completed=2480/4190 cache=2480
+[progress] locale=zh-CN batch=45/116 completed=2780/4190 cache=2780
+[progress] locale=zh-CN batch=50/116 completed=2947/4190 cache=2947
+[progress] locale=zh-CN batch=55/116 completed=3131/4190 cache=3131
+[progress] locale=zh-CN batch=60/116 completed=3252/4190 cache=3252
+[progress] locale=zh-CN batch=65/116 completed=3407/4190 cache=3407
+[progress] locale=zh-CN batch=70/116 completed=3613/4190 cache=3613
+[progress] locale=zh-CN batch=75/116 completed=3723/4190 cache=3723
+[progress] locale=zh-CN batch=80/116 completed=3802/4190 cache=3802
+[progress] locale=zh-CN batch=85/116 completed=3836/4190 cache=3836
+[progress] locale=zh-CN batch=90/116 completed=3867/4190 cache=3867
+[progress] locale=zh-CN batch=95/116 completed=3923/4190 cache=3923
+[progress] locale=zh-CN batch=100/116 completed=3955/4190 cache=3955
+[progress] locale=zh-CN batch=105/116 completed=3983/4190 cache=3983
+[progress] locale=zh-CN batch=110/116 completed=4008/4190 cache=4008
+[progress] locale=zh-CN batch=115/116 completed=4183/4190 cache=4183
+[progress] locale=zh-CN batch=116/116 completed=4190/4190 cache=4190
+translating locale=zh-TW unique_strings=4190
+[progress] locale=zh-TW oversized=1/80 completed=1/4190 cache=1
+[progress] locale=zh-TW oversized=5/80 completed=5/4190 cache=5
+[progress] locale=zh-TW oversized=10/80 completed=10/4190 cache=10
+[progress] locale=zh-TW oversized=15/80 completed=15/4190 cache=15
+[progress] locale=zh-TW oversized=20/80 completed=20/4190 cache=20
+[progress] locale=zh-TW oversized=25/80 completed=25/4190 cache=25
+[progress] locale=zh-TW oversized=30/80 completed=30/4190 cache=30
+[progress] locale=zh-TW oversized=35/80 completed=35/4190 cache=35
+[progress] locale=zh-TW oversized=40/80 completed=40/4190 cache=40
+[progress] locale=zh-TW oversized=45/80 completed=45/4190 cache=45
+[progress] locale=zh-TW oversized=50/80 completed=50/4190 cache=50
+[progress] locale=zh-TW oversized=55/80 completed=55/4190 cache=55
+[progress] locale=zh-TW oversized=60/80 completed=60/4190 cache=60
+[progress] locale=zh-TW oversized=65/80 completed=65/4190 cache=65
+[progress] locale=zh-TW oversized=70/80 completed=70/4190 cache=70
+[progress] locale=zh-TW oversized=75/80 completed=75/4190 cache=75
+[progress] locale=zh-TW oversized=80/80 completed=80/4190 cache=80
+[progress] locale=zh-TW batch=1/116 completed=140/4190 cache=140
+[progress] locale=zh-TW batch=5/116 completed=380/4190 cache=380
+[progress] locale=zh-TW batch=10/116 completed=680/4190 cache=680
+[progress] locale=zh-TW batch=15/116 completed=980/4190 cache=980
+[progress] locale=zh-TW batch=20/116 completed=1280/4190 cache=1280
+[progress] locale=zh-TW batch=25/116 completed=1580/4190 cache=1580
+[progress] locale=zh-TW batch=30/116 completed=1880/4190 cache=1880
+[progress] locale=zh-TW batch=35/116 completed=2180/4190 cache=2180
+[progress] locale=zh-TW batch=40/116 completed=2480/4190 cache=2480
+[progress] locale=zh-TW batch=45/116 completed=2780/4190 cache=2780
+[progress] locale=zh-TW batch=50/116 completed=2947/4190 cache=2947
+[progress] locale=zh-TW batch=55/116 completed=3131/4190 cache=3131
+[progress] locale=zh-TW batch=60/116 completed=3252/4190 cache=3252
+[progress] locale=zh-TW batch=65/116 completed=3407/4190 cache=3407
+[progress] locale=zh-TW batch=70/116 completed=3613/4190 cache=3613
+[progress] locale=zh-TW batch=75/116 completed=3723/4190 cache=3723
+[progress] locale=zh-TW batch=80/116 completed=3802/4190 cache=3802
+[progress] locale=zh-TW batch=85/116 completed=3836/4190 cache=3836
+[progress] locale=zh-TW batch=90/116 completed=3867/4190 cache=3867
+[progress] locale=zh-TW batch=95/116 completed=3923/4190 cache=3923
+[progress] locale=zh-TW batch=100/116 completed=3955/4190 cache=3955
+[progress] locale=zh-TW batch=105/116 completed=3983/4190 cache=3983
+[progress] locale=zh-TW batch=110/116 completed=4008/4190 cache=4008
+[progress] locale=zh-TW batch=115/116 completed=4183/4190 cache=4183
+[progress] locale=zh-TW batch=116/116 completed=4190/4190 cache=4190
+{
+  "locales": [
+    "ja",
+    "ko",
+    "zh-CN",
+    "zh-TW"
+  ],
+  "candidate_rows": 98160,
+  "candidate_unique_texts": {
+    "ja": 4190,
+    "ko": 4190,
+    "zh-CN": 4190,
+    "zh-TW": 4190
+  },
+  "live_resource_counts": {
+    "ARTICLE": 10,
+    "BLOG": 1,
+    "COLLECTION": 41,
+    "COLLECTION_IMAGE": 4,
+    "DELIVERY_METHOD_DEFINITION": 4,
+    "FILTER": 4,
+    "LINK": 70,
+    "MEDIA_IMAGE": 6557,
+    "MENU": 20,
+    "METAFIELD": 8939,
+    "PAGE": 20,
+    "PRODUCT": 704,
+    "PRODUCT_OPTION": 1299,
+    "PRODUCT_OPTION_VALUE": 10710,
+    "SHOP": 1,
+    "SHOP_POLICY": 5
+  },
+  "source_skips": {
+    "non_human:COLLECTION:body_html": 140,
+    "non_human:COLLECTION:handle": 164,
+    "type:COOKIE_BANNER": 100,
+    "already_translated": 8,
+    "type:FILTER_GROUP": 112,
+    "non_human:MEDIA_IMAGE:alt": 12028,
+    "non_human:METAFIELD:value": 9720,
+    "non_human:PRODUCT_OPTION_VALUE:name": 928,
+    "non_human:SHOP_POLICY:body": 8,
+    "type:METAOBJECT": 356,
+    "non_human:ARTICLE:body_html": 40,
+    "non_human:ARTICLE:summary_html": 40,
+    "non_human:ARTICLE:handle": 40,
+    "non_human:BLOG:handle": 4,
+    "non_human:PAGE:handle": 80,
+    "non_human:PAGE:body_html": 56,
+    "type:ONLINE_STORE_THEME": 96,
+    "non_human:PACKING_SLIP_TEMPLATE:body": 4,
+    "non_human:PRODUCT:handle": 2816,
+    "non_human:PRODUCT:body_html": 976,
+    "non_human:PRODUCT:meta_description": 152,
+    "non_human:PRODUCT:product_type": 472
+  },
+  "live_skips": {
+    "missing_resource:METAFIELD": 1908,
+    "backend_failed:COLLECTION:title": 82,
+    "backend_failed:COLLECTION:meta_title": 32,
+    "backend_failed:COLLECTION:meta_description": 16,
+    "backend_failed:COLLECTION:body_html": 12,
+    "backend_failed:COLLECTION_IMAGE:alt": 8,
+    "backend_failed:DELIVERY_METHOD_DEFINITION:name": 8,
+    "backend_failed:FILTER:label": 6,
+    "backend_failed:LINK:title": 140,
+    "backend_failed:MEDIA_IMAGE:alt": 7090,
+    "backend_failed:METAFIELD:value": 13016,
+    "backend_failed:PRODUCT_OPTION:name": 2604,
+    "backend_failed:PRODUCT_OPTION_VALUE:name": 20606,
+    "backend_failed:SHOP:meta_title": 2,
+    "backend_failed:SHOP:meta_description": 2,
+    "backend_failed:SHOP_POLICY:body": 6,
+    "backend_failed:ARTICLE:title": 20,
+    "backend_failed:ARTICLE:meta_title": 2,
+    "backend_failed:ARTICLE:meta_description": 8,
+    "backend_failed:BLOG:title": 2,
+    "backend_failed:MENU:title": 40,
+    "backend_failed:PAGE:title": 40,
+    "backend_failed:PAGE:body_html": 12,
+    "backend_failed:PAGE:meta_title": 10,
+    "backend_failed:PAGE:meta_description": 2,
+    "backend_failed:PRODUCT:title": 2080,
+    "backend_failed:PRODUCT:body_html": 1242,
+    "backend_failed:PRODUCT:product_type": 1176,
+    "backend_failed:PRODUCT:meta_description": 1246,
+    "backend_failed:PRODUCT:meta_title": 66
+  },
+  "bulk_resource_count": 22536,
+  "bulk_translation_count": 46676,
+  "quality_overlap_threshold": 0.5,
+  "quality_overlap_counts": {
+    "ko": 644,
+    "ja": 532
+  },
+  "quality_overlap_samples": {
+    "ko": [
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788079767649",
+        "key": "alt",
+        "default": "Mommy & Me God Gave Me You T-shirt - dresslikemommy.com",
+        "translated": "_엄마와 나 God Give Me You 티셔츠 - dresslikemommy.com",
+        "english_overlap_ratio": 0.571
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788079800417",
+        "key": "alt",
+        "default": "Mommy & Me God Gave Me You T-shirt - dresslikemommy.com",
+        "translated": "_엄마와 나 God Give Me You 티셔츠 - dresslikemommy.com",
+        "english_overlap_ratio": 0.571
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788079833185",
+        "key": "alt",
+        "default": "Mommy & Me God Gave Me You T-shirt - dresslikemommy.com",
+        "translated": "_엄마와 나 God Give Me You 티셔츠 - dresslikemommy.com",
+        "english_overlap_ratio": 0.571
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788079865953",
+        "key": "alt",
+        "default": "Mommy & Me God Gave Me You T-shirt - dresslikemommy.com",
+        "translated": "_엄마와 나 God Give Me You 티셔츠 - dresslikemommy.com",
+        "english_overlap_ratio": 0.571
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788103065697",
+        "key": "alt",
+        "default": "Mother & Daughter Striped Stitching T-Shirt - dresslikemommy.com",
+        "translated": "Mother & Daughter 스트라이프 스티치 티셔츠 - dresslikemommy.com",
+        "english_overlap_ratio": 0.571
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788103557217",
+        "key": "alt",
+        "default": "Mother & Daughter Striped Stitching T-Shirt - dresslikemommy.com",
+        "translated": "Mother & Daughter 스트라이프 스티치 티셔츠 - dresslikemommy.com",
+        "english_overlap_ratio": 0.571
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788103589985",
+        "key": "alt",
+        "default": "Mother & Daughter Striped Stitching T-Shirt - dresslikemommy.com",
+        "translated": "Mother & Daughter 스트라이프 스티치 티셔츠 - dresslikemommy.com",
+        "english_overlap_ratio": 0.571
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788103622753",
+        "key": "alt",
+        "default": "Mother & Daughter Striped Stitching T-Shirt - dresslikemommy.com",
+        "translated": "Mother & Daughter 스트라이프 스티치 티셔츠 - dresslikemommy.com",
+        "english_overlap_ratio": 0.571
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788103688289",
+        "key": "alt",
+        "default": "Mother & Daughter Striped Stitching T-Shirt - dresslikemommy.com",
+        "translated": "Mother & Daughter 스트라이프 스티치 티셔츠 - dresslikemommy.com",
+        "english_overlap_ratio": 0.571
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788104179809",
+        "key": "alt",
+        "default": "Mother & Daughter Striped Stitching T-Shirt - dresslikemommy.com",
+        "translated": "Mother & Daughter 스트라이프 스티치 티셔츠 - dresslikemommy.com",
+        "english_overlap_ratio": 0.571
+      }
+    ],
+    "ja": [
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788106834017",
+        "key": "alt",
+        "default": "Matching T-shirt Mama Llama Drama LLama - dresslikemommy.com",
+        "translated": "おそろいの T シャツ Mama Llama Drama LLama - dresslikemommy.com",
+        "english_overlap_ratio": 0.714
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788106899553",
+        "key": "alt",
+        "default": "Matching T-shirt Mama Llama Drama LLama - dresslikemommy.com",
+        "translated": "おそろいの T シャツ Mama Llama Drama LLama - dresslikemommy.com",
+        "english_overlap_ratio": 0.714
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788113682529",
+        "key": "alt",
+        "default": "Mommy & Me Kisses Yoga Leggings - dresslikemommy.com",
+        "translated": "ママと私 Kisses ヨガ レギンス - dresslikemommy.com",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788113715297",
+        "key": "alt",
+        "default": "Mommy & Me Kisses Yoga Leggings - dresslikemommy.com",
+        "translated": "ママと私 Kisses ヨガ レギンス - dresslikemommy.com",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788114174049",
+        "key": "alt",
+        "default": "Mommy & Me Kisses Yoga Leggings - dresslikemommy.com",
+        "translated": "ママと私 Kisses ヨガ レギンス - dresslikemommy.com",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788114206817",
+        "key": "alt",
+        "default": "Mommy & Me Kisses Yoga Leggings - dresslikemommy.com",
+        "translated": "ママと私 Kisses ヨガ レギンス - dresslikemommy.com",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788114239585",
+        "key": "alt",
+        "default": "Mommy & Me Kisses Yoga Leggings - dresslikemommy.com",
+        "translated": "ママと私 Kisses ヨガ レギンス - dresslikemommy.com",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788123676769",
+        "key": "alt",
+        "default": "Gift Card - dresslikemommy.com",
+        "translated": "ギフトカード - dresslikemommy.com",
+        "english_overlap_ratio": 0.5
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788128624737",
+        "key": "alt",
+        "default": "Matching Sun Rainbow Sweater - dresslikemommy.com",
+        "translated": "お揃いの Sun Rainbow セーター - dresslikemommy.com",
+        "english_overlap_ratio": 0.667
+      },
+      {
+        "type": "MEDIA_IMAGE",
+        "resource_id": "gid://shopify/MediaImage/1788128657505",
+        "key": "alt",
+        "default": "Matching Sun Rainbow Sweater - dresslikemommy.com",
+        "translated": "お揃いの Sun Rainbow セーター - dresslikemommy.com",
+        "english_overlap_ratio": 0.667
+      }
+    ]
+  },
+  "cache_path": "/Users/fsuels/Projects/dresslikemommy/ops/content/shopify-translation-cache-cjk.json",
+  "live_map_path": "/Users/fsuels/Projects/dresslikemommy/ops/content/shopify-live-digest-map.json",
+  "jsonl_path": "/Users/fsuels/Projects/dresslikemommy/ops/content/shopify-translation-bulk-cjk.jsonl"
+}
