@@ -10,53 +10,198 @@
 {
   "sections": {
     "hero_banner_main": {
-      "type": "hero-banner",
-      "custom_css": [
-        "h2 {font-size: 32px;}",
-        "@media screen and (max-width: 749px) {img {object-position: 80% center !important; } h2, h1 {font-size: 20px !important; line-height: 1.2 !important; } p {font-size: 12px !important; } a {font-size: 12px !important; padding: 8px 16px !important; } .hero-banner__content {padding-top: 55% !important; }}"
-      ],
-      "settings": {
-        "image": "shopify://shop_images/wmremove-transformed.png",
-        "heading": "Mommy & Me Dresses, Swimsuits and Family Matching Outfits",
-        "subheading": "Shop photo-ready matching looks for beach days, vacations, birthdays, family photos, and everyday moments.",
-        "button_label": "SHOP MATCHING SWIMSUITS",
-        "button_link": "/collections/swimsuits",
-        "height": 550,
-        "overlay_opacity": 0,
-        "bg_color": "#2e2e2e",
-        "text_color": "#ffffff",
-        "button_color": "#f39c12",
-        "button_text_color": "#ffffff"
-      }
-    },
-    "rich_text_homepage_seo": {
-      "type": "rich-text",
+      "type": "home-conversion-hero",
       "blocks": {
-        "heading_kd8Q5B": {
-          "type": "heading",
+        "product_card_tie_dye": {
+          "type": "product_card",
           "settings": {
-            "heading": "Mommy and Me Dresses for Every Matching Moment",
-            "heading_size": "h2"
+            "product": "mommy-daughter-matching-tie-dye-dress",
+            "badge": "Mommy & Me Favorite",
+            "caption": "Soft tie-dye maxi dresses for easy matching family photos and sunny-day outings.",
+            "button_label": "Shop This Look"
           }
         },
-        "text_HtHDFT": {
-          "type": "text",
+        "product_card_hawaiian": {
+          "type": "product_card",
           "settings": {
-            "text": "<p>Discover mommy and me dresses, mother daughter matching outfits, and family matching clothes designed for vacations, birthdays, holidays, family photos, and everyday wear.</p><p>Shop our <a href=\"/collections/dresses\">mommy and me dresses collection</a>, browse <a href=\"/collections/family-sets\">family matching outfits</a>, explore <a href=\"/collections/family-swimsuits\">matching family swimsuits</a>, and cozy up in <a href=\"/collections/family-pajamas\">family matching pajamas</a>.</p>"
+            "product": "family-matching-hawaiian-shirt-and-floral-dress",
+            "badge": "Vacation Best Seller",
+            "caption": "Coordinated floral shirts and dresses built for beach trips, cruises, and resort dinners.",
+            "button_label": "Shop This Look"
+          }
+        },
+        "product_card_spring_floral": {
+          "type": "product_card",
+          "settings": {
+            "product": "family-matching-shirt-and-dress-set-yellow-floral-for-a-springtime-look",
+            "badge": "Spring Floral Pick",
+            "caption": "A bright yellow floral set for Easter brunch, spring birthdays, and warm-weather photos.",
+            "button_label": "Shop This Look"
+          }
+        },
+        "product_card_beige": {
+          "type": "product_card",
+          "settings": {
+            "product": "elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits",
+            "badge": "Dressy Photo-Ready Set",
+            "caption": "Chiffon matching dresses and coordinated family pieces for special occasions and polished portraits.",
+            "button_label": "Shop This Look"
           }
         }
       },
       "block_order": [
-        "heading_kd8Q5B",
-        "text_HtHDFT"
+        "product_card_tie_dye",
+        "product_card_hawaiian",
+        "product_card_spring_floral",
+        "product_card_beige"
       ],
       "settings": {
-        "desktop_content_position": "left",
-        "content_alignment": "left",
-        "color_scheme": "scheme-1",
-        "full_width": false,
+        "image": "shopify://shop_images/wmremove-transformed.png",
+        "eyebrow": "New Spring Arrivals + Easter Matching Outfits",
+        "heading": "Spring matching looks for Easter, vacations, and family photos",
+        "subheading": "Start with our most-loved mother-daughter dresses and coordinated family sets, then jump into matching swimsuits and Daddy & Me favorites without extra browsing.",
+        "primary_button_label": "Shop Matching Swimsuits",
+        "primary_button_link": "/collections/swimsuits",
+        "secondary_button_label": "Browse Daddy & Me",
+        "secondary_button_link": "/collections/daddy-me",
+        "supporting_link_label": "See Most-Loved Matching Sets",
+        "supporting_link_url": "#most-loved-matching-sets",
+        "background_start": "#f6ede3",
+        "background_end": "#fff8f1",
+        "accent_color": "#c87932",
+        "text_color": "#201613",
+        "card_background": "#fffdf9",
         "padding_top": 28,
-        "padding_bottom": 20
+        "padding_bottom": 32
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "custom_css": [],
+      "settings": {
+        "title": "Spring Break & Matching Swimsuits",
+        "heading_size": "h2",
+        "description": "<p>Our strongest collection landing page now gets prime homepage placement. Shop matching swimsuits for spring break and pool days, then pair the look with <a href=\"/collections/daddy-me\">Daddy &amp; Me favorites</a> for coordinated family photos.</p>",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "swimsuits",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 4,
+        "padding_bottom": 8
+      }
+    },
+    "curated_product_grid_main": {
+      "type": "curated-product-grid",
+      "blocks": {
+        "product_card_tie_dye": {
+          "type": "product_card",
+          "settings": {
+            "product": "mommy-daughter-matching-tie-dye-dress",
+            "badge": "Most Loved",
+            "caption": "A soft mommy-and-me maxi set for easy matching on birthdays, casual outings, and vacation days.",
+            "button_label": "Shop This Look"
+          }
+        },
+        "product_card_hawaiian": {
+          "type": "product_card",
+          "settings": {
+            "product": "family-matching-hawaiian-shirt-and-floral-dress",
+            "badge": "Vacation Favorite",
+            "caption": "The coordinated floral look to lead with when shoppers want one outfit for family photos, dinners, and beach days.",
+            "button_label": "Shop This Look"
+          }
+        },
+        "product_card_spring_floral": {
+          "type": "product_card",
+          "settings": {
+            "product": "family-matching-shirt-and-dress-set-yellow-floral-for-a-springtime-look",
+            "badge": "Spring Event Pick",
+            "caption": "Bright floral coordination for Easter, garden parties, and warm-weather family photos.",
+            "button_label": "Shop This Look"
+          }
+        },
+        "product_card_beige": {
+          "type": "product_card",
+          "settings": {
+            "product": "elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits",
+            "badge": "Dressy Favorite",
+            "caption": "A polished chiffon set for special occasions when families want a more elevated matching look.",
+            "button_label": "Shop This Look"
+          }
+        }
+      },
+      "block_order": [
+        "product_card_tie_dye",
+        "product_card_hawaiian",
+        "product_card_spring_floral",
+        "product_card_beige"
+      ],
+      "settings": {
+        "anchor_id": "most-loved-matching-sets",
+        "title": "Most-Loved Matching Sets",
+        "heading_size": "h2",
+        "intro": "<p>Start with the coordinated sets families keep choosing for vacations, spring events, and photo days.</p>",
+        "button_label": "Shop all family sets",
+        "button_link": "/collections/family-sets",
+        "color_scheme": "scheme-1",
+        "card_background": "#fffdf9",
+        "accent_color": "#c87932",
+        "padding_top": 16,
+        "padding_bottom": 32
+      }
+    },
+    "collection_list_seasonal_matching": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_swimsuits": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "swimsuits"
+          }
+        },
+        "featured_collection_daddy_me": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "daddy-me"
+          }
+        },
+        "featured_collection_vacation": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "matching-family-vacation-outfits"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_swimsuits",
+        "featured_collection_daddy_me",
+        "featured_collection_vacation"
+      ],
+      "settings": {
+        "title": "More Ways to Match This Season",
+        "heading_size": "h2",
+        "image_ratio": "portrait",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 8,
+        "padding_bottom": 0
       }
     },
     "collection_list_PX36Hk": {
@@ -103,7 +248,7 @@
       "custom_css": [],
       "settings": {
         "title": "Mommy & Me",
-        "heading_size": "h1",
+        "heading_size": "h2",
         "image_ratio": "portrait",
         "columns_desktop": 5,
         "color_scheme": "",
@@ -158,74 +303,11 @@
       ],
       "settings": {
         "title": "Family Matching",
-        "heading_size": "h1",
+        "heading_size": "h2",
         "image_ratio": "portrait",
         "columns_desktop": 5,
         "color_scheme": "",
         "show_view_all": false,
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "newsletter_retention": {
-      "type": "newsletter",
-      "blocks": {
-        "heading_G74Lfk": {
-          "type": "heading",
-          "settings": {
-            "heading": "Get 10% off your first order",
-            "heading_size": "h1"
-          }
-        },
-        "paragraph_NcH1qV": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p>Join for new arrivals, seasonal matching-outfit drops, and a welcome discount before your first purchase.</p>"
-          }
-        },
-        "email_form_Q0e6wM": {
-          "type": "email_form",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "heading_G74Lfk",
-        "paragraph_NcH1qV",
-        "email_form_Q0e6wM"
-      ],
-      "settings": {
-        "color_scheme": "scheme-2",
-        "full_width": false,
-        "padding_top": 32,
-        "padding_bottom": 40
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "disabled": true,
-      "custom_css": [],
-      "settings": {
-        "title": "<a href=\"/collections/one-piece-suits\" title=\"One-Piece Suits\">One Piece Swimsuits</a>",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "one-piece-swimsuits",
-        "products_to_show": 25,
-        "columns_desktop": 6,
-        "full_width": true,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": true,
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "blob",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 0,
@@ -238,7 +320,7 @@
         "featured_collection_Hg3Jem": {
           "type": "featured_collection",
           "settings": {
-            "collection": "daddy-me-t-shirts"
+            "collection": "daddy-me"
           }
         },
         "featured_collection_ttcxEV": {
@@ -267,8 +349,8 @@
         "featured_collection_F9RVQ9"
       ],
       "settings": {
-        "title": "Daddy & Me - Maternity - Couples",
-        "heading_size": "h1",
+        "title": "Daddy & Me, Maternity & Couples",
+        "heading_size": "h2",
         "image_ratio": "portrait",
         "columns_desktop": 5,
         "color_scheme": "",
@@ -278,15 +360,128 @@
         "padding_top": 4,
         "padding_bottom": 0
       }
+    },
+    "collection_list_growth_collections": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_matching_outfits": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "matching-outfits"
+          }
+        },
+        "featured_collection_new_matching_outfits": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "new-matching-outfits"
+          }
+        },
+        "featured_collection_matching_couples_tshirts": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "matching-couples-t-shirts"
+          }
+        },
+        "featured_collection_dresses": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "dresses"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_matching_outfits",
+        "featured_collection_new_matching_outfits",
+        "featured_collection_matching_couples_tshirts",
+        "featured_collection_dresses"
+      ],
+      "settings": {
+        "title": "Explore More Matching Collections",
+        "heading_size": "h2",
+        "image_ratio": "portrait",
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 12,
+        "padding_bottom": 0
+      }
+    },
+    "newsletter_retention": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_G74Lfk": {
+          "type": "heading",
+          "settings": {
+            "heading": "Get 10% off your first order",
+            "heading_size": "h2"
+          }
+        },
+        "paragraph_NcH1qV": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Join for new arrivals, seasonal matching-outfit drops, and a welcome discount before your first purchase.</p>"
+          }
+        },
+        "email_form_Q0e6wM": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_G74Lfk",
+        "paragraph_NcH1qV",
+        "email_form_Q0e6wM"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "full_width": false,
+        "padding_top": 32,
+        "padding_bottom": 40
+      }
+    },
+    "rich_text_homepage_seo": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_kd8Q5B": {
+          "type": "heading",
+          "settings": {
+            "heading": "Mommy and Me Dresses for Every Matching Moment",
+            "heading_size": "h2"
+          }
+        },
+        "text_HtHDFT": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Discover mommy and me dresses, mother daughter matching outfits, and family matching clothes designed for vacations, birthdays, holidays, family photos, and everyday wear.</p><p>Shop our <a href=\"/collections/dresses\">mommy and me dresses collection</a>, dive into <a href=\"/collections/swimsuits\">mommy and me swimsuits</a>, browse <a href=\"/collections/daddy-me\">daddy and me outfits</a>, explore <a href=\"/collections/family-sets\">family matching outfits</a>, cozy up in <a href=\"/collections/family-pajamas\">family matching pajamas</a>, discover <a href=\"/collections/matching-hawaiian-outfits\">matching Hawaiian outfits for family</a>, plan trips with <a href=\"/collections/matching-family-vacation-outfits\">matching family vacation outfits</a>, and see <a href=\"/collections/mother-daughter-matching-dresses\">mother daughter matching dresses</a>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_kd8Q5B",
+        "text_HtHDFT"
+      ],
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "padding_top": 28,
+        "padding_bottom": 20
+      }
     }
   },
   "order": [
     "hero_banner_main",
-    "rich_text_homepage_seo",
+    "featured_collection",
+    "curated_product_grid_main",
+    "collection_list_seasonal_matching",
     "collection_list_PX36Hk",
     "collection_list_EiNf6T",
+    "collection_list_BHDW3K",
+    "collection_list_growth_collections",
     "newsletter_retention",
-    "featured_collection",
-    "collection_list_BHDW3K"
+    "rich_text_homepage_seo"
   ]
 }

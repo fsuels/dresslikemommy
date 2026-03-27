@@ -9837,6 +9837,795 @@ Open items:
 - The Admin-side cleanup is complete, but the public storefront is not yet fully converged for the 8 legacy/current URLs listed above.
 - If those URLs still render `matching matching` after cache propagation time, the next step should use the logged-in Shopify Admin browser/editor path to open the exact public URL targets and perform a save/re-publish style touch that forces Shopify to invalidate the storefront HTML for those alias pages.
 
+### Task: Merchant Listings repo audit for schema presence and change timeline
+Date: 2026-03-27 00:18:10 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-merchant-listings-repo-audit
+Changes:
+- No theme code changes in this session.
+- Audited the active Product JSON-LD source, searched all Liquid files for Merchant Listings fields, and reviewed git history from `2026-02-20` through `2026-03-05`.
+
+Findings:
+- Active Product JSON-LD is rendered from `layout/theme.liquid` via `{% render 'jsonld-seo' %}`; `sections/main-product.liquid` does not currently emit Product JSON-LD.
+- `MerchantReturnPolicy` and `shippingDetails` appear only in the active schema snippet `snippets/jsonld-seo.liquid`; both are currently emitted on:
+  - each variant-level `Offer`, and
+  - the top-level `AggregateOffer`.
+- `priceValidUntil` is currently emitted on both each variant-level `Offer` and the top-level `AggregateOffer`.
+- `snippets/product-schema-extra.liquid` still exists in the repo but is not rendered anywhere, so it is not part of the active storefront schema path.
+- `config/settings_schema.json` still reports base theme metadata `Dawn` version `14.0.0`; no theme-version bump was committed during the audited window.
+- Relevant git timeline:
+  - `2026-02-28` commit `caef7c1`: added per-variant `Offer.priceValidUntil`, `hasMerchantReturnPolicy`, and `shippingDetails`.
+  - `2026-02-28` commit `89a7a89`: added top-level `AggregateOffer.priceValidUntil` and conditional review/rating support.
+  - `2026-03-02` commit `7940a28`: added top-level `AggregateOffer.hasMerchantReturnPolicy` and `shippingDetails`.
+
+Why:
+- Requested repo-side verification for the Merchant Listings drop to determine whether the product schema is missing the expected merchant-offer fields and whether theme changes landed in the late-February to early-March window.
+
+Verification:
+- Searched Liquid files with `rg` for `MerchantReturnPolicy`, `shippingDetails`, `hasMerchantReturnPolicy`, `AggregateOffer`, and `priceValidUntil`.
+- Reviewed current active schema output in `layout/theme.liquid` and `snippets/jsonld-seo.liquid`.
+- Reviewed git history and diffs for `snippets/jsonld-seo.liquid`, `layout/theme.liquid`, `sections/main-product.liquid`, and `config/settings_schema.json`.
+
+Open items:
+- Need deploy/live-theme parity confirmation for the affected product URL. The current repo does include the merchant-offer fields you called out, so a remaining live failure would point to either deploy drift or another eligibility/parsing issue outside those specific missing fields.
+- Current branch state after `2026-03-26` emits only conditional `aggregateRating` and no `review` node in Product JSON-LD. That can explain optional Product snippet warnings, but it does not by itself prove the Merchant Listings failure.
+
+### Task: Merchant Listings live-theme parity check + schema eligibility fix
+Date: 2026-03-27 00:29:29 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-merchant-listings-live-parity-offer-fix
+Changes:
+- `snippets/jsonld-seo.liquid`
+  - Reworked `Product.offers` from `AggregateOffer` to a single `Offer` for `product.selected_or_first_available_variant`.
+  - Kept the merchant-listing-specific fields on that top-level `Offer`:
+    - `priceCurrency`
+    - `price`
+    - `priceValidUntil`
+    - `availability`
+    - `url`
+    - `sku`
+    - GTIN (`gtin8/12/13/14`) when barcode length matches
+    - `itemCondition`
+    - `hasMerchantReturnPolicy`
+    - `shippingDetails`
+- No other theme files were edited in this step.
+
+Findings:
+- Published Shopify `main` theme id is `133290917985`.
+- Admin API asset comparison confirmed the live published theme matches local repo for the active merchant-listing schema path:
+  - `snippets/jsonld-seo.liquid` matched exactly
+  - `layout/theme.liquid` matched exactly
+  - `sections/main-product.liquid` matched exactly
+- `snippets/meta-tags.liquid` differs between repo and published theme, but that drift is not part of the active Product JSON-LD merchant-listing path investigated here.
+- Live storefront fetches using a Googlebot user agent on 20 sitemap product URLs showed:
+  - `20/20` Product JSON-LD nodes present
+  - `20/20` top-level `AggregateOffer` present before this patch
+  - `20/20` had `priceValidUntil`, `hasMerchantReturnPolicy`, and `shippingDetails` both at the aggregate level and nested variant offers
+  - `0/20` had `aggregateRating`
+  - `0/20` had `review`
+- Root-cause conclusion from current evidence:
+  - live theme drift is **not** the merchant-listing blocker for the schema files above
+  - the stronger markup issue is schema shape: live PDPs were using `Product.offers = AggregateOffer`
+  - current Google Search Central guidance for merchant listings expects `Product.offers` to be `Offer`, and separate Google documentation warns that `AggregateOffer` doesn't support product variants
+
+Why:
+- The previous investigation proved the missing-field hypothesis was wrong for live theme output; the next required step was to identify a remaining schema-level mismatch that explains why Product snippets can still validate while Merchant listings are not recognized.
+- Changing `Product.offers` to `Offer` aligns the markup with current Google merchant-listing expectations more closely than the previous aggregate-offer shape.
+
+Verification:
+- Live theme parity checks were performed through Shopify Admin API asset reads against theme `133290917985`.
+- Live storefront checks were performed against 20 sitemap product URLs using a Googlebot user agent.
+- `shopify theme check --path . --output json --fail-level crash` after the patch reported only pre-existing repo-wide issues unrelated to this file change; no new `snippets/jsonld-seo.liquid` parse failure was introduced.
+
+Open items:
+- This fix is local in the repo/worktree only until deployed; live storefront output is still the pre-patch `AggregateOffer` shape until the theme is published.
+- After deploy, rerun Google's Rich Results Test on a representative PDP and verify that Merchant listings are detected with `Product.offers` as `Offer`.
+- Optional product-snippet warnings for `aggregateRating` / `review` remain data-dependent and are not the primary merchant-listing blocker identified here.
+
+### Task: Product review JSON-LD from existing Judge.me installation
+Date: 2026-03-27 00:30:52 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-review-jsonld-from-existing-judgeme
+Changes:
+- `snippets/jsonld-seo.liquid`
+  - Added `product.metafields.judgeme.widget` fallbacks for `ratingValue` / `reviewCount` extraction when direct review metafields or Judge.me badge markup are absent.
+  - Added conditional `Product.review` output alongside `aggregateRating`.
+  - When a real Judge.me review is present, the schema now serializes one actual review by parsing:
+    - `product.metafields.judgeme.featured_review`, or
+    - the first review block inside `product.metafields.judgeme.widget`
+  - Preserved a guarded summary-review fallback only for cases where rating/count exist but full review markup is unavailable.
+
+Findings:
+- Judge.me is already installed and active in the current theme/store setup; this is not a missing-app problem.
+  - Repo evidence:
+    - `config/settings_data.json` contains the global Judge.me core app block.
+    - `templates/product.json` contains the Judge.me preview badge and review widget app blocks.
+  - Live PDP source evidence on `https://www.dresslikemommy.com/products/happy-flower-family-matching-t-shirts-colorful-floral-print-for-parents-kids`:
+    - Product JSON-LD currently includes `aggregateRating` but no `review`.
+    - Judge.me widget HTML on the same page contains 3 real review objects inline.
+    - Judge.me settings script exposes `enable_json_ld_products:false`, so the app is not currently injecting its own Product JSON-LD node.
+- Live review inventory is much smaller than the generic SEO prompt assumes:
+  - `shop.metafields.judgeme.all_reviews_count = 4`
+  - `shop.metafields.judgeme.all_reviews_rating = 5.00`
+  - Only 3 product handles currently have non-zero review counts:
+    - `elegant-long-sleeve-leopard-print-swimsuit-for-mother-and-daughter` -> `1`
+    - `happy-flower-family-matching-t-shirts-colorful-floral-print-for-parents-kids` -> `3`
+    - `matching-family-cable-knit-sweaters-cozy-holiday-outfits` -> `1`
+  - `149` products currently have a Judge.me widget metafield present but zero reviews.
+
+Why:
+- The user explicitly asked to first understand what already exists before applying Fix 2.
+- Evidence shows the store already has Judge.me, existing inline review content, and partial structured-data support.
+- The real gap is:
+  - the active theme schema path was not serializing a `review` object, and
+  - the catalog currently has very low real review coverage, so theme code alone cannot make most PDPs eligible for star-rating snippets.
+
+Verification:
+- Queried live Shopify Admin GraphQL for Judge.me and standard review metafields on representative products.
+- Queried all products through Admin GraphQL and counted the non-zero review products.
+- Fetched the public PDP source for the reviewed `happy-flower...` handle and confirmed:
+  - existing `aggregateRating`
+  - missing `review`
+  - present inline Judge.me review widget markup with real reviews
+- Ran `shopify theme check --path . --output json --fail-level crash`.
+  - Result: no new crash-level parse failure from this patch; existing repo-wide Theme Check issues remain unrelated.
+
+Open items:
+- This change is local in the repo/worktree only until the theme is deployed.
+- Even after deploy, only the 3 reviewed products listed above can legitimately emit review snippet schema today; the remaining widget-enabled products need imported or newly collected reviews before Google can show stars broadly.
+- Admin-side follow-through is still required outside the theme repo:
+  - import any external historical reviews into Judge.me if they exist
+  - enable or verify Judge.me post-purchase review request emails
+  - after deploy, rerun Rich Results Test on a reviewed PDP and then recheck Search Console coverage
+
+### Task: Swimsuits collection SEO agent prompt
+Date: 2026-03-27 00:30:45 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-swimsuits-collection-seo-prompt
+Changes:
+- Added `ops/content/seo/collection-seo-agent-prompts-2026-03-27.md` with a repo-tracked handoff prompt for the `swimsuits` collection SEO refresh.
+- Grounded the prompt in a live Shopify Admin API lookup plus the existing March 26 collection SEO admin snapshot so the note reflects current evidence instead of stale assumptions.
+
+Why:
+- Requested a content/SEO-agent prompt for the `Swimsuits` collection.
+- The title quoted in the request did not match the live Admin SEO title, so the handoff needed an evidence-checked current-state note with exact timestamps.
+
+Verification:
+- Queried Shopify Admin GraphQL `collectionByHandle(handle: "swimsuits")`.
+- Live Admin result:
+  - `updatedAt`: `2026-03-27T03:14:17Z`
+  - SEO title: `Mother Daughter Swimsuits - Matching Swimwear | Dress Like Mommy`
+  - SEO description: `Explore matching bikinis, one-pieces, cover-up skirts, and beach-ready swimwear for moms and daughters. Free shipping + 30-day returns. Shop matching swimwear now.`
+- Confirmed `ops/content/collection-seo-admin-2026-03-26.json` contains the same current title and description for handle `swimsuits`.
+
+Open items:
+- No live Admin write was applied in this session; this was a prompt/handoff preparation task only.
+- If desired, the next step is to apply the preferred title/meta in Shopify Admin and re-query the collection to verify the change.
+
+### Task: Live Shopify Admin vacation collection creation
+Date: 2026-03-27 00:31:49 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-vacation-collection-created-live
+Changes:
+- Shopify Admin collections on store `dresslikemommy-com`
+  - Created automated collection `Matching Family Vacation Outfits` with handle `matching-family-vacation-outfits`.
+  - Set collection description/body copy to target:
+    - `family matching vacation outfits`
+    - `matching family vacation outfits`
+    - `matching family outfits for vacation`
+    - `family matching beach outfits`
+    - plus the requested supporting phrases:
+      - `vacation matching outfits`
+      - `resort wear for families`
+      - `beach matching sets`
+      - `travel-ready family coordinated outfits`
+  - Set SEO title to `Matching Family Vacation Outfits — Beach, Resort & Travel Sets`.
+  - Set SEO meta description to `Shop matching family vacation outfits perfect for beach trips, resort getaways, and family photos. Coordinated sets in sizes for mom, dad, and kids. Free shipping.`
+  - Configured automated OR rules (`appliedDisjunctively: true`) for product tags:
+    - `vacation`
+    - `beach`
+    - `resort`
+  - Published the new collection to the `Online Store` publication.
+
+Why:
+- The request was to create a live Shopify Admin collection landing page for vacation-intent family matching keywords, not only draft repo-side SEO copy.
+- Existing live collection search confirmed the target handle did not already exist, so a direct Admin creation pass was appropriate.
+
+Verification:
+- Queried Admin GraphQL before creation:
+  - `collections(query: "handle:matching-family-vacation-outfits")` returned `0` matches.
+- Created the collection through Admin GraphQL `collectionCreate`.
+  - New collection ID: `gid://shopify/Collection/353856880737`
+- Published it through Admin GraphQL `publishablePublish` to:
+  - `Online Store` publication `gid://shopify/Publication/55169925`
+- Re-queried the live collection by ID and confirmed:
+  - title `Matching Family Vacation Outfits`
+  - handle `matching-family-vacation-outfits`
+  - requested SEO title/meta are present
+  - rule set is tag-based OR logic for `vacation`, `beach`, `resort`
+  - `productsCount = 178`
+  - `Online Store` publication shows `isPublished: true`
+
+Open items:
+- Manual storefront QA is still recommended on `/collections/matching-family-vacation-outfits` to confirm the first-page assortment looks commercially coherent and that no loosely tagged products should be retagged or excluded.
+- The collection is currently published to `Online Store`; publish to any additional sales-channel publications later only if the merchant wants this collection exposed beyond the storefront.
+
+### Task: Family matching collection live SEO refresh
+Date: 2026-03-27 00:32:51 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-family-matching-collection-live-seo-refresh
+Changes:
+- Shopify Admin collection `matching-outfits` on store `dresslikemommy-com`
+  - Verified the requested `/collections/family-matching` path is a live redirect/alias to `/collections/matching-outfits`; `collectionByHandle(handle: "family-matching")` returned `null`, while the public storefront resolved to `https://www.dresslikemommy.com/collections/matching-outfits`.
+  - Updated the live collection SEO title to:
+    - `Family Matching Outfits — Coordinated Sets for Mom, Dad & Kids | Dress Like Mommy`
+  - Updated the live collection SEO meta description to:
+    - `Shop matching family outfits for every occasion — vacation sets, holiday pajamas, summer tees, and mommy and me dresses. Sizes for the whole family. Free shipping.`
+  - Replaced the live collection description HTML with a stronger 3-paragraph version led by a 150-word intro paragraph that naturally includes:
+    - `matching family outfits`
+    - `family matching clothes`
+    - `coordinated family sets`
+    - `matching outfits for the whole family`
+- `snippets/collection-seo-fallback.liquid`
+  - Updated the local theme fallback for `matching-outfits` / `family-matching` / `family-matching-outfits` so the next deployed theme version uses:
+    - visible fallback display title `Family Matching Outfits`
+    - fallback meta title `Family Matching Outfits — Coordinated Sets for Mom, Dad & Kids | Dress Like Mommy`
+    - fallback meta description matching the new live Admin copy
+
+Why:
+- The request was to refresh the broad family-matching collection with stronger commercial title/meta copy and on-page keyword signals.
+- Evidence check showed the merchant-referenced `/collections/family-matching` URL is not the underlying Admin handle; the real collection is `matching-outfits`, so the write had to target that record.
+- The current theme already renders a collection-page `<h1>` outside the rich text description, so injecting a second `<h1>` into the Admin description would create duplicate top-level headings. The cleaner H1 path is the theme fallback change logged above for the next deploy.
+
+Verification:
+- Queried Admin GraphQL before the write:
+  - `shop.name = Dress Like Mommy`
+  - `collectionByHandle(handle: "family-matching") = null`
+  - `collectionByHandle(handle: "matching-outfits")` returned collection ID `gid://shopify/Collection/377555589`
+- Confirmed public URL resolution:
+  - `https://dresslikemommy.com/collections/family-matching` -> `https://www.dresslikemommy.com/collections/matching-outfits`
+  - `https://dresslikemommy.com/collections/family-matching-outfits` -> `https://www.dresslikemommy.com/collections/matching-outfits`
+- Applied Admin GraphQL `collectionUpdate` to `gid://shopify/Collection/377555589` with new `seo.title`, `seo.description`, and `descriptionHtml`.
+  - Result: `userErrors = []`
+- Re-queried Admin GraphQL after the write and confirmed:
+  - `updatedAt = 2026-03-27T04:32:28Z`
+  - stored `seo.title`, `seo.description`, and `descriptionHtml` now match the requested refresh
+- Immediate public storefront fetches to `https://www.dresslikemommy.com/collections/matching-outfits` still returned the previous title, meta description, H1, and first body paragraph even with a cache-bypass query string plus `Cache-Control: no-cache`, which points to storefront/cache propagation lag rather than a failed Admin mutation.
+- Verified local theme fallback file now contains the new collection display/meta fallback values for the matching-outfits family handle group.
+
+Open items:
+- The public storefront has not yet converged to the new Admin SEO/body content. If the page still serves the prior HTML after propagation time, the next step should be a logged-in Admin save/re-publish touch on the collection to force storefront invalidation.
+- The live Admin SEO title, meta description, and body copy are updated now, but the live visible `<h1>` will not change until the theme fallback patch in `snippets/collection-seo-fallback.liquid` is deployed.
+- If the operator still wants a literal rich-text heading block despite the duplicate-H1 risk, that should be an explicit follow-up decision rather than an implicit Admin edit.
+
+### Task: Mother Daughter Matching Dresses live collection creation
+Date: 2026-03-27 00:35:03 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-mother-daughter-matching-dresses-live-collection
+Changes:
+- Shopify Admin collection `mother-daughter-matching-dresses` on store `dresslikemommy-com`
+  - Confirmed no existing live collection matched the requested exact intent:
+    - `collections(query: "handle:mother-daughter-matching-dresses")` returned `0` matches
+    - `collections(query: "title:\"Mother Daughter Matching Dresses\"")` returned `0` matches
+  - Created a new automated collection with:
+    - title `Mother Daughter Matching Dresses`
+    - handle `mother-daughter-matching-dresses`
+    - SEO title and meta description set to the requested values
+    - new collection description HTML focused on weddings, family photos, Easter, and everyday mommy-and-me dress shopping
+  - Mirrored the existing live `dresses` collection merchandising logic instead of inventing a new rule set:
+    - sort order `CREATED_DESC`
+    - automated OR rules for tags `Formal Dresses`, `Maxi Dresses`, `Midi Dresses`, `Mini Dresses`, `Sweater Dresses`, `Sundresses`, `Jumpsuits`
+  - Published the new collection to the same `8` sales-channel publications already used by the live `dresses` collection after confirming the initial create left it unpublished.
+- `ops/content/collection-admin-mother-daughter-matching-dresses-2026-03-27.json`
+  - Added a repo-side artifact with the request brief, source-rule snapshot, new collection payload, publication IDs, and final Admin/storefront verification.
+
+Why:
+- The request was to create a dedicated live Shopify Admin landing page for the mother-daughter dress query cluster, not to reuse the generic `dresses` collection alone.
+- Live Admin evidence showed the exact intent did not already exist as a separate collection, while the current `dresses` collection already held the right product set (`110` products) for this search angle.
+- Publishing had to be handled explicitly because the initial `collectionCreate` left the new collection off all publications, which caused the storefront URL to return `404` until the publication step was completed.
+
+Verification:
+- Queried Admin GraphQL before the write and confirmed:
+  - no collection existed for handle `mother-daughter-matching-dresses`
+  - no collection existed with title `Mother Daughter Matching Dresses`
+  - the source `dresses` collection used `CREATED_DESC` sort order, no collection image, and `110` matching products
+- Checked live product eligibility before mirroring the rule set:
+  - the existing dress-rule product pool returned `110` products
+  - all `110` already carry the `Mommy and Me` tag, so the duplicated dress rule set remains aligned with the mother-daughter intent
+- Created the collection through Admin GraphQL `collectionCreate`.
+  - New collection ID: `gid://shopify/Collection/353856946273`
+- Re-queried immediately after creation and observed transient Shopify post-create state:
+  - `productsCount = 0`
+  - `publishedOnCurrentPublication = false`
+  - `resourcePublicationsCount = 0`
+- Polled the smart-collection rule index and confirmed it converged to:
+  - `productsCount = 110`
+- Queried `resourcePublicationsV2` on the source `dresses` collection, copied its `8` publication IDs, and applied them to the new collection via Admin GraphQL `publishablePublish`.
+  - Result after publish: `publishedOnCurrentPublication = true`, `resourcePublicationsCount = 8`, `userErrors = []`
+- Verified the public storefront after publication:
+  - `https://www.dresslikemommy.com/collections/mother-daughter-matching-dresses` returns `HTTP/2 200`
+  - rendered `<title>`: `Mother Daughter Matching Dresses — Mom and Me Dress Sets – Dress Like Mommy`
+  - rendered meta description matches the requested copy
+  - canonical points to `/collections/mother-daughter-matching-dresses`
+
+Open items:
+- The new collection currently has no collection image, matching the source `dresses` collection. Add one later if the merchant wants stronger collection-grid presentation or richer image search coverage.
+- The collection intentionally duplicates the generic `dresses` rule set for SEO intent capture. If merchandising later needs a narrower mother-daughter-only subset than the current `110` products, the next step should be retagging or converting this landing page to a manual collection rather than weakening the SEO copy.
+
+### Task: Live Shopify Admin Hawaiian collection creation + Hawaiian tag rollout
+Date: 2026-03-27 00:36:29 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-live-hawaiian-collection-admin
+Changes:
+- Shopify Admin collections on store `dresslikemommy-com`
+  - Created new automated collection `Matching Hawaiian Outfits for Family` with handle `matching-hawaiian-outfits` and collection ID `gid://shopify/Collection/353857077345`.
+  - Set the rule set to exact tag match `hawaiian` (`TAG EQUALS hawaiian`).
+  - Added a two-paragraph SEO description targeting:
+    - `matching hawaiian shirt and dress`
+    - `father son matching hawaiian shirts`
+    - `matching hawaiian outfits for family`
+    - `matching family hawaiian outfits`
+    - supporting phrasing including `matching hawaiian shirts`, `tropical family outfits`, `father son aloha shirts`, and `matching floral dress and shirt set`
+  - Set SEO title to `Matching Hawaiian Outfits for Family — Shirts, Dresses & Tropical Sets`.
+  - Set SEO meta description to `Shop matching Hawaiian outfits for the whole family. Coordinated floral shirts for dad and son, matching aloha dresses for mom and daughter. Free shipping.`
+  - Published the collection to the same `8` live sales-channel publications already used by `family-sets`:
+    - `Online Store`
+    - `Buy Button`
+    - `Point of Sale`
+    - `Google & YouTube`
+    - `Facebook & Instagram`
+    - `Pinterest`
+    - `TikTok`
+    - `n8n Integration`
+- Shopify Admin products
+  - Added the tag `hawaiian` to `26` live products selected from repo evidence where the product `handle`, `title`, or current `tags` already contained `hawaiian`, `tropical`, `aloha`, or `hawaii`.
+  - Status split for the tagged set:
+    - `15` `ACTIVE`
+    - `11` `ARCHIVED`
+  - The explicit requested handles were both tagged:
+    - `family-matching-hawaiian-shirt-and-floral-dress` is `ACTIVE`
+    - `father-son-matching-hawaiian-floral-shirts` is `ARCHIVED`
+
+Why:
+- The request was to create a live Shopify Admin collection for Hawaiian/tropical family outfits and auto-include products through a shared tag rule.
+- I constrained the tagging pass to repo-backed product identity fields (`handle`, `title`, `tags`) instead of body-copy keyword hits so unrelated products that merely mention tropical styling would not be over-tagged.
+- Shopify automated collections are condition-based; the requested named products therefore had to be included by the `hawaiian` tag path rather than as separate manual picks.
+
+Verification:
+- Queried Admin GraphQL before the write and confirmed no existing collection matched handle `matching-hawaiian-outfits`.
+- Queried `products_export_1 2_IMPORT_READY.csv` and refined the Hawaiian/tropical candidate set to `26` handles using only `handle`, `title`, and `tags`.
+- Applied `tagsAdd` successfully to all `26` live products with no GraphQL `userErrors`.
+- Created the collection through Admin GraphQL `collectionCreate`.
+- Re-queried the collection after create/publish and confirmed:
+  - handle `matching-hawaiian-outfits`
+  - rule set `TAG EQUALS hawaiian`
+  - `productsCount = 26`
+  - `resourcePublications = 8`
+  - requested SEO title and meta description are stored exactly in Admin
+- Public storefront verification:
+  - `https://www.dresslikemommy.com/collections/matching-hawaiian-outfits` returns `HTTP/2 200`
+  - rendered `<title>` contains `Matching Hawaiian Outfits for Family — Shirts, Dresses & Tropical Sets`
+  - rendered meta description matches the requested copy
+  - canonical points to `/collections/matching-hawaiian-outfits`
+
+Open items:
+- One of the requested products, `father-son-matching-hawaiian-floral-shirts`, is currently `ARCHIVED` in Shopify Admin. It is tagged and in the collection rule pool, but it will not surface on the storefront until the product is reactivated/published.
+- The new collection currently has no collection image. Add one later if the merchant wants stronger collection-grid presentation or richer image-search coverage.
+
+### Task: Homepage/internal-link rollout for Hawaiian, vacation, and mother-daughter collections
+Date: 2026-03-27 00:40:34 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-homepage-pdp-internal-links-new-collections
+Changes:
+- `templates/index.json`
+  - Expanded the homepage SEO rich-text block so the server-rendered copy now links to:
+    - `matching-hawaiian-outfits`
+    - `matching-family-vacation-outfits`
+    - `mother-daughter-matching-dresses`
+  - Added a new homepage `collection-list` section keyed as `collection_list_seasonal_matching` directly below the SEO rich-text block.
+  - Configured that new section to surface the three target collection cards with descriptive collection-title anchors instead of generic CTA text.
+- `snippets/product-internal-links.liquid`
+  - Added a new server-rendered PDP snippet that checks `product.collections` membership and injects contextual internal-link copy for:
+    - `matching-hawaiian-outfits`
+    - `matching-family-vacation-outfits`
+    - `mother-daughter-matching-dresses`
+  - Kept the logic collection-driven so the links only appear on relevant products and automatically cover the Hawaiian/vacation PDP cluster already assigned to those collections.
+- `sections/main-product.liquid`
+  - Wired the new PDP internal-link snippet into the existing product description block path so the links render immediately after the sanitized product description HTML.
+- Shopify Admin `main-menu`
+  - Updated the live `FAMILY MATCHING` menu item to include child collection links for:
+    - `Hawaiian & Tropical` -> `/collections/matching-hawaiian-outfits`
+    - `Vacation Outfits` -> `/collections/matching-family-vacation-outfits`
+    - `Mother Daughter Matching Dresses` -> `/collections/mother-daughter-matching-dresses`
+  - Preserved the existing family-category children under that same dropdown:
+    - `Family Matching Sets`
+    - `T-Shirts`
+    - `Pajamas`
+    - `Sweaters & Coats`
+    - `Swimsuits`
+
+Why:
+- The new collection landing pages already existed in Shopify Admin from the earlier collection-creation sessions, but the homepage and PDP template paths still were not funneling crawlable internal links to them.
+- The live `main-menu` still exposed `FAMILY MATCHING` as a flat top-level item with no child links, so the nav portion of the request had to be handled in Admin rather than only in theme code.
+- Using collection membership for PDP internal links avoids hardcoding individual product handles and automatically covers the requested Hawaiian-family products already included in the new collections.
+
+Verification:
+- Parsed the auto-generated homepage template after the edit by stripping the comment header and loading the JSON successfully:
+  - `collection_list_seasonal_matching` exists
+  - it is placed at order index `2`, directly after `rich_text_homepage_seo`
+  - the rich-text HTML contains `/collections/matching-hawaiian-outfits`
+- Confirmed the PDP example cluster is eligible for the new collection-driven links via Admin GraphQL:
+  - `family-matching-hawaiian-shirt-and-floral-dress`
+  - `tropical-vibes-matching-family-hawaiian-shirt-and-floral-dress`
+  - `family-matching-beach-dress-and-shirt-set-light-blue-floral-hawaiian-print`
+  - all currently belong to both `matching-hawaiian-outfits` and `matching-family-vacation-outfits`
+- Applied Shopify Admin GraphQL `menuUpdate` to `gid://shopify/Menu/131032517` with `userErrors = []`.
+- Re-queried the stored menu payload and confirmed `FAMILY MATCHING` now contains the requested new collection children plus the preserved legacy family subcategories.
+
+Open items:
+- The homepage section and PDP snippet changes are repo-side only until this theme version is pushed to Shopify; the nav update is already live in Admin.
+- The three collections still have no collection images, so the new homepage card row will render as text-first cards unless collection images are added later.
+
+### Task: Desktop CWV hardening for homepage, collections, and PDP
+Date: 2026-03-27 00:45:11 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-desktop-cwv-hardening
+Changes:
+- `layout/theme.liquid`
+  - Added a product-page `<link rel="preload" as="image">` hint for the selected/featured PDP media preview image so the likely LCP image is discoverable from the head before the parser reaches the gallery markup.
+  - Tightened the existing `gtag.js` de-duplication guard so Shopify/web-pixel attempts to load multiple Google `gtag/js` resources (`G-*`, `AW-*`, `GT-*`) now collapse to a single library fetch while preserving load/error signaling for later insertions.
+- `snippets/buy-buttons.liquid`
+  - Added a `product-form__buttons--with-dynamic-checkout` state class and wrapped `{{ form | payment_button }}` in a dedicated `product-form__dynamic-checkout` container.
+- `assets/section-main-product.css`
+  - Reserved vertical space for the dynamic checkout block (`min-height`) so the portable-wallet / “More payment options” UI can hydrate without shifting the add-to-cart area.
+  - Updated the disabled-state selector so the wrapper change does not break the existing disabled styling path for dynamic checkout buttons.
+
+Why:
+- The requested desktop CWV pass targeted:
+  - `https://www.dresslikemommy.com/`
+  - `https://www.dresslikemommy.com/collections/swimsuits`
+  - `https://www.dresslikemommy.com/collections/family-matching`
+  - `https://www.dresslikemommy.com/products/elegant-matching-family-outfits-light-blue-halter-dresses-casual-t-shirt-set-for-summer`
+- Google’s public PageSpeed API was quota-exhausted from this shell at execution time (`429 RESOURCE_EXHAUSTED`), so I used desktop Lighthouse runs in local Chrome against the live URLs to capture the actionable lab-side issues.
+- Those runs showed the homepage and sampled collection pages are already fast in lab, while the sampled PDP is the clear outlier:
+  - homepage: performance `0.96`, `CLS 0.11`, repeated wasted JS from Google tags / Meta / Shopify web pixels
+  - `/collections/swimsuits`: performance `0.99`, root document response time noted, repeated wasted JS from Google tags / Shopify web pixels
+  - `/collections/family-matching`: performance `0.99`, repeated wasted JS from Google tags / Shopify web pixels
+  - sampled PDP: performance `0.68`, `LCP 2.6s`, `CLS 0.324`, `unused-javascript` savings `355 KiB`
+- PDP-specific Lighthouse evidence pointed to two repo-fixable causes:
+  - LCP element is the primary gallery image (`div.product-media-container ... img.image-magnify-none`)
+  - largest layout shift is the product info / add-to-cart area while dynamic checkout hydrates (`ADD TO CART` / `More payment options`)
+- Network evidence also showed redundant Google `gtag.js` fetches for `G-N4EQNK0MMB`, `AW-853411529`, and `GT-WRH8Q3MD`, which is wasted script weight on all sampled URLs.
+
+Verification:
+- Live desktop Lighthouse runs in local Chrome completed for all four URLs before the code edits:
+  - homepage: score `0.96`
+  - `/collections/swimsuits`: score `0.99`
+  - `/collections/family-matching`: score `0.99`
+  - sampled PDP: score `0.68`
+- PDP diagnostic highlights from the Lighthouse report:
+  - `unused-javascript` top contributors included:
+    - `gtag/js?id=G-N4EQNK0MMB`
+    - `gtag/js?id=AW-853411529`
+    - `gtag/js?id=GT-WRH8Q3MD`
+    - `portable-wallets.en.js`
+  - `layout-shifts` top element:
+    - `div.product > div.product__info-wrapper > product-info ...`
+    - node label: `ADD TO CART / More payment options`
+  - `lcp-discovery-insight` identified the hero PDP gallery image as the LCP node.
+- `shopify theme check --path . --output json --fail-level error`
+  - No new errors were introduced in the touched files.
+  - Current repo still has pre-existing unrelated errors/warnings (for example `snippets/cjpod.liquid`, locale translation gaps, and `snippets/product-schema-extra.liquid`), plus a non-blocking preload warning on the new head image hint in `layout/theme.liquid`.
+
+Open items:
+- The CWV code changes are repo-side only until pushed to Shopify / previewed on a theme URL; no post-change Lighthouse rerun was possible against the live URLs in this session.
+- If the next preview run still shows poor PDP desktop CLS, the next likely lever is product-template configuration rather than Liquid/CSS plumbing: disable dynamic checkout (`show_dynamic_checkout`) on `templates/product.json` to remove the portable-wallet script path entirely.
+- If duplicate Google script fetches still appear in preview after deploy, inspect the Shopify web-pixels bundle behavior in the preview HTML to confirm the generalized `gtag.js` guard is intercepting the `AW-*` / `GT-*` insertions as expected.
+
+### Task: GSC 404 product redirect execution from Coverage drilldown export
+Date: 2026-03-27 00:53:44 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-gsc-404-product-redirect-execution
+Changes:
+- `ops/scripts/build_gsc_product_404_redirects.py`
+  - Added a reusable generator for Search Console `Not found (404)` drilldown exports.
+  - Reads the exported `Table.csv`, emits Shopify `Redirect from` / `Redirect to` CSV output, and logs ignored URLs separately.
+  - Excludes:
+    - locale-prefixed URLs
+    - parameterized URLs
+    - non-product URLs
+    - product handles that are still `ACTIVE` in Shopify
+  - Supports optional inclusion of `/collections/.../products/...` paths from the export.
+  - Uses live Shopify product status lookup so archived/missing product handles are redirected while active handles are skipped.
+  - Normalizes any mommy-and-me-targeted rows to `/collections/matching-outfits` because Shopify still has an explicit URL redirect record on `/collections/mommy-and-me`, which causes `Target can't redirect to another redirect` failures during redirect creation.
+- `ops/content/seo/gsc-product-404-redirects-2026-03-27.csv`
+  - Generated the live redirect batch from the user-provided GSC export.
+- `ops/content/seo/gsc-product-404-ignored-2026-03-27.csv`
+  - Logged the export rows intentionally excluded from redirect creation.
+- Shopify URL redirects on store `dresslikemommy-com`
+  - Executed the GSC-driven redirect batch.
+  - Result:
+    - `150` rows total
+    - `4` created
+    - `33` replaced
+    - `113` unchanged
+  - Target distribution in the generated batch:
+    - `41` -> `/collections/christmas-pajamas`
+    - `31` -> `/collections/dresses`
+    - `13` -> `/collections/matching-outfits`
+    - `9` -> `/collections/daddy-and-me`
+    - `7` -> `/collections/family-sweaters`
+    - `6` each -> `/collections/family-sets`, `/collections/family-tops`, `/collections/jumpsuits`
+    - `5` each -> `/collections/christmas-sweaters`, `/collections/christmas-tops`, `/collections/pajamas`, `/collections/swimsuits`
+    - `4` each -> `/collections/fall-winter`, `/collections/maternity`
+    - `2` -> `/collections/formal-dresses`
+    - `1` -> `/collections/family-pajamas`
+- Shopify URL redirects on store `dresslikemommy-com`
+  - Earlier in the same session, before the user supplied the actual GSC export, executed a smaller fallback festive batch from `ops/redirect_audit/gone_candidates.csv`:
+    - source CSV: `ops/content/seo/product-404-redirects-2026-03-27.csv`
+    - result: `37` rows total = `18` created + `3` replaced + `16` unchanged
+  - The later GSC-derived batch superseded that inferential pass and preserved the overlapping festive fixes.
+
+Why:
+- The original request was to create redirects for deleted product 404s after Markets cleanup, but authenticated GSC access was not available directly in this shell.
+- The user then provided the actual Search Console Coverage drilldown export files locally, which made it possible to execute from real GSC evidence instead of inferred repo-side candidates.
+- Locale-prefixed URLs were intentionally excluded because they are expected to self-resolve after the Markets cleanup and should not be redirected prematurely.
+- Parameterized URLs were intentionally excluded because the base product redirect/live URL is the canonical fix path.
+
+Verification:
+- Read local GSC export files:
+  - `/Users/fsuels/Downloads/dresslikemommy.com-Coverage-Drilldown-2026-03-27/Metadata.csv`
+  - `/Users/fsuels/Downloads/dresslikemommy.com-Coverage-Drilldown-2026-03-27/Table.csv`
+- Confirmed metadata:
+  - `Sitemap = All known pages`
+  - `Issue = Not found (404)`
+- Parsed the provided export into these buckets:
+  - `388` locale-prefixed rows
+  - `435` parameterized rows
+  - `14` non-product rows
+  - `7` product-path rows tied to still-`ACTIVE` handles
+  - emitted redirect rows:
+    - `103` base `/products/...` paths
+    - `47` `/collections/.../products/...` paths
+- Verified the one active base-product handle in the GSC export was:
+  - `/products/mommy-and-me-matching-rainbow-stripe-midi-dresses`
+  - It was skipped rather than redirected.
+- Verified the live target collection paths return `200` on the storefront.
+- Queried Shopify URL redirects for each target collection path and found an exact redirect record on:
+  - `/collections/mommy-and-me` -> `/collections/matching-outfits`
+  - updated the generator accordingly, then reran the batch.
+- Dry-run after the target normalization:
+  - `python3 ops/scripts/apply_blog_consolidation_redirects.py --input ops/content/seo/gsc-product-404-redirects-2026-03-27.csv`
+  - result: `150` rows total = `4` create + `33` replace + `113` unchanged
+- Live execute:
+  - `python3 ops/scripts/apply_blog_consolidation_redirects.py --input ops/content/seo/gsc-product-404-redirects-2026-03-27.csv --execute`
+  - result: `150` rows total = `4` created + `33` replaced + `113` unchanged
+- Post-execute idempotence check:
+  - `python3 ops/scripts/apply_blog_consolidation_redirects.py --input ops/content/seo/gsc-product-404-redirects-2026-03-27.csv`
+  - result: `150` rows total = `150` unchanged
+
+Open items:
+- The redirect work is complete in Shopify Admin, but this shell still does not have authenticated Google Search Console access, so `Validate fix` could not be clicked here.
+- Next operator step in GSC:
+  - open `Page indexing -> Not found (404)` and click `Validate fix`
+- Locale-prefixed market-path URLs (`/fr/`, `/es/`, `/en-fr/`, `/en-au/`, etc.) were intentionally left out of the redirect batch; recheck those after the Markets cleanup propagates and after GSC revalidation starts.
+
+### Task: GA4 tag diagnostics audit for untagged pages
+Date: 2026-03-27 00:57:34 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-ga4-tag-diagnostics-audit
+Changes:
+- No storefront theme code changed in this pass.
+- Logged a repo + live-browser audit of GA4 coverage for theme templates, hosted checkout, and other hosted surfaces relevant to the GA4 Admin "Some of your pages are not tagged" diagnostic.
+
+Findings:
+- `layout/theme.liquid`
+  - Hardcodes `window.dlmAnalyticsContext.ga4_measurement_id = 'G-N4EQNK0MMB'`.
+  - Defines `window.gtag`, queues a fallback `gtag('config', 'G-N4EQNK0MMB', { send_page_view: false, site_language: ... })`, and renders `{{ content_for_header }}`.
+  - Also includes the `gtag.js` duplicate-script guard added earlier in the CWV pass.
+- Theme template inheritance:
+  - All standard storefront JSON templates (`index`, `product`, `collection`, `search`, `cart`, `404`, articles/blog/pages, customer JSON templates) inherit `layout/theme.liquid` unless they explicitly override layout.
+  - `templates/password.json` is the one explicit alternate layout and uses `layout/password.liquid`.
+  - `templates/gift_card.liquid` uses `{% layout none %}` and relies on `{{ content_for_header }}` rather than `layout/theme.liquid`.
+- 404 coverage:
+  - `templates/404.json` uses the default layout path, so it inherits `layout/theme.liquid`.
+  - Live browser verification against `https://www.dresslikemommy.com/this-path-should-404-ga4-network-check-2` returned `HTTP 404` and still loaded `gtag/js?id=G-N4EQNK0MMB`, plus emitted a GA4 `page_view` hit to `https://analytics.google.com/g/collect?...tid=G-N4EQNK0MMB...`.
+- Live storefront routes verified in headless Chromium:
+  - `/`
+  - `/products/elegant-matching-family-outfits-light-blue-halter-dresses-casual-t-shirt-set-for-summer`
+  - `/collections/swimsuits`
+  - `/search?q=matching`
+  - `/cart`
+  - each loaded `gtag/js?id=G-N4EQNK0MMB` and emitted a GA4 `page_view` request for `G-N4EQNK0MMB`.
+- Hosted checkout verification:
+  - Added a live product variant to cart via permalink and landed on hosted checkout at `/checkouts/cn/.../en-us`.
+  - Observed checkout loading `gtag/js?id=G-N4EQNK0MMB`.
+  - Observed GA4 requests for `page_view`, plus checkout ecommerce events (`add_to_cart` and `begin_checkout`) on `analytics.google.com/g/collect`.
+  - Based on runtime evidence, no checkout-side GA4 insertion was missing on the accessible checkout step, so no `Additional scripts` change was applied.
+- Password template:
+  - `layout/password.liquid` renders `{{ content_for_header }}` but does not include the explicit GA4 bootstrap/fallback block present in `layout/theme.liquid`.
+  - The live store is not password protected, so `/password` redirects to `/` and the real password template could not be runtime-verified in this session.
+- Gift card template:
+  - `templates/gift_card.liquid` is another alternate analytics path worth remembering for future audits because it bypasses `layout/theme.liquid`.
+  - Runtime verification was not possible in this session without a live gift-card URL.
+- App-generated surfaces:
+  - Repo search found Judge.me app blocks embedded in `templates/product.json`; live product pages load the Judge.me extension loader inside an already-tagged product template.
+  - No SaleSmartly footprint was found in the repo or in rendered homepage HTML during this pass.
+  - No separate app-proxy review/chat pages were discovered from repo evidence alone.
+- Customer accounts:
+  - Testing `https://www.dresslikemommy.com/account/login` redirected to hosted customer accounts on `account.dresslikemommy.com`, not the theme customer JSON templates.
+  - No GA4 tag or `g/collect` request was observed on the tested hosted auth/OAuth surface.
+  - If GA4 diagnostics are counting customer-account pages, that issue is outside Liquid/theme control.
+- Thank-you / order-status:
+  - Could not be verified without a valid post-purchase URL from a real or test order.
+
+Why:
+- The reported GA4 Admin diagnostic suggested missing tags, but direct repo inspection plus live browser-network traces show the primary storefront pages and the accessible hosted checkout step are tagged and sending GA4 hits for `G-N4EQNK0MMB`.
+- The remaining plausible sources for the diagnostic are hosted/admin-controlled surfaces (`account.dresslikemommy.com`, thank-you/order-status) or inactive alternate layouts that could not be rendered live in this session (`password`, `gift_card`).
+
+Verification:
+- Repo inspection:
+  - `rg -n "G-N4EQNK0MMB|gtag\\(|googletagmanager|content_for_header" layout templates sections snippets assets config`
+  - confirmed explicit GA4 logic in `layout/theme.liquid` and alternate-layout handling in `layout/password.liquid` / `templates/gift_card.liquid`.
+- Live browser verification:
+  - Used headless Chromium via the globally installed Playwright package to capture network requests on live URLs.
+  - Confirmed `gtag/js?id=G-N4EQNK0MMB` loads and GA4 `page_view` hits fire to `analytics.google.com/g/collect` on home, 404, PDP, collection, search, cart, and hosted checkout.
+- Storefront HTML spot-checks:
+  - Confirmed rendered HTML for public storefront routes contains `G-N4EQNK0MMB`.
+
+Open items:
+- To close the audit fully, verify a real thank-you / order-status page URL from a test order and inspect its network requests for `G-N4EQNK0MMB`.
+- If GA4 Admin continues to flag untagged pages, inspect hosted customer-account pages and Shopify customer-events / Google sales-channel configuration before changing theme Liquid.
+- If the merchant ever re-enables storefront password protection or wants gift-card-specific assurance, re-run runtime checks against active password/gift-card URLs because those layouts do not currently include the explicit GA4 fallback block present in `layout/theme.liquid`.
+
+### Task: High-traffic zero-converting collection optimization
+Date: 2026-03-27 01:17:47 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-high-traffic-zero-converting-collection-optimization
+Changes:
+- Shopify Admin collections on store `dresslikemommy-com`
+  - Audited these underperforming handles live via Admin GraphQL:
+    - `matching-couples-t-shirts`
+    - `matching-outfits`
+    - `dresses`
+    - `new-matching-outfits`
+    - `skirts`
+  - Audited these converting comparison handles live via Admin GraphQL:
+    - `swimsuits`
+    - `daddy-me`
+    - `new-women-outfits`
+  - Updated live collection sort order from `CREATED_DESC` to `BEST_SELLING` for:
+    - `matching-outfits`
+    - `dresses`
+    - `new-matching-outfits`
+  - Left `matching-couples-t-shirts` unchanged because it was already `BEST_SELLING`.
+  - Left `skirts` unchanged because the live storefront page is currently empty and needs assortment cleanup before further merchandising.
+- `snippets/collection-merchandising-callout.liquid`
+  - Added a collection-page merchandising module for:
+    - `matching-couples-t-shirts`
+    - `matching-outfits`
+    - `dresses`
+    - `new-matching-outfits`
+  - The module adds:
+    - a visible value/price headline
+    - a short conversion-oriented intro
+    - CTA buttons into the product grid / related collections
+    - a banner image fallback using the collection image when present, otherwise the first live product image
+- `sections/main-collection-banner.liquid`
+  - Rendered the new collection merchandising callout directly under the collection description so the target pages get a stronger first screen without changing every collection.
+- `snippets/collection-empty-recovery.liquid`
+  - Added a dead-page recovery module for empty `skirts` pages with direct links into active related collections.
+- `sections/main-collection-product-grid.liquid`
+  - Rendered the new empty-collection recovery module inside the empty-state branch.
+- `templates/collection.json`
+  - Added `skirts` to the dress styling-guide handle list so the empty skirt page still gets relevant editorial/internal-link support.
+- `templates/index.json`
+  - Added a new homepage `collection-list` section, `collection_list_growth_collections`, linking to:
+    - `matching-outfits`
+    - `new-matching-outfits`
+    - `matching-couples-t-shirts`
+    - `dresses`
+  - Intentionally did not add `skirts` to the homepage because the live page is currently a dead end.
+
+Findings:
+- Product count is not the main issue on most underperformers:
+  - `matching-couples-t-shirts`: `15` products
+  - `matching-outfits`: `546` products
+  - `dresses`: `110` products
+  - `new-matching-outfits`: `370` products
+  - `skirts`: `2` products in Admin, but both audited sample products were `ARCHIVED`
+- Image quality is broadly comparable across the audited sample products; the standout gap is collection-level merchandising, not missing product photography.
+  - All audited collections in both the converting and underperforming sets currently lack a dedicated Shopify collection image.
+  - The current theme template also has `show_collection_image: false`, so collection banner imagery was effectively absent on the live collection pages before this pass.
+- Sorting was the clearest collection-level difference that could be improved quickly:
+  - `swimsuits` was already `MANUAL`
+  - `matching-couples-t-shirts` was already `BEST_SELLING`
+  - `matching-outfits`, `dresses`, and `new-matching-outfits` were still `CREATED_DESC` before the live update
+- `matching-couples-t-shirts` does not look blocked by stock, price, or variant depth:
+  - first audited `12` products were all `ACTIVE`
+  - no out-of-stock variants were found in the audited sample
+  - average variants per audited product: `22.5`
+  - audited price floor: `$15.00` per shirt
+- `skirts` is effectively a dead page:
+  - Admin audit still found the collection record, but the public storefront HTML returned `No products found`
+  - The collection should be treated as an assortment cleanup / redirect candidate, not as a page to send more homepage traffic toward right now
+
+Why:
+- The underperformers mostly had enough products and in-stock variants already, so the faster win was improving collection-page merchandising and discovery rather than pretending the issue was only SKU count.
+- `skirts` is a separate case because the live page is empty; routing shoppers to adjacent live collections is safer than amplifying traffic to an empty catalog page.
+
+Verification:
+- Live Admin GraphQL audit confirmed:
+  - `matching-couples-t-shirts`: `BEST_SELLING`, `15` products
+  - `matching-outfits`: `CREATED_DESC -> BEST_SELLING`
+  - `dresses`: `CREATED_DESC -> BEST_SELLING`
+  - `new-matching-outfits`: `CREATED_DESC -> BEST_SELLING`
+  - `skirts`: `CREATED_DESC`, `2` products in Admin, but storefront empty
+- Live storefront fetches confirmed:
+  - `https://www.dresslikemommy.com/collections/skirts` rendered `No products found`
+  - `https://www.dresslikemommy.com/collections/matching-couples-t-shirts` rendered a populated product grid
+- JSON sanity checks:
+  - `tail -n +10 templates/index.json | jq empty`
+  - `tail -n +10 templates/collection.json | jq empty`
+- `shopify theme check --fail-level error` still reports pre-existing repo-wide issues in unrelated files/locales; no new syntax failures tied to the edited collection files were identified in this pass.
+
+Open items:
+- If the merchant wants true collection-specific banner art instead of the current first-product-image fallback, upload dedicated collection images in Shopify Admin for:
+  - `matching-couples-t-shirts`
+  - `matching-outfits`
+  - `dresses`
+  - `new-matching-outfits`
+- `skirts` should be either:
+  - repopulated with active products and real skirt-relevant rules, or
+  - redirected / removed from navigation once the merchant confirms it is no longer a viable collection
+- If the merchant wants a tighter first page than raw `BEST_SELLING`, the next step should be manual curation or a review-count-aware manual sort for the three updated collections.
+
+### Task: Collection image upload + skirts retirement
+Date: 2026-03-27 01:32:28 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-collection-images-uploaded-skirts-retired
+Changes:
+- Shopify Admin collections on store `dresslikemommy-com`
+  - Uploaded live collection images for the four promoted underperformers by setting the collection image directly from existing Shopify CDN product imagery:
+    - `matching-couples-t-shirts`
+      - image now points to `Matching-Couple-T-Shirt-LO-VE-Couples.jpg`
+      - alt text: `Couple wearing matching graphic t-shirts from Dress Like Mommy`
+    - `matching-outfits`
+      - image now points to `pomelli-image_9.png`
+      - alt text: `Family matching outfits collection featuring coordinated floral dresses`
+    - `dresses`
+      - image now points to `pomelli-image_9_53ae1b56-d998-4d8b-8701-d2ff725d3c36.png`
+      - alt text: `Mom and daughter wearing matching floral maxi dresses from Dress Like Mommy`
+    - `new-matching-outfits`
+      - image now points to `pomelli-image_10_65b79c0e-f6d0-44da-a9ad-20287d313b9d.png`
+      - alt text: `New mommy and me matching outfits featuring floral jumpsuits`
+- Shopify Admin navigation
+  - Updated the `bottoms` menu to remove the `Skirts` item so navigation no longer points into the retired collection path.
+- Shopify Admin collection retirement
+  - Renamed the live collection handle from `skirts` to `skirts-archived` with `redirectNewHandle: false` so the original storefront path was freed intentionally instead of being auto-redirected to another collection handle.
+  - Unpublished `skirts-archived` from all `8` currently published sales-channel publications:
+    - `Online Store`
+    - `Buy Button`
+    - `Point of Sale`
+    - `Google & YouTube`
+    - `Facebook & Instagram`
+    - `Pinterest`
+    - `TikTok`
+    - `n8n Integration`
+- Shopify URL redirects
+  - Created a live storefront redirect:
+    - `/collections/skirts` -> `/collections/dresses`
+
+Why:
+- The prior pass confirmed these four high-traffic collections had no dedicated Shopify collection images, which weakened homepage/category-card presentation and reduced the value of the new collection callout module when deployed.
+- The prior audit also confirmed `skirts` was a dead storefront page, so keeping it published and linked in navigation had no merchandising upside.
+
+Verification:
+- Re-queried Admin GraphQL after the image updates and confirmed all four target collections now return non-null `image.url` and the intended `image.altText`.
+- Re-queried Admin GraphQL after retirement and confirmed:
+  - `collectionByHandle(handle: "skirts") = null`
+  - `collectionByHandle(handle: "skirts-archived")` exists
+  - `resourcePublicationsCount = 0` on `skirts-archived`
+- Re-queried Admin GraphQL menus and confirmed the `bottoms` menu now contains only:
+  - `Leggings`
+  - `Pants`
+- Verified the public storefront redirect with:
+  - `curl -I -L -s https://www.dresslikemommy.com/collections/skirts`
+  - result:
+    - `HTTP/2 301`
+    - `location: /collections/dresses`
+    - followed by `HTTP/2 200` on `/collections/dresses`
+
+Open items:
+- The uploaded collection images are now stored live in Shopify Admin, but the full visual payoff on collection hero/callout layouts still depends on the theme version with the new collection merchandising module being deployed.
+- If the merchant later wants a bespoke lifestyle banner instead of product-derived collection imagery, replace these stopgap collection images with purpose-built art rather than reverting to blank collection-image fields.
+
 ### Task: GA4 missing ecommerce events hardening
 Date: 2026-03-27 13:22:00 EDT
 AGENT_CONTINUITY_ANCHOR: 2026-03-27-ga4-missing-ecommerce-events
@@ -9881,3 +10670,329 @@ Open items:
   - collection click: confirm `select_item`
   - cart page and drawer: confirm `view_cart` / `remove_from_cart`
   - hosted checkout: confirm `add_shipping_info` fires on shipping-step submit and `add_payment_info` fires on payment-step submit before `purchase`
+
+### Task: Matching-set bundle shopping experience plan
+Date: 2026-03-27 01:21:51 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-matching-set-bundle-plan
+Changes:
+- No storefront theme code changed in this pass.
+- Produced an implementation plan for a matching-set PDP flow that fits the current Dawn-derived theme and existing GA4/dataLayer architecture.
+
+Findings:
+- `sections/main-product.liquid`
+  - Already centralizes PDP taxonomy extraction and exposes product analytics JSON via `#ProductAnalyticsData-*`, which is the right extension point for bundle metadata and child-product variant data.
+  - Has a clear placement option for a custom "Complete the Matching Look" block near the product info / description region.
+- `assets/product-form.js`
+  - Current PDP add-to-cart uses the Dawn `product-form` element and publishes `PUB_SUB_EVENTS.cartUpdate` with `source: 'product-form'` after a successful single-item add.
+  - A matching-set button should not piggyback on this unchanged event payload because it only carries one `productVariantId`; it should use Shopify Ajax cart add with an `items` array and publish a distinct source such as `matching-set-bundle`.
+- `assets/analytics.js`
+  - Current `add_to_cart` tracking is single-item only and built from the main product JSON.
+  - The safest extension is to add a multi-item helper that accepts prebuilt `items[]` plus an explicit `item_list_name` so GA4 can distinguish bundle adds from ordinary PDP adds.
+
+Why:
+- The store’s existing theme already has the primitives needed for a custom matching-set UX without introducing a frontend app widget into the PDP.
+- For this use case, the cleanest implementation path is:
+  - product reference metafields for parent/child linkage
+  - custom Liquid + JS bundle card on the PDP
+  - Shopify Ajax `cart/add.js` multi-item add
+  - optional automatic discount or native bundle product only if merchandising/discount rules require it
+
+Open items:
+- Create product metafield definitions in Shopify Admin for the pairing model:
+  - `custom.matching_child_product` as `Product reference`
+  - optional `custom.matching_parent_product` as `Product reference`
+  - optional `custom.matching_bundle_label` / merchandising copy fields as single-line text
+- Decide discount path before implementation:
+  - simplest: Shopify automatic discount tied to the two matching products or to matching collections
+  - native inventory-aware bundle SKU: Shopify Bundles
+  - heavier merchandising/app-led widgeting: evaluate only if the custom PDP flow is deprioritized
+- When implementing, validate GA4:
+  - `add_to_cart` for the matching-set CTA should send both variants in `ecommerce.items`
+  - include `item_list_name: matching_set_bundle`
+  - keep ordinary single-item PDP adds unchanged
+
+### Task: Collection SEO upgrade for swim, family-outfit, and dress rankings
+Date: 2026-03-27 01:24:10 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-collection-seo-upgrade
+Changes:
+- Updated handle-based collection SEO fallbacks in `snippets/collection-seo-fallback.liquid` for:
+  - `/collections/swimsuits`
+  - `/collections/matching-outfits`
+  - `/collections/dresses`
+  - `/collections/family-swimsuits`
+- Added richer longform supporting copy in `snippets/collection-seo-content.liquid` for:
+  - `matching-outfits`
+  - `dresses`
+  - refreshed `family-swimsuits`
+- Refreshed the swim-specific editorial block in `sections/main-collection-seo.liquid` so the visible copy and internal collection links align to:
+  - `matching family swimsuits`
+  - `mom and daughter matching swimsuits`
+  - `family matching bathing suits`
+- Added collection JSON-LD in a new snippet:
+  - `snippets/collection-schema.liquid`
+  - rendered from `snippets/jsonld-seo.liquid`
+  - outputs `CollectionPage` + `ItemList`
+- Updated `layout/theme.liquid` so force-themed collection SEO titles do not append the shop name, keeping the optimized titles within the requested SERP length target.
+- Strengthened Style Journal internal links in `snippets/style-journal-internal-links.liquid` so swim and dress articles point to the target collections with tighter anchor text such as:
+  - `Matching Family Bathing Suits`
+  - `Mom and Daughter Matching Swimsuits`
+  - `Mother Daughter Matching Dresses`
+- Added a reusable image-alt resolver in `snippets/product-image-alt.liquid` and applied it to indexable product-image surfaces:
+  - `snippets/card-product.liquid`
+  - `snippets/product-media.liquid`
+  - `snippets/product-thumbnail.liquid`
+  - `snippets/product-media-gallery.liquid`
+  - `snippets/product-media-modal.liquid`
+  - `sections/predictive-search.liquid`
+  - `sections/main-article.liquid`
+
+Why:
+- The user’s GSC brief identified weak CTR and poor average positions around three core non-branded clusters:
+  - swim
+  - family outfits
+  - mommy-and-me dresses
+- Repo evidence already showed an existing dedicated collection at `/collections/family-swimsuits`, so creating a second landing-page URL for `matching family bathing suits` would likely create cannibalization instead of improving rankings.
+- The pragmatic fix was to strengthen the existing `family-swimsuits` collection as the dedicated landing page, then use the broader `/collections/swimsuits` page as the main swim hub that funnels users and crawlers into the full-family swim destination.
+
+Verification:
+- Ran `shopify theme check --path . --fail-level error --output json`.
+- Result:
+  - no new Theme Check errors were reported on the newly added snippets:
+    - `snippets/collection-schema.liquid`
+    - `snippets/product-image-alt.liquid`
+  - no new Theme Check errors were reported on the edited collection SEO files:
+    - `snippets/collection-seo-fallback.liquid`
+    - `snippets/collection-seo-content.liquid`
+    - `sections/main-collection-seo.liquid`
+    - `snippets/style-journal-internal-links.liquid`
+    - `snippets/jsonld-seo.liquid`
+  - the command still exits non-zero because the repo already has unrelated pre-existing Theme Check errors and translation gaps in other files, including:
+    - `snippets/cjpod.liquid`
+    - `tmp_products.json`
+    - `sections/email-signup-banner.liquid`
+    - multiple `locales/*.json`
+    - `snippets/product-schema-extra.liquid`
+    - a pre-existing translation-key error on `snippets/product-thumbnail.liquid`
+
+Open items:
+- Deploy and spot-check these URLs on the storefront:
+  - `/collections/swimsuits`
+  - `/collections/family-swimsuits`
+  - `/collections/matching-outfits`
+  - `/collections/dresses`
+- In Google Search Console, request reindexing for the four URLs above after the theme is deployed.
+- No net-new Shopify Page resource was created in this pass. If the merchant still wants a separate `/pages/matching-family-bathing-suits` URL later, treat that as a second-phase decision and weigh it against keyword cannibalization with `/collections/family-swimsuits`.
+
+### Task: Homepage revenue conversion refresh
+Date: 2026-03-27 01:24:56 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-homepage-revenue-conversion-refresh
+Changes:
+- Added a new conversion-first homepage hero in `sections/home-conversion-hero.liquid`:
+  - trust bar above the fold using existing store-approved claims:
+    - `Free Shipping on All Orders`
+    - `30-Day Easy Returns`
+    - `Rated 4.8/5 by 15,200+ families`
+  - direct PDP spotlight cards with `Shop This Look` CTAs
+  - prominent internal links to:
+    - `/collections/swimsuits`
+    - `/collections/daddy-me`
+    - `#most-loved-matching-sets`
+- Added reusable homepage spotlight presentation in:
+  - `snippets/home-spotlight-card.liquid`
+  - `assets/section-home-curation.css`
+- Added a reusable manual product merchandising section in `sections/curated-product-grid.liquid` for the new `Most-Loved Matching Sets` block.
+- Reworked `templates/index.json` so homepage order is now:
+  - conversion hero
+  - seasonal `featured-collection` for `/collections/swimsuits`
+  - `Most-Loved Matching Sets`
+  - seasonal collection links featuring `/collections/swimsuits`, `/collections/daddy-me`, and `/collections/matching-family-vacation-outfits`
+  - existing broader collection-navigation sections lower on the page
+  - newsletter and SEO-rich text moved below the commercial sections
+- Updated homepage collection linking in `templates/index.json`:
+  - repointed the seasonal collection row to `swimsuits`, `daddy-me`, and `matching-family-vacation-outfits`
+  - changed the broader Daddy collection card from `daddy-me-t-shirts` to the canonical `daddy-me` collection
+  - strengthened the lower SEO-rich-text links to include `/collections/swimsuits` and `/collections/daddy-me`
+- Reused the disabled `featured_collection` slot in `templates/index.json` as the new seasonal swim push:
+  - title: `Spring Break & Matching Swimsuits`
+  - copy now also links to `/collections/daddy-me`
+- Because two analytics-provided PDP URLs were no longer usable live, swapped those hero/grid targets to current live equivalents:
+  - replaced retired `/products/mommy-me-spring-flowers-dress` with live spring floral PDP `/products/family-matching-shirt-and-dress-set-yellow-floral-for-a-springtime-look`
+  - replaced 404 `/products/elegant-beige-chiffon-family-matching-dresses` with live canonical PDP `/products/elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits`
+
+Why:
+- The homepage already drove add-to-cart intent but not revenue, so the key fix was to reduce browse friction:
+  - put live PDP shortcuts above the fold
+  - move the only revenue-producing collection landing page (`/collections/swimsuits`) into a dedicated early slot
+  - surface `/collections/daddy-me` earlier because the user-provided engagement data showed strong interest there
+- Repo and live-store evidence showed the prior homepage was category-heavy and SEO-first:
+  - one generic hero CTA
+  - SEO text and collection rows ahead of tighter product merchandising
+- Live URL verification also showed two of the user-provided product-page handles were stale, so shipping those exact URLs into homepage CTAs would have introduced dead or low-intent routes.
+
+Verification:
+- Live storefront URL checks completed before wiring homepage CTAs:
+  - `200`: `/products/mommy-daughter-matching-tie-dye-dress`
+  - `200`: `/products/family-matching-hawaiian-shirt-and-floral-dress`
+  - redirected away from PDP: `/products/mommy-me-spring-flowers-dress` -> `/collections/dresses`
+  - `404`: `/products/elegant-beige-chiffon-family-matching-dresses`
+  - `200`: replacement live PDP `/products/family-matching-shirt-and-dress-set-yellow-floral-for-a-springtime-look`
+  - `200`: replacement live PDP `/products/elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits`
+  - `200`: `/collections/swimsuits`
+  - `200`: `/collections/daddy-me`
+- Parsed the rewritten homepage JSON successfully by stripping the auto-generated header comment and loading the remaining body through Python `json.loads(...)`.
+- Ran `shopify theme check --path . --output json --fail-level error` and isolated the touched files.
+  - Result: `[]`
+  - no Theme Check errors were reported for:
+    - `sections/home-conversion-hero.liquid`
+    - `sections/curated-product-grid.liquid`
+    - `snippets/home-spotlight-card.liquid`
+    - `templates/index.json`
+    - `assets/section-home-curation.css`
+
+Open items:
+- These homepage changes are repo-side only until pushed to Shopify / previewed in the theme customizer.
+- After deploy, manually verify homepage behavior on iPhone Safari widths:
+  - trust bar wraps cleanly
+  - hero product cards scroll cleanly
+  - `#most-loved-matching-sets` anchor lands correctly
+  - `/collections/swimsuits` and `/collections/daddy-me` CTAs are visible without hunting
+- If merchandising later identifies a different live successor for the retired `mommy-me-spring-flowers-dress` PDP, swap that one product handle in `templates/index.json` without needing further section code changes.
+
+### Task: Desktop product page matching-set UX refresh
+Date: 2026-03-27 01:19:05 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-desktop-product-page-matching-set-ux-refresh
+Changes:
+- Added a new desktop-only PDP UX layer for matching-family products:
+  - `snippets/product-desktop-ux.liquid`
+  - `assets/component-product-desktop-ux.css`
+  - `assets/product-desktop-ux.js`
+- Wired the new asset pair into `sections/main-product.liquid` and rendered the snippet directly below the primary buy-buttons block.
+- Replaced the earlier generic trust-badge row under desktop ATC with richer desktop content that now includes:
+  - visible shipping estimate card
+  - visible returns card
+  - above-the-fold review/photo-reviews jump link
+- Added a desktop floating ATC bar that mirrors price + selected size state and scrolls shoppers back to missing required options before submitting.
+- Added a desktop matching-set builder that detects role-based size variants (`Mother`, `Child`, `Father`, `Boy`, `Girl`, etc.), lets shoppers choose multiple family sizes on one PDP, and adds all selected pieces to cart in one action.
+- Added a desktop matching size-guide expander that parses the supplier size table and renders side-by-side role cards for adult/kid measurements when the table structure supports it.
+- Added a desktop photo-review strip that auto-surfaces Judge.me review photos if the review widget renders image content; otherwise it stays hidden and the review jump link remains.
+
+Why:
+- Live desktop review of the two priority PDPs showed the primary ATC button was already above the fold at a 1440px viewport, so the bigger friction was not CTA placement:
+  - the PDP still forces one variant at a time for multi-person matching sets
+  - desktop loses the mobile sticky CTA behavior once shoppers move deeper into the page
+  - shipping / returns / review cues were either generic or pushed below accordion interactions
+- Live product evidence confirmed the matching-set constraint:
+  - `/products/mommy-daughter-matching-tie-dye-dress` exposes one size option containing both `Mother ...` and `Child ...` values
+  - `/products/family-matching-hawaiian-shirt-and-floral-dress` exposes `Type` + `Size`, but the size list still mixes `Father`, `Boy`, `Mother`, and `Girl` in one single-item add flow
+- The user-provided third priority URL is not currently a live PDP:
+  - `/products/mommy-me-spring-flowers-dress` redirects to `/collections/dresses`
+- Judge.me is installed and picture uploads are enabled in settings, but at least the audited tie-dye PDP currently has no published reviews or review photos to surface.
+
+Verification:
+- Live storefront audit performed against the public site using headless Google Chrome screenshots and DOM snapshots:
+  - `/products/mommy-daughter-matching-tie-dye-dress`
+  - `/products/family-matching-hawaiian-shirt-and-floral-dress`
+- Desktop screenshot findings at 1440px:
+  - both audited PDPs already show the main media, variant selectors, quantity, and primary ATC above the fold
+  - first media frame on both audited PDPs already shows family lifestyle photography rather than flat-lay-only imagery
+- Live product JSON checks confirmed role-based variant structures:
+  - tie-dye PDP: `Mother ...` + `Child ...` size values in one size option
+  - Hawaiian PDP: `Father ...`, `Boy ...`, `Mother ...`, `Girl ...` values under one product with `Type` + `Size`
+- Live DOM checks confirmed the existing complementary-products block was not currently surfacing useful above-the-fold matching-set help on the audited PDPs.
+- Repo verification:
+  - `node --check assets/product-desktop-ux.js`
+  - no JavaScript syntax errors
+
+Open items:
+- These PDP changes are repo-side only until pushed to Shopify / previewed in the theme customizer.
+- Because the new matching-set builder depends on real theme runtime + cart drawer rendering, it still needs manual storefront verification in a preview theme:
+  - select multiple family sizes and confirm all pieces land in cart
+  - change a non-size option such as color and confirm the builder re-filters correctly
+  - confirm the desktop sticky ATC appears only after the native ATC leaves view
+  - confirm the matching size-guide expander renders cleanly on the tie-dye and Hawaiian PDPs
+- The photo-review strip will stay hidden unless Judge.me renders review images on the PDP; if the merchant wants guaranteed above-the-fold customer-photo content, enable a Judge.me media/gallery widget or collect photo reviews for the target SKUs.
+- Attempted deeper live Chrome automation for interactive add-to-cart verification, but the headless remote-debugging session was intercepted by a Cloudflare challenge route, so no browser-specific Chrome checkout bug was proven or disproven in this pass.
+
+### Task: Fix 4 deleted-product 404 redirect cleanup
+Date: 2026-03-27 02:08:26 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-fix4-deleted-product-404-cleanup
+Changes:
+- Added explicit Fix 4 redirect import CSV from the user-provided mapping:
+  - `ops/content/seo/fix4-deleted-product-404-redirects-2026-03-27.csv`
+  - `54` rows covering the reported deleted-product cleanup set
+- Added a second cleanup CSV for live product redirects that were still sending traffic to dead `/collections/accessories`:
+  - `ops/content/seo/fix4-accessories-product-redirect-corrections-2026-03-27.csv`
+  - `11` rows:
+    - `2` base-product replacements
+    - `9` locale/product-path replacements
+- Updated `ops/scripts/build_gsc_redirect_import.py` so future repo-generated redirect CSVs stop targeting dead `/collections/accessories`:
+  - removed `accessories` from `SAFE_COLLECTIONS`
+  - accessory handles now route to:
+    - `/collections/fall-winter` for winter hat/scarf style terms
+    - `/collections/matching-outfits` for general matching accessories/headbands/turbans
+- Applied both CSVs live to Shopify Admin URL redirects on store `dresslikemommy-com`.
+
+Why:
+- The user supplied the exact Fix 4 mapping and asked for the cleanup to be made live, so the redirect work was executed directly against Shopify rather than left as a CSV-only handoff.
+- Live verification showed the older redirect state still had product-path redirects landing on 404 `/collections/accessories`, which would keep failing even after Markets cleanup propagated.
+- The report text said `/products/2016-new-fashion-female-toucas-beanie-hat-knit-winter-hat-for-women-skullies-beanies-for-women-brand-hat-de-inverno-gorros` was still broken, but live Shopify on March 27, 2026 already had that path resolving to `/collections/fall-winter` with `200`, so it was not changed in this pass.
+
+Verification:
+- Dry-run before execute:
+  - `python3 ops/scripts/apply_blog_consolidation_redirects.py --input ops/content/seo/fix4-deleted-product-404-redirects-2026-03-27.csv`
+  - result: `54` rows = `51` create + `3` replace
+- Live execute:
+  - `python3 ops/scripts/apply_blog_consolidation_redirects.py --input ops/content/seo/fix4-deleted-product-404-redirects-2026-03-27.csv --execute`
+  - result: `54` rows = `51` created + `3` replaced
+- Dry-run before execute:
+  - `python3 ops/scripts/apply_blog_consolidation_redirects.py --input ops/content/seo/fix4-accessories-product-redirect-corrections-2026-03-27.csv`
+  - result: `11` rows = `11` replace
+- Live execute:
+  - `python3 ops/scripts/apply_blog_consolidation_redirects.py --input ops/content/seo/fix4-accessories-product-redirect-corrections-2026-03-27.csv --execute`
+  - result: `11` rows = `11` replaced
+- Idempotence after live apply:
+  - reran both CSVs in dry-run mode
+  - results:
+    - Fix 4 batch: `54` unchanged
+    - accessories cleanup batch: `11` unchanged
+- Storefront verification:
+  - spot-checked previously broken paths including:
+    - `/products/matching-ruffle-one-piece-swimsuit`
+    - `/products/mommy-and-me-matching-rainbow-stripe-midi-dresses`
+    - `/products/gift-card`
+    - `/products/mom-and-baby-matching-knitted-hats-warm-fleece-crochet-beanie-hats-winter-mink-raccoon-fur-kids-children-mommy-headwear-hat-caps-3`
+    - `/products/mommy-and-me-top-knots-headwrap-set-topknot-headband-mom-and-me-headbands-mom-and-daughter-turban-set-1set-hb536-1`
+    - `/en-ae/products/family-matching-rainbow-striped-sweater`
+    - `/fr/products/mommy-and-me-matching-rainbow-stripe-jumpsuit-set-strapless-for-moms-tie-knot-for-girls`
+    - `/en-fr/products/parent-child-rainbow-bear-autumn-sweater`
+  - all returned `200`
+- Full-batch HTTP verification:
+  - checked all `65` source paths across both CSVs with `curl -Ls -o /dev/null -w '%{http_code} %{url_effective}'`
+  - result: `65/65` returned `200`
+- Post-fix Shopify redirect query:
+  - `target:/collections/accessories`
+  - result: `62` rows total remain, but `0` of them are product-path redirects
+
+Open items:
+- `62` locale collection-path redirects still point to `/collections/accessories`; those are collection redirects rather than deleted-product redirects and were left out of this Fix 4 product cleanup.
+- If Google Search Console `Validate fix` was triggered before these live redirects were in place, re-trigger validation after crawl pickup if the current validation fails.
+
+### Task: Header nav family matching style parity
+Date: 2026-03-27 01:33:27 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-header-nav-family-matching-style-parity
+Changes:
+- Updated `assets/theme-inline-body-static-05.css` so top-level desktop mega-menu/dropdown parent items rendered as `<summary>` use the same typography, spacing, underline animation, and hover color as top-level `<a>` nav links.
+- Added summary-specific right padding and underline inset so the caret still has breathing room and the text alignment matches the rest of the header.
+
+Why:
+- `Family Matching` is rendered as a top-level `<summary>` because it opens a mega menu, while the other primary nav items are plain `<a>` links.
+- The custom header CSS only targeted anchor elements, so `Family Matching` fell back to the default summary styling and looked inconsistent.
+
+Verification:
+- Code inspection confirms the new selectors only target top-level desktop nav items:
+  - plain links still use the same shared desktop styles
+  - top-level summary items now get the same treatment
+  - submenu links keep their existing dropdown/mega-menu styles
+
+Open items:
+- Manual storefront preview is still needed to confirm desktop spacing and caret alignment in the live header.

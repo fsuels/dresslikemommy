@@ -148,6 +148,7 @@
                   | t: link: collection.url, class: 'underlined-link link'
                 }}
               </h2>
+              {% render 'collection-empty-recovery', collection: collection %}
             </div>
           </div>
         {%- else -%}

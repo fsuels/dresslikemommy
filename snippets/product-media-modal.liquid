@@ -40,7 +40,7 @@
 
         if featured_media != null
           assign media = featured_media
-          render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: section.settings.hide_variants
+          render 'product-media', product: product, media: media, loop: section.settings.enable_video_looping, variant_image: section.settings.hide_variants
         endif
       -%}
 
@@ -53,7 +53,7 @@
           endif
 
           unless media.id == featured_media.id
-            render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: variant_image
+            render 'product-media', product: product, media: media, loop: section.settings.enable_video_looping, variant_image: variant_image
           endunless
         -%}
       {%- endfor -%}

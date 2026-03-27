@@ -115,6 +115,28 @@
   {%- if taxonomy_pattern != blank -%}
   <meta name="custom-pattern" content="{{ taxonomy_pattern | escape }}">
   {%- endif -%}
+  {%- assign product_lcp_media = product.featured_media -%}
+  {%- if product_lcp_media == blank -%}
+    {%- assign product_lcp_media = product.selected_or_first_available_variant.featured_media -%}
+  {%- endif -%}
+  {%- if product_lcp_media != blank and product_lcp_media.preview_image != blank -%}
+    {%- assign product_lcp_image = product_lcp_media.preview_image -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ product_lcp_image | image_url: width: 823 }}"
+      imagesrcset="
+        {%- if product_lcp_image.width >= 493 -%}{{ product_lcp_image | image_url: width: 493 }} 493w,{%- endif -%}
+        {%- if product_lcp_image.width >= 600 -%}{{ product_lcp_image | image_url: width: 600 }} 600w,{%- endif -%}
+        {%- if product_lcp_image.width >= 713 -%}{{ product_lcp_image | image_url: width: 713 }} 713w,{%- endif -%}
+        {%- if product_lcp_image.width >= 823 -%}{{ product_lcp_image | image_url: width: 823 }} 823w,{%- endif -%}
+        {%- if product_lcp_image.width >= 990 -%}{{ product_lcp_image | image_url: width: 990 }} 990w,{%- endif -%}
+        {%- if product_lcp_image.width >= 1100 -%}{{ product_lcp_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+        {{ product_lcp_image | image_url }} {{ product_lcp_image.width }}w
+      "
+      imagesizes="(min-width: 990px) 50vw, 100vw"
+    >
+  {%- endif -%}
   {% endif %}
 
   {%- liquid
@@ -164,6 +186,7 @@
 
     if request.page_type == 'collection' and collection != blank
       if collection_seo_force_theme == 'true'
+        assign append_shop_name_to_title = false
         if collection_seo_meta_title != blank
           assign resolved_page_title = collection_seo_meta_title
         elsif collection_seo_display_title != blank
@@ -324,7 +347,7 @@
     (function () {
       var GTAG_HOSTNAME = 'www.googletagmanager.com';
       var GTAG_PATHNAME = '/gtag/js';
-      var primaryScriptById = {};
+      var primaryGtagScript = null;
 
       function parseGtagId(srcValue) {
         if (!srcValue) return '';
@@ -355,9 +378,9 @@
         }, 0);
       }
 
-      function trackPrimaryScript(id, scriptNode) {
-        if (!id || !scriptNode) return;
-        primaryScriptById[id] = scriptNode;
+      function trackPrimaryScript(scriptNode) {
+        if (!scriptNode) return;
+        if (!primaryGtagScript) primaryGtagScript = scriptNode;
         if (scriptNode.__dlmGtagTracked) return;
 
         scriptNode.__dlmGtagTracked = true;
@@ -376,9 +399,9 @@
         var id = parseGtagId(scriptNode.getAttribute('src') || scriptNode.src);
         if (!id) return false;
 
-        var primaryScript = primaryScriptById[id];
-        if (!primaryScript) {
-          trackPrimaryScript(id, scriptNode);
+        var primaryScript = primaryGtagScript;
+        if (!primaryScript || primaryScript === scriptNode) {
+          trackPrimaryScript(scriptNode);
           return false;
         }
 
@@ -411,8 +434,8 @@
         for (var i = 0; i < scripts.length; i += 1) {
           var scriptNode = scripts[i];
           var id = parseGtagId(scriptNode.getAttribute('src') || scriptNode.src);
-          if (!id || primaryScriptById[id]) continue;
-          trackPrimaryScript(id, scriptNode);
+          if (!id || primaryGtagScript) continue;
+          trackPrimaryScript(scriptNode);
         }
       }
 

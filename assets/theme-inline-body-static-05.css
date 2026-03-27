@@ -72,11 +72,11 @@ header,
 .header__inline-menu .list-menu--inline {
   gap: 0 !important;
 }
-.header__inline-menu .list-menu--inline > .list-menu__item {
+.header__inline-menu .list-menu--inline > li {
   padding: 0 !important;
 }
-.header__inline-menu .list-menu--inline a.header__menu-item,
-.header__inline-menu .list-menu--inline a.list-menu__item {
+.header__inline-menu .list-menu--inline > li > a.header__menu-item,
+.header__inline-menu .list-menu--inline > li > header-menu > details > summary.header__menu-item {
   font-size: 11.5px !important;
   font-weight: 600 !important;
   letter-spacing: 1.8px !important;
@@ -87,9 +87,12 @@ header,
   position: relative !important;
   transition: color 0.25s ease !important;
 }
+.header__inline-menu .list-menu--inline > li > header-menu > details > summary.header__menu-item {
+  padding-right: 2.9rem !important;
+}
 /* Hover underline animation */
-.header__inline-menu .list-menu--inline a.header__menu-item::after,
-.header__inline-menu .list-menu--inline a.list-menu__item::after {
+.header__inline-menu .list-menu--inline > li > a.header__menu-item::after,
+.header__inline-menu .list-menu--inline > li > header-menu > details > summary.header__menu-item::after {
   content: '' !important;
   position: absolute !important;
   bottom: 4px !important;
@@ -101,20 +104,27 @@ header,
   transform-origin: center !important;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
-.header__inline-menu .list-menu--inline a.header__menu-item:hover::after,
-.header__inline-menu .list-menu--inline a.list-menu__item:hover::after,
-.header__inline-menu .list-menu--inline a.header__menu-item[aria-current="page"]::after,
-.header__inline-menu .list-menu--inline a.list-menu__item[aria-current="page"]::after {
+.header__inline-menu .list-menu--inline > li > header-menu > details > summary.header__menu-item::after {
+  right: 2.9rem !important;
+}
+.header__inline-menu .list-menu--inline > li > a.header__menu-item:hover::after,
+.header__inline-menu .list-menu--inline > li > a.header__menu-item[aria-current="page"]::after,
+.header__inline-menu .list-menu--inline > li > header-menu > details > summary.header__menu-item:hover::after,
+.header__inline-menu .list-menu--inline > li > header-menu > details > summary.header__menu-item:focus-visible::after,
+.header__inline-menu .list-menu--inline > li > header-menu > details > summary.header__menu-item:has(.header__active-menu-item)::after {
   transform: scaleX(1) !important;
 }
-.header__inline-menu .list-menu--inline a.header__menu-item:hover,
-.header__inline-menu .list-menu--inline a.list-menu__item:hover {
+.header__inline-menu .list-menu--inline > li > a.header__menu-item:hover,
+.header__inline-menu .list-menu--inline > li > a.header__menu-item[aria-current="page"],
+.header__inline-menu .list-menu--inline > li > header-menu > details > summary.header__menu-item:hover,
+.header__inline-menu .list-menu--inline > li > header-menu > details > summary.header__menu-item:focus-visible,
+.header__inline-menu .list-menu--inline > li > header-menu > details > summary.header__menu-item:has(.header__active-menu-item) {
   color: #e85d3a !important;
 }
 
 /* Active page styling */
-.header__inline-menu .list-menu--inline a[aria-current="page"] {
-  color: #e85d3a !important;
+.header__inline-menu .list-menu--inline > li > header-menu > details > summary.header__menu-item .header__active-menu-item {
+  text-decoration: none !important;
 }
 
 /* Header icons: refined */

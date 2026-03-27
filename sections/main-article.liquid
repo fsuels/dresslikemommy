@@ -163,11 +163,15 @@
           assign recommended_products = article.metafields.custom.recommended_products.value
         -%}
         {%- capture recommended_products_markup -%}
-          {%- if recommended_products != blank -%}
-            {%- for recommended_product in recommended_products limit: 3 -%}
-              {%- if recommended_product == blank or recommended_product.url == blank -%}
-                {% continue %}
-              {%- endif -%}
+            {%- if recommended_products != blank -%}
+              {%- for recommended_product in recommended_products limit: 3 -%}
+                {%- if recommended_product == blank or recommended_product.url == blank -%}
+                  {% continue %}
+                {%- endif -%}
+                {%- capture recommended_product_alt -%}
+                  {% render 'product-image-alt', product: recommended_product, media: recommended_product.featured_media %}
+                {%- endcapture -%}
+                {%- assign recommended_product_alt = recommended_product_alt | strip -%}
               <article class="article-template__recommended-product">
                 <a href="{{ recommended_product.url }}" class="article-template__recommended-product-image">
                   {%- if recommended_product.featured_media -%}
@@ -180,7 +184,7 @@
                       "
                       sizes="(min-width: 990px) 22rem, (min-width: 750px) calc((100vw - 12rem) / 3), calc(100vw - 7rem)"
                       src="{{ recommended_product.featured_media | image_url: width: 480 }}"
-                      alt="{{ recommended_product.featured_media.alt | default: recommended_product.title | escape }}"
+                      alt="{{ recommended_product_alt | escape }}"
                       loading="lazy"
                       width="{{ recommended_product.featured_media.width }}"
                       height="{{ recommended_product.featured_media.height }}"

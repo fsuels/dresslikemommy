@@ -1,0 +1,95 @@
+{% comment %}
+  Outputs CollectionPage + ItemList JSON-LD for collection landing pages.
+{% endcomment %}
+
+{%- if collection != blank -%}
+  {%- liquid
+    assign collection_schema_url = canonical_href | default: canonical_url | default: collection.url
+    assign collection_schema_url_prefix = collection_schema_url | slice: 0, 2
+    if collection_schema_url contains '://'
+      assign collection_schema_url = collection_schema_url
+    elsif collection_schema_url_prefix == '//'
+      assign collection_schema_url = 'https:' | append: collection_schema_url
+    else
+      assign collection_schema_url = shop.url | append: collection_schema_url
+    endif
+
+    capture collection_schema_name
+      render 'collection-seo-fallback', collection: collection, field: 'display_title'
+    endcapture
+    assign collection_schema_name = collection_schema_name | strip | default: collection.title
+
+    capture collection_schema_description
+      render 'collection-seo-fallback', collection: collection, field: 'meta_description'
+    endcapture
+    assign collection_schema_description = collection_schema_description | strip
+    if collection_schema_description == blank
+      assign collection_schema_description = collection.description | strip_html | strip
+    endif
+    assign collection_schema_description = collection_schema_description | truncate: 260, ''
+
+    assign collection_schema_image = blank
+    if collection.image != blank
+      assign collection_schema_image = collection.image | image_url: width: 1600
+    elsif collection.products_count > 0 and collection.products.first.featured_media != blank
+      assign collection_schema_image = collection.products.first.featured_media.preview_image | image_url: width: 1600
+    endif
+
+    assign collection_schema_image_prefix = collection_schema_image | slice: 0, 2
+    if collection_schema_image != blank and collection_schema_image_prefix == '//'
+      assign collection_schema_image = 'https:' | append: collection_schema_image
+    endif
+
+    assign item_list_elements = blank
+    assign item_list_separator = blank
+    assign item_position = 1
+    for collection_product in collection.products limit: 24
+      assign collection_product_url = collection_product.url | prepend: shop.url
+      capture item_list_elements
+        echo item_list_elements
+        echo item_list_separator
+        echo '{"@type":"ListItem","position":'
+        echo item_position
+        echo ',"url":'
+        echo collection_product_url | json
+        echo ',"name":'
+        echo collection_product.title | json
+        echo '}'
+      endcapture
+      assign item_list_separator = ','
+      assign item_position = item_position | plus: 1
+    endfor
+  -%}
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": {{ collection_schema_url | append: '#collectionpage' | json }},
+        "url": {{ collection_schema_url | json }},
+        "name": {{ collection_schema_name | json }}{% if collection_schema_description != blank %},
+        "description": {{ collection_schema_description | json }}{% endif %}{% if collection_schema_image != blank %},
+        "primaryImageOfPage": {{ collection_schema_image | json }}{% endif %},
+        "isPartOf": {
+          "@type": "WebSite",
+          "url": {{ shop.url | json }}
+        },
+        "mainEntity": {
+          "@id": {{ collection_schema_url | append: '#itemlist' | json }}
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": {{ collection_schema_url | append: '#itemlist' | json }},
+        "url": {{ collection_schema_url | json }},
+        "name": {{ collection_schema_name | json }},
+        "numberOfItems": {{ collection.products_count | json }},
+        "itemListOrder": "https://schema.org/ItemListUnordered"{% if item_list_elements != blank %},
+        "itemListElement": [{{ item_list_elements }}]{% endif %}
+      }
+    ]
+  }
+  </script>
+{%- endif -%}

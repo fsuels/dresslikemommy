@@ -276,6 +276,20 @@
   display: none;
 }
 
+.product-form__buttons--with-dynamic-checkout {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-form__dynamic-checkout {
+  min-height: 8.4rem;
+}
+
+.product-form__dynamic-checkout .shopify-payment-button {
+  display: block;
+  min-height: 8.4rem;
+}
+
 /* Product form */
 
 .product-form {
@@ -321,6 +335,8 @@
   margin-bottom: 1rem;
 }
 
+.product-form__submit[aria-disabled='true'] + .product-form__dynamic-checkout .shopify-payment-button .shopify-payment-button__button[disabled],
+.product-form__submit[disabled] + .product-form__dynamic-checkout .shopify-payment-button .shopify-payment-button__button[disabled],
 .product-form__submit[aria-disabled='true'] + .shopify-payment-button .shopify-payment-button__button[disabled],
 .product-form__submit[disabled] + .shopify-payment-button .shopify-payment-button__button[disabled] {
   cursor: not-allowed;

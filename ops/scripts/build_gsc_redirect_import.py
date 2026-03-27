@@ -20,7 +20,6 @@ DEFAULT_OUTPUT_DIR = Path("ops/redirect_audit")
 LOCALE_RE = re.compile(r"^/([a-z]{2}(?:-[a-z]{2})?)(?=/|$)")
 
 SAFE_COLLECTIONS = {
-    "accessories",
     "all",
     "bottoms",
     "daddy-and-me",
@@ -166,6 +165,24 @@ DRESS_TOKENS = {
     "skirts",
 }
 ACCESSORY_TOKENS = {"beanie", "bow", "hairband", "hat", "headband", "headbands", "scarf", "turban"}
+WINTER_ACCESSORY_TOKENS = {
+    "beanie",
+    "beanies",
+    "cashmere",
+    "crochet",
+    "fleece",
+    "hat",
+    "hats",
+    "knit",
+    "knitted",
+    "pashmina",
+    "scarf",
+    "scarves",
+    "shawl",
+    "shawls",
+    "winter",
+    "wool",
+}
 MATERNITY_TOKENS = {"baby shower", "maternity", "pregnancy", "pregnant", "photoshoot"}
 DADDY_TOKENS = {"dad", "daddy", "father", "son", "pilot", "monster", "big man", "little man"}
 FAMILY_TOKENS = {"family", "matching", "mother", "daughter", "mommy", "mom", "child", "children"}
@@ -224,6 +241,12 @@ def has_any(text: str, tokens: set[str]) -> bool:
     return any(token in text for token in tokens)
 
 
+def accessory_target(text: str, kind: str) -> tuple[str, str]:
+    if has_any(text, WINTER_ACCESSORY_TOKENS):
+        return "/collections/fall-winter", f"winter accessory {kind}"
+    return "/collections/matching-outfits", f"matching accessory {kind}"
+
+
 def product_target(handle: str) -> tuple[str, str]:
     text = token_text(handle)
 
@@ -242,7 +265,7 @@ def product_target(handle: str) -> tuple[str, str]:
     if has_any(text, MATERNITY_TOKENS):
         return "/collections/maternity", "maternity product"
     if has_any(text, ACCESSORY_TOKENS):
-        return "/collections/accessories", "accessory product"
+        return accessory_target(text, "product")
     if has_any(text, DADDY_TOKENS) and has_any(text, TOP_TOKENS):
         return "/collections/daddy-me-t-shirts", "daddy tee product"
     if has_any(text, DADDY_TOKENS):
@@ -278,7 +301,7 @@ def collection_target(handle: str) -> tuple[str, str]:
     if has_any(text, MATERNITY_TOKENS):
         return "/collections/maternity", "maternity collection"
     if has_any(text, ACCESSORY_TOKENS):
-        return "/collections/accessories", "accessory collection"
+        return accessory_target(text, "collection")
     if has_any(text, DADDY_TOKENS) and has_any(text, TOP_TOKENS):
         return "/collections/daddy-me-t-shirts", "daddy tee collection"
     if has_any(text, DADDY_TOKENS):

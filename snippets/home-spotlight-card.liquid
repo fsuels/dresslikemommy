@@ -1,0 +1,89 @@
+{%- liquid
+  assign spotlight_product = spotlight_product | default: product
+  assign spotlight_variant = spotlight_product.selected_or_first_available_variant
+  assign spotlight_lazy_loading = 'lazy'
+  if lazy_load == false
+    assign spotlight_lazy_loading = blank
+  endif
+
+  assign spotlight_image = spotlight_product.featured_media.preview_image | default: spotlight_product.featured_image
+  assign spotlight_image_alt = spotlight_image.alt | default: spotlight_product.title
+  assign spotlight_image_sizes = image_sizes | default: '(min-width: 990px) 22vw, (min-width: 750px) 36vw, 78vw'
+  assign spotlight_badge = spotlight_badge | strip
+  assign spotlight_caption = spotlight_caption | strip
+  assign spotlight_button_label = spotlight_button_label | default: 'Shop This Look'
+
+  assign spotlight_category1 = spotlight_product.metafields.custom.category1 | default: '' | strip
+  assign spotlight_subcategory = spotlight_product.metafields.custom.subcategory | default: '' | strip
+  assign spotlight_subcategory2 = spotlight_product.metafields.custom.subcategory2 | default: '' | strip
+  assign spotlight_type = spotlight_product.metafields.custom.type | default: spotlight_product.type | default: '' | strip
+  assign spotlight_style = spotlight_product.metafields.custom.style | default: '' | strip
+  assign spotlight_pattern = spotlight_product.metafields.custom.pattern | default: '' | strip
+-%}
+
+{%- if spotlight_product != blank and spotlight_variant != blank -%}
+  <article
+    class="home-spotlight-card card-wrapper product-card-wrapper underline-links-hover{% if spotlight_class != blank %} {{ spotlight_class }}{% endif %}"
+    data-analytics-product-card="true"
+    data-analytics-product-id="{{ spotlight_product.id }}"
+    data-analytics-variant-id="{{ spotlight_variant.id }}"
+    data-analytics-handle="{{ spotlight_product.handle | escape }}"
+    data-analytics-title="{{ spotlight_product.title | escape }}"
+    data-analytics-vendor="{{ spotlight_product.vendor | escape }}"
+    data-analytics-variant="{{ spotlight_variant.sku | default: spotlight_variant.title | default: spotlight_variant.id | escape }}"
+    data-analytics-price-cents="{{ spotlight_variant.price }}"
+    data-analytics-category1="{{ spotlight_category1 | escape }}"
+    data-analytics-subcategory="{{ spotlight_subcategory | escape }}"
+    data-analytics-subcategory2="{{ spotlight_subcategory2 | escape }}"
+    data-analytics-type="{{ spotlight_type | escape }}"
+    data-analytics-style="{{ spotlight_style | escape }}"
+    data-analytics-pattern="{{ spotlight_pattern | escape }}"
+    data-analytics-section-id="{{ section_id | escape }}"
+  >
+    <a class="home-spotlight-card__media" href="{{ spotlight_product.url }}">
+      {%- if spotlight_image != blank -%}
+        {%- if spotlight_lazy_loading == blank -%}
+          {{
+            spotlight_image
+            | image_url: width: 900
+            | image_tag:
+              alt: spotlight_image_alt,
+              widths: '320, 480, 640, 750, 900',
+              sizes: spotlight_image_sizes,
+              fetchpriority: 'high'
+          }}
+        {%- else -%}
+          {{
+            spotlight_image
+            | image_url: width: 900
+            | image_tag:
+              alt: spotlight_image_alt,
+              widths: '320, 480, 640, 750, 900',
+              sizes: spotlight_image_sizes,
+              loading: spotlight_lazy_loading,
+              fetchpriority: 'low'
+          }}
+        {%- endif -%}
+      {%- else -%}
+        {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </a>
+    <div class="home-spotlight-card__content">
+      {%- if spotlight_badge != blank -%}
+        <p class="home-spotlight-card__badge">{{ spotlight_badge }}</p>
+      {%- endif -%}
+      <h3 class="home-spotlight-card__title">
+        <a href="{{ spotlight_product.url }}">{{ spotlight_product.title | escape }}</a>
+      </h3>
+      {%- if spotlight_caption != blank -%}
+        <p class="home-spotlight-card__caption">{{ spotlight_caption }}</p>
+      {%- endif -%}
+      <div class="home-spotlight-card__price">
+        {% render 'price', product: spotlight_product, show_compare_at_price: true %}
+      </div>
+      <a class="button button--secondary home-spotlight-card__cta" href="{{ spotlight_product.url }}">
+        {{ spotlight_button_label | escape }}
+      </a>
+    </div>
+  </article>
+{%- endif -%}

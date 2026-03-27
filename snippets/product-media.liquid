@@ -2,6 +2,7 @@
     Renders product media
 
     Accepts:
+    - product: {Object} Product Liquid object (optional)
     - media: {Object} Product Media object
     - loop: {Boolean} Enable video looping (optional)
     - variant_image: {Boolean} Whether or not media is associated with a variant
@@ -16,7 +17,10 @@
 
 {%- liquid
   assign preview_image = media.preview_image
-  assign preview_alt = media.alt | default: preview_image.alt | escape
+  capture preview_alt
+    render 'product-image-alt', product: product, media: media
+  endcapture
+  assign preview_alt = preview_alt | strip
 -%}
 
 {%- if media.media_type == 'image' -%}
@@ -33,7 +37,7 @@
     "
     sizes="(min-width: 1200px) 1100px, (min-width: 750px) calc(100vw - 12rem), calc(100vw - 4rem)"
     src="{{ preview_image | image_url: width: 1100 }}"
-    alt="{{ preview_alt }}"
+    alt="{{ preview_alt | escape }}"
     loading="lazy"
     fetchpriority="low"
     decoding="async"
@@ -72,7 +76,7 @@
         decoding="async"
         width="{{ preview_image.width }}"
         height="{{ preview_image.height }}"
-        alt="{{ preview_alt }}"
+        alt="{{ preview_alt | escape }}"
       >
     </button>
     <template>

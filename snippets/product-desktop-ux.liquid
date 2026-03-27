@@ -1,0 +1,174 @@
+{%- liquid
+  assign locale_root = request.locale.iso_code | default: localization.language.iso_code | default: shop.locale | downcase | split: '-' | first
+  assign matching_set_heading = 'Build your matching set'
+  assign matching_set_copy = 'Choose the family sizes you want and add them together from one product page.'
+  assign matching_set_empty = 'Choose at least one family size to add your set.'
+  assign matching_set_add = 'Add selected pieces'
+  assign matching_set_success = 'Matching set added to cart.'
+  assign matching_set_error = 'Unable to add the selected pieces. Please try again.'
+  assign size_guide_label = 'Compare family sizes side by side'
+  assign reviews_heading = 'Customer reviews'
+  assign reviews_copy = 'See fit notes and family photos'
+  assign photo_heading = 'Customer photo reviews'
+  assign jump_to_reviews = 'Jump to reviews'
+  assign returns_copy = 'Easy returns on unworn items within 30 days.'
+
+  case locale_root
+    when 'es'
+      assign matching_set_heading = 'Arma tu conjunto a juego'
+      assign matching_set_copy = 'Elige las tallas de tu familia y anadelas juntas desde esta misma pagina.'
+      assign matching_set_empty = 'Elige al menos una talla familiar para anadir el conjunto.'
+      assign matching_set_add = 'Anadir piezas seleccionadas'
+      assign matching_set_success = 'El conjunto a juego se anadio al carrito.'
+      assign matching_set_error = 'No se pudieron anadir las piezas seleccionadas. Intentalo de nuevo.'
+      assign size_guide_label = 'Comparar tallas de la familia lado a lado'
+      assign reviews_heading = 'Resenas de clientes'
+      assign reviews_copy = 'Ver fotos familiares y comentarios de ajuste'
+      assign photo_heading = 'Fotos de clientes'
+      assign jump_to_reviews = 'Ir a las resenas'
+      assign returns_copy = 'Devoluciones sencillas en articulos sin usar durante 30 dias.'
+    when 'fr'
+      assign matching_set_heading = 'Composer votre ensemble assorti'
+      assign matching_set_copy = 'Choisissez les tailles de votre famille et ajoutez-les ensemble depuis cette page.'
+      assign matching_set_empty = 'Choisissez au moins une taille familiale pour ajouter votre ensemble.'
+      assign matching_set_add = 'Ajouter les pieces selectionnees'
+      assign matching_set_success = 'L ensemble assorti a ete ajoute au panier.'
+      assign matching_set_error = 'Impossible d ajouter les pieces selectionnees. Veuillez reessayer.'
+      assign size_guide_label = 'Comparer les tailles de la famille cote a cote'
+      assign reviews_heading = 'Avis clients'
+      assign reviews_copy = 'Voir des photos de familles et des notes de coupe'
+      assign photo_heading = 'Photos clients'
+      assign jump_to_reviews = 'Voir les avis'
+      assign returns_copy = 'Retours simples sur les articles non portes pendant 30 jours.'
+    when 'ar'
+      assign matching_set_heading = 'كوّني الطقم المتطابق'
+      assign matching_set_copy = 'اختاري مقاسات العائلة التي تريدينها وأضيفيها معاً من صفحة المنتج نفسها.'
+      assign matching_set_empty = 'اختاري مقاساً عائلياً واحداً على الأقل لإضافة الطقم.'
+      assign matching_set_add = 'أضيفي القطع المختارة'
+      assign matching_set_success = 'تمت إضافة الطقم المتطابق إلى السلة.'
+      assign matching_set_error = 'تعذر إضافة القطع المختارة. يرجى المحاولة مرة أخرى.'
+      assign size_guide_label = 'قارني مقاسات العائلة جنباً إلى جنب'
+      assign reviews_heading = 'آراء العملاء'
+      assign reviews_copy = 'شاهدي صور العائلات وملاحظات المقاس'
+      assign photo_heading = 'صور العملاء'
+      assign jump_to_reviews = 'الانتقال إلى الآراء'
+      assign returns_copy = 'إرجاع سهل للقطع غير المستخدمة خلال 30 يوماً.'
+  endcase
+-%}
+
+<div
+  class="product-desktop-ux"
+  data-product-desktop-ux
+  data-section-id="{{ section.id }}"
+  data-select-size-label="{{ 'products.product.select_size' | t | escape }}"
+  data-add-to-cart-label="{{ 'products.product.add_to_cart' | t | escape }}"
+  data-choose-options-label="{{ 'products.product.choose_options' | t | escape }}"
+  data-matching-set-empty="{{ matching_set_empty | escape }}"
+  data-matching-set-add="{{ matching_set_add | escape }}"
+  data-matching-set-success="{{ matching_set_success | escape }}"
+  data-matching-set-error="{{ matching_set_error | escape }}"
+>
+  <div class="product-desktop-ux__highlights" role="list">
+    <div class="product-desktop-ux__highlight" role="listitem">
+      <span class="product-desktop-ux__label">{{ 'products.additional_info.shipping_title' | t }}</span>
+      <strong class="product-desktop-ux__value">
+        {{ 'products.additional_info.estimated_delivery' | t }}
+        <span data-desktop-estimate="standard"></span>
+      </strong>
+      <span class="product-desktop-ux__copy">
+        {{ 'products.additional_info.faster_shipping_prefix' | t }}
+        {{ 'products.additional_info.free_premium_shipping' | t }}
+        <span data-desktop-estimate="premium"></span>
+      </span>
+    </div>
+    <div class="product-desktop-ux__highlight" role="listitem">
+      <span class="product-desktop-ux__label">{{ 'products.additional_info.return_policy_title' | t }}</span>
+      <strong class="product-desktop-ux__value">{{ 'products.trust.returns' | t }}</strong>
+      <span class="product-desktop-ux__copy">{{ returns_copy }}</span>
+    </div>
+    <a
+      class="product-desktop-ux__highlight product-desktop-ux__highlight--link"
+      href="#judgeme_product_reviews"
+      role="listitem"
+    >
+      <span class="product-desktop-ux__label">{{ reviews_heading }}</span>
+      <strong class="product-desktop-ux__value">{{ photo_heading }}</strong>
+      <span class="product-desktop-ux__copy">{{ reviews_copy }}</span>
+    </a>
+  </div>
+
+  <details class="matching-size-guide" data-matching-size-guide hidden>
+    <summary>{{ size_guide_label }}</summary>
+    <div class="matching-size-guide__content" data-matching-size-guide-content></div>
+  </details>
+
+  <section class="product-matching-set" data-matching-set-builder hidden>
+    <div class="product-matching-set__header">
+      <p class="product-matching-set__eyebrow">{{ 'sections.cart.complete_the_look' | t }}</p>
+      <h2 class="product-matching-set__title">{{ matching_set_heading }}</h2>
+      <p class="product-matching-set__copy">{{ matching_set_copy }}</p>
+    </div>
+    <div class="product-matching-set__grid" data-matching-set-roles></div>
+    <div class="product-matching-set__footer">
+      <div class="product-matching-set__selection">
+        <p class="product-matching-set__empty" data-matching-set-empty-copy>{{ matching_set_empty }}</p>
+        <div class="product-matching-set__chips" data-matching-set-chips hidden></div>
+        <strong class="product-matching-set__total" data-matching-set-total hidden></strong>
+      </div>
+      <button type="button" class="button product-matching-set__button" data-matching-set-add-button disabled>
+        {{ matching_set_add }}
+      </button>
+    </div>
+    <p class="product-matching-set__status" data-matching-set-status hidden></p>
+  </section>
+
+  <section class="product-photo-strip" data-photo-review-panel hidden>
+    <div class="product-photo-strip__header">
+      <div>
+        <p class="product-photo-strip__eyebrow">{{ reviews_heading }}</p>
+        <h2 class="product-photo-strip__title">{{ photo_heading }}</h2>
+      </div>
+      <a href="#judgeme_product_reviews" class="product-photo-strip__link">{{ jump_to_reviews }}</a>
+    </div>
+    <div class="product-photo-strip__media" data-photo-review-media></div>
+  </section>
+</div>
+
+<script type="application/json" id="ProductMatchingSetData-{{ section.id }}">
+  {
+    "currency": {{ cart.currency.iso_code | json }},
+    "options": [
+      {%- for option in product.options_with_values -%}
+        {
+          "name": {{ option.name | json }},
+          "position": {{ option.position | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ],
+    "variants": [
+      {%- for variant in product.variants -%}
+        {
+          "id": {{ variant.id | json }},
+          "available": {{ variant.available | json }},
+          "price": {{ variant.price | json }},
+          "title": {{ variant.title | json }},
+          "option1": {{ variant.option1 | json }},
+          "option2": {{ variant.option2 | json }},
+          "option3": {{ variant.option3 | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+</script>
+
+<div class="sticky-desktop-atc" data-desktop-sticky-atc aria-hidden="true">
+  <div class="sticky-desktop-atc__meta">
+    <span class="sticky-desktop-atc__price" data-desktop-sticky-price>
+      {{- product.selected_or_first_available_variant.price | money -}}
+    </span>
+    <span class="sticky-desktop-atc__size" data-desktop-sticky-size hidden></span>
+  </div>
+  <button type="button" class="sticky-desktop-atc__button" data-desktop-sticky-button>
+    {{- 'products.product.add_to_cart' | t -}}
+  </button>
+</div>

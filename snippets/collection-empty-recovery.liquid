@@ -1,0 +1,60 @@
+{%- liquid
+  assign show_recovery = false
+
+  if collection.handle == 'skirts' and collection.products_count == 0
+    assign show_recovery = true
+  endif
+-%}
+
+{%- if show_recovery -%}
+  {%- style -%}
+    .collection-empty-recovery {
+      margin-top: 2rem;
+      padding: 2rem;
+      border: 1px solid rgba(var(--color-foreground), 0.08);
+      border-radius: 2rem;
+      background: rgba(var(--color-foreground), 0.03);
+      text-align: left;
+    }
+
+    .collection-empty-recovery__eyebrow {
+      margin: 0 0 0.8rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(var(--color-foreground), 0.7);
+    }
+
+    .collection-empty-recovery__title {
+      margin: 0;
+    }
+
+    .collection-empty-recovery__copy {
+      margin: 1rem 0 0;
+      max-width: 60rem;
+    }
+
+    .collection-empty-recovery__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.6rem;
+      justify-content: center;
+    }
+  {%- endstyle -%}
+
+  <div class="collection-empty-recovery">
+    <p class="collection-empty-recovery__eyebrow">Collection refresh needed</p>
+    <h3 class="collection-empty-recovery__title">This page is currently a dead end</h3>
+    <p class="collection-empty-recovery__copy">
+      The live storefront is showing no active skirt products right now, so shoppers are bouncing into an empty collection.
+      Route them into nearby matching categories while the Shopify Admin collection rules or product status are cleaned up.
+    </p>
+    <div class="collection-empty-recovery__actions">
+      <a href="/collections/dresses" class="button">Shop Dresses</a>
+      <a href="/collections/new-matching-outfits" class="button button--secondary">See New Mommy &amp; Me</a>
+      <a href="/collections/matching-outfits" class="button button--secondary">Browse Family Matching</a>
+    </div>
+  </div>
+{%- endif -%}

@@ -1,0 +1,108 @@
+{% comment %}
+  Resolves SEO-focused product image alt text while preserving any existing image-specific copy.
+
+  Accepts:
+  - product: Product object
+  - media: Product media object (optional)
+  - collection: Collection object (optional)
+{% endcomment %}
+
+{%- liquid
+  assign resolved_product = product
+  assign resolved_media = media
+  assign current_collection_handle = collection.handle | default: ''
+  assign raw_alt = ''
+
+  if resolved_media != blank
+    assign raw_alt = resolved_media.alt | default: resolved_media.preview_image.alt | default: ''
+  elsif resolved_product != blank and resolved_product.featured_media != blank
+    assign raw_alt = resolved_product.featured_media.alt | default: resolved_product.featured_media.preview_image.alt | default: ''
+  endif
+  assign raw_alt = raw_alt | strip
+
+  capture product_context_text
+    echo current_collection_handle
+    echo ' '
+    if resolved_product != blank
+      echo resolved_product.title
+      echo ' '
+      echo resolved_product.type
+      echo ' '
+      echo resolved_product.handle
+      echo ' '
+      if resolved_product.collections != blank
+        for product_collection in resolved_product.collections
+          echo product_collection.handle
+          echo ' '
+          echo product_collection.title
+          echo ' '
+        endfor
+      endif
+    endif
+  endcapture
+  assign product_context_text = product_context_text | downcase | strip
+
+  assign audience_keyword = 'family'
+  if current_collection_handle == 'swimsuits'
+    or current_collection_handle == 'dresses'
+    or current_collection_handle == 'mommy-and-me'
+    or product_context_text contains 'mommy'
+    or product_context_text contains 'mother-daughter'
+    or product_context_text contains 'mother daughter'
+    or product_context_text contains 'daughter'
+    assign audience_keyword = 'mother daughter'
+  endif
+
+  if current_collection_handle == 'matching-outfits'
+    or current_collection_handle == 'family-matching'
+    or current_collection_handle == 'family-matching-outfits'
+    or current_collection_handle == 'family-swimsuits'
+    or current_collection_handle == 'family-sets'
+    or product_context_text contains 'family'
+    assign audience_keyword = 'family'
+  endif
+
+  assign product_type_keyword = 'outfit'
+  if current_collection_handle == 'family-swimsuits'
+    or current_collection_handle == 'swimsuits'
+    or product_context_text contains 'swimsuit'
+    or product_context_text contains 'bathing suit'
+    assign product_type_keyword = 'swimsuit'
+  elsif current_collection_handle == 'trunks' or product_context_text contains 'trunk'
+    assign product_type_keyword = 'swim trunks'
+  elsif current_collection_handle == 'dresses' or product_context_text contains 'dress'
+    assign product_type_keyword = 'dress'
+  elsif product_context_text contains 'pajama'
+    assign product_type_keyword = 'pajamas'
+  elsif product_context_text contains 'sweater' or product_context_text contains 'cardigan' or product_context_text contains 'jacket'
+    assign product_type_keyword = 'sweater'
+  elsif product_context_text contains 'shirt' or product_context_text contains 'tee' or product_context_text contains 't-shirt' or product_context_text contains 'top'
+    assign product_type_keyword = 'top'
+  elsif product_context_text contains 'romper'
+    assign product_type_keyword = 'romper'
+  elsif product_context_text contains 'jumpsuit'
+    assign product_type_keyword = 'jumpsuit'
+  elsif product_context_text contains 'skirt'
+    assign product_type_keyword = 'skirt'
+  elsif product_context_text contains 'legging'
+    assign product_type_keyword = 'leggings'
+  endif
+
+  assign alt_suffix = 'matching ' | append: product_type_keyword | append: ' for ' | append: audience_keyword
+  assign raw_alt_downcase = raw_alt | downcase
+
+  assign resolved_alt = raw_alt
+  if resolved_alt == blank
+    if resolved_product != blank
+      assign resolved_alt = resolved_product.title | append: ' ' | append: alt_suffix
+    else
+      assign resolved_alt = alt_suffix
+    endif
+  elsif raw_alt_downcase contains 'matching' and raw_alt_downcase contains product_type_keyword and raw_alt_downcase contains audience_keyword
+    assign resolved_alt = raw_alt
+  else
+    assign resolved_alt = raw_alt | append: ' - ' | append: alt_suffix
+  endif
+
+  echo resolved_alt | strip | strip_newlines | replace: '  ', ' ' | truncate: 140, ''
+-%}

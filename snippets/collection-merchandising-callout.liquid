@@ -1,0 +1,177 @@
+{%- liquid
+  assign collection_handle = collection.handle | default: ''
+  assign show_callout = false
+  assign callout_eyebrow = ''
+  assign callout_title = ''
+  assign callout_body = ''
+  assign primary_label = 'Shop the collection'
+  assign primary_url = '#product-grid'
+  assign secondary_label = ''
+  assign secondary_url = ''
+  assign callout_media = blank
+  assign callout_media_alt = collection.title | default: 'Matching collection'
+
+  case collection_handle
+    when 'matching-couples-t-shirts'
+      assign show_callout = true
+      assign callout_eyebrow = 'Best-selling couple tees'
+      assign callout_title = 'Build a matching tee set from $30'
+      assign callout_body = 'This collection already has live inventory depth and broad size coverage. Lead with the strongest couple graphics first, then shop giftable looks for trips, concerts, and easy everyday matching.'
+      assign primary_label = 'Shop couple tees'
+      assign secondary_label = 'Browse family matching'
+      assign secondary_url = '/collections/matching-outfits'
+    when 'matching-outfits'
+      assign show_callout = true
+      assign callout_eyebrow = 'Photo-ready family looks'
+      assign callout_title = 'Start a matching look from $33.98'
+      assign callout_body = 'Use this page when you want coordinated outfits for family photos, vacations, birthdays, or everyday twinning. Jump straight into the strongest family sets instead of starting with the newest arrivals only.'
+      assign primary_label = 'Shop family looks'
+      assign secondary_label = 'See best swim sellers'
+      assign secondary_url = '/collections/swimsuits'
+    when 'dresses'
+      assign show_callout = true
+      assign callout_eyebrow = 'Matching dresses'
+      assign callout_title = 'Start a matching dress look from $33.98'
+      assign callout_body = 'This collection works best when shoppers can immediately see polished, photo-ready dress options. Start with the strongest dress silhouettes, then narrow by occasion once you are inside the product grid.'
+      assign primary_label = 'Shop matching dresses'
+      assign secondary_label = 'See new mommy and me'
+      assign secondary_url = '/collections/new-matching-outfits'
+    when 'new-matching-outfits'
+      assign show_callout = true
+      assign callout_eyebrow = 'Fresh mommy and me arrivals'
+      assign callout_title = 'See new matching looks from $39.98'
+      assign callout_body = 'Shoppers are spending time here already. Give them a faster path into the newest photo-ready outfits by surfacing the strongest matching sets and making the value clear before they scroll the grid.'
+      assign primary_label = 'Shop new arrivals'
+      assign secondary_label = 'Browse classic mommy and me'
+      assign secondary_url = '/collections/mommy-and-me'
+  endcase
+
+  if collection.image != blank
+    assign callout_media = collection.image
+    assign callout_media_alt = collection.image.alt | default: callout_media_alt
+  elsif collection.products_count > 0 and collection.products.first.featured_media != blank
+    assign callout_media = collection.products.first.featured_media.preview_image
+    assign callout_media_alt = collection.products.first.featured_media.alt | default: callout_media_alt
+  endif
+-%}
+
+{%- if show_callout -%}
+  {%- style -%}
+    .collection-merchandising-callout {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2rem;
+      padding: 2rem;
+      border: 1px solid rgba(var(--color-foreground), 0.08);
+      border-radius: 2.4rem;
+      background: rgba(var(--color-background), 0.82);
+      align-items: center;
+    }
+
+    .collection-merchandising-callout__eyebrow {
+      margin: 0 0 0.6rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(var(--color-foreground), 0.7);
+    }
+
+    .collection-merchandising-callout__title {
+      margin: 0;
+      font-size: clamp(2.2rem, 3vw, 3.6rem);
+      line-height: 1.1;
+    }
+
+    .collection-merchandising-callout__body {
+      margin: 1rem 0 0;
+      max-width: 60rem;
+    }
+
+    .collection-merchandising-callout__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.4rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .collection-merchandising-callout__meta li {
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      background: rgba(var(--color-foreground), 0.06);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .collection-merchandising-callout__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.6rem;
+    }
+
+    .collection-merchandising-callout__media {
+      border-radius: 2rem;
+      overflow: hidden;
+      min-height: 22rem;
+      background: rgba(var(--color-foreground), 0.05);
+    }
+
+    .collection-merchandising-callout__media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media screen and (min-width: 990px) {
+      .collection-merchandising-callout {
+        grid-template-columns: minmax(0, 1.3fr) minmax(24rem, 0.9fr);
+      }
+    }
+  {%- endstyle -%}
+
+  <div class="collection-merchandising-callout">
+    <div class="collection-merchandising-callout__content">
+      {%- if callout_eyebrow != blank -%}
+        <p class="collection-merchandising-callout__eyebrow">{{ callout_eyebrow }}</p>
+      {%- endif -%}
+      <h2 class="collection-merchandising-callout__title">{{ callout_title }}</h2>
+      <p class="collection-merchandising-callout__body">{{ callout_body }}</p>
+      <ul class="collection-merchandising-callout__meta" role="list">
+        <li>{{ collection.products_count }} live styles</li>
+        <li>Free shipping</li>
+        <li>30-day returns</li>
+      </ul>
+      <div class="collection-merchandising-callout__actions">
+        <a href="{{ primary_url }}" class="button">{{ primary_label }}</a>
+        {%- if secondary_url != blank and secondary_label != blank -%}
+          <a href="{{ secondary_url }}" class="button button--secondary">{{ secondary_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if callout_media != blank -%}
+      <div class="collection-merchandising-callout__media media">
+        <img
+          srcset="
+            {%- if callout_media.width >= 360 -%}{{ callout_media | image_url: width: 360 }} 360w,{%- endif -%}
+            {%- if callout_media.width >= 535 -%}{{ callout_media | image_url: width: 535 }} 535w,{%- endif -%}
+            {%- if callout_media.width >= 750 -%}{{ callout_media | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if callout_media.width >= 990 -%}{{ callout_media | image_url: width: 990 }} 990w,{%- endif -%}
+            {{ callout_media | image_url }} {{ callout_media.width }}w
+          "
+          src="{{ callout_media | image_url: width: 750 }}"
+          sizes="(min-width: 990px) 30vw, 100vw"
+          alt="{{ callout_media_alt | escape }}"
+          loading="lazy"
+          decoding="async"
+          width="{{ callout_media.width }}"
+          height="{{ callout_media.height }}"
+        >
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}

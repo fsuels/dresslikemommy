@@ -1,0 +1,306 @@
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'section-home-curation.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign shipping_policy_url = shop.shipping_policy.url | default: '/policies/shipping-policy'
+  assign refund_policy_url = shop.refund_policy.url | default: '/policies/refund-policy'
+  assign visible_block_count = 0
+  for block in section.blocks
+    if block.settings.product != blank
+      assign visible_block_count = visible_block_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    --home-hero-bg-start: {{ section.settings.background_start }};
+    --home-hero-bg-end: {{ section.settings.background_end }};
+    --home-hero-accent: {{ section.settings.accent_color }};
+    --home-hero-text: {{ section.settings.text_color }};
+    --home-spotlight-card-bg: {{ section.settings.card_background }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  class="home-conversion-hero section-{{ section.id }}-padding"
+  data-analytics-list-id="home-conversion-hero-{{ section.id }}"
+  data-analytics-list-name="{{ section.settings.heading | escape }}"
+>
+  {%- if section.settings.image != blank -%}
+    <div class="home-conversion-hero__media" aria-hidden="true">
+      {{
+        section.settings.image
+        | image_url: width: 2200
+        | image_tag:
+          alt: '',
+          widths: '750, 1100, 1500, 1800, 2200',
+          sizes: '100vw',
+          loading: 'eager',
+          fetchpriority: 'high'
+      }}
+    </div>
+  {%- endif -%}
+
+  <div class="page-width home-conversion-hero__shell">
+    <div class="home-conversion-hero__inner">
+      <div class="home-conversion-hero__content">
+        <div class="home-conversion-hero__trust">
+          <a class="home-conversion-hero__trust-link" href="{{ shipping_policy_url }}">
+            <span class="home-conversion-hero__trust-icon">{% render 'icon-padlock' %}</span>
+            <span>Free Shipping on All Orders</span>
+          </a>
+          <a class="home-conversion-hero__trust-link" href="{{ refund_policy_url }}">
+            <span class="home-conversion-hero__trust-icon">{% render 'icon-checkmark' %}</span>
+            <span>30-Day Easy Returns</span>
+          </a>
+          <div class="home-conversion-hero__trust-item">
+            <span class="home-conversion-hero__trust-icon">★★★★★</span>
+            <span>{{ 'sections.cart.store_rating_prefix' | t }} <strong>4.8/5</strong> {{ 'sections.cart.store_rating_suffix' | t }}</span>
+          </div>
+        </div>
+
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="home-conversion-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h1 class="home-conversion-hero__title">{{ section.settings.heading }}</h1>
+        {%- endif -%}
+
+        {%- if section.settings.subheading != blank -%}
+          <p class="home-conversion-hero__body">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+
+        <div class="home-conversion-hero__cta-group">
+          {%- if section.settings.primary_button_label != blank -%}
+            <a
+              class="button"
+              {% if section.settings.primary_button_link != blank %}
+                href="{{ section.settings.primary_button_link }}"
+              {% else %}
+                role="link" aria-disabled="true"
+              {% endif %}
+            >
+              {{ section.settings.primary_button_label | escape }}
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.secondary_button_label != blank -%}
+            <a
+              class="button button--secondary"
+              {% if section.settings.secondary_button_link != blank %}
+                href="{{ section.settings.secondary_button_link }}"
+              {% else %}
+                role="link" aria-disabled="true"
+              {% endif %}
+            >
+              {{ section.settings.secondary_button_label | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.supporting_link_label != blank and section.settings.supporting_link_url != blank -%}
+          <div class="home-conversion-hero__supporting-links">
+            <a class="home-conversion-hero__supporting-link" href="{{ section.settings.supporting_link_url }}">
+              <span>{{ section.settings.supporting_link_label | escape }}</span>
+              <span class="icon-wrap">{% render 'icon-arrow' %}</span>
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if visible_block_count > 0 -%}
+        <div class="home-conversion-hero__products">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.product == blank -%}
+              {%- continue -%}
+            {%- endif -%}
+            {%- liquid
+              assign lazy_load = true
+              if forloop.index <= 2
+                assign lazy_load = false
+              endif
+            -%}
+            <div class="home-conversion-hero__product-item" {{ block.shopify_attributes }}>
+              {% render 'home-spotlight-card',
+                spotlight_product: block.settings.product,
+                spotlight_badge: block.settings.badge,
+                spotlight_caption: block.settings.caption,
+                spotlight_button_label: block.settings.button_label,
+                section_id: section.id,
+                image_sizes: '(min-width: 990px) 20vw, (min-width: 750px) 30vw, 78vw',
+                lazy_load: lazy_load
+              %}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home Conversion Hero",
+  "tag": "section",
+  "class": "section section-home-conversion-hero",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Decorative background image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "New Spring Arrivals + Easter Matching Outfits",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Shop the matching looks parents are most likely to buy",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "default": "Lead with the product pages already proving they convert, then route shoppers into swimsuits and Daddy & Me while spring demand is high.",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "default": "Shop Matching Swimsuits",
+      "label": "Primary button label"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "default": "Browse Daddy & Me",
+      "label": "Secondary button label"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "supporting_link_label",
+      "default": "See most-loved matching sets",
+      "label": "Supporting link label"
+    },
+    {
+      "type": "url",
+      "id": "supporting_link_url",
+      "label": "Supporting link URL"
+    },
+    {
+      "type": "color",
+      "id": "background_start",
+      "default": "#F4ECE2",
+      "label": "Background start"
+    },
+    {
+      "type": "color",
+      "id": "background_end",
+      "default": "#FFF9F2",
+      "label": "Background end"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "default": "#C87932",
+      "label": "Accent color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#201613",
+      "label": "Text color"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "default": "#FFFDFC",
+      "label": "Card background"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 36,
+      "unit": "px",
+      "label": "Padding top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 36,
+      "unit": "px",
+      "label": "Padding bottom"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "default": "Top converter",
+          "label": "Badge"
+        },
+        {
+          "type": "textarea",
+          "id": "caption",
+          "default": "Lead with a direct PDP link instead of sending shoppers through a general collection first.",
+          "label": "Caption"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Shop This Look",
+          "label": "Button label"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Home Conversion Hero"
+    }
+  ]
+}
+{% endschema %}

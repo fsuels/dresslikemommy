@@ -1,0 +1,37 @@
+{% comment %}
+  Renders collection-driven internal links beneath the PDP description.
+
+  Accepts:
+  - product: Product object
+{% endcomment %}
+
+{%- liquid
+  assign in_matching_hawaiian_outfits = false
+  assign in_matching_family_vacation_outfits = false
+  assign in_mother_daughter_matching_dresses = false
+
+  for product_collection in product.collections
+    case product_collection.handle
+      when 'matching-hawaiian-outfits'
+        assign in_matching_hawaiian_outfits = true
+      when 'matching-family-vacation-outfits'
+        assign in_matching_family_vacation_outfits = true
+      when 'mother-daughter-matching-dresses'
+        assign in_mother_daughter_matching_dresses = true
+    endcase
+  endfor
+-%}
+
+{%- if in_matching_hawaiian_outfits or in_matching_family_vacation_outfits or in_mother_daughter_matching_dresses -%}
+  <div class="product__description rte quick-add-hidden product-copy" data-product-internal-links>
+    {%- if in_matching_hawaiian_outfits and collections['matching-hawaiian-outfits'] != blank -%}
+      <p>Part of our <a href="{{ collections['matching-hawaiian-outfits'].url }}">{{ collections['matching-hawaiian-outfits'].title | escape }}</a> collection for luaus, beach photos, and tropical vacations.</p>
+    {%- endif -%}
+    {%- if in_matching_family_vacation_outfits and collections['matching-family-vacation-outfits'] != blank -%}
+      <p>See more <a href="{{ collections['matching-family-vacation-outfits'].url }}">{{ collections['matching-family-vacation-outfits'].title | escape }}</a> for coordinated travel looks, resort dinners, and family photo days.</p>
+    {%- endif -%}
+    {%- if in_mother_daughter_matching_dresses and collections['mother-daughter-matching-dresses'] != blank -%}
+      <p>Browse the full <a href="{{ collections['mother-daughter-matching-dresses'].url }}">{{ collections['mother-daughter-matching-dresses'].title | escape }}</a> collection for photo-ready outfits, holidays, and special occasions.</p>
+    {%- endif -%}
+  </div>
+{%- endif -%}

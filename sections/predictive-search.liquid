@@ -56,6 +56,10 @@
                 aria-labelledby="predictive-search-products"
               >
                 {%- for product in predictive_search.resources.products -%}
+                  {%- capture predictive_search_alt -%}
+                    {% render 'product-image-alt', product: product, media: product.featured_media %}
+                  {%- endcapture -%}
+                  {%- assign predictive_search_alt = predictive_search_alt | strip -%}
                   <li
                     id="predictive-search-option-product-{{ forloop.index }}"
                     class="predictive-search__list-item"
@@ -71,7 +75,7 @@
                         <img
                           class="predictive-search__image"
                           src="{{ product.featured_media | image_url: width: 150 }}"
-                          alt="{{ product.featured_media.alt }}"
+                          alt="{{ predictive_search_alt | escape }}"
                           width="50"
                           height="{{ 50 | divided_by: product.featured_media.preview_image.aspect_ratio }}"
                         >

@@ -4,6 +4,39 @@
 
 {%- capture generated_rich_content -%}
   {%- case collection_handle -%}
+    {%- when 'matching-outfits', 'family-matching', 'family-matching-outfits' -%}
+      <h2>Matching family outfits and mommy and me outfits for photos, holidays, travel, and everyday style</h2>
+      <p>This page is built to cover matching family outfits and mommy and me outfits in one strong collection instead of splitting the search too early. Shoppers land here looking for coordinated looks for family photos, vacations, holidays, birthdays, and everyday moments where the whole group or just mom and daughter wants to match.</p>
+      <h3>How to use this collection</h3>
+      <ul>
+        <li>Start here when you want the broadest family-outfit page first before narrowing into one product type.</li>
+        <li>Use it for matching family outfits that can expand across dresses, tops, swimwear, and seasonal looks.</li>
+        <li>Jump into the dresses collection when the search is specifically about mommy and me dresses or mother daughter matching dresses.</li>
+      </ul>
+      {%- if collections['dresses'] != blank -%}
+        <p><a href="{{ collections['dresses'].url }}">Shop mommy and me dresses</a> when the dress is the main focus of the matching look.</p>
+      {%- endif -%}
+      {%- if collections['family-swimsuits'] != blank -%}
+        <p><a href="{{ collections['family-swimsuits'].url }}">Browse matching family bathing suits</a> when the family plan is centered on beach trips, pool days, and summer travel.</p>
+      {%- endif -%}
+      {%- if collections['mommy-and-me'] != blank -%}
+        <p><a href="{{ collections['mommy-and-me'].url }}">See the broader Mommy and Me collection</a> if the shopping intent is mostly focused on moms and daughters.</p>
+      {%- endif -%}
+    {%- when 'dresses' -%}
+      <h2>Mommy and me dresses and mother daughter matching dresses for photos, parties, travel, and polished everyday wear</h2>
+      <p>This collection is designed for shoppers who already know the dress is the centerpiece. It targets mommy and me dresses and mother daughter matching dresses for family photos, birthdays, vacations, Easter, Mother&apos;s Day, brunch, and other polished moments where moms and daughters want to coordinate without looking overly costume-like.</p>
+      <h3>Why this page matters</h3>
+      <ul>
+        <li>It keeps dress-led shopping separate from the broader family-outfit hub so the intent stays clear.</li>
+        <li>It aligns directly with searches for mommy and me dresses and mother daughter matching dresses.</li>
+        <li>It gives shoppers a faster path into silhouettes that photograph well and can still be worn again after the event.</li>
+      </ul>
+      {%- if collections['matching-outfits'] != blank -%}
+        <p><a href="{{ collections['matching-outfits'].url }}">Browse matching family outfits</a> when the look needs to expand beyond mom and daughter into the full family.</p>
+      {%- endif -%}
+      {%- if collections['mommy-and-me'] != blank -%}
+        <p><a href="{{ collections['mommy-and-me'].url }}">Shop the broader Mommy and Me collection</a> if you want dresses plus swimsuits, sets, and other matching categories.</p>
+      {%- endif -%}
     {%- when 'mommy-and-me' -%}
       <h2>Mommy and me outfits for family photos, vacations, birthdays, and everyday matching moments</h2>
       <p>This collection is designed to own the broad mommy and me outfits search cluster, not just one product type. Shoppers land here looking for mommy and me outfits, mommy and me dresses, and matching sets that can work across family photos, birthday parties, vacations, beach days, and casual everyday wear. The goal is to make the page useful as the first stop, then let the shopper narrow into dresses, swimsuits, or other matching categories from there.</p>
@@ -23,16 +56,19 @@
         <p><a href="{{ collections['family-sets'].url }}">See matching family vacation outfits</a> for travel-ready sets that expand beyond mom-and-daughter styling.</p>
       {%- endif -%}
     {%- when 'family-swimsuits' -%}
-      <h2>Family matching swimsuits for beach vacations, pool days, cruises, and summer photos</h2>
-      <p>This page is built around the highest-intent family swim terms: family matching swimsuits, matching family bathing suits, and coordinated family swimwear for vacations and warm-weather photos. The collection works best when the shopper wants the whole family to feel visually connected without having to piece together separate swim categories one by one.</p>
+      <h2>Matching family bathing suits for beach vacations, pool days, cruises, and coordinated summer photos</h2>
+      <p>This page is built around the strongest family swim terms: matching family bathing suits, family matching swimsuits, and coordinated family swimwear for vacations and warm-weather photos. It works best when the whole family needs to match around one print or color story without piecing together separate swim categories one by one.</p>
       <h3>Why this page is different from a general swimwear collection</h3>
       <ul>
         <li>It is centered on full-family coordination instead of only mom-and-daughter swim looks.</li>
-        <li>It speaks directly to vacation, cruise, and beach-photo intent where matching swimwear is the main goal.</li>
+        <li>It speaks directly to vacation, cruise, and beach-photo intent where matching family bathing suits are the main goal.</li>
         <li>It gives shoppers a cleaner route into family swim outfits before they branch into trunks or broader matching collections.</li>
       </ul>
       {%- if collections['trunks'] != blank -%}
         <p><a href="{{ collections['trunks'].url }}">Add matching trunks</a> when you need dad and boy swim pieces to complete the beach-day set.</p>
+      {%- endif -%}
+      {%- if collections['swimsuits'] != blank -%}
+        <p><a href="{{ collections['swimsuits'].url }}">See mom and daughter matching swimsuits</a> if the shopping intent is narrower than full-family coordination.</p>
       {%- endif -%}
       {%- if collections['mommy-and-me'] != blank -%}
         <p><a href="{{ collections['mommy-and-me'].url }}">Browse Mommy and Me outfits</a> if the main need is mom-and-daughter coordination beyond swimwear.</p>
