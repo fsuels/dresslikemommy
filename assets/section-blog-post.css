@@ -276,6 +276,117 @@
   line-height: 1.5;
 }
 
+.article-template__recommended-products {
+  margin-top: 4rem;
+}
+
+.article-template__recommended-card {
+  padding: 2.6rem 2.2rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-radius: 2.8rem;
+  background: linear-gradient(135deg, rgba(var(--color-background), 1) 0%, rgba(var(--color-foreground), 0.04) 100%);
+}
+
+.article-template__recommended-card--fallback {
+  display: grid;
+  gap: 1.6rem;
+  justify-items: start;
+}
+
+.article-template__recommended-eyebrow {
+  margin: 0 0 1rem;
+  color: rgba(var(--color-foreground), 0.58);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+}
+
+.article-template__recommended-title {
+  margin: 0;
+  line-height: 1.08;
+}
+
+.article-template__recommended-grid {
+  display: grid;
+  gap: 1.6rem;
+  margin-top: 2rem;
+}
+
+.article-template__recommended-product {
+  display: grid;
+  gap: 1.6rem;
+  padding: 1.4rem;
+  border-radius: 2.2rem;
+  background: rgb(var(--color-background));
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+.article-template__recommended-product-image {
+  display: block;
+  overflow: hidden;
+  border-radius: 1.8rem;
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.article-template__recommended-product-image img,
+.article-template__recommended-product-placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.1;
+  object-fit: cover;
+}
+
+.article-template__recommended-product-info {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.article-template__recommended-product-title {
+  margin: 0;
+  font-size: 1.9rem;
+  line-height: 1.3;
+}
+
+.article-template__recommended-product-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.article-template__recommended-price .price__container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.2rem;
+  align-items: baseline;
+}
+
+.article-template__recommended-price .price-item {
+  font-size: 1.6rem;
+}
+
+.article-template__recommended-product-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.article-template__recommended-fallback-link {
+  min-width: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .article-template__recommended-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 .article-template__related {
   margin-top: 5rem;
 }

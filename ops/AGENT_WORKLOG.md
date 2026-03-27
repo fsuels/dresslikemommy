@@ -8949,3 +8949,287 @@ Verification:
 Open items:
 - The requested live product SEO optimization is complete.
 - For future token-based Admin automation, regenerate or reinstall the `n8n Integration` app token so API scripts can write without relying on the browser session.
+
+
+### Task: Live winter article product recommendation cleanup
+Date: 2026-03-26 22:21:51 EDT
+Changes:
+- Shopify Admin `News` blog articles
+  - Article `559662530657` (`/blogs/news/best-matching-family-outfits-for-winter-2028`)
+    - Replaced the one-shoulder swimsuit recommendation with:
+      - `/products/family-matching-cable-knit-sweaters-heart-embroidered-unisex-pullovers`
+      - `Family Matching Sweaters - Heart Print | Dress Like Mommy`
+    - Replaced the bowknot bathing-suit recommendation with:
+      - `/products/matching-family-red-stripe-knit-sweaters-half-zip-pullover-for-mom-dad-and-kids`
+      - `Family Matching Sweaters - Red Striped | Dress Like Mommy`
+
+Why:
+- The live seasonal template post was recommending products that did not match the article season and audience.
+- The prompt required a manual Shopify Blog HTML correction rather than only a planning note in the repo.
+
+Verification:
+- Located the live Shopify Admin article record via the paginated `News` blog list.
+- Opened the post in Shopify Admin, switched the rich-text editor into `Show HTML` source mode, patched the targeted recommendation blocks, pasted the updated HTML back, and saved.
+- Verified the live storefront through browser fetches:
+  - `/blogs/news/best-matching-family-outfits-for-winter-2028` now includes:
+    - `Family Matching Sweaters - Heart Print | Dress Like Mommy`
+    - `Family Matching Sweaters - Red Striped | Dress Like Mommy`
+    - and no longer includes the prior swimsuit or bathing-suit links.
+
+Open items:
+- If the operator wants a broader seasonal-template cleanup, the next pass should audit the remaining recommendation and inline-CTA blocks for audience consistency across the other year-stamped seasonal posts.
+
+### Task: Canonical winter article draft for evergreen merge planning
+Date: 2026-03-26 22:21:51 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-canonical-winter-article-draft
+Changes:
+- `ops/content/style-journal/articles/best-matching-family-outfits-for-winter.html`
+  - Added a repo-side canonical draft for the evergreen no-year winter article handle.
+  - Based the rewrite on the live historical Shopify variants:
+    - `/blogs/news/best-matching-family-outfits-for-winter-2016`
+    - `/blogs/news/best-matching-family-outfits-for-winter-2017`
+    - `/blogs/news/best-matching-family-outfits-for-winter-2024`
+    - `/blogs/news/best-matching-family-outfits-for-winter-2025`
+    - `/blogs/news/best-matching-family-outfits-for-winter-2026`
+    - `/blogs/news/best-matching-family-outfits-for-winter-2027`
+    - `/blogs/news/best-matching-family-outfits-for-winter-2028`
+  - Preserved the requested H2 structure:
+    - `Why families love matching for winter`
+    - `Editor's Picks`
+    - `Styling Tips`
+    - `Getting the Right Fit`
+    - `Caring for Your Outfits`
+    - `Ready to Start Matching`
+  - Removed year references from the body except the editable top line `Updated for 2026`.
+  - Replaced live product links with winter-only placeholder recommendation slots tied to the approved collection paths.
+  - Added validated internal links to related blog posts and relevant winter collections.
+
+Why:
+- The live year-stamped winter posts are templated and inconsistent, including previously incorrect seasonal recommendations and duplicated phrasing.
+- The user requested a content-planning draft only, not a publish action, so the canonical merge was prepared in the repo for manual review and later Shopify publishing.
+
+Verification:
+- Confirmed the current shell year is `2026`.
+- Fetched the live storefront article HTML for the year-stamped winter posts and extracted the article bodies to identify reusable ideas and repeated issues.
+- Verified these destination URLs return `HTTP 200` before linking them in the draft:
+  - `/collections/family-sweaters`
+  - `/collections/fall-winter`
+  - `/collections/family-pajamas`
+  - `/blogs/news/winter-family-photo-outfits-matching-looks-for-cold-weather-2024`
+  - `/blogs/news/holiday-family-matching-outfits-complete-2025-guide`
+  - `/blogs/news/the-complete-guide-to-family-matching-outfits`
+
+Open items:
+- Draft remains repo-side only and is not published.
+- Before live publish, replace the placeholder products and add a real article image URL in frontmatter.
+
+### Task: Live `matching matching` typo cleanup across news blog articles
+Date: 2026-03-26 22:27:05 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-news-matching-matching-cleanup
+Changes:
+- Theme code scan
+  - Searched every local `.liquid` file under `sections/` and `snippets/` for `matching matching`.
+  - Result: no local theme-code matches; no repo theme files required edits.
+- Shopify Admin blog content
+  - Confirmed the stored Admin API token still returns `401 Unauthorized`, so the live write path used the authenticated Chrome merchant session instead of the stale token.
+  - Scanned the live `/blogs/news` article set and built a candidate list of affected article handles.
+  - Updated Shopify Admin article bodies through the article editor for the candidate set and wrote the execution report to:
+    - `ops/content/news-matching-matching-fix-report.json`
+  - Final Admin-side report summary:
+    - `candidate_count: 135`
+    - `updated_count: 118`
+    - `already_clean_count: 17`
+    - `error_count: 0`
+
+Why:
+- The user requested an exact replacement of the duplicated phrase `matching matching` in news-blog article body content and a theme-code scan for the same typo.
+- The local theme code was already clean, but many live Shopify blog articles still contained the typo in `article.body`.
+
+Verification:
+- Reconfirmed no local `sections/` or `snippets/` Liquid files contain `matching matching`.
+- Verified the corrected Admin editor bodies for representative updated articles now return `remaining: 0` for the exact phrase after save + reload.
+- Rechecked the two rows that initially landed as `verify_error`:
+  - `black-friday-deals-top-matching-family-outfits` is now clean on direct article-ID verification.
+  - `fall-family-matching-outfits-for-2027` required a direct article-ID update and now verifies clean.
+- Started a fresh storefront-wide post-fix scan from the live sitemap after the Admin edits completed.
+  - The residual live storefront hits are concentrated in the same `already_clean` subset from the Admin report, which indicates a remaining legacy public-handle / content-mapping issue rather than unresolved body edits in the articles that were actually updated.
+
+Open items:
+- Residual live storefront URLs still rendering `matching matching` after the Admin body cleanup are currently:
+  - `transitional-weather-family-matching-style-guide`
+  - `red-white-and-blue-patriotic-family-matching-looks`
+  - `apple-picking-matching-outfits-for-the-whole-family`
+  - `matching-family-outfits-for-pumpkin-patch-photos`
+  - `winter-family-photo-outfits-matching-looks-for-cold-weather`
+  - `red-and-pink-family-matching-outfits-for-valentines-day`
+  - `summer-vacation-matching-family-outfits-guide`
+  - `end-of-summer-matching-family-beach-looks`
+  - `best-fall-colors-for-family-matching-looks`
+  - `holiday-family-matching-outfits-complete-2018-guide`
+  - `new-year-new-matching-looks-family-fashion-for-2019`
+  - `new-year-new-matching-looks-family-fashion-for-2020`
+  - `new-year-new-matching-looks-family-fashion-for-2024`
+  - `holiday-family-matching-outfits-complete-2022-guide`
+  - `new-year-new-matching-looks-family-fashion-for-2025`
+  - `new-year-new-matching-looks-family-fashion-for-2026`
+  - `halloween-family-matching-costume-ideas-2028`
+- These residual URLs did not map cleanly back to unique current Admin article bodies through the editor search flow; resolving them will require a separate legacy-handle mapping pass or another Shopify-side source of truth beyond the current editor lookup.
+
+### Task: Maternity article image assignment and publish attempt
+Date: 2026-03-26 22:35:13 EDT
+Changes:
+- `ops/content/style-journal/articles/maternity-matching-outfits-complete-guide-for-expecting-moms.html`
+  - Filled `image_url` with the current live maternity collection social image:
+    - `https://www.dresslikemommy.com/cdn/shop/files/ChatGPT_Image_Mar_26_2026_07_00_46_AM.png?v=1774523101`
+
+Why:
+- The draft needed a real publicly reachable hero image URL before a Shopify article publish attempt.
+- Using the live maternity collection image keeps the article asset aligned with the collection it is meant to support.
+
+Verification:
+- Ran `curl -I --silent 'https://www.dresslikemommy.com/cdn/shop/files/ChatGPT_Image_Mar_26_2026_07_00_46_AM.png?v=1774523101'`.
+  - Result: `HTTP/2 200`
+
+Open items:
+- Live publish attempt still pending below this entry.
+
+### Task: Targeted live consolidation for six future-year blog slugs
+Date: 2026-03-26 22:40:43 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-live-targeted-blog-consolidation
+Changes:
+- `ops/AGENT_WORKLOG.md`
+  - Recorded the live execution of the safer consolidation path for the six Prompt 9 problem slugs using authenticated merchant-session GraphQL from the logged-in Chrome Shopify Admin tab.
+- Shopify Admin articles on store `dresslikemommy-com`
+  - Renamed four future-year articles directly onto year-free evergreen handles and titles:
+    - `best-matching-family-outfits-for-winter-2028` -> `best-matching-family-outfits-for-winter`
+    - `new-year-new-matching-looks-family-fashion-for-2028` -> `new-year-new-matching-looks-family-fashion`
+    - `spring-matching-outfits-for-mommy-and-me-2029` -> `spring-matching-outfits-for-mommy-and-me`
+    - `mommy-and-me-easter-outfit-ideas-for-2027` -> `mommy-and-me-easter-outfit-ideas`
+  - Normalized the existing year-free Valentine's canonical article title:
+    - `mommy-and-me-valentines-day-outfits`
+    - title -> `Mommy and Me Valentine's Day Outfits`
+  - Archived and unpublished the two duplicate Valentine's articles instead of forcing another live collision:
+    - `valentines-day-mommy-and-me-outfits-for-2029` -> `archived-valentines-day-mommy-and-me-outfits-for-2029-20260326`
+    - `mommy-and-me-valentines-day-dress-guide-2027` -> `archived-mommy-and-me-valentines-day-dress-guide-2027-20260326`
+- Shopify URL redirects on store `dresslikemommy-com`
+  - Created six live redirects:
+    - `/blogs/news/best-matching-family-outfits-for-winter-2028` -> `/blogs/news/best-matching-family-outfits-for-winter`
+    - `/blogs/news/new-year-new-matching-looks-family-fashion-for-2028` -> `/blogs/news/new-year-new-matching-looks-family-fashion`
+    - `/blogs/news/spring-matching-outfits-for-mommy-and-me-2029` -> `/blogs/news/spring-matching-outfits-for-mommy-and-me`
+    - `/blogs/news/mommy-and-me-easter-outfit-ideas-for-2027` -> `/blogs/news/mommy-and-me-easter-outfit-ideas`
+    - `/blogs/news/valentines-day-mommy-and-me-outfits-for-2029` -> `/blogs/news/mommy-and-me-valentines-day-outfits`
+    - `/blogs/news/mommy-and-me-valentines-day-dress-guide-2027` -> `/blogs/news/mommy-and-me-valentines-day-outfits`
+
+Why:
+- The original quick-fix handle rename was blocked because each desired `2026` slug was already occupied by another published article.
+- The lowest-risk live fix was to move these six problem URLs onto the already planned evergreen canonicals, rather than attempt a 12-URL year-to-year handle swap.
+- Archiving the two Valentine's duplicates preserves the records in Admin while removing them from the live blog and freeing their old public paths for redirects.
+
+Verification:
+- Queried the live `news` blog through authenticated merchant-session GraphQL and confirmed the resulting canonical handles/titles now exist on the intended live articles:
+  - `best-matching-family-outfits-for-winter`
+  - `new-year-new-matching-looks-family-fashion`
+  - `spring-matching-outfits-for-mommy-and-me`
+  - `mommy-and-me-easter-outfit-ideas`
+  - `mommy-and-me-valentines-day-outfits`
+- Confirmed no article still owns the six original future-year source handles.
+- Confirmed both archived Valentine's duplicates now have:
+  - `publishedAt: null`
+  - `isPublished: false`
+- Checked representative storefront responses with `curl -A 'Mozilla/5.0' -I`:
+  - old source URLs now return `301` with `x-redirect-reason: shop_redirect`
+  - the year-free target URLs return `HTTP/2 200`
+
+Open items:
+- This completes the high-risk subset from Prompt 9 without touching the older occupied `2026` handles.
+- The broader seasonal duplicate cleanup should continue from `ops/content/seo/blog-seasonal-consolidation-plan-2026-03-26.csv`.
+
+### Task: Preconfigure collection styling guides and attempt full theme validation/publish
+Date: 2026-03-26 22:05:00 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-collection-blog-links-publish-attempt
+Changes:
+- `sections/collection-blog-links.liquid`
+  - Added `restrict_handles` gating so the section can be inserted multiple times in the collection template and only render for matching collection handles.
+  - Added optional `article_handle` block support that resolves `articles['news/<handle>']` in Liquid, allowing article mappings to be seeded in theme code even when the live theme customizer is not accessible.
+- `templates/collection.json`
+  - Replaced the single blank Styling Guide instance with handle-scoped Styling Guide sections for mommy-and-me, dresses, swim, family, pajamas, daddy-and-me, couples, and maternity collection groups.
+  - Seeded each scoped section with 2-3 article handles plus custom descriptions so target collections can render curated blog-link cards without manual customizer work when those articles exist on the store.
+
+Why:
+- Live customizer edits and theme publish were blocked by invalid stored Shopify Admin/theme credentials in this shell.
+- The handle-scoped template approach matches prior collection-template patterns already documented in this repo and lets live collections render blog guides immediately for article handles that are already published.
+
+Verification:
+- Ran `shopify theme check --fail-level error --output text`.
+  - Result: Theme Check still fails on pre-existing locale translation issues outside this change set (for example missing translation keys in `locales/da.json`). No new Theme Check finding was observed for `sections/collection-blog-links.liquid` or `templates/collection.json` before output was dominated by the existing repo-wide errors.
+- Verified public `200` responses for the main live article handles used in the mommy-and-me, dresses, swim, family, and pajama mappings via storefront requests.
+- Attempted Shopify Admin API and Shopify CLI theme access using the canonical stored credential source in `~/.config/dresslikemommy/shopify-admin.env`; both returned `401 Invalid API key or access token`, which means the stored token requires regeneration/reinstall before any live theme push or publish can proceed.
+
+Open items:
+- Regenerate or reinstall a valid Shopify Admin or Theme Access credential for `dresslikemommy-com.myshopify.com`, then rerun theme upload/publish.
+- Couples and maternity sections are pre-seeded with intended article handles, but those specific article URLs were not publicly live during this session; those collections will only render guide cards once the referenced articles are published or swapped to live handles.
+
+### Task: Add featured images and publish three Style Journal utility articles
+Date: 2026-03-26 22:43:12 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-style-journal-utility-publish-complete
+Changes:
+- `ops/content/style-journal/articles/matching-outfit-sizing-guide-right-fit-for-everyone.html`
+  - Added a real Shopify CDN `image_url` and updated `image_alt`.
+- `ops/content/style-journal/articles/how-to-care-for-your-matching-family-outfits.html`
+  - Added a real Shopify CDN `image_url` and updated `image_alt`.
+- `ops/content/style-journal/articles/ultimate-gift-guide-matching-outfits-for-every-occasion.html`
+  - Added a real Shopify CDN `image_url` and updated `image_alt`.
+- Shopify Admin blog `news` on store `dresslikemommy-com`
+  - Published these three articles live through authenticated merchant-session GraphQL from the logged-in Chrome Admin tab:
+    - `/blogs/news/how-to-care-for-your-matching-family-outfits`
+    - `/blogs/news/matching-outfit-sizing-guide-right-fit-for-everyone`
+    - `/blogs/news/ultimate-gift-guide-matching-outfits-for-every-occasion`
+
+Why:
+- The user wanted the three Prompt 12 utility articles completed end-to-end, and the only remaining blockers were blank hero-image URLs plus the live publish step.
+- The canonical stored Admin token still returns `401 Invalid API key or access token`, so the working path was the authenticated merchant browser session using the page CSRF token against `https://admin.shopify.com/api/shopify/dresslikemommy-com`.
+
+Verification:
+- Verified all three selected Shopify CDN hero-image URLs return `HTTP 200`.
+- Re-ran the direct token-based article publish path:
+  - `python3 ops/scripts/publish_blog_articles.py --handles matching-outfit-sizing-guide-right-fit-for-everyone,how-to-care-for-your-matching-family-outfits,ultimate-gift-guide-matching-outfits-for-every-occasion --execute --publish`
+  - Result: still fails with `HTTP 401` / `Invalid API key or access token`.
+- Queried live Admin GraphQL through the authenticated Chrome merchant session and successfully created all three articles:
+  - `gid://shopify/Article/559700541537`
+  - `gid://shopify/Article/559700574305`
+  - `gid://shopify/Article/559700607073`
+- Verified the public article URLs now return `HTTP 200` and include page-title, `og:image`, and hero-image markup.
+
+Open items:
+- The three requested Prompt 12 articles are now live.
+- For future token-based article publishing, regenerate or reinstall a valid Admin token with content scopes so `ops/scripts/publish_blog_articles.py --execute --publish` can work without the browser-session workaround.
+
+### Task: Runtime QA for article related-posts tag matching in development theme preview
+Date: 2026-03-26 22:43:50 EDT
+Changes:
+- No repo code changes in this QA step.
+- Pushed `sections/main-article.liquid` to development theme `#133851742305` with:
+  - `shopify theme push --store dresslikemommy-com.myshopify.com --theme 133851742305 --nodelete --only sections/main-article.liquid`
+
+Why:
+- The requested follow-up was to verify the new related-post behavior in Shopify theme preview for one tagged article and one untagged article.
+- Local `shopify theme dev` article routes were serving a Shopify upload-error page because `templates/collection.json` still references missing section type `collection-blog-links`, so preview-theme QA was used instead of the local dev server.
+
+Verification:
+- Confirmed the development preview session was active on theme assets under `/cdn/shop/t/106/`.
+- Used Shopify Liquid console against live article URLs to verify tag state:
+  - `mommy-and-me-matching-outfit-ideas` returned tags `["Family Fashion","Family Matching","Matching Outfits","Mommy and Me","Outfit Ideas","Style Guide"]`.
+  - `spring-matching-outfits-for-mommy-and-me-2029` returned `null` for `article.tags`, confirming the fallback branch is the only branch available on that article.
+- Parsed the development-theme preview HTML for related cards:
+  - Tagged article `mommy-and-me-matching-outfit-ideas` rendered 3 related posts and excluded the current article:
+    - `Mother Daughter Matching Swimsuits: Complete Guide for Summer 2026`
+    - `Daddy and Me Matching Outfits: The Ultimate Guide`
+    - `Family Matching Pajamas: Our Top Picks for Cozy Nights`
+  - Spot-checked those related articles in Liquid console and confirmed they all include `Family Fashion`, matching the tagged article's first tag.
+  - Untagged article `spring-matching-outfits-for-mommy-and-me-2029` rendered 3 fallback related posts and excluded the current article:
+    - `Mommy and Me Easter Outfit Ideas`
+    - `Daddy and Me Spring Outfits for 2025`
+    - `Easter Sunday Family Matching Outfits 2025`
+
+Open items:
+- `shopify theme dev` still cannot reliably render article pages until the missing `collection-blog-links` section reference in `templates/collection.json` is resolved or removed.

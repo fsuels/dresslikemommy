@@ -159,6 +159,73 @@
             paragraphs[midPoint].parentNode.insertBefore(cta, paragraphs[midPoint].nextSibling);
           })();
         </script>
+        {%- liquid
+          assign recommended_products = article.metafields.custom.recommended_products.value
+        -%}
+        {%- capture recommended_products_markup -%}
+          {%- if recommended_products != blank -%}
+            {%- for recommended_product in recommended_products limit: 3 -%}
+              {%- if recommended_product == blank or recommended_product.url == blank -%}
+                {% continue %}
+              {%- endif -%}
+              <article class="article-template__recommended-product">
+                <a href="{{ recommended_product.url }}" class="article-template__recommended-product-image">
+                  {%- if recommended_product.featured_media -%}
+                    <img
+                      srcset="
+                        {%- if recommended_product.featured_media.width >= 320 -%}{{ recommended_product.featured_media | image_url: width: 320 }} 320w,{%- endif -%}
+                        {%- if recommended_product.featured_media.width >= 480 -%}{{ recommended_product.featured_media | image_url: width: 480 }} 480w,{%- endif -%}
+                        {%- if recommended_product.featured_media.width >= 640 -%}{{ recommended_product.featured_media | image_url: width: 640 }} 640w,{%- endif -%}
+                        {{ recommended_product.featured_media | image_url }} {{ recommended_product.featured_media.width }}w
+                      "
+                      sizes="(min-width: 990px) 22rem, (min-width: 750px) calc((100vw - 12rem) / 3), calc(100vw - 7rem)"
+                      src="{{ recommended_product.featured_media | image_url: width: 480 }}"
+                      alt="{{ recommended_product.featured_media.alt | default: recommended_product.title | escape }}"
+                      loading="lazy"
+                      width="{{ recommended_product.featured_media.width }}"
+                      height="{{ recommended_product.featured_media.height }}"
+                    >
+                  {%- else -%}
+                    {{ 'product-apparel-2' | placeholder_svg_tag: 'article-template__recommended-product-placeholder placeholder-svg' }}
+                  {%- endif -%}
+                </a>
+                <div class="article-template__recommended-product-info">
+                  <h3 class="article-template__recommended-product-title">
+                    <a href="{{ recommended_product.url }}">{{ recommended_product.title | escape }}</a>
+                  </h3>
+                  {% render 'price', product: recommended_product, use_variant: true, price_class: 'article-template__recommended-price' %}
+                  <a
+                    href="{{ recommended_product.url }}"
+                    class="article-template__recommended-product-link"
+                    data-style-journal-link="true"
+                    data-style-journal-link-type="product"
+                    data-style-journal-link-placement="article_recommended_products"
+                    data-style-journal-source-article-handle="{{ article.handle | escape }}"
+                    data-style-journal-destination-handle="{{ recommended_product.handle | escape }}"
+                    data-style-journal-destination-title="{{ recommended_product.title | escape }}"
+                  >
+                    Shop now <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </article>
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endcapture -%}
+        {%- assign recommended_products_markup = recommended_products_markup | strip -%}
+
+        {%- if recommended_products_markup != blank -%}
+          <section class="article-template__recommended-products page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            <div class="article-template__recommended-card">
+              <p class="article-template__recommended-eyebrow">Shop the edit</p>
+              <h2 class="article-template__recommended-title">Recommended products from this guide</h2>
+              <div class="article-template__recommended-grid">
+                {{ recommended_products_markup }}
+              </div>
+            </div>
+          </section>
+        {%- else -%}
+          {% render 'style-journal-internal-links', mode: 'article_inline_cta_block', article: article %}
+        {%- endif -%}
 
       {%- when 'share' -%}
         <div
@@ -212,28 +279,64 @@
         <h2 class="article-template__related-title">More from {{ journal_label }}</h2>
       </div>
       <div class="article-template__related-grid">
-        {%- assign related_articles_rendered = 0 -%}
-        {%- for related_article in blog.articles -%}
-          {%- if related_article.id == article.id -%}
-            {% continue %}
-          {%- endif -%}
-          <div class="article-template__related-item">
-            {%- render 'article-card',
-              blog: blog,
-              article: related_article,
-              media_height: 'medium',
-              media_aspect_ratio: 1.2,
-              show_image: true,
-              show_date: true,
-              show_author: false,
-              show_excerpt: true
-            -%}
-          </div>
-          {%- assign related_articles_rendered = related_articles_rendered | plus: 1 -%}
-          {%- if related_articles_rendered == 3 -%}
-            {% break %}
-          {%- endif -%}
-        {%- endfor -%}
+        {%- liquid
+          assign related_articles_rendered = 0
+          assign related_articles_seen = '|' | append: article.id | append: '|'
+          assign primary_related_tag = article.tags.first | strip
+        -%}
+        {%- if primary_related_tag != blank -%}
+          {%- for related_article in blog.articles -%}
+            {%- assign related_article_token = '|' | append: related_article.id | append: '|' -%}
+            {%- if related_articles_seen contains related_article_token -%}
+              {% continue %}
+            {%- endif -%}
+            {%- unless related_article.tags contains primary_related_tag -%}
+              {% continue %}
+            {%- endunless -%}
+            <div class="article-template__related-item">
+              {%- render 'article-card',
+                blog: blog,
+                article: related_article,
+                media_height: 'medium',
+                media_aspect_ratio: 1.2,
+                show_image: true,
+                show_date: true,
+                show_author: false,
+                show_excerpt: true
+              -%}
+            </div>
+            {%- assign related_articles_rendered = related_articles_rendered | plus: 1 -%}
+            {%- assign related_articles_seen = related_articles_seen | append: related_article.id | append: '|' -%}
+            {%- if related_articles_rendered == 3 -%}
+              {% break %}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if related_articles_rendered < 3 -%}
+          {%- for related_article in blog.articles -%}
+            {%- assign related_article_token = '|' | append: related_article.id | append: '|' -%}
+            {%- if related_articles_seen contains related_article_token -%}
+              {% continue %}
+            {%- endif -%}
+            <div class="article-template__related-item">
+              {%- render 'article-card',
+                blog: blog,
+                article: related_article,
+                media_height: 'medium',
+                media_aspect_ratio: 1.2,
+                show_image: true,
+                show_date: true,
+                show_author: false,
+                show_excerpt: true
+              -%}
+            </div>
+            {%- assign related_articles_rendered = related_articles_rendered | plus: 1 -%}
+            {%- assign related_articles_seen = related_articles_seen | append: related_article.id | append: '|' -%}
+            {%- if related_articles_rendered == 3 -%}
+              {% break %}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
       </div>
     </section>
   {%- endif -%}
@@ -429,7 +532,6 @@
     </div>
   {%- endif -%}
   {% render 'article-enhanced-schema', article: article, blog: blog %}
-  {% render 'article-faq-schema', article: article %}
 </article>
 
 {%- liquid

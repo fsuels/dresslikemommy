@@ -22,6 +22,7 @@ ARTICLE_GROUPS = {
         "mommy-and-me-outfits-for-every-season-complete-guide",
     ],
     "couples_rollout": [
+        "matching-couple-outfits-the-complete-guide",
         "matching-couple-outfits-date-night-travel-gifts",
         "couple-matching-pajamas-holidays-anniversaries-gifts",
     ],

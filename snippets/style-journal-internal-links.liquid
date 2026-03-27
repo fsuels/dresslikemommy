@@ -729,6 +729,27 @@
     data-inline-cta-collection-handle="{{ inline_cta_collection_handle | escape }}"
     data-inline-cta-article-handle="{{ article_context_handle | escape }}"
   ></div>
+{%- elsif mode == 'article_inline_cta_block' -%}
+  {%- if inline_cta_url != blank -%}
+    <section class="article-template__recommended-products page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="article-template__recommended-card article-template__recommended-card--fallback">
+        <p class="article-template__recommended-eyebrow">Shop the collection</p>
+        <h2 class="article-template__recommended-title">{{ inline_cta_text | escape }}</h2>
+        <a
+          href="{{ inline_cta_url }}"
+          class="article-template__recommended-fallback-link button"
+          data-style-journal-link="true"
+          data-style-journal-link-type="collection"
+          data-style-journal-link-placement="article_recommended_products_fallback"
+          data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
+          data-style-journal-destination-handle="{{ inline_cta_collection_handle | escape }}"
+          data-style-journal-destination-title="{{ inline_cta_label | escape }}"
+        >
+          {{ inline_cta_label | escape }}
+        </a>
+      </div>
+    </section>
+  {%- endif -%}
 {%- elsif mode == 'article_collection_links' -%}
   {%- if collection_link_1_url != blank or collection_link_2_url != blank or collection_link_3_url != blank -%}
     <section class="article-template__shop-links page-width page-width--narrow">
