@@ -11208,3 +11208,86 @@ Open items:
   - the randomization still stays within fresh/new product imagery
   - lazy-loaded cards below the fold also pick unique images when they enter view
 - If a collection has fewer unique product images than the number of homepage slots it appears against, duplicates can only be avoided up to the number of unique candidate images available.
+
+### Task: Google remediation inventory and backup baseline
+Date: 2026-03-27 15:43:21 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-google-remediation-inventory
+Changes:
+- Created `dlm-google-remediation-2026-03-27/` with these files:
+  - `00_master_change_log.md`
+  - `01_tag_inventory.csv`
+  - `02_product_feed_worklog.md`
+  - `03_ads_rebuild_worklog.md`
+  - `04_rollbacks.md`
+- Created local backup zip:
+  - `dlm-google-remediation-2026-03-27/dresslikemommy-theme-backup-2026-03-27.zip`
+- Scanned repo-local theme/code/deployment files for:
+  - `G-N4EQNK0MMB`
+  - `GT-PJ5D7RB`
+  - `GTM-5QVH4W3`
+  - `AW-853411529`
+  - `G-3VR0TDX4ZK`
+  - `google-analytics.com`
+  - `googletagmanager.com`
+  - `googleadservices.com`
+  - `gtag(`
+- Recorded 13 active code/deployment hits across:
+  - `layout/theme.liquid`
+  - `ops/customer-events/ga4-checkout-ecommerce-pixel.js`
+- Documented that `GT-PJ5D7RB`, `AW-853411529`, `G-3VR0TDX4ZK`, `google-analytics.com`, and `googleadservices.com` had no active local code/deployment hits in the scanned scope.
+- Documented that `123LegalDoc` / `G-3VR0TDX4ZK` appeared only in planning documentation, not in repo-local runtime code.
+
+Why:
+- The user requested a measurement inventory and rollback baseline before any production-facing Google remediation work.
+- A backup plus a line-level inventory reduces the risk of removing the wrong tag source or missing a checkout-specific reference.
+- Local repo findings needed to be separated from documentation-only references and from admin-side systems that are not versioned here.
+
+Verification:
+- Ran `rg -n --hidden -F -e 'G-N4EQNK0MMB' -e 'GT-PJ5D7RB' -e 'GTM-5QVH4W3' -e 'AW-853411529' -e 'G-3VR0TDX4ZK' -e 'google-analytics.com' -e 'googletagmanager.com' -e 'googleadservices.com' -e 'gtag(' layout sections snippets assets config templates ops/customer-events ops/scripts .shopifyignore .github`.
+  - Result: active code/deployment hits were limited to `layout/theme.liquid` and `ops/customer-events/ga4-checkout-ecommerce-pixel.js`.
+- Ran `rg -n -i '123legaldoc|G-3VR0TDX4ZK|MC-MQ104D130Y' --glob '!.git/*' --glob '!agent-backend/node_modules/*' .`.
+  - Result: `123LegalDoc` / `G-3VR0TDX4ZK` appeared only in `DressLikeMommy-Master-Implementation-Plan.md`.
+- Created backup zip and verified its presence with `ls -lh`.
+  - Result: `dlm-google-remediation-2026-03-27/dresslikemommy-theme-backup-2026-03-27.zip` exists at `33M`.
+
+Open items:
+- Repo files alone cannot confirm or clear:
+  - Shopify Web Pixel settings
+  - GTM workspace tags/triggers
+  - Google & YouTube sales-channel configuration
+  - app-managed injections outside the theme codebase
+- If the remediation proceeds, compare this baseline against the live Shopify Admin / GTM configuration before removing any Google source.
+
+### Task: Phase 1 repo-side Google deduplication
+Date: 2026-03-27 16:42:14 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-phase1-repo-google-dedup
+Changes:
+- Updated `layout/theme.liquid` to remove repo-managed Google deployment code:
+  - removed the GTM bootstrap snippet for `GTM-5QVH4W3`
+  - removed the GTM noscript iframe
+  - removed the theme-level GA4 fallback `gtag(...)` setup for `G-N4EQNK0MMB`
+  - kept `window.dataLayer` and `window.dlmAnalyticsContext.site_language` so theme ecommerce event payloads still have locale context
+- Replaced `ops/customer-events/ga4-checkout-ecommerce-pixel.js` with a deprecation stub so the repo no longer contains a ready-to-paste Google custom pixel implementation.
+- Updated:
+  - `dlm-google-remediation-2026-03-27/00_master_change_log.md`
+  - `dlm-google-remediation-2026-03-27/03_ads_rebuild_worklog.md`
+  - `dlm-google-remediation-2026-03-27/04_rollbacks.md`
+
+Why:
+- The browser audit established that Google measurement is duplicated across Shopify Google & YouTube, theme code, GTM, and a custom pixel path.
+- The chosen architecture is to keep Google & YouTube as the sole supported Google deployment path on Shopify.
+- Browser findings also established that the current GTM container contains only Google tags, so keeping the GTM theme snippet would preserve a duplicate Google path rather than a business-critical non-Google dependency.
+
+Verification:
+- Ran `rg -n --hidden -F -e 'G-N4EQNK0MMB' -e 'GT-PJ5D7RB' -e 'GTM-5QVH4W3' -e 'AW-853411529' -e 'G-3VR0TDX4ZK' -e 'google-analytics.com' -e 'googletagmanager.com' -e 'googleadservices.com' -e 'gtag(' layout/theme.liquid ops/customer-events/ga4-checkout-ecommerce-pixel.js`.
+  - Result: no remaining matches in the edited repo files.
+- Ran `git diff --stat -- layout/theme.liquid ops/customer-events/ga4-checkout-ecommerce-pixel.js`.
+  - Result: removed 430 lines of duplicate Google deployment code and replaced the custom pixel file with a 6-line deprecation stub.
+
+Open items:
+- Browser-only follow-up is still required to finish Phase 1:
+  - disconnect/delete the active Shopify custom pixel
+  - remove deprecated checkout Additional Scripts Google snippets
+  - confirm Google & YouTube remains healthy as the sole Google deployment path
+  - export and clean GTM container `GTM-5QVH4W3`
+  - investigate/remove rogue `123LegalDoc` tag `G-3VR0TDX4ZK` / `GT-M6XFPGSK`

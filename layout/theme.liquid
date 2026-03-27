@@ -2,41 +2,6 @@
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
 <head>
-  {% comment %}Google Tag Manager{% endcomment %}
-  <script>
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-
-      var hasLoaded = false;
-
-      function loadTagManager() {
-        if (hasLoaded) return;
-        hasLoaded = true;
-
-        var f = d.getElementsByTagName(s)[0];
-        var j = d.createElement(s);
-        var dl = l != 'dataLayer' ? '&l=' + l : '';
-
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      }
-
-      function scheduleIdleLoad() {
-        if ('requestIdleCallback' in w) {
-          w.requestIdleCallback(loadTagManager, { timeout: 3000 });
-        } else {
-          w.setTimeout(loadTagManager, 2000);
-        }
-      }
-
-      w.addEventListener('load', scheduleIdleLoad, { once: true });
-      d.addEventListener('pointerdown', loadTagManager, { once: true, passive: true, capture: true });
-      d.addEventListener('touchstart', loadTagManager, { once: true, passive: true, capture: true });
-      d.addEventListener('keydown', loadTagManager, { once: true, capture: true });
-    })(window, document, 'script', 'dataLayer', 'GTM-5QVH4W3');
-  </script>
 <link rel="stylesheet" href="{{ 'component-list-social.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-list-payment.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-rating.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -296,14 +261,11 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     window.dlmAnalyticsContext = window.dlmAnalyticsContext || {};
-    window.dlmAnalyticsContext.ga4_measurement_id = 'G-N4EQNK0MMB';
     window.dlmAnalyticsContext.site_language = (function (rawLocale) {
       var normalized = String(rawLocale || '').trim();
       if (!normalized) return 'en';
       return normalized.split(/[-_]/)[0].toLowerCase();
     })({{ request.locale.iso_code | json }});
-    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-    window.gtag('set', 'site_language', window.dlmAnalyticsContext.site_language);
     window.dataLayer.push({ site_language: window.dlmAnalyticsContext.site_language });
   </script>
 
@@ -345,174 +307,6 @@
   {%- if settings.animations_reveal_on_scroll -%}
     <script defer src="{{ 'animations.js' | asset_url }}"></script>
   {%- endif -%}
-
-  <script>
-    (function () {
-      var GTAG_HOSTNAME = 'www.googletagmanager.com';
-      var GTAG_PATHNAME = '/gtag/js';
-      var primaryGtagScript = null;
-
-      function parseGtagId(srcValue) {
-        if (!srcValue) return '';
-        try {
-          var parsed = new URL(srcValue, window.location.href);
-          if (parsed.hostname !== GTAG_HOSTNAME || parsed.pathname !== GTAG_PATHNAME) return '';
-          return String(parsed.searchParams.get('id') || '').trim();
-        } catch (error) {
-          return '';
-        }
-      }
-
-      function dispatchScriptEvent(scriptNode, eventName) {
-        if (!scriptNode) return;
-        window.setTimeout(function () {
-          try {
-            var eventObject;
-            if (typeof Event === 'function') {
-              eventObject = new Event(eventName);
-            } else {
-              eventObject = document.createEvent('Event');
-              eventObject.initEvent(eventName, false, false);
-            }
-            scriptNode.dispatchEvent(eventObject);
-          } catch (error) {
-            // no-op
-          }
-        }, 0);
-      }
-
-      function trackPrimaryScript(scriptNode) {
-        if (!scriptNode) return;
-        if (!primaryGtagScript) primaryGtagScript = scriptNode;
-        if (scriptNode.__dlmGtagTracked) return;
-
-        scriptNode.__dlmGtagTracked = true;
-        scriptNode.addEventListener('load', function () {
-          scriptNode.__dlmGtagLoaded = true;
-          scriptNode.__dlmGtagFailed = false;
-        });
-        scriptNode.addEventListener('error', function () {
-          scriptNode.__dlmGtagFailed = true;
-        });
-      }
-
-      function shouldBlockDuplicateScript(scriptNode) {
-        if (!scriptNode || scriptNode.tagName !== 'SCRIPT') return false;
-
-        var id = parseGtagId(scriptNode.getAttribute('src') || scriptNode.src);
-        if (!id) return false;
-
-        var primaryScript = primaryGtagScript;
-        if (!primaryScript || primaryScript === scriptNode) {
-          trackPrimaryScript(scriptNode);
-          return false;
-        }
-
-        if (primaryScript.__dlmGtagLoaded) {
-          dispatchScriptEvent(scriptNode, 'load');
-        } else if (primaryScript.__dlmGtagFailed) {
-          dispatchScriptEvent(scriptNode, 'error');
-        } else {
-          primaryScript.addEventListener(
-            'load',
-            function () {
-              dispatchScriptEvent(scriptNode, 'load');
-            },
-            { once: true }
-          );
-          primaryScript.addEventListener(
-            'error',
-            function () {
-              dispatchScriptEvent(scriptNode, 'error');
-            },
-            { once: true }
-          );
-        }
-
-        return true;
-      }
-
-      function seedExistingScripts() {
-        var scripts = document.querySelectorAll('script[src*="googletagmanager.com/gtag/js"]');
-        for (var i = 0; i < scripts.length; i += 1) {
-          var scriptNode = scripts[i];
-          var id = parseGtagId(scriptNode.getAttribute('src') || scriptNode.src);
-          if (!id || primaryGtagScript) continue;
-          trackPrimaryScript(scriptNode);
-        }
-      }
-
-      function patchInsertionMethod(methodName) {
-        var originalMethod = Element.prototype[methodName];
-        if (typeof originalMethod !== 'function') return;
-
-        Element.prototype[methodName] = function (node, referenceNode) {
-          if (shouldBlockDuplicateScript(node)) {
-            return node;
-          }
-
-          if (methodName === 'insertBefore') {
-            return originalMethod.call(this, node, referenceNode);
-          }
-          return originalMethod.call(this, node);
-        };
-      }
-
-      seedExistingScripts();
-      patchInsertionMethod('appendChild');
-      patchInsertionMethod('insertBefore');
-    })();
-  </script>
-
-  <script>
-    (function () {
-      var ctx = window.dlmAnalyticsContext || {};
-      var measurementId = String(ctx.ga4_measurement_id || 'G-N4EQNK0MMB').trim();
-      if (!measurementId) return;
-
-      function hasLanguageConfigForMeasurement(id) {
-        var layer = window.dataLayer || [];
-        for (var i = 0; i < layer.length; i += 1) {
-          var entry = layer[i];
-          if (entry && typeof entry === 'object' && entry[0] === 'config' && entry[1] === id) {
-            var payload = entry[2];
-            if (payload && typeof payload === 'object' && String(payload.site_language || '').trim()) {
-              return true;
-            }
-          }
-        }
-        return false;
-      }
-
-      function hasJsCommand() {
-        var layer = window.dataLayer || [];
-        for (var i = 0; i < layer.length; i += 1) {
-          var entry = layer[i];
-          if (entry && typeof entry === 'object' && entry[0] === 'js') {
-            return true;
-          }
-        }
-        return false;
-      }
-
-      function queueFallbackConfig() {
-        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-        window.gtag('set', 'site_language', ctx.site_language || 'en');
-
-        if (!hasLanguageConfigForMeasurement(measurementId)) {
-          if (!hasJsCommand()) {
-            window.gtag('js', new Date());
-          }
-          window.gtag('config', measurementId, {
-            site_language: ctx.site_language || 'en',
-            send_page_view: false,
-          });
-        }
-      }
-
-      queueFallbackConfig();
-    })();
-  </script>
 
   {{ content_for_header }}
 
@@ -919,8 +713,6 @@
 </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
-    {% comment %}Google Tag Manager (noscript){% endcomment %}
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5QVH4W3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
