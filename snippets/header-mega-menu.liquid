@@ -66,22 +66,60 @@
                         {%- endfor -%}
                       </ul>
 
-                      {%- if link.links.size > 4 -%}
-                        <div class="mega-menu__family-links-group">
-                          <p class="mega-menu__family-links-title">More to shop</p>
-                          <ul class="mega-menu__family-links list-unstyled" role="list">
-                            {%- for childlink in link.links offset: 4 -%}
+                      <div class="mega-menu__family-links-group">
+                        <p class="mega-menu__family-links-title">Shop all family categories</p>
+                        <ul class="mega-menu__family-links list-unstyled" role="list">
+                          {%- for childlink in link.links -%}
+                            <li>
+                              <a
+                                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-text"
+                                href="{{ childlink.url }}"
+                                class="mega-menu__family-link"
+                                {% if childlink.current %}
+                                  aria-current="page"
+                                {% endif %}
+                              >
+                                {{ childlink.title | escape }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+
+                      {%- if link.links.size > 0 -%}
+                        <div class="mega-menu__family-text-group">
+                          <p class="mega-menu__family-text-title">Browse all links</p>
+                          <ul class="mega-menu__family-text-grid list-unstyled" role="list">
+                            {%- for childlink in link.links -%}
                               <li>
                                 <a
-                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-seo"
                                   href="{{ childlink.url }}"
-                                  class="mega-menu__family-link"
+                                  class="mega-menu__family-text-link mega-menu__family-text-link--primary"
                                   {% if childlink.current %}
                                     aria-current="page"
                                   {% endif %}
                                 >
                                   {{ childlink.title | escape }}
                                 </a>
+                                {%- if childlink.links != blank -%}
+                                  <ul class="mega-menu__family-text-sublist list-unstyled" role="list">
+                                    {%- for grandchildlink in childlink.links -%}
+                                      <li>
+                                        <a
+                                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}-seo"
+                                          href="{{ grandchildlink.url }}"
+                                          class="mega-menu__family-text-link"
+                                          {% if grandchildlink.current %}
+                                            aria-current="page"
+                                          {% endif %}
+                                        >
+                                          {{ grandchildlink.title | escape }}
+                                        </a>
+                                      </li>
+                                    {%- endfor -%}
+                                  </ul>
+                                {%- endif -%}
                               </li>
                             {%- endfor -%}
                           </ul>

@@ -11082,3 +11082,26 @@ Verification:
 
 Open items:
 - Manual preview is still required to confirm the curated product-image choices feel strong on the actual storefront and that no card needs a different image index or crop position.
+
+### Task: Restore family matching mega menu text-link structure
+Date: 2026-03-27 02:14:11 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-restore-family-mega-menu-text-links
+Changes:
+- Updated `snippets/header-mega-menu.liquid` to restore a full text-link layer beneath the Family Matching visual cards.
+- Added two Family Matching link sections:
+  - a visible category-pill row containing all child collection links
+  - a full text-link grid that restores each child link as explicit text, plus any grandchild links when present
+- Updated `assets/theme-inline-body-static-05.css` to style the restored Family Matching text-link grid cleanly without undoing the visual-card layout.
+
+Why:
+- The visual redesign improved merchandising but reduced the explicit text-link structure too much.
+- Restoring the clear text-link block preserves the richer internal-link pattern from the earlier menu while keeping the upgraded image-led layout.
+
+Verification:
+- Code inspection confirms the Family Matching mega menu now includes:
+  - image-led cards for the main categories
+  - all child links again as visible text anchors
+  - grandchild links when the menu tree includes them
+
+Open items:
+- Manual preview is still needed to confirm the Family Matching mega menu feels balanced visually now that the full text-link structure is back under the cards.

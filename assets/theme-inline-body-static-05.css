@@ -435,10 +435,67 @@ localization-form .disclosure__button {
   border-color: rgba(232, 93, 58, 0.2);
 }
 
+.mega-menu__family-text-group {
+  margin-top: 1.8rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(26, 26, 26, 0.08);
+}
+
+.mega-menu__family-text-title {
+  margin: 0 0 1.2rem;
+  text-align: center;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.6px !important;
+  text-transform: uppercase !important;
+  color: #9a7d61 !important;
+}
+
+.mega-menu__family-text-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.4rem 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.mega-menu__family-text-link {
+  display: inline-block !important;
+  padding: 0 !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+  color: #5b4e45 !important;
+  text-decoration: none !important;
+}
+
+.mega-menu__family-text-link--primary {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #1f1a17 !important;
+}
+
+.mega-menu__family-text-link:hover,
+.mega-menu__family-text-link[aria-current='page'] {
+  color: #e85d3a !important;
+}
+
+.mega-menu__family-text-sublist {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+}
+
 @media screen and (max-width: 1199px) {
   .mega-menu__family-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
+  }
+
+  .mega-menu__family-text-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .mega-menu__visual-card--promo {
@@ -448,6 +505,10 @@ localization-form .disclosure__button {
 
 @media screen and (max-width: 989px) {
   .mega-menu__family-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mega-menu__family-text-grid {
     grid-template-columns: 1fr;
   }
 
