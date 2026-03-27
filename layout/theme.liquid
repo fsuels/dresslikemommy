@@ -310,6 +310,9 @@
   <script defer src="{{ 'constants.js' | asset_url }}"></script>
   <script defer src="{{ 'pubsub.js' | asset_url }}"></script>
   <script defer src="{{ 'global.js' | asset_url }}"></script>
+  {%- if request.page_type == 'index' -%}
+    <script defer src="{{ 'homepage-collection-card-images.js' | asset_url }}"></script>
+  {%- endif -%}
   <script>
     (function () {
       var analyticsUrl = {{ 'analytics.js' | asset_url | json }};

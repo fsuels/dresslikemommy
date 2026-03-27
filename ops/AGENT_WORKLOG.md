@@ -11168,3 +11168,43 @@ Open items:
   - the scroll-grow behavior is gone from the top hero experience
   - the `SHOP MATCHING SWIMSUITS` CTA remains visible without hunting
 - These repo changes still need to be pushed to Shopify / previewed in the theme customizer before they affect the storefront.
+
+### Task: Homepage collection-card image dedupe with fresh product rotation
+Date: 2026-03-27 03:21:25 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-homepage-collection-card-image-dedupe
+Changes:
+- Updated `snippets/card-collection.liquid` with a homepage-only image strategy:
+  - prefer product media from the newest published products in the collection instead of always using `collection.featured_image`
+  - build up to 8 image candidates per collection card from the freshest product media
+  - keep the collection featured image only as a last fallback candidate
+- Updated `sections/collection-list.liquid` so homepage collection cards:
+  - detect media availability using either the collection featured image or the new product-media fallback path
+  - pass the homepage image-strategy flag into the shared collection-card snippet
+- Added `assets/homepage-collection-card-images.js`:
+  - scans all homepage collection cards after render
+  - randomizes within the freshest candidate window
+  - assigns the first unused candidate image per card
+  - prevents the same image from appearing twice on the same homepage load across different collection-list sections
+- Updated `layout/theme.liquid` to load the new homepage collection-card image script only on the homepage.
+
+Why:
+- The homepage was repeating the same collection-card imagery because multiple collection cards relied on shared `collection.featured_image` selections.
+- The requested behavior was not just "pick another static image"; it needed a strategy that stays fresh as new products are added while also avoiding duplicates on the same homepage.
+- Using newest-product candidates plus a cross-page dedupe pass keeps the homepage visually fresher without needing manual image maintenance for every collection.
+
+Verification:
+- Ran `git diff --check -- snippets/card-collection.liquid sections/collection-list.liquid layout/theme.liquid assets/homepage-collection-card-images.js`.
+  - Result: no diff hygiene errors.
+- Ran `shopify theme check --path . --output json --fail-level error`.
+  - Result: repo still contains pre-existing unrelated errors and warnings.
+  - No new Theme Check errors were reported for:
+    - `snippets/card-collection.liquid`
+    - `assets/homepage-collection-card-images.js`
+  - `sections/collection-list.liquid` still appears with warnings only for render-pass variables being treated as unused by Theme Check.
+
+Open items:
+- Storefront preview is still required to confirm:
+  - duplicate images no longer appear across homepage collection rows in a single load
+  - the randomization still stays within fresh/new product imagery
+  - lazy-loaded cards below the fold also pick unique images when they enter view
+- If a collection has fewer unique product images than the number of homepage slots it appears against, duplicates can only be avoided up to the number of unique candidate images available.

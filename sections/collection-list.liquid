@@ -90,9 +90,24 @@
             {%- continue -%}
           {%- endif -%}
           {%- assign animation_order = animation_order | plus: 1 -%}
+          {%- liquid
+            assign collection_list_item_has_media = false
+            if block.settings.collection.featured_image != blank
+              assign collection_list_item_has_media = true
+            elsif request.page_type == 'index'
+              assign homepage_collection_products = block.settings.collection.products | sort: 'published_at' | reverse
+              for homepage_collection_product in homepage_collection_products limit: 8
+                assign homepage_collection_media = homepage_collection_product.featured_media.preview_image | default: homepage_collection_product.featured_image
+                if homepage_collection_media != blank
+                  assign collection_list_item_has_media = true
+                  break
+                endif
+              endfor
+            endif
+          -%}
           <li
             id="Slide-{{ section.id }}-{{ animation_order }}"
-            class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% unless collection_list_item_has_media %} collection-list__item--no-media{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
@@ -112,7 +127,8 @@
               media_aspect_ratio: section.settings.image_ratio,
               columns: columns,
               placeholder_image: placeholder_image,
-              lazy_load: collection_card_lazy_load
+              lazy_load: collection_card_lazy_load,
+              use_homepage_collection_image_strategy: request.page_type == 'index'
             %}
           </li>
         {%- endfor -%}

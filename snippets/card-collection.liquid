@@ -9,6 +9,7 @@
   - wrapper_class: {String} Wrapper class for card (optional)
   - placeholder_image: {String} Placeholder image when collection is empty (optional)
   - lazy_load: {Boolean} Enable lazy loading of the collection image. Default: true (optional)
+  - use_homepage_collection_image_strategy: {Boolean} Prefer fresh product media and expose homepage dedupe candidates. Default: false (optional)
 
   Usage:
   {% render 'card-collection' %}
@@ -16,14 +17,6 @@
 
 {%- liquid
   assign ratio = 1
-  if card_collection.featured_image and media_aspect_ratio == 'portrait'
-    assign ratio = 0.8
-  elsif card_collection.featured_image and media_aspect_ratio == 'adapt'
-    assign ratio = card_collection.featured_image.aspect_ratio
-  endif
-  if ratio == 0 or ratio == null
-    assign ratio = 1
-  endif
   assign card_color_scheme = settings.card_color_scheme
   assign card_style = settings.card_style
   if wrapper_class == null or wrapper_class == 'none'
@@ -42,51 +35,302 @@
     assign card_collection_image_loading = blank
     assign card_collection_image_fetchpriority = blank
   endif
+
+  capture card_collection_image_sizes
+    echo '(min-width: '
+    echo settings.page_width
+    echo 'px) '
+    echo settings.page_width | minus: 100 | divided_by: columns
+    echo 'px, '
+    echo '(min-width: 750px) '
+    if columns > 1
+      echo 'calc((100vw - 10rem) / 2)'
+    else
+      echo 'calc(100vw - 10rem)'
+    endif
+    echo ', '
+    if columns > 1
+      echo 'calc((100vw - 4rem) / 2)'
+    else
+      echo 'calc(100vw - 3rem)'
+    endif
+  endcapture
+
+  assign card_collection_media = blank
+  assign card_collection_media_alt = blank
+  assign card_collection_media_key = blank
+  assign homepage_collection_image_strategy_enabled = false
+  assign homepage_collection_image_candidate_count = 0
+  assign homepage_collection_image_candidates_json = blank
+
+  if use_homepage_collection_image_strategy and request.page_type == 'index'
+    assign homepage_collection_image_strategy_enabled = true
+  endif
+
+  if homepage_collection_image_strategy_enabled and card_collection != blank and card_collection.all_products_count > 0
+    assign fresh_collection_products = card_collection.products | sort: 'published_at' | reverse
+
+    for candidate_product in fresh_collection_products
+      assign candidate_media = candidate_product.featured_media.preview_image | default: candidate_product.featured_image
+      if candidate_media == blank
+        continue
+      endif
+
+      assign candidate_media_id = candidate_media.id | default: candidate_product.id
+      assign card_collection_media = candidate_media
+      assign card_collection_media_alt = candidate_media.alt | default: candidate_product.title | default: card_collection_display_title
+      assign card_collection_media_key = 'product-' | append: candidate_product.id | append: '-image-' | append: candidate_media_id
+      break
+    endfor
+
+    capture homepage_collection_image_candidates_json
+      echo '['
+      assign emitted_candidate_keys = '|'
+      assign homepage_collection_image_candidate_count = 0
+
+      for candidate_product in fresh_collection_products
+        if homepage_collection_image_candidate_count >= 8
+          break
+        endif
+
+        assign candidate_media = candidate_product.featured_media.preview_image | default: candidate_product.featured_image
+        if candidate_media == blank
+          continue
+        endif
+
+        assign candidate_media_id = candidate_media.id | default: candidate_product.id
+        capture candidate_key
+          echo 'product-'
+          echo candidate_product.id
+          echo '-image-'
+          echo candidate_media_id
+        endcapture
+        assign candidate_key = candidate_key | strip
+
+        capture candidate_key_token
+          echo '|'
+          echo candidate_key
+          echo '|'
+        endcapture
+        if emitted_candidate_keys contains candidate_key_token
+          continue
+        endif
+
+        capture candidate_src
+          echo candidate_media | image_url: width: 750
+        endcapture
+        capture candidate_srcset
+          if candidate_media.width >= 165
+            echo candidate_media | image_url: width: 165
+            echo ' 165w,'
+          endif
+          if candidate_media.width >= 330
+            echo candidate_media | image_url: width: 330
+            echo ' 330w,'
+          endif
+          if candidate_media.width >= 535
+            echo candidate_media | image_url: width: 535
+            echo ' 535w,'
+          endif
+          if candidate_media.width >= 750
+            echo candidate_media | image_url: width: 750
+            echo ' 750w,'
+          endif
+          if candidate_media.width >= 1000
+            echo candidate_media | image_url: width: 1000
+            echo ' 1000w,'
+          endif
+          if candidate_media.width >= 1500
+            echo candidate_media | image_url: width: 1500
+            echo ' 1500w,'
+          endif
+          if candidate_media.width >= 3000
+            echo candidate_media | image_url: width: 3000
+            echo ' 3000w,'
+          endif
+          echo candidate_media | image_url
+          echo ' '
+          echo candidate_media.width
+          echo 'w'
+        endcapture
+
+        if homepage_collection_image_candidate_count > 0
+          echo ','
+        endif
+        echo '{'
+        echo '"key":'
+        echo candidate_key | json
+        echo ',"src":'
+        echo candidate_src | strip | json
+        echo ',"srcset":'
+        echo candidate_srcset | strip | json
+        echo ',"alt":'
+        echo candidate_media.alt | default: candidate_product.title | default: card_collection_display_title | json
+        echo ',"width":'
+        echo candidate_media.width | json
+        echo ',"height":'
+        echo candidate_media.height | json
+        echo '}'
+
+        assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
+        assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
+      endfor
+
+      if homepage_collection_image_candidate_count < 8 and card_collection.featured_image != blank
+        assign fallback_media = card_collection.featured_image
+        assign fallback_media_id = fallback_media.id | default: card_collection.id
+        capture fallback_key
+          echo 'collection-'
+          echo card_collection.id
+          echo '-image-'
+          echo fallback_media_id
+        endcapture
+        assign fallback_key = fallback_key | strip
+
+        capture fallback_key_token
+          echo '|'
+          echo fallback_key
+          echo '|'
+        endcapture
+
+        unless emitted_candidate_keys contains fallback_key_token
+          capture fallback_src
+            echo fallback_media | image_url: width: 750
+          endcapture
+          capture fallback_srcset
+            if fallback_media.width >= 165
+              echo fallback_media | image_url: width: 165
+              echo ' 165w,'
+            endif
+            if fallback_media.width >= 330
+              echo fallback_media | image_url: width: 330
+              echo ' 330w,'
+            endif
+            if fallback_media.width >= 535
+              echo fallback_media | image_url: width: 535
+              echo ' 535w,'
+            endif
+            if fallback_media.width >= 750
+              echo fallback_media | image_url: width: 750
+              echo ' 750w,'
+            endif
+            if fallback_media.width >= 1000
+              echo fallback_media | image_url: width: 1000
+              echo ' 1000w,'
+            endif
+            if fallback_media.width >= 1500
+              echo fallback_media | image_url: width: 1500
+              echo ' 1500w,'
+            endif
+            if fallback_media.width >= 3000
+              echo fallback_media | image_url: width: 3000
+              echo ' 3000w,'
+            endif
+            echo fallback_media | image_url
+            echo ' '
+            echo fallback_media.width
+            echo 'w'
+          endcapture
+
+          if homepage_collection_image_candidate_count > 0
+            echo ','
+          endif
+          echo '{'
+          echo '"key":'
+          echo fallback_key | json
+          echo ',"src":'
+          echo fallback_src | strip | json
+          echo ',"srcset":'
+          echo fallback_srcset | strip | json
+          echo ',"alt":'
+          echo fallback_media.alt | default: card_collection_display_title | json
+          echo ',"width":'
+          echo fallback_media.width | json
+          echo ',"height":'
+          echo fallback_media.height | json
+          echo '}'
+
+          assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
+        endunless
+      endif
+
+      echo ']'
+    endcapture
+    assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
+  endif
+
+  if card_collection_media == blank and card_collection.featured_image != blank
+    assign card_collection_media = card_collection.featured_image
+    assign card_collection_media_alt = card_collection.featured_image.alt | default: card_collection_display_title
+    assign fallback_media_id = card_collection.featured_image.id | default: card_collection.id
+    assign card_collection_media_key = 'collection-' | append: card_collection.id | append: '-image-' | append: fallback_media_id
+  endif
+
+  if card_collection_media and media_aspect_ratio == 'portrait'
+    assign ratio = 0.8
+  elsif card_collection_media and media_aspect_ratio == 'adapt'
+    assign ratio = card_collection_media.aspect_ratio
+  endif
+  if ratio == 0 or ratio == null
+    assign ratio = 1
+  endif
+
+  assign show_card_footer_content = false
+  if card_collection != blank and card_style == 'card'
+    assign show_card_footer_content = true
+  elsif card_collection_media != blank
+    assign show_card_footer_content = true
+  endif
 -%}
 
-<div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
+<div
+  class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}"
+  {% if homepage_collection_image_strategy_enabled and homepage_collection_image_candidate_count > 1 %}
+    data-homepage-collection-card
+  {% endif %}
+>
   <div
     class="
       card
       card--{{ card_style }}
-      {% if card_collection.featured_image %} card--media{% else %} card--text{% endif %}
+      {% if card_collection_media %} card--media{% else %} card--text{% endif %}
       {% if card_style == 'card' %} color-{{ card_color_scheme }} gradient{% endif %}
       {% if extend_height %} card--extend-height{% endif %}
-      {% if card_collection.featured_image == nil and card_style == 'card' %} ratio{% endif %}
+      {% if card_collection_media == blank and card_style == 'card' %} ratio{% endif %}
     "
     style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
   >
     <div
-      class="card__inner {% if card_style == 'standard' %}color-{{ card_color_scheme }} gradient{% endif %}{% if card_collection.featured_image or card_style == 'standard' %} ratio{% endif %}"
+      class="card__inner {% if card_style == 'standard' %}color-{{ card_color_scheme }} gradient{% endif %}{% if card_collection_media or card_style == 'standard' %} ratio{% endif %}"
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
     >
-      {%- if card_collection.featured_image -%}
+      {%- if card_collection_media -%}
         <div class="card__media">
           <div class="media media--transparent media--hover-effect">
             <img
               srcset="
-                {%- if card_collection.featured_image.width >= 165 -%}{{ card_collection.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
-                {%- if card_collection.featured_image.width >= 330 -%}{{ card_collection.featured_image | image_url: width: 330 }} 330w,{%- endif -%}
-                {%- if card_collection.featured_image.width >= 535 -%}{{ card_collection.featured_image | image_url: width: 535 }} 535w,{%- endif -%}
-                {%- if card_collection.featured_image.width >= 750 -%}{{ card_collection.featured_image | image_url: width: 750 }} 750w,{%- endif -%}
-                {%- if card_collection.featured_image.width >= 1000 -%}{{ card_collection.featured_image | image_url: width: 1000 }} 1000w,{%- endif -%}
-                {%- if card_collection.featured_image.width >= 1500 -%}{{ card_collection.featured_image | image_url: width: 1500 }} 1500w,{%- endif -%}
-                {%- if card_collection.featured_image.width >= 3000 -%}{{ card_collection.featured_image | image_url: width: 3000 }} 3000w,{%- endif -%}
-                {{ card_collection.featured_image | image_url }} {{ card_collection.featured_image.width }}w
+                {%- if card_collection_media.width >= 165 -%}{{ card_collection_media | image_url: width: 165 }} 165w,{%- endif -%}
+                {%- if card_collection_media.width >= 330 -%}{{ card_collection_media | image_url: width: 330 }} 330w,{%- endif -%}
+                {%- if card_collection_media.width >= 535 -%}{{ card_collection_media | image_url: width: 535 }} 535w,{%- endif -%}
+                {%- if card_collection_media.width >= 750 -%}{{ card_collection_media | image_url: width: 750 }} 750w,{%- endif -%}
+                {%- if card_collection_media.width >= 1000 -%}{{ card_collection_media | image_url: width: 1000 }} 1000w,{%- endif -%}
+                {%- if card_collection_media.width >= 1500 -%}{{ card_collection_media | image_url: width: 1500 }} 1500w,{%- endif -%}
+                {%- if card_collection_media.width >= 3000 -%}{{ card_collection_media | image_url: width: 3000 }} 3000w,{%- endif -%}
+                {{ card_collection_media | image_url }} {{ card_collection_media.width }}w
               "
-              src="{{ card_collection.featured_image | image_url: width: 750 }}"
-              sizes="
-                (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: columns }}px,
-                (min-width: 750px) {% if columns > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %},
-                {% if columns > 1 %}calc((100vw - 4rem) / 2){% else %}calc(100vw - 3rem){% endif %}
-              "
-              alt="{{ card_collection.featured_image.alt | default: card_collection_display_title | escape }}"
-              height="{{ card_collection.featured_image.height }}"
-              width="{{ card_collection.featured_image.width }}"
+              src="{{ card_collection_media | image_url: width: 750 }}"
+              sizes="{{ card_collection_image_sizes | strip }}"
+              alt="{{ card_collection_media_alt | escape }}"
+              height="{{ card_collection_media.height }}"
+              width="{{ card_collection_media.width }}"
               {% if card_collection_image_loading != blank %}loading="{{ card_collection_image_loading }}"{% endif %}
               {% if card_collection_image_fetchpriority != blank %}fetchpriority="{{ card_collection_image_fetchpriority }}"{% endif %}
               decoding="async"
               class="motion-reduce"
+              {% if homepage_collection_image_strategy_enabled %}
+                data-homepage-collection-image
+                data-homepage-collection-image-key="{{ card_collection_media_key | escape }}"
+              {% endif %}
             >
           </div>
         </div>
@@ -127,7 +371,7 @@
         </div>
       {%- endif -%}
     </div>
-    {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
+    {%- if show_card_footer_content -%}
       <div class="card__content">
         <div class="card__information">
           <h3 class="card__heading">
@@ -144,12 +388,12 @@
               {%- else -%}
                 {{ 'onboarding.collection_title' | t }}
               {%- endif -%}
-              {%- if card_collection.featured_image or card_collection.description == blank -%}
+              {%- if card_collection_media or card_collection.description == blank -%}
                 <span class="icon-wrap">{% render 'icon-arrow' %}</span>
-              {%- endif %}
+              {%- endif -%}
             </a>
           </h3>
-          {%- if card_collection.featured_image == null and card_collection.description != blank -%}
+          {%- if card_collection_media == blank and card_collection.description != blank -%}
             <p class="card__caption">
               {{- card_collection.description | strip_html | truncatewords: 12 -}}
               <span class="icon-wrap">&nbsp;{% render 'icon-arrow' %}</span>
@@ -171,4 +415,9 @@
       </div>
     {%- endif -%}
   </div>
+  {%- if homepage_collection_image_strategy_enabled and homepage_collection_image_candidate_count > 1 -%}
+    <script type="application/json" class="homepage-collection-card__image-candidates">
+      {{- homepage_collection_image_candidates_json -}}
+    </script>
+  {%- endif -%}
 </div>
