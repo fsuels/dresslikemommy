@@ -10,69 +10,23 @@
 {
   "sections": {
     "hero_banner_main": {
-      "type": "home-conversion-hero",
-      "blocks": {
-        "product_card_tie_dye": {
-          "type": "product_card",
-          "settings": {
-            "product": "mommy-daughter-matching-tie-dye-dress",
-            "badge": "Mommy & Me Favorite",
-            "caption": "Soft tie-dye maxi dresses for easy matching family photos and sunny-day outings.",
-            "button_label": "Shop This Look"
-          }
-        },
-        "product_card_hawaiian": {
-          "type": "product_card",
-          "settings": {
-            "product": "family-matching-hawaiian-shirt-and-floral-dress",
-            "badge": "Vacation Best Seller",
-            "caption": "Coordinated floral shirts and dresses built for beach trips, cruises, and resort dinners.",
-            "button_label": "Shop This Look"
-          }
-        },
-        "product_card_spring_floral": {
-          "type": "product_card",
-          "settings": {
-            "product": "family-matching-shirt-and-dress-set-yellow-floral-for-a-springtime-look",
-            "badge": "Spring Floral Pick",
-            "caption": "A bright yellow floral set for Easter brunch, spring birthdays, and warm-weather photos.",
-            "button_label": "Shop This Look"
-          }
-        },
-        "product_card_beige": {
-          "type": "product_card",
-          "settings": {
-            "product": "elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits",
-            "badge": "Dressy Photo-Ready Set",
-            "caption": "Chiffon matching dresses and coordinated family pieces for special occasions and polished portraits.",
-            "button_label": "Shop This Look"
-          }
-        }
-      },
-      "block_order": [
-        "product_card_tie_dye",
-        "product_card_hawaiian",
-        "product_card_spring_floral",
-        "product_card_beige"
+      "type": "hero-banner",
+      "custom_css": [
+        ".hero-banner__heading {font-size: 32px;}",
+        "@media screen and (max-width: 749px) {.hero-banner__image {object-position: 80% center !important; } .hero-banner__heading {font-size: 20px !important; line-height: 1.2 !important; } .hero-banner__subheading {font-size: 12px !important; } .hero-banner__cta {font-size: 12px !important; padding: 8px 16px !important; } .hero-banner__content {padding-top: 55% !important; }}"
       ],
       "settings": {
         "image": "shopify://shop_images/wmremove-transformed.png",
-        "eyebrow": "New Spring Arrivals + Easter Matching Outfits",
-        "heading": "Spring matching looks for Easter, vacations, and family photos",
-        "subheading": "Start with our most-loved mother-daughter dresses and coordinated family sets, then jump into matching swimsuits and Daddy & Me favorites without extra browsing.",
-        "primary_button_label": "Shop Matching Swimsuits",
-        "primary_button_link": "/collections/swimsuits",
-        "secondary_button_label": "Browse Daddy & Me",
-        "secondary_button_link": "/collections/daddy-me",
-        "supporting_link_label": "See Most-Loved Matching Sets",
-        "supporting_link_url": "#most-loved-matching-sets",
-        "background_start": "#f6ede3",
-        "background_end": "#fff8f1",
-        "accent_color": "#c87932",
-        "text_color": "#201613",
-        "card_background": "#fffdf9",
-        "padding_top": 28,
-        "padding_bottom": 32
+        "heading": "Mommy & Me Dresses, Family Matching Outfits and Swimsuits",
+        "subheading": "Shop photo-ready matching looks for Easter, vacations, birthdays, family photos, and everyday moments.",
+        "button_label": "SHOP MATCHING SWIMSUITS",
+        "button_link": "/collections/swimsuits",
+        "height": 550,
+        "overlay_opacity": 0,
+        "bg_color": "#2e2e2e",
+        "text_color": "#ffffff",
+        "button_color": "#f39c12",
+        "button_text_color": "#ffffff"
       }
     },
     "featured_collection": {

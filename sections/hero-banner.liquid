@@ -114,9 +114,14 @@
   assign hero_button_link = section.settings.button_link | default: ''
   assign hero_button_scroll_target = blank
   assign hero_button_link_first_char = hero_button_link | slice: 0, 1
+  assign hero_heading_tag = 'h2'
   assign hero_image_loading = 'lazy'
   assign hero_image_fetchpriority = 'low'
   assign hero_image_preload = false
+
+  if request.page_type == 'index' and section.index == 1
+    assign hero_heading_tag = 'h1'
+  endif
 
   if section.index == 1
     assign hero_image_loading = 'eager'
@@ -151,7 +156,7 @@
   <div class="hero-banner__overlay"></div>
   <div class="hero-banner__content">
     {%- if section.settings.heading != blank -%}
-      <h2 class="hero-banner__heading">{{ section.settings.heading }}</h2>
+      <{{ hero_heading_tag }} class="hero-banner__heading">{{ section.settings.heading }}</{{ hero_heading_tag }}>
     {%- endif -%}
     {%- if section.settings.subheading != blank -%}
       <p class="hero-banner__subheading">{{ section.settings.subheading }}</p>
