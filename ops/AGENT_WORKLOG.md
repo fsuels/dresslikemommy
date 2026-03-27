@@ -11014,3 +11014,33 @@ Verification:
 
 Open items:
 - Manual preview/reload is still needed to confirm the desktop header now renders `Family Matching` inline with the other nav items.
+
+### Task: Family matching mega menu visual redesign
+Date: 2026-03-27 01:41:49 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-family-matching-mega-menu-visual-redesign
+Changes:
+- Added `snippets/header-mega-menu-feature-card.liquid` to render visual mega-menu cards using linked collection imagery when available, with collection-handle-based copy fallbacks for the Family Matching categories.
+- Updated `snippets/header-mega-menu.liquid` so the `Family Matching` top-level desktop mega menu uses a dedicated editorial layout:
+  - one promo card for the parent destination
+  - up to four image-led child category cards
+  - a secondary quick-link row for any remaining family categories
+- Updated `assets/theme-inline-body-static-05.css` with a premium Family Matching mega-menu layout:
+  - promo card + category card grid
+  - image overlays and editorial typography
+  - pill-style secondary links
+  - desktop-responsive spacing adjustments
+
+Why:
+- The default Family Matching mega menu was still reading like a generic text list, which made it feel visually weaker than polished retail mega menus.
+- Using images from linked collections makes the categories easier to scan quickly and gives the Family Matching navigation a more intentional, merchandised feel.
+- The layout was scoped only to the Family Matching mega menu so the rest of the header navigation remains stable.
+
+Verification:
+- Code inspection confirms the visual treatment is only activated when the top-level menu item is the Family Matching menu (`family-matching`, `matching-outfits`, or title `Family Matching`).
+- Collection imagery falls back to linked collection resources first, then known collection handles for the Family Matching destinations.
+
+Open items:
+- Manual preview is still required to confirm:
+  - the linked Family Matching collections have usable imagery in Shopify
+  - the promo card and first four category cards render with balanced crops
+  - the desktop mega menu spacing feels right at the store’s common desktop widths

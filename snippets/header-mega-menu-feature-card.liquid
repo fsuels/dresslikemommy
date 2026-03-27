@@ -1,0 +1,107 @@
+{% comment %}
+  Renders a visual card for the Family Matching desktop mega menu.
+
+  Usage:
+  {% render 'header-mega-menu-feature-card', menu_link: childlink, card_kind: 'feature' %}
+{% endcomment %}
+
+{%- liquid
+  assign menu_link_title = menu_link.title | escape
+  assign menu_link_url = menu_link.url
+  assign menu_handle = menu_link.handle | default: ''
+  assign linked_object = menu_link.object
+  assign menu_image = blank
+  assign fallback_collection = blank
+  assign card_label = 'Trending now'
+  assign card_description = 'Coordinated outfits designed to make family matching easier.'
+  assign card_cta = 'Explore now'
+
+  if linked_object != blank
+    if linked_object.image != blank
+      assign menu_image = linked_object.image
+    elsif linked_object.featured_image != blank
+      assign menu_image = linked_object.featured_image
+    elsif linked_object.products != blank and linked_object.products.first != blank
+      assign menu_image = linked_object.products.first.featured_media.preview_image | default: linked_object.products.first.featured_image
+    endif
+  endif
+
+  case menu_handle
+    when 'family-swimsuits'
+      assign card_label = 'Vacation favorite'
+      assign card_description = 'Pool-day and beach-photo looks for the whole crew.'
+      assign fallback_collection = collections['family-swimsuits']
+    when 'family-sets'
+      assign card_label = 'Best seller'
+      assign card_description = 'Easy matching sets for outings, parties, and photos.'
+      assign fallback_collection = collections['family-sets']
+    when 'family-tops'
+      assign card_label = 'Easy starters'
+      assign card_description = 'Quick mix-and-match pieces for everyday coordinating.'
+      assign fallback_collection = collections['family-tops']
+    when 'family-sweaters'
+      assign card_label = 'Cool-weather edit'
+      assign card_description = 'Layered family looks for fall weekends and holiday trips.'
+      assign fallback_collection = collections['family-sweaters']
+    when 'family-pajamas'
+      assign card_label = 'Holiday staple'
+      assign card_description = 'Cozy matching sleepwear for nights in and festive mornings.'
+      assign fallback_collection = collections['family-pajamas']
+    when 'matching-outfits', 'family-matching', 'family-matching-outfits'
+      assign card_label = 'Featured edit'
+      assign card_description = 'Shop the full Family Matching destination with polished outfits for every season.'
+      assign card_cta = 'Shop the edit'
+      assign fallback_collection = collections['matching-outfits']
+      if fallback_collection == blank
+        assign fallback_collection = collections['family-matching-outfits']
+      endif
+  endcase
+
+  if menu_image == blank and fallback_collection != blank
+    if fallback_collection.image != blank
+      assign menu_image = fallback_collection.image
+    elsif fallback_collection.featured_image != blank
+      assign menu_image = fallback_collection.featured_image
+    elsif fallback_collection.products.first != blank
+      assign menu_image = fallback_collection.products.first.featured_media.preview_image | default: fallback_collection.products.first.featured_image
+    endif
+  endif
+
+  assign card_classes = 'mega-menu__visual-card'
+  if card_kind == 'promo'
+    assign card_classes = card_classes | append: ' mega-menu__visual-card--promo'
+  else
+    assign card_classes = card_classes | append: ' mega-menu__visual-card--feature'
+  endif
+
+  assign menu_image_alt = menu_link_title
+  if menu_image != blank and menu_image.alt != blank
+    assign menu_image_alt = menu_image.alt | escape
+  endif
+-%}
+
+<a href="{{ menu_link_url }}" class="{{ card_classes }}">
+  <span class="mega-menu__visual-media{% if menu_image == blank %} mega-menu__visual-media--placeholder{% endif %}">
+    {%- if menu_image != blank -%}
+      {{
+        menu_image
+        | image_url: width: 900
+        | image_tag:
+          class: 'mega-menu__visual-image',
+          widths: '320, 480, 640, 900',
+          sizes: '(min-width: 990px) 24vw, 100vw',
+          loading: 'lazy',
+          alt: menu_image_alt
+      }}
+    {%- else -%}
+      <span class="mega-menu__visual-placeholder-text">{{ menu_link_title }}</span>
+    {%- endif -%}
+  </span>
+  <span class="mega-menu__visual-overlay"></span>
+  <span class="mega-menu__visual-content">
+    <span class="mega-menu__visual-label">{{ card_label }}</span>
+    <span class="mega-menu__visual-title">{{ menu_link_title }}</span>
+    <span class="mega-menu__visual-description">{{ card_description }}</span>
+    <span class="mega-menu__visual-cta">{{ card_cta }}</span>
+  </span>
+</a>
