@@ -10996,3 +10996,21 @@ Verification:
 
 Open items:
 - Manual storefront preview is still needed to confirm desktop spacing and caret alignment in the live header.
+
+### Task: Header nav family matching container reset
+Date: 2026-03-27 01:41:49 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-header-nav-family-matching-container-reset
+Changes:
+- Updated `assets/theme-inline-body-static-05.css` so the premium dropdown panel styling applies to `.mega-menu__content` instead of the top-level `.mega-menu` wrapper.
+- Narrowed the related link styling from `.mega-menu a` to `.mega-menu__content a`.
+
+Why:
+- The prior custom rule styled `.mega-menu` directly.
+- In the desktop header, `Family Matching` is wrapped in `<details class="mega-menu">`, so that rule turned the top-level nav item itself into the white card shown in the screenshot.
+- The intended styling belongs on the opened dropdown panel, not on the top-level menu trigger.
+
+Verification:
+- Code inspection confirms the white panel styles now apply only to the dropdown content container and not the top-level `Family Matching` nav item wrapper.
+
+Open items:
+- Manual preview/reload is still needed to confirm the desktop header now renders `Family Matching` inline with the other nav items.
