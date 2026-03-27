@@ -113,6 +113,38 @@
 
               <tbody>
                 {%- for item in cart.items -%}
+                  {%- liquid
+                    assign cart_item_category1 = item.product.metafields.custom.category1 | default: '' | strip
+                    assign cart_item_subcategory = item.product.metafields.custom.subcategory | default: '' | strip
+                    assign cart_item_subcategory2 = item.product.metafields.custom.subcategory2 | default: '' | strip
+                    assign cart_item_type = item.product.metafields.custom.type | default: item.product.type | default: '' | strip
+                    assign cart_item_style = item.product.metafields.custom.style | default: '' | strip
+                    assign cart_item_pattern = item.product.metafields.custom.pattern | default: '' | strip
+                    for tag in item.product.tags
+                      assign normalized_tag = tag | strip
+                      assign normalized_tag_downcase = normalized_tag | downcase
+                      if cart_item_category1 == blank and normalized_tag_downcase contains 'category1:'
+                        assign cart_item_category1 = normalized_tag | split: ':' | last | strip
+                      elsif cart_item_category1 == blank and normalized_tag_downcase contains 'category:'
+                        assign cart_item_category1 = normalized_tag | split: ':' | last | strip
+                      endif
+                      if cart_item_subcategory == blank and normalized_tag_downcase contains 'subcategory:'
+                        assign cart_item_subcategory = normalized_tag | split: ':' | last | strip
+                      endif
+                      if cart_item_subcategory2 == blank and normalized_tag_downcase contains 'subcategory2:'
+                        assign cart_item_subcategory2 = normalized_tag | split: ':' | last | strip
+                      endif
+                      if cart_item_type == blank and normalized_tag_downcase contains 'type:'
+                        assign cart_item_type = normalized_tag | split: ':' | last | strip
+                      endif
+                      if cart_item_style == blank and normalized_tag_downcase contains 'style:'
+                        assign cart_item_style = normalized_tag | split: ':' | last | strip
+                      endif
+                      if cart_item_pattern == blank and normalized_tag_downcase contains 'pattern:'
+                        assign cart_item_pattern = normalized_tag | split: ':' | last | strip
+                      endif
+                    endfor
+                  -%}
                   <tr
                     class="cart-item"
                     id="CartItem-{{ item.index | plus: 1 }}"
@@ -126,12 +158,12 @@
                     data-item-variant="{{ item.sku | default: item.variant.title | default: item.variant.id | escape }}"
                     data-price-cents="{{ item.final_price }}"
                     data-quantity="{{ item.quantity }}"
-                    data-category1="{{ item.product.metafields.custom.category1 | escape }}"
-                    data-subcategory="{{ item.product.metafields.custom.subcategory | escape }}"
-                    data-subcategory2="{{ item.product.metafields.custom.subcategory2 | escape }}"
-                    data-type="{{ item.product.metafields.custom.type | default: item.product.type | escape }}"
-                    data-style="{{ item.product.metafields.custom.style | escape }}"
-                    data-pattern="{{ item.product.metafields.custom.pattern | escape }}"
+                    data-category1="{{ cart_item_category1 | escape }}"
+                    data-subcategory="{{ cart_item_subcategory | escape }}"
+                    data-subcategory2="{{ cart_item_subcategory2 | escape }}"
+                    data-type="{{ cart_item_type | escape }}"
+                    data-style="{{ cart_item_style | escape }}"
+                    data-pattern="{{ cart_item_pattern | escape }}"
                   >
                     <td class="cart-item__media">
                       {% if item.image %}

@@ -9836,3 +9836,48 @@ Verification:
 Open items:
 - The Admin-side cleanup is complete, but the public storefront is not yet fully converged for the 8 legacy/current URLs listed above.
 - If those URLs still render `matching matching` after cache propagation time, the next step should use the logged-in Shopify Admin browser/editor path to open the exact public URL targets and perform a save/re-publish style touch that forces Shopify to invalidate the storefront HTML for those alias pages.
+
+### Task: GA4 missing ecommerce events hardening
+Date: 2026-03-27 13:22:00 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-ga4-missing-ecommerce-events
+Changes:
+- `assets/analytics.js`
+  - Added a dedicated ecommerce push helper that clears stale `ecommerce` payloads before each GA4-style event push.
+  - Made collection/list detection prefer explicit analytics list attributes, then batch visible product-card impressions into grouped `view_item_list` events instead of one event per card.
+  - Made page detection locale-safe for `/cart`, `/search`, and `/404` routes so localized paths still emit the expected events.
+  - Hardened `view_cart`, `remove_from_cart`, `begin_checkout`, `view_item`, `select_item`, and `add_to_cart` payload pushes around the new helper.
+- `sections/main-collection-product-grid.liquid`
+  - Added explicit collection analytics context on the main product grid:
+    - `data-analytics-list-id="{{ collection.handle }}"`
+    - `data-analytics-list-name="{{ collection.title }}"`
+  - This ensures collection-page `view_item_list` / `select_item` use the collection handle and title instead of a section DOM id fallback.
+- `sections/main-cart-items.liquid`
+  - Added taxonomy fallback resolution from prefixed product tags (`category1:`, `subcategory:`, `subcategory2:`, `type:`, `style:`, `pattern:`) before rendering cart row analytics attributes.
+- `snippets/cart-drawer.liquid`
+  - Added the same taxonomy fallback logic for drawer cart rows so `view_cart` and `remove_from_cart` stay enriched outside the cart page too.
+- `ops/customer-events/ga4-checkout-ecommerce-pixel.js`
+  - Added a Shopify Customer Events custom-pixel script for hosted checkout.
+  - The pixel subscribes to Shopify standard checkout events:
+    - `checkout_shipping_info_submitted` -> pushes GA4 `add_shipping_info`
+    - `payment_info_submitted` -> pushes GA4 `add_payment_info`
+  - It lazy-loads the existing GTM container `GTM-5QVH4W3` only when checkout-step events fire, so storefront GTM loaded by the theme is not duplicated on regular storefront pages.
+
+Why:
+- The theme already had partial list/cart tracking, but collection list context still fell back to section ids and cart/search route checks were not safe on localized URLs.
+- Hosted checkout events cannot be solved in theme Liquid because the checkout runs outside the storefront theme; Shopify Customer Events is the free/native path for `add_shipping_info` and correctly ordered `add_payment_info`.
+
+Verification:
+- Ran `node --check assets/analytics.js`.
+  - Result: passed.
+- Ran `node --check ops/customer-events/ga4-checkout-ecommerce-pixel.js`.
+  - Result: passed.
+
+Open items:
+- Shopify Admin activation is still required for the hosted-checkout pixel:
+  - paste `ops/customer-events/ga4-checkout-ecommerce-pixel.js` into `Settings -> Customer events -> Add custom pixel`
+  - publish the pixel after Shopify validates it
+- Browser/GA4 validation is still required after deploy:
+  - collection page: confirm grouped `view_item_list` uses collection handle/title
+  - collection click: confirm `select_item`
+  - cart page and drawer: confirm `view_cart` / `remove_from_cart`
+  - hosted checkout: confirm `add_shipping_info` fires on shipping-step submit and `add_payment_info` fires on payment-step submit before `purchase`
