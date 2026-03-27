@@ -11105,3 +11105,66 @@ Verification:
 
 Open items:
 - Manual preview is still needed to confirm the Family Matching mega menu feels balanced visually now that the full text-link structure is back under the cards.
+
+### Task: Family matching mega menu dedicated image assets
+Date: 2026-03-27 02:46:45 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-family-matching-mega-menu-dedicated-assets
+Changes:
+- Created dedicated Family Matching mega-menu image assets in `assets/` sized specifically for the desktop menu:
+  - `family-mega-menu-promo.jpg` at `1600x700`
+  - `family-mega-menu-hawaiian-tropical.jpg` at `960x1200`
+  - `family-mega-menu-vacation-outfits.jpg` at `960x1200`
+  - `family-mega-menu-mother-daughter-dresses.jpg` at `960x1200`
+  - `family-mega-menu-family-sets.jpg` at `960x1200`
+- Updated `snippets/header-mega-menu-feature-card.liquid` so the Family Matching promo and first four visual category cards use those dedicated theme assets first, while preserving the existing fallback image logic for other family categories.
+- Updated `assets/theme-inline-body-static-05.css` so the promo card now matches the exported banner ratio and uses a stronger overlay treatment suited to the new collage-style hero.
+
+Why:
+- The previous menu was still depending on generic product/collection crops, which produced mannequin shots or awkwardly framed lifestyle photos.
+- The Family Matching dropdown needs purpose-built imagery to read like a polished merchandising surface rather than a default navigation panel.
+- Fixed assets let the menu hold consistent framing across deploys and preserve the text-link structure needed for internal-link visibility.
+
+Verification:
+- Downloaded and reviewed candidate source imagery locally, then exported dedicated menu crops from the strongest family-lifestyle photos.
+- Inspected the generated theme assets directly to confirm the promo banner and four category cards have stable framing.
+- Targeted Theme Check filtering for `header-mega-menu` and `theme-inline-body-static-05.css` returned `[]`.
+
+Open items:
+- Storefront preview is still needed to verify final visual balance inside the live header dropdown, especially the promo-text placement over the new banner collage.
+
+### Task: Restore homepage hero banner while keeping conversion modules
+Date: 2026-03-27 02:43:59 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-restore-homepage-hero-banner
+Changes:
+- Replaced the homepage top section in `templates/index.json`:
+  - from `home-conversion-hero`
+  - back to `hero-banner`
+- Restored the earlier hero-banner mobile presentation in `templates/index.json`:
+  - mobile image crop shifted to `object-position: 80% center`
+  - smaller mobile heading/body/button sizing
+  - extra top padding on hero copy to match the prior visual balance
+- Kept the newer commercial sections below the hero unchanged in `templates/index.json`, including:
+  - the early `/collections/swimsuits` featured collection
+  - `Most-Loved Matching Sets`
+  - the seasonal collection-link row
+- Updated `sections/hero-banner.liquid` so the banner heading renders as an `h1` when the section is the first section on the homepage, while remaining `h2` elsewhere.
+
+Why:
+- The user preferred the earlier full-image homepage hero and specifically wanted to remove the worse mobile behavior from the newer hero treatment.
+- Rolling back only the top hero preserves the newer lower-page merchandising work that was added to improve sales routing and internal-link coverage.
+- Keeping the homepage hero as the first-section `h1` avoids giving back the SEO structure benefit when returning to the older hero layout.
+
+Verification:
+- Parsed `templates/index.json` successfully after stripping the Shopify-generated comment header.
+- Ran `git diff --check -- sections/hero-banner.liquid templates/index.json`.
+  - Result: no diff hygiene errors.
+- Ran `shopify theme check --path . --output json --fail-level error`.
+  - Result: repo still contains pre-existing unrelated Theme Check errors and warnings.
+  - `sections/hero-banner.liquid` and `templates/index.json` were not listed in the returned offenses.
+
+Open items:
+- Preview the homepage on mobile Safari / Chrome widths to confirm:
+  - the hero image crop matches the previously preferred look
+  - the scroll-grow behavior is gone from the top hero experience
+  - the `SHOP MATCHING SWIMSUITS` CTA remains visible without hunting
+- These repo changes still need to be pushed to Shopify / previewed in the theme customizer before they affect the storefront.
