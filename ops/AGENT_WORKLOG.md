@@ -11044,3 +11044,41 @@ Open items:
   - the linked Family Matching collections have usable imagery in Shopify
   - the promo card and first four category cards render with balanced crops
   - the desktop mega menu spacing feels right at the store’s common desktop widths
+
+### Task: Family matching mega menu curated image sizing
+Date: 2026-03-27 02:02:14 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-family-matching-mega-menu-curated-image-sizing
+Changes:
+- Updated `snippets/header-mega-menu-feature-card.liquid` to stop relying on generic collection imagery for the main Family Matching cards.
+- Added curated product-image mappings for the visible Family Matching mega-menu categories:
+  - `/collections/matching-hawaiian-outfits`
+  - `/collections/matching-family-vacation-outfits`
+  - `/collections/mother-daughter-matching-dresses`
+  - `/collections/family-sets`
+  - plus fallbacks for sweaters, swimsuits, and pajamas
+- Added server-side image sizing/cropping per card kind:
+  - promo image requested as a wide cropped asset
+  - feature cards requested as taller editorial crops
+- Reworked `assets/theme-inline-body-static-05.css` so the Family Matching mega menu now uses:
+  - one wide promo banner
+  - a four-card retail grid with portrait-friendly proportions
+  - less overlay copy on the smaller cards
+  - centered secondary shopping pills below the card grid
+- Tightened the Family Matching mega-menu heading copy in `snippets/header-mega-menu.liquid` to be more commercial and scan-friendly.
+
+Why:
+- The previous version was forcing portrait source images into landscape cards, which made the crops feel awkward and low-quality.
+- The visible Family Matching categories are better served by curated image sources and explicit crop sizes than by collection-image fallbacks.
+- Reducing the amount of text on the smaller cards makes the menu feel more like polished retail navigation and less like an editorial block.
+
+Verification:
+- Live product JSON / storefront-source inspection confirmed the prior visible card sources were mostly portrait assets such as:
+  - `768x1365`
+  - `744x1320`
+  - `865x1212`
+- Confirmed several better fallback source images exist for curated category cards, including square product media such as:
+  - `800x800`
+- Targeted Theme Check filtering for the touched header mega-menu files returned no new matches.
+
+Open items:
+- Manual preview is still required to confirm the curated product-image choices feel strong on the actual storefront and that no card needs a different image index or crop position.

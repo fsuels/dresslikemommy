@@ -7,16 +7,80 @@
 
 {%- liquid
   assign menu_link_title = menu_link.title | escape
+  assign menu_link_display_title = menu_link.title | strip
   assign menu_link_url = menu_link.url
   assign menu_handle = menu_link.handle | default: ''
   assign linked_object = menu_link.object
   assign menu_image = blank
   assign fallback_collection = blank
+  assign custom_product_handle = blank
+  assign custom_image_index = blank
+  assign image_crop = 'center'
+  assign image_width = 900
+  assign image_height = 1200
+  assign image_sizes = '(min-width: 990px) 18vw, 50vw'
   assign card_label = 'Trending now'
-  assign card_description = 'Coordinated outfits designed to make family matching easier.'
-  assign card_cta = 'Explore now'
+  assign card_description = blank
+  assign card_cta = 'Shop now'
 
-  if linked_object != blank
+  if card_kind == 'promo'
+    assign image_width = 1600
+    assign image_height = 600
+    assign image_sizes = '(min-width: 990px) 72vw, 100vw'
+    assign card_label = 'Best-selling family looks'
+    assign card_cta = 'Shop the edit'
+  endif
+
+  if menu_link_url contains '/collections/matching-hawaiian-outfits'
+    assign custom_product_handle = 'family-matching-hawaiian-shirt-and-floral-dress'
+    assign custom_image_index = 3
+    assign card_label = 'Resort favorite'
+  elsif menu_link_url contains '/collections/matching-family-vacation-outfits'
+    assign custom_product_handle = 'family-matching-shirt-and-dress-set-yellow-floral-for-a-springtime-look'
+    assign custom_image_index = 3
+    assign card_label = 'Getaway edit'
+  elsif menu_link_url contains '/collections/mother-daughter-matching-dresses'
+    assign custom_product_handle = 'family-matching-floral-shirt-and-dress-a-charming-and-coordinated-look'
+    assign custom_image_index = 4
+    assign card_label = 'Dress best sellers'
+    assign image_crop = 'top'
+  elsif menu_link_url contains '/collections/family-sets'
+    assign custom_product_handle = 'family-matching-dress-and-t-shirt-set-summer-fun-for-the-whole-family'
+    assign custom_image_index = 3
+    assign card_label = 'Easy sets'
+  elsif menu_link_url contains '/collections/family-sweaters'
+    assign custom_product_handle = 'family-matching-cable-knit-sweaters-heart-embroidered-unisex-pullovers'
+    assign custom_image_index = 2
+    assign card_label = 'Cold-weather pick'
+    assign image_crop = 'top'
+  elsif menu_link_url contains '/collections/family-swimsuits'
+    assign custom_product_handle = 'blue-tropical-floral-family-matching-beach-dress-and-shirt-set'
+    assign custom_image_index = 1
+    assign card_label = 'Pool-day favorite'
+  elsif menu_link_url contains '/collections/family-pajamas'
+    assign custom_product_handle = 'family-matching-christmas-fair-isle-pajamas-festive-red-green-holiday-pajama-set-for-adults-kids-pets'
+    assign custom_image_index = 0
+    assign card_label = 'Cozy classic'
+  elsif menu_link_url contains '/collections/new-women-outfits'
+    assign fallback_collection = collections['matching-outfits']
+    assign menu_link_display_title = 'Family Matching'
+    assign card_description = 'Vacation-ready outfits, matching dresses, and fast-to-shop family sets in one polished destination.'
+  endif
+
+  if custom_product_handle != blank
+    assign custom_product = all_products[custom_product_handle]
+    if custom_product != blank
+      if custom_image_index != blank and custom_product.media[custom_image_index] != blank
+        assign menu_image = custom_product.media[custom_image_index].preview_image | default: custom_product.media[custom_image_index]
+      elsif custom_product.featured_media != blank
+        assign menu_image = custom_product.featured_media.preview_image | default: custom_product.featured_media
+      elsif custom_product.featured_image != blank
+        assign menu_image = custom_product.featured_image
+      endif
+    endif
+  endif
+
+  if menu_image == blank and linked_object != blank
     if linked_object.image != blank
       assign menu_image = linked_object.image
     elsif linked_object.featured_image != blank
@@ -28,29 +92,16 @@
 
   case menu_handle
     when 'family-swimsuits'
-      assign card_label = 'Vacation favorite'
-      assign card_description = 'Pool-day and beach-photo looks for the whole crew.'
       assign fallback_collection = collections['family-swimsuits']
     when 'family-sets'
-      assign card_label = 'Best seller'
-      assign card_description = 'Easy matching sets for outings, parties, and photos.'
       assign fallback_collection = collections['family-sets']
     when 'family-tops'
-      assign card_label = 'Easy starters'
-      assign card_description = 'Quick mix-and-match pieces for everyday coordinating.'
       assign fallback_collection = collections['family-tops']
     when 'family-sweaters'
-      assign card_label = 'Cool-weather edit'
-      assign card_description = 'Layered family looks for fall weekends and holiday trips.'
       assign fallback_collection = collections['family-sweaters']
     when 'family-pajamas'
-      assign card_label = 'Holiday staple'
-      assign card_description = 'Cozy matching sleepwear for nights in and festive mornings.'
       assign fallback_collection = collections['family-pajamas']
     when 'matching-outfits', 'family-matching', 'family-matching-outfits'
-      assign card_label = 'Featured edit'
-      assign card_description = 'Shop the full Family Matching destination with polished outfits for every season.'
-      assign card_cta = 'Shop the edit'
       assign fallback_collection = collections['matching-outfits']
       if fallback_collection == blank
         assign fallback_collection = collections['family-matching-outfits']
@@ -85,11 +136,11 @@
     {%- if menu_image != blank -%}
       {{
         menu_image
-        | image_url: width: 900
+        | image_url: width: image_width, height: image_height, crop: image_crop
         | image_tag:
           class: 'mega-menu__visual-image',
-          widths: '320, 480, 640, 900',
-          sizes: '(min-width: 990px) 24vw, 100vw',
+          widths: '320, 480, 640, 900, 1200, 1600',
+          sizes: image_sizes,
           loading: 'lazy',
           alt: menu_image_alt
       }}
@@ -100,8 +151,10 @@
   <span class="mega-menu__visual-overlay"></span>
   <span class="mega-menu__visual-content">
     <span class="mega-menu__visual-label">{{ card_label }}</span>
-    <span class="mega-menu__visual-title">{{ menu_link_title }}</span>
-    <span class="mega-menu__visual-description">{{ card_description }}</span>
+    <span class="mega-menu__visual-title">{{ menu_link_display_title }}</span>
+    {%- if card_description != blank -%}
+      <span class="mega-menu__visual-description">{{ card_description }}</span>
+    {%- endif -%}
     <span class="mega-menu__visual-cta">{{ card_cta }}</span>
   </span>
 </a>
