@@ -83,7 +83,6 @@ mutation ArticleCreate($article: ArticleCreateInput!) {
       id
       handle
       title
-      onlineStoreUrl
     }
     userErrors {
       field
@@ -94,13 +93,12 @@ mutation ArticleCreate($article: ArticleCreateInput!) {
 """
 
 ARTICLE_UPDATE_MUTATION = """
-mutation ArticleUpdate($article: ArticleUpdateInput!) {
-  articleUpdate(article: $article) {
+mutation ArticleUpdate($id: ID!, $article: ArticleUpdateInput!) {
+  articleUpdate(id: $id, article: $article) {
     article {
       id
       handle
       title
-      onlineStoreUrl
     }
     userErrors {
       field
@@ -296,7 +294,7 @@ def fetch_existing_articles(store_domain: str, access_token: str, api_version: s
     return existing
 
 
-def build_article_input(draft: ArticleDraft, blog_id: Optional[str] = None, article_id: Optional[str] = None, publish_override: Optional[bool] = None) -> Dict:
+def build_article_input(draft: ArticleDraft, blog_id: Optional[str] = None, publish_override: Optional[bool] = None) -> Dict:
     article_input: Dict = {
         "title": draft.title,
         "handle": draft.handle,
@@ -309,8 +307,6 @@ def build_article_input(draft: ArticleDraft, blog_id: Optional[str] = None, arti
 
     if blog_id:
         article_input["blogId"] = blog_id
-    if article_id:
-        article_input["id"] = article_id
     if draft.publish_date and not (publish_override is True and is_future_publish_date(draft.publish_date)):
         article_input["publishDate"] = draft.publish_date
     if draft.image_url:
@@ -318,12 +314,6 @@ def build_article_input(draft: ArticleDraft, blog_id: Optional[str] = None, arti
             "url": draft.image_url,
             "altText": draft.image_alt or draft.title,
         }
-    if draft.seo_title or draft.seo_description:
-        article_input["seo"] = {
-            "title": draft.seo_title or draft.title,
-            "description": draft.seo_description or draft.summary,
-        }
-
     return article_input
 
 
@@ -421,7 +411,6 @@ def main() -> int:
             mutation = ARTICLE_UPDATE_MUTATION
             article_input = build_article_input(
                 draft=draft,
-                article_id=existing["id"],
                 publish_override=args.publish,
             )
             operation = "update"
@@ -442,7 +431,7 @@ def main() -> int:
             access_token=access_token,
             api_version=args.api_version,
             query=mutation,
-            variables={"article": article_input},
+            variables={"article": article_input, "id": existing["id"]} if existing else {"article": article_input},
         )
 
         payload = data["articleUpdate"] if existing else data["articleCreate"]
@@ -450,7 +439,8 @@ def main() -> int:
             raise RuntimeError(f"{draft.handle} {operation} failed: {format_user_errors(payload)}")
 
         article = payload["article"]
-        print(f"{operation.title()}d {draft.handle}: {article.get('onlineStoreUrl') or article['id']}")
+        storefront_url = f"https://www.dresslikemommy.com/blogs/{args.blog_handle}/{article['handle']}"
+        print(f"{operation.title()}d {draft.handle}: {storefront_url}")
         if existing:
             updated += 1
         else:

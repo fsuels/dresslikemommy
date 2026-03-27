@@ -7,13 +7,28 @@ import subprocess
 import sys
 import urllib.request
 import xml.etree.ElementTree as ET
+from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
+from xml.sax.saxutils import escape
+from zipfile import ZIP_DEFLATED, ZipFile
 
 
 SITEMAP_URL = "https://www.dresslikemommy.com/sitemap_blogs_1.xml"
 SITEMAP_NS = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+PLAN_FIELDNAMES = (
+    "canonical_slug",
+    "canonical_title",
+    "topic_cluster",
+    "audience",
+    "season",
+    "redirect_from_slug",
+    "redirect_from_year",
+    "keep_or_redirect",
+    "status",
+)
+SLUG_AUDIT_FIELDNAMES = ("position", "slug", "url")
 
 
 @dataclass(frozen=True)
@@ -286,6 +301,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--sitemap-url", default=SITEMAP_URL)
     parser.add_argument("--slug-audit-csv", required=True)
     parser.add_argument("--plan-csv", required=True)
+    parser.add_argument("--recurring-plan-csv")
+    parser.add_argument("--xlsx-output")
+    parser.add_argument(
+        "--recurring-min-redirects",
+        type=int,
+        default=3,
+        help="Only include canonicals with at least this many redirects in the recurring-only sheet.",
+    )
     return parser.parse_args()
 
 
@@ -456,7 +479,7 @@ def build_topic_cluster(canonical_slug: str, audience: str, season: str) -> str:
     return build_title(canonical_slug)
 
 
-def metadata_for_slug(slug: str) -> tuple[str, str, str, str]:
+def metadata_for_slug(slug: str) -> tuple[str, str, str, str, str]:
     rule = match_rule(slug)
     if rule:
         return (
@@ -475,22 +498,45 @@ def metadata_for_slug(slug: str) -> tuple[str, str, str, str]:
     return canonical_slug, canonical_title, topic_cluster, audience, season
 
 
-def write_slug_audit(slugs: list[str], output_path: Path) -> None:
+def build_slug_audit_rows(slugs: list[str]) -> list[dict[str, str]]:
+    rows = []
+    for index, slug in enumerate(slugs, start=1):
+        rows.append(
+            {
+                "position": index,
+                "slug": slug,
+                "url": f"https://www.dresslikemommy.com/blogs/news/{slug}",
+            }
+        )
+    return rows
+
+
+def write_csv_rows(rows: list[dict[str, str]], fieldnames: tuple[str, ...], output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=("position", "slug", "url"))
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
-        for index, slug in enumerate(slugs, start=1):
-            writer.writerow(
-                {
-                    "position": index,
-                    "slug": slug,
-                    "url": f"https://www.dresslikemommy.com/blogs/news/{slug}",
-                }
-            )
+        for row in rows:
+            writer.writerow(row)
 
 
-def write_plan(slugs: list[str], output_path: Path) -> tuple[int, int]:
+def sort_plan_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    keep_rows = sorted(
+        [row for row in rows if row["keep_or_redirect"] == "KEEP"],
+        key=lambda item: item["canonical_slug"],
+    )
+    redirect_rows = sorted(
+        [row for row in rows if row["keep_or_redirect"] == "REDIRECT"],
+        key=lambda item: (
+            item["canonical_slug"],
+            item["redirect_from_year"] or "9999",
+            item["redirect_from_slug"],
+        ),
+    )
+    return keep_rows + redirect_rows
+
+
+def build_plan_rows(slugs: list[str]) -> list[dict[str, str]]:
     canonical_map = {}
     redirect_rows = []
     for slug in slugs:
@@ -531,36 +577,133 @@ def write_plan(slugs: list[str], output_path: Path) -> tuple[int, int]:
         for row in canonical_map.values()
     ]
 
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open("w", newline="") as handle:
-        fieldnames = (
-            "canonical_slug",
-            "canonical_title",
-            "topic_cluster",
-            "audience",
-            "season",
-            "redirect_from_slug",
-            "redirect_from_year",
-            "keep_or_redirect",
-            "status",
+    return sort_plan_rows(keep_rows + redirect_rows)
+
+
+def write_plan(rows: list[dict[str, str]], output_path: Path) -> tuple[int, int]:
+    write_csv_rows(rows, PLAN_FIELDNAMES, output_path)
+    keep_count = sum(row["keep_or_redirect"] == "KEEP" for row in rows)
+    redirect_count = sum(row["keep_or_redirect"] == "REDIRECT" for row in rows)
+    return keep_count, redirect_count
+
+
+def build_recurring_rows(
+    plan_rows: list[dict[str, str]],
+    min_redirects: int,
+) -> list[dict[str, str]]:
+    redirect_counts = Counter(
+        row["canonical_slug"] for row in plan_rows if row["keep_or_redirect"] == "REDIRECT"
+    )
+    filtered_rows = [
+        row
+        for row in plan_rows
+        if redirect_counts[row["canonical_slug"]] >= min_redirects
+    ]
+    return sort_plan_rows(filtered_rows)
+
+
+def excel_column_name(index: int) -> str:
+    letters = []
+    while index:
+        index, remainder = divmod(index - 1, 26)
+        letters.append(chr(65 + remainder))
+    return "".join(reversed(letters))
+
+
+def build_sheet_xml(table_rows: list[list[str]]) -> str:
+    row_xml = []
+    for row_index, row in enumerate(table_rows, start=1):
+        cells = []
+        for column_index, value in enumerate(row, start=1):
+            if value in ("", None):
+                continue
+            cell_ref = f"{excel_column_name(column_index)}{row_index}"
+            cell_value = escape(str(value))
+            cells.append(
+                f'<c r="{cell_ref}" t="inlineStr"><is><t xml:space="preserve">{cell_value}</t></is></c>'
+            )
+        row_xml.append(f'<row r="{row_index}">{"".join(cells)}</row>')
+    return (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+        f'<sheetData>{"".join(row_xml)}</sheetData>'
+        "</worksheet>"
+    )
+
+
+def build_workbook_xml(sheet_names: list[str]) -> str:
+    sheets = []
+    for index, name in enumerate(sheet_names, start=1):
+        sheets.append(
+            f'<sheet name="{escape(name)}" sheetId="{index}" r:id="rId{index}"/>'
         )
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
-        writer.writeheader()
+    return (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" '
+        'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+        f'<sheets>{"".join(sheets)}</sheets>'
+        "</workbook>"
+    )
 
-        for row in sorted(keep_rows, key=lambda item: item["canonical_slug"]):
-            writer.writerow(row)
 
-        for row in sorted(
-            redirect_rows,
-            key=lambda item: (
-                item["canonical_slug"],
-                item["redirect_from_year"] or "9999",
-                item["redirect_from_slug"],
-            ),
-        ):
-            writer.writerow(row)
+def build_content_types_xml(sheet_count: int) -> str:
+    overrides = [
+        '<Override PartName="/xl/workbook.xml" '
+        'ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>',
+    ]
+    for index in range(1, sheet_count + 1):
+        overrides.append(
+            f'<Override PartName="/xl/worksheets/sheet{index}.xml" '
+            'ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'
+        )
+    return (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+        '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+        '<Default Extension="xml" ContentType="application/xml"/>'
+        f'{"".join(overrides)}'
+        "</Types>"
+    )
 
-    return len(keep_rows), len(redirect_rows)
+
+def write_xlsx(
+    sheets: list[tuple[str, tuple[str, ...], list[dict[str, str]]]],
+    output_path: Path,
+) -> None:
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    workbook_rels = []
+    sheet_names = []
+    with ZipFile(output_path, "w", compression=ZIP_DEFLATED) as workbook:
+        workbook.writestr(
+            "_rels/.rels",
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+            '<Relationship Id="rId1" '
+            'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" '
+            'Target="xl/workbook.xml"/>'
+            "</Relationships>",
+        )
+        for index, (sheet_name, fieldnames, rows) in enumerate(sheets, start=1):
+            sheet_names.append(sheet_name)
+            workbook_rels.append(
+                f'<Relationship Id="rId{index}" '
+                'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" '
+                f'Target="worksheets/sheet{index}.xml"/>'
+            )
+            table_rows = [list(fieldnames)] + [
+                [row.get(field, "") for field in fieldnames] for row in rows
+            ]
+            workbook.writestr(f"xl/worksheets/sheet{index}.xml", build_sheet_xml(table_rows))
+
+        workbook.writestr("[Content_Types].xml", build_content_types_xml(len(sheets)))
+        workbook.writestr("xl/workbook.xml", build_workbook_xml(sheet_names))
+        workbook.writestr(
+            "xl/_rels/workbook.xml.rels",
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+            f'{"".join(workbook_rels)}'
+            "</Relationships>",
+        )
 
 
 def main() -> int:
@@ -568,14 +711,45 @@ def main() -> int:
     xml_bytes = fetch_sitemap_xml(args)
     slugs = extract_slugs(xml_bytes)
     if len(slugs) != 254:
-        print(f"Expected 254 article slugs, found {len(slugs)}", file=sys.stderr)
+        print(
+            f"Live blog sitemap currently contains {len(slugs)} article slugs; "
+            "the earlier audit baseline was 254.",
+            file=sys.stderr,
+        )
 
-    write_slug_audit(slugs, Path(args.slug_audit_csv))
-    keep_count, redirect_count = write_plan(slugs, Path(args.plan_csv))
+    slug_audit_rows = build_slug_audit_rows(slugs)
+    plan_rows = build_plan_rows(slugs)
+    recurring_rows = build_recurring_rows(plan_rows, args.recurring_min_redirects)
+
+    write_csv_rows(slug_audit_rows, SLUG_AUDIT_FIELDNAMES, Path(args.slug_audit_csv))
+    keep_count, redirect_count = write_plan(plan_rows, Path(args.plan_csv))
+    recurring_keep_count = recurring_redirect_count = 0
+    if args.recurring_plan_csv:
+        recurring_keep_count, recurring_redirect_count = write_plan(
+            recurring_rows,
+            Path(args.recurring_plan_csv),
+        )
+    if args.xlsx_output:
+        write_xlsx(
+            [
+                ("Recurring clusters", PLAN_FIELDNAMES, recurring_rows),
+                ("Full plan", PLAN_FIELDNAMES, plan_rows),
+                ("Slug audit", SLUG_AUDIT_FIELDNAMES, slug_audit_rows),
+            ],
+            Path(args.xlsx_output),
+        )
     print(
         f"Generated slug audit for {len(slugs)} blog posts and consolidation plan with "
         f"{keep_count} canonical rows and {redirect_count} redirect rows."
     )
+    if args.recurring_plan_csv:
+        print(
+            f"Recurring-only plan: {recurring_keep_count} canonical rows and "
+            f"{recurring_redirect_count} redirect rows using threshold "
+            f"{args.recurring_min_redirects}."
+        )
+    if args.xlsx_output:
+        print(f"Wrote workbook bundle to {args.xlsx_output}.")
     return 0
 
 

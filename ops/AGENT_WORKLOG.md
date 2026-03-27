@@ -8950,6 +8950,33 @@ Open items:
 - The requested live product SEO optimization is complete.
 - For future token-based Admin automation, regenerate or reinstall the `n8n Integration` app token so API scripts can write without relying on the browser session.
 
+### Task: Admin API token validity recheck after credential refresh
+Date: 2026-03-26 23:40:18 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-admin-token-valid-again
+Changes:
+- `ops/AGENT_WORKLOG.md`
+  - Recorded that the current secure local `n8n Integration` Admin token has been refreshed and now authenticates successfully.
+
+Why:
+- Earlier same-day continuity notes correctly reflected the then-current failure state, but they are now stale.
+- Future sessions need to stop treating Admin API writes as blocked by token auth unless a fresh auth check fails again.
+
+Verification:
+- Loaded the current token from the secure local credential sources under `~/.config/dresslikemommy/`.
+- Ran a direct Admin GraphQL auth check against:
+  - `https://dresslikemommy-com.myshopify.com/admin/api/2026-01/graphql.json`
+- Result:
+  - `HTTP 200`
+  - shop resolved as `Dress Like Mommy`
+  - `currentAppInstallation.accessScopes` count: `141`
+  - confirmed `write_products` is present
+- Ran a direct `productUpdate` mutation against product `gid://shopify/Product/6842588004449`.
+  - Result: `HTTP 200`, no `userErrors`
+
+Open items:
+- Admin API access should now be treated as live/working for future operator scripts.
+- If a future token check fails, record the new failure with the exact date instead of relying on older continuity notes.
+
 
 ### Task: Live winter article product recommendation cleanup
 Date: 2026-03-26 22:21:51 EDT
@@ -9204,6 +9231,32 @@ Open items:
 - The three requested Prompt 12 articles are now live.
 - For future token-based article publishing, regenerate or reinstall a valid Admin token with content scopes so `ops/scripts/publish_blog_articles.py --execute --publish` can work without the browser-session workaround.
 
+### Task: Re-verify restored token-based blog publishing after credential refresh
+Date: 2026-03-26 22:49:32 EDT
+Changes:
+- `ops/AGENT_WORKLOG.md`
+  - Recorded that the normal token-based Shopify Admin article publish path is working again with the refreshed stored credential.
+- Shopify Admin blog `news` on store `dresslikemommy-com`
+  - Re-ran the standard publisher in update mode against the three Prompt 12 utility articles:
+    - `how-to-care-for-your-matching-family-outfits`
+    - `matching-outfit-sizing-guide-right-fit-for-everyone`
+    - `ultimate-gift-guide-matching-outfits-for-every-occasion`
+
+Why:
+- The operator indicated the stored Admin token had been refreshed recently, so the earlier `401 Invalid API key or access token` result needed to be rechecked before carrying that assumption forward.
+
+Verification:
+- Ran a direct Admin GraphQL auth check against `https://dresslikemommy-com.myshopify.com/admin/api/2026-01/graphql.json` with query `{ shop { name myshopifyDomain } }`.
+  - Result: `HTTP 200`.
+- Ran:
+  - `python3 ops/scripts/publish_blog_articles.py --handles matching-outfit-sizing-guide-right-fit-for-everyone,how-to-care-for-your-matching-family-outfits,ultimate-gift-guide-matching-outfits-for-every-occasion --update-existing --execute --publish`
+  - Result: `updated=3`, `created=0`, `skipped=0`.
+- Confirmed the standard token-based publisher now updates those live articles successfully without the browser-session fallback.
+
+Open items:
+- The earlier token-failure assumption for article publishing is no longer current.
+- Browser-session GraphQL remains a valid fallback, but the normal token-based `publish_blog_articles.py` path is restored for this store.
+
 ### Task: Runtime QA for article related-posts tag matching in development theme preview
 Date: 2026-03-26 22:43:50 EDT
 Changes:
@@ -9233,3 +9286,553 @@ Verification:
 
 Open items:
 - `shopify theme dev` still cannot reliably render article pages until the missing `collection-blog-links` section reference in `templates/collection.json` is resolved or removed.
+
+### Task: Verify local `shopify theme dev` blocker for `collection-blog-links`
+Date: 2026-03-26 23:06:00 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-collection-blog-links-blocker-verified-cleared
+Changes:
+- No storefront theme code changes were required.
+- Appended this continuity note after tracing all `collection-blog-links` references and re-running local Shopify CLI verification.
+
+Why:
+- The prior worklog entry reported `templates/collection.json` as still blocked on missing section type `collection-blog-links`.
+- Current repo evidence shows that is no longer true:
+  - `templates/collection.json` contains eight scoped `collection-blog-links` section instances for collection styling guides.
+  - `sections/collection-blog-links.liquid` exists in the repo, is tracked by git, and defines the section schema plus runtime gating/rendering needed by those template entries.
+- The smallest correct fix was therefore to leave storefront code unchanged and verify that the earlier blocker note is stale.
+
+Verification:
+- Confirmed every current template reference to `collection-blog-links` in `templates/collection.json`:
+  - lines `42`, `85`, `128`, `171`, `214`, `257`, `300`, and `343`.
+- Confirmed the referenced section file exists and is tracked:
+  - `sections/collection-blog-links.liquid`
+- Started a fresh local CLI session from this repo:
+  - `shopify theme dev --store dresslikemommy-com.myshopify.com --port 9293 --host 127.0.0.1 --error-overlay default --verbose`
+  - Result: upload completed successfully and Shopify CLI reported preview availability at `http://127.0.0.1:9293` with no `collection-blog-links` upload error.
+- Verified local article rendering against the fresh dev session:
+  - `HEAD /blogs/news/mommy-and-me-matching-outfit-ideas` returned `200`.
+  - `GET /blogs/news/mommy-and-me-matching-outfit-ideas` returned real article HTML including `<article class="article-template"...>`.
+- Verified local collection rendering against the fresh dev session:
+  - `HEAD /collections/mommy-and-me` returned `200`.
+  - `GET /collections/mommy-and-me` returned collection HTML including the product grid and the Styling Guide markup from `collection-blog-links` (`Styling Guide`, `Read the guide`).
+- Checked verbose CLI upload logs from the same session and saw `templates/collection.json: success`; no upload rejection was emitted for `collection-blog-links`.
+
+Open items:
+- No storefront code follow-up is required for this blocker in the current repo state.
+- If a future shell still shows the old upload-error page on `127.0.0.1:9292`, confirm that an older lingering `shopify theme dev` process is not being reused before assuming the repo is regressed.
+
+### Task: Canonical winter article reviewed, updated, and published
+Date: 2026-03-26 23:22:00 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-canonical-winter-article-published
+Changes:
+- `ops/content/style-journal/articles/best-matching-family-outfits-for-winter.html`
+  - Replaced the placeholder winter recommendations with live in-stock products from the store:
+    - `/products/family-matching-cable-knit-sweaters-heart-embroidered-unisex-pullovers`
+    - `/products/matching-family-striped-fleece-hoodies-cozy-winter-pullover-for-parents-and-kids`
+    - `/products/matching-family-red-stripe-knit-sweaters-half-zip-pullover-for-mom-dad-and-kids`
+  - Added a real featured image URL and alt text from the live product media.
+  - Marked the draft publish-ready (`is_published: true`) and set the publish timestamp used for the live article.
+- `ops/scripts/publish_blog_articles.py`
+  - Updated the Shopify Admin GraphQL mutations to match the current API schema:
+    - `articleUpdate(id: $id, article: $article)`
+    - removed the no-longer-supported `onlineStoreUrl` field from mutation selections
+    - stopped sending unsupported `seo` input on article create/update
+  - Adjusted update execution to pass the article ID as a top-level mutation variable instead of embedding it in the update input.
+  - Switched success logging to construct the storefront URL from blog/article handles.
+- Shopify Admin `News` blog
+  - Updated the existing canonical article at `/blogs/news/best-matching-family-outfits-for-winter` and published it live.
+
+Why:
+- The canonical winter merge was ready in the repo, but publish was blocked first by an invalid stored Admin token and then by schema drift in the repo’s article publish script.
+- The operator supplied a regenerated Admin API token with valid content access, which restored the reliable token-based publish path and avoided further brittle Admin-UI automation.
+
+Verification:
+- Confirmed the regenerated token can read the Admin API:
+  - `query { shop { name } blogs(first: 5) { nodes { id handle title } } }`
+  - Result included shop `Dress Like Mommy` and blog handle `news`.
+- Ran:
+  - `python3 -m py_compile ops/scripts/publish_blog_articles.py`
+  - Result: script compiled successfully after the schema updates.
+- Ran live publish:
+  - `python3 ops/scripts/publish_blog_articles.py --handles best-matching-family-outfits-for-winter --execute --update-existing --publish`
+  - Result: `updated=1`, `created=0`, `skipped=0`
+  - Storefront URL: `https://www.dresslikemommy.com/blogs/news/best-matching-family-outfits-for-winter`
+- Verified the live storefront article contains the expected canonical content:
+  - `Best Matching Family Outfits for Winter`
+  - `Updated for 2026`
+  - `Family Matching Sweaters - Heart Print`
+  - `Family Matching Hoodies - Fleece`
+  - `Family Matching Sweaters - Red Striped`
+  - `/collections/family-sweaters`
+- Verified the live article publish timestamp:
+  - `2026-03-27T02:35:00Z` rendered storefront date `March 26, 2026`
+
+Open items:
+- The new Admin token was used directly for this execution and was not written into repo files or the worklog.
+- If future article publishes fail again on auth, update the local credential files outside the repo with the currently valid regenerated Admin token before reusing the script.
+
+### Task: Persist regenerated Admin token locally and publish canonical summer article
+Date: 2026-03-26 23:34:00 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-summer-canonical-published
+Changes:
+- Local non-repo credential files under `~/.config/dresslikemommy/`
+  - Updated the stored Shopify Admin token in:
+    - `shopify-admin.env`
+    - `admin-api-token.json`
+    - `translation-helper-token.json`
+  - Kept the token outside the repo and outside the worklog while making future shells/sessions reusable without manual re-entry.
+- `ops/content/style-journal/articles/summer-matching-family-outfits.html`
+  - Added a canonical no-year summer article draft and marked it publish-ready.
+  - Used live summer products from the store:
+    - `/products/matching-family-beach-outfits-with-floral-dresses-and-shorts`
+    - `/products/family-matching-swimwear-bathing-suit`
+    - `/products/blue-tropical-floral-family-matching-beach-dress-and-shirt-set`
+  - Added live collection links:
+    - `/collections/matching-outfits`
+    - `/collections/family-swimsuits`
+    - `/collections/family-sets`
+    - `/collections/mommy-and-me`
+  - Added live related-article links from the current storefront sitemap:
+    - `/blogs/news/best-matching-swimsuits-for-the-whole-family-2026`
+    - `/blogs/news/matching-family-outfits-for-august-vacations`
+    - `/blogs/news/mother-daughter-matching-swimsuits-complete-guide-for-summer-2026`
+- Shopify Admin `News` blog
+  - Published the new canonical article:
+    - `/blogs/news/summer-matching-family-outfits`
+
+Why:
+- Future sessions were repeatedly falling back to broken auth because the regenerated Admin token was not yet persisted into the canonical local credential files.
+- After repairing the article publish script for the current Shopify GraphQL schema, the next most useful seasonal canonical was the summer family-outfits cluster because it has a long year-stamped history and is timely relative to the current calendar.
+
+Verification:
+- Confirmed the three local credential files now reference the same regenerated Admin token by checking the updated token prefix locally.
+- Re-verified Admin API auth with the persisted token:
+  - `query { shop { name } }`
+  - Result: shop `Dress Like Mommy`
+- Confirmed the summer canonical handle did not already exist before publish:
+  - `summer-matching-family-outfits` returned `NOT_FOUND` in the `news` blog article scan.
+- Ran dry run:
+  - `python3 ops/scripts/publish_blog_articles.py --handles summer-matching-family-outfits`
+  - Result: draft discovered successfully.
+- Verified article target length:
+  - `745` words in the final HTML body.
+- Ran live publish:
+  - `python3 ops/scripts/publish_blog_articles.py --handles summer-matching-family-outfits --execute --publish`
+  - Result: `created=1`, `updated=0`, `skipped=0`
+  - Storefront URL: `https://www.dresslikemommy.com/blogs/news/summer-matching-family-outfits`
+- Verified the live storefront article contains the expected canonical content:
+  - `Summer Matching Family Outfits`
+  - `Updated for 2026`
+  - `Matching Family Beach Outfits with Floral Dresses and Shorts`
+  - `Family Matching Swimwear Bathing Suit`
+  - `Blue Tropical Floral Family Matching Beach Dress and Shirt Set`
+  - `/collections/family-swimsuits`
+- Verified the live article publish timestamp:
+  - `2026-03-27T03:10:00Z` rendered storefront date `March 26, 2026`
+
+Open items:
+- The repaired token-based publish flow is now reusable in future shells via the local credential files.
+- Continue using the repo-side canonical article workflow plus `ops/scripts/publish_blog_articles.py` for the next seasonal cluster instead of Admin-UI automation.
+
+### Task: Canonical spring mommy-and-me article reviewed and republished
+Date: 2026-03-26 23:42:00 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-spring-mommy-me-canonical-updated
+Changes:
+- `ops/content/style-journal/articles/spring-matching-outfits-for-mommy-and-me.html`
+  - Added a repo-side canonical draft for the existing no-year spring mommy-and-me article handle.
+  - Replaced the prior off-theme product recommendations with live spring-appropriate products:
+    - `/products/family-matching-shirt-and-dress-set-yellow-floral-for-a-springtime-look`
+    - `/products/matching-mommy-me-smocked-sundresses-vibrant-floral-and-patterned-summer-dresses`
+    - `/products/matching-mommy-me-colorful-watercolor-maxi-dresses-sleeveless-summer-dress`
+  - Added live collection links:
+    - `/collections/mommy-and-me`
+    - `/collections/dresses`
+    - `/collections/matching-outfits`
+  - Added live related-article links:
+    - `/blogs/news/mommy-and-me-easter-outfit-ideas-for-2027`
+    - `/blogs/news/family-matching-outfits-spring-photos`
+    - `/blogs/news/mommy-and-me-matching-outfit-ideas`
+- Shopify Admin `News` blog
+  - Updated the existing canonical article:
+    - `/blogs/news/spring-matching-outfits-for-mommy-and-me`
+
+Why:
+- The live canonical spring article already existed, but it still contained weak seasonal recommendations including a swimsuit inside a spring mommy-and-me outfit guide.
+- With the token-based publish path repaired and persisted locally, the next step was to keep converting the long year-stamped seasonal cluster into a stronger evergreen canonical article.
+
+Verification:
+- Confirmed the existing live canonical article content before update still contained the outdated swimsuit recommendation.
+- Ran dry run:
+  - `python3 ops/scripts/publish_blog_articles.py --handles spring-matching-outfits-for-mommy-and-me`
+  - Result: draft discovered successfully.
+- Verified article target length:
+  - `793` words in the final HTML body.
+- Ran live publish:
+  - `python3 ops/scripts/publish_blog_articles.py --handles spring-matching-outfits-for-mommy-and-me --execute --update-existing --publish`
+  - Result: `updated=1`, `created=0`, `skipped=0`
+  - Storefront URL: `https://www.dresslikemommy.com/blogs/news/spring-matching-outfits-for-mommy-and-me`
+- Verified the live storefront article contains the expected refreshed canonical content:
+  - `Spring Matching Outfits for Mommy and Me`
+  - `Updated for 2026`
+  - `Family Matching Shirts - Yellow Floral Print`
+  - `Mommy and Me Sundresses - Floral Print`
+  - `Mommy and Me Maxi Dresses - Watercolor`
+  - `/collections/mommy-and-me`
+- Verified the old off-theme recommendation is gone:
+  - `Matching Mommy & Me Two Piece Swimsuit` no longer appears in the live article.
+- Observed the live article retained its earlier publish timestamp after update:
+  - `2026-03-10T15:25:00Z` rendered storefront date `March 10, 2026`
+
+Open items:
+- Canonical seasonal workflow is now proven across updated-existing and create-new cases:
+  - winter updated existing
+  - summer created new
+  - spring mommy-and-me updated existing
+- The next high-signal cluster from the same pattern can be `halloween-family-matching-costume-ideas` or another seasonally relevant canonical refresh.
+
+### Task: Refine Prompt 6 into a recurring-clusters redirect plan and export workbook bundle
+Date: 2026-03-26 23:54:18 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-blog-seasonal-consolidation-recurring-xlsx
+Changes:
+- `ops/scripts/build_blog_seasonal_consolidation_plan.py`
+  - Extended the generator to also emit:
+    - a stricter recurring-clusters-only CSV
+    - a self-contained `.xlsx` workbook bundle without third-party dependencies
+  - Added a recurring-cluster cutoff flag:
+    - `--recurring-min-redirects`
+  - Added bundled workbook sheets:
+    - `Recurring clusters`
+    - `Full plan`
+    - `Slug audit`
+- `ops/content/seo/blog-seasonal-consolidation-plan-recurring-2026-03-26.csv`
+  - Wrote the stricter operational redirect sheet focused on recurring seasonal clusters only.
+- `ops/content/seo/blog-seasonal-consolidation-plan-2026-03-26.xlsx`
+  - Wrote the workbook bundle for easier import into Google Sheets or Excel.
+
+Why:
+- The first Prompt 6 pass was intentionally conservative and included many standalone year-free supporting posts as separate `KEEP` rows.
+- The operator then asked for a stricter final redirect plan plus an easier spreadsheet handoff format.
+- A recurring-clusters-only view is easier to execute in redirect batches because it isolates the high-volume repeated seasonal topics first.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/build_blog_seasonal_consolidation_plan.py`.
+- Regenerated the outputs from a fresh cached fetch of the live blog sitemap.
+- Confirmed the live sitemap had changed again during this follow-up pass:
+  - current live count: `257` article slugs
+  - earlier same-day baseline used in the initial sheet: `254`
+  - visible new live handles include:
+    - `how-to-care-for-your-matching-family-outfits`
+    - `matching-outfit-sizing-guide-right-fit-for-everyone`
+    - `ultimate-gift-guide-matching-outfits-for-every-occasion`
+    - `best-matching-family-outfits-for-winter-1`
+    - `summer-matching-family-outfits`
+- Confirmed current output sizes:
+  - full plan CSV: `274` rows total = `67` `KEEP` + `207` `REDIRECT`
+  - recurring-only CSV with threshold `3`: `213` rows total = `20` `KEEP` + `193` `REDIRECT`
+- Verified the `.xlsx` bundle is a valid ZIP-based workbook structure with the expected worksheet parts.
+
+Open items:
+- The latest live sitemap inventory is now `257`, so any downstream redirect or editorial work should use the refreshed files rather than the earlier `254`-row baseline.
+- For operational execution, start from `ops/content/seo/blog-seasonal-consolidation-plan-recurring-2026-03-26.csv`; keep the full CSV and workbook as reference layers.
+
+### Task: Execute the sales-priority seasonal canonical + redirect pass
+Date: 2026-03-27 00:02:44 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-priority-seasonal-canonicals-and-redirects
+Changes:
+- `ops/content/style-journal/articles/mommy-and-me-valentines-day-outfits.html`
+  - Added a repo-side canonical draft focused on Valentine's shopping intent with direct links to:
+    - `/collections/valentines-day-matching-outfits-1`
+    - `/collections/mommy-and-me`
+    - `/collections/dresses`
+    - `/products/couple-matching-queen-king-hearts-t-shirts`
+    - `/products/mother-and-daughter-classic-floral-dress`
+    - `/products/mommy-and-me-matching-floral-long-sleeve-maxi-dresses-with-pockets`
+- `ops/content/style-journal/articles/mommy-and-me-easter-outfit-ideas.html`
+  - Added a repo-side canonical draft for the no-year Easter handle with direct links to:
+    - `/collections/mommy-and-me`
+    - `/collections/dresses`
+    - `/collections/matching-outfits`
+    - `/collections/new-arrivals`
+    - `/products/mother-and-daughter-classic-floral-dress`
+    - `/products/mommy-and-me-matching-floral-long-sleeve-maxi-dresses-with-pockets`
+    - `/products/family-matching-shirt-and-dress-set-yellow-floral-for-a-springtime-look`
+- `ops/content/style-journal/articles/mothers-day-matching-outfits-mommy-and-me-guide.html`
+  - Added a repo-side canonical draft for the no-year Mother's Day handle with direct links to:
+    - `/collections/mommy-and-me`
+    - `/collections/dresses`
+    - `/collections/matching-outfits`
+    - `/products/mother-and-daughter-classic-floral-dress`
+    - `/products/matching-mommy-me-colorful-watercolor-maxi-dresses-sleeveless-summer-dress`
+    - `/products/elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits`
+- `ops/content/style-journal/articles/spring-matching-outfits-for-mommy-and-me.html`
+  - Replaced the year-stamped Easter article link with the evergreen canonical:
+    - `/blogs/news/mommy-and-me-easter-outfit-ideas`
+- Shopify Admin `News` blog
+  - Updated the live canonical articles:
+    - `/blogs/news/mommy-and-me-valentines-day-outfits`
+    - `/blogs/news/mommy-and-me-easter-outfit-ideas`
+    - `/blogs/news/mothers-day-matching-outfits-mommy-and-me-guide`
+    - `/blogs/news/spring-matching-outfits-for-mommy-and-me`
+- `ops/scripts/apply_blog_consolidation_redirects.py`
+  - Added a token-based Shopify Admin redirect applier for generated blog redirect CSVs.
+  - Supports dry-run and live execution while preserving already-correct redirects and replacing conflicting ones if needed.
+- `ops/content/seo/blog-priority-seasonal-redirects-2026-03-26.csv`
+- `ops/content/seo/blog-priority-seasonal-redirects-2026-03-26.jsonl`
+- `ops/content/seo/blog-priority-seasonal-redirects-2026-03-26-details.csv`
+  - Generated the priority redirect batch for the 5 sales-priority canonicals:
+    - `summer-matching-family-outfits`
+    - `spring-matching-outfits-for-mommy-and-me`
+    - `mommy-and-me-easter-outfit-ideas`
+    - `mothers-day-matching-outfits-mommy-and-me-guide`
+    - `mommy-and-me-valentines-day-outfits`
+  - Batch size: `64` redirects across those 5 canonicals.
+- `ops/content/seo/blog-seasonal-consolidation-plan-2026-03-26.csv`
+- `ops/content/seo/blog-seasonal-consolidation-plan-recurring-2026-03-26.csv`
+- `ops/content/seo/blog-seasonal-consolidation-plan-2026-03-26.xlsx`
+  - Updated the operational statuses for the 5 priority canonicals:
+    - canonical `KEEP` rows -> `content merged`
+    - duplicate `REDIRECT` rows -> `redirected`
+  - Regenerated the workbook bundle so the sheet export matches the CSV status state.
+
+Why:
+- The highest-probability sales move was to improve the no-year canonicals for the 5 strongest seasonal clusters that already combine recurring organic demand with clear shopping intent.
+- Redirects are only useful commercially if the destination articles are live, published, and send readers into current collections or products.
+- Once the canonicals were confirmed, the redirect layer needed to be validated against Shopify to avoid duplicate or conflicting mappings.
+
+Verification:
+- Verified the shared local Admin token now works for live article publish and redirect reads/writes.
+- Ran dry run:
+  - `python3 ops/scripts/publish_blog_articles.py --handles mommy-and-me-valentines-day-outfits,mommy-and-me-easter-outfit-ideas,mothers-day-matching-outfits-mommy-and-me-guide,spring-matching-outfits-for-mommy-and-me`
+- Ran live publish/update:
+  - `python3 ops/scripts/publish_blog_articles.py --handles mommy-and-me-valentines-day-outfits,mommy-and-me-easter-outfit-ideas,mothers-day-matching-outfits-mommy-and-me-guide,spring-matching-outfits-for-mommy-and-me --execute --update-existing --publish`
+  - Result: `updated=4`, `created=0`, `skipped=0`
+- Queried the live Admin article records and confirmed all 5 priority canonicals are published and contain the expected merch/internal links:
+  - `mommy-and-me-valentines-day-outfits`
+  - `mommy-and-me-easter-outfit-ideas`
+  - `mothers-day-matching-outfits-mommy-and-me-guide`
+  - `spring-matching-outfits-for-mommy-and-me`
+  - `summer-matching-family-outfits`
+- Built the redirect batch:
+  - `python3 ops/scripts/build_blog_consolidation_redirects.py --input ops/content/seo/blog-seasonal-consolidation-plan-recurring-2026-03-26.csv --canonical-slugs summer-matching-family-outfits,spring-matching-outfits-for-mommy-and-me,mommy-and-me-easter-outfit-ideas,mothers-day-matching-outfits-mommy-and-me-guide,mommy-and-me-valentines-day-outfits --output-dir ops/content/seo --basename blog-priority-seasonal-redirects-2026-03-26`
+  - Result: `64` redirects across `5` clusters
+- Ran dry-run redirect validation:
+  - `python3 ops/scripts/apply_blog_consolidation_redirects.py --input ops/content/seo/blog-priority-seasonal-redirects-2026-03-26.csv`
+  - Result: all `64` priority redirects already existed and pointed to the correct canonical targets.
+- Ran live execute pass anyway:
+  - `python3 ops/scripts/apply_blog_consolidation_redirects.py --input ops/content/seo/blog-priority-seasonal-redirects-2026-03-26.csv --execute`
+  - Result: all `64` remained `unchanged`, confirming no conflicting redirect repairs were needed.
+
+Open items:
+- The 5 highest-value seasonal canonicals are now merch-linked and the associated priority redirects are already correctly in place.
+- The next sales-priority batch, if continuing the same workflow, is likely:
+  - `best-matching-swimsuits-for-the-whole-family`
+  - `halloween-family-matching-costume-ideas`
+  - `thanksgiving-family-matching-outfit-ideas`
+  - `christmas-matching-family-pajamas`
+
+### Task: Publish evergreen canonical Halloween cluster article
+Date: 2026-03-26 23:46:08 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-halloween-canonical-updated
+Changes:
+- `ops/content/style-journal/articles/halloween-family-matching-costume-ideas.html`
+  - Added the evergreen canonical Halloween article draft in frontmatter HTML format for the no-year handle.
+  - Kept the standard seasonal canonical structure:
+    - `Why families love matching for Halloween`
+    - `Editor's Picks`
+    - `Styling Tips`
+    - `Getting the Right Fit`
+    - `Caring for Your Outfits`
+    - `Ready to Start Matching`
+  - Wrote a new opening paragraph and kept the body year-free except for `Updated for 2026`.
+  - Replaced the templated low-quality recommendations with real currently live storefront products:
+    - `Matching Mommy & Me Plaid Flannel Shirts Cozy Button-Up Jackets for Fall`
+    - `Matching Floral Long-Sleeve Maxi Dresses with Pockets`
+    - `Striped Fleece Hoodies Cozy Winter Pullover for Parents and Kids`
+  - Added live internal links to:
+    - related articles:
+      - `/blogs/news/matching-family-outfits-for-pumpkin-patch-photos`
+      - `/blogs/news/best-fall-colors-for-family-matching-looks`
+      - `/blogs/news/fall-family-photo-session-complete-matching-outfit-guide`
+    - relevant collections:
+      - `/collections/fall-winter`
+      - `/collections/matching-outfits`
+      - `/collections/mommy-and-me`
+      - `/collections/family-tops`
+
+Why:
+- The recurring seasonal consolidation plan marks `halloween-family-matching-costume-ideas` as the canonical keep target for an 11-post year-stamped cluster.
+- The existing no-year Shopify article had already been repointed onto the canonical handle, but it still contained the weak templated Halloween body with off-theme imagery and low-signal copy.
+- The current catalog has limited true Halloween inventory, so the evergreen rewrite deliberately reframed the piece around practical Halloween-ready matching built from live fall layers instead of pretending the store has a deep costume assortment.
+
+Verification:
+- Confirmed the repo draft parses cleanly:
+  - `python3 ops/scripts/publish_blog_articles.py --handles halloween-family-matching-costume-ideas`
+  - Result: dry run discovered the draft successfully.
+- Verified target length:
+  - `798` words in the final HTML body.
+- Confirmed the no-year canonical handle already existed in Shopify and was backed by an older low-quality article record:
+  - article id: `gid://shopify/Article/559662366817`
+  - prior published timestamp: `2025-10-21T13:38:00Z`
+- Ran live update:
+  - `python3 ops/scripts/publish_blog_articles.py --handles halloween-family-matching-costume-ideas --execute --update-existing --publish`
+  - Result: `updated=1`, `created=0`, `skipped=0`
+  - Storefront URL: `https://www.dresslikemommy.com/blogs/news/halloween-family-matching-costume-ideas`
+- Storefront fetch verification was temporarily rate-limited with `HTTP 429`, so verified via Shopify Admin API that the live article record now contains:
+  - `Halloween Family Matching Costume Ideas`
+  - `Updated for 2026`
+  - `Matching Mommy & Me Plaid Flannel Shirts Cozy Button-Up Jackets for Fall`
+  - `Matching Floral Long-Sleeve Maxi Dresses with Pockets`
+  - `Striped Fleece Hoodies Cozy Winter Pullover for Parents and Kids`
+  - `/collections/fall-winter`
+  - `/blogs/news/matching-family-outfits-for-pumpkin-patch-photos`
+- Also verified the old weak patterns are gone from the live article body:
+  - `There's something magical about` -> not present
+  - `matching matching` -> not present
+
+Open items:
+- The Halloween canonical is now live, but the year-stamped Halloween handles still need redirect execution in Shopify once the redirect batch phase starts.
+- Because the storefront was returning `429` during verification, do a casual browser spot-check later if operator confidence requires a direct public-page read after the rate limit cools down.
+
+### Task: Full live seasonal duplicate blog consolidation
+Date: 2026-03-26 23:48:12 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-full-live-blog-consolidation-complete
+Changes:
+- `ops/scripts/execute_blog_consolidation_via_chrome_session.py`
+  - Added a repeatable operator script that:
+    - reads `ops/content/seo/blog-seasonal-consolidation-plan-2026-03-26.csv`
+    - uses the logged-in Chrome Shopify Admin tab plus merchant-session GraphQL
+    - picks a canonical winner per cluster
+    - renames latest winners onto missing year-free handles
+    - archives duplicate articles by moving them onto `arch-YYYYMMDD-*` handles and unpublishing them
+    - creates or replaces Shopify URL redirects for each retired source slug
+    - writes a JSON execution report to `tmp/blog_consolidation_live_report.json`
+- Shopify Admin blog `news` on store `dresslikemommy-com`
+  - Completed the full seasonal duplicate consolidation batch across the remaining plan scope:
+    - `33` topic clusters processed
+    - `17` latest winner articles renamed onto missing year-free canonical handles
+    - `16` existing year-free canonicals retained and normalized where needed
+    - `190` duplicate source articles archived and unpublished
+    - `207` Shopify URL redirects created/replaced from retired source slugs to year-free canonicals
+  - Representative new year-free canonical handles created live during this batch:
+    - `best-matching-swimsuits-for-the-whole-family`
+    - `christmas-matching-family-pajamas`
+    - `daddy-and-me-fall-outfit-ideas`
+    - `daddy-and-me-spring-outfits`
+    - `easter-sunday-family-matching-outfits`
+    - `fall-family-matching-outfits`
+    - `floral-matching-outfits-for-spring`
+    - `halloween-family-matching-costume-ideas`
+    - `holiday-family-matching-outfits-complete-guide`
+    - `hot-weather-family-coordinating-outfit-ideas`
+    - `mommy-and-me-back-to-school-style-guide`
+    - `mommy-and-me-summer-dress-guide`
+    - `mommy-and-me-thanksgiving-style-guide`
+    - `mother-daughter-matching-swimsuits-complete-guide-for-summer`
+    - `mothers-day-matching-outfits-mommy-and-me-guide`
+    - `september-style-guide-transitional-family-matching-looks`
+    - `thanksgiving-family-matching-outfit-ideas`
+
+Why:
+- The original prompt-level quick fixes were not enough for the user's actual SEO and revenue goal because the blog still had dozens of seasonal year-stamped duplicates competing against each other.
+- Consolidating the repeated seasonal clusters into stable year-free URLs is the higher-leverage move for organic traffic:
+  - cleaner internal linking targets
+  - fewer duplicate / cannibalizing seasonal URLs
+  - stronger evergreen URL equity
+  - simpler annual content refreshes
+
+Verification:
+- Ran the executor in dry-run first:
+  - result: `33` clusters, `17` missing canonicals, `190` archive ops, `207` redirect ops
+- Ran the live execute pass:
+  - `python3 ops/scripts/execute_blog_consolidation_via_chrome_session.py --execute`
+  - result: `210` article updates and `207` redirects
+- Re-queried the live `news` blog after execution and confirmed:
+  - `0` planned source handles still exist as published live articles
+  - `0` canonical handles from the consolidation plan are missing
+  - `190` archived duplicates now exist with `isPublished: false`
+  - `0` published article handles still contain years
+  - `0` published article titles still contain years
+- Public storefront verification:
+  - sample retired seasonal URLs now return `301` with `x-redirect-reason: shop_redirect`
+  - sample year-free canonical targets return `HTTP/2 200`
+  - confirmed at least:
+    - `/blogs/news/christmas-matching-family-pajamas-for-2019` -> `/blogs/news/christmas-matching-family-pajamas`
+    - `/blogs/news/halloween-family-matching-costume-ideas-2028` -> `/blogs/news/halloween-family-matching-costume-ideas`
+
+Open items:
+- The seasonal duplicate cleanup is complete at the URL/title/publish-state level for the generated Prompt 6 consolidation plan.
+- The archived duplicates remain in Shopify Admin as unpublished records for rollback/history; delete them later only if the operator specifically wants a cleaner Admin list.
+- Any further work should be content-quality refreshes on the year-free canonicals, not more year-based URL cleanup.
+
+### Task: Residual `matching matching` cleanup after seasonal blog consolidation
+Date: 2026-03-26 23:49:42 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-26-news-matching-matching-post-consolidation-followup
+Changes:
+- `ops/scripts/repair_news_matching_matching.py`
+  - Added a repeatable Admin-GraphQL repair utility for the `news` blog that:
+    - scans all article bodies for repeated `matching` tokens
+    - defaults to dry-run mode
+    - updates article bodies when `--execute` is passed
+    - can do a targeted storefront verification pass
+    - writes a JSON report to `ops/content/news-matching-matching-fix-report.json`
+  - First implementation handled the exact lowercase phrase only.
+  - Follow-up patch widened the matcher to case-insensitive repeated-word cleanup so `Matching Matching` headings are also collapsed while preserving the original casing of the first word.
+- `ops/content/news-matching-matching-fix-report.json`
+  - Replaced the earlier title-search-driven report with a final execution report that reflects the live Admin state after the two repair passes.
+- Shopify Admin blog `news`
+  - Re-verified the canonical stored Admin token is valid in this shell and used the token-based GraphQL path instead of the old Chrome-session workaround.
+  - Ran a first execute pass that repaired 14 article records containing exact lowercase `matching matching`.
+  - Re-scanned with the case-insensitive matcher and ran a second execute pass that repaired 7 remaining title-cased duplicates on the same article set.
+  - Final Admin result: `0` remaining repeated-`matching` body hits across all `259` current `news` articles.
+  - The 14 touched article IDs were:
+    - `559651848289`
+    - `559651913825`
+    - `559652175969`
+    - `559652503649`
+    - `559652569185`
+    - `559652634721`
+    - `559652896865`
+    - `559653683297`
+    - `559654469729`
+    - `559659057249`
+    - `559659843681`
+    - `559660630113`
+    - `559661219937`
+    - `559662366817`
+
+Why:
+- The prior `already_clean` report was no longer reliable after the seasonal consolidation batch because many year-stamped articles had been moved onto archived `arch-20260326-*` handles, so title-based Admin matching could point at the wrong backing record.
+- The initial literal lowercase replacement still left title-cased duplicates such as `Matching Matching` in headings, which explains why some public pages continued to render the typo even after the first API pass.
+
+Verification:
+- Compiled the new repair script successfully:
+  - `python3 -m py_compile ops/scripts/repair_news_matching_matching.py`
+- Dry-run pass 1:
+  - `python3 ops/scripts/repair_news_matching_matching.py --storefront-scan-scope none`
+  - result: `candidate_count=14`
+- Execute pass 1:
+  - `python3 ops/scripts/repair_news_matching_matching.py --execute --storefront-scan-scope none`
+  - result: `updated_count=14`, `error_count=0`
+- Dry-run pass 2 after widening the matcher:
+  - `python3 ops/scripts/repair_news_matching_matching.py --storefront-scan-scope none`
+  - result: `candidate_count=7`
+- Execute pass 2:
+  - `python3 ops/scripts/repair_news_matching_matching.py --execute --storefront-scan-scope none`
+  - result: `updated_count=7`, `error_count=0`
+- Final Admin corpus scan:
+  - queried all `259` current `news` article bodies with the case-insensitive repeated-word regex
+  - result: `remaining_count=0`
+- Targeted public storefront scan of the 14 touched legacy/current handles using `curl -A 'Mozilla/5.0' -L` still showed `8` public URLs rendering `matching matching` in HTML even though the corresponding current Admin article bodies are clean:
+  - `apple-picking-matching-outfits-for-the-whole-family`
+  - `matching-family-outfits-for-pumpkin-patch-photos`
+  - `red-and-pink-family-matching-outfits-for-valentines-day`
+  - `best-fall-colors-for-family-matching-looks`
+  - `new-year-new-matching-looks-family-fashion-for-2023`
+  - `new-year-new-matching-looks-family-fashion-for-2024`
+  - `new-year-new-matching-looks-family-fashion-for-2025`
+  - `new-year-new-matching-looks-family-fashion-for-2026`
+- For the stubborn public pages, the rendered duplicate text does not match the current Admin body for the backing article record, which points to stale storefront HTML or legacy-handle alias/cache propagation rather than an unresolved Admin article-body mapping problem.
+
+Open items:
+- The Admin-side cleanup is complete, but the public storefront is not yet fully converged for the 8 legacy/current URLs listed above.
+- If those URLs still render `matching matching` after cache propagation time, the next step should use the logged-in Shopify Admin browser/editor path to open the exact public URL targets and perform a save/re-publish style touch that forces Shopify to invalidate the storefront HTML for those alias pages.
