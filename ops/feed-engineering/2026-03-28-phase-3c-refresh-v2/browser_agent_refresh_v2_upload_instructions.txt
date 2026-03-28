@@ -1,0 +1,43 @@
+Use this replacement file for the current Merchant Center supplemental source:
+
+http://127.0.0.1:8081/supplemental_feed_refresh.csv
+
+Local source file:
+/Users/fsuels/Projects/dresslikemommy/ops/feed-engineering/2026-03-28-phase-3c-refresh-v2/supplemental_feed_refresh.csv
+
+Merchant Center account: 124884876
+Supplemental source / feed ID: 10626787326
+Join key: id
+Confirmed ID format: shopify_US_{product_id}_{variant_id}
+
+This is a replacement upload, not an append.
+
+Why this replacement exists:
+- The currently uploaded refresh file already reduced unmatched rows from 626 to 343.
+- This v2 file keeps the exact same 4522 row IDs, but improves attribute coverage by filling additional confident values:
+  - gender coverage: 3451 -> 4482
+  - color coverage: 3769 -> 4304
+- It still excludes the 37 known-stale Shopify product IDs from the earlier unmatched report.
+- Blank fields remain intentional where confidence is still insufficient.
+
+Expected file:
+- 4522 data rows plus header
+- about 394 KB
+
+Task:
+1. Update the existing supplemental source in place with the URL above.
+2. Let processing complete.
+3. Report:
+   - upload status
+   - processing status
+   - matched vs unmatched rows
+   - current counts for missing age_group, missing gender, missing color, missing size
+   - whether gender and color warnings dropped further versus the current post-refresh counts:
+     - missing age_group: 61
+     - missing gender: 598
+     - missing color: 723
+     - missing size: 307
+
+Notes:
+- The 307 missing-size rows are still expected to remain because they belong to the opaque Found by Google auto-crawl source, not the Shopify Content API source joined by this supplemental feed.
+- If Merchant Center still blocks direct file upload from your automation environment, fetch the URL above and use the same DataTransfer workaround that worked earlier.

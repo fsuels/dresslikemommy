@@ -1,0 +1,31 @@
+Use this file for the full supplemental upload:
+
+/Users/fsuels/Projects/dresslikemommy/ops/feed-engineering/2026-03-28-phase-3c-scaleup/supplemental_feed_full.csv
+
+Reference files:
+- /Users/fsuels/Projects/dresslikemommy/ops/feed-engineering/2026-03-28-phase-3c-scaleup/manual_review_queue_full.csv
+- /Users/fsuels/Projects/dresslikemommy/ops/feed-engineering/2026-03-28-phase-3c-scaleup/summary.json
+
+Merchant Center account: 124884876
+Supplemental source to update: `supplemental_feed_pilot.txt` if editing the existing source is allowed, otherwise create a new full-scale supplemental source.
+
+Important:
+- Join key is `id`
+- Confirmed ID format is `shopify_US_{product_id}_{variant_id}`
+- This file is scoped only to Shopify Content API / Google & YouTube offers
+- Do not try to join against the opaque numeric auto-crawl offers
+
+Expected file stats:
+- rows: 3348 data rows + header
+- size: about 296 KB
+
+Validation goals:
+1. Upload the full file.
+2. Confirm processing starts successfully.
+3. Recheck diagnostics after processing.
+4. Report before/after counts for:
+   - missing age_group
+   - missing gender
+   - missing color
+   - missing size
+5. Report any unmatched row count and whether it looks like normal live-catalog churn versus a join-key problem.

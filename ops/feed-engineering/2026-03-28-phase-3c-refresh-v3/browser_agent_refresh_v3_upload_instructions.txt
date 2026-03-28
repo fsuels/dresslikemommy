@@ -1,0 +1,47 @@
+Use this replacement file for the current Merchant Center supplemental source:
+
+http://127.0.0.1:8082/supplemental_feed_refresh.csv
+
+Local source file:
+/Users/fsuels/Projects/dresslikemommy/ops/feed-engineering/2026-03-28-phase-3c-refresh-v3/supplemental_feed_refresh.csv
+
+Merchant Center account: 124884876
+Supplemental source / feed ID: 10626787326
+Join key: id
+Confirmed ID format: shopify_US_{product_id}_{variant_id}
+
+This is a replacement upload, not an append.
+
+Why this replacement exists:
+- v2 already reduced the current Merchant Center diagnostics to:
+  - missing age_group: 61
+  - missing gender: 114
+  - missing color: 402
+  - missing size: 307
+- This v3 file keeps the exact same 4522 row IDs, but improves attribute coverage again:
+  - age_group coverage: 4518 -> 4522
+  - gender coverage: 4482 -> 4522
+  - color coverage: 4304 -> 4460
+- The unmatched row profile should stay unchanged because the row IDs are unchanged:
+  - matched rows should remain 4179
+  - unmatched rows should remain 343
+
+Expected file:
+- 4522 data rows plus header
+- about 405 KB
+
+Task:
+1. Update the existing supplemental source in place with the URL above.
+2. Let processing complete.
+3. Report:
+   - upload status
+   - processing status
+   - matched vs unmatched rows
+   - current counts for missing age_group, missing gender, missing color, missing size
+   - whether the remaining missing color is now mostly the Found by Google source rather than Content API rows
+
+Notes:
+- The remaining local unresolved rows in this v3 file are only:
+  - 62 color-blank rows across four products whose Shopify data still does not expose an explicit color
+  - 4 brand-blank rows for `backless-striped-jumpsuit`
+- The 307 missing-size rows are still expected to remain because they belong to the Found by Google auto-crawl source, not the Shopify Content API source joined by this supplemental feed.

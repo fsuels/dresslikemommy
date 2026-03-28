@@ -1,0 +1,51 @@
+Use this exact follow-up request for the browser agent.
+
+Objective:
+Get the Merchant Center-side IDs needed to close the remaining gaps after the full supplemental upload.
+
+Request:
+
+Merchant Center account: 124884876
+Supplemental source: Feed ID 10626787326
+
+The full upload succeeded. Now I need two exports/lists from Merchant Center so Local Agent A can build the next correction pass without guessing.
+
+Please do these tasks:
+
+1. Unmatched Shopify-keyed rows
+- Open the processing details for supplemental source `10626787326`
+- Get the exact list of the `626` unmatched rows (`Offer does not exist`)
+- For each unmatched row, capture at least:
+  - `offer_id`
+  - `title` if visible
+  - `reason`
+- Preferred output format: CSV or pasted table
+
+2. Remaining missing-size auto-crawl rows
+- Open the current `Missing size` issue list
+- Confirm these are still the opaque numeric `Found by Google` / auto-crawl offers
+- Export or copy the exact remaining rows, with at least:
+  - `offer_id`
+  - `title`
+  - `source` / whether it is `Found by Google`
+  - `language`
+  - `feed label`
+
+3. Remaining auto-crawl attribute rows, if visible
+- If Merchant Center exposes source-level filtering, also capture the remaining opaque numeric auto-crawl rows still contributing to:
+  - missing `age_group`
+  - missing `gender`
+  - missing `color`
+
+4. Source behavior check
+- Confirm whether the `Found by Google` source can be:
+  - suppressed,
+  - narrowed,
+  - or requires its own separate supplemental source keyed by opaque numeric IDs
+
+Return:
+- the unmatched `626` Shopify-keyed IDs
+- the remaining opaque numeric auto-crawl IDs for missing size
+- any source-control recommendation for the `Found by Google` rows
+
+Do not change any Merchant Center settings in this step unless a setting change is clearly reversible and directly requested.

@@ -1,0 +1,34 @@
+{
+  "artifact_dir": "ops/feed-engineering/2026-03-28-phase-3c-scaleup",
+  "catalog_products": 704,
+  "active_products": 272,
+  "archived_products": 432,
+  "active_google_published_products": 224,
+  "full_feed_rows": 3348,
+  "full_feed_manual_rows": 1824,
+  "vendor_update_rows": 649,
+  "vendor_manual_review_rows": 2,
+  "vendor_sample_rows": 20,
+  "feed_metrics": {
+    "eligible_products": 224,
+    "variants_seen": 5172,
+    "full_rows": 3348,
+    "manual_rows": 1824,
+    "manual_color_ambiguous": 761,
+    "manual_gender_ambiguous": 1087,
+    "manual_brand_uncertain": 4,
+    "manual_age_group_ambiguous": 4
+  },
+  "manual_review_issue_counts": {
+    "color_ambiguous": 737,
+    "gender_ambiguous": 1059,
+    "gender_ambiguous; color_ambiguous": 24,
+    "brand_uncertain; age_group_ambiguous; gender_ambiguous": 4
+  },
+  "merchant_center_primary_offer_id_pattern": "shopify_US_{product_id}_{variant_id}",
+  "notes": [
+    "supplemental_feed_full.csv is a fresh scale-up file built after the pilot upload succeeded.",
+    "shopify_vendor_update.csv is a dry-run artifact only; no vendor updates were executed.",
+    "Vendor rows in shopify_vendor_manual_review.csv remain intentionally excluded from automation."
+  ]
+}

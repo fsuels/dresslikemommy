@@ -11291,3 +11291,416 @@ Open items:
   - confirm Google & YouTube remains healthy as the sole Google deployment path
   - export and clean GTM container `GTM-5QVH4W3`
   - investigate/remove rogue `123LegalDoc` tag `G-3VR0TDX4ZK` / `GT-M6XFPGSK`
+
+### Task: Phase 3C feed-engineering pilot artifacts
+Date: 2026-03-27 21:30:27 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-27-phase3c-feed-pilot
+Changes:
+- Added `ops/scripts/build_feed_engineering_pilot.py`.
+  - Uses the shared `ops/scripts/shopify_admin_config.py` helper to load Shopify Admin credentials from the local secure config path.
+  - Pulls the full live product catalog from Shopify Admin GraphQL, including product status, vendor, options, variant data, and publication/channel availability.
+  - Writes these artifacts under `ops/feed-engineering/2026-03-27-phase-3c-pilot/`:
+    - `shopify_catalog_export.csv`
+    - `brand_cleanup.csv`
+    - `supplemental_feed_pilot.csv`
+    - `manual_review_queue.csv`
+    - `summary.json`
+- Generated the live catalog export and pilot outputs from Shopify Admin.
+  - Catalog snapshot:
+    - `704` total products
+    - `272` active
+    - `432` archived
+    - `224` active products published to `Google & YouTube`
+  - Vendor/brand cleanup findings:
+    - `395` products currently use URL-based vendor values
+    - URL breakdown: `378` `1688.com`, `13` `taobao.com`, `4` other URLs
+    - `649` high-confidence cleanup rows in `brand_cleanup.csv`
+      - `256` current `dresslikemommy.com` domain-variant rows
+      - `393` supplier-URL rows with matching-assortment evidence and no detected third-party brand signal
+    - `2` brand rows withheld to `manual_review_queue.csv`
+      - `backless-striped-jumpsuit`
+      - `kids-swimwear-summer-mother-and-daughter-bikini-set` (description contains `ITFABS`)
+  - Supplemental pilot findings:
+    - `100` upload-ready pilot rows in `supplemental_feed_pilot.csv`
+    - `35` supplemental rows withheld to `manual_review_queue.csv`
+      - `16` for `color_ambiguous`
+      - `16` for `gender_ambiguous`
+      - `3` for `gender_ambiguous; color_ambiguous`
+    - Pilot rows are one representative high-confidence variant per product, not every variant, to keep the pilot aligned with the request for the top `50-100` products first.
+- Updated `summary.json` and the generated CSVs after Browser Agent B2 provided the Merchant Center handoff:
+  - confirmed that the primary Merchant Center source is the Shopify Content API / Google & YouTube channel
+  - confirmed the exact supplemental-feed join key pattern for Shopify-sourced offers:
+    - `shopify_US_{product_id}_{variant_id}`
+  - regenerated `supplemental_feed_pilot.csv` and `manual_review_queue.csv` so the `id` column now emits full Merchant Center offer IDs instead of raw Shopify variant IDs
+  - added `merchant_center_offer_id` to `shopify_catalog_export.csv` as a direct Shopify-to-Merchant-Center crosswalk
+  - recorded that the `4,550` Merchant Center products are split between:
+    - Shopify Content API offers from the Google & YouTube channel
+    - `314` auto-crawled opaque-ID offers discovered directly by Google
+  - kept the pilot scoped to Shopify-sourced offers only; the auto-crawled opaque-ID products remain out of scope for this first upload
+
+Why:
+- The request was to produce a live-evidence supplemental-feed pilot and a safe brand cleanup plan without pushing production updates.
+- The older CSV exports in the repo were image-expanded and not suitable as the canonical current-state source for status/publication analysis.
+- Using live Admin API data allowed the pilot to prioritize products actually published to `Google & YouTube` while keeping uncertain brand/color/gender cases out of the upload-ready file.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/build_feed_engineering_pilot.py`.
+  - Result: no syntax errors.
+- Ran `python3 ops/scripts/build_feed_engineering_pilot.py`.
+  - Result: generated all artifacts successfully under `ops/feed-engineering/2026-03-27-phase-3c-pilot/`.
+- Ran targeted QA against `supplemental_feed_pilot.csv` to detect contradictory rows such as:
+  - adult-size labels with non-`adult` age groups
+  - child/baby-size labels with `adult` age groups
+  - father/boy sizes with non-`male` gender
+  - mother/girl sizes with non-`female` gender
+  - Result: `0` contradiction hits after tightening the age-group inference rules.
+
+Open items:
+- Browser Agent B2 can now upload `supplemental_feed_pilot.csv` against the confirmed `shopify_US_{product_id}_{variant_id}` join key.
+- If Browser Agent B2 validates the pilot successfully, the next local step is to scale this script or a follow-on script from representative rows to the full approved supplemental dataset.
+- `brand_cleanup.csv` is intentionally a plan artifact only in this session; no Shopify vendor updates were executed.
+
+### Task: Phase 3 Shopify catalog cleanup via Admin GraphQL
+Date: 2026-03-28 00:29:42 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-28-phase3-shopify-catalog-cleanup
+Changes:
+- Added `ops/scripts/shopify_catalog_cleanup.py`.
+  - Discovers the live Shopify publication IDs for:
+    - `Online Store`
+    - `Google & YouTube`
+    - the three market catalogs: `International`, `Eurozone`, `United States`
+  - Audits the full live catalog against those publications.
+  - Writes audit/action/rollback artifacts under `ops/catalog-cleanup/...`.
+  - Supports dry-run and execute modes, plus action filtering for one-row smoke tests.
+  - Uses `publishablePublish` / `publishableUnpublish` mutations so each product write is individually logged and reversible.
+- Ran a dry run:
+  - `python3 ops/scripts/shopify_catalog_cleanup.py`
+  - Output dir: `ops/catalog-cleanup/2026-03-28-phase-3-shopify-catalog-cleanup/`
+  - Current live-state findings before mutation:
+    - `704` total products
+    - `272` active
+    - `432` archived
+    - `0` archived products still published to the three target market catalogs or `Google & YouTube`
+    - `48` active products in the three target market catalogs but not on the Online Store
+    - `53` active products live on the Online Store + all three target market catalogs but missing `Google & YouTube`
+    - `0` manual-review rows
+- Ran one-row smoke tests before the full batch:
+  - Catalog-removal smoke test:
+    - `python3 ops/scripts/shopify_catalog_cleanup.py --output-dir ops/catalog-cleanup/2026-03-28-phase-3-shopify-catalog-cleanup-smoke-remove --action-filter remove_market_catalogs --limit 1 --execute-remove-market-catalogs`
+    - Removed the three market catalogs from product `4680207073377` (`mommy-and-me-matching-rainbow-stripe-midi-dresses`)
+  - Google publish smoke test:
+    - `python3 ops/scripts/shopify_catalog_cleanup.py --output-dir ops/catalog-cleanup/2026-03-28-phase-3-shopify-catalog-cleanup-smoke-publish --action-filter publish_google_youtube --limit 1 --execute-publish-google`
+    - Published product `6826238607457` (`couple-matching-shirts-mr-and-mrs-wedding-gift-anniversary`) to `Google & YouTube`
+- Ran the remaining live batch:
+  - `python3 ops/scripts/shopify_catalog_cleanup.py --output-dir ops/catalog-cleanup/2026-03-28-phase-3-shopify-catalog-cleanup-live --execute`
+  - Pre-batch remaining action counts after smoke tests:
+    - `47` `remove_market_catalogs`
+    - `52` `publish_google_youtube`
+  - Execution result:
+    - `99` mutation successes
+    - `0` mutation failures
+  - Post-execution verification result:
+    - `0` active products in all three target market catalogs missing `Google & YouTube`
+    - `0` active products in target market catalogs while unpublished from the Online Store
+    - `0` remaining action rows
+    - `0` manual-review rows
+
+Why:
+- The browser-origin interim report correctly identified the pattern, but the live store had already moved beyond the earlier archived-product state.
+- The remaining Merchant Center-facing cleanup was a publication-state normalization problem that could be resolved deterministically through Admin GraphQL faster and more safely than continuing product-by-product in the browser UI.
+- Using per-product publish/unpublish mutations preserved a clean rollback trail for each product instead of batching opaque publication-level writes.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/shopify_catalog_cleanup.py`.
+  - Result: no syntax errors.
+- Verified the smoke-test rollback/execution artifacts exist under:
+  - `ops/catalog-cleanup/2026-03-28-phase-3-shopify-catalog-cleanup-smoke-remove/`
+  - `ops/catalog-cleanup/2026-03-28-phase-3-shopify-catalog-cleanup-smoke-publish/`
+- Verified the full-run artifacts exist under:
+  - `ops/catalog-cleanup/2026-03-28-phase-3-shopify-catalog-cleanup-live/`
+  - Key files:
+    - `catalog_publication_audit.csv`
+    - `catalog_cleanup_actions.csv`
+    - `catalog_cleanup_rollback.csv`
+    - `execution_results.json`
+    - `post_execution_verification.json`
+- Confirmed `post_execution_verification.json` now reports no remaining action or manual-review rows.
+
+Open items:
+- Merchant Center still needs time to reprocess the `Google & YouTube` feed after these Shopify publication changes.
+- The separate `Found by Google` crawl source may still show stale discontinued/redirected URLs until Google recrawls or the crawl-source issues are handled on the Merchant Center side.
+- Several newly published-to-Google products still have title strings containing `| DLM`; that is not a catalog-publication blocker, but it remains a feed-quality/title-cleanup follow-up if the merchant wants cleaner Shopping titles.
+
+### Task: Phase 3C scale-up artifacts after successful supplemental pilot
+Date: 2026-03-28 02:12:50 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-28-phase3c-scaleup-artifacts
+Changes:
+- Added `ops/scripts/build_phase3c_scaleup_artifacts.py`.
+  - Reuses the live Shopify Admin GraphQL fetch logic from `ops/scripts/build_feed_engineering_pilot.py`.
+  - Builds a fresh full supplemental feed after the pilot validated the Merchant Center join key.
+  - Builds dry-run vendor-normalization artifacts and rollback files from the validated brand-cleanup set.
+- Added `ops/scripts/apply_shopify_vendor_update.py`.
+  - Reads the prepared `shopify_vendor_update.csv`.
+  - Defaults to dry-run.
+  - Verifies the live vendor still matches the expected current value before any write unless `--force` is supplied.
+  - Updates only the product `vendor` field when `--execute` is explicitly passed.
+- Added `ops/feed-engineering/2026-03-28-phase-3c-scaleup/` with:
+  - `supplemental_feed_full.csv`
+  - `manual_review_queue_full.csv`
+  - `shopify_vendor_update.csv`
+  - `shopify_vendor_update_rollback.csv`
+  - `shopify_vendor_update_sample.csv`
+  - `shopify_vendor_manual_review.csv`
+  - `shopify_vendor_update_execution_results.csv`
+  - `summary.json`
+  - `browser_agent_full_upload_instructions.txt`
+- Regenerated scale-up artifacts from a fresh live Shopify Admin pull after the browser pilot report confirmed:
+  - Merchant Center join-key pattern is `shopify_US_{product_id}_{variant_id}`
+  - pilot upload succeeded
+  - attribute overrides applied correctly on sampled rows
+  - pilot diagnostics moved in the expected direction
+
+Why:
+- The pilot passed, so the next local-agent job was to scale from the 100-row proof set to a fresh full supplemental artifact and to prepare the safe vendor-normalization package.
+- The full feed needed to be regenerated from live Shopify data rather than extrapolated from the pilot file because the browser report showed normal live-catalog churn in Merchant Center.
+- Vendor normalization needed a dry-run-first execution path plus rollback because `649` products are affected and the repo constraints require a reversible operator workflow.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/build_phase3c_scaleup_artifacts.py ops/scripts/apply_shopify_vendor_update.py`.
+  - Result: no syntax errors.
+- Ran `python3 ops/scripts/build_phase3c_scaleup_artifacts.py`.
+  - Result: generated the full supplemental and vendor artifacts successfully under `ops/feed-engineering/2026-03-28-phase-3c-scaleup/`.
+- Ran `python3 ops/scripts/apply_shopify_vendor_update.py --limit 5`.
+  - Result: dry-run execution artifact created successfully; no live vendor writes were attempted.
+- Ran `git diff --check` on the newly added script/instruction files.
+  - Result: no diff hygiene errors.
+
+Key outputs:
+- Full supplemental feed:
+  - `3348` upload-ready rows in `supplemental_feed_full.csv`
+  - `1824` withheld rows in `manual_review_queue_full.csv`
+  - issue breakdown for withheld rows:
+    - `737` `color_ambiguous`
+    - `1059` `gender_ambiguous`
+    - `24` `gender_ambiguous; color_ambiguous`
+    - `4` `brand_uncertain; age_group_ambiguous; gender_ambiguous`
+  - eligible live scope used for this build:
+    - `224` active products currently published to `Google & YouTube`
+    - `5172` variants scanned across those products
+- Vendor normalization package:
+  - `649` rows in `shopify_vendor_update.csv`
+  - `649` rollback rows in `shopify_vendor_update_rollback.csv`
+  - `20` approval rows in `shopify_vendor_update_sample.csv`
+  - status split in `shopify_vendor_update.csv`:
+    - `232` active
+    - `417` archived
+  - Google publication split in `shopify_vendor_update.csv`:
+    - `184` currently published to `Google & YouTube`
+    - `465` not currently published to `Google & YouTube`
+  - `2` rows remain excluded in `shopify_vendor_manual_review.csv`:
+    - `backless-striped-jumpsuit`
+    - `kids-swimwear-summer-mother-and-daughter-bikini-set`
+
+Open items:
+- Browser Agent B2 can now upload the full file `ops/feed-engineering/2026-03-28-phase-3c-scaleup/supplemental_feed_full.csv` using the already-validated Merchant Center join key `id`.
+- Because the browser upload workflow blocks direct programmatic file attachment, `browser_agent_full_upload_instructions.txt` was added as a concise handoff, and the full CSV was also copied to the local clipboard in this session in case the browser agent needs raw content for DataTransfer injection.
+- No vendor normalization has been executed yet. The next safe step is operator/browser approval of the 20-row sample in `shopify_vendor_update_sample.csv`, then either:
+  - run `ops/scripts/apply_shopify_vendor_update.py --execute`
+  - or hand the approved artifact to the browser-side Shopify operator workflow
+
+### Task: Full supplemental feed upload result and remaining blocker definition
+Date: 2026-03-28 02:47:00 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-28-phase3c-full-upload-result
+Changes:
+- Recorded the browser-side result for the full supplemental feed upload to Merchant Center source `10626787326`.
+  - Source updated in place: `supplemental_feed_pilot.txt`
+  - Uploaded full file: `supplemental_feed_full.txt`
+  - Processing completed successfully
+  - `3348` rows submitted
+  - `2722` matched products
+  - `626` unmatched rows (`Offer does not exist`)
+- Recorded the reported diagnostics movement after the full upload:
+  - missing `age_group`: `4028 -> 1676` (`-2352`)
+  - missing `gender`: `3637 -> 1293` (`-2344`)
+  - missing `color`: `1331 -> 798` (`-533`)
+  - missing `size`: `307 -> 307` (`0`)
+- Recorded the browser finding that the `307` remaining missing-size rows are all tied to opaque numeric auto-crawl offer IDs from the `Found by Google` source rather than the Shopify Content API source.
+
+Why:
+- The full supplemental upload validated that the local full-feed generator and the Merchant Center join-key logic work at scale.
+- The remaining issues are no longer a local feed-construction problem alone; they now depend on Merchant Center-side ID visibility for:
+  - the `626` unmatched `shopify_US_*` rows
+  - the opaque numeric auto-crawl rows still driving missing-size warnings
+
+Verification:
+- Browser-side report confirmed:
+  - upload status `Success`
+  - processing status `Complete`
+  - sampled matched row still shows all five attributes overriding correctly
+- Local artifact paths remain:
+  - `ops/feed-engineering/2026-03-28-phase-3c-scaleup/supplemental_feed_full.csv`
+  - `ops/feed-engineering/2026-03-28-phase-3c-scaleup/manual_review_queue_full.csv`
+  - `ops/feed-engineering/2026-03-28-phase-3c-scaleup/shopify_vendor_update_sample.csv`
+
+Open items:
+- To close the remaining Content API gap locally, obtain the exact list of the `626` unmatched Merchant Center offer IDs so a second-pass matched-only supplemental file can be built instead of guessing.
+- To address the remaining `307` missing-size issues, obtain the opaque numeric auto-crawl offer IDs and issue rows from Merchant Center; those cannot be fixed with the current Shopify-keyed supplemental source.
+- Vendor normalization is still pending approval/execution and is independent of the Merchant Center unmatched-ID blocker above.
+
+### Task: Content API recovery feed after unmatched-ID analysis
+Date: 2026-03-28 03:23:07 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-28-phase3c-content-api-refresh
+Changes:
+- Added `ops/feed-engineering/2026-03-28-phase-3c-scaleup/known_stale_shopify_product_ids.csv`.
+  - Captures the `37` Shopify product IDs identified from the Merchant Center unmatched supplemental report.
+  - Records the browser-reported unmatched variant counts summing to `626`.
+- Added `ops/scripts/build_phase3c_content_api_refresh.py`.
+  - Pulls a fresh live Shopify Admin catalog.
+  - Excludes the `37` known-stale Shopify product IDs that Merchant Center reported as unmatched.
+  - Builds a replacement supplemental source file that includes rows when any field can be filled confidently, leaving ambiguous fields blank instead of dropping the entire row.
+- Added `ops/feed-engineering/2026-03-28-phase-3c-refresh/` with:
+  - `supplemental_feed_refresh.csv`
+  - `refresh_partial_review_queue.csv`
+  - `summary.json`
+  - `browser_agent_refresh_upload_instructions.txt`
+
+Why:
+- The browser report showed the first full upload was working, but it still left avoidable coverage on the table:
+  - `626` known-stale Shopify-keyed rows were generating unmatched noise
+  - `1800` additional rows could still contribute confident attributes even though some other fields were blank/ambiguous
+- The earlier full-feed generator was too conservative because it withheld any row with any ambiguous field.
+- Merchant Center supplemental sources accept partial rows, so the safer and more effective approach is:
+  - exclude known stale IDs
+  - keep blank fields blank
+  - upload all other rows with whatever attributes are confident
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/build_phase3c_content_api_refresh.py`.
+  - Result: no syntax errors.
+- Ran `python3 ops/scripts/build_phase3c_content_api_refresh.py`.
+  - Result: generated the replacement refresh artifacts successfully.
+- Compared the new refresh file against the previous full upload:
+  - previous file rows: `3348`
+  - replacement file rows: `4522`
+  - `626` stale rows removed
+  - `1800` additional rows added
+  - additional new-row coverage:
+    - `1796` rows with `age_group`
+    - `729` rows with `gender`
+    - `1047` rows with `color`
+
+Key outputs:
+- `supplemental_feed_refresh.csv`
+  - `4522` rows
+  - excludes all `37` known-stale Shopify product IDs
+  - field coverage within the replacement file:
+    - `4518` rows with `brand`
+    - `4518` rows with `age_group`
+    - `3451` rows with `gender`
+    - `3769` rows with `color`
+    - `4522` rows with `size`
+- `refresh_partial_review_queue.csv`
+  - `1800` rows with one or more intentionally blank fields retained in the upload file
+  - mostly missing:
+    - `gender` (`1071`)
+    - `color` (`753`)
+    - only `4` rows each still blank for `brand` / `age_group`
+
+Open items:
+- Browser Agent B2 should now replace the current supplemental source contents with `ops/feed-engineering/2026-03-28-phase-3c-refresh/supplemental_feed_refresh.csv`.
+- The remaining `307` missing-size / missing-color `Found by Google` rows are still a separate Merchant Center source-control problem and are not addressed by this Content API refresh file.
+- Vendor normalization remains pending approval/execution.
+
+### Task: Enhanced refresh-v2 supplemental feed for remaining Content API gaps
+Date: 2026-03-28 03:59:52 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-28-phase3c-content-api-refresh-v2
+Changes:
+- Updated `ops/scripts/build_phase3c_content_api_refresh.py` with broader but still bounded heuristics for the remaining Content API rows:
+  - assign `gender=unisex` for clearly generic family apparel rows that were previously left blank
+  - assign pattern-based colors such as `Floral`, `Tie-Dye`, `Striped`, `Polka Dot`, `Leopard`, `Paisley`
+  - assign `color=Multicolor` when the title/variant data clearly indicates a mixed or style-based color presentation
+- Added `ops/feed-engineering/2026-03-28-phase-3c-refresh-v2/` with:
+  - `supplemental_feed_refresh.csv`
+  - `refresh_partial_review_queue.csv`
+  - `summary.json`
+  - `browser_agent_refresh_v2_upload_instructions.txt`
+- Added `ops/scripts/serve_with_cors.py` so Browser Agent B2 can fetch localhost artifacts from the Merchant Center origin when native file injection is blocked.
+
+Why:
+- Browser Agent B2 reported the first refresh upload was successful, but the remaining diagnostics still showed:
+  - missing `gender`: `598`
+  - missing `color`: `723`
+- Local comparison showed the first refresh file itself was still leaving too much value on the table:
+  - `1071` rows blank for `gender`
+  - `753` rows blank for `color`
+- Those gaps were mostly generic family apparel and pattern/multicolor titles where confident values were available without unsafe guessing.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/build_phase3c_content_api_refresh.py`.
+  - Result: no syntax errors.
+- Ran `python3 ops/scripts/build_phase3c_content_api_refresh.py --output-dir ops/feed-engineering/2026-03-28-phase-3c-refresh-v2`.
+  - Result: generated the enhanced replacement refresh artifacts successfully.
+- Compared the first refresh file vs the enhanced refresh-v2 file:
+  - row count unchanged: `4522`
+  - `gender` coverage improved: `3451` -> `4482`
+  - `color` coverage improved: `3769` -> `4304`
+  - blank `gender` rows reduced: `1071` -> `40`
+  - blank `color` rows reduced: `753` -> `218`
+
+Open items:
+- Browser Agent B2 should replace the current supplemental source contents with `ops/feed-engineering/2026-03-28-phase-3c-refresh-v2/supplemental_feed_refresh.csv`.
+- After that upload, only the opaque `Found by Google` rows should remain as the main unresolved `size` / residual `color` issue bucket.
+
+### Task: Refresh-v3 cleanup for the last Shopify-keyed attribute gaps
+Date: 2026-03-28 04:18:31 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-28-phase3c-content-api-refresh-v3
+Changes:
+- Updated `ops/scripts/build_feed_engineering_pilot.py`:
+  - expanded color normalization for obvious variant values such as `multi color`, `multi-color`, `rainbow color`, `photo color`, `stripes`, and `champagne`
+  - improved `extract_size_value()` so `Color / Size` variant titles choose the size-like segment instead of blindly taking the first segment
+- Updated `ops/scripts/build_phase3c_content_api_refresh.py`:
+  - added refresh-specific age fallback for adult alpha-size feminine garments
+  - added variant-role child gender handling:
+    - `boy`/`son` products map generic child sizes to `male`
+    - `girl`/`daughter` products map generic child sizes to `female`
+    - mixed child-role or generic family apparel maps generic child sizes to `unisex`
+  - added direct variant-title color handling for values such as `Multi Color`, `Photo Color`, `Stripes`, `Champagne`, and `Mermaid`
+- Added `ops/feed-engineering/2026-03-28-phase-3c-refresh-v3/` with:
+  - `supplemental_feed_refresh.csv`
+  - `refresh_partial_review_queue.csv`
+  - `summary.json`
+  - `browser_agent_refresh_v3_upload_instructions.txt`
+
+Why:
+- Browser Agent B2 confirmed refresh-v2 fixed most of the gap, but the remaining diagnostics still showed:
+  - missing `age_group`: `61`
+  - missing `gender`: `114`
+  - missing `color`: `402`
+- Local review showed most of that remaining Shopify-keyed gap was still fixable from the live variant titles:
+  - `Color / Size` titles like `Multi / S` were being parsed incorrectly as size=`Multi`
+  - family-role products were leaving child variants blank for gender even when `male`, `female`, or `unisex` was defensible from the title context
+  - obvious variant colors like `Multi Color`, `Photo Color`, `Champagne`, and `Stripes` were not being recognized
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/build_feed_engineering_pilot.py ops/scripts/build_phase3c_content_api_refresh.py`.
+  - Result: no syntax errors.
+- Ran `python3 ops/scripts/build_phase3c_content_api_refresh.py --output-dir ops/feed-engineering/2026-03-28-phase-3c-refresh-v3`.
+  - Result: generated the enhanced refresh-v3 artifacts successfully.
+- Compared refresh-v2 vs refresh-v3:
+  - row count unchanged: `4522`
+  - `age_group` coverage improved: `4518` -> `4522`
+  - `gender` coverage improved: `4482` -> `4522`
+  - `color` coverage improved: `4304` -> `4460`
+  - partial-review rows reduced: `258` -> `66`
+- Remaining local unresolved rows in refresh-v3 are limited to:
+  - `62` rows missing only `color`
+    - `24` rows: `mother-daughter-trendy-knitted-sweater-style-for-fall`
+    - `16` rows: `matching-tshirt-i-have-everything-i-need-i-am-everything`
+    - `12` rows: `couple-matching-t-shirt-funny-beard-butt`
+    - `10` rows: `couple-matching-shirts-mr-and-mrs-wedding-gift-anniversary`
+  - `4` rows missing only `brand`
+    - `backless-striped-jumpsuit`
+
+Open items:
+- Browser Agent B2 should replace the current supplemental source contents with `ops/feed-engineering/2026-03-28-phase-3c-refresh-v3/supplemental_feed_refresh.csv`.
+- If Merchant Center still shows roughly `307` missing-size and most remaining missing-color warnings after that upload, the remaining work is the `Found by Google` source rather than the Shopify-keyed supplemental file.

@@ -1,0 +1,29 @@
+{
+  "artifact_dir": "ops/feed-engineering/2026-03-28-phase-3c-refresh",
+  "stale_product_ids_csv": "ops/feed-engineering/2026-03-28-phase-3c-scaleup/known_stale_shopify_product_ids.csv",
+  "known_stale_product_ids": 37,
+  "refresh_row_count": 4522,
+  "partial_review_row_count": 1800,
+  "metrics": {
+    "eligible_products": 187,
+    "eligible_variants": 4522,
+    "refresh_rows": 4522,
+    "rows_with_brand": 4518,
+    "rows_with_age_group": 4518,
+    "rows_with_gender": 3451,
+    "rows_with_color": 3769,
+    "rows_with_size": 4522,
+    "rows_with_blank_gender": 1071,
+    "rows_with_blank_age_group": 4,
+    "rows_with_blank_brand": 4,
+    "rows_with_blank_color": 753,
+    "excluded_stale_products": 37,
+    "excluded_stale_variants": 650
+  },
+  "merchant_center_primary_offer_id_pattern": "shopify_US_{product_id}_{variant_id}",
+  "notes": [
+    "This file is intended to replace the current supplemental source content, not append to it.",
+    "Known stale Shopify product IDs from the Merchant Center unmatched report are excluded.",
+    "Rows are included when any attribute can be set confidently; blank fields remain intentionally blank."
+  ]
+}

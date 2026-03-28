@@ -1,0 +1,48 @@
+Use this file to REPLACE the current Merchant Center supplemental source content:
+
+/Users/fsuels/Projects/dresslikemommy/ops/feed-engineering/2026-03-28-phase-3c-refresh/supplemental_feed_refresh.csv
+
+Merchant Center account: 124884876
+Supplemental source / feed ID: 10626787326
+Join key: id
+Confirmed ID format: shopify_US_{product_id}_{variant_id}
+
+This is a replacement file, not an append file.
+
+What changed versus the previous full upload:
+- previous file rows: 3348
+- replacement file rows: 4522
+- removes all 626 rows tied to the 37 known stale Shopify product IDs from the unmatched report
+- adds 1800 new partial-confidence rows that were previously withheld
+
+Important:
+- upload this file in place over the existing supplemental source if possible
+- do not create a new source unless Merchant Center forces it
+- this file still targets only Shopify Content API / Google & YouTube offers
+- do not try to use it for opaque numeric Found by Google IDs
+
+Why this file should perform better:
+- the stale unmatched product IDs are excluded
+- rows with confident age_group / gender / color / brand but some blank fields are now included
+- blank fields are intentional; Merchant Center should ignore blanks and keep existing values where present
+
+Expected file stats:
+- about 393 KB
+- 4522 data rows plus header
+
+Expected improvement:
+- unmatched rows should drop materially because the prior 626 stale IDs were removed
+- missing age_group should improve further because 1796 newly added rows carry age_group
+- missing gender should improve further because 729 newly added rows carry gender
+- missing color should improve further because 1047 newly added rows carry color
+
+Report back with:
+1. upload success / failure
+2. processing status
+3. matched vs unmatched rows
+4. before / after counts for:
+   - missing age_group
+   - missing gender
+   - missing color
+   - missing size
+5. whether the stale-ID removal worked as expected
