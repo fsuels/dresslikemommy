@@ -11704,3 +11704,821 @@ Verification:
 Open items:
 - Browser Agent B2 should replace the current supplemental source contents with `ops/feed-engineering/2026-03-28-phase-3c-refresh-v3/supplemental_feed_refresh.csv`.
 - If Merchant Center still shows roughly `307` missing-size and most remaining missing-color warnings after that upload, the remaining work is the `Found by Google` source rather than the Shopify-keyed supplemental file.
+
+### Task: Measurement foundation reset for GTM coverage, attribution persistence, and checkout purchase handoff
+Date: 2026-03-29 02:04:04 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-measurement-foundation-gtm-attribution
+Changes:
+- Restored storefront GTM deployment for container `GTM-5QVH4W3`:
+  - added `snippets/measurement-head.liquid`
+  - added `snippets/measurement-body-noscript.liquid`
+  - updated `layout/theme.liquid` to render both snippets and load `assets/measurement.js`
+- Added `assets/measurement.js` to:
+  - normalize and persist incoming attribution params in `localStorage`
+  - infer default source/medium for Google Ads (`gclid` / `gbraid` / `wbraid`) and Pinterest (`epik`) when UTMs are incomplete
+  - expose attribution context on `window.dlmAnalyticsContext.attribution`
+  - push attribution context into `window.dataLayer`
+  - populate hidden cart-attribute fields after cart page / cart drawer renders
+- Added `snippets/measurement-attribution-inputs.liquid` and rendered it inside:
+  - `sections/main-cart-items.liquid`
+  - `snippets/cart-drawer.liquid`
+  so cart submissions can carry attribution values into checkout
+- Updated `assets/analytics.js` so existing storefront events (`view_item`, `add_to_cart`, `begin_checkout`, etc.) inherit:
+  - `page_context`
+  - `attribution`
+  from `window.dlmAnalyticsContext`
+- Added `ops/customer-events/gtm-checkout-custom-pixel.js` as the new Shopify Customer Events template for checkout progression + `purchase`
+- Added `ops/measurement-foundation-2026-03-28.md` to document:
+  - the provided GTM coverage export diagnosis (`119` untagged URLs: `109` product, `5` collection, `4` page, `1` localized home)
+  - GA4 conversion-setting requirements
+  - Google Ads + Pinterest UTM standards
+  - the remaining operator actions outside the repo
+- Updated `ops/customer-events/ga4-checkout-ecommerce-pixel.js` deprecation stub to point operators to the new GTM checkout pixel/template docs
+
+Why:
+- The provided `tag-coverage-GTM-5QVH4W3.csv` showed `119` untagged URLs, overwhelmingly storefront product URLs plus a few collections/pages, which matched the March 27 repo-side GTM removal in `layout/theme.liquid`.
+- The theme already had substantial ecommerce `dataLayer` coverage, but the GTM container bootstrap itself was absent, so GTM page coverage could not recover without restoring the loader.
+- Purchase optimization, checkout attribution, and “Direct” cleanup all require a consistent handoff from storefront click -> cart -> checkout -> purchase, which the prior repo state did not preserve.
+
+Verification:
+- Ran `python3` analysis against `/Users/fsuels/Downloads/tag-coverage-GTM-5QVH4W3.csv`.
+  - Result: `2252` total URLs, `119` marked `Not tagged`, concentrated in product/collection/page URLs rather than random site sections.
+- Ran `node --check assets/measurement.js`.
+  - Result: no syntax errors.
+- Ran `node --check ops/customer-events/gtm-checkout-custom-pixel.js`.
+  - Result: no syntax errors.
+- Ran `node --check assets/analytics.js`.
+  - Result: no syntax errors after context-merging updates.
+- Ran `shopify theme check --path . --output json`.
+  - Result: repo still has pre-existing Theme Check errors/warnings in unrelated files/locales, but no new offenses were reported for:
+    - `snippets/measurement-head.liquid`
+    - `snippets/measurement-body-noscript.liquid`
+    - `snippets/measurement-attribution-inputs.liquid`
+    - `sections/main-cart-items.liquid`
+    - `snippets/cart-drawer.liquid`
+  - `layout/theme.liquid` still reports only the same existing warnings already present in the repo (`AssetPreload`, `RemoteAsset`, `UndefinedObject` for `scheme_classes`).
+
+Open items:
+- Publish the updated theme so storefront GTM coverage returns on live product, collection, page, home, cart, and search routes.
+- In Shopify Admin -> Customer Events, install `ops/customer-events/gtm-checkout-custom-pixel.js` as the checkout/purchase GTM layer.
+- In GA4 / Ads:
+  - keep `purchase` as the only primary conversion for bidding
+  - demote `add_to_cart` and `begin_checkout` to secondary/diagnostic conversions
+  - confirm `purchase` value/currency mapping in GA4 and downstream ad platforms
+- In Google Ads + Pinterest Ads, apply the documented UTM standard so campaign traffic stops collapsing into `Direct`.
+- Browser QA is still required in GTM preview / GA4 DebugView on:
+  - homepage
+  - collection page
+  - product page
+  - cart drawer
+  - cart page
+  - checkout start
+  - thank-you page / order status page
+
+### Task: Revert unsupported GTM-based Google measurement changes and realign to master plan
+Date: 2026-03-29 02:36:43 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-revert-gtm-google-measurement
+Changes:
+- Reverted the prior same-session GTM-based Google measurement implementation so the repo again matches the supported architecture in `DressLikeMommy-Master-Implementation-Plan.md`:
+  - removed `snippets/measurement-head.liquid`
+  - removed `snippets/measurement-body-noscript.liquid`
+  - removed `snippets/measurement-attribution-inputs.liquid`
+  - removed `assets/measurement.js`
+  - removed `ops/customer-events/gtm-checkout-custom-pixel.js`
+  - removed `ops/measurement-foundation-2026-03-28.md`
+- Restored `layout/theme.liquid` to the prior lightweight `window.dataLayer` / `site_language` initialization only.
+- Removed the cart/cart-drawer hidden attribution input renders from:
+  - `sections/main-cart-items.liquid`
+  - `snippets/cart-drawer.liquid`
+- Reverted `assets/analytics.js` so storefront events no longer expect the GTM-specific page-context/attribution helper objects added in the reverted change.
+- Restored `ops/customer-events/ga4-checkout-ecommerce-pixel.js` deprecation stub text to point back to the Shopify Google & YouTube app as the supported Google path.
+
+Why:
+- After reviewing `DressLikeMommy-Master-Implementation-Plan.md` and the browser-side Google Ads findings, the GTM/theme/custom-pixel Google implementation added earlier in this session was determined to conflict with the chosen architecture:
+  - Google & YouTube app as the sole Google deployment path
+  - no GTM-based Google tags
+  - no Shopify custom-pixel Google implementation unless the team intentionally accepts an advanced unsupported setup
+- The browser-side evidence also confirmed the Google Ads primary conversion is already `Google Shopping App Purchase`, so the right next work is conversion hygiene plus catalog/feed cleanup, not GTM-based Google measurement expansion.
+
+Verification:
+- Ran `git diff` against the touched files to isolate only the conflicting same-session measurement changes.
+- Reverted those changes with `apply_patch`, preserving unrelated repo work.
+- The repo no longer contains the GTM/theme/custom-pixel Google measurement files introduced earlier in this session.
+
+Open items:
+- Keep `Google Shopping App Purchase` as the only Primary / account-level goal conversion in Google Ads.
+- Move GA4 purchase and UA legacy purchase actions to Secondary / excluded from account-level goals rather than using them for bidding.
+- Treat legacy `add_to_cart` / `begin_checkout` conversions as diagnostic-only and archive them if obsolete.
+- Proceed with plan-aligned catalog/feed work next:
+  - systematic `product_type` cleanup from actual product signals
+  - apparel attribute completion (`size`, `color`, `gender`, `age_group`)
+  - Merchant Center landing-page / price / image / availability issue cleanup
+
+### Task: Audit and sync missing Shopify `productType` values from existing taxonomy signals
+Date: 2026-03-29 02:58:12 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-product-type-sync-batch-1
+Changes:
+- Added [ops/scripts/sync_shopify_product_type.py](/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_product_type.py) to audit active products, write CSV/JSON artifacts, and optionally apply only high-confidence `productType` updates.
+- Queried live active products via Shopify Admin GraphQL using the existing operator-managed local credential flow.
+- Confirmed the browser-side `None / None` bucket does not exist among live active products:
+  - active products audited: `271`
+  - active products with blank title: `0`
+  - active products with blank vendor: `0`
+  - active products with both blank title and vendor: `0`
+- Audited missing Shopify `productType` coverage and found:
+  - `93` active products missing `productType`
+  - all `93` already had populated `custom.type` metafields, so the first pass could safely sync from an existing store-owned taxonomy field rather than infer from titles
+  - missing-type distribution before updates:
+    - `45` `Swimwear`
+    - `17` `Sets`
+    - `15` `Dresses`
+    - `10` `Sweaters`
+    - `5` `Tops`
+    - `1` `Pajamas`
+- Wrote audit artifacts to `ops/feed-engineering/2026-03-29-phase-3d-product-type-sync/`:
+  - `missing_product_type_top50_audit.csv`
+  - `missing_product_type_updates.csv`
+  - `product_type_mismatch_review.csv`
+  - `summary.json`
+- Validated that the top `50` missing rows were all real products (`50` real, `0` blank-title, `0` blank-vendor).
+- Executed the first live batch only for the top `50` high-confidence missing rows:
+  - planned updates: `50`
+  - applied updates: `50`
+  - API errors: `0`
+- Re-ran the audit after the batch:
+  - remaining active products missing `productType`: `43`
+  - remaining high-confidence missing updates: `43`
+  - fallback/guess-based updates: `0`
+
+Why:
+- The safest correction path is to fill blank Shopify `productType` values from the already-populated `custom.type` metafield instead of guessing taxonomy from titles.
+- This directly improves feed segmentation/reporting without forcing products into overly broad campaign buckets.
+- The separate mismatch backlog needs review because many rows appear intentional or at least ambiguous (for example `Family Matching` vs `Tops` / `Sets`) and should not be auto-overwritten.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/sync_shopify_product_type.py`.
+  - Result: no syntax errors.
+- Ran `python3 ops/scripts/sync_shopify_product_type.py`.
+  - Result before live updates: `93` active products missing `productType`, all `93` high-confidence from `custom.type`, `0` fallback updates.
+- Ran `python3 ops/scripts/sync_shopify_product_type.py --execute --limit 50`.
+  - Result: `50` updates applied, `0` errors.
+- Ran `python3 ops/scripts/sync_shopify_product_type.py` again after execution.
+  - Result after live updates: `43` active products still missing `productType`, all `43` still high-confidence from `custom.type`.
+- Mismatch audit still shows `139` rows where Shopify `productType` differs from `custom.type`; these were exported for review only and not modified.
+
+Open items:
+- Decide whether to execute the remaining `43` high-confidence blank-`productType` updates now or hold for operator review.
+- Review the `139` mismatch rows in `product_type_mismatch_review.csv` and define approved normalization rules before changing any non-blank `productType` values.
+- After product-type cleanup, continue with apparel attribute completion and Merchant Center diagnostics remediation.
+
+### Task: Complete blank `productType` cleanup and split mismatch backlog into auto-fix vs manual-review buckets
+Date: 2026-03-29 03:02:17 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-product-type-sync-batch-2
+Changes:
+- Executed the remaining high-confidence blank-`productType` updates using the same `custom.type`-only guardrail:
+  - command path: `python3 ops/scripts/sync_shopify_product_type.py --execute`
+  - planned updates: `43`
+  - applied updates: `43`
+  - API errors: `0`
+- Re-ran the live audit after completion and confirmed:
+  - active products audited: `271`
+  - active products still missing Shopify `productType`: `0`
+  - remaining fallback/guess-based blank-type updates: `0`
+- Extended `ops/scripts/sync_shopify_product_type.py` so each audit run now also exports:
+  - `active_custom_type_top20.csv`
+  - `product_type_mismatch_auto_fix_candidates.csv`
+  - `product_type_mismatch_manual_review.csv`
+  - updated `summary.json` with mismatch bucket counts and top `custom.type` values
+- Split the `139` non-blank mismatch rows into:
+  - `33` deterministic auto-fix candidates
+  - `106` manual-review rows
+- Current auto-fix candidate pairs:
+  - `26` `Swimsuits` -> `Swimwear`
+  - `6` `Dresses` -> `Jumpsuits`
+  - `1` `Women Jumpsuits` -> `Jumpsuits`
+- Current manual-review mismatch pairs:
+  - `52` `Family Matching` -> `Tops`
+  - `27` `Family Matching` -> `Sets`
+  - `16` `Couples` -> `Tops`
+  - `5` `Family Matching` -> `Swimwear`
+  - `3` `Sweaters` -> `Tops`
+  - `1` `Couples` -> `Sets`
+  - `1` `Dresses` -> `Swimwear`
+  - `1` `Sweaters` -> `Sets`
+- Exported the current active-product `custom.type` distribution (top values):
+  - `95` `Tops`
+  - `78` `Swimwear`
+  - `46` `Sets`
+  - `21` `Dresses`
+  - `19` `Sweaters`
+  - `7` `Jumpsuits`
+  - `5` `Pajamas`
+
+Why:
+- Blank Shopify `productType` values are now fully remediated using an existing store-owned taxonomy source rather than guesswork.
+- The mismatch backlog is now separated into a small deterministic candidate set versus a larger policy-dependent set, which makes the next taxonomy normalization step safer.
+- The largest manual-review groups are cross-axis conflicts (`Family Matching` / `Couples` as audience grouping vs `Tops` / `Sets` / `Swimwear` as garment category), so they should not be auto-changed until the merchandising taxonomy rule is approved.
+
+Verification:
+- Ran `python3 ops/scripts/sync_shopify_product_type.py --execute`.
+  - Result: `43` additional updates applied, `0` errors.
+- Ran `python3 ops/scripts/sync_shopify_product_type.py` after completion.
+  - Result: `0` active products missing Shopify `productType`, `139` mismatch review rows.
+- Ran `python3 -m py_compile ops/scripts/sync_shopify_product_type.py` after extending the artifact output.
+  - Result: no syntax errors.
+- Regenerated artifact outputs in `ops/feed-engineering/2026-03-29-phase-3d-product-type-sync/`.
+  - Result:
+    - `product_type_mismatch_auto_fix_candidates.csv` contains `33` rows
+    - `product_type_mismatch_manual_review.csv` contains `106` rows
+    - `active_custom_type_top20.csv` reflects the current live active catalog distribution
+
+Open items:
+- Decide whether to auto-apply the `33` deterministic mismatch candidates via a separate execute flag/script once taxonomy approval is confirmed.
+- Define the canonical rule for cross-axis taxonomy conflicts such as `Family Matching` / `Couples` versus garment-type values before touching the `106` manual-review rows.
+- Continue with apparel attribute completion and Merchant Center diagnostics remediation after taxonomy policy is finalized.
+
+### Task: Apply only exact canonical mismatch fixes and rank manual-review SKUs by revenue
+Date: 2026-03-29 03:11:40 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-product-type-canonical-fixes-and-revenue
+Changes:
+- Tightened `ops/scripts/sync_shopify_product_type.py` so mismatch execution is explicitly limited to exact canonical/synonym pairs via `--execute-canonical-mismatch-fixes`.
+- Moved the `6` `Dresses` -> `Jumpsuits` rows out of auto-fix and back into manual review; they remain documented as ambiguous category conflicts even when supporting signals exist.
+- Added a dedicated canonical export artifact:
+  - `product_type_mismatch_canonical_auto_fix.csv`
+- Ran the exact-pair mismatch execution only:
+  - canonical pair updates planned: `27`
+  - canonical pair updates applied: `27`
+  - API errors: `0`
+- Re-ran the live audit after the canonical fix batch and confirmed the mismatch backlog is now entirely review-only:
+  - active products missing `productType`: `0`
+  - remaining mismatches: `112`
+  - remaining auto-fix mismatch candidates: `0`
+  - remaining manual-review mismatches: `112`
+- Added `ops/scripts/export_manual_product_type_review_revenue.py` to rank the remaining manual-review rows by Shopify discounted line-item revenue since `2024-01-01`.
+- Generated new revenue artifacts in `ops/feed-engineering/2026-03-29-phase-3d-product-type-sync/`:
+  - `product_type_mismatch_manual_review_revenue_all.csv`
+  - `product_type_mismatch_manual_review_top20_by_revenue.csv`
+  - `product_type_mismatch_manual_review_revenue_summary.json`
+- Revenue export summary:
+  - orders scanned since `2024-01-01`: `357`
+  - manual-review products: `112`
+  - manual-review products with revenue > `0`: `31`
+- Highest-revenue remaining mismatch pairs:
+  - `Family Matching` -> `Tops`: `$1440.14`
+  - `Family Matching` -> `Sets`: `$1336.18`
+  - `Dresses` -> `Jumpsuits`: `$534.07`
+  - `Family Matching` -> `Swimwear`: `$291.85`
+  - `Sweaters` -> `Tops`: `$165.38`
+- Top revenue manual-review SKUs now exported for browser-side prioritization; current top rows include:
+  - `mommy-and-me-matching-floral-print-jumpsuits-sleeveless-and-long-sleeve-options`
+  - `family-matching-hawaiian-shirt-and-floral-dress`
+  - `family-matching-floral-dress-set-mother-daughter-matching-outfits`
+  - `casual-family-matching-outfits-mother-and-daughter-tees-father-and-son-t-shirts-mommy-and-baby-clothes-family-clothing`
+  - `tropical-vibes-matching-family-hawaiian-shirt-and-floral-dress`
+
+Why:
+- The browser-side recommendation was to keep taxonomy tightening near-zero-risk by auto-fixing only exact canonical/synonym pairs and leaving suggestive-but-not-canonical rows for review.
+- The remaining mismatch backlog is dominated by taxonomy-axis conflicts (`Family Matching` / `Couples` vs garment types), so revenue ranking is a better next triage mechanism than raw row count.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/sync_shopify_product_type.py`.
+  - Result: no syntax errors after adding canonical mismatch execution support.
+- Ran `python3 ops/scripts/sync_shopify_product_type.py`.
+  - Result before canonical execution: `27` canonical mismatch fixes available, `112` manual-review rows.
+- Ran `python3 ops/scripts/sync_shopify_product_type.py --execute-canonical-mismatch-fixes`.
+  - Result: `27` applied, `0` errors.
+- Ran `python3 ops/scripts/sync_shopify_product_type.py` again after execution.
+  - Result: `112` mismatches remain, all manual-review, `0` auto-fix rows remain.
+- Ran `python3 -m py_compile ops/scripts/export_manual_product_type_review_revenue.py`.
+  - Result: no syntax errors.
+- Ran `python3 ops/scripts/export_manual_product_type_review_revenue.py`.
+  - Result: revenue-ranked export generated from `357` orders since `2024-01-01`.
+
+Open items:
+- Use `product_type_mismatch_manual_review_top20_by_revenue.csv` to choose the first manual taxonomy decisions with the browser-side ads plan.
+- After manual taxonomy policy is agreed, implement any approved non-canonical mappings in a separate deterministic script.
+- Begin the next feed-cleanup phase: audit apparel attributes (`size`, `color`, `gender`, `age_group`) with the same dry-run-first pattern.
+
+### Task: Dry-run audit Shopify apparel attribute coverage and revenue-rank fill candidates
+Date: 2026-03-29 03:29:20 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-apparel-attribute-audit
+Changes:
+- Added `ops/scripts/audit_shopify_apparel_attributes.py` to run a dry-run-only audit of active-product apparel attribute coverage using live Shopify data plus repo-consistent inference logic.
+- The audit queries live active products for:
+  - Shopify structured apparel metafields:
+    - `shopify.target-gender`
+    - `shopify.age-group`
+    - `shopify.size`
+    - `shopify.color-pattern`
+  - product options / variant selected options / tags / collections / custom taxonomy fields for candidate inference
+  - Shopify orders since `2024-01-01` to rank gaps by discounted revenue
+- Generated dry-run artifacts under `ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/`:
+  - `apparel_attribute_audit_all.csv`
+  - `products_missing_any_attribute_top20_by_revenue.csv`
+  - `products_missing_any_attribute_top50_by_revenue.csv`
+  - `high_confidence_attribute_fill_candidates_top20_by_revenue.csv`
+  - `high_confidence_attribute_fill_candidates_top50_by_revenue.csv`
+  - `missing_gender_top50_by_revenue.csv`
+  - `missing_age_group_top50_by_revenue.csv`
+  - `missing_size_top50_by_revenue.csv`
+  - `missing_color_top50_by_revenue.csv`
+  - `summary.json`
+- Tightened the gender-candidate logic once during the audit pass so family-matching products with mixed male/female signals resolve to `unisex` instead of over-indexing on a mother/daughter phrase in the title.
+
+Live audit results:
+- Active products audited: `271`
+- Orders scanned for revenue ranking since `2024-01-01`: `357`
+- Products missing at least one Shopify structured apparel field: `258`
+- Products whose missing fields are all high-confidence fillable from existing signals: `193`
+- Current live structured-field presence counts:
+  - `gender`: `39`
+  - `age_group`: `58`
+  - `size`: `13`
+  - `color`: `72`
+- Current live structured-field missing counts:
+  - `gender`: `232`
+  - `age_group`: `213`
+  - `size`: `258`
+  - `color`: `199`
+- Candidate confidence when field is missing:
+  - high confidence:
+    - `gender`: `231`
+    - `age_group`: `195`
+    - `size`: `258`
+    - `color`: `141`
+  - medium confidence:
+    - `age_group`: `17`
+    - `color`: `48`
+  - unresolved:
+    - `gender`: `1`
+    - `age_group`: `1`
+    - `color`: `10`
+
+Top revenue-ranked missing-attribute rows:
+- Highest missing-attribute products by discounted revenue now include:
+  - `mommy-daughter-matching-tie-dye-dress`
+  - `mommy-and-me-matching-floral-print-jumpsuits-sleeveless-and-long-sleeve-options`
+  - `mommy-and-me-matching-floral-long-sleeve-maxi-dresses-with-pockets`
+  - `vintage-matching-flannel-princess-pjs`
+  - `mother-and-daughter-classic-floral-dress`
+- Highest write-safe candidates (all missing fields high-confidence fillable) are exported separately in `high_confidence_attribute_fill_candidates_top20_by_revenue.csv`; current top rows include:
+  - `mommy-daughter-matching-tie-dye-dress`
+  - `mommy-and-me-matching-floral-long-sleeve-maxi-dresses-with-pockets`
+  - `vintage-matching-flannel-princess-pjs`
+  - `mommy-me-matching-solid-long-dress`
+  - `family-matching-floral-dress-set-mother-daughter-matching-outfits`
+
+Why:
+- Merchant Center performance-limits around apparel attributes are better handled by first measuring live structured-field coverage and candidate recoverability, then writing only the highest-confidence rows ranked by revenue.
+- The store already exposes strong option-level signals for `size` and often `color`, but Shopify structured apparel fields are still sparse across live active products.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/audit_shopify_apparel_attributes.py`.
+  - Result: no syntax errors.
+- Ran `python3 ops/scripts/audit_shopify_apparel_attributes.py`.
+  - Result: dry-run audit artifacts generated from `271` active products and `357` orders.
+- Re-ran once after tightening family/unisex gender handling.
+  - Result: artifact set refreshed; counts remained stable while family products with mixed-role signals now resolve more conservatively to `unisex`.
+
+Caveat:
+- The large `size` gap (`258` missing) is a gap in live Shopify structured `shopify.size` coverage, not direct proof that Merchant Center is rejecting all `258` products for size today. Treat this audit as the Shopify-side fill opportunity list to validate against post-sync Merchant Center diagnostics.
+
+Open items:
+- Choose the first apparel write pass from `high_confidence_attribute_fill_candidates_top20_by_revenue.csv` rather than from the full missing list.
+- Build the corresponding write script for Shopify structured apparel fields, starting with the highest-confidence candidates and validating feed diagnostics afterward.
+- After the first write pass, re-check Merchant Center diagnostics to confirm the attribute-missing buckets actually drop.
+
+### Task: Build dry-run-first write script for top-20 Shopify apparel attribute candidates
+Date: 2026-03-29 03:43:24 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-apparel-attribute-fill-script
+Changes:
+- Added `ops/scripts/fill_shopify_apparel_attributes.py` to convert the audited top-20 apparel candidates into a per-attribute Shopify write plan.
+- The script is intentionally narrow:
+  - input is limited to `high_confidence_attribute_fill_candidates_top20_by_revenue.csv`
+  - default mode is dry-run only
+  - execute mode is explicit via `--execute`
+  - each attribute is evaluated independently and only planned when:
+    - the live Shopify field is still blank
+    - audit confidence for that field meets the threshold (`high` by default)
+    - every candidate value resolves deterministically to Shopify metaobject reference IDs
+- Confirmed the live write target model for all four apparel fields:
+  - `shopify.target-gender`
+  - `shopify.age-group`
+  - `shopify.size`
+  - `shopify.color-pattern`
+  - all are product-level `list.metaobject_reference` metafields, so the script plans/sets them through `metafieldsSet`
+- The script fetches the live Shopify metaobject directories for:
+  - `shopify--target-gender`
+  - `shopify--age-group`
+  - `shopify--size`
+  - `shopify--color-pattern`
+  and maps candidate labels to those reference IDs before any write is eligible.
+- Added conservative normalization rules observed from live products:
+  - genders map only to `female`, `male`, `unisex`
+  - age groups map only to `Adults`, `Kids`, `Toddlers`, `Babies`
+  - colors map only when an exact Shopify color-pattern metaobject exists
+  - size is intentionally strict; unresolved child ranges / extended adult sizes are skipped rather than guessed
+- Generated dry-run write artifacts under `ops/feed-engineering/2026-03-29-phase-3f-apparel-attribute-fill/`:
+  - `planned_apparel_attribute_changes.csv`
+  - `summary.json`
+
+Dry-run results:
+- Target products from the audited top-20 file: `20`
+- Planned attribute updates: `57`
+- Skipped attribute updates: `23`
+- Planned by field:
+  - `gender`: `20`
+  - `age_group`: `19`
+  - `size`: `0`
+  - `color`: `18`
+- Skipped by field:
+  - `gender`: `0`
+  - `age_group`: `1`
+  - `size`: `20`
+  - `color`: `2`
+- No live writes were executed in this pass.
+
+Important outcomes:
+- `size` remains `0` planned for the first batch because none of the top-20 products had a fully deterministic end-to-end mapping into Shopify’s currently available size metaobjects.
+- The skip list is explicit and mostly comes from unresolved labels such as:
+  - `Child 6-7 Years`
+  - `Child 8-9 Years`
+  - `Child 9-10 Years`
+  - `Child 10-12 Years`
+  - `Girl L (6-7Y)`
+  - `Dad 3XL`
+  - `Mother 3XL`
+  - `Baby Girl 3 (3-6M)`
+- `color` produced one real taxonomy miss in the top-20 batch:
+  - `Orange` did not resolve to an available Shopify `color-pattern` metaobject in this store, so that color write is skipped instead of being substituted.
+- The dry-run plan shows the first safe write pass would primarily fill:
+  - `gender`
+  - `age_group`
+  - `color`
+  while leaving `size` for a stricter taxonomy-mapping phase.
+
+Verification:
+- Ran `python3 -m py_compile ops/scripts/fill_shopify_apparel_attributes.py`.
+  - Result: no syntax errors.
+- Ran `python3 ops/scripts/fill_shopify_apparel_attributes.py`.
+  - Result: dry-run plan generated with `57` planned attribute updates and `0` applied updates.
+- Spot-checked planned rows in `planned_apparel_attribute_changes.csv`.
+  - Result: products such as `family-matching-floral-dress-set-mother-daughter-matching-outfits` now plan `unisex` for gender when live family-context signals are mixed, rather than over-asserting `female`.
+
+Open items:
+- Decide whether to execute the current dry-run plan as-is for the `57` safe attribute updates.
+- Define the next deterministic size taxonomy rules if the team wants `size` included in the first write pass.
+- After the first executed batch, re-sync the feed and compare Merchant Center missing-attribute diagnostics against the planned field coverage improvements.
+
+### Task: Execute the first safe Shopify apparel attribute fill batch
+Date: 2026-03-29 03:49:05 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-apparel-attribute-fill-execution
+Changes:
+- Executed the current safe write batch with:
+  - `python3 ops/scripts/fill_shopify_apparel_attributes.py --execute`
+- The batch remained limited to the audited top-20 products and only attempted attributes that were:
+  - live-blank in Shopify
+  - `high` confidence in the audit
+  - fully resolved to valid Shopify metaobject reference IDs
+- Live execution outcome:
+  - planned attribute updates: `57`
+  - applied attribute updates: `52`
+  - field-level errors: `5`
+- Applied field mix:
+  - `gender`: `19` applied
+  - `age_group`: `16` applied
+  - `color`: `17` applied
+  - `size`: `0` applied (still intentionally excluded due unresolved size taxonomy mapping)
+- Re-ran the dry-run planner immediately after execution:
+  - remaining planned attribute updates: `5`
+  - remaining planned by field:
+    - `gender`: `1`
+    - `age_group`: `3`
+    - `color`: `1`
+    - `size`: `0`
+  - `52` rows now skip with `field_already_present_live`
+- Re-counted live active-product structured apparel field coverage after execution:
+  - active products: `271`
+  - `gender` present: `58` (up from `39`)
+  - `age_group` present: `74` (up from `58`)
+  - `size` present: `13` (unchanged)
+  - `color` present: `89` (up from `72`)
+
+Constraint-blocked rows:
+- Shopify rejected `5` writes with:
+  - `Owner subtype does not match the metafield definition's constraints.`
+- Blocked products / fields:
+  - `mommy-daughter-matching-tie-dye-dress`
+    - `age_group`
+  - `family-matching-floral-dress-set-mother-daughter-matching-outfits`
+    - `age_group`
+  - `matching-mommy-me-sunflower-maxi-dresses-sleeveless-floral-print-summer-dress`
+    - `gender`
+    - `age_group`
+    - `color`
+- Additional live inspection suggests these are Shopify category/subtype constraint issues, not bad reference IDs:
+  - `matching-mommy-me-sunflower-maxi-dresses-sleeveless-floral-print-summer-dress` is currently `Uncategorized`, which aligns with all three apparel-field writes being blocked.
+  - `family-matching-floral-dress-set-mother-daughter-matching-outfits` is currently categorized under `Baby & Toddler Dresses`, which likely conflicts with the attempted mixed-age-group payload.
+  - `mommy-daughter-matching-tie-dye-dress` is categorized as generic `Clothing`; age-group constraints appear narrower than gender/color for that subtype.
+
+Why:
+- The browser-side recommendation was to execute the current safe `gender` / `age_group` / `color` batch now and defer `size` until a stricter taxonomy mapping exists.
+- The execution confirms that approach was correct: most safe fills landed cleanly, while the remaining blockers are Shopify subtype-policy issues rather than low-confidence inference problems.
+
+Verification:
+- Ran `python3 ops/scripts/fill_shopify_apparel_attributes.py --execute`.
+  - Result: `52` applied, `5` blocked by Shopify subtype constraints, `0` other API errors.
+- Ran `python3 ops/scripts/fill_shopify_apparel_attributes.py` after execution.
+  - Result: only the same `5` constrained writes remain plan-eligible under current script logic; `52` attribute rows now register as already present live.
+- Queried live active-product metafield presence counts after execution.
+  - Result:
+    - `gender`: `58`
+    - `age_group`: `74`
+    - `size`: `13`
+    - `color`: `89`
+
+Open items:
+- Re-sync the Google/Shopify feed and check Merchant Center diagnostics to confirm the missing `gender` / `age_group` / `color` buckets drop.
+- Handle the `5` constrained writes by fixing Shopify category/subtype assignments first, then retrying those fields.
+- Design the stricter size mapping pass before attempting any `shopify.size` writes.
+
+### Task: Clear Shopify apparel subtype blockers and export deterministic size taxonomy gaps
+Date: 2026-03-29 04:18:41 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-category-fix-and-size-inventory
+Changes:
+- Executed the narrow category constraint fix with:
+  - `python3 ops/scripts/fix_shopify_apparel_category_constraints.py --execute`
+- Applied the two pending category moves needed for Shopify structured apparel-field eligibility:
+  - `mommy-daughter-matching-tie-dye-dress`
+    - `Apparel & Accessories > Clothing` -> `Apparel & Accessories > Clothing > Dresses`
+  - `family-matching-floral-dress-set-mother-daughter-matching-outfits`
+    - `Apparel & Accessories > Clothing > Baby & Toddler Clothing > Baby & Toddler Dresses` -> `Apparel & Accessories > Clothing > Outfit Sets`
+  - `matching-mommy-me-sunflower-maxi-dresses-sleeveless-floral-print-summer-dress` was already corrected earlier to `Dresses`.
+- Re-ran the apparel planner:
+  - `python3 ops/scripts/fill_shopify_apparel_attributes.py`
+  - Result: exactly the same `5` previously blocked writes remained eligible, with no new rows added.
+- Retried those writes live:
+  - `python3 ops/scripts/fill_shopify_apparel_attributes.py --execute`
+  - Result: `5/5` applied successfully, `0` API errors.
+- Re-ran the planner after retry:
+  - Result: `0` planned attribute updates remain in the audited top-20 batch.
+- Refreshed the full audit summary:
+  - `gender` present: `59`
+  - `age_group` present: `77`
+  - `size` present: `13`
+  - `color` present: `90`
+  - remaining structured-field gaps are now overwhelmingly `size`, not the previously blocked `gender` / `age_group` / `color` rows.
+- Added the size inventory export script:
+  - `ops/scripts/export_shopify_size_label_inventory.py`
+- Generated deterministic size-planning artifacts:
+  - `ops/feed-engineering/2026-03-29-phase-3h-size-label-inventory/size_label_inventory.csv`
+  - `ops/feed-engineering/2026-03-29-phase-3h-size-label-inventory/size_label_inventory_top20_by_missing_size_revenue.csv`
+  - `ops/feed-engineering/2026-03-29-phase-3h-size-label-inventory/shopify_size_metaobjects.csv`
+  - `ops/feed-engineering/2026-03-29-phase-3h-size-label-inventory/summary.json`
+- Size inventory highlights from the export:
+  - active products scanned: `271`
+  - products missing structured `size`: `258`
+  - live Shopify size metaobjects: `21`
+  - unique raw size labels observed: `224`
+  - labels already mappable to current metaobjects: `112`
+  - deterministic labels that need a new canonical metaobject or mapping rule: `72`
+  - true manual-review labels after conservative normalization: `40`
+- Highest-revenue deterministic size gaps are now explicit:
+  - `Child 6-7 Years` -> recommend `6-7 years` (`$4304.65` missing-size revenue exposure)
+  - `Child 8-9 Years` -> recommend `8-9 years` (`$3916.53`)
+  - `Child 7-8 Years` -> recommend `7-8 years` (`$3677.18`)
+  - `Child 10-12 years` -> recommend `10-12 years` (`$2555.58`)
+  - `Father 3XL` / `Mother 3XL` -> recommend `3XL` (`$2012.60` / `$826.82`)
+  - `Baby 3-6 Months` -> recommend `3-6 months` (`$534.07`)
+
+Why:
+- The browser-side guidance was to clear the Shopify subtype blockers first, then defer any `size` writes until the store had a deterministic label inventory and a clear metaobject gap list.
+- That sequence worked cleanly: the last `5` blocked apparel fields landed after category correction, and the remaining risk surface is now isolated to size taxonomy coverage rather than field eligibility or low-confidence inference.
+
+Verification:
+- Ran `python3 ops/scripts/fix_shopify_apparel_category_constraints.py --execute`.
+  - Result: `2` category updates applied, `0` errors.
+- Ran `python3 ops/scripts/fill_shopify_apparel_attributes.py`.
+  - Result: `5` plan-eligible retries before the second execute, `0` remaining afterwards.
+- Ran `python3 ops/scripts/fill_shopify_apparel_attributes.py --execute`.
+  - Result: `5` applied, `0` errors.
+- Ran `python3 ops/scripts/audit_shopify_apparel_attributes.py`.
+  - Result: refreshed structured-field coverage summary persisted to the phase-3e audit directory.
+- Ran `python3 -m py_compile ops/scripts/export_shopify_size_label_inventory.py`.
+  - Result: passed.
+- Ran `python3 ops/scripts/export_shopify_size_label_inventory.py`.
+  - Result: size label inventory and summary artifacts generated successfully.
+
+Open items:
+- Re-sync the feed and confirm Merchant Center missing-attribute diagnostics drop for `gender`, `age_group`, and `color`.
+- Decide which deterministic size labels should get new Shopify size metaobjects first (`6-7 years`, `7-8 years`, `8-9 years`, `9-10 years`, `10-12 years`, `3XL`, `3-6 months`, etc.).
+- After metaobjects exist, update the size mapping rules and run the first top-by-revenue `shopify.size` dry-run batch.
+
+### Task: Execute the first deterministic Shopify size batch
+Date: 2026-03-29 05:03:12 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-size-batch-1
+Changes:
+- Extended `ops/scripts/fill_shopify_apparel_attributes.py` so it can run scoped batches safely with:
+  - `--fields` for field-specific planning/execution
+  - `--require-size-labels` for size-only batches gated to explicit normalized labels
+- Added the first-batch size metaobject creator:
+  - `ops/scripts/create_shopify_size_metaobjects.py`
+- Verified the live Shopify `shopify--size` metaobject definition before creating anything:
+  - required fields are `label` and `taxonomy_reference`
+  - live inspected taxonomy values confirmed first-class support for:
+    - `6-7 years` -> `gid://shopify/TaxonomyValue/227`
+    - `7-8 years` -> `gid://shopify/TaxonomyValue/228`
+    - `8-9 years` -> `gid://shopify/TaxonomyValue/229`
+    - `3XL` via `Triple extra large (XXXL)` -> `gid://shopify/TaxonomyValue/2918`
+- Intentionally did **not** create `10-12 years` in this batch.
+  - Reason: in the live apparel taxonomy values inspected across Dresses / Outfit Sets / Tops / Sweaters / Swimwear, `10-12 years` did not appear as a first-class size value, so mapping it to a different base taxonomy value would have been guesswork.
+- Executed the first safe size metaobject batch:
+  - `6-7 years`
+  - `7-8 years`
+  - `8-9 years`
+  - `3XL`
+  - Result: `4/4` created successfully, `0` errors.
+- Ran the first size-only dry-run over the full audit with:
+  - `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/apparel_attribute_audit_all.csv --output-dir ops/feed-engineering/2026-03-29-phase-3j-size-fill-batch-1 --fields size --require-size-labels '6-7 years,7-8 years,8-9 years,3XL'`
+  - Result: `45` planned size updates unlocked by the new metaobjects.
+- Executed that batch:
+  - Result: `43/45` applied
+  - Remaining blockers were Shopify subtype constraint errors on:
+    - `couple-matching-queen-king-hearts-t-shirts`
+    - `linen-and-cotton-matching-outfits-with-a-touch-of-elegance`
+- Extended `ops/scripts/fix_shopify_apparel_category_constraints.py` with those two exact blocked products and corrected them live:
+  - `couple-matching-queen-king-hearts-t-shirts`
+    - `Apparel & Accessories > Clothing` -> `Apparel & Accessories > Clothing > Clothing Tops > T-Shirts`
+  - `linen-and-cotton-matching-outfits-with-a-touch-of-elegance`
+    - `Apparel & Accessories > Clothing > Baby & Toddler Clothing` -> `Apparel & Accessories > Clothing > Outfit Sets`
+- Re-ran the same scoped size batch after the category fixes:
+  - dry-run result: exactly the remaining `2` size writes
+  - execute result: `2/2` applied, `0` errors
+- Final batch state:
+  - scoped batch exhausted: re-running the same planner now returns `0` planned size writes for the first-batch labels
+  - total first-batch size writes applied: `45`
+- Refreshed the full structured-apparel audit:
+  - `size` present: `58` (up from `13`)
+  - `gender` present: `59`
+  - `age_group` present: `77`
+  - `color` present: `90`
+  - products missing any structured apparel field: `249` (down from `258`)
+- Refreshed the size inventory export after the new metaobjects:
+  - live Shopify size metaobjects: `25` (up from `21`)
+  - mapping status counts shifted to:
+    - `maps_to_existing_metaobject`: `123`
+    - `canonical_token_matches_existing_metaobject`: `4`
+    - `needs_canonical_metaobject_or_rule`: `57`
+    - `manual_review`: `40`
+  - highest remaining deterministic size gaps are now led by:
+    - `10-12 years`
+    - `6-8 years`
+    - `8-10 years`
+    - `9-10 years`
+    - several `T`-suffixed kids labels and `4XL`
+
+Artifacts:
+- Metaobject batch:
+  - `ops/feed-engineering/2026-03-29-phase-3i-size-metaobject-batch-1/summary.json`
+  - `ops/feed-engineering/2026-03-29-phase-3i-size-metaobject-batch-1/planned_size_metaobjects.csv`
+- First size fill batch:
+  - `ops/feed-engineering/2026-03-29-phase-3j-size-fill-batch-1/summary.json`
+  - `ops/feed-engineering/2026-03-29-phase-3j-size-fill-batch-1/planned_apparel_attribute_changes.csv`
+- Category retry for the two blocked size products:
+  - `ops/feed-engineering/2026-03-29-phase-3k-size-category-retry/summary.json`
+  - `ops/feed-engineering/2026-03-29-phase-3k-size-category-retry/planned_category_fixes.csv`
+- Size retry batch:
+  - `ops/feed-engineering/2026-03-29-phase-3l-size-fill-batch-1-retry/summary.json`
+  - `ops/feed-engineering/2026-03-29-phase-3l-size-fill-batch-1-retry/planned_apparel_attribute_changes.csv`
+- Refreshed inventory / audit:
+  - `ops/feed-engineering/2026-03-29-phase-3h-size-label-inventory/summary.json`
+  - `ops/feed-engineering/2026-03-29-phase-3h-size-label-inventory/size_label_inventory.csv`
+  - `ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/summary.json`
+
+Why:
+- The browser-side guidance was to keep size rollout in tiny, deterministic batches.
+- This batch stayed within that bar by only adding size metaobjects backed by live Shopify taxonomy values, only writing products fully unlocked by those labels, and only fixing categories when Shopify explicitly rejected size writes for already-reviewed products.
+
+Verification:
+- `python3 -m py_compile ops/scripts/fill_shopify_apparel_attributes.py`
+- `python3 -m py_compile ops/scripts/create_shopify_size_metaobjects.py`
+- `python3 -m py_compile ops/scripts/fix_shopify_apparel_category_constraints.py`
+- `python3 ops/scripts/create_shopify_size_metaobjects.py`
+  - Result: `4` planned creates
+- `python3 ops/scripts/create_shopify_size_metaobjects.py --execute`
+  - Result: `4/4` created, `0` errors
+- `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv .../apparel_attribute_audit_all.csv --output-dir .../phase-3j-size-fill-batch-1 --fields size --require-size-labels '6-7 years,7-8 years,8-9 years,3XL'`
+  - Result: `45` planned size writes
+- `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv .../apparel_attribute_audit_all.csv --output-dir .../phase-3j-size-fill-batch-1 --fields size --require-size-labels '6-7 years,7-8 years,8-9 years,3XL' --execute`
+  - Result: `43/45` applied, `2` subtype blockers
+- `python3 ops/scripts/fix_shopify_apparel_category_constraints.py --output-dir ops/feed-engineering/2026-03-29-phase-3k-size-category-retry`
+  - Result: `2` planned category fixes
+- `python3 ops/scripts/fix_shopify_apparel_category_constraints.py --output-dir ops/feed-engineering/2026-03-29-phase-3k-size-category-retry --execute`
+  - Result: `2/2` applied, `0` errors
+- `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv .../apparel_attribute_audit_all.csv --output-dir .../phase-3l-size-fill-batch-1-retry --fields size --require-size-labels '6-7 years,7-8 years,8-9 years,3XL'`
+  - Result: `2` planned retry writes
+- `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv .../apparel_attribute_audit_all.csv --output-dir .../phase-3l-size-fill-batch-1-retry --fields size --require-size-labels '6-7 years,7-8 years,8-9 years,3XL' --execute`
+  - Result: `2/2` applied, `0` errors
+- Re-ran the same planner after retry.
+  - Result: `0` remaining planned size writes for batch-1 labels
+- Re-ran:
+  - `python3 ops/scripts/audit_shopify_apparel_attributes.py`
+  - `python3 ops/scripts/export_shopify_size_label_inventory.py`
+  - Result: refreshed audit and post-batch size inventory persisted successfully.
+
+Open items:
+- Re-sync the feed and confirm Merchant Center missing-size diagnostics drop after the `45` new size fills.
+- Decide the second deterministic size batch. Current highest-value candidates are `10-12 years`, `6-8 years`, `8-10 years`, `9-10 years`, plus selected kids `T` labels and `4XL`.
+- Keep `manual_review` size labels separate until there is an explicit human-approved mapping rule.
+
+### Task: Execute the second deterministic Shopify size batch
+Date: 2026-03-29 05:29:48 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-size-batch-2
+Changes:
+- Verified live storefront exposure and live Shopify taxonomy support for the next requested batch candidates:
+  - `Child 9-10 Years`
+    - exact storefront label exists, `62` missing-size products, `$1885.08` missing-size revenue exposure
+  - `Child 10-12 years`
+    - exact storefront label exists, `84` missing-size products, `$2555.58` missing-size revenue exposure
+  - `4XL` family labels (`Dad 4XL`, `Father 4XL`, `Mother 4XL`, `Adult 4XL`, raw `4XL`)
+    - exact storefront labels exist, aggregate missing-size revenue exposure visible across multiple family / couples products
+- Cross-checked live Shopify apparel size taxonomy values on the categories actually used by the affected products:
+  - Dresses
+  - Outfit Sets
+  - Clothing Tops > T-Shirts
+  - Swimwear
+- Result of live taxonomy check:
+  - `4XL` is supported as `Four extra large (4XL)` / `gid://shopify/TaxonomyValue/2919`
+  - `9-10 years` is **not** present as a live first-class size taxonomy value in those categories
+  - `10-12 years` is **not** present as a live first-class size taxonomy value in those categories
+- Because `9-10 years` and `10-12 years` remain storefront labels without a matching live apparel base-size value in the inspected taxonomy, they were intentionally excluded from batch 2 to avoid inventing a base-size reference.
+- Extended the size tooling for the safe subset:
+  - added `4XL` support to `ops/scripts/create_shopify_size_metaobjects.py`
+  - added `4XL` mapping to `ops/scripts/fill_shopify_apparel_attributes.py`
+- Executed the second safe size metaobject batch:
+  - `4XL`
+  - Result: `1/1` created successfully, `0` errors
+- Ran the scoped `4XL` dry-run over the full audit:
+  - `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/apparel_attribute_audit_all.csv --output-dir ops/feed-engineering/2026-03-29-phase-3n-size-fill-batch-2 --fields size --require-size-labels '4XL'`
+  - Result: `3` fully unlocked size writes
+  - Non-planned `4XL` rows remain blocked by other unresolved labels such as `5XL`, `9-10`, `10-12`, or `XS`, which is expected under the current deterministic rules.
+- Executed the scoped `4XL` size batch:
+  - Result: `3/3` applied, `0` errors
+  - No category retry was needed in this batch
+- Re-ran the same scoped planner after execution:
+  - Result: `0` remaining planned `4XL` writes
+- Refreshed the full audit and size inventory after batch 2:
+  - `size` present: `61` (up from `58`)
+  - products missing any structured apparel field: `247` (down from `249`)
+  - products missing structured `size`: `210` (down from `213`)
+  - live Shopify size metaobjects: `26` (up from `25`)
+  - size inventory mapping counts shifted to:
+    - `maps_to_existing_metaobject`: `128`
+    - `canonical_token_matches_existing_metaobject`: `4`
+    - `needs_canonical_metaobject_or_rule`: `52`
+    - `manual_review`: `40`
+- Post-batch remaining deterministic size gaps are still led by:
+  - `Child 10-12 years`
+  - `Child 6-8 years`
+  - `Child 8-10 years`
+  - `Child 9-10 Years`
+  - several kids `T`-suffixed labels that would become tractable after a supported canonical rule is established
+
+Artifacts:
+- Batch-2 metaobject create:
+  - `ops/feed-engineering/2026-03-29-phase-3m-size-metaobject-batch-2/summary.json`
+  - `ops/feed-engineering/2026-03-29-phase-3m-size-metaobject-batch-2/planned_size_metaobjects.csv`
+- Batch-2 size fill:
+  - `ops/feed-engineering/2026-03-29-phase-3n-size-fill-batch-2/summary.json`
+  - `ops/feed-engineering/2026-03-29-phase-3n-size-fill-batch-2/planned_apparel_attribute_changes.csv`
+- Refreshed audit / inventory:
+  - `ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/summary.json`
+  - `ops/feed-engineering/2026-03-29-phase-3h-size-label-inventory/summary.json`
+
+Why:
+- The browser-side instruction was to proceed with batch 2 only for deterministic labels.
+- Live Shopify taxonomy evidence supports `4XL` cleanly, but not `9-10 years` or `10-12 years` in the categories currently driving the missing-size backlog.
+- Restricting batch 2 to `4XL` preserved the no-guesswork rule while still reducing structured size gaps.
+
+Verification:
+- `python3 -m py_compile ops/scripts/fill_shopify_apparel_attributes.py`
+- `python3 -m py_compile ops/scripts/create_shopify_size_metaobjects.py`
+- `python3 ops/scripts/create_shopify_size_metaobjects.py --labels 4XL --output-dir ops/feed-engineering/2026-03-29-phase-3m-size-metaobject-batch-2`
+  - Result: `1` planned create
+- `python3 ops/scripts/create_shopify_size_metaobjects.py --labels 4XL --output-dir ops/feed-engineering/2026-03-29-phase-3m-size-metaobject-batch-2 --execute`
+  - Result: `1/1` created, `0` errors
+- `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/apparel_attribute_audit_all.csv --output-dir ops/feed-engineering/2026-03-29-phase-3n-size-fill-batch-2 --fields size --require-size-labels '4XL'`
+  - Result: `3` planned writes
+- `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/apparel_attribute_audit_all.csv --output-dir ops/feed-engineering/2026-03-29-phase-3n-size-fill-batch-2 --fields size --require-size-labels '4XL' --execute`
+  - Result: `3/3` applied, `0` errors
+- Re-ran the same scoped planner after execution.
+  - Result: `0` remaining planned `4XL` writes
+- Re-ran:
+  - `python3 ops/scripts/audit_shopify_apparel_attributes.py`
+  - `python3 ops/scripts/export_shopify_size_label_inventory.py`
+  - Result: refreshed audit and post-batch inventory persisted successfully.
+
+Open items:
+- Re-sync the feed and confirm Merchant Center missing-size diagnostics drop after the additional `4XL` fills.
+- Decide whether to establish a supported canonical rule for `9-10 years` / `10-12 years` before any further size writes.
+- Keep ambiguous size labels and unsupported base-size mappings out of execution until that rule exists.

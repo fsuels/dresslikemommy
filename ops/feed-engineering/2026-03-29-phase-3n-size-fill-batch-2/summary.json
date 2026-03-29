@@ -1,0 +1,45 @@
+{
+  "input_csv": "ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/apparel_attribute_audit_all.csv",
+  "target_rows": 271,
+  "selected_fields": [
+    "size"
+  ],
+  "required_size_labels": [
+    "4xl"
+  ],
+  "planned_attribute_updates": 0,
+  "skipped_attribute_updates": 271,
+  "planned_by_field": {
+    "gender": 0,
+    "age_group": 0,
+    "size": 0,
+    "color": 0
+  },
+  "skipped_by_field": {
+    "gender": 0,
+    "age_group": 0,
+    "size": 271,
+    "color": 0
+  },
+  "skip_reasons": {
+    "field_not_missing_in_audit": 58,
+    "size_label_not_in_scope": 194,
+    "field_already_present_live": 3,
+    "unresolved_size:Child 9-10 Years|unresolved_size:Adult 5XL": 5,
+    "unresolved_size:Child 9-10 Years|unresolved_size:Child 10-12 Years": 1,
+    "unresolved_size:Girl 2XS|unresolved_size:Girl XS|unresolved_size:Boy 2XS|unresolved_size:Boy XS": 1,
+    "unresolved_size:XS": 1,
+    "unresolved_size:Child 9-10 Years|unresolved_size:Child 10-12 Years|unresolved_size:Adult 5XL": 3,
+    "unresolved_size:Child 7 Years|unresolved_size:Child 9 Years": 1,
+    "unresolved_size:Adult 5XL": 1,
+    "unresolved_size:Boy 12T|unresolved_size:Girl 1-2T|unresolved_size:Girl 3-4T|unresolved_size:Girl 5-6T|unresolved_size:Girl 7-8T|unresolved_size:Girl 9-10T|unresolved_size:Girl 11-12T": 1,
+    "unresolved_size:Baby 0-6 Months|unresolved_size:Baby 6-12 Months": 1,
+    "unresolved_size:5XL": 1
+  },
+  "execution": {
+    "execute": false,
+    "planned_attribute_updates": 0,
+    "applied_attribute_updates": 0,
+    "errors": []
+  }
+}
