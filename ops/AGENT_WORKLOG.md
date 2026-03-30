@@ -13084,3 +13084,40 @@ Open items:
 - This automation depends on this Mac being on and the LaunchAgent remaining loaded; if the machine is asleep/offline, imports queue implicitly until the next run.
 - If BukitDrop later exposes a reliable vendor/tag marker and the business wants tighter scoping, update the LaunchAgent install args with `--vendor-contains` and/or `--required-tag`.
 - If a hosted always-on path is preferred later, the same worker logic can be moved behind a webhook or n8n trigger without rewriting the autofill engine.
+
+### Task: Repair missed draft import and harden autofill heuristics for BukitDrop dress listings
+Date: 2026-03-30 07:35:00 EDT
+Changes:
+- Investigated the only current Shopify draft product:
+  - product id `7516369715297`
+  - handle `mommy-and-me-french-halter-neck-tiered-dress-white-cotton-silk-sleeveless-a-line-beach-dress`
+- Confirmed it was not picked up by the background worker because it was created at `2026-03-30T09:55:41Z`, before the worker initialized its first-run cursor at `2026-03-30T10:55:13Z`.
+- Fixed autofill heuristics for future imports:
+  - `ops/scripts/audit_shopify_apparel_attributes.py`
+    - treat `90cm` / `100cm` / `160cm`-style values as size-like
+    - treat option names containing `height` as size sources
+    - classify `cm` height values into toddler/kids age groups
+  - `ops/scripts/autofill_shopify_import_product.py`
+    - treat `Uncategorized` as a generic Shopify category needing replacement
+    - force clear dress products toward `Dresses` instead of allowing `beach` to incorrectly bias them toward `Swimwear`
+- Executed the repaired autofill on product `7516369715297` and verified the live result in Shopify.
+
+Verification:
+- `python3 ops/scripts/autofill_shopify_import_product.py --product-id 7516369715297`
+- `python3 ops/scripts/autofill_shopify_import_product.py --product-id 7516369715297 --execute`
+- Re-fetched the product live and confirmed:
+  - `product_type = Dresses`
+  - Shopify category = `Apparel & Accessories > Clothing > Dresses`
+  - `custom.category1 = Mommy and Me`
+  - `custom.subcategory = Dresses`
+  - `custom.subcategory2 = Everyday Dresses`
+  - `custom.type = Dresses`
+  - `custom.style = Matching`
+  - `custom.pattern = Solid`
+  - `shopify.target-gender = Female`
+  - `shopify.age-group = Toddlers | Kids | Adults`
+  - `shopify.color-pattern = White`
+
+Open items:
+- The worker remains intentionally forward-only from its first-run cursor, so products created before activation still require one-off backfill if needed.
+- Size metafield autofill is still unresolved for BukitDrop’s custom labels like `S (Adult Small Version)` and `M (Adult Extended Edition)` because those labels do not map cleanly to existing Shopify size metaobjects yet.

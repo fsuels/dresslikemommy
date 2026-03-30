@@ -564,6 +564,8 @@ def looks_like_alpha_size(value: str) -> bool:
 
 def looks_like_numeric_size(value: str) -> bool:
     text = normalize_text(value)
+    if re.search(r"\b([6-9]\d|1\d{2}|2[0-2]\d)\s*cm\b", text):
+        return True
     if re.search(r"\b(\d{1,2})\s*(?:m|mo|month|months|t|y|yr|yrs|year|years)\b", text):
         return True
     if re.search(r"\b(\d{1,2})\s*-\s*(\d{1,2})\s*(?:m|mo|month|months|t|y|yr|yrs|year|years)?\b", text):
@@ -610,7 +612,7 @@ def extract_variant_size(variant: VariantRecord) -> str:
     for option in variant.selected_options:
         option_name = normalize_text(option.get("name", ""))
         option_value = normalize_space(option.get("value", ""))
-        if ("size" in option_name or "age" in option_name) and option_value:
+        if ("size" in option_name or "age" in option_name or "height" in option_name) and option_value:
             return option_value
     if not variant.title or variant.title == "Default Title":
         return ""
@@ -673,7 +675,7 @@ def derive_size_candidate(product: ProductRecord) -> Candidate:
     for option in product.options:
         option_name = normalize_space(option.get("name", ""))
         option_name_text = normalize_text(option_name)
-        if "size" in option_name_text or "age" in option_name_text:
+        if "size" in option_name_text or "age" in option_name_text or "height" in option_name_text:
             values = [
                 normalize_space(value)
                 for value in option.get("values", [])
@@ -775,6 +777,10 @@ def classify_age_group_from_text(text: str) -> str:
     month_matches = [int(match) for match in re.findall(r"\b(\d{1,2})\s*(?:m|mo|month|months)\b", blob)]
     if month_matches:
         return "infant" if max(month_matches) <= 12 else "toddler"
+
+    cm_matches = [int(match) for match in re.findall(r"\b([6-9]\d|1\d{2}|2[0-2]\d)\s*cm\b", blob)]
+    if cm_matches:
+        return "toddler" if max(cm_matches) <= 95 else "kids"
 
     year_matches = [int(match) for match in re.findall(r"\b(\d{1,2})\s*(?:y|yr|yrs|year|years)\b", blob)]
     t_matches = [int(match) for match in re.findall(r"\b(\d{1,2})t\b", blob)]

@@ -58,6 +58,7 @@ DEFAULT_OUTPUT_DIR = Path("ops/import-automation/2026-03-30-bukitdrop-product-au
 SUPPORTED_APPAREL_FIELDS = ("gender", "age_group", "size", "color")
 GENERIC_CATEGORY_FULL_NAMES = {
     "",
+    "Uncategorized",
     "Apparel & Accessories > Clothing",
     "Apparel & Accessories > Clothing > Baby & Toddler Clothing",
 }
@@ -722,6 +723,20 @@ def infer_custom_taxonomy(product: ProductDetails) -> dict[str, str]:
     style = product.custom_style or normalize_style(product.custom_style, blob)
     pattern = product.custom_pattern or normalize_pattern(product.custom_pattern, blob)
     subcategory2 = product.custom_subcategory2 or normalize_subcategory2(product.custom_subcategory2, subcategory, blob)
+
+    dress_terms = (" dress", "dresses", "gown", "sundress", "halter", "a-line", "tiered")
+    swim_terms = ("swimsuit", "swimwear", "bikini", "trunks", "tankini", "rashguard", "one-piece swimsuit")
+    if any(term in blob for term in dress_terms) and not any(term in blob for term in swim_terms):
+        subcategory = "Dresses"
+        custom_type = "Dresses"
+        if is_blank(product.custom_subcategory2):
+            if "sundress" in blob:
+                subcategory2 = "Sundresses"
+            elif "maxi" in blob:
+                subcategory2 = "Maxi Dresses"
+            else:
+                subcategory2 = "Everyday Dresses"
+
     return {
         "category1": category1,
         "subcategory": subcategory,
