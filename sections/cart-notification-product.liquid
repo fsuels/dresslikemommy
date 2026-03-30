@@ -31,7 +31,14 @@
               -%}
               <div class="product-option">
                 <dt>{{ option_label }}:</dt>
-                <dd>{{ option.value }}</dd>
+                <dd>
+                  {%- assign option_name_lower = option.name | downcase -%}
+                  {%- if option_name_lower contains 'size' or option_name_lower contains 'talla' or option_name_lower contains 'tamano' or option_name_lower contains 'tamaño' or option_name_lower contains 'taille' or option_name_lower contains 'pointure' -%}
+                    <span data-size-display-value="{{ option.value | escape }}">{{ option.value }}</span>
+                  {%- else -%}
+                    {{ option.value }}
+                  {%- endif -%}
+                </dd>
               </div>
             {%- endfor -%}
           {%- endunless -%}
@@ -41,10 +48,13 @@
               <div class="product-option">
                 <dt>{{ property.first }}:</dt>
                 <dd>
+                  {%- assign property_name_lower = property.first | downcase -%}
                   {%- if property.last contains '/uploads/' -%}
                     <a href="{{ property.last }}" class="link" target="_blank">
                       {{ property.last | split: '/' | last }}
                     </a>
+                  {%- elsif property_name_lower contains 'size' or property_name_lower contains 'talla' or property_name_lower contains 'tamano' or property_name_lower contains 'tamaño' or property_name_lower contains 'taille' or property_name_lower contains 'pointure' -%}
+                    <span data-size-display-value="{{ property.last | escape }}">{{ property.last }}</span>
                   {%- else -%}
                     {{ property.last }}
                   {%- endif -%}

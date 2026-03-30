@@ -223,6 +223,66 @@ document.addEventListener("DOMContentLoaded", function () {
       : lowerCased;
     return deAccented.replace(/[^a-z0-9]+/g, " ").trim();
   };
+  const FRONTEND_SIZE_DISPLAY_MAP = {
+    "90cm": "1\u20132Y",
+    "100cm": "2\u20133Y",
+    "110cm": "3\u20134Y",
+    "120cm": "5\u20136Y",
+    "130cm": "6\u20137Y",
+    "140cm": "8\u20139Y",
+    "150cm": "10\u201311Y",
+    "160cm": "12\u201313Y",
+  };
+  const getFrontendSizeDisplayLabel = (value) => {
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+    const compact = raw.toLowerCase().replace(/\s+/g, "");
+    return FRONTEND_SIZE_DISPLAY_MAP[compact] || raw;
+  };
+  window.DLMSizeLabelFormatter = window.DLMSizeLabelFormatter || {};
+  window.DLMSizeLabelFormatter.formatSizeLabel = getFrontendSizeDisplayLabel;
+  const applyFormattedSizeLabels = (root) => {
+    if (!root || !(root instanceof Element || root instanceof Document || root instanceof DocumentFragment)) return;
+
+    const elements = [];
+    if (root instanceof Element && root.matches("[data-size-display-value]")) {
+      elements.push(root);
+    }
+    if (typeof root.querySelectorAll === "function") {
+      root.querySelectorAll("[data-size-display-value]").forEach((element) => elements.push(element));
+    }
+
+    elements.forEach((element) => {
+      const rawValue = element.getAttribute("data-size-display-value") || element.textContent;
+      const displayLabel = getFrontendSizeDisplayLabel(rawValue);
+      if (!displayLabel) return;
+      if (element.textContent !== displayLabel) {
+        element.textContent = displayLabel;
+      }
+    });
+  };
+  const initGlobalSizeDisplayFormatting = () => {
+    applyFormattedSizeLabels(document);
+
+    if (document.body && !document.body.hasAttribute("data-size-display-observer-bound")) {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node instanceof Element || node instanceof DocumentFragment) {
+              applyFormattedSizeLabels(node);
+            }
+          });
+        });
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+      document.body.setAttribute("data-size-display-observer-bound", "true");
+    }
+
+    document.addEventListener("cart:updated", function () {
+      applyFormattedSizeLabels(document);
+    });
+  };
   const isSizeLikeLabel = (value) => SIZE_LABEL_REGEX.test(normalizeLabelText(value));
   const isTypeLikeLabel = (value) => /\b(type|style)\b/.test(normalizeLabelText(value));
   const getOptionNameFromSelect = (selectElement) => {
@@ -301,6 +361,16 @@ document.addEventListener("DOMContentLoaded", function () {
   };
   const getActiveProductConfig = () => PRODUCT_SIZE_CONFIGS[PRODUCT_HANDLE] || null;
   const GROUPED_PROFILE_REGEX = /^(son shirt|daughter dress|dad shirt|mom dress)\b/i;
+  const applyFrontendSizeOptionLabels = (selectElement) => {
+    if (!selectElement || !selectElement.options) return;
+    Array.from(selectElement.options).forEach((optionElement) => {
+      if (!optionElement || optionElement.value === "") return;
+      const displayLabel = getFrontendSizeDisplayLabel(optionElement.value);
+      if (!displayLabel) return;
+      optionElement.textContent = displayLabel;
+      optionElement.setAttribute("data-display-label", displayLabel);
+    });
+  };
   // ---------------------------------------------------------------------------
   // DOM REFERENCES
   // ---------------------------------------------------------------------------
@@ -309,12 +379,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const sizeChartWrapper  = document.querySelector(".size-chart-wrapper");
   const sizeChartContent  = document.getElementById("size-chart-content");
   let selectedUnitSystem  = getStoredUnitSystem() || "metric";
-  if (!sizeSelect) {
-    console.error("Size dropdown not found.");
-    return;
-  }
-  if (!sizeChartWrapper) {
-    console.error("Size chart wrapper not found.");
+  initGlobalSizeDisplayFormatting();
+  if (!sizeSelect || !sizeChartWrapper) {
     return;
   }
   // ---------------------------------------------------------------------------
@@ -786,6 +852,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ---------------------------------------------------------------------------
   const updateSizeMessage = function () {
     const selectedSize = sizeSelect ? String(sizeSelect.value || "").trim() : "";
+    const selectedSizeDisplay = getFrontendSizeDisplayLabel(selectedSize);
     console.log(`Selected Size: ${selectedSize}`);
     if (!selectedSize) {
       sizeChartWrapper.style.display = "none";
@@ -810,7 +877,7 @@ document.addEventListener("DOMContentLoaded", function () {
     htmlContent += '<div class="sc-header">';
     htmlContent += '<div class="sc-header__main">';
     htmlContent += '<svg class="sc-header__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0z"/><line x1="14.5" y1="12.5" x2="11.5" y2="9.5"/><line x1="11.5" y1="15.5" x2="8.5" y2="12.5"/><line x1="8.5" y1="18.5" x2="5.5" y2="15.5"/><line x1="17.5" y1="9.5" x2="14.5" y2="6.5"/></svg>';
-    htmlContent += '<span class="sc-header__title">Size Details - ' + escapeHtml(selectedSize) + '</span>';
+    htmlContent += '<span class="sc-header__title">Size Details - ' + escapeHtml(selectedSizeDisplay || selectedSize) + '</span>';
     htmlContent += '</div>';
     htmlContent += '<div class="sc-unit-toggle" role="group" aria-label="Size chart units">';
     htmlContent += '<button type="button" class="sc-unit-toggle__btn' + (selectedUnitSystem === "metric" ? ' is-active' : '') + '" data-sc-unit-system="metric" aria-pressed="' + (selectedUnitSystem === "metric") + '">cm</button>';
@@ -907,6 +974,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateSizeMessage();
   };
   insertSelectSizeOption();
+  applyFrontendSizeOptionLabels(sizeSelect);
   resetSizeSelect();
   sizeSelect.addEventListener("change", updateSizeMessage);
   if (typeSelect && getActiveProductConfig()) {

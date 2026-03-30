@@ -1952,7 +1952,15 @@
 
         var currentSizeState = sizeSelectionState || getSizeSelectionState();
         if (currentSizeState.hasSizeOption && currentSizeState.selectedSizeValues.length) {
-          stickySize.textContent = 'Size: ' + currentSizeState.selectedSizeValues.join(' / ');
+          var formatter =
+            window.DLMSizeLabelFormatter &&
+            typeof window.DLMSizeLabelFormatter.formatSizeLabel === 'function'
+              ? window.DLMSizeLabelFormatter.formatSizeLabel
+              : null;
+          var visibleSizeValues = currentSizeState.selectedSizeValues.map(function (value) {
+            return formatter ? formatter(value) : value;
+          });
+          stickySize.textContent = 'Size: ' + visibleSizeValues.join(' / ');
           stickySize.removeAttribute('hidden');
           return;
         }

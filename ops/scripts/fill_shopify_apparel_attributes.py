@@ -407,6 +407,7 @@ def normalize_age_group_values(raw_value: str) -> tuple[list[str], list[str]]:
 
 def canonicalize_size_token(raw_value: str) -> str:
     text = normalize_text(raw_value)
+    text = re.sub(r"\([^)]*\)", " ", text)
     text = re.sub(r"\b(baby girl|baby boy)\b", " ", text)
     text = re.sub(r"\b(mother|father|mom|dad|adult|women|woman|men|man|girl|boy|child|baby)\b", " ", text)
     text = re.sub(r"\s+", " ", text).strip()
@@ -419,6 +420,9 @@ def canonicalize_size_token(raw_value: str) -> str:
     text = re.sub(r"\bmonth\b", "months", text)
     text = text.replace("xxxl", "3xl")
     text = text.replace("xxl", "2xl")
+    leading_alpha = re.match(r"^(xxs|xs|s|m|l|xl|2xl|3xl|4xl|5xl)\b", text)
+    if leading_alpha:
+        text = leading_alpha.group(1)
     if re.fullmatch(r"(xs|s|m|l|xl|2xl|3xl|4xl|5xl)", text):
         return text.upper().replace("2XL", "2XL").replace("3XL", "3XL").replace("4XL", "4XL").replace("5XL", "5XL")
     return clean(text)
@@ -450,21 +454,29 @@ def map_single_size_value(raw_value: str, refs: list[MetaobjectRef]) -> tuple[st
         "1 year": "1",
         "1 years": "1",
         "1-2 years": "1-2 years",
+        "90cm": "2-3 years",
         "2 years": "2-3 years",
         "2-3 years": "2-3 years",
+        "100cm": "3-4 years",
         "3 years": "3-4 years",
         "3-4 years": "3-4 years",
+        "110cm": "4-5 years",
         "4 years": "4-5 years",
         "4-5 years": "4-5 years",
+        "120cm": "5-6 years",
         "5 years": "5-6 years",
         "5-6 years": "5-6 years",
+        "130cm": "6-7 years",
         "6": "6",
         "6 years": "6",
         "6-7 years": "6-7 years",
+        "140cm": "7-8 years",
         "7-8 years": "7-8 years",
+        "150cm": "10",
         "8": "8",
         "8 years": "8",
         "8-9 years": "8-9 years",
+        "160cm": "12",
         "10": "10",
         "10 years": "10",
         "12": "12",

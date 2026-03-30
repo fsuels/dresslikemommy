@@ -13121,3 +13121,144 @@ Verification:
 Open items:
 - The worker remains intentionally forward-only from its first-run cursor, so products created before activation still require one-off backfill if needed.
 - Size metafield autofill is still unresolved for BukitDrop’s custom labels like `S (Adult Small Version)` and `M (Adult Extended Edition)` because those labels do not map cleanly to existing Shopify size metaobjects yet.
+
+### Task: Extend BukitDrop autofill to dress category metafields and product media SEO
+Date: 2026-03-30 08:20:00 EDT
+Changes:
+- Extended `ops/scripts/autofill_shopify_import_product.py` so the post-import automation now also plans/applies:
+  - dress/category metafields backed by Shopify metaobjects: `fabric`, `dress-occasion`, `dress-style`, `sleeve-length-type`, plus conservative support for `care-instructions`, `clothing-features`, `neckline`, `skirt-dress-length-type`, and `top-length-type` when the product text clearly matches allowed Shopify values
+  - product media SEO updates via `fileUpdate`: image `alt` text plus filename renames for generic BukitDrop filenames
+- Added product media fetching and file update support to the single-product autofill engine so the background worker can apply image SEO improvements automatically on new imports.
+- Extended `ops/scripts/fill_shopify_apparel_attributes.py` size normalization so BukitDrop-style size labels map better:
+  - strips parenthetical size suffixes like `S (Adult Small Version)` -> `S`
+  - maps child height sizes like `90cm`, `100cm`, `140cm`, `150cm`, `160cm` to Shopify-supported size metaobjects where possible
+- Applied the new automation live to draft product `7516369715297`.
+
+Verification:
+- `python3 -m py_compile ops/scripts/autofill_shopify_import_product.py ops/scripts/fill_shopify_apparel_attributes.py`
+- `python3 ops/scripts/autofill_shopify_import_product.py --product-id 7516369715297`
+- `python3 ops/scripts/autofill_shopify_import_product.py --product-id 7516369715297 --execute`
+- Verified live on Shopify for product `7516369715297`:
+  - dress metafields now include:
+    - `shopify.fabric = Cotton | Polyester`
+    - `shopify.dress-occasion = Beach outings | family vacations | casual summer events | Everyday`
+    - `shopify.dress-style = A-line`
+    - `shopify.sleeve-length-type = Sleeveless`
+  - all 8 product images now have descriptive `alt` text
+  - all 8 product images were renamed from generic BukitDrop-style filenames to handle-based SEO filenames
+  - verified the live CDN image URLs now use the new descriptive filenames
+
+Open items:
+- Image filename changes update the Shopify-hosted file URL; Shopify product references stay attached, but external hard-coded links to old CDN filenames would not.
+- `care-instructions` is intentionally conservative for now: the script only writes it when Shopify has a matching allowed value such as `Machine washable`. It will skip unsupported phrases like `Hand wash recommended`.
+- `size` mapping is improved but still not perfect for mixed child/adult imports that use non-standard BukitDrop sizing language.
+
+### Task: Switch automated image alt text to plain organic-search wording
+Date: 2026-03-30 08:32:00 EDT
+Changes:
+- Updated `ops/scripts/autofill_shopify_import_product.py` media alt-text generation to use shorter, descriptive, SEO-focused wording instead of the previous generic `product image N` phrasing.
+- New pattern prefers:
+  - first image: `<product title> in <color>`
+  - later images: `<product title> in <color> photo N`
+- Added a conservative replacement rule so the automation will refresh prior generic generated alt text, but will not overwrite genuinely custom/descriptive alt text.
+- Applied the updated alt-text style live to draft product `7516369715297`.
+
+Verification:
+- `python3 -m py_compile ops/scripts/autofill_shopify_import_product.py`
+- `python3 ops/scripts/autofill_shopify_import_product.py --product-id 7516369715297`
+- `python3 ops/scripts/autofill_shopify_import_product.py --product-id 7516369715297 --execute`
+- Verified live media alt text now reads:
+  - `Mommy and Me French Halter Neck Tiered Dress in White`
+  - `Mommy and Me French Halter Neck Tiered Dress in White photo 2`
+  - ...through photo 8
+- Re-ran dry-run and confirmed the product is back to `planned_media_updates = 0`.
+
+Why:
+- Google’s image SEO guidance favors short, descriptive alt text and descriptive filenames over generic placeholders and keyword stuffing, so the new output is closer to organic-search best practice while staying safe for automation.
+
+### Task: Auto-generate BukitDrop tags and normalize dress `subcategory2`
+Date: 2026-03-30 08:56:00 EDT
+Changes:
+- Updated `ops/scripts/autofill_shopify_import_product.py` so dress imports can actively replace placeholder `custom.subcategory2` values like `Everyday Dresses` with length-based values such as `Midi`, `Maxi`, or `Mini`.
+- Added generated tag planning to the product update flow. The script now merges missing automation tags into the existing Shopify tag list instead of overwriting merchant tags.
+- Added tag generation rules for:
+  - primary color
+  - `category1`
+  - `subcategory`
+  - dress-length composite tags like `Midi Dresses`
+  - child size tags from `90cm` / `100cm` / `1-2T` style values
+  - adult role tags like `Mother S`, `Mother M`, `Mother L`
+- Added replacement handling for outdated dress tags so the automation can prefer `Midi Dresses` over older placeholder tags such as `Everyday Dresses`.
+- Extended the dry-run summary/CSV output so product update plans now show current and target tags.
+
+Verification:
+- `python3 -m py_compile ops/scripts/autofill_shopify_import_product.py ops/scripts/fill_shopify_apparel_attributes.py`
+- `python3 ops/scripts/autofill_shopify_import_product.py --product-id 7516369715297`
+- Direct verification against live Shopify product `7516369715297` showed:
+  - inferred `custom.subcategory2 = Midi`
+  - generated tags:
+    - `White`
+    - `Mommy and Me`
+    - `Dresses`
+    - `Midi Dresses`
+    - `Child 1-2yr`
+    - `Child 3-4yr`
+    - `Child 5-6yr`
+    - `Child 7-8yr`
+    - `Child 9-10yr`
+    - `Child 11-12yr`
+    - `Child 13-14yr`
+    - `Mother S`
+    - `Mother M`
+    - `Mother L`
+- Dry-run stayed stable at `planned_custom_updates = 0` and `planned_tag_update = 0` for the already-corrected draft product.
+
+Why:
+- BukitDrop imports need consistent collection/filter/search tags without requiring manual cleanup after every draft import.
+- `custom.subcategory2` for dresses is more useful as a clean length bucket like `Midi` than as a placeholder label like `Everyday Dresses`, and that cleaner value also supports better tag generation.
+
+### Task: Add storefront size-display mapping for BukitDrop cm sizes
+Date: 2026-03-30 09:14:00 EDT
+Changes:
+- Updated `assets/size-conversion.js` to expose a shared frontend size-label formatter for BukitDrop-style child sizes:
+  - `90cm -> 1–2Y`
+  - `100cm -> 2–3Y`
+  - `110cm -> 3–4Y`
+  - `120cm -> 5–6Y`
+  - `130cm -> 6–7Y`
+  - `140cm -> 8–9Y`
+  - `150cm -> 10–11Y`
+  - `160cm -> 12–13Y`
+- Applied that formatter to the PDP size dropdown so customers see the cleaner age-style labels while Shopify still keeps the original variant values under the hood.
+- Updated the custom size-chart header to show the formatted customer-facing size label instead of the raw BukitDrop label.
+- Updated the sticky mobile add-to-cart bar in `sections/main-product.liquid` so the selected size also uses the same frontend formatter.
+
+Verification:
+- `node --check assets/size-conversion.js`
+- Reviewed the rendered logic in `assets/size-conversion.js` and `sections/main-product.liquid` to confirm only display text changes; submitted variant values remain unchanged.
+
+Why:
+- BukitDrop imports frequently arrive with factory-coded child sizes like `90cm` and `100cm`; converting them in the storefront keeps the buying experience professional without forcing manual variant renames in Shopify.
+
+### Task: Extend storefront size-display mapping to cart surfaces
+Date: 2026-03-30 09:27:00 EDT
+Changes:
+- Extended `assets/size-conversion.js` so the shared frontend size formatter now runs globally, not only on the PDP size-chart UI.
+- Added a DOM formatter that rewrites elements marked with `data-size-display-value` to customer-facing labels like `1–2Y`, and attached a `MutationObserver` so the formatting re-applies after AJAX cart updates.
+- Updated these templates to mark size values explicitly for frontend formatting:
+  - `snippets/cart-drawer.liquid`
+  - `sections/main-cart-items.liquid`
+  - `sections/cart-notification-product.liquid`
+- Kept the real Shopify option/property values unchanged underneath; only the displayed label is reformatted.
+- Softened the PDP-only early return in `assets/size-conversion.js` so non-product pages no longer log false size-dropdown errors while still benefiting from the shared formatter.
+
+Verification:
+- `node --check assets/size-conversion.js`
+- Confirmed formatter hooks now exist in:
+  - cart drawer
+  - cart page
+  - cart notification
+  - sticky mobile add-to-cart on PDP
+
+Why:
+- The same BukitDrop child sizes should look professional everywhere a shopper sees them, not just on the product page.
