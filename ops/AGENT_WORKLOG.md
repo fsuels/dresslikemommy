@@ -13343,3 +13343,49 @@ Verification:
 
 Why:
 - The problem was not a simple sticky toggle. The short-image state needed scroll-driven downward translation within the desktop PDP section so the media rail visually follows the shopper until the lower content boundary is reached.
+
+### Task: Align local Codex and VS Code MCP configuration
+Date: 2026-03-30 10:58:00 EDT
+Changes:
+- Updated external user-scoped MCP configuration files outside the repo so both VS Code MCP and Codex point at the same five servers: OpenAI Developer Docs, Context7, Playwright, Chrome DevTools, and GitHub.
+- Corrected the VS Code `mcp.json` Context7 auth shape to use request headers plus a secure prompt input, and updated Chrome DevTools to use the recommended `npx -y` invocation.
+- Updated `~/.codex/config.toml` so the Codex CLI / IDE extension share the same MCP server list.
+- Stored the Context7 API key in macOS Keychain under `codex-context7-api-key` and updated `~/.zprofile` to export `CONTEXT7_API_KEY` from Keychain for new login shells.
+
+Verification:
+- `codex mcp list --json` shows all five servers enabled.
+- `zsh -lc 'printf "CONTEXT7_API_KEY=%s\n" "${CONTEXT7_API_KEY:+loaded}"'` returns `loaded`.
+- `security find-generic-password -a "$USER" -s codex-context7-api-key >/dev/null` succeeds.
+
+Why:
+- The previous setup only covered VS Code's generic MCP file and left Codex itself with just one configured server.
+- Context7 needed a durable secret source that stays outside the repo and avoids plaintext storage in theme files or worklogs.
+
+Deferred:
+- GitHub MCP still needs a `GITHUB_PAT_TOKEN` value loaded in the shell or Codex environment before authenticated GitHub tools can be verified end-to-end.
+
+### Task: Finish GitHub MCP authentication for Codex
+Date: 2026-03-30 11:06:00 EDT
+Changes:
+- Updated `~/.zprofile` so new login shells export `GITHUB_PAT_TOKEN` from the existing `gh auth token` keyring-backed login when available.
+- Tested `codex mcp login github` first; GitHub's remote MCP endpoint rejected dynamic client registration in this Codex flow, so the shell-export fallback was kept.
+
+Verification:
+- `zsh -lc 'printf "GITHUB_PAT_TOKEN=%s\n" "${GITHUB_PAT_TOKEN:+loaded}"'` returns `loaded`.
+- `codex exec --skip-git-repo-check --ephemeral -s read-only "Use the github MCP server if available to tell me the authenticated GitHub login in one short sentence."` successfully started the GitHub MCP server and returned authenticated login `fsuels`.
+
+Why:
+- This keeps the GitHub token in GitHub CLI's existing secure storage instead of duplicating it in plaintext config files.
+- It resolves the remaining Codex-side MCP auth gap without requiring a separate PAT creation flow.
+
+### Task: Fix bare numeric child sizes in visible PDP size chart
+Date: 2026-03-30 10:31:00 EDT
+Changes:
+- Updated `assets/size-conversion.js` so exact child size labels using bare numeric values like `100`, `110`, and `120` map to the same storefront display labels as `100cm`, `110cm`, and `120cm`.
+- Adjusted both `[data-size-display-value]` formatting and the visible size-chart table formatter to try exact size-label mapping first, then fall back to token replacement for mixed strings like `90cm / Girl`.
+
+Verification:
+- `node --check assets/size-conversion.js`
+
+Why:
+- Some BukitDrop size charts render child rows as bare numeric size labels in the first column while the option selector uses `cm`-suffixed values. The previous formatter only converted the `cm` form, so the dropdown looked correct but the visible size-chart column stayed unchanged.

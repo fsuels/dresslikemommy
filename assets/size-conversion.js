@@ -233,11 +233,22 @@ document.addEventListener("DOMContentLoaded", function () {
     "150cm": "10\u201311Y",
     "160cm": "12\u201313Y",
   };
+  const FRONTEND_EXACT_SIZE_DISPLAY_MAP = {
+    "90": FRONTEND_SIZE_DISPLAY_MAP["90cm"],
+    "100": FRONTEND_SIZE_DISPLAY_MAP["100cm"],
+    "110": FRONTEND_SIZE_DISPLAY_MAP["110cm"],
+    "120": FRONTEND_SIZE_DISPLAY_MAP["120cm"],
+    "130": FRONTEND_SIZE_DISPLAY_MAP["130cm"],
+    "140": FRONTEND_SIZE_DISPLAY_MAP["140cm"],
+    "150": FRONTEND_SIZE_DISPLAY_MAP["150cm"],
+    "160": FRONTEND_SIZE_DISPLAY_MAP["160cm"],
+    ...FRONTEND_SIZE_DISPLAY_MAP,
+  };
   const getFrontendSizeDisplayLabel = (value) => {
     const raw = String(value || "").trim();
     if (!raw) return "";
     const compact = raw.toLowerCase().replace(/\s+/g, "");
-    return FRONTEND_SIZE_DISPLAY_MAP[compact] || raw;
+    return FRONTEND_EXACT_SIZE_DISPLAY_MAP[compact] || raw;
   };
   const replaceSizeTokensInText = (value) => {
     const raw = String(value || "");
@@ -266,7 +277,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     elements.forEach((element) => {
       const rawValue = element.getAttribute("data-size-display-value") || element.textContent;
-      const displayLabel = replaceSizeTokensInText(rawValue);
+      const exactDisplayLabel = getFrontendSizeDisplayLabel(rawValue);
+      const displayLabel = exactDisplayLabel !== String(rawValue || "").trim()
+        ? exactDisplayLabel
+        : replaceSizeTokensInText(rawValue);
       if (!displayLabel) return;
       if (element.textContent !== displayLabel) {
         element.textContent = displayLabel;
@@ -313,7 +327,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!sizeCell) return;
 
         const rawValue = sizeCell.getAttribute("data-size-display-raw") || String(sizeCell.textContent || "").trim();
-        const displayLabel = replaceSizeTokensInText(rawValue);
+        const exactDisplayLabel = getFrontendSizeDisplayLabel(rawValue);
+        const displayLabel = exactDisplayLabel !== rawValue
+          ? exactDisplayLabel
+          : replaceSizeTokensInText(rawValue);
         if (!displayLabel || displayLabel === rawValue) return;
 
         sizeCell.setAttribute("data-size-display-raw", rawValue);
