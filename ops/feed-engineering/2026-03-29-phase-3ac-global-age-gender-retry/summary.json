@@ -1,0 +1,70 @@
+{
+  "input_csv": "ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/apparel_attribute_audit_all.csv",
+  "target_rows": 271,
+  "selected_fields": [
+    "age_group",
+    "gender"
+  ],
+  "required_size_labels": [],
+  "planned_attribute_updates": 18,
+  "skipped_attribute_updates": 524,
+  "planned_by_field": {
+    "gender": 3,
+    "age_group": 15,
+    "size": 0,
+    "color": 0
+  },
+  "skipped_by_field": {
+    "gender": 268,
+    "age_group": 256,
+    "size": 0,
+    "color": 0
+  },
+  "skip_reasons": {
+    "field_not_missing_in_audit": 505,
+    "confidence_below_threshold:medium": 17,
+    "candidate_blank": 2
+  },
+  "execution": {
+    "execute": true,
+    "planned_attribute_updates": 18,
+    "applied_attribute_updates": 13,
+    "errors": [
+      {
+        "handle": "matching-family-denim-jackets-classic-light-wash-jean-shirt-for-mom-dad-and-kids",
+        "field": "age_group",
+        "errors": [
+          "metafields / 0: Owner subtype does not match the metafield definition's constraints."
+        ]
+      },
+      {
+        "handle": "matching-rainbow-striped-family-cardigans-cozy-good-mood-knit-sweaters-for-mom-and-kids",
+        "field": "age_group",
+        "errors": [
+          "metafields / 0: Owner subtype does not match the metafield definition's constraints."
+        ]
+      },
+      {
+        "handle": "chic-two-piece-swimsuit-set-ruffle-detail-top-and-high-waisted-bottoms-in-four-vibrant-colors",
+        "field": "gender",
+        "errors": [
+          "metafields / 0: Owner subtype does not match the metafield definition's constraints."
+        ]
+      },
+      {
+        "handle": "chic-two-piece-swimsuit-set-ruffle-detail-top-and-high-waisted-bottoms-in-four-vibrant-colors",
+        "field": "age_group",
+        "errors": [
+          "metafields / 0: Owner subtype does not match the metafield definition's constraints."
+        ]
+      },
+      {
+        "handle": "matching-sunflower-mother-daughter-one-piece-jumpsuits",
+        "field": "age_group",
+        "errors": [
+          "metafields / 0: Owner subtype does not match the metafield definition's constraints."
+        ]
+      }
+    ]
+  }
+}

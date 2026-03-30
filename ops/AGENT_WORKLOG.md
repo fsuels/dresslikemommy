@@ -12522,3 +12522,436 @@ Open items:
 - Re-sync the feed and confirm Merchant Center missing-size diagnostics drop after the additional `4XL` fills.
 - Decide whether to establish a supported canonical rule for `9-10 years` / `10-12 years` before any further size writes.
 - Keep ambiguous size labels and unsupported base-size mappings out of execution until that rule exists.
+
+### Task: Audit Shopify-side blockers after Merchant Center re-sync attempt
+Date: 2026-03-29 05:47:22 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-mc-blocker-audit
+Changes:
+- Created a live Shopify-side blocker audit under:
+  - `ops/feed-engineering/2026-03-29-phase-3o-mc-blocker-audit/summary.json`
+  - `ops/feed-engineering/2026-03-29-phase-3o-mc-blocker-audit/google_publication_price_url_audit.csv`
+- Queried live publications/catalogs and confirmed the current Google sales-channel publication is:
+  - `Google & YouTube` -> `gid://shopify/Publication/21969633377`
+- Re-ran a full Shopify catalog/publication scan using `ops/scripts/shopify_catalog_cleanup.py` helpers against live Admin GraphQL to test the two current Merchant Center blocking themes from the browser report: `Missing product price` and `Product page unavailable`.
+- Current live Shopify-side results:
+  - total products: `704`
+  - active products: `271`
+  - archived products: `433`
+  - active + Google-published: `223`
+  - archived + Google-published: `0`
+  - active Google-published products missing Online Store URL: `0`
+  - active Google-published products missing positive variant prices: `0`
+  - active Google-published products unpublished from Online Store but still on Google: `0`
+- This means the current Shopify source-of-truth does **not** show live Google-published products with missing price or missing product-page URLs.
+- Given the browser-side Merchant Center state:
+  - Content API source still shows `Needs update`
+  - `Last updated` remains blank
+  - diagnostics still show `Missing product price` / `Product page unavailable`
+  the strongest evidence is that Merchant Center is still holding stale or not-yet-refreshed Content API offer state rather than reflecting the current Shopify product/channel data.
+
+Why:
+- Browser-side diagnostics after the manual re-sync attempt still showed high-value blocking errors, so the next repo-safe check was to verify whether those issues are actually present in live Shopify source data before changing product content again.
+- The live Shopify audit disproves the current-data hypothesis for price and page-availability on active Google-published products.
+
+Verification:
+- Queried live publications and market catalogs through Admin GraphQL.
+  - Result: confirmed the current `Google & YouTube` publication ID and market catalog topology.
+- Ran a live catalog/publication scan via `ops/scripts/shopify_catalog_cleanup.py` helper functions.
+  - Result: `0` active Google-published products missing price, `0` missing URL, `0` active Google-published products stranded off Online Store.
+
+Open items:
+- The next action is still outside the repo: force or wait for a real Google & YouTube / Content API refresh until Merchant Center shows a non-blank `Last updated` timestamp.
+- Once Merchant Center is clearly reading fresh data, re-check diagnostics:
+  - if `Missing product price` / `Product page unavailable` persist, pull the exact affected offer IDs because they likely correspond to stale residual offers or products no longer present in the current Google publication set
+  - if `Missing color` / `Missing size` remain, continue deterministic Shopify-side attribute remediation from the current size and color audit outputs.
+
+### Task: Run single-product Google publication republish probe
+Date: 2026-03-29 05:57:31 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-google-republish-probe
+Changes:
+- Added `ops/scripts/google_publication_republish_probe.py` to perform a dry-run and, when requested, a single-product Google & YouTube publication toggle:
+  - reads the live Google + Online Store publication IDs
+  - snapshots product state before mutation
+  - unpublishes only from `Google & YouTube`
+  - re-fetches state
+  - republishes only to `Google & YouTube`
+  - re-fetches final state
+  - writes `summary.json` and `probe_state.csv`
+- Chose a low-risk probe product based on current repo evidence:
+  - handle: `couple-matching-t-shirt-funny-beard-butt`
+  - rationale:
+    - active
+    - currently Google-published
+    - currently Online Store-published
+    - valid storefront URL
+    - positive prices on all variants
+    - zero recent revenue in the local 2024+ audit, so the temporary Google publication toggle was low-risk
+- Dry-run probe result:
+  - all preconditions passed
+- Live probe result:
+  - unpublish from `Google & YouTube`: success
+  - republish to `Google & YouTube`: success
+  - final state returned to:
+    - `google_published = true`
+    - `online_published = true`
+    - same URL / prices / category state as before
+- Probe artifact directory:
+  - `ops/feed-engineering/2026-03-29-phase-3p-google-republish-probe/`
+  - contains:
+    - `summary.json`
+    - `probe_state.csv`
+
+Why:
+- Merchant Center browser checks still showed a blank `Last updated` value on the Content API source, and there is no documented/public “sync now” control exposed from the Merchant Center UI for that source.
+- A single-product Google publication OFF -> ON toggle is the smallest supported Shopify-side mutation available from this environment that could plausibly nudge a fresh Content API write without churning product price/URL data.
+
+Verification:
+- `python3 -m py_compile ops/scripts/google_publication_republish_probe.py`
+- `python3 ops/scripts/google_publication_republish_probe.py --handle couple-matching-t-shirt-funny-beard-butt`
+  - Result: dry-run checks all passed
+- `python3 ops/scripts/google_publication_republish_probe.py --handle couple-matching-t-shirt-funny-beard-butt --execute`
+  - Result:
+    - unpublish success: `true`
+    - publish success: `true`
+    - final `google_published`: `true`
+
+Open items:
+- Browser-side Merchant Center re-check should now look specifically for:
+  - whether Content API `Last updated` is no longer blank
+  - whether diagnostics move after the republish probe window
+- If Merchant Center still shows no timestamp change after this successful Shopify-side publication toggle, the remaining bottleneck is likely inside the Google & YouTube app / Content API pipeline rather than the current Shopify product data or publication state.
+
+### Task: Prepare Merchant Center issue export reconciliation
+Date: 2026-03-29 06:09:18 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-mc-issue-reconciliation-prep
+Changes:
+- Added `ops/scripts/reconcile_merchant_center_issue_export.py`.
+- Purpose:
+  - ingest a Merchant Center diagnostics export CSV
+  - detect likely offer-id/title/url columns without hardcoding one exact export schema
+  - reconcile rows against live Shopify data using the known Content API join key pattern:
+    - `shopify_US_{product_id}_{variant_id}`
+  - classify each row into buckets such as:
+    - `live_google_published_shopify_offer`
+    - `shopify_offer_not_currently_google_published`
+    - `shopify_pattern_offer_not_found`
+    - `opaque_non_shopify_offer_id`
+    - `opaque_offer_matches_live_product_by_url`
+    - `opaque_offer_matches_live_product_by_title`
+- This is intended for the exact browser-side next step: download the Merchant Center issue export so the local repo can prove which rows are live current Shopify offers versus stale residual offers or opaque non-Shopify IDs.
+- Ran a smoke test with a tiny mock CSV and wrote the test artifacts to:
+  - `ops/feed-engineering/2026-03-29-phase-3q-mc-issue-reconciliation-smoke/`
+
+Why:
+- Browser-side diagnostics now have a timestamp while the Content API source itself still shows blank `Last updated`, which makes issue-export reconciliation the highest-signal way to separate stale Merchant Center state from live Shopify catalog state.
+- The repo already knows the expected current offer-id pattern from Phase 3C, so a reconciliation script is the fastest way to operationalize the browser export once it is downloaded.
+
+Verification:
+- `python3 -m py_compile ops/scripts/reconcile_merchant_center_issue_export.py`
+  - Result: passed
+- Ran the script against a mock two-row CSV.
+  - Result: output schema and live Shopify reconciliation flow completed successfully.
+
+Open items:
+- Browser-side next action: download the Merchant Center issue export(s).
+- Repo-side next action after download: run `ops/scripts/reconcile_merchant_center_issue_export.py --input-csv <downloaded_file>` and inspect which rows are:
+  - current live Shopify Content API offers
+  - stale/non-current Shopify offers
+  - opaque offer IDs that only match by title or URL
+
+### Task: Reconcile live Merchant Center issues and apply deterministic apparel fixes
+Date: 2026-03-29 09:22:11 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-live-mc-apparel-fix
+Changes:
+- Ran `ops/scripts/reconcile_merchant_center_issue_export.py` against the browser-downloaded Merchant Center export:
+  - input: `/Users/fsuels/Downloads/product_issues_2026-03-29_05-04-29.csv`
+  - output dir: `ops/feed-engineering/2026-03-29-phase-3r-mc-issue-reconciliation/`
+- Reconciliation result:
+  - `rows_scanned`: `18773`
+  - live current Shopify Content API offer rows: `998`
+  - current live issue mix:
+    - `Missing age group`: `436`
+    - `Missing gender`: `432`
+    - `Missing color`: `104`
+    - `Unable to show image`: `24`
+    - `Personalized advertising: personal hardships`: `2`
+  - there were `0` current live rows for:
+    - `Missing product price`
+    - `Product page unavailable`
+    - `Missing size`
+- Added `ops/scripts/export_live_mc_issue_apparel_candidates.py` to convert the reconciled live issue subset into the same schema used by `fill_shopify_apparel_attributes.py`.
+- Generated live candidate artifacts in:
+  - `ops/feed-engineering/2026-03-29-phase-3s-live-mc-apparel-fix-candidates/`
+  - result:
+    - `15` affected live products
+    - `972` live issue rows across current apparel-field issues
+- Ran a scoped dry-run through `ops/scripts/fill_shopify_apparel_attributes.py` using the live candidate CSV and only the issue fields (`gender`, `age_group`, `color`):
+  - output dir: `ops/feed-engineering/2026-03-29-phase-3t-live-mc-apparel-fill/`
+  - dry-run planned `18` updates:
+    - `10` `gender`
+    - `8` `age_group`
+    - `0` `color`
+  - skipped color cases were intentionally held back because they were not deterministic:
+    - `family-matching-swimwear-bathing-suit` -> medium-confidence multi-color pattern
+    - `make-a-splash-with-this-family-matching-floral-outfit` -> medium-confidence `Yellow|Floral`
+    - `mother-daughter-trendy-knitted-sweater-style-for-fall` -> no reliable structured color candidate
+- Executed the scoped live batch:
+  - `18/18` applied
+  - `0` API errors
+- Ran a second dry-run postcheck in:
+  - `ops/feed-engineering/2026-03-29-phase-3u-live-mc-apparel-fill-postcheck/`
+  - result:
+    - `0` remaining high-confidence planned updates for the live-apparel issue subset
+- Re-ran the full apparel audit:
+  - `ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/summary.json`
+  - updated coverage:
+    - `gender`: `69`
+    - `age_group`: `85`
+    - `color`: `90`
+    - `size`: `61`
+  - products missing any structured apparel field:
+    - `247 -> 245`
+- Investigated the lone live image issue product:
+  - handle: `matching-mommy-me-plaid-flannel-shirts-cozy-button-up-jackets-for-fall`
+  - findings:
+    - affected variants are the brown child-size variants from the Merchant Center export
+    - storefront page returns `200`
+    - the assigned brown image URL returns `200` on desktop and mobile user agents
+    - variant/image metadata on this product is inconsistent, but there is not enough evidence yet for a safe automated media mutation
+
+Why:
+- The user asked to “fix all issues” from the Merchant Center export, but the export contained a large amount of stale or non-current diagnostics.
+- Reconciling the export to live Shopify state was necessary to avoid touching stale price/page issues or guessing on medium-confidence color assignments.
+- The executed batch therefore targeted only current, live, deterministic fixes that can actually change what Google receives from the current Shopify catalog.
+
+Verification:
+- `python3 -m py_compile ops/scripts/export_live_mc_issue_apparel_candidates.py`
+- `python3 ops/scripts/reconcile_merchant_center_issue_export.py --input-csv /Users/fsuels/Downloads/product_issues_2026-03-29_05-04-29.csv --output-dir ops/feed-engineering/2026-03-29-phase-3r-mc-issue-reconciliation`
+- `python3 ops/scripts/export_live_mc_issue_apparel_candidates.py`
+- `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv ops/feed-engineering/2026-03-29-phase-3s-live-mc-apparel-fix-candidates/live_mc_issue_apparel_candidates.csv --output-dir ops/feed-engineering/2026-03-29-phase-3t-live-mc-apparel-fill --fields gender,age_group,color --min-confidence high`
+- `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv ops/feed-engineering/2026-03-29-phase-3s-live-mc-apparel-fix-candidates/live_mc_issue_apparel_candidates.csv --output-dir ops/feed-engineering/2026-03-29-phase-3t-live-mc-apparel-fill --fields gender,age_group,color --min-confidence high --execute`
+- `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv ops/feed-engineering/2026-03-29-phase-3s-live-mc-apparel-fix-candidates/live_mc_issue_apparel_candidates.csv --output-dir ops/feed-engineering/2026-03-29-phase-3u-live-mc-apparel-fill-postcheck --fields gender,age_group,color --min-confidence high`
+- `python3 ops/scripts/audit_shopify_apparel_attributes.py`
+- `curl -I -L https://www.dresslikemommy.com/products/matching-mommy-me-plaid-flannel-shirts-cozy-button-up-jackets-for-fall`
+- `curl -I -L https://cdn.shopify.com/s/files/1/1557/1635/files/Cozy_Plaid_Matching_Shacket_Set_for_Mother_and_Child.jpg?v=1730010662`
+
+Open items:
+- Browser-side Merchant Center recheck is still required to confirm the new live `gender` / `age_group` values propagate and the diagnostic counts drop.
+- Remaining repo-side unresolved issues from this export:
+  - `Missing color` on three live products, but only at medium/low confidence right now
+  - `Unable to show image` on `matching-mommy-me-plaid-flannel-shirts-cozy-button-up-jackets-for-fall`
+  - `Personalized advertising: personal hardships` on `mommy-and-me-matching-floral-long-sleeve-maxi-dresses-with-pockets`, which is a policy issue rather than a structured-field gap
+- `Missing product price`, `Product page unavailable`, and `Missing size` did not map to current live Google-published Shopify offers in this export, so those are still treated as stale/non-current until a newer Merchant Center export proves otherwise.
+
+### Task: Full-catalog gender/age_group fill and fresh Content API export verification
+Date: 2026-03-29 05:36:44 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-content-api-export-052746
+Changes:
+- Ran full-catalog high-confidence apparel fill pass for `gender` + `age_group` using:
+  - `ops/scripts/fill_shopify_apparel_attributes.py`
+  - input: `ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/apparel_attribute_audit_all.csv`
+  - output: `ops/feed-engineering/2026-03-29-phase-3y-global-age-gender-fill/`
+- Result:
+  - planned updates: `369`
+  - applied updates: `351`
+  - blocked by Shopify category/subtype constraints: `18`
+  - blocked handles were concentrated in family matching sets sitting in generic `Clothing` / `Baby & Toddler Clothing`, plus a small number of uncategorized dresses/swimwear products
+- Re-ran the full apparel audit after the write:
+  - `ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/summary.json`
+  - new structured-field presence:
+    - `gender`: `267`
+    - `age_group`: `238`
+    - `size`: `61`
+    - `color`: `90`
+  - new structured-field missing counts:
+    - `gender`: `4`
+    - `age_group`: `33`
+    - `size`: `210`
+    - `color`: `181`
+- Added `ops/scripts/audit_google_product_page_accessibility.py` and ran a storefront crawl across all active Google-published products.
+  - output: `ops/feed-engineering/2026-03-29-phase-3z-google-page-accessibility-audit/`
+  - result:
+    - audited active Google-published products: `223`
+    - blocked on desktop: `0`
+    - blocked on mobile: `0`
+    - blocked on either: `0`
+  - this directly contradicts the browser-side interpretation that there are currently live crawlability failures on active Google-published storefront URLs
+- Reconciled the newer Merchant Center Content API export:
+  - input: `/Users/fsuels/Downloads/product_issues_2026-03-29_05-27-46.csv`
+  - output: `ops/feed-engineering/2026-03-29-phase-3ab-mc-issue-reconciliation-content-api-only/`
+  - rows scanned: `1692`
+  - classification counts:
+    - `live_google_published_shopify_offer`: `998`
+    - `shopify_offer_not_currently_google_published`: `462`
+    - `shopify_pattern_offer_not_found`: `232`
+- Fresh-export issue classification proved:
+  - `Product page unavailable` rows: `72`, all `shopify_offer_not_currently_google_published`
+    - unique affected offers: `12`
+    - only 3 handles:
+      - `mother-daughter-flag-maxi-dress`
+      - `pregnant-women-striped-breastfeeding-dress`
+      - `maternity-solid-color-shoulderless-dress`
+  - `Personalized advertising: personal hardships` rows: `36`
+    - `34` rows on offers not currently Google-published
+    - only `2` live-current rows, both on:
+      - `mommy-and-me-matching-floral-long-sleeve-maxi-dresses-with-pockets`
+  - live-current rows remain the same operational set as the prior export:
+    - `Missing age group`: `436`
+    - `Missing gender`: `432`
+    - `Missing color`: `104`
+    - `Unable to show image`: `24`
+    - `Personalized advertising: personal hardships`: `2`
+- Added but did not execute:
+  - `ops/scripts/fix_shopify_apparel_category_constraints_batch2.py`
+  - purpose: second batch of safe category fixes for clearly miscategorized family set products and one uncategorized maxi dress that blocked deterministic apparel writes
+
+Why:
+- The newer `2026-03-29 05:27:46` Merchant Center export provided the exact evidence needed to separate live current issues from stale/non-current offers after the browser-side “Provided by you” filtering.
+- The large `gender` / `age_group` pass was justified because those fields remained the dominant live-current feed limitation and the audit already had high-confidence mappings.
+- The storefront crawl audit was necessary to verify whether the browser’s `Product page unavailable` bucket reflected live crawl failures or stale non-current offers. It proved the latter from the Shopify/storefront side.
+
+Verification:
+- `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/apparel_attribute_audit_all.csv --output-dir ops/feed-engineering/2026-03-29-phase-3y-global-age-gender-fill --fields gender,age_group --min-confidence high --execute`
+- `python3 ops/scripts/audit_shopify_apparel_attributes.py`
+- `python3 -m py_compile ops/scripts/audit_google_product_page_accessibility.py`
+- `python3 ops/scripts/audit_google_product_page_accessibility.py`
+- `python3 ops/scripts/reconcile_merchant_center_issue_export.py --input-csv /Users/fsuels/Downloads/product_issues_2026-03-29_05-27-46.csv --output-dir ops/feed-engineering/2026-03-29-phase-3ab-mc-issue-reconciliation-content-api-only`
+
+Open items:
+- Browser-side statement `Product page unavailable: 12` is real in the export, but those `12` unique offers are not current live Google-published Shopify offers; do not mutate active storefront URLs to chase them.
+- Browser-side statement `Personalized advertising: personal hardships: 18 products` is overstated from the current export; current evidence is:
+  - `16` non-current unique offers across archived / no-longer-Google-published products
+  - `1` current live product (`mommy-and-me-matching-floral-long-sleeve-maxi-dresses-with-pockets`) with `2` live rows
+- Remaining highest-value repo-side work:
+  - resolve the `18` category/subtype-blocked `gender` / `age_group` writes, likely via the batch-2 category fix script plus a retry fill pass
+  - continue deterministic `size` / `color` work
+  - investigate the lone live `Unable to show image` issue on `matching-mommy-me-plaid-flannel-shirts-cozy-button-up-jackets-for-fall`
+- If a future browser-side export shows different live-current buckets, treat the CSV as canonical over the UI summary and reconcile it again before mutating catalog data.
+
+### Task: Execute batch-2 category repairs and retry blocked apparel writes
+Date: 2026-03-29 05:43:12 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-batch2-category-retry
+Changes:
+- Fixed a small `asdict` import bug in `ops/scripts/fix_shopify_apparel_category_constraints_batch2.py`.
+- Ran the batch-2 category repair script:
+  - dry-run: `11` planned category updates
+  - execute: `11/11` applied, `0` errors
+  - output dir: `ops/feed-engineering/2026-03-29-phase-3aa-category-constraint-fix-batch-2/`
+- Retried the full-catalog high-confidence `gender` + `age_group` fill after those category fixes:
+  - output dir: `ops/feed-engineering/2026-03-29-phase-3ac-global-age-gender-retry/`
+  - planned on retry: `18`
+  - applied on retry: `13`
+  - remaining blocked fields: `5`
+    - `matching-family-denim-jackets-classic-light-wash-jean-shirt-for-mom-dad-and-kids` -> `age_group`
+    - `matching-rainbow-striped-family-cardigans-cozy-good-mood-knit-sweaters-for-mom-and-kids` -> `age_group`
+    - `chic-two-piece-swimsuit-set-ruffle-detail-top-and-high-waisted-bottoms-in-four-vibrant-colors` -> `gender`, `age_group`
+    - `matching-sunflower-mother-daughter-one-piece-jumpsuits` -> `age_group`
+- Re-ran the full apparel audit after the retry:
+  - `ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/summary.json`
+  - updated structured-field presence:
+    - `gender`: `269`
+    - `age_group`: `249`
+    - `size`: `61`
+    - `color`: `90`
+  - updated missing counts:
+    - `gender`: `2`
+    - `age_group`: `22`
+    - `size`: `210`
+    - `color`: `181`
+  - remaining high-confidence candidates among missing:
+    - `gender`: `1`
+    - `age_group`: `4`
+
+Why:
+- The batch-2 set contained the clearly safe taxonomy corrections: family-set products stuck in generic `Clothing` / `Baby & Toddler Clothing`, plus one uncategorized maxi dress.
+- Running the retry immediately after the category repair was the fastest way to prove which blocked rows were resolved versus which still require more specific taxonomy decisions.
+
+Verification:
+- `python3 -m py_compile ops/scripts/fix_shopify_apparel_category_constraints_batch2.py`
+- `python3 ops/scripts/fix_shopify_apparel_category_constraints_batch2.py`
+- `python3 ops/scripts/fix_shopify_apparel_category_constraints_batch2.py --execute`
+- `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/apparel_attribute_audit_all.csv --output-dir ops/feed-engineering/2026-03-29-phase-3ac-global-age-gender-retry --fields gender,age_group --min-confidence high --execute`
+- `python3 ops/scripts/audit_shopify_apparel_attributes.py`
+
+Open items:
+- The remaining blocked `5` fields are now a very short taxonomy/manual-review list rather than a broad catalog problem.
+- The most important unresolved live Merchant Center problems are now:
+  - `Missing color` on the three live products already identified
+  - `Unable to show image` on `matching-mommy-me-plaid-flannel-shirts-cozy-button-up-jackets-for-fall`
+  - the lone live policy issue on `mommy-and-me-matching-floral-long-sleeve-maxi-dresses-with-pockets`
+- The browser-side Content API recheck should now show the `Missing age group` / `Missing gender` buckets materially lower once Google ingests the updated metafields.
+
+### Task: Clear the last live-current MC residue from Shopify side
+Date: 2026-03-29 06:47:18 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-29-live-residue-fix
+Changes:
+- Ran the last scoped taxonomy repair batch with `ops/scripts/fix_shopify_apparel_category_constraints_batch3.py`:
+  - fixed `4/4` products into categories that accept the intended structured apparel fields
+  - output dir: `ops/feed-engineering/2026-03-29-phase-3ad-category-constraint-fix-batch-3/`
+- Retried the high-confidence `gender` + `age_group` fill after those category fixes:
+  - output dir: `ops/feed-engineering/2026-03-29-phase-3ah-global-age-gender-retry-after-batch3/`
+  - planned retry writes: `5`
+  - applied retry writes: `5`
+  - errors: `0`
+- Applied the deterministic live color residue fixes with `ops/scripts/fix_live_mc_color_residue.py`:
+  - products fixed:
+    - `family-matching-swimwear-bathing-suit` -> `Floral|Multicolor`
+    - `make-a-splash-with-this-family-matching-floral-outfit` -> `Yellow|Floral`
+    - `mother-daughter-trendy-knitted-sweater-style-for-fall` -> `Rainbow|Striped`
+  - live postcheck rerun now plans `0` remaining writes for that script
+- Applied the targeted policy-copy cleanup with `ops/scripts/fix_live_policy_copy.py`:
+  - product: `mommy-and-me-matching-floral-long-sleeve-maxi-dresses-with-pockets`
+  - updated the product description intro, one scenario-heavy bullet, eight scenario-heavy embedded image alts, SEO title, and SEO description
+  - result: factual copy focused on garment attributes rather than occasion/emotional framing
+- Fixed the plaid flannel variant-media mapping with `ops/scripts/fix_plaid_flannel_variant_media.py`:
+  - first live run exposed a selector bug because the generic collage asset alt included every color word
+  - corrected the selector to ignore the collage image and target only the single-color media nodes
+  - final execute run applied `27/27` variant media updates with `0` errors
+  - verified examples after the fix:
+    - `Mother XL / Pink` -> pink single-color media
+    - `Child 6-7 Years / Pink` -> pink single-color media
+    - `Mother S / brown` -> brown single-color media
+    - `Mother M / green` -> green single-color media
+    - `Child 8-9 Years / red` -> red single-color media
+- Re-ran the full apparel audit:
+  - `ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/summary.json`
+  - updated presence counts:
+    - `gender`: `270`
+    - `age_group`: `253`
+    - `size`: `61`
+    - `color`: `93`
+  - updated missing counts:
+    - `gender`: `1`
+    - `age_group`: `18`
+    - `size`: `210`
+    - `color`: `178`
+
+Why:
+- The newest Content API reconciliation plus the browser-side product checks narrowed the live-current work to four buckets only:
+  - the last taxonomy-blocked `gender` / `age_group` rows
+  - three deterministic live `Missing color` products
+  - one live policy product
+  - one live plaid product with an image presentation failure in Merchant Center
+- The category repair had to happen before the final structured-field retry because Shopify enforces category/subtype compatibility on `target-gender` and `age-group`.
+- The policy copy change stayed conservative because Merchant Center did not reveal the exact flagged phrase; the safest response was to remove occasion/emotion-heavy marketing language while preserving the product’s core merchandising details.
+- The plaid media repair needed a second pass because the initial color-word selector accidentally matched the generic collage image; the corrected selector now targets only the exact single-color assets.
+
+Verification:
+- `python3 -m py_compile ops/scripts/fix_shopify_apparel_category_constraints_batch3.py ops/scripts/fix_live_mc_color_residue.py ops/scripts/fix_live_policy_copy.py ops/scripts/fix_plaid_flannel_variant_media.py`
+- `python3 ops/scripts/fix_shopify_apparel_category_constraints_batch3.py --execute`
+- `python3 ops/scripts/fill_shopify_apparel_attributes.py --input-csv ops/feed-engineering/2026-03-29-phase-3e-apparel-attribute-audit/apparel_attribute_audit_all.csv --output-dir ops/feed-engineering/2026-03-29-phase-3ah-global-age-gender-retry-after-batch3 --fields gender,age_group --min-confidence high --execute`
+- `python3 ops/scripts/fix_live_mc_color_residue.py --execute`
+- `python3 ops/scripts/fix_live_policy_copy.py --execute`
+- `python3 ops/scripts/fix_plaid_flannel_variant_media.py --execute`
+- `python3 ops/scripts/fix_live_mc_color_residue.py`
+- `python3 ops/scripts/fix_plaid_flannel_variant_media.py`
+- `python3 ops/scripts/audit_shopify_apparel_attributes.py`
+
+Open items:
+- I do not have Merchant Center browser access from the repo side, so I cannot confirm the Content API `Last updated` timestamp or whether the policy product is still flagged after Google ingests these changes.
+- Shopify-side structured apparel gaps are now materially lower, but not fully closed:
+  - `gender` missing: `1`
+  - `age_group` missing: `18`
+  - `color` missing: `178`
+  - `size` missing: `210`
+- Those remaining counts are broader catalog backlog, not the same as the earlier live-current Merchant Center export buckets; wait for the browser-side recheck before deciding whether Google still reflects any of the now-fixed live residue.

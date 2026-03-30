@@ -1,0 +1,36 @@
+{
+  "input_csv": "ops/feed-engineering/2026-03-29-phase-3s-live-mc-apparel-fix-candidates/live_mc_issue_apparel_candidates.csv",
+  "target_rows": 15,
+  "selected_fields": [
+    "age_group",
+    "color",
+    "gender"
+  ],
+  "required_size_labels": [],
+  "planned_attribute_updates": 0,
+  "skipped_attribute_updates": 45,
+  "planned_by_field": {
+    "gender": 0,
+    "age_group": 0,
+    "size": 0,
+    "color": 0
+  },
+  "skipped_by_field": {
+    "gender": 15,
+    "age_group": 15,
+    "size": 0,
+    "color": 15
+  },
+  "skip_reasons": {
+    "field_not_missing_in_audit": 13,
+    "field_already_present_live": 29,
+    "confidence_below_threshold:medium": 2,
+    "candidate_blank": 1
+  },
+  "execution": {
+    "execute": false,
+    "planned_attribute_updates": 0,
+    "applied_attribute_updates": 0,
+    "errors": []
+  }
+}
