@@ -13043,3 +13043,44 @@ Verification:
 Open items:
 - Browser/admin automation still needs to call this script automatically after BukitDrop product creation.
 - First live execution should use a controlled imported product to confirm the category-first then metafield write order behaves as expected on a truly blank import.
+
+### Task: Install local background automation for future Shopify import autofill
+Date: 2026-03-30 07:01:00 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-30-local-import-autofill-launchagent
+Changes:
+- Refactored `/Users/fsuels/Projects/dresslikemommy/ops/scripts/autofill_shopify_import_product.py` to expose a reusable `run_autofill(...)` function so other local automation can reuse the same logic without writing repo artifacts on every run.
+- Added `/Users/fsuels/Projects/dresslikemommy/ops/scripts/poll_shopify_import_autofill.py`:
+  - polls recent Shopify products by `createdAt`
+  - initializes from "now" on first run by default so it only processes future imports
+  - waits for a minimum product age before acting so import apps have time to finish populating the listing
+  - only advances its cursor after successful or intentionally skipped processing, so errors are retried instead of silently skipped
+  - reuses the single-product autofill logic with `output_dir=None` so background runs stay out of the git worktree
+- Added `/Users/fsuels/Projects/dresslikemommy/ops/scripts/install_shopify_import_autofill_launchagent.py` to install/manage a macOS LaunchAgent that runs the worker every 5 minutes.
+- Installed the LaunchAgent locally with live execution enabled:
+  - label: `com.dresslikemommy.shopify-import-autofill`
+  - plist: `/Users/fsuels/Library/LaunchAgents/com.dresslikemommy.shopify-import-autofill.plist`
+  - state file: `/Users/fsuels/.config/dresslikemommy/shopify-import-autofill-state.json`
+  - stdout log: `/Users/fsuels/Library/Logs/dresslikemommy/shopify-import-autofill.stdout.log`
+  - stderr log: `/Users/fsuels/Library/Logs/dresslikemommy/shopify-import-autofill.stderr.log`
+- The installed worker is configured to:
+  - run every 300 seconds
+  - execute live updates
+  - initialize from the current time so existing products are not mass-touched retroactively
+  - wait 180 seconds after product creation before processing
+
+Why:
+- There was no existing n8n/Flow/webhook trigger in the repo, and the user requested actual automation now rather than another manual handoff.
+- A local launchd worker makes the automation real immediately on this Mac without depending on an external hosted service or a browser-side setup step.
+
+Verification:
+- `python3 -m py_compile ops/scripts/autofill_shopify_import_product.py ops/scripts/poll_shopify_import_autofill.py ops/scripts/install_shopify_import_autofill_launchagent.py`
+- `python3 ops/scripts/autofill_shopify_import_product.py --handle make-a-splash-with-this-family-matching-floral-outfit`
+- `python3 ops/scripts/poll_shopify_import_autofill.py --state-path /tmp/dlm-import-autofill-state-test.json --jsonl-log /tmp/dlm-import-autofill-test.jsonl --bootstrap-hours 9999 --max-products-per-run 1`
+- `python3 ops/scripts/install_shopify_import_autofill_launchagent.py install --execute`
+- `python3 ops/scripts/install_shopify_import_autofill_launchagent.py status`
+- Confirmed first installed run initialized the cursor to `2026-03-30T10:55:13Z`, logged `new_products_seen: 0`, and produced no stderr output.
+
+Open items:
+- This automation depends on this Mac being on and the LaunchAgent remaining loaded; if the machine is asleep/offline, imports queue implicitly until the next run.
+- If BukitDrop later exposes a reliable vendor/tag marker and the business wants tighter scoping, update the LaunchAgent install args with `--vendor-contains` and/or `--required-tag`.
+- If a hosted always-on path is preferred later, the same worker logic can be moved behind a webhook or n8n trigger without rewriting the autofill engine.

@@ -980,7 +980,7 @@ def write_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str]) -> 
         writer.writerows(rows)
 
 
-def execute(
+def apply_execution_plan(
     client: ShopifyClient,
     *,
     product: ProductDetails,
@@ -1039,26 +1039,26 @@ def execute(
     return summary
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--store-domain", default="", help="Shopify store domain.")
-    parser.add_argument("--access-token", default="", help="Shopify Admin API access token.")
-    parser.add_argument("--handle", default="", help="Target product handle.")
-    parser.add_argument("--product-id", default="", help="Target Shopify product ID or gid.")
-    parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR), help="Directory for dry-run and execution artifacts.")
-    parser.add_argument("--min-confidence", default="high", choices=["high", "medium"], help="Minimum apparel candidate confidence.")
-    parser.add_argument("--execute", action="store_true", help="Apply the planned changes live.")
-    parser.add_argument("--pause-ms", type=int, default=250, help="Pause between live updates.")
-    args = parser.parse_args()
-
-    output_dir = Path(args.output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
+def run_autofill(
+    *,
+    store_domain: str = "",
+    access_token: str = "",
+    handle: str = "",
+    product_id: str = "",
+    output_dir: Path | None = DEFAULT_OUTPUT_DIR,
+    min_confidence: str = "high",
+    execute: bool = False,
+    pause_ms: int = 250,
+) -> dict[str, Any]:
+    resolved_output_dir = Path(output_dir) if output_dir is not None else None
+    if resolved_output_dir is not None:
+        resolved_output_dir.mkdir(parents=True, exist_ok=True)
 
     client = ShopifyClient(
-        resolve_store_domain(args.store_domain, fallback_domain="dresslikemommy-com.myshopify.com"),
-        load_access_token(args.access_token),
+        resolve_store_domain(store_domain, fallback_domain="dresslikemommy-com.myshopify.com"),
+        load_access_token(access_token),
     )
-    product = client.fetch_product(handle=args.handle, product_gid=args.product_id)
+    product = client.fetch_product(handle=handle, product_gid=product_id)
     peers = client.fetch_active_peers()
     category_index = build_category_index(peers)
     custom_values = infer_custom_taxonomy(product)
@@ -1074,15 +1074,15 @@ def main() -> None:
         product,
         custom_values=custom_values,
         refs_by_field=refs_by_field,
-        min_confidence=args.min_confidence,
+        min_confidence=min_confidence,
     )
-    execution = execute(
+    execution = apply_execution_plan(
         client,
         product=product,
         product_update_plan=product_update_plan,
         apparel_plans=apparel_plans,
-        execute=args.execute,
-        pause_ms=max(args.pause_ms, 0),
+        execute=execute,
+        pause_ms=max(pause_ms, 0),
     )
 
     plan_rows = [
@@ -1109,46 +1109,6 @@ def main() -> None:
         }
     ]
     apparel_rows = [asdict(item) for item in apparel_plans]
-    write_csv(
-        output_dir / "product_update_plan.csv",
-        plan_rows,
-        [
-            "handle",
-            "title",
-            "current_product_type",
-            "target_product_type",
-            "current_category_full_name",
-            "target_category_full_name",
-            "target_category_source",
-            "current_category1",
-            "target_category1",
-            "current_subcategory",
-            "target_subcategory",
-            "current_subcategory2",
-            "target_subcategory2",
-            "current_type",
-            "target_type",
-            "current_style",
-            "target_style",
-            "current_pattern",
-            "target_pattern",
-        ],
-    )
-    write_csv(
-        output_dir / "apparel_field_plan.csv",
-        apparel_rows,
-        [
-            "field",
-            "status",
-            "reason",
-            "candidate_value",
-            "candidate_confidence",
-            "candidate_source",
-            "normalized_labels",
-            "reference_ids",
-            "reference_labels",
-        ],
-    )
 
     summary = {
         "handle": product.handle,
@@ -1158,7 +1118,75 @@ def main() -> None:
         "planned_apparel_updates": sum(1 for item in apparel_plans if item.status == "plan"),
         "execution": execution,
     }
-    (output_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+
+    if resolved_output_dir is not None:
+        write_csv(
+            resolved_output_dir / "product_update_plan.csv",
+            plan_rows,
+            [
+                "handle",
+                "title",
+                "current_product_type",
+                "target_product_type",
+                "current_category_full_name",
+                "target_category_full_name",
+                "target_category_source",
+                "current_category1",
+                "target_category1",
+                "current_subcategory",
+                "target_subcategory",
+                "current_subcategory2",
+                "target_subcategory2",
+                "current_type",
+                "target_type",
+                "current_style",
+                "target_style",
+                "current_pattern",
+                "target_pattern",
+            ],
+        )
+        write_csv(
+            resolved_output_dir / "apparel_field_plan.csv",
+            apparel_rows,
+            [
+                "field",
+                "status",
+                "reason",
+                "candidate_value",
+                "candidate_confidence",
+                "candidate_source",
+                "normalized_labels",
+                "reference_ids",
+                "reference_labels",
+            ],
+        )
+        (resolved_output_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+
+    return summary
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--store-domain", default="", help="Shopify store domain.")
+    parser.add_argument("--access-token", default="", help="Shopify Admin API access token.")
+    parser.add_argument("--handle", default="", help="Target product handle.")
+    parser.add_argument("--product-id", default="", help="Target Shopify product ID or gid.")
+    parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR), help="Directory for dry-run and execution artifacts.")
+    parser.add_argument("--min-confidence", default="high", choices=["high", "medium"], help="Minimum apparel candidate confidence.")
+    parser.add_argument("--execute", action="store_true", help="Apply the planned changes live.")
+    parser.add_argument("--pause-ms", type=int, default=250, help="Pause between live updates.")
+    args = parser.parse_args()
+
+    summary = run_autofill(
+        store_domain=args.store_domain,
+        access_token=args.access_token,
+        handle=args.handle,
+        product_id=args.product_id,
+        output_dir=Path(args.output_dir),
+        min_confidence=args.min_confidence,
+        execute=args.execute,
+        pause_ms=max(args.pause_ms, 0),
+    )
     print(json.dumps(summary, indent=2))
 
 
