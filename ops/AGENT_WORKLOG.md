@@ -13262,3 +13262,23 @@ Verification:
 
 Why:
 - The same BukitDrop child sizes should look professional everywhere a shopper sees them, not just on the product page.
+
+### Task: Extend size-display formatting to account order detail page
+Date: 2026-03-30 09:36:00 EDT
+Changes:
+- Updated `assets/size-conversion.js` so the shared formatter can replace known BukitDrop size tokens inside mixed strings like `90cm / Girl`, not only exact standalone values.
+- Updated `sections/main-order.liquid` so account order detail rows and saved line-item properties now opt into the same frontend size formatter with `data-size-display-value`.
+- This means past orders that display raw saved variant text such as `90cm` can now render as `1–2Y` on the customer-facing account order page when the theme controls that markup.
+
+Verification:
+- `node --check assets/size-conversion.js`
+- Repo sweep confirmed the theme-owned customer surfaces now covered are:
+  - PDP size dropdown and size-chart header
+  - sticky mobile add-to-cart size
+  - cart drawer
+  - cart page
+  - cart notification
+  - account order detail page
+
+Why:
+- Customers can revisit old orders from their account, so size presentation should stay consistent there too.

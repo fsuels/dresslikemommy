@@ -239,8 +239,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const compact = raw.toLowerCase().replace(/\s+/g, "");
     return FRONTEND_SIZE_DISPLAY_MAP[compact] || raw;
   };
+  const replaceSizeTokensInText = (value) => {
+    const raw = String(value || "");
+    if (!raw) return "";
+
+    let output = raw;
+    Object.keys(FRONTEND_SIZE_DISPLAY_MAP).forEach((token) => {
+      const escapedToken = token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      output = output.replace(new RegExp(escapedToken, "gi"), FRONTEND_SIZE_DISPLAY_MAP[token]);
+    });
+    return output;
+  };
   window.DLMSizeLabelFormatter = window.DLMSizeLabelFormatter || {};
   window.DLMSizeLabelFormatter.formatSizeLabel = getFrontendSizeDisplayLabel;
+  window.DLMSizeLabelFormatter.replaceSizeTokensInText = replaceSizeTokensInText;
   const applyFormattedSizeLabels = (root) => {
     if (!root || !(root instanceof Element || root instanceof Document || root instanceof DocumentFragment)) return;
 
@@ -254,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     elements.forEach((element) => {
       const rawValue = element.getAttribute("data-size-display-value") || element.textContent;
-      const displayLabel = getFrontendSizeDisplayLabel(rawValue);
+      const displayLabel = replaceSizeTokensInText(rawValue);
       if (!displayLabel) return;
       if (element.textContent !== displayLabel) {
         element.textContent = displayLabel;

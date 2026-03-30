@@ -70,7 +70,7 @@
                     <div class="properties">
                       {%- unless line_item.product.has_only_default_variant -%}
                         <span>
-                          {{ line_item.variant.title }}
+                          <span data-size-display-value="{{ line_item.variant.title | escape }}">{{ line_item.variant.title }}</span>
                         </span>
                       {%- endunless -%}
                       {%- unless line_item.selling_plan_allocation == null -%}
@@ -87,7 +87,7 @@
                               {%- if property.last contains '/uploads/' -%}
                                 <a href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
                               {%- else -%}
-                                {{ property.last }}
+                                <span data-size-display-value="{{ property.last | escape }}">{{ property.last }}</span>
                               {%- endif -%}
                             </span>
                           {%- endif -%}
