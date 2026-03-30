@@ -13282,3 +13282,18 @@ Verification:
 
 Why:
 - Customers can revisit old orders from their account, so size presentation should stay consistent there too.
+
+### Task: Apply child size-display mapping to the full PDP size-chart table
+Date: 2026-03-30 09:49:00 EDT
+Changes:
+- Updated `assets/size-conversion.js` so the same BukitDrop child-size formatter now applies to full size-chart tables rendered in the product description, not only the dropdown and cart surfaces.
+- Added size-chart table detection and first-column formatting for `Size` tables so visible rows like `90cm`, `100cm`, and `110cm` now display with the customer-facing labels (`1–2Y`, `2–3Y`, `3–4Y`, etc.).
+- Preserved the original supplier size values in a `data-size-display-raw` attribute before changing the visible text, and updated the size-chart parser to read the raw value from that attribute when present.
+- This keeps the option-selection matching logic working even though the customer sees the formatted label in the visible chart.
+
+Verification:
+- `node --check assets/size-conversion.js`
+- Confirmed the parser now prefers `data-size-display-raw` over visible cell text when reading the size source table.
+
+Why:
+- The visible size chart and the option selector should use the same customer-facing child-size language so shoppers are not forced to mentally translate `90cm` into age ranges.

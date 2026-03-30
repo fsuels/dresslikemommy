@@ -273,8 +273,57 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   };
+  const isSizeChartTable = (tableElement) => {
+    if (!tableElement || tableElement.tagName !== "TABLE") return false;
+
+    const tableId = String(tableElement.id || "").toLowerCase();
+    const tableClass = String(tableElement.className || "").toLowerCase();
+    if (tableId.indexOf("size-chart") !== -1 || tableClass.indexOf("size-chart") !== -1) return true;
+
+    const firstHeader = tableElement.querySelector("th");
+    return normalizeLabelText(firstHeader && firstHeader.textContent) === "size";
+  };
+  const applySizeChartDisplayLabels = (root) => {
+    if (!root || !(root instanceof Element || root instanceof Document || root instanceof DocumentFragment)) return;
+
+    const tables = [];
+    if (root instanceof Element && root.tagName === "TABLE") {
+      tables.push(root);
+    }
+    if (typeof root.querySelectorAll === "function") {
+      root.querySelectorAll("table").forEach((tableElement) => tables.push(tableElement));
+    }
+
+    tables.forEach((tableElement) => {
+      if (!isSizeChartTable(tableElement)) return;
+
+      const headerCells = tableElement.querySelectorAll("tr:first-child th");
+      let sizeIndex = -1;
+
+      Array.from(headerCells).forEach((headerCell, index) => {
+        if (sizeIndex !== -1) return;
+        if (isSizeLikeLabel(headerCell.textContent)) sizeIndex = index;
+      });
+
+      if (sizeIndex === -1) return;
+
+      Array.from(tableElement.querySelectorAll("tr")).slice(1).forEach((row) => {
+        const cells = row.querySelectorAll("td");
+        const sizeCell = cells[sizeIndex];
+        if (!sizeCell) return;
+
+        const rawValue = sizeCell.getAttribute("data-size-display-raw") || String(sizeCell.textContent || "").trim();
+        const displayLabel = replaceSizeTokensInText(rawValue);
+        if (!displayLabel || displayLabel === rawValue) return;
+
+        sizeCell.setAttribute("data-size-display-raw", rawValue);
+        sizeCell.textContent = displayLabel;
+      });
+    });
+  };
   const initGlobalSizeDisplayFormatting = () => {
     applyFormattedSizeLabels(document);
+    applySizeChartDisplayLabels(document);
 
     if (document.body && !document.body.hasAttribute("data-size-display-observer-bound")) {
       const observer = new MutationObserver((mutations) => {
@@ -282,6 +331,7 @@ document.addEventListener("DOMContentLoaded", function () {
           mutation.addedNodes.forEach((node) => {
             if (node instanceof Element || node instanceof DocumentFragment) {
               applyFormattedSizeLabels(node);
+              applySizeChartDisplayLabels(node);
             }
           });
         });
@@ -293,6 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.addEventListener("cart:updated", function () {
       applyFormattedSizeLabels(document);
+      applySizeChartDisplayLabels(document);
     });
   };
   const isSizeLikeLabel = (value) => SIZE_LABEL_REGEX.test(normalizeLabelText(value));
@@ -457,7 +508,10 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 1; i < rows.length; i++) {
       const cells    = rows[i].getElementsByTagName("td");
       if (!cells || cells.length === 0) continue;
-      const sizeName = (cells[sizeIndex]?.textContent || "").trim();
+      const sizeCell = cells[sizeIndex];
+      const sizeName = String(
+        (sizeCell && sizeCell.getAttribute("data-size-display-raw")) || (sizeCell && sizeCell.textContent) || ""
+      ).trim();
       if (!sizeName) continue;
       factorySizes[sizeName] = { _meta: { ageMin: null, ageMax: null, heightMin: null, heightMax: null } };
       for (let j = 0; j < cells.length; j++) {
