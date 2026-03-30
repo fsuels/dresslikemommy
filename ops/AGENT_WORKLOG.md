@@ -13019,3 +13019,27 @@ Open items:
   - confirm whether Shopify Google & YouTube is the only active source for these offer IDs
   - remove or disable any legacy/supplemental feed that is still submitting the stale items
   - if no second source exists, wait for the Shopify source refresh and then recheck whether Google has dropped the stale IDs
+
+### Task: Add single-product Shopify import autofill automation for BukitDrop-style imports
+Date: 2026-03-30 06:21:18 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-30-bukitdrop-import-autofill
+Changes:
+- Added `/Users/fsuels/Projects/dresslikemommy/ops/scripts/autofill_shopify_import_product.py` to dry-run or execute a post-import autofill pass for one Shopify product selected by `--handle` or `--product-id`.
+- The new script reuses existing repo taxonomy/apparel inference logic to fill only blank fields:
+  - custom taxonomy metafields: `custom.category1`, `custom.subcategory`, `custom.subcategory2`, `custom.type`, `custom.style`, `custom.pattern`
+  - Shopify apparel metafields: `shopify.target-gender`, `shopify.age-group`, `shopify.size`, `shopify.color-pattern`
+- The script also fills blank `productType` and attempts a safer non-generic Shopify category choice from live peer products before writing apparel metafields.
+- Added `/Users/fsuels/Projects/dresslikemommy/ops/import-automation/2026-03-30-bukitdrop-product-autofill/browser_ai_handoff.md` with the browser-side/operator handoff for triggering the script after product creation.
+
+Why:
+- BukitDrop imports already provide title/description/price/media, but the missing manual work is store-specific taxonomy and apparel metafields after import.
+- A single-product post-import script is the smallest reusable unit for later Shopify Flow, n8n, or queue-based automation.
+
+Verification:
+- `python3 -m py_compile ops/scripts/autofill_shopify_import_product.py`
+- `python3 ops/scripts/autofill_shopify_import_product.py --handle make-a-splash-with-this-family-matching-floral-outfit`
+- Dry-run returned a valid live-store plan and proposed only a missing `custom.subcategory2` write for that product.
+
+Open items:
+- Browser/admin automation still needs to call this script automatically after BukitDrop product creation.
+- First live execution should use a controlled imported product to confirm the category-first then metafield write order behaves as expected on a truly blank import.
