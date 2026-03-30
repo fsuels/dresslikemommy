@@ -12955,3 +12955,33 @@ Open items:
   - `color` missing: `178`
   - `size` missing: `210`
 - Those remaining counts are broader catalog backlog, not the same as the earlier live-current Merchant Center export buckets; wait for the browser-side recheck before deciding whether Google still reflects any of the now-fixed live residue.
+
+### Task: Measurement review for gross-paid purchase value request
+Date: 2026-03-30 00:55:56 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-30-gross-paid-measurement-review
+Changes:
+- No storefront code changes in this session.
+- Reviewed the current repo measurement ownership and confirmed:
+  - [`assets/analytics.js`] only emits storefront `view_item`, `add_to_cart`, `view_cart`, `remove_from_cart`, and `begin_checkout` dataLayer events; it does not own `purchase`.
+  - [`ops/customer-events/ga4-checkout-ecommerce-pixel.js`] remains a deprecation stub that explicitly directs Google measurement to the Shopify Google & YouTube app.
+  - [`DressLikeMommy-Master-Implementation-Plan.md`] still defines the supported architecture as Google & YouTube app = sole Google-tag deployment path, with exactly one Google Ads purchase conversion kept Primary.
+- Deferred any attempt to force GA4 / Google Ads `purchase.value` to include shipping + tax from theme code or a new Google custom pixel.
+
+Why:
+- Current Google/Shopify guidance for Shopify points to the Google & YouTube app as the supported Google deployment path; reintroducing Google tags through GTM or Shopify custom pixels would intentionally move this store back onto an unsupported setup.
+- Google’s Shopify event parameter reference documents `purchase.value` for the Google & YouTube app as merchandise revenue excluding shipping and tax, while exposing `shipping` and `tax` separately.
+- For Ads bidding, forcing tax and shipping into conversion value would also change the optimization target from merchandise value to gross paid amount, which is a business decision rather than a default best practice.
+
+Verification:
+- Re-read:
+  - `assets/analytics.js`
+  - `ops/customer-events/ga4-checkout-ecommerce-pixel.js`
+  - `DressLikeMommy-Master-Implementation-Plan.md`
+- Confirmed the repo contains no active Google `purchase` implementation to edit without reintroducing a custom Google path.
+
+Open items:
+- Browser/admin-side verification is still required for the live configuration:
+  - confirm Shopify Google & YouTube remains the only active Google purchase source
+  - confirm Google Ads keeps only `Google Shopping App Purchase` as Primary and moves GA4/legacy purchase actions to Secondary
+  - confirm Shopify Customer Privacy / consent configuration is aligned with the active app pixels
+- If the business explicitly decides that Google Ads bidding must optimize on gross paid amount instead of merchandise revenue, treat that as an intentional unsupported architecture change and document the tradeoff before implementation.
