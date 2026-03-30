@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[id^="MainProduct-"][data-section]').forEach(function (productSection) {
+    try {
+      initDesktopProductMediaFlow(productSection);
+    } catch (error) {
+      console.error('Product desktop media flow init failed', error);
+    }
+  });
+
   document.querySelectorAll('[data-product-desktop-ux]').forEach(function (wrapper) {
     try {
       initProductDesktopUx(wrapper);
@@ -7,6 +15,113 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+function initDesktopProductMediaFlow(productSection) {
+  var sectionId = productSection.getAttribute('data-section');
+  if (!sectionId) return;
+
+  var desktopMediaQuery = window.matchMedia('(min-width: 990px)');
+  var mediaWrapper = productSection.querySelector('.product__media-wrapper');
+  var productInfo = document.getElementById('ProductInfo-' + sectionId);
+  if (!mediaWrapper || !productInfo) return;
+
+  var state = {
+    active: false,
+    maxOffset: 0,
+    ticking: false,
+  };
+
+  var clearDesktopMediaFlow = function () {
+    state.active = false;
+    state.maxOffset = 0;
+    productSection.classList.remove('product-section--desktop-media-flow');
+    productSection.style.setProperty('--desktop-media-flow-offset', '0px');
+  };
+
+  var getDesktopMediaFlowAnchorOffset = function (mediaTop, mediaHeight, maxOffset) {
+    var candidates = productSection.querySelectorAll(
+      '[data-product-description], .product__accordion, product-recommendations, .product__view-details'
+    );
+    var gap = 24;
+
+    for (var index = 0; index < candidates.length; index += 1) {
+      var candidate = candidates[index];
+      if (!candidate || candidate.offsetParent === null) continue;
+
+      var candidateTop = candidate.getBoundingClientRect().top + window.scrollY;
+      var candidateOffset = candidateTop - mediaTop - mediaHeight - gap;
+      if (candidateOffset > 0) {
+        return Math.min(maxOffset, candidateOffset);
+      }
+    }
+
+    return maxOffset;
+  };
+
+  var syncDesktopMediaFlow = function () {
+    if (!state.active) {
+      productSection.style.setProperty('--desktop-media-flow-offset', '0px');
+      return;
+    }
+
+    var offset = Math.min(window.scrollY, state.maxOffset);
+    productSection.style.setProperty('--desktop-media-flow-offset', Math.max(offset, 0) + 'px');
+  };
+
+  var updateDesktopMediaFlow = function () {
+    if (!desktopMediaQuery.matches) {
+      clearDesktopMediaFlow();
+      return;
+    }
+
+    var mediaHeight = Math.ceil(mediaWrapper.getBoundingClientRect().height);
+    var infoHeight = Math.ceil(productInfo.getBoundingClientRect().height);
+    if (!mediaHeight || !infoHeight) {
+      clearDesktopMediaFlow();
+      return;
+    }
+
+    var maxOffset = Math.max(0, infoHeight - mediaHeight - 24);
+    var mediaTop = mediaWrapper.getBoundingClientRect().top + window.scrollY;
+    maxOffset = getDesktopMediaFlowAnchorOffset(mediaTop, mediaHeight, maxOffset);
+
+    if (maxOffset <= 24) {
+      clearDesktopMediaFlow();
+      return;
+    }
+
+    state.active = true;
+    state.maxOffset = maxOffset;
+    productSection.classList.add('product-section--desktop-media-flow');
+    syncDesktopMediaFlow();
+  };
+
+  updateDesktopMediaFlow();
+
+  if (typeof ResizeObserver === 'function') {
+    var resizeObserver = new ResizeObserver(updateDesktopMediaFlow);
+    resizeObserver.observe(mediaWrapper);
+    resizeObserver.observe(productInfo);
+  }
+
+  if (typeof desktopMediaQuery.addEventListener === 'function') {
+    desktopMediaQuery.addEventListener('change', updateDesktopMediaFlow);
+  } else if (typeof desktopMediaQuery.addListener === 'function') {
+    desktopMediaQuery.addListener(updateDesktopMediaFlow);
+  }
+
+  window.addEventListener('load', updateDesktopMediaFlow, { once: true });
+  window.addEventListener('resize', updateDesktopMediaFlow);
+  window.addEventListener('scroll', function () {
+    if (state.ticking) return;
+
+    state.ticking = true;
+    window.requestAnimationFrame(function () {
+      syncDesktopMediaFlow();
+      state.ticking = false;
+    });
+  }, { passive: true });
+}
 
 function initProductDesktopUx(wrapper) {
   var sectionId = wrapper.getAttribute('data-section-id');

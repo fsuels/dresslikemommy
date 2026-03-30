@@ -57,6 +57,18 @@
 }
 
 @media screen and (min-width: 990px) {
+  .product-section--desktop-media-flow .page-width--product-breadcrumbs {
+    transform: translateY(var(--desktop-media-flow-offset, 0px));
+    will-change: transform;
+  }
+
+  .product-section--desktop-media-flow .page-width--product-main .product__media-wrapper {
+    transform: translateY(var(--desktop-media-flow-offset, 0px)) !important;
+    will-change: transform;
+  }
+}
+
+@media screen and (min-width: 990px) {
   .product--large:not(.product--no-media) .product__media-wrapper {
     max-width: 65%;
     width: calc(65% - var(--grid-desktop-horizontal-spacing) / 2);

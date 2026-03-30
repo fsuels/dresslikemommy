@@ -13297,3 +13297,49 @@ Verification:
 
 Why:
 - The visible size chart and the option selector should use the same customer-facing child-size language so shoppers are not forced to mentally translate `90cm` into age ranges.
+
+### Task: Let short desktop PDP galleries follow page scroll
+Date: 2026-03-30 10:12:00 EDT
+Changes:
+- Updated `assets/product-desktop-ux.js` to initialize a desktop-only PDP media-flow check on `MainProduct-*` sections:
+  - compares the rendered media gallery height against the product info column,
+  - adds `product-section--desktop-media-flow` only when the gallery is materially shorter,
+  - re-evaluates on load, resize, and observed layout changes so image/accordion/variant-driven height changes stay in sync.
+- Updated `assets/section-main-product.css` with a desktop/product-page-only override so `media-gallery.product__column-sticky` falls back to normal document flow when `product-section--desktop-media-flow` is present.
+
+Verification:
+- `node --check assets/product-desktop-ux.js`
+- `git diff --check -- assets/product-desktop-ux.js assets/section-main-product.css ops/AGENT_WORKLOG.md`
+
+Why:
+- When the desktop PDP media stack is shorter than the info column, sticky positioning leaves a large empty gutter under the gallery.
+- Letting only the short gallery case return to normal scroll keeps breadcrumbs/thumbnails/gallery-related UI moving with the page until the next section boundary, without changing mobile or non-PDP templates.
+
+### Task: Restore local Shopify preview after Liquid upload errors
+Date: 2026-03-30 10:16:00 EDT
+Changes:
+- Updated `snippets/collection-seo-fallback.liquid` to collapse a multiline `if ... or ...` condition into valid single-line Shopify Liquid syntax for `force_theme_seo`.
+- Updated `snippets/product-image-alt.liquid` to collapse three multiline `if ... or ...` conditions into valid single-line Shopify Liquid syntax for audience/type keyword selection.
+
+Verification:
+- Reloaded the running `shopify theme dev` preview on `http://127.0.0.1:9292` after the snippet fixes.
+
+Why:
+- Shopify CLI was serving the upload-error page instead of the storefront because those snippets contained Liquid syntax Shopify rejects (`Unknown tag 'or'`).
+
+### Task: Make short desktop PDP media rail travel downward while scrolling
+Date: 2026-03-30 10:34:00 EDT
+Changes:
+- Reworked `assets/product-desktop-ux.js` desktop PDP media-flow logic:
+  - measures the left media rail height against the product info column,
+  - finds the first meaningful right-column anchor (`description`, accordion, recommendations, or view-details),
+  - computes a capped downward travel distance,
+  - updates `--desktop-media-flow-offset` on scroll/resize so the left media rail stays visually lower until the right-column content catches up.
+- Updated `assets/section-main-product.css` so, on desktop PDP only, both `.page-width--product-breadcrumbs` and `.product__media-wrapper` translate by the shared `--desktop-media-flow-offset`.
+
+Verification:
+- Reproduced the issue on local preview URL `http://127.0.0.1:9292/products/mommy-and-me-french-halter-neck-tiered-dress-white-cotton-silk-sleeveless-a-line-beach-dress`.
+- Used Playwright on desktop viewport (`1440x900`) to switch to the shorter square gallery image (`5/8`) and confirm the left rail now moves downward toward the description area instead of leaving a tall white gap.
+
+Why:
+- The problem was not a simple sticky toggle. The short-image state needed scroll-driven downward translation within the desktop PDP section so the media rail visually follows the shopper until the lower content boundary is reached.

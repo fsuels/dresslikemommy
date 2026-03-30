@@ -43,30 +43,16 @@
   assign product_context_text = product_context_text | downcase | strip
 
   assign audience_keyword = 'family'
-  if current_collection_handle == 'swimsuits'
-    or current_collection_handle == 'dresses'
-    or current_collection_handle == 'mommy-and-me'
-    or product_context_text contains 'mommy'
-    or product_context_text contains 'mother-daughter'
-    or product_context_text contains 'mother daughter'
-    or product_context_text contains 'daughter'
+  if current_collection_handle == 'swimsuits' or current_collection_handle == 'dresses' or current_collection_handle == 'mommy-and-me' or product_context_text contains 'mommy' or product_context_text contains 'mother-daughter' or product_context_text contains 'mother daughter' or product_context_text contains 'daughter'
     assign audience_keyword = 'mother daughter'
   endif
 
-  if current_collection_handle == 'matching-outfits'
-    or current_collection_handle == 'family-matching'
-    or current_collection_handle == 'family-matching-outfits'
-    or current_collection_handle == 'family-swimsuits'
-    or current_collection_handle == 'family-sets'
-    or product_context_text contains 'family'
+  if current_collection_handle == 'matching-outfits' or current_collection_handle == 'family-matching' or current_collection_handle == 'family-matching-outfits' or current_collection_handle == 'family-swimsuits' or current_collection_handle == 'family-sets' or product_context_text contains 'family'
     assign audience_keyword = 'family'
   endif
 
   assign product_type_keyword = 'outfit'
-  if current_collection_handle == 'family-swimsuits'
-    or current_collection_handle == 'swimsuits'
-    or product_context_text contains 'swimsuit'
-    or product_context_text contains 'bathing suit'
+  if current_collection_handle == 'family-swimsuits' or current_collection_handle == 'swimsuits' or product_context_text contains 'swimsuit' or product_context_text contains 'bathing suit'
     assign product_type_keyword = 'swimsuit'
   elsif current_collection_handle == 'trunks' or product_context_text contains 'trunk'
     assign product_type_keyword = 'swim trunks'
