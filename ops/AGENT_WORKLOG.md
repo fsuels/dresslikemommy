@@ -12985,3 +12985,37 @@ Open items:
   - confirm Google Ads keeps only `Google Shopping App Purchase` as Primary and moves GA4/legacy purchase actions to Secondary
   - confirm Shopify Customer Privacy / consent configuration is aligned with the active app pixels
 - If the business explicitly decides that Google Ads bidding must optimize on gross paid amount instead of merchandise revenue, treat that as an intentional unsupported architecture change and document the tradeoff before implementation.
+
+### Task: Reconcile 2026-03-30 Merchant export before applying new Shopify-side fixes
+Date: 2026-03-30 01:18:00 EDT
+AGENT_CONTINUITY_ANCHOR: 2026-03-30-mc-export-stale-vs-live
+Changes:
+- No theme/storefront code changes in this session.
+- Reconciled `/Users/fsuels/Downloads/product_issues_2026-03-30_01-47-49.csv` against live Shopify data with:
+  - `python3 ops/scripts/reconcile_merchant_center_issue_export.py --input-csv /Users/fsuels/Downloads/product_issues_2026-03-30_01-47-49.csv --output-dir ops/feed-engineering/2026-03-30-phase-4a-mc-issue-reconciliation`
+- Confirmed the export splits into three materially different buckets:
+  - `1196` rows = current live Google-published Shopify offers
+  - `212` rows = Shopify offers that still exist in Shopify but are no longer Google-published
+  - `144` rows = Shopify-pattern offer IDs that no longer exist in current Shopify catalog
+- Confirmed the stale-but-still-in-Shopify rows map only to archived, non-Google-published products:
+  - `maternity-solid-color-shoulderless-dress`
+  - `pregnant-women-striped-breastfeeding-dress`
+  - `daddy-and-me-like-father-like-son-t-shirt`
+  - `family-matching-faux-shearling-jackets-warm-winter-suede-coats`
+- Confirmed the `shopify_pattern_offer_not_found` bucket contains `18` unique offer IDs, which indicates deleted or otherwise non-current variants/products rather than live catalog records to repair.
+- Deferred new Shopify API writes until separating stale feed residue from true live catalog defects.
+
+Why:
+- Archived/deleted offers showing in Merchant Center are not fixed by writing more structured attributes into Shopify; they require Google feed/source cleanup or time for the Shopify source to age out.
+- Applying broad Shopify-side edits against stale diagnostics would risk changing live products that are not the real source of the reported stale rows.
+
+Verification:
+- `python3 ops/scripts/reconcile_merchant_center_issue_export.py --input-csv /Users/fsuels/Downloads/product_issues_2026-03-30_01-47-49.csv --output-dir ops/feed-engineering/2026-03-30-phase-4a-mc-issue-reconciliation`
+- Reviewed `ops/feed-engineering/2026-03-30-phase-4a-mc-issue-reconciliation/merchant_center_issue_reconciliation.csv`
+
+Open items:
+- Live current repair work still exists for the `Missing gender`, `Missing age group`, and `Missing color` rows that match active Google-published offers.
+- Stale archived/deleted offers need Merchant Center/source verification:
+  - confirm whether Shopify Google & YouTube is the only active source for these offer IDs
+  - remove or disable any legacy/supplemental feed that is still submitting the stale items
+  - if no second source exists, wait for the Shopify source refresh and then recheck whether Google has dropped the stale IDs
