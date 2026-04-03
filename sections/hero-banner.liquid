@@ -8,6 +8,12 @@
     background-color: {{ section.settings.bg_color }};
     overflow: hidden;
   }
+  .hero-banner picture {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
   .hero-banner__image {
     position: absolute;
     inset: 0;
@@ -54,6 +60,21 @@
   }
   .hero-banner__cta:hover {
     opacity: 0.9;
+  }
+
+  /* Desktop: text on left side over empty scenery */
+  @media screen and (min-width: 750px) {
+    .hero-banner__content {
+      text-align: left;
+      margin-left: 5%;
+      margin-right: auto;
+    }
+    .hero-banner__heading {
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3);
+    }
+    .hero-banner__subheading {
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.3);
+    }
   }
 
   @media screen and (max-width: 749px) {
@@ -135,6 +156,25 @@
 -%}
 
 <div class="hero-banner">
+  {%- comment -%}LOCAL TEST: responsive hero with desktop/mobile image swap. Remove this block and uncomment original below to revert.{%- endcomment -%}
+  <picture>
+    <source
+      media="(min-width: 750px)"
+      srcset="{{ 'hero-desktop.jpg' | asset_url }}"
+      width="2400"
+      height="1000"
+    >
+    <img
+      class="hero-banner__image"
+      src="{{ 'hero-mobile.jpg' | asset_url }}"
+      alt="{{ section.settings.heading | default: shop.name }}"
+      loading="{{ hero_image_loading }}"
+      fetchpriority="{{ hero_image_fetchpriority }}"
+      width="1200"
+      height="1600"
+    >
+  </picture>
+  {%- comment -%}ORIGINAL hero image code — uncomment to restore:
   {%- if section.settings.image != blank -%}
     {%- liquid
       assign hero_image_alt = section.settings.image.alt | default: section.settings.heading | default: shop.name
@@ -153,6 +193,7 @@
         preload: hero_image_preload
     }}
   {%- endif -%}
+  {%- endcomment -%}
   <div class="hero-banner__overlay"></div>
   <div class="hero-banner__content">
     {%- if section.settings.heading != blank -%}

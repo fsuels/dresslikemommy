@@ -13,7 +13,8 @@
       "type": "hero-banner",
       "custom_css": [
         ".hero-banner__heading {font-size: 32px;}",
-        "@media screen and (max-width: 749px) {.hero-banner__image {object-position: 80% center !important; } .hero-banner__heading {font-size: 20px !important; line-height: 1.2 !important; } .hero-banner__subheading {font-size: 12px !important; } .hero-banner__cta {font-size: 12px !important; padding: 8px 16px !important; } .hero-banner__content {padding-top: 55% !important; }}"
+        ".hero-banner__image {object-position: center 15% !important; }",
+        "@media screen and (max-width: 749px) {.hero-banner__image {object-position: 60% 30% !important; } .hero-banner__heading {font-size: 20px !important; line-height: 1.2 !important; } .hero-banner__subheading {font-size: 12px !important; } .hero-banner__cta {font-size: 12px !important; padding: 8px 16px !important; } .hero-banner__content {padding-top: 55% !important; }}"
       ],
       "settings": {
         "image": "shopify://shop_images/wmremove-transformed.png",
@@ -22,11 +23,89 @@
         "button_label": "SHOP MATCHING SWIMSUITS",
         "button_link": "/collections/swimsuits",
         "height": 550,
-        "overlay_opacity": 0,
+        "overlay_opacity": 25,
         "bg_color": "#2e2e2e",
         "text_color": "#ffffff",
         "button_color": "#f39c12",
         "button_text_color": "#ffffff"
+      }
+    },
+    "category_icons": {
+      "type": "category-icons",
+      "blocks": {
+        "icon_dresses": {
+          "type": "collection_icon",
+          "settings": {
+            "collection": "dresses",
+            "custom_label": "Dresses"
+          }
+        },
+        "icon_swimsuits": {
+          "type": "collection_icon",
+          "settings": {
+            "collection": "swimsuits",
+            "custom_label": "Swimsuits"
+          }
+        },
+        "icon_pajamas": {
+          "type": "collection_icon",
+          "settings": {
+            "collection": "pajamas",
+            "custom_label": "Pajamas"
+          }
+        },
+        "icon_tops": {
+          "type": "collection_icon",
+          "settings": {
+            "collection": "tops",
+            "custom_label": "Tops"
+          }
+        },
+        "icon_daddy_me": {
+          "type": "collection_icon",
+          "settings": {
+            "collection": "daddy-me",
+            "custom_label": "Daddy & Me"
+          }
+        },
+        "icon_family_sets": {
+          "type": "collection_icon",
+          "settings": {
+            "collection": "family-sets",
+            "custom_label": "Family Sets"
+          }
+        },
+        "icon_vacation": {
+          "type": "collection_icon",
+          "settings": {
+            "collection": "matching-family-vacation-outfits",
+            "custom_label": "Vacation"
+          }
+        },
+        "icon_new": {
+          "type": "collection_icon",
+          "settings": {
+            "collection": "new-matching-outfits",
+            "custom_label": "New Arrivals"
+          }
+        }
+      },
+      "block_order": [
+        "icon_dresses",
+        "icon_swimsuits",
+        "icon_pajamas",
+        "icon_tops",
+        "icon_daddy_me",
+        "icon_family_sets",
+        "icon_vacation",
+        "icon_new"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "color_scheme": "scheme-1",
+        "padding_top": 12,
+        "padding_bottom": 12
       }
     },
     "featured_collection": {
@@ -428,6 +507,7 @@
   },
   "order": [
     "hero_banner_main",
+    "category_icons",
     "featured_collection",
     "curated_product_grid_main",
     "collection_list_seasonal_matching",

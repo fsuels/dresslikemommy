@@ -6,6 +6,12 @@
       "runtimeExecutable": "node",
       "runtimeArgs": ["src/index.js"],
       "port": 3000
+    },
+    {
+      "name": "shopify-theme",
+      "runtimeExecutable": "/bin/zsh",
+      "runtimeArgs": ["-c", "export PATH=/opt/homebrew/bin:$PATH && shopify theme dev --store dresslikemommy-com.myshopify.com --host 127.0.0.1 --port 9292"],
+      "port": 9292
     }
   ]
 }
