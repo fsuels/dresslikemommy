@@ -1112,8 +1112,100 @@
         },
         "unpurchasable_product_generic": {
           "title": "منتج غير قابل للشراء",
-          "header": "تمت إزالة بعض العناصر من سلة التسوق الخاصة بك"
+          "header": "تمت إزالة بعض العناصر من سلة التسوق الخاصة بك",
+          "message": "هذه العناصر غير متاحة.",
+          "status_column_header": "غير متوفر"
+        },
+        "unfulfillable_product": {
+          "title": "التوصيل غير متوفر",
+          "message": {
+            "one": "%{delivery_method} لم يعد متاحًا لهذا العنصر.",
+            "other": "%{delivery_method} لم يعد متاحًا لهذه العناصر."
+          },
+          "default_message": {
+            "one": "طريقة التوصيل المختارة لم تعد متاحة لهذا العنصر.",
+            "other": "طريقة التوصيل المختارة لم تعد متاحة لهذه العناصر."
+          }
+        },
+        "unshippable_product": {
+          "title": "لا توجد خدمة توصيل متاحة",
+          "header": {
+            "one": "لا توجد خدمة توصيل لـ %{count} عنصر",
+            "other": "لا توجد خدمة توصيل لـ %{count} عنصر"
+          },
+          "message": {
+            "one": "سيتم إزالة هذه السلعة من سلة التسوق الخاصة بك لأنه لا توجد طرق توصيل متاحة لعنوانك.",
+            "other": "سيتم إزالة هذه العناصر من سلة التسوق الخاصة بك لأنه لا توجد طرق توصيل متاحة لعنوانك."
+          },
+          "status_column_header": "لا يوجد توصيل"
+        },
+        "price_update": {
+          "title": "تحديث السعر",
+          "description": "تغيرت أسعار هذه العناصر وتم تحديثها في سلة التسوق الخاصة بك.",
+          "updated_price": "السعر المحدّث"
+        },
+        "price_and_quantity_update": {
+          "title": "تحديث السعر والكمية",
+          "description": "تغيرت الأسعار والكميات المتاحة لهذه العناصر وتم تحديثها في سلة التسوق الخاصة بك."
+        },
+        "out_of_stock": {
+          "description": "لم تعد هذه العناصر متاحة وقد تمت إزالتها من سلة التسوق الخاصة بك.",
+          "items_unavailable": "بعض العناصر لم تعد متاحة وتم إزالتها من سلة التسوق الخاصة بك."
+        },
+        "out_of_stock_in_context_label": "هذا المنتج غير متوفر في بلدك/منطقتك."
+      },
+      "contextual_availability": {
+        "title": {
+          "one": "منتج غير متوفر",
+          "other": "المنتجات غير المتاحة"
+        },
+        "products_not_available": {
+          "one": "سيتم إزالة هذا المنتج من سلة التسوق الخاصة بك لأنه غير متوفر في بلدك/منطقتك.",
+          "other": "ستتم إزالة هذه المنتجات من سلة التسوق الخاصة بك لأنها غير متاحة في بلدك/منطقتك."
+        },
+        "all_products_in_cart_unavailable": {
+          "one": "هذا المنتج غير متوفر في بلدك/منطقتك.",
+          "other": "هذه المنتجات غير متاحة في بلدك/منطقتك."
+        },
+        "unavailable_label": "غير متوفر"
+      },
+      "merchandise_unavailable_in_buyer_location": {
+        "banner_title": {
+          "some_products_one": "هذا المنتج غير متوفر للتوصيل إلى %{location_name}.",
+          "some_products_other": "هذه المنتجات غير متاحة للتوصيل إلى %{location_name}.",
+          "all_products_one": "المنتج في سلة التسوق الخاصة بك غير متوفر للتوصيل إلى %{location_name}.",
+          "all_products_other": "المنتجات في سلة التسوق الخاصة بك غير متاحة للتوصيل إلى %{location_name}."
+        },
+        "missing_country_fallback": "بلدك",
+        "indeterminate_location_fallback": "موقعك",
+        "cart_updated": "تم تحديث سلة التسوق الخاصة بك.",
+        "change_address_only": "قم بتغيير عنوان التسليم للمتابعة.",
+        "change_address_or_remove": "غير عنوان التسليم أو %{remove_action}.",
+        "remove_items_action": {
+          "one": "إزالة العنصر غير المتوفر",
+          "other": "إزالة العناصر غير المتاحة"
+        },
+        "empty_cart_action": "سلة فارغة والعودة إلى المتجر"
+      },
+      "deliverability": {
+        "not_deliverable": {
+          "title": {
+            "one": "لا توجد خدمة توصيل لـ %{count} عنصر",
+            "other": "لا توجد خدمة توصيل لـ %{count} عنصر"
+          },
+          "message": {
+            "one": "سيتم إزالة هذه السلعة من سلة التسوق الخاصة بك لأنه لا توجد طرق توصيل متاحة لعنوانك.",
+            "other": "سيتم إزالة هذه العناصر من سلة التسوق الخاصة بك لأنه لا توجد طرق توصيل متاحة لعنوانك."
+          },
+          "label": "لا يوجد توصيل"
         }
+      },
+      "order_summary": {
+        "title": "ملخص الطلب",
+        "group_title_label": "جزء من \"%{group_title}\"",
+        "for_add_on": "لـ: %{group_title}",
+        "from_shop_heading": "من %{shop_name}",
+        "from_other_stores_heading": "من متاجر أخرى"
       }
     }
   }
