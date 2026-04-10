@@ -2963,7 +2963,81 @@
       "password_mismatch": "חייב להתאים לסיסמה שסופקה",
       "contains_spaces": "מתחיל או מסתיים ברווחים.",
       "invalid_for_country": "לא תקף עבור %{country}",
-      "invalid_for_country_and_province": "לא תקף עבור %{province} ו-%{country}"
+      "invalid_for_country_and_province": "לא תקף עבור %{province} ו-%{country}",
+      "invalid_province_in_country": "אינה מחוז תקף ב-%{country}",
+      "invalid_state_in_country": "אינה מדינה תקפה ב-%{country}",
+      "invalid_region_in_country": "אינה אזור תקף ב-%{country}",
+      "less_than_or_equal_to": "חייב להיות פחות או שווה ל- %{count}",
+      "not_supported": "לא נתמך",
+      "full_name_required": "הזן שם פרטי ושם משפחה",
+      "invalid_for_card_type": "לא תקף",
+      "invalid_type": "מצטערים, איננו מקבלים כרטיסים מסוג זה",
+      "invalid_format": "הפורמט אינו תקין",
+      "expired": "פג תוקפו",
+      "invalid_start_date_or_issue_number_for_debit": "נדרש תאריך התחלה תקף או מספר גיליון",
+      "invalid_expiry_year": "אינו שנת תפוגה תקפה",
+      "reset_password_html": "כתובת דואר אלקטרוני זו כבר משויכת לחשבון. אם החשבון הזה שייך לך, תוכל <a href=\"/account/login#recover\">לאפס את הסיסמה שלך</a>",
+      "verify_email": "שלחנו מייל ל-%{customer_email}, אנא לחץ על הקישור המצורף כדי לאמת את כתובת האימייל שלך.",
+      "product_not_available": "המוצר אינו מפורסם עבור לקוח זה.",
+      "shop_404": {
+        "title": "צור אתר מסחר אלקטרוני ומכור באינטרנט! תוכנת מסחר אלקטרוני מבית Shopify",
+        "heros": {
+          "store_unavailable": "מצטערים, החנות הזו אינה זמינה כרגע.",
+          "store_not_exist": "החנות הזו אינה קיימת.",
+          "no_storefront": "לחנות זו עדיין אין אתר אינטרנט."
+        },
+        "links": {
+          "explore_other_stores": "חקור חנויות נוספות",
+          "start_free_trial": "התחל ניסיון חינם"
+        },
+        "owner_ctas": {
+          "header": "האם אתה בעל החנות?",
+          "fix_domain": "סיים להגדיר את כתובת האינטרנט החדשה שלך, עבור אל %{domain_settings_link}. לחץ על \"חבר דומיין\" והזן: %{domain}.<br>אם יש לך קושי להיכנס לחנות שלך, נסה את דף %{forgot_your_store_link}.",
+          "fix_domain_link_text": "הגדרות הדומיין שלך",
+          "forgot_your_store_link_text": "שכחת את החנות שלך",
+          "add_storefront": "אתה יכול להגדיר את האתר שלך על ידי הוספת ערוץ החנות המקוונת ב-%{admin_link} שלך. אם אתה נתקל בקושי להיכנס לחנות שלך, נסה את הדף %{forgot_your_store_link}.",
+          "admin_link_text": "מנהל מערכת"
+        },
+        "ctas": {
+          "sell_in_person": {
+            "header": "למכור באופן אישי",
+            "caption": "קבל את התכונות הדרושות לניהול חנות הקמעונאות שלך, בין אם אתה רק מתחיל או מתרחב.",
+            "link_text": "התחל ניסיון חינם"
+          },
+          "open_a_store": {
+            "header": "פתח חנות שופיפיי חדשה",
+            "caption": "התחל ניסיון חינם ל-3 ימים, ואז המשך בתשלום של 1 דולר לחודש למשך 3 החודשים הבאים.",
+            "link_text": "הירשם עכשיו"
+          },
+          "editions": {
+            "header": "בדוק את מהדורות Shopify",
+            "caption": "עם יותר מ-100 עדכוני מוצרים, תוכלו להיות פרודוקטיביים ויצירתיים יותר, ועוצמתיים במסחר יותר ממה שדמיינתם אי פעם.",
+            "link_text": "חקור מהדורות אחרונות"
+          },
+          "store_owner": {
+            "header": "האם אתה בעל החנות?",
+            "caption": "נתקלת בבעיות בהיכנס לחנות שלך? נסה את תכונת %{forgot_your_store_link}. אם אתה מעוניין להפעיל מחדש את החנות שלך, צור קשר עם %{shopify_support_link}.",
+            "shopify_support_link_text": "תמיכה בשופיפיי"
+          }
+        }
+      }
+    },
+    "notices": {
+      "customer": {
+        "password_reset_error": "שגיאה באיפוס הסיסמה",
+        "subscribe_error": "שגיאת הרשמה",
+        "unsubscribe_error": "שגיאה בביטול המנוי",
+        "no_account_found": "לא נמצא חשבון עם כתובת הדוא\"ל הזו.",
+        "invalid_credentials": "דואר אלקטרוני או סיסמה שגויים.",
+        "denylisted_reset_password": "לא ניתן היה לגשת לחשבונך מכיוון שהסיסמה הנוכחית אינה בטוחה. תקבל דואר אלקטרוני לעדכון הסיסמה שלך.",
+        "signup_disabled": "יצירת חשבון לקוח הושבתה."
+      },
+      "address": {
+        "updated": "הכתובת עודכנה בהצלחה.",
+        "error_updating": "שגיאה בעדכון הכתובת",
+        "created": "הכתובת נוצרה בהצלחה",
+        "error_creating": "שגיאה ביצירת הכתובת."
+      }
     }
   },
   "sections": {
