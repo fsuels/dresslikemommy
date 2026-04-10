@@ -505,8 +505,100 @@
         },
         "unpurchasable_product_generic": {
           "title": "מוצר שלא ניתן לרכישה",
-          "header": "חלק מהפריטים הוסרו מהעגלה שלך"
+          "header": "חלק מהפריטים הוסרו מהעגלה שלך",
+          "message": "פריטים אלה אינם זמינים.",
+          "status_column_header": "לא זמין"
+        },
+        "unfulfillable_product": {
+          "title": "משלוח אינו זמין",
+          "message": {
+            "one": "שיטת %{delivery_method} כבר אינה זמינה עבור פריט זה.",
+            "other": "%{delivery_method} כבר אינו זמין עבור פריטים אלה."
+          },
+          "default_message": {
+            "one": "שיטת המשלוח שנבחרה כבר אינה זמינה עבור פריט זה.",
+            "other": "שיטת המשלוח שנבחרה כבר אינה זמינה עבור פריטים אלה."
+          }
+        },
+        "unshippable_product": {
+          "title": "אין משלוח זמין",
+          "header": {
+            "one": "אין משלוח זמין עבור %{count} פריטים",
+            "other": "אין משלוח זמין עבור %{count} פריטים"
+          },
+          "message": {
+            "one": "פריט זה יוסר מהעגלה שלך מכיוון שאין שיטות משלוח זמינות לכתובת שלך.",
+            "other": "פריטים אלה יוסרו מהעגלה שלך מכיוון שאין שיטות משלוח זמינות לכתובת שלך."
+          },
+          "status_column_header": "אין משלוח"
+        },
+        "price_update": {
+          "title": "עדכון מחיר",
+          "description": "המחירים של פריטים אלה השתנו ומעודכנים בעגלת הקניות שלך.",
+          "updated_price": "מחיר מעודכן"
+        },
+        "price_and_quantity_update": {
+          "title": "עדכון מחיר וכמות",
+          "description": "המחירים והכמויות הזמינות עבור פריטים אלה השתנו ומעודכנים בעגלת הקניות שלך."
+        },
+        "out_of_stock": {
+          "description": "פריטים אלה אינם זמינים יותר והוסרו מהעגלה שלך.",
+          "items_unavailable": "חלק מהפריטים אינם זמינים יותר והוסרו מהעגלה שלך."
+        },
+        "out_of_stock_in_context_label": "מוצר זה אינו זמין במדינתך/אזור מגוריך."
+      },
+      "contextual_availability": {
+        "title": {
+          "one": "מוצר לא זמין",
+          "other": "מוצרים שאינם זמינים"
+        },
+        "products_not_available": {
+          "one": "מוצר זה יוסר מהעגלה שלך מכיוון שאינו זמין במדינתך/אזור מגוריך.",
+          "other": "מוצרים אלה יוסרו מהעגלה שלך כי הם אינם זמינים במדינתך/אזור מגוריך."
+        },
+        "all_products_in_cart_unavailable": {
+          "one": "מוצר זה אינו זמין במדינתך/אזור מגוריך.",
+          "other": "מוצרים אלה אינם זמינים במדינתך/אזור מגוריך."
+        },
+        "unavailable_label": "לא זמין"
+      },
+      "merchandise_unavailable_in_buyer_location": {
+        "banner_title": {
+          "some_products_one": "מוצר זה אינו זמין למשלוח ל-%{location_name}.",
+          "some_products_other": "מוצרים אלה אינם זמינים למשלוח ל-%{location_name}.",
+          "all_products_one": "המוצר בעגלת הקניות שלך אינו זמין למשלוח ל-%{location_name}.",
+          "all_products_other": "המוצרים בעגלת הקניות שלך אינם זמינים למשלוח ל-%{location_name}."
+        },
+        "missing_country_fallback": "המדינה שלך",
+        "indeterminate_location_fallback": "המיקום שלך",
+        "cart_updated": "העגלה שלך עודכנה.",
+        "change_address_only": "שנה את כתובת המשלוח כדי להמשיך.",
+        "change_address_or_remove": "שנה את כתובת המשלוח או %{remove_action}.",
+        "remove_items_action": {
+          "one": "הסר פריט שאינו זמין",
+          "other": "הסר פריטים שאינם זמינים"
+        },
+        "empty_cart_action": "רוקן את העגלה וחזור לחנות"
+      },
+      "deliverability": {
+        "not_deliverable": {
+          "title": {
+            "one": "אין משלוח זמין עבור %{count} פריטים",
+            "other": "אין משלוח זמין עבור %{count} פריטים"
+          },
+          "message": {
+            "one": "פריט זה יוסר מהעגלה שלך מכיוון שאין שיטות משלוח זמינות לכתובת שלך.",
+            "other": "פריטים אלה יוסרו מהעגלה שלך מכיוון שאין שיטות משלוח זמינות לכתובת שלך."
+          },
+          "label": "אין משלוח"
         }
+      },
+      "order_summary": {
+        "title": "סיכום הזמנה",
+        "group_title_label": "חלק מ- \"%{group_title}\"",
+        "for_add_on": "עבור: %{group_title}",
+        "from_shop_heading": "מאת %{shop_name}",
+        "from_other_stores_heading": "מחנויות אחרות"
       }
     }
   },
