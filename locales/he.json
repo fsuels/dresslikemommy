@@ -1736,7 +1736,7 @@
         "title": "משלוח אינו זמין",
         "invalid_selected_address": "כתובת המשלוח שנבחרה אינה תקפה",
         "invalid_selected_address_with_update_link": "כתובת המשלוח שנבחרה אינה תקפה. %{update_address_link} או בחר כתובת אחרת",
-        "unavailable_addresses_only_countries": "ההזמנה שלך יכולה להישלח רק ל-{{countriesList}}. הוסף כתובת חדשה כדי להמשיך.",
+        "unavailable_addresses_only_countries": "ההזמנה שלך יכולה להישלח רק ל{{countriesList}}. הוסף כתובת חדשה כדי להמשיך.",
         "unavailable_address_country": "השילוח אינו זמין במדינה שבחרת. השתמש בכתובת אחרת כדי להמשיך",
         "unavailable_selected_address": "משלוח אינו זמין לכתובת שנבחרה",
         "unavailable_selected_address_for_region": "השילוח אינו זמין עבור {{region}}. בחר כתובת אחרת כדי להמשיך"
@@ -1766,7 +1766,7 @@
         "redirecting_page_title": "מועבר מחדש…",
         "redirecting_title": "מועבר מחדש…",
         "redirecting_notice": "אנא המתן בזמן שאנו מפנים אותך.",
-        "redirecting_to_bank": "מעביר ל-{{bank}}",
+        "redirecting_to_bank": "מועבר ל-{{bank}}",
         "complete_your_purchase_title": "השלים את הרכישה שלך",
         "continue_to_payment_gateway_notice": "המשך לתשלום כדי להוסיף את פרטי התשלום שלך.",
         "continue_to_payment_gateway_button_label": "המשך לתשלום",
@@ -3543,7 +3543,85 @@
         "canceled_title": "ההזמנה שלך בוטלה",
         "come_back": "חזור לעמוד זה לקבלת עדכונים על מצב המשלוח שלך.",
         "company_tracking_number": "מספר מעקב של {{company}}:",
-        "confirmed_label": "מאושר"
+        "confirmed_label": "מאושר",
+        "confirmed_title": "ההזמנה שלך אושרה",
+        "confirmed_description_pickup": "תקבל דואר אלקטרוני כאשר ההזמנה שלך תהיה מוכנה לאיסוף.",
+        "confirmed_description_digital": "תקבל דואר אלקטרוני כאשר ההזמנה שלך תהיה מוכנה.",
+        "confirmed_description_gift_card_text": "תקבל הודעת טקסט כאשר ההזמנה שלך תהיה מוכנה.",
+        "complete_label": "הושלם",
+        "delivered_label": "נמסר",
+        "delivered_description_gift_card": {
+          "one": "כרטיס המתנה נשלח בדואר אלקטרוני.",
+          "other": "כרטיסי המתנה נשלחו בדואר אלקטרוני."
+        },
+        "delivered_description_gift_card_text": {
+          "one": "כרטיס המתנה נשלח בהודעת טקסט.",
+          "other": "כרטיסי מתנה נשלחו בהודעת טקסט."
+        },
+        "gift_card_label": {
+          "one": "כרטיס מתנה",
+          "other": "כרטיסי מתנה"
+        },
+        "gift_card_resend_button": {
+          "one": "שלח שוב את כרטיס המתנה",
+          "other": "שלח שוב את כרטיסי המתנה"
+        },
+        "gift_resend_success": {
+          "one": "כרטיס המתנה נשלח מחדש",
+          "other": "כרטיסי מתנה נשלחו מחדש"
+        },
+        "gift_resend_failure": {
+          "one": "הייתה בעיה בשליחת כרטיס המתנה שלך מחדש. נסה שוב או פנה אלינו.",
+          "other": "הייתה בעיה בשליחת שוב של כרטיסי המתנה שלך. נסה שוב או פנה אלינו."
+        },
+        "confirmed_gift_card_additional_description": {
+          "one": "כרטיס המתנה יישלח בדואר אלקטרוני נפרד.",
+          "other": "כל כרטיס מתנה יישלח בדואר אלקטרוני נפרד."
+        },
+        "confirmed_gift_card_additional_description_text": {
+          "one": "כרטיס המתנה יישלח בהודעה נפרדת.",
+          "other": "כל כרטיס מתנה יישלח בהודעה נפרדת."
+        },
+        "status_timestamp": "עודכן {{date}}",
+        "estimated_delivery": "צפוי {{date}}",
+        "expected_by": "צפוי עד {{date}}",
+        "was_expected_by": "צפוי עד {{date}}",
+        "delivered": "הגיע {{date}}",
+        "buy_with_prime_logo_accessibility_label": "לוגו קנה עם פריים של אמזון",
+        "in_review_label": "בסקירה",
+        "in_review_title": "ההזמנה שלך נמצאת בבדיקה",
+        "last_updated": "עודכן לאחרונה {{date}}",
+        "multiple_shipments_label": "משלוחים מרובים",
+        "multiple_statuses_label": "מצבי הזמנה מרובים",
+        "no_tracking_number": "אין מספר מעקב למשלוח זה.",
+        "tracking_number": {
+          "one": "מספר מעקב",
+          "other": "מספרי מעקב"
+        },
+        "on_its_way_label": "בדרך",
+        "out_for_delivery_label": "בדרך למשלוח",
+        "resume_tracking": "מעקב אחר קורות חיים",
+        "submitted_label": "נשלח",
+        "submitted_description": "סקור את פרטי ההזמנה והתשלום.",
+        "there_was_a_problem_label": "הייתה בעיה",
+        "track_shipment": "עקוב אחר המשלוח",
+        "request_return": "בקשת החזרה",
+        "view_order_for_details": "הצג הזמנה לפרטים",
+        "external_promise_manage_button_label": {
+          "buy_with_prime": "נהל באמזון"
+        },
+        "amazon_buy_with_prime": {
+          "order_tracking_link": {
+            "text": "נהל עם אמזון",
+            "new_window_disclaimer": "(נפתח בחלון חדש)"
+          }
+        },
+        "delivery_promise_v2": {
+          "promise_line": {
+            "shop_promise_brand_label": "משלוח מובטח על ידי",
+            "external_promise_brand_label": "משלוח על ידי"
+          }
+        }
       }
     }
   }
