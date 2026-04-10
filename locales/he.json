@@ -1598,7 +1598,67 @@
         "tips_invalid_tip_amount": "הזן טיפ קטן מ-%{amount}",
         "gift_card_already_applied": "כרטיס המתנה הזה כבר הוחל על ההזמנה שלך",
         "gift_card_disabled": "כרטיס המתנה הזה אינו זמין יותר",
-        "gift_card_expired": "כרטיס המתנה הזה פג תוקף"
+        "gift_card_expired": "כרטיס המתנה הזה פג תוקף",
+        "gift_card_depleted": "לכרטיס המתנה הזה אין יתרה זמינה",
+        "gift_card_currency_mismatch": "ניתן להשתמש רק בכרטיסי מתנה במטבע %{checkout_currency} להזמנה זו",
+        "gift_cards_not_supported_with_deferred_purchase_options": "כרטיסי מתנה אינם נתמכים עם אפשרויות רכישה במועד מאוחר יותר.",
+        "gift_card_buying_gift_card": "אינך יכול להשתמש בכרטיס מתנה כדי לקנות כרטיס מתנה נוסף",
+        "payment_gateway_missing": "בחר שיטת תשלום.",
+        "payment_gateway_needs_paid_plan_error": "שיטת התשלום הזו אינה זמינה בחנות כרגע",
+        "payment_gateway_not_in_test_mode": "המערכת אינה מוגדרת לבדיקת הזמנות. חנות זו אינה יכולה לקבל הזמנות אמיתיות או תשלומים אמיתיים.",
+        "payment_gateway_incompatible_with_multi_currency": "כדי להשלים את התשלום במטבע המקומי שלך, עליך לשלם בכרטיס אשראי.",
+        "payment_gateway_unsupported_for_subscriptions": "שיטת התשלום הזו אינה זמינה להזמנות במנוי.",
+        "payment_gateway_unsupported_for_deferred_purchase_options": "שיטת תשלום זו אינה זמינה לאפשרויות רכישה במועד מאוחר יותר.",
+        "payment_gateway_unsupported_for_country": "שיטת התשלום הזו אינה זמינה למדינת המשלוח שלך.",
+        "payment_gateway_unsupported_for_development_store_html": "כדי לבצע הזמנה לבדיקת מערכת, תצטרכו להשתמש בשער תשלום לבדיקות. למדו עוד על <a href=\"%{docs_link}\">בדיקת הזמנות בחנויות בפיתוח</a>.",
+        "payment_gateway_unsupported_for_order_above_maximum_orders_html": "הגעת למגבלת ההזמנות בחנות הפיתוח עם מעבד התשלומים הזה. כדי לבצע הזמנה נוספת, תצטרך להשתמש בשער תשלום לבדיקות. למידע נוסף על <a href=\"%{docs_link}\">בדיקת הזמנות בחנויות פיתוח</a>.",
+        "purchase_options_agreement_blank": "כדי להמשיך ברכישתך, הסכים לתנאי הרכישה המושהית או החוזרת.",
+        "physical_gift_card_invalid_quantity": "פריטי שורת כרטיס מתנה פיזי חייבים לכלול כמות התואמת למספר קודי כרטיסי המתנה.",
+        "physical_gift_card_duplicate_code": "פריט שורת כרטיס מתנה פיזי מכיל קוד כפול.",
+        "physical_gift_card_invalid_code": "קוד כרטיס המתנה הפיזי אינו תקף.",
+        "email_blank": "הזן כתובת דוא\"ל",
+        "phone_blank": "הזן מספר טלפון",
+        "address_country_invalid": "בחר מדינה/אזור מהרשימה",
+        "address_zip_invalid": "הזן מיקוד תקין",
+        "gift_card_invalid": "כרטיס מתנה \"••••%{last_four_characters}\" אינו בתוקף יותר",
+        "vaulting_agreement_blank": "יש לשמור את אמצעי התשלום שלך מכיוון שהתשלום עבור יתרת ההזמנה הזו יידרש מאוחר יותר.",
+        "sms_marketing_phone_invalid": "הזן מספר טלפון תקין",
+        "shipping_method_invalid_phone_number": "עדכן את מספר הטלפון בכתובת המשלוח שלך כדי לראות את שיטות המשלוח הזמינות.",
+        "address_suggestion_did_you_mean_html": "האם התכוונת ל-%{html}?",
+        "split_cart_international_shipping_not_supported": "כל הפריטים חייבים להשתמש באותה שיטת משלוח בעת משלוח בינלאומי. עדכן את שיטת המשלוח או צור הזמנות מרובות.",
+        "invalid_delivery_address_reference_handle": "לא ניתן להתאים את מזהה הפניה לכתובת המשלוח לאף אחת מכתובות המשלוח הזמינות.",
+        "must_use_available_delivery_address": "יש לבחור כתובת משלוח מתוך כתובות המשלוח הזמינות.",
+        "must_use_available_shipping_rate": "יש לבחור את תעריף המשלוח מתוך תעריפי המשלוח הזמינים.",
+        "split_by_delivery_method_not_allowed": "חלוקה לפי שיטת המשלוח אינה מותרת עבור מפגש או חנות זו.",
+        "split_by_delivery_method_requires_merchandise_from_single_location": "חלוקה לפי שיטת המשלוח מחייבת שכל פריט במשלוח יישלח ממיקום יחיד.",
+        "split_by_delivery_method_unsupported_method_type": "הופרד לפי שיטת המשלוח שניסו להשתמש בה, אך סוג שיטת המשלוח אינו נתמך."
+      },
+      "store_credit_errors": {
+        "generic_error": "הייתה בעיה עם האשראי בחנות שלך. נסה שוב או טען את הדף מחדש."
+      },
+      "redeemable_errors": {
+        "gift_card": {
+          "duplicate": "כרטיס המתנה כבר הוחל על ההזמנה שלך",
+          "insufficient_funds": "לכרטיס המתנה הזה אין יתרה זמינה",
+          "expired": "כרטיס המתנה הזה פג תוקף",
+          "not_available": "כרטיס המתנה הזה אינו זמין יותר",
+          "invalid": "הזן כרטיס מתנה תקף",
+          "currency_mismatch": "רק כרטיסי מתנה במטבע %{shop_currency} מתקבלים",
+          "generic": "כרטיס המתנה לא יכול להתווסף לתשלום",
+          "throttle_limit_exceeded": "חרגת ממספר הניסיונות המקסימלי. נסה שוב מאוחר יותר.",
+          "no_longer_available": "כרטיס המתנה זה אינו ניתן לשימוש יותר בקופה זו"
+        }
+      },
+      "merchant_instruction_errors": {
+        "empty_stable_id": "הוראות המוצרים של %{position} %{name} מכילות מזהה יציב ריק.",
+        "invalid_stable_id_target": "הוראות המוצרים של %{position} %{name} מתייחסות למזהה יציב %{stable_id}, אך מזהה יציב זה אינו נמצא בקווי המוצרים.",
+        "duplicate_variant_id": "הוראות המוצרים של %{position} %{name} מכילות מזהה וריאנט כפול %{variant_id}.",
+        "invalid_variant_id_target": "הוראות המוצרים של %{name} מתייחסות למזהה הגרסה %{variant_id}, אך גרסה זו אינה נמצאת בקווי המוצרים.",
+        "invalid_price_override_target": "ההוראת ביטול המחיר לפריט השורה %{stable_id} אינה תקפה מכיוון שמדובר ברכיב בחבילה.",
+        "discount_not_supported": "הוראות הסוחר להחלת הנחה על סחורה אינן תומכות בסוג הנחה זה."
+      },
+      "payment_errors": {
+        "amount_too_small": "סכום התשלום המינימלי חייב להיות גבוה מ-0.50 דולר אמריקאי. נסה שוב עם סכום גבוה יותר."
       }
     }
   },
