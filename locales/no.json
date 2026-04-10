@@ -2770,9 +2770,79 @@
           },
           "missing": {
             "first_name": "Skriv inn et fornavn",
-            "billing_first_name": "Skriv inn fornavn for fakturaadresse"
+            "billing_first_name": "Skriv inn fornavn for fakturaadresse",
+            "last_name": "Skriv inn et etternavn",
+            "address1": "Skriv inn en adresse",
+            "billing_address1": "Skriv inn en fakturaadresse",
+            "address2": "Skriv inn en leilighet, suite osv.",
+            "billing_address2": "Skriv inn en fakturaadresse leilighet, suite, osv.",
+            "city": "Skriv inn en by",
+            "billing_city": "Skriv inn en faktureringsadresse by",
+            "province": "Velg en stat / fylke",
+            "billing_province": "Velg en fakturaadresse stat / fylke",
+            "country": "Velg et land/område",
+            "zip": "Skriv inn et postnummer",
+            "billing_zip": "Skriv inn postnummer for fakturaadressen",
+            "phone": "Skriv inn et telefonnummer",
+            "contact_info": "Skriv inn kontaktinformasjon"
+          },
+          "formatting": {
+            "name_contains_emojis": "Slett emoji fra navnet ditt",
+            "postal_code_contains_emoji": "Slett emoji fra postnummeret ditt",
+            "first_name_too_long": "Fornavnet inneholder for mange bokstaver",
+            "last_name_too_long": "Etternavn inneholder for mange bokstaver",
+            "address_too_long": "Adresselinjen er for lang"
+          },
+          "select_different_shipping_address_to_resolve_errors": "Din leveringsadresse er ugyldig. Velg en annen adresse eller bruk en ny.",
+          "processing_error_checkout_as_guest": "Det oppstod et problem med behandlingen av betalingen din. Prøv igjen eller {{checkout_as_guest_link}}."
+        },
+        "scrim": {
+          "continue_purchase_in_window": "Fortsett kjøpet i {{walletName}}-vinduet",
+          "and_return_to_checkout": "og gå tilbake til kassen",
+          "cancel": "Avbryt"
+        }
+      },
+      "note": {
+        "length_exceeds_maximum": "Reduser størrelsen på notatet til 5000 eller færre tegn."
+      },
+      "offsite_payment_failed": {
+        "title": "Betaling utenfor stedet mislyktes",
+        "payment_not_processed_title": "Betalingen mislyktes",
+        "payment_not_processed_text": "Prøv å skanne QR-koden på nytt. Hvis det fortsatt ikke fungerer, gi beskjed til personalet vårt og prøv en annen betalingsmåte.",
+        "payment_link_expired_title": "Betalingslenken er utløpt",
+        "payment_link_expired_text": "Prøv å skanne QR-koden på nytt."
+      },
+      "one": {
+        "errors": {
+          "merchandise": {
+            "gift_card_price_must_be_greater_than_zero": "Gavekortprisen må være større enn 0.",
+            "gift_card_price_must_not_exceed_limit": "Gavekortprisen må ikke overstige %{gift_card_limit}.",
+            "subtotal_limit_reached": "Maksimalt antall varelinjer er nådd.",
+            "signature_mismatch": "Uoverensstemmelse i varemerke for linje %{stable_id}."
           }
         }
+      },
+      "remote": {
+        "errors": {
+          "only_remote_merchandise_lines": "Kassen inneholder kun varer fra eksterne leverandører. Du må omdirigeres til den eksterne butikken for å fullføre kjøpet.",
+          "currency_mismatch": "Denne varen kan ikke legges til i handlekurven fordi den kommer fra en butikk som bruker en annen valuta.",
+          "currency_mismatch_removal": "En vare ble fjernet fra handlekurven din fordi den kommer fra en butikk som bruker en annen valuta.",
+          "max_remote_shops_exceeded": "Dette produktet kan ikke legges til fordi handlekurven din allerede har maks antall fra andre butikker."
+        }
+      },
+      "units": {
+        "milligram": "mg",
+        "gram": "g",
+        "kilogram": "kg",
+        "milliliter": "ml",
+        "centiliter": "kl",
+        "cubic_meter": "m³",
+        "millimeter": "mm",
+        "centimeter": "cm",
+        "meter": "m",
+        "square_meter": "m²",
+        "ounce": "uns",
+        "pound": "lb"
       }
     }
   },
