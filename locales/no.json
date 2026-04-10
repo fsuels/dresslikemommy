@@ -2607,8 +2607,100 @@
         "search_button": "Finn butikker",
         "no_stores_found": "Ingen butikker funnet",
         "all_stores_far_away": {
-          "title": "De nærmeste stedene er mer enn %{distance} unna"
+          "title": "De nærmeste stedene er mer enn %{distance} unna",
+          "title_with_item": {
+            "one": "Den nærmeste lokasjonen med varen din er mer enn %{distance} fra %{location}",
+            "other": "Det nærmeste stedet med varene dine er mer enn %{distance} fra %{location}"
+          },
+          "title_with_specific_location": "Den nærmeste lokasjonen med varen din er mer enn %{distance} unna %{location}",
+          "description": "Velg et sted eller %{ship_to_address_link}",
+          "ship_to_address_link": "leveringsadresse",
+          "change_location_link": "Endre din plassering"
+        },
+        "selected_pickup_option_no_longer_available": {
+          "title": "Din tidligere valgte plassering er ikke lenger tilgjengelig",
+          "description": "Velg en ny plassering eller %{ship_to_address_link}",
+          "ship_to_address_link": "leveringsadresse"
+        },
+        "could_not_resolve_address": "Adressen din kunne ikke bli funnet. Prøv igjen eller bruk en annen adresse",
+        "paginator": {
+          "accessibility_label": "Lokal henting sideinndeling",
+          "previous": "Forrige side",
+          "next": "Neste side",
+          "label": {
+            "one": "%{first} - %{last} av %{count} butikker",
+            "other": "%{first} - %{last} av %{count} butikker"
+          }
+        },
+        "reveal_more_label": {
+          "one": "Vis %{count} flere steder",
+          "other": "Vis %{count} flere steder"
+        },
+        "pickup_unavailable_banner_title": {
+          "one": "Ingen steder med varen din",
+          "other": "Ingen steder med dine varer"
+        },
+        "pickup_unavailable_banner_title_with_country": {
+          "one": "Ingen steder i %{country} med varen din",
+          "other": "Ingen steder i %{country} med dine varer"
+        },
+        "pickup_unavailable_banner_body": {
+          "ship_items": "Send varene dine",
+          "search_elsewhere": "søk et annet sted",
+          "ship_items_or_search_elsewhere": "%{ship_items} eller %{search_elsewhere}"
         }
+      },
+      "split_delivery": {
+        "pickup_all_items": "Plukk opp alle gjenstander",
+        "items_for_pickup": "Varer for henting",
+        "items_for_shipping": "Varer for frakt",
+        "delivery_method": "Delt leveringsmetode",
+        "delivery_method_menu": "Meny for delt leveringsmetode",
+        "inventory_issue_banner": {
+          "heading": {
+            "cannot_be_picked_up": {
+              "one": "%{count} vare kan ikke hentes",
+              "other": "%{count} varer kan ikke hentes"
+            },
+            "cannot_be_shipped": {
+              "one": "%{count} vare kan ikke sendes",
+              "other": "%{count} varer kan ikke sendes"
+            }
+          },
+          "remove_item": {
+            "one": "Fjern vare",
+            "other": "Fjern varer"
+          },
+          "ship_separately": {
+            "one": "send det separat",
+            "other": "send dem separat"
+          },
+          "pick_them_up_in_store": {
+            "one": "hent den i butikken",
+            "other": "hent dem i butikken"
+          },
+          "remove_items_or_ship": "%{remove_items_link} eller %{ship_separately_link}",
+          "remove_items_or_pickup": "%{remove_items_link} eller %{pickup_in_store_link}"
+        }
+      },
+      "captcha": {
+        "title": "Fullfør CAPTCHA for å fortsette",
+        "errors": {
+          "not_solved": "Fullfør CAPTCHA for å fortsette"
+        }
+      },
+      "clipboard": {
+        "copied": "Kopiert",
+        "failed_to_copy": "Klarte ikke å kopiere"
+      },
+      "discount_errors": {
+        "generic_error": "Bestillingen din kunne ikke behandles fordi rabattkoden din ikke lenger er gyldig. Gå gjennom totalbeløpet for bestillingen din og prøv igjen."
+      },
+      "b2b_errors": {
+        "lost_b2b_purchasing_permissions": "Du har ikke lenger tillatelse til å legge inn B2B-bestillinger. %{logout_url} for å legge inn en personlig bestilling i stedet.",
+        "log_out_link_text": "Logg ut",
+        "lost_permissions_subtitle": "Du har ikke lenger tillatelse til å legge inn B2B-bestillinger. Logg ut for å legge inn en personlig bestilling.",
+        "lost_permissions_title": "Ingen stedstillatelser"
       }
     }
   },
