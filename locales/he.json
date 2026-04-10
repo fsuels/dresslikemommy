@@ -2531,8 +2531,100 @@
         "search_button": "מצא חנויות",
         "no_stores_found": "לא נמצאו חנויות",
         "all_stores_far_away": {
-          "title": "המיקומים הקרובים ביותר נמצאים במרחק של יותר מ-%{distance}"
+          "title": "המיקומים הקרובים ביותר נמצאים במרחק של יותר מ-%{distance}",
+          "title_with_item": {
+            "one": "המיקום הקרוב ביותר עם הפריט שלך נמצא במרחק של יותר מ-%{distance} מ-%{location}",
+            "other": "המיקום הקרוב ביותר עם הפריטים שלך נמצא במרחק של יותר מ-%{distance} מ-%{location}"
+          },
+          "title_with_specific_location": "המיקום הקרוב ביותר עם הפריט שלך נמצא במרחק של יותר מ-%{distance} מ-%{location}",
+          "description": "בחר מיקום או %{ship_to_address_link}",
+          "ship_to_address_link": "לשלוח לכתובת",
+          "change_location_link": "שנה את מיקומך"
+        },
+        "selected_pickup_option_no_longer_available": {
+          "title": "המיקום שבחרת קודם לכן כבר אינו זמין",
+          "description": "בחר מיקום חדש או %{ship_to_address_link}",
+          "ship_to_address_link": "לשלוח לכתובת"
+        },
+        "could_not_resolve_address": "לא ניתן היה לאתר את הכתובת שלך. נסה שוב או השתמש בכתובת אחרת",
+        "paginator": {
+          "accessibility_label": "דפדוף איסוף מקומי",
+          "previous": "העמוד הקודם",
+          "next": "העמוד הבא",
+          "label": {
+            "one": "%{first} - %{last} מתוך %{count} חנות",
+            "other": "%{first} - %{last} מתוך %{count} חנויות"
+          }
+        },
+        "reveal_more_label": {
+          "one": "הצג %{count} מיקומים נוספים",
+          "other": "הצג %{count} מיקומים נוספים"
+        },
+        "pickup_unavailable_banner_title": {
+          "one": "אין מיקומים עם הפריט שלך",
+          "other": "אין מיקומים עם הפריטים שלך"
+        },
+        "pickup_unavailable_banner_title_with_country": {
+          "one": "אין מיקומים ב-%{country} עם הפריט שלך",
+          "other": "אין מיקומים ב-%{country} עם הפריטים שלך"
+        },
+        "pickup_unavailable_banner_body": {
+          "ship_items": "שלח את הפריטים שלך",
+          "search_elsewhere": "חפש במקום אחר",
+          "ship_items_or_search_elsewhere": "%{ship_items} או %{search_elsewhere}"
         }
+      },
+      "split_delivery": {
+        "pickup_all_items": "אסוף את כל הפריטים",
+        "items_for_pickup": "פריטים לאיסוף",
+        "items_for_shipping": "פריטים למשלוח",
+        "delivery_method": "שיטת משלוח מפוצלת",
+        "delivery_method_menu": "תפריט שיטת חלוקה מפוצלת",
+        "inventory_issue_banner": {
+          "heading": {
+            "cannot_be_picked_up": {
+              "one": "לא ניתן לאסוף %{count} פריט",
+              "other": "לא ניתן לאסוף %{count} פריטים"
+            },
+            "cannot_be_shipped": {
+              "one": "לא ניתן לשלוח %{count} פריטים",
+              "other": "לא ניתן לשלוח %{count} פריטים"
+            }
+          },
+          "remove_item": {
+            "one": "הסר פריט",
+            "other": "הסר פריטים"
+          },
+          "ship_separately": {
+            "one": "שלח אותו בנפרד",
+            "other": "לשלוח אותם בנפרד"
+          },
+          "pick_them_up_in_store": {
+            "one": "לאסוף בחנות",
+            "other": "לאסוף בחנות"
+          },
+          "remove_items_or_ship": "%{remove_items_link} או %{ship_separately_link}",
+          "remove_items_or_pickup": "%{remove_items_link} או %{pickup_in_store_link}"
+        }
+      },
+      "captcha": {
+        "title": "השלם את הקפצה כדי להמשיך",
+        "errors": {
+          "not_solved": "השלם את הקפצה כדי להמשיך"
+        }
+      },
+      "clipboard": {
+        "copied": "הועתק",
+        "failed_to_copy": "ההעתקה נכשלה"
+      },
+      "discount_errors": {
+        "generic_error": "לא ניתן היה לעבד את הזמנתך מכיוון שקוד ההנחה שלך אינו זמין יותר. בדוק את סך ההזמנה ונסה שוב."
+      },
+      "b2b_errors": {
+        "lost_b2b_purchasing_permissions": "אין לך יותר הרשאה לבצע הזמנות B2B. %{logout_url} כדי לבצע הזמנה אישית במקום.",
+        "log_out_link_text": "התנתק",
+        "lost_permissions_subtitle": "אין לך יותר הרשאה לבצע הזמנות עסקיות. התנתק כדי לבצע הזמנה אישית.",
+        "lost_permissions_title": "אין הרשאות מיקום"
       }
     }
   },
