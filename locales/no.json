@@ -1598,7 +1598,67 @@
         "tips_invalid_tip_amount": "Skriv inn et tips mindre enn %{amount}",
         "gift_card_already_applied": "Dette gavekortet er allerede brukt på bestillingen din",
         "gift_card_disabled": "Dette gavekortet er ikke lenger tilgjengelig",
-        "gift_card_expired": "Dette gavekortet har utløpt"
+        "gift_card_expired": "Dette gavekortet har utløpt",
+        "gift_card_depleted": "Dette gavekortet har ingen midler igjen",
+        "gift_card_currency_mismatch": "Kun gavekort i %{checkout_currency} kan brukes med denne bestillingen",
+        "gift_cards_not_supported_with_deferred_purchase_options": "Gavekort støttes ikke med utsatte kjøpsalternativer.",
+        "gift_card_buying_gift_card": "Du kan ikke bruke et gavekort til å kjøpe et annet gavekort",
+        "payment_gateway_missing": "Velg en betalingsmåte.",
+        "payment_gateway_needs_paid_plan_error": "Denne betalingsmetoden er ikke tilgjengelig i butikken akkurat nå",
+        "payment_gateway_not_in_test_mode": "er ikke satt opp for å teste bestillinger. Denne butikken kan ikke ta imot ekte bestillinger eller ekte betalinger.",
+        "payment_gateway_incompatible_with_multi_currency": "For å fullføre denne betalingen i din lokale valuta, må du betale med kredittkort.",
+        "payment_gateway_unsupported_for_subscriptions": "Denne betalingsmetoden er ikke tilgjengelig for abonnementbestillinger.",
+        "payment_gateway_unsupported_for_deferred_purchase_options": "Denne betalingsmetoden er ikke tilgjengelig for utsatt kjøpsalternativer.",
+        "payment_gateway_unsupported_for_country": "Denne betalingsmetoden er ikke tilgjengelig for ditt leveringsland.",
+        "payment_gateway_unsupported_for_development_store_html": "For å legge inn en testbestilling må du bruke en test betalingsgateway. Lær mer om <a href=\"%{docs_link}\">testing av bestillinger i utviklingsbutikker</a>.",
+        "payment_gateway_unsupported_for_order_above_maximum_orders_html": "Du har nådd grensen for bestillinger i utviklingsbutikken med denne betalingsprosessoren. For å legge inn en ny bestilling må du bruke en test betalingsgateway. Lær mer om <a href=\"%{docs_link}\">testing av bestillinger i utviklingsbutikker</a>.",
+        "purchase_options_agreement_blank": "For å fortsette med kjøpet, godta vilkårene for utsatt eller gjentakende kjøp.",
+        "physical_gift_card_invalid_quantity": "Fysiske gavekortlinjeelementer må ha en mengde som samsvarer med antallet gavekortkoder.",
+        "physical_gift_card_duplicate_code": "Fysisk gavekortlinje inneholder duplikatkode.",
+        "physical_gift_card_invalid_code": "Den fysiske gavekortkoden er ugyldig.",
+        "email_blank": "Skriv inn en e-postadresse",
+        "phone_blank": "Skriv inn et telefonnummer",
+        "address_country_invalid": "Velg et land/område fra listen",
+        "address_zip_invalid": "Skriv inn et gyldig postnummer",
+        "gift_card_invalid": "Gavekort \"••••%{last_four_characters}\" er ikke lenger gyldig",
+        "vaulting_agreement_blank": "Betalingsmåten din må lagres fordi betalingen for restbeløpet på denne bestillingen forfaller senere.",
+        "sms_marketing_phone_invalid": "Skriv inn et gyldig telefonnummer",
+        "shipping_method_invalid_phone_number": "Oppdater telefonnummeret i leveringsadressen din for å se tilgjengelige fraktmetoder.",
+        "address_suggestion_did_you_mean_html": "Mente du %{html}?",
+        "split_cart_international_shipping_not_supported": "Alle varer må bruke samme leveringsmetode ved internasjonal sending. Oppdater leveringsmetoden eller opprett flere bestillinger.",
+        "invalid_delivery_address_reference_handle": "Referansehåndtak for leveringsadresse kunne ikke knyttes til noen tilgjengelige leveringsadresser.",
+        "must_use_available_delivery_address": "Leveringsadressen må velges fra de tilgjengelige leveringsadressene.",
+        "must_use_available_shipping_rate": "Fraktpris må velges fra de tilgjengelige fraktprisene.",
+        "split_by_delivery_method_not_allowed": "Deling etter leveringsmetode er ikke tillatt for denne økten eller butikken.",
+        "split_by_delivery_method_requires_merchandise_from_single_location": "Oppdeling etter leveringsmetode krever at individuelle varelinjer blir levert fra ett enkelt sted.",
+        "split_by_delivery_method_unsupported_method_type": "Delt etter leveringsmetode forsøkt med en ikke støttet leveringsmetodetype."
+      },
+      "store_credit_errors": {
+        "generic_error": "Det oppstod et problem med butikkreditten din. Prøv igjen eller last inn siden på nytt."
+      },
+      "redeemable_errors": {
+        "gift_card": {
+          "duplicate": "Gavekortet er allerede brukt på bestillingen din",
+          "insufficient_funds": "Dette gavekortet har ingen midler igjen",
+          "expired": "Dette gavekortet har utløpt",
+          "not_available": "Dette gavekortet er ikke lenger tilgjengelig",
+          "invalid": "Skriv inn et gyldig gavekort",
+          "currency_mismatch": "Kun gavekort i %{shop_currency} godtas",
+          "generic": "Gavekortet kunne ikke legges til i kassen",
+          "throttle_limit_exceeded": "Du har overskredet maks antall forsøk. Prøv igjen senere.",
+          "no_longer_available": "Dette gavekortet kan ikke lenger brukes ved denne kassen"
+        }
+      },
+      "merchant_instruction_errors": {
+        "empty_stable_id": "Instruksjonen for %{position} %{name} varer inneholder en tom stabil ID.",
+        "invalid_stable_id_target": "Instruksjonen for %{position} %{name} refererer til stable-ID %{stable_id}, men den stable-ID-en finnes ikke i varelinjene.",
+        "duplicate_variant_id": "Instruksjonen for %{position} %{name} inneholder en duplikat variant-ID %{variant_id}.",
+        "invalid_variant_id_target": "Merchandise-instruksjonen for %{name} refererer til variant-ID %{variant_id}, men den varianten finnes ikke i merchandise-linjene.",
+        "invalid_price_override_target": "Prisoverstyringsinstruksjonen for varelinje %{stable_id} er ugyldig siden det er en komponent i en pakke.",
+        "discount_not_supported": "Instruksjonen for å bruke varemerkerabatt støtter ikke denne typen rabatt."
+      },
+      "payment_errors": {
+        "amount_too_small": "Minimumsbeløpet for betaling må være høyere enn $0,50 USD. Prøv igjen med et høyere beløp."
       }
     }
   },
