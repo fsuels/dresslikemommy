@@ -3353,7 +3353,73 @@
         "updated": "تم تحديث العنوان بنجاح.",
         "error_updating": "خطأ في تحديث العنوان",
         "created": "تم إنشاء العنوان بنجاح",
-        "error_creating": "حدث خطأ أثناء إنشاء العنوان."
+        "error_creating": "حدث خطأ أثناء إنشاء العنوان.",
+        "deleted": "تم حذف العنوان بنجاح",
+        "error_deleting": "حدث خطأ أثناء حذف العنوان."
+      },
+      "line_item": {
+        "item_status": {
+          "add_variant": "تمت الإضافة %{delta}",
+          "increment_item": "تمت الإضافة %{delta}",
+          "decrement_item": "تمت إزالة %{delta} من %{total}",
+          "decrement_fulfilled_line_item": "تمت إعادة %{delta} من %{total}",
+          "decrement_return_line_item": "تمت إزالة %{delta} من الإرجاع"
+        }
+      },
+      "order": {
+        "not_available": "هذا الطلب غير متوفر",
+        "financial_status": {
+          "authorized": "مُخوّل",
+          "pending": "قيد الانتظار",
+          "paid": "مدفوع",
+          "unpaid": "غير مدفوع",
+          "voided": "ملغى",
+          "partially_paid": "مدفوع جزئيًا",
+          "partially_refunded": "تم استرداد جزء من المبلغ",
+          "refunded": "تم استرداد المبلغ",
+          "expired": "منتهي الصلاحية"
+        },
+        "fulfillment_status": {
+          "fulfilled": "تم التنفيذ",
+          "complete": "اكتمل",
+          "partial": "جزئي",
+          "unfulfilled": "غير مُلبّى",
+          "restocked": "تم إعادة التوريد"
+        },
+        "transaction_status": {
+          "success": "نجاح",
+          "pending": "قيد الانتظار",
+          "failure": "فشل",
+          "error": "خطأ"
+        },
+        "cancel_reason": {
+          "declined": "تم رفض الدفع",
+          "inventory": "العناصر غير متوفرة",
+          "fraud": "طلب احتيالي",
+          "customer": "قام الزبون بتغيير/إلغاء الطلب",
+          "staff": "خطأ من الموظف",
+          "other": "أخرى"
+        },
+        "cash_on_delivery": "الدفع عند الاستلام"
+      },
+      "cart": {
+        "not_found": "العربة غير موجودة",
+        "only_n_items_available": "يمكنك إضافة %{count} %{name} فقط إلى السلة.",
+        "too_many_items_in_cart": "لا يمكنك إضافة المزيد من %{name} إلى السلة.",
+        "only_one_added_to_cart": "تمت إضافة عنصر واحد فقط إلى سلة مشترياتك بسبب التوفر.",
+        "only_n_added_to_cart": "تمت إضافة %{quantity} عناصر فقط إلى سلة التسوق الخاصة بك بسبب التوفر.",
+        "maximum_available_quantity_reached": "الكمية القصوى من هذا الصنف موجودة بالفعل في سلة مشترياتك.",
+        "less_than_minimum": "هذه السلعة لها حد أدنى قدره %{min}.",
+        "more_than_maximum": "هذه السلعة تحتوي على حد أقصى قدره %{max}.",
+        "not_respect_step": "يمكنك إضافة هذه العنصر فقط بزيادات قدرها %{step}.",
+        "all_items_in_cart": "جميع %{count} %{name} في سلة التسوق الخاصة بك.",
+        "empty_update": "لا يمكن تحديث سلة التسوق الفارغة",
+        "missing_parameters": "لا يوجد معرف أو معلمة خط صالحة",
+        "generic_error": "خطأ في السلة",
+        "invalid_input": "معامل %{parameter} غير صالح.",
+        "product_not_available": "المنتج غير متوفر",
+        "too_many_line_items_error": "عربة التسوق الخاصة بك لا يمكن أن تحتوي على أكثر من %{max} عنصر.",
+        "link_expired": "انتهت صلاحية الرابط"
       }
     }
   }
