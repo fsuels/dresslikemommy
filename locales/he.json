@@ -913,7 +913,89 @@
           "first_n_order_free_with_cycle_delivery_not_included": {
             "one": "משלוח חינם עבור %{count} משלוחים, לאחר מכן %{recurring_order_shipping_price}",
             "other": "משלוח חינם עבור %{count} משלוחים, לאחר מכן %{recurring_order_shipping_price}"
+          },
+          "max_cycles_base_shipping": {
+            "one": "עוד %{count} משלוחים במחיר %{shipping_price}",
+            "other": "עוד %{count} משלוחים במחיר של %{shipping_price} כל אחד"
+          },
+          "max_cycles_base_shipping_delivery_not_included": {
+            "one": "משלוח של %{count} במחיר %{shipping_price}",
+            "other": "עוד %{count} משלוחים במחיר של %{shipping_price} כל אחד"
+          },
+          "prepaid_free_shipping_with_cycles": {
+            "one": "משלוח חינם עבור %{cycle} הראשון, ולאחר מכן %{recurring_order_shipping_price}",
+            "other": "משלוח חינם עבור %{cycle} הראשון, ולאחר מכן %{recurring_order_shipping_price}"
+          },
+          "prepaid_order_one_cycle": {
+            "one": "%{shipping_price} עבור %{count} משלוחים נוספים",
+            "other": "%{shipping_price} עבור %{count} משלוחים נוספים (%{per_delivery_cost})"
+          },
+          "prepaid_order_one_cycle_delivery_not_included": {
+            "one": "%{shipping_price} עבור משלוח של %{count}",
+            "other": "%{shipping_price} עבור %{count} משלוחים (%{per_delivery_cost})"
+          },
+          "prepaid_order_no_cycle": {
+            "one": "%{shipping_price} עבור %{count} משלוחים נוספים, ואחריו %{recurring_order_shipping_price}",
+            "other": "%{shipping_price} עבור %{count} משלוחים נוספים (%{per_delivery_cost}), ואחריו %{recurring_order_shipping_price}"
+          },
+          "prepaid_order_no_cycle_delivery_not_included": {
+            "one": "%{shipping_price} עבור %{count} משלוח, ואחריו %{recurring_order_shipping_price}",
+            "other": "%{shipping_price} עבור %{count} משלוחים (%{per_delivery_cost}), ואחריו %{recurring_order_shipping_price}"
+          },
+          "subscription_free_with_frequency_label": "משלוח חינם %{delivery_frequency}",
+          "prepaid_delivery_frequency": {
+            "one": "למשלוח של %{count}",
+            "other": "ל- %{count} משלוחים"
+          },
+          "subscription_delivery_frequency": {
+            "day": {
+              "one": "כל יום",
+              "other": "כל %{count} ימים"
+            },
+            "week": {
+              "one": "כל שבוע",
+              "other": "כל %{count} שבועות"
+            },
+            "month": {
+              "one": "כל חודש",
+              "other": "כל %{count} חודשים"
+            },
+            "year": {
+              "one": "כל שנה",
+              "other": "כל %{count} שנים"
+            }
+          },
+          "multiple_subscriptions_shipping_price_label": "%{shipping_price} לכל משלוח",
+          "prepaid_shipping_price_label": "%{shipping_price} לכל משלוח x %{delivery_interval_count}",
+          "initial_order_discounted": "עלות המשלוח הראשונה %{discounted_shipping_cost}, לאחר מכן %{frequency_description}",
+          "prepaid_initial_order_discounted": "עלות המשלוח הראשונה %{discounted_shipping_price} %{prepaid_delivery_frequency}",
+          "prepaid_initial_order_discounted_with_per_delivery_price": "עלות המשלוח הראשונה %{discounted_shipping_price} %{prepaid_delivery_frequency} (%{discounted_cost_per_delivery})",
+          "prepaid_initial_order_discounted_with_renewal": "עלות המשלוח הראשונה %{discounted_shipping_price} %{prepaid_delivery_frequency}, לאחר מכן %{shipping_price} %{billing_cycle}",
+          "prepaid_initial_order_discounted_with_per_delivery_price_and_renewal": "עלות המשלוח הראשונה %{discounted_shipping_price} %{prepaid_delivery_frequency} (%{discounted_cost_per_delivery}), לאחר מכן %{shipping_price} %{billing_cycle}",
+          "shipping_price_included": "כלול",
+          "recurring_order_shipping_price": "לאחר מכן %{recurring_order_shipping_price}",
+          "first_order_shipping_price_included": "ההזמנה הראשונה כלולה, ואחריה %{recurring_order_shipping_price}",
+          "first_order_different_shipping_price": "%{first_order_shipping_price} ( %{per_delivery_price} לכל משלוח), ואחריו %{recurring_order_shipping_price}",
+          "first_n_order_free": {
+            "one": "ההזמנה הראשונה חינם",
+            "other": "ההזמנות הראשונות %{count} בחינם"
+          },
+          "free_for_first_n_order": {
+            "one": "להזמנה ראשונה",
+            "other": "לעשרת ההזמנות הראשונות %{count}"
           }
+        },
+        "one_time_purchase_shipping": "משלוח חד-פעמי",
+        "duties_and_taxes_title": "מיסים וחובות",
+        "shipping_information_required_notice": "נדרשת מידע על המשלוח. {{link}}.",
+        "shipping_information_redirect_link": "הזן את המידע שלך כאן",
+        "loading_progressive_rates": "מחפש תעריפים נוספים…",
+        "no_other_methods_available": "אין שיטות נוספות זמינות",
+        "duties_and_taxes_options": {
+          "ddu_title": "תשלום במשלוח",
+          "ddu_caption": "יתכנו חיובים נוספים",
+          "ddp_title": "שלם עכשיו",
+          "ddp_caption": "אין תוספות תשלום על המשלוח"
         }
       }
     }
