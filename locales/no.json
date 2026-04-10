@@ -1708,7 +1708,71 @@
         "development_store_order_limit_reached": "Du har nådd grensen for bestillinger i utviklingsbutikken med denne betalingsprosessoren. For å legge inn en ny bestilling må du bruke en test betalingsgateway. Lær mer om %{development_store_order_testing_docs_link}.",
         "development_store_with_order_limit": "For å legge inn en testbestilling må du bruke en test betalingsgateway. Lær mer om %{development_store_order_testing_docs_link}.",
         "development_store_order_testing_docs_link": "testing bestillinger i utviklingsbutikker",
-        "payment_above_threshold": "Betalingsbeløpet overstiger det økonomiske taket for denne regionen. Reduser totalen og prøv igjen"
+        "payment_above_threshold": "Betalingsbeløpet overstiger det økonomiske taket for denne regionen. Reduser totalen og prøv igjen",
+        "risky": "Det oppstod et problem med behandlingen av betalingen din. Prøv igjen eller bruk en annen betalingsmåte.",
+        "expired_buyer_action": "Betalingsmåten tok for lang tid. Prøv igjen.",
+        "name_mismatch": "Sjekk kortopplysningene dine. Navnet på kortet og fakturaadressen stemmer ikke overens.",
+        "shop_pay_wallet_not_available": "Shop Pay er ikke tilgjengelig for denne kassen.",
+        "market_manager_blocks_wallet_payments": "Betalingsmåten støttes ikke i ditt land.",
+        "paypal_over_capture": "Din bestillingssum ble oppdatert. Betal med {{walletName}} for å fullføre bestillingen din.",
+        "captcha_required": "Skriv inn betalingsinformasjon og løs captchaen for å fullføre kjøpet ditt.",
+        "captcha_required_without_payment_information": "Løs captchaen for å fullføre kjøpet ditt.",
+        "payment_credential_delegation_error": "Det oppstod et problem med behandlingen av betalingen din. Velg en ny betalingsmetode."
+      },
+      "shipping_errors": {
+        "shipping_method": "Fraktalternativene for bestillingen din har endret seg. Gå gjennom valget ditt.",
+        "shipping_method_not_available": "Handlekurven din er oppdatert, men varene du la til kan ikke sendes til adressen din. Fjern varene for å fullføre bestillingen.",
+        "shipping_method_not_available_generic": {
+          "one": "Bestillingen din kan ikke sendes til den valgte adressen. Gå gjennom adressen din for å sikre at den er riktig, og prøv igjen, eller velg en annen adresse.",
+          "other": "Noen varer i handlekurven din kan ikke sendes til adressen du oppga. Gå gjennom adressen for å sikre at den er riktig, og prøv igjen, eller velg en annen adresse."
+        },
+        "shipping_method_not_available_due_to_unsatisfied_conditions": "Varene i handlekurven oppfyller ikke pris- eller vektkravene for å kvalifisere for frakt. Oppdater handlekurven og prøv igjen.",
+        "shipping_method_not_available_updated": {
+          "one": "Varen du la til sendes ikke til din adresse. Fjern den for å gå til kassen, eller kontakt butikken.",
+          "other": "Ett eller flere av varene du la til sendes ikke til din adresse. Fjern dem for å gå til kassen, eller kontakt butikken."
+        },
+        "payment_method_not_supported": "Du kan ikke bruke denne betalingsmetoden for %{country}. Bruk en annen betalingsmetode for å sende til dette landet.",
+        "empty_state": "Skriv inn leveringsadressen din for å se tilgjengelige leveringsmetoder.",
+        "title": "Frakt ikke tilgjengelig",
+        "invalid_selected_address": "Den valgte leveringsadressen er ikke gyldig",
+        "invalid_selected_address_with_update_link": "Den valgte leveringsadressen er ikke gyldig. %{update_address_link} eller velg en annen adresse",
+        "unavailable_addresses_only_countries": "Bestillingen din kan kun sendes til {{countriesList}}. Legg til en ny adresse for å fortsette.",
+        "unavailable_address_country": "Frakt er ikke tilgjengelig i landet du valgte. Bruk en annen adresse for å fortsette",
+        "unavailable_selected_address": "Frakt ikke tilgjengelig for valgt adresse",
+        "unavailable_selected_address_for_region": "Frakt er ikke tilgjengelig for {{region}}. Velg en annen adresse for å fortsette"
+      },
+      "alternative_payment_method_banner": {
+        "express_checkout": "Ekspressutsjekking",
+        "or": "ELLER",
+        "or_pay_another_way": "Eller betal på en annen måte",
+        "or_check_out_another_way": "Eller prøv en annen måte",
+        "or_pay_with_credit_card": "Eller betal med kredittkort",
+        "show_more_options": "Vis flere valg",
+        "hide_more_options": "Skjul flere valg"
+      },
+      "post_purchase": {
+        "page_title": "Etter kjøpet",
+        "title": "Etter kjøpet",
+        "escape_confirmation": "Du har betalt for bestillingen din.",
+        "escape_action": "Se ordrebekreftelse ›",
+        "components": {
+          "close": "Lukk",
+          "expand": "Se mer",
+          "processing": "Behandler…",
+          "submit": "Send inn"
+        }
+      },
+      "processing": {
+        "redirecting_page_title": "Omdirigerer…",
+        "redirecting_title": "Omdirigerer…",
+        "redirecting_notice": "Vent mens vi omdirigerer deg.",
+        "redirecting_to_bank": "Omdirigerer til {{bank}}",
+        "complete_your_purchase_title": "Fullfør kjøpet ditt",
+        "continue_to_payment_gateway_notice": "Fortsett til betaling for å legge til betalingsinformasjonen din.",
+        "continue_to_payment_gateway_button_label": "Fortsett til betaling",
+        "complete_your_purchase_title_error": "Korriger betalingsinformasjonen din",
+        "continue_to_payment_gateway_notice_error": "Betalingsinformasjonen din kunne ikke bekreftes.",
+        "continue_to_payment_gateway_button_label_error": "Oppdater betalingsinformasjon"
       }
     }
   },
