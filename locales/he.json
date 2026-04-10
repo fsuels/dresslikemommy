@@ -178,9 +178,77 @@
             "unauthorized_capture_method": "הגדרת שיטת תפיסת התשלום אינה מותרת.",
             "saved_payment_methods_not_allowed": "שיטות התשלום השמורות אינן מותרות.",
             "saved_payment_methods_not_enabled": "שיטות התשלום השמורות אינן מופעלות בחנות זו.",
-            "saved_payment_methods_cvv_verification_disabled": "שיטת התשלום שנבחרה דורשת אימות CVV שאינו מופעל בחנות זו. בחר שיטת תשלום אחרת."
+            "saved_payment_methods_cvv_verification_disabled": "שיטת התשלום שנבחרה דורשת אימות CVV שאינו מופעל בחנות זו. בחר שיטת תשלום אחרת.",
+            "store_credit_not_enabled": "זיכוי בחנות אינו מופעל עבור חנות זו.",
+            "store_credit_account_not_found": "חשבון זיכוי בחנות לא נמצא.",
+            "store_credit_account_mismatch": "חשבון האשראי בחנות אינו תואם את זהות הקונה.",
+            "store_credit_mismatched_currency": "מטבע חשבון האשראי בחנות אינו תואם את מטבע התשלום.",
+            "store_credit_insufficient_funds": "אין מספיק כספים בחשבון האשראי בחנות.",
+            "store_credit_buying_gift_card": "אינך יכול להשתמש באשראי בחנות כדי לקנות כרטיס מתנה.",
+            "gift_cards_not_allowed_for_b2b": "כרטיסי מתנה אינם מותרים בחנויות עסק לעסק.",
+            "method_required": "יש להציע שיטת תשלום.",
+            "paypal_express_address_invalid": "PayPal החזיר כתובת לא תקינה."
+          },
+          "tip": {
+            "not_accepted_by_shop": "החנות אינה מקבלת טיפים.",
+            "only_one_tip_line_allowed": "שורות ריבוי טיפים אינן נתמכות.",
+            "tips_not_allowed_for_b2b": "טיפים אינם מותרים בחנויות עסק לעסק.",
+            "currency_change_reset": "טיפ אופס עקב שינוי במטבע.",
+            "tips_not_allowed_for_deferred_purchase_options": "טיפים עדיין אינם נתמכים לאפשרויות רכישה במועד מאוחר."
+          },
+          "sale_attribution": {
+            "draft_order_not_exist": "הזמנה טיוטה זו אינה קיימת בחנות הנוכחית.",
+            "staff_member_not_exist": "המטה הזה אינו קיים בחנות הנוכחית.",
+            "location_not_exist": "המקום הזה אינו קיים בחנות הנוכחית.",
+            "point_of_sale_device_not_exist": "התקן נקודת המכירה הזה אינו קיים בחנות הנוכחית.",
+            "unresolvable_target_merchandise_lines": "ההקצאות המוצעות למכירה אינן ניתנות לפתרון בהתחשב בהקשר המשא ומתן הנוכחי."
+          },
+          "non_negotiable": {
+            "missing_non_negotiable_terms": "הצעת הקונה שלך צריכה לכלול תנאים שאינם ניתנים למשא ומתן.",
+            "invalid_signature": "החתימה עבור {{target_terms}} אינה תקפה."
+          },
+          "inventory": {
+            "missing_quantity_value": "שדה הכמות חסר בשורות המלאי של הקונה.",
+            "changing_behavior_not_allowed": "ללקוח זה אין הרשאה לשנות את התנהגות המלאי.",
+            "only_one_inventory_behavior_allowed": "כעת מותר רק התנהגות מלאי אחת בכל תהליך תשלום."
+          },
+          "optional_duties": {
+            "optional_duties_not_permitted": "אי אפשר לסרב לתשלומי המכס בתהליך התשלום הזה."
+          },
+          "attribution": {
+            "retail_attribution_not_allowed": "שייכות קמעונאית אינה מותרת עבור תהליך התשלום הזה.",
+            "retail_attribution_required": "יש צורך בשיוך קמעונאי עבור תהליך התשלום הזה."
+          },
+          "captcha": {
+            "metadata_missing": "השלמת קפצ'ה נדרשת להשלמת הרכישה הזו.",
+            "metadata_mismatch": "ספק הקפצה וסוגו שסופקו אינם תואמים את הערכים הצפויים.",
+            "token_missing": "יש לספק אסימון קפצ'ה כדי להשלים את התשלום.",
+            "job_enqueue_failed": "המשימה לאימות הקפצה נכשלה בהוספה לתור.",
+            "job_already_queued": "אימות הקפצה כבר הוצב בתור עבור אסימון הקפצה זה.",
+            "token_expired": "אסימון הקפצה שסופק פג תוקפו. יש להשלים הקפצה חדשה כדי להמשיך בתשלום.",
+            "token_invalid": "אסימון הקפצה שסופק אינו תקף. יש להשלים קפצה חדשה כדי להמשיך בתשלום.",
+            "token_not_valid_for_session": "הקפצה שסופקה אינה ניתנת לשימוש בקופה זו."
+          },
+          "fx_reconciliation_override": {
+            "shop_currency_mismatch": "הסכום שהתקבל חייב להיות במטבע החנות."
+          },
+          "checkout_source": {
+            "revoked": "תהליך התשלום הזה כבר אינו זמין."
           }
-        }
+        },
+        "full_price": "מחיר מלא:",
+        "title": "תשלום - {{shopName}}",
+        "full_title": "{{pageTitle}} - {{shopName}} - תשלום",
+        "loading": "טוען…",
+        "loading_title": "תשלום - {{shopName}}",
+        "google_map_title": "מפת גוגל",
+        "confirm_order_button_label": "אשר הזמנה",
+        "submit_order_button_label": "שלח הזמנה",
+        "submit_for_review_button_label": "שלח לסקירה",
+        "submit_for_review_notice_label": "התשלום לא יידרש עד לסקירת ההזמנה שלך",
+        "continue_to_payment_plans_button_label": "המשך לתוכניות התשלום",
+        "back_button_label": "חזור",
+        "choose_delivery_strategy": "בחר שיטת משלוח"
       }
     }
   }
