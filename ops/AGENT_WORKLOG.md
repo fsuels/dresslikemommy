@@ -14736,3 +14736,25 @@ Verification:
 - Headless local preview check with Playwright against `http://127.0.0.1:9292/products/happy-flower-family-matching-t-shirts-colorful-floral-print-for-parents-kids`
   - Selected `Child 3-4 Years`, opened the size guide, scrolled the table horizontally, and captured `/tmp/dlm-size-guide-scroll-after.png`.
   - The sticky `Size` cell for the highlighted row remained visually solid after scrolling instead of showing the next column through it.
+
+### Task: Mobile homepage hero CTA overlap cleanup
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-mobile-hero-cta-overlap-cleanup
+Changes:
+- `sections/hero-banner.liquid`
+  - Lowered the full-surface hero link behind the content layer so the dedicated CTA buttons remain the top interactive elements.
+  - Added a homepage-only mobile hero treatment that shortens the image crop slightly, lets the hero overflow visibly, and moves the CTA stack into a compact floating card at the bottom edge instead of covering the middle of the photo.
+  - Tightened the mobile CTA sizing and letter spacing, and gave the secondary action a lighter card-style treatment so the two buttons read as a controlled cluster rather than a heavy dark block.
+
+Why:
+- On the mobile homepage, `Shop Family Sets` and `Browse Matching Dresses` were sitting directly over the mother-and-daughter photo, which made the hero feel crowded and obscured too much of the image.
+- The global pill-button override also made those hero CTAs larger than intended on small screens, exaggerating the overlap.
+
+Verification:
+- `git diff --check -- sections/hero-banner.liquid ops/AGENT_WORKLOG.md`
+
+Notes:
+- This treatment is scoped to the first homepage hero on mobile so other uses of the section keep their existing layout.
+
+Follow-up refinement:
+- Expanded the mobile CTA card width and reduced the secondary CTA tracking/font size so `Browse Matching Dresses` can stay on one line in the iPhone-sized hero treatment without covering more of the image.
