@@ -31,7 +31,17 @@
     elsif selected_type_value_downcased contains 'trunk'
       assign selected_type_family_group = 'male'
     endif
+
+    assign has_size_option = false
+    for product_option in product.options_with_values
+      assign product_option_name_downcased = product_option.name | downcase
+      if product_option_name_downcased contains 'size' or product_option_name_downcased contains 'talla' or product_option_name_downcased contains 'tamano' or product_option_name_downcased contains 'tamaño' or product_option_name_downcased contains 'taille' or product_option_name_downcased contains 'pointure'
+        assign has_size_option = true
+        break
+      endif
+    endfor
   -%}
+  {%- assign rendered_size_help = false -%}
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
@@ -241,7 +251,13 @@
           </div>
         </div>
       {%- endif -%}
-      {% if forloop.first %}
+      {%- assign render_size_help = false -%}
+      {%- if is_size_option and rendered_size_help == false -%}
+        {%- assign render_size_help = true -%}
+      {%- elsif has_size_option == false and forloop.first and rendered_size_help == false -%}
+        {%- assign render_size_help = true -%}
+      {%- endif -%}
+      {%- if render_size_help -%}
         <div
           id="size-conversion-message"
           class="product-form__size-conversion-message"
@@ -386,7 +402,8 @@
             </script>
           {% endunless %}
         {% endif %}
-      {% endif %}
+        {%- assign rendered_size_help = true -%}
+      {%- endif -%}
     {%- endfor -%}
     <script type="application/json">
       {{ product.variants | json }}

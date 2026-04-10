@@ -613,55 +613,65 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
 function initMatchingSizeGuide(wrapper) {
   var details = wrapper.querySelector('[data-matching-size-guide]');
   var content = wrapper.querySelector('[data-matching-size-guide-content]');
+  var summary = details ? details.querySelector('summary') : null;
   var sizeTable = document.querySelector('table#size-chart, table[id*="size-chart"]');
   if (!details || !content || !sizeTable) return;
 
   var parsed = parseSizeGuideTable(sizeTable);
   if (!parsed) return;
 
+  var singleLabel = wrapper.getAttribute('data-size-guide-single-label') || 'View size chart';
+  var groupedLabel = wrapper.getAttribute('data-size-guide-grouped-label') || singleLabel;
   var groups = buildSizeGuideGroups(parsed);
-  if (groups.length < 2) return;
+  var renderTableCard = function (headers, rows, title) {
+    return (
+      '<article class="matching-size-guide__card">' +
+      (title ? '<h3>' + escapeHtml(title) + '</h3>' : '') +
+      '<div class="matching-size-guide__table-wrap">' +
+      '<table class="matching-size-guide__table">' +
+      '<thead><tr>' +
+      headers
+        .map(function (header) {
+          return '<th>' + escapeHtml(header) + '</th>';
+        })
+        .join('') +
+      '</tr></thead>' +
+      '<tbody>' +
+      rows
+        .map(function (row) {
+          return (
+            '<tr>' +
+            row
+              .map(function (cell) {
+                return '<td>' + escapeHtml(cell) + '</td>';
+              })
+              .join('') +
+            '</tr>'
+          );
+        })
+        .join('') +
+      '</tbody>' +
+      '</table>' +
+      '</div>' +
+      '</article>'
+    );
+  };
 
-  content.innerHTML =
-    '<div class="matching-size-guide__grid">' +
-    groups
-      .map(function (group) {
-        return (
-          '<article class="matching-size-guide__card">' +
-          '<h3>' +
-          escapeHtml(group.label) +
-          '</h3>' +
-          '<div class="matching-size-guide__table-wrap">' +
-          '<table class="matching-size-guide__table">' +
-          '<thead><tr>' +
-          group.headers
-            .map(function (header) {
-              return '<th>' + escapeHtml(header) + '</th>';
-            })
-            .join('') +
-          '</tr></thead>' +
-          '<tbody>' +
-          group.rows
-            .map(function (row) {
-              return (
-                '<tr>' +
-                row
-                  .map(function (cell) {
-                    return '<td>' + escapeHtml(cell) + '</td>';
-                  })
-                  .join('') +
-                '</tr>'
-              );
-            })
-            .join('') +
-          '</tbody>' +
-          '</table>' +
-          '</div>' +
-          '</article>'
-        );
-      })
-      .join('') +
-    '</div>';
+  if (groups.length >= 2) {
+    if (summary) summary.textContent = groupedLabel;
+    content.innerHTML =
+      '<div class="matching-size-guide__grid">' +
+      groups
+        .map(function (group) {
+          return renderTableCard(group.headers, group.rows, group.label);
+        })
+        .join('') +
+      '</div>';
+  } else {
+    if (summary) summary.textContent = singleLabel;
+    content.innerHTML = renderTableCard(parsed.headers, parsed.rows, '');
+  }
+
   details.removeAttribute('hidden');
 }
 

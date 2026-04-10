@@ -46,20 +46,76 @@
     margin: 0 0 24px;
     opacity: 0.9;
   }
+  .hero-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
   .hero-banner__cta {
-    display: inline-block;
-    background: {{ section.settings.button_color }};
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
     color: {{ section.settings.button_text_color }};
-    padding: 14px 36px;
-    font-size: 16px;
+    padding: 12px 24px;
+    font-size: 15px;
     font-weight: 700;
     text-decoration: none;
-    border-radius: 4px;
-    transition: opacity 0.2s;
-    letter-spacing: 0.5px;
+    border-radius: 999px;
+    transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .hero-banner__cta--primary {
+    background: {{ section.settings.button_color }};
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+  }
+  .hero-banner__cta--secondary {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.35);
   }
   .hero-banner__cta:hover {
-    opacity: 0.9;
+    transform: translateY(-1px);
+    opacity: 0.94;
+  }
+  .hero-banner__trust {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-top: 18px;
+  }
+  .hero-banner__trust-rating {
+    margin: 0;
+    color: {{ section.settings.text_color }};
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.95;
+  }
+  .hero-banner__trust-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .hero-banner__trust-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    background: rgba(255, 255, 255, 0.12);
+    color: {{ section.settings.text_color }};
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.15;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
   }
 
   /* Desktop: text on left side over empty scenery */
@@ -84,6 +140,23 @@
 
     .hero-banner__scroll-target-heading-highlight {
       animation: hero-scroll-target-heading-{{ section.id }} 0.9s ease-out;
+    }
+
+    .hero-banner__actions {
+      flex-direction: column;
+    }
+
+    .hero-banner__cta {
+      width: 100%;
+      white-space: normal;
+    }
+
+    .hero-banner__trust-pills {
+      width: 100%;
+    }
+
+    .hero-banner__trust-pill {
+      flex: 1 1 calc(50% - 10px);
     }
   }
 
@@ -135,6 +208,7 @@
   assign hero_button_link = section.settings.button_link | default: ''
   assign hero_button_scroll_target = blank
   assign hero_button_link_first_char = hero_button_link | slice: 0, 1
+  assign hero_secondary_button_link = section.settings.secondary_button_link | default: ''
   assign hero_heading_tag = 'h2'
   assign hero_image_loading = 'lazy'
   assign hero_image_fetchpriority = 'low'
@@ -202,18 +276,44 @@
     {%- if section.settings.subheading != blank -%}
       <p class="hero-banner__subheading">{{ section.settings.subheading }}</p>
     {%- endif -%}
-    {%- if section.settings.button_label != blank -%}
-      <a
-        href="{{ hero_button_link }}"
-        class="hero-banner__cta"
-        id="HeroBannerCta-{{ section.id }}"
-        {% if hero_button_scroll_target != blank %}
-          data-scroll-target="{{ hero_button_scroll_target }}"
-        {% endif %}
-      >
-        {{ section.settings.button_label }}
-      </a>
-    {%- endif -%}
+    <div class="hero-banner__actions">
+      {%- if section.settings.button_label != blank -%}
+        <a
+          href="{{ hero_button_link }}"
+          class="hero-banner__cta hero-banner__cta--primary"
+          id="HeroBannerCta-{{ section.id }}"
+          {% if hero_button_scroll_target != blank %}
+            data-scroll-target="{{ hero_button_scroll_target }}"
+          {% endif %}
+        >
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.secondary_button_label != blank and hero_secondary_button_link != blank -%}
+        <a
+          href="{{ hero_secondary_button_link }}"
+          class="hero-banner__cta hero-banner__cta--secondary"
+        >
+          {{ section.settings.secondary_button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+    <div class="hero-banner__trust" aria-label="{{ 'sections.cart.store_rating_prefix' | t }} 4.8/5 {{ 'sections.cart.store_rating_suffix' | t }}">
+      <p class="hero-banner__trust-rating">
+        {{ 'sections.cart.store_rating_prefix' | t }} <strong>4.8/5</strong> {{ 'sections.cart.store_rating_suffix' | t }}
+      </p>
+      <div class="hero-banner__trust-pills">
+        <a class="hero-banner__trust-pill" href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}">
+          {{ 'sections.cart.trust.free_shipping' | t }}
+        </a>
+        <a class="hero-banner__trust-pill" href="{{ shop.refund_policy.url | default: '/policies/refund-policy' }}">
+          {{ 'sections.cart.trust.returns' | t }}
+        </a>
+        <span class="hero-banner__trust-pill">
+          {{ 'sections.cart.trust.secure_checkout' | t }}
+        </span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -292,13 +392,18 @@
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const headerOffset = getHeaderOffset();
 
-        /* Scroll so the hero is fully off-screen on both desktop and mobile */
+        /* Scroll to the browse target while keeping it clear of the sticky header. */
         const heroBanner = cta.closest('.section-hero-banner') || cta.closest('.hero-banner');
         const heroRect = heroBanner ? heroBanner.getBoundingClientRect() : null;
         const heroBottom = heroRect
           ? heroRect.bottom + window.pageYOffset
           : 0;
-        const targetTop = Math.max(heroBottom, 0);
+        const targetRect = targetElement.getBoundingClientRect();
+        const targetTop = Math.max(
+          heroBottom - headerOffset,
+          targetRect.top + window.pageYOffset - headerOffset - 24,
+          0
+        );
 
         if (arrivalObserver) {
           if (observedTarget) arrivalObserver.unobserve(observedTarget);
@@ -314,6 +419,11 @@
           top: targetTop,
           behavior: prefersReducedMotion ? 'auto' : 'smooth'
         });
+
+        const href = cta.getAttribute('href') || '';
+        if (href.startsWith('#') && window.history && typeof window.history.replaceState === 'function') {
+          window.history.replaceState(null, '', href);
+        }
 
         if (prefersReducedMotion) {
           triggerArrivalCue(targetElement);
@@ -344,25 +454,36 @@
     {
       "type": "text",
       "id": "heading",
-      "default": "Matching Outfits for the Whole Family",
+      "default": "Matching Outfits for Every Family Moment",
       "label": "Heading"
     },
     {
       "type": "text",
       "id": "subheading",
-      "default": "Create unforgettable moments in coordinated style. Free shipping on every order.",
+      "default": "Browse the collections families reach for first, then jump into swimsuits when the occasion is clear.",
       "label": "Subheading"
     },
     {
       "type": "text",
       "id": "button_label",
-      "default": "SHOP NOW",
+      "default": "BROWSE MOST-LOVED SETS",
       "label": "Button label"
     },
     {
       "type": "url",
       "id": "button_link",
       "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "default": "SHOP MATCHING SWIMSUITS",
+      "label": "Secondary button label"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
     },
     {
       "type": "range",

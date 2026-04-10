@@ -22,6 +22,7 @@
   assign default_presentation = 'text'
   assign collection_filter_hint = blank
   assign hide_product_type_active_filters = false
+  assign blocked_color_filter_values = ',overall,overalls,short,shorts,t-shirt,tshirts,tshirt,tee,tees,shirt,shirts,top,tops,striped,stripes,'
   if results.url
     assign results_url = results.url
   else
@@ -75,7 +76,7 @@
                     >
                       {{ 'products.facets.filter_by_label' | t }}
                     </h2>
-                  {%- endunless -%}
+                {%- endunless -%}
                   <facet-remove class="active-facets__button-wrapper">
                     <a href="{{ results_url }}" class="active-facets__button-remove underlined-link">
                       <span>{{ 'products.facets.clear_all' | t }}</span>
@@ -88,7 +89,14 @@
                       {%- continue -%}
                     {%- endif -%}
                   {%- endif -%}
+                  {%- assign seen_active_filter_value_keys = ',' -%}
                   {%- for value in filter.active_values -%}
+                    {%- assign value_key = value.label | strip | handleize -%}
+                    {%- assign value_token = ',' | append: value_key | append: ',' -%}
+                    {%- if seen_active_filter_value_keys contains value_token -%}
+                      {%- continue -%}
+                    {%- endif -%}
+                    {%- assign seen_active_filter_value_keys = seen_active_filter_value_keys | append: value_key | append: ',' -%}
                     <facet-remove>
                       <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
                         <span class="active-facets__button-inner button button--tertiary">
@@ -120,15 +128,20 @@
 
             <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
             {% comment %} Filters for both horizontal and vertical filter {% endcomment %}
-            {%- for filter in results.filters -%}
-              {% liquid
-                assign total_active_values = total_active_values | plus: filter.active_values.size
-                assign presentation = filter.presentation | default: default_presentation
+              {%- for filter in results.filters -%}
+                {% liquid
+                  assign total_active_values = total_active_values | plus: filter.active_values.size
+                  assign presentation = filter.presentation | default: default_presentation
+                  assign filter_label_key = filter.label | strip | downcase
+                  assign is_color_filter = false
+                  if filter_label_key == 'color' or filter_label_key == 'colour'
+                    assign is_color_filter = true
+                  endif
 
-                comment
-                  Skip the Type / Product type filter — style nav is handled by category tabs
-                endcomment
-                if filter.label == 'Type' or filter.label == 'Product type'
+                  comment
+                    Skip the Type / Product type filter — style nav is handled by category tabs
+                  endcomment
+                  if filter.label == 'Type' or filter.label == 'Product type'
                   continue
                 endif
 
@@ -210,9 +223,28 @@
                           class="{{ visual_layout_class }}{% if filter_type == 'vertical' %} facets__list--vertical{% else %} facets__list{% endif %} list-unstyled"
                           role="list"
                         >
+                          {%- assign seen_filter_value_keys = ',' -%}
+                          {%- assign rendered_filter_values = 0 -%}
                           {%- for value in sorted_values -%}
                             {% liquid
-                              assign input_id = 'Filter-' | append: filter.param_name | escape | append: '-' | append: forloop.index
+                              assign value_label = value.label | strip
+                              assign value_key = value_label | handleize
+                              assign value_token = ',' | append: value_key | append: ','
+                              if value_label == blank
+                                continue
+                              endif
+                              if seen_filter_value_keys contains value_token
+                                continue
+                              endif
+                              if is_color_filter
+                                assign color_value_token = ',' | append: value_key | append: ','
+                                if blocked_color_filter_values contains color_value_token
+                                  continue
+                                endif
+                              endif
+                              assign seen_filter_value_keys = seen_filter_value_keys | append: value_key | append: ','
+                              assign rendered_filter_values = rendered_filter_values | plus: 1
+                              assign input_id = 'Filter-' | append: filter.param_name | escape | append: '-' | append: rendered_filter_values
                               assign is_disabled = false
                               if value.count == 0 and value.active == false
                                 assign is_disabled = true
@@ -237,7 +269,7 @@
                               </span>
                             {%- endcapture -%}
 
-                            <li class="list-menu__item facets__item{% if forloop.index > show_more_number and filter_type == 'vertical' %} show-more-item hidden{% endif %}">
+                            <li class="list-menu__item facets__item{% if rendered_filter_values > show_more_number and filter_type == 'vertical' %} show-more-item hidden{% endif %}">
                               {%- if presentation == 'swatch' -%}
                                 <div class="{{ label_class }}">
                                   <div class="swatch-input-wrapper">
@@ -315,7 +347,7 @@
                           {%- endfor -%}
                         </ul>
                       </fieldset>
-                      {%- if filter.values.size > show_more_number and filter_type == 'vertical' -%}
+                      {%- if rendered_filter_values > show_more_number and filter_type == 'vertical' -%}
                         <show-more-button>
                           <button
                             class="button-show-more link underlined-link"
@@ -382,7 +414,14 @@
                     {%- continue -%}
                   {%- endif -%}
                 {%- endif -%}
+                {%- assign seen_active_filter_value_keys = ',' -%}
                 {%- for value in filter.active_values -%}
+                  {%- assign value_key = value.label | strip | handleize -%}
+                  {%- assign value_token = ',' | append: value_key | append: ',' -%}
+                  {%- if seen_active_filter_value_keys contains value_token -%}
+                    {%- continue -%}
+                  {%- endif -%}
+                  {%- assign seen_active_filter_value_keys = seen_active_filter_value_keys | append: value_key | append: ',' -%}
                   <facet-remove>
                     <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
                       <span class="active-facets__button-inner button button--tertiary">
@@ -542,6 +581,11 @@
                 {%- for filter in results.filters -%}
                   {% liquid
                     assign presentation = filter.presentation | default: default_presentation
+                    assign filter_label_key = filter.label | strip | downcase
+                    assign is_color_filter = false
+                    if filter_label_key == 'color' or filter_label_key == 'colour'
+                      assign is_color_filter = true
+                    endif
                     if presentation == 'image'
                       assign visual_layout_class = 'facets-layout facets-layout-grid facets-layout-grid--' | append: presentation
                     else
@@ -593,9 +637,28 @@
                                 assign sorted_values = active_filter_values | concat: inactive_filter_values
                               endif
                             -%}
+                            {%- assign seen_filter_value_keys = ',' -%}
+                            {%- assign rendered_filter_values = 0 -%}
                             {%- for value in sorted_values -%}
                               {% liquid
-                                assign input_id = 'Filter-' | append: filter.param_name | escape | append: '-mobile-' | append: forloop.index
+                                assign value_label = value.label | strip
+                                assign value_key = value_label | handleize
+                                assign value_token = ',' | append: value_key | append: ','
+                                if value_label == blank
+                                  continue
+                                endif
+                                if seen_filter_value_keys contains value_token
+                                  continue
+                                endif
+                                if is_color_filter
+                                  assign color_value_token = ',' | append: value_key | append: ','
+                                  if blocked_color_filter_values contains color_value_token
+                                    continue
+                                  endif
+                                endif
+                                assign seen_filter_value_keys = seen_filter_value_keys | append: value_key | append: ','
+                                assign rendered_filter_values = rendered_filter_values | plus: 1
+                                assign input_id = 'Filter-' | append: filter.param_name | escape | append: '-mobile-' | append: rendered_filter_values
                                 assign is_disabled = false
                                 if value.count == 0 and value.active == false
                                   assign is_disabled = true
@@ -838,7 +901,14 @@
           {%- continue -%}
         {%- endif -%}
       {%- endif -%}
+      {%- assign seen_active_filter_value_keys = ',' -%}
       {%- for value in filter.active_values -%}
+        {%- assign value_key = value.label | strip | handleize -%}
+        {%- assign value_token = ',' | append: value_key | append: ',' -%}
+        {%- if seen_active_filter_value_keys contains value_token -%}
+          {%- continue -%}
+        {%- endif -%}
+        {%- assign seen_active_filter_value_keys = seen_active_filter_value_keys | append: value_key | append: ',' -%}
         <facet-remove>
           <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
             <span class="active-facets__button-inner button button--tertiary">
@@ -946,7 +1016,14 @@
                 {%- continue -%}
               {%- endif -%}
             {%- endif -%}
+            {%- assign seen_active_filter_value_keys = ',' -%}
             {%- for value in filter.active_values -%}
+              {%- assign value_key = value.label | strip | handleize -%}
+              {%- assign value_token = ',' | append: value_key | append: ',' -%}
+              {%- if seen_active_filter_value_keys contains value_token -%}
+                {%- continue -%}
+              {%- endif -%}
+              {%- assign seen_active_filter_value_keys = seen_active_filter_value_keys | append: value_key | append: ',' -%}
               <facet-remove>
                 <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
                   <span class="active-facets__button-inner button button--tertiary">

@@ -6,7 +6,8 @@
   assign matching_set_add = 'Add selected pieces'
   assign matching_set_success = 'Matching set added to cart.'
   assign matching_set_error = 'Unable to add the selected pieces. Please try again.'
-  assign size_guide_label = 'Compare family sizes side by side'
+  assign grouped_size_guide_label = 'Compare family sizes side by side'
+  assign single_size_guide_label = 'View size chart'
   assign reviews_heading = 'Customer reviews'
   assign reviews_copy = 'See fit notes and family photos'
   assign photo_heading = 'Customer photo reviews'
@@ -21,7 +22,8 @@
       assign matching_set_add = 'Anadir piezas seleccionadas'
       assign matching_set_success = 'El conjunto a juego se anadio al carrito.'
       assign matching_set_error = 'No se pudieron anadir las piezas seleccionadas. Intentalo de nuevo.'
-      assign size_guide_label = 'Comparar tallas de la familia lado a lado'
+      assign grouped_size_guide_label = 'Comparar tallas de la familia lado a lado'
+      assign single_size_guide_label = 'Ver guia de tallas'
       assign reviews_heading = 'Resenas de clientes'
       assign reviews_copy = 'Ver fotos familiares y comentarios de ajuste'
       assign photo_heading = 'Fotos de clientes'
@@ -34,7 +36,8 @@
       assign matching_set_add = 'Ajouter les pieces selectionnees'
       assign matching_set_success = 'L ensemble assorti a ete ajoute au panier.'
       assign matching_set_error = 'Impossible d ajouter les pieces selectionnees. Veuillez reessayer.'
-      assign size_guide_label = 'Comparer les tailles de la famille cote a cote'
+      assign grouped_size_guide_label = 'Comparer les tailles de la famille cote a cote'
+      assign single_size_guide_label = 'Voir le guide des tailles'
       assign reviews_heading = 'Avis clients'
       assign reviews_copy = 'Voir des photos de familles et des notes de coupe'
       assign photo_heading = 'Photos clients'
@@ -47,7 +50,8 @@
       assign matching_set_add = 'أضيفي القطع المختارة'
       assign matching_set_success = 'تمت إضافة الطقم المتطابق إلى السلة.'
       assign matching_set_error = 'تعذر إضافة القطع المختارة. يرجى المحاولة مرة أخرى.'
-      assign size_guide_label = 'قارني مقاسات العائلة جنباً إلى جنب'
+      assign grouped_size_guide_label = 'قارني مقاسات العائلة جنباً إلى جنب'
+      assign single_size_guide_label = 'عرض دليل المقاسات'
       assign reviews_heading = 'آراء العملاء'
       assign reviews_copy = 'شاهدي صور العائلات وملاحظات المقاس'
       assign photo_heading = 'صور العملاء'
@@ -67,6 +71,8 @@
   data-matching-set-add="{{ matching_set_add | escape }}"
   data-matching-set-success="{{ matching_set_success | escape }}"
   data-matching-set-error="{{ matching_set_error | escape }}"
+  data-size-guide-single-label="{{ single_size_guide_label | escape }}"
+  data-size-guide-grouped-label="{{ grouped_size_guide_label | escape }}"
 >
   <div class="product-desktop-ux__highlights" role="list">
     <div class="product-desktop-ux__highlight" role="listitem">
@@ -98,7 +104,7 @@
   </div>
 
   <details class="matching-size-guide" data-matching-size-guide hidden>
-    <summary>{{ size_guide_label }}</summary>
+    <summary>{{ single_size_guide_label }}</summary>
     <div class="matching-size-guide__content" data-matching-size-guide-content></div>
   </details>
 

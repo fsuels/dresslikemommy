@@ -593,6 +593,45 @@ a.product__text {
   max-width: 44rem;
 }
 
+.product__trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.45rem 1rem;
+  max-width: 44rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+.product__trust-strip .trust-strip__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: rgba(var(--color-foreground), 0.62);
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.product__trust-strip .trust-strip__label {
+  white-space: nowrap;
+}
+
+.product__trust-strip .trust-strip__item svg {
+  flex-shrink: 0;
+  width: 1.3rem;
+  height: 1.3rem;
+  color: rgba(var(--color-foreground), 0.45);
+}
+
+.product__trust-note {
+  max-width: 44rem;
+  margin: 0.55rem 0 0;
+  color: rgba(var(--color-foreground), 0.68);
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
 .product--no-media .product__info-container > modal-opener {
   display: block;
   text-align: center;

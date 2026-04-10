@@ -13488,3 +13488,136 @@ Verification:
   - collection-to-PDP journeys now show a working `Back to results` handoff,
   - mobile sticky ATC now shows only price + `Select size` before selection, then reveals the size guidance message when used as a prompt.
 - `git diff --check` passed after the follow-up fixes.
+
+### Task: PDP buy-box trust cleanup and size-help placement
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-pdp-buybox-trust-size-help
+Changes:
+- `snippets/price.liquid` and `sections/main-product.liquid`
+  - Suppressed the PDP sold-out badge in the rendered variant price block so sale/availability text does not drift into a misleading `Sale Sold out` state when the add-to-cart flow is still active.
+  - Gated the recurring payment-terms block behind `product.selling_plan_groups.size > 0` so ordinary apparel PDPs no longer surface subscription/legal copy.
+- `snippets/product-variant-picker.liquid` and `assets/section-main-product.css`
+  - Moved the size guidance block so it renders next to the first real size selector instead of being pinned only to the first option.
+  - Kept the size-chart fallback for products without a size option so existing chart coverage is preserved.
+- `snippets/buy-buttons.liquid` and `assets/section-main-product.css`
+  - Added a compact buy-box trust strip using the existing secure-checkout/returns signals plus family-owned/since-2016 proof and a short support note.
+- `assets/pickup-availability.js`
+  - Synced `data-variant-id` before each pickup-availability fetch so the refresh action retries the current variant instead of an older stale id.
+
+Verification:
+- `git diff --check`
+- `node --check assets/pickup-availability.js`
+- `shopify theme check --path . --fail-level warning --output json` still reports repo-wide baseline issues, but the touched buy-box files do not add new Theme Check findings; the only hit in `sections/main-product.liquid` remains a pre-existing warning set.
+
+Deferred:
+- No live storefront preview or manual device QA was run in this pass.
+
+### Task: Active homepage hero routing + trust proof refresh
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-homepage-hero-routing-trust-proof
+Changes:
+- `sections/hero-banner.liquid` now presents a browse-first primary CTA plus a secondary `Shop Matching Swimsuits` path, and adds an above-the-fold trust strip using existing storefront translation/policy copy (`Free Shipping`, `30-Day Returns`, `Secure Checkout`, and the store rating line).
+- `sections/hero-banner.liquid` also tightens mobile behavior so the hero actions stack cleanly and the trust pills stay readable on small screens.
+- `templates/index.json` now points the active homepage hero at `#most-loved-matching-sets` for browse-first routing, keeps the swimsuits path as the secondary CTA, and reduces the mobile hero padding so the homepage feels less vertically heavy.
+
+Verification:
+- `git diff --check -- sections/hero-banner.liquid templates/index.json`
+
+Deferred:
+- I did not run a fresh storefront preview pass after this hero update, so the new CTA stacking and trust strip should be sanity-checked in browser preview on desktop and mobile.
+
+### Task: Collection data hygiene and family-hub clarity
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-collection-data-hygiene-family-hub-clarity
+Changes:
+- `snippets/facets.liquid`
+  - Added theme-layer dedupe for repeated facet labels using a normalized handle key, so duplicate size values that differ only by capitalization no longer render twice.
+  - Added a conservative Color-filter blocklist for obvious non-color values like `overall`, `short`, and `t-shirt` while keeping the rest of the filter behavior intact.
+  - Kept the show-more counter aligned with rendered values so suppressed duplicates do not leave the facet UI in a broken state.
+  - Applied the same dedupe logic to active-facet pills so the filter chips stay clean on desktop and mobile.
+- `snippets/collection-seo-fallback.liquid`
+  - Kept `/collections/new-women-outfits` on the `Family Matching Outfits` display/meta path and strengthened the supporting copy to read like the primary family-hub landing page.
+  - Tightened the meta description and body copy to explicitly mention dresses, swimwear, mommy and me looks, and travel-ready sets.
+- `snippets/collection-seo-content.liquid`
+  - Split `new-women-outfits` into its own rich-content branch so the hub gets explicit `Family Matching Outfits` wording instead of sharing the broader alias copy.
+- `snippets/collection-breadcrumbs.liquid`
+  - Changed the current crumb label for the family hub to `Family Matching Outfits` so the user-facing path is clearer.
+
+Verification:
+- `git diff --check`
+- `shopify theme check --path .` did not report any findings from the edited files when filtered to the owned paths.
+
+Limits / risk:
+- This is a defensive theme-layer cleanup only. The underlying Shopify filter data still contains the duplicate and dirty values, so the theme can hide or normalize them but cannot truly fix the catalog source of truth.
+- I did not change `sections/main-collection-banner.liquid` in this pass because the family-hub naming is already driven from the SEO fallback layer, and the banner is still inheriting that improved title.
+
+### Task: Verification follow-up fixes after agent integration
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-verification-followup-fixes
+Changes:
+- Trimmed the homepage `templates/index.json` hero `custom_css` override back under Shopify's 500-character upload limit after the first agent pass triggered a local preview upload failure.
+- Added the missing desktop horizontal active-facet dedupe guard in `snippets/facets.liquid` so repeated filter pills collapse consistently across vertical, horizontal, and mobile facet UIs.
+- Updated `snippets/buy-buttons.liquid` to permanently hide Shopify's subscription buyer-consent snippet on products without selling-plan groups, so ordinary apparel PDPs cannot leak recurring-purchase legal copy even when dynamic checkout is enabled.
+
+Verification:
+- `git diff --check`
+- `node --check assets/pickup-availability.js`
+- Local preview reloaded successfully at `http://127.0.0.1:9292` after the `templates/index.json` fix.
+- Curl spot checks confirmed:
+  - homepage hero now renders the browse-first CTA plus trust pills,
+  - `/collections/new-women-outfits` renders the updated family-hub title/meta and the visible duplicate size facet labels collapsed to one canonical version per desktop/mobile facet list,
+  - the sampled PDP no longer renders the visible sold-out badge or pickup-error fallback copy in the HTML response, and now includes the buy-box trust strip.
+
+Deferred:
+- Collection data normalization remains theme-defensive only; true source cleanup still belongs in Shopify admin/Search & Discovery.
+- PDP/device QA should still be done in-browser to confirm the hidden subscription consent never resurfaces visually under accelerated checkout.
+
+### Task: Browser QA polish after live preview review
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-browser-qa-polish
+Changes:
+- `sections/hero-banner.liquid`
+  - Fixed the primary hero CTA scroll handler so `Browse Most-Loved Sets` now lands on the intended `#most-loved-matching-sets` section instead of stopping short at the bottom of the hero.
+  - Updated the click behavior to preserve the hash in the URL without forcing a second jump.
+- `snippets/product-desktop-ux.liquid` and `assets/product-desktop-ux.js`
+  - Added a generic `View size chart` label path for single-table PDPs while keeping the grouped `Compare family sizes side by side` summary for family-set PDPs.
+  - Exposed the near-buy-box size guide whenever a supplier size table exists, so dress PDPs no longer rely on shoppers scrolling far below the buy box to discover sizing help.
+- `snippets/facets.liquid`
+  - Extended the Color filter blocklist to hide `Striped` and `Stripes`, which were still leaking pattern-style values into the color facet.
+
+Verification:
+- `git diff --check`
+- `node --check assets/product-desktop-ux.js`
+- Headless Chrome browser QA against `http://127.0.0.1:9292` confirmed:
+  - homepage primary CTA now sets `#most-loved-matching-sets` and lands with the browse module in view,
+  - homepage trust strip and stacked mobile CTAs still render cleanly,
+  - family-hub breadcrumbs/title remain `Family Matching Outfits`,
+  - Color facet no longer shows the blocked non-color/pattern values,
+  - sampled dress PDP shows no sold-out badge, no payment-terms block, hidden buyer-consent copy, visible trust strip, and a near-buy-box `View size chart` disclosure,
+  - sampled family-set PDP keeps the grouped size-guide disclosure near the buy box with Mother/Father/Girl/Boy tables available on expand.
+
+Deferred:
+- The homepage is still very long and still repeats the email capture once in-page plus again in the footer. The conversion blockers from this pass are addressed, but a later content-pruning/mobile-fatigue pass would still be worthwhile.
+
+### Task: Homepage content-pruning and duplicate-signup cleanup
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-homepage-content-pruning
+Changes:
+- `templates/index.json`
+  - Removed the redundant lower-page collection-list stacks (`Mommy & Me`, `Family Matching`, `Daddy & Me, Maternity & Couples`, and `Explore More Matching Collections`) from the homepage template so the page no longer reads like repeated navigation blocks stacked after the main browse content.
+  - Removed the in-page `newsletter_retention` section so the welcome-offer signup now appears only once in the footer instead of repeating mid-page and again at the bottom.
+  - Removed the `More Ways to Match This Season` collection rail after browser QA showed it rendering as blank collection cards, which was adding scroll depth without helping discovery.
+
+Verification:
+- `git diff --check`
+- `curl -s http://127.0.0.1:9292/` spot checks confirmed:
+  - homepage still renders the hero and `Most-Loved Matching Sets`,
+  - `Get 10% off your first order` now appears only in the footer markup,
+  - `More Ways to Match This Season` no longer renders.
+- Headless Chrome QA (`/tmp/dlm-qa/qa-final.js`) still confirmed:
+  - homepage primary CTA lands on `#most-loved-matching-sets`,
+  - homepage trust pills and mobile hero CTAs render,
+  - collection/PDP fixes from the previous pass remain intact.
+
+Outcome:
+- The homepage now ends after the core browse modules, curated set proof, SEO text block, and footer, which materially reduces mobile scroll fatigue and removes the duplicate email ask.

@@ -14,8 +14,13 @@
   {%- if product != blank -%}
     {%- liquid
       assign gift_card_recipient_feature_active = false
+      assign has_selling_plan_groups = false
       if block.settings.show_gift_card_recipient and product.gift_card?
         assign gift_card_recipient_feature_active = true
+      endif
+
+      if product.selling_plan_groups.size > 0
+        assign has_selling_plan_groups = true
       endif
 
       assign show_dynamic_checkout = false
@@ -101,6 +106,14 @@
         </div>
       {%- endform -%}
     </product-form>
+    {%- if show_dynamic_checkout and has_selling_plan_groups == false -%}
+      <style>
+        #shopify-section-{{ section_id }} #shopify-buyer-consent,
+        #shopify-section-{{ section_id }} [data-consent-type='subscription'] {
+          display: none !important;
+        }
+      </style>
+    {%- endif -%}
   {%- else -%}
     <div class="product-form">
       <div class="product-form__buttons form">
@@ -148,4 +161,20 @@
 
     <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
+
+  <div class="product__trust-strip" aria-label="{{ 'products.trust.secure_checkout' | t }}">
+    <span class="trust-strip__item">
+      {%- render 'icon-padlock' -%}
+      <span class="trust-strip__label">{{ 'products.trust.secure_checkout' | t }}</span>
+    </span>
+    <span class="trust-strip__item">
+      {%- render 'icon-checkmark' -%}
+      <span class="trust-strip__label">{{ 'products.trust.returns' | t }}</span>
+    </span>
+    <span class="trust-strip__item">
+      {%- render 'icon-tick' -%}
+      <span class="trust-strip__label">Family-owned since 2016</span>
+    </span>
+  </div>
+  <p class="product__trust-note">Need help? We typically reply within one business day.</p>
 </div>

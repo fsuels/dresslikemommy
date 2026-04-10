@@ -4,7 +4,28 @@
 
 {%- capture generated_rich_content -%}
   {%- case collection_handle -%}
-    {%- when 'matching-outfits', 'family-matching', 'family-matching-outfits', 'new-women-outfits' -%}
+    {%- when 'new-women-outfits' -%}
+      <h2>Family Matching Outfits for family photos, trips, holidays, and everyday coordination</h2>
+      <p>This is the broad Family Matching Outfits hub for shoppers who want to compare coordinated looks before narrowing into one specific style. It is built for family photos, vacations, holidays, seasonal updates, and easy everyday coordination when the shopper knows the general look but not the exact category yet.</p>
+      <h3>What to shop first</h3>
+      <ul>
+        <li>Start here when you want the broadest family matching page before choosing a narrower collection.</li>
+        <li>Use it to move from a general browse into dresses, swimwear, vacation sets, or mommy and me styles.</li>
+        <li>Jump to a more specific collection when the occasion is already clear and the shopper wants faster filtering.</li>
+      </ul>
+      {%- if collections['dresses'] != blank -%}
+        <p><a href="{{ collections['dresses'].url }}">Shop mommy and me dresses</a> when the dress is the centerpiece of the matching look.</p>
+      {%- endif -%}
+      {%- if collections['family-swimsuits'] != blank -%}
+        <p><a href="{{ collections['family-swimsuits'].url }}">Browse matching family bathing suits</a> when the plan is centered on beach trips, pool days, and summer travel.</p>
+      {%- endif -%}
+      {%- if collections['family-sets'] != blank -%}
+        <p><a href="{{ collections['family-sets'].url }}">Shop matching family vacation outfits</a> for resort stays, cruises, and coordinated travel days.</p>
+      {%- endif -%}
+      {%- if collections['mommy-and-me'] != blank -%}
+        <p><a href="{{ collections['mommy-and-me'].url }}">See the broader Mommy and Me collection</a> when the coordination is mostly mom-and-daughter focused.</p>
+      {%- endif -%}
+    {%- when 'matching-outfits', 'family-matching', 'family-matching-outfits' -%}
       <h2>Family matching outfits for photos, trips, holidays, and everyday coordination</h2>
       <p>This page is the broad starting point for shoppers who want to compare family matching outfits before narrowing into one specific style. It is built for family photos, vacations, holidays, seasonal updates, and easy everyday coordination when the shopper knows the general look but not the exact category yet.</p>
       <h3>How to use this collection</h3>
