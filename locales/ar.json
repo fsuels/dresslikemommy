@@ -4444,8 +4444,84 @@
             "description_due_on_fulfillment": "يجب سداد الدفع بمجرد استكمال جميع العناصر في هذا الطلب.",
             "description_due_on_fulfillment_partially_paid": "تم دفع جزء من هذا الطلب. لديك رصيد متبقي. يجب سداد المبلغ عند استكمال جميع العناصر في هذا الطلب.",
             "description_due_on_fulfillment_partially_paid_next": "تم دفع جزء من هذا الطلب. لا يزال لديك رصيد متبقٍ."
-          }
+          },
+          "draft": {
+            "description": "تُحدد تفاصيل الدفع عند تأكيد الطلب.",
+            "title": "لم يحين موعد الدفع بعد",
+            "in_review": {
+              "description": "تُحدد تفاصيل الدفع عند تأكيد الطلب.",
+              "title": "لم يحين موعد الدفع بعد"
+            },
+            "submitted": {
+              "description": "قم بتقديم الدفع لتأكيد هذا الطلب.",
+              "title": "ادفع للتأكيد",
+              "deposit": {
+                "title": "المبلغ مستحق الدفع",
+                "due_later": "التوازن على شروط {{translatedName}} ويستحق في {{dueDate}}.",
+                "due_on_fulfillment": "يستحق الرصيد بمجرد تنفيذ جميع العناصر في هذا الطلب.",
+                "due_on_receipt": "ستتلقى فاتورة بالمبلغ المتبقي.",
+                "due_on_date": "الرصيد مستحق في {{dueDate}}."
+              }
+            },
+            "deposit": {
+              "due_later": "{{depositAmount}} سيكون مستحقًا عند تأكيد طلبك. الرصيد سيكون وفق شروط {{translatedName}}.",
+              "due_on_fulfillment": "{{depositAmount}} سيكون مستحقًا عند تأكيد طلبك. وسيكون الرصيد مستحقًا عند تنفيذ الطلب.",
+              "due_on_receipt": "{{depositAmount}} سيكون مستحقًا عند تأكيد طلبك. وسيكون الرصيد مستحقًا لاحقًا.",
+              "due_on_date": "{{depositAmount}} سيكون مستحقًا عند تأكيد طلبك. الرصيد سيكون مستحقًا في {{dueDate}}."
+            }
+          },
+          "paid": {
+            "title": "مدفوع",
+            "title_with_date": "مدفوع {{date}}",
+            "description": "تم دفع طلبك بالكامل."
+          },
+          "refund": {
+            "title": "تم استرداد المبلغ",
+            "title_with_date": "تم رد المبلغ في {{date}}",
+            "description_full_refund": "لقد تلقيت استردادًا كاملاً لهذا الطلب.",
+            "description_single_refund": "لقد تلقيت استردادًا جزئيًا لهذا الطلب.",
+            "description_multiple_refunds": "لقد تلقيت استردادًا جزئيًا لهذا الطلب."
+          },
+          "canceled": {
+            "title": "تم إلغاء الدفع",
+            "description": "لم يتم تحصيل أي رسوم منك."
+          },
+          "due_date": "مستحق في {{date}}",
+          "total_balance": "الرصيد الإجمالي",
+          "pay_now": "ادفع الآن",
+          "pay_now_accessibility_label": "ادفع الآن مقابل الطلب {{orderName}}",
+          "title": "حالة الدفع"
+        },
+        "order_timeline": {
+          "expand_events_label": "عرض التفاصيل",
+          "expand_events_accessibility_label": "عرض تفاصيل طلب المسودة",
+          "hide_events_label": "إخفاء التفاصيل",
+          "hide_events_accessibility_label": "إخفاء تفاصيل طلب المسودة"
+        },
+        "subtitle": "تم التقديم في {{date}}",
+        "title": "اطلب {{name}}"
+      },
+      "payment_methods": {
+        "payment_delete": {
+          "description_without_replacement": "لن تكون هذه وسيلة الدفع متاحة بعد الآن للشراء في المستقبل من هذا الموقع.",
+          "description_with_replacement": "حذف هذه وسيلة الدفع سيؤثر على المدفوعات المصرح بها مسبقًا لهذا الموقع. استبدلها بوسيلة دفع بديلة للاستمرار في تلقي الطلبات القادمة."
+        },
+        "payment_details": {
+          "order_label": "اطلب {{name}}",
+          "draft_label": "مسودة الطلب {{name}}"
         }
+      },
+      "purchase_order_number": {
+        "add_accessibility_label": "أضف رقم الطلب",
+        "add_modal_title": "أضف رقم الطلب",
+        "cancel": "إلغاء",
+        "close_modal_accessibility_label": "إغلاق نافذة رقم طلب الشراء",
+        "discard": "تجاهل",
+        "discard_changes_modal_title": "هل تريد تجاهل التغييرات؟",
+        "edit_accessibility_label": "تعديل رقم طلب الشراء",
+        "edit_modal_title": "تعديل رقم طلب الشراء",
+        "empty_state": "لا يوجد رقم طلب",
+        "modal_po_number_input_label": "رقم الطلب"
       }
     }
   }
