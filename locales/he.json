@@ -439,7 +439,143 @@
         "company_location_no_address_banner": "הזמנות למשלוח ליעדים ללא כתובת יועברו לבדיקה.",
         "none_method_definition": "אין משלוח",
         "subscription_pickup_information": "שיטת המשלוח הזו תחול על כל הפריטים בהזמנה זו ועל כל ההזמנות העתידיות למנוי זה."
+      },
+      "customer_account": {
+        "not_user_label": "לא %{first_name}?",
+        "have_an_account_label": "יש לך חשבון?",
+        "sign_in_link_label": "התחבר",
+        "sign_out_link_label": "התנתק",
+        "save_my_information_label": "שמור מידע זה לשימוש בעתיד",
+        "invalid_address": "הכתובת שנבחרה אינה תקפה. %{update_address_link} או בחר כתובת אחרת.",
+        "incomplete_address": "הכתובת שנבחרה אינה שלמה. %{update_address_link} או בחר כתובת אחרת.",
+        "rollup_label": "חשבון",
+        "rollup_accessibility_label": "אפשרויות חשבון",
+        "invalid_shipping_method_summary": "בחר כתובת משלוח תקפה כדי לראות את שיטות המשלוח הזמינות",
+        "saved_address_option_description": {
+          "one": "יש לך {{count}} כתובת שמורה.",
+          "other": "יש לך {{count}} כתובות שמורות."
+        },
+        "saved_address_option_link": "השתמש בכתובת ששמרת",
+        "saved_address_modal_title": "השתמש בכתובת ששמרתי"
+      },
+      "remote_merchandise_only": {
+        "title": "השלים את הרכישה שלך",
+        "remote_only_notice": "פריטים אלה נמכרים ונשלחים על ידי חנויות אחרות. יש להשלים את הרכישה בנפרד בכל חנות.",
+        "return_to_store_label": "חזרה לחנות",
+        "detail_item_label": {
+          "one": "{{count}} פריט",
+          "other": "{{count}} פריטים"
+        },
+        "checkout_on_shop_label": "סיים קנייה ב-%{shop_name}",
+        "single_shop_transition": "מנתב אותך אל %{advertiser} להשלמת הרכישה שלך."
+      },
+      "stock": {
+        "page_title": "בעיות במלאי",
+        "title": "אזל מהמלאי",
+        "items_unavailable_notice": "חלק מהפריטים אינם זמינים יותר.",
+        "product_column_header": "מוצרים",
+        "quantity_column_header": "כמות",
+        "price_column_header": "מחיר",
+        "status_column_header": "סטטוס",
+        "removed_from_cart_notice": "הוסר מהעגלה",
+        "sold_out_label": "אזל המלאי",
+        "reduced_label": "מופחת",
+        "reduced_with_quantity_label": "נותרו רק %{quantity_available}",
+        "remove_from_cart_button_label": "הסר מהעגלה",
+        "continue_shopping_button_label": "המשך",
+        "go_back_to_cart_button_label": "חזור לעגלת הקניות שלי",
+        "remove": "הסר",
+        "return_to_store_label": "חזרה לחנות",
+        "continue_cta_label": "המשך לתשלום",
+        "item_label": {
+          "one": "{{count}} פריט",
+          "other": "{{count}} פריטים"
+        },
+        "empty_cart_label": "העגלה שלך ריקה",
+        "quantity_update": {
+          "page_title": "עדכון כמות",
+          "title": "עדכון כמות",
+          "description": "הכמויות הזמינות עבור פריטים אלה השתנו ומעודכנות בעגלת הקניות שלך."
+        },
+        "unpurchasable_product": {
+          "title": "מוצר שלא ניתן לרכישה",
+          "header": "חלק מהפריטים הוסרו מהעגלה שלך",
+          "message": "פריטים אלה אינם זמינים להזמנות עסקיות.",
+          "status_column_header": "לא זמין"
+        },
+        "unpurchasable_product_generic": {
+          "title": "מוצר שלא ניתן לרכישה",
+          "header": "חלק מהפריטים הוסרו מהעגלה שלך"
+        }
       }
+    }
+  },
+  "sections": {
+    "announcements": {
+      "previous_announcement": "הודעה קודמת",
+      "next_announcement": "ההודעה הבאה",
+      "carousel": "קרוסלה",
+      "announcement": "הודעה",
+      "announcement_bar": "סרגל ההודעות",
+      "default_promo": "משלוח חינם על כל ההזמנות | החזרות קלות תוך 30 יום | תשלום מאובטח"
+    },
+    "header": {
+      "announcement": "הודעה",
+      "menu": "תפריט",
+      "cart_count": {
+        "one": "{{ count }} פריט",
+        "other": "{{ count }} פריטים"
+      }
+    },
+    "cart": {
+      "title": "העגלה שלך",
+      "caption": "פריטי עגלה",
+      "remove_title": "הסר {{ title }}",
+      "estimated_total": "סך הכל מוערך",
+      "new_estimated_total": "סה\"כ מוערך חדש",
+      "note": "הוראות מיוחדות להזמנה",
+      "checkout": "בדוק את זה",
+      "empty": "העגלה שלך ריקה",
+      "cart_error": "אירעה שגיאה בעת עדכון העגלה שלך. אנא נסה שוב.",
+      "cart_quantity_error_html": "אתה יכול להוסיף רק {{ quantity }} מהפריט הזה לעגלה שלך.",
+      "taxes_and_shipping_policy_at_checkout_html": "מיסים והנחות מחושבים בקופה. <a href=\"{{ link }}\">משלוח</a> חינם",
+      "taxes_included_but_shipping_at_checkout": "כולל מס. הנחות מחושבות בקופה. המשלוח חינם",
+      "taxes_included_and_shipping_policy_html": "המס כלול. הנחות מחושבות בקופה. <a href=\"{{ link }}\">משלוח</a> חינם",
+      "taxes_and_shipping_at_checkout": "המיסים וההנחות יחושבו בעת התשלום. המשלוח חינם",
+      "headings": {
+        "product": "מוצר",
+        "price": "מחיר",
+        "total": "סה\"כ",
+        "quantity": "כמות",
+        "image": "תמונת מוצר"
+      },
+      "update": "עדכן",
+      "login": {
+        "title": "יש לך חשבון?",
+        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">התחבר</a> כדי לבצע את התשלום מהר יותר."
+      },
+      "order_today_delivery": "הזמן היום, זמן אספקה משוער",
+      "est_delivery": "משוער הגעה",
+      "store_rating_prefix": "מדורג",
+      "store_rating_suffix": "על ידי 15,200+ משפחות",
+      "we_accept": "אנו מקבלים",
+      "complete_the_look": "השלים את המראה",
+      "you_may_also_like": "ייתכן שתאהבו גם",
+      "trust": {
+        "secure_checkout": "תשלום מאובטח",
+        "ssl_encrypted": "הצפנה ב-SSL",
+        "free_shipping": "משלוח חינם",
+        "returns": "החזרות תוך 30 יום",
+        "secure": "מאובטח",
+        "encrypted": "מוצפן",
+        "free_ship": "משלוח חינם"
+      },
+      "discount_code_toggle": "יש לך קוד הנחה?",
+      "shipping_label": "משלוח",
+      "shipping_free": "חינם"
+    },
+    "footer": {
+      "payment": "שיטות תשלום"
     }
   }
 }
