@@ -4521,8 +4521,102 @@
         "edit_accessibility_label": "تعديل رقم طلب الشراء",
         "edit_modal_title": "تعديل رقم طلب الشراء",
         "empty_state": "لا يوجد رقم طلب",
-        "modal_po_number_input_label": "رقم الطلب"
+        "modal_po_number_input_label": "رقم الطلب",
+        "modal_po_number_input_max_length_error": "أرقام أوامر الشراء تحتوي على حد أقصى من {{maxLength}} حرف.",
+        "save": "حفظ",
+        "title": "رقم الطلب #{{poNumber}}"
       }
+    },
+    "errors": {
+      "address_deletion_error": {
+        "description": "حدثت مشكلة أثناء حذف هذا العنوان. حاول مرة أخرى أو قم بتحديث الصفحة."
+      },
+      "addresses_loading_issue": {
+        "description": "خطأ في الاتصال. تحقق من اتصالك بالإنترنت وحاول مرة أخرى."
+      },
+      "banner_title": {
+        "one": "هناك {{count}} خطأ",
+        "other": "هناك {{count}} أخطاء"
+      },
+      "failed_address_creation": {
+        "description": "حدثت مشكلة أثناء إنشاء عنوانك. حاول تحديث هذه الصفحة أو تحقق من اتصالك بالإنترنت."
+      },
+      "failed_address_update": {
+        "description": "حدثت مشكلة أثناء تحديث عنوانك. حاول تحديث هذه الصفحة أو تحقق من اتصالك بالإنترنت."
+      },
+      "load_address_form_error": {
+        "title": "غير قادر على تحميل نموذج العنوان",
+        "description": "تعذر تحميل نموذج العنوان.",
+        "refresh_button": "تحديث الصفحة"
+      },
+      "load_orders_error": {
+        "title": "غير قادر على تحميل الطلبات",
+        "description": "حاول مرة أخرى أو عد لاحقًا.",
+        "retry_button": "أعد المحاولة"
+      },
+      "load_paypal_error": {
+        "description": "هناك مشكلة في تحميل باي بال. يرجى المحاولة مرة أخرى."
+      },
+      "logout_everywhere": {
+        "description": "حدث خطأ أثناء تسجيل الخروج. يرجى المحاولة مرة أخرى."
+      },
+      "no_access_to_locations": {
+        "description": "ليس لديك صلاحية الوصول إلى أي مواقع"
+      },
+      "not_found": {
+        "description": "تحقق من عنوان الرابط أو حاول مرة أخرى بعد بضع دقائق.",
+        "title": "هناك مشكلة في تحميل هذه الصفحة"
+      },
+      "order_not_found": {
+        "description": "هذا الطلب غير موجود أو ليس لديك إذن لعرضه.",
+        "title": "الطلب غير موجود"
+      },
+      "profile_update_error": {
+        "description": "حدثت مشكلة أثناء تحديث ملفك الشخصي. حاول تحديث هذه الصفحة أو تحقق من اتصالك بالإنترنت."
+      },
+      "profile_name_update_error": {
+        "description": "حدثت مشكلة أثناء تحديث اسمك. حاول تحديث هذه الصفحة أو تحقق من اتصالك بالإنترنت."
+      },
+      "retry_action_label": "أعد المحاولة",
+      "resend_link": {
+        "too_many_requests": "طلبات كثيرة جدًا. حاول مرة أخرى لاحقًا.",
+        "generic": "فشل الطلب"
+      },
+      "load_extension_error": {
+        "title": "خطأ",
+        "description": "قم بتحديث هذه الصفحة أو حاول مرة أخرى بعد بضع دقائق.",
+        "refresh_button": "تحديث الصفحة"
+      },
+      "already_upgraded": "تم ترقية حسابات العملاء بالفعل.",
+      "failed_to_upgrade": "فشل في ترقية إعدادات حساب العميل.",
+      "not_upgraded": "حسابات العملاء لم تُحدَّث.",
+      "failed_to_revert": "فشل في استعادة إعدادات حساب العميل.",
+      "revert_window_expired": "انتهت صلاحية نافذة التراجع."
+    },
+    "throttle": {
+      "too_many_attempts": {
+        "message": "محاولات كثيرة جدًا",
+        "description": "يرجى المحاولة مرة أخرى بعد بضع دقائق"
+      }
+    },
+    "payment_methods": {
+      "replacement_payment_method_title": "طريقة الدفع البديلة",
+      "title": "طرق الدفع",
+      "add_payment_method_button": "أضف طريقة دفع",
+      "add_payment_method_dropdown": {
+        "bank_account_consent": "بإضافة طريقة دفع، فإنك تسمح بخصم المبلغ من بطاقتك أو حسابك البنكي للمشتريات المستقبلية التي توافق عليها، حتى تقوم بالإلغاء."
+      },
+      "bank_account": {
+        "loading_accessibility_message": "زر حساب البنك جارٍ التحميل",
+        "iframe_title_accessibility_label": "إعداد حساب بنكي",
+        "display_name": "حساب بنكي",
+        "generic_error": "تعذر إضافة الحساب البنكي. حاول مرة أخرى لاحقًا."
+      },
+      "add_payment_method_banner": "أضف طريقة دفع لتسريع عملية الدفع أو للخدمات المصرح بها مسبقًا",
+      "no_payment_methods_banner": "لم تتم إضافة طرق دفع",
+      "edit_payment_method_button_accessibility_label": "تعديل {{paymentMethodName}} المنتهي بـ {{lastDigits}}",
+      "edit_payment_method_brand_button_accessibility_label": "تعديل {{paymentMethodName}}",
+      "delete_payment_method_button": "حذف"
     }
   }
 }
