@@ -2365,6 +2365,88 @@
       "customer_payment_methods": {
         "page_title": "שיטות תשלום",
         "title": "שיטות תשלום"
+      },
+      "pickup_point": {
+        "pickup_unavailable_banner_title": {
+          "other": "אין נקודות איסוף זמינות עבור הפריטים שלך"
+        },
+        "no_pickup_points_found": "לא נמצאו נקודות איסוף",
+        "paginator": {
+          "next_accessibility_label": "העמוד הבא",
+          "previous_accessibility_label": "העמוד הקודם",
+          "header": {
+            "one": "מציג %{first} - %{last} מתוך %{count} נקודות",
+            "other": "מציג %{first} - %{last} מתוך %{count} נקודות"
+          },
+          "selected_pickup_point_label": {
+            "one": "נקודת %{pickup_point_index} מתוך %{count} נקודות",
+            "other": "%{pickup_point_index} מתוך %{count} נקודות"
+          },
+          "selected_page": {
+            "one": "%{first} - %{last} מתוך %{count} נקודות",
+            "other": "%{first} - %{last} מתוך %{count} נקודות"
+          }
+        },
+        "number_of_pickup_points_near_location": {
+          "one": "נקודת איסוף %{count} קרוב למיקומך",
+          "other": "%{count} נקודות איסוף בקרבת מיקומך"
+        },
+        "change": "שנה מיקום",
+        "waiting_on_pickup_point_location_notice": "מחפש נקודות איסוף...",
+        "geolocation": {
+          "shared_location_button": "השתמש במיקומי",
+          "errors": {
+            "unsuported_by_browser": "קבלת מיקום גאוגרפי אינה נתמכת בדפדפן שלך. נסה שוב או השתמש בדפדפן אחר.",
+            "permission_not_allowed": "אפשר לשתף את מיקומך.",
+            "permission_denied": "לא הצלחנו לקבל את מיקומך. נסה שוב."
+          }
+        }
+      },
+      "error_page": {
+        "terminal": {
+          "title": "הייתה בעיה בתהליך התשלום שלנו",
+          "message": "רענן את הדף הזה או נסה שוב בעוד כמה דקות",
+          "action": {
+            "cta": "רענן דף"
+          },
+          "request_id": "מספר בקשה: {{requestId}}"
+        },
+        "embed_errors": {
+          "storefront_password_required": "חנות זו מוגנת בסיסמה",
+          "customer_account_required": "נדרש חשבון לקוח להשלמת התשלום",
+          "cart_completed": "התשלום הזה כבר הושלם",
+          "invalid_cart": "העגלה אינה תקפה עוד",
+          "not_authorized": "אימות התשלום נכשל. וודא את פרטי האימות של היישום שלך",
+          "killswitch_enabled": "הקופה אינה זמינה זמנית",
+          "policy_violation": "לא ניתן להשלים את התשלום עקב הגבלות בהגדרות המדיניות",
+          "unrecoverable_failure": "לא ניתן לטעון את עגלת הקניות. נסה שוב"
+        }
+      },
+      "notice_banner": {
+        "return_to_cart_link_text": "חזרה לעגלה",
+        "return_to_cart_to_update_quantities": "%{return_to_cart_link_text} כדי לעדכן את הכמויות",
+        "subscription_changed": "אחת מהמנויים שלך השתנתה.",
+        "company_location_changed": "העגלה שלך עודכנה. בדוק את ההזמנה שלך לפני השליחה.",
+        "company_location_changed_product_removed": "העגלה שלך עודכנה מכיוון שחלק מהמוצרים אינם זמינים במיקום זה. בדוק את ההזמנה שלך לפני השליחה.",
+        "violations_title": "{{violation}} חסר או לא תקין",
+        "individual_violations_title": {
+          "DeliveryViolations": "כתובת למשלוח",
+          "PaymentViolations": "כתובת לחיוב",
+          "OtherViolations": "מידע על ההזמנה",
+          "UnhandledViolations": "מידע על ההזמנה"
+        },
+        "all_violations_content": "התקשרו או שלחו לנו {{emailLink}} כדי לעדכן את המידע הזה ולהשלים את ההזמנה שלכם:",
+        "all_violations_email_link": "דואר אלקטרוני",
+        "editable_shipping_address_violations_message_title": "הוסף מידע זה כדי להשלים את ההזמנה שלך:",
+        "editable_shipping_address_violations_message_footer": "כדי לעדכן לצמיתות את הכתובת עבור מיקום זה, {{emailLink}}.",
+        "editable_shipping_address_violations_email_link": "צור קשר",
+        "shipping_address_incomplete_title": "כתובת המשלוח אינה שלמה",
+        "calculating_shipping": "עדיין מחושבת עלות המשלוח. נסה שוב בעוד כמה שניות. לא נגבתה ממך תשלום.",
+        "calculating_taxes": "המיסים עדיין מחושבים. נסה שוב בעוד כמה שניות. לא נגבתה ממך תשלום.",
+        "generic_processing_error": {
+          "title": "הייתה בעיה בעיבוד ההזמנה שלך",
+          "body": "לא נגבתה ממך תשלום. נסה שוב או השתמש בשיטת תשלום אחרת."
+        }
       }
     }
   },
