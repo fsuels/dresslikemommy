@@ -4385,8 +4385,68 @@
         "loading": "טוען Apple Pay",
         "errors": {
           "generic": "הייתה בעיה עם Apple Pay. נסה שוב או השתמש בשיטת תשלום אחרת.",
-          "not_available": "Apple Pay אינו זמין במכשיר זה."
+          "not_available": "Apple Pay אינו זמין במכשיר זה.",
+          "missing_billing_address": "Apple Pay דורש כתובת לחיוב. אנא הוסף אחת לחשבונך."
         }
+      },
+      "store_credit": {
+        "label": "זיכוי בחנות",
+        "accesibility_label": "זיכוי בחנות - {{formattedBalance}}",
+        "expirable_amounts_button": "הצג כמויות שפגות תוקף",
+        "expirable_amounts_label": "סכומים שפג תוקפם",
+        "details_modal": {
+          "title": "זיכוי חנות שפג תוקפו",
+          "balance_label": "איזון",
+          "expiration_date_label": "תאריך תפוגה",
+          "amount_label": "כמות",
+          "date_label": "תאריך",
+          "event_label": "אירוע",
+          "events": {
+            "adjustment": "התאמה",
+            "order_payment": "תשלום הזמנה",
+            "order_refund": "החזר כספי להזמנה",
+            "payment_failure": "כשל בתשלום",
+            "payment_returned": "התשלום הוחזר",
+            "order_cancellation": "ביטול הזמנה",
+            "tax_finalization": "סיום חישוב המס"
+          },
+          "expirable_balance_info": "חלק מהיתרה שלך תפוג במועד עתידי",
+          "expirable_amount_label": "סכום כולל לפקיעה",
+          "expirable_amounts_info": "סכומים שפג תוקפם מוקדם יותר יוחלו ראשונים בעת התשלום",
+          "expirable_amounts_button": "הצג",
+          "expired_amounts_button": "הצג סכומים שפג תוקפם",
+          "pagination": {
+            "load_more_label": "טען עוד",
+            "load_more_accessibility_label": "טען כמויות שפגות תוקף נוספות"
+          }
+        }
+      },
+      "payment_details": {
+        "title": "פרטי אופן התשלום",
+        "credit_card_details_accessibility_label": "מסתיים ב-{{lastDigits}}",
+        "billing_title": "כתובת לחיוב",
+        "card_info_title": "פרטי הכרטיס",
+        "payment_method_expiring_on": "מסתיים ב- {{expiryDate}}",
+        "payment_method_expired_on": "פג תוקף בתאריך {{expiryDate}}",
+        "preauthorized_payments": "תשלומים מאושרים מראש",
+        "close_payment_modal": "סגור",
+        "close_payment_modal_accessibility_label": "סגור את חלון פרטי אמצעי התשלום",
+        "payment_method_not_found_error": "לא ניתן למצוא שיטת תשלום",
+        "payment_details_loading": "טוען פרטי אמצעי תשלום",
+        "pre_authorized_payments": "תשלומים מאושרים מראש",
+        "total_amount_of_subscription_line_items_left": "ועוד {{total}}",
+        "total_amount_of_subscription_line_items_left_accessibility_label": "סה\"כ {{totalItems}} פריטים, מוצגים {{totalItemsToDisplay}} פריטים.",
+        "next_payment_due": "תשלום הבא חייב להיות עד {{dueDateInMonthDayYear}}",
+        "edit_payment_method_button": "ערוך",
+        "edit_payment_method_button_accessibility_label": "ערוך שיטת תשלום שמסתיימת ב-{{lastDigits}}",
+        "loading_shop_pay": "טוען את Shop Pay",
+        "invalid_payment_method": "שיטת תשלום לא תקפה",
+        "invalid_payment_method_message": "השתמש בכרטיס אשראי חדש כדי להמשיך לקבל הזמנות עתידיות.",
+        "replace_payment_method": "החלף שיטת תשלום",
+        "checkout_card_banner": "שיטת תשלום זו ניתנת לשימוש רק לתשלומים מאושרים מראש. היא לא תופיע בעת התשלום אם הינך מחובר לחנות זו.",
+        "default_checkbox": "הגדר כברירת מחדל",
+        "default_checkbox_accessibility_label": "הגדר שיטת תשלום זו כברירת מחדל",
+        "replace_payment_method_button": "החלף"
       }
     },
     "callback": {
