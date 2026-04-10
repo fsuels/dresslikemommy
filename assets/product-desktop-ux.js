@@ -1174,6 +1174,49 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     return null;
   }
 
+  function getImageBasedSizeGuideMediaTarget(image, sourceRoot) {
+    if (!image || !sourceRoot) return null;
+
+    var mediaContainer = image.closest('.product-copy__media');
+    if (mediaContainer && sourceRoot.contains(mediaContainer)) return mediaContainer;
+
+    var figure = image.closest('figure');
+    if (figure && sourceRoot.contains(figure)) return figure;
+
+    var parent = image.parentElement;
+    if (
+      parent &&
+      parent !== sourceRoot &&
+      /^(P|DIV|A)$/.test(parent.tagName) &&
+      parent.querySelectorAll('img').length === 1 &&
+      !normalizeText(parent.textContent || '')
+    ) {
+      return parent;
+    }
+
+    return image;
+  }
+
+  function hideImageBasedSizeGuideMedia(sourceRoot, preset) {
+    if (!sourceRoot || !preset || !Array.isArray(preset.imageTokens) || !preset.imageTokens.length) return;
+
+    Array.from(sourceRoot.querySelectorAll('img[src]')).forEach(function (image) {
+      var imageUrl = String(image.getAttribute('src') || image.currentSrc || '').toLowerCase();
+      if (!imageUrl) return;
+
+      var isPresetImage = preset.imageTokens.some(function (token) {
+        return imageUrl.indexOf(token) !== -1;
+      });
+      if (!isPresetImage) return;
+
+      var target = getImageBasedSizeGuideMediaTarget(image, sourceRoot) || image;
+      target.hidden = true;
+      target.setAttribute('aria-hidden', 'true');
+      target.setAttribute('data-size-guide-image-source-only', 'true');
+      target.style.setProperty('display', 'none', 'important');
+    });
+  }
+
   function getSizeGuideTable(root, select) {
     var existingTable = document.querySelector('table#size-chart, table[id*="size-chart"]');
 
@@ -1211,6 +1254,10 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     var preferredGuide = fallbackGuide;
     if (imagePresetGuide && (!preferredGuide || imagePresetGuide.rows.length > preferredGuide.rows.length)) {
       preferredGuide = imagePresetGuide;
+    }
+
+    if (descriptionRoot && imagePresetGuide && preferredGuide === imagePresetGuide) {
+      hideImageBasedSizeGuideMedia(descriptionRoot, imagePresetGuide);
     }
 
     if (!existingTable) {
