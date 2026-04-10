@@ -2364,11 +2364,17 @@
       },
       "customer_payment_methods": {
         "page_title": "שיטות תשלום",
-        "title": "שיטות תשלום"
+        "title": "שיטות תשלום",
+        "update_card_button_label": "עדכן כרטיס",
+        "delete_customer_mandate": {
+          "generic_error": "אירעה בעיה בעיבוד הבקשה שלך.",
+          "success_message": "שיטת התשלום שלך נמחקה בהצלחה"
+        }
       },
       "pickup_point": {
         "pickup_unavailable_banner_title": {
-          "other": "אין נקודות איסוף זמינות עבור הפריטים שלך"
+          "other": "אין נקודות איסוף זמינות עבור הפריטים שלך",
+          "one": "אין נקודות איסוף זמינות עבור הפריט שלך"
         },
         "no_pickup_points_found": "לא נמצאו נקודות איסוף",
         "paginator": {
@@ -2400,7 +2406,21 @@
             "permission_not_allowed": "אפשר לשתף את מיקומך.",
             "permission_denied": "לא הצלחנו לקבל את מיקומך. נסה שוב."
           }
-        }
+        },
+        "location_is_currently_closed": "סגור",
+        "business_hours": "שעות פתיחה",
+        "no_business_hours": "אין שעות פתיחה זמינות",
+        "open_twenty_four_hours": "פתוח 24 שעות ביממה, שבעה ימים בשבוע",
+        "title": "נקודת איסוף",
+        "or": "או",
+        "search_button": "חיפוש",
+        "address_label": "כתובת",
+        "selector_tabs": "בורר נקודת איסוף",
+        "selector_tab_map": "מפה",
+        "selector_tab_list": "רשימה",
+        "could_not_resolve_address": "לא ניתן היה לאתר את הכתובת שלך. נסה שוב או השתמש בכתובת אחרת",
+        "no_pickup_points_near_you": "לא נמצאו נקודות איסוף בקרבת הכתובת שנבחרה",
+        "no_pickup_points_near_location": "לא נמצאו נקודות איסוף בקרבת מיקומך"
       },
       "error_page": {
         "terminal": {
@@ -2888,6 +2908,62 @@
             }
           }
         }
+      },
+      "throttle": {
+        "too_many_attempts": {
+          "message": "יותר מדי ניסיונות",
+          "description": "נסה שוב בעוד כמה דקות"
+        },
+        "line_to_check_out": "אתה בתור לקופה",
+        "cart_summary_heading": "העגלה שלך",
+        "merchandise": {
+          "available": "זמין",
+          "sold_out": "אזל המלאי"
+        },
+        "inventory": {
+          "partial_inventory_banner": "חלק מהמוצרים בעגלת הקניות אזלו מהמלאי ולא יהיו זמינים לרכישה בעת התשלום.",
+          "sold_out": {
+            "heading": "העגלה שלך אזלה מהמלאי",
+            "storefront_body": "חזור לחנות כדי להמשיך בקניות",
+            "no_storefront_body": "לצערנו, הפריט שברצונך לרכוש אינו זמין עוד.",
+            "link": "חזרה לחנות"
+          }
+        },
+        "title": "תור",
+        "time_to_checkout_title": "הגיע הזמן לסגור את הקופה - {{shopName}}",
+        "estimated_wait_time": {
+          "calculating": "חישוב זמן ההמתנה המשוער",
+          "less_than_one": "זמן ההמתנה המשוער: פחות מדקה",
+          "one": "זמן ההמתנה המשוער: {{count}} דקות",
+          "other": "זמן ההמתנה המשוער: {{count}} דקות"
+        },
+        "last_checked": "(נבדק לאחרונה: {{time}})",
+        "footer": {
+          "heading": "אל תעדכן את הדף הזה, הוא יתעדכן אוטומטית.",
+          "body": "הפריטים בעגלת הקניות שלך לא שמורים עד שתשלים את התשלום."
+        }
+      },
+      "cart_checkout_validation": {
+        "runtime_error": "אירעה בעיה בעיבוד הבקשה שלך. פנה לבעל החנות."
+      },
+      "no_address_location": {
+        "title": "מיקום ללא כתובת",
+        "header": "אין לך כתובת משלוח למיקום זה",
+        "alt_header": "כתובת משלוח חסרה",
+        "message": "צור קשר כדי להוסיף כתובת למקום זה ולהשלים את התשלום.",
+        "email_us_button_label": "שלחו לנו דואר אלקטרוני"
+      },
+      "order_errors": {
+        "creation_failure": "הייתה בעיה ביצירת ההזמנה שלך. נסה שוב, או פנה אלינו לפרטים נוספים.",
+        "network_failure": "לא ניתן היה לשלוח את ההזמנה שלך עקב שגיאת רשת. בדוק את החיבור שלך ונסה שוב.",
+        "inventory_reservation_failure": "חלק מהפריטים אינם זמינים יותר."
+      },
+      "session_errors": {
+        "session_not_unique": "אירעה בעיה בעיבוד ההזמנה שלך. רענן את הדף כדי לחזור לחנות.",
+        "session_already_finished": "ההזמנה הזו כבר נשלחה. באפשרותך לחזור לחנות כדי להתחיל הזמנה חדשה."
+      },
+      "artifact_errors": {
+        "artifact_dissatisfaction_without_violation": "הייתה בעיה בעיבוד ההזמנה שלך. נסה שוב בעוד כמה דקות."
       }
     },
     "pagination": {
