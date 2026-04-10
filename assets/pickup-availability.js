@@ -41,9 +41,7 @@ if (!customElements.get('pickup-availability')) {
 
       renderError() {
         this.innerHTML = '';
-        this.appendChild(this.errorHtml);
-
-        this.querySelector('button').addEventListener('click', this.onClickRefreshList);
+        this.removeAttribute('available');
       }
 
       renderPreview(sectionInnerHTML) {

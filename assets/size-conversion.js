@@ -458,9 +458,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const typeSelect        = findTypeSelect();
   const sizeChartWrapper  = document.querySelector(".size-chart-wrapper");
   const sizeChartContent  = document.getElementById("size-chart-content");
+  const hasModernSizeGuide = !!document.querySelector("[data-matching-size-guide]");
   let selectedUnitSystem  = getStoredUnitSystem() || "metric";
   initGlobalSizeDisplayFormatting();
-  if (!sizeSelect || !sizeChartWrapper) {
+  if (!sizeSelect) {
     return;
   }
   // ---------------------------------------------------------------------------
@@ -1056,9 +1057,22 @@ document.addEventListener("DOMContentLoaded", function () {
     sizeSelect.value = "";
     updateSizeMessage();
   };
-  insertSelectSizeOption();
   applyFrontendSizeOptionLabels(sizeSelect);
-  resetSizeSelect();
+  const hasPreselectedSize = !!String(sizeSelect.value || "").trim();
+
+  if (!hasPreselectedSize) {
+    insertSelectSizeOption();
+    resetSizeSelect();
+  }
+
+  if (!sizeChartWrapper || hasModernSizeGuide) {
+    if (sizeChartWrapper) {
+      sizeChartWrapper.style.display = "none";
+      if (sizeChartContent) sizeChartContent.innerHTML = "";
+    }
+    return;
+  }
+
   sizeSelect.addEventListener("change", updateSizeMessage);
   if (typeSelect && getActiveProductConfig()) {
     typeSelect.addEventListener("change", function () {

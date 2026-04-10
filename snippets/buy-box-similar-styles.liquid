@@ -1,0 +1,163 @@
+{%- liquid
+  assign layout = layout | default: 'buy_box'
+  assign show_navigation = false
+  assign show_similar_section = false
+  if layout == 'buy_box'
+    assign show_navigation = true
+    assign show_similar_section = true
+  elsif layout == 'navigation'
+    assign show_navigation = true
+  elsif layout == 'recommendations'
+    assign show_similar_section = true
+  endif
+
+  assign product_collection_handles = product.collections | map: 'handle' | join: '|'
+  assign product_subcategory = product.metafields.custom.subcategory | default: blank
+  assign product_subcategory_handle = product_subcategory | handleize
+  assign has_family_sets_context = false
+  if product_collection_handles contains 'family-sets' or product_subcategory_handle == 'family-sets'
+    assign has_family_sets_context = true
+  endif
+
+  assign family_sets_collection = collections['family-sets']
+
+  assign back_collection = collection
+  if back_collection == blank and has_family_sets_context and family_sets_collection != blank
+    assign back_collection = family_sets_collection
+  endif
+
+  assign similar_collection = collection
+  if similar_collection == blank or similar_collection.all_products_count < 5
+    if has_family_sets_context and family_sets_collection != blank
+      assign similar_collection = family_sets_collection
+    else
+      assign fallback_collection = blank
+      assign fallback_collection_count = 0
+
+      for product_collection in product.collections
+        if product_collection.handle == 'all' or product_collection.all_products_count == 0
+          continue
+        endif
+
+        if fallback_collection == blank or product_collection.all_products_count > fallback_collection_count
+          assign fallback_collection = product_collection
+          assign fallback_collection_count = product_collection.all_products_count
+        endif
+      endfor
+
+      assign similar_collection = fallback_collection
+    endif
+  endif
+
+  assign back_to_results_label = 'Back to results'
+  assign back_to_results_fallback_url = routes.all_products_collection_url | default: routes.root_url
+  if back_collection != blank
+    assign back_to_results_fallback_url = back_collection.url | default: back_to_results_fallback_url
+    if back_collection.title != blank
+      assign back_to_results_label = 'Back to ' | append: back_collection.title
+    endif
+  endif
+
+  if back_collection == blank and has_family_sets_context
+    assign back_to_results_label = 'Back to Family Sets'
+    if family_sets_collection != blank
+      assign back_to_results_fallback_url = family_sets_collection.url
+    endif
+  elsif back_collection != blank and back_collection.handle == 'family-sets'
+    assign back_to_results_label = 'Back to Family Sets'
+  endif
+
+  assign current_product_type = product.type | downcase | strip
+  assign same_type_match_count = 0
+  assign rendered_similar_items_count = 0
+  if similar_collection != blank and current_product_type != blank
+    for browse_product in similar_collection.products
+      if browse_product.id == product.id
+        continue
+      endif
+
+      assign browse_product_type = browse_product.type | downcase | strip
+      if browse_product_type == blank or browse_product_type != current_product_type
+        continue
+      endif
+
+      assign same_type_match_count = same_type_match_count | plus: 1
+      if same_type_match_count >= 4
+        break
+      endif
+    endfor
+  endif
+
+  assign prefer_type_matches = false
+  if same_type_match_count >= 4 and current_product_type != blank
+    assign prefer_type_matches = true
+  endif
+
+  assign similar_item_limit = 6
+  capture similar_items_markup
+    if similar_collection != blank
+      for browse_product in similar_collection.products
+        if browse_product.id == product.id
+          continue
+        endif
+
+        if prefer_type_matches and current_product_type != blank
+          assign browse_product_type = browse_product.type | downcase | strip
+          if browse_product_type == blank or browse_product_type != current_product_type
+            continue
+          endif
+        endif
+
+        assign rendered_similar_items_count = rendered_similar_items_count | plus: 1
+        echo '<li class="buy-box-similar-styles__item">'
+        render 'card-product', card_product: browse_product, media_aspect_ratio: 'adapt', show_secondary_image: false, show_vendor: false, show_rating: false, lazy_load: true, section_id: section.id
+        echo '</li>'
+
+        if rendered_similar_items_count >= similar_item_limit
+          break
+        endif
+      endfor
+    endif
+  endcapture
+  assign similar_items_markup = similar_items_markup | strip
+-%}
+
+{%- if show_navigation -%}
+  <nav class="buy-box-navigation" aria-label="Product navigation">
+    <a
+      href="{{ back_to_results_fallback_url }}"
+      class="buy-box-navigation__back-link"
+      data-back-to-results
+      data-back-to-results-fallback="{{ back_to_results_fallback_url }}"
+      rel="prev"
+      aria-label="{{ back_to_results_label | escape }}"
+    >
+      {{ back_to_results_label }}
+    </a>
+  </nav>
+{%- endif -%}
+
+{%- if show_similar_section and similar_items_markup != blank -%}
+  <section
+    class="buy-box-similar-styles{% if layout == 'recommendations' %} buy-box-similar-styles--recommendations{% endif %}"
+    aria-labelledby="BuyBoxSimilarStylesHeading-{{ section.id }}"
+  >
+    <div class="buy-box-similar-styles__header">
+      <p class="buy-box-similar-styles__eyebrow">Similar styles</p>
+      <h2 class="buy-box-similar-styles__title" id="BuyBoxSimilarStylesHeading-{{ section.id }}">
+        {%- if similar_collection != blank and similar_collection.title != blank -%}
+          Browse more from {{ similar_collection.title | escape }}
+        {%- else -%}
+          Browse similar styles
+        {%- endif -%}
+      </h2>
+      {%- if similar_collection != blank and similar_collection.title != blank -%}
+        <p class="buy-box-similar-styles__copy">Use this collection to compare a few close matches before you go back to shopping.</p>
+      {%- endif -%}
+    </div>
+
+    <ul class="buy-box-similar-styles__grid" role="list">
+      {{- similar_items_markup -}}
+    </ul>
+  </section>
+{%- endif -%}

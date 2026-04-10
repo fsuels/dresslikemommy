@@ -14,12 +14,76 @@
   }
 {%- endstyle -%}
 
+{%- liquid
+  assign rotation_seed = 'now' | date: '%M' | plus: 0
+  assign used_image_ids = ''
+  assign trust_item_count = 0
+  assign category_block_count = 0
+  assign occasion_block_count = 0
+
+  if section.settings.show_trust_strip
+    if section.settings.trust_item_1 != blank
+      assign trust_item_count = trust_item_count | plus: 1
+    endif
+    if section.settings.trust_item_2 != blank
+      assign trust_item_count = trust_item_count | plus: 1
+    endif
+    if section.settings.trust_item_3 != blank
+      assign trust_item_count = trust_item_count | plus: 1
+    endif
+    if section.settings.trust_item_4 != blank
+      assign trust_item_count = trust_item_count | plus: 1
+    endif
+  endif
+
+  if section.settings.display_mode == 'grouped'
+    for block in section.blocks
+      if block.settings.collection != blank
+        if block.settings.browse_path == 'occasion'
+          assign occasion_block_count = occasion_block_count | plus: 1
+        else
+          assign category_block_count = category_block_count | plus: 1
+        endif
+      endif
+    endfor
+  endif
+-%}
+
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width section-{{ section.id }}-padding">
     {%- if section.settings.title != blank -%}
       <h2 class="collection-list-title {{ section.settings.heading_size }}">
         {{ section.settings.title }}
       </h2>
+    {%- endif -%}
+
+    {%- if section.settings.show_trust_strip and trust_item_count > 0 -%}
+      <div class="category-icons__trust" aria-label="Store trust highlights">
+        {%- if section.settings.trust_item_1 != blank -%}
+          <span class="category-icons__trust-item">
+            <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
+            <span>{{ section.settings.trust_item_1 | escape }}</span>
+          </span>
+        {%- endif -%}
+        {%- if section.settings.trust_item_2 != blank -%}
+          <span class="category-icons__trust-item">
+            <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
+            <span>{{ section.settings.trust_item_2 | escape }}</span>
+          </span>
+        {%- endif -%}
+        {%- if section.settings.trust_item_3 != blank -%}
+          <span class="category-icons__trust-item">
+            <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
+            <span>{{ section.settings.trust_item_3 | escape }}</span>
+          </span>
+        {%- endif -%}
+        {%- if section.settings.trust_item_4 != blank -%}
+          <span class="category-icons__trust-item">
+            <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
+            <span>{{ section.settings.trust_item_4 | escape }}</span>
+          </span>
+        {%- endif -%}
+      </div>
     {%- endif -%}
 
     {%- comment -%}
@@ -29,68 +93,226 @@
       - Tracks used image IDs across all categories to guarantee no duplicates
       - Custom image override via theme editor always takes priority
     {%- endcomment -%}
-    {%- assign rotation_seed = 'now' | date: '%M' | plus: 0 -%}
-    {%- assign used_image_ids = '' -%}
 
-    <ul class="category-icons__scroll" role="list">
-      {%- for block in section.blocks -%}
-        {%- if block.settings.collection != blank -%}
-          {%- liquid
-            assign icon_label = block.settings.custom_label | default: block.settings.collection.title
-            assign icon_image = blank
-            assign products = block.settings.collection.products
-            assign product_count = products.size
+    {%- if section.settings.display_mode == 'grouped' -%}
+      {%- if category_block_count > 0 -%}
+        <div class="category-icons__group">
+          {%- if section.settings.category_heading != blank -%}
+            <h3 class="category-icons__group-title">{{ section.settings.category_heading }}</h3>
+          {%- endif -%}
+          <ul class="category-icons__scroll" role="list" aria-label="{{ section.settings.category_heading | default: 'Shop by category' | escape }}">
+            {%- for block in section.blocks -%}
+              {%- if block.settings.collection != blank and block.settings.browse_path != 'occasion' -%}
+                {%- liquid
+                  assign icon_label = block.settings.custom_label | default: block.settings.collection.title
+                  assign icon_image = blank
+                  assign icon_image_key = blank
+                  assign products = block.settings.collection.products
+                  assign product_count = products.size
 
-            if block.settings.custom_image != blank
-              assign icon_image = block.settings.custom_image
-            elsif product_count > 0
-              assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
-              assign found_unique = false
+                  if block.settings.custom_image != blank
+                    assign icon_image = block.settings.custom_image
+                  elsif product_count > 0
+                    assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
+                    assign found_unique = false
 
-              for i in (0..product_count)
-                unless found_unique
-                  assign try_index = start_index | plus: i | modulo: product_count
-                  assign try_product = products[try_index]
+                    for i in (0..product_count)
+                      unless found_unique
+                        assign try_index = start_index | plus: i | modulo: product_count
+                        assign try_product = products[try_index]
 
-                  if try_product != blank and try_product.featured_media != blank
-                    assign try_image = try_product.featured_media.preview_image
-                    assign try_id = try_image | image_url: width: 1 | split: '/' | last | split: '?' | first
+                        if try_product != blank and try_product.featured_media != blank
+                          assign try_image = try_product.featured_media.preview_image
+                          assign try_id = try_image.id | default: try_product.id
+                          assign try_id_token = '|' | append: try_id | append: '|'
 
-                    unless used_image_ids contains try_id
-                      assign icon_image = try_image
-                      assign used_image_ids = used_image_ids | append: try_id | append: ','
-                      assign found_unique = true
-                    endunless
+                          unless used_image_ids contains try_id_token
+                            assign icon_image = try_image
+                            assign used_image_ids = used_image_ids | append: try_id_token
+                            assign found_unique = true
+                          endunless
+                        endif
+                      endunless
+                    endfor
+
+                    if found_unique == false and products[0].featured_media != blank
+                      assign icon_image = products[0].featured_media.preview_image
+                    endif
                   endif
-                endunless
-              endfor
 
-              if found_unique == false and products[0].featured_media != blank
-                assign icon_image = products[0].featured_media.preview_image
+                  if icon_image != blank
+                    assign icon_image_key = 'image-' | append: icon_image.id
+                  endif
+                -%}
+                <li class="category-icons__item" {{ block.shopify_attributes }}>
+                  <a href="{{ block.settings.collection.url }}" class="category-icons__link">
+                    <div class="category-icons__image-wrap">
+                      {%- if icon_image != blank -%}
+                        <img
+                        src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
+                        alt="{{ icon_label | escape }}"
+                        loading="eager"
+                        width="120"
+                        height="150"
+                        data-homepage-reserve-image
+                        data-homepage-collection-image-key="{{ icon_image_key | escape }}"
+                      >
+                      {%- else -%}
+                        {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {%- endif -%}
+                    </div>
+                    <span class="category-icons__label">{{ icon_label }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      {%- if occasion_block_count > 0 -%}
+        <div class="category-icons__group">
+          {%- if section.settings.occasion_heading != blank -%}
+            <h3 class="category-icons__group-title">{{ section.settings.occasion_heading }}</h3>
+          {%- endif -%}
+          <ul class="category-icons__scroll" role="list" aria-label="{{ section.settings.occasion_heading | default: 'Shop by occasion' | escape }}">
+            {%- for block in section.blocks -%}
+              {%- if block.settings.collection != blank and block.settings.browse_path == 'occasion' -%}
+                {%- liquid
+                  assign icon_label = block.settings.custom_label | default: block.settings.collection.title
+                  assign icon_image = blank
+                  assign icon_image_key = blank
+                  assign products = block.settings.collection.products
+                  assign product_count = products.size
+
+                  if block.settings.custom_image != blank
+                    assign icon_image = block.settings.custom_image
+                  elsif product_count > 0
+                    assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
+                    assign found_unique = false
+
+                    for i in (0..product_count)
+                      unless found_unique
+                        assign try_index = start_index | plus: i | modulo: product_count
+                        assign try_product = products[try_index]
+
+                        if try_product != blank and try_product.featured_media != blank
+                          assign try_image = try_product.featured_media.preview_image
+                          assign try_id = try_image.id | default: try_product.id
+                          assign try_id_token = '|' | append: try_id | append: '|'
+
+                          unless used_image_ids contains try_id_token
+                            assign icon_image = try_image
+                            assign used_image_ids = used_image_ids | append: try_id_token
+                            assign found_unique = true
+                          endunless
+                        endif
+                      endunless
+                    endfor
+
+                    if found_unique == false and products[0].featured_media != blank
+                      assign icon_image = products[0].featured_media.preview_image
+                    endif
+                  endif
+
+                  if icon_image != blank
+                    assign icon_image_key = 'image-' | append: icon_image.id
+                  endif
+                -%}
+                <li class="category-icons__item" {{ block.shopify_attributes }}>
+                  <a href="{{ block.settings.collection.url }}" class="category-icons__link">
+                    <div class="category-icons__image-wrap">
+                      {%- if icon_image != blank -%}
+                        <img
+                        src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
+                        alt="{{ icon_label | escape }}"
+                        loading="eager"
+                        width="120"
+                        height="150"
+                        data-homepage-reserve-image
+                        data-homepage-collection-image-key="{{ icon_image_key | escape }}"
+                      >
+                      {%- else -%}
+                        {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {%- endif -%}
+                    </div>
+                    <span class="category-icons__label">{{ icon_label }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <ul class="category-icons__scroll" role="list" aria-label="{{ section.settings.title | default: 'Shop by category' | escape }}">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.collection != blank -%}
+            {%- liquid
+              assign icon_label = block.settings.custom_label | default: block.settings.collection.title
+              assign icon_image = blank
+              assign icon_image_key = blank
+              assign products = block.settings.collection.products
+              assign product_count = products.size
+
+              if block.settings.custom_image != blank
+                assign icon_image = block.settings.custom_image
+              elsif product_count > 0
+                assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
+                assign found_unique = false
+
+                for i in (0..product_count)
+                  unless found_unique
+                    assign try_index = start_index | plus: i | modulo: product_count
+                    assign try_product = products[try_index]
+
+                    if try_product != blank and try_product.featured_media != blank
+                      assign try_image = try_product.featured_media.preview_image
+                      assign try_id = try_image.id | default: try_product.id
+                      assign try_id_token = '|' | append: try_id | append: '|'
+
+                      unless used_image_ids contains try_id_token
+                        assign icon_image = try_image
+                        assign used_image_ids = used_image_ids | append: try_id_token
+                        assign found_unique = true
+                      endunless
+                    endif
+                  endunless
+                endfor
+
+                if found_unique == false and products[0].featured_media != blank
+                  assign icon_image = products[0].featured_media.preview_image
+                endif
               endif
-            endif
-          -%}
-          <li class="category-icons__item" {{ block.shopify_attributes }}>
-            <a href="{{ block.settings.collection.url }}" class="category-icons__link">
-              <div class="category-icons__image-wrap">
-                {%- if icon_image != blank -%}
-                  <img
-                    src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
-                    alt="{{ icon_label | escape }}"
-                    loading="eager"
-                    width="120"
-                    height="150"
-                  >
-                {%- else -%}
-                  {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                {%- endif -%}
-              </div>
-              <span class="category-icons__label">{{ icon_label }}</span>
-            </a>
-          </li>
-        {%- endif -%}
-      {%- endfor -%}
-    </ul>
+
+              if icon_image != blank
+                assign icon_image_key = 'image-' | append: icon_image.id
+              endif
+            -%}
+            <li class="category-icons__item" {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.collection.url }}" class="category-icons__link">
+                <div class="category-icons__image-wrap">
+                  {%- if icon_image != blank -%}
+                    <img
+                      src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
+                      alt="{{ icon_label | escape }}"
+                      loading="eager"
+                      width="120"
+                      height="150"
+                      data-homepage-reserve-image
+                      data-homepage-collection-image-key="{{ icon_image_key | escape }}"
+                    >
+                  {%- else -%}
+                    {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+                <span class="category-icons__label">{{ icon_label }}</span>
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
   </div>
 </div>
 
@@ -119,6 +341,58 @@
       ],
       "default": "h2",
       "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "display_mode",
+      "options": [
+        { "value": "single", "label": "Single path" },
+        { "value": "grouped", "label": "Group by category and occasion" }
+      ],
+      "default": "single",
+      "label": "Layout"
+    },
+    {
+      "type": "text",
+      "id": "category_heading",
+      "default": "Shop by category",
+      "label": "Category heading"
+    },
+    {
+      "type": "text",
+      "id": "occasion_heading",
+      "default": "Shop by occasion",
+      "label": "Occasion heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_strip",
+      "default": true,
+      "label": "Show trust strip"
+    },
+    {
+      "type": "text",
+      "id": "trust_item_1",
+      "default": "Family-owned since 2016",
+      "label": "Trust item 1"
+    },
+    {
+      "type": "text",
+      "id": "trust_item_2",
+      "default": "Thousands of happy families",
+      "label": "Trust item 2"
+    },
+    {
+      "type": "text",
+      "id": "trust_item_3",
+      "default": "Free shipping on all orders",
+      "label": "Trust item 3"
+    },
+    {
+      "type": "text",
+      "id": "trust_item_4",
+      "default": "Responds within 1 business day",
+      "label": "Trust item 4"
     },
     {
       "type": "color_scheme",
@@ -172,6 +446,16 @@
           "id": "custom_image",
           "label": "Custom image",
           "info": "Overrides collection image"
+        },
+        {
+          "type": "select",
+          "id": "browse_path",
+          "label": "Browse path",
+          "default": "category",
+          "options": [
+            { "value": "category", "label": "Category" },
+            { "value": "occasion", "label": "Occasion" }
+          ]
         }
       ]
     }

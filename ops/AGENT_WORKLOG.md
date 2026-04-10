@@ -13619,5 +13619,624 @@ Verification:
   - homepage trust pills and mobile hero CTAs render,
   - collection/PDP fixes from the previous pass remain intact.
 
+### Task: Collection audit theme-layer fixes for sale logic, breadcrumbs, and image alts
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-collection-audit-theme-layer-fixes
+Changes:
+- `snippets/price.liquid`
+  - Added a strict `compare_at_price > active price` sale-state guard and used it consistently for the sale class, compare-at text, sale badge, and volume-pricing sale badge.
+  - Prevented the rendered price block from showing sale UI when the compare-at value is blank or not genuinely higher than the active price.
+- `snippets/card-product.liquid`
+  - Switched collection-card sale badges to a selected-variant comparison so badge state tracks the active product price instead of a broader product-level compare-at check.
+- `snippets/product-image-alt.liquid`
+  - Tightened alt-text fallback logic so stale swimwear wording is replaced when it no longer matches the product context.
+  - New fallback output prefers the real product title and appends garment type when the title alone does not already carry that signal.
+- `snippets/collection-breadcrumbs.liquid`
+  - Normalized family-hub, family-vacation, and Hawaiian-related collection breadcrumbs to clearer labels and family-matching depth.
+  - `family-sets` and `matching-family-vacation-outfits` now read as `Family Vacation Outfits`; `matching-hawaiian-outfits` now reads as `Matching Hawaiian Outfits`.
+
+Verification:
+- `git diff --check -- snippets/price.liquid snippets/card-product.liquid snippets/product-image-alt.liquid snippets/collection-breadcrumbs.liquid`
+- `shopify theme check --path . --fail-level warning --output json > /tmp/dlm-themecheck.json`
+- Reviewed the theme-check export and confirmed the repo still has unrelated baseline issues, but none of the touched snippet files appeared in the offense set.
+
+Residual risk:
+- Breadcrumb labels are now normalized in the theme, but the underlying collection handles and Shopify admin taxonomy still need to stay aligned to avoid future drift.
+- Image-alt cleanup is defensive at the theme layer; if product media alt text is later corrected in Admin, that source data will still win when it is already descriptive and on-brand.
+
 Outcome:
 - The homepage now ends after the core browse modules, curated set proof, SEO text block, and footer, which materially reduces mobile scroll fatigue and removes the duplicate email ask.
+
+Session: Collection page admin cleanup dry-run
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-collection-page-admin-cleanup-dry-run
+
+Changes applied (evidence-first)
+- `ops/scripts/audit_collection_page_admin_cleanup.py` - Added a read-only audit script that scans the product export for dirty size labels, suspicious/composite color values, and a collection taxonomy planning map. The script is dry-run by default and does not write to Shopify Admin.
+- `ops/catalog-cleanup/2026-04-10-collection-page-admin-cleanup-dry-run/collection_page_admin_cleanup_report.md` - Generated the handoff report with the dry-run findings and exact remaining operator steps.
+- `ops/catalog-cleanup/2026-04-10-collection-page-admin-cleanup-dry-run/size_label_normalization_plan.csv` - Generated the source-data normalization plan for the inconsistent size labels.
+- `ops/catalog-cleanup/2026-04-10-collection-page-admin-cleanup-dry-run/color_filter_hygiene_audit.csv` - Generated the color filter hygiene audit for composite / non-plain values.
+- `ops/catalog-cleanup/2026-04-10-collection-page-admin-cleanup-dry-run/collection_taxonomy_plan.csv` - Generated the admin-side collection handle/title planning map.
+
+Validation snapshot
+- `python3 -m py_compile ops/scripts/audit_collection_page_admin_cleanup.py` passed.
+- `git diff --check -- ops/scripts/audit_collection_page_admin_cleanup.py` passed.
+- Shopify Admin credentials were not loaded in this shell, so the live read-only Admin path was not exercised and no mutations were attempted.
+
+Open TODOs (next session)
+1) If credentials are loaded later, rerun the audit with `--use-live-admin --collection-handle ...` to compare live collection metadata against the dry-run plan.
+2) Normalize the dirty size labels in source product data, then rebuild Search & Discovery filters from the cleaned source fields.
+3) Decide whether the Color filter should stay composite-aware or be rebuilt against a strict color-only source field.
+4) Stage the collection handle/title changes in Shopify Admin with redirects prepared before any live rename.
+
+### Task: Homepage audit fix for hero positioning, browse-path compression, and trust recovery
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-homepage-audit-fix-compressed-browse-paths
+Changes:
+- `sections/hero-banner.liquid`
+  - Added an optional hero trust-line setting so the homepage can show the concise reassurance copy directly under the CTAs without the older pill stack.
+  - Removed the now-unused hero image preload assign so the touched hero file stays clean in Theme Check.
+- `templates/index.json`
+  - Rewrote the homepage hero headline, subhead, CTAs, and trust line to lead with broader family-set and dress browsing instead of swimsuits.
+  - Removed the standalone swimsuit-heavy featured collection rail and the bottom SEO-heavy rich-text module.
+  - Collapsed homepage discovery into three core modules: hero, grouped browse hub, and curated proof grid.
+  - Reconfigured `category_icons` into a grouped homepage browse hub with one `Shop by Category` path and one `Shop by Occasion` path, plus a 4-point trust strip directly below the hero.
+  - Reduced the browse choices to the highest-signal categories and occasions instead of keeping the previous wider merchandising stack.
+  - Updated `curated_product_grid_main` to carry the condensed trust copy below the first featured module and a shopper-first use-case footer for vacation, beach days, photos, birthdays, and holidays.
+  - Added explicit collection-recovery labels/targets to the curated product cards so image/title/CTA still route to PDPs while the secondary links route back into broader collections.
+- `sections/category-icons.liquid` and `assets/section-category-icons.css`
+  - Added optional grouped browse rendering with per-block `browse_path` support.
+  - Added the hero-adjacent trust strip styling and headings for the split category/occasion browse paths.
+- `sections/curated-product-grid.liquid`
+  - Added section settings for a condensed trust note and a shopper-first footer block.
+  - Added per-card secondary collection settings so the homepage can surface clearer recovery links without changing PDP routing.
+- `snippets/home-spotlight-card.liquid` and `assets/section-home-curation.css`
+  - Added explicit `See all ...` style secondary-link support for homepage spotlight cards.
+  - Kept optional trust-line support available in the shared card component, but the active homepage now relies on section-level trust copy instead of repeating it on every card.
+
+Verification:
+- `git diff --check`
+- `node -e "const fs=require('fs');const raw=fs.readFileSync('templates/index.json','utf8').replace(/^\\/\\*[\\s\\S]*?\\*\\/\\s*/, '');JSON.parse(raw);console.log('templates/index.json OK')"`
+- `shopify theme check --path . --fail-level warning --output json | node -e "..."` filtered to the touched homepage files and returned `[]`
+- Full `shopify theme check --path . --fail-level warning --output json` still reports large pre-existing repo-wide baseline issues, but none of the touched homepage files appeared in the filtered offense set after this pass.
+
+Deferred:
+- I did not run a fresh live storefront preview or browser/mobile QA in this pass, so the new grouped browse section and compressed homepage should still be sanity-checked in preview on desktop and mobile.
+- Collection handle availability for `matching-outfits` and the chosen occasion links was assumed from existing theme references; if merchandising wants different destination collections, only `templates/index.json` should need follow-up edits.
+
+### Task: Collection audit breadcrumb follow-up for family hub continuity
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-collection-audit-breadcrumb-followup
+Changes:
+- `snippets/collection-breadcrumbs.liquid`
+  - Added an explicit family-matching hub parent handle/label so family swim, vacation, and Hawaiian collections can consistently breadcrumb back to `/collections/new-women-outfits` instead of inheriting vague or mismatched parent metafields.
+  - Rebuilt the family collection tab set around the family hub, family swimsuits, family vacation, Hawaiian outfits, tops, and sweaters so the family-related collections share clearer comparison paths.
+  - Treated `family-sets` and `matching-family-vacation-outfits` as family-vacation aliases in the tab state so the active label stays stable even before Shopify Admin taxonomy cleanup lands.
+  - Tightened the visible label for `family-swimsuits` to `Family Matching Swimsuits`.
+
+Verification:
+- `git diff --check`
+- `shopify theme check --path . --fail-level warning --output json > /tmp/dlm-themecheck.json`
+- Parsed `/tmp/dlm-themecheck.json` and confirmed the touched collection-audit snippets (`snippets/price.liquid`, `snippets/card-product.liquid`, `snippets/product-image-alt.liquid`, and `snippets/collection-breadcrumbs.liquid`) currently return no Theme Check offenses.
+
+Deferred:
+  - No fresh live preview/browser QA was run after the breadcrumb follow-up, so the new family-hub parent link and tab state should be spot-checked in a storefront preview before publish.
+  - Unrelated homepage/category-section edits are also present in the worktree after the agent handoff (`sections/category-icons.liquid`, `templates/index.json`, related assets/snippets, etc.); they were left untouched because they are outside this collection-audit scope and need separate review before any publish/commit step.
+
+### Task: PDP alternative-browsing/navigation pass
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-pdp-alternative-browsing-navigation-pass
+Changes:
+- `sections/main-product.liquid`
+  - Added a near-buy-box PDP navigation block render directly after the buy buttons so the preserved results URL can stay visible close to the purchase decision.
+  - Moved `component-card.css` into the top-level product asset load so the new near-buy-box product cards render cleanly without waiting for the complementary block.
+  - Left the existing complementary/add-on recommendation block intact and separate.
+- `assets/section-main-product.css`
+  - Added scoped styles for the new back control and similar-items module, including mobile-width treatment for the back pill and a responsive 2-up / 3-up product grid.
+- `snippets/buy-box-similar-styles.liquid`
+  - Added a preserved-results back control that reuses the theme’s `data-back-to-results` hydration path and labels family-set context explicitly as `Back to Family Sets`.
+  - Added a `Similar styles` module that prefers the current collection when available, falls back to a sensible product collection when needed, and renders up to 6 product cards distinct from the complementary/add-on rail.
+
+Verification:
+- `curl -s http://127.0.0.1:9292/products/family-matching-set-cute-and-stylish-outfits-for-mothers-fathers-and-children | sed -n '13242,13290p'`
+- `curl -s http://127.0.0.1:9292/products/elegant-black-ruffle-dress-chic-sleeveless-layered-dress-for-mother-and-daughter-perfect-for-parties-and-events | rg -n "buy-box-navigation|buy-box-similar-styles|Back to|Similar styles|Browse more from"`
+- Confirmed the family-set PDP renders `Back to Family Sets` and the similar-items grid; the dress PDP renders the same block with a collection-specific back label.
+
+Deferred:
+- I did not modify the existing complementary/add-on block or any broader PDP trust/size/legal copy in this pass.
+- Unrelated worktree edits from other tasks remain in place and were intentionally left alone.
+
+### Task: Homepage browser-QA follow-up for trust de-duplication and larger browse imagery
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-homepage-browser-qa-trust-dedup-browse-imagery
+Changes:
+- `sections/hero-banner.liquid`
+  - Added a `show_trust` toggle so the hero trust row can be fully suppressed instead of falling back to the older pill stack when the custom trust line is blank.
+- `templates/index.json`
+  - Turned off the hero trust row on the homepage to remove the duplicated reassurance directly above the grouped trust strip.
+  - Simplified the homepage trust strip to the three requested items only: `Free shipping on all orders`, `Thousands of happy families`, and `Family-owned since 2016`.
+- `assets/section-category-icons.css`
+  - Reworked the grouped homepage browse tiles into larger image-led cards with overlay labels so the photo, not the small label, is the hook.
+  - Increased mobile and desktop tile dimensions and let the trust strip auto-fit cleanly with three items instead of leaving a 4-column gap.
+
+Browser QA:
+- Used headless Playwright screenshot runs against `http://127.0.0.1:9292/` for homepage desktop and mobile before and after the edits.
+- Used additional headless Playwright screenshot runs against `http://127.0.0.1:9292/collections/family-sets` on desktop and mobile to confirm the “too small” complaint was isolated to the homepage browse hub rather than the actual collection product grid.
+- Result:
+  - Homepage desktop: duplicated hero reassurance removed; grouped browse cards now lead with much larger imagery.
+  - Homepage mobile: duplicated hero reassurance removed; browse tiles now read as tappable image cards instead of tiny thumbnails.
+  - Family-sets collection page desktop/mobile: collection product imagery was already appropriately large, so no collection-grid resizing change was made in this pass.
+
+Verification:
+- `git diff --check`
+- `node -e "const fs=require('fs');const raw=fs.readFileSync('templates/index.json','utf8').replace(/^\\/\\*[\\s\\S]*?\\*\\/\\s*/, '');JSON.parse(raw);console.log('templates/index.json OK')"`
+- `curl -s http://127.0.0.1:9292/ | rg -n "Thousands of happy families|Family-owned since 2016"`
+- `shopify theme check --path . --fail-level warning --output json | node -e "..."` filtered to `sections/hero-banner.liquid`, `sections/category-icons.liquid`, `assets/section-category-icons.css`, and `templates/index.json`, which returned `[]`
+
+Deferred:
+- The first featured-module support note still repeats some reassurance lower on the page by design, because the earlier audit requested condensed trust copy below the first featured module. If merchandising wants that trimmed further, the next edit should happen in `templates/index.json` / `sections/curated-product-grid.liquid`, not back in the hero.
+
+### Task: Remove collection merchandising callouts from dresses and matching-outfits
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-remove-collection-merchandising-callouts-dresses-matching-outfits
+Changes:
+- `snippets/collection-merchandising-callout.liquid`
+  - Removed the collection-specific pictured promo callout for `dresses`.
+  - Removed the collection-specific pictured promo callout for `matching-outfits`.
+  - Left the other collection callouts in place (`matching-couples-t-shirts`, `new-matching-outfits`) so this stays scoped to the two pages the user flagged.
+
+Verification:
+- `curl -s http://127.0.0.1:9292/collections/dresses | rg -n "Matching dresses|Start a matching dress look|See new mommy and me|collection-merchandising-callout"`
+- `curl -s http://127.0.0.1:9292/collections/matching-outfits | rg -n "Photo-ready family looks|Start a matching look|See best swim sellers|collection-merchandising-callout"`
+- `playwright screenshot --full-page --wait-for-timeout 1500 http://127.0.0.1:9292/collections/dresses /tmp/dlm-browser-check/collection-dresses.png`
+- `playwright screenshot --full-page --wait-for-timeout 1500 http://127.0.0.1:9292/collections/matching-outfits /tmp/dlm-browser-check/collection-matching-outfits.png`
+- Visual browser check on the saved screenshots confirmed the collection grid now starts without the removed pictured module on both pages.
+
+Deferred:
+- The broader collection audit work remains separate from this specific removal pass.
+- Unrelated worktree edits from other tasks remain in place and were intentionally left alone.
+
+### Task: PDP audit fixes for buy box state, inline size guidance, alternative browsing, and priority copy
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-pdp-audit-fixes-buy-box-size-guide-copy
+Changes:
+- `snippets/buy-buttons.liquid`, `snippets/price.liquid`, `assets/global.js`, and `assets/pickup-availability.js`
+  - Fixed the buy-box availability flow so unavailable variants render a disabled `Sold out` state plus a visible notify/back-in-stock CTA instead of leaving contradictory add-to-cart messaging in place.
+  - Tightened the sale-state guard to only render sale UI when `compare_at_price > price`, and suppressed the sale badge for unavailable variants.
+  - Hid dynamic checkout when the current variant is unavailable, and removed the recurring-purchase consent/legal node for ordinary non-subscription PDPs after hydration.
+  - Suppressed the pickup-availability error UI so failed pickup fetches no longer inject `Couldn't load pickup availability` noise into the buy box.
+- `snippets/product-variant-picker.liquid`, `snippets/product-desktop-ux.liquid`, `assets/component-product-desktop-ux.css`, and `assets/product-desktop-ux.js`
+  - Moved the `Size guide & fit` disclosure directly under the size selector.
+  - Added grouped family-size rendering with role-based fit helper copy for mother/father/girl/boy/child/baby/adult contexts.
+  - Removed the old duplicate lower-page size-guide placement so the guidance now sits near the decision point.
+- `sections/main-product.liquid`, `assets/section-main-product.css`, and `snippets/buy-box-similar-styles.liquid`
+  - Added a near-buy-box `Back to ...` control that reuses the preserved-results hydration path and explicitly labels family-set context as `Back to Family Sets`.
+  - Added a `Similar styles` module near the buy box that renders 4-6 nearby collection items instead of relying only on complementary/add-on suggestions.
+- `ops/scripts/fix_priority_pdp_copy.py`
+  - Added a dry-run-first Shopify Admin script that rewrites priority PDP descriptions into structured merch copy (`What's included`, `Fabric`, `Fit`, `Occasion`, `Care`, `Shipping`, `Returns`) while preserving each live size chart table.
+  - Wrote before/after artifacts to `ops/content/pdp-audit/2026-04-10-priority-pdp-copy-fix/`.
+  - Executed the live update for:
+    - `elegant-black-ruffle-dress-chic-sleeveless-layered-dress-for-mother-and-daughter-perfect-for-parties-and-events`
+    - `family-matching-set-cute-and-stylish-outfits-for-mothers-fathers-and-children`
+    - `stylish-and-comfortable-family-matching-outfits`
+  - Removed the placeholder-style `Additional Details` / `Fun Facts` content from the indexed `stylish-and-comfortable-family-matching-outfits` PDP and refreshed SEO titles/descriptions for the three priority products.
+
+Verification:
+- `node --check assets/global.js`
+- `node --check assets/product-desktop-ux.js`
+- `python3 -m py_compile ops/scripts/fix_priority_pdp_copy.py`
+- `git diff --check -- snippets/buy-buttons.liquid snippets/price.liquid assets/global.js assets/pickup-availability.js snippets/product-variant-picker.liquid snippets/product-desktop-ux.liquid assets/component-product-desktop-ux.css assets/product-desktop-ux.js sections/main-product.liquid assets/section-main-product.css snippets/buy-box-similar-styles.liquid ops/scripts/fix_priority_pdp_copy.py`
+- `shopify theme check --path . --fail-level warning --output json > /tmp/dlm-pdp-themecheck.json`
+- Filtered `/tmp/dlm-pdp-themecheck.json` to the touched PDP files and confirmed the offense list was `[]` even though the full repo still has unrelated baseline warnings.
+- Preview/browser spot checks:
+  - Family-set and dress PDP snapshots confirmed the inline size-guide disclosure now sits directly under the size selector and the near-buy-box alternative-browsing module renders.
+  - Family-set and dress PDP hydration checks confirmed the subscription consent node is removed after load and pickup-availability content stays empty instead of showing an error string.
+  - `curl -s 'http://127.0.0.1:9292/products/eternal-love-family-matching-t-shirts-colorful-heart-design?variant=41884150530145' | sed -n '12668,12712p'`
+    - Verified a real unavailable variant now renders with a disabled `Sold out` button, the notify CTA, and a hidden dynamic-checkout wrapper.
+  - `curl -s 'http://127.0.0.1:9292/products/eternal-love-family-matching-t-shirts-colorful-heart-design?variant=41884150530145' | sed -n '12228,12244p'`
+    - Verified the sold-out variant renders `data-price-on-sale="false"` and no sale badge/compare-at text.
+- Live content execution:
+  - `python3 ops/scripts/fix_priority_pdp_copy.py`
+  - `python3 ops/scripts/fix_priority_pdp_copy.py --execute`
+  - `curl -s http://127.0.0.1:9292/products/family-matching-set-cute-and-stylish-outfits-for-mothers-fathers-and-children | rg -n "What's included|Fabric|Fit|Occasion|Care|Shipping|Returns|Additional Details|Fun Facts"`
+  - `curl -s http://127.0.0.1:9292/products/stylish-and-comfortable-family-matching-outfits | rg -n "What's included|Fabric|Fit|Occasion|Care|Shipping|Returns|Additional Details|Fun Facts"`
+  - `curl -s http://127.0.0.1:9292/products/elegant-black-ruffle-dress-chic-sleeveless-layered-dress-for-mother-and-daughter-perfect-for-parties-and-events | rg -n "What's included|Fabric|Fit|Occasion|Care|Shipping|Returns"`
+
+Deferred:
+- I updated the default/live product copy only; localized translation copies were not synchronized in this pass, so multilingual storefront variants may still show older wording until translation sync runs.
+- Shopify’s payment-button markup still emits buyer-consent HTML server-side before hydration, but the theme now hides/removes that legal copy for ordinary apparel PDPs after load.
+- Unrelated homepage/category edits already present in the worktree were intentionally left untouched.
+
+### Task: Family-set PDP recommendation dedupe and similar-styles relocation
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-family-set-pdp-similar-styles-relocation
+Changes:
+- `sections/main-product.liquid`
+  - Added a shared family-set context flag near the top of the section.
+  - Family-set PDPs now render only the back-to-results navigation near the buy box, instead of the full similar-items card grid.
+  - Replaced the lower complementary-products slot with the `Similar styles` collection module for family-set PDPs so future `You may also like` / complementary content does not duplicate the collection-browsing module.
+- `snippets/buy-box-similar-styles.liquid`
+  - Added `layout` modes so the snippet can render as `buy_box`, `navigation`, or `recommendations`.
+  - Kept the back-link rendering reusable while allowing the card grid to move lower in the PDP when needed.
+- `assets/section-main-product.css`
+  - Added a recommendation-placement modifier for the lower similar-styles section.
+  - Reduced similar-card title and price scales so the collection cards feel proportional in the recommendation slot instead of reading like oversized primary-price UI.
+
+Verification:
+- `curl -s http://127.0.0.1:9292/products/family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun | rg -n "buy-box-navigation|buy-box-similar-styles|Similar styles|Browse more from Family Matching Sets|complementary-products"`
+  - Confirmed the page renders one back-link block plus a single lower `buy-box-similar-styles--recommendations` section.
+- `git diff --check -- sections/main-product.liquid snippets/buy-box-similar-styles.liquid assets/section-main-product.css`
+- `shopify theme check --path . --fail-level warning --output json > /tmp/dlm-pdp-dup-themecheck.json`
+- Filtered `/tmp/dlm-pdp-dup-themecheck.json` to `sections/main-product.liquid`, `snippets/buy-box-similar-styles.liquid`, and `assets/section-main-product.css`; offense list was `[]`.
+- Browser check:
+  - `playwright screenshot --full-page --wait-for-timeout 2500 http://127.0.0.1:9292/products/family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun /tmp/dlm-browser-check/pdp-duplicate-fixed.png`
+  - Reviewed the screenshot and confirmed the visible recommendation module now sits in the lower slot, with no duplicate similar-items block near the buy box and improved title/price proportions.
+
+Deferred:
+- This relocation is scoped to family-set PDP context so non-family-set PDPs continue using the earlier near-buy-box similar-styles placement.
+
+### Task: Homepage image de-duplication, browse-hub pruning, and mobile image QA
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-homepage-image-dedupe-prune-mobile-qa
+Changes:
+- `snippets/home-spotlight-card.liquid`
+  - Replaced the homepage spotlight card image helper with explicit `<img>` markup so the `Most-Loved Matching Sets` cards expose stable `data-homepage-collection-image*` hooks to the shared rotation script.
+  - Normalized homepage image keys to the underlying Shopify image id (`image-<id>`) instead of product/collection-specific keys so the homepage can truly avoid repeats across the browse hub and the featured-product row even when the same source image is requested at different sizes.
+  - Added configurable fetch-priority handling while preserving the per-product candidate JSON payload used by the homepage image rotation script.
+- `assets/homepage-collection-card-images.js`
+  - Continued using the shared homepage card-rotation script, now with the spotlight cards fully participating in the same reserve/selection flow as the browse-hub images.
+- `sections/category-icons.liquid`
+  - Switched browse-hub image uniqueness tracking from URL fragments to image ids/tokens for more reliable no-repeat behavior.
+  - Kept the grouped category/occasion structure, but normalized the reserved image key format to match the spotlight cards.
+- `templates/index.json`
+  - Removed the homepage `Pajamas` category tile and `Holidays` occasion tile because both were pulling from the same thin collection and weakening the visual mix.
+  - Left the homepage browse hub with the stronger eight-card set: four category cards and four occasion cards.
+- `assets/section-category-icons.css`
+  - Increased the homepage browse-card dimensions again so the remaining collection images carry more of the merchandising weight on both desktop and mobile.
+- `sections/curated-product-grid.liquid`
+  - Forced the four homepage spotlight cards to render eagerly and assigned fetch priority intentionally (`high` for the first card, `low` for the rest) so the `Most-Loved Matching Sets` images arrive reliably on mobile as visual hooks instead of trailing in behind the copy.
+
+Browser QA:
+- Used headless Playwright screenshot runs against `http://127.0.0.1:9292/` on desktop and mobile after the follow-up:
+  - `npx -y playwright screenshot --full-page --viewport-size "1440,2200" --wait-for-timeout 3500 http://127.0.0.1:9292/ /tmp/dlm-home-desktop-c.png`
+  - `npx -y playwright screenshot --full-page --viewport-size "1440,2200" --wait-for-timeout 3500 http://127.0.0.1:9292/ /tmp/dlm-home-desktop-d.png`
+  - `npx -y playwright screenshot --full-page --device "iPhone 13" --wait-for-timeout 3500 http://127.0.0.1:9292/ /tmp/dlm-home-mobile-b.png`
+- Visual check results:
+  - Desktop homepage: `Pajamas` and `Holidays` are gone from the browse hub, remaining browse cards are materially larger, and the `Most-Loved Matching Sets` imagery changes across refreshes.
+  - Mobile homepage: browse cards remain image-led and tappable, and the `Most-Loved Matching Sets` images now load visibly instead of appearing as empty placeholders in the section.
+  - Across the checked refreshes, the homepage did not show repeated imagery between the grouped browse hub and the `Most-Loved Matching Sets` cards.
+
+Verification:
+- `git diff --check`
+- `node -e "const fs=require('fs');const raw=fs.readFileSync('templates/index.json','utf8').replace(/^\\/\\*[\\s\\S]*?\\*\\/\\s*/, '');JSON.parse(raw);console.log('templates/index.json OK')"`
+- `shopify theme check --path . --fail-level warning --output json | node -e "..."` filtered to `sections/category-icons.liquid`, `sections/curated-product-grid.liquid`, `snippets/home-spotlight-card.liquid`, `assets/homepage-collection-card-images.js`, `assets/section-category-icons.css`, and `templates/index.json`, which returned `[]`
+
+Deferred:
+- The homepage no-repeat behavior is now enforced by shared image-id dedupe across the checked homepage modules, but if merchandising later points multiple homepage surfaces at collections/products that truly only have one underlying image, the only way to avoid a repeat would be to provide additional source imagery or set custom overrides in the theme editor.
+
+### Task: Remove stray browse-hub list markers
+Date: 2026-04-10
+Changes:
+- `assets/section-category-icons.css`
+  - Added `list-style: none` and `margin: 0` to the homepage browse-row list plus `list-style: none` to each browse item so the native bullet markers no longer show beside the image cards on mobile.
+
+Verification:
+- `git diff --check -- assets/section-category-icons.css`
+- `npx -y playwright screenshot --full-page --device "iPhone 13" --wait-for-timeout 2500 http://127.0.0.1:9292/ /tmp/dlm-home-mobile-no-dots.png`
+- Visual browser check on `/tmp/dlm-home-mobile-no-dots.png` confirmed the black dots beside the browse images are gone.
+
+### Task: Strengthen homepage browse-section headings
+Date: 2026-04-10
+Changes:
+- `assets/section-category-icons.css`
+  - Increased the visual weight and size of `Shop by Category` / `Shop by Occasion`.
+  - Added a subtle trailing divider line so each heading reads like a true section label instead of small helper text between modules.
+  - Tuned mobile and desktop sizing separately so the headings stay visible without overpowering the image cards.
+
+Verification:
+- `git diff --check -- assets/section-category-icons.css`
+- `npx -y playwright screenshot --full-page --viewport-size "1440,1200" --wait-for-timeout 2000 http://127.0.0.1:9292/ /tmp/dlm-home-headings-after-desktop.png`
+- `npx -y playwright screenshot --full-page --device "iPhone 13" --wait-for-timeout 2000 http://127.0.0.1:9292/ /tmp/dlm-home-headings-after-mobile.png`
+- Visual browser checks on the saved desktop/mobile screenshots confirmed the two headings now read clearly above their image rows.
+
+### Task: Rotate homepage featured products by product, not by image
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-homepage-featured-product-rotation-main-image
+Changes:
+- `snippets/home-spotlight-card.liquid`
+  - Reworked the homepage spotlight-card payload so each `Most-Loved Matching Sets` slot now emits candidate products instead of candidate images.
+  - Candidate payloads now use each product's featured image as the only image shown for that product.
+  - Added explicit spotlight DOM hooks for product links, caption, price block, and image so the client-side homepage rotation can swap the entire card to a different product while preserving analytics data.
+  - Hardened image-key generation with fallbacks to featured media id / product id so homepage-wide dedupe works even when Shopify preview-image ids are blank.
+- `sections/curated-product-grid.liquid`
+  - Passed each block's `secondary_collection` into the spotlight card as the rotation pool, so the homepage can rotate through a broader set of products instead of reusing the same hard-coded 4 products every refresh.
+- `assets/homepage-collection-card-images.js`
+  - Kept the existing collection-card image rotation behavior intact.
+  - Added a second homepage behavior for spotlight cards that:
+    - chooses a different product candidate on refresh,
+    - keeps the candidate product on its featured image,
+    - avoids reusing products within the `Most-Loved` row,
+    - avoids reusing image keys already reserved by the homepage browse hub above.
+- `templates/index.json`
+  - Removed the homepage `easy 30-day returns` phrasing from the hero/support-note copy and replaced it with sizing/matching-help messaging:
+    - hero subheading now ends with `Free shipping on all orders and thoughtful help with sizing and matching.`
+    - featured-module support note now reads `Free shipping on all orders, thoughtful help with sizing, and a family-owned team that replies within 1 business day.`
+
+Browser QA:
+- Used headless Playwright screenshot runs against `http://127.0.0.1:9292/` to confirm the behavior:
+  - `npx -y playwright screenshot --full-page --viewport-size "1440,1800" --wait-for-timeout 3500 http://127.0.0.1:9292/ /tmp/dlm-most-loved-refresh-a.png`
+  - `npx -y playwright screenshot --full-page --viewport-size "1440,1800" --wait-for-timeout 3500 http://127.0.0.1:9292/ /tmp/dlm-most-loved-refresh-b.png`
+  - `npx -y playwright screenshot --full-page --device "iPhone 13" --wait-for-timeout 3500 http://127.0.0.1:9292/ /tmp/dlm-most-loved-mobile-final.png`
+- Visual results:
+  - Desktop refresh A vs B showed different products in `Most-Loved Matching Sets`, not just different images on the same products.
+  - The chosen `Most-Loved` cards displayed the featured image for each product.
+  - The featured-product images did not duplicate the browse-hub images already visible higher on the homepage in the checked views.
+  - Mobile showed the same behavior, and the `easy 30-day returns` copy no longer appeared.
+
+Verification:
+- `node --check assets/homepage-collection-card-images.js`
+- `git diff --check -- snippets/home-spotlight-card.liquid sections/curated-product-grid.liquid assets/homepage-collection-card-images.js templates/index.json`
+- `shopify theme check --path . --fail-level warning --output json | node -e "..."` filtered to `snippets/home-spotlight-card.liquid`, `sections/curated-product-grid.liquid`, and `assets/homepage-collection-card-images.js`, which returned `[]`
+- `node -e "const fs=require('fs'); const raw=fs.readFileSync('templates/index.json','utf8').replace(/^\\/\\*[\\s\\S]*?\\*\\/\\s*/, ''); JSON.parse(raw); console.log('templates/index.json OK')"`
+- `curl -s http://127.0.0.1:9292/ | rg -n "easy 30-day returns|data-homepage-spotlight-card|homepage-spotlight-card__product-candidates|thoughtful help with sizing|thoughtful help with sizing and matching"`
+
+Deferred:
+- The featured-product rotation currently uses each block's `secondary_collection` as the product pool. If merchandising wants tighter curation later, the next step would be adding an explicit `rotation_collection` setting per card/block in the section schema instead of reusing the inline collection link source.
+
+### Task: Remove duplicate family-set similar-styles rail from main product body
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-remove-duplicate-family-similar-styles-rail
+Changes:
+- `sections/main-product.liquid`
+  - Stopped family-set PDPs from rendering the `buy-box-similar-styles` recommendations block inside the `complementary` block path.
+  - Kept the compact `Back to results` navigation near the buy box intact.
+  - Left the lower `related-products` section as the single source of truth for the moved `Similar styles` rail.
+
+Verification:
+- `curl -s http://127.0.0.1:9292/products/family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun | rg -n "You may also like|Similar styles|Browse more from|buy-box-similar-styles|related-products__heading" -n -C 2`
+- `git diff --check -- sections/main-product.liquid sections/related-products.liquid snippets/buy-box-similar-styles.liquid assets/section-main-product.css`
+- `npx -y playwright screenshot --full-page --viewport-size "1440,2200" --wait-for-timeout 2500 http://127.0.0.1:9292/products/family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun /tmp/dlm-browser-check/family-similar-only.png`
+- `npx -y playwright screenshot --viewport-size "1440,900" --wait-for-timeout 1500 http://127.0.0.1:9292/products/family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun /tmp/dlm-browser-check/family-top.png`
+- Visual review of the saved screenshots confirmed:
+  - the buy box no longer contains an inline `Similar styles` grid,
+  - the old lower recommendation slot now holds the only `Similar styles` module,
+  - the module heading reads `Browse more from Family Matching Sets`,
+  - the recommendation cards retain the adjusted title/price proportions.
+
+### Task: Remove repeated desktop shipping / returns / reviews strip from PDP buy box
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-remove-repeated-pdp-desktop-highlights
+Changes:
+- `snippets/product-desktop-ux.liquid`
+  - Removed the desktop-only three-card highlight strip that repeated shipping, returns, and review prompts directly under the buy box.
+  - Kept the lower detail/review areas intact so the PDP still has one canonical place for that information instead of two competing versions.
+
+Verification:
+- `git diff --check -- snippets/product-desktop-ux.liquid`
+- `curl -s http://127.0.0.1:9292/products/family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun | rg -n "Free Shipping Worldwide|Return Policy|30-Day Returns|Customer photo reviews|See fit notes and family photos|Est\\. Delivery|Want it faster\\?" -n -C 1`
+- `npx -y playwright screenshot --viewport-size "1440,1200" --wait-for-timeout 2000 http://127.0.0.1:9292/products/family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun /tmp/dlm-browser-check/family-no-desktop-highlights-top.png`
+- Visual browser review confirmed the repeated desktop card strip is gone from the buy-box area on the checked family-set PDP.
+
+### Task: Remove PDP notify-me CTA from sold-out buy box state
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-remove-pdp-notify-me-cta
+Changes:
+- `snippets/buy-buttons.liquid`
+  - Removed the secondary `Notify me when it's back` button and its mailto payload generation from the product buy-button stack.
+- `assets/global.js`
+  - Removed the now-unused notify-link variant update logic so sold-out transitions only manage the standard add-to-cart and dynamic checkout states.
+
+Verification:
+- `rg -n "Notify me when it'?s back|ProductNotifyButton-|data-notify-me-link|updateNotifyMeLink" snippets assets -S`
+- `node --check assets/global.js`
+- `git diff --check -- snippets/buy-buttons.liquid assets/global.js`
+- `curl -s http://127.0.0.1:9292/products/family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun | rg -n "Notify me when it'?s back|ProductNotifyButton|data-notify-me-link" -n -C 1`
+- `npx -y playwright screenshot --viewport-size "1440,1200" --wait-for-timeout 2000 http://127.0.0.1:9292/products/family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun /tmp/dlm-browser-check/family-no-notify-button.png`
+- Visual browser review confirmed the buy-box stack no longer shows the notify CTA on the checked PDP.
+
+### Task: Remove duplicate buy-box back-to-results link from PDP flow
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-remove-duplicate-buy-box-back-link
+Changes:
+- `sections/main-product.liquid`
+  - Removed the extra `buy-box-similar-styles` navigation-only render from the buy-buttons area.
+  - Kept the top breadcrumb `Back to results` link in place so the PDP still has one clear recovery path without interrupting the size/quantity/add-to-cart flow.
+
+Verification:
+- `curl -s http://127.0.0.1:9292/products/family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun | rg -n "Back to results|buy-box-navigation|data-back-to-results" -n -C 2`
+- `git diff --check -- sections/main-product.liquid`
+- `npx -y playwright screenshot --viewport-size "1440,1200" --wait-for-timeout 2000 http://127.0.0.1:9292/products/family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun /tmp/dlm-browser-check/family-single-back-link.png`
+- Visual browser review confirmed the PDP now shows a single `Back to results` link at the top only.
+
+### Task: Consolidate PDP size guidance into one canonical guide with unit toggle
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-canonical-size-guide-unit-toggle
+Changes:
+- `assets/product-desktop-ux.js`
+  - Upgraded the inline `Size guide & fit` accordion into the primary measurement UI.
+  - Added a `cm / in` unit toggle driven from the same local-storage preference key used by the older size script.
+  - Added selected-size state in the guide header and row highlighting synced to the current size selection.
+  - Switched the guide to trust the hidden manufacturer table as the single source of truth instead of the older generated measurement-card output.
+- `assets/component-product-desktop-ux.css`
+  - Added richer guide styling for the new header, unit toggle, and selected-row treatment so the accordion reads more intentionally.
+- `assets/size-conversion.js`
+  - Preserved size-option relabeling, but stopped rendering the older generated `Size Details` card whenever the newer accordion exists.
+  - Avoided forcing the size select back to blank when a PDP already loads with a preselected size.
+
+Rationale:
+- The lavender PDP exposed conflicting measurement presentations because the older generated `Size Details` card and the newer accordion were using different transformation paths.
+- The safer fix was to keep one canonical measurement source: the actual hidden table already embedded in the PDP content.
+
+Verification:
+- `node --check assets/product-desktop-ux.js`
+- `node --check assets/size-conversion.js`
+- `git diff --check -- assets/product-desktop-ux.js assets/component-product-desktop-ux.css assets/size-conversion.js`
+- Browser automation checks against `http://127.0.0.1:9292/products/lavender-mommy-and-me-floral-applique-sleeveless-ruffle-dress?variant=43831323000929` confirmed:
+  - no legacy generated measurement card is rendered under `.size-chart-wrapper`,
+  - the accordion shows a single highlighted row for the selected size,
+  - the guide exposes `cm` and `in` toggle buttons,
+  - the selected row swaps correctly between metric and imperial values,
+  - the guide header now reads `Selected size 2–3Y` for the checked child variant.
+- Saved browser artifact: `/tmp/dlm-browser-check/lavender-size-guide-upgraded-v2.png`
+
+### Task: Freeze size column in upgraded PDP size guide tables
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-freeze-size-column-in-size-guide
+Changes:
+- `assets/component-product-desktop-ux.css`
+  - Added sticky first-column treatment to `.matching-size-guide__table` so the `Size` column remains pinned on horizontal scroll.
+  - Matched the pinned-cell treatment to the existing PDP table pattern with a dedicated background, left alignment, and separator shadow.
+  - Preserved the stronger selected-row state for the highlighted size even when the frozen first column is active.
+
+Verification:
+- `git diff --check -- assets/component-product-desktop-ux.css`
+- Browser automation against `http://127.0.0.1:9292/products/lavender-mommy-and-me-floral-applique-sleeveless-ruffle-dress?variant=43831323000929` at narrow mobile widths confirmed the first column keeps its fixed left position when measured before/after forced table-wrap scrolling attempts.
+- Saved browser artifacts: `/tmp/dlm-browser-check/lavender-size-guide-sticky-column.png`, `/tmp/dlm-browser-check/lavender-size-guide-sticky-column-320.png`
+
+### Task: Remove duplicate lower size-chart display when inline PDP guide exists
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-remove-duplicate-lower-size-chart-display
+Changes:
+- `assets/product-description.js`
+  - Updated the description-table enhancer to treat description `size-chart` tables as source-only when the PDP already has the inline `Size guide & fit` module.
+  - Prevented the lower description area from wrapping those tables into a visible `Size Chart` card.
+  - Forced the source-only table to `display: none !important` so the hidden table still powers the inline guide without appearing again lower on the page.
+
+Verification:
+- `node --check assets/product-description.js`
+- `git diff --check -- assets/product-description.js`
+- Browser automation against `http://127.0.0.1:9292/products/lavender-mommy-and-me-floral-applique-sleeveless-ruffle-dress?variant=43831323197537` confirmed:
+  - `.product-copy__table-card--size-chart` count is `0`,
+  - the source table remains in the description DOM with `data-size-chart-source-only="true"` and `display: none`,
+  - the inline `Size guide & fit` still renders table content correctly.
+- Saved browser artifact: `/tmp/dlm-browser-check/lavender-no-duplicate-size-chart-v2.png`
+
+### Task: Fix grouped child-size row highlighting in standardized PDP size guide
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-fix-grouped-child-size-highlight
+Changes:
+- `assets/product-desktop-ux.js`
+  - Expanded selected-size token matching so grouped options like `Girl 4-5 Years` also contribute their stripped size label (`4-5 Years`) when the guide compares against grouped table rows.
+  - This keeps grouped child tables and grouped adult tables on the same inline-guide pattern while correctly highlighting the active row for both.
+
+Recommendation:
+- Standardize on the newer inline `Size guide & fit` presentation across PDPs wherever a parseable source table exists.
+- Only fall back to a simpler/default treatment on products that do not expose reliable source measurements.
+
+Verification:
+- `node --check assets/product-desktop-ux.js`
+- `git diff --check -- assets/product-desktop-ux.js`
+- Browser automation against `http://127.0.0.1:9292/products/vibrant-rainbow-maxi-dress-set-for-mom-and-daughter-colorful-summer-matching-outfits?variant=41878199107681` confirmed:
+  - adult selections still highlight one row,
+  - child selections now also highlight one row,
+  - the selected-copy line updates to the grouped child label (`Selected size 4-5 Years`).
+- Saved browser artifact: `/tmp/dlm-browser-check/rainbow-size-guide-fixed.png`
+
+### Task: Polish collection-page intro and lower copy on dresses and matching outfits
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-polish-collection-copy-dresses-matching-outfits
+Changes:
+- `snippets/collection-seo-fallback.liquid`
+  - Shortened the shopper-facing display titles for `dresses` and `matching-outfits` to `Mommy and Me Dresses` and `Family Matching Outfits` so the collection headers stop reading like SEO strings.
+  - Rewrote the top-of-page body descriptions for those two collections into single-paragraph merchandising copy with a calmer tone.
+- `snippets/collection-seo-content.liquid`
+  - Replaced the keyword-heavy lower sections for `dresses` and `matching-outfits` with restrained `Collection Note` blocks and concise related-link chips.
+- `sections/main-collection-seo.liquid`
+  - Wrapped non-swimsuit collection rich content in a dedicated `collection-seo-rich` container and loaded the supporting stylesheet for those sections.
+- `assets/section-collection-seo.css`
+  - Added a softer card treatment, cleaner typography, and pill-link styling for the lower collection note block so it feels curated instead of article-like.
+- `assets/component-collection-hero.css`
+  - Tightened the spacing and typography for collection hero descriptions so the top copy reads more polished.
+- `snippets/collection-breadcrumbs.liquid`
+  - Mapped `matching-outfits` into the family-matching breadcrumb rules so the breadcrumb and top pill state now use `Family Matching Outfits` instead of the older long-form collection label.
+
+Verification:
+- `git diff --check -- snippets/collection-seo-fallback.liquid snippets/collection-seo-content.liquid sections/main-collection-seo.liquid assets/section-collection-seo.css assets/component-collection-hero.css`
+- `curl -s http://127.0.0.1:9292/collections/dresses | rg -n "<h1 class=\"collection-hero__title\"|collection-hero__description|Collection Note|Dress-led styles|Browse family outfits|See all mommy and me" -n -C 1`
+- `curl -s http://127.0.0.1:9292/collections/matching-outfits | rg -n "<h1 class=\"collection-hero__title\"|collection-hero__description|Collection Note|polished starting point|Shop matching dresses|Browse family swimwear" -n -C 1`
+- `playwright screenshot --full-page --wait-for-timeout 1500 http://127.0.0.1:9292/collections/dresses /tmp/dlm-browser-check/dresses-polished.png`
+- `playwright screenshot --full-page --wait-for-timeout 1500 http://127.0.0.1:9292/collections/matching-outfits /tmp/dlm-browser-check/matching-outfits-polished.png`
+- `playwright screenshot --full-page --wait-for-timeout 1200 http://127.0.0.1:9292/collections/matching-outfits /tmp/dlm-browser-check/matching-outfits-polished-breadcrumb.png`
+- Visual browser checks on `/tmp/dlm-browser-check/dresses-polished.png` and `/tmp/dlm-browser-check/matching-outfits-polished.png` confirmed the top and bottom copy blocks now read cleanly and no longer feel spammy.
+
+### Task: Improve maxi-dresses collection hero balance and SEO presentation
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-maxi-dresses-hero-balance
+Changes:
+- `snippets/collection-seo-fallback.liquid`
+  - Switched `maxi-dresses` to a shorter shopper-facing display title, added a dedicated meta title/description, and forced the theme-managed hero copy so the long admin description no longer takes over the top of the page.
+  - Replaced the long three-paragraph hero intro with a single-sentence summary that fits the collection header cleanly.
+- `snippets/collection-seo-content.liquid`
+  - Added a dedicated lower `Collection Note` block for `maxi-dresses` so supportive SEO copy still appears on the page in a calmer, more intentional format.
+- `assets/component-collection-hero.css`
+  - Centered and constrained the no-image collection hero text wrapper on wider screens so text-heavy collection pages do not leave a large dead area on the right.
+  - Kept the intro copy centered under the title while preserving the existing with-image hero behavior.
+
+Verification:
+- `git diff --check -- snippets/collection-seo-fallback.liquid snippets/collection-seo-content.liquid assets/component-collection-hero.css`
+- `curl -s http://127.0.0.1:9292/collections/maxi-dresses | rg -n "collection-hero__title|collection-hero__description|Collection Note|Flowing full-length dresses|Browse all dresses|See all mommy and me" -n -C 1`
+- `playwright screenshot --full-page --wait-for-timeout 1500 http://127.0.0.1:9292/collections/maxi-dresses /tmp/dlm-browser-check/maxi-dresses-polished.png`
+- `playwright screenshot --device="iPhone 13" --full-page --wait-for-timeout 1500 http://127.0.0.1:9292/collections/maxi-dresses /tmp/dlm-browser-check/maxi-dresses-mobile.png`
+- Visual browser checks confirmed the desktop hero is now centered and concise, with the richer supporting copy moved to a lower card that feels consistent with the newer collection-page treatment.
+
+### Task: Split PDP size guide into selected-size snapshot plus compare chart
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-selected-size-snapshot-and-compare-chart
+Changes:
+- `snippets/product-variant-picker.liquid`
+  - Added a dedicated `data-matching-size-guide-snapshot` container directly above the existing size-guide accordion so the selected-size summary can render near the selector.
+- `snippets/product-desktop-ux.liquid`
+  - Added a localized `data-size-guide-compare-label` so single-size tables can use `Compare all sizes` while grouped/family tables keep `Compare family sizes`.
+- `assets/product-desktop-ux.js`
+  - Reworked the inline size-guide flow so the selected size now auto-renders into a primary snapshot card with its exact measurements.
+  - Kept the full chart inside the accordion as a secondary comparison tool instead of repeating the same information by default.
+  - Reused the same parsed source table and unit-system state for both the snapshot card and the comparison table so the values stay synchronized.
+  - Verified grouped child selections still match correctly, so labels like `Girl 4-5 Years` now populate the summary card and highlight the correct compare-table row.
+- `assets/component-product-desktop-ux.css`
+  - Added the new snapshot-card styling, measurement chips, and spacing updates so the selected-size module feels more polished than the previous all-table treatment.
+
+Verification:
+- `node --check assets/product-desktop-ux.js`
+- `git diff --check -- snippets/product-variant-picker.liquid snippets/product-desktop-ux.liquid assets/product-desktop-ux.js assets/component-product-desktop-ux.css`
+- Browser automation against `http://127.0.0.1:9292/products/lavender-mommy-and-me-floral-applique-sleeveless-ruffle-dress?variant=43831323197537` confirmed:
+  - the selected-size snapshot appears automatically,
+  - the snapshot shows three measurements for the selected adult size,
+  - the compare accordion label reads `Compare all sizes`,
+  - the unit toggle updates both the snapshot card and the compare table (`Length (cm)` -> `Length (in)`).
+- Browser automation against `http://127.0.0.1:9292/products/vibrant-rainbow-maxi-dress-set-for-mom-and-daughter-colorful-summer-matching-outfits?variant=41878199107681` confirmed:
+  - the selected-size snapshot appears automatically,
+  - changing to `Girl 4-5 Years` updates the snapshot card with four measurements,
+  - the compare accordion label reads `Compare family sizes`,
+  - one compare-table row remains highlighted for the selected child size.
+- Saved browser artifacts:
+  - `/tmp/dlm-browser-check/lavender-selected-size-summary.png`
+  - `/tmp/dlm-browser-check/rainbow-selected-size-summary.png`
+
+### Task: Add open-close indicator to PDP size-guide compare accordion
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-size-guide-accordion-indicator
+Changes:
+- `assets/component-product-desktop-ux.css`
+  - Added a chevron-style summary indicator to the inline size-guide accordion so `Compare all sizes` and `Compare family sizes` read as clearly expandable controls.
+  - Rotated the indicator when the details element opens, and added a slightly darker hover state for better affordance.
+
+Verification:
+- `git diff --check -- assets/component-product-desktop-ux.css`
+- Browser automation against `http://127.0.0.1:9292/products/vibrant-rainbow-maxi-dress-set-for-mom-and-daughter-colorful-summer-matching-outfits?variant=41878199107681` confirmed:
+  - the summary text remains `Compare family sizes`,
+  - the pseudo-element indicator is present in the closed state,
+  - the indicator transform changes after opening the accordion.
+- Saved browser artifact:
+  - `/tmp/dlm-browser-check/size-guide-summary-indicator.png`
+
+### Task: Update PDP trust-strip copy to Trusted since 2016
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-update-pdp-trust-copy-trusted-since-2016
+Changes:
+- `snippets/buy-buttons.liquid`
+  - Replaced the PDP trust-strip label `Family-owned since 2016` with `Trusted since 2016`.
+  - Left other section schema defaults unchanged so this pass only affects the live product-page trust strip copy.
+
+Verification:
+- `git diff --check -- snippets/buy-buttons.liquid`
+- `rg -n "Trusted since 2016|Family-owned since 2016" snippets/buy-buttons.liquid sections/category-icons.liquid sections/hero-banner.liquid`

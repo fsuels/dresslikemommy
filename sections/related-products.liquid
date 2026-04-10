@@ -1,10 +1,6 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-rating.css' | asset_url | stylesheet_tag }}
-{{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
-{{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
-{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
 {{ 'section-related-products.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
@@ -26,209 +22,9 @@
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <product-recommendations
-    class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
-  >
-    {% if recommendations.performed %}
-      {%- liquid
-        assign collection_for_related = collection
-        if collection_for_related == blank
-          assign smallest_collection_product_count = 0
-          for product_collection in product.collections
-            if product_collection.handle == 'all'
-              continue
-            endif
-
-            if collection_for_related == blank
-              assign collection_for_related = product_collection
-              assign smallest_collection_product_count = product_collection.all_products_count
-            elsif product_collection.all_products_count < smallest_collection_product_count
-              assign collection_for_related = product_collection
-              assign smallest_collection_product_count = product_collection.all_products_count
-            endif
-          endfor
-        endif
-
-        assign current_product_type = product.type | downcase | strip
-        assign related_products_count = 0
-        if collection_for_related != blank
-          for collection_product in collection_for_related.products
-            if collection_product.id == product.id
-              continue
-            endif
-
-            assign collection_product_type = collection_product.type | downcase | strip
-            if current_product_type != blank and collection_product_type != blank and collection_product_type != current_product_type
-              continue
-            endif
-
-            assign related_products_count = related_products_count | plus: 1
-            if related_products_count >= section.settings.products_to_show
-              break
-            endif
-          endfor
-        endif
-
-        assign columns_mobile_int = section.settings.columns_mobile | plus: 0
-        assign show_mobile_slider = false
-        if related_products_count > columns_mobile_int
-          assign show_mobile_slider = true
-        endif
-
-        assign show_desktop_slider = false
-        if related_products_count > 3
-          assign show_desktop_slider = true
-        endif
-
-        assign desktop_columns = section.settings.columns_desktop
-        if show_desktop_slider
-          assign desktop_columns = 3
-        endif
-
-        assign mobile_slider_class = ''
-        if show_desktop_slider
-          assign mobile_slider_class = 'slider--tablet'
-        elsif show_mobile_slider
-          assign mobile_slider_class = 'slider--mobile'
-        endif
-      -%}
-      {% if related_products_count > 0 %}
-        {%- assign related_products_heading = section.settings.heading | strip -%}
-        {%- assign related_products_heading_upcase = related_products_heading | upcase -%}
-        {%- assign related_locale = request.locale.iso_code | downcase -%}
-        <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
-          {%- if related_products_heading == blank -%}
-            {%- if related_locale contains 'es' -%}
-              También te puede gustar
-            {%- elsif related_locale contains 'fr' -%}
-              Vous aimerez aussi
-            {%- else -%}
-              {{ 'sections.related_products.you_may_also_like' | t }}
-            {%- endif -%}
-          {%- elsif related_products_heading contains 't:' -%}
-            {%- assign related_translated_heading = related_products_heading | remove_first: 't:' | t -%}
-            {%- if related_locale contains 'es'
-              and related_translated_heading == 'You may also like'
-            -%}
-              También te puede gustar
-            {%- elsif related_locale contains 'fr'
-              and related_translated_heading == 'You may also like'
-            -%}
-              Vous aimerez aussi
-            {%- else -%}
-              {{ related_translated_heading }}
-            {%- endif -%}
-          {%- elsif related_products_heading_upcase == 'YOU MAY ALSO LIKE' -%}
-            {%- if related_locale contains 'es' -%}
-              También te puede gustar
-            {%- elsif related_locale contains 'fr' -%}
-              Vous aimerez aussi
-            {%- else -%}
-              {{ 'sections.related_products.you_may_also_like' | t }}
-            {%- endif -%}
-          {%- else -%}
-            {{ related_products_heading }}
-          {%- endif -%}
-        </h2>
-        <slider-component
-          class="slider-mobile-gutter related-products__slider{% if show_desktop_slider %} slider-component-desktop{% endif %}"
-        >
-          <div class="related-products__slider-track">
-            <ul
-              id="Slider-{{ section.id }}"
-              class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ desktop_columns }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if mobile_slider_class != blank %} {{ mobile_slider_class }}{% endif %}{% endif %}"
-              role="list"
-              {% if show_mobile_slider or show_desktop_slider %}
-                aria-label="{{ 'general.slider.name' | t }}"
-              {% endif %}
-            >
-              {% assign rendered_related_products_count = 0 %}
-              {% for collection_product in collection_for_related.products %}
-                {% if collection_product.id == product.id %}
-                  {% continue %}
-                {% endif %}
-
-                {% assign collection_product_type = collection_product.type | downcase | strip %}
-                {% if current_product_type != blank and collection_product_type != blank and collection_product_type != current_product_type %}
-                  {% continue %}
-                {% endif %}
-
-                {% assign rendered_related_products_count = rendered_related_products_count | plus: 1 %}
-                <li id="Slide-{{ section.id }}-{{ rendered_related_products_count }}" class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}">
-                  {% render 'card-product',
-                    card_product: collection_product,
-                    media_aspect_ratio: section.settings.image_ratio,
-                    image_shape: section.settings.image_shape,
-                    show_secondary_image: section.settings.show_secondary_image,
-                    show_vendor: section.settings.show_vendor,
-                    show_rating: section.settings.show_rating
-                  %}
-                </li>
-
-                {% if rendered_related_products_count >= section.settings.products_to_show %}
-                  {% break %}
-                {% endif %}
-              {% endfor %}
-            </ul>
-            {%- if show_desktop_slider -%}
-              <div class="slider-buttons related-products__slider-arrows">
-                <button
-                  type="button"
-                  class="slider-button slider-button--prev"
-                  name="previous"
-                  aria-label="{{ 'general.slider.previous_slide' | t }}"
-                  aria-controls="Slider-{{ section.id }}"
-                >
-                  {% render 'icon-caret' %}
-                </button>
-                <button
-                  type="button"
-                  class="slider-button slider-button--next"
-                  name="next"
-                  aria-label="{{ 'general.slider.next_slide' | t }}"
-                  aria-controls="Slider-{{ section.id }}"
-                >
-                  {% render 'icon-caret' %}
-                </button>
-              </div>
-            {%- endif -%}
-          </div>
-          {%- if show_mobile_slider or show_desktop_slider -%}
-            <div class="slider-buttons collection-carousel__slider-buttons related-products__mobile-slider-buttons">
-              <button
-                type="button"
-                class="slider-button slider-button--prev"
-                name="previous"
-                aria-label="{{ 'general.slider.previous_slide' | t }}"
-                aria-controls="Slider-{{ section.id }}"
-              >
-                {% render 'icon-caret' %}
-              </button>
-              <div
-                class="slider-page-dots collection-carousel__page-dots"
-                role="tablist"
-                aria-label="{{ 'general.slider.name' | t }}"
-              ></div>
-              <button
-                type="button"
-                class="slider-button slider-button--next"
-                name="next"
-                aria-label="{{ 'general.slider.next_slide' | t }}"
-                aria-controls="Slider-{{ section.id }}"
-              >
-                {% render 'icon-caret' %}
-              </button>
-            </div>
-          {%- endif -%}
-          {%- if show_desktop_slider -%}
-            <div class="related-products__page-dots" role="tablist" aria-label="Carousel pages">
-            </div>
-          {%- endif -%}
-        </slider-component>
-      {% endif %}
-    {% endif %}
-  </product-recommendations>
+  <div class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    {% render 'buy-box-similar-styles', product: product, section: section, layout: 'recommendations' %}
+  </div>
   {% if section.settings.image_shape == 'arch' %}
     {% render 'mask-arch' %}
   {%- endif -%}
@@ -421,7 +217,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 28
     }
   ]
 }

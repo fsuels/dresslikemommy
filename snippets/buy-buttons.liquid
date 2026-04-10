@@ -27,6 +27,36 @@
       if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
         assign show_dynamic_checkout = true
       endif
+
+      assign current_variant = product.selected_or_first_available_variant
+      assign check_against_inventory = true
+      if current_variant.inventory_management != 'shopify' or current_variant.inventory_policy == 'continue'
+        assign check_against_inventory = false
+      endif
+
+      assign quantity_rule_soldout = false
+      if current_variant.quantity_rule.min > current_variant.inventory_quantity and check_against_inventory
+        assign quantity_rule_soldout = true
+      endif
+
+      assign current_variant_unavailable = false
+      if current_variant.available == false or quantity_rule_soldout
+        assign current_variant_unavailable = true
+      endif
+
+      assign should_render_pickup_availability = false
+      if show_pickup_availability
+        for variant in product.variants
+          if should_render_pickup_availability
+            break
+          endif
+
+          assign variant_pick_up_availabilities = variant.store_availabilities | where: 'pick_up_enabled', true
+          if variant_pick_up_availabilities.size > 0
+            assign should_render_pickup_availability = true
+          endif
+        endfor
+      endif
     -%}
 
     <product-form
@@ -56,14 +86,14 @@
         novalidate: 'novalidate',
         data-type: 'add-to-cart-form'
       -%}
-        <input
-          type="hidden"
-          name="id"
-          value="{{ product.selected_or_first_available_variant.id }}"
-          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-            disabled
-          {% endif %}
-          class="product-variant-id"
+	        <input
+	          type="hidden"
+	          name="id"
+	          value="{{ current_variant.id }}"
+	          {% if current_variant_unavailable %}
+	            disabled
+	          {% endif %}
+	          class="product-variant-id"
         >
 
         {%- if gift_card_recipient_feature_active -%}
@@ -71,26 +101,17 @@
         {%- endif -%}
 
         <div class="product-form__buttons{% if show_dynamic_checkout %} product-form__buttons--with-dynamic-checkout{% endif %}">
-          {%- liquid
-            assign check_against_inventory = true
-            if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
-              assign check_against_inventory = false
-            endif
-            if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
-              assign quantity_rule_soldout = true
-            endif
-          -%}
           <button
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
             class="product-form__submit button button--full-width button--primary"
-            {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+            {% if current_variant_unavailable %}
               disabled
             {% endif %}
           >
             <span>
-              {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+              {%- if current_variant_unavailable -%}
                 {{ 'products.product.sold_out' | t }}
               {%- else -%}
                 {{ 'products.product.add_to_cart' | t }}
@@ -99,7 +120,15 @@
             {%- render 'loading-spinner' -%}
           </button>
           {%- if show_dynamic_checkout -%}
-            <div class="product-form__dynamic-checkout">
+            <div
+              class="product-form__dynamic-checkout"
+              {% if has_selling_plan_groups == false %}
+                data-remove-subscription-consent="true"
+              {% endif %}
+              {% if current_variant_unavailable %}
+                hidden
+              {% endif %}
+            >
               {{ form | payment_button }}
             </div>
           {%- endif -%}
@@ -129,20 +158,20 @@
     </div>
   {%- endif -%}
 
-  {%- if show_pickup_availability -%}
+  {%- if should_render_pickup_availability -%}
     {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
 
-    {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities
+    {%- assign pick_up_availabilities = current_variant.store_availabilities
       | where: 'pick_up_enabled', true
     -%}
 
     <pickup-availability
       class="product__pickup-availabilities quick-add-hidden"
-      {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %}
+      {% if current_variant.available and pick_up_availabilities.size > 0 %}
         available
       {% endif %}
       data-root-url="{{ routes.root_url }}"
-      data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+      data-variant-id="{{ current_variant.id }}"
       data-has-only-default-variant="{{ product.has_only_default_variant }}"
       data-product-page-color-scheme="gradient color-{{ section.settings.color_scheme }}"
     >
@@ -173,7 +202,7 @@
     </span>
     <span class="trust-strip__item">
       {%- render 'icon-tick' -%}
-      <span class="trust-strip__label">Family-owned since 2016</span>
+      <span class="trust-strip__label">Trusted since 2016</span>
     </span>
   </div>
   <p class="product__trust-note">Need help? We typically reply within one business day.</p>

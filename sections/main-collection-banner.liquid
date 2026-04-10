@@ -7,6 +7,11 @@
   endcapture
   assign collection_seo_display_title = collection_seo_display_title | strip
 
+  capture collection_seo_hero_summary
+    render 'collection-seo-fallback', collection: collection, field: 'hero_summary'
+  endcapture
+  assign collection_seo_hero_summary = collection_seo_hero_summary | strip
+
   capture collection_seo_body_description
     render 'collection-seo-fallback', collection: collection, field: 'body_description'
   endcapture
@@ -32,7 +37,9 @@
   endif
 
   if section.settings.show_collection_description
-    if collection_seo_force_theme == 'true' and collection_seo_body_description != blank
+    if collection_seo_hero_summary != blank
+      assign collection_description_content = collection_seo_hero_summary
+    elsif collection_seo_force_theme == 'true' and collection_seo_body_description != blank
       assign collection_description_content = collection_seo_body_description
     elsif collection.description != blank
       assign collection_description_content = collection.description

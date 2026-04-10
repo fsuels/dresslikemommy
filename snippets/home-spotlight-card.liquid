@@ -6,13 +6,21 @@
     assign spotlight_lazy_loading = blank
   endif
 
+  assign spotlight_collection = spotlight_collection | default: spotlight_product.collections.first
+  assign spotlight_rotation_collection = spotlight_rotation_collection | default: spotlight_collection
   assign spotlight_image = spotlight_product.featured_media.preview_image | default: spotlight_product.featured_image
   assign spotlight_image_alt = spotlight_image.alt | default: spotlight_product.title
   assign spotlight_image_sizes = image_sizes | default: '(min-width: 990px) 22vw, (min-width: 750px) 36vw, 78vw'
+  assign spotlight_image_key = blank
+  assign spotlight_image_id = blank
+  assign spotlight_fetchpriority = spotlight_fetchpriority | default: '' | strip
+  assign homepage_spotlight_product_candidate_count = 0
+  assign homepage_spotlight_product_candidates_json = blank
   assign spotlight_badge = spotlight_badge | strip
   assign spotlight_caption = spotlight_caption | strip
   assign spotlight_button_label = spotlight_button_label | default: 'Shop This Look'
-  assign spotlight_collection = spotlight_collection | default: spotlight_product.collections.first
+  assign spotlight_collection_link_label = spotlight_collection_link_label | strip
+  assign spotlight_trust_line = spotlight_trust_line | default: '' | strip
 
   assign spotlight_category1 = spotlight_product.metafields.custom.category1 | default: '' | strip
   assign spotlight_subcategory = spotlight_product.metafields.custom.subcategory | default: '' | strip
@@ -20,6 +28,215 @@
   assign spotlight_type = spotlight_product.metafields.custom.type | default: spotlight_product.type | default: '' | strip
   assign spotlight_style = spotlight_product.metafields.custom.style | default: '' | strip
   assign spotlight_pattern = spotlight_product.metafields.custom.pattern | default: '' | strip
+
+  if spotlight_image != blank
+    assign spotlight_image_id = spotlight_image.id | default: spotlight_product.featured_media.id | default: spotlight_product.id
+    assign spotlight_image_key = 'image-' | append: spotlight_image_id
+  endif
+
+  if spotlight_fetchpriority == blank
+    if spotlight_lazy_loading == blank
+      assign spotlight_fetchpriority = 'high'
+    else
+      assign spotlight_fetchpriority = 'low'
+    endif
+  endif
+
+  if request.page_type == 'index'
+    capture homepage_spotlight_product_candidates_json
+      echo '['
+
+      if spotlight_rotation_collection != blank and spotlight_rotation_collection.products.size > 0
+        for candidate_product in spotlight_rotation_collection.products limit: 12
+          assign candidate_variant = candidate_product.selected_or_first_available_variant
+          assign candidate_image = candidate_product.featured_media.preview_image | default: candidate_product.featured_image
+          assign candidate_image_id = candidate_image.id | default: candidate_product.featured_media.id | default: candidate_product.id
+          assign candidate_caption = candidate_product.description | strip_html | replace: '&nbsp;', ' ' | strip | truncatewords: 18
+          assign candidate_category1 = candidate_product.metafields.custom.category1 | default: '' | strip
+          assign candidate_subcategory = candidate_product.metafields.custom.subcategory | default: '' | strip
+          assign candidate_subcategory2 = candidate_product.metafields.custom.subcategory2 | default: '' | strip
+          assign candidate_type = candidate_product.metafields.custom.type | default: candidate_product.type | default: '' | strip
+          assign candidate_style = candidate_product.metafields.custom.style | default: '' | strip
+          assign candidate_pattern = candidate_product.metafields.custom.pattern | default: '' | strip
+
+          if candidate_variant == blank or candidate_image == blank
+            continue
+          endif
+
+          if candidate_caption == blank
+            assign candidate_caption = spotlight_caption
+          endif
+
+          capture candidate_price_html
+            render 'price', product: candidate_product, show_compare_at_price: true
+          endcapture
+
+          if homepage_spotlight_product_candidate_count > 0
+            echo ','
+          endif
+
+          echo '{'
+          echo '"productId":'
+          echo candidate_product.id | json
+          echo ',"variantId":'
+          echo candidate_variant.id | json
+          echo ',"handle":'
+          echo candidate_product.handle | json
+          echo ',"title":'
+          echo candidate_product.title | json
+          echo ',"vendor":'
+          echo candidate_product.vendor | json
+          echo ',"variant":'
+          echo candidate_variant.sku | default: candidate_variant.title | default: candidate_variant.id | json
+          echo ',"priceCents":'
+          echo candidate_variant.price | json
+          echo ',"category1":'
+          echo candidate_category1 | json
+          echo ',"subcategory":'
+          echo candidate_subcategory | json
+          echo ',"subcategory2":'
+          echo candidate_subcategory2 | json
+          echo ',"type":'
+          echo candidate_type | json
+          echo ',"style":'
+          echo candidate_style | json
+          echo ',"pattern":'
+          echo candidate_pattern | json
+          echo ',"url":'
+          echo candidate_product.url | json
+          echo ',"caption":'
+          echo candidate_caption | json
+          echo ',"priceHtml":'
+          echo candidate_price_html | strip | json
+          echo ',"imageKey":'
+          echo 'image-' | append: candidate_image_id | json
+          echo ',"imageSrc":'
+          echo candidate_image | image_url: width: 900 | json
+          echo ',"imageSrcset":'
+          capture candidate_srcset
+            if candidate_image.width >= 320
+              echo candidate_image | image_url: width: 320
+              echo ' 320w,'
+            endif
+            if candidate_image.width >= 480
+              echo candidate_image | image_url: width: 480
+              echo ' 480w,'
+            endif
+            if candidate_image.width >= 640
+              echo candidate_image | image_url: width: 640
+              echo ' 640w,'
+            endif
+            if candidate_image.width >= 750
+              echo candidate_image | image_url: width: 750
+              echo ' 750w,'
+            endif
+            if candidate_image.width >= 900
+              echo candidate_image | image_url: width: 900
+              echo ' 900w,'
+            endif
+            echo candidate_image | image_url
+            echo ' '
+            echo candidate_image.width
+            echo 'w'
+          endcapture
+          echo candidate_srcset | strip | json
+          echo ',"imageAlt":'
+          echo candidate_image.alt | default: candidate_product.title | json
+          echo ',"imageWidth":'
+          echo candidate_image.width | json
+          echo ',"imageHeight":'
+          echo candidate_image.height | json
+          echo '}'
+
+          assign homepage_spotlight_product_candidate_count = homepage_spotlight_product_candidate_count | plus: 1
+        endfor
+      endif
+
+      if homepage_spotlight_product_candidate_count == 0 and spotlight_product != blank and spotlight_variant != blank and spotlight_image != blank
+        capture fallback_price_html
+          render 'price', product: spotlight_product, show_compare_at_price: true
+        endcapture
+
+        echo '{'
+        echo '"productId":'
+        echo spotlight_product.id | json
+        echo ',"variantId":'
+        echo spotlight_variant.id | json
+        echo ',"handle":'
+        echo spotlight_product.handle | json
+        echo ',"title":'
+        echo spotlight_product.title | json
+        echo ',"vendor":'
+        echo spotlight_product.vendor | json
+        echo ',"variant":'
+        echo spotlight_variant.sku | default: spotlight_variant.title | default: spotlight_variant.id | json
+        echo ',"priceCents":'
+        echo spotlight_variant.price | json
+        echo ',"category1":'
+        echo spotlight_category1 | json
+        echo ',"subcategory":'
+        echo spotlight_subcategory | json
+        echo ',"subcategory2":'
+        echo spotlight_subcategory2 | json
+        echo ',"type":'
+        echo spotlight_type | json
+        echo ',"style":'
+        echo spotlight_style | json
+        echo ',"pattern":'
+        echo spotlight_pattern | json
+        echo ',"url":'
+        echo spotlight_product.url | json
+        echo ',"caption":'
+        echo spotlight_caption | json
+        echo ',"priceHtml":'
+        echo fallback_price_html | strip | json
+        echo ',"imageKey":'
+        echo spotlight_image_key | json
+        echo ',"imageSrc":'
+        echo spotlight_image | image_url: width: 900 | json
+        echo ',"imageSrcset":'
+        capture fallback_srcset
+          if spotlight_image.width >= 320
+            echo spotlight_image | image_url: width: 320
+            echo ' 320w,'
+          endif
+          if spotlight_image.width >= 480
+            echo spotlight_image | image_url: width: 480
+            echo ' 480w,'
+          endif
+          if spotlight_image.width >= 640
+            echo spotlight_image | image_url: width: 640
+            echo ' 640w,'
+          endif
+          if spotlight_image.width >= 750
+            echo spotlight_image | image_url: width: 750
+            echo ' 750w,'
+          endif
+          if spotlight_image.width >= 900
+            echo spotlight_image | image_url: width: 900
+            echo ' 900w,'
+          endif
+          echo spotlight_image | image_url
+          echo ' '
+          echo spotlight_image.width
+          echo 'w'
+        endcapture
+        echo fallback_srcset | strip | json
+        echo ',"imageAlt":'
+        echo spotlight_image_alt | json
+        echo ',"imageWidth":'
+        echo spotlight_image.width | json
+        echo ',"imageHeight":'
+        echo spotlight_image.height | json
+        echo '}'
+
+        assign homepage_spotlight_product_candidate_count = 1
+      endif
+
+      echo ']'
+    endcapture
+    assign homepage_spotlight_product_candidates_json = homepage_spotlight_product_candidates_json | strip
+  endif
 -%}
 
 {%- if spotlight_product != blank and spotlight_variant != blank -%}
@@ -40,31 +257,33 @@
     data-analytics-style="{{ spotlight_style | escape }}"
     data-analytics-pattern="{{ spotlight_pattern | escape }}"
     data-analytics-section-id="{{ section_id | escape }}"
+    {% if request.page_type == 'index' and homepage_spotlight_product_candidate_count > 1 %}
+      data-homepage-spotlight-card
+    {% endif %}
   >
-    <a class="home-spotlight-card__media" href="{{ spotlight_product.url }}">
+    <a class="home-spotlight-card__media" href="{{ spotlight_product.url }}" data-homepage-spotlight-link="media">
       {%- if spotlight_image != blank -%}
-        {%- if spotlight_lazy_loading == blank -%}
-          {{
-            spotlight_image
-            | image_url: width: 900
-            | image_tag:
-              alt: spotlight_image_alt,
-              widths: '320, 480, 640, 750, 900',
-              sizes: spotlight_image_sizes,
-              fetchpriority: 'high'
-          }}
-        {%- else -%}
-          {{
-            spotlight_image
-            | image_url: width: 900
-            | image_tag:
-              alt: spotlight_image_alt,
-              widths: '320, 480, 640, 750, 900',
-              sizes: spotlight_image_sizes,
-              loading: spotlight_lazy_loading,
-              fetchpriority: 'low'
-          }}
-        {%- endif -%}
+        <img
+          srcset="
+            {%- if spotlight_image.width >= 320 -%}{{ spotlight_image | image_url: width: 320 }} 320w,{%- endif -%}
+            {%- if spotlight_image.width >= 480 -%}{{ spotlight_image | image_url: width: 480 }} 480w,{%- endif -%}
+            {%- if spotlight_image.width >= 640 -%}{{ spotlight_image | image_url: width: 640 }} 640w,{%- endif -%}
+            {%- if spotlight_image.width >= 750 -%}{{ spotlight_image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if spotlight_image.width >= 900 -%}{{ spotlight_image | image_url: width: 900 }} 900w,{%- endif -%}
+            {{ spotlight_image | image_url }} {{ spotlight_image.width }}w
+          "
+          src="{{ spotlight_image | image_url: width: 900 }}"
+          sizes="{{ spotlight_image_sizes }}"
+          alt="{{ spotlight_image_alt | escape }}"
+          width="{{ spotlight_image.width }}"
+          height="{{ spotlight_image.height }}"
+          decoding="async"
+          class="motion-reduce"
+          data-homepage-spotlight-image
+          data-homepage-collection-image-key="{{ spotlight_image_key | escape }}"
+          {% if spotlight_lazy_loading != blank %}loading="{{ spotlight_lazy_loading }}"{% endif %}
+          fetchpriority="{{ spotlight_fetchpriority }}"
+        >
       {%- else -%}
         {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
       {%- endif -%}
@@ -74,25 +293,37 @@
         <p class="home-spotlight-card__badge">{{ spotlight_badge }}</p>
       {%- endif -%}
       <h3 class="home-spotlight-card__title">
-        <a href="{{ spotlight_product.url }}">{{ spotlight_product.title | escape }}</a>
+        <a href="{{ spotlight_product.url }}" data-homepage-spotlight-link="title">{{ spotlight_product.title | escape }}</a>
       </h3>
-      {%- if spotlight_caption != blank -%}
-        <p class="home-spotlight-card__caption">{{ spotlight_caption }}</p>
-      {%- endif -%}
-      <div class="home-spotlight-card__price">
+      <p class="home-spotlight-card__caption" data-homepage-spotlight-caption{% if spotlight_caption == blank %} hidden{% endif %}>{{ spotlight_caption }}</p>
+      <div class="home-spotlight-card__price" data-homepage-spotlight-price>
         {% render 'price', product: spotlight_product, show_compare_at_price: true %}
       </div>
       <div class="home-spotlight-card__actions">
-        <a class="button button--secondary home-spotlight-card__cta" href="{{ spotlight_product.url }}">
+        <a class="button button--secondary home-spotlight-card__cta" href="{{ spotlight_product.url }}" data-homepage-spotlight-link="cta">
           {{ spotlight_button_label | escape }}
         </a>
+        {%- if spotlight_trust_line != blank -%}
+          <p class="home-spotlight-card__trust">{{ spotlight_trust_line | escape }}</p>
+        {%- endif -%}
         {%- if spotlight_collection != blank -%}
           <a class="home-spotlight-card__collection-link" href="{{ spotlight_collection.url }}">
-            <span>Browse {{ spotlight_collection.title | escape }}</span>
+            {%- if spotlight_collection_link_label != blank -%}
+              <span>{{ spotlight_collection_link_label | escape }}</span>
+            {%- elsif spotlight_collection.title != blank -%}
+              <span>See all {{ spotlight_collection.title | escape }}</span>
+            {%- else -%}
+              <span>Browse collection</span>
+            {%- endif -%}
             <span class="icon-wrap">{% render 'icon-arrow' %}</span>
           </a>
         {%- endif -%}
       </div>
     </div>
+    {%- if request.page_type == 'index' and homepage_spotlight_product_candidate_count > 1 -%}
+      <script type="application/json" class="homepage-spotlight-card__product-candidates">
+        {{- homepage_spotlight_product_candidates_json -}}
+      </script>
+    {%- endif -%}
   </article>
 {%- endif -%}

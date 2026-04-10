@@ -41,6 +41,7 @@
     endif
   endcapture
   assign product_context_text = product_context_text | downcase | strip
+  assign resolved_product_title = resolved_product.title | default: '' | strip
 
   assign audience_phrase = 'family matching looks'
   if current_collection_handle == 'swimsuits' or current_collection_handle == 'dresses' or current_collection_handle == 'mommy-and-me' or product_context_text contains 'mommy' or product_context_text contains 'mother-daughter' or product_context_text contains 'mother daughter' or product_context_text contains 'daughter'
@@ -90,19 +91,31 @@
 
   assign product_type_phrase_downcase = product_type_phrase | downcase
   assign raw_alt_downcase = raw_alt | downcase
+  assign product_context_has_swim_terms = false
+  if product_context_text contains 'swim' or product_context_text contains 'bathing suit' or product_context_text contains 'bikini' or product_context_text contains 'rash guard' or product_context_text contains 'swim trunk'
+    assign product_context_has_swim_terms = true
+  endif
+  assign raw_alt_has_swim_terms = false
+  if raw_alt_downcase contains 'swim' or raw_alt_downcase contains 'bathing suit' or raw_alt_downcase contains 'bikini' or raw_alt_downcase contains 'rash guard' or raw_alt_downcase contains 'swim trunk'
+    assign raw_alt_has_swim_terms = true
+  endif
 
   assign resolved_alt = raw_alt
-  if resolved_alt == blank
-    if resolved_product != blank
-      assign resolved_alt = resolved_product.title | default: product_type_phrase | default: audience_phrase
-    else
-      assign resolved_alt = product_type_phrase | append: ' for ' | append: audience_phrase
-    endif
-  elsif raw_alt_downcase == 'image' or raw_alt_downcase == 'photo' or raw_alt_downcase == 'product' or raw_alt_downcase == 'product image'
-    if resolved_product != blank and resolved_product.title != blank
-      assign resolved_alt = resolved_product.title
-    else
-      assign resolved_alt = product_type_phrase | append: ' for ' | append: audience_phrase
+  assign should_replace_alt = false
+  if resolved_alt == blank or raw_alt_downcase == 'image' or raw_alt_downcase == 'photo' or raw_alt_downcase == 'product' or raw_alt_downcase == 'product image'
+    assign should_replace_alt = true
+  elsif raw_alt_has_swim_terms and product_context_has_swim_terms == false
+    assign should_replace_alt = true
+  endif
+
+  if should_replace_alt
+    assign resolved_alt = resolved_product_title | default: product_type_phrase | default: audience_phrase
+    assign resolved_alt_downcase = resolved_alt | downcase
+    if resolved_product_title != blank and product_type_phrase != blank
+      if resolved_alt_downcase contains product_type_phrase_downcase
+      else
+        assign resolved_alt = resolved_product_title | append: ' ' | append: product_type_phrase
+      endif
     endif
   elsif raw_alt_downcase contains 'matching' and raw_alt_downcase contains product_type_phrase_downcase and raw_alt_downcase contains audience_phrase
     assign resolved_alt = raw_alt

@@ -87,10 +87,38 @@ function initBackToResultsControls() {
   hydrateBackToResultsControls();
 }
 
+function removeSubscriptionConsentNodes(scope) {
+  if (!scope || !scope.querySelectorAll) return;
+
+  scope.querySelectorAll('#shopify-buyer-consent, [data-consent-type="subscription"]').forEach((node) => {
+    node.remove();
+  });
+}
+
+function initDynamicCheckoutConsentCleanup(scope = document) {
+  if (!scope || !scope.querySelectorAll) return;
+
+  scope.querySelectorAll('[data-remove-subscription-consent]').forEach((container) => {
+    if (container.dataset.consentCleanupBound === 'true') {
+      removeSubscriptionConsentNodes(container);
+      return;
+    }
+
+    removeSubscriptionConsentNodes(container);
+    const observer = new MutationObserver(() => removeSubscriptionConsentNodes(container));
+    observer.observe(container, { childList: true, subtree: true });
+    container.dataset.consentCleanupBound = 'true';
+  });
+}
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initBackToResultsControls);
+  document.addEventListener('DOMContentLoaded', () => {
+    initBackToResultsControls();
+    initDynamicCheckoutConsentCleanup();
+  });
 } else {
   initBackToResultsControls();
+  initDynamicCheckoutConsentCleanup();
 }
 
 document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
@@ -1238,6 +1266,7 @@ class VariantSelects extends HTMLElement {
     this.updateMasterId();
     this.updateSelectedSwatchValue(event);
     this.toggleAddButton(true, '', false);
+    this.toggleDynamicCheckout(false);
     this.updatePickupAvailability();
     this.removeErrorMessage();
 
@@ -1412,6 +1441,17 @@ class VariantSelects extends HTMLElement {
       input.value = this.currentVariant.id;
       input.dispatchEvent(new Event('change', { bubbles: true }));
     });
+  }
+
+  toggleDynamicCheckout(show = true) {
+    const productForm = document.getElementById(`product-form-${this.dataset.section}`);
+    if (!productForm) return;
+
+    const dynamicCheckout = productForm.querySelector('.product-form__dynamic-checkout');
+    if (!dynamicCheckout) return;
+
+    dynamicCheckout.toggleAttribute('hidden', !show);
+    if (show) initDynamicCheckoutConsentCleanup(productForm);
   }
 
   updateVariantStatuses() {
@@ -1641,10 +1681,10 @@ class VariantSelects extends HTMLElement {
         if (inventoryDestination) inventoryDestination.classList.toggle('hidden', inventorySource.innerText === '');
 
         const addButtonUpdated = html.getElementById(`ProductSubmitButton-${sectionId}`);
-        this.toggleAddButton(
-          addButtonUpdated ? addButtonUpdated.hasAttribute('disabled') : true,
-          window.variantStrings.soldOut
-        );
+        const addButtonShouldDisable = addButtonUpdated ? addButtonUpdated.hasAttribute('disabled') : true;
+        this.toggleAddButton(addButtonShouldDisable, window.variantStrings.soldOut);
+        this.toggleDynamicCheckout(!addButtonShouldDisable);
+        initDynamicCheckoutConsentCleanup(document.getElementById(`product-form-${this.dataset.section}`));
 
         publish(PUB_SUB_EVENTS.variantChange, {
           data: {
@@ -1695,6 +1735,7 @@ class VariantSelects extends HTMLElement {
     if (volumeNote) volumeNote.classList.add('hidden');
     if (volumeTable) volumeTable.classList.add('hidden');
     if (qtyRules) qtyRules.classList.add('hidden');
+    this.toggleDynamicCheckout(false);
   }
 
   getVariantData() {

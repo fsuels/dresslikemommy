@@ -1,5 +1,15 @@
 {% if collection != blank %}
   {%- liquid
+    capture collection_seo_display_title
+      render 'collection-seo-fallback', collection: collection, field: 'display_title'
+    endcapture
+    assign collection_seo_display_title = collection_seo_display_title | strip
+
+    capture collection_seo_body_description
+      render 'collection-seo-fallback', collection: collection, field: 'body_description'
+    endcapture
+    assign collection_seo_body_description = collection_seo_body_description | strip
+
     capture collection_seo_rich_content
       render 'collection-seo-content', collection: collection, field: 'rich_content'
     endcapture
@@ -48,24 +58,22 @@
       <div class="collection-seo__panel color-{{ section.settings.color_scheme }} gradient">
         <div class="collection-seo__content">
           <p class="collection-seo__eyebrow">Swimwear Guide</p>
-          <h2 class="collection-seo__title">Matching Family Swimsuits, Mom and Daughter Matching Swimsuits, and Family Matching Bathing Suits</h2>
+          <h2 class="collection-seo__title">Coordinated swimwear for moms, daughters, and full-family plans</h2>
           <div class="collection-seo__copy">
-            <p>Parents search this page with a few closely related goals: matching family swimsuits, mom and daughter matching swimsuits, and family matching bathing suits for beach trips, pool days, cruises, and summer photos. This collection is built as the broad swim hub where shoppers can compare mom-and-daughter styles first, then branch into full-family options without starting a new search from scratch.</p>
-            <p>Some shoppers only need a coordinated mom-and-daughter set. Others want matching family bathing suits that bring in dad, boys, and extra siblings around one print or color story. That is why this page links directly to the dedicated <a href="{{ related_family_swim_url }}">Matching Family Bathing Suits</a> collection and <a href="{{ related_trunks_url }}">Trunks</a>. Start with the widest swim assortment here, then move into those supporting collections when the whole family needs to match.</p>
-            <p>Sizing and style needs vary from product to product, so the best way to shop is to open the product page, review the available variants, and use the size chart before checkout. If your goal is a vacation capsule, family photo outfit, or repeat-wear summer uniform, focus on coordinated prints and silhouettes that can work across more than one occasion. You can also pair this collection with the broader <a href="{{ related_mommy_me_url }}">Mommy &amp; Me</a> assortment when you want matching outfits beyond the pool or beach.</p>
-            <p>Parents often search different phrases for the same need: mommy and me swimsuits, mom and daughter matching swimsuits, family matching bathing suits, and coordinated family swimwear. This page is designed to answer that keyword cluster in one destination. Use it when you want a high-level view of the swim assortment first, then follow the related links if you need a narrower path into full family sets or matching trunks.</p>
+            <p>Start here when you want the broadest swim assortment first. This page brings together mom-and-daughter styles, matching family swimsuits, and vacation-ready options without sending you through multiple swim collections.</p>
+            <p>Once you know who needs to match, move into the dedicated family swimwear or trunks collections for a tighter edit. For sizing, the fastest path is always the product page and size chart on the style you like best.</p>
           </div>
         </div>
 
         <aside class="collection-seo__aside" aria-label="Related swim collections">
-          <p class="collection-seo__aside-label">Shop swim collections by intent</p>
+          <p class="collection-seo__aside-label">Explore related swim collections</p>
           <a href="{{ related_family_swim_url }}" class="collection-seo__link-card">
-            <span class="collection-seo__link-title">Matching Family Bathing Suits</span>
-            <span class="collection-seo__link-caption">Go straight to the full-family swim landing page when moms, dads, and kids all need to coordinate.</span>
+            <span class="collection-seo__link-title">Family Swimwear</span>
+            <span class="collection-seo__link-caption">Go straight to the full-family swim edit when everyone needs to coordinate.</span>
           </a>
           <a href="{{ related_trunks_url }}" class="collection-seo__link-card">
-            <span class="collection-seo__link-title">Trunks</span>
-            <span class="collection-seo__link-caption">Add matching swim trunks for dads and boys when you need a complete beach-day set.</span>
+            <span class="collection-seo__link-title">Matching Trunks</span>
+            <span class="collection-seo__link-caption">Add dad-and-boy swim pieces when you want a complete beach-day set.</span>
           </a>
           <a href="{{ related_mommy_me_url }}" class="collection-seo__link-card">
             <span class="collection-seo__link-title">Mommy &amp; Me</span>
@@ -77,12 +85,12 @@
       <div class="collection-seo__faq-card color-{{ section.settings.color_scheme }} gradient">
         <div class="collection-seo__faq-header">
           <p class="collection-seo__eyebrow">Swimsuit FAQs</p>
-          <h2 class="collection-seo__faq-title">Questions parents ask before they order</h2>
+          <h2 class="collection-seo__faq-title">Quick answers before you order</h2>
         </div>
 
         <div class="collection-seo__faq-list">
           <div class="accordion">
-            <details open>
+            <details>
               <summary>
                 <div class="summary__title">
                   <h3 class="accordion__title h4">{{ faq_question_1 }}</h3>
@@ -181,13 +189,31 @@
     }
     </script>
   {% elsif collection_seo_rich_content != blank %}
-    <section class="page-width page-width--narrow section-{{ section.id }}-padding">
-      <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    {{ 'section-collection-seo.css' | asset_url | stylesheet_tag }}
+
+    <section class="collection-seo-rich page-width page-width--narrow section-{{ section.id }}-padding">
+      <div class="collection-seo-rich__panel rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
         {{ collection_seo_rich_content }}
       </div>
     </section>
 
     {% render 'faq-schema-from-html', content: collection_seo_rich_content %}
+  {% elsif collection_seo_body_description != blank %}
+    {{ 'section-collection-seo.css' | asset_url | stylesheet_tag }}
+
+    <section class="collection-seo-rich page-width page-width--narrow section-{{ section.id }}-padding">
+      <div class="collection-seo-rich__panel rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        <div class="collection-seo-rich__intro">
+          <p class="collection-seo-rich__eyebrow">Collection Note</p>
+          <h2>A closer look at {{ collection_seo_display_title | escape }}</h2>
+        </div>
+        <div class="collection-seo-rich__copy">
+          {{ collection_seo_body_description }}
+        </div>
+      </div>
+    </section>
+
+    {% render 'faq-schema-from-html', content: collection_seo_body_description %}
   {% endif %}
 {% endif %}
 

@@ -86,6 +86,15 @@
     align-items: center;
     margin-top: 18px;
   }
+  .hero-banner__trust-line {
+    margin: 0;
+    color: {{ section.settings.text_color }};
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+    opacity: 0.96;
+    text-wrap: balance;
+  }
   .hero-banner__trust-rating {
     margin: 0;
     color: {{ section.settings.text_color }};
@@ -212,7 +221,6 @@
   assign hero_heading_tag = 'h2'
   assign hero_image_loading = 'lazy'
   assign hero_image_fetchpriority = 'low'
-  assign hero_image_preload = false
 
   if request.page_type == 'index' and section.index == 1
     assign hero_heading_tag = 'h1'
@@ -221,7 +229,6 @@
   if section.index == 1
     assign hero_image_loading = 'eager'
     assign hero_image_fetchpriority = 'high'
-    assign hero_image_preload = true
   endif
 
   if hero_button_link != blank and hero_button_link_first_char == '#'
@@ -263,8 +270,7 @@
         sizes: '100vw',
         alt: hero_image_alt,
         loading: hero_image_loading,
-        fetchpriority: hero_image_fetchpriority,
-        preload: hero_image_preload
+        fetchpriority: hero_image_fetchpriority
     }}
   {%- endif -%}
   {%- endcomment -%}
@@ -298,22 +304,28 @@
         </a>
       {%- endif -%}
     </div>
-    <div class="hero-banner__trust" aria-label="{{ 'sections.cart.store_rating_prefix' | t }} 4.8/5 {{ 'sections.cart.store_rating_suffix' | t }}">
-      <p class="hero-banner__trust-rating">
-        {{ 'sections.cart.store_rating_prefix' | t }} <strong>4.8/5</strong> {{ 'sections.cart.store_rating_suffix' | t }}
-      </p>
-      <div class="hero-banner__trust-pills">
-        <a class="hero-banner__trust-pill" href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}">
-          {{ 'sections.cart.trust.free_shipping' | t }}
-        </a>
-        <a class="hero-banner__trust-pill" href="{{ shop.refund_policy.url | default: '/policies/refund-policy' }}">
-          {{ 'sections.cart.trust.returns' | t }}
-        </a>
-        <span class="hero-banner__trust-pill">
-          {{ 'sections.cart.trust.secure_checkout' | t }}
-        </span>
+    {%- if section.settings.show_trust -%}
+      <div class="hero-banner__trust"{% if section.settings.trust_line != blank %} aria-label="{{ section.settings.trust_line | escape }}"{% else %} aria-label="{{ 'sections.cart.store_rating_prefix' | t }} 4.8/5 {{ 'sections.cart.store_rating_suffix' | t }}"{% endif %}>
+        {%- if section.settings.trust_line != blank -%}
+          <p class="hero-banner__trust-line">{{ section.settings.trust_line }}</p>
+        {%- else -%}
+          <p class="hero-banner__trust-rating">
+            {{ 'sections.cart.store_rating_prefix' | t }} <strong>4.8/5</strong> {{ 'sections.cart.store_rating_suffix' | t }}
+          </p>
+          <div class="hero-banner__trust-pills">
+            <a class="hero-banner__trust-pill" href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}">
+              {{ 'sections.cart.trust.free_shipping' | t }}
+            </a>
+            <a class="hero-banner__trust-pill" href="{{ shop.refund_policy.url | default: '/policies/refund-policy' }}">
+              {{ 'sections.cart.trust.returns' | t }}
+            </a>
+            <span class="hero-banner__trust-pill">
+              {{ 'sections.cart.trust.secure_checkout' | t }}
+            </span>
+          </div>
+        {%- endif -%}
       </div>
-    </div>
+    {%- endif -%}
   </div>
 </div>
 
@@ -484,6 +496,18 @@
       "type": "url",
       "id": "secondary_button_link",
       "label": "Secondary button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust",
+      "default": true,
+      "label": "Show trust note"
+    },
+    {
+      "type": "text",
+      "id": "trust_line",
+      "default": "Family-owned since 2016 • Thousands of happy families • Responds within 1 business day.",
+      "label": "Trust line"
     },
     {
       "type": "range",

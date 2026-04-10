@@ -20,10 +20,51 @@
       --home-hero-accent: {{ section.settings.accent_color }};
     }
 
+    .curated-product-grid__supporting-note {
+      margin: 0.75rem 0 0;
+      color: rgba(32, 22, 19, 0.74);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .curated-product-grid__supporting-note p {
+      margin: 0;
+    }
+
+    .curated-product-grid__footer {
+      margin-top: 1.5rem;
+      padding: 1.15rem 1.2rem;
+      border: 1px solid rgba(32, 22, 19, 0.08);
+      border-radius: 1.25rem;
+      background: rgba(255, 253, 249, 0.8);
+    }
+
+    .curated-product-grid__footer-title {
+      margin: 0 0 0.55rem;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .curated-product-grid__footer-copy {
+      color: rgba(32, 22, 19, 0.76);
+    }
+
+    .curated-product-grid__footer-copy p {
+      margin: 0;
+    }
+
+    .curated-product-grid__footer-copy p + p {
+      margin-top: 0.85rem;
+    }
+
     @media screen and (min-width: 750px) {
       .section-{{ section.id }}-padding {
         padding-top: {{ section.settings.padding_top }}px;
         padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+
+      .curated-product-grid__footer {
+        padding: 1.4rem 1.5rem;
       }
     }
   {%- endstyle -%}
@@ -49,6 +90,11 @@
               {{ section.settings.intro }}
             </div>
           {%- endif -%}
+          {%- if section.settings.supporting_note != blank -%}
+            <div class="curated-product-grid__supporting-note rte">
+              {{ section.settings.supporting_note }}
+            </div>
+          {%- endif -%}
         </div>
 
         {%- if section.settings.button_label != blank -%}
@@ -70,18 +116,42 @@
           {%- if block.settings.product == blank -%}
             {%- continue -%}
           {%- endif -%}
+          {%- liquid
+            assign spotlight_fetchpriority = 'low'
+            if forloop.first
+              assign spotlight_fetchpriority = 'high'
+            endif
+          -%}
           <div {{ block.shopify_attributes }}>
             {% render 'home-spotlight-card',
               spotlight_product: block.settings.product,
               spotlight_badge: block.settings.badge,
               spotlight_caption: block.settings.caption,
               spotlight_button_label: block.settings.button_label,
+              spotlight_collection: block.settings.secondary_collection,
+              spotlight_rotation_collection: block.settings.secondary_collection,
+              spotlight_collection_link_label: block.settings.collection_link_label,
+              lazy_load: false,
+              spotlight_fetchpriority: spotlight_fetchpriority,
               section_id: section.id,
               image_sizes: '(min-width: 990px) 22vw, (min-width: 750px) 42vw, 92vw'
             %}
           </div>
         {%- endfor -%}
       </div>
+
+      {%- if section.settings.footer_heading != blank or section.settings.footer_body != blank -%}
+        <div class="curated-product-grid__footer">
+          {%- if section.settings.footer_heading != blank -%}
+            <h3 class="curated-product-grid__footer-title">{{ section.settings.footer_heading }}</h3>
+          {%- endif -%}
+          {%- if section.settings.footer_body != blank -%}
+            <div class="curated-product-grid__footer-copy rte">
+              {{ section.settings.footer_body }}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
     </div>
   </section>
 {%- endif -%}
@@ -133,6 +203,11 @@
       "label": "Intro"
     },
     {
+      "type": "richtext",
+      "id": "supporting_note",
+      "label": "Condensed trust note"
+    },
+    {
       "type": "text",
       "id": "button_label",
       "default": "Shop all family sets",
@@ -160,6 +235,16 @@
       "id": "accent_color",
       "default": "#C87932",
       "label": "Accent color"
+    },
+    {
+      "type": "text",
+      "id": "footer_heading",
+      "label": "Footer heading"
+    },
+    {
+      "type": "richtext",
+      "id": "footer_body",
+      "label": "Footer body"
     },
     {
       "type": "range",
@@ -209,6 +294,17 @@
           "id": "button_label",
           "default": "Shop This Look",
           "label": "Button label"
+        },
+        {
+          "type": "collection",
+          "id": "secondary_collection",
+          "label": "Secondary collection link"
+        },
+        {
+          "type": "text",
+          "id": "collection_link_label",
+          "default": "See all matching looks",
+          "label": "Secondary collection label"
         }
       ]
     }

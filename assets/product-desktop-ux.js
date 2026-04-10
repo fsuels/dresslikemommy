@@ -132,7 +132,7 @@ function initProductDesktopUx(wrapper) {
   if (!productData) return;
 
   initDeliveryHighlights(wrapper);
-  initMatchingSizeGuide(wrapper);
+  initMatchingSizeGuide(wrapper, sectionId);
   initMatchingSetBuilder(wrapper, sectionId, productData);
   initPhotoReviewPanel(wrapper);
   initDesktopStickyAtc(wrapper, sectionId);
@@ -273,6 +273,20 @@ function getRoleOrder(roleKey) {
   };
 
   return Object.prototype.hasOwnProperty.call(order, roleKey) ? order[roleKey] : 99;
+}
+
+function getRoleFitCopy(roleKey) {
+  var copy = {
+    mother: "Fit tip: compare with your usual women's size.",
+    father: "Fit tip: compare with your usual men's size.",
+    girl: "Fit tip: compare with her usual kids' size.",
+    boy: "Fit tip: compare with his usual kids' size.",
+    child: "Fit tip: compare with the child's usual size.",
+    baby: "Fit tip: compare with the baby's usual size.",
+    adult: 'Fit tip: compare with your usual adult size.',
+  };
+
+  return Object.prototype.hasOwnProperty.call(copy, roleKey) ? copy[roleKey] : '';
 }
 
 function getCurrentOptionContext(variantSelects) {
@@ -610,40 +624,377 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   }
 }
 
-function initMatchingSizeGuide(wrapper) {
-  var details = wrapper.querySelector('[data-matching-size-guide]');
-  var content = wrapper.querySelector('[data-matching-size-guide-content]');
+function initMatchingSizeGuide(wrapper, sectionId) {
+  var UNIT_SYSTEM_STORAGE_KEY = 'dlm_size_chart_unit_system';
+  var productSection = sectionId ? document.getElementById('MainProduct-' + sectionId) : null;
+  var sizeGuideRoot = productSection || wrapper.closest('[id^="MainProduct-"]') || wrapper;
+  var snapshot = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide-snapshot]') : null;
+  var details = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide]') : null;
+  var content = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide-content]') : null;
   var summary = details ? details.querySelector('summary') : null;
   var sizeTable = document.querySelector('table#size-chart, table[id*="size-chart"]');
-  if (!details || !content || !sizeTable) return;
+  if (!snapshot || !details || !content || !sizeTable) return;
 
   var parsed = parseSizeGuideTable(sizeTable);
   if (!parsed) return;
 
-  var singleLabel = wrapper.getAttribute('data-size-guide-single-label') || 'View size chart';
-  var groupedLabel = wrapper.getAttribute('data-size-guide-grouped-label') || singleLabel;
+  var compareLabel = wrapper.getAttribute('data-size-guide-compare-label') || 'Compare all sizes';
+  var groupedLabel = wrapper.getAttribute('data-size-guide-grouped-label') || 'Compare family sizes';
   var groups = buildSizeGuideGroups(parsed);
-  var renderTableCard = function (headers, rows, title) {
+  var sizeSelect = findSizeGuideSelect(sizeGuideRoot);
+  var selectedUnitSystem = getStoredSizeGuideUnitSystem() || 'metric';
+
+  function getStoredSizeGuideUnitSystem() {
+    try {
+      var stored = window.localStorage.getItem(UNIT_SYSTEM_STORAGE_KEY);
+      return stored === 'imperial' || stored === 'metric' ? stored : null;
+    } catch (_error) {
+      return null;
+    }
+  }
+
+  function storeSizeGuideUnitSystem(unitSystem) {
+    try {
+      window.localStorage.setItem(UNIT_SYSTEM_STORAGE_KEY, unitSystem);
+    } catch (_error) {
+      // localStorage may be blocked
+    }
+  }
+
+  function findSizeGuideSelect(root) {
+    var selects = Array.from(root.querySelectorAll("select[name^='options[']"));
+    for (var index = 0; index < selects.length; index += 1) {
+      var name = String(selects[index].name || '');
+      var optionMatch = name.match(/^options\[(.+)\]$/);
+      var optionName = optionMatch && optionMatch[1] ? optionMatch[1] : name;
+      if (SIZE_LABEL_PATTERN.test(normalizeText(optionName))) return selects[index];
+    }
+
+    return root.querySelector("select[data-size-option='true'], select.size-select");
+  }
+
+  function parseGuideHeader(headerText) {
+    var raw = String(headerText || '').trim();
+    var match = raw.match(/\(([^)]+)\)\s*$/);
+    var units = [];
+    var label = raw;
+
+    if (match) {
+      label = raw.slice(0, match.index).trim();
+      units = match[1]
+        .split('/')
+        .map(function (unit) {
+          return String(unit || '').trim();
+        })
+        .filter(Boolean);
+    }
+
+    return {
+      raw: raw,
+      label: label || raw,
+      units: units,
+    };
+  }
+
+  function normalizeGuideUnit(unit) {
+    var token = String(unit || '').toLowerCase().trim();
+    if (!token) return '';
+    if (token === 'cms' || token === 'centimeter' || token === 'centimeters' || token === 'centimetre' || token === 'centimetres') return 'cm';
+    if (token === 'inch' || token === 'inches') return 'in';
+    if (token === 'lb' || token === 'lbs') return 'lbs';
+    if (token === 'kilogram' || token === 'kilograms') return 'kg';
+    return token;
+  }
+
+  function formatGuideHeaderLabel(header, unitSystem) {
+    if (!header || !header.units || !header.units.length) return header ? header.label : '';
+
+    var units = header.units.map(normalizeGuideUnit);
+    var unitIndex = unitSystem === 'imperial' ? Math.min(1, units.length - 1) : 0;
+    var activeUnit = units[unitIndex] || units[0];
+    return header.label + ' (' + activeUnit + ')';
+  }
+
+  function formatGuideCellValue(value, header, unitSystem) {
+    var text = String(value || '').replace(/\s+/g, ' ').trim();
+    if (!text || text === '—') return '—';
+    if (!header || !header.units || header.units.length < 2) return text;
+
+    var parts = text.split('/').map(function (part) {
+      return String(part || '').trim();
+    });
+    var valueIndex = unitSystem === 'imperial' ? Math.min(1, parts.length - 1) : 0;
+    return parts[valueIndex] || parts[0] || text;
+  }
+
+  function getSelectedSizeState() {
+    if (!sizeSelect) return null;
+
+    var rawValue = String(sizeSelect.value || '').trim();
+    var rawText = sizeSelect.selectedOptions && sizeSelect.selectedOptions[0]
+      ? String(sizeSelect.selectedOptions[0].textContent || '').trim()
+      : rawValue;
+
+    if (!rawValue && !rawText) return null;
+
+    var formatter = formatGuideSizeLabel;
+    var displayValue = rawText || rawValue;
+    var exactDisplayValue = formatter ? formatter(rawValue) : '';
+    if (exactDisplayValue && exactDisplayValue !== rawValue) displayValue = exactDisplayValue;
+    var parsedRawValue = parseRoleFromSizeLabel(rawValue);
+    var parsedRawText = parseRoleFromSizeLabel(rawText);
+    var parsedDisplayValue = parseRoleFromSizeLabel(displayValue);
+    var comparableValues = [rawValue, rawText, displayValue];
+    if (parsedRawValue && parsedRawValue.sizeLabel) comparableValues.push(parsedRawValue.sizeLabel);
+    if (parsedRawText && parsedRawText.sizeLabel) comparableValues.push(parsedRawText.sizeLabel);
+    if (parsedDisplayValue && parsedDisplayValue.sizeLabel) comparableValues.push(parsedDisplayValue.sizeLabel);
+
+    return {
+      rawValue: rawValue,
+      rawText: rawText,
+      displayValue: displayValue,
+      tokens: buildSizeMatchTokens(comparableValues),
+    };
+  }
+
+  function buildSizeMatchTokens(values) {
+    var tokens = {};
+
+    function addToken(value) {
+      var raw = String(value || '').trim();
+      if (!raw) return;
+
+      var normalized = normalizeText(raw);
+      var compact = normalized.replace(/[^a-z0-9]+/g, '');
+      if (normalized) tokens[normalized] = true;
+      if (compact) tokens[compact] = true;
+
+      var numericCmMatch = compact.match(/^(\d{2,3})cm$/);
+      if (numericCmMatch) {
+        tokens[numericCmMatch[1]] = true;
+        tokens[numericCmMatch[1] + 'cm'] = true;
+      }
+
+      var numericMatch = compact.match(/^(\d{2,3})$/);
+      if (numericMatch) {
+        tokens[numericMatch[1]] = true;
+        tokens[numericMatch[1] + 'cm'] = true;
+      }
+
+      var adultMatch = raw.toUpperCase().match(/\b(XXXXL|XXXL|XXL|2XL|3XL|4XL|XL|XS|S|M|L)\b/);
+      if (adultMatch) {
+        var adultToken = adultMatch[1];
+        if (adultToken === 'XXL') adultToken = '2XL';
+        if (adultToken === 'XXXL') adultToken = '3XL';
+        if (adultToken === 'XXXXL') adultToken = '4XL';
+        tokens[adultToken.toLowerCase()] = true;
+      }
+
+      var formatted = formatGuideSizeLabel(raw);
+      if (formatted && formatted !== raw) {
+        var formattedNormalized = normalizeText(formatted);
+        var formattedCompact = formattedNormalized.replace(/[^a-z0-9]+/g, '');
+        if (formattedNormalized) tokens[formattedNormalized] = true;
+        if (formattedCompact) tokens[formattedCompact] = true;
+      }
+    }
+
+    values.forEach(addToken);
+    return tokens;
+  }
+
+  function rowMatchesSelectedSize(rowLabel, selectedState) {
+    if (!selectedState || !selectedState.tokens) return false;
+    var rowValues = [rowLabel];
+    rowValues.push(formatGuideSizeLabel(rowLabel));
+    var rowTokens = buildSizeMatchTokens(rowValues);
+
+    return Object.keys(rowTokens).some(function (token) {
+      return !!selectedState.tokens[token];
+    });
+  }
+
+  function getSelectedGuideRowLabel(selectedState) {
+    if (!selectedState) return '';
+
+    var allRows = [];
+    if (groups.length >= 1) {
+      groups.forEach(function (group) {
+        group.rows.forEach(function (row) {
+          allRows.push(row);
+        });
+      });
+    } else {
+      allRows = parsed.rows.slice();
+    }
+
+    var matchingRow = allRows.find(function (row) {
+      return rowMatchesSelectedSize(row[0], selectedState);
+    });
+
+    return matchingRow ? formatGuideSizeLabel(String(matchingRow[0] || '').trim()) : '';
+  }
+
+  function formatGuideSizeLabel(value) {
+    var raw = String(value || '').trim();
+    if (!raw) return '';
+
+    if (window.DLMSizeLabelFormatter && typeof window.DLMSizeLabelFormatter.formatSizeLabel === 'function') {
+      return window.DLMSizeLabelFormatter.formatSizeLabel(raw);
+    }
+
+    var compact = raw.toLowerCase().replace(/\s+/g, '');
+    var sizeMap = {
+      '90': '1–2Y',
+      '90cm': '1–2Y',
+      '100': '2–3Y',
+      '100cm': '2–3Y',
+      '110': '3–4Y',
+      '110cm': '3–4Y',
+      '120': '5–6Y',
+      '120cm': '5–6Y',
+      '130': '6–7Y',
+      '130cm': '6–7Y',
+      '140': '8–9Y',
+      '140cm': '8–9Y',
+      '150': '10–11Y',
+      '150cm': '10–11Y',
+      '160': '12–13Y',
+      '160cm': '12–13Y',
+    };
+
+    return sizeMap[compact] || raw;
+  }
+
+  function hasUnitToggle(headers) {
+    return headers.some(function (header) {
+      return header && header.units && header.units.length > 1;
+    });
+  }
+
+  function renderGuideUnitToggle(headers) {
+    if (!hasUnitToggle(headers)) return '';
+
+    var toggleHtml = '<div class="matching-size-guide__unit-toggle" role="group" aria-label="Size chart units">';
+    toggleHtml += '<button type="button" class="matching-size-guide__unit-button' + (selectedUnitSystem === 'metric' ? ' is-active' : '') + '" data-size-guide-unit="metric" aria-pressed="' + (selectedUnitSystem === 'metric') + '">cm</button>';
+    toggleHtml += '<button type="button" class="matching-size-guide__unit-button' + (selectedUnitSystem === 'imperial' ? ' is-active' : '') + '" data-size-guide-unit="imperial" aria-pressed="' + (selectedUnitSystem === 'imperial') + '">in</button>';
+    toggleHtml += '</div>';
+    return toggleHtml;
+  }
+
+  function getSelectedGuideMatch(selectedState) {
+    if (!selectedState) return null;
+
+    if (groups.length >= 1) {
+      for (var groupIndex = 0; groupIndex < groups.length; groupIndex += 1) {
+        var group = groups[groupIndex];
+        for (var rowIndex = 0; rowIndex < group.rows.length; rowIndex += 1) {
+          if (!rowMatchesSelectedSize(group.rows[rowIndex][0], selectedState)) continue;
+          return {
+            label: group.label || '',
+            helper: group.helper || '',
+            headers: group.headers,
+            row: group.rows[rowIndex],
+          };
+        }
+      }
+    }
+
+    for (var parsedRowIndex = 0; parsedRowIndex < parsed.rows.length; parsedRowIndex += 1) {
+      if (!rowMatchesSelectedSize(parsed.rows[parsedRowIndex][0], selectedState)) continue;
+      return {
+        label: '',
+        helper: '',
+        headers: parsed.headers,
+        row: parsed.rows[parsedRowIndex],
+      };
+    }
+
+    return null;
+  }
+
+  function formatSelectedGuideDisplay(match, selectedState) {
+    var selectedGuideLabel = match && match.row ? formatGuideSizeLabel(String(match.row[0] || '').trim()) : '';
+    var labelParts = [];
+
+    if (match && match.label) labelParts.push(match.label);
+    if (selectedGuideLabel) labelParts.push(selectedGuideLabel);
+
+    if (labelParts.length) return labelParts.join(' ');
+    return getSelectedGuideRowLabel(selectedState) || (selectedState && selectedState.displayValue ? selectedState.displayValue : '');
+  }
+
+  function renderSelectedGuideSnapshot(match, selectedState) {
+    if (!match || !match.row || !match.headers || !match.headers.length) {
+      snapshot.innerHTML = '';
+      snapshot.setAttribute('hidden', 'hidden');
+      return;
+    }
+
+    var measurementHtml = match.headers
+      .map(function (header, headerIndex) {
+        if (headerIndex === 0) return '';
+
+        var value = formatGuideCellValue(match.row[headerIndex], header, selectedUnitSystem);
+        if (!value || value === '—') return '';
+
+        return (
+          '<div class="matching-size-guide__metric">' +
+          '<span class="matching-size-guide__metric-label">' + escapeHtml(formatGuideHeaderLabel(header, selectedUnitSystem)) + '</span>' +
+          '<strong class="matching-size-guide__metric-value">' + escapeHtml(value) + '</strong>' +
+          '</div>'
+        );
+      })
+      .filter(Boolean)
+      .join('');
+
+    var selectedGuideDisplay = formatSelectedGuideDisplay(match, selectedState);
+    var snapshotHtml = '<section class="matching-size-guide__snapshot-card" aria-live="polite" aria-atomic="true">';
+    snapshotHtml += '<div class="matching-size-guide__toolbar">';
+    snapshotHtml += '<div class="matching-size-guide__intro">';
+    snapshotHtml += '<p class="matching-size-guide__eyebrow">Your size details</p>';
+    snapshotHtml += '<p class="matching-size-guide__selected"><strong>' + escapeHtml(selectedGuideDisplay) + '</strong></p>';
+    if (match.helper) {
+      snapshotHtml += '<p class="matching-size-guide__helper matching-size-guide__helper--snapshot">' + escapeHtml(match.helper) + '</p>';
+    }
+    snapshotHtml += '</div>';
+    snapshotHtml += renderGuideUnitToggle(match.headers);
+    snapshotHtml += '</div>';
+
+    if (measurementHtml) {
+      snapshotHtml += '<div class="matching-size-guide__metrics">' + measurementHtml + '</div>';
+    } else {
+      snapshotHtml += '<p class="matching-size-guide__helper matching-size-guide__helper--snapshot">Open the full chart below to compare nearby sizes.</p>';
+    }
+
+    snapshotHtml += '</section>';
+    snapshot.innerHTML = snapshotHtml;
+    snapshot.removeAttribute('hidden');
+  }
+
+  var renderTableCard = function (headers, rows, title, helper, selectedState) {
     return (
       '<article class="matching-size-guide__card">' +
       (title ? '<h3>' + escapeHtml(title) + '</h3>' : '') +
+      (helper ? '<p class="matching-size-guide__helper">' + escapeHtml(helper) + '</p>' : '') +
       '<div class="matching-size-guide__table-wrap">' +
       '<table class="matching-size-guide__table">' +
       '<thead><tr>' +
       headers
         .map(function (header) {
-          return '<th>' + escapeHtml(header) + '</th>';
+          return '<th>' + escapeHtml(formatGuideHeaderLabel(header, selectedUnitSystem)) + '</th>';
         })
         .join('') +
       '</tr></thead>' +
       '<tbody>' +
       rows
         .map(function (row) {
+          var isSelectedRow = rowMatchesSelectedSize(row[0], selectedState);
           return (
-            '<tr>' +
+            '<tr' + (isSelectedRow ? ' class="is-selected"' : '') + '>' +
             row
-              .map(function (cell) {
-                return '<td>' + escapeHtml(cell) + '</td>';
+              .map(function (cell, cellIndex) {
+                return '<td>' + escapeHtml(formatGuideCellValue(cell, headers[cellIndex], selectedUnitSystem)) + '</td>';
               })
               .join('') +
             '</tr>'
@@ -657,22 +1008,55 @@ function initMatchingSizeGuide(wrapper) {
     );
   };
 
-  if (groups.length >= 2) {
-    if (summary) summary.textContent = groupedLabel;
-    content.innerHTML =
-      '<div class="matching-size-guide__grid">' +
-      groups
-        .map(function (group) {
-          return renderTableCard(group.headers, group.rows, group.label);
-        })
-        .join('') +
-      '</div>';
-  } else {
-    if (summary) summary.textContent = singleLabel;
-    content.innerHTML = renderTableCard(parsed.headers, parsed.rows, '');
+  function bindUnitToggleEvents() {
+    sizeGuideRoot.querySelectorAll('[data-size-guide-unit]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var nextUnitSystem = button.getAttribute('data-size-guide-unit');
+        if (nextUnitSystem !== 'metric' && nextUnitSystem !== 'imperial') return;
+        if (nextUnitSystem === selectedUnitSystem) return;
+        selectedUnitSystem = nextUnitSystem;
+        storeSizeGuideUnitSystem(selectedUnitSystem);
+        renderGuide();
+      });
+    });
   }
 
-  details.removeAttribute('hidden');
+  function renderGuide() {
+    var selectedState = getSelectedSizeState();
+    var selectedMatch = getSelectedGuideMatch(selectedState);
+
+    renderSelectedGuideSnapshot(selectedMatch, selectedState);
+
+    if (groups.length >= 1) {
+      if (summary) summary.textContent = groups.length > 1 ? groupedLabel : compareLabel;
+      if (groups.length > 1) {
+        content.innerHTML =
+          '<div class="matching-size-guide__grid">' +
+          groups
+            .map(function (group) {
+              return renderTableCard(group.headers, group.rows, group.label, group.helper, selectedState);
+            })
+            .join('') +
+          '</div>';
+      } else {
+        content.innerHTML = renderTableCard(groups[0].headers, groups[0].rows, groups[0].label, groups[0].helper, selectedState);
+      }
+    } else {
+      if (summary) summary.textContent = compareLabel;
+      content.innerHTML = renderTableCard(parsed.headers, parsed.rows, '', '', selectedState);
+    }
+
+    bindUnitToggleEvents();
+    details.removeAttribute('hidden');
+  }
+
+  renderGuide();
+
+  if (sizeSelect) {
+    sizeSelect.addEventListener('change', function () {
+      renderGuide();
+    });
+  }
 }
 
 function parseSizeGuideTable(table) {
@@ -680,7 +1064,7 @@ function parseSizeGuideTable(table) {
   if (rows.length < 2) return null;
 
   var headers = Array.from(rows[0].querySelectorAll('th, td')).map(function (cell) {
-    return cellText(cell);
+    return parseSizeGuideHeaderText(cellText(cell));
   });
   if (!headers.length) return null;
 
@@ -703,6 +1087,29 @@ function parseSizeGuideTable(table) {
   };
 }
 
+function parseSizeGuideHeaderText(headerText) {
+  var raw = String(headerText || '').trim();
+  var match = raw.match(/\(([^)]+)\)\s*$/);
+  var units = [];
+  var label = raw;
+
+  if (match) {
+    label = raw.slice(0, match.index).trim();
+    units = match[1]
+      .split('/')
+      .map(function (unit) {
+        return String(unit || '').trim();
+      })
+      .filter(Boolean);
+  }
+
+  return {
+    raw: raw,
+    label: label || raw,
+    units: units,
+  };
+}
+
 function cellText(cell) {
   return String(cell && cell.textContent ? cell.textContent : '')
     .replace(/\s+/g, ' ')
@@ -710,7 +1117,7 @@ function cellText(cell) {
 }
 
 function parseRoleFromHeader(header) {
-  var cleaned = String(header || '')
+  var cleaned = String(header && header.raw ? header.raw : header || '')
     .replace(/\s*\(.+?\)\s*$/, '')
     .trim();
 
@@ -776,6 +1183,7 @@ function buildSizeGuideGroups(parsed) {
       rowGroups[roleInfo.key] = {
         key: roleInfo.key,
         label: roleInfo.label,
+        helper: getRoleFitCopy(roleInfo.key),
         headers: [parsed.headers[0]].concat(parsed.headers.slice(1)),
         rows: [],
       };
@@ -798,7 +1206,7 @@ function buildSizeGuideGroups(parsed) {
   if (groupedRows.length > 1) return groupedRows;
 
   var heightIndex = parsed.headers.findIndex(function (header) {
-    return normalizeText(header).indexOf('height') === 0;
+    return normalizeText(header && header.label ? header.label : '').indexOf('height') === 0;
   });
   var groupedHeaders = {};
 
@@ -810,13 +1218,18 @@ function buildSizeGuideGroups(parsed) {
     if (!groupedHeaders[roleHeader.key]) {
       groupedHeaders[roleHeader.key] = {
         label: roleHeader.label,
+        helper: getRoleFitCopy(roleHeader.key),
         headers: [parsed.headers[0]],
         columnIndexes: [],
       };
       if (heightIndex > -1) groupedHeaders[roleHeader.key].headers.push(parsed.headers[heightIndex]);
     }
 
-    groupedHeaders[roleHeader.key].headers.push(roleHeader.measurement);
+    groupedHeaders[roleHeader.key].headers.push({
+      raw: parsed.headers[index].raw,
+      label: roleHeader.measurement || parsed.headers[index].label,
+      units: parsed.headers[index].units,
+    });
     groupedHeaders[roleHeader.key].columnIndexes.push(index);
   });
 

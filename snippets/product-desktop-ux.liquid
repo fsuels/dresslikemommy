@@ -6,8 +6,9 @@
   assign matching_set_add = 'Add selected pieces'
   assign matching_set_success = 'Matching set added to cart.'
   assign matching_set_error = 'Unable to add the selected pieces. Please try again.'
-  assign grouped_size_guide_label = 'Compare family sizes side by side'
-  assign single_size_guide_label = 'View size chart'
+  assign grouped_size_guide_label = 'Compare family sizes'
+  assign compare_size_guide_label = 'Compare all sizes'
+  assign single_size_guide_label = 'Size guide & fit'
   assign reviews_heading = 'Customer reviews'
   assign reviews_copy = 'See fit notes and family photos'
   assign photo_heading = 'Customer photo reviews'
@@ -22,8 +23,9 @@
       assign matching_set_add = 'Anadir piezas seleccionadas'
       assign matching_set_success = 'El conjunto a juego se anadio al carrito.'
       assign matching_set_error = 'No se pudieron anadir las piezas seleccionadas. Intentalo de nuevo.'
-      assign grouped_size_guide_label = 'Comparar tallas de la familia lado a lado'
-      assign single_size_guide_label = 'Ver guia de tallas'
+      assign grouped_size_guide_label = 'Comparar tallas de la familia'
+      assign compare_size_guide_label = 'Comparar todas las tallas'
+      assign single_size_guide_label = 'Guia de tallas y ajuste'
       assign reviews_heading = 'Resenas de clientes'
       assign reviews_copy = 'Ver fotos familiares y comentarios de ajuste'
       assign photo_heading = 'Fotos de clientes'
@@ -36,8 +38,9 @@
       assign matching_set_add = 'Ajouter les pieces selectionnees'
       assign matching_set_success = 'L ensemble assorti a ete ajoute au panier.'
       assign matching_set_error = 'Impossible d ajouter les pieces selectionnees. Veuillez reessayer.'
-      assign grouped_size_guide_label = 'Comparer les tailles de la famille cote a cote'
-      assign single_size_guide_label = 'Voir le guide des tailles'
+      assign grouped_size_guide_label = 'Comparer les tailles de la famille'
+      assign compare_size_guide_label = 'Comparer toutes les tailles'
+      assign single_size_guide_label = 'Guide des tailles et coupe'
       assign reviews_heading = 'Avis clients'
       assign reviews_copy = 'Voir des photos de familles et des notes de coupe'
       assign photo_heading = 'Photos clients'
@@ -50,8 +53,9 @@
       assign matching_set_add = 'أضيفي القطع المختارة'
       assign matching_set_success = 'تمت إضافة الطقم المتطابق إلى السلة.'
       assign matching_set_error = 'تعذر إضافة القطع المختارة. يرجى المحاولة مرة أخرى.'
-      assign grouped_size_guide_label = 'قارني مقاسات العائلة جنباً إلى جنب'
-      assign single_size_guide_label = 'عرض دليل المقاسات'
+      assign grouped_size_guide_label = 'قارني مقاسات العائلة'
+      assign compare_size_guide_label = 'قارني كل المقاسات'
+      assign single_size_guide_label = 'دليل المقاسات والملاءمة'
       assign reviews_heading = 'آراء العملاء'
       assign reviews_copy = 'شاهدي صور العائلات وملاحظات المقاس'
       assign photo_heading = 'صور العملاء'
@@ -73,41 +77,8 @@
   data-matching-set-error="{{ matching_set_error | escape }}"
   data-size-guide-single-label="{{ single_size_guide_label | escape }}"
   data-size-guide-grouped-label="{{ grouped_size_guide_label | escape }}"
+  data-size-guide-compare-label="{{ compare_size_guide_label | escape }}"
 >
-  <div class="product-desktop-ux__highlights" role="list">
-    <div class="product-desktop-ux__highlight" role="listitem">
-      <span class="product-desktop-ux__label">{{ 'products.additional_info.shipping_title' | t }}</span>
-      <strong class="product-desktop-ux__value">
-        {{ 'products.additional_info.estimated_delivery' | t }}
-        <span data-desktop-estimate="standard"></span>
-      </strong>
-      <span class="product-desktop-ux__copy">
-        {{ 'products.additional_info.faster_shipping_prefix' | t }}
-        {{ 'products.additional_info.free_premium_shipping' | t }}
-        <span data-desktop-estimate="premium"></span>
-      </span>
-    </div>
-    <div class="product-desktop-ux__highlight" role="listitem">
-      <span class="product-desktop-ux__label">{{ 'products.additional_info.return_policy_title' | t }}</span>
-      <strong class="product-desktop-ux__value">{{ 'products.trust.returns' | t }}</strong>
-      <span class="product-desktop-ux__copy">{{ returns_copy }}</span>
-    </div>
-    <a
-      class="product-desktop-ux__highlight product-desktop-ux__highlight--link"
-      href="#judgeme_product_reviews"
-      role="listitem"
-    >
-      <span class="product-desktop-ux__label">{{ reviews_heading }}</span>
-      <strong class="product-desktop-ux__value">{{ photo_heading }}</strong>
-      <span class="product-desktop-ux__copy">{{ reviews_copy }}</span>
-    </a>
-  </div>
-
-  <details class="matching-size-guide" data-matching-size-guide hidden>
-    <summary>{{ single_size_guide_label }}</summary>
-    <div class="matching-size-guide__content" data-matching-size-guide-content></div>
-  </details>
-
   <section class="product-matching-set" data-matching-set-builder hidden>
     <div class="product-matching-set__header">
       <p class="product-matching-set__eyebrow">{{ 'sections.cart.complete_the_look' | t }}</p>

@@ -144,8 +144,29 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   };
 
+  const shouldSuppressVisibleSizeChart = function (tableElement) {
+    if (!tableElement) return false;
+
+    const firstHeader = tableElement.querySelector("th");
+    const headerText = firstHeader ? getTextContent(firstHeader).toLowerCase() : "";
+    const tableId = String(tableElement.id || "").toLowerCase();
+    const isSizeChart = tableId.indexOf("size-chart") !== -1 || headerText === "size";
+    if (!isSizeChart) return false;
+
+    const productRoot = tableElement.closest("[id^='MainProduct-']");
+    return !!(productRoot && productRoot.querySelector("[data-matching-size-guide]"));
+  };
+
   const wrapTable = function (tableElement) {
     if (!tableElement || tableElement.closest(".product-copy__table-card")) return;
+
+    if (shouldSuppressVisibleSizeChart(tableElement)) {
+      tableElement.hidden = true;
+      tableElement.setAttribute("aria-hidden", "true");
+      tableElement.setAttribute("data-size-chart-source-only", "true");
+      tableElement.style.setProperty("display", "none", "important");
+      return;
+    }
 
     const tableCard = document.createElement("div");
     const tableHeader = document.createElement("div");

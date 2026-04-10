@@ -38,6 +38,13 @@
     assign card_type = card_product.metafields.custom.type | default: card_product.type | default: '' | strip
     assign card_style = card_product.metafields.custom.style | default: '' | strip
     assign card_pattern = card_product.metafields.custom.pattern | default: '' | strip
+    assign card_active_variant = card_product.selected_or_first_available_variant
+    assign card_active_price = card_active_variant.price
+    assign card_active_compare_at_price = card_active_variant.compare_at_price
+    assign card_price_is_on_sale = false
+    if card_active_compare_at_price and card_active_compare_at_price > card_active_price
+      assign card_price_is_on_sale = true
+    endif
     for tag in card_product.tags
       assign normalized_tag = tag | strip
       assign normalized_tag_downcase = normalized_tag | downcase
@@ -201,7 +208,7 @@
               >
                 {{- 'products.product.sold_out' | t -}}
               </span>
-            {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+            {%- elsif card_price_is_on_sale and card_product.available -%}
               <span
                 id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                 class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
@@ -591,7 +598,7 @@
             >
               {{- 'products.product.sold_out' | t -}}
             </span>
-          {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+          {%- elsif card_price_is_on_sale and card_product.available -%}
             <span
               id="Badge-{{ section_id }}-{{ card_product.id }}"
               class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
