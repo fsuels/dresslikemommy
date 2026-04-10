@@ -3558,8 +3558,54 @@
       "profile_card": {
         "cancel": "בטל",
         "cancel_accessibility_label": "בטל עריכת פרופיל",
-        "edit": "ערוך"
-      }
+        "edit": "ערוך",
+        "edit_accessibility_label": "ערוך פרופיל",
+        "email_help_text": "אי אפשר לערוך את הדואר האלקטרוני",
+        "editable_email_help_text": "דואר אלקטרוני זה משמש לכניסה ולעדכוני הזמנות.",
+        "first_name": "שם פרטי",
+        "last_name": "שם משפחה",
+        "email": "דואר אלקטרוני",
+        "no_name_provided_accessibility_label": "לא נוסף שם",
+        "phone_number_help_text": "לא ניתן לערוך את מספר הטלפון",
+        "save": "שמור",
+        "save_accessibility_label": "שמור פרופיל",
+        "title": "פרופיל",
+        "errors": {
+          "name_too_long": "{{fieldName}} ארוך מדי (המקסימום הוא 255 תווים)",
+          "name_cannot_contain_url": "{{fieldName}} לא יכול להכיל כתובת URL",
+          "name_cannot_contain_html_tags": "{{fieldName}} לא יכול להכיל תגיות HTML",
+          "email_cant_be_blank": "האימייל לא יכול להיות ריק",
+          "invalid_email_format": "הזן דואר אלקטרוני תקין"
+        }
+      },
+      "verify_new_email_modal": {
+        "title": "אמת את הדוא\"ל",
+        "description": "הזן את הקוד שנשלח ל-{{email}}",
+        "one_time_password_label": "קוד בן 6 ספרות",
+        "email_resend_button": "שלח קוד מחדש",
+        "email_resend_button_accessibility_label": "שלח מחדש את קוד האימות",
+        "verify_button": "אמת",
+        "verify_button_accessibility_label": "אמת סיסמה חד-פעמית",
+        "cancel_button": "בטל",
+        "cancel_button_accessibility_label": "בטל עריכת דואר אלקטרוני",
+        "email_resend_button_success_toast_message": "קוד האימות נשלח",
+        "email_resend_button_failure_banner_message": "לא ניתן לשלוח את קוד האימות"
+      },
+      "email_update_success_modal": {
+        "title": "אמת את הדוא\"ל",
+        "description": "האימייל עודכן בהצלחה. מועבר להתחברות."
+      },
+      "profile_update_confirmation_message": "הפרופיל עודכן",
+      "email_update_confirmation_message": "האימייל עודכן ל-{{email}}",
+      "title": "פרופיל",
+      "people": {
+        "pagination": {
+          "load_more": "טען עוד",
+          "load_more_accessibility_label": "טען עוד אנשים",
+          "loading_accessibility_label": "טוען אנשים"
+        }
+      },
+      "add_button": "הוסף"
     },
     "orders": {
       "order_list": {
@@ -3684,7 +3730,16 @@
         },
         "show_order_actions_accessibility_label": "הצג פעולות הזמנה עבור ההזמנה {{name}}",
         "view_order": "הצג הזמנה",
-        "view_order_accessibility_label": "הצג את ההזמנה {{orderName}}"
+        "view_order_accessibility_label": "הצג את ההזמנה {{orderName}}",
+        "column_headers": {
+          "order": "הזמנה",
+          "total": "סה\"כ",
+          "actions_accessibility_label": "פעולות",
+          "products_accessibility_label": "מוצרים"
+        },
+        "delivered": "נמסר {{date}}",
+        "empty_state_order_source_description": "רק הזמנות שהונחו על ידי {{email}} יופיעו כאן.",
+        "empty_state_subtitle": "עבור לחנות כדי לבצע הזמנה."
       },
       "order_status": {
         "attempted_delivery_label": "ניסיון מסירה",
@@ -3837,7 +3892,14 @@
       "manage": "נהל",
       "manage_accessiblity_label": "נהל את ההזמנה {{orderId}}",
       "group_title_label": "חלק מ: {{groupTitle}}",
-      "group_title_label_with_parent": "עבור: {{groupTitle}}"
+      "group_title_label_with_parent": "עבור: {{groupTitle}}",
+      "list_layout_accessibility_label": "אפשרויות פריסה",
+      "list_title": "הזמנות",
+      "list_title_with_pending_orders": "הזמנות:",
+      "list_title_confirmed_orders_accessibility_label": "הזמנות: אושרו",
+      "list_title_pending_orders_accessibility_label": "הזמנות: ממתינות",
+      "switch_order_type_pending_orders_accessibility_label": "החלף סוג הזמנה, כרגע מציג הזמנות ממתינות",
+      "switch_order_type_confirmed_orders_accessibility_label": "החלף סוג הזמנה, כרגע מציג הזמנות מאושרות"
     },
     "order_details": {
       "shipment_timeline": {
