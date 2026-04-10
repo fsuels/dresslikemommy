@@ -1282,7 +1282,79 @@
         "purchase_options_agreement_label_html": "אני מבין שפריט אחד או יותר בעגלת הקניות שלי הוא רכישה דחויה, במנוי או חוזרת. בהמשך, אני מסכים ל\n<a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{subscription_policy}\" href=\"%{policy_href}\">מדיניות הביטול</a>\nומאשר לכם לחייב את אמצעי התשלום שלי במחירים, בתדירות ובתאריכים המפורטים בדף זה עד שההזמנה שלי תושלם או שאבטל, אם מותר.",
         "purchase_options_agreement_label_wallets": "בהמשך לתשלום שלך, אתה מסכים לתשלומים העתידיים המפורטים בדף זה ולמדיניות הביטול.",
         "change_currency_section_description": "בחר אפשרות מטבע",
-        "no_real_orders_dev_store": "חנות זו אינה יכולה לקבל הזמנות או תשלומים אמיתיים."
+        "no_real_orders_dev_store": "חנות זו אינה יכולה לקבל הזמנות או תשלומים אמיתיים.",
+        "waiting_on_payment_methods": "טוען שיטות תשלום זמינות...",
+        "apple_pay_payment_error": "התשלום שלך לא הושלם. נסה שוב או השתמש בשיטת תשלום אחרת.",
+        "taxes_not_included": "המסים אינם כלולים",
+        "no_taxes_banner_content": "לא יחולו מיסים על הזמנה זו. לאחר שתקבל את התשלום, לא ניתן להוסיף מיסים.",
+        "paypal": {
+          "connect": "לחץ כדי להתחבר לחשבון PayPal שלך"
+        },
+        "apple": {
+          "connect": "לחץ כדי להתחבר לחשבון Apple Pay שלך",
+          "not_available": "Apple Pay אינו זמין בדפדפן זה. כדי להתחבר לחשבון Apple Pay שלך, עליך להשתמש בדפדפן Safari במכשיר Apple."
+        },
+        "google": {
+          "connect": "לחץ כדי להתחבר עם חשבון Google Pay שלך",
+          "error_authorizing": "שגיאה באישור התשלום"
+        },
+        "account_connected": "החשבון מחובר.",
+        "mor_disclaimer_html": "בלחיצה למטה והשלמת ההזמנה, אתה מסכים לרכוש את הפריט/ים שלך מ-Global-e כסוחר הרשום לעסקה זו, בהתאם ל<a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{mor_terms}\" href=\"%{terms_href}\">תנאים והגבלות</a> של Global-e ול<a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{privacy_policy}\" href=\"%{policy_href}\">מדיניות הפרטיות</a>. Global-e היא ספקית שירותי מימוש בינלאומית עבור %{shop_name}",
+        "pending_payment": {
+          "due_notice": "התשלום שלך בסך %{amount_due} צפוי לתשלום עד %{due_date}.",
+          "multibanco": {
+            "buyer_action_info": "התשלום שלך בסך %{amount_due} מועד לתשלום.",
+            "instruction_html": "בצע את התשלום שלך ב-Multibanco או באינטרנט באמצעות הפרטים למטה. לשאלות או לעדכון פרטי התשלום, %{contact_us}.",
+            "entity": "ישות",
+            "reference": "הפניה",
+            "amount": "כמות",
+            "find_nearest_atm": "מצא כספומט קרוב ביותר"
+          }
+        },
+        "update_payment_method": "עדכן שיטת תשלום",
+        "order_covered_by_store_credit_notice": "ההזמנה שלך מכוסה על ידי האשראי בחנות שלך.",
+        "order_covered_by_redeemables_notice": "ההזמנה שלך מכוסה.",
+        "store_credit": {
+          "label": "זיכוי בחנות",
+          "apply_label": "החל שימוש בזיכוי בחנות",
+          "add_label": "הוסף זיכוי לחנות",
+          "manage_label": "נהל אשראי בחנות",
+          "buying_gift_card": "אינך יכול להשתמש באשראי החנות כדי לקנות כרטיס מתנה",
+          "no_fixed_selling_plans": "אינך יכול להשתמש באשראי חנות עם אפשרויות רכישה במועד מאוחר יותר"
+        },
+        "clear": "נקה",
+        "billing_must_match_shipping_notice": "כתובת החיוב של אמצעי התשלום שלך חייבת להתאים לכתובת המשלוח.",
+        "same_billing_address_checkbox_label": "השתמש בכתובת המשלוח ככתובת החיוב",
+        "location_billing_address_label": "כתובת חיוב למיקום",
+        "fact_billing_address_label": "כתובת לחיוב",
+        "location_shipping_address_label": "כתובת המשלוח של המיקום",
+        "use_order_billing_address_label": "השתמש בכתובת החיוב של ההזמנה",
+        "use_location_billing_address_label": "השתמש בכתובת החיוב לפי מיקום",
+        "use_location_shipping_address_label": "השתמש בכתובת המשלוח של המיקום",
+        "no_working_method_error": "חנות זו אינה יכולה לקבל תשלומים כרגע. רענן את הדף או חזור מאוחר יותר.",
+        "brand_not_available": "החנות הזו לא מקבלת {{brand}}. השתמש בכרטיס אחר לתשלום.",
+        "shipping_rate_updated": "שיטות המשלוח הזמינות עודכנו. אשר את בחירתך לפני השלמת הרכישה.",
+        "billing_address_invalid_phone": "עדכן את מספר הטלפון בכתובת החיוב שלך עבור {{label}} {{last_digits}} כדי להמשיך.",
+        "billing_address_invalid_phone_no_card": "עדכן את מספר הטלפון בכתובת החיוב שלך כדי להמשיך.",
+        "preview_not_available": {
+          "title": "תצוגה מקדימה אינה זמינה",
+          "content": "אל תדאג, תשלום מהיר זה מתאים ללקוחות שלך.",
+          "button": "אישור"
+        },
+        "card_fields": {
+          "errors": {
+            "required": {
+              "issue_date": "הזן תאריך הנפקה תקף",
+              "issue_number": "הזן מספר בעיה תקין"
+            },
+            "invalid": {
+              "verification_value": "הזן קוד CVV או קוד אבטחה תקין"
+            }
+          }
+        },
+        "simulated_checkout": "תצוגה מקדימה תגיע בקרוב",
+        "simulated_express_checkout": "ארנקים אינם זמינים בתצוגת העריכה עקב האזור או הדפדפן שלך",
+        "vaulting_agreement_label": "שמור את פרטי התשלום שלי עם %{company} כדי לבצע תשלום מהיר יותר."
       }
     }
   },
