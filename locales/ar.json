@@ -2684,7 +2684,85 @@
         "no_pickup_points_near_you": "لم يتم العثور على نقاط استلام بالقرب من العنوان المحدد",
         "no_pickup_points_near_location": "لم يتم العثور على نقاط استلام بالقرب من موقعك",
         "pickup_unavailable_banner_title": {
-          "one": "لا توجد نقاط استلام متاحة لمنتجك"
+          "one": "لا توجد نقاط استلام متاحة لمنتجك",
+          "other": "لا توجد نقاط استلام متاحة لسلعك"
+        },
+        "no_pickup_points_found": "لم يتم العثور على نقاط استلام",
+        "paginator": {
+          "next_accessibility_label": "الصفحة التالية",
+          "previous_accessibility_label": "الصفحة السابقة",
+          "header": {
+            "one": "عرض %{first} - %{last} من %{count} نقطة",
+            "other": "عرض %{first} - %{last} من %{count} نقطة"
+          },
+          "selected_pickup_point_label": {
+            "one": "%{pickup_point_index} من %{count} نقطة",
+            "other": "%{pickup_point_index} من %{count} نقطة"
+          },
+          "selected_page": {
+            "one": "%{first} - %{last} من %{count} نقطة",
+            "other": "%{first} - %{last} من %{count} نقاط"
+          }
+        },
+        "number_of_pickup_points_near_location": {
+          "one": "نقطة استلام %{count} بالقرب من موقعك",
+          "other": "%{count} نقاط استلام بالقرب من موقعك"
+        },
+        "change": "تغيير الموقع",
+        "waiting_on_pickup_point_location_notice": "البحث عن نقاط الاستلام...",
+        "geolocation": {
+          "shared_location_button": "استخدم موقعي",
+          "errors": {
+            "unsuported_by_browser": "الحصول على تحديد الموقع الجغرافي غير مدعوم من متصفحك. حاول مرة أخرى أو استخدم متصفحًا آخر.",
+            "permission_not_allowed": "السماح بمشاركة موقعك.",
+            "permission_denied": "لم نتمكن من الحصول على موقعك. حاول مرة أخرى."
+          }
+        }
+      },
+      "error_page": {
+        "terminal": {
+          "title": "كانت هناك مشكلة في عملية الدفع لدينا",
+          "message": "قم بتحديث هذه الصفحة أو حاول مرة أخرى بعد بضع دقائق",
+          "action": {
+            "cta": "تحديث الصفحة"
+          },
+          "request_id": "معرف الطلب: {{requestId}}"
+        },
+        "embed_errors": {
+          "storefront_password_required": "هذا المتجر محمي بكلمة مرور",
+          "customer_account_required": "مطلوب حساب زبون لإتمام عملية الدفع",
+          "cart_completed": "تم إتمام هذه العملية الشرائية بالفعل",
+          "invalid_cart": "العربة لم تعد صالحة للاستخدام",
+          "not_authorized": "فشل التحقق من الهوية عند الدفع. تحقق من بيانات اعتماد تطبيقك",
+          "killswitch_enabled": "عملية الدفع غير متوفرة مؤقتًا",
+          "policy_violation": "غير قادر على إتمام عملية الدفع بسبب قيود إعدادات السياسة",
+          "unrecoverable_failure": "غير قادر على تحميل صفحة الدفع. حاول مرة أخرى"
+        }
+      },
+      "notice_banner": {
+        "return_to_cart_link_text": "العودة إلى السلة",
+        "return_to_cart_to_update_quantities": "%{return_to_cart_link_text} لتحديث الكميات",
+        "subscription_changed": "لقد تغيرت إحدى اشتراكاتك.",
+        "company_location_changed": "تم تحديث سلة التسوق الخاصة بك. راجع طلبك قبل تقديمه.",
+        "company_location_changed_product_removed": "تم تحديث سلة التسوق الخاصة بك لأن بعض المنتجات غير متاحة في هذا الموقع. راجع طلبك قبل تقديمه.",
+        "violations_title": "{{violation}} مفقود أو غير صالح",
+        "individual_violations_title": {
+          "DeliveryViolations": "عنوان الشحن",
+          "PaymentViolations": "عنوان الفاتورة",
+          "OtherViolations": "معلومات الطلب",
+          "UnhandledViolations": "معلومات الطلب"
+        },
+        "all_violations_content": "اتصل بنا أو {{emailLink}} لتحديث هذه المعلومات وإكمال طلبك:",
+        "all_violations_email_link": "البريد الإلكتروني",
+        "editable_shipping_address_violations_message_title": "أضف هذه المعلومات لإكمال طلبك:",
+        "editable_shipping_address_violations_message_footer": "لتحديث العنوان لهذا الموقع بشكل دائم، {{emailLink}}.",
+        "editable_shipping_address_violations_email_link": "اتصل بنا",
+        "shipping_address_incomplete_title": "عنوان الشحن غير مكتمل",
+        "calculating_shipping": "لا يزال يتم حساب الشحن. حاول مرة أخرى بعد بضع ثوان. لم يتم تحصيل أي رسوم منك.",
+        "calculating_taxes": "لا تزال الضرائب قيد الحساب. حاول مرة أخرى بعد بضع ثوان. لم يتم تحصيل أي رسوم منك.",
+        "generic_processing_error": {
+          "title": "كانت هناك مشكلة في معالجة طلبك",
+          "body": "لم يتم خصم أي مبلغ منك. حاول مرة أخرى أو استخدم وسيلة دفع مختلفة."
         }
       }
     }
