@@ -614,7 +614,23 @@
   },
   "shopify": {
     "page_titles": {
-      "search": "يبحث"
+      "search": "يبحث",
+      "blog_or_article_with_error": "خطأ - %{title}",
+      "products": "المنتجات",
+      "shopping_cart": "عربة التسوق الخاصة بك",
+      "account": "الحساب",
+      "create_account": "إنشاء حساب",
+      "reset_account": "إعادة تعيين الحساب",
+      "addresses": "العناوين",
+      "order": "اطلب %{name}",
+      "search_results": {
+        "one": "بحث: تم العثور على %{count} نتيجة لـ \"%{terms}\"",
+        "other": "بحث: تم العثور على %{count} نتيجة لـ \"%{terms}\""
+      },
+      "collections": "المجموعات",
+      "not_found": "٤٠٤ غير موجود",
+      "challenge": "تحدي",
+      "checkpoint": "نقطة التفتيش"
     },
     "sentence": {
       "two_words_connector": "و",
@@ -3496,6 +3512,76 @@
           "visibility": "لقد قمنا بتحديث سياستنا، ونحن الآن نتابع فتح الرسائل الإلكترونية. سيتم الإبلاغ عن معدلات فتح الرسائل الإلكترونية بشكل مجهول. سنرى فقط إذا قمت بفتح رسالة إلكترونية كجزء من إجمالي معدل فتح الرسائل الإلكترونية.",
           "opt_out_html": "إذا كنت لا ترغب في مشاركة هذه المعلومات، يمكنك <a style='text-decoration:underline;' href='%{link}'>إلغاء الاشتراك.</a>"
         }
+      }
+    },
+    "filters": {
+      "availability": {
+        "value": {
+          "in_stock": "متوفر في المخزون",
+          "out_of_stock": "غير متوفر في المخزون"
+        }
+      },
+      "boolean": {
+        "true_label": "نعم",
+        "false_label": "لا"
+      }
+    },
+    "search": {
+      "error": "حدثت مشكلة أثناء تحميل نتائج البحث الخاصة بك. يرجى تحديث الصفحة أو المحاولة مرة أخرى لاحقًا.",
+      "sorting": {
+        "relevance": "الأهمية",
+        "price_ascending": "السعر، من الأقل إلى الأعلى",
+        "price_descending": "السعر من الأعلى إلى الأدنى"
+      }
+    },
+    "cart": {
+      "discounts_with_count": "تم تطبيق %{count} خصومات"
+    },
+    "challenge": {
+      "message": "للمتابعة، يرجى إخبارنا أنك لست روبوتًا.",
+      "error": "إجابتك لم تكن صحيحة، يرجى المحاولة مرة أخرى.",
+      "submit_button_text": "إرسال"
+    },
+    "checkpoint": {
+      "message": "حل التحقق لإكمال العملية",
+      "error": "فشل التحقق من كابتشا",
+      "submit_button_text": "إرسال"
+    },
+    "store_availability": {
+      "pick_up_time": {
+        "one_hour": "عادةً جاهز خلال ساعة واحدة",
+        "two_hours": "عادةً جاهز خلال ساعتين",
+        "four_hours": "عادةً ما يكون جاهزًا في غضون ٤ ساعات",
+        "twenty_four_hours": "عادةً جاهز خلال ٢٤ ساعة",
+        "two_to_four_days": "عادةً ما يكون جاهزًا في غضون ٢-٤ أيام",
+        "five_or_more_days": "عادةً ما يكون جاهزًا في غضون ٥ أيام أو أكثر",
+        "zero_to_two_hours": "عادةً جاهز خلال ساعتين",
+        "two_to_four_hours": "عادةً ما يكون جاهزًا في غضون ٤ ساعات",
+        "immediately": "جاهز للاستلام الآن",
+        "next_day": "جاهز للاستلام في اليوم التالي"
+      }
+    },
+    "subscriptions": {
+      "buyer_consent_product": "هذه السلعة هي عملية شراء متكررة أو مؤجلة. من خلال المتابعة، أوافق على %{cancellationPolicyLink} وأفوضكم بخصم طريقة الدفع الخاصة بي بالأسعار والتردد والتواريخ المذكورة في هذه الصفحة حتى يتم تنفيذ طلبي أو ألغي، إذا كان ذلك مسموحًا.",
+      "buyer_consent_cart": "واحد أو أكثر من العناصر في سلة التسوق الخاصة بك هو عملية شراء متكررة أو مؤجلة. من خلال المتابعة، أوافق على %{cancellationPolicyLink} وأفوضك بخصم طريقة الدفع الخاصة بي بالأسعار، والتردد، والتواريخ المذكورة في هذه الصفحة حتى يتم تنفيذ طلبي أو ألغي، إذا كان ذلك مسموحًا.",
+      "cancellation_policy": "سياسة الإلغاء"
+    }
+  },
+  "customer_accounts": {
+    "callback": {
+      "try_again": "حاول مرة أخرى"
+    },
+    "date": {
+      "humanize": {
+        "lessThanOneYearAgo": "{{date}} في {{time}}",
+        "lessThanOneHourAgo": {
+          "one": "{{count}} دقيقة مضت",
+          "other": "{{count}} دقيقة مضت"
+        },
+        "lessThanOneMinuteAgo": "الآن فقط",
+        "lessThanOneWeekAgo": "{{weekday}} في {{time}}",
+        "yesterday": "أمس في {{time}}",
+        "today": "اليوم في {{time}}"
       }
     }
   }
