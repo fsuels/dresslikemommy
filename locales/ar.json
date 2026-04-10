@@ -2763,6 +2763,92 @@
         "generic_processing_error": {
           "title": "كانت هناك مشكلة في معالجة طلبك",
           "body": "لم يتم خصم أي مبلغ منك. حاول مرة أخرى أو استخدم وسيلة دفع مختلفة."
+        },
+        "payment_method_not_available_with_payment_terms": "طريقة الدفع التي اخترتها لم تعد متاحة لأن الدفع لهذا الطلب يتم الآن وفقًا لشروط {{paymentTerms}}",
+        "payment_method_not_available_with_fulfillment_terms": "طريقة الدفع التي اخترتها لم تعد متاحة لأن الدفع لهذا الطلب مستحق الآن عند التنفيذ",
+        "payment_method_not_available_with_fixed_terms": "طريقة الدفع التي اخترتها لم تعد متاحة لأن الدفع لهذا الطلب مستحق في وقت لاحق",
+        "payment_method_not_available_with_review_requirement": "طريقة الدفع التي اخترتها لم تعد متاحة لأن الدفع سيكون مستحقًا بمجرد تأكيد طلبك.",
+        "contact_information": {
+          "title": "معلومات الاتصال غير صحيحة",
+          "header": "لتحديث معلوماتك، {{emailLink}}.",
+          "email_link": "اتصل بنا"
+        },
+        "validation_errors_banner": {
+          "heading": {
+            "one": "هناك {{count}} خطأ:",
+            "other": "هناك {{count}} أخطاء:"
+          },
+          "section_label": {
+            "delivery": "توصيل",
+            "contact": "اتصل",
+            "payment": "الدفع",
+            "billing": "الفوترة"
+          },
+          "errors_in_section": {
+            "one": "{{count}} خطأ في {{section}}",
+            "other": "{{count}} أخطاء في {{section}}"
+          }
+        }
+      },
+      "review_address_modal": {
+        "title": "عنوان المراجعة",
+        "subtitle": {
+          "one": "سيتم شحن هذا الطلب إلى العنوان الذي قدمه {{merchant}}.",
+          "other": "سيتم شحن هذا الطلب إلى العنوان الذي يقدمه {{merchant}}. اختر عنوان الشحن."
+        },
+        "subtitle_no_match": "هذا العنوان لا يطابق أيًا من عناوينك المحفوظة.",
+        "subtitle_must_use": "سيتم شحن طلبك إلى هذا العنوان.",
+        "continue": "تابع باستخدام هذا العنوان",
+        "use_saved_address": "استخدم عنوانًا مختلفًا",
+        "return_to_cart": "العودة إلى السلة"
+      },
+      "marketplaces": {
+        "legal_notice": {
+          "legal_text": "مراجعة",
+          "link_label": "شروط وأحكام {{partnerDisplayName}}"
+        }
+      },
+      "online_store_chat": {
+        "title": "أسئلة؟ تحدث معنا"
+      },
+      "local_pickup": {
+        "title": "الموقع",
+        "location_address_search_label": "عنوان",
+        "location_address_search_placeholder": "%{postal_code_label} أو العنوان",
+        "location_closest": "أقرب موقع مع غرضك",
+        "location_information": {
+          "one": "هناك %{count} موقع به مخزون قريب منك",
+          "other": "هناك %{count} مواقع بها مخزون قريب منك"
+        },
+        "location_information_far_away": {
+          "one": "هناك %{count} موقع يحتوي على منتجك",
+          "other": "هناك %{count} مواقع تحتوي على منتجك"
+        },
+        "location_nearby": {
+          "one": "هناك %{count} موقعًا قريبًا يحتوي على منتجك",
+          "other": "هناك %{count} مواقع قريبة تحتوي على منتجك"
+        },
+        "location_nearby_short": {
+          "one": "%{count} موقع قريب مع غرضك",
+          "other": "%{count} مواقع قريبة تحتوي على منتجك"
+        },
+        "location_far_away": {
+          "one": "%{count} موقع مع غرضك",
+          "other": "%{count} مواقع مع منتجك"
+        },
+        "toggle_location": "تغيير الموقع",
+        "toggle_more_locations": {
+          "one": "%{count} موقع إضافي",
+          "other": "%{count} مواقع إضافية"
+        },
+        "toggle_multiple_locations": "%{count}+ مواقع إضافية",
+        "or": "أو",
+        "cancel": "إلغاء",
+        "your_location": "موقعك",
+        "search_button": "ابحث عن المتاجر",
+        "no_stores_found": "لم يتم العثور على متاجر",
+        "all_stores_far_away": {
+          "title": "أقرب المواقع تبعد أكثر من %{distance}"
         }
       }
     }
