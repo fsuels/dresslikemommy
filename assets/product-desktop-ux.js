@@ -926,6 +926,8 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   var UNIT_SYSTEM_STORAGE_KEY = 'dlm_size_chart_unit_system';
   var productSection = sectionId ? document.getElementById('MainProduct-' + sectionId) : null;
   var sizeGuideRoot = productSection || wrapper.closest('[id^="MainProduct-"]') || wrapper;
+  var descriptionRoot = (sizeGuideRoot && sizeGuideRoot.querySelector('[data-product-description]')) || document.querySelector('[data-product-description]');
+  var imagePresetGuide = descriptionRoot ? getImageBasedSizeGuidePreset(descriptionRoot) : null;
   var snapshot = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide-snapshot]') : null;
   var details = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide]') : null;
   var content = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide-content]') : null;
@@ -936,6 +938,7 @@ function initMatchingSizeGuide(wrapper, sectionId) {
 
   var parsed = parseSizeGuideTable(sizeTable);
   if (!parsed) return;
+  if (descriptionRoot) hideRedundantSizeGuideSources(descriptionRoot, imagePresetGuide);
 
   var compareLabel = wrapper.getAttribute('data-size-guide-compare-label') || 'Compare all sizes';
   var groupedLabel = wrapper.getAttribute('data-size-guide-grouped-label') || 'Compare family sizes';
@@ -1197,6 +1200,37 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     return image;
   }
 
+  function getTableBasedSizeGuideTarget(table, sourceRoot) {
+    if (!table || !sourceRoot) return null;
+
+    var tableCard = table.closest('.product-copy__table-card');
+    if (tableCard && sourceRoot.contains(tableCard)) return tableCard;
+
+    var section = table.closest('section');
+    if (section && section !== sourceRoot && sourceRoot.contains(section)) return section;
+
+    var parent = table.parentElement;
+    if (
+      parent &&
+      parent !== sourceRoot &&
+      /^(DIV|P)$/.test(parent.tagName) &&
+      parent.querySelectorAll('table').length === 1
+    ) {
+      return parent;
+    }
+
+    return table;
+  }
+
+  function hideSizeGuideSourceTarget(target, attributeName) {
+    if (!target) return;
+
+    target.hidden = true;
+    target.setAttribute('aria-hidden', 'true');
+    target.setAttribute(attributeName, 'true');
+    target.style.setProperty('display', 'none', 'important');
+  }
+
   function hideImageBasedSizeGuideMedia(sourceRoot, preset) {
     if (!sourceRoot || !preset || !Array.isArray(preset.imageTokens) || !preset.imageTokens.length) return;
 
@@ -1210,11 +1244,36 @@ function initMatchingSizeGuide(wrapper, sectionId) {
       if (!isPresetImage) return;
 
       var target = getImageBasedSizeGuideMediaTarget(image, sourceRoot) || image;
-      target.hidden = true;
-      target.setAttribute('aria-hidden', 'true');
-      target.setAttribute('data-size-guide-image-source-only', 'true');
-      target.style.setProperty('display', 'none', 'important');
+      hideSizeGuideSourceTarget(target, 'data-size-guide-image-source-only');
     });
+  }
+
+  function hideTableBasedSizeGuideSources(sourceRoot) {
+    if (!sourceRoot) return;
+
+    var tables = Array.from(
+      sourceRoot.querySelectorAll(
+        'table#size-chart, table[id*="size-chart"], table.size-chart, table[data-size-chart-source-only="true"], table[data-size-guide-original-source="true"]'
+      )
+    );
+    var hiddenTargets = [];
+
+    tables.forEach(function (table) {
+      if (table.getAttribute('data-size-guide-reconstructed') === 'true') return;
+
+      var target = getTableBasedSizeGuideTarget(table, sourceRoot) || table;
+      if (hiddenTargets.indexOf(target) !== -1) return;
+
+      hiddenTargets.push(target);
+      hideSizeGuideSourceTarget(target, 'data-size-guide-table-source-only');
+    });
+  }
+
+  function hideRedundantSizeGuideSources(sourceRoot, preset) {
+    if (!sourceRoot) return;
+
+    hideTableBasedSizeGuideSources(sourceRoot);
+    hideImageBasedSizeGuideMedia(sourceRoot, preset);
   }
 
   function getSizeGuideTable(root, select) {
@@ -1254,10 +1313,6 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     var preferredGuide = fallbackGuide;
     if (imagePresetGuide && (!preferredGuide || imagePresetGuide.rows.length > preferredGuide.rows.length)) {
       preferredGuide = imagePresetGuide;
-    }
-
-    if (descriptionRoot && imagePresetGuide && preferredGuide === imagePresetGuide) {
-      hideImageBasedSizeGuideMedia(descriptionRoot, imagePresetGuide);
     }
 
     if (!existingTable) {
