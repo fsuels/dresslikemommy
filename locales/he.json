@@ -1168,7 +1168,69 @@
         "card_verification_confirm": "לצורך אימות, הזן את קוד האבטחה של הכרטיס שלך.",
         "card_expiry_date_explanation": "תאריך תפוגת הכרטיס בפורמט: חודש, חודש, שנה, שנה",
         "card_expiration_month_label": "חודש תפוגה",
-        "card_expiration_year_label": "שנת תפוגה"
+        "card_expiration_year_label": "שנת תפוגה",
+        "card_verification_value_explanation": "קוד אבטחה בן 3 ספרות שנמצא בדרך כלל בגב הכרטיס שלך. לכרטיסי אמריקן אקספרס יש קוד בן 4 ספרות הממוקם בחזית.",
+        "card_verification_value_explanation_amex": "קוד אבטחה בן 4 ספרות בחזית הכרטיס שלך",
+        "card_verification_value_explanation_other": "קוד אבטחה בן 3 ספרות בגב הכרטיס שלך",
+        "card_start_label": "תאריך הנפקה (חודש / שנה)",
+        "card_start_placeholder": "תאריך הנפקה (חודש / שנה)",
+        "card_issue_number_label": "מספר גיליון",
+        "card_issue_number_placeholder": "מספר גיליון",
+        "card_change_label": "שנה",
+        "card_update_label": "עדכן כרטיס",
+        "paypal_disconnect": "נתק",
+        "ends_with_label": "מסיים עם %{last_digits}",
+        "payment_method_saved": "שיטת התשלום נשמרה",
+        "card_vaulted_company_location": "הכרטיס נשמר למיקום זה",
+        "bank_account_vaulted_company_location": "חשבון בנק נשמר למיקום זה",
+        "expiry_long": "(פג תוקף %{month}/%{year})",
+        "expiry_short": "(תוקף עד %{month}/%{year})",
+        "crypto_payment_method": {
+          "description": "התחברו לארנק שלכם בצורה מאובטחת. היתרה והכתובת שלכם לא ישותפו.",
+          "tooltip": "יתרת הארנק והכתובת שלך לא ישותפו ורק הסכום המבוקש יכול להיות מנוכה",
+          "cashback_descriptor": {
+            "one": "תקבל את ההחזר כספי שלך לאחר %{count} יום.",
+            "other": "תקבל את ההחזר כספי שלך לאחר %{count} ימים."
+          }
+        },
+        "crypto_modal": {
+          "header": "שלם %{shop_name} %{total_price} USDC",
+          "error": {
+            "refresh": "רענן",
+            "close": "סגור",
+            "sandbox_error": "משהו השתבש",
+            "web_component_error": "אירעה בעיה בטעינת הדף הזה"
+          }
+        },
+        "saved_by_payment_method": "נשמר על ידי %{payment_method}",
+        "pay_with_payment_method": "שלם באמצעות %{payment_method}",
+        "different_credit_card_label": "השתמש בכרטיס אשראי שונה",
+        "same_billing_address_label": "כמו כתובת המשלוח",
+        "different_billing_address_label": "השתמש בכתובת חיוב שונה",
+        "billing_address_associated_with_mandate": "השתמש בכתובת המשויכת לשיטת התשלום",
+        "billing_address_associated_with_mandate_info": "אם ברצונך לשנות את כתובת החיוב שלך, הסר והזן מחדש את פרטי כרטיס האשראי שלך",
+        "free_order_notice_html": "ההזמנה שלך <strong>חינמית</strong>. אין צורך בתשלום.",
+        "express_checkout_free_order": "לא תחויב עבור הזמנה חינמית",
+        "order_covered_by_gift_cards_notice": {
+          "one": "ההזמנה שלך מכוסה על ידי כרטיס המתנה שלך.",
+          "other": "ההזמנה שלך מכוסה בכרטיסי המתנה שלך."
+        },
+        "offsite_gateway_redirect_hint": "תועבר אל %{gateway_label} כדי להשלים את הרכישה שלך.",
+        "offsite_gateway_review_page_redirect_hint": "לאחר שתבדוק את ההזמנה שלך, תועבר ל-%{gateway_label} כדי להשלים את הרכישה.",
+        "offsite_gateway_redirect_hint_multi_currency_html": "%{gateway_label} סך הכל %{total_shop_price}",
+        "offsite_gateway_redirect_hint_no_button_label": "תועבר אל %{gateway_label} כדי להשלים את הרכישה שלך.",
+        "receiver_payment_experience_hint": "לאחר ביצוע ההזמנה, תקבל את פרטי התשלום. בצע את התשלום במולטיבנקו או באינטרנט בתוך %{due_days} ימים.",
+        "billing_address_title": "כתובת לחיוב",
+        "billing_address_rollup_accessibility_label": "אפשרויות כתובת לחיוב",
+        "billing_address_description": "בחר את הכתובת התואמת לכרטיס או לאמצעי התשלום שלך.",
+        "billing_address_description_no_shipping_address": "הזן את הכתובת התואמת לכרטיס או לאמצעי התשלום שלך.",
+        "no_js_credit_card_fields_redirect_hint": "אתה תועבר להוספת פרטי התשלום שלך.",
+        "card_fields_container_prefix": "מיכל שדה עבור:",
+        "card_fields_unavailable_html": {
+          "one": "תשלומים בכרטיסי אשראי וחיוב אינם זמינים כרגע.<br><a href=\"%{current_url}\">רענן את הדף הזה</a> או נסה שוב מאוחר יותר.",
+          "other": "תשלומים בכרטיסי אשראי וחיוב אינם זמינים כרגע.<br><a href=\"%{current_url}\">רענן את הדף הזה</a> או נסה שיטת תשלום אחרת."
+        },
+        "card_fields_processing_error": "אירעה בעיה בעיבוד התשלום. נסה לרענן את הדף או לבדוק את חיבור האינטרנט שלך."
       }
     }
   },
