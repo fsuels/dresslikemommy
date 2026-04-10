@@ -3280,7 +3280,81 @@
       "password_mismatch": "يجب أن يتطابق مع كلمة المرور المقدمة",
       "contains_spaces": "يبدأ أو ينتهي بمسافات.",
       "invalid_for_country": "غير صالح لـ %{country}",
-      "invalid_for_country_and_province": "غير صالح لـ %{province} و %{country}"
+      "invalid_for_country_and_province": "غير صالح لـ %{province} و %{country}",
+      "invalid_province_in_country": "ليس مقاطعة صالحة في %{country}",
+      "invalid_state_in_country": "ليس ولاية صالحة في %{country}",
+      "invalid_region_in_country": "ليس منطقة صالحة في %{country}",
+      "less_than_or_equal_to": "يجب أن يكون أقل من أو يساوي %{count}",
+      "not_supported": "غير مدعوم",
+      "full_name_required": "أدخل الاسم الأول واسم العائلة",
+      "invalid_for_card_type": "غير صالح",
+      "invalid_type": "عذرًا، لا نقبل بطاقات من هذا النوع",
+      "invalid_format": "التنسيق غير صالح",
+      "expired": "انتهت صلاحيته",
+      "invalid_start_date_or_issue_number_for_debit": "مطلوب تاريخ بدء صالح أو رقم إصدار",
+      "invalid_expiry_year": "ليس سنة انتهاء صلاحية صالحة",
+      "reset_password_html": "عنوان البريد الإلكتروني هذا مرتبط بالفعل بحساب. إذا كان هذا الحساب يخصك، يمكنك <a href=\"/account/login#recover\">إعادة تعيين كلمة المرور</a>",
+      "verify_email": "لقد أرسلنا بريدًا إلكترونيًا إلى %{customer_email}، يرجى النقر على الرابط المرفق للتحقق من عنوان بريدك الإلكتروني.",
+      "product_not_available": "المنتج غير منشور لهذا العميل.",
+      "shop_404": {
+        "title": "أنشئ موقع تجارة إلكترونية وابدأ البيع عبر الإنترنت! برنامج التجارة الإلكترونية من Shopify",
+        "heros": {
+          "store_unavailable": "عذرًا، هذا المتجر غير متاح حاليًا.",
+          "store_not_exist": "هذا المتجر غير موجود.",
+          "no_storefront": "هذا المتجر لا يملك موقعًا إلكترونيًا بعد."
+        },
+        "links": {
+          "explore_other_stores": "استكشف متاجر أخرى",
+          "start_free_trial": "ابدأ تجربة مجانية"
+        },
+        "owner_ctas": {
+          "header": "هل أنت صاحب المتجر؟",
+          "fix_domain": "أكمل إعداد عنوان الويب الجديد الخاص بك، انتقل إلى %{domain_settings_link}. انقر على \"ربط النطاق\" وأدخل: %{domain}.<br>إذا كنت تواجه مشكلة في الدخول إلى متجرك، جرب صفحة %{forgot_your_store_link}.",
+          "fix_domain_link_text": "إعدادات النطاق الخاص بك",
+          "forgot_your_store_link_text": "نسيت متجرك",
+          "add_storefront": "يمكنك إعداد موقعك الإلكتروني من خلال إضافة قناة المتجر الإلكتروني في %{admin_link}. إذا كنت تواجه مشكلة في الدخول إلى متجرك، جرب صفحة %{forgot_your_store_link}.",
+          "admin_link_text": "المسؤول"
+        },
+        "ctas": {
+          "sell_in_person": {
+            "header": "البيع شخصيًا",
+            "caption": "احصل على الميزات التي تحتاجها لإدارة متجرك التجاري سواء كنت تبدأ من الصفر أو توسع عملك.",
+            "link_text": "ابدأ التجربة المجانية"
+          },
+          "open_a_store": {
+            "header": "افتح متجر شوبيفاي جديد",
+            "caption": "ابدأ تجربة مجانية لمدة ٣ أيام، ثم استمر مقابل ١ دولار شهريًا للأشهر الثلاثة القادمة.",
+            "link_text": "سجّل الآن"
+          },
+          "editions": {
+            "header": "اطلع على إصدارات شوبيفاي",
+            "caption": "مع أكثر من 100 تحديث للمنتجات، يمكنك أن تكون أكثر إنتاجية وإبداعًا وقوة في التجارة أكثر مما كنت تتخيل.",
+            "link_text": "استكشف الإصدارات الأحدث"
+          },
+          "store_owner": {
+            "header": "هل أنت صاحب المتجر؟",
+            "caption": "هل تواجه مشكلة في الدخول إلى متجرك؟ جرب ميزة %{forgot_your_store_link}. إذا كنت ترغب في إعادة تفعيل متجرك، اتصل بـ %{shopify_support_link}.",
+            "shopify_support_link_text": "دعم شوبيفاي"
+          }
+        }
+      }
+    },
+    "notices": {
+      "customer": {
+        "password_reset_error": "خطأ في إعادة تعيين كلمة المرور",
+        "subscribe_error": "خطأ في الاشتراك",
+        "unsubscribe_error": "خطأ في إلغاء الاشتراك",
+        "no_account_found": "لم يتم العثور على حساب بهذا البريد الإلكتروني.",
+        "invalid_credentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+        "denylisted_reset_password": "لا يمكن الوصول إلى حسابك لأن كلمة المرور الحالية غير آمنة. ستتلقى رسالة إلكترونية لتحديث كلمة المرور الخاصة بك.",
+        "signup_disabled": "تم تعطيل إنشاء حساب العميل."
+      },
+      "address": {
+        "updated": "تم تحديث العنوان بنجاح.",
+        "error_updating": "خطأ في تحديث العنوان",
+        "created": "تم إنشاء العنوان بنجاح",
+        "error_creating": "حدث خطأ أثناء إنشاء العنوان."
+      }
     }
   }
 }
