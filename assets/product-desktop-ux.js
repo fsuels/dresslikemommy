@@ -409,6 +409,40 @@ var ROLE_FIT_COPY_BY_LOCALE = {
     adult: 'نصيحة للمقاس: قارنيه بمقاس البالغ المعتاد.',
   },
 };
+var IMAGE_BASED_SIZE_GUIDE_PRESETS = [
+  {
+    imageTokens: ['htb1s.5.shppk1rjszffq6y5ppxav', 'htb1oo6bshvpk1rjszpiq6zmwxxaa'],
+    headers: [
+      'Size',
+      'Estimated Height (cm)',
+      'Son Shirt Bust (cm/in)',
+      'Son Shirt Shoulder (cm/in)',
+      'Son Shirt Length (cm/in)',
+      'Daughter Dress Bust (cm/in)',
+      'Daughter Dress Length (cm/in)',
+      'Dad Shirt Bust (cm/in)',
+      'Dad Shirt Shoulder (cm/in)',
+      'Dad Shirt Length (cm/in)',
+      'Mom Dress Bust (cm/in)',
+      'Mom Dress Length (cm/in)',
+    ],
+    rows: [
+      ['24M/90', '90', '57/22.44', '25/9.84', '38/14.96', '58/22.83', '58/22.83', '—', '—', '—', '—', '—'],
+      ['3T/100', '90-100', '61/24.02', '26/10.24', '41/16.14', '62/24.41', '62/24.41', '—', '—', '—', '—', '—'],
+      ['4T/110', '100-110', '65/25.59', '27/10.63', '44/17.32', '66/25.98', '66/25.98', '—', '—', '—', '—', '—'],
+      ['5T/120', '110-120', '69/27.17', '29/11.42', '47/18.50', '71/27.95', '71/27.95', '—', '—', '—', '—', '—'],
+      ['6T/130', '120-130', '73/28.74', '30/11.81', '50/19.69', '77/30.31', '77/30.31', '—', '—', '—', '—', '—'],
+      ['8T/140', '130-140', '77/30.31', '32/12.60', '53/20.87', '84/33.07', '84/33.07', '—', '—', '—', '—', '—'],
+      ['10T/150', '140-150', '81/31.89', '33/12.99', '56/22.05', '91/35.83', '91/35.83', '—', '—', '—', '—', '—'],
+      ['S', '—', '—', '—', '—', '—', '—', '—', '—', '—', '94/37.01', '114/44.88'],
+      ['M', '—', '—', '—', '—', '—', '—', '96/37.80', '41/16.14', '67/26.38', '98/38.58', '115.5/45.47'],
+      ['L', '—', '—', '—', '—', '—', '—', '100/39.37', '43/16.93', '69/27.17', '102/40.16', '117/46.06'],
+      ['XL', '—', '—', '—', '—', '—', '—', '104/40.94', '44/17.32', '71/27.95', '106/41.73', '118.5/46.65'],
+      ['XXL', '—', '—', '—', '—', '—', '—', '108/42.52', '46/18.11', '73/28.74', '110/43.31', '120/47.24'],
+      ['3XL', '—', '—', '—', '—', '—', '—', '112/44.09', '47/18.50', '76/29.92', '—', '—'],
+    ],
+  },
+];
 
 function getLocaleRoot() {
   var locale = document.documentElement.getAttribute('lang') || document.documentElement.lang || '';
@@ -1115,11 +1149,37 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     return table;
   }
 
+  function getImageBasedSizeGuidePreset(sourceRoot) {
+    if (!sourceRoot) return null;
+
+    var imageUrls = Array.from(sourceRoot.querySelectorAll('img[src]'))
+      .map(function (image) {
+        return String(image.getAttribute('src') || image.currentSrc || '').toLowerCase();
+      })
+      .filter(Boolean);
+
+    if (!imageUrls.length) return null;
+
+    for (var presetIndex = 0; presetIndex < IMAGE_BASED_SIZE_GUIDE_PRESETS.length; presetIndex += 1) {
+      var preset = IMAGE_BASED_SIZE_GUIDE_PRESETS[presetIndex];
+      var hasEveryImage = preset.imageTokens.every(function (token) {
+        return imageUrls.some(function (imageUrl) {
+          return imageUrl.indexOf(token) !== -1;
+        });
+      });
+
+      if (hasEveryImage) return preset;
+    }
+
+    return null;
+  }
+
   function getSizeGuideTable(root, select) {
     var existingTable = document.querySelector('table#size-chart, table[id*="size-chart"]');
 
     var descriptionRoot = (root && root.querySelector('[data-product-description]')) || document.querySelector('[data-product-description]');
     var fallbackGuide = null;
+    var imagePresetGuide = descriptionRoot ? getImageBasedSizeGuidePreset(descriptionRoot) : null;
 
     if (descriptionRoot) {
       var lines = extractGuideLines(descriptionRoot);
@@ -1148,15 +1208,20 @@ function initMatchingSizeGuide(wrapper, sectionId) {
       }
     }
 
-    if (!existingTable) {
-      return descriptionRoot && fallbackGuide ? buildFallbackSizeGuideTable(descriptionRoot, fallbackGuide.headers, fallbackGuide.rows) : null;
+    var preferredGuide = fallbackGuide;
+    if (imagePresetGuide && (!preferredGuide || imagePresetGuide.rows.length > preferredGuide.rows.length)) {
+      preferredGuide = imagePresetGuide;
     }
 
-    if (!fallbackGuide) return existingTable;
+    if (!existingTable) {
+      return descriptionRoot && preferredGuide ? buildFallbackSizeGuideTable(descriptionRoot, preferredGuide.headers, preferredGuide.rows) : null;
+    }
+
+    if (!preferredGuide) return existingTable;
 
     var existingParsed = parseSizeGuideTable(existingTable);
-    if (!existingParsed || fallbackGuide.rows.length > existingParsed.rows.length) {
-      return descriptionRoot ? buildFallbackSizeGuideTable(descriptionRoot, fallbackGuide.headers, fallbackGuide.rows) : existingTable;
+    if (!existingParsed || (preferredGuide && preferredGuide.rows.length > existingParsed.rows.length)) {
+      return descriptionRoot ? buildFallbackSizeGuideTable(descriptionRoot, preferredGuide.headers, preferredGuide.rows) : existingTable;
     }
 
     return existingTable;
