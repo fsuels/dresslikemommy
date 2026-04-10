@@ -14556,3 +14556,17 @@ Verification:
 
 Notes:
 - The desktop homepage preview showed visibly larger `Shop by Category` and `Shop by Occasion` tiles while the mobile screenshot remained unchanged, matching the requested scope.
+
+### Task: Hide redundant mobile PDP "Continue shopping" eyebrow so the back link clears the header
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-mobile-pdp-breadcrumb-eyebrow-hide
+Changes:
+- `assets/section-main-product.css`
+  - Hid the mobile-only `Continue shopping` eyebrow above the PDP back link, keeping the `Back to ...` navigation intact.
+
+Why:
+- On mobile product pages the eyebrow copy was partially covered by the sticky header, while the actual useful control is the `Back to ...` link directly below it.
+- Removing the redundant eyebrow is a smaller, cleaner fix than reopening more vertical space in the already compressed mobile PDP header area.
+
+Verification:
+- `git diff --check -- assets/section-main-product.css ops/AGENT_WORKLOG.md`
