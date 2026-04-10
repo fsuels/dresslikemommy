@@ -2848,8 +2848,100 @@
         "search_button": "ابحث عن المتاجر",
         "no_stores_found": "لم يتم العثور على متاجر",
         "all_stores_far_away": {
-          "title": "أقرب المواقع تبعد أكثر من %{distance}"
+          "title": "أقرب المواقع تبعد أكثر من %{distance}",
+          "title_with_item": {
+            "one": "أقرب موقع يحتوي على منتجك يبعد أكثر من %{distance} من %{location}",
+            "other": "أقرب موقع يحتوي على أغراضك يبعد أكثر من %{distance} من %{location}"
+          },
+          "title_with_specific_location": "أقرب موقع يحتوي على منتجك يبعد أكثر من %{distance} عن %{location}",
+          "description": "اختر موقعًا أو %{ship_to_address_link}",
+          "ship_to_address_link": "الشحن إلى العنوان",
+          "change_location_link": "غيّر موقعك"
+        },
+        "selected_pickup_option_no_longer_available": {
+          "title": "الموقع الذي اخترته سابقًا لم يعد متاحًا",
+          "description": "اختر موقعًا جديدًا أو %{ship_to_address_link}",
+          "ship_to_address_link": "الشحن إلى العنوان"
+        },
+        "could_not_resolve_address": "لم يتمكن من تحديد عنوانك. حاول مرة أخرى أو استخدم عنوانًا مختلفًا",
+        "paginator": {
+          "accessibility_label": "ترتيب الصفحات لالتقاط محلي",
+          "previous": "الصفحة السابقة",
+          "next": "الصفحة التالية",
+          "label": {
+            "one": "%{first} - %{last} من %{count} متجر",
+            "other": "%{first} - %{last} من %{count} متاجر"
+          }
+        },
+        "reveal_more_label": {
+          "one": "عرض %{count} موقع آخر",
+          "other": "عرض %{count} مواقع إضافية"
+        },
+        "pickup_unavailable_banner_title": {
+          "one": "لا توجد مواقع تحتوي على غرضك",
+          "other": "لا توجد مواقع تحتوي على أغراضك"
+        },
+        "pickup_unavailable_banner_title_with_country": {
+          "one": "لا توجد مواقع في %{country} تحتوي على منتجك",
+          "other": "لا توجد مواقع في %{country} تحتوي على عناصرك"
+        },
+        "pickup_unavailable_banner_body": {
+          "ship_items": "اشحن أغراضك",
+          "search_elsewhere": "ابحث في مكان آخر",
+          "ship_items_or_search_elsewhere": "%{ship_items} أو %{search_elsewhere}"
         }
+      },
+      "split_delivery": {
+        "pickup_all_items": "التقط جميع العناصر",
+        "items_for_pickup": "عناصر للاستلام",
+        "items_for_shipping": "عناصر للشحن",
+        "delivery_method": "طريقة التوصيل المجزأة",
+        "delivery_method_menu": "قائمة طريقة التوصيل المقسمة",
+        "inventory_issue_banner": {
+          "heading": {
+            "cannot_be_picked_up": {
+              "one": "لا يمكن استلام %{count} عنصر",
+              "other": "لا يمكن استلام %{count} عنصرًا"
+            },
+            "cannot_be_shipped": {
+              "one": "لا يمكن شحن %{count} عنصر",
+              "other": "لا يمكن شحن %{count} عناصر"
+            }
+          },
+          "remove_item": {
+            "one": "إزالة العنصر",
+            "other": "إزالة العناصر"
+          },
+          "ship_separately": {
+            "one": "اشحنه بشكل منفصل",
+            "other": "اشحنها بشكل منفصل"
+          },
+          "pick_them_up_in_store": {
+            "one": "استلمه من المتجر",
+            "other": "استلمها من المتجر"
+          },
+          "remove_items_or_ship": "%{remove_items_link} أو %{ship_separately_link}",
+          "remove_items_or_pickup": "%{remove_items_link} أو %{pickup_in_store_link}"
+        }
+      },
+      "captcha": {
+        "title": "أكمل اختبار CAPTCHA للمتابعة",
+        "errors": {
+          "not_solved": "أكمل اختبار CAPTCHA للمتابعة"
+        }
+      },
+      "clipboard": {
+        "copied": "نسخ",
+        "failed_to_copy": "فشل في النسخ"
+      },
+      "discount_errors": {
+        "generic_error": "لم يتمكن النظام من معالجة طلبك لأن رمز الخصم الخاص بك لم يعد متاحًا. راجع إجمالي طلبك وحاول مرة أخرى."
+      },
+      "b2b_errors": {
+        "lost_b2b_purchasing_permissions": "لم يعد لديك إذن لوضع طلبات B2B. %{logout_url} لوضع طلب شخصي بدلاً من ذلك.",
+        "log_out_link_text": "تسجيل الخروج",
+        "lost_permissions_subtitle": "لم يعد لديك إذن لوضع طلبات B2B. قم بتسجيل الخروج لوضع طلب شخصي.",
+        "lost_permissions_title": "لا توجد أذونات الموقع"
       }
     }
   }
