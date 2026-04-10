@@ -2443,7 +2443,85 @@
         "no_pickup_points_near_you": "Ingen hentesteder funnet i nærheten av den valgte adressen",
         "no_pickup_points_near_location": "Ingen hentesteder funnet i nærheten av din plassering",
         "pickup_unavailable_banner_title": {
-          "one": "Ingen hentesteder tilgjengelig for varen din"
+          "one": "Ingen hentesteder tilgjengelig for varen din",
+          "other": "Ingen hentesteder tilgjengelig for dine varer"
+        },
+        "no_pickup_points_found": "Ingen hentesteder funnet",
+        "paginator": {
+          "next_accessibility_label": "Neste side",
+          "previous_accessibility_label": "Forrige side",
+          "header": {
+            "one": "Viser %{first} - %{last} av %{count} poeng",
+            "other": "Viser %{first} - %{last} av %{count} poeng"
+          },
+          "selected_pickup_point_label": {
+            "one": "%{pickup_point_index} av %{count} punkt",
+            "other": "%{pickup_point_index} av %{count} punkter"
+          },
+          "selected_page": {
+            "one": "%{first} - %{last} av %{count} poeng",
+            "other": "%{first} - %{last} av %{count} poeng"
+          }
+        },
+        "number_of_pickup_points_near_location": {
+          "one": "%{count} hentepunkt nær din posisjon",
+          "other": "%{count} hentesteder nær din posisjon"
+        },
+        "change": "Endre sted",
+        "waiting_on_pickup_point_location_notice": "Søker etter hentesteder...",
+        "geolocation": {
+          "shared_location_button": "Bruk min posisjon",
+          "errors": {
+            "unsuported_by_browser": "Å hente geolokalisering støttes ikke av nettleseren din. Prøv igjen eller bruk en annen nettleser.",
+            "permission_not_allowed": "Tillat deling av posisjonen din.",
+            "permission_denied": "Fikk ikke tak i posisjonen din. Prøv igjen."
+          }
+        }
+      },
+      "error_page": {
+        "terminal": {
+          "title": "Det oppsto et problem med kassen vår",
+          "message": "Oppdater denne siden eller prøv igjen om noen minutter",
+          "action": {
+            "cta": "Oppdater siden"
+          },
+          "request_id": "Forespørsels-ID: {{requestId}}"
+        },
+        "embed_errors": {
+          "storefront_password_required": "Denne butikken er passordbeskyttet",
+          "customer_account_required": "Kunde konto er nødvendig for å fullføre utsjekking",
+          "cart_completed": "Denne utsjekkingen er allerede fullført",
+          "invalid_cart": "Handlekurven er ikke lenger gyldig",
+          "not_authorized": "Godkjenning ved utsjekking mislyktes. Kontroller dine applikasjonsopplysninger",
+          "killswitch_enabled": "Kassen er midlertidig utilgjengelig",
+          "policy_violation": "Kan ikke fullføre utsjekking på grunn av begrensninger i regelverksinnstillinger",
+          "unrecoverable_failure": "Kan ikke laste kassen. Prøv igjen"
+        }
+      },
+      "notice_banner": {
+        "return_to_cart_link_text": "Gå tilbake til handlekurven",
+        "return_to_cart_to_update_quantities": "%{return_to_cart_link_text} for å oppdatere mengdene",
+        "subscription_changed": "Et av abonnementene dine har endret seg.",
+        "company_location_changed": "Handlekurven din er oppdatert. Gå gjennom bestillingen din før du sender den inn.",
+        "company_location_changed_product_removed": "Handlekurven din er oppdatert fordi noen produkter ikke er tilgjengelige på dette stedet. Gå gjennom bestillingen din før du sender den inn.",
+        "violations_title": "{{violation}} mangler eller er ugyldig",
+        "individual_violations_title": {
+          "DeliveryViolations": "Leveringsadresse",
+          "PaymentViolations": "Fakturaadresse",
+          "OtherViolations": "Bestillingsinformasjon",
+          "UnhandledViolations": "Bestillingsinformasjon"
+        },
+        "all_violations_content": "Ring oss eller {{emailLink}} for å oppdatere denne informasjonen og fullføre bestillingen din:",
+        "all_violations_email_link": "e-post",
+        "editable_shipping_address_violations_message_title": "Legg til denne informasjonen for å fullføre bestillingen din:",
+        "editable_shipping_address_violations_message_footer": "For å oppdatere adressen for dette stedet permanent, {{emailLink}}.",
+        "editable_shipping_address_violations_email_link": "kontakt oss",
+        "shipping_address_incomplete_title": "Leveringsadressen er ufullstendig",
+        "calculating_shipping": "Frakt blir fortsatt beregnet. Prøv igjen om noen sekunder. Du har ikke blitt belastet.",
+        "calculating_taxes": "Skatter beregnes fortsatt. Prøv igjen om noen sekunder. Du har ikke blitt belastet.",
+        "generic_processing_error": {
+          "title": "Det oppsto et problem med behandlingen av bestillingen din",
+          "body": "Du har ikke blitt belastet. Prøv igjen eller bruk en annen betalingsmåte."
         }
       }
     }
