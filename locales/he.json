@@ -3256,6 +3256,77 @@
           "opt_out_html": "אם אינך רוצה לשתף מידע זה, תוכל <a style='text-decoration:underline;' href='%{link}'>לבטל את המנוי.</a>"
         }
       }
+    },
+    "filters": {
+      "availability": {
+        "value": {
+          "in_stock": "במלאי",
+          "out_of_stock": "אזל מהמלאי"
+        }
+      },
+      "boolean": {
+        "true_label": "כן",
+        "false_label": "לא"
+      }
+    },
+    "search": {
+      "error": "אירעה בעיה בטעינת תוצאות החיפוש שלך. נא לרענן את הדף או לנסות שוב מאוחר יותר.",
+      "sorting": {
+        "relevance": "רלוונטיות",
+        "price_ascending": "מחיר, מהנמוך לגבוה",
+        "price_descending": "מחיר, מהגבוה לנמוך"
+      }
+    },
+    "page_titles": {
+      "blog_or_article_with_error": "שגיאה - %{title}",
+      "products": "מוצרים",
+      "shopping_cart": "עגלת הקניות שלך",
+      "account": "חשבון",
+      "create_account": "צור חשבון",
+      "reset_account": "איפוס חשבון",
+      "addresses": "כתובות",
+      "order": "הזמן %{name}",
+      "search": "חיפוש",
+      "search_results": {
+        "one": "חיפוש: נמצא %{count} תוצאה עבור \"%{terms}\"",
+        "other": "חיפוש: נמצאו %{count} תוצאות עבור \"%{terms}\""
+      },
+      "collections": "אוספים",
+      "not_found": "404 לא נמצא",
+      "challenge": "אתגר",
+      "checkpoint": "נקודת ביקורת"
+    },
+    "cart": {
+      "discounts_with_count": "הוחלו %{count} הנחות"
+    },
+    "challenge": {
+      "message": "כדי להמשיך, אנא אשר שאינך רובוט.",
+      "error": "התשובה שלך לא הייתה נכונה, אנא נסה שוב.",
+      "submit_button_text": "שלח"
+    },
+    "checkpoint": {
+      "message": "פתור את הקפצה כדי להמשיך",
+      "error": "אימות הקפצה נכשל",
+      "submit_button_text": "שלח"
+    },
+    "store_availability": {
+      "pick_up_time": {
+        "one_hour": "בדרך כלל מוכן תוך שעה אחת",
+        "two_hours": "בדרך כלל מוכן תוך שעתיים",
+        "four_hours": "בדרך כלל מוכן תוך 4 שעות",
+        "twenty_four_hours": "בדרך כלל מוכן תוך 24 שעות",
+        "two_to_four_days": "בדרך כלל מוכן תוך 2-4 ימים",
+        "five_or_more_days": "בדרך כלל מוכן תוך 5+ ימים",
+        "zero_to_two_hours": "בדרך כלל מוכן תוך שעתיים",
+        "two_to_four_hours": "בדרך כלל מוכן תוך 4 שעות",
+        "immediately": "מוכן לאיסוף כעת",
+        "next_day": "מוכן לאיסוף ביום הבא"
+      }
+    },
+    "subscriptions": {
+      "buyer_consent_product": "פריט זה הוא רכישה חוזרת או מתעכבת. בהמשך, אני מסכים/ה לתנאי %{cancellationPolicyLink} ומאשר/ת לכם לחייב את אמצעי התשלום שלי במחירים, בתדירות ובתאריכים המפורטים בדף זה עד שההזמנה שלי תושלם או שאבטל, אם מותר.",
+      "buyer_consent_cart": "פריט אחד או יותר בעגלת הקניות שלך הוא רכישה חוזרת או דחויה. בהמשך, אני מסכים/מה להסכם %{cancellationPolicyLink} ומאשר/ת לך לחייב את אמצעי התשלום שלי במחירים, בתדירות ובתאריכים המפורטים בדף זה עד שההזמנה שלי תושלם או שאבטל, אם מותר.",
+      "cancellation_policy": "מדיניות ביטולים"
     }
   },
   "sections": {
@@ -3421,7 +3492,15 @@
         "today": "היום ב-{{time}}",
         "tomorrow": "מחר ב-{{time}}",
         "lessThanOneWeekAway": "{{weekday}} ב-{{time}}",
-        "lessThanOneYearAway": "{{date}} ב-{{time}}"
+        "lessThanOneYearAway": "{{date}} ב-{{time}}",
+        "lessThanOneYearAgo": "{{date}} ב-{{time}}",
+        "lessThanOneHourAgo": {
+          "one": "לפני {{count}} דקות",
+          "other": "לפני {{count}} דקות"
+        },
+        "lessThanOneMinuteAgo": "הרגע עכשיו",
+        "lessThanOneWeekAgo": "{{weekday}} ב-{{time}}",
+        "yesterday": "אתמול ב-{{time}}"
       }
     },
     "enable_javascript": "כדי לצפות בחשבונך, הפעל את JavaScript בהגדרות הדפדפן שלך או היכנס באמצעות דפדפן אחר.",
@@ -4233,6 +4312,85 @@
           "total_balance": "יתרה כוללת"
         }
       }
+    },
+    "errors": {
+      "load_extension_error": {
+        "title": "שגיאה",
+        "description": "רענן את הדף הזה או נסה שוב בעוד כמה דקות.",
+        "refresh_button": "רענן את הדף"
+      },
+      "already_upgraded": "חשבונות הלקוחות כבר שודרגו.",
+      "failed_to_upgrade": "נכשל בעדכון הגדרות חשבון הלקוח.",
+      "not_upgraded": "חשבונות הלקוחות לא שודרגו.",
+      "failed_to_revert": "נכשל בשחזור הגדרות חשבון הלקוח.",
+      "revert_window_expired": "חלון ההחזרה פג תוקף."
+    },
+    "throttle": {
+      "too_many_attempts": {
+        "message": "יותר מדי ניסיונות",
+        "description": "אנא נסה שוב בעוד כמה דקות"
+      }
+    },
+    "payment_methods": {
+      "replacement_payment_method_title": "שיטת תשלום חלופית",
+      "title": "שיטות תשלום",
+      "add_payment_method_button": "הוסף שיטת תשלום",
+      "add_payment_method_dropdown": {
+        "bank_account_consent": "על ידי הוספת אמצעי תשלום, אתה מאשר שיחויב כרטיסך או שיתבצע חיוב מחשבון הבנק שלך עבור רכישות עתידיות שתאשר, עד שתבטל."
+      },
+      "bank_account": {
+        "loading_accessibility_message": "כפתור חשבון הבנק נטען",
+        "iframe_title_accessibility_label": "הגדרת חשבון בנק",
+        "display_name": "חשבון בנק",
+        "generic_error": "לא ניתן להוסיף חשבון בנק. נסה שוב מאוחר יותר."
+      },
+      "add_payment_method_banner": "הוסף שיטת תשלום להשלמת רכישה מהירה או לשירותים עם אישור מראש",
+      "no_payment_methods_banner": "לא נוספו שיטות תשלום",
+      "edit_payment_method_button_accessibility_label": "ערוך את {{paymentMethodName}} שמסתיים ב-{{lastDigits}}",
+      "edit_payment_method_brand_button_accessibility_label": "ערוך {{paymentMethodName}}",
+      "delete_payment_method_button": "מחק",
+      "delete_payment_method_button_accessibility_label": "מחק {{paymentMethodName}}",
+      "back_button": "חזור",
+      "back_button_accessibility_label": "חזרה אל {{paymentMethodStepTitle}}",
+      "default": "ברירת מחדל",
+      "generic_card": "כרטיס",
+      "expiration_warning_button_accessibility_label": "הצג אזהרת פקיעה עבור {{paymentMethodName}} שמסתיים ב-{{lastDigits}}",
+      "expires_soon": "כרטיס זה עומד לפוג בקרוב",
+      "expired": "כרטיס זה פג תוקף",
+      "expired_badge_label": "פג תוקף",
+      "card_update_consent": "שיטת התשלום הזו תישמר לרכישות עתידיות.",
+      "card_update_consent_subscriptions": "שיטת התשלום הזו תישמר לרכישות עתידיות וניתן יהיה להשתמש בה לכל רכישה חוזרת או מתעכבת.",
+      "digital_wallet_title": "ארנק דיגיטלי",
+      "credit_or_debit_card_title": "כרטיס אשראי או חיוב",
+      "credit_card_title": "כרטיס אשראי",
+      "additional_payment_methods": "שיטות תשלום נוספות",
+      "or": "או",
+      "google_pay": {
+        "iframe_title_accessibility_label": "הוסף שיטת תשלום Google Pay",
+        "loading_accessibility_message": "טוען את Google Pay",
+        "loading": "טוען את Google Pay",
+        "errors": {
+          "generic": "הייתה בעיה עם Google Pay. נסה שוב או השתמש בשיטת תשלום אחרת.",
+          "missing_billing_address": "Google Pay דורש כתובת לחיוב. אנא הוסף אחת לחשבונך."
+        }
+      },
+      "pay_pal": {
+        "iframe_title_accessibility_label": "הוסף שיטת תשלום PayPal",
+        "loading_accessibility_message": "טוען את PayPal",
+        "errors": {
+          "generic": "הייתה בעיה עם PayPal. נסה שוב או השתמש בשיטת תשלום אחרת."
+        }
+      },
+      "apple_pay": {
+        "loading": "טוען Apple Pay",
+        "errors": {
+          "generic": "הייתה בעיה עם Apple Pay. נסה שוב או השתמש בשיטת תשלום אחרת.",
+          "not_available": "Apple Pay אינו זמין במכשיר זה."
+        }
+      }
+    },
+    "callback": {
+      "try_again": "נסה שוב"
     }
   }
 }
