@@ -3102,7 +3102,83 @@
         "invalid_input": "הפרמטר %{parameter} אינו חוקי.",
         "product_not_available": "המוצר אינו זמין",
         "too_many_line_items_error": "העגלה שלך לא יכולה להכיל יותר מ- %{max} פריטים.",
-        "link_expired": "הקישור פג תוקף"
+        "link_expired": "הקישור פג תוקף",
+        "link_no_longer_exists": "הקישור כבר לא קיים.",
+        "stock_problems_html": "פריט אחד או יותר כבר אינם זמינים. סיפקנו <a href='%{link}'>עגלה מעודכנת</a>.",
+        "changed": "העגלה שונתה",
+        "items_changed": "פריט אחד או יותר השתנו.",
+        "product_sold_out": "המוצר '%{name}' אזל מהמלאי.",
+        "variant_not_found": "לא ניתן למצוא גרסה",
+        "variant_requires_selling_plan": "ניתן לרכוש את הגרסה רק עם תוכנית מכירה.",
+        "selling_plan_not_available_for_company_locations": "רכישה חד-פעמית בלבד זמינה להזמנות עסקיות",
+        "digital_product_not_available_for_company_locations": "לא ניתן להוסיף פריט זה להזמנה עסקית",
+        "buyer_cannot_purchase_for_company_locations": "אי אפשר לבצע רכישה למיקום זה",
+        "selling_plan_not_applicable": "לא ניתן להחיל תוכנית מכירה על הגרסה",
+        "shipping_address_not_required": "עגלת זו אינה דורשת משלוח",
+        "shipping_address_invalid": "הייתה בעיה בחישוב דמי המשלוח שלך. המשך לתשלום כדי לבחור דמי משלוח לפני שתשלים את הזמנתך.",
+        "bundle_requires_components": "לא ניתן להוסיף את מוצר החבילה '%{name}' לעגלה.",
+        "gift_card_with_components_not_supported": "לא ניתן להוסיף את מוצר החבילה '%{name}' לעגלה.",
+        "gift_card_price_must_be_greater_than_zero": "לא ניתן להוסיף את מוצר החבילה '%{name}' לעגלה.",
+        "gift_card_recipient_validation_error": "המקבל שצויין לכרטיס המתנה אינו תקין",
+        "view_lines_limit_reached": "השורות חייבות להיות באורך של %{limit} תווים או פחות",
+        "cart_too_large": "העגלה גדולה מדי.",
+        "cart_attributes_error": "תכונות העגלה מכילות נתונים לא תקינים.",
+        "merchandise_line_transformers": {
+          "run_error": "אירעה שגיאה בעגלת הקניות שלך."
+        },
+        "merchandise_not_applicable": "לא ניתן לרכוש את הפריט בתצורה שנבחרה."
+      },
+      "storefront": {
+        "invalid_password": "הסיסמה שגויה, אנא נסה שוב."
+      },
+      "tags": {
+        "add_articles": "הגבל חיפוש למאמרים הכוללים גם את התג %{tag}",
+        "add_products": "הגבל את הבחירה למוצרים התואמים את התג %{tag}",
+        "remove_articles": "הרחב את החיפוש למאמרים שאינם מתויגים %{tag}",
+        "remove_products": "הסר את התג %{tag}"
+      }
+    },
+    "email_marketing": {
+      "subscribed": {
+        "confirmation": "תודה שנרשמת לרשימת התפוצה שלנו.",
+        "disclaimer": "אתה יכול לבטל את המנוי בכל עת.",
+        "unsubscribe": "בטל הרשמה"
+      },
+      "unsubscribed": {
+        "confirmation": "הסרת את עצמך מרשימת התפוצה שלנו.",
+        "disclaimer": "לא תקבל עוד עדכוני שיווק מאיתנו. תוכל להירשם שוב בכל עת.",
+        "preview": "אתה מציג תצוגה מקדימה של מה שהלקוחות יראו כאשר הם מבטלים את המנוי."
+      },
+      "sms_unsubscribe_confirm": {
+        "message": "האם אתה בטוח שברצונך לבטל את ההרשמה לשיווק בהודעות טקסט?",
+        "button": "בטל הרשמה"
+      },
+      "open_tracking": {
+        "opt_in": {
+          "opted_in_html": "<b>בחרת לעקוב אחר פתיחת המיילים.</b>",
+          "visibility": "שיעורי פתיחת המיילים יידווחו באופן אנונימי. נראה רק אם פתחת מייל כחלק משיעור פתיחת מיילים מצטבר.",
+          "opt_out_html": "אתה יכול <a style='text-decoration:underline;' href='%{link}'>לבטל את המעקב</a> אחרי פתיחת המייל אם אינך רוצה לשתף מידע זה.",
+          "preview_bar": "אתה מציג תצוגה מקדימה של מה שהלקוחות יראו כאשר יבחרו לעקוב אחרי פתיחת המיילים."
+        },
+        "opt_out": {
+          "opted_out_html": "<b>בחרת לא לעקוב אחר פתיחת המיילים.</b>",
+          "visibility": "לא נוכל לדעת אם פתחת את המיילים שלנו.",
+          "opt_in_html": "<a style='text-decoration:underline;' href='%{link}'>הירשם</a> למעקב אחר פתיחת אימיילים.",
+          "preview_bar": "אתה מציג תצוגה מקדימה של מה שהלקוחות יראו כאשר הם יבחרו לא לאפשר מעקב אחר פתיחת דואר אלקטרוני."
+        },
+        "no_longer_track": {
+          "status_html": "<b>איננו עוקבים יותר אחרי פתיחת דואר אלקטרוני.</b>",
+          "privacy_policy": "לאחר שליחת דואר אלקטרוני זה, עדכנו את מדיניות הפרטיות שלנו ואיננו עוקבים יותר אחר פתיחות."
+        },
+        "track": {
+          "status_html": "<b>דיווח על פתיחת דואר אלקטרוני.</b>",
+          "visibility": "נראה רק אם פתחת את הדואר האלקטרוני, כחלק משיעור הפתיחה הכולל של הדואר האלקטרוני."
+        },
+        "updated_policy": {
+          "status_html": "<b>דיווח על פתיחת דואר אלקטרוני.</b>",
+          "visibility": "עדכנו את מדיניותנו, וכעת אנו עוקבים אחרי פתיחת הודעות דואר אלקטרוני. שיעורי פתיחת ההודעות יידווחו באופן אנונימי. נראה רק אם פתחת הודעה כחלק משיעור הפתיחה הכולל של ההודעות.",
+          "opt_out_html": "אם אינך רוצה לשתף מידע זה, תוכל <a style='text-decoration:underline;' href='%{link}'>לבטל את המנוי.</a>"
+        }
       }
     }
   },
