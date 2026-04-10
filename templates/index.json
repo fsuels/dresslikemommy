@@ -108,6 +108,68 @@
         "padding_bottom": 12
       }
     },
+    "new_arrivals_mixed": {
+      "type": "new-arrivals-mixed",
+      "blocks": {
+        "src_dresses": {
+          "type": "collection_source",
+          "settings": { "collection": "dresses" }
+        },
+        "src_swimsuits": {
+          "type": "collection_source",
+          "settings": { "collection": "swimsuits" }
+        },
+        "src_pajamas": {
+          "type": "collection_source",
+          "settings": { "collection": "pajamas" }
+        },
+        "src_tops": {
+          "type": "collection_source",
+          "settings": { "collection": "tops" }
+        },
+        "src_daddy_me": {
+          "type": "collection_source",
+          "settings": { "collection": "daddy-me" }
+        },
+        "src_family_sets": {
+          "type": "collection_source",
+          "settings": { "collection": "family-sets" }
+        },
+        "src_vacation": {
+          "type": "collection_source",
+          "settings": { "collection": "matching-family-vacation-outfits" }
+        }
+      },
+      "block_order": [
+        "src_dresses",
+        "src_swimsuits",
+        "src_pajamas",
+        "src_tops",
+        "src_daddy_me",
+        "src_family_sets",
+        "src_vacation"
+      ],
+      "settings": {
+        "title": "New Arrivals",
+        "heading_size": "h2",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "show_view_all": true,
+        "view_all_link": "shopify://collections/new-matching-outfits",
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "custom_css": [],
@@ -508,6 +570,7 @@
   "order": [
     "hero_banner_main",
     "category_icons",
+    "new_arrivals_mixed",
     "featured_collection",
     "curated_product_grid_main",
     "collection_list_seasonal_matching",
