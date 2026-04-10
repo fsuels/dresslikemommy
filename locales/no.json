@@ -505,8 +505,100 @@
         },
         "unpurchasable_product_generic": {
           "title": "Produkt kan ikke kjøpes",
-          "header": "Noen varer ble fjernet fra handlekurven din"
+          "header": "Noen varer ble fjernet fra handlekurven din",
+          "message": "Disse varene er ikke tilgjengelige.",
+          "status_column_header": "Ikke tilgjengelig"
+        },
+        "unfulfillable_product": {
+          "title": "Levering ikke tilgjengelig",
+          "message": {
+            "one": "%{delivery_method} er ikke lenger tilgjengelig for denne varen.",
+            "other": "%{delivery_method} er ikke lenger tilgjengelig for disse varene."
+          },
+          "default_message": {
+            "one": "Den valgte leveringsmetoden er ikke lenger tilgjengelig for denne varen.",
+            "other": "Den valgte leveringsmetoden er ikke lenger tilgjengelig for disse varene."
+          }
+        },
+        "unshippable_product": {
+          "title": "Ingen levering tilgjengelig",
+          "header": {
+            "one": "Ingen levering tilgjengelig for %{count} vare",
+            "other": "Ingen levering tilgjengelig for %{count} varer"
+          },
+          "message": {
+            "one": "Denne varen vil bli fjernet fra handlekurven din fordi det ikke finnes noen leveringsmetoder tilgjengelig for adressen din.",
+            "other": "Disse varene vil bli fjernet fra handlekurven din fordi det ikke finnes noen leveringsmetoder tilgjengelig for adressen din."
+          },
+          "status_column_header": "Ingen levering"
+        },
+        "price_update": {
+          "title": "Prisoppdatering",
+          "description": "Prisene på disse varene har endret seg og er oppdatert i handlekurven din.",
+          "updated_price": "Oppdatert pris"
+        },
+        "price_and_quantity_update": {
+          "title": "Pris- og mengdeoppdatering",
+          "description": "Prisene og tilgjengelige mengder for disse varene har endret seg og er oppdatert i handlekurven din."
+        },
+        "out_of_stock": {
+          "description": "Disse varene er ikke lenger tilgjengelige og har blitt fjernet fra handlekurven din.",
+          "items_unavailable": "Noen varer er ikke lenger tilgjengelige og har blitt fjernet fra handlekurven din."
+        },
+        "out_of_stock_in_context_label": "Dette produktet er ikke tilgjengelig i ditt land/område."
+      },
+      "contextual_availability": {
+        "title": {
+          "one": "Produkt utilgjengelig",
+          "other": "Utilgjengelige produkter"
+        },
+        "products_not_available": {
+          "one": "Dette produktet vil bli fjernet fra handlekurven din fordi det ikke er tilgjengelig i ditt land/område.",
+          "other": "Disse produktene vil bli fjernet fra handlekurven din fordi de ikke er tilgjengelige i ditt land/område."
+        },
+        "all_products_in_cart_unavailable": {
+          "one": "Dette produktet er ikke tilgjengelig i ditt land/område.",
+          "other": "Disse produktene er ikke tilgjengelige i ditt land/område."
+        },
+        "unavailable_label": "Utilgjengelig"
+      },
+      "merchandise_unavailable_in_buyer_location": {
+        "banner_title": {
+          "some_products_one": "Dette produktet er ikke tilgjengelig for levering til %{location_name}.",
+          "some_products_other": "Disse produktene er ikke tilgjengelige for levering til %{location_name}.",
+          "all_products_one": "Produktet i handlekurven din er ikke tilgjengelig for levering til %{location_name}.",
+          "all_products_other": "Produktene i handlekurven din er ikke tilgjengelige for levering til %{location_name}."
+        },
+        "missing_country_fallback": "landet ditt",
+        "indeterminate_location_fallback": "din plassering",
+        "cart_updated": "Handlekurven din er oppdatert.",
+        "change_address_only": "Endre leveringsadresse for å fortsette.",
+        "change_address_or_remove": "Endre leveringsadresse eller %{remove_action}.",
+        "remove_items_action": {
+          "one": "fjern utilgjengelig vare",
+          "other": "fjern utilgjengelige varer"
+        },
+        "empty_cart_action": "tøm handlekurven og gå tilbake til butikken"
+      },
+      "deliverability": {
+        "not_deliverable": {
+          "title": {
+            "one": "Ingen levering tilgjengelig for %{count} vare",
+            "other": "Ingen levering tilgjengelig for %{count} varer"
+          },
+          "message": {
+            "one": "Denne varen vil bli fjernet fra handlekurven din fordi det ikke finnes noen leveringsmetoder tilgjengelig for adressen din.",
+            "other": "Disse varene vil bli fjernet fra handlekurven din fordi det ikke finnes noen leveringsmetoder tilgjengelig for adressen din."
+          },
+          "label": "Ingen levering"
         }
+      },
+      "order_summary": {
+        "title": "Ordreoversikt",
+        "group_title_label": "Del av \"%{group_title}\"",
+        "for_add_on": "For: %{group_title}",
+        "from_shop_heading": "Fra %{shop_name}",
+        "from_other_stores_heading": "Fra andre butikker"
       }
     }
   },
