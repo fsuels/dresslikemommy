@@ -14758,3 +14758,87 @@ Notes:
 
 Follow-up refinement:
 - Expanded the mobile CTA card width and reduced the secondary CTA tracking/font size so `Browse Matching Dresses` can stay on one line in the iPhone-sized hero treatment without covering more of the image.
+- Increased the homepage mobile hero height slightly and moved the portrait crop lower so more of the matching dresses stay visible above the floating CTA card.
+
+### Task: Restore grouped family size guides for legacy image-only PDP charts
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-image-only-pdp-size-guide-fallback
+Changes:
+- `assets/product-desktop-ux.js`
+  - Added an image-based size-guide preset for the legacy mom/dad/son/daughter chart pair that appears in description images instead of an HTML table.
+  - Detects those chart image filenames inside the product description and synthesizes a hidden `#size-chart` table when no usable table/text chart exists.
+  - Reuses the existing grouped family size-guide renderer on top of that reconstructed table, which restores both `Compare family sizes` and the selected-size snapshot card.
+
+Why:
+- Several legacy family-matching listings, including `boho-chic-family-matching-outfit-flowy-skirts-and-paisley-shirts`, still store their size charts only as images in the description.
+- The modern PDP size-guide code requires structured chart data, so it was exiting early and leaving shoppers without the grouped family chart or per-size measurement details.
+
+Verification:
+- `node --check assets/product-desktop-ux.js`
+- Browser validation against the live PDP pattern with the reconstructed combined chart data injected before re-running the PDP size-guide init:
+  - The summary changed from `Size guide & fit` to `Compare family sizes`.
+  - The grouped cards rendered for `Mother`, `Father`, `Girl`, and `Boy`.
+  - The `Mother M` selection showed a visible `Your size details` snapshot with dress bust and length measurements.
+- Uploaded `assets/product-desktop-ux.js` through Shopify Admin REST `PUT /themes/{id}/assets.json` to:
+  - development theme `#133851742305`
+  - live theme `#133290917985`
+- Verified the development theme preview served `/cdn/shop/t/106/assets/product-desktop-ux.js` and rendered:
+  - `Compare family sizes`
+  - grouped cards for `Mother`, `Father`, `Girl`, and `Boy`
+  - working snapshots for `Mother M`, `Boy 4T`, and `Girl 5-6T`
+- Confirmed the public storefront source still loads the live theme asset under `/cdn/shop/t/100/assets/product-desktop-ux.js`, and the served live asset content contains the new image-preset fallback.
+
+Coverage:
+- The image-token fallback is scoped by the shared legacy chart image filenames, which covers 19 similar family-matching handles in the current product exports that still reference that same chart pair.
+
+Follow-up:
+- No additional deployment is pending for this asset.
+- If more legacy family PDPs surface with different image-only chart filenames, add another image preset entry in `assets/product-desktop-ux.js`.
+
+### Task: Hide legacy size-chart images when reconstructed family guide is active
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-image-only-size-guide-image-hide
+Changes:
+- `assets/product-desktop-ux.js`
+  - Added a targeted hide step for the legacy description chart images that power the reconstructed image-based family size-guide preset.
+  - Hides the closest chart-image wrapper only when that preset is the selected size-guide source, so the grouped guide stays visible without duplicating the old supplier chart images in the description.
+
+Why:
+- After restoring grouped family size guides for the legacy image-only PDPs, shoppers could still see the original supplier size-chart images lower in the description.
+- Those images duplicated the same information and made the PDP feel noisy even though the modern compare-and-snapshot guide was already working.
+
+Verification:
+- `node --check assets/product-desktop-ux.js`
+- `git diff --check -- assets/product-desktop-ux.js`
+- Uploaded `assets/product-desktop-ux.js` through Shopify Admin REST `PUT /themes/{id}/assets.json` to:
+  - development theme `#133851742305`
+  - live theme `#133290917985`
+
+Follow-up:
+- Verify the dev preview and live PDPs keep `Compare family sizes` visible while the matching legacy chart images stay hidden.
+
+### Task: Hide duplicate PDP source charts when the grouped family size guide is active
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-hide-duplicate-pdp-size-chart-sources
+Changes:
+- `assets/product-desktop-ux.js`
+  - Moved duplicate-chart suppression to run after the grouped family size guide successfully parses.
+  - Added generic hiding for legacy description `#size-chart` sources, including tables wrapped inside standalone description sections.
+  - Kept the existing image-token suppression so legacy chart-image pairs are also hidden once the modern grouped guide is active.
+
+Why:
+- Some family PDPs duplicated the modern grouped size guide with a second supplier chart lower in the description.
+- The duplicate source could appear either as the older image pair or as a full HTML `#size-chart` section, so the suppression needed to cover both shapes.
+
+Verification:
+- `node --check assets/product-desktop-ux.js`
+- `git diff --check -- assets/product-desktop-ux.js`
+- Development theme `#133851742305` preview checks:
+  - `boho-chic-family-matching-outfit-flowy-skirts-and-paisley-shirts`: grouped guide visible and both legacy chart images hidden.
+  - `stylish-and-comfortable-family-matching-outfits`: grouped guide visible and the description `Size Chart` section hidden.
+- Uploaded `assets/product-desktop-ux.js` through Shopify Admin REST `PUT /themes/{id}/assets.json` to:
+  - development theme `#133851742305`
+  - live theme `#133290917985`
+
+Follow-up:
+- This suppression now applies across PDPs that render the grouped family size guide and still carry the supplier chart in the product description.
