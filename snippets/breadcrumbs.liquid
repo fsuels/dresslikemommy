@@ -9,6 +9,8 @@
   {% assign subcategory_collection = collections[subcategory_handle] %}
   {% assign subcategory_display_label = subcategory_label %}
   {% assign back_to_results_url = blank %}
+  {% assign back_to_results_label = 'Back to results' %}
+  {% assign back_to_results_context = blank %}
   {% if collection != blank %}
     {% assign back_to_results_url = collection.url %}
   {% elsif subcategory_collection != blank %}
@@ -27,16 +29,31 @@
     {% assign subcategory_display_label = 'T-Shirts' %}
   {% endif %}
 
+  {% if collection != blank and collection.title != blank %}
+    {% assign back_to_results_context = collection.title %}
+  {% elsif subcategory_collection != blank and subcategory_display_label != blank %}
+    {% assign back_to_results_context = subcategory_display_label %}
+  {% elsif category1_collection != blank and category1_label != blank %}
+    {% assign back_to_results_context = category1_label %}
+  {% endif %}
+
+  {% if back_to_results_context != blank %}
+    {% assign back_to_results_label = 'Back to ' | append: back_to_results_context %}
+  {% endif %}
+
   <div class="product-breadcrumb__handoff">
+    <p class="product-breadcrumb__eyebrow">Continue shopping</p>
     <a
       href="{{ back_to_results_url }}"
       class="product-breadcrumb__back-link"
       data-back-to-results
       data-back-to-results-fallback="{{ back_to_results_url }}"
+      data-back-to-results-label-default="{{ back_to_results_label | escape }}"
       rel="prev"
-      aria-label="Back to results"
+      aria-label="{{ back_to_results_label | escape }}"
+      title="{{ back_to_results_label | escape }}"
     >
-      Back to results
+      <span data-back-to-results-label>{{ back_to_results_label }}</span>
     </a>
   </div>
 

@@ -308,7 +308,99 @@
     <script defer src="{{ 'animations.js' | asset_url }}"></script>
   {%- endif -%}
 
+  <style>
+    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__banner__wrapper,
+    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__prefs,
+    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__prefs__overlay,
+    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__prefs__dialog {
+      display: none !important;
+      visibility: hidden !important;
+    }
+  </style>
   {{ content_for_header }}
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var visibilityClass = 'dlm-shopify-privacy-banner-visible';
+      var bannerSelectors = [
+        '.shopify-pc__banner__wrapper',
+        '.shopify-pc__prefs',
+        '.shopify-pc__prefs__overlay',
+        '.shopify-pc__prefs__dialog',
+      ];
+
+      function showPrivacyBanner() {
+        root.classList.add(visibilityClass);
+      }
+
+      function removePrivacyBannerNodes() {
+        bannerSelectors.forEach(function (selector) {
+          document.querySelectorAll(selector).forEach(function (node) {
+            node.remove();
+          });
+        });
+      }
+
+      function watchForSuppressedBanner() {
+        if (!document.body) return;
+
+        var observer = new MutationObserver(function () {
+          if (root.classList.contains(visibilityClass)) return;
+          removePrivacyBannerNodes();
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+        removePrivacyBannerNodes();
+      }
+
+      function initPrivacyBannerGate() {
+        if (!window.Shopify || typeof window.Shopify.loadFeatures !== 'function') {
+          showPrivacyBanner();
+          return;
+        }
+
+        window.Shopify.loadFeatures([{ name: 'consent-tracking-api', version: '0.1' }], function (error) {
+          if (error || !window.Shopify || !window.Shopify.customerPrivacy) {
+            showPrivacyBanner();
+            return;
+          }
+
+          var customerPrivacy = window.Shopify.customerPrivacy;
+          var shouldShowConsentBanner = false;
+          var isSaleOfDataRegion = false;
+
+          try {
+            shouldShowConsentBanner =
+              typeof customerPrivacy.shouldShowBanner === 'function' &&
+              customerPrivacy.shouldShowBanner();
+          } catch (_error) {
+            shouldShowConsentBanner = false;
+          }
+
+          try {
+            isSaleOfDataRegion =
+              typeof customerPrivacy.saleOfDataRegion === 'function' &&
+              customerPrivacy.saleOfDataRegion();
+          } catch (_error) {
+            isSaleOfDataRegion = false;
+          }
+
+          if (shouldShowConsentBanner || isSaleOfDataRegion) {
+            showPrivacyBanner();
+            return;
+          }
+
+          watchForSuppressedBanner();
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPrivacyBannerGate, { once: true });
+      } else {
+        initPrivacyBannerGate();
+      }
+    })();
+  </script>
 
   {%- liquid
     assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'

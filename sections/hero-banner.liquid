@@ -20,6 +20,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
   }
   .hero-banner__overlay {
     position: absolute;
@@ -142,7 +143,31 @@
     }
   }
 
+  {%- if request.page_type == 'index' and section.index == 1 -%}
+    @media screen and (min-width: 750px) {
+      #shopify-section-{{ section.id }} .hero-banner {
+        min-height: clamp(500px, 42vw, 680px);
+      }
+
+      #shopify-section-{{ section.id }} .hero-banner__content {
+        max-width: min(46rem, 42%);
+      }
+
+      #shopify-section-{{ section.id }} .hero-banner__heading {
+        font-size: clamp(32px, 4vw, 48px);
+      }
+
+      #shopify-section-{{ section.id }} .hero-banner__image {
+        object-position: 58% center;
+      }
+    }
+  {%- endif -%}
+
   @media screen and (max-width: 749px) {
+    .hero-banner__image {
+      object-position: 60% 30%;
+    }
+
     .hero-banner__scroll-target-highlight {
       animation: hero-scroll-target-highlight-{{ section.id }} 0.9s ease-out;
     }
@@ -153,6 +178,7 @@
 
     .hero-banner__actions {
       flex-direction: column;
+      gap: 8px;
     }
 
     .hero-banner__cta {
@@ -166,6 +192,25 @@
 
     .hero-banner__trust-pill {
       flex: 1 1 calc(50% - 10px);
+    }
+
+    .hero-banner__heading {
+      display: none;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-banner__subheading {
+      display: none;
+      font-size: 12px;
+    }
+
+    .hero-banner__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 100%;
+      padding: 42% 20px 24px;
     }
   }
 

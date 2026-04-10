@@ -1,11 +1,13 @@
 {%- unless product.has_only_default_variant -%}
   {%- liquid
+    assign locale_root = request.locale.iso_code | default: localization.language.iso_code | default: shop.locale | downcase | split: '-' | first
+    assign size_guide_summary_label = 'Size guide & fit'
     assign has_type_or_style_option = false
     assign selected_type_value = blank
     assign selected_type_family_group = blank
     for product_option in product.options_with_values
       assign product_option_name_downcased = product_option.name | downcase
-      if product_option_name_downcased contains 'type' or product_option_name_downcased contains 'style'
+      if product_option_name_downcased contains 'type' or product_option_name_downcased contains 'style' or product_option_name_downcased contains 'tipo' or product_option_name_downcased contains 'estilo' or product_option_name_downcased contains 'genre' or product_option_name_downcased contains 'نوع' or product_option_name_downcased contains 'ستايل' or product_option_name_downcased contains 'نمط'
         assign has_type_or_style_option = true
         case product_option.position
           when 1
@@ -35,11 +37,20 @@
     assign has_size_option = false
     for product_option in product.options_with_values
       assign product_option_name_downcased = product_option.name | downcase
-      if product_option_name_downcased contains 'size' or product_option_name_downcased contains 'talla' or product_option_name_downcased contains 'tamano' or product_option_name_downcased contains 'tamaño' or product_option_name_downcased contains 'taille' or product_option_name_downcased contains 'pointure'
+      if product_option_name_downcased contains 'size' or product_option_name_downcased contains 'talla' or product_option_name_downcased contains 'tamano' or product_option_name_downcased contains 'tamaño' or product_option_name_downcased contains 'taille' or product_option_name_downcased contains 'pointure' or product_option_name_downcased contains 'مقاس' or product_option_name_downcased contains 'مقاسات' or product_option_name_downcased contains 'الحجم' or product_option_name_downcased contains 'الأحجام' or product_option_name_downcased contains 'الاحجام'
         assign has_size_option = true
         break
       endif
     endfor
+
+    case locale_root
+      when 'es'
+        assign size_guide_summary_label = 'Guia de tallas y ajuste'
+      when 'fr'
+        assign size_guide_summary_label = 'Guide des tailles et coupe'
+      when 'ar'
+        assign size_guide_summary_label = 'دليل المقاسات والملاءمة'
+    endcase
   -%}
   {%- assign rendered_size_help = false -%}
   <variant-selects
@@ -79,7 +90,7 @@
           endif
         endif
 
-        if option_name_downcased contains 'color' or option_name_downcased contains 'colour'
+        if option_name_downcased contains 'color' or option_name_downcased contains 'colour' or option_name_downcased contains 'couleur' or option_name_downcased contains 'لون'
           assign is_color_option = true
         endif
 
@@ -87,7 +98,7 @@
           assign picker_type = 'color_image'
         endif
 
-        if option_name_downcased contains 'size' or option_name_downcased contains 'talla' or option_name_downcased contains 'tamano' or option_name_downcased contains 'tamaño' or option_name_downcased contains 'taille' or option_name_downcased contains 'pointure'
+        if option_name_downcased contains 'size' or option_name_downcased contains 'talla' or option_name_downcased contains 'tamano' or option_name_downcased contains 'tamaño' or option_name_downcased contains 'taille' or option_name_downcased contains 'pointure' or option_name_downcased contains 'مقاس' or option_name_downcased contains 'مقاسات' or option_name_downcased contains 'الحجم' or option_name_downcased contains 'الأحجام' or option_name_downcased contains 'الاحجام'
           assign is_size_option = true
         endif
 
@@ -268,7 +279,7 @@
         ></div>
         <div class="matching-size-guide__snapshot" data-matching-size-guide-snapshot hidden></div>
         <details class="matching-size-guide" data-matching-size-guide hidden>
-          <summary>Size guide &amp; fit</summary>
+          <summary>{{ size_guide_summary_label }}</summary>
           <div class="matching-size-guide__content" data-matching-size-guide-content></div>
         </details>
         <div class="size-chart-wrapper">

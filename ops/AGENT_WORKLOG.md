@@ -14240,3 +14240,319 @@ Changes:
 Verification:
 - `git diff --check -- snippets/buy-buttons.liquid`
 - `rg -n "Trusted since 2016|Family-owned since 2016" snippets/buy-buttons.liquid sections/category-icons.liquid sections/hero-banner.liquid`
+
+### Task: Rebalance homepage hero image crop so both people stay in frame better
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-homepage-hero-desktop-reframe
+Changes:
+- `templates/index.json`
+  - Updated the homepage `hero_banner_main` custom desktop crop from `center 15%` to `46% 28%` so the desktop hero frames the child and mother more comfortably without changing the mobile crop.
+  - Kept the existing mobile focal point and other homepage settings intact, including the separate trust-strip copy change already in progress in this file.
+
+Verification:
+- `curl -s http://127.0.0.1:9292/ | rg -n "object-position: 46% 28%|object-position: 60% 30%|Matching outfits for vacations" -n -C 1`
+- `npx -y playwright screenshot --viewport-size "1440,900" --wait-for-timeout 2000 http://127.0.0.1:9292/ /tmp/dlm-browser-check/home-hero-after-1440.png`
+- `npx -y playwright screenshot --viewport-size "1024,768" --wait-for-timeout 2000 http://127.0.0.1:9292/ /tmp/dlm-browser-check/home-hero-after-1024.png`
+- `npx -y playwright screenshot --device="iPhone 13" --wait-for-timeout 1500 http://127.0.0.1:9292/ /tmp/dlm-browser-check/home-hero-mobile-check.png`
+- Visual checks showed the desktop hero now keeps more of the child visible while preserving the left-side text space; the mobile hero remained unchanged.
+
+### Task: Lock homepage hero so the mother and child stay fully visible on medium desktop widths
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-homepage-hero-full-pair-lock
+Changes:
+- `sections/hero-banner.liquid`
+  - Added a homepage-first-section-only desktop override for `750px` to `1199px` widths so the hero frame drops to `440px` tall where the original 500px crop was cutting into the pair.
+  - Constrained the hero content width and heading size in that same range so the copy and CTA stack stay on the left scenery instead of covering the child.
+  - Kept the existing wider-desktop crop and the mobile crop intact.
+
+Verification:
+- `curl -s http://127.0.0.1:9292/ | rg -n "max-width: 52%|font-size: clamp\\(32px, 4vw, 42px\\)|min-height: 440px|object-position: 44% 24%" -n -C 1`
+- `npx -y playwright screenshot --viewport-size "1024,768" --wait-for-timeout 1800 http://127.0.0.1:9292/ /tmp/dlm-browser-check/home-hero-1024-clear-pair.png`
+- `npx -y playwright screenshot --viewport-size "900,760" --wait-for-timeout 1800 http://127.0.0.1:9292/ /tmp/dlm-browser-check/home-hero-900-clear-pair.png`
+- Visual checks confirmed the mother-and-child pair remains fully visible on the medium desktop layouts that were previously clipping or covering the child.
+
+### Task: Correct homepage hero crop by increasing desktop hero height instead of over-tuning the focal point
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-homepage-hero-wide-desktop-height-fix
+Changes:
+- `sections/hero-banner.liquid`
+  - Replaced the generic desktop crop override with a homepage-first-section desktop rule that grows hero height responsively using `clamp(500px, 42vw, 680px)`.
+  - Kept the text block constrained on desktop and shifted the desktop image focal point to `58% center` so the full mother-and-child pair remains in frame on wider browser windows.
+  - Restored the base image positioning to neutral `center center` outside of the homepage-specific desktop override.
+
+Verification:
+- `curl -s http://127.0.0.1:9292/ | rg -n "clamp\\(500px, 42vw, 680px\\)|max-width: min\\(46rem, 42%\\)|object-position: 58% center|object-position: center center" -n -C 1`
+- `npx -y playwright screenshot --viewport-size "1435,820" --wait-for-timeout 1800 http://127.0.0.1:9292/ /tmp/dlm-browser-check/home-hero-1435-taller.png`
+- `npx -y playwright screenshot --viewport-size "1024,768" --wait-for-timeout 1800 http://127.0.0.1:9292/ /tmp/dlm-browser-check/home-hero-1024-taller.png`
+- Visual checks confirmed the latest local preview now keeps both the mother’s and child’s feet visible on the wider desktop homepage layout shown in the browser screenshot.
+
+### Task: Refresh homepage trust pills copy and alignment
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-homepage-trust-pills-trusted-since-2016
+Changes:
+- `templates/index.json`
+  - Updated the homepage trust strip copy from `Family-owned since 2016` to `Trusted since 2016`.
+- `sections/category-icons.liquid`
+  - Updated the section schema default for the third trust item to `Trusted since 2016` so the editor default matches the homepage content.
+- `assets/section-category-icons.css`
+  - Refined the three trust pills with centered content, a stronger card-style surface, and more balanced spacing so the row reads cleaner on desktop and mobile.
+
+Verification:
+- `git diff --check -- templates/index.json sections/category-icons.liquid assets/section-category-icons.css`
+- `rg -n "Trusted since 2016|trust_item_3|category-icons__trust-item" templates/index.json sections/category-icons.liquid assets/section-category-icons.css`
+- Browser check against `http://127.0.0.1:9292/` on desktop and mobile confirmed:
+  - the homepage trust row now reads `Free shipping on all orders`, `Thousands of happy families`, and `Trusted since 2016`
+  - the three pills render with centered text and improved spacing
+- Saved browser artifacts:
+  - `/tmp/dlm-trust-pills-desktop.png`
+  - `/tmp/dlm-trust-pills-mobile.png`
+
+### Task: Restore local preview upload by moving oversized homepage hero custom CSS into section code
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-restore-preview-upload-home-hero-custom-css
+Changes:
+- `sections/hero-banner.liquid`
+  - Moved the homepage hero crop and mobile layout overrides into the section stylesheet so the hero keeps the same framing and mobile spacing without depending on large theme-editor custom CSS strings.
+- `templates/index.json`
+  - Cleared the oversized `custom_css` payload from `hero_banner_main` after moving that styling into the section code.
+
+Why:
+- The local preview at `127.0.0.1:9292` started returning Shopify's `Failed to Upload Theme Files` page for all routes because `templates/index.json` exceeded Shopify's 500-character custom CSS limit.
+
+Verification:
+- `git diff --check -- sections/hero-banner.liquid templates/index.json`
+- `curl -s 'http://127.0.0.1:9292/products/blue-tropical-floral-family-matching-beach-dress-and-shirt-set?variant=43740400746593' | sed -n '1,80p'`
+- `curl -s 'http://127.0.0.1:9292/' | rg -n 'Failed to Upload Theme Files|Matching outfits for vacations|hero-banner__image' -n -C 1`
+- Verified the preview resumed serving the real homepage and product pages instead of the upload-error screen.
+
+### Task: Fix grouped PDP size guide so family-role selections show the correct role measurements
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-fix-grouped-role-aware-size-guide-selection
+Changes:
+- `assets/product-desktop-ux.js`
+  - Made grouped size-guide matching role-aware so selections such as `Father L`, `Mother L`, and `Girl 4-5 Years` now match on both role and size instead of size label alone.
+  - Updated the selected snapshot card lookup and compare-table row highlighting so grouped charts only highlight the row inside the correct family section.
+
+Verification:
+- `node --check assets/product-desktop-ux.js`
+- `git diff --check -- assets/product-desktop-ux.js`
+- Browser automation against `http://127.0.0.1:9292/products/blue-tropical-floral-family-matching-beach-dress-and-shirt-set?variant=43740400746593` confirmed:
+  - the initial `Father L` selection now renders `Father L` in the snapshot card,
+  - the summary card shows the father's shirt-and-shorts measurements,
+  - only the `Father` compare table highlights `L`,
+  - switching to `Dress` plus `Mother L` correctly moves the snapshot and highlighted row to the `Mother` group.
+- Browser automation against `http://127.0.0.1:9292/products/vibrant-rainbow-maxi-dress-set-for-mom-and-daughter-colorful-summer-matching-outfits?variant=41878199107681` confirmed:
+  - `Girl 4-5 Years` still renders correctly in the snapshot card,
+  - only the `Girl` table highlights `4-5 Years`.
+- Saved browser artifacts:
+  - `/tmp/dlm-browser-check/blue-tropical-family-size-live.png`
+  - `/tmp/dlm-browser-check/blue-tropical-family-size-fixed.png`
+
+### Task: Hide homepage hero copy on mobile and keep trust pills on one row
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-homepage-mobile-hero-copy-hidden-single-row-trust-pills
+Changes:
+- `sections/hero-banner.liquid`
+  - Hid the homepage hero heading and subheading on screens `749px` wide and below so the mobile image stays clear.
+  - Kept the hero CTAs visible on mobile while shifting the content wrapper into a bottom-anchored flex stack with slightly tighter button spacing.
+  - Matched the desktop/mobile hero image positioning directly in the section styles so the framing no longer depends on homepage JSON-only overrides.
+- `assets/section-category-icons.css`
+  - Changed the mobile trust strip from a stacked layout to a single no-wrap flex row so the three pills stay side by side.
+  - Tightened mobile trust-pill padding, icon size, and type scale, and allowed the pill text to wrap inside each pill instead of pushing the pills into separate rows.
+
+Verification:
+- `git diff --check -- sections/hero-banner.liquid assets/section-category-icons.css`
+- `playwright screenshot --device="iPhone 13" --full-page --wait-for-timeout 1500 http://127.0.0.1:9292/ /tmp/dlm-browser-check/homepage-mobile-hero-trust-row.png`
+- Mobile Playwright DOM check against `http://127.0.0.1:9292/` confirmed:
+  - `.hero-banner__heading` computed `display` is `none`
+  - `.hero-banner__subheading` computed `display` is `none`
+  - the trust strip texts are `Free shipping on all orders`, `Thousands of happy families`, and `Trusted since 2016`
+  - all three trust pills share the same `top` position (`594`), confirming they render in one row on mobile
+
+### Task: Shorten collection hero copy across the catalog and rebalance text-heavy collection layouts
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-collection-hero-catalog-cleanup
+Changes:
+- `snippets/collection-seo-fallback.liquid`
+  - Added a `hero_summary` output so the visible collection intro uses a single calm sentence instead of dumping long admin copy above the grid.
+  - Shortened shopper-facing H1 labels across the main collection set, including `Best Sellers`, `Matching Jumpsuits`, `Mommy and Me Dresses`, `Mommy and Me Outfits`, `Family Vacation Outfits`, and `Family Matching Swimsuits`, while preserving stronger SEO-focused meta titles separately.
+- `sections/main-collection-banner.liquid`
+  - Switched the collection hero description to prefer the new `hero_summary` output, keeping the top of collection pages short and readable.
+- `assets/component-collection-hero.css`
+  - Tightened and centered no-image collection heroes on wide screens so text-heavy pages no longer leave a large blank area to the right.
+  - Added balanced wrapping to long titles and prettier wrapping to hero descriptions so desktop headers feel more intentional.
+- `snippets/collection-seo-content.liquid`
+  - Reworked the heavier lower SEO sections for `mommy-and-me`, `family-sets`, and the earlier collection-copy refresh set into calmer `Collection Note` cards with shorter paragraphs and compact related-link chips.
+- `sections/main-collection-seo.liquid`
+  - Compressed the special swimwear lower-content block and collapsed the FAQ by default so it reads more like supportive guidance than an article wall.
+
+Verification:
+- `npx playwright screenshot --browser chromium --channel chrome --viewport-size "1440,1100" --wait-for-timeout 2500 http://127.0.0.1:9292/collections/jumpsuits /tmp/dlm-browser-check/current/jumpsuits-desktop.png`
+- `npx playwright screenshot --browser chromium --channel chrome --viewport-size "1440,1100" --wait-for-timeout 2500 http://127.0.0.1:9292/collections/maxi-dresses /tmp/dlm-browser-check/current/maxi-dresses-desktop.png`
+- `npx playwright screenshot --browser chromium --channel chrome --viewport-size "1440,1100" --wait-for-timeout 2500 http://127.0.0.1:9292/collections/mommy-and-me /tmp/dlm-browser-check/current/mommy-and-me-desktop.png`
+- `npx playwright screenshot --browser chromium --channel chrome --viewport-size "1440,1100" --wait-for-timeout 2500 http://127.0.0.1:9292/collections/family-sets /tmp/dlm-browser-check/current/family-sets-desktop.png`
+- `npx playwright screenshot --browser chromium --channel chrome --viewport-size "1440,1100" --wait-for-timeout 2500 http://127.0.0.1:9292/collections/swimsuits /tmp/dlm-browser-check/current/swimsuits-desktop.png`
+- `npx playwright screenshot --browser chromium --channel chrome --viewport-size "1440,1100" --wait-for-timeout 2500 http://127.0.0.1:9292/collections/best-sellers /tmp/dlm-browser-check/current/best-sellers-desktop.png`
+- `npx playwright screenshot --browser chromium --channel chrome --viewport-size "1440,1100" --wait-for-timeout 2500 http://127.0.0.1:9292/collections/dresses /tmp/dlm-browser-check/current/dresses-desktop.png`
+- `npx playwright screenshot --browser chromium --channel chrome --viewport-size "1440,1100" --wait-for-timeout 2500 http://127.0.0.1:9292/collections/matching-outfits /tmp/dlm-browser-check/current/matching-outfits-desktop.png`
+- Rendered hero-length spot check confirmed:
+  - `maxi-dresses` title length `25`, description length `169`
+  - `jumpsuits` title length `18`, description length `146`
+  - `mommy-and-me` title length `20`, description length `159`
+  - `family-sets` title length `23`, description length `148`
+  - `swimsuits` title length `25`, description length `94`
+  - `best-sellers` title length `12`, description length `149`
+  - `dresses` title length `20`, description length `91`
+  - `matching-outfits` title length `23`, description length `106`
+- Visual review of `/tmp/dlm-browser-check/current/jumpsuits-desktop.png`, `/tmp/dlm-browser-check/current/maxi-dresses-desktop.png`, `/tmp/dlm-browser-check/current/mommy-and-me-desktop.png`, and `/tmp/dlm-browser-check/current/family-sets-desktop.png` confirmed the headers are now short, centered, and much less spammy.
+- Restarted the stale local `shopify theme dev --host 127.0.0.1 --port 9292` session and reran fresh phone-width screenshots:
+  - `/tmp/dlm-browser-check/current/jumpsuits-mobile-fresh.png`
+  - `/tmp/dlm-browser-check/current/maxi-dresses-mobile-fresh.png`
+  - `/tmp/dlm-browser-check/current/family-sets-mobile-fresh.png`
+  - `/tmp/dlm-browser-check/current/best-sellers-mobile-fresh.png`
+- Mobile verification showed the current theme intentionally hides `.collection-hero` on small screens in `assets/theme-inline-head-static-03.css` and `assets/theme-inline-body-static-07.css`, so shoppers land on the active collection pill, filter controls, and product grid instead of a long text block.
+
+### Task: Show Shopify cookie/privacy banner only where the visitor region requires it
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-cookie-banner-only-where-required
+Changes:
+- `layout/theme.liquid`
+  - Added a small head stylesheet that keeps Shopify's privacy-banner DOM hidden by default.
+  - Added a Customer Privacy API gate that reveals the banner only when Shopify reports either `shouldShowBanner()` or `saleOfDataRegion()` for the current visitor.
+  - Removes injected banner/prefs nodes for visitors outside those required regions so the consent UI does not linger invisibly in the DOM.
+  - Preserved a literal `{{ content_for_header }}` in the head after Shopify preview rejected the first attempt that captured/re-rendered it.
+
+Why:
+- The storefront HTML was always loading Shopify's `privacy-banner/storefront-banner.js`, even for US visitors.
+- The store's Admin GraphQL `consentPolicy` currently reports `US` as `consentRequired: false` / `dataSaleOptOutRequired: false`, while specific US states still require sale-of-data opt-outs.
+- Using Shopify's per-visitor Customer Privacy API is safer than hard-coding countries because it keeps the banner available for both consent-required regions and US state opt-out regions.
+
+Verification:
+- `git diff --check -- layout/theme.liquid`
+- `curl -s 'http://127.0.0.1:9292/' | head -c 400`
+- `curl -s 'http://127.0.0.1:9292/' | rg -n "shopify-pc__banner__wrapper|shopify-pc__prefs__dialog|dlm-shopify-privacy-banner-visible|consent-tracking-api|saleOfDataRegion" -C 1`
+- Admin API spot check with locally sourced credentials:
+  - `consentPolicy` summary confirmed `US` has `consentRequired: false` and `dataSaleOptOutRequired: false`
+  - `consentPolicy` summary confirmed US state opt-out regions currently include `USCA`, `USCO`, `USCT`, `USDE`, `USFL`, `USIA`, `USMT`, `USNE`, `USNH`, `USNJ`, `USOR`, `USTN`, `USTX`, `USUT`, and `USVA`
+  - `consentPolicy` summary confirmed consent-required countries currently include `AT`, `BE`, `BG`, `CY`, `CZ`, `DE`, `DK`, `EE`, `ES`, `FI`, `FR`, `GB`, `GR`, `HR`, `IE`, `IS`, `IT`, `LI`, `LT`, `LU`, `LV`, `MT`, `NL`, `NO`, `PL`, `PT`, `RO`, `SE`, `SI`, and `SK`
+
+Notes:
+- A browser-executed spot check of the final runtime state was not completed because the local Node environment did not have the `playwright` package installed for an ad hoc script.
+
+### Task: Professionalize mobile PDP back-to-results navigation and remove the orphaned mobile crumb
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-mobile-pdp-back-link-professionalization
+Changes:
+- `layout/theme.liquid`
+  - Restored a literal `{{ content_for_header }}` in the head so Shopify preview accepted the theme again and local browser QA could run.
+- `snippets/breadcrumbs.liquid`
+  - Replaced the generic PDP back-link copy with a context-aware label such as `Back to Family Sets` or `Back to Dresses`.
+  - Added a compact `Continue shopping` eyebrow plus data hooks so the label can be hydrated from the shopper's last collection/search context.
+- `assets/global.js`
+  - Stored the last collection/search label alongside the remembered results URL in session storage.
+  - Hydrated `data-back-to-results` controls with the remembered URL and a cleaner shopper-facing label, including a `Back to search results` fallback for search traffic.
+- `assets/section-main-product.css`
+  - Reworked the mobile PDP breadcrumb area from a large outlined pill into a slimmer editorial return link.
+  - Tightened the spacing above the gallery and fully hid the mobile breadcrumb trail so the stray `Family Sets` crumb no longer sits by itself above the product media.
+
+Why:
+- The old mobile PDP top area spent valuable above-the-fold space on a generic `Back to results` bubble plus a second standalone crumb, which made the page feel unfinished and pulled attention away from the product imagery.
+- A specific return label keeps shoppers oriented and makes the recovery path feel intentional, which is better for browsing confidence and conversion than a vague utility button.
+
+Verification:
+- `node --check assets/global.js`
+- `git diff --check -- layout/theme.liquid snippets/breadcrumbs.liquid assets/global.js assets/section-main-product.css`
+- `curl -s 'http://127.0.0.1:9292/products/blue-tropical-floral-family-matching-beach-dress-and-shirt-set?variant=43740400746593' | rg -n "product-breadcrumb__eyebrow|data-back-to-results-label-default|Back to Family Sets|product-breadcrumb__trail" -n -C 1`
+- Browser QA via local Shopify preview plus Playwright screenshots:
+  - `npx -y playwright screenshot --device='iPhone 13' --wait-for-timeout 2500 'http://127.0.0.1:9292/products/blue-tropical-floral-family-matching-beach-dress-and-shirt-set?variant=43740400746593' /tmp/dlm-browser-check/pdp-mobile-local-before-fix.png`
+  - `npx -y playwright screenshot --device='iPhone 13' --wait-for-timeout 2500 'http://127.0.0.1:9292/products/blue-tropical-floral-family-matching-beach-dress-and-shirt-set?variant=43740400746593' /tmp/dlm-browser-check/pdp-mobile-local-final.png`
+  - `npx -y playwright screenshot --device='iPhone 13' --wait-for-timeout 2500 'http://127.0.0.1:9292/products/elegant-black-ruffle-dress-chic-sleeveless-layered-dress-for-mother-and-daughter-perfect-for-parties-and-events' /tmp/dlm-browser-check/pdp-mobile-dress-nav-after.png`
+- Visual review confirmed:
+  - the family-set PDP now shows `Continue shopping` plus `Back to Family Sets` instead of the oversized generic pill,
+  - the orphaned mobile breadcrumb text is gone,
+  - the gallery starts noticeably closer to the top,
+  - the same treatment reads well on a dress PDP as `Back to Dresses`.
+
+Notes:
+- The shared Playwright MCP browser profile was unavailable during this pass, so browser QA was run against the local preview with `npx playwright screenshot` instead.
+
+### Task: Restore translated PDP size-guide behavior across localized storefront languages
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-size-guide-i18n-localized-table-reconstruction
+Changes:
+- `assets/product-desktop-ux.js`
+  - Replaced the English-only size/type detection with unicode-safe token matching so localized option names such as Arabic `مقاس` are treated as real size selectors.
+  - Expanded family-role parsing to recognize Arabic, Spanish, and French role labels, while keeping a generic token fallback so unknown-language row labels still match by value when possible.
+  - Added a translated-description fallback that reconstructs a hidden `#size-chart` table from rendered PDP text when Shopify translations have broken the original HTML table into escaped pseudo-markup.
+  - Localized the selected-size snapshot copy and unit-toggle label via wrapper data attributes, and normalized Arabic single-letter adult sizes (`س`, `م`, `ل`) so they still match source rows that remain `S/M/L`.
+- `snippets/product-desktop-ux.liquid`
+  - Added localized copy strings for the selected-size snapshot, compare hint, and unit-toggle label so the upgraded guide reads naturally on Arabic, Spanish, and French PDPs.
+- `snippets/product-variant-picker.liquid`
+  - Marked localized size option names as true size selectors, including Arabic size labels, and localized the initial size-guide summary label.
+
+Why:
+- The Arabic storefront reproduced two connected failures: translated size option names were no longer recognized as size controls, and the translated product description no longer contained a real HTML size table for the guide to parse.
+- Rebuilding a canonical hidden table from the translated description keeps the selected-size card and compare accordion powered by one data source even when the translation layer mangles table markup.
+
+Verification:
+- Live browser investigation on `https://www.dresslikemommy.com/ar/products/happy-flower-family-matching-t-shirts-colorful-floral-print-for-parents-kids` confirmed the pre-fix failure state: translated size options, no working size snapshot, and no parsed comparison content.
+- `node --check assets/product-desktop-ux.js`
+- `git diff --check -- assets/product-desktop-ux.js snippets/product-desktop-ux.liquid snippets/product-variant-picker.liquid`
+- Local browser QA via headless Playwright against theme preview:
+  - `http://127.0.0.1:9292/ar/products/happy-flower-family-matching-t-shirts-colorful-floral-print-for-parents-kids`
+    - adult `الكبار س` now renders `تفاصيل مقاسك`, shows 5 measurements, groups the compare table into `الطفل` and `الكبار`, and highlights the correct adult row.
+    - child `الطفل 2-3 سنوات` now renders the selected-size snapshot and highlights the matching child row.
+    - the translated description now yields a reconstructed hidden source table with 6 headers and 10 rows.
+  - `http://127.0.0.1:9292/products/happy-flower-family-matching-t-shirts-colorful-floral-print-for-parents-kids`
+    - English regression check still shows the selected-size snapshot, 5 measurements, and the correct highlighted compare row.
+
+Follow-up:
+- `assets/product-desktop-ux.js`
+  - Added age-sequence token matching so localized child and baby labels match even when selectors and size-chart rows use different wording, such as `Niño 2 Años` versus `Niño de 2 años` or `Bebé 6-9 Meses` versus `Bebé de 6 a 9 meses`.
+  - Trimmed leading connector words from parsed row size labels so grouped child/baby snapshot titles read cleanly once matched.
+
+Follow-up verification:
+- `node --check assets/product-desktop-ux.js`
+- `git diff --check -- assets/product-desktop-ux.js`
+- Headless Playwright browser QA on `http://127.0.0.1:9292/es/products/mommy-me-matching-solid-long-dress?variant=39525057658977`
+  - `Bebé 6-9 Meses`, `Bebé 12-18 Meses`, `Niño 2 Años`, `Niño 3-4 Años`, and `Niño 6-7 Años` now each show a populated selected-size snapshot and the correct highlighted row in the grouped compare table.
+
+Follow-up 2:
+- `assets/product-desktop-ux.js`
+  - Normalized locale-specific size strings before token matching so Arabic storefronts can resolve eastern Arabic digits, translated letter-size names like `لام`, and spelled age labels like `سنتين`.
+  - Taught the localized row parser to collapse Arabic range phrasing such as `من 6 إلى 9 أشهر` into the same canonical `6-9` token family used by the size selectors.
+  - Stopped trusting a partially parsed `#size-chart` when translated product descriptions still contain a richer escaped pseudo-table; the guide now rebuilds a canonical hidden source table and retires the incomplete original source table when the fallback is more complete.
+  - Expanded the standalone size-token detector to recognize single-year labels and Arabic month labels so reconstructed child and baby rows are retained in the compare table.
+
+Follow-up 2 verification:
+- `node --check assets/product-desktop-ux.js`
+- `git diff --check -- assets/product-desktop-ux.js`
+- Headless Playwright browser QA on `http://127.0.0.1:9292/ar/products/mommy-me-matching-solid-long-dress?variant=39525057658977`
+  - `الطفل 6-9 أشهر`, `الطفل 9-12 شهرا`, `الطفل 12-18 شهرا`, `طفل 2 سنة`, `الطفل 4-5 سنوات`, and `الطفل 6-7 سنوات` now each render a populated selected-size snapshot and the matching highlighted row.
+  - The reconstructed hidden source table now contains 16 rows instead of the truncated 8-row parsed table that the malformed translated HTML produced before the fix.
+- Cross-locale regression spot checks via headless Playwright:
+  - `http://127.0.0.1:9292/products/mommy-me-matching-solid-long-dress?variant=39525057658977` still resolves `Baby 6-9 Months` and `Child 3-4 Years`.
+  - `http://127.0.0.1:9292/fr/products/mommy-me-matching-solid-long-dress?variant=39525057658977` still resolves `Bébé de 6 à 9 mois` and `Enfant de 3 à 4 ans`.
+  - `http://127.0.0.1:9292/ar/products/happy-flower-family-matching-t-shirts-colorful-floral-print-for-parents-kids` still resolves `الطفل 2-3 سنوات` and `الكبار س`.
+
+### Task: Enlarge homepage Shop by Category and Shop by Occasion cards on desktop only
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-homepage-category-occasion-desktop-card-scale
+Changes:
+- `assets/section-category-icons.css`
+  - Increased homepage desktop card width from `212px` to `244px` and image height from `264px` to `304px` for the grouped category/occasion browse tiles.
+  - Scoped the size bump to `.template-index` inside the existing desktop breakpoint so mobile and non-homepage uses of the section keep their current sizing.
+
+Why:
+- The homepage `Shop by Category` and `Shop by Occasion` cards were reading a little cramped on desktop, which made the imagery feel smaller than intended.
+- A roughly 15% desktop-only increase gives those collection tiles more visual presence without changing the mobile layout.
+
+Verification:
+- `git diff --check -- assets/section-category-icons.css`
+- Desktop browser QA via local Shopify preview:
+  - `npx -y playwright screenshot --device='Desktop Chrome HiDPI' --full-page --wait-for-timeout 2500 'http://127.0.0.1:9292/' /tmp/dlm-home-category-desktop-full-after.png`
+- Mobile regression check via local Shopify preview:
+  - `npx -y playwright screenshot --device='iPhone 13' --full-page --wait-for-timeout 2500 'http://127.0.0.1:9292/' /tmp/dlm-home-category-mobile-after.png`
+
+Notes:
+- The desktop homepage preview showed visibly larger `Shop by Category` and `Shop by Occasion` tiles while the mobile screenshot remained unchanged, matching the requested scope.

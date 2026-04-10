@@ -7,6 +7,7 @@ function getFocusableElements(container) {
 }
 
 const BACK_TO_RESULTS_STORAGE_KEY = 'dlm:last-results-url';
+const BACK_TO_RESULTS_LABEL_STORAGE_KEY = 'dlm:last-results-label';
 
 function toSameOriginUrl(value) {
   if (!value) return null;
@@ -24,12 +25,49 @@ function isResultsPagePath(pathname) {
   return pathname.startsWith('/collections/') || pathname.startsWith('/search');
 }
 
+function sanitizeResultsLabel(value) {
+  return String(value || '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function getStoredResultsUrl() {
   try {
     return sessionStorage.getItem(BACK_TO_RESULTS_STORAGE_KEY) || '';
   } catch (_error) {
     return '';
   }
+}
+
+function getStoredResultsLabel() {
+  try {
+    return sessionStorage.getItem(BACK_TO_RESULTS_LABEL_STORAGE_KEY) || '';
+  } catch (_error) {
+    return '';
+  }
+}
+
+function getCurrentResultsPageLabel() {
+  if (!document.body) return '';
+  if (document.body.classList.contains('template-search')) return 'Search results';
+
+  const heading = document.querySelector(
+    '[data-results-page-label], .collection-hero__title, .collection-hero h1, main h1, h1'
+  );
+
+  if (!heading) return '';
+  return sanitizeResultsLabel(heading.textContent);
+}
+
+function formatBackToResultsLabel(resultsLabel, fallbackLabel = 'Back to results') {
+  const sanitizedLabel = sanitizeResultsLabel(resultsLabel);
+  if (!sanitizedLabel) return fallbackLabel;
+
+  const lowerLabel = sanitizedLabel.toLowerCase();
+  if (lowerLabel.startsWith('back to ')) return sanitizedLabel;
+  if (lowerLabel === 'search' || lowerLabel === 'search results') return 'Back to search results';
+
+  return `Back to ${sanitizedLabel}`;
 }
 
 function rememberResultsPageUrl() {
@@ -41,6 +79,10 @@ function rememberResultsPageUrl() {
 
   try {
     sessionStorage.setItem(BACK_TO_RESULTS_STORAGE_KEY, currentUrl.toString());
+    const currentResultsLabel = getCurrentResultsPageLabel();
+    if (currentResultsLabel) {
+      sessionStorage.setItem(BACK_TO_RESULTS_LABEL_STORAGE_KEY, currentResultsLabel);
+    }
   } catch (_error) {
     // Ignore storage failures; the fallback href still works.
   }
@@ -60,6 +102,15 @@ function getPreferredBackToResultsUrl() {
   return '';
 }
 
+function getPreferredBackToResultsLabel(fallbackLabel) {
+  const referrerUrl = toSameOriginUrl(document.referrer);
+  if (referrerUrl && referrerUrl.pathname.startsWith('/search')) {
+    return 'Back to search results';
+  }
+
+  return formatBackToResultsLabel(getStoredResultsLabel(), fallbackLabel);
+}
+
 function hydrateBackToResultsControls() {
   document.querySelectorAll('[data-back-to-results]').forEach((control) => {
     const fallbackUrl = toSameOriginUrl(
@@ -67,9 +118,26 @@ function hydrateBackToResultsControls() {
     );
     const preferredUrl = getPreferredBackToResultsUrl();
     const targetUrl = preferredUrl || (fallbackUrl ? fallbackUrl.toString() : '');
+    const fallbackLabel =
+      sanitizeResultsLabel(control.getAttribute('data-back-to-results-label-default')) ||
+      sanitizeResultsLabel(control.textContent) ||
+      'Back to results';
+    const targetLabel = getPreferredBackToResultsLabel(fallbackLabel);
+    const labelTarget = control.querySelector('[data-back-to-results-label]');
 
     if (targetUrl) {
       control.setAttribute('href', targetUrl);
+    }
+
+    if (targetLabel) {
+      if (labelTarget) {
+        labelTarget.textContent = targetLabel;
+      } else {
+        control.textContent = targetLabel;
+      }
+
+      control.setAttribute('aria-label', targetLabel);
+      control.setAttribute('title', targetLabel);
     }
 
     control.addEventListener('click', (event) => {

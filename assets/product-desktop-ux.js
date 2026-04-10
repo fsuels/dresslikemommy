@@ -147,8 +147,24 @@ function safeParseJson(value) {
   }
 }
 
-function normalizeText(value) {
+function stripDiacritics(value) {
+  var text = String(value || '');
+  if (typeof text.normalize !== 'function') return text;
+  return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function replaceLocaleDigits(value) {
   return String(value || '')
+    .replace(/[٠-٩]/g, function (digit) {
+      return String('٠١٢٣٤٥٦٧٨٩'.indexOf(digit));
+    })
+    .replace(/[۰-۹]/g, function (digit) {
+      return String('۰۱۲۳۴۵۶۷۸۹'.indexOf(digit));
+    });
+}
+
+function normalizeText(value) {
+  return stripDiacritics(replaceLocaleDigits(value))
     .toLowerCase()
     .trim()
     .replace(/\s+/g, ' ');
@@ -216,23 +232,264 @@ function initDeliveryHighlights(wrapper) {
   });
 }
 
-var SIZE_LABEL_PATTERN = /\b(size|sizes|talla|tallas|taille|tailles|tamano|tamaño|pointure|pointures)\b/;
-var TYPE_LABEL_PATTERN = /\b(type|style)\b/;
-var ROLE_PATTERNS = [
-  { key: 'mother', label: 'Mother', regex: /^(mother|mom)\b/i },
-  { key: 'father', label: 'Father', regex: /^(father|dad)\b/i },
-  { key: 'girl', label: 'Girl', regex: /^(girl|daughter)\b/i },
-  { key: 'boy', label: 'Boy', regex: /^(boy|son)\b/i },
-  { key: 'child', label: 'Child', regex: /^child\b/i },
-  { key: 'baby', label: 'Baby', regex: /^baby\b/i },
-  { key: 'adult', label: 'Adult', regex: /^adult\b/i },
+var SIZE_LABEL_TOKENS = [
+  'size',
+  'sizes',
+  'talla',
+  'tallas',
+  'tamano',
+  'tamaño',
+  'tamanos',
+  'tamaños',
+  'taille',
+  'tailles',
+  'pointure',
+  'pointures',
+  'mida',
+  'mides',
+  'maat',
+  'maten',
+  'groesse',
+  'grosse',
+  'grösse',
+  'größen',
+  'مقاس',
+  'مقاسات',
+  'الحجم',
+  'الأحجام',
+  'الاحجام',
 ];
+var TYPE_LABEL_TOKENS = ['type', 'style', 'tipo', 'estilo', 'genre', 'coupe', 'نوع', 'ستايل', 'نمط'];
+var HEIGHT_LABEL_TOKENS = ['height', 'hauteur', 'altura', 'estatura', 'الارتفاع', 'الطول'];
+var GUIDE_MEASUREMENT_TOKENS = [
+  'length',
+  'bust',
+  'chest',
+  'waist',
+  'hips',
+  'height',
+  'weight',
+  'shoulder',
+  'sleeve',
+  'age',
+  'longueur',
+  'poitrine',
+  'taille',
+  'hanches',
+  'hauteur',
+  'poids',
+  'epaule',
+  'épaule',
+  'manche',
+  'âge',
+  'largo',
+  'pecho',
+  'cintura',
+  'cadera',
+  'altura',
+  'peso',
+  'hombro',
+  'manga',
+  'edad',
+  'الطول',
+  'الصدر',
+  'الخصر',
+  'الورك',
+  'الكتف',
+  'الارتفاع',
+  'الوزن',
+  'العمر',
+];
+var GUIDE_UNIT_TOKENS = [
+  'cm',
+  'cms',
+  'centimeter',
+  'centimeters',
+  'centimetre',
+  'centimetres',
+  'in',
+  'inch',
+  'inches',
+  'kg',
+  'kgs',
+  'kilogram',
+  'kilograms',
+  'lb',
+  'lbs',
+  'سم',
+  'بوصة',
+  'بوصات',
+  'انش',
+  'إنش',
+  'كجم',
+  'كغ',
+  'رطل',
+  'ارطال',
+  'أرطال',
+];
+var ROLE_DEFINITIONS = [
+  {
+    key: 'mother',
+    label: 'Mother',
+    labels: { ar: 'الأم', es: 'Mamá', fr: 'Maman' },
+    aliases: ['mother', 'mom', 'mom dress', 'madre', 'mama', 'mamá', 'mere', 'mère', 'maman', 'الأم', 'الام'],
+  },
+  {
+    key: 'father',
+    label: 'Father',
+    labels: { ar: 'الأب', es: 'Papá', fr: 'Papa' },
+    aliases: ['father', 'dad', 'dad shirt', 'padre', 'papa', 'papá', 'pere', 'père', 'الأب', 'الاب'],
+  },
+  {
+    key: 'girl',
+    label: 'Girl',
+    labels: { ar: 'البنت', es: 'Niña', fr: 'Fille' },
+    aliases: ['girl', 'daughter', 'daughter dress', 'nina', 'niña', 'fille', 'البنت', 'فتاة', 'الفتاة'],
+  },
+  {
+    key: 'boy',
+    label: 'Boy',
+    labels: { ar: 'الولد', es: 'Niño', fr: 'Garçon' },
+    aliases: ['boy', 'son', 'son shirt', 'nino', 'niño', 'garcon', 'garçon', 'الولد', 'ولد', 'فتى', 'الفتى'],
+  },
+  {
+    key: 'child',
+    label: 'Child',
+    labels: { ar: 'الطفل', es: 'Niño', fr: 'Enfant' },
+    aliases: ['child', 'children', 'kid', 'kids', 'enfant', 'enfants', 'infant', 'طفل', 'الطفل', 'أطفال', 'اطفال'],
+  },
+  {
+    key: 'baby',
+    label: 'Baby',
+    labels: { ar: 'الرضيع', es: 'Bebé', fr: 'Bébé' },
+    aliases: ['baby', 'bebe', 'bebé', 'bébé', 'رضيع', 'بيبي'],
+  },
+  {
+    key: 'adult',
+    label: 'Adult',
+    labels: { ar: 'الكبار', es: 'Adulto', fr: 'Adulte' },
+    aliases: ['adult', 'adults', 'adulto', 'adulta', 'adultes', 'adulte', 'بالغ', 'بالغة', 'بالغين', 'البالغين', 'الكبار', 'للكبار'],
+  },
+];
+var ROLE_FIT_COPY_BY_LOCALE = {
+  en: {
+    mother: "Fit tip: compare with your usual women's size.",
+    father: "Fit tip: compare with your usual men's size.",
+    girl: "Fit tip: compare with her usual kids' size.",
+    boy: "Fit tip: compare with his usual kids' size.",
+    child: "Fit tip: compare with the child's usual size.",
+    baby: "Fit tip: compare with the baby's usual size.",
+    adult: 'Fit tip: compare with your usual adult size.',
+  },
+  es: {
+    mother: 'Consejo: compáralo con tu talla habitual de mujer.',
+    father: 'Consejo: compáralo con tu talla habitual de hombre.',
+    girl: 'Consejo: compáralo con su talla infantil habitual.',
+    boy: 'Consejo: compáralo con su talla infantil habitual.',
+    child: 'Consejo: compáralo con la talla habitual del niño.',
+    baby: 'Consejo: compáralo con la talla habitual del bebé.',
+    adult: 'Consejo: compáralo con tu talla habitual de adulto.',
+  },
+  fr: {
+    mother: 'Conseil coupe : comparez avec votre taille femme habituelle.',
+    father: 'Conseil coupe : comparez avec votre taille homme habituelle.',
+    girl: 'Conseil coupe : comparez avec sa taille enfant habituelle.',
+    boy: 'Conseil coupe : comparez avec sa taille enfant habituelle.',
+    child: "Conseil coupe : comparez avec la taille habituelle de l'enfant.",
+    baby: 'Conseil coupe : comparez avec la taille habituelle du bébé.',
+    adult: 'Conseil coupe : comparez avec votre taille adulte habituelle.',
+  },
+  ar: {
+    mother: 'نصيحة للمقاس: قارنيها بمقاسك المعتاد للسيدات.',
+    father: 'نصيحة للمقاس: قارنها بمقاسك المعتاد للرجال.',
+    girl: 'نصيحة للمقاس: قارنيها بمقاسها المعتاد للأطفال.',
+    boy: 'نصيحة للمقاس: قارنه بمقاسه المعتاد للأطفال.',
+    child: 'نصيحة للمقاس: قارنيه بمقاس الطفل المعتاد.',
+    baby: 'نصيحة للمقاس: قارنيه بمقاس الرضيع المعتاد.',
+    adult: 'نصيحة للمقاس: قارنيه بمقاس البالغ المعتاد.',
+  },
+};
+
+function getLocaleRoot() {
+  var locale = document.documentElement.getAttribute('lang') || document.documentElement.lang || '';
+  return normalizeText(locale).split(/[-_]/)[0] || 'en';
+}
+
+function containsDictionaryToken(value, tokens) {
+  var normalizedValue = normalizeText(value);
+  if (!normalizedValue) return false;
+
+  return tokens.some(function (token) {
+    return normalizedValue.indexOf(normalizeText(token)) !== -1;
+  });
+}
+
+function isSizeLikeLabel(value) {
+  return containsDictionaryToken(value, SIZE_LABEL_TOKENS);
+}
+
+function isTypeLikeLabel(value) {
+  return containsDictionaryToken(value, TYPE_LABEL_TOKENS);
+}
+
+function isHeightLikeLabel(value) {
+  return containsDictionaryToken(value, HEIGHT_LABEL_TOKENS);
+}
+
+function isMeasurementLikeLabel(value) {
+  return containsDictionaryToken(value, GUIDE_MEASUREMENT_TOKENS);
+}
+
+function hasGuideUnitToken(value) {
+  var text = String(value || '');
+  return containsDictionaryToken(text, GUIDE_UNIT_TOKENS) || /\([^)]*\/[^)]*\)/.test(text);
+}
+
+function getCompactToken(value) {
+  var normalizedValue = normalizeText(value);
+  try {
+    return normalizedValue.replace(/[^\p{L}\p{N}]+/gu, '');
+  } catch (_error) {
+    return normalizedValue.replace(/[^a-z0-9]+/g, '');
+  }
+}
+
+function escapeRegExp(value) {
+  return String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function normalizeLocalizedSizeValue(value) {
+  return replaceLocaleDigits(value)
+    .replace(/[\u200e\u200f\u202a-\u202e]/g, ' ')
+    .replace(/(^|\s)من\s+/g, '$1')
+    .replace(/(\d+(?:\.\d+)?)\s*(?:إلى|الى)\s*(\d+(?:\.\d+)?)/g, '$1-$2')
+    .replace(/(^|\s)(?:سنتين|سنتان|عامين|عامان)(?=\s|$)/g, '$12 سنة')
+    .replace(/(^|\s)(?:شهرين|شهران)(?=\s|$)/g, '$12 شهر')
+    .replace(/(^|\s)لام(?=\s|$)/g, '$1ل')
+    .replace(/(^|\s)ميم(?=\s|$)/g, '$1م')
+    .replace(/(^|\s)(?:اس|إس)(?=\s|$)/g, '$1س')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function getLocalizedRoleLabel(roleDefinition) {
+  if (!roleDefinition) return '';
+  var locale = getLocaleRoot();
+  return (roleDefinition.labels && roleDefinition.labels[locale]) || roleDefinition.label || '';
+}
+
+function sanitizeRoleSizeLabel(value) {
+  return normalizeLocalizedSizeValue(value)
+    .replace(/^(?:de|del|da|do|du|des|d'|من)\s+/i, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
 function findSizeOptionIndex(options) {
   if (!Array.isArray(options)) return -1;
 
   for (var index = 0; index < options.length; index += 1) {
-    if (SIZE_LABEL_PATTERN.test(normalizeText(options[index].name))) {
+    if (isSizeLikeLabel(options[index].name)) {
       return index;
     }
   }
@@ -244,18 +501,32 @@ function parseRoleFromSizeLabel(label) {
   var text = String(label || '').trim();
   if (!text) return null;
 
-  for (var index = 0; index < ROLE_PATTERNS.length; index += 1) {
-    var pattern = ROLE_PATTERNS[index];
-    var match = text.match(pattern.regex);
-    if (!match) continue;
+  for (var index = 0; index < ROLE_DEFINITIONS.length; index += 1) {
+    var roleDefinition = ROLE_DEFINITIONS[index];
 
-    var sizeLabel = text.replace(pattern.regex, '').trim();
-    return {
-      key: pattern.key,
-      label: pattern.label,
-      sizeLabel: sizeLabel || text,
-      fullLabel: text,
-    };
+    for (var aliasIndex = 0; aliasIndex < roleDefinition.aliases.length; aliasIndex += 1) {
+      var alias = roleDefinition.aliases[aliasIndex];
+      var escapedAlias = escapeRegExp(alias).replace(/\s+/g, '\\s+');
+      var startPattern = new RegExp('^' + escapedAlias + '(?:\\s+|\\s*[-–/]\\s*)(.+)$', 'i');
+      var endPattern = new RegExp('^(.+?)(?:\\s+|\\s*[-–/]\\s*)' + escapedAlias + '$', 'i');
+      var startMatch = text.match(startPattern);
+      var endMatch = text.match(endPattern);
+      var sizeLabel = startMatch && startMatch[1] ? startMatch[1].trim() : '';
+
+      if (!sizeLabel && endMatch && endMatch[1]) {
+        sizeLabel = endMatch[1].trim();
+      }
+
+      if (!sizeLabel) continue;
+      sizeLabel = sanitizeRoleSizeLabel(sizeLabel);
+
+      return {
+        key: roleDefinition.key,
+        label: getLocalizedRoleLabel(roleDefinition),
+        sizeLabel: sizeLabel,
+        fullLabel: text,
+      };
+    }
   }
 
   return null;
@@ -276,15 +547,8 @@ function getRoleOrder(roleKey) {
 }
 
 function getRoleFitCopy(roleKey) {
-  var copy = {
-    mother: "Fit tip: compare with your usual women's size.",
-    father: "Fit tip: compare with your usual men's size.",
-    girl: "Fit tip: compare with her usual kids' size.",
-    boy: "Fit tip: compare with his usual kids' size.",
-    child: "Fit tip: compare with the child's usual size.",
-    baby: "Fit tip: compare with the baby's usual size.",
-    adult: 'Fit tip: compare with your usual adult size.',
-  };
+  var locale = getLocaleRoot();
+  var copy = ROLE_FIT_COPY_BY_LOCALE[locale] || ROLE_FIT_COPY_BY_LOCALE.en;
 
   return Object.prototype.hasOwnProperty.call(copy, roleKey) ? copy[roleKey] : '';
 }
@@ -325,7 +589,7 @@ function buildRoleGroups(productData, currentOptionContext) {
 
       var optionName = normalizeText(productData.options[optionIndex].name);
       if (!currentOptionContext[optionName]) continue;
-      if (TYPE_LABEL_PATTERN.test(optionName)) continue;
+      if (isTypeLikeLabel(optionName)) continue;
 
       if (normalizeText(getOptionValue(variant, optionIndex)) !== normalizeText(currentOptionContext[optionName])) {
         return;
@@ -366,7 +630,7 @@ function getRoleHelperLabel(variant, options, sizeOptionIndex) {
     if (optionIndex === sizeOptionIndex) continue;
 
     var optionName = normalizeText(options[optionIndex].name);
-    if (!TYPE_LABEL_PATTERN.test(optionName)) continue;
+    if (!isTypeLikeLabel(optionName)) continue;
 
     return String(getOptionValue(variant, optionIndex) || '').trim();
   }
@@ -632,7 +896,8 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   var details = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide]') : null;
   var content = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide-content]') : null;
   var summary = details ? details.querySelector('summary') : null;
-  var sizeTable = document.querySelector('table#size-chart, table[id*="size-chart"]');
+  var sizeSelect = findSizeGuideSelect(sizeGuideRoot);
+  var sizeTable = getSizeGuideTable(sizeGuideRoot, sizeSelect);
   if (!snapshot || !details || !content || !sizeTable) return;
 
   var parsed = parseSizeGuideTable(sizeTable);
@@ -640,8 +905,11 @@ function initMatchingSizeGuide(wrapper, sectionId) {
 
   var compareLabel = wrapper.getAttribute('data-size-guide-compare-label') || 'Compare all sizes';
   var groupedLabel = wrapper.getAttribute('data-size-guide-grouped-label') || 'Compare family sizes';
+  var snapshotLabel = wrapper.getAttribute('data-size-guide-selected-label') || 'Your size details';
+  var compareHintLabel =
+    wrapper.getAttribute('data-size-guide-compare-hint') || 'Open the full chart below to compare nearby sizes.';
+  var unitToggleLabel = wrapper.getAttribute('data-size-guide-unit-toggle-label') || 'Size chart units';
   var groups = buildSizeGuideGroups(parsed);
-  var sizeSelect = findSizeGuideSelect(sizeGuideRoot);
   var selectedUnitSystem = getStoredSizeGuideUnitSystem() || 'metric';
 
   function getStoredSizeGuideUnitSystem() {
@@ -661,13 +929,246 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     }
   }
 
+  function getKnownSizeGuideLabels(select) {
+    var labels = {};
+    if (!select || !select.options) return labels;
+
+    function addLabel(value) {
+      var raw = String(value || '').replace(/[\u200e\u200f\u202a-\u202e]/g, '').trim();
+      if (!raw) return;
+
+      var normalized = normalizeText(raw);
+      var compact = getCompactToken(raw);
+      if (normalized) labels[normalized] = true;
+      if (compact) labels[compact] = true;
+    }
+
+    Array.from(select.options).forEach(function (option) {
+      if (!option || option.value === '') return;
+      addLabel(option.value);
+      addLabel(option.textContent);
+      addLabel(option.getAttribute('data-display-label'));
+
+      if (window.DLMSizeLabelFormatter && typeof window.DLMSizeLabelFormatter.formatSizeLabel === 'function') {
+        addLabel(window.DLMSizeLabelFormatter.formatSizeLabel(option.value));
+      }
+    });
+
+    return labels;
+  }
+
+  function lineMatchesKnownSizeLabel(line, knownLabels) {
+    var raw = String(line || '').trim();
+    if (!raw) return false;
+
+    var normalized = normalizeText(raw);
+    var compact = getCompactToken(raw);
+    return !!(knownLabels[normalized] || knownLabels[compact]);
+  }
+
+  function isLikelyStandaloneSizeToken(value, knownLabels) {
+    var raw = String(value || '').trim();
+    if (!raw) return false;
+    if (lineMatchesKnownSizeLabel(raw, knownLabels)) return true;
+    if (/^(?:XXXXL|XXXL|XXL|[2-9]XL|XL|XS|S|M|L|س|م|ل)$/i.test(raw)) return true;
+    if (/^\d{2,3}(?:\s*cm)?$/i.test(raw)) return true;
+    if (/^\d{1,2}\s*[-–]\s*\d{1,2}(?:\s*(?:y|yr|yrs|year|years|ano|anos|año|años|an|ans|سن(?:ة|وات)|months?|mos?|mois|شهر(?:ا|ًا)?|أشهر))?$/i.test(raw)) return true;
+    if (/^\d{1,2}(?:\s*(?:y|yr|yrs|year|years|ano|anos|año|años|an|ans|سن(?:ة|وات)|months?|mos?|mois|شهر(?:ا|ًا)?|أشهر))$/i.test(raw)) return true;
+    if (/^\d{1,2}\s*m\/\d{2,3}$/i.test(raw)) return true;
+    return false;
+  }
+
+  function isLikelySizeGuideRowLabel(line, knownLabels) {
+    if (lineMatchesKnownSizeLabel(line, knownLabels)) return true;
+
+    var parsedRole = parseRoleFromSizeLabel(line);
+    if (parsedRole && isLikelyStandaloneSizeToken(parsedRole.sizeLabel, knownLabels)) return true;
+
+    return isLikelyStandaloneSizeToken(line, knownLabels);
+  }
+
+  function isLikelyGuideSizeHeaderLine(line, knownLabels) {
+    var raw = String(line || '').trim();
+    if (!raw || !isSizeLikeLabel(raw)) return false;
+    if (isLikelySizeGuideRowLabel(raw, knownLabels)) return false;
+    if (hasGuideUnitToken(raw)) return false;
+    return raw.length <= 24;
+  }
+
+  function isIgnorableGuideLine(line) {
+    var raw = String(line || '').trim();
+    if (!raw) return true;
+    if (/^<\/?[^>]+>$/.test(raw)) return true;
+    if (/^<!--.*-->$/.test(raw)) return true;
+    return false;
+  }
+
+  function extractGuideLines(sourceRoot) {
+    if (!sourceRoot) return [];
+
+    return String(sourceRoot.textContent || '')
+      .split(/\n+/)
+      .map(function (line) {
+        return String(line || '')
+          .replace(/[\u200e\u200f\u202a-\u202e]/g, '')
+          .replace(/\s+/g, ' ')
+          .trim();
+      })
+      .filter(Boolean);
+  }
+
+  function collectGuideHeaders(lines, startIndex, knownLabels) {
+    var headers = [];
+
+    for (var index = startIndex; index < lines.length; index += 1) {
+      var line = lines[index];
+      if (isIgnorableGuideLine(line)) continue;
+      if (headers.length && isLikelySizeGuideRowLabel(line, knownLabels)) break;
+      if (
+        headers.length > 1 &&
+        isSizeLikeLabel(line) &&
+        !hasGuideUnitToken(line) &&
+        !isMeasurementLikeLabel(line) &&
+        !isLikelySizeGuideRowLabel(line, knownLabels)
+      ) {
+        break;
+      }
+      headers.push(line);
+    }
+
+    return headers;
+  }
+
+  function collectGuideRows(lines, headerCount, knownLabels) {
+    var rows = [];
+
+    for (var index = 0; index < lines.length; index += 1) {
+      var line = lines[index];
+      if (isIgnorableGuideLine(line)) continue;
+      if (!isLikelySizeGuideRowLabel(line, knownLabels)) continue;
+
+      var row = [line];
+
+      while (index + 1 < lines.length && row.length < headerCount) {
+        var nextLine = lines[index + 1];
+        index += 1;
+
+        if (isIgnorableGuideLine(nextLine)) continue;
+        if (isSizeLikeLabel(nextLine) && !isLikelySizeGuideRowLabel(nextLine, knownLabels)) continue;
+        if (row.length > 1 && isLikelySizeGuideRowLabel(nextLine, knownLabels)) {
+          index -= 1;
+          break;
+        }
+
+        row.push(nextLine);
+      }
+
+      if (row.length === headerCount) rows.push(row);
+    }
+
+    return rows;
+  }
+
+  function buildFallbackSizeGuideTable(sourceRoot, headers, rows) {
+    var existing = sourceRoot.querySelector('table[data-size-guide-reconstructed="true"]');
+    if (existing) return existing;
+
+    var originalTable = sourceRoot.querySelector('table#size-chart, table[id*="size-chart"]');
+    if (originalTable) {
+      originalTable.hidden = true;
+      originalTable.setAttribute('aria-hidden', 'true');
+      originalTable.setAttribute('data-size-guide-original-source', 'true');
+      originalTable.style.display = 'none';
+      originalTable.removeAttribute('id');
+    }
+
+    var table = document.createElement('table');
+    table.id = 'size-chart';
+    table.className = 'size-chart';
+    table.setAttribute('data-size-guide-reconstructed', 'true');
+    table.setAttribute('aria-hidden', 'true');
+    table.style.display = 'none';
+
+    var thead = document.createElement('thead');
+    var headRow = document.createElement('tr');
+    headers.forEach(function (header) {
+      var cell = document.createElement('th');
+      cell.textContent = header;
+      headRow.appendChild(cell);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    rows.forEach(function (row) {
+      var bodyRow = document.createElement('tr');
+      row.forEach(function (value) {
+        var cell = document.createElement('td');
+        cell.textContent = value;
+        bodyRow.appendChild(cell);
+      });
+      tbody.appendChild(bodyRow);
+    });
+    table.appendChild(tbody);
+    sourceRoot.appendChild(table);
+
+    return table;
+  }
+
+  function getSizeGuideTable(root, select) {
+    var existingTable = document.querySelector('table#size-chart, table[id*="size-chart"]');
+
+    var descriptionRoot = (root && root.querySelector('[data-product-description]')) || document.querySelector('[data-product-description]');
+    var fallbackGuide = null;
+
+    if (descriptionRoot) {
+      var lines = extractGuideLines(descriptionRoot);
+      var knownLabels = getKnownSizeGuideLabels(select);
+
+      for (var index = 0; index < lines.length; index += 1) {
+        var line = lines[index];
+        if (!isLikelyGuideSizeHeaderLine(line, knownLabels)) continue;
+
+        var headers = collectGuideHeaders(lines, index, knownLabels);
+        if (headers.length < 2) continue;
+        if (!headers.slice(1).some(function (headerLine) {
+          return hasGuideUnitToken(headerLine) || isMeasurementLikeLabel(headerLine);
+        })) {
+          continue;
+        }
+
+        var rows = collectGuideRows(lines.slice(index + headers.length), headers.length, knownLabels);
+        if (!rows.length) continue;
+
+        fallbackGuide = {
+          headers: headers,
+          rows: rows,
+        };
+        break;
+      }
+    }
+
+    if (!existingTable) {
+      return descriptionRoot && fallbackGuide ? buildFallbackSizeGuideTable(descriptionRoot, fallbackGuide.headers, fallbackGuide.rows) : null;
+    }
+
+    if (!fallbackGuide) return existingTable;
+
+    var existingParsed = parseSizeGuideTable(existingTable);
+    if (!existingParsed || fallbackGuide.rows.length > existingParsed.rows.length) {
+      return descriptionRoot ? buildFallbackSizeGuideTable(descriptionRoot, fallbackGuide.headers, fallbackGuide.rows) : existingTable;
+    }
+
+    return existingTable;
+  }
+
   function findSizeGuideSelect(root) {
     var selects = Array.from(root.querySelectorAll("select[name^='options[']"));
     for (var index = 0; index < selects.length; index += 1) {
       var name = String(selects[index].name || '');
       var optionMatch = name.match(/^options\[(.+)\]$/);
       var optionName = optionMatch && optionMatch[1] ? optionMatch[1] : name;
-      if (SIZE_LABEL_PATTERN.test(normalizeText(optionName))) return selects[index];
+      if (isSizeLikeLabel(optionName)) return selects[index];
     }
 
     return root.querySelector("select[data-size-option='true'], select.size-select");
@@ -697,12 +1198,13 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   }
 
   function normalizeGuideUnit(unit) {
-    var token = String(unit || '').toLowerCase().trim();
+    var token = normalizeText(unit);
     if (!token) return '';
-    if (token === 'cms' || token === 'centimeter' || token === 'centimeters' || token === 'centimetre' || token === 'centimetres') return 'cm';
-    if (token === 'inch' || token === 'inches') return 'in';
+    if (token === 'cms' || token === 'centimeter' || token === 'centimeters' || token === 'centimetre' || token === 'centimetres' || token === 'سم') return 'cm';
+    if (token === 'inch' || token === 'inches' || token === 'بوصة' || token === 'بوصات' || token === 'انش' || token === 'إنش') return 'in';
     if (token === 'lb' || token === 'lbs') return 'lbs';
-    if (token === 'kilogram' || token === 'kilograms') return 'kg';
+    if (token === 'kilogram' || token === 'kilograms' || token === 'كجم' || token === 'كغ') return 'kg';
+    if (token === 'رطل' || token === 'ارطال' || token === 'أرطال') return 'lbs';
     return token;
   }
 
@@ -748,11 +1250,15 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     if (parsedRawValue && parsedRawValue.sizeLabel) comparableValues.push(parsedRawValue.sizeLabel);
     if (parsedRawText && parsedRawText.sizeLabel) comparableValues.push(parsedRawText.sizeLabel);
     if (parsedDisplayValue && parsedDisplayValue.sizeLabel) comparableValues.push(parsedDisplayValue.sizeLabel);
+    var selectedRole = parsedRawValue || parsedRawText || parsedDisplayValue || null;
 
     return {
       rawValue: rawValue,
       rawText: rawText,
       displayValue: displayValue,
+      roleKey: selectedRole && selectedRole.key ? selectedRole.key : '',
+      roleLabel: selectedRole && selectedRole.label ? selectedRole.label : '',
+      sizeLabel: selectedRole && selectedRole.sizeLabel ? selectedRole.sizeLabel : '',
       tokens: buildSizeMatchTokens(comparableValues),
     };
   }
@@ -761,11 +1267,11 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     var tokens = {};
 
     function addToken(value) {
-      var raw = String(value || '').trim();
+      var raw = normalizeLocalizedSizeValue(value);
       if (!raw) return;
 
       var normalized = normalizeText(raw);
-      var compact = normalized.replace(/[^a-z0-9]+/g, '');
+      var compact = getCompactToken(raw);
       if (normalized) tokens[normalized] = true;
       if (compact) tokens[compact] = true;
 
@@ -781,6 +1287,16 @@ function initMatchingSizeGuide(wrapper, sectionId) {
         tokens[numericMatch[1] + 'cm'] = true;
       }
 
+      var numericSequence = normalized.match(/\d+(?:[.,]\d+)?/g);
+      if (numericSequence && numericSequence.length) {
+        var canonicalSequence = numericSequence
+          .map(function (segment) {
+            return String(segment || '').replace(',', '.').replace(/\.0+$/, '');
+          })
+          .join('-');
+        if (canonicalSequence) tokens['n:' + canonicalSequence] = true;
+      }
+
       var adultMatch = raw.toUpperCase().match(/\b(XXXXL|XXXL|XXL|2XL|3XL|4XL|XL|XS|S|M|L)\b/);
       if (adultMatch) {
         var adultToken = adultMatch[1];
@@ -790,10 +1306,14 @@ function initMatchingSizeGuide(wrapper, sectionId) {
         tokens[adultToken.toLowerCase()] = true;
       }
 
+      if (normalized === 'س') tokens.s = true;
+      if (normalized === 'م') tokens.m = true;
+      if (normalized === 'ل') tokens.l = true;
+
       var formatted = formatGuideSizeLabel(raw);
       if (formatted && formatted !== raw) {
         var formattedNormalized = normalizeText(formatted);
-        var formattedCompact = formattedNormalized.replace(/[^a-z0-9]+/g, '');
+        var formattedCompact = getCompactToken(formatted);
         if (formattedNormalized) tokens[formattedNormalized] = true;
         if (formattedCompact) tokens[formattedCompact] = true;
       }
@@ -803,10 +1323,13 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     return tokens;
   }
 
-  function rowMatchesSelectedSize(rowLabel, selectedState) {
+  function rowMatchesSelectedSize(rowLabel, selectedState, rowRoleKey) {
     if (!selectedState || !selectedState.tokens) return false;
+    if (selectedState.roleKey && rowRoleKey && selectedState.roleKey !== rowRoleKey) return false;
     var rowValues = [rowLabel];
+    var parsedRow = parseRoleFromSizeLabel(rowLabel);
     rowValues.push(formatGuideSizeLabel(rowLabel));
+    if (parsedRow && parsedRow.sizeLabel) rowValues.push(parsedRow.sizeLabel);
     var rowTokens = buildSizeMatchTokens(rowValues);
 
     return Object.keys(rowTokens).some(function (token) {
@@ -821,18 +1344,26 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     if (groups.length >= 1) {
       groups.forEach(function (group) {
         group.rows.forEach(function (row) {
-          allRows.push(row);
+          allRows.push({
+            roleKey: group.key,
+            row: row,
+          });
         });
       });
     } else {
-      allRows = parsed.rows.slice();
+      allRows = parsed.rows.map(function (row) {
+        return {
+          roleKey: '',
+          row: row,
+        };
+      });
     }
 
-    var matchingRow = allRows.find(function (row) {
-      return rowMatchesSelectedSize(row[0], selectedState);
+    var matchingRow = allRows.find(function (entry) {
+      return rowMatchesSelectedSize(entry.row[0], selectedState, entry.roleKey);
     });
 
-    return matchingRow ? formatGuideSizeLabel(String(matchingRow[0] || '').trim()) : '';
+    return matchingRow ? formatGuideSizeLabel(String(matchingRow.row[0] || '').trim()) : '';
   }
 
   function formatGuideSizeLabel(value) {
@@ -875,7 +1406,7 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   function renderGuideUnitToggle(headers) {
     if (!hasUnitToggle(headers)) return '';
 
-    var toggleHtml = '<div class="matching-size-guide__unit-toggle" role="group" aria-label="Size chart units">';
+    var toggleHtml = '<div class="matching-size-guide__unit-toggle" role="group" aria-label="' + escapeHtml(unitToggleLabel) + '">';
     toggleHtml += '<button type="button" class="matching-size-guide__unit-button' + (selectedUnitSystem === 'metric' ? ' is-active' : '') + '" data-size-guide-unit="metric" aria-pressed="' + (selectedUnitSystem === 'metric') + '">cm</button>';
     toggleHtml += '<button type="button" class="matching-size-guide__unit-button' + (selectedUnitSystem === 'imperial' ? ' is-active' : '') + '" data-size-guide-unit="imperial" aria-pressed="' + (selectedUnitSystem === 'imperial') + '">in</button>';
     toggleHtml += '</div>';
@@ -889,7 +1420,7 @@ function initMatchingSizeGuide(wrapper, sectionId) {
       for (var groupIndex = 0; groupIndex < groups.length; groupIndex += 1) {
         var group = groups[groupIndex];
         for (var rowIndex = 0; rowIndex < group.rows.length; rowIndex += 1) {
-          if (!rowMatchesSelectedSize(group.rows[rowIndex][0], selectedState)) continue;
+          if (!rowMatchesSelectedSize(group.rows[rowIndex][0], selectedState, group.key)) continue;
           return {
             label: group.label || '',
             helper: group.helper || '',
@@ -952,7 +1483,7 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     var snapshotHtml = '<section class="matching-size-guide__snapshot-card" aria-live="polite" aria-atomic="true">';
     snapshotHtml += '<div class="matching-size-guide__toolbar">';
     snapshotHtml += '<div class="matching-size-guide__intro">';
-    snapshotHtml += '<p class="matching-size-guide__eyebrow">Your size details</p>';
+    snapshotHtml += '<p class="matching-size-guide__eyebrow">' + escapeHtml(snapshotLabel) + '</p>';
     snapshotHtml += '<p class="matching-size-guide__selected"><strong>' + escapeHtml(selectedGuideDisplay) + '</strong></p>';
     if (match.helper) {
       snapshotHtml += '<p class="matching-size-guide__helper matching-size-guide__helper--snapshot">' + escapeHtml(match.helper) + '</p>';
@@ -964,7 +1495,7 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     if (measurementHtml) {
       snapshotHtml += '<div class="matching-size-guide__metrics">' + measurementHtml + '</div>';
     } else {
-      snapshotHtml += '<p class="matching-size-guide__helper matching-size-guide__helper--snapshot">Open the full chart below to compare nearby sizes.</p>';
+      snapshotHtml += '<p class="matching-size-guide__helper matching-size-guide__helper--snapshot">' + escapeHtml(compareHintLabel) + '</p>';
     }
 
     snapshotHtml += '</section>';
@@ -972,7 +1503,7 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     snapshot.removeAttribute('hidden');
   }
 
-  var renderTableCard = function (headers, rows, title, helper, selectedState) {
+  var renderTableCard = function (headers, rows, title, helper, selectedState, roleKey) {
     return (
       '<article class="matching-size-guide__card">' +
       (title ? '<h3>' + escapeHtml(title) + '</h3>' : '') +
@@ -989,7 +1520,7 @@ function initMatchingSizeGuide(wrapper, sectionId) {
       '<tbody>' +
       rows
         .map(function (row) {
-          var isSelectedRow = rowMatchesSelectedSize(row[0], selectedState);
+          var isSelectedRow = rowMatchesSelectedSize(row[0], selectedState, roleKey);
           return (
             '<tr' + (isSelectedRow ? ' class="is-selected"' : '') + '>' +
             row
@@ -1034,12 +1565,12 @@ function initMatchingSizeGuide(wrapper, sectionId) {
           '<div class="matching-size-guide__grid">' +
           groups
             .map(function (group) {
-              return renderTableCard(group.headers, group.rows, group.label, group.helper, selectedState);
+              return renderTableCard(group.headers, group.rows, group.label, group.helper, selectedState, group.key);
             })
             .join('') +
           '</div>';
       } else {
-        content.innerHTML = renderTableCard(groups[0].headers, groups[0].rows, groups[0].label, groups[0].helper, selectedState);
+        content.innerHTML = renderTableCard(groups[0].headers, groups[0].rows, groups[0].label, groups[0].helper, selectedState, groups[0].key);
       }
     } else {
       if (summary) summary.textContent = compareLabel;
@@ -1123,53 +1654,14 @@ function parseRoleFromHeader(header) {
 
   if (!cleaned) return null;
 
-  if (/^dad shirt\b/i.test(cleaned)) {
-    return {
-      key: 'father',
-      label: 'Father',
-      measurement: cleaned.replace(/^dad shirt\b/i, '').trim(),
-    };
-  }
+  var parsed = parseRoleFromSizeLabel(cleaned);
+  if (!parsed || !parsed.sizeLabel) return null;
 
-  if (/^mom dress\b/i.test(cleaned)) {
-    return {
-      key: 'mother',
-      label: 'Mother',
-      measurement: cleaned.replace(/^mom dress\b/i, '').trim(),
-    };
-  }
-
-  if (/^son shirt\b/i.test(cleaned)) {
-    return {
-      key: 'boy',
-      label: 'Boy',
-      measurement: cleaned.replace(/^son shirt\b/i, '').trim(),
-    };
-  }
-
-  if (/^daughter dress\b/i.test(cleaned)) {
-    return {
-      key: 'girl',
-      label: 'Girl',
-      measurement: cleaned.replace(/^daughter dress\b/i, '').trim(),
-    };
-  }
-
-  for (var index = 0; index < ROLE_PATTERNS.length; index += 1) {
-    var rolePattern = ROLE_PATTERNS[index];
-    if (!rolePattern.regex.test(cleaned)) continue;
-
-    var measurement = cleaned.replace(rolePattern.regex, '').trim();
-    if (!measurement) return null;
-
-    return {
-      key: rolePattern.key,
-      label: rolePattern.label,
-      measurement: measurement,
-    };
-  }
-
-  return null;
+  return {
+    key: parsed.key,
+    label: parsed.label,
+    measurement: parsed.sizeLabel,
+  };
 }
 
 function buildSizeGuideGroups(parsed) {
@@ -1206,7 +1698,7 @@ function buildSizeGuideGroups(parsed) {
   if (groupedRows.length > 1) return groupedRows;
 
   var heightIndex = parsed.headers.findIndex(function (header) {
-    return normalizeText(header && header.label ? header.label : '').indexOf('height') === 0;
+    return isHeightLikeLabel(header && header.label ? header.label : '');
   });
   var groupedHeaders = {};
 
@@ -1498,7 +1990,7 @@ function isSizeGroup(group) {
     var label = group.querySelector('legend, label.form__label, .form__label');
     optionName = label ? label.textContent : '';
   }
-  return SIZE_LABEL_PATTERN.test(normalizeText(optionName));
+  return isSizeLikeLabel(optionName);
 }
 
 function getSelectedGroupValue(group) {

@@ -9,6 +9,9 @@
   assign grouped_size_guide_label = 'Compare family sizes'
   assign compare_size_guide_label = 'Compare all sizes'
   assign single_size_guide_label = 'Size guide & fit'
+  assign selected_size_guide_label = 'Your size details'
+  assign size_guide_compare_hint = 'Open the full chart below to compare nearby sizes.'
+  assign size_guide_unit_toggle_label = 'Size chart units'
   assign reviews_heading = 'Customer reviews'
   assign reviews_copy = 'See fit notes and family photos'
   assign photo_heading = 'Customer photo reviews'
@@ -26,6 +29,9 @@
       assign grouped_size_guide_label = 'Comparar tallas de la familia'
       assign compare_size_guide_label = 'Comparar todas las tallas'
       assign single_size_guide_label = 'Guia de tallas y ajuste'
+      assign selected_size_guide_label = 'Detalles de tu talla'
+      assign size_guide_compare_hint = 'Abre la tabla completa para comparar tallas cercanas.'
+      assign size_guide_unit_toggle_label = 'Unidades de la tabla de tallas'
       assign reviews_heading = 'Resenas de clientes'
       assign reviews_copy = 'Ver fotos familiares y comentarios de ajuste'
       assign photo_heading = 'Fotos de clientes'
@@ -41,6 +47,9 @@
       assign grouped_size_guide_label = 'Comparer les tailles de la famille'
       assign compare_size_guide_label = 'Comparer toutes les tailles'
       assign single_size_guide_label = 'Guide des tailles et coupe'
+      assign selected_size_guide_label = 'Détails de votre taille'
+      assign size_guide_compare_hint = 'Ouvrez le tableau complet ci-dessous pour comparer les tailles proches.'
+      assign size_guide_unit_toggle_label = 'Unités du guide des tailles'
       assign reviews_heading = 'Avis clients'
       assign reviews_copy = 'Voir des photos de familles et des notes de coupe'
       assign photo_heading = 'Photos clients'
@@ -56,6 +65,9 @@
       assign grouped_size_guide_label = 'قارني مقاسات العائلة'
       assign compare_size_guide_label = 'قارني كل المقاسات'
       assign single_size_guide_label = 'دليل المقاسات والملاءمة'
+      assign selected_size_guide_label = 'تفاصيل مقاسك'
+      assign size_guide_compare_hint = 'افتحي جدول المقاسات الكامل أدناه لمقارنة المقاسات القريبة.'
+      assign size_guide_unit_toggle_label = 'وحدات جدول المقاسات'
       assign reviews_heading = 'آراء العملاء'
       assign reviews_copy = 'شاهدي صور العائلات وملاحظات المقاس'
       assign photo_heading = 'صور العملاء'
@@ -78,6 +90,9 @@
   data-size-guide-single-label="{{ single_size_guide_label | escape }}"
   data-size-guide-grouped-label="{{ grouped_size_guide_label | escape }}"
   data-size-guide-compare-label="{{ compare_size_guide_label | escape }}"
+  data-size-guide-selected-label="{{ selected_size_guide_label | escape }}"
+  data-size-guide-compare-hint="{{ size_guide_compare_hint | escape }}"
+  data-size-guide-unit-toggle-label="{{ size_guide_unit_toggle_label | escape }}"
 >
   <section class="product-matching-set" data-matching-set-builder hidden>
     <div class="product-matching-set__header">
