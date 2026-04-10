@@ -14718,3 +14718,21 @@ Verification:
 
 Notes:
 - `shopify theme check --fail-level suggestion` still reports broader pre-existing theme warnings and translation errors outside this 20-file batch, so it is not a clean release gate for this sync.
+
+### Task: Prevent sticky PDP size-chart column from showing scrolled text through selected row
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-pdp-size-chart-sticky-column-opaque-fix
+Changes:
+- `assets/component-product-desktop-ux.css`
+  - Added `background-clip: padding-box` to the sticky first-column cells in the matching size-guide table.
+  - Changed the selected sticky first-column background from a semi-transparent tan to an opaque fill so horizontally scrolled measurement text no longer bleeds through the frozen `Size` cell.
+
+Why:
+- On PDP size guides with horizontally scrollable tables, the selected row's frozen first column used a translucent background.
+- When shoppers scrolled sideways, text from the adjacent measurement columns stayed visible underneath that sticky selected cell, making the highlight look broken.
+
+Verification:
+- `git diff --check -- assets/component-product-desktop-ux.css ops/AGENT_WORKLOG.md`
+- Headless local preview check with Playwright against `http://127.0.0.1:9292/products/happy-flower-family-matching-t-shirts-colorful-floral-print-for-parents-kids`
+  - Selected `Child 3-4 Years`, opened the size guide, scrolled the table horizontally, and captured `/tmp/dlm-size-guide-scroll-after.png`.
+  - The sticky `Size` cell for the highlighted row remained visually solid after scrolling instead of showing the next column through it.
