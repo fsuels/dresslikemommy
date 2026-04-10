@@ -2522,6 +2522,92 @@
         "generic_processing_error": {
           "title": "Det oppsto et problem med behandlingen av bestillingen din",
           "body": "Du har ikke blitt belastet. Prøv igjen eller bruk en annen betalingsmåte."
+        },
+        "payment_method_not_available_with_payment_terms": "Betalingsmetoden du valgte er ikke lenger tilgjengelig fordi betalingen for denne bestillingen nå er på {{paymentTerms}} vilkår",
+        "payment_method_not_available_with_fulfillment_terms": "Betalingsmåten du valgte er ikke lenger tilgjengelig fordi betalingen for denne bestillingen nå forfaller ved levering",
+        "payment_method_not_available_with_fixed_terms": "Betalingsmåten du valgte er ikke lenger tilgjengelig fordi betalingen for denne bestillingen forfaller senere",
+        "payment_method_not_available_with_review_requirement": "Betalingsmåten du valgte er ikke lenger tilgjengelig fordi betalingen forfaller når bestillingen din er bekreftet.",
+        "contact_information": {
+          "title": "Kontaktinformasjonen er ugyldig",
+          "header": "For å oppdatere informasjonen din, {{emailLink}}.",
+          "email_link": "kontakt oss"
+        },
+        "validation_errors_banner": {
+          "heading": {
+            "one": "Det er {{count}} feil:",
+            "other": "Det er {{count}} feil:"
+          },
+          "section_label": {
+            "delivery": "Levering",
+            "contact": "Kontakt",
+            "payment": "Betaling",
+            "billing": "Fakturering"
+          },
+          "errors_in_section": {
+            "one": "{{count}} feil i {{section}}",
+            "other": "{{count}} feil i {{section}}"
+          }
+        }
+      },
+      "review_address_modal": {
+        "title": "Vurderingsadresse",
+        "subtitle": {
+          "one": "Denne bestillingen vil bli sendt til adressen oppgitt av {{merchant}}.",
+          "other": "Denne bestillingen vil bli sendt til en adresse oppgitt av {{merchant}}. Velg en leveringsadresse."
+        },
+        "subtitle_no_match": "Denne adressen stemmer ikke overens med noen av dine lagrede adresser.",
+        "subtitle_must_use": "Bestillingen din vil bli sendt til denne adressen.",
+        "continue": "Fortsett med denne adressen",
+        "use_saved_address": "Bruk en annen adresse",
+        "return_to_cart": "Gå tilbake til handlekurven"
+      },
+      "marketplaces": {
+        "legal_notice": {
+          "legal_text": "Vurdering",
+          "link_label": "{{partnerDisplayName}} Vilkår og betingelser"
+        }
+      },
+      "online_store_chat": {
+        "title": "Spørsmål? Snakk med oss"
+      },
+      "local_pickup": {
+        "title": "Sted",
+        "location_address_search_label": "Adresse",
+        "location_address_search_placeholder": "%{postal_code_label} eller adresse",
+        "location_closest": "Nærmeste sted med varen din",
+        "location_information": {
+          "one": "Det er %{count} sted med lager i nærheten av deg",
+          "other": "Det er %{count} steder med lager i nærheten av deg"
+        },
+        "location_information_far_away": {
+          "one": "Det er %{count} sted med varen din",
+          "other": "Det finnes %{count} steder med varen din"
+        },
+        "location_nearby": {
+          "one": "Det er %{count} nærliggende sted med varen din",
+          "other": "Det finnes %{count} nærliggende steder med varen din"
+        },
+        "location_nearby_short": {
+          "one": "%{count} nærliggende sted med varen din",
+          "other": "%{count} nærliggende steder med varen din"
+        },
+        "location_far_away": {
+          "one": "%{count} sted med varen din",
+          "other": "%{count} steder med varen din"
+        },
+        "toggle_location": "Endre sted",
+        "toggle_more_locations": {
+          "one": "%{count} flere steder",
+          "other": "%{count} flere steder"
+        },
+        "toggle_multiple_locations": "%{count}+ flere steder",
+        "or": "ELLER",
+        "cancel": "Avbryt",
+        "your_location": "din plassering",
+        "search_button": "Finn butikker",
+        "no_stores_found": "Ingen butikker funnet",
+        "all_stores_far_away": {
+          "title": "De nærmeste stedene er mer enn %{distance} unna"
         }
       }
     }
