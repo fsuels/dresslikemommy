@@ -965,6 +965,15 @@ a {
    MOBILE NAVIGATION — REFINED
    ================================================ */
 @media screen and (max-width: 989px) {
+  html.overflow-hidden-mobile,
+  html.overflow-hidden-tablet,
+  body.overflow-hidden-mobile,
+  body.overflow-hidden-tablet {
+    height: 100%;
+    overflow: hidden !important;
+    overscroll-behavior: none;
+  }
+
   .section-header.menu-open {
     z-index: 1100 !important;
   }
@@ -992,6 +1001,13 @@ a {
 
   .menu-drawer__navigation {
     padding: 0 !important;
+  }
+
+  .menu-drawer,
+  .menu-drawer__navigation-container,
+  .menu-drawer__submenu,
+  .menu-drawer__inner-submenu {
+    overscroll-behavior: contain;
   }
 
   .menu-drawer__navigation > .menu-drawer__menu {
@@ -1032,7 +1048,7 @@ a {
   }
 
   summary.menu-drawer__menu-item--top-level {
-    padding-right: 5.3rem !important;
+    padding-right: 1.8rem !important;
   }
 
   .menu-drawer__menu-item--top-level:hover,
@@ -1046,30 +1062,6 @@ a {
 
   .menu-drawer__menu-item--parent > .icon-arrow {
     display: none !important;
-  }
-
-  .menu-drawer__menu-item--parent::after {
-    content: '\203A';
-    position: absolute !important;
-    right: 1.35rem !important;
-    top: 50% !important;
-    display: grid;
-    place-items: center;
-    width: 2.6rem;
-    height: 2.6rem;
-    border-radius: 999px;
-    background: var(--mobile-menu-accent) !important;
-    color: var(--mobile-menu-text) !important;
-    font-size: 2rem;
-    font-weight: 500;
-    line-height: 1;
-    transform: translateY(-50%) !important;
-    box-shadow: inset 0 0 0 1px rgba(91, 65, 50, 0.06), 0 0.5rem 1.2rem rgba(91, 65, 50, 0.08);
-  }
-
-  .menu-drawer__main-item--parent > details[open] > .menu-drawer__menu-item--top-level::after {
-    background: var(--mobile-menu-text) !important;
-    color: #ffffff !important;
   }
 
   .menu-drawer__submenu {
@@ -1146,16 +1138,6 @@ a {
     border: 1px solid var(--mobile-menu-card-border);
     border-radius: 2.2rem;
     box-shadow: 0 1.4rem 3rem rgba(76, 53, 40, 0.08);
-  }
-
-  .menu-drawer__utility-links::before {
-    content: '';
-    display: block;
-    width: 4.2rem;
-    height: 0.25rem;
-    margin: 0 auto 1.4rem;
-    border-radius: 999px;
-    background: linear-gradient(90deg, rgba(201, 139, 106, 0.15), rgba(201, 139, 106, 0.75), rgba(201, 139, 106, 0.15));
   }
 
   .menu-drawer__account {

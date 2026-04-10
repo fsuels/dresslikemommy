@@ -14870,3 +14870,21 @@ Notes:
   - `/tmp/dlm-mobile-menu-main-clean.png`
   - `/tmp/dlm-mobile-menu-family-clean.png`
   - `/tmp/dlm-mobile-menu-footer-clean.png`
+
+Follow-up refinement:
+- Removed the decorative chevron badge from the top-level `Family Matching` row so it now matches the other first-level mobile menu items exactly.
+- Removed the decorative accent line above the `Log in` card in the mobile drawer utility section.
+- Rechecked the local preview in browser after the change and captured:
+  - `/tmp/dlm-menu-after-top.png`
+  - `/tmp/dlm-menu-after-footer.png`
+
+Follow-up refinement:
+- Locked the root document scroll while the mobile menu drawer is open by mirroring the drawer's `overflow-hidden-*` breakpoint class onto `<html>`, not just `<body>`.
+- Added mobile drawer overscroll containment so submenu gestures stay trapped inside the menu surface instead of chaining to the page below.
+- Updated the manual mobile force-close path to remove the mirrored `<html>` lock class as well.
+- Browser recheck in local preview with the `Family Matching` submenu open:
+  - before fix, Playwright wheel scroll changed `window.scrollY` to `1600` and revealed homepage product cards underneath
+  - after fix, the same wheel interaction kept `window.scrollY` at `0`
+  - screenshots:
+    - `/tmp/dlm-family-submenu-lock-before.png`
+    - `/tmp/dlm-family-submenu-lock-after.png`

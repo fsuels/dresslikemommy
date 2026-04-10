@@ -104,8 +104,14 @@
     const breakpoint = headerDrawer?.dataset?.breakpoint;
     if (breakpoint) {
       document.body.classList.remove(`overflow-hidden-${breakpoint}`);
+      document.documentElement.classList.remove(`overflow-hidden-${breakpoint}`);
     }
     document.body.classList.remove('overflow-hidden-mobile', 'overflow-hidden-tablet', 'overflow-hidden-desktop');
+    document.documentElement.classList.remove(
+      'overflow-hidden-mobile',
+      'overflow-hidden-tablet',
+      'overflow-hidden-desktop'
+    );
     document.body.classList.remove('overflow-hidden');
     document.querySelector('.section-header')?.classList.remove('menu-open');
 
