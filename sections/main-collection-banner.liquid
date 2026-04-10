@@ -28,13 +28,10 @@
     assign collection_display_title = collection_seo_display_title
   endif
 
-  assign collection_image_alt = collection.image.alt | default: '' | strip
-  assign collection_image_alt_downcase = collection_image_alt | downcase
-  if collection_image_alt == blank
-    assign collection_image_alt = collection_display_title | default: collection.title
-  elsif collection_image_alt_downcase == 'image' or collection_image_alt_downcase == 'photo' or collection_image_alt_downcase contains 'collection image' or collection_image_alt_downcase contains 'banner image' or collection_image_alt_downcase contains 'hero image'
-    assign collection_image_alt = collection_display_title | default: collection.title
-  endif
+  capture collection_image_alt
+    render 'product-image-alt', media: collection.image, collection: collection, fallback_title: collection_display_title
+  endcapture
+  assign collection_image_alt = collection_image_alt | strip
 
   if section.settings.show_collection_description
     if collection_seo_hero_summary != blank

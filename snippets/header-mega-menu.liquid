@@ -18,8 +18,9 @@
         if link.url contains '/blogs/'
           assign nav_link_title = 'Style Journal'
         endif
-        if link.handle == 'family-matching' or link.handle == 'matching-outfits' or normalized_link_title == 'family matching'
+        if link.handle == 'family-matching' or link.handle == 'matching-outfits' or link.handle == 'family-matching-outfits' or normalized_link_title == 'family matching' or normalized_link_title == 'family matching outfits'
           assign use_family_visual_mega_menu = true
+          assign nav_link_title = 'Family Matching'
         endif
       -%}
       <li>
@@ -54,7 +55,7 @@
                         <p class="mega-menu__family-kicker">Start Here</p>
                         <p class="mega-menu__family-title">Pick a category and shop the best sellers first</p>
                         <p class="mega-menu__family-copy">
-                          Vacation florals, matching dresses, and easy family sets, organized to shorten the path to purchase.
+                          Start with matching family vacation outfits, family matching swimsuits, or mother daughter wedding guest dresses, then narrow into the category that fits the occasion.
                         </p>
                       </div>
 

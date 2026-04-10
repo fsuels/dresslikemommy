@@ -14570,3 +14570,151 @@ Why:
 
 Verification:
 - `git diff --check -- assets/section-main-product.css ops/AGENT_WORKLOG.md`
+
+### Task: Homepage navigation adjustments: hybrid routing for hero and section headers
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-homepage-nav-hybrid-routing
+Changes:
+- `sections/hero-banner.liquid`
+  - Added a full-surface hero collection link that sits under the CTA buttons so the banner surface itself routes to the primary collection without breaking the existing button behavior.
+- `sections/category-icons.liquid`
+  - Added explicit heading link settings for the grouped `Shop by Category` and `Shop by Occasion` headers so the homepage can point each heading at a configured collection instead of inferring from the first tile.
+- `sections/curated-product-grid.liquid`
+  - Linked the section title to the same collection destination already used by the CTA button, keeping the curated grid header click on the collection path while the product cards continue to point to PDPs.
+- `templates/index.json`
+  - Configured the homepage collection targets for the grouped category and occasion headings.
+
+Verification:
+- `git diff --check -- sections/hero-banner.liquid sections/category-icons.liquid sections/curated-product-grid.liquid templates/index.json ops/AGENT_WORKLOG.md`
+
+Notes:
+- Preserved the existing hybrid behavior requested in the task: category tiles remain collection links, and spotlight media/title remain PDP links.
+
+### Task: Add above-fold PDP "View similar styles" utility beside back-to-results
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-pdp-above-fold-similar-styles-link
+Changes:
+- `snippets/breadcrumbs.liquid`
+  - Added a direct `View similar styles` collection link beside the existing history-aware `Back to ...` control in the PDP breadcrumb handoff.
+  - Resolved the browse target from the current collection when available, then fell back through family-set context, subcategory, category, and finally the largest non-empty product collection.
+- `assets/section-main-product.css`
+  - Styled the new browse link to sit beside the back link on desktop and stack cleanly underneath it on mobile without restoring the hidden mobile breadcrumb trail.
+- `snippets/buy-box-similar-styles.liquid`
+  - Aligned the later recommendations section to use the same subcategory/category fallback collections so the above-fold CTA and the lower similar-styles section stay in sync.
+
+Why:
+- The PDP already preserved browsing history with `Back to ...`, but it did not give shoppers a direct collection browse path above the fold on either desktop or mobile.
+- Keeping the above-fold CTA and the later similar-styles section on the same collection target avoids confusing mismatches when a product is reached outside a collection context.
+
+Verification:
+- `git diff --check -- snippets/breadcrumbs.liquid snippets/buy-box-similar-styles.liquid assets/section-main-product.css ops/AGENT_WORKLOG.md`
+- Attempted local preview HTML verification via `curl` against `http://127.0.0.1:9292/products/blue-tropical-floral-family-matching-beach-dress-and-shirt-set?variant=43740400746593`, but the preview responded with HTTP 500 because the active local preview session is currently failing to upload unrelated theme files (`snippets/card-collection.liquid`, `sections/main-collection-banner.liquid`, `snippets/collection-merchandising-callout.liquid`, and `snippets/header-mega-menu.liquid`).
+
+Notes:
+- The breadcrumb handoff remains the only above-fold location that works consistently for both desktop and the current gallery-first mobile PDP layout, so the new browse CTA lives there rather than inside the buy box.
+
+### Task: SEO traffic cleanup for family taxonomy, utility-page indexing, alt text, and stale shipping promises
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-seo-traffic-cleanup-family-taxonomy-utility-pages
+Changes:
+- `snippets/meta-tags.liquid`
+  - Added `noindex,follow` rules for low-value utility page handles: `wish-list`, `popular-searches`, `search-results-page`, and `rewind-menu-backup-page`.
+  - Added a path fallback for any localized or nested `/pages/search-results/...` URL so those indexed internal-search landing pages are excluded even when the base page handle is not obvious from the path alone.
+  - Added `noindex,follow` for archived duplicate articles whose handles begin with `arch-` or whose titles include `[Archived duplicate]`.
+- Family matching taxonomy and internal-link alignment
+  - Normalized the family hub preference across collection breadcrumbs, collection recovery, the collection template, and family navigation components so the theme now prefers `/collections/matching-outfits`, falls back to `/collections/family-matching-outfits`, and only uses `/collections/new-women-outfits` as a legacy alias.
+  - Updated visible family navigation labels and intro copy to consistently present the shopper-facing intent as `Family Matching` / `Family Matching Outfits`.
+  - Rewrote homepage and collection internal-link copy around clearer shopper intents such as `matching family vacation outfits`, `matching beach swimsuits`, `mother daughter wedding guest dresses`, and `daddy and me shirts`.
+- Image alt text cleanup
+  - Routed collection cards, collection banners, merchandising callouts, and family mega-menu cards through `snippets/product-image-alt.liquid` so collection-linked imagery stops reusing generic placeholders or obviously wrong swim-language when the current context is dresses, sets, or another category.
+- Remote Shopify content cleanup
+  - Used the operator-managed Shopify Admin API credentials from `~/.config/dresslikemommy/shopify-admin.env` in this shell to bulk replace outdated `free shipping on orders over $50` / `free shipping over $50` blog body copy with `free shipping on all orders`.
+  - The remote update pass reported `Updated 86 articles.` and `Remaining affected articles: 0`.
+
+Why:
+- Search and navigation signals were split between a legacy family collection handle and the actual family-matching intent shoppers see on the site. Unifying the visible labels, breadcrumbs, and internal links reduces ambiguity for both users and crawlers.
+- Indexed utility pages such as wish lists and internal-search landing pages add crawl noise without adding ranking value.
+- Generic or incorrect alt text hurts both accessibility and image-search context, especially when linked images act as anchor text.
+- The outdated `$50` shipping promise conflicted with current sitewide messaging and risked trust loss from organic landings on older blog posts.
+
+Verification:
+- Live checks before the theme patch confirmed the utility pages were indexable:
+  - `curl -I https://www.dresslikemommy.com/pages/wish-list`
+  - `curl -I https://www.dresslikemommy.com/pages/popular-searches`
+- Live checks confirmed the preferred family hub already resolves at `/collections/matching-outfits`, while `/collections/family-matching-outfits` redirects there and `/collections/new-women-outfits` still exists as a legacy collection URL.
+- Remote Shopify article cleanup completed with:
+  - `Updated 86 articles.`
+  - `Remaining affected articles: 0`
+
+Follow-up:
+- The current repo already emits Product and Breadcrumb JSON-LD, including shipping and return markup in `snippets/jsonld-seo.liquid`, but I did not complete a formal Google Rich Results Test pass on the live PDP output in this session.
+- `shipping-and-delivery`, `faqs`, `terms-and-conditions`, `privacy-policy`, and the shop-level meta description still show broader policy drift in the live Shopify content map. Those should be reviewed with the merchant before editing because they include support, legal, and policy claims beyond the low-risk shipping-message cleanup completed here.
+
+### Task: Restore local Shopify preview uploads after Liquid parser regressions
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-liquid-parser-regression-upload-fix
+Changes:
+- `snippets/card-collection.liquid`
+  - Collapsed the new `render 'product-image-alt'` calls inside the top-level `{% liquid %}` block onto single statement lines so Shopify no longer treats the following `product:` / `media:` lines as unknown tags during upload.
+- `sections/main-collection-banner.liquid`
+  - Rewrote the captured `product-image-alt` render as a single-line statement inside the `{% liquid %}` block for the collection hero image alt text.
+- `snippets/collection-merchandising-callout.liquid`
+  - Rewrote the captured `product-image-alt` render as a single-line statement inside the `{% liquid %}` block for the callout media alt text.
+- `snippets/header-mega-menu.liquid`
+  - Collapsed the multi-line family-menu `if ... or ...` condition into one Liquid statement line so Shopify no longer parses `or` as a standalone tag inside the `{% liquid %}` block.
+
+Why:
+- The local `shopify theme dev` preview was rejecting the theme upload with parser errors like `Unknown tag 'product'`, `Unknown tag 'media'`, and `Unknown tag 'or'`.
+- In Shopify’s `{% liquid %}` blocks, each newline starts a new statement, so splitting `render` arguments or an `if ... or ...` condition across lines breaks parsing even though the same formatting works in regular `{% render %}` / `{% if %}` tags.
+
+Verification:
+- `git diff --check -- snippets/card-collection.liquid sections/main-collection-banner.liquid snippets/collection-merchandising-callout.liquid snippets/header-mega-menu.liquid`
+- Confirmed the local preview server was the active Shopify CLI session:
+  - `ps -fp 42569`
+- Confirmed `http://127.0.0.1:9292/collections/matching-couples-t-shirts` was serving updated markup from the previously failing files, including:
+  - `Build a matching tee set from $30`
+  - `Start with matching family vacation outfits, family matching swimsuits, or mother daughter wedding guest dresses...`
+
+Notes:
+- The preview server on `127.0.0.1:9292` stayed up throughout the fix, so no restart was needed; the running `shopify theme dev` process picked up the corrected files automatically.
+
+### Task: PDP size-guide snapshot fix for boy/girl selections
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-pdp-size-guide-snapshot-boy-girl-fix
+Changes:
+- `assets/product-desktop-ux.js`
+  - Reworked the matching size-guide row resolver so the PDP snapshot can match shopper selections like `Boy 4T`, `Girl 3-4T`, and `Girl 5-6T` against manufacturer chart rows like `4T/110`, `6T/130`, and `24M/90`.
+  - Added comparable-size parsing for toddler ranges, month-based rows, adult letter sizes, and manufacturer height tokens, then used that resolver for both the snapshot card and the highlighted row in the full chart.
+  - Added nearest-row fallback behavior when the chart only provides the closest manufacturer row, so larger kid sizes such as `Girl 11-12T` now resolve to the nearest available chart row instead of leaving the snapshot empty.
+
+Why:
+- The live PDP rendered the grouped family size tables, but the `Your size details` snapshot stayed hidden because the dropdown labels and chart rows used different size formats.
+- Matching the selected role/size to the correct manufacturer row restores the automatic measurement panel shoppers expect directly under the size selector.
+
+Verification:
+- `node --check assets/product-desktop-ux.js`
+- Headless browser verification against the live PDP DOM with the patched local script injected:
+  - Initial `Girl 3-4T` selection produced a visible snapshot and highlighted `4T/110`.
+  - Switching to `T-Shirt` + `Boy 4T` produced a visible snapshot and highlighted `4T/110`.
+  - Switching to `Dress` + `Girl 5-6T` produced a visible snapshot and highlighted `6T/130`.
+  - `Girl 11-12T` fell back to the closest available chart row `10T/150` instead of staying blank.
+
+Follow-up:
+- This fix is currently local in the theme repo. The live storefront will not reflect it until the updated theme asset is deployed/published through the normal Shopify theme workflow.
+
+### Task: Sync 20-file CRO/SEO/PDP batch to main
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-sync-20-file-main-batch
+Changes:
+- Grouped the current 20 modified theme files into a single `main` sync so the homepage merchandising, collection SEO/navigation, PDP similar-styles utility, Liquid parser fixes, and PDP size-guide snapshot improvements ship together.
+- Left the task-by-task entries above as the canonical detail for each sub-change in this batch.
+
+Why:
+- The requested sync is a coordinated storefront polish pass, and splitting these related changes across multiple pushes would make the merchandising, navigation, and PDP improvements harder to validate together.
+
+Verification:
+- `git diff --check`
+- `node --check assets/product-desktop-ux.js`
+
+Notes:
+- `shopify theme check --fail-level suggestion` still reports broader pre-existing theme warnings and translation errors outside this 20-file batch, so it is not a clean release gate for this sync.

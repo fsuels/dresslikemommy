@@ -89,6 +89,34 @@
     assign should_noindex = true
   endif
 
+  if request.page_type == 'page' and page != blank
+    assign utility_page_handles = 'wish-list,popular-searches,search-results-page,rewind-menu-backup-page' | split: ','
+    assign normalized_page_handle = page.handle | default: '' | strip
+    for utility_page_handle in utility_page_handles
+      assign utility_page_handle = utility_page_handle | strip
+      if utility_page_handle == normalized_page_handle
+        assign should_noindex = true
+        assign noindex_follow = true
+        break
+      endif
+    endfor
+  endif
+
+  assign current_request_path = request.path | default: request.url | default: ''
+  if current_request_path contains '/pages/search-results/'
+    assign should_noindex = true
+    assign noindex_follow = true
+  endif
+
+  if request.page_type == 'article' and article != blank
+    assign normalized_article_handle = article.handle | default: '' | strip | downcase
+    assign normalized_article_title = article.title | default: '' | strip | downcase
+    if normalized_article_handle contains 'arch-' or normalized_article_title contains '[archived duplicate]'
+      assign should_noindex = true
+      assign noindex_follow = true
+    endif
+  endif
+
   if parameterized_product_noindex
     assign should_noindex = true
     assign noindex_follow = true

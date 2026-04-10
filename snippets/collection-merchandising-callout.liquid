@@ -9,6 +9,7 @@
   assign secondary_label = ''
   assign secondary_url = ''
   assign callout_media = blank
+  assign callout_media_source_product = blank
   assign callout_media_alt = collection.title | default: 'Matching collection'
 
   case collection_handle
@@ -32,10 +33,15 @@
 
   if collection.image != blank
     assign callout_media = collection.image
-    assign callout_media_alt = collection.image.alt | default: callout_media_alt
   elsif collection.products_count > 0 and collection.products.first.featured_media != blank
     assign callout_media = collection.products.first.featured_media.preview_image
-    assign callout_media_alt = collection.products.first.featured_media.alt | default: callout_media_alt
+    assign callout_media_source_product = collection.products.first
+  endif
+  if callout_media != blank
+    capture callout_media_alt
+      render 'product-image-alt', product: callout_media_source_product, media: callout_media, collection: collection, fallback_title: callout_media_alt
+    endcapture
+    assign callout_media_alt = callout_media_alt | strip
   endif
 -%}
 

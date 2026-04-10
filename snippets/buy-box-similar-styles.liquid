@@ -14,6 +14,10 @@
   assign product_collection_handles = product.collections | map: 'handle' | join: '|'
   assign product_subcategory = product.metafields.custom.subcategory | default: blank
   assign product_subcategory_handle = product_subcategory | handleize
+  assign subcategory_collection = collections[product_subcategory_handle]
+  assign product_category1 = product.metafields.custom.category1 | default: blank
+  assign product_category1_handle = product_category1 | handleize
+  assign category1_collection = collections[product_category1_handle]
   assign has_family_sets_context = false
   if product_collection_handles contains 'family-sets' or product_subcategory_handle == 'family-sets'
     assign has_family_sets_context = true
@@ -30,6 +34,10 @@
   if similar_collection == blank or similar_collection.all_products_count < 5
     if has_family_sets_context and family_sets_collection != blank
       assign similar_collection = family_sets_collection
+    elsif subcategory_collection != blank and subcategory_collection.all_products_count > 0
+      assign similar_collection = subcategory_collection
+    elsif category1_collection != blank and category1_collection.all_products_count > 0
+      assign similar_collection = category1_collection
     else
       assign fallback_collection = blank
       assign fallback_collection_count = 0

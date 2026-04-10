@@ -60,8 +60,14 @@
   elsif menu_link_url contains '/collections/new-women-outfits'
     assign card_asset = 'family-mega-menu-promo.jpg'
     assign fallback_collection = collections['matching-outfits']
+    if fallback_collection == blank
+      assign fallback_collection = collections['family-matching-outfits']
+    endif
+    if fallback_collection != blank
+      assign menu_link_url = fallback_collection.url
+    endif
     assign menu_link_display_title = 'Family Matching'
-    assign card_description = 'Vacation-ready outfits, matching dresses, and fast-to-shop family sets in one polished destination.'
+    assign card_description = 'Start with family matching outfits, then branch into matching family vacation outfits, matching beach swimsuits, or daddy and me shirts.'
   endif
 
   if custom_product_handle != blank
@@ -102,6 +108,9 @@
       assign fallback_collection = collections['matching-outfits']
       if fallback_collection == blank
         assign fallback_collection = collections['family-matching-outfits']
+      endif
+      if fallback_collection != blank
+        assign menu_link_url = fallback_collection.url
       endif
   endcase
 

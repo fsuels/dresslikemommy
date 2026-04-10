@@ -8,9 +8,18 @@
   {% assign subcategory_handle = subcategory_label | handleize %}
   {% assign subcategory_collection = collections[subcategory_handle] %}
   {% assign subcategory_display_label = subcategory_label %}
+  {% assign product_collection_handles = product.collections | map: 'handle' | join: '|' %}
+  {% assign has_family_sets_context = false %}
+  {% if product_collection_handles contains 'family-sets' or subcategory_handle == 'family-sets' %}
+    {% assign has_family_sets_context = true %}
+  {% endif %}
+  {% assign family_sets_collection = collections['family-sets'] %}
   {% assign back_to_results_url = blank %}
   {% assign back_to_results_label = 'Back to results' %}
   {% assign back_to_results_context = blank %}
+  {% assign similar_styles_collection = collection %}
+  {% assign similar_styles_label = 'View similar styles' %}
+  {% assign similar_styles_aria_label = similar_styles_label %}
   {% if collection != blank %}
     {% assign back_to_results_url = collection.url %}
   {% elsif subcategory_collection != blank %}
@@ -41,6 +50,34 @@
     {% assign back_to_results_label = 'Back to ' | append: back_to_results_context %}
   {% endif %}
 
+  {% if similar_styles_collection == blank or similar_styles_collection.all_products_count < 5 %}
+    {% if has_family_sets_context and family_sets_collection != blank %}
+      {% assign similar_styles_collection = family_sets_collection %}
+    {% elsif subcategory_collection != blank and subcategory_collection.all_products_count > 0 %}
+      {% assign similar_styles_collection = subcategory_collection %}
+    {% elsif category1_collection != blank and category1_collection.all_products_count > 0 %}
+      {% assign similar_styles_collection = category1_collection %}
+    {% else %}
+      {% assign fallback_collection = blank %}
+      {% assign fallback_collection_count = 0 %}
+      {% for product_collection in product.collections %}
+        {% if product_collection.handle == 'all' or product_collection.all_products_count == 0 %}
+          {% continue %}
+        {% endif %}
+
+        {% if fallback_collection == blank or product_collection.all_products_count > fallback_collection_count %}
+          {% assign fallback_collection = product_collection %}
+          {% assign fallback_collection_count = product_collection.all_products_count %}
+        {% endif %}
+      {% endfor %}
+      {% assign similar_styles_collection = fallback_collection %}
+    {% endif %}
+  {% endif %}
+
+  {% if similar_styles_collection != blank and similar_styles_collection.title != blank %}
+    {% assign similar_styles_aria_label = similar_styles_label | append: ' in ' | append: similar_styles_collection.title %}
+  {% endif %}
+
   <div class="product-breadcrumb__handoff">
     <p class="product-breadcrumb__eyebrow">Continue shopping</p>
     <a
@@ -55,6 +92,16 @@
     >
       <span data-back-to-results-label>{{ back_to_results_label }}</span>
     </a>
+    {% if similar_styles_collection != blank %}
+      <a
+        href="{{ similar_styles_collection.url }}"
+        class="product-breadcrumb__browse-link"
+        aria-label="{{ similar_styles_aria_label | escape }}"
+        title="{{ similar_styles_aria_label | escape }}"
+      >
+        {{ similar_styles_label }}
+      </a>
+    {% endif %}
   </div>
 
   <nav class="breadcrumb product-breadcrumb product-breadcrumb__trail" role="navigation" aria-label="breadcrumbs">

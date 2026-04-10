@@ -1260,6 +1260,8 @@ function initMatchingSizeGuide(wrapper, sectionId) {
       roleLabel: selectedRole && selectedRole.label ? selectedRole.label : '',
       sizeLabel: selectedRole && selectedRole.sizeLabel ? selectedRole.sizeLabel : '',
       tokens: buildSizeMatchTokens(comparableValues),
+      comparableValues: comparableValues,
+      comparable: getPrimaryComparableSize(comparableValues),
     };
   }
 
@@ -1310,6 +1312,21 @@ function initMatchingSizeGuide(wrapper, sectionId) {
       if (normalized === 'م') tokens.m = true;
       if (normalized === 'ل') tokens.l = true;
 
+      var comparable = parseComparableSize(raw);
+      if (comparable) {
+        if (comparable.adultToken) tokens['adult:' + comparable.adultToken] = true;
+        if (comparable.monthToken) tokens['month:' + comparable.monthToken] = true;
+        if (comparable.toddlerToken) tokens['toddler:' + comparable.toddlerToken] = true;
+        if (comparable.ageMax !== null) tokens['age-max:' + comparable.ageMax] = true;
+        if (comparable.ageMin !== null && comparable.ageMax !== null) {
+          tokens['age-range:' + comparable.ageMin + '-' + comparable.ageMax] = true;
+        }
+        if (comparable.heightMax !== null) tokens['height-max:' + comparable.heightMax] = true;
+        if (comparable.heightMin !== null && comparable.heightMax !== null) {
+          tokens['height-range:' + comparable.heightMin + '-' + comparable.heightMax] = true;
+        }
+      }
+
       var formatted = formatGuideSizeLabel(raw);
       if (formatted && formatted !== raw) {
         var formattedNormalized = normalizeText(formatted);
@@ -1323,47 +1340,244 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     return tokens;
   }
 
-  function rowMatchesSelectedSize(rowLabel, selectedState, rowRoleKey) {
-    if (!selectedState || !selectedState.tokens) return false;
-    if (selectedState.roleKey && rowRoleKey && selectedState.roleKey !== rowRoleKey) return false;
+  function extractComparableAdultToken(value) {
+    var match = String(value || '').toUpperCase().match(/\b(XXXXL|XXXL|XXL|2XL|3XL|4XL|XL|XS|S|M|L)\b/);
+    if (!match) return '';
+    if (match[1] === 'XXL') return '2xl';
+    if (match[1] === 'XXXL') return '3xl';
+    if (match[1] === 'XXXXL') return '4xl';
+    return match[1].toLowerCase();
+  }
+
+  function hasComparableSizeData(comparable) {
+    return !!(
+      comparable &&
+      (comparable.adultToken ||
+        comparable.monthToken ||
+        comparable.toddlerToken ||
+        comparable.ageMin !== null ||
+        comparable.ageMax !== null ||
+        comparable.heightMin !== null ||
+        comparable.heightMax !== null)
+    );
+  }
+
+  function parseComparableSize(value) {
+    var raw = normalizeLocalizedSizeValue(value);
+    if (!raw) return null;
+
+    var roleSize = parseRoleFromSizeLabel(raw);
+    var comparableRaw = normalizeLocalizedSizeValue(roleSize && roleSize.sizeLabel ? roleSize.sizeLabel : raw)
+      .replace(/[–—]/g, '-')
+      .trim();
+    if (!comparableRaw) return null;
+
+    var comparable = {
+      adultToken: extractComparableAdultToken(comparableRaw),
+      monthToken: '',
+      toddlerToken: '',
+      ageMin: null,
+      ageMax: null,
+      heightMin: null,
+      heightMax: null,
+    };
+
+    var ageRangeMatch = comparableRaw.match(/(\d{1,2})\s*-\s*(\d{1,2})\s*(?:t|y|yr|yrs|year|years)\b/i);
+    if (ageRangeMatch) {
+      comparable.ageMin = parseInt(ageRangeMatch[1], 10);
+      comparable.ageMax = parseInt(ageRangeMatch[2], 10);
+      comparable.toddlerToken = String(comparable.ageMax) + 't';
+    }
+
+    var monthMatch = comparableRaw.match(/(?:^|[^0-9])(\d{1,2})\s*m(?:onths?)?(?:\/|\b|$)/i);
+    if (monthMatch) {
+      var monthValue = parseInt(monthMatch[1], 10);
+      if (!isNaN(monthValue)) {
+        comparable.monthToken = String(monthValue) + 'm';
+        if (monthValue % 12 === 0) {
+          var monthYears = monthValue / 12;
+          if (comparable.ageMax === null) comparable.ageMax = monthYears;
+          if (comparable.ageMin === null) comparable.ageMin = monthYears > 1 ? monthYears - 1 : monthYears;
+          if (!comparable.toddlerToken) comparable.toddlerToken = String(monthYears) + 't';
+        }
+      }
+    }
+
+    var toddlerMatch = comparableRaw.match(/(?:^|[^0-9])(\d{1,2})\s*t(?:\/|\b|$)/i);
+    if (toddlerMatch) {
+      var toddlerValue = parseInt(toddlerMatch[1], 10);
+      if (!isNaN(toddlerValue)) {
+        comparable.toddlerToken = String(toddlerValue) + 't';
+        if (comparable.ageMax === null) comparable.ageMax = toddlerValue;
+        if (comparable.ageMin === null) comparable.ageMin = toddlerValue > 1 ? toddlerValue - 1 : toddlerValue;
+      }
+    }
+
+    var heightRangeMatch = comparableRaw.match(/(?:^|[^0-9])(\d{2,3})\s*-\s*(\d{2,3})(?:\s*cm)?(?:\b|$)/i);
+    if (heightRangeMatch) {
+      comparable.heightMin = parseInt(heightRangeMatch[1], 10);
+      comparable.heightMax = parseInt(heightRangeMatch[2], 10);
+    }
+
+    var slashHeightMatch = comparableRaw.match(/\/\s*(\d{2,3})(?:\s*cm)?$/i);
+    if (slashHeightMatch && comparable.heightMax === null) {
+      comparable.heightMin = parseInt(slashHeightMatch[1], 10);
+      comparable.heightMax = comparable.heightMin;
+    }
+
+    var standaloneHeightMatch = comparableRaw.match(/(?:^|[^0-9])(\d{2,3})(?:\s*cm)?(?:\b|$)/i);
+    if (standaloneHeightMatch && comparable.heightMax === null) {
+      var standaloneHeight = parseInt(standaloneHeightMatch[1], 10);
+      if (!isNaN(standaloneHeight) && standaloneHeight >= 80) {
+        comparable.heightMin = standaloneHeight;
+        comparable.heightMax = standaloneHeight;
+      }
+    }
+
+    return hasComparableSizeData(comparable) ? comparable : null;
+  }
+
+  function getPrimaryComparableSize(values) {
+    if (!values || !values.length) return null;
+
+    for (var index = 0; index < values.length; index += 1) {
+      var comparable = parseComparableSize(values[index]);
+      if (hasComparableSizeData(comparable)) return comparable;
+    }
+
+    return null;
+  }
+
+  function getGuideRowValues(rowLabel) {
     var rowValues = [rowLabel];
     var parsedRow = parseRoleFromSizeLabel(rowLabel);
     rowValues.push(formatGuideSizeLabel(rowLabel));
     if (parsedRow && parsedRow.sizeLabel) rowValues.push(parsedRow.sizeLabel);
-    var rowTokens = buildSizeMatchTokens(rowValues);
-
-    return Object.keys(rowTokens).some(function (token) {
-      return !!selectedState.tokens[token];
-    });
+    return rowValues;
   }
 
-  function getSelectedGuideRowLabel(selectedState) {
-    if (!selectedState) return '';
+  function getGuideRowMatchScore(rowLabel, selectedState, rowRoleKey) {
+    if (!selectedState || !selectedState.tokens) return -Infinity;
+    if (selectedState.roleKey && rowRoleKey && selectedState.roleKey !== rowRoleKey) return -Infinity;
 
-    var allRows = [];
+    var rowValues = getGuideRowValues(rowLabel);
+    var rowTokens = buildSizeMatchTokens(rowValues);
+    var sharedTokenCount = 0;
+
+    Object.keys(rowTokens).forEach(function (token) {
+      if (selectedState.tokens[token]) sharedTokenCount += 1;
+    });
+
+    var score = sharedTokenCount * 100;
+    var selectedComparable = selectedState.comparable || getPrimaryComparableSize(selectedState.comparableValues || []);
+    var rowComparable = getPrimaryComparableSize(rowValues);
+
+    if (selectedComparable && rowComparable) {
+      if (selectedComparable.adultToken && rowComparable.adultToken) {
+        if (selectedComparable.adultToken === rowComparable.adultToken) {
+          score += 140;
+        } else {
+          score -= 140;
+        }
+      }
+
+      if (selectedComparable.monthToken && rowComparable.monthToken && selectedComparable.monthToken === rowComparable.monthToken) {
+        score += 140;
+      }
+
+      if (selectedComparable.toddlerToken && rowComparable.toddlerToken) {
+        var selectedToddlerValue = parseInt(selectedComparable.toddlerToken, 10);
+        var rowToddlerValue = parseInt(rowComparable.toddlerToken, 10);
+
+        if (selectedComparable.toddlerToken === rowComparable.toddlerToken) score += 140;
+        if (!isNaN(selectedToddlerValue) && !isNaN(rowToddlerValue)) {
+          score += Math.max(0, 60 - Math.abs(selectedToddlerValue - rowToddlerValue) * 20);
+        }
+      }
+
+      if (
+        selectedComparable.ageMin !== null &&
+        selectedComparable.ageMax !== null &&
+        rowComparable.ageMin !== null &&
+        rowComparable.ageMax !== null
+      ) {
+        var overlapMin = Math.max(selectedComparable.ageMin, rowComparable.ageMin);
+        var overlapMax = Math.min(selectedComparable.ageMax, rowComparable.ageMax);
+        if (overlapMax >= overlapMin) {
+          score += overlapMax > overlapMin ? 100 : 25;
+        }
+      }
+
+      if (selectedComparable.ageMax !== null && rowComparable.ageMax !== null) {
+        score += Math.max(0, 50 - Math.abs(selectedComparable.ageMax - rowComparable.ageMax) * 10);
+      }
+
+      if (selectedComparable.heightMax !== null && rowComparable.heightMax !== null) {
+        score += Math.max(0, 40 - Math.abs(selectedComparable.heightMax - rowComparable.heightMax) * 0.5);
+      }
+    }
+
+    return score > 0 ? score : -Infinity;
+  }
+
+  function getGuideRowEntries() {
+    var entries = [];
+
     if (groups.length >= 1) {
       groups.forEach(function (group) {
         group.rows.forEach(function (row) {
-          allRows.push({
+          entries.push({
             roleKey: group.key,
+            label: group.label || '',
+            helper: group.helper || '',
+            headers: group.headers,
             row: row,
           });
         });
       });
-    } else {
-      allRows = parsed.rows.map(function (row) {
-        return {
-          roleKey: '',
-          row: row,
-        };
-      });
+      return entries;
     }
 
-    var matchingRow = allRows.find(function (entry) {
-      return rowMatchesSelectedSize(entry.row[0], selectedState, entry.roleKey);
+    parsed.rows.forEach(function (row) {
+      entries.push({
+        roleKey: '',
+        label: '',
+        helper: '',
+        headers: parsed.headers,
+        row: row,
+      });
     });
 
-    return matchingRow ? formatGuideSizeLabel(String(matchingRow.row[0] || '').trim()) : '';
+    return entries;
+  }
+
+  function getSelectedGuideRowEntry(selectedState) {
+    if (!selectedState) return null;
+
+    var entries = getGuideRowEntries();
+    var bestEntry = null;
+    var bestScore = -Infinity;
+
+    entries.forEach(function (entry) {
+      var score = getGuideRowMatchScore(entry.row[0], selectedState, entry.roleKey);
+      if (score > bestScore) {
+        bestScore = score;
+        bestEntry = entry;
+      }
+    });
+
+    return bestScore > -Infinity ? bestEntry : null;
+  }
+
+  function isSelectedGuideRow(entry, rowLabel, roleKey) {
+    if (!entry || !entry.row) return false;
+    if ((entry.roleKey || '') !== (roleKey || '')) return false;
+    return normalizeText(String(entry.row[0] || '')) === normalizeText(String(rowLabel || ''));
+  }
+
+  function getSelectedGuideRowLabel(selectedState) {
+    var matchingEntry = getSelectedGuideRowEntry(selectedState);
+    return matchingEntry ? formatGuideSizeLabel(String(matchingEntry.row[0] || '').trim()) : '';
   }
 
   function formatGuideSizeLabel(value) {
@@ -1414,34 +1628,16 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   }
 
   function getSelectedGuideMatch(selectedState) {
-    if (!selectedState) return null;
+    var matchingEntry = getSelectedGuideRowEntry(selectedState);
+    if (!matchingEntry) return null;
 
-    if (groups.length >= 1) {
-      for (var groupIndex = 0; groupIndex < groups.length; groupIndex += 1) {
-        var group = groups[groupIndex];
-        for (var rowIndex = 0; rowIndex < group.rows.length; rowIndex += 1) {
-          if (!rowMatchesSelectedSize(group.rows[rowIndex][0], selectedState, group.key)) continue;
-          return {
-            label: group.label || '',
-            helper: group.helper || '',
-            headers: group.headers,
-            row: group.rows[rowIndex],
-          };
-        }
-      }
-    }
-
-    for (var parsedRowIndex = 0; parsedRowIndex < parsed.rows.length; parsedRowIndex += 1) {
-      if (!rowMatchesSelectedSize(parsed.rows[parsedRowIndex][0], selectedState)) continue;
-      return {
-        label: '',
-        helper: '',
-        headers: parsed.headers,
-        row: parsed.rows[parsedRowIndex],
-      };
-    }
-
-    return null;
+    return {
+      label: matchingEntry.label || '',
+      helper: matchingEntry.helper || '',
+      headers: matchingEntry.headers,
+      row: matchingEntry.row,
+      roleKey: matchingEntry.roleKey || '',
+    };
   }
 
   function formatSelectedGuideDisplay(match, selectedState) {
@@ -1503,7 +1699,7 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     snapshot.removeAttribute('hidden');
   }
 
-  var renderTableCard = function (headers, rows, title, helper, selectedState, roleKey) {
+  var renderTableCard = function (headers, rows, title, helper, selectedEntry, roleKey) {
     return (
       '<article class="matching-size-guide__card">' +
       (title ? '<h3>' + escapeHtml(title) + '</h3>' : '') +
@@ -1520,7 +1716,7 @@ function initMatchingSizeGuide(wrapper, sectionId) {
       '<tbody>' +
       rows
         .map(function (row) {
-          var isSelectedRow = rowMatchesSelectedSize(row[0], selectedState, roleKey);
+          var isSelectedRow = isSelectedGuideRow(selectedEntry, row[0], roleKey);
           return (
             '<tr' + (isSelectedRow ? ' class="is-selected"' : '') + '>' +
             row
@@ -1565,16 +1761,16 @@ function initMatchingSizeGuide(wrapper, sectionId) {
           '<div class="matching-size-guide__grid">' +
           groups
             .map(function (group) {
-              return renderTableCard(group.headers, group.rows, group.label, group.helper, selectedState, group.key);
+              return renderTableCard(group.headers, group.rows, group.label, group.helper, selectedMatch, group.key);
             })
             .join('') +
           '</div>';
       } else {
-        content.innerHTML = renderTableCard(groups[0].headers, groups[0].rows, groups[0].label, groups[0].helper, selectedState, groups[0].key);
+        content.innerHTML = renderTableCard(groups[0].headers, groups[0].rows, groups[0].label, groups[0].helper, selectedMatch, groups[0].key);
       }
     } else {
       if (summary) summary.textContent = compareLabel;
-      content.innerHTML = renderTableCard(parsed.headers, parsed.rows, '', '', selectedState);
+      content.innerHTML = renderTableCard(parsed.headers, parsed.rows, '', '', selectedMatch);
     }
 
     bindUnitToggleEvents();

@@ -45,6 +45,17 @@
       line-height: 1.2;
     }
 
+    .curated-product-grid__title-link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .curated-product-grid__title-link:hover,
+    .curated-product-grid__title-link:focus-visible {
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
+
     .curated-product-grid__footer-copy {
       color: rgba(32, 22, 19, 0.76);
     }
@@ -82,7 +93,13 @@
         <div class="curated-product-grid__heading-group">
           {%- if section.settings.title != blank -%}
             <h2 class="curated-product-grid__title inline-richtext {{ section.settings.heading_size }}">
-              {{ section.settings.title }}
+              {%- if section.settings.button_link != blank -%}
+                <a href="{{ section.settings.button_link }}" class="curated-product-grid__title-link">
+                  {{ section.settings.title }}
+                </a>
+              {%- else -%}
+                {{ section.settings.title }}
+              {%- endif -%}
             </h2>
           {%- endif -%}
           {%- if section.settings.intro != blank -%}

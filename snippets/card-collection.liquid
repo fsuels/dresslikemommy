@@ -78,7 +78,10 @@
 
       assign candidate_media_id = candidate_media.id | default: candidate_product.id
       assign card_collection_media = candidate_media
-      assign card_collection_media_alt = candidate_media.alt | default: candidate_product.title | default: card_collection_display_title
+      capture card_collection_media_alt
+        render 'product-image-alt', product: candidate_product, media: candidate_media, collection: card_collection, fallback_title: card_collection_display_title
+      endcapture
+      assign card_collection_media_alt = card_collection_media_alt | strip
       assign card_collection_media_key = 'product-' | append: candidate_product.id | append: '-image-' | append: candidate_media_id
       break
     endfor
@@ -118,6 +121,9 @@
 
         capture candidate_src
           echo candidate_media | image_url: width: 750
+        endcapture
+        capture candidate_alt
+          render 'product-image-alt', product: candidate_product, media: candidate_media, collection: card_collection, fallback_title: card_collection_display_title
         endcapture
         capture candidate_srcset
           if candidate_media.width >= 165
@@ -161,15 +167,15 @@
         echo '"key":'
         echo candidate_key | json
         echo ',"src":'
-        echo candidate_src | strip | json
-        echo ',"srcset":'
-        echo candidate_srcset | strip | json
-        echo ',"alt":'
-        echo candidate_media.alt | default: candidate_product.title | default: card_collection_display_title | json
-        echo ',"width":'
-        echo candidate_media.width | json
-        echo ',"height":'
-        echo candidate_media.height | json
+          echo candidate_src | strip | json
+          echo ',"srcset":'
+          echo candidate_srcset | strip | json
+          echo ',"alt":'
+          echo candidate_alt | strip | json
+          echo ',"width":'
+          echo candidate_media.width | json
+          echo ',"height":'
+          echo candidate_media.height | json
         echo '}'
 
         assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
@@ -243,7 +249,10 @@
           echo ',"srcset":'
           echo fallback_srcset | strip | json
           echo ',"alt":'
-          echo fallback_media.alt | default: card_collection_display_title | json
+          capture fallback_alt
+            render 'product-image-alt', media: fallback_media, collection: card_collection, fallback_title: card_collection_display_title
+          endcapture
+          echo fallback_alt | strip | json
           echo ',"width":'
           echo fallback_media.width | json
           echo ',"height":'
@@ -261,7 +270,10 @@
 
   if card_collection_media == blank and card_collection.featured_image != blank
     assign card_collection_media = card_collection.featured_image
-    assign card_collection_media_alt = card_collection.featured_image.alt | default: card_collection_display_title
+    capture card_collection_media_alt
+      render 'product-image-alt', media: card_collection.featured_image, collection: card_collection, fallback_title: card_collection_display_title
+    endcapture
+    assign card_collection_media_alt = card_collection_media_alt | strip
     assign fallback_media_id = card_collection.featured_image.id | default: card_collection.id
     assign card_collection_media_key = 'collection-' | append: card_collection.id | append: '-image-' | append: fallback_media_id
   endif

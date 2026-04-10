@@ -22,11 +22,21 @@
 {% assign is_couples_collection_nav = false %}
 {% assign is_family_matching_nav = false %}
 {% assign daddy_button_downs_filter_param = 'dlm-daddy-filter=button-downs' %}
-{% assign family_matching_hub_handle = 'new-women-outfits' %}
+{% assign family_matching_hub_handle = 'matching-outfits' %}
+{% assign family_matching_hub_collection = collections[family_matching_hub_handle] %}
+{% if family_matching_hub_collection == blank %}
+  {% assign family_matching_hub_handle = 'family-matching-outfits' %}
+  {% assign family_matching_hub_collection = collections[family_matching_hub_handle] %}
+{% endif %}
+{% if family_matching_hub_collection == blank %}
+  {% assign family_matching_hub_handle = 'new-women-outfits' %}
+  {% assign family_matching_hub_collection = collections[family_matching_hub_handle] %}
+{% endif %}
 {% assign family_matching_hub_label = 'Family Matching Outfits' %}
+{% assign family_matching_hub_url = family_matching_hub_collection.url | default: '' %}
 {% assign family_vacation_collection_handle = 'matching-family-vacation-outfits' %}
 {% assign family_vacation_alias_handles = 'family-sets,matching-family-vacation-outfits' %}
-{% assign family_hub_alias_handles = 'new-women-outfits,family-matching-outfits' %}
+{% assign family_hub_alias_handles = 'matching-outfits,family-matching-outfits,new-women-outfits' %}
 {% assign parent_collection_handle = parent_category | handleize %}
 {% assign parent_collection_label = parent_category %}
 
@@ -44,9 +54,9 @@
   {% assign is_couples_collection_nav = true %}
 {% endif %}
 
-{% if current_collection_handle == 'new-women-outfits'
-  or current_collection_handle == 'matching-outfits'
+{% if current_collection_handle == 'matching-outfits'
   or current_collection_handle == 'family-matching-outfits'
+  or current_collection_handle == 'new-women-outfits'
   or current_collection_handle == 'family-swimsuits'
   or current_collection_handle == 'family-sets'
   or current_collection_handle == 'matching-family-vacation-outfits'
@@ -268,7 +278,7 @@
 {% if is_cross_category %}
   {% assign hide_parent = true %}
 {% endif %}
-{% if current_collection_handle == 'new-women-outfits' or current_collection_handle == 'family-matching-outfits' %}
+{% if current_collection_handle == 'matching-outfits' or current_collection_handle == 'family-matching-outfits' or current_collection_handle == 'new-women-outfits' %}
   {% assign hide_parent = true %}
 {% endif %}
 {% comment %} --- Hide parent link if parent collection doesn't exist --- {% endcomment %}
@@ -328,7 +338,7 @@
             {% endif %}
             {% if is_family_matching_nav %}
               {% case item_handle %}
-                {% when 'new-women-outfits' %}
+                {% when 'matching-outfits', 'family-matching-outfits', 'new-women-outfits' %}
                   {% assign item_display_label = family_matching_hub_label %}
                 {% when 'family-swimsuits' %}
                   {% assign item_display_label = 'Family Matching Swimsuits' %}
@@ -350,6 +360,8 @@
                 or item_handle == 'family-sets'
                 or item_handle == 'matching-family-vacation-outfits'
                 or item_handle == 'matching-hawaiian-outfits'
+                or item_handle == 'matching-outfits'
+                or item_handle == 'family-matching-outfits'
                 or item_handle == 'new-women-outfits'
                 or item_handle == 'family-tops'
                 or item_handle == 'family-sweaters'
@@ -392,7 +404,11 @@
               {% assign pill_url = target_collection.url %}
             {% endif %}
             {% if item_is_current %}
-              {% assign pill_url = collection.url %}
+              {% if item_handle == family_matching_hub_handle and family_matching_hub_url != blank %}
+                {% assign pill_url = family_matching_hub_url %}
+              {% else %}
+                {% assign pill_url = collection.url %}
+              {% endif %}
             {% endif %}
             <li class="collection-category-nav__item">
               <a

@@ -14,13 +14,16 @@
         <li>Jump to a more specific collection when the occasion is already clear and the shopper wants faster filtering.</li>
       </ul>
       {%- if collections['dresses'] != blank -%}
-        <p><a href="{{ collections['dresses'].url }}">Shop mommy and me dresses</a> when the dress is the centerpiece of the matching look.</p>
+        <p><a href="{{ collections['dresses'].url }}">Shop mother daughter wedding guest dresses</a> when the dress is the centerpiece of the matching look.</p>
       {%- endif -%}
       {%- if collections['family-swimsuits'] != blank -%}
-        <p><a href="{{ collections['family-swimsuits'].url }}">Browse matching family bathing suits</a> when the plan is centered on beach trips, pool days, and summer travel.</p>
+        <p><a href="{{ collections['family-swimsuits'].url }}">Browse matching beach swimsuits</a> when the plan is centered on beach trips, pool days, and summer travel.</p>
       {%- endif -%}
       {%- if collections['family-sets'] != blank -%}
         <p><a href="{{ collections['family-sets'].url }}">Shop matching family vacation outfits</a> for resort stays, cruises, and coordinated travel days.</p>
+      {%- endif -%}
+      {%- if collections['daddy-me-shirts'] != blank -%}
+        <p><a href="{{ collections['daddy-me-shirts'].url }}">Shop daddy and me shirts</a> when the family needs a polished shirt-led match instead of dresses or swimwear.</p>
       {%- endif -%}
       {%- if collections['mommy-and-me'] != blank -%}
         <p><a href="{{ collections['mommy-and-me'].url }}">See the broader Mommy and Me collection</a> when the coordination is mostly mom-and-daughter focused.</p>
@@ -36,16 +39,19 @@
       </div>
       <div class="collection-seo-rich__links" aria-label="Related family collections">
         {%- if collections['dresses'] != blank -%}
-          <a class="collection-seo-rich__link" href="{{ collections['dresses'].url }}">Shop matching dresses</a>
+          <a class="collection-seo-rich__link" href="{{ collections['dresses'].url }}">Shop mother daughter wedding guest dresses</a>
         {%- endif -%}
         {%- if collections['family-swimsuits'] != blank -%}
-          <a class="collection-seo-rich__link" href="{{ collections['family-swimsuits'].url }}">Browse family swimwear</a>
+          <a class="collection-seo-rich__link" href="{{ collections['family-swimsuits'].url }}">Browse matching beach swimsuits</a>
         {%- endif -%}
         {%- if collections['family-sets'] != blank -%}
-          <a class="collection-seo-rich__link" href="{{ collections['family-sets'].url }}">See vacation outfits</a>
+          <a class="collection-seo-rich__link" href="{{ collections['family-sets'].url }}">Shop matching family vacation outfits</a>
+        {%- endif -%}
+        {%- if collections['daddy-me-shirts'] != blank -%}
+          <a class="collection-seo-rich__link" href="{{ collections['daddy-me-shirts'].url }}">Shop daddy and me shirts</a>
         {%- endif -%}
         {%- if collections['mommy-and-me'] != blank -%}
-          <a class="collection-seo-rich__link" href="{{ collections['mommy-and-me'].url }}">Explore mommy and me</a>
+          <a class="collection-seo-rich__link" href="{{ collections['mommy-and-me'].url }}">Explore the broader Mommy and Me collection</a>
         {%- endif -%}
       </div>
     {%- when 'dresses' -%}
@@ -59,10 +65,10 @@
       </div>
       <div class="collection-seo-rich__links" aria-label="Related dress collections">
         {%- if collections['matching-outfits'] != blank -%}
-          <a class="collection-seo-rich__link" href="{{ collections['matching-outfits'].url }}">Browse family outfits</a>
+          <a class="collection-seo-rich__link" href="{{ collections['matching-outfits'].url }}">Browse the Family Matching hub</a>
         {%- endif -%}
         {%- if collections['mommy-and-me'] != blank -%}
-          <a class="collection-seo-rich__link" href="{{ collections['mommy-and-me'].url }}">See all mommy and me</a>
+          <a class="collection-seo-rich__link" href="{{ collections['mommy-and-me'].url }}">See all Mommy and Me outfits</a>
         {%- endif -%}
       </div>
     {%- when 'maxi-dresses' -%}
@@ -93,13 +99,13 @@
       </div>
       <div class="collection-seo-rich__links" aria-label="Related mommy and me collections">
         {%- if collections['dresses'] != blank -%}
-          <a class="collection-seo-rich__link" href="{{ collections['dresses'].url }}">Shop matching dresses</a>
+          <a class="collection-seo-rich__link" href="{{ collections['dresses'].url }}">Shop mother daughter wedding guest dresses</a>
         {%- endif -%}
         {%- if collections['family-swimsuits'] != blank -%}
-          <a class="collection-seo-rich__link" href="{{ collections['family-swimsuits'].url }}">Browse family swimwear</a>
+          <a class="collection-seo-rich__link" href="{{ collections['family-swimsuits'].url }}">Browse matching beach swimsuits</a>
         {%- endif -%}
         {%- if collections['family-sets'] != blank -%}
-          <a class="collection-seo-rich__link" href="{{ collections['family-sets'].url }}">See vacation outfits</a>
+          <a class="collection-seo-rich__link" href="{{ collections['family-sets'].url }}">See matching family vacation outfits</a>
         {%- endif -%}
       </div>
     {%- when 'family-swimsuits' -%}
@@ -134,13 +140,13 @@
       </div>
       <div class="collection-seo-rich__links" aria-label="Related vacation collections">
         {%- if collections['family-swimsuits'] != blank -%}
-          <a class="collection-seo-rich__link" href="{{ collections['family-swimsuits'].url }}">Add family swimwear</a>
+          <a class="collection-seo-rich__link" href="{{ collections['family-swimsuits'].url }}">Add matching beach swimsuits</a>
         {%- endif -%}
         {%- if collections['matching-outfits'] != blank -%}
-          <a class="collection-seo-rich__link" href="{{ collections['matching-outfits'].url }}">Browse family outfits</a>
+          <a class="collection-seo-rich__link" href="{{ collections['matching-outfits'].url }}">Browse the Family Matching hub</a>
         {%- endif -%}
         {%- if collections['mommy-and-me'] != blank -%}
-          <a class="collection-seo-rich__link" href="{{ collections['mommy-and-me'].url }}">Explore mommy and me</a>
+          <a class="collection-seo-rich__link" href="{{ collections['mommy-and-me'].url }}">Explore Mommy and Me outfits</a>
         {%- endif -%}
       </div>
     {%- when 'daddy-me' -%}
@@ -155,10 +161,10 @@
       <h3>How to shop the collection faster</h3>
       <p>Start with tees if the goal is easy everyday coordination. If the occasion needs a cleaner, more polished finish, move into dress shirts, Hawaiian shirts, or other collared styles with more structure.</p>
       {%- if collections['daddy-me-t-shirts'] != blank -%}
-        <p><a href="{{ collections['daddy-me-t-shirts'].url }}">Shop daddy and me t-shirts</a> for casual matching tops and giftable everyday styles.</p>
+        <p><a href="{{ collections['daddy-me-t-shirts'].url }}">Shop daddy and me shirts</a> for casual matching tops and giftable everyday styles.</p>
       {%- endif -%}
       {%- if collections['daddy-me-shirts'] != blank -%}
-        <p><a href="{{ collections['daddy-me-shirts'].url }}">Shop dad and son matching shirts</a> for button-up, dress shirt, and Hawaiian looks built around higher-intent shirt searches.</p>
+        <p><a href="{{ collections['daddy-me-shirts'].url }}">Shop daddy and me shirts for dressier occasions</a> for button-up, dress shirt, and Hawaiian looks built around higher-intent shirt searches.</p>
       {%- endif -%}
       {%- if collections['trunks'] != blank -%}
         <p><a href="{{ collections['trunks'].url }}">Browse matching trunks</a> when the outfit needs a beach or pool-friendly add-on.</p>
@@ -193,7 +199,7 @@
         <p><a href="{{ collections['daddy-me'].url }}">Browse the full Daddy and Me collection</a> for broader outfit coverage across tees, trunks, and coordinated sets.</p>
       {%- endif -%}
       {%- if collections['daddy-me-t-shirts'] != blank -%}
-        <p><a href="{{ collections['daddy-me-t-shirts'].url }}">Shop daddy and me tees</a> if you want a softer, more casual matching option.</p>
+        <p><a href="{{ collections['daddy-me-t-shirts'].url }}">Shop daddy and me shirts</a> if you want a softer, more casual matching option.</p>
       {%- endif -%}
     {%- when 'couples' -%}
       <h2>Couples matching outfits for trips, date nights, holidays, and gifts</h2>

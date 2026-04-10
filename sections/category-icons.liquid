@@ -6,6 +6,17 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  .category-icons__group-title-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .category-icons__group-title-link:hover,
+  .category-icons__group-title-link:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -98,7 +109,15 @@
       {%- if category_block_count > 0 -%}
         <div class="category-icons__group">
           {%- if section.settings.category_heading != blank -%}
-            <h3 class="category-icons__group-title">{{ section.settings.category_heading }}</h3>
+            <h3 class="category-icons__group-title">
+              {%- if section.settings.category_heading_link != blank -%}
+                <a href="{{ section.settings.category_heading_link }}" class="category-icons__group-title-link">
+                  {{ section.settings.category_heading }}
+                </a>
+              {%- else -%}
+                {{ section.settings.category_heading }}
+              {%- endif -%}
+            </h3>
           {%- endif -%}
           <ul class="category-icons__scroll" role="list" aria-label="{{ section.settings.category_heading | default: 'Shop by category' | escape }}">
             {%- for block in section.blocks -%}
@@ -173,7 +192,15 @@
       {%- if occasion_block_count > 0 -%}
         <div class="category-icons__group">
           {%- if section.settings.occasion_heading != blank -%}
-            <h3 class="category-icons__group-title">{{ section.settings.occasion_heading }}</h3>
+            <h3 class="category-icons__group-title">
+              {%- if section.settings.occasion_heading_link != blank -%}
+                <a href="{{ section.settings.occasion_heading_link }}" class="category-icons__group-title-link">
+                  {{ section.settings.occasion_heading }}
+                </a>
+              {%- else -%}
+                {{ section.settings.occasion_heading }}
+              {%- endif -%}
+            </h3>
           {%- endif -%}
           <ul class="category-icons__scroll" role="list" aria-label="{{ section.settings.occasion_heading | default: 'Shop by occasion' | escape }}">
             {%- for block in section.blocks -%}
@@ -359,10 +386,20 @@
       "label": "Category heading"
     },
     {
+      "type": "url",
+      "id": "category_heading_link",
+      "label": "Category heading link"
+    },
+    {
       "type": "text",
       "id": "occasion_heading",
       "default": "Shop by occasion",
       "label": "Occasion heading"
+    },
+    {
+      "type": "url",
+      "id": "occasion_heading_link",
+      "label": "Occasion heading link"
     },
     {
       "type": "checkbox",
