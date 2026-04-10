@@ -14842,3 +14842,31 @@ Verification:
 
 Follow-up:
 - This suppression now applies across PDPs that render the grouped family size guide and still carry the supplier chart in the product description.
+
+### Task: Polish mobile menu drawer styling and fix homepage CTA overlap
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-mobile-menu-drawer-polish
+Changes:
+- `snippets/header-drawer.liquid`
+  - Added dedicated top-level mobile drawer item classes so the first-level menu rows can be styled independently from submenu links.
+- `assets/theme-inline-body-static-05.css`
+  - Replaced the old generic mobile drawer typography override with a full mobile-only drawer treatment: soft editorial background, rounded card-style top-level rows, clearer submenu navigation, and a more polished footer card for log in, country/currency, and language selectors.
+  - Restyled the `Family Matching` parent row so it no longer sits left-aligned like an outlier; it now matches the other menu rows and uses a clear chevron badge to signal expansion.
+  - Raised the mobile header/menu stacking when the drawer is open so the homepage hero CTA card no longer covers the drawer content.
+
+Why:
+- The existing mobile drawer looked inconsistent and unfinished, especially the `Family Matching` entry and the lower utility area for account and localization.
+- On the homepage, the floating hero CTA card introduced earlier (`Shop Family Sets` / `Browse Matching Dresses`) could overlap the open mobile drawer, partially covering menu content.
+
+Verification:
+- `git diff --check -- snippets/header-drawer.liquid assets/theme-inline-body-static-05.css`
+- Browser check against local preview `http://127.0.0.1:9292` in an iPhone 12 viewport using Playwright:
+  - confirmed the open mobile drawer no longer shows the homepage hero CTA card on top of it
+  - confirmed the `Family Matching` row is aligned with the rest of the top-level menu
+  - confirmed the footer card shows `Log in`, country/currency, and language controls in a cleaner stacked layout
+
+Notes:
+- The clean browser screenshots for this pass were captured from the local preview after dismissing the cookie banner:
+  - `/tmp/dlm-mobile-menu-main-clean.png`
+  - `/tmp/dlm-mobile-menu-family-clean.png`
+  - `/tmp/dlm-mobile-menu-footer-clean.png`
