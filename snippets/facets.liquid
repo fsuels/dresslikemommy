@@ -20,11 +20,18 @@
   assign sort_by = results.sort_by | default: results.default_sort_by
   assign total_active_values = 0
   assign default_presentation = 'text'
+  assign collection_filter_hint = blank
+  assign hide_product_type_active_filters = false
   if results.url
     assign results_url = results.url
   else
     assign terms = results.terms | escape
     assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+  endif
+
+  if results.handle == 'new-women-outfits' or results.handle == 'family-matching-outfits' or results.handle == 'family-matching' or results.handle == 'matching-outfits'
+    assign collection_filter_hint = 'Start with size, color, and price. Product type is already organized through the collection tabs.'
+    assign hide_product_type_active_filters = true
   endif
 -%}
 
@@ -35,6 +42,9 @@
         id="FacetFiltersForm"
         class="{% if filter_type == 'horizontal' %}facets__form{% else %}facets__form-vertical{% endif %}"
       >
+        {%- if collection_filter_hint != blank -%}
+          <p class="caption-large facets__helper-text">{{ collection_filter_hint }}</p>
+        {%- endif -%}
         {%- if results.terms -%}
           <input type="hidden" name="q" value="{{ results.terms | escape }}">
           <input name="options[prefix]" type="hidden" value="last">
@@ -73,6 +83,11 @@
                   </facet-remove>
                 </div>
                 {%- for filter in results.filters -%}
+                  {%- if hide_product_type_active_filters -%}
+                    {%- if filter.label == 'Type' or filter.label == 'Product type' -%}
+                      {%- continue -%}
+                    {%- endif -%}
+                  {%- endif -%}
                   {%- for value in filter.active_values -%}
                     <facet-remove>
                       <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
@@ -362,6 +377,11 @@
           {%- if filter_type == 'horizontal' -%}
             <div class="active-facets active-facets-desktop">
               {%- for filter in results.filters -%}
+                {%- if hide_product_type_active_filters -%}
+                  {%- if filter.label == 'Type' or filter.label == 'Product type' -%}
+                    {%- continue -%}
+                  {%- endif -%}
+                {%- endif -%}
                 {%- for value in filter.active_values -%}
                   <facet-remove>
                     <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
@@ -813,6 +833,11 @@
 
   <div class="active-facets active-facets-mobile medium-hide large-up-hide">
     {%- for filter in results.filters -%}
+      {%- if hide_product_type_active_filters -%}
+        {%- if filter.label == 'Type' or filter.label == 'Product type' -%}
+          {%- continue -%}
+        {%- endif -%}
+      {%- endif -%}
       {%- for value in filter.active_values -%}
         <facet-remove>
           <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
@@ -916,6 +941,11 @@
       <form id="FacetFiltersPillsForm" class="facets__form">
         <div class="active-facets active-facets-desktop">
           {%- for filter in results.filters -%}
+            {%- if hide_product_type_active_filters -%}
+              {%- if filter.label == 'Type' or filter.label == 'Product type' -%}
+                {%- continue -%}
+              {%- endif -%}
+            {%- endif -%}
             {%- for value in filter.active_values -%}
               <facet-remove>
                 <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">

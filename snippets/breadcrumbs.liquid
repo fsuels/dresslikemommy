@@ -8,6 +8,17 @@
   {% assign subcategory_handle = subcategory_label | handleize %}
   {% assign subcategory_collection = collections[subcategory_handle] %}
   {% assign subcategory_display_label = subcategory_label %}
+  {% assign back_to_results_url = blank %}
+  {% if collection != blank %}
+    {% assign back_to_results_url = collection.url %}
+  {% elsif subcategory_collection != blank %}
+    {% assign back_to_results_url = subcategory_collection.url %}
+  {% elsif category1_collection != blank %}
+    {% assign back_to_results_url = category1_collection.url %}
+  {% endif %}
+  {% if back_to_results_url == blank %}
+    {% assign back_to_results_url = routes.all_products_collection_url | default: routes.root_url %}
+  {% endif %}
   {% if subcategory_handle == 'daddy-me-t-shirts' %}
     {% assign subcategory_display_label = 'Tees' %}
   {% elsif subcategory_handle == 'daddy-me-shirts' %}
@@ -16,7 +27,20 @@
     {% assign subcategory_display_label = 'T-Shirts' %}
   {% endif %}
 
-  <nav class="breadcrumb product-breadcrumb" role="navigation" aria-label="breadcrumbs">
+  <div class="product-breadcrumb__handoff">
+    <a
+      href="{{ back_to_results_url }}"
+      class="product-breadcrumb__back-link"
+      data-back-to-results
+      data-back-to-results-fallback="{{ back_to_results_url }}"
+      rel="prev"
+      aria-label="Back to results"
+    >
+      Back to results
+    </a>
+  </div>
+
+  <nav class="breadcrumb product-breadcrumb product-breadcrumb__trail" role="navigation" aria-label="breadcrumbs">
     <a href="{{ routes.root_url }}" title="{{ 'sections.breadcrumbs.home' | t }}" class="product-breadcrumb__link mobile-hide">{{ 'sections.breadcrumbs.home' | t }}</a>
 
     {% comment %} --- Category1 link only if collection exists --- {% endcomment %}

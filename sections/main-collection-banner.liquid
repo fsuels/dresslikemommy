@@ -23,6 +23,14 @@
     assign collection_display_title = collection_seo_display_title
   endif
 
+  assign collection_image_alt = collection.image.alt | default: '' | strip
+  assign collection_image_alt_downcase = collection_image_alt | downcase
+  if collection_image_alt == blank
+    assign collection_image_alt = collection_display_title | default: collection.title
+  elsif collection_image_alt_downcase == 'image' or collection_image_alt_downcase == 'photo' or collection_image_alt_downcase contains 'collection image' or collection_image_alt_downcase contains 'banner image' or collection_image_alt_downcase contains 'hero image'
+    assign collection_image_alt = collection_display_title | default: collection.title
+  endif
+
   if section.settings.show_collection_description
     if collection_seo_force_theme == 'true' and collection_seo_body_description != blank
       assign collection_description_content = collection_seo_body_description
@@ -71,7 +79,7 @@
           "
           src="{{ collection.image | image_url: width: 750 }}"
           sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
-          alt="{{ collection.image.alt | escape }}"
+          alt="{{ collection_image_alt | escape }}"
           width="{{ collection.image.width }}"
           height="{{ collection.image.height }}"
         >

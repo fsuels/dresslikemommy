@@ -888,6 +888,29 @@ function initPhotoReviewPanel(wrapper) {
   observer.observe(reviewRoot, { childList: true, subtree: true });
 }
 
+function getRenderedPriceState(priceContainer) {
+  if (!priceContainer) return null;
+
+  var priceNode = priceContainer.querySelector('.price');
+  var currentPrice = priceNode && priceNode.dataset ? priceNode.dataset.priceCurrentText : '';
+  var compareAtPrice = priceNode && priceNode.dataset ? priceNode.dataset.priceCompareText : '';
+  var isOnSale = priceNode && priceNode.dataset ? priceNode.dataset.priceOnSale === 'true' : false;
+
+  if (!currentPrice) {
+    var salePrice = priceContainer.querySelector('.price__sale .price-item--sale');
+    var regularPrice = priceContainer.querySelector('.price__regular .price-item--regular');
+    var fallbackPrice = priceContainer.querySelector('.price-item');
+    var activePrice = salePrice || regularPrice || fallbackPrice;
+    currentPrice = activePrice && activePrice.textContent ? activePrice.textContent.replace(/\s+/g, ' ').trim() : '';
+  }
+
+  return {
+    currentPrice: currentPrice || '',
+    compareAtPrice: compareAtPrice || '',
+    isOnSale: isOnSale,
+  };
+}
+
 function initDesktopStickyAtc(wrapper, sectionId) {
   var stickyBar = wrapper.parentElement.querySelector('[data-desktop-sticky-atc]');
   var stickyButton = stickyBar ? stickyBar.querySelector('[data-desktop-sticky-button]') : null;
@@ -906,13 +929,23 @@ function initDesktopStickyAtc(wrapper, sectionId) {
   if (!mainButton) return;
 
   function updatePrice() {
-    if (!stickyPrice || !priceContainer) return;
-    var activePrice =
-      priceContainer.querySelector('.price__sale .price-item--sale') ||
-      priceContainer.querySelector('.price__regular .price-item--regular') ||
-      priceContainer.querySelector('.price-item');
-    if (!activePrice || !activePrice.textContent) return;
-    stickyPrice.textContent = activePrice.textContent.replace(/\s+/g, ' ').trim();
+    if (!stickyPrice) return;
+
+    var priceState = getRenderedPriceState(priceContainer);
+    if (!priceState || !priceState.currentPrice) return;
+
+    stickyPrice.textContent = priceState.currentPrice;
+    if (priceState.isOnSale && priceState.compareAtPrice && priceState.compareAtPrice !== priceState.currentPrice) {
+      stickyPrice.setAttribute(
+        'aria-label',
+        priceState.currentPrice + ', compare at ' + priceState.compareAtPrice
+      );
+      stickyPrice.title = priceState.compareAtPrice;
+      return;
+    }
+
+    stickyPrice.removeAttribute('aria-label');
+    stickyPrice.removeAttribute('title');
   }
 
   function updateSize() {

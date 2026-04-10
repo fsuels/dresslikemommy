@@ -144,6 +144,7 @@
       swatch: value.swatch,
       product_form_id: product_form_id,
       checked: checked,
+      disabled: option_disabled,
       visually_disabled: option_disabled,
       shape: block.settings.swatch_shape,
       help_text: help_text
@@ -160,6 +161,8 @@
       {% endif %}
       {% if option_disabled %}
         class="disabled"
+        disabled
+        aria-disabled="true"
       {% endif %}
     >
     <label class="color-image-option__tile" for="{{ input_id }}">
@@ -199,6 +202,8 @@
       {% endif %}
       {% if option_disabled %}
         class="disabled"
+        disabled
+        aria-disabled="true"
       {% endif %}
     >
     <label for="{{ input_id }}">
@@ -215,6 +220,8 @@
       {% if hide_unavailable_dropdown_options and option_hidden_for_filtered_dropdown %}
         disabled
         hidden
+      {% elsif option_disabled %}
+        disabled
       {% endif %}
       {% if swatch_value and picker_type == 'swatch_dropdown' %}
         data-option-swatch-value="{{ swatch_value }}"

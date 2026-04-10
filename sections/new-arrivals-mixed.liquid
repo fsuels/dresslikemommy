@@ -17,9 +17,15 @@
 {%- endstyle -%}
 
 {%- liquid
-  assign max_products = section.settings.products_to_show
+  assign visible_collection_count = 0
+  for block in section.blocks
+    if block.settings.collection != blank and block.settings.collection.all_products_count > 0
+      assign visible_collection_count = visible_collection_count | plus: 1
+    endif
+  endfor
 -%}
 
+{%- if visible_collection_count > 0 -%}
 <div class="color-{{ section.settings.color_scheme }} isolate gradient">
   <div class="collection section-{{ section.id }}-padding" id="collection-{{ section.id }}" data-id="{{ section.id }}">
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if section.settings.swipe_on_mobile %} title-wrapper--self-padded-tablet-down{% endif %}">
@@ -33,88 +39,30 @@
     <slider-component class="slider-mobile-gutter{% if section.settings.swipe_on_mobile == false %} page-width{% endif %} page-width-desktop{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <ul id="Slider-{{ section.id }}" data-id="{{ section.id }}" class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %}" role="list" aria-label="{{ 'general.slider.name' | t }}">
 
-        {%- comment -%}
-          Round-robin by NEWEST created_at from each collection.
-          Pass 0: pick the newest (by created_at) unseen product from each collection.
-          Pass 1: pick the 2nd newest, etc. This guarantees variety + true recency.
-        {%- endcomment -%}
-        {%- assign rendered_handles = '' -%}
         {%- assign render_count = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- assign col = collections[block.settings.collection] -%}
+          {%- if col == blank or col.products_count == 0 -%}
+            {%- continue -%}
+          {%- endif -%}
 
-        {%- for pass_index in (0..3) -%}
-          {%- if render_count >= max_products -%}{%- break -%}{%- endif -%}
+          {%- assign render_count = render_count | plus: 1 -%}
+          {%- liquid
+            assign collection_card_lazy_load = true
+            if section.index == 1 and render_count <= 2
+              assign collection_card_lazy_load = false
+            endif
+          -%}
 
-          {%- for block in section.blocks -%}
-            {%- if render_count >= max_products -%}{%- break -%}{%- endif -%}
-
-            {%- assign col = collections[block.settings.collection] -%}
-            {%- if col == blank or col.products_count == 0 -%}{%- continue -%}{%- endif -%}
-
-            {%- comment -%}
-              Find the Nth newest product (by created_at) in this collection
-              that hasn't already been rendered. N = pass_index.
-              We scan all products, tracking the newest unseen ones.
-            {%- endcomment -%}
-            {%- assign best_handle = '' -%}
-            {%- assign best_timestamp = 0 -%}
-            {%- assign newest_found = 0 -%}
-            {%- assign target_rank = pass_index -%}
-
-            {%- comment -%}
-              Build a ranked list: find all unseen products sorted by created_at desc.
-              Since Liquid can't sort objects, we do multiple scans:
-              scan once to find the newest, mark it, scan again for 2nd newest, etc.
-            {%- endcomment -%}
-            {%- assign skip_handles = rendered_handles -%}
-
-            {%- for rank in (0..target_rank) -%}
-              {%- assign best_handle = '' -%}
-              {%- assign best_timestamp = 0 -%}
-
-              {%- for product in col.products -%}
-                {%- assign handle_check = '|' | append: product.handle | append: '|' -%}
-                {%- if skip_handles contains handle_check -%}
-                  {%- continue -%}
-                {%- endif -%}
-
-                {%- assign p_timestamp = product.created_at | date: '%s' | plus: 0 -%}
-                {%- if p_timestamp > best_timestamp -%}
-                  {%- assign best_timestamp = p_timestamp -%}
-                  {%- assign best_handle = product.handle -%}
-                {%- endif -%}
-              {%- endfor -%}
-
-              {%- comment -%}If not the final rank, add this best to skip list and continue{%- endcomment -%}
-              {%- if rank < target_rank and best_handle != '' -%}
-                {%- assign skip_handles = skip_handles | append: '|' | append: best_handle | append: '|' -%}
-              {%- endif -%}
-            {%- endfor -%}
-
-            {%- if best_handle != '' -%}
-              {%- assign rendered_handles = rendered_handles | append: '|' | append: best_handle | append: '|' -%}
-              {%- assign render_count = render_count | plus: 1 -%}
-
-              {%- comment -%}Re-find the product object to render it{%- endcomment -%}
-              {%- for product in col.products -%}
-                {%- if product.handle == best_handle -%}
-                  <li id="Slide-{{ section.id }}-{{ render_count }}" class="grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {% if settings.animations_reveal_on_scroll %}data-cascade style="--animation-order: {{ render_count }};"{% endif %} {{ block.shopify_attributes }}>
-                    {% render 'card-product',
-                      card_product: product,
-                      lazy_load: true,
-                      media_aspect_ratio: section.settings.image_ratio,
-                      image_shape: section.settings.image_shape,
-                      show_secondary_image: section.settings.show_secondary_image,
-                      show_vendor: section.settings.show_vendor,
-                      show_rating: section.settings.show_rating,
-                      section_id: section.id,
-                      quick_add: section.settings.quick_add
-                    %}
-                  </li>
-                  {%- break -%}
-                {%- endif -%}
-              {%- endfor -%}
-            {%- endif -%}
-          {%- endfor -%}
+          <li id="Slide-{{ section.id }}-{{ render_count }}" class="grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {% if settings.animations_reveal_on_scroll %}data-cascade style="--animation-order: {{ render_count }};"{% endif %} {{ block.shopify_attributes }}>
+            {% render 'card-collection',
+              card_collection: col,
+              media_aspect_ratio: section.settings.image_ratio,
+              columns: section.settings.columns_desktop,
+              lazy_load: collection_card_lazy_load,
+              use_homepage_collection_image_strategy: request.page_type == 'index'
+            %}
+          </li>
         {%- endfor -%}
 
       </ul>
@@ -140,6 +88,7 @@
     {%- endif -%}
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {

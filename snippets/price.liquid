@@ -23,6 +23,7 @@
   assign price_min = product.price_min
   assign price_max = product.price_max
   assign available = target.available | default: false
+  assign compare_at_price_money = blank
   assign money_price = price | money
   assign money_price_min = price_min | money
   assign money_price_max = price_max | money
@@ -30,6 +31,9 @@
     assign money_price = price | money_with_currency
     assign money_price_min = price_min | money_with_currency
     assign money_price_max = price_max | money_with_currency
+    assign compare_at_price_money = compare_at_price | money_with_currency
+  else
+    assign compare_at_price_money = compare_at_price | money
   endif
 
   if target == product and product.price_varies
@@ -47,6 +51,11 @@
     {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}
     {%- if show_badges %} price--show-badge{% endif -%}
   "
+  data-price-variant-id="{{ target.id }}"
+  data-price-current-text="{{ money_price | strip_html | strip | escape }}"
+  data-price-compare-text="{% if compare_at_price > price and compare_at_price_money != blank %}{{ compare_at_price_money | strip_html | strip | escape }}{% endif %}"
+  data-price-available="{{ available }}"
+  data-price-on-sale="{% if compare_at_price > price and product.quantity_price_breaks_configured? != true %}true{% else %}false{% endif %}"
 >
   <div class="price__container">
     {%- comment -%}

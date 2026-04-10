@@ -6,6 +6,93 @@ function getFocusableElements(container) {
   );
 }
 
+const BACK_TO_RESULTS_STORAGE_KEY = 'dlm:last-results-url';
+
+function toSameOriginUrl(value) {
+  if (!value) return null;
+
+  try {
+    const url = new URL(value, window.location.origin);
+    if (url.origin !== window.location.origin) return null;
+    return url;
+  } catch (_error) {
+    return null;
+  }
+}
+
+function isResultsPagePath(pathname) {
+  return pathname.startsWith('/collections/') || pathname.startsWith('/search');
+}
+
+function getStoredResultsUrl() {
+  try {
+    return sessionStorage.getItem(BACK_TO_RESULTS_STORAGE_KEY) || '';
+  } catch (_error) {
+    return '';
+  }
+}
+
+function rememberResultsPageUrl() {
+  if (!document.body) return;
+  if (!document.body.classList.contains('template-collection') && !document.body.classList.contains('template-search')) return;
+
+  const currentUrl = toSameOriginUrl(window.location.href);
+  if (!currentUrl || !isResultsPagePath(currentUrl.pathname)) return;
+
+  try {
+    sessionStorage.setItem(BACK_TO_RESULTS_STORAGE_KEY, currentUrl.toString());
+  } catch (_error) {
+    // Ignore storage failures; the fallback href still works.
+  }
+}
+
+function getPreferredBackToResultsUrl() {
+  const referrerUrl = toSameOriginUrl(document.referrer);
+  if (referrerUrl && isResultsPagePath(referrerUrl.pathname)) {
+    return referrerUrl.toString();
+  }
+
+  const storedResultsUrl = toSameOriginUrl(getStoredResultsUrl());
+  if (storedResultsUrl && isResultsPagePath(storedResultsUrl.pathname)) {
+    return storedResultsUrl.toString();
+  }
+
+  return '';
+}
+
+function hydrateBackToResultsControls() {
+  document.querySelectorAll('[data-back-to-results]').forEach((control) => {
+    const fallbackUrl = toSameOriginUrl(
+      control.getAttribute('data-back-to-results-fallback') || control.getAttribute('href')
+    );
+    const preferredUrl = getPreferredBackToResultsUrl();
+    const targetUrl = preferredUrl || (fallbackUrl ? fallbackUrl.toString() : '');
+
+    if (targetUrl) {
+      control.setAttribute('href', targetUrl);
+    }
+
+    control.addEventListener('click', (event) => {
+      const referrerUrl = toSameOriginUrl(document.referrer);
+      if (referrerUrl && isResultsPagePath(referrerUrl.pathname) && window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    });
+  });
+}
+
+function initBackToResultsControls() {
+  rememberResultsPageUrl();
+  hydrateBackToResultsControls();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initBackToResultsControls);
+} else {
+  initBackToResultsControls();
+}
+
 document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
   summary.setAttribute('role', 'button');
   summary.setAttribute('aria-expanded', summary.parentNode.hasAttribute('open'));

@@ -134,7 +134,12 @@
           <option value="{{ hidden_color_value | escape }}" selected>{{ hidden_color_value }}</option>
         </select>
       {%- elsif picker_type == 'swatch' -%}
-        <fieldset class="js product-form__input product-form__input--swatch">
+        <fieldset
+          class="js product-form__input product-form__input--swatch"
+          {% if is_size_option %}
+            aria-describedby="size-conversion-message"
+          {% endif %}
+        >
           <legend class="form__label">
             {{ option_label }}:
             <span data-selected-swatch-value="{{ option.name }}">
@@ -151,7 +156,12 @@
           %}
         </fieldset>
       {%- elsif picker_type == 'color_image' -%}
-        <fieldset class="js product-form__input product-form__input--color-image">
+        <fieldset
+          class="js product-form__input product-form__input--color-image"
+          {% if is_size_option %}
+            aria-describedby="size-conversion-message"
+          {% endif %}
+        >
           <legend class="form__label">
             {{ option_label }}:
             <span data-selected-swatch-value="{{ option.name }}">
@@ -168,7 +178,12 @@
           %}
         </fieldset>
       {%- elsif picker_type == 'button' -%}
-        <fieldset class="js product-form__input product-form__input--pill">
+        <fieldset
+          class="js product-form__input product-form__input--pill"
+          {% if is_size_option %}
+            aria-describedby="size-conversion-message"
+          {% endif %}
+        >
           <legend class="form__label">{{ option.name }}</legend>
           {% render 'product-variant-options',
             product: product,
@@ -201,6 +216,7 @@
               data-option-name="{{ option_name_downcased | escape }}"
               {% if is_size_option %}
                 data-size-option="true"
+                aria-describedby="size-conversion-message"
               {% endif %}
               {% if hide_unavailable_dropdown_options %}
                 data-hide-unavailable-options="true"
@@ -226,7 +242,14 @@
         </div>
       {%- endif -%}
       {% if forloop.first %}
-        <div id="size-conversion-message"></div>
+        <div
+          id="size-conversion-message"
+          class="product-form__size-conversion-message"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          hidden
+        ></div>
         <div class="size-chart-wrapper">
           <div id="size-chart-content"></div>
         </div>

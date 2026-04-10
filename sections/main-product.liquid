@@ -3,7 +3,7 @@
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
   data-section="{{ section.id }}"
 >
-  <div class="page-width page-width--product-breadcrumbs small-hide">
+  <div class="page-width page-width--product-breadcrumbs">
     {% include 'breadcrumbs' %}
   </div>
 
@@ -1581,7 +1581,7 @@
 {%- comment -%} Sticky mobile Add to Cart bar {%- endcomment -%}
 {%- if product.available -%}
   <div class="sticky-mobile-atc" id="StickyMobileATC-{{ section.id }}">
-    <div class="sticky-mobile-atc__details">
+    <div class="sticky-mobile-atc__details" aria-live="polite" aria-atomic="true">
       <span class="sticky-mobile-atc__price" data-sticky-mobile-atc-price>
         {{- product.selected_or_first_available_variant.price | money -}}
       </span>
@@ -1600,6 +1600,7 @@
       var stickyBtn = sticky.querySelector('[data-sticky-mobile-atc-button]');
       var stickyPrice = sticky.querySelector('[data-sticky-mobile-atc-price]');
       var stickySize = sticky.querySelector('[data-sticky-mobile-atc-size]');
+      var sizeConversionMessage = document.getElementById('size-conversion-message');
       var mediaContainer =
         document.getElementById('GalleryViewer-{{ section.id }}') ||
         document.getElementById('MediaGallery-{{ section.id }}');
@@ -1637,6 +1638,29 @@
         if (!nextText) return;
         if (labelNode.textContent && labelNode.textContent.trim() === nextText) return;
         labelNode.textContent = nextText;
+      }
+
+      function getRenderedPriceState() {
+        if (!priceContainer) return null;
+
+        var priceNode = priceContainer.querySelector('.price');
+        var currentPrice = priceNode && priceNode.dataset ? priceNode.dataset.priceCurrentText : '';
+        var compareAtPrice = priceNode && priceNode.dataset ? priceNode.dataset.priceCompareText : '';
+        var isOnSale = priceNode && priceNode.dataset ? priceNode.dataset.priceOnSale === 'true' : false;
+
+        if (!currentPrice) {
+          var salePrice = priceContainer.querySelector('.price__sale .price-item--sale');
+          var regularPrice = priceContainer.querySelector('.price__regular .price-item--regular');
+          var fallbackPrice = priceContainer.querySelector('.price-item');
+          var activePrice = salePrice || regularPrice || fallbackPrice;
+          currentPrice = activePrice && activePrice.textContent ? activePrice.textContent.replace(/\s+/g, ' ').trim() : '';
+        }
+
+        return {
+          currentPrice: currentPrice || '',
+          compareAtPrice: compareAtPrice || '',
+          isOnSale: isOnSale,
+        };
       }
 
       function syncBodyOffset(isVisible) {
@@ -1925,6 +1949,16 @@
           setSizePromptVisibility(group, !!targetGroup && group === targetGroup);
         });
 
+        if (sizeConversionMessage) {
+          if (showPrompt) {
+            sizeConversionMessage.textContent = sizeRequiredMessageText;
+            sizeConversionMessage.removeAttribute('hidden');
+          } else {
+            sizeConversionMessage.textContent = '';
+            sizeConversionMessage.setAttribute('hidden', 'hidden');
+          }
+        }
+
         if (!showPrompt) return;
 
         if (!atcBtn.hasAttribute('disabled')) {
@@ -1934,23 +1968,35 @@
       }
 
       function syncStickyPrice() {
-        if (!stickyPrice || !priceContainer) return;
+        if (!stickyPrice) return;
 
-        var salePrice = priceContainer.querySelector('.price__sale .price-item--sale');
-        var regularPrice = priceContainer.querySelector('.price__regular .price-item--regular');
-        var fallbackPrice = priceContainer.querySelector('.price-item');
-        var activePrice = salePrice || regularPrice || fallbackPrice;
+        var priceState = getRenderedPriceState();
+        if (!priceState || !priceState.currentPrice) return;
 
-        if (!activePrice || !activePrice.textContent) return;
+        stickyPrice.textContent = priceState.currentPrice;
+        if (priceState.isOnSale && priceState.compareAtPrice && priceState.compareAtPrice !== priceState.currentPrice) {
+          stickyPrice.setAttribute(
+            'aria-label',
+            priceState.currentPrice + ', compare at ' + priceState.compareAtPrice
+          );
+          stickyPrice.title = priceState.compareAtPrice;
+          return;
+        }
 
-        var priceText = activePrice.textContent.replace(/\s+/g, ' ').trim();
-        if (priceText) stickyPrice.textContent = priceText;
+        stickyPrice.removeAttribute('aria-label');
+        stickyPrice.removeAttribute('title');
       }
 
       function syncStickySize(sizeSelectionState) {
         if (!stickySize) return;
 
         var currentSizeState = sizeSelectionState || getSizeSelectionState();
+        if (currentSizeState.hasSizeOption && (!hasUserConfirmedSizeSelection || !currentSizeState.isComplete)) {
+          stickySize.textContent = '';
+          stickySize.setAttribute('hidden', 'hidden');
+          return;
+        }
+
         if (currentSizeState.hasSizeOption && currentSizeState.selectedSizeValues.length) {
           var formatter =
             window.DLMSizeLabelFormatter &&
@@ -1982,7 +2028,7 @@
         syncSizePrompt(sizeSelectionState, showSizePrompt);
 
         if (sizeSelectionState.hasSizeOption && (!hasUserConfirmedSizeSelection || !sizeSelectionState.isComplete)) {
-          canShowSticky = false;
+          canShowSticky = true;
           sticky.classList.add('requires-options');
           stickyBtn.textContent = chooseSizeLabel;
           stickyBtn.removeAttribute('disabled');
@@ -1991,7 +2037,7 @@
         }
 
         if (colorSelectionState.hasColorOption && (!hasUserConfirmedColorSelection || !colorSelectionState.isComplete)) {
-          canShowSticky = false;
+          canShowSticky = true;
           sticky.classList.add('requires-options');
           stickyBtn.textContent = chooseColorLabel;
           stickyBtn.removeAttribute('disabled');
@@ -2000,7 +2046,7 @@
         }
 
         if (missingOption) {
-          canShowSticky = false;
+          canShowSticky = true;
           sticky.classList.add('requires-options');
           stickyBtn.textContent = chooseOptionsLabel;
           stickyBtn.removeAttribute('disabled');
@@ -2025,6 +2071,7 @@
         var sizeSelectionState = getSizeSelectionState();
         if (sizeSelectionState.hasSizeOption && (!hasUserConfirmedSizeSelection || !sizeSelectionState.isComplete)) {
           event.preventDefault();
+          syncSizePrompt(sizeSelectionState, true);
           scrollToMissingOption(
             sizeSelectionState.missingSizeOption || sizeSelectionState.firstSizeOption || getFirstMissingOption()
           );

@@ -12,6 +12,7 @@
   assign spotlight_badge = spotlight_badge | strip
   assign spotlight_caption = spotlight_caption | strip
   assign spotlight_button_label = spotlight_button_label | default: 'Shop This Look'
+  assign spotlight_collection = spotlight_collection | default: spotlight_product.collections.first
 
   assign spotlight_category1 = spotlight_product.metafields.custom.category1 | default: '' | strip
   assign spotlight_subcategory = spotlight_product.metafields.custom.subcategory | default: '' | strip
@@ -81,9 +82,17 @@
       <div class="home-spotlight-card__price">
         {% render 'price', product: spotlight_product, show_compare_at_price: true %}
       </div>
-      <a class="button button--secondary home-spotlight-card__cta" href="{{ spotlight_product.url }}">
-        {{ spotlight_button_label | escape }}
-      </a>
+      <div class="home-spotlight-card__actions">
+        <a class="button button--secondary home-spotlight-card__cta" href="{{ spotlight_product.url }}">
+          {{ spotlight_button_label | escape }}
+        </a>
+        {%- if spotlight_collection != blank -%}
+          <a class="home-spotlight-card__collection-link" href="{{ spotlight_collection.url }}">
+            <span>Browse {{ spotlight_collection.title | escape }}</span>
+            <span class="icon-wrap">{% render 'icon-arrow' %}</span>
+          </a>
+        {%- endif -%}
+      </div>
     </div>
   </article>
 {%- endif -%}

@@ -42,52 +42,70 @@
   endcapture
   assign product_context_text = product_context_text | downcase | strip
 
-  assign audience_keyword = 'family'
+  assign audience_phrase = 'family matching looks'
   if current_collection_handle == 'swimsuits' or current_collection_handle == 'dresses' or current_collection_handle == 'mommy-and-me' or product_context_text contains 'mommy' or product_context_text contains 'mother-daughter' or product_context_text contains 'mother daughter' or product_context_text contains 'daughter'
-    assign audience_keyword = 'mother daughter'
+    assign audience_phrase = 'mother-daughter matching looks'
   endif
 
-  if current_collection_handle == 'matching-outfits' or current_collection_handle == 'family-matching' or current_collection_handle == 'family-matching-outfits' or current_collection_handle == 'family-swimsuits' or current_collection_handle == 'family-sets' or product_context_text contains 'family'
-    assign audience_keyword = 'family'
+  if current_collection_handle == 'matching-outfits' or current_collection_handle == 'family-matching' or current_collection_handle == 'family-matching-outfits' or current_collection_handle == 'family-swimsuits' or current_collection_handle == 'family-sets' or current_collection_handle == 'new-women-outfits' or product_context_text contains 'family'
+    assign audience_phrase = 'family matching looks'
   endif
 
-  assign product_type_keyword = 'outfit'
+  if current_collection_handle == 'couples' or product_context_text contains 'couple'
+    assign audience_phrase = 'couples matching looks'
+  endif
+
+  if current_collection_handle == 'daddy-me' or current_collection_handle == 'daddy-me-t-shirts' or current_collection_handle == 'daddy-me-shirts' or product_context_text contains 'daddy' or product_context_text contains 'father-son' or product_context_text contains 'dad and son'
+    assign audience_phrase = 'daddy and me looks'
+  endif
+
+  assign product_type_phrase = 'outfit'
   if current_collection_handle == 'family-swimsuits' or current_collection_handle == 'swimsuits' or product_context_text contains 'swimsuit' or product_context_text contains 'bathing suit'
-    assign product_type_keyword = 'swimsuit'
-  elsif current_collection_handle == 'trunks' or product_context_text contains 'trunk'
-    assign product_type_keyword = 'swim trunks'
+    assign product_type_phrase = 'swimsuit'
+  elsif current_collection_handle == 'trunks' or product_context_text contains 'swim trunk'
+    assign product_type_phrase = 'swim trunks'
+  elsif product_context_text contains 'button-down' or product_context_text contains 'button up' or product_context_text contains 'button-up'
+    assign product_type_phrase = 'button-down shirt'
+  elsif product_context_text contains 'dress shirt'
+    assign product_type_phrase = 'dress shirt'
+  elsif product_context_text contains 'hawaiian'
+    assign product_type_phrase = 'Hawaiian shirt'
   elsif current_collection_handle == 'dresses' or product_context_text contains 'dress'
-    assign product_type_keyword = 'dress'
+    assign product_type_phrase = 'dress'
   elsif product_context_text contains 'pajama'
-    assign product_type_keyword = 'pajamas'
+    assign product_type_phrase = 'pajamas'
   elsif product_context_text contains 'sweater' or product_context_text contains 'cardigan' or product_context_text contains 'jacket'
-    assign product_type_keyword = 'sweater'
+    assign product_type_phrase = 'sweater'
   elsif product_context_text contains 'shirt' or product_context_text contains 'tee' or product_context_text contains 't-shirt' or product_context_text contains 'top'
-    assign product_type_keyword = 'top'
+    assign product_type_phrase = 'top'
   elsif product_context_text contains 'romper'
-    assign product_type_keyword = 'romper'
+    assign product_type_phrase = 'romper'
   elsif product_context_text contains 'jumpsuit'
-    assign product_type_keyword = 'jumpsuit'
+    assign product_type_phrase = 'jumpsuit'
   elsif product_context_text contains 'skirt'
-    assign product_type_keyword = 'skirt'
+    assign product_type_phrase = 'skirt'
   elsif product_context_text contains 'legging'
-    assign product_type_keyword = 'leggings'
+    assign product_type_phrase = 'leggings'
   endif
 
-  assign alt_suffix = 'matching ' | append: product_type_keyword | append: ' for ' | append: audience_keyword
+  assign product_type_phrase_downcase = product_type_phrase | downcase
   assign raw_alt_downcase = raw_alt | downcase
 
   assign resolved_alt = raw_alt
   if resolved_alt == blank
     if resolved_product != blank
-      assign resolved_alt = resolved_product.title | append: ' ' | append: alt_suffix
+      assign resolved_alt = resolved_product.title | default: product_type_phrase | default: audience_phrase
     else
-      assign resolved_alt = alt_suffix
+      assign resolved_alt = product_type_phrase | append: ' for ' | append: audience_phrase
     endif
-  elsif raw_alt_downcase contains 'matching' and raw_alt_downcase contains product_type_keyword and raw_alt_downcase contains audience_keyword
+  elsif raw_alt_downcase == 'image' or raw_alt_downcase == 'photo' or raw_alt_downcase == 'product' or raw_alt_downcase == 'product image'
+    if resolved_product != blank and resolved_product.title != blank
+      assign resolved_alt = resolved_product.title
+    else
+      assign resolved_alt = product_type_phrase | append: ' for ' | append: audience_phrase
+    endif
+  elsif raw_alt_downcase contains 'matching' and raw_alt_downcase contains product_type_phrase_downcase and raw_alt_downcase contains audience_phrase
     assign resolved_alt = raw_alt
-  else
-    assign resolved_alt = raw_alt | append: ' - ' | append: alt_suffix
   endif
 
   echo resolved_alt | strip | strip_newlines | replace: '  ', ' ' | truncate: 140, ''

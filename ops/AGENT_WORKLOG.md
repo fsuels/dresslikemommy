@@ -219,6 +219,25 @@ Changes applied (evidence-first)
   - GTIN/custom-product/MPN consistency.
 - `ops/import_ready_validation_report.md` - Generated validator report against `products_export_1 2_IMPORT_READY.csv` provided by operator.
 
+Session: Collection and SEO cleanup for family hub
+Date: 2026-04-10
+
+Changes applied (evidence-first)
+- `snippets/collection-seo-fallback.liquid` - Reframed `/collections/new-women-outfits` as `Family Matching Outfits` in display/meta/title/body fallbacks, enabled theme SEO for the hub, and added a people-first description that points shoppers toward dresses, swimwear, family vacation sets, and the broader Mommy and Me collection.
+- `snippets/collection-seo-content.liquid` - Merged the family-hub rich content path for `new-women-outfits` with the existing matching-outfits taxonomy and rewrote the copy to emphasize a broad browse-first handoff into narrower collection pages.
+- `snippets/collection-breadcrumbs.liquid` - Kept the family-hub breadcrumb path aligned with the family matching taxonomy and swapped the hub pill strip to more useful escape hatches: dresses, family swimsuits, family sets, Mommy and Me, tops, and sweaters.
+- `snippets/facets.liquid` - Added a small family-hub filter orientation hint and hid the Type/Product type chips from the active-facet bars so the filter UI reads cleaner without changing Shopify facet behavior.
+- `sections/main-collection-banner.liquid` - Added a collection image alt fallback that prefers the SEO display title and only replaces clearly generic alt text.
+- `snippets/product-image-alt.liquid` - Simplified product image alt fallbacks so blank or generic alt text resolves to a product title first, then a concise product-type + audience phrase only when needed.
+
+Verification
+- `git diff --check` passed for the touched collection/SEO files.
+- `shopify theme check --path .` surfaced many pre-existing warnings/errors outside this cleanup, especially locale translation issues; no new errors were isolated to the files changed here during this pass.
+
+Deferred / risk
+- I did not change `layout/theme.liquid`, so canonical tag handling remains on the existing shared theme path.
+- The repository already has unrelated modified files in the worktree; I left them untouched.
+
 Validation snapshot
 - Input validated: `products_export_1 2_IMPORT_READY.csv` (no overwrite performed).
 - Target handles: `588` active handles.
@@ -258,6 +277,25 @@ Validation snapshot
 - No automated storefront visual test was run in this session; manual PDP check in theme preview is still required for desktop and mobile.
 
 Session: PDP media prominence tuning + live preview run
+
+Session: PDP trust handoff cleanup
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-pdp-trust-handoff-cleanup
+
+Changes applied (evidence-first)
+- `snippets/breadcrumbs.liquid` - Added a visible `Back to results` control that prefers the active collection/referrer path and falls back to taxonomy/all-products URLs.
+- `assets/global.js` - Added collection/search URL memory plus back-to-results hydration so the control can use same-origin referrer/history when appropriate.
+- `snippets/price.liquid` - Added data attributes for the selected price state so sticky ATC surfaces can read the same variant truth as the main price block.
+- `snippets/product-variant-picker.liquid` - Linked size controls to a live guidance region and added an explicit `size-conversion-message` status node.
+- `snippets/product-variant-options.liquid` - Disabled unavailable size swatches/buttons/options more strictly so the UI cannot drift into contradictory availability states.
+- `sections/main-product.liquid` - Made the PDP breadcrumb handoff visible on mobile, surfaced the size guidance message, and kept the mobile sticky ATC visible when it needs to prompt for size/color/options.
+- `assets/product-desktop-ux.js` - Updated desktop sticky ATC price syncing to read the rendered price state instead of scraping the visible text only.
+- `assets/section-main-product.css` - Styled the back-to-results control and the size guidance message, and hid the full breadcrumb trail on small screens so the handoff stays concise.
+
+Validation snapshot
+- `node --check assets/global.js` and `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check` passed.
+- No storefront preview was run in this session, so the remaining risk is visual tuning of the new handoff pill and the mobile sticky prompt density.
 Date: 2026-02-23
 AGENT_CONTINUITY_ANCHOR: 2026-02-23-pdp-preview-bigger-variant
 
@@ -13389,3 +13427,64 @@ Verification:
 
 Why:
 - Some BukitDrop size charts render child rows as bare numeric size labels in the first column while the option selector uses `cm`-suffixed values. The previous formatter only converted the `cm` form, so the dropdown looked correct but the visible size-chart column stayed unchanged.
+
+### Task: Homepage IA cleanup for hybrid browse-buy handoff
+Date: 2026-04-10
+Changes:
+- Updated `sections/new-arrivals-mixed.liquid` so the mixed homepage rail now renders collection cards instead of product cards, which makes the module browse-first and routes shoppers to collection pages.
+- Updated `snippets/home-spotlight-card.liquid` so curated product cards now include a secondary collection browse link in addition to the PDP CTA.
+- Tuned `assets/section-home-curation.css` to make the curated card layout slightly denser and to style the new collection escape hatch without adding another bulky button row.
+- Converted `sections/category-icons.liquid` to real list item markup and adjusted `assets/section-category-icons.css` so the category strip keeps clean list semantics.
+- Reduced homepage spacing in `templates/index.json` for the collection browse rail and curated grid to soften the overcrowded feel.
+
+Verification:
+- `git diff --check -- sections/category-icons.liquid assets/section-category-icons.css sections/new-arrivals-mixed.liquid snippets/home-spotlight-card.liquid assets/section-home-curation.css templates/index.json`
+- `shopify theme check --path . --fail-level warning --output text` completed with pre-existing unrelated warnings/errors elsewhere in the theme; no new issues were introduced in the edited homepage files.
+
+Deferred:
+- I did not change homepage copy beyond the browse-first rail title.
+- I did not touch non-homepage PDP trust/sizing issues in this pass.
+
+### Task: Homepage-to-collection handoff, family-hub cleanup, and PDP trust fixes
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-home-collection-pdp-handoff
+Changes:
+- Homepage browse intent:
+  - `sections/new-arrivals-mixed.liquid` now routes shoppers into collection cards instead of dropping them straight onto PDPs from the mixed rail.
+  - `snippets/home-spotlight-card.liquid` keeps PDP-first spotlight CTAs, but adds a secondary collection escape hatch so curated modules support the hybrid browse/buy handoff.
+  - `sections/category-icons.liquid`, `assets/section-category-icons.css`, `assets/section-home-curation.css`, and `templates/index.json` were tightened to improve semantics and reduce the overcrowded feel.
+- Collection taxonomy and SEO:
+  - `snippets/collection-seo-fallback.liquid` and `snippets/collection-seo-content.liquid` now treat `/collections/new-women-outfits` as the broad `Family Matching Outfits` hub with people-first copy and clearer subcollection handoffs.
+  - `snippets/collection-breadcrumbs.liquid` now exposes more useful family-hub pills, and `snippets/facets.liquid` adds a family-hub filter hint while keeping Type/Product type chip suppression scoped only to those broad family-hub collections.
+  - `sections/main-collection-banner.liquid` and `snippets/product-image-alt.liquid` now replace blank/generic alt text with more accurate collection/product-driven fallbacks.
+- PDP trust and purchase readiness:
+  - `snippets/breadcrumbs.liquid` and `assets/global.js` add a history-aware `Back to results` control for collection/search-to-PDP journeys.
+  - `snippets/price.liquid`, `assets/product-desktop-ux.js`, and `sections/main-product.liquid` now keep sticky ATC pricing aligned with the rendered price state instead of weaker text scraping.
+  - `snippets/product-variant-picker.liquid`, `snippets/product-variant-options.liquid`, `sections/main-product.liquid`, and `assets/section-main-product.css` now disable unavailable variant choices more clearly and surface a live size-guidance message when size selection is still required.
+
+Verification:
+- `git diff --check`
+- `node --check assets/global.js`
+- `node --check assets/product-desktop-ux.js`
+- `shopify theme check --path . --output json` still reports repo-wide baseline warnings/errors, but after filtering to the touched files there are no remaining Theme Check errors from this pass; the remaining scoped findings are pre-existing `sections/main-product.liquid` warnings plus non-blocking unused-assign warnings in `sections/new-arrivals-mixed.liquid` and `snippets/product-variant-options.liquid`.
+
+Deferred:
+- No live storefront preview was run after these April 10 changes, so visual QA is still needed on homepage modules, `/collections/new-women-outfits`, and a few representative family PDPs.
+
+### Task: Local preview QA follow-up fixes after storefront validation
+Date: 2026-04-10
+AGENT_CONTINUITY_ANCHOR: 2026-04-10-preview-qa-followup
+Changes:
+- Rechecked the April 10 homepage, family-hub collection, and representative family PDP flows in the local Shopify preview at `http://127.0.0.1:9292`.
+- Updated `sections/main-product.liquid` so the mobile sticky ATC no longer shows a misleading inherited size label before the shopper explicitly confirms a size.
+- Updated `sections/main-product.liquid` so tapping the sticky `Select size` prompt now reveals the inline/global size guidance message before focusing the missing size selector.
+- Updated `snippets/product-thumbnail.liquid` so the PDP media share button uses the existing storefront product-share translation (`products.product.share`) instead of a schema/editor key that rendered a visible translation-missing label.
+
+Verification:
+- Browser QA in local preview confirmed:
+  - homepage `Browse Collections` rail routes shoppers into collections,
+  - curated homepage cards still link to PDPs and now expose the secondary collection escape hatch,
+  - `/collections/new-women-outfits` renders the new family-hub title/copy/filter hint and collection tabs,
+  - collection-to-PDP journeys now show a working `Back to results` handoff,
+  - mobile sticky ATC now shows only price + `Select size` before selection, then reveals the size guidance message when used as a prompt.
+- `git diff --check` passed after the follow-up fixes.

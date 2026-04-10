@@ -98,6 +98,49 @@
 }
 
 /* PDP layout rebalance */
+.page-width--product-breadcrumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.product-breadcrumb__handoff {
+  display: flex;
+  align-items: center;
+}
+
+.product-breadcrumb__back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1.05rem;
+  border-radius: 999px;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  background: rgba(var(--color-background), 0.88);
+  color: rgb(var(--color-foreground));
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.product-breadcrumb__back-link::before {
+  content: '←';
+  font-size: 1em;
+  line-height: 1;
+}
+
+.product-breadcrumb__back-link:hover {
+  border-color: rgba(var(--color-foreground), 0.24);
+  box-shadow: 0 0.6rem 1.4rem rgba(15, 17, 20, 0.08);
+  transform: translateY(-1px);
+}
+
+.product-breadcrumb__back-link:focus-visible {
+  outline: 0.2rem solid rgb(var(--color-foreground));
+  outline-offset: 0.25rem;
+}
+
 .page-width--product-breadcrumbs .breadcrumb {
   display: flex;
   align-items: center;
@@ -123,6 +166,18 @@
 
 .page-width--product-breadcrumbs .breadcrumb a:hover {
   color: rgb(var(--color-foreground)) !important;
+}
+
+@media screen and (max-width: 749px) {
+  .page-width--product-breadcrumbs {
+    gap: 0.45rem;
+    padding-top: 0.15rem;
+    padding-bottom: 0.35rem;
+  }
+
+  .page-width--product-breadcrumbs .product-breadcrumb__trail {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 990px) {
@@ -517,6 +572,21 @@ a.product__text {
 
 .product-form__quantity-top .form__label {
   margin-bottom: 1.2rem;
+}
+
+.product-form__size-conversion-message {
+  margin: 0.85rem 0 0;
+  padding: 0.85rem 1rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  border-radius: 1.2rem;
+  background: rgba(var(--color-foreground), 0.03);
+  color: rgba(var(--color-foreground), 0.78);
+  font-size: 1.25rem;
+  line-height: 1.45;
+}
+
+.product-form__size-conversion-message[hidden] {
+  display: none !important;
 }
 
 .product-form__buttons {

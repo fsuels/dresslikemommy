@@ -20,6 +20,8 @@
       assign effective_display_title = 'Matching Family Vacation Outfits and Beach Sets'
     when 'matching-outfits', 'family-matching', 'family-matching-outfits'
       assign effective_display_title = 'Matching Family Outfits and Mommy and Me Outfits'
+    when 'new-women-outfits'
+      assign effective_display_title = 'Family Matching Outfits'
     when 'daddy-me'
       assign effective_display_title = 'Daddy and Me Shirts, Tees and Matching Outfits'
     when 'daddy-me-t-shirts'
@@ -63,7 +65,7 @@
     when 'new-matching-outfits'
       assign effective_display_title = 'New Mommy and Me Matching Outfits'
     when 'new-women-outfits'
-      assign effective_display_title = 'New Womens Matching Styles'
+      assign effective_display_title = 'Family Matching Outfits'
     when 'maternity'
       assign effective_display_title = 'Maternity Dresses and Nursing-Friendly Styles'
     when 'popular-mommy-me-1'
@@ -97,6 +99,8 @@
     assign effective_meta_title = 'Matching Family Vacation Outfits | Beach and Travel Sets'
   elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
     assign effective_meta_title = 'Matching Family Outfits | Mommy and Me'
+  elsif collection_handle == 'new-women-outfits'
+    assign effective_meta_title = 'Family Matching Outfits | Dresses, Swimwear and Sets'
   elsif collection_handle == 'dresses'
     assign effective_meta_title = 'Mommy and Me Dresses | Mother Daughter'
   elsif collection_handle == 'daddy-me'
@@ -113,7 +117,7 @@
     assign effective_meta_title = 'Mommy and Me Easter Dresses | Spring Matching Outfits'
   endif
 
-  if collection_handle == 'mommy-and-me' or collection_handle == 'swimsuits' or collection_handle == 'family-swimsuits' or collection_handle == 'family-sets' or collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits' or collection_handle == 'dresses' or collection_handle == 'daddy-me-t-shirts' or collection_handle == 'matching-couples-t-shirts'
+  if collection_handle == 'mommy-and-me' or collection_handle == 'swimsuits' or collection_handle == 'family-swimsuits' or collection_handle == 'family-sets' or collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits' or collection_handle == 'new-women-outfits' or collection_handle == 'dresses' or collection_handle == 'daddy-me-t-shirts' or collection_handle == 'matching-couples-t-shirts'
     assign force_theme_seo = true
   endif
 
@@ -139,6 +143,10 @@
   elsif collection_handle == 'family-sets'
     assign audience_long = 'families planning beach trips, cruises, resort travel, and warm-weather photo moments'
     assign product_examples_short = 'matching family vacation outfits, beach sets, dresses, tops, and travel-ready coordinated looks'
+  elsif collection_handle == 'new-women-outfits'
+    assign audience_long = 'families and shoppers comparing coordinated looks before narrowing into a specific occasion'
+    assign product_examples_short = 'family matching outfits, dresses, swimwear, and travel-ready sets'
+    assign occasion_label = 'family photos, trips, holidays, seasonal updates, and everyday coordination'
   elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
     assign audience_long = 'the whole family, from babies and toddlers to parents'
     assign product_examples_short = 'coordinated dresses, tops, swimwear, sets, and seasonal matching looks'
@@ -254,6 +262,8 @@
       echo 'Shop matching family bathing suits and family swimwear for beach vacations, pool days, cruises, and coordinated summer photos.'
     elsif collection_handle == 'family-sets'
       echo 'Shop matching family vacation outfits and beach sets for cruises, resort trips, family photos, and coordinated summer travel looks.'
+    elsif collection_handle == 'new-women-outfits'
+      echo 'Shop family matching outfits, dresses, swimwear, and coordinated sets in one place, then narrow into the collection that fits your trip, season, or occasion.'
     elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
       echo 'Shop matching family outfits and mommy and me outfits for photos, vacations, holidays, and easy coordinated looks for every season.'
     elsif collection_handle == 'daddy-me'
@@ -305,6 +315,11 @@
       echo effective_display_title | escape
       echo ' with coordinated looks designed for family vacations, beach trips, cruises, travel photos, and warm-weather outings. These sets help you create a clear family palette without forcing every person into the exact same piece.</p>'
       echo '<p>Use this page for matching family vacation outfits and matching family beach outfits, then branch into broader family matching collections when you need more seasonal or non-travel-specific options.</p>'
+    elsif collection_handle == 'new-women-outfits'
+      echo '<p>Explore '
+      echo effective_display_title | escape
+      echo ' as the broad family matching hub when you want to compare coordinated outfits before narrowing into a specific category. This page is meant to help shoppers move from a general browse into dresses, swimwear, vacation sets, or other matching looks without starting over.</p>'
+      echo '<p>Use the links below to jump into the collections that best fit the occasion, whether you are shopping for family photos, a trip, a seasonal refresh, or a more specific matching outfit style.</p>'
     elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
       echo '<p>Explore '
       echo effective_display_title | escape

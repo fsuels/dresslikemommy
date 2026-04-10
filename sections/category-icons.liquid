@@ -32,7 +32,7 @@
     {%- assign rotation_seed = 'now' | date: '%M' | plus: 0 -%}
     {%- assign used_image_ids = '' -%}
 
-    <div class="category-icons__scroll" role="list">
+    <ul class="category-icons__scroll" role="list">
       {%- for block in section.blocks -%}
         {%- if block.settings.collection != blank -%}
           {%- liquid
@@ -70,31 +70,27 @@
               endif
             endif
           -%}
-
-          <a
-            href="{{ block.settings.collection.url }}"
-            class="category-icons__item"
-            role="listitem"
-            {{ block.shopify_attributes }}
-          >
-            <div class="category-icons__image-wrap">
-              {%- if icon_image != blank -%}
-                <img
-                  src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
-                  alt="{{ icon_label | escape }}"
-                  loading="eager"
-                  width="120"
-                  height="150"
-                >
-              {%- else -%}
-                {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-              {%- endif -%}
-            </div>
-            <span class="category-icons__label">{{ icon_label }}</span>
-          </a>
+          <li class="category-icons__item" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.collection.url }}" class="category-icons__link">
+              <div class="category-icons__image-wrap">
+                {%- if icon_image != blank -%}
+                  <img
+                    src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
+                    alt="{{ icon_label | escape }}"
+                    loading="eager"
+                    width="120"
+                    height="150"
+                  >
+                {%- else -%}
+                  {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </div>
+              <span class="category-icons__label">{{ icon_label }}</span>
+            </a>
+          </li>
         {%- endif -%}
       {%- endfor -%}
-    </div>
+    </ul>
   </div>
 </div>
 
