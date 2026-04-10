@@ -785,9 +785,77 @@
             "unauthorized_capture_method": "لا يُسمح بتكوين طريقة التقاط الدفع.",
             "saved_payment_methods_not_allowed": "طرق الدفع المحفوظة غير مسموح بها.",
             "saved_payment_methods_not_enabled": "طرق الدفع المحفوظة غير مفعلة لهذا المتجر.",
-            "saved_payment_methods_cvv_verification_disabled": "طريقة الدفع المختارة تتطلب التحقق من CVV والذي غير مفعل لهذا المتجر. اختر طريقة دفع مختلفة."
+            "saved_payment_methods_cvv_verification_disabled": "طريقة الدفع المختارة تتطلب التحقق من CVV والذي غير مفعل لهذا المتجر. اختر طريقة دفع مختلفة.",
+            "store_credit_not_enabled": "رصيد المتجر غير مفعل في هذه المتجر.",
+            "store_credit_account_not_found": "لم يتم العثور على حساب رصيد المتجر.",
+            "store_credit_account_mismatch": "حساب رصيد المتجر لا يتطابق مع هوية المشتري.",
+            "store_credit_mismatched_currency": "عملة حساب رصيد المتجر لا تتطابق مع عملة الدفع.",
+            "store_credit_insufficient_funds": "لا توجد أموال كافية في حساب رصيد المتجر.",
+            "store_credit_buying_gift_card": "لا يمكنك استخدام رصيد المتجر لشراء بطاقة هدايا.",
+            "gift_cards_not_allowed_for_b2b": "بطاقات الهدايا غير مسموح بها في متاجر B2B.",
+            "method_required": "يجب اقتراح وسيلة دفع.",
+            "paypal_express_address_invalid": "عاد عنوان PayPal غير صالح."
+          },
+          "tip": {
+            "not_accepted_by_shop": "المتجر لا يقبل الإكراميات.",
+            "only_one_tip_line_allowed": "لا تدعم خطوط النص المتعددة.",
+            "tips_not_allowed_for_b2b": "لا يُسمح بالإكراميات في متاجر B2B.",
+            "currency_change_reset": "تم إعادة تعيين النصيحة بسبب تغيير العملة.",
+            "tips_not_allowed_for_deferred_purchase_options": "لا تزال النصائح غير مدعومة لخيارات الشراء المؤجلة."
+          },
+          "sale_attribution": {
+            "draft_order_not_exist": "لا توجد هذه الطلبية المسودة في المتجر الحالي.",
+            "staff_member_not_exist": "هذا العنصر غير موجود في المتجر الحالي.",
+            "location_not_exist": "هذا الموقع غير موجود في المتجر الحالي.",
+            "point_of_sale_device_not_exist": "جهاز نقطة البيع هذا غير موجود في المتجر الحالي.",
+            "unresolvable_target_merchandise_lines": "إن نسب البيع المقترحة لا يمكن حلها نظرًا لسياق التفاوض الحالي."
+          },
+          "non_negotiable": {
+            "missing_non_negotiable_terms": "يجب أن تحتوي اقتراح المشتري الخاص بك على شروط غير قابلة للتفاوض.",
+            "invalid_signature": "التوقيع لـ {{target_terms}} غير صالح."
+          },
+          "inventory": {
+            "missing_quantity_value": "حقل الكمية مفقود في خطوط مخزون المشتري.",
+            "changing_behavior_not_allowed": "هذا العميل ليس لديه إذن لتغيير سلوك المخزون.",
+            "only_one_inventory_behavior_allowed": "حالياً، يُسمح بسلوك مخزون واحد فقط لكل عملية دفع."
+          },
+          "optional_duties": {
+            "optional_duties_not_permitted": "رفض الواجبات غير مسموح به في هذه الخزينة."
+          },
+          "attribution": {
+            "retail_attribution_not_allowed": "لا يُسمح بتحديد المتاجر لهذا الخروج.",
+            "retail_attribution_required": "يتطلب هذا الخروج نسبة البيع بالتجزئة."
+          },
+          "captcha": {
+            "metadata_missing": "إكمال اختبار الكابتشا مطلوب لإتمام عملية الدفع.",
+            "metadata_mismatch": "مزود كابتشا ونوعه لا يتطابقان مع القيم المتوقعة.",
+            "token_missing": "يجب تقديم رمز التحقق لإكمال عملية الدفع.",
+            "job_enqueue_failed": "فشل عمل التحقق من كود الكابتشا في الانتظار.",
+            "job_already_queued": "تمت جدولة التحقق من كابتشا بالفعل لهذه الرمز الكابتشا.",
+            "token_expired": "لقد انتهت صلاحية رمز التحقق المقدم. أكمل تحققًا جديدًا للمتابعة في عملية الدفع.",
+            "token_invalid": "رمز التحقق المقدم غير صالح. أكمل تحققًا جديدًا للمتابعة في عملية الدفع.",
+            "token_not_valid_for_session": "لا يمكن استخدام الكابتشا المقدمة مع هذه العملية."
+          },
+          "fx_reconciliation_override": {
+            "shop_currency_mismatch": "يجب أن تكون المبلغ المستلم بعملة المتجر."
+          },
+          "checkout_source": {
+            "revoked": "هذه الصفحة للدفع لم تعد متاحة."
           }
-        }
+        },
+        "full_price": "السعر الكامل:",
+        "title": "الدفع - {{shopName}}",
+        "full_title": "{{pageTitle}} - {{shopName}} - إتمام الشراء",
+        "loading": "جارٍ التحميل…",
+        "loading_title": "الدفع - {{shopName}}",
+        "google_map_title": "خرائط جوجل",
+        "confirm_order_button_label": "تأكيد الطلب",
+        "submit_order_button_label": "تقديم الطلب",
+        "submit_for_review_button_label": "قدّم للمراجعة",
+        "submit_for_review_notice_label": "لن يكون الدفع مستحقًا حتى يتم مراجعة طلبك",
+        "continue_to_payment_plans_button_label": "تابع إلى خطط الدفع",
+        "back_button_label": "عودة",
+        "choose_delivery_strategy": "اختر وسيلة التوصيل"
       }
     }
   }
