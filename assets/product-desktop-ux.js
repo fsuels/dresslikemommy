@@ -1375,6 +1375,77 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     return token;
   }
 
+  function formatGuideNumericValue(num) {
+    if (num === null || typeof num === 'undefined' || Number.isNaN(num)) return '';
+    return Number(num).toFixed(2).replace(/\.00$/, '').replace(/(\.\d)0$/, '$1');
+  }
+
+  function convertGuideValueBetweenUnits(num, fromUnit, toUnit) {
+    var from = normalizeGuideUnit(fromUnit);
+    var to = normalizeGuideUnit(toUnit);
+    if (!from || !to || from === to) return num;
+    if (from === 'cm' && to === 'in') return num / 2.54;
+    if (from === 'in' && to === 'cm') return num * 2.54;
+    if (from === 'kg' && to === 'lbs') return num * 2.20462;
+    if (from === 'lbs' && to === 'kg') return num / 2.20462;
+    return null;
+  }
+
+  function stripGuideTrailingUnit(value, unit) {
+    var text = String(value || '').trim();
+    var normalizedUnit = normalizeGuideUnit(unit);
+    if (!normalizedUnit) return text;
+
+    if (normalizedUnit === 'cm') return text.replace(/\s*(?:cm|cms|centimeter|centimeters|centimetre|centimetres)$/i, '').trim();
+    if (normalizedUnit === 'in') return text.replace(/\s*(?:in|inch|inches)$/i, '').trim();
+    if (normalizedUnit === 'kg') return text.replace(/\s*(?:kg|kgs|kilogram|kilograms)$/i, '').trim();
+    if (normalizedUnit === 'lbs') return text.replace(/\s*(?:lb|lbs)$/i, '').trim();
+
+    return text;
+  }
+
+  function getGuideTargetUnit(sourceUnit, unitSystem) {
+    var normalizedSource = normalizeGuideUnit(sourceUnit);
+    if (!normalizedSource) return '';
+
+    if (unitSystem === 'imperial') {
+      if (normalizedSource === 'cm') return 'in';
+      if (normalizedSource === 'kg') return 'lbs';
+    }
+
+    if (unitSystem === 'metric') {
+      if (normalizedSource === 'in') return 'cm';
+      if (normalizedSource === 'lbs') return 'kg';
+    }
+
+    return normalizedSource;
+  }
+
+  function convertGuideCellText(text, fromUnit, toUnit) {
+    var cleaned = stripGuideTrailingUnit(text, fromUnit);
+    var normalizedFrom = normalizeGuideUnit(fromUnit);
+    var normalizedTo = normalizeGuideUnit(toUnit);
+
+    if (!cleaned) return '';
+    if (!normalizedFrom || !normalizedTo || normalizedFrom === normalizedTo) return cleaned;
+
+    var singleMatch = cleaned.match(/^(-?\d+(?:\.\d+)?)$/);
+    if (singleMatch) {
+      var convertedSingle = convertGuideValueBetweenUnits(parseFloat(singleMatch[1]), normalizedFrom, normalizedTo);
+      return convertedSingle === null ? null : formatGuideNumericValue(convertedSingle);
+    }
+
+    var rangeMatch = cleaned.match(/^(-?\d+(?:\.\d+)?)\s*([\-–])\s*(-?\d+(?:\.\d+)?)$/);
+    if (rangeMatch) {
+      var convertedMin = convertGuideValueBetweenUnits(parseFloat(rangeMatch[1]), normalizedFrom, normalizedTo);
+      var convertedMax = convertGuideValueBetweenUnits(parseFloat(rangeMatch[3]), normalizedFrom, normalizedTo);
+      if (convertedMin === null || convertedMax === null) return null;
+      return formatGuideNumericValue(convertedMin) + rangeMatch[2] + formatGuideNumericValue(convertedMax);
+    }
+
+    return null;
+  }
+
   function formatGuideHeaderLabel(header, unitSystem) {
     if (!header || !header.units || !header.units.length) return header ? header.label : '';
 
@@ -1391,9 +1462,21 @@ function initMatchingSizeGuide(wrapper, sectionId) {
 
     var parts = text.split('/').map(function (part) {
       return String(part || '').trim();
-    });
+    }).filter(Boolean);
+    var units = header.units.map(normalizeGuideUnit).filter(Boolean);
     var valueIndex = unitSystem === 'imperial' ? Math.min(1, parts.length - 1) : 0;
-    return parts[valueIndex] || parts[0] || text;
+    var activeUnit = units[valueIndex] || units[0] || '';
+
+    if (parts.length >= 2) {
+      return stripGuideTrailingUnit(parts[valueIndex] || parts[0] || text, activeUnit);
+    }
+
+    var sourceUnit = units[0] || '';
+    var targetUnit = getGuideTargetUnit(sourceUnit, unitSystem);
+    var convertedText = convertGuideCellText(text, sourceUnit, targetUnit);
+    if (convertedText !== null && convertedText !== '') return convertedText;
+
+    return stripGuideTrailingUnit(text, targetUnit || sourceUnit);
   }
 
   function getSelectedSizeState() {
