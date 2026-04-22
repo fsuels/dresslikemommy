@@ -9,6 +9,11 @@
   assign in_matching_hawaiian_outfits = false
   assign in_matching_family_vacation_outfits = false
   assign in_mother_daughter_matching_dresses = false
+  assign in_pajamas = false
+  assign in_mommy_and_me = false
+  assign pajama_label = 'Shop all Pajamas'
+  assign family_matching_collection = collections['matching-outfits']
+  assign new_pajama_drop_collection = collections['new-pajama-drop']
 
   for product_collection in product.collections
     case product_collection.handle
@@ -18,12 +23,45 @@
         assign in_matching_family_vacation_outfits = true
       when 'mother-daughter-matching-dresses'
         assign in_mother_daughter_matching_dresses = true
+      when 'pajamas'
+        assign in_pajamas = true
+      when 'mommy-and-me'
+        assign in_mommy_and_me = true
     endcase
   endfor
+
+  if in_mommy_and_me
+    assign pajama_label = 'Shop all Mommy & Me Pajamas'
+  endif
+
+  if in_pajamas == false
+    assign normalized_product_title = product.title | default: '' | downcase
+    assign normalized_product_handle = product.handle | default: '' | downcase
+    if normalized_product_title contains 'pajama'
+      assign in_pajamas = true
+    elsif normalized_product_handle contains 'pajama' or normalized_product_handle contains 'pjs'
+      assign in_pajamas = true
+    endif
+  endif
 -%}
 
-{%- if in_matching_hawaiian_outfits or in_matching_family_vacation_outfits or in_mother_daughter_matching_dresses -%}
+{%- if in_matching_hawaiian_outfits
+  or in_matching_family_vacation_outfits
+  or in_mother_daughter_matching_dresses
+  or in_pajamas
+-%}
   <div class="product__description rte quick-add-hidden product-copy" data-product-internal-links>
+    {%- if in_pajamas -%}
+      {%- if collections['pajamas'] != blank -%}
+        <p>Keep browsing with <a href="{{ collections['pajamas'].url }}">{{ pajama_label | escape }}</a> for the full pajama lineup in one place.</p>
+      {%- endif -%}
+      {%- if family_matching_collection != blank -%}
+        <p>Want more coordinated outfits beyond bedtime? <a href="{{ family_matching_collection.url }}">Shop Family Matching</a> for dresses, vacation sets, swimsuits, and more.</p>
+      {%- endif -%}
+      {%- if new_pajama_drop_collection != blank -%}
+        <p>Looking for the newest prints first? <a href="{{ new_pajama_drop_collection.url }}">Shop the New Pajama Drop</a> with the latest 19 arrivals in one edit.</p>
+      {%- endif -%}
+    {%- endif -%}
     {%- if in_matching_hawaiian_outfits and collections['matching-hawaiian-outfits'] != blank -%}
       <p>Part of our <a href="{{ collections['matching-hawaiian-outfits'].url }}">{{ collections['matching-hawaiian-outfits'].title | escape }}</a> collection for luaus, beach photos, and tropical vacations.</p>
     {%- endif -%}

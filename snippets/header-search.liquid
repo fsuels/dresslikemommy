@@ -46,6 +46,7 @@
           role="search"
           class="search search-modal__form"
           data-collection-fallback-url="{{ routes.all_products_collection_url }}"
+          data-pajama-collection-url="{{ collections['pajamas'].url | default: '/collections/pajamas' }}"
         >
           <div class="field">
             <input
@@ -90,7 +91,7 @@
           <div class="mobile-search-empty-state" data-mobile-search-empty-state hidden>
             <p class="mobile-search-empty-state__title">Collections</p>
             <ul class="mobile-search-empty-state__list list-unstyled" role="list">
-              {%- assign mobile_search_collection_targets = 'Mommy and Me::mommy-and-me,dresses::mommy,mother,mommy and me,mommy & me,mother and me|Daddy and Me::daddy-me,daddy-me-t-shirts,daddy-me-shirts::daddy,father,daddy and me,daddy & me,father and me,daddy and me shirts,daddy and me outfits|Dad and Son Shirts::daddy-me-shirts,daddy-me::dad and son matching shirts,dad and son matching button up shirts,dad and son matching dress shirts,father son matching hawaiian shirts|Family Matching::family-matching,family-sets::family matching,matching family,family,matching outfits,family sets|Couples Matching::couples,matching-couples-t-shirts,couple-matching::couples matching outfits,couple matching outfits,couples,couple outfits,his and hers,matching couple|Couple T-Shirts::matching-couples-t-shirts,couples::couple shirts,couple t shirts,couples t shirts,couple t shirt|Maternity::maternity::maternity,pregnancy,pregnant,mama' | split: '|' -%}
+              {%- assign mobile_search_collection_targets = 'Pajamas::pajamas,family-pajamas::pajama,pajamas,pjs,matching pjs,matching pajamas,family pajamas,mommy and me pajamas,mother daughter pajamas|Mommy and Me::mommy-and-me,dresses::mommy,mother,mommy and me,mommy & me,mother and me|Daddy and Me::daddy-me,daddy-me-t-shirts,daddy-me-shirts::daddy,father,daddy and me,daddy & me,father and me,daddy and me shirts,daddy and me outfits|Dad and Son Shirts::daddy-me-shirts,daddy-me::dad and son matching shirts,dad and son matching button up shirts,dad and son matching dress shirts,father son matching hawaiian shirts|Family Matching::family-matching,family-sets::family matching,matching family,family,matching outfits,family sets|Couples Matching::couples,matching-couples-t-shirts,couple-matching::couples matching outfits,couple matching outfits,couples,couple outfits,his and hers,matching couple|Couple T-Shirts::matching-couples-t-shirts,couples::couple shirts,couple t shirts,couples t shirts,couple t shirt|Maternity::maternity::maternity,pregnancy,pregnant,mama' | split: '|' -%}
               {%- for target in mobile_search_collection_targets -%}
                 {%- assign target_parts = target | split: '::' -%}
                 {%- assign collection_title = target_parts[0] | strip -%}

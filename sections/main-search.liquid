@@ -90,6 +90,7 @@
           role="search"
           class="search search-form--search-page"
           data-collection-fallback-url="{{ routes.all_products_collection_url }}"
+          data-pajama-collection-url="{{ collections['pajamas'].url | default: '/collections/pajamas' }}"
         >
           <div class="field">
             <input

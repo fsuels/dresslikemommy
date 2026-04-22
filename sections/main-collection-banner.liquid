@@ -65,6 +65,7 @@
         <div class="collection-hero__description rte">{{ collection_description_content }}</div>
       {%- endif -%}
 
+      {% render 'collection-hub-subcategory-cards', collection: collection %}
       {% render 'collection-merchandising-callout', collection: collection %}
       {% render 'style-journal-internal-links', mode: 'collection_guide_links', collection: collection %}
     </div>

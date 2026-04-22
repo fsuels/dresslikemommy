@@ -2,14 +2,34 @@
 {%- if predictive_search.performed -%}
   {%- assign collection_results_size = predictive_search.resources.collections.size -%}
   {%- assign product_results_size = predictive_search.resources.products.size -%}
-  {%- assign total_results = collection_results_size | plus: product_results_size -%}
+  {%- assign predictive_search_terms = predictive_search.terms | default: '' | downcase | strip | replace: '&', 'and' | replace: '-', ' ' | replace: '/', ' ' | replace: ',', ' ' | replace: '+', ' ' -%}
+  {%- assign pajama_query = false -%}
+  {%- if predictive_search_terms contains 'pajama' or predictive_search_terms contains 'pjs' -%}
+    {%- assign pajama_query = true -%}
+  {%- endif -%}
+  {%- assign has_canonical_pajama_collection_result = false -%}
+  {%- for collection in predictive_search.resources.collections -%}
+    {%- if collection.handle == 'pajamas' -%}
+      {%- assign has_canonical_pajama_collection_result = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign show_pajama_shortcut = false -%}
+  {%- if pajama_query and has_canonical_pajama_collection_result == false -%}
+    {%- assign show_pajama_shortcut = true -%}
+  {%- endif -%}
+  {%- assign display_collection_results_size = collection_results_size -%}
+  {%- if show_pajama_shortcut -%}
+    {%- assign display_collection_results_size = display_collection_results_size | plus: 1 -%}
+  {%- endif -%}
+  {%- assign display_total_results = display_collection_results_size | plus: product_results_size -%}
   <div id="predictive-search-results" role="listbox">
-    {%- if total_results > 0 -%}
+    {%- if display_total_results > 0 -%}
       <div
         id="predictive-search-results-groups-wrapper"
-        class="predictive-search__results-groups-wrapper{% unless product_results_size > 0 %} predictive-search__results-groups-wrapper--no-products{% endunless %}{% unless collection_results_size > 0 %} predictive-search__results-groups-wrapper--no-suggestions{% endunless %}"
+        class="predictive-search__results-groups-wrapper{% unless product_results_size > 0 %} predictive-search__results-groups-wrapper--no-products{% endunless %}{% unless display_collection_results_size > 0 %} predictive-search__results-groups-wrapper--no-suggestions{% endunless %}"
       >
-        {%- if collection_results_size > 0 -%}
+        {%- if display_collection_results_size > 0 -%}
           <div class="predictive-search__result-group">
             <div>
               <h2 id="predictive-search-queries" class="predictive-search__heading text-body caption-with-letter-spacing">
@@ -21,14 +41,39 @@
                 role="group"
                 aria-labelledby="predictive-search-queries"
               >
+                {%- if show_pajama_shortcut -%}
+                  <li
+                    id="predictive-search-option-collection-pajamas-shortcut"
+                    class="predictive-search__list-item"
+                    role="option"
+                    aria-selected="false"
+                  >
+                    <a
+                      href="{{ collections['pajamas'].url | default: '/collections/pajamas' }}"
+                      class="predictive-search__item link link--text"
+                      tabindex="-1"
+                      data-search-shortcut="pajamas"
+                      data-collection-handle="pajamas"
+                      aria-label="Shop Pajamas. Matching pjs, family pajamas, mommy and me pajamas, and mother daughter pajamas."
+                    >
+                      <div class="predictive-search__item-content predictive-search__item-content--centered">
+                        <p class="predictive-search__item-heading h5">Shop Pajamas</p>
+                      </div>
+                    </a>
+                  </li>
+                {%- endif -%}
                 {%- for collection in predictive_search.resources.collections -%}
+                  {%- assign predictive_collection_url = collection.url -%}
+                  {%- if collection.handle == 'family-pajamas' -%}
+                    {%- assign predictive_collection_url = collections['pajamas'].url | default: '/collections/pajamas' -%}
+                  {%- endif -%}
                   <li
                     id="predictive-search-option-collection-{{ forloop.index }}"
                     class="predictive-search__list-item"
                     role="option"
                     aria-selected="false"
                   >
-                    <a href="{{ collection.url }}" class="predictive-search__item link link--text" tabindex="-1">
+                    <a href="{{ predictive_collection_url }}" class="predictive-search__item link link--text" tabindex="-1">
                       <div class="predictive-search__item-content predictive-search__item-content--centered">
                         <p class="predictive-search__item-heading h5">{{ collection.title | escape }}</p>
                       </div>
@@ -106,10 +151,10 @@
 
     <span class="hidden" data-predictive-search-live-region-count-value>
       {% liquid
-        if total_results == 0
+        if display_total_results == 0
           echo 'templates.search.no_results' | t: terms: predictive_search.terms
         else
-          echo 'templates.search.results_with_count' | t: count: total_results
+          echo 'templates.search.results_with_count' | t: count: display_total_results
         endif
       %}
     </span>

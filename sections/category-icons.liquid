@@ -172,7 +172,7 @@
                     assign icon_image_key = 'image-' | append: icon_image.id
                   endif
                 -%}
-                <li class="category-icons__item" {{ block.shopify_attributes }}>
+                <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
                   <a href="{{ block.settings.collection.url }}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
                       {%- if icon_image != blank -%}
@@ -260,7 +260,7 @@
                     assign icon_image_key = 'image-' | append: icon_image.id
                   endif
                 -%}
-                <li class="category-icons__item" {{ block.shopify_attributes }}>
+                <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
                   <a href="{{ block.settings.collection.url }}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
                       {%- if icon_image != blank -%}
@@ -335,7 +335,7 @@
                 assign icon_image_key = 'image-' | append: icon_image.id
               endif
             -%}
-            <li class="category-icons__item" {{ block.shopify_attributes }}>
+            <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
               <a href="{{ block.settings.collection.url }}" class="category-icons__link">
                 <div class="category-icons__image-wrap">
                   {%- if icon_image != blank -%}

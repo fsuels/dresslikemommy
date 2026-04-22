@@ -119,6 +119,10 @@ window.dataLayer = window.dataLayer || [];
     pushToDataLayer(payload);
   }
 
+  function pushNavigationEvent(eventName, payload) {
+    pushToDataLayer(Object.assign({ event: eventName }, cleanObject(payload || {})));
+  }
+
   function getCurrency() {
     var meta = document.querySelector('meta[property="og:price:currency"]');
     if (meta && normalizeText(meta.content)) return normalizeText(meta.content);
@@ -176,6 +180,25 @@ window.dataLayer = window.dataLayer || [];
       output[key] = value;
     });
     return output;
+  }
+
+  function getLinkLabel(link) {
+    if (!link) return '';
+
+    var ariaLabel = normalizeText(link.getAttribute && link.getAttribute('aria-label'));
+    if (ariaLabel) return ariaLabel;
+
+    return normalizeText(link.textContent);
+  }
+
+  function getLinkDestination(link) {
+    return normalizeText(link && link.getAttribute && link.getAttribute('href'));
+  }
+
+  function extractHandleFromHref(href) {
+    var path = normalizePath(href);
+    var match = path.match(/^\/(?:collections|products)\/([^/?#]+)/);
+    return match ? decodeURIComponent(match[1]) : '';
   }
 
   function getSubcategory2Token(subcategory2) {
@@ -1037,6 +1060,137 @@ window.dataLayer = window.dataLayer || [];
     });
   }
 
+  function getHomepageCardLinkType(link, card) {
+    if (!link || !card) return '';
+
+    var spotlightLinkType = normalizeText(link.getAttribute('data-homepage-spotlight-link'));
+    if (spotlightLinkType) return spotlightLinkType;
+
+    if (card.hasAttribute('data-homepage-collection-card')) {
+      if (link.closest && link.closest('.card__caption')) return 'caption';
+      if (link.closest && link.closest('.card__media')) return 'media';
+      return 'title';
+    }
+
+    return 'card';
+  }
+
+  function initHomepageCardTracking() {
+    document.addEventListener('click', function (event) {
+      var target = event.target;
+      if (!target || !target.closest) return;
+
+      var link = target.closest('[data-homepage-collection-card] a[href], [data-homepage-spotlight-card] a[href]');
+      if (!link) return;
+
+      var card = link.closest('[data-homepage-collection-card], [data-homepage-spotlight-card]');
+      if (!card) return;
+
+      pushNavigationEvent('homepage_card_click', {
+        homepage_card_kind: card.hasAttribute('data-homepage-spotlight-card') ? 'spotlight' : 'collection',
+        homepage_card_link_type: getHomepageCardLinkType(link, card),
+        homepage_card_label: getLinkLabel(link),
+        destination: getLinkDestination(link),
+        collection_handle: card.hasAttribute('data-homepage-collection-card')
+          ? extractHandleFromHref(getLinkDestination(link))
+          : '',
+        product_handle: card.hasAttribute('data-homepage-spotlight-card')
+          ? normalizeText(card.getAttribute('data-analytics-handle'))
+          : '',
+      });
+    });
+  }
+
+  function initCollectionPillTracking() {
+    document.addEventListener('click', function (event) {
+      var target = event.target;
+      if (!target || !target.closest) return;
+
+      var pill = target.closest('.collection-category-nav__tab[href]');
+      if (!pill) return;
+
+      var row = pill.closest('.collection-category-nav__row');
+      var rowType = row && row.classList.contains('collection-category-nav__row--secondary') ? 'secondary' : 'primary';
+
+      pushNavigationEvent('collection_pill_click', {
+        pill_group: rowType,
+        pill_label: getLinkLabel(pill),
+        destination: getLinkDestination(pill),
+        collection_handle: extractHandleFromHref(getLinkDestination(pill)),
+        is_active: pill.getAttribute('aria-current') === 'page',
+      });
+    });
+  }
+
+  function getMenuContext(link) {
+    if (!link) return '';
+
+    if (link.closest('.menu-drawer')) return 'drawer';
+    if (link.closest('.mega-menu__content--family')) return 'mega_family';
+    if (link.closest('.mega-menu__content')) return 'mega';
+    if (link.closest('.header__submenu')) return 'submenu';
+    if (link.closest('.header__inline-menu')) return 'desktop';
+
+    return '';
+  }
+
+  function getMenuLevel(link) {
+    if (!link) return '';
+
+    if (link.classList.contains('header__menu-item')) return 'top';
+    if (link.classList.contains('menu-drawer__menu-item--top-level')) return 'top';
+    if (link.classList.contains('mega-menu__link')) return 'submenu';
+    if (link.classList.contains('mega-menu__family-link')) return 'feature';
+    if (link.classList.contains('mega-menu__family-text-link')) return 'text';
+
+    return '';
+  }
+
+  function initHeaderMenuTracking() {
+    document.addEventListener('click', function (event) {
+      var target = event.target;
+      if (!target || !target.closest) return;
+
+      var link = target.closest(
+        '.header__inline-menu a[href], .header__submenu a[href], .mega-menu__content a[href], .menu-drawer a[href]'
+      );
+      if (!link) return;
+
+      pushNavigationEvent('menu_click', {
+        menu_context: getMenuContext(link),
+        menu_level: getMenuLevel(link),
+        menu_label: getLinkLabel(link),
+        destination: getLinkDestination(link),
+      });
+    });
+  }
+
+  function initCollectionProductClickTracking() {
+    document.addEventListener('click', function (event) {
+      var target = event.target;
+      if (!target || !target.closest) return;
+
+      var link = target.closest('a[href]');
+      if (!link) return;
+
+      var card = link.closest('[data-analytics-product-card="true"]');
+      if (!card || !card.closest('[data-analytics-product-list="true"]')) return;
+
+      var listContext = getListContext(card);
+      var item = buildCardItem(card, listContext);
+      if (!item) return;
+
+      pushNavigationEvent('collection_product_click', {
+        destination: getLinkDestination(link),
+        item_list_id: listContext.item_list_id,
+        item_list_name: listContext.item_list_name,
+        product_handle: normalizeText(card.getAttribute('data-analytics-handle')),
+        product_title: item.item_name,
+        card_position: item.index,
+      });
+    });
+  }
+
   function initCheckoutTracking() {
     document.addEventListener('click', function (event) {
       var target = event.target;
@@ -1297,7 +1451,11 @@ window.dataLayer = window.dataLayer || [];
     pushViewItemOnce();
     initHeroAnalytics();
     initHomepageCtaTracking();
+    initHomepageCardTracking();
+    initCollectionPillTracking();
+    initHeaderMenuTracking();
     initProductListTracking();
+    initCollectionProductClickTracking();
     initSelectItemTracking();
     initCartStateTracking();
     initSearchTracking();

@@ -6,16 +6,22 @@
 {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 
-{% include 'collection-breadcrumbs' %}
+{% render 'collection-breadcrumbs', collection: collection %}
 
-{% assign family_pajamas_fallback_url = collections['pajamas'].url | default: '/collections/pajamas' %}
-{% if collection.handle == 'family-pajamas' and collection.products.size == 0 %}
-  <script>
-    window.location.replace({{ family_pajamas_fallback_url | json }});
-  </script>
-  <noscript>
-    <meta http-equiv="refresh" content="0; url={{ family_pajamas_fallback_url }}">
-  </noscript>
+{% assign collection_empty_recovery_target_url = blank %}
+{% if collection.all_products_count == 0 %}
+  {% case collection.handle %}
+    {% when 'family-pajamas' %}
+      {% assign collection_empty_recovery_target_url = collections['pajamas'].url | default: '/collections/pajamas' %}
+    {% when 'family-swimsuits', 'family-sets', 'family-tops', 'family-sweaters', 'matching-family-vacation-outfits', 'matching-hawaiian-outfits', 'mother-daughter-matching-dresses' %}
+      {% assign collection_empty_recovery_target_url = collections['matching-outfits'].url | default: collections['family-matching-outfits'].url | default: '/collections/matching-outfits' %}
+    {% when 'matching-outfits', 'family-matching-outfits', 'new-women-outfits' %}
+      {% assign collection_empty_recovery_target_url = collections['mommy-and-me'].url | default: '/collections/mommy-and-me' %}
+    {% when 'mommy-and-me' %}
+      {% assign collection_empty_recovery_target_url = collections['pajamas'].url | default: '/collections/pajamas' %}
+    {% when 'dresses', 'swimsuits', 'tops', 'sweaters', 'bottoms', 'leggings', 'pants', 'formal-dresses', 'maxi-dresses', 'midi-dresses', 'mini-dresses', 'sundresses', 'jumpsuits', 'rompers', 'skirts', 'pajamas' %}
+      {% assign collection_empty_recovery_target_url = collections['mommy-and-me'].url | default: '/collections/mommy-and-me' %}
+  {% endcase %}
 {% endif %}
 
 {% if collection.handle == 'daddy-me'
@@ -150,15 +156,18 @@
           <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
             <div class="loading-overlay gradient"></div>
             <div class="title-wrapper center">
-              <h2 class="title title--primary">
-                {{ 'sections.collection_template.empty' | t -}}
-                <br>
-                {{
-                  'sections.collection_template.use_fewer_filters_html'
-                  | t: link: collection.url, class: 'underlined-link link'
-                }}
-              </h2>
-              {% render 'collection-empty-recovery', collection: collection %}
+              {%- if collection.all_products_count == 0 -%}
+                {% render 'collection-empty-recovery', collection: collection, recovery_redirect_url: collection_empty_recovery_target_url %}
+              {%- else -%}
+                <h2 class="title title--primary">
+                  {{ 'sections.collection_template.empty' | t -}}
+                  <br>
+                  {{
+                    'sections.collection_template.use_fewer_filters_html'
+                    | t: link: collection.url, class: 'underlined-link link'
+                  }}
+                </h2>
+              {%- endif -%}
             </div>
           </div>
         {%- else -%}
