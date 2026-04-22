@@ -61,6 +61,58 @@ document.addEventListener("DOMContentLoaded", function () {
     return getTextContent(element) === "";
   };
 
+  const isListItemBlockElement = function (element) {
+    if (!element || element.nodeType !== 1) return false;
+
+    return /^(P|DIV|UL|OL|TABLE|FIGURE|IMG|VIDEO|IFRAME|BLOCKQUOTE|H1|H2|H3|H4|H5|H6)$/.test(element.tagName);
+  };
+
+  const wrapInlineListItemContent = function (item) {
+    if (!item || item.tagName !== "LI") return;
+
+    let inlineNodes = [];
+
+    const flushInlineNodes = function (anchorNode) {
+      if (!inlineNodes.length) return;
+
+      const paragraph = document.createElement("p");
+      paragraph.className = "product-copy__item-copy";
+
+      inlineNodes.forEach(function (node) {
+        paragraph.appendChild(node);
+      });
+
+      item.insertBefore(paragraph, anchorNode || null);
+      inlineNodes = [];
+    };
+
+    Array.from(item.childNodes).forEach(function (node) {
+      if (node.nodeType === 3) {
+        if (String(node.textContent || "").trim() === "") {
+          node.remove();
+          return;
+        }
+
+        inlineNodes.push(node);
+        return;
+      }
+
+      if (node.nodeType !== 1) {
+        node.remove();
+        return;
+      }
+
+      if (isListItemBlockElement(node)) {
+        flushInlineNodes(node);
+        return;
+      }
+
+      inlineNodes.push(node);
+    });
+
+    flushInlineNodes(null);
+  };
+
   const normalizeDescriptionStructure = function (container) {
     let changed = true;
 
@@ -115,6 +167,8 @@ document.addEventListener("DOMContentLoaded", function () {
         paragraph.remove();
       });
     }
+
+    wrapInlineListItemContent(item);
   };
 
   const normalizeList = function (listElement, className) {
