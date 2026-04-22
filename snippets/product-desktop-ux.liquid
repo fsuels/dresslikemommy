@@ -1,79 +1,19 @@
 {%- liquid
-  assign locale_root = request.locale.iso_code | default: localization.language.iso_code | default: shop.locale | downcase | split: '-' | first
-  assign matching_set_heading = 'Build your matching set'
-  assign matching_set_copy = 'Choose the family sizes you want and add them together from one product page.'
-  assign matching_set_empty = 'Choose at least one family size to add your set.'
-  assign matching_set_add = 'Add selected pieces'
-  assign matching_set_success = 'Matching set added to cart.'
-  assign matching_set_error = 'Unable to add the selected pieces. Please try again.'
-  assign grouped_size_guide_label = 'Compare family sizes'
-  assign compare_size_guide_label = 'Compare all sizes'
-  assign single_size_guide_label = 'Size guide & fit'
-  assign selected_size_guide_label = 'Your size details'
-  assign size_guide_compare_hint = 'Open the full chart below to compare nearby sizes.'
-  assign size_guide_unit_toggle_label = 'Size chart units'
-  assign reviews_heading = 'Customer reviews'
-  assign reviews_copy = 'See fit notes and family photos'
-  assign photo_heading = 'Customer photo reviews'
-  assign jump_to_reviews = 'Jump to reviews'
-  assign returns_copy = 'Easy returns on unworn items within 30 days.'
-
-  case locale_root
-    when 'es'
-      assign matching_set_heading = 'Arma tu conjunto a juego'
-      assign matching_set_copy = 'Elige las tallas de tu familia y anadelas juntas desde esta misma pagina.'
-      assign matching_set_empty = 'Elige al menos una talla familiar para anadir el conjunto.'
-      assign matching_set_add = 'Anadir piezas seleccionadas'
-      assign matching_set_success = 'El conjunto a juego se anadio al carrito.'
-      assign matching_set_error = 'No se pudieron anadir las piezas seleccionadas. Intentalo de nuevo.'
-      assign grouped_size_guide_label = 'Comparar tallas de la familia'
-      assign compare_size_guide_label = 'Comparar todas las tallas'
-      assign single_size_guide_label = 'Guia de tallas y ajuste'
-      assign selected_size_guide_label = 'Detalles de tu talla'
-      assign size_guide_compare_hint = 'Abre la tabla completa para comparar tallas cercanas.'
-      assign size_guide_unit_toggle_label = 'Unidades de la tabla de tallas'
-      assign reviews_heading = 'Resenas de clientes'
-      assign reviews_copy = 'Ver fotos familiares y comentarios de ajuste'
-      assign photo_heading = 'Fotos de clientes'
-      assign jump_to_reviews = 'Ir a las resenas'
-      assign returns_copy = 'Devoluciones sencillas en articulos sin usar durante 30 dias.'
-    when 'fr'
-      assign matching_set_heading = 'Composer votre ensemble assorti'
-      assign matching_set_copy = 'Choisissez les tailles de votre famille et ajoutez-les ensemble depuis cette page.'
-      assign matching_set_empty = 'Choisissez au moins une taille familiale pour ajouter votre ensemble.'
-      assign matching_set_add = 'Ajouter les pieces selectionnees'
-      assign matching_set_success = 'L ensemble assorti a ete ajoute au panier.'
-      assign matching_set_error = 'Impossible d ajouter les pieces selectionnees. Veuillez reessayer.'
-      assign grouped_size_guide_label = 'Comparer les tailles de la famille'
-      assign compare_size_guide_label = 'Comparer toutes les tailles'
-      assign single_size_guide_label = 'Guide des tailles et coupe'
-      assign selected_size_guide_label = 'Détails de votre taille'
-      assign size_guide_compare_hint = 'Ouvrez le tableau complet ci-dessous pour comparer les tailles proches.'
-      assign size_guide_unit_toggle_label = 'Unités du guide des tailles'
-      assign reviews_heading = 'Avis clients'
-      assign reviews_copy = 'Voir des photos de familles et des notes de coupe'
-      assign photo_heading = 'Photos clients'
-      assign jump_to_reviews = 'Voir les avis'
-      assign returns_copy = 'Retours simples sur les articles non portes pendant 30 jours.'
-    when 'ar'
-      assign matching_set_heading = 'كوّني الطقم المتطابق'
-      assign matching_set_copy = 'اختاري مقاسات العائلة التي تريدينها وأضيفيها معاً من صفحة المنتج نفسها.'
-      assign matching_set_empty = 'اختاري مقاساً عائلياً واحداً على الأقل لإضافة الطقم.'
-      assign matching_set_add = 'أضيفي القطع المختارة'
-      assign matching_set_success = 'تمت إضافة الطقم المتطابق إلى السلة.'
-      assign matching_set_error = 'تعذر إضافة القطع المختارة. يرجى المحاولة مرة أخرى.'
-      assign grouped_size_guide_label = 'قارني مقاسات العائلة'
-      assign compare_size_guide_label = 'قارني كل المقاسات'
-      assign single_size_guide_label = 'دليل المقاسات والملاءمة'
-      assign selected_size_guide_label = 'تفاصيل مقاسك'
-      assign size_guide_compare_hint = 'افتحي جدول المقاسات الكامل أدناه لمقارنة المقاسات القريبة.'
-      assign size_guide_unit_toggle_label = 'وحدات جدول المقاسات'
-      assign reviews_heading = 'آراء العملاء'
-      assign reviews_copy = 'شاهدي صور العائلات وملاحظات المقاس'
-      assign photo_heading = 'صور العملاء'
-      assign jump_to_reviews = 'الانتقال إلى الآراء'
-      assign returns_copy = 'إرجاع سهل للقطع غير المستخدمة خلال 30 يوماً.'
-  endcase
+  assign matching_set_heading = 'products.product.matching_set.heading' | t
+  assign matching_set_copy = 'products.product.matching_set.copy' | t
+  assign matching_set_empty = 'products.product.matching_set.empty' | t
+  assign matching_set_add = 'products.product.matching_set.add' | t
+  assign matching_set_success = 'products.product.matching_set.success' | t
+  assign matching_set_error = 'products.product.matching_set.error' | t
+  assign grouped_size_guide_label = 'products.product.size_guide.compare_family_sizes' | t
+  assign compare_size_guide_label = 'products.product.size_guide.compare_all_sizes' | t
+  assign single_size_guide_label = 'products.product.size_guide.guide_and_fit' | t
+  assign selected_size_guide_label = 'products.product.size_guide.your_size_details' | t
+  assign size_guide_compare_hint = 'products.product.size_guide.compare_hint' | t
+  assign size_guide_unit_toggle_label = 'products.product.size_guide.chart_units' | t
+  assign reviews_heading = 'products.product.reviews.heading' | t
+  assign photo_heading = 'products.product.reviews.photo_heading' | t
+  assign jump_to_reviews = 'products.product.reviews.jump_to_reviews' | t
 -%}
 
 <div

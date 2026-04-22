@@ -42,7 +42,7 @@
 
       {%- comment -%} Popular with Families — bestsellers for empty cart {%- endcomment -%}
       <div class="cart-page__empty-bestsellers">
-        <h2 class="cart-page__empty-section-title">Popular with Families</h2>
+        <h2 class="cart-page__empty-section-title">{{ 'sections.cart.popular_with_families' | t }}</h2>
         <div class="cart-page__cross-sell-grid">
           {%- for product in collections.all.products limit: 4 -%}
             <a href="{{ product.url }}" class="cart-page__cross-sell-item">
@@ -69,7 +69,7 @@
 
       {%- comment -%} Recently viewed — populated by JS {%- endcomment -%}
       <div class="cart-page__recently-viewed" id="CartPage-RecentlyViewed" style="display:none;">
-        <h2 class="cart-page__empty-section-title">Recently Viewed</h2>
+        <h2 class="cart-page__empty-section-title">{{ 'sections.cart.recently_viewed' | t }}</h2>
         <div class="cart-page__cross-sell-grid" id="CartPage-RecentlyViewedGrid">
         </div>
       </div>

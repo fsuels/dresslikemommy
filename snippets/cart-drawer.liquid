@@ -46,7 +46,7 @@
 
               {%- comment -%} Popular with Families — bestsellers for empty cart {%- endcomment -%}
               <div class="cart-drawer__empty-bestsellers">
-                <h3 class="cart-drawer__empty-section-title">Popular with Families</h3>
+                <h3 class="cart-drawer__empty-section-title">{{ 'sections.cart.popular_with_families' | t }}</h3>
                 <div class="cart-drawer__upsell-grid">
                   {%- for product in collections.all.products limit: 3 -%}
                     <a href="{{ product.url }}" class="cart-drawer__upsell-item">
@@ -71,7 +71,7 @@
 
               {%- comment -%} Recently viewed products — populated by JS from localStorage {%- endcomment -%}
               <div class="cart-drawer__recently-viewed" id="CartDrawer-RecentlyViewed" style="display:none;">
-                <h3 class="cart-drawer__empty-section-title">Recently Viewed</h3>
+                <h3 class="cart-drawer__empty-section-title">{{ 'sections.cart.recently_viewed' | t }}</h3>
                 <div class="cart-drawer__upsell-grid" id="CartDrawer-RecentlyViewedGrid">
                 </div>
               </div>

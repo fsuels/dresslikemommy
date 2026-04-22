@@ -57,22 +57,24 @@
     endif
   endif
 
-  assign back_to_results_label = 'Back to results'
+  assign back_to_results_label = 'sections.product_navigation.back_to_results' | t
   assign back_to_results_fallback_url = routes.all_products_collection_url | default: routes.root_url
   if back_collection != blank
     assign back_to_results_fallback_url = back_collection.url | default: back_to_results_fallback_url
     if back_collection.title != blank
-      assign back_to_results_label = 'Back to ' | append: back_collection.title
+      assign back_to_results_label = 'sections.product_navigation.back_to_context' | t: context: back_collection.title
     endif
   endif
 
   if back_collection == blank and has_family_sets_context
-    assign back_to_results_label = 'Back to Family Sets'
-    if family_sets_collection != blank
+    if family_sets_collection != blank and family_sets_collection.title != blank
+      assign back_to_results_label = 'sections.product_navigation.back_to_context' | t: context: family_sets_collection.title
       assign back_to_results_fallback_url = family_sets_collection.url
+    else
+      assign back_to_results_label = 'sections.product_navigation.back_to_family_sets' | t
     endif
-  elsif back_collection != blank and back_collection.handle == 'family-sets'
-    assign back_to_results_label = 'Back to Family Sets'
+  elsif back_collection != blank and back_collection.handle == 'family-sets' and back_collection.title != blank
+    assign back_to_results_label = 'sections.product_navigation.back_to_context' | t: context: back_collection.title
   endif
 
   assign current_product_type = product.type | downcase | strip
@@ -137,6 +139,9 @@
       class="buy-box-navigation__back-link"
       data-back-to-results
       data-back-to-results-fallback="{{ back_to_results_fallback_url }}"
+      data-back-to-results-label-default="{{ back_to_results_label | escape }}"
+      data-back-to-results-template="{{ 'sections.product_navigation.back_to_context' | t: context: '__CONTEXT__' | escape }}"
+      data-back-to-search-results-label="{{ 'sections.product_navigation.back_to_search_results' | t | escape }}"
       rel="prev"
       aria-label="{{ back_to_results_label | escape }}"
     >
@@ -151,16 +156,16 @@
     aria-labelledby="BuyBoxSimilarStylesHeading-{{ section.id }}"
   >
     <div class="buy-box-similar-styles__header">
-      <p class="buy-box-similar-styles__eyebrow">Similar styles</p>
+      <p class="buy-box-similar-styles__eyebrow">{{ 'sections.product_navigation.similar_styles' | t }}</p>
       <h2 class="buy-box-similar-styles__title" id="BuyBoxSimilarStylesHeading-{{ section.id }}">
         {%- if similar_collection != blank and similar_collection.title != blank -%}
-          Browse more from {{ similar_collection.title | escape }}
+          {{ 'sections.product_navigation.browse_more_from' | t: collection: similar_collection.title }}
         {%- else -%}
-          Browse similar styles
+          {{ 'sections.product_navigation.browse_similar_styles' | t }}
         {%- endif -%}
       </h2>
       {%- if similar_collection != blank and similar_collection.title != blank -%}
-        <p class="buy-box-similar-styles__copy">Use this collection to compare a few close matches before you go back to shopping.</p>
+        <p class="buy-box-similar-styles__copy">{{ 'sections.product_navigation.compare_collection_copy' | t }}</p>
       {%- endif -%}
     </div>
 

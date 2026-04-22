@@ -1,7 +1,6 @@
 {%- unless product.has_only_default_variant -%}
   {%- liquid
-    assign locale_root = request.locale.iso_code | default: localization.language.iso_code | default: shop.locale | downcase | split: '-' | first
-    assign size_guide_summary_label = 'Size guide & fit'
+    assign size_guide_summary_label = 'products.product.size_guide.guide_and_fit' | t
     assign has_type_or_style_option = false
     assign selected_type_value = blank
     assign selected_type_family_group = blank
@@ -43,14 +42,6 @@
       endif
     endfor
 
-    case locale_root
-      when 'es'
-        assign size_guide_summary_label = 'Guia de tallas y ajuste'
-      when 'fr'
-        assign size_guide_summary_label = 'Guide des tailles et coupe'
-      when 'ar'
-        assign size_guide_summary_label = 'دليل المقاسات والملاءمة'
-    endcase
   -%}
   {%- assign rendered_size_help = false -%}
   <variant-selects

@@ -8,6 +8,8 @@ function getFocusableElements(container) {
 
 const BACK_TO_RESULTS_STORAGE_KEY = 'dlm:last-results-url';
 const BACK_TO_RESULTS_LABEL_STORAGE_KEY = 'dlm:last-results-label';
+const DEFAULT_BACK_TO_RESULTS_TEMPLATE = 'Back to __CONTEXT__';
+const DEFAULT_BACK_TO_SEARCH_RESULTS_LABEL = 'Back to search results';
 
 function toSameOriginUrl(value) {
   if (!value) return null;
@@ -59,15 +61,23 @@ function getCurrentResultsPageLabel() {
   return sanitizeResultsLabel(heading.textContent);
 }
 
-function formatBackToResultsLabel(resultsLabel, fallbackLabel = 'Back to results') {
+function formatBackToResultsLabel(
+  resultsLabel,
+  fallbackLabel = 'Back to results',
+  contextTemplate = DEFAULT_BACK_TO_RESULTS_TEMPLATE,
+  searchResultsLabel = DEFAULT_BACK_TO_SEARCH_RESULTS_LABEL
+) {
   const sanitizedLabel = sanitizeResultsLabel(resultsLabel);
   if (!sanitizedLabel) return fallbackLabel;
+  if (sanitizedLabel === fallbackLabel || sanitizedLabel === searchResultsLabel) return sanitizedLabel;
 
   const lowerLabel = sanitizedLabel.toLowerCase();
-  if (lowerLabel.startsWith('back to ')) return sanitizedLabel;
-  if (lowerLabel === 'search' || lowerLabel === 'search results') return 'Back to search results';
+  if (lowerLabel === 'search' || lowerLabel === 'search results') return searchResultsLabel;
+  if (contextTemplate.includes('__CONTEXT__')) {
+    return contextTemplate.replace('__CONTEXT__', sanitizedLabel);
+  }
 
-  return `Back to ${sanitizedLabel}`;
+  return `${contextTemplate} ${sanitizedLabel}`.trim();
 }
 
 function rememberResultsPageUrl() {
@@ -102,13 +112,17 @@ function getPreferredBackToResultsUrl() {
   return '';
 }
 
-function getPreferredBackToResultsLabel(fallbackLabel) {
+function getPreferredBackToResultsLabel(
+  fallbackLabel,
+  contextTemplate = DEFAULT_BACK_TO_RESULTS_TEMPLATE,
+  searchResultsLabel = DEFAULT_BACK_TO_SEARCH_RESULTS_LABEL
+) {
   const referrerUrl = toSameOriginUrl(document.referrer);
   if (referrerUrl && referrerUrl.pathname.startsWith('/search')) {
-    return 'Back to search results';
+    return searchResultsLabel;
   }
 
-  return formatBackToResultsLabel(getStoredResultsLabel(), fallbackLabel);
+  return formatBackToResultsLabel(getStoredResultsLabel(), fallbackLabel, contextTemplate, searchResultsLabel);
 }
 
 function hydrateBackToResultsControls() {
@@ -122,7 +136,12 @@ function hydrateBackToResultsControls() {
       sanitizeResultsLabel(control.getAttribute('data-back-to-results-label-default')) ||
       sanitizeResultsLabel(control.textContent) ||
       'Back to results';
-    const targetLabel = getPreferredBackToResultsLabel(fallbackLabel);
+    const contextTemplate =
+      control.getAttribute('data-back-to-results-template') || DEFAULT_BACK_TO_RESULTS_TEMPLATE;
+    const searchResultsLabel =
+      sanitizeResultsLabel(control.getAttribute('data-back-to-search-results-label')) ||
+      DEFAULT_BACK_TO_SEARCH_RESULTS_LABEL;
+    const targetLabel = getPreferredBackToResultsLabel(fallbackLabel, contextTemplate, searchResultsLabel);
     const labelTarget = control.querySelector('[data-back-to-results-label]');
 
     if (targetUrl) {

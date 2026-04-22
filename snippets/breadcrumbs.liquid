@@ -3,6 +3,7 @@
   {% assign category1_label = product.metafields.custom.category1 | default: "Mommy and Me" %}
   {% assign category1_handle = category1_label | handleize %}
   {% assign category1_collection = collections[category1_handle] %}
+  {% assign category1_display_label = category1_label %}
 
   {% assign subcategory_label = product.metafields.custom.subcategory | default: "Dresses" %}
   {% assign subcategory_handle = subcategory_label | handleize %}
@@ -15,11 +16,14 @@
   {% endif %}
   {% assign family_sets_collection = collections['family-sets'] %}
   {% assign back_to_results_url = blank %}
-  {% assign back_to_results_label = 'Back to results' %}
+  {% assign back_to_results_label = 'sections.product_navigation.back_to_results' | t %}
   {% assign back_to_results_context = blank %}
   {% assign similar_styles_collection = collection %}
-  {% assign similar_styles_label = 'View similar styles' %}
+  {% assign similar_styles_label = 'sections.product_navigation.view_similar_styles' | t %}
   {% assign similar_styles_aria_label = similar_styles_label %}
+  {% if category1_collection != blank and category1_collection.title != blank %}
+    {% assign category1_display_label = category1_collection.title %}
+  {% endif %}
   {% if collection != blank %}
     {% assign back_to_results_url = collection.url %}
   {% elsif subcategory_collection != blank %}
@@ -30,24 +34,28 @@
   {% if back_to_results_url == blank %}
     {% assign back_to_results_url = routes.all_products_collection_url | default: routes.root_url %}
   {% endif %}
-  {% if subcategory_handle == 'daddy-me-t-shirts' %}
-    {% assign subcategory_display_label = 'Tees' %}
+  {% if subcategory_collection != blank and subcategory_collection.title != blank %}
+    {% assign subcategory_display_label = subcategory_collection.title %}
+  {% elsif subcategory_handle == 'daddy-me-t-shirts' %}
+    {% assign subcategory_display_label = 'sections.breadcrumbs.label_daddy_tshirts' | t %}
   {% elsif subcategory_handle == 'daddy-me-shirts' %}
-    {% assign subcategory_display_label = 'Button-Downs' %}
+    {% assign subcategory_display_label = 'sections.breadcrumbs.label_button_downs' | t %}
   {% elsif subcategory_handle == 'matching-couples-t-shirts' %}
-    {% assign subcategory_display_label = 'T-Shirts' %}
+    {% assign subcategory_display_label = 'sections.breadcrumbs.label_tshirts' | t %}
   {% endif %}
 
   {% if collection != blank and collection.title != blank %}
     {% assign back_to_results_context = collection.title %}
   {% elsif subcategory_collection != blank and subcategory_display_label != blank %}
     {% assign back_to_results_context = subcategory_display_label %}
-  {% elsif category1_collection != blank and category1_label != blank %}
-    {% assign back_to_results_context = category1_label %}
+  {% elsif category1_collection != blank and category1_display_label != blank %}
+    {% assign back_to_results_context = category1_display_label %}
+  {% elsif has_family_sets_context and family_sets_collection != blank and family_sets_collection.title != blank %}
+    {% assign back_to_results_context = family_sets_collection.title %}
   {% endif %}
 
   {% if back_to_results_context != blank %}
-    {% assign back_to_results_label = 'Back to ' | append: back_to_results_context %}
+    {% assign back_to_results_label = 'sections.product_navigation.back_to_context' | t: context: back_to_results_context %}
   {% endif %}
 
   {% if similar_styles_collection == blank or similar_styles_collection.all_products_count < 5 %}
@@ -75,17 +83,19 @@
   {% endif %}
 
   {% if similar_styles_collection != blank and similar_styles_collection.title != blank %}
-    {% assign similar_styles_aria_label = similar_styles_label | append: ' in ' | append: similar_styles_collection.title %}
+    {% assign similar_styles_aria_label = 'sections.product_navigation.view_similar_styles_in' | t: collection: similar_styles_collection.title %}
   {% endif %}
 
   <div class="product-breadcrumb__handoff">
-    <p class="product-breadcrumb__eyebrow">Continue shopping</p>
+    <p class="product-breadcrumb__eyebrow">{{ 'general.continue_shopping' | t }}</p>
     <a
       href="{{ back_to_results_url }}"
       class="product-breadcrumb__back-link"
       data-back-to-results
       data-back-to-results-fallback="{{ back_to_results_url }}"
       data-back-to-results-label-default="{{ back_to_results_label | escape }}"
+      data-back-to-results-template="{{ 'sections.product_navigation.back_to_context' | t: context: '__CONTEXT__' | escape }}"
+      data-back-to-search-results-label="{{ 'sections.product_navigation.back_to_search_results' | t | escape }}"
       rel="prev"
       aria-label="{{ back_to_results_label | escape }}"
       title="{{ back_to_results_label | escape }}"
@@ -110,7 +120,7 @@
     {% comment %} --- Category1 link only if collection exists --- {% endcomment %}
     {% if category1_collection != blank %}
       <span aria-hidden="true" class="product-breadcrumb__separator mobile-hide">&rsaquo;</span>
-      <a href="{{ category1_collection.url }}" title="{{ category1_label }}" class="product-breadcrumb__link mobile-hide">{{ category1_label }}</a>
+      <a href="{{ category1_collection.url }}" title="{{ category1_display_label }}" class="product-breadcrumb__link mobile-hide">{{ category1_display_label }}</a>
     {% endif %}
 
     {% comment %} --- Subcategory link only if collection exists --- {% endcomment %}
@@ -147,7 +157,8 @@
           {% for subcat_label in valid_subcat_list %}
             {% assign subcat_handle = subcat_label | handleize %}
             {% assign subcat_collection = collections[subcat_handle] %}
-            <a href="{{ subcat_collection.url }}" class="product-breadcrumb__link">{{ subcat_label }}</a>{% if forloop.last == false %} <span class="product-breadcrumb__separator">/</span> {% endif %}
+            {% assign subcat_display_label = subcat_collection.title | default: subcat_label %}
+            <a href="{{ subcat_collection.url }}" class="product-breadcrumb__link">{{ subcat_display_label }}</a>{% if forloop.last == false %} <span class="product-breadcrumb__separator">/</span> {% endif %}
           {% endfor %}
         </span>
       {% endif %}
