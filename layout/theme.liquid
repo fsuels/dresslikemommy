@@ -681,7 +681,12 @@
       // Calculate delivery dates
       function formatDate(date) {
         const options = { month: 'short', day: 'numeric' };
-        return date.toLocaleDateString('en-US', options);
+        const locale = document.documentElement.getAttribute('lang') || (window.Shopify && window.Shopify.locale) || undefined;
+        try {
+          return new Intl.DateTimeFormat(locale, options).format(date);
+        } catch (_error) {
+          return date.toLocaleDateString('en-US', options);
+        }
       }
 
       function addBusinessDays(startDate, businessDays) {
