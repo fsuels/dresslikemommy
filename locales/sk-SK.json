@@ -177,6 +177,34 @@
         "minimum": "{{ quantity }}+",
         "price_at_each": "{{ price }}/kus",
         "price_range": "{{ minimum }} – {{ maximum }}"
+      },
+      "matching_set": {
+        "heading": "Zostavte si zodpovedajúcu súpravu",
+        "copy": "Vyberte si požadované veľkosti rodiny a pridajte ich na jednej stránke produktu.",
+        "empty": "Ak chcete pridať svoju súpravu, vyberte aspoň jednu rodinnú veľkosť.",
+        "add": "Pridajte vybrané kúsky",
+        "success": "Zodpovedajúca sada bola pridaná do košíka.",
+        "error": "Nie je možné pridať vybrané kusy. Skúste to znova."
+      },
+      "size_guide": {
+        "compare_family_sizes": "Porovnajte veľkosť rodiny",
+        "compare_all_sizes": "Porovnajte všetky veľkosti",
+        "guide_and_fit": "Sprievodca veľkosťou a prispôsobenie",
+        "your_size_details": "Podrobnosti o vašej veľkosti",
+        "compare_hint": "Ak chcete porovnať blízke veľkosti, otvorte celú tabuľku nižšie.",
+        "chart_units": "Jednotky tabuľky veľkostí"
+      },
+      "reviews": {
+        "heading": "Zákaznícke recenzie",
+        "photo_heading": "Zákaznícke recenzie fotografií",
+        "jump_to_reviews": "Prejsť na recenzie"
+      },
+      "review_widget": {
+        "heading_uppercase": "RECENZIE ZÁKAZNÍKOV",
+        "heading": "Zákaznícke recenzie",
+        "empty": "Buďte prvý, kto napíše recenziu",
+        "write_review": "Napíšte recenziu",
+        "write_review_title": "Napíšte recenziu"
       }
     },
     "modal": {
@@ -220,30 +248,32 @@
       "filter_and_operator_subtitle": "Spĺňať všetko"
     },
     "trust": {
-      "secure_checkout": "Secure Checkout",
+      "secure_checkout": "Bezpečná pokladňa",
       "ssl_encrypted": "SSL Encrypted",
-      "returns": "30-Day Returns",
-      "free_shipping": "Free Shipping"
+      "returns": "30-dňové vrátenie tovaru",
+      "free_shipping": "Free Shipping",
+      "trusted_since": "Dôveryhodné od roku 2016",
+      "assistance_note": "Potrebujete pomoc? Zvyčajne odpovedáme do jedného pracovného dňa."
     },
     "additional_info": {
-      "shipping_title": "Free Shipping Worldwide",
-      "free_shipping_label": "FREE Shipping",
-      "estimated_delivery": "Est. Delivery",
-      "faster_shipping_prefix": "Want it faster? Spend $100+ and get",
-      "free_premium_shipping": "FREE Premium Shipping",
-      "return_policy_title": "Return Policy",
-      "return_policy_line_1": "We gladly accept returns within 30 days of purchase.",
-      "return_policy_line_2": "Items should be in their original condition and packaging to qualify for a full refund. Please note that buyers are responsible for return shipping costs.",
-      "return_policy_line_3": "If an item is returned damaged, used, or missing parts, we may deduct a portion of the refund to cover any loss in the item's value.",
-      "return_policy_line_4": "To ensure a smooth return process, kindly return items in the same condition as received, including all packaging and original contents.",
-      "shopping_security_title": "Shopping Security",
-      "safe_payment_options_title": "Safe Payment Options",
-      "safe_payment_description": "We accept all major credit and debit cards. Your card details are secure and never shared with our partners. You can easily manage your saved cards anytime. For any transaction inquiries, please contact your card issuer.",
-      "secure_logistics_title": "Secure Logistics",
-      "secure_logistics_line_1": "Package safety: Full refund for your damaged or lost package.",
-      "secure_logistics_line_2": "Delivery guaranteed: Accurate and precise order tracking.",
-      "secure_privacy_title": "Secure Privacy",
-      "secure_privacy_description": "Protecting your privacy is important to us! Please be assured that your information will be kept secured and uncompromised. We do not sell your personal information for money and will only use your information in accordance with our privacy and cookie policy to provide and improve our services to you."
+      "shipping_title": "Doručenie zdarma po celom svete",
+      "free_shipping_label": "Doprava ZDARMA",
+      "estimated_delivery": "Odhad. Doručenie",
+      "faster_shipping_prefix": "Chcete to rýchlejšie? Strávte viac ako 100 $ a získajte",
+      "free_premium_shipping": "Prémiová doprava ZDARMA",
+      "return_policy_title": "Pravidlá vrátenia",
+      "return_policy_line_1": "Radi akceptujeme vrátenie tovaru do 30 dní od nákupu.",
+      "return_policy_line_2": "Položky by mali byť v pôvodnom stave a balení, aby ste mali nárok na plnú náhradu. Upozorňujeme, že kupujúci sú zodpovední za náklady na vrátenie tovaru.",
+      "return_policy_line_3": "Ak je položka vrátená poškodená, použitá alebo chýbajúce časti, môžeme si odpočítať časť vrátenej sumy na pokrytie akejkoľvek straty hodnoty položky.",
+      "return_policy_line_4": "Na zabezpečenie hladkého procesu vrátenia vráťte položky v rovnakom stave, v akom ste ich dostali, vrátane všetkých obalov a pôvodného obsahu.",
+      "shopping_security_title": "Bezpečnosť nakupovania",
+      "safe_payment_options_title": "Možnosti bezpečnej platby",
+      "safe_payment_description": "Akceptujeme všetky hlavné kreditné a debetné karty. Údaje o vašej karte sú v bezpečí a nikdy ich nezdieľame s našimi partnermi. Svoje uložené karty môžete kedykoľvek jednoducho spravovať. V prípade akýchkoľvek otázok týkajúcich sa transakcií sa obráťte na vydavateľa karty.",
+      "secure_logistics_title": "Bezpečná logistika",
+      "secure_logistics_line_1": "Bezpečnosť balíka: Úplné vrátenie peňazí za poškodený alebo stratený balík.",
+      "secure_logistics_line_2": "Garantované doručenie: Presné a presné sledovanie objednávky.",
+      "secure_privacy_title": "Bezpečné súkromie",
+      "secure_privacy_description": "Ochrana vášho súkromia je pre nás dôležitá! Uisťujeme vás, že vaše informácie budú zabezpečené a nekompromitované. Vaše osobné údaje nepredávame za peniaze a vaše údaje použijeme iba v súlade s našimi zásadami ochrany osobných údajov a súborov cookie, aby sme vám mohli poskytovať a zlepšovať naše služby."
     }
   },
   "templates": {
@@ -349,7 +379,7 @@
       "store_rating_prefix": "Rated",
       "store_rating_suffix": "by 15,200+ families",
       "we_accept": "We accept",
-      "complete_the_look": "Complete the Look",
+      "complete_the_look": "Dokončite vzhľad",
       "you_may_also_like": "You may also like",
       "trust": {
         "secure_checkout": "Secure Checkout",
@@ -359,7 +389,9 @@
         "secure": "Secure",
         "encrypted": "Encrypted",
         "free_ship": "Free Ship"
-      }
+      },
+      "popular_with_families": "Obľúbené medzi rodinami",
+      "recently_viewed": "Naposledy zobrazené"
     },
     "footer": {
       "payment": "Spôsoby platby"
@@ -440,6 +472,21 @@
       "company_info": "Company info",
       "help_support": "Help & support",
       "customer_care": "Customer care"
+    },
+    "product_navigation": {
+      "back_to_results": "Späť k výsledkom",
+      "back_to_context": "Späť na {{ context }}",
+      "back_to_family_sets": "Späť na Rodinné súpravy",
+      "back_to_search_results": "Späť na výsledky vyhľadávania",
+      "view_similar_styles": "Zobraziť podobné štýly",
+      "view_similar_styles_in": "Zobraziť podobné štýly v {{ collection }}",
+      "similar_styles": "Podobné štýly",
+      "browse_more_from": "Prezrite si viac od {{ collection }}",
+      "browse_similar_styles": "Prehľadávať podobné štýly",
+      "compare_collection_copy": "Použite túto kolekciu na porovnanie niekoľkých blízkych zápasov predtým, než sa vrátite k nákupu."
+    },
+    "breadcrumbs": {
+      "label_button_downs": "Tlačidlá nadol"
     }
   },
   "localization": {

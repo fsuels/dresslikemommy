@@ -14953,6 +14953,30 @@ Manual follow-ups:
 - Set inventory quantities per variant.
 - Recheck smart-collection membership later if reindexing changes visibility.
 
+2026-04-22 — PDP mobile description cards: inline list-item normalization for new listings
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- `assets/product-description.js` - Added automatic list-item normalization for product descriptions so direct inline/text content inside `<li>` nodes gets wrapped into a single `.product-copy__item-copy` paragraph before the PDP enhancement styles are applied.
+- `assets/component-product-description.css` - Let description-card paragraphs flex and shrink correctly inside the existing card layout with `flex: 1 1 auto` and `min-width: 0`.
+
+Why:
+- Newly created listings are shipping valid HTML like `<li><strong>Soft four-layer cotton gauze:</strong> ...</li>`.
+- The PDP enhancer turns those bullets into card rows, but without a block wrapper the `<strong>` label and trailing text become separate flex items on mobile, which causes narrow, column-like wrapping in "Why You'll Love It" cards.
+
+Evidence gathered:
+- Browser MCP mobile inspection on live `meow-star-garden-mommy-and-me-pajamas` reproduced the broken wrapping in the details cards.
+- Raw storefront/product JSON confirmed the source description HTML itself is structurally fine and follows the repeated `<li><strong>Label:</strong> body text</li>` pattern.
+
+Verification:
+- `node --check assets/product-description.js`
+- `git diff --check -- assets/product-description.js assets/component-product-description.css`
+- Reviewed focused diff for only the description normalizer/CSS guard.
+
+Notes:
+- This is an automatic theme-side fix for current and future listings that use the same inline bullet pattern; no per-product description edits are required.
+- Live storefront re-verification still depends on the updated theme assets being previewed or deployed.
+
 ## 2026-04-22 - Push protection cleanup for main sync
 
 Context:
@@ -15118,3 +15142,133 @@ Manual follow-ups:
 - Enter real variant shipping weights.
 - Set inventory quantities per variant.
 - Recheck smart-collection membership later if reindexing changes visibility.
+
+2026-04-22 — Homepage hero visual audit for image-generation refresh
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Captured current live homepage screenshots in browser-equivalent Playwright sessions for desktop and mobile:
+  - `ops/tmp/home-desktop.png`
+  - `ops/tmp/home-mobile.png`
+- Confirmed the homepage hero is currently driven by `sections/hero-banner.liquid` through `templates/index.json`, using the image `shopify://shop_images/wmremove-transformed.png`.
+
+Visual findings:
+- Desktop currently presents a warm sunset/beach mother-daughter lifestyle image with useful negative space for the headline on the left, but the image reads more like a generic stock-style vacation scene than a brand-distinct conversion asset.
+- Mobile crops tightly into the subjects and keeps the emotion, but the headline/subheading are effectively absent from the first viewport, so the image is doing almost all of the persuasion work alone.
+- The current coral floral dresses are attractive and on-brand, but the hero does not clearly signal the full store promise of family matching across occasions and categories.
+
+Recommended next directions:
+- Test hero-image concepts that preserve warm emotional connection while adding clearer category breadth or stronger purchase intent cues.
+- Prioritize mobile-safe composition with faces and outfits centered high enough that CTA cards do not cover the most persuasive part of the image.
+- If generating a new hero, prefer editorial-quality realism over dreamy stock softness so the homepage feels more premium and trustworthy.
+
+2026-04-22 — Localized PDP shared-copy fix and translation cleanup layer
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Replaced the remaining product-page shared English copy with locale-aware keys/fallbacks across the relevant snippets and product-page JS:
+  - `snippets/product-desktop-ux.liquid`
+  - `snippets/product-variant-picker.liquid`
+  - `snippets/breadcrumbs.liquid`
+  - `snippets/buy-box-similar-styles.liquid`
+  - `snippets/buy-buttons.liquid`
+  - `snippets/cart-drawer.liquid`
+  - `sections/main-cart-items.liquid`
+  - `sections/main-product.liquid`
+  - `assets/global.js`
+- Added the generated fallback copy map snippet `snippets/product-page-copy-map.liquid` and wired it into `sections/main-product.liquid` so localized product pages can self-heal client-side even when Shopify locale assets lag behind.
+- Added a reusable translation cleanup layer in `ops/scripts/translation_utils.py` plus `ops/content/translation_cleanup_rules.json`.
+- Expanded `ops/content/translation_glossary.json` with 34-locale mappings for repeated product terms including `Mommy and Me Pajamas`, `Short-Sleeve Set`, `Long-Sleeve Set`, `Gauze`, and `Muslin`.
+- Added `--force-refresh` support to `ops/scripts/poll_shopify_product_translations.py` and coverage in `ops/tests/test_translation_utils_cleanup_rules.py`.
+
+Shopify/theme constraints:
+- Uploading non-English theme locale assets to the live main theme failed with `422 {"errors":{"asset":["Too many translation keys"]}}` for `locales/ar.json`, and the same store-side limit also blocked GraphQL `themeFilesUpsert`.
+- Because of that limit, the live storefront fix uses the published `product-page-copy-map` snippet plus product-page JS fallback instead of depending on fresh non-English locale asset uploads.
+
+Live theme publishes:
+- Successfully uploaded the localized PDP fallback changes to the main theme (`dresslikemommy/main`, theme id `133290917985`), including the refreshed `snippets/product-page-copy-map.liquid`.
+
+Browser verification:
+- Chrome DevTools MCP transport closed during verification, so browser-rendered checks were completed via local Chrome automation against the live storefront DOM.
+- Confirmed the improved shared UI copy is live on localized PDPs. Examples observed after the snippet republish:
+  - `de`: `Ähnliche Modelle`, `Entdecke mehr aus Schlafanzüge`, `Stelle dein passendes Set zusammen`, `Zu den Rezensionen springen`
+  - `es`: `Estilos parecidos`, `Ver más de Pijama`
+  - `ja`: `結果に戻る`, `パジャマをもっと見る`, `レビューを見る`
+  - `ru`: `Похожие модели`, `Посмотреть больше в разделе Пижамы`
+- Confirmed the cleanup layer is also improving live translated titles, for example:
+  - `de`: `Summer Puppies Mama-und-ich-Pyjamas – Kurzarm-Set`
+  - `es`: `Panda de jardín de bambú Pijamas mamá y yo — Conjunto de manga corta`
+  - `ja`: `ピーターラビット ママと私のパジャマ — 半袖セット`
+  - `ru`: `Виноградная лоза Пижамы «Мама и я» — Комплект с короткими рукавами`
+
+Verification notes:
+- Passed:
+  - `python3 -m py_compile ops/scripts/translation_utils.py ops/scripts/poll_shopify_product_translations.py ops/scripts/build_theme_locale.py`
+  - `python3 ops/tests/test_translation_utils_html_protection.py`
+  - `python3 ops/tests/test_translation_utils_cleanup_rules.py`
+  - JSON parse checks for the touched locale files, cleanup rules, and `snippets/product-page-copy-map.liquid`
+- The repo still has unrelated baseline theme-check findings elsewhere; rerun and filter `shopify theme check` if future edits touch this area again.
+
+In-flight background work:
+- A one-time live refresh session is still/was running in terminal session `67779`:
+  - `python3 ops/scripts/poll_shopify_product_translations.py --state-path \"$HOME/.config/dresslikemommy/shopify-product-translation-refresh-state.json\" --jsonl-log \"$HOME/Library/Logs/dresslikemommy/shopify-product-translation-refresh.jsonl\" --cache-path ops/content/shopify-product-translation-live-cache.json --bootstrap-hours 60 --page-size 50 --max-pages 6 --max-products-per-run 25 --pause-ms 100 --execute --force-refresh`
+- If resumed later, poll session `67779` first. If it already finished, capture the summary. If it was interrupted, rerun the same command once to finish refreshing the recent-product backlog with the cleanup/glossary rules.
+
+2026-04-22 — Homepage navigation refresh for Mommy & Me and pajamas discovery
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Added a shared URL resolver snippet at `snippets/smart-collection-url.liquid` so collection links can route to the best live destination instead of dead-ending on empty collections.
+- Updated the homepage entry points in `templates/index.json` so the hero now links directly to `Mommy & Me` and `Pajamas`, and the category icon row now leads with `Mommy & Me`, `Family Matching`, and `Pajamas`.
+- Updated `snippets/header-mega-menu.liquid` and `snippets/header-drawer.liquid` to run family collection links through the smart resolver.
+- Updated `snippets/header-mega-menu-feature-card.liquid` so the family pajamas promo card points at the live pajama collection when `family-pajamas` is empty and uses a current pajama product/label.
+- Updated `snippets/collection-breadcrumbs.liquid` so Family Matching collection pills explicitly include `Pajamas`, show the pill even when `family-pajamas` is empty, and route it through the smart resolver.
+
+Why:
+- The live storefront exposed a real discovery gap: homepage shoppers had no direct path to the recently added pajamas and effectively had to go `homepage -> swimsuits -> pajamas`.
+- The Family Matching nav also linked to `/collections/family-pajamas`, which is currently empty, while `/collections/pajamas` is the live pajama collection with inventory.
+
+Verification:
+- Passed `tail -n +10 templates/index.json | jq empty`
+- Passed `git diff --check -- snippets/smart-collection-url.liquid snippets/header-drawer.liquid snippets/header-mega-menu.liquid snippets/header-mega-menu-feature-card.liquid snippets/collection-breadcrumbs.liquid templates/index.json`
+- Ran `shopify theme check --path .`; output is dominated by existing repo-wide baseline warnings/errors, especially locale translation matching issues, and did not provide a clean scoped gate for this nav-only change.
+
+Deployment status:
+- Attempted `shopify theme list --path .` from this shell, but Shopify CLI is not authenticated here and prompted for device login.
+- Opened the activation URL in browser tooling; it landed on Shopify account lookup instead of an already-authenticated approval flow, so the live publish could not be completed autonomously in this session.
+
+Next step:
+- Complete Shopify CLI login in this shell, then push the touched theme files to the main theme and verify the live homepage plus Family Matching pills in browser.
+
+2026-04-22 — PDP shipping/returns/security localization fix
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Fixed the remaining untranslated product-page block covering:
+  - trust strip labels (`Secure Checkout`, `30-Day Returns`)
+  - shipping accordion (`Free Shipping Worldwide`, `FREE Shipping`, `Est. Delivery`, premium-shipping line)
+  - return-policy accordion
+  - shopping-security accordion
+- Extended the product-page fallback translator in `sections/main-product.liquid` so it now swaps those strings client-side from `snippets/product-page-copy-map.liquid`, just like the earlier matching-set/review/navigation fixes.
+- Updated `layout/theme.liquid` so the inline delivery-date formatter uses the active storefront locale instead of hardcoded `en-US`.
+- Backfilled the locale source data for these trust/additional-info keys across the 34 non-default locale JSON files, then regenerated `snippets/product-page-copy-map.liquid` from the updated locale values.
+- Added manual copy polish for the most visible German/Japanese/Russian strings where machine output was awkward, especially `estimated_delivery`, shipping/returns headings, and privacy/payment wording.
+
+Live publish:
+- Uploaded to the main theme (`dresslikemommy/main`, theme id `133290917985`):
+  - `layout/theme.liquid`
+  - `sections/main-product.liquid`
+  - `snippets/product-page-copy-map.liquid`
+
+Verification:
+- Passed JSON checks for `snippets/product-page-copy-map.liquid` and touched locale files.
+- Passed `git diff --check -- layout/theme.liquid sections/main-product.liquid snippets/product-page-copy-map.liquid locales/de.json locales/ja.json locales/ru.json`.
+- Filtered `shopify theme check --path . --fail-level warning --output json` to the touched theme files and got `[]`.
+- Live browser verification on the German storefront PDP confirmed the previously untranslated block now renders in German, including localized dates:
+  - trust strip: `Sicher bezahlen`, `30 Tage Rückgaberecht`, `Seit 2016 geschätzt`
+  - shipping: `Kostenloser Versand weltweit`, `Voraussichtliche Lieferung 6. Mai`
+  - premium line: `Möchtest du es schneller? Gib 100 $ oder mehr aus und erhalte kostenlosen Premium-Versand`
+  - returns/security/privacy paragraphs now render localized text instead of English
+
+Notes:
+- A follow-up multi-locale browser spot-check via AppleScript/Chrome was interrupted because Chrome disabled `Allow JavaScript from Apple Events` for new windows mid-pass. The German live verification completed successfully before that, and the same fallback map now contains translated values for the other locales too.

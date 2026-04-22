@@ -18,6 +18,7 @@ PLACEHOLDER_TOKEN_RE = re.compile(r"(?:QZXTOKEN|DLMTOKEN)\d{5}(?:QXZ|XYZ)")
 GOOGLE_ENDPOINT = "https://translate.googleapis.com/translate_a/single"
 BATCH_SEPARATOR = "\n___DLMSEP___\n"
 SPLIT_RE = re.compile(r"(\n{2,}|</p>|</li>|</tr>|<br\s*/?>)", re.I)
+DEFAULT_CLEANUP_RULES_PATH = Path(__file__).resolve().parents[1] / "content" / "translation_cleanup_rules.json"
 
 GOOGLE_TARGET_MAP = {
     "ar": "ar",
@@ -127,6 +128,19 @@ def load_glossary(path):
     return sorted(raw.items(), key=lambda item: len(item[0]), reverse=True)
 
 
+def load_cleanup_rules(path):
+    if not path:
+        return {}
+    cleanup_path = Path(path)
+    if not cleanup_path.exists():
+        return {}
+    raw = json.loads(cleanup_path.read_text(encoding="utf-8"))
+    return {
+        locale: sorted(replacements.items(), key=lambda item: len(item[0]), reverse=True)
+        for locale, replacements in raw.items()
+    }
+
+
 def htmlish_text(text):
     stripped = re.sub(r"<[^>]+>", " ", text)
     stripped = HTML_ENTITY_RE.sub(" ", stripped)
@@ -156,6 +170,7 @@ class TranslationBackend:
         batch_char_limit=3500,
         progress_interval=5,
         single_request_workers=6,
+        cleanup_rules_path=DEFAULT_CLEANUP_RULES_PATH,
     ):
         self.cache_path = Path(cache_path)
         self.cache_path.parent.mkdir(parents=True, exist_ok=True)
@@ -164,6 +179,7 @@ class TranslationBackend:
         else:
             self.cache = {}
         self.glossary = load_glossary(glossary_path)
+        self.cleanup_rules = load_cleanup_rules(cleanup_rules_path)
         self.batch_size = batch_size
         self.pause_seconds = pause_seconds
         self.retries = retries
@@ -184,6 +200,16 @@ class TranslationBackend:
     @staticmethod
     def _contains_placeholder_tokens(value):
         return isinstance(value, str) and bool(PLACEHOLDER_TOKEN_RE.search(value))
+
+    def _postprocess(self, locale, value):
+        if not isinstance(value, str) or not value:
+            return value
+
+        cleaned = value
+        for scope in ("all", locale):
+            for source, target in self.cleanup_rules.get(scope, []):
+                cleaned = cleaned.replace(source, target)
+        return cleaned
 
     def _protect(self, text, locale):
         replacements = []
@@ -308,7 +334,12 @@ class TranslationBackend:
         if text in locale_cache:
             cached = locale_cache[text]
             if not self._contains_placeholder_tokens(cached):
-                return cached
+                cleaned_cached = self._postprocess(locale, cached)
+                if cleaned_cached != cached:
+                    locale_cache[text] = cleaned_cached
+                    if save:
+                        self._save_cache()
+                return cleaned_cached
             locale_cache.pop(text, None)
 
         lead = re.match(r"^\s*", text).group(0)
@@ -326,6 +357,7 @@ class TranslationBackend:
                     translator = GoogleTranslator(source="en", target=self._target_code(locale))
                     translated_core = "".join(translator.translate(segment) for segment in self._split_long_text(protected))
                 translated = f"{lead}{self._restore(translated_core, replacements)}{trail}"
+                translated = self._postprocess(locale, translated)
                 locale_cache[text] = translated
                 if save:
                     self._save_cache()
@@ -352,6 +384,7 @@ class TranslationBackend:
                 if save:
                     self._save_cache()
                 return None
+        translated = self._postprocess(locale, translated)
         locale_cache[text] = translated
         if save:
             self._save_cache()
@@ -362,15 +395,24 @@ class TranslationBackend:
 
     def translate_many(self, locale, texts, progress_label=None):
         locale_cache = self.cache.setdefault(locale, {})
+        cache_dirty = False
         missing = []
         order = []
         for text in texts:
             order.append(text)
             cached = locale_cache.get(text)
-            if text not in locale_cache or self._contains_placeholder_tokens(cached):
+            if text in locale_cache and not self._contains_placeholder_tokens(cached):
+                cleaned_cached = self._postprocess(locale, cached)
+                if cleaned_cached != cached:
+                    locale_cache[text] = cleaned_cached
+                    cache_dirty = True
+            if text not in locale_cache or self._contains_placeholder_tokens(locale_cache.get(text)):
                 if self._contains_placeholder_tokens(cached):
                     locale_cache.pop(text, None)
                 missing.append(text)
+
+        if cache_dirty:
+            self._save_cache()
 
         original_missing = len(missing)
         oversized = [text for text in missing if len(text) > 4500]
@@ -432,7 +474,10 @@ class TranslationBackend:
                 else:
                     for text, translated, prepared_item, replacements in zip(batch, translated_batch, prepared, batch_replacements):
                         lead, _, trail = prepared_item
-                        locale_cache[text] = f"{lead}{self._restore(translated, replacements)}{trail}"
+                        locale_cache[text] = self._postprocess(
+                            locale,
+                            f"{lead}{self._restore(translated, replacements)}{trail}",
+                        )
 
                 self._save_cache()
                 if self.pause_seconds:

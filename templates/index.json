@@ -15,11 +15,11 @@
       "settings": {
         "image": "shopify://shop_images/wmremove-transformed.png",
         "heading": "Matching outfits for vacations, photos, birthdays, and everyday moments",
-        "subheading": "Shop by occasion first: family sets, mommy-and-me dresses, swimsuits, and daddy-and-me looks. Free shipping on all orders and thoughtful help with sizing and matching.",
-        "button_label": "Shop Family Sets",
-        "button_link": "/collections/family-sets",
-        "secondary_button_label": "Browse Matching Dresses",
-        "secondary_button_link": "/collections/dresses",
+        "subheading": "Start with the easiest paths first: mommy-and-me favorites, matching pajamas, family sets, swimsuits, and daddy-and-me looks. Free shipping on all orders and thoughtful help with sizing and matching.",
+        "button_label": "Shop Mommy & Me",
+        "button_link": "/collections/mommy-and-me",
+        "secondary_button_label": "Shop Pajamas",
+        "secondary_button_link": "/collections/pajamas",
         "show_trust": false,
         "trust_line": "",
         "height": 500,
@@ -33,11 +33,27 @@
     "category_icons": {
       "type": "category-icons",
       "blocks": {
-        "category_family_sets": {
+        "category_mommy_me": {
           "type": "collection_icon",
           "settings": {
-            "collection": "family-sets",
-            "custom_label": "Family Sets",
+            "collection": "mommy-and-me",
+            "custom_label": "Mommy & Me",
+            "browse_path": "category"
+          }
+        },
+        "category_family_matching": {
+          "type": "collection_icon",
+          "settings": {
+            "collection": "matching-outfits",
+            "custom_label": "Family Matching",
+            "browse_path": "category"
+          }
+        },
+        "category_pajamas": {
+          "type": "collection_icon",
+          "settings": {
+            "collection": "pajamas",
+            "custom_label": "Pajamas",
             "browse_path": "category"
           }
         },
@@ -99,7 +115,9 @@
         }
       },
       "block_order": [
-        "category_family_sets",
+        "category_mommy_me",
+        "category_family_matching",
+        "category_pajamas",
         "category_dresses",
         "category_swimsuits",
         "category_daddy_me",
@@ -113,7 +131,7 @@
         "heading_size": "h2",
         "display_mode": "grouped",
         "category_heading": "Shop by Category",
-        "category_heading_link": "/collections/family-sets",
+        "category_heading_link": "/collections/mommy-and-me",
         "occasion_heading": "Shop by Occasion",
         "occasion_heading_link": "/collections/matching-outfits",
         "show_trust_strip": true,
@@ -192,7 +210,7 @@
         "card_background": "#fffdf9",
         "accent_color": "#c87932",
         "footer_heading": "Need the right match for the moment?",
-        "footer_body": "<p>Planning a <a href=\"/collections/matching-family-vacation-outfits\">matching family vacation outfits</a> edit or a <a href=\"/collections/family-swimsuits\">matching beach swimsuits</a> collection? Start with coordinated family sets and swim looks that keep the whole group in one clear color story.</p><p>Shopping for <a href=\"/collections/matching-outfits\">family matching outfits</a>, <a href=\"/collections/formal-dresses\">mother daughter wedding guest dresses</a>, or <a href=\"/collections/daddy-me-shirts\">daddy and me shirts</a>? Start with the occasion first, then narrow into the category that fits the moment.</p>",
+        "footer_body": "<p>Planning a <a href=\"/collections/matching-family-vacation-outfits\">matching family vacation outfits</a> edit or a <a href=\"/collections/family-swimsuits\">matching beach swimsuits</a> collection? Start with coordinated family sets and swim looks that keep the whole group in one clear color story.</p><p>Shopping for <a href=\"/collections/pajamas\">mommy and me pajamas</a>, <a href=\"/collections/matching-outfits\">family matching outfits</a>, <a href=\"/collections/formal-dresses\">mother daughter wedding guest dresses</a>, or <a href=\"/collections/daddy-me-shirts\">daddy and me shirts</a>? Start with the category first, then narrow into the collection that fits the moment.</p>",
         "padding_top": 12,
         "padding_bottom": 24
       }

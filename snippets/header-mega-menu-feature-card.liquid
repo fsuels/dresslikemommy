@@ -8,8 +8,12 @@
 {%- liquid
   assign menu_link_title = menu_link.title | escape
   assign menu_link_display_title = menu_link.title | strip
+  assign menu_link_source_url = menu_link.url
   assign menu_link_url = menu_link.url
   assign menu_handle = menu_link.handle | default: ''
+  if menu_handle contains 'pajamas' or menu_link_url contains 'family-pajamas'
+    assign menu_link_url = '/collections/pajamas'
+  endif
   assign linked_object = menu_link.object
   assign card_asset = blank
   assign menu_image = blank
@@ -53,10 +57,10 @@
     assign custom_product_handle = 'blue-tropical-floral-family-matching-beach-dress-and-shirt-set'
     assign custom_image_index = 1
     assign card_label = 'Pool-day favorite'
-  elsif menu_link_url contains '/collections/family-pajamas'
-    assign custom_product_handle = 'family-matching-christmas-fair-isle-pajamas-festive-red-green-holiday-pajama-set-for-adults-kids-pets'
+  elsif menu_link_source_url contains '/collections/family-pajamas' or menu_handle == 'family-pajamas' or menu_handle == 'pajamas'
+    assign custom_product_handle = 'ladybug-dots-mommy-and-me-pajamas'
     assign custom_image_index = 0
-    assign card_label = 'Cozy classic'
+    assign card_label = 'New pajama styles'
   elsif menu_link_url contains '/collections/new-women-outfits'
     assign card_asset = 'family-mega-menu-promo.jpg'
     assign fallback_collection = collections['matching-outfits']
@@ -102,8 +106,13 @@
       assign fallback_collection = collections['family-tops']
     when 'family-sweaters'
       assign fallback_collection = collections['family-sweaters']
-    when 'family-pajamas'
-      assign fallback_collection = collections['family-pajamas']
+    when 'family-pajamas', 'pajamas'
+      assign fallback_collection = collections['pajamas']
+      if fallback_collection != blank
+        assign menu_link_url = fallback_collection.url
+      else
+        assign menu_link_url = '/collections/pajamas'
+      endif
     when 'matching-outfits', 'family-matching', 'family-matching-outfits'
       assign fallback_collection = collections['matching-outfits']
       if fallback_collection == blank

@@ -175,7 +175,35 @@
         "price_at_each": "til {{ price }}/pr. stk",
         "price_range": "{{ minimum }}–{{ maximum }}"
       },
-      "product_variants": "Produktvarianter"
+      "product_variants": "Produktvarianter",
+      "matching_set": {
+        "heading": "Bygg ditt matchende sett",
+        "copy": "Velg familiestørrelsene du ønsker og legg dem sammen fra én produktside.",
+        "empty": "Velg minst én familiestørrelse for å legge til settet ditt.",
+        "add": "Legg til valgte stykker",
+        "success": "Matchende sett lagt i handlekurven.",
+        "error": "Kan ikke legge til de valgte delene. Vennligst prøv igjen."
+      },
+      "size_guide": {
+        "compare_family_sizes": "Sammenlign familiestørrelser",
+        "compare_all_sizes": "Sammenlign alle størrelser",
+        "guide_and_fit": "Størrelsesguide og passform",
+        "your_size_details": "Dine størrelsesdetaljer",
+        "compare_hint": "Åpne hele diagrammet nedenfor for å sammenligne nærliggende størrelser.",
+        "chart_units": "Størrelsesdiagramenheter"
+      },
+      "reviews": {
+        "heading": "Kundeanmeldelser",
+        "photo_heading": "Kundefotoanmeldelser",
+        "jump_to_reviews": "Gå til anmeldelser"
+      },
+      "review_widget": {
+        "heading_uppercase": "KUNDENS ANMELDELSER",
+        "heading": "Kundeanmeldelser",
+        "empty": "Vær den første til å skrive en anmeldelse",
+        "write_review": "Skriv en anmeldelse",
+        "write_review_title": "Skriv en anmeldelse"
+      }
     },
     "modal": {
       "label": "Mediegalleri"
@@ -212,30 +240,32 @@
       "filter_and_operator_subtitle": "Match alle"
     },
     "trust": {
-      "secure_checkout": "Secure Checkout",
+      "secure_checkout": "Sikker utsjekking",
       "ssl_encrypted": "SSL Encrypted",
-      "returns": "30-Day Returns",
-      "free_shipping": "Free Shipping"
+      "returns": "30-dagers retur",
+      "free_shipping": "Free Shipping",
+      "trusted_since": "Godkjent siden 2016",
+      "assistance_note": "Trenger du hjelp? Vi svarer vanligvis innen én virkedag."
     },
     "additional_info": {
-      "shipping_title": "Free Shipping Worldwide",
-      "free_shipping_label": "FREE Shipping",
-      "estimated_delivery": "Est. Delivery",
-      "faster_shipping_prefix": "Want it faster? Spend $100+ and get",
-      "free_premium_shipping": "FREE Premium Shipping",
-      "return_policy_title": "Return Policy",
-      "return_policy_line_1": "We gladly accept returns within 30 days of purchase.",
-      "return_policy_line_2": "Items should be in their original condition and packaging to qualify for a full refund. Please note that buyers are responsible for return shipping costs.",
-      "return_policy_line_3": "If an item is returned damaged, used, or missing parts, we may deduct a portion of the refund to cover any loss in the item's value.",
-      "return_policy_line_4": "To ensure a smooth return process, kindly return items in the same condition as received, including all packaging and original contents.",
-      "shopping_security_title": "Shopping Security",
-      "safe_payment_options_title": "Safe Payment Options",
-      "safe_payment_description": "We accept all major credit and debit cards. Your card details are secure and never shared with our partners. You can easily manage your saved cards anytime. For any transaction inquiries, please contact your card issuer.",
-      "secure_logistics_title": "Secure Logistics",
-      "secure_logistics_line_1": "Package safety: Full refund for your damaged or lost package.",
-      "secure_logistics_line_2": "Delivery guaranteed: Accurate and precise order tracking.",
-      "secure_privacy_title": "Secure Privacy",
-      "secure_privacy_description": "Protecting your privacy is important to us! Please be assured that your information will be kept secured and uncompromised. We do not sell your personal information for money and will only use your information in accordance with our privacy and cookie policy to provide and improve our services to you."
+      "shipping_title": "Gratis frakt over hele verden",
+      "free_shipping_label": "GRATIS frakt",
+      "estimated_delivery": "Est. Leveranse",
+      "faster_shipping_prefix": "Vil du ha det raskere? Bruk $100+ og få",
+      "free_premium_shipping": "GRATIS premium frakt",
+      "return_policy_title": "Returpolicy",
+      "return_policy_line_1": "Vi tar gjerne imot retur innen 30 dager etter kjøpet.",
+      "return_policy_line_2": "Varene må være i original stand og emballasje for å kvalifisere for full refusjon. Vær oppmerksom på at kjøpere er ansvarlige for returfraktkostnader.",
+      "return_policy_line_3": "Hvis en vare returneres skadet, brukte eller mangler deler, kan vi trekke fra en del av refusjonen for å dekke eventuelle tap i varens verdi.",
+      "return_policy_line_4": "For å sikre en jevn returprosess, vennligst returner varer i samme stand som mottatt, inkludert all emballasje og originalt innhold.",
+      "shopping_security_title": "Shoppingsikkerhet",
+      "safe_payment_options_title": "Trygge betalingsalternativer",
+      "safe_payment_description": "Vi aksepterer alle vanlige kreditt- og debetkort. Kortopplysningene dine er sikre og deles aldri med våre partnere. Du kan enkelt administrere dine lagrede kort når som helst. For eventuelle spørsmål om transaksjoner, vennligst kontakt kortutstederen din.",
+      "secure_logistics_title": "Sikker logistikk",
+      "secure_logistics_line_1": "Pakkesikkerhet: Full refusjon for din skadede eller tapte pakke.",
+      "secure_logistics_line_2": "Levering garantert: Nøyaktig og presis ordresporing.",
+      "secure_privacy_title": "Sikkert personvern",
+      "secure_privacy_description": "Å beskytte personvernet ditt er viktig for oss! Vær sikker på at informasjonen din vil bli holdt sikret og kompromissløs. Vi selger ikke din personlige informasjon for penger og vil kun bruke informasjonen din i samsvar med vår personvern- og informasjonskapselpolicy for å tilby og forbedre tjenestene våre til deg."
     }
   },
   "templates": {
@@ -329,7 +359,7 @@
       "store_rating_prefix": "Rated",
       "store_rating_suffix": "by 15,200+ families",
       "we_accept": "We accept",
-      "complete_the_look": "Complete the Look",
+      "complete_the_look": "Fullfør utseendet",
       "you_may_also_like": "You may also like",
       "trust": {
         "secure_checkout": "Secure Checkout",
@@ -339,7 +369,9 @@
         "secure": "Secure",
         "encrypted": "Encrypted",
         "free_ship": "Free Ship"
-      }
+      },
+      "popular_with_families": "Populært blant familier",
+      "recently_viewed": "Nylig sett"
     },
     "footer": {
       "payment": "Betalingsmåter"
@@ -416,6 +448,21 @@
       "company_info": "Company info",
       "help_support": "Help & support",
       "customer_care": "Customer care"
+    },
+    "product_navigation": {
+      "back_to_results": "Tilbake til resultater",
+      "back_to_context": "Tilbake til {{ context }}",
+      "back_to_family_sets": "Tilbake til Familiesett",
+      "back_to_search_results": "Tilbake til søkeresultater",
+      "view_similar_styles": "Se lignende stiler",
+      "view_similar_styles_in": "Se lignende stiler i {{ collection }}",
+      "similar_styles": "Lignende stiler",
+      "browse_more_from": "Bla gjennom mer fra {{ collection }}",
+      "browse_similar_styles": "Bla gjennom lignende stiler",
+      "compare_collection_copy": "Bruk denne samlingen til å sammenligne noen få nærkamper før du går tilbake til shopping."
+    },
+    "breadcrumbs": {
+      "label_button_downs": "Knapp-ned"
     }
   },
   "localization": {

@@ -54,11 +54,15 @@
                           </button>
                           <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                             {%- for childlink in link.links -%}
+                              {%- assign childlink_url = childlink.url -%}
+                              {%- if childlink.handle contains 'pajamas' or childlink_url contains 'family-pajamas' -%}
+                                {%- assign childlink_url = '/collections/pajamas' -%}
+                              {%- endif -%}
                               <li>
                                 {%- if childlink.links == blank -%}
                                   <a
                                     id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
-                                    href="{{ childlink.url }}"
+                                    href="{{ childlink_url | strip }}"
                                     class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
                                     {% if childlink.current %}
                                       aria-current="page"
@@ -93,10 +97,14 @@
                                         tabindex="-1"
                                       >
                                         {%- for grandchildlink in childlink.links -%}
+                                          {%- assign grandchildlink_url = grandchildlink.url -%}
+                                          {%- if grandchildlink.handle contains 'pajamas' or grandchildlink_url contains 'family-pajamas' -%}
+                                            {%- assign grandchildlink_url = '/collections/pajamas' -%}
+                                          {%- endif -%}
                                           <li>
                                             <a
                                               id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                              href="{{ grandchildlink.url }}"
+                                              href="{{ grandchildlink_url | strip }}"
                                               class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
                                               {% if grandchildlink.current %}
                                                 aria-current="page"

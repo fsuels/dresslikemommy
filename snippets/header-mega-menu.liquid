@@ -55,7 +55,7 @@
                         <p class="mega-menu__family-kicker">Start Here</p>
                         <p class="mega-menu__family-title">Pick a category and shop the best sellers first</p>
                         <p class="mega-menu__family-copy">
-                          Start with matching family vacation outfits, family matching swimsuits, or mother daughter wedding guest dresses, then narrow into the category that fits the occasion.
+                          Start with mommy and me pajamas, family matching swimsuits, family vacation outfits, or matching dresses, then narrow into the category that fits the moment.
                         </p>
                       </div>
 
@@ -71,10 +71,14 @@
                         <p class="mega-menu__family-links-title">Shop all family categories</p>
                         <ul class="mega-menu__family-links list-unstyled" role="list">
                           {%- for childlink in link.links -%}
+                            {%- assign childlink_url = childlink.url -%}
+                            {%- if childlink.handle contains 'pajamas' or childlink_url contains 'family-pajamas' -%}
+                              {%- assign childlink_url = '/collections/pajamas' -%}
+                            {%- endif -%}
                             <li>
                               <a
                                 id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-text"
-                                href="{{ childlink.url }}"
+                                href="{{ childlink_url | strip }}"
                                 class="mega-menu__family-link"
                                 {% if childlink.current %}
                                   aria-current="page"
@@ -92,10 +96,14 @@
                           <p class="mega-menu__family-text-title">Browse all links</p>
                           <ul class="mega-menu__family-text-grid list-unstyled" role="list">
                             {%- for childlink in link.links -%}
+                              {%- assign childlink_url = childlink.url -%}
+                              {%- if childlink.handle contains 'pajamas' or childlink_url contains 'family-pajamas' -%}
+                                {%- assign childlink_url = '/collections/pajamas' -%}
+                              {%- endif -%}
                               <li>
                                 <a
                                   id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-seo"
-                                  href="{{ childlink.url }}"
+                                  href="{{ childlink_url | strip }}"
                                   class="mega-menu__family-text-link mega-menu__family-text-link--primary"
                                   {% if childlink.current %}
                                     aria-current="page"
@@ -106,10 +114,14 @@
                                 {%- if childlink.links != blank -%}
                                   <ul class="mega-menu__family-text-sublist list-unstyled" role="list">
                                     {%- for grandchildlink in childlink.links -%}
+                                      {%- assign grandchildlink_url = grandchildlink.url -%}
+                                      {%- if grandchildlink.handle contains 'pajamas' or grandchildlink_url contains 'family-pajamas' -%}
+                                        {%- assign grandchildlink_url = '/collections/pajamas' -%}
+                                      {%- endif -%}
                                       <li>
                                         <a
                                           id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}-seo"
-                                          href="{{ grandchildlink.url }}"
+                                          href="{{ grandchildlink_url | strip }}"
                                           class="mega-menu__family-text-link"
                                           {% if grandchildlink.current %}
                                             aria-current="page"

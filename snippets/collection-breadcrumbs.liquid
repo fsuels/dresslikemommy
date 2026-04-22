@@ -57,6 +57,7 @@
 {% if current_collection_handle == 'matching-outfits'
   or current_collection_handle == 'family-matching-outfits'
   or current_collection_handle == 'new-women-outfits'
+  or current_collection_handle == 'family-pajamas'
   or current_collection_handle == 'family-swimsuits'
   or current_collection_handle == 'family-sets'
   or current_collection_handle == 'matching-family-vacation-outfits'
@@ -96,6 +97,9 @@
 {% elsif current_collection_handle == 'family-swimsuits' %}
   {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
   {% assign current_breadcrumb_label = 'Family Matching Swimsuits' %}
+{% elsif current_collection_handle == 'family-pajamas' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'Family Matching Pajamas' %}
 {% elsif current_collection_handle == 'family-sets' %}
   {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
   {% assign current_breadcrumb_label = 'Family Vacation Outfits' %}
@@ -221,7 +225,7 @@
 
 {% if is_family_matching_nav %}
   {% capture family_matching_pills %}
-    {{ family_matching_hub_handle }}::{{ family_matching_hub_label }}|||dresses::Dresses|||family-swimsuits::Family Matching Swimsuits|||{{ family_vacation_collection_handle }}::Family Vacation Outfits|||matching-hawaiian-outfits::Matching Hawaiian Outfits|||family-tops::Tops|||family-sweaters::Sweaters
+    {{ family_matching_hub_handle }}::{{ family_matching_hub_label }}|||family-pajamas::Pajamas|||dresses::Dresses|||family-swimsuits::Family Matching Swimsuits|||{{ family_vacation_collection_handle }}::Family Vacation Outfits|||matching-hawaiian-outfits::Matching Hawaiian Outfits|||family-tops::Tops|||family-sweaters::Sweaters
   {% endcapture %}
   {% assign pill_list = family_matching_pills | split: '|||' %}
 {% endif %}
@@ -340,6 +344,8 @@
               {% case item_handle %}
                 {% when 'matching-outfits', 'family-matching-outfits', 'new-women-outfits' %}
                   {% assign item_display_label = family_matching_hub_label %}
+                {% when 'family-pajamas' %}
+                  {% assign item_display_label = 'Pajamas' %}
                 {% when 'family-swimsuits' %}
                   {% assign item_display_label = 'Family Matching Swimsuits' %}
                 {% when 'family-sets', 'matching-family-vacation-outfits' %}
@@ -356,7 +362,8 @@
             {% assign force_show_pill = false %}
             {% assign item_filter_key = '' %}
             {% if is_family_matching_nav %}
-              {% if item_handle == 'family-swimsuits'
+              {% if item_handle == 'family-pajamas'
+                or item_handle == 'family-swimsuits'
                 or item_handle == 'family-sets'
                 or item_handle == 'matching-family-vacation-outfits'
                 or item_handle == 'matching-hawaiian-outfits'
@@ -381,6 +388,11 @@
               {% assign force_show_pill = true %}
               {% assign item_filter_key = 'button-downs' %}
             {% endif %}
+            {% if item_handle == 'family-pajamas' and target_collection == blank %}
+              {% assign force_show_pill = true %}
+            {% elsif item_handle == 'family-pajamas' and target_collection.all_products_count == 0 %}
+              {% assign force_show_pill = true %}
+            {% endif %}
             {% comment %} Skip pills that link to missing or empty collections {% endcomment %}
             {% unless item_is_current %}
               {% unless force_show_pill %}
@@ -402,6 +414,9 @@
               {% assign pill_url = daddy_parent_url | append: '?' | append: daddy_button_downs_filter_param %}
             {% elsif target_collection != blank %}
               {% assign pill_url = target_collection.url %}
+            {% endif %}
+            {% if item_handle == 'family-pajamas' or pill_url contains 'family-pajamas' %}
+              {% assign pill_url = '/collections/pajamas' %}
             {% endif %}
             {% if item_is_current %}
               {% if item_handle == family_matching_hub_handle and family_matching_hub_url != blank %}

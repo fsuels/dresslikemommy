@@ -177,6 +177,34 @@
         "minimum": "{{ quantity }} in več",
         "price_at_each": "po ceni {{ price }}/kos",
         "price_range": "{{ minimum }}–{{ maximum }}"
+      },
+      "matching_set": {
+        "heading": "Zgradite svoj ujemajoči se komplet",
+        "copy": "Izberite želene družinske velikosti in jih dodajte skupaj z ene strani izdelka.",
+        "empty": "Izberite vsaj eno velikost družine, da dodate svoj komplet.",
+        "add": "Dodajte izbrane kose",
+        "success": "Ustrezen komplet je dodan v košarico.",
+        "error": "Izbranih delov ni mogoče dodati. prosim poskusite znova"
+      },
+      "size_guide": {
+        "compare_family_sizes": "Primerjajte velikost družine",
+        "compare_all_sizes": "Primerjajte vse velikosti",
+        "guide_and_fit": "Priročnik za velikost in prileganje",
+        "your_size_details": "Podrobnosti o vaši velikosti",
+        "compare_hint": "Odprite celotno tabelo spodaj in primerjajte velikosti v bližini.",
+        "chart_units": "Enote tabele velikosti"
+      },
+      "reviews": {
+        "heading": "Ocene strank",
+        "photo_heading": "Ocene fotografij strank",
+        "jump_to_reviews": "Skoči na ocene"
+      },
+      "review_widget": {
+        "heading_uppercase": "OCENE STRANK",
+        "heading": "Mnenja strank",
+        "empty": "Bodite prvi, ki bo napisal oceno",
+        "write_review": "Napišite oceno",
+        "write_review_title": "Napišite oceno"
       }
     },
     "modal": {
@@ -220,30 +248,32 @@
       "filter_and_operator_subtitle": "Ustreza vsem"
     },
     "trust": {
-      "secure_checkout": "Secure Checkout",
+      "secure_checkout": "Varna blagajna",
       "ssl_encrypted": "SSL Encrypted",
-      "returns": "30-Day Returns",
-      "free_shipping": "Free Shipping"
+      "returns": "30-dnevna vračila",
+      "free_shipping": "Free Shipping",
+      "trusted_since": "Zaupanja vreden od leta 2016",
+      "assistance_note": "Potrebujete pomoč? Običajno odgovorimo v enem delovnem dnevu."
     },
     "additional_info": {
-      "shipping_title": "Free Shipping Worldwide",
-      "free_shipping_label": "FREE Shipping",
-      "estimated_delivery": "Est. Delivery",
-      "faster_shipping_prefix": "Want it faster? Spend $100+ and get",
-      "free_premium_shipping": "FREE Premium Shipping",
-      "return_policy_title": "Return Policy",
-      "return_policy_line_1": "We gladly accept returns within 30 days of purchase.",
-      "return_policy_line_2": "Items should be in their original condition and packaging to qualify for a full refund. Please note that buyers are responsible for return shipping costs.",
-      "return_policy_line_3": "If an item is returned damaged, used, or missing parts, we may deduct a portion of the refund to cover any loss in the item's value.",
-      "return_policy_line_4": "To ensure a smooth return process, kindly return items in the same condition as received, including all packaging and original contents.",
-      "shopping_security_title": "Shopping Security",
-      "safe_payment_options_title": "Safe Payment Options",
-      "safe_payment_description": "We accept all major credit and debit cards. Your card details are secure and never shared with our partners. You can easily manage your saved cards anytime. For any transaction inquiries, please contact your card issuer.",
-      "secure_logistics_title": "Secure Logistics",
-      "secure_logistics_line_1": "Package safety: Full refund for your damaged or lost package.",
-      "secure_logistics_line_2": "Delivery guaranteed: Accurate and precise order tracking.",
-      "secure_privacy_title": "Secure Privacy",
-      "secure_privacy_description": "Protecting your privacy is important to us! Please be assured that your information will be kept secured and uncompromised. We do not sell your personal information for money and will only use your information in accordance with our privacy and cookie policy to provide and improve our services to you."
+      "shipping_title": "Brezplačna dostava po vsem svetu",
+      "free_shipping_label": "BREZPLAČNA dostava",
+      "estimated_delivery": "Ocena Dostava",
+      "faster_shipping_prefix": "Želite hitreje? Porabite 100 $+ in pridobite",
+      "free_premium_shipping": "BREZPLAČNA premium dostava",
+      "return_policy_title": "Politika vračila",
+      "return_policy_line_1": "Z veseljem sprejemamo vračila v 30 dneh od nakupa.",
+      "return_policy_line_2": "Predmeti morajo biti v prvotnem stanju in embalaži, da so upravičeni do polnega povračila. Prosimo, upoštevajte, da so kupci odgovorni za stroške povratnega pošiljanja.",
+      "return_policy_line_3": "Če je artikel vrnjen poškodovan, uporabljen ali manjkajoči deli, lahko odštejemo del povračila za kritje morebitne izgube vrednosti artikla.",
+      "return_policy_line_4": "Da zagotovite nemoten postopek vračila, vljudno vrnite predmete v enakem stanju, kot ste jih prejeli, vključno z vso embalažo in originalno vsebino.",
+      "shopping_security_title": "Varnost nakupovanja",
+      "safe_payment_options_title": "Možnosti varnega plačila",
+      "safe_payment_description": "Sprejemamo vse glavne kreditne in debetne kartice. Podatki o vaši kartici so varni in jih nikoli ne posredujemo našim partnerjem. Svoje shranjene kartice lahko preprosto upravljate kadar koli. Za kakršna koli vprašanja o transakciji se obrnite na izdajatelja kartice.",
+      "secure_logistics_title": "Varna logistika",
+      "secure_logistics_line_1": "Varnost paketa: Popolno povračilo za vaš poškodovan ali izgubljen paket.",
+      "secure_logistics_line_2": "Zagotovljena dostava: Natančno in natančno sledenje naročilu.",
+      "secure_privacy_title": "Varna zasebnost",
+      "secure_privacy_description": "Varovanje vaše zasebnosti je za nas pomembno! Zagotavljamo vam, da bodo vaši podatki varni in brezkompromitirani. Vaših osebnih podatkov ne prodajamo za denar in bomo vaše podatke uporabili samo v skladu z našo politiko zasebnosti in piškotkov, da vam zagotovimo in izboljšamo naše storitve."
     }
   },
   "templates": {
@@ -349,7 +379,7 @@
       "store_rating_prefix": "Rated",
       "store_rating_suffix": "by 15,200+ families",
       "we_accept": "We accept",
-      "complete_the_look": "Complete the Look",
+      "complete_the_look": "Dokončajte videz",
       "you_may_also_like": "You may also like",
       "trust": {
         "secure_checkout": "Secure Checkout",
@@ -359,7 +389,9 @@
         "secure": "Secure",
         "encrypted": "Encrypted",
         "free_ship": "Free Ship"
-      }
+      },
+      "popular_with_families": "Priljubljeno pri družinah",
+      "recently_viewed": "Nedavno ogledano"
     },
     "footer": {
       "payment": "Načini plačila"
@@ -440,6 +472,21 @@
       "company_info": "Company info",
       "help_support": "Help & support",
       "customer_care": "Customer care"
+    },
+    "product_navigation": {
+      "back_to_results": "Nazaj na rezultate",
+      "back_to_context": "Nazaj na {{ context }}",
+      "back_to_family_sets": "Nazaj na družinske komplete",
+      "back_to_search_results": "Nazaj na rezultate iskanja",
+      "view_similar_styles": "Oglejte si podobne sloge",
+      "view_similar_styles_in": "Oglejte si podobne sloge v {{ collection }}",
+      "similar_styles": "Podobni slogi",
+      "browse_more_from": "Prebrskajte več pri {{ collection }}",
+      "browse_similar_styles": "Brskajte po podobnih slogih",
+      "compare_collection_copy": "Uporabite to zbirko za primerjavo nekaj podobnih stvari, preden se vrnete v nakupovanje."
+    },
+    "breadcrumbs": {
+      "label_button_downs": "Gumbi navzdol"
     }
   },
   "localization": {

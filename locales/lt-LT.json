@@ -177,6 +177,34 @@
         "minimum": "{{ quantity }}+",
         "price_at_each": "po {{ price }}/vnt.",
         "price_range": "{{ minimum }}–{{ maximum }}"
+      },
+      "matching_set": {
+        "heading": "Sukurkite tinkamą rinkinį",
+        "copy": "Pasirinkite norimus šeimos dydžius ir sudėkite juos iš vieno produkto puslapio.",
+        "empty": "Pasirinkite bent vieną šeimos dydį, kad pridėtumėte savo rinkinį.",
+        "add": "Pridėkite pasirinktus gabalus",
+        "success": "Atitinkamas rinkinys įdėtas į krepšelį.",
+        "error": "Nepavyko pridėti pasirinktų dalių. Bandykite dar kartą."
+      },
+      "size_guide": {
+        "compare_family_sizes": "Palyginkite šeimos dydžius",
+        "compare_all_sizes": "Palyginkite visus dydžius",
+        "guide_and_fit": "Dydžių vadovas ir tinka",
+        "your_size_details": "Jūsų dydžio detalės",
+        "compare_hint": "Norėdami palyginti netoliese esančius dydžius, atidarykite visą lentelę.",
+        "chart_units": "Dydžių lentelės vienetai"
+      },
+      "reviews": {
+        "heading": "Klientų atsiliepimai",
+        "photo_heading": "Klientų nuotraukų apžvalgos",
+        "jump_to_reviews": "Pereikite prie apžvalgų"
+      },
+      "review_widget": {
+        "heading_uppercase": "KLIENTŲ ATSAKYMAI",
+        "heading": "Klientų atsiliepimai",
+        "empty": "Būkite pirmas, parašęs atsiliepimą",
+        "write_review": "Parašyk atsiliepimą",
+        "write_review_title": "Parašykite atsiliepimą"
       }
     },
     "modal": {
@@ -220,30 +248,32 @@
       "filter_and_operator_subtitle": "Atitikti visas"
     },
     "trust": {
-      "secure_checkout": "Secure Checkout",
+      "secure_checkout": "Saugi patikra",
       "ssl_encrypted": "SSL Encrypted",
-      "returns": "30-Day Returns",
-      "free_shipping": "Free Shipping"
+      "returns": "30 dienų grąžinimas",
+      "free_shipping": "Free Shipping",
+      "trusted_since": "Patikimas nuo 2016 m",
+      "assistance_note": "Reikia pagalbos? Paprastai atsakome per vieną darbo dieną."
     },
     "additional_info": {
-      "shipping_title": "Free Shipping Worldwide",
-      "free_shipping_label": "FREE Shipping",
-      "estimated_delivery": "Est. Delivery",
-      "faster_shipping_prefix": "Want it faster? Spend $100+ and get",
-      "free_premium_shipping": "FREE Premium Shipping",
-      "return_policy_title": "Return Policy",
-      "return_policy_line_1": "We gladly accept returns within 30 days of purchase.",
-      "return_policy_line_2": "Items should be in their original condition and packaging to qualify for a full refund. Please note that buyers are responsible for return shipping costs.",
-      "return_policy_line_3": "If an item is returned damaged, used, or missing parts, we may deduct a portion of the refund to cover any loss in the item's value.",
-      "return_policy_line_4": "To ensure a smooth return process, kindly return items in the same condition as received, including all packaging and original contents.",
-      "shopping_security_title": "Shopping Security",
-      "safe_payment_options_title": "Safe Payment Options",
-      "safe_payment_description": "We accept all major credit and debit cards. Your card details are secure and never shared with our partners. You can easily manage your saved cards anytime. For any transaction inquiries, please contact your card issuer.",
-      "secure_logistics_title": "Secure Logistics",
-      "secure_logistics_line_1": "Package safety: Full refund for your damaged or lost package.",
-      "secure_logistics_line_2": "Delivery guaranteed: Accurate and precise order tracking.",
-      "secure_privacy_title": "Secure Privacy",
-      "secure_privacy_description": "Protecting your privacy is important to us! Please be assured that your information will be kept secured and uncompromised. We do not sell your personal information for money and will only use your information in accordance with our privacy and cookie policy to provide and improve our services to you."
+      "shipping_title": "Nemokamas pristatymas visame pasaulyje",
+      "free_shipping_label": "NEMOKAMAS pristatymas",
+      "estimated_delivery": "Įvert. Pristatymas",
+      "faster_shipping_prefix": "Norite greičiau? Išleiskite daugiau nei 100 USD ir gaukite",
+      "free_premium_shipping": "NEMOKAMAS Premium pristatymas",
+      "return_policy_title": "Grąžinimo politika",
+      "return_policy_line_1": "Mes mielai priimame grąžinimus per 30 dienų nuo pirkimo.",
+      "return_policy_line_2": "Prekės turi būti originalios būklės ir supakuotos, kad būtų galima grąžinti visus pinigus. Atkreipkite dėmesį, kad pirkėjai yra atsakingi už grąžinimo siuntimo išlaidas.",
+      "return_policy_line_3": "Jei prekė grąžinama sugadinta, naudota arba trūksta dalių, galime išskaičiuoti dalį grąžinamos sumos, kad padengtume bet kokį prekės vertės praradimą.",
+      "return_policy_line_4": "Norėdami užtikrinti sklandų grąžinimo procesą, maloniai prašome grąžinti prekes tokios pat būklės, kokios buvo gautos, įskaitant visą pakuotę ir originalų turinį.",
+      "shopping_security_title": "Pirkinių apsauga",
+      "safe_payment_options_title": "Saugios mokėjimo parinktys",
+      "safe_payment_description": "Priimame visas pagrindines kredito ir debeto korteles. Jūsų kortelės duomenys yra saugūs ir niekada nedalinami su mūsų partneriais. Galite bet kada lengvai tvarkyti išsaugotas korteles. Dėl bet kokių operacijų užklausų susisiekite su kortelės išdavėju.",
+      "secure_logistics_title": "Saugi logistika",
+      "secure_logistics_line_1": "Paketo saugumas: visiškai grąžinama suma už sugadintą ar prarastą pakuotę.",
+      "secure_logistics_line_2": "Pristatymas garantuotas: Tikslus ir tikslus užsakymų sekimas.",
+      "secure_privacy_title": "Saugus privatumas",
+      "secure_privacy_description": "Mums svarbu apsaugoti Jūsų privatumą! Būkite tikri, kad jūsų informacija bus saugi ir be kompromisų. Mes neparduodame jūsų asmeninės informacijos už pinigus ir naudosime jūsų informaciją tik vadovaudamiesi savo privatumo ir slapukų politika, siekdami teikti ir tobulinti jums teikiamas paslaugas."
     }
   },
   "templates": {
@@ -349,7 +379,7 @@
       "store_rating_prefix": "Rated",
       "store_rating_suffix": "by 15,200+ families",
       "we_accept": "We accept",
-      "complete_the_look": "Complete the Look",
+      "complete_the_look": "Užbaikite išvaizdą",
       "you_may_also_like": "You may also like",
       "trust": {
         "secure_checkout": "Secure Checkout",
@@ -359,7 +389,9 @@
         "secure": "Secure",
         "encrypted": "Encrypted",
         "free_ship": "Free Ship"
-      }
+      },
+      "popular_with_families": "Populiarus tarp šeimų",
+      "recently_viewed": "Neseniai žiūrėta"
     },
     "footer": {
       "payment": "Mokėjimo būdai"
@@ -440,6 +472,21 @@
       "company_info": "Company info",
       "help_support": "Help & support",
       "customer_care": "Customer care"
+    },
+    "product_navigation": {
+      "back_to_results": "Atgal į rezultatus",
+      "back_to_context": "Grįžti į {{ context }}",
+      "back_to_family_sets": "Grįžti į šeimos rinkinius",
+      "back_to_search_results": "Grįžti į paieškos rezultatus",
+      "view_similar_styles": "Peržiūrėkite panašius stilius",
+      "view_similar_styles_in": "Peržiūrėkite panašius stilius {{ collection }}",
+      "similar_styles": "Panašūs stiliai",
+      "browse_more_from": "Naršykite daugiau iš {{ collection }}",
+      "browse_similar_styles": "Naršykite panašius stilius",
+      "compare_collection_copy": "Naudokite šią kolekciją, kad palygintumėte keletą artimų atitikmenų prieš grįždami į apsipirkimą."
+    },
+    "breadcrumbs": {
+      "label_button_downs": "Mygtukai žemyn"
     }
   },
   "localization": {

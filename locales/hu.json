@@ -175,6 +175,34 @@
         "minimum": "{{ quantity }}+",
         "price_at_each": "{{ price }}/db",
         "price_range": "{{ minimum }} – {{ maximum }}"
+      },
+      "matching_set": {
+        "heading": "Készítse el a megfelelő készletet",
+        "copy": "Válassza ki a kívánt családméreteket, és adja hozzá őket egy termékoldalon.",
+        "empty": "Válasszon legalább egy családi méretet a készlet hozzáadásához.",
+        "add": "Adja hozzá a kiválasztott darabokat",
+        "success": "A megfelelő készlet a kosárba került.",
+        "error": "Nem sikerült hozzáadni a kiválasztott darabokat. Kérjük, próbálja újra."
+      },
+      "size_guide": {
+        "compare_family_sizes": "Hasonlítsa össze a család méreteit",
+        "compare_all_sizes": "Hasonlítsa össze az összes méretet",
+        "guide_and_fit": "Méret útmutató és illeszkedés",
+        "your_size_details": "A méret adatai",
+        "compare_hint": "Nyissa meg az alábbi teljes táblázatot a közeli méretek összehasonlításához.",
+        "chart_units": "Mérettáblázat egységei"
+      },
+      "reviews": {
+        "heading": "Vásárlói vélemények",
+        "photo_heading": "Vásárlói fotóértékelések",
+        "jump_to_reviews": "Ugrás a véleményekhez"
+      },
+      "review_widget": {
+        "heading_uppercase": "VEVŐK VÉLEMÉNYEI",
+        "heading": "Vásárlói vélemények",
+        "empty": "Legyen Ön az első, aki véleményt ír",
+        "write_review": "Írjon véleményt",
+        "write_review_title": "Írjon véleményt"
       }
     },
     "modal": {
@@ -212,30 +240,32 @@
       "filter_and_operator_subtitle": "Az összesnek megfelelő"
     },
     "trust": {
-      "secure_checkout": "Secure Checkout",
+      "secure_checkout": "Biztonságos fizetés",
       "ssl_encrypted": "SSL Encrypted",
-      "returns": "30-Day Returns",
-      "free_shipping": "Free Shipping"
+      "returns": "30 napos visszaküldés",
+      "free_shipping": "Free Shipping",
+      "trusted_since": "2016 óta megbízható",
+      "assistance_note": "Segítségre van szüksége? Általában egy munkanapon belül válaszolunk."
     },
     "additional_info": {
-      "shipping_title": "Free Shipping Worldwide",
-      "free_shipping_label": "FREE Shipping",
-      "estimated_delivery": "Est. Delivery",
-      "faster_shipping_prefix": "Want it faster? Spend $100+ and get",
-      "free_premium_shipping": "FREE Premium Shipping",
-      "return_policy_title": "Return Policy",
-      "return_policy_line_1": "We gladly accept returns within 30 days of purchase.",
-      "return_policy_line_2": "Items should be in their original condition and packaging to qualify for a full refund. Please note that buyers are responsible for return shipping costs.",
-      "return_policy_line_3": "If an item is returned damaged, used, or missing parts, we may deduct a portion of the refund to cover any loss in the item's value.",
-      "return_policy_line_4": "To ensure a smooth return process, kindly return items in the same condition as received, including all packaging and original contents.",
-      "shopping_security_title": "Shopping Security",
-      "safe_payment_options_title": "Safe Payment Options",
-      "safe_payment_description": "We accept all major credit and debit cards. Your card details are secure and never shared with our partners. You can easily manage your saved cards anytime. For any transaction inquiries, please contact your card issuer.",
-      "secure_logistics_title": "Secure Logistics",
-      "secure_logistics_line_1": "Package safety: Full refund for your damaged or lost package.",
-      "secure_logistics_line_2": "Delivery guaranteed: Accurate and precise order tracking.",
-      "secure_privacy_title": "Secure Privacy",
-      "secure_privacy_description": "Protecting your privacy is important to us! Please be assured that your information will be kept secured and uncompromised. We do not sell your personal information for money and will only use your information in accordance with our privacy and cookie policy to provide and improve our services to you."
+      "shipping_title": "Ingyenes szállítás az egész világon",
+      "free_shipping_label": "INGYENES szállítás",
+      "estimated_delivery": "Becs. Szállítás",
+      "faster_shipping_prefix": "Gyorsabban akarod? Töltsön el több mint 100 dollárt, és kap",
+      "free_premium_shipping": "INGYENES prémium kiszállítás",
+      "return_policy_title": "Visszaküldési szabályzat",
+      "return_policy_line_1": "A vásárlástól számított 30 napon belül szívesen fogadunk visszaküldést.",
+      "return_policy_line_2": "A termékeknek az eredeti állapotukban és csomagolásukban kell lenniük ahhoz, hogy jogosultak legyenek a teljes visszatérítésre. Felhívjuk figyelmét, hogy a vevőt terhelik a visszaküldés költségei.",
+      "return_policy_line_3": "Ha egy terméket sérülten, használtan vagy hiányzó alkatrészeken küldenek vissza, a visszatérítés egy részét levonhatjuk a tétel értékében bekövetkezett esetleges veszteség fedezésére.",
+      "return_policy_line_4": "A zökkenőmentes visszaküldési folyamat érdekében kérjük, hogy az átvétellel megegyező állapotban küldje vissza a termékeket, beleértve az összes csomagolást és az eredeti tartalmat.",
+      "shopping_security_title": "Vásárlásbiztonság",
+      "safe_payment_options_title": "Biztonságos fizetési lehetőségek",
+      "safe_payment_description": "Minden főbb hitel- és betéti kártyát elfogadunk. Kártyája adatai biztonságban vannak, és soha nem osztjuk meg partnereinkkel. Bármikor könnyedén kezelheti mentett kártyáit. Bármilyen tranzakcióval kapcsolatos kérdéssel forduljon kártyakibocsátójához.",
+      "secure_logistics_title": "Biztonságos logisztika",
+      "secure_logistics_line_1": "Csomagbiztonság: Teljes visszatérítés a sérült vagy elveszett csomagért.",
+      "secure_logistics_line_2": "Garantált szállítás: Pontos és precíz rendeléskövetés.",
+      "secure_privacy_title": "Biztonságos adatvédelem",
+      "secure_privacy_description": "Személyes adatainak védelme fontos számunkra! Biztos lehet benne, hogy adatait biztonságban és kompromisszumok nélkül kezeljük. Személyes adatait nem adjuk el pénzért, és adatait csak adatvédelmi és cookie-kra vonatkozó szabályzatunknak megfelelően használjuk fel szolgáltatásaink biztosítására és fejlesztésére."
     }
   },
   "templates": {
@@ -329,7 +359,7 @@
       "store_rating_prefix": "Rated",
       "store_rating_suffix": "by 15,200+ families",
       "we_accept": "We accept",
-      "complete_the_look": "Complete the Look",
+      "complete_the_look": "Töltse ki a megjelenést",
       "you_may_also_like": "You may also like",
       "trust": {
         "secure_checkout": "Secure Checkout",
@@ -339,7 +369,9 @@
         "secure": "Secure",
         "encrypted": "Encrypted",
         "free_ship": "Free Ship"
-      }
+      },
+      "popular_with_families": "Népszerű a családok körében",
+      "recently_viewed": "Nemrég megtekintett"
     },
     "footer": {
       "payment": "Fizetési módok"
@@ -416,6 +448,21 @@
       "company_info": "Company info",
       "help_support": "Help & support",
       "customer_care": "Customer care"
+    },
+    "product_navigation": {
+      "back_to_results": "Vissza az eredményekhez",
+      "back_to_context": "Vissza ide: {{ context }}",
+      "back_to_family_sets": "Vissza a családi készletekhez",
+      "back_to_search_results": "Vissza a keresési eredményekhez",
+      "view_similar_styles": "Hasonló stílusok megtekintése",
+      "view_similar_styles_in": "Hasonló stílusok megtekintése itt: {{ collection }}",
+      "similar_styles": "Hasonló stílusok",
+      "browse_more_from": "Böngésszen még többet a {{ collection }} termékből",
+      "browse_similar_styles": "Böngésszen a hasonló stílusok között",
+      "compare_collection_copy": "Használja ezt a gyűjteményt néhány szoros egyezés összehasonlítására, mielőtt visszatérne a vásárláshoz."
+    },
+    "breadcrumbs": {
+      "label_button_downs": "Gomblehúzások"
     }
   },
   "localization": {

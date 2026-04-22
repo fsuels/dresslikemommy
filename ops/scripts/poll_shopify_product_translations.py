@@ -426,6 +426,7 @@ def build_translation_payload(
     translator: TranslationBackend,
     *,
     progress_prefix: str,
+    force_refresh: bool = False,
 ) -> tuple[dict[str, list[dict[str, str]]], dict[str, Any]]:
     pending_rows = []
     texts_by_locale: dict[str, list[str]] = defaultdict(list)
@@ -446,6 +447,7 @@ def build_translation_payload(
                     and clean(existing.value)
                     and not existing.outdated
                     and not TranslationBackend._contains_placeholder_tokens(existing.value)  # noqa: SLF001
+                    and not force_refresh
                 ):
                     skipped[f"already_current:{locale}"] += 1
                     continue
@@ -458,6 +460,7 @@ def build_translation_payload(
                         "default": default_value,
                         "digest": digest,
                         "outdated": bool(existing.outdated) if existing else False,
+                        "existing_value": clean(existing.value) if existing else "",
                     }
                 )
                 texts_by_locale[locale].append(default_value)
@@ -479,6 +482,9 @@ def build_translation_payload(
         if translated_value is None:
             failed_count += 1
             skipped[f"translation_failed:{row['locale']}"] += 1
+            continue
+        if row["existing_value"] and clean(translated_value) == row["existing_value"]:
+            skipped[f"already_matches_generated:{row['locale']}"] += 1
             continue
         payload_by_resource[row["resource_id"]].append(
             {
@@ -512,6 +518,7 @@ def process_product(
     nested_limit: int,
     pause_ms: int,
     execute: bool,
+    force_refresh: bool = False,
 ) -> dict[str, Any]:
     snapshots = collect_resource_snapshots(client, product.product_gid, locales, nested_limit)
     payload_by_resource, summary = build_translation_payload(
@@ -519,6 +526,7 @@ def process_product(
         locales,
         translator,
         progress_prefix=f"product={product.handle}",
+        force_refresh=force_refresh,
     )
 
     registered_counts = {}
@@ -540,6 +548,7 @@ def process_product(
             "resource_payload_counts": {key: len(value) for key, value in payload_by_resource.items()},
             "registered_counts": registered_counts,
             "execute": bool(execute),
+            "force_refresh": bool(force_refresh),
         }
     )
     return summary
@@ -561,6 +570,7 @@ def main() -> None:
     parser.add_argument("--max-nested-resources", type=int, default=DEFAULT_NESTED_LIMIT, help="Nested translatable resources fetched per product or option.")
     parser.add_argument("--pause-ms", type=int, default=250, help="Pause between live translation writes.")
     parser.add_argument("--execute", action="store_true", help="Apply translations live instead of dry-run.")
+    parser.add_argument("--force-refresh", action="store_true", help="Rebuild current translations and rewrite only values that differ.")
     parser.add_argument("--initialize-now", action="store_true", help="Initialize first-run cursor to now.")
     parser.add_argument("--bootstrap-hours", type=int, default=0, help="On first run only, process products this many hours back.")
     args = parser.parse_args()
@@ -643,6 +653,7 @@ def main() -> None:
                 nested_limit=max(args.max_nested_resources, 1),
                 pause_ms=max(args.pause_ms, 0),
                 execute=args.execute,
+                force_refresh=args.force_refresh,
             )
             append_log(
                 log_path,
