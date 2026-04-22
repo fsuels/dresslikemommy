@@ -4,7 +4,10 @@
   endcapture
   assign destination_visible = destination_visible | strip
 
-  assign is_visible = destination_visible == 'true'
+  assign is_visible = false
+  if destination_visible == 'true'
+    assign is_visible = true
+  endif
 
   unless is_visible
     if link.links != blank
