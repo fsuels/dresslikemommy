@@ -47,7 +47,10 @@
             capture family_hub_destination_visible_raw
               render 'collection-storefront-visible', collection_resource: family_hub_collection
             endcapture
-            assign family_hub_destination_visible = family_hub_destination_visible_raw | strip == 'true'
+            assign family_hub_destination_visible_raw = family_hub_destination_visible_raw | strip
+            if family_hub_destination_visible_raw == 'true'
+              assign family_hub_destination_visible = true
+            endif
           else
             assign nav_link_url = '/collections/matching-outfits'
           endif
