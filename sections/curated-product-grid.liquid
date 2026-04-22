@@ -145,6 +145,8 @@
               spotlight_badge: block.settings.badge,
               spotlight_caption: block.settings.caption,
               spotlight_button_label: block.settings.button_label,
+              spotlight_theme_asset: block.settings.custom_theme_asset,
+              spotlight_theme_asset_alt: block.settings.custom_theme_asset_alt,
               spotlight_collection: block.settings.secondary_collection,
               spotlight_rotation_collection: block.settings.secondary_collection,
               spotlight_collection_link_label: block.settings.collection_link_label,
@@ -311,6 +313,17 @@
           "id": "button_label",
           "default": "Shop This Look",
           "label": "Button label"
+        },
+        {
+          "type": "text",
+          "id": "custom_theme_asset",
+          "label": "Theme asset filename",
+          "info": "Optional asset from /assets, for example home-promo-mommy-me.jpg"
+        },
+        {
+          "type": "text",
+          "id": "custom_theme_asset_alt",
+          "label": "Theme asset alt text"
         },
         {
           "type": "collection",

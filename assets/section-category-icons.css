@@ -162,8 +162,19 @@
     padding: 0;
   }
 
+  .template-index .section-category-icons .category-icons__scroll {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+    align-items: start;
+  }
+
   .category-icons__item {
     width: 212px;
+  }
+
+  .template-index .section-category-icons .category-icons__item {
+    width: auto;
+    min-width: 0;
   }
 
   .category-icons__image-wrap {
@@ -179,10 +190,6 @@
   .category-icons__label {
     padding: 3rem 1rem 1rem;
     font-size: 1.45rem;
-  }
-
-  .template-index .section-category-icons .category-icons__item {
-    width: 244px;
   }
 
   .template-index .section-category-icons .category-icons__image-wrap {

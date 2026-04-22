@@ -1,6 +1,8 @@
 {%- liquid
   assign spotlight_product = spotlight_product | default: product
   assign spotlight_variant = spotlight_product.selected_or_first_available_variant
+  assign spotlight_theme_asset = spotlight_theme_asset | default: '' | strip
+  assign spotlight_theme_asset_alt = spotlight_theme_asset_alt | default: '' | strip
   assign spotlight_lazy_loading = 'lazy'
   if lazy_load == false
     assign spotlight_lazy_loading = blank
@@ -34,6 +36,10 @@
     assign spotlight_image_key = 'image-' | append: spotlight_image_id
   endif
 
+  if spotlight_theme_asset != blank
+    assign spotlight_image_key = 'asset-' | append: spotlight_theme_asset | handleize
+  endif
+
   if spotlight_fetchpriority == blank
     if spotlight_lazy_loading == blank
       assign spotlight_fetchpriority = 'high'
@@ -42,7 +48,7 @@
     endif
   endif
 
-  if request.page_type == 'index'
+  if request.page_type == 'index' and spotlight_theme_asset == blank
     capture homepage_spotlight_product_candidates_json
       echo '['
 
@@ -262,7 +268,20 @@
     {% endif %}
   >
     <a class="home-spotlight-card__media" href="{{ spotlight_product.url }}" data-homepage-spotlight-link="media">
-      {%- if spotlight_image != blank -%}
+      {%- if spotlight_theme_asset != blank -%}
+        <img
+          src="{{ spotlight_theme_asset | asset_url }}"
+          alt="{{ spotlight_theme_asset_alt | default: spotlight_product.title | escape }}"
+          width="900"
+          height="1125"
+          decoding="async"
+          class="motion-reduce"
+          data-homepage-spotlight-image
+          data-homepage-collection-image-key="{{ spotlight_image_key | escape }}"
+          {% if spotlight_lazy_loading != blank %}loading="{{ spotlight_lazy_loading }}"{% endif %}
+          fetchpriority="{{ spotlight_fetchpriority }}"
+        >
+      {%- elsif spotlight_image != blank -%}
         <img
           srcset="
             {%- if spotlight_image.width >= 320 -%}{{ spotlight_image | image_url: width: 320 }} 320w,{%- endif -%}

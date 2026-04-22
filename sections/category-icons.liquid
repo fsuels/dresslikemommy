@@ -140,6 +140,8 @@
 
                   if block.settings.custom_image != blank
                     assign icon_image = block.settings.custom_image
+                  elsif block.settings.custom_theme_asset != blank
+                    assign icon_image_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
                   elsif product_count > 0
                     assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
                     assign found_unique = false
@@ -177,14 +179,24 @@
                     <div class="category-icons__image-wrap">
                       {%- if icon_image != blank -%}
                         <img
-                        src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
-                        alt="{{ icon_label | escape }}"
-                        loading="eager"
-                        width="120"
-                        height="150"
-                        data-homepage-reserve-image
-                        data-homepage-collection-image-key="{{ icon_image_key | escape }}"
-                      >
+                          src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
+                          alt="{{ icon_label | escape }}"
+                          loading="eager"
+                          width="120"
+                          height="150"
+                          data-homepage-reserve-image
+                          data-homepage-collection-image-key="{{ icon_image_key | escape }}"
+                        >
+                      {%- elsif block.settings.custom_theme_asset != blank -%}
+                        <img
+                          src="{{ block.settings.custom_theme_asset | asset_url }}"
+                          alt="{{ block.settings.custom_theme_asset_alt | default: icon_label | escape }}"
+                          loading="eager"
+                          width="120"
+                          height="150"
+                          data-homepage-reserve-image
+                          data-homepage-collection-image-key="{{ icon_image_key | escape }}"
+                        >
                       {%- else -%}
                         {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                       {%- endif -%}
@@ -228,6 +240,8 @@
 
                   if block.settings.custom_image != blank
                     assign icon_image = block.settings.custom_image
+                  elsif block.settings.custom_theme_asset != blank
+                    assign icon_image_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
                   elsif product_count > 0
                     assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
                     assign found_unique = false
@@ -265,14 +279,24 @@
                     <div class="category-icons__image-wrap">
                       {%- if icon_image != blank -%}
                         <img
-                        src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
-                        alt="{{ icon_label | escape }}"
-                        loading="eager"
-                        width="120"
-                        height="150"
-                        data-homepage-reserve-image
-                        data-homepage-collection-image-key="{{ icon_image_key | escape }}"
-                      >
+                          src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
+                          alt="{{ icon_label | escape }}"
+                          loading="eager"
+                          width="120"
+                          height="150"
+                          data-homepage-reserve-image
+                          data-homepage-collection-image-key="{{ icon_image_key | escape }}"
+                        >
+                      {%- elsif block.settings.custom_theme_asset != blank -%}
+                        <img
+                          src="{{ block.settings.custom_theme_asset | asset_url }}"
+                          alt="{{ block.settings.custom_theme_asset_alt | default: icon_label | escape }}"
+                          loading="eager"
+                          width="120"
+                          height="150"
+                          data-homepage-reserve-image
+                          data-homepage-collection-image-key="{{ icon_image_key | escape }}"
+                        >
                       {%- else -%}
                         {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                       {%- endif -%}
@@ -303,6 +327,8 @@
 
               if block.settings.custom_image != blank
                 assign icon_image = block.settings.custom_image
+              elsif block.settings.custom_theme_asset != blank
+                assign icon_image_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
               elsif product_count > 0
                 assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
                 assign found_unique = false
@@ -342,6 +368,16 @@
                     <img
                       src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
                       alt="{{ icon_label | escape }}"
+                      loading="eager"
+                      width="120"
+                      height="150"
+                      data-homepage-reserve-image
+                      data-homepage-collection-image-key="{{ icon_image_key | escape }}"
+                    >
+                  {%- elsif block.settings.custom_theme_asset != blank -%}
+                    <img
+                      src="{{ block.settings.custom_theme_asset | asset_url }}"
+                      alt="{{ block.settings.custom_theme_asset_alt | default: icon_label | escape }}"
                       loading="eager"
                       width="120"
                       height="150"
@@ -502,6 +538,17 @@
           "id": "custom_image",
           "label": "Custom image",
           "info": "Overrides collection image"
+        },
+        {
+          "type": "text",
+          "id": "custom_theme_asset",
+          "label": "Theme asset filename",
+          "info": "Optional asset from /assets, for example home-cat-mommy-and-me.jpg"
+        },
+        {
+          "type": "text",
+          "id": "custom_theme_asset_alt",
+          "label": "Theme asset alt text"
         },
         {
           "type": "select",
