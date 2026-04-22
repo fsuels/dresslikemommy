@@ -14,6 +14,7 @@
       {%- capture link_is_visible -%}
         {%- render 'nav-link-visible', link: link -%}
       {%- endcapture -%}
+      {%- assign link_is_visible = link_is_visible | strip -%}
       {%- if link_is_visible != 'true' -%}
         {% continue %}
       {%- endif -%}
@@ -43,9 +44,10 @@
           endif
           if family_hub_collection != blank
             assign nav_link_url = family_hub_collection.url
-            if family_hub_collection.all_products_count > 0
-              assign family_hub_destination_visible = true
-            endif
+            capture family_hub_destination_visible_raw
+              render 'collection-storefront-visible', collection_resource: family_hub_collection
+            endcapture
+            assign family_hub_destination_visible = family_hub_destination_visible_raw | strip == 'true'
           else
             assign nav_link_url = '/collections/matching-outfits'
           endif
@@ -116,9 +118,11 @@
                           {%- capture childlink_is_visible -%}
                             {%- render 'nav-link-visible', link: childlink -%}
                           {%- endcapture -%}
+                          {%- assign childlink_is_visible = childlink_is_visible | strip -%}
                           {%- capture childlink_destination_is_visible -%}
                             {%- render 'nav-link-destination-visible', link: childlink -%}
                           {%- endcapture -%}
+                          {%- assign childlink_destination_is_visible = childlink_destination_is_visible | strip -%}
                           {%- if childlink_is_visible != 'true' or childlink_destination_is_visible != 'true' -%}
                             {% continue %}
                           {%- endif -%}
@@ -139,12 +143,14 @@
                             {%- capture childlink_is_visible -%}
                               {%- render 'nav-link-visible', link: childlink -%}
                             {%- endcapture -%}
+                            {%- assign childlink_is_visible = childlink_is_visible | strip -%}
                             {%- if childlink_is_visible != 'true' -%}
                               {% continue %}
                             {%- endif -%}
                             {%- capture childlink_destination_is_visible -%}
                               {%- render 'nav-link-destination-visible', link: childlink -%}
                             {%- endcapture -%}
+                            {%- assign childlink_destination_is_visible = childlink_destination_is_visible | strip -%}
                             {%- assign childlink_url = childlink.url -%}
                             {%- if childlink.handle contains 'pajamas' or childlink_url contains 'family-pajamas' -%}
                               {%- assign childlink_url = '/collections/pajamas' -%}
@@ -177,6 +183,7 @@
                             {%- capture childlink_is_visible -%}
                                 {%- render 'nav-link-visible', link: childlink -%}
                               {%- endcapture -%}
+                              {%- assign childlink_is_visible = childlink_is_visible | strip -%}
                               {%- if childlink_is_visible != 'true' -%}
                                 {% continue %}
                               {%- endif -%}
@@ -186,6 +193,7 @@
                               {%- capture childlink_destination_is_visible -%}
                                 {%- render 'nav-link-destination-visible', link: childlink -%}
                               {%- endcapture -%}
+                              {%- assign childlink_destination_is_visible = childlink_destination_is_visible | strip -%}
                               {%- assign childlink_visible_grandchild_count = childlink_visible_grandchild_count_raw | plus: 0 -%}
                               {%- assign childlink_url = childlink.url -%}
                               {%- if childlink.handle contains 'pajamas' or childlink_url contains 'family-pajamas' -%}
@@ -214,6 +222,7 @@
                                       {%- capture grandchildlink_is_visible -%}
                                         {%- render 'nav-link-visible', link: grandchildlink -%}
                                       {%- endcapture -%}
+                                      {%- assign grandchildlink_is_visible = grandchildlink_is_visible | strip -%}
                                       {%- if grandchildlink_is_visible != 'true' -%}
                                         {% continue %}
                                       {%- endif -%}
@@ -252,6 +261,7 @@
                       {%- capture childlink_is_visible -%}
                         {%- render 'nav-link-visible', link: childlink -%}
                       {%- endcapture -%}
+                      {%- assign childlink_is_visible = childlink_is_visible | strip -%}
                       {%- if childlink_is_visible != 'true' -%}
                         {% continue %}
                       {%- endif -%}
@@ -261,6 +271,7 @@
                       {%- capture childlink_destination_is_visible -%}
                         {%- render 'nav-link-destination-visible', link: childlink -%}
                       {%- endcapture -%}
+                      {%- assign childlink_destination_is_visible = childlink_destination_is_visible | strip -%}
                       {%- assign childlink_visible_grandchild_count = childlink_visible_grandchild_count_raw | plus: 0 -%}
                       <li>
                         {%- if childlink_destination_is_visible == 'true' -%}
@@ -285,6 +296,7 @@
                               {%- capture grandchildlink_is_visible -%}
                                 {%- render 'nav-link-visible', link: grandchildlink -%}
                               {%- endcapture -%}
+                              {%- assign grandchildlink_is_visible = grandchildlink_is_visible | strip -%}
                               {%- if grandchildlink_is_visible != 'true' -%}
                                 {% continue %}
                               {%- endif -%}

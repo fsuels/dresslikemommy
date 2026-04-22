@@ -14,6 +14,7 @@
       {%- capture link_is_visible -%}
         {%- render 'nav-link-visible', link: link -%}
       {%- endcapture -%}
+      {%- assign link_is_visible = link_is_visible | strip -%}
       {%- if link_is_visible != 'true' -%}
         {% continue %}
       {%- endif -%}
@@ -54,6 +55,7 @@
                   {%- capture childlink_is_visible -%}
                     {%- render 'nav-link-visible', link: childlink -%}
                   {%- endcapture -%}
+                  {%- assign childlink_is_visible = childlink_is_visible | strip -%}
                   {%- if childlink_is_visible != 'true' -%}
                     {% continue %}
                   {%- endif -%}
@@ -90,6 +92,7 @@
                             {%- capture grandchildlink_is_visible -%}
                               {%- render 'nav-link-visible', link: grandchildlink -%}
                             {%- endcapture -%}
+                            {%- assign grandchildlink_is_visible = grandchildlink_is_visible | strip -%}
                             {%- if grandchildlink_is_visible != 'true' -%}
                               {% continue %}
                             {%- endif -%}

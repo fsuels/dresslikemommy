@@ -29,12 +29,12 @@
   endif
 
   if link.type == 'collection_link' or linked_collection != blank
-    assign collection_product_count = 0
-    if linked_collection != blank
-      assign collection_product_count = linked_collection.all_products_count | default: linked_collection.products_count | default: 0
-    endif
+    capture collection_is_visible
+      render 'collection-storefront-visible', collection_resource: linked_collection, collection_handle: collection_handle
+    endcapture
+    assign collection_is_visible = collection_is_visible | strip
 
-    if linked_collection == blank or collection_product_count < 1
+    if collection_is_visible != 'true'
       assign is_visible = false
     endif
   elsif link.type == 'product_link' or link_path contains '/products/'

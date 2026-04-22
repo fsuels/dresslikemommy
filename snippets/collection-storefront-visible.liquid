@@ -1,0 +1,30 @@
+{%- liquid
+  assign resolved_collection = collection_resource
+
+  if resolved_collection == blank and collection_handle != blank and collection_handle != 'all' and collections[collection_handle] != blank
+    assign resolved_collection = collections[collection_handle]
+  endif
+
+  assign is_visible = true
+
+  if collection_handle == 'all'
+    assign is_visible = true
+  elsif resolved_collection == blank
+    assign is_visible = false
+  else
+    assign storefront_product_count = resolved_collection.products_count | plus: 0
+
+    if storefront_product_count < 1 and collection != blank and collection.handle == resolved_collection.handle
+      assign storefront_product_count = collection.products_count | plus: 0
+      if storefront_product_count < 1
+        assign storefront_product_count = collection.all_products_count | plus: 0
+      endif
+    endif
+
+    if storefront_product_count < 1
+      assign is_visible = false
+    endif
+  endif
+
+  echo is_visible
+-%}
