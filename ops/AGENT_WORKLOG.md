@@ -15162,6 +15162,37 @@ Recommended next directions:
 - Prioritize mobile-safe composition with faces and outfits centered high enough that CTA cards do not cover the most persuasive part of the image.
 - If generating a new hero, prefer editorial-quality realism over dreamy stock softness so the homepage feels more premium and trustworthy.
 
+2026-04-22 — Generated homepage hero image concepts
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Generated four new homepage hero concepts with built-in `image_gen`, using live-site screenshots plus current catalog product imagery as visual references.
+- Saved the selected workspace copies under `ops/hero-concepts/2026-04-homepage-hero/`:
+  - `homepage-hero-family-garden-yellow.png`
+  - `homepage-hero-mommy-me-beige-resort.png`
+  - `homepage-hero-family-coral-boardwalk.png`
+  - `homepage-hero-primary-coral-boardwalk-v2.png`
+  - `homepage-hero-primary-coral-boardwalk-v2-mobile-crop.png`
+
+Reference inputs used:
+- Live homepage desktop/mobile screenshots:
+  - `ops/tmp/home-desktop.png`
+  - `ops/tmp/home-mobile.png`
+- Live catalog imagery downloaded from current PDP `og:image` assets:
+  - tie-dye mommy-and-me dress
+  - hawaiian/floral family set
+  - yellow floral family set
+  - beige chiffon mother-daughter set
+
+Outcome:
+- The strongest option is `homepage-hero-primary-coral-boardwalk-v2.png`.
+- It keeps clear left-side copy space for the current desktop hero layout while holding up in a centered mobile crop, documented in `homepage-hero-primary-coral-boardwalk-v2-mobile-crop.png`.
+- Relative to the live hero, the chosen concept feels more premium and conversion-oriented while still matching the store's existing family-vacation positioning.
+
+Notes:
+- No theme code or Shopify settings were changed in this step; this was asset generation and review only.
+- If this concept gets applied later, the current `hero-banner` section should be able to use it without structural changes, though final on-store readability should still be checked against the live overlay and text-shadow settings.
+
 2026-04-22 — Localized PDP shared-copy fix and translation cleanup layer
 AGENT_CONTINUITY_ANCHOR
 
@@ -15272,3 +15303,22 @@ Verification:
 
 Notes:
 - A follow-up multi-locale browser spot-check via AppleScript/Chrome was interrupted because Chrome disabled `Allow JavaScript from Apple Events` for new windows mid-pass. The German live verification completed successfully before that, and the same fallback map now contains translated values for the other locales too.
+
+2026-04-22 — PDP mobile description cards live deploy + mobile QA
+
+What changed:
+- Pushed the automatic inline list-item normalization fix for PDP description cards to the unpublished preview theme and then to the live main theme after confirming the preview theme contained the patched assets.
+- The live upload covered:
+  - `assets/product-description.js`
+  - `assets/component-product-description.css`
+
+Verification:
+- Confirmed the live storefront is serving the updated `product-description.js` asset containing the new `wrapInlineListItemContent` normalization helper.
+- Captured fresh mobile PDP screenshots on the live storefront for:
+  - `meow-star-garden-mommy-and-me-pajamas`
+  - `ladybug-dots-mommy-and-me-pajamas`
+  - `fluttering-butterflies-mommy-and-me-pajamas`
+- Visual QA on those live mobile screenshots confirmed the `Why You'll Love It` cards now wrap as normal full-width copy instead of splitting the bold label/body text into narrow columns.
+
+Notes:
+- Local `shopify theme dev` preview was not usable for final QA because unrelated locale JSON files in the current worktree trigger Shopify upload errors (`Failed to Upload Theme Files`), so final confirmation was done against the live storefront after the targeted asset push.
