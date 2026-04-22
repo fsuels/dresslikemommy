@@ -1,0 +1,17 @@
+{%- liquid
+  assign visible_child_count = 0
+
+  if link.links != blank
+    for childlink in link.links
+      capture child_visible
+        render 'nav-link-visible', link: childlink
+      endcapture
+      assign child_visible = child_visible | strip
+      if child_visible == 'true'
+        assign visible_child_count = visible_child_count | plus: 1
+      endif
+    endfor
+  endif
+
+  echo visible_child_count
+-%}

@@ -11,14 +11,24 @@
       {%- if section.settings.hide_blog_link_in_primary_nav and link.url contains '/blogs/' -%}
         {% continue %}
       {%- endif -%}
+      {%- capture link_is_visible -%}
+        {%- render 'nav-link-visible', link: link -%}
+      {%- endcapture -%}
+      {%- if link_is_visible != 'true' -%}
+        {% continue %}
+      {%- endif -%}
+      {%- capture visible_child_count_raw -%}
+        {%- render 'nav-link-visible-child-count', link: link -%}
+      {%- endcapture -%}
       {%- liquid
         assign nav_link_title = link.title | escape
+        assign visible_child_count = visible_child_count_raw | plus: 0
         if link.url contains '/blogs/'
           assign nav_link_title = 'Style Journal'
         endif
       -%}
       <li>
-        {%- if link.links != blank -%}
+        {%- if visible_child_count > 0 -%}
           <header-menu>
             <details id="Details-HeaderMenu-{{ forloop.index }}">
               <summary
@@ -41,8 +51,18 @@
                 tabindex="-1"
               >
                 {%- for childlink in link.links -%}
+                  {%- capture childlink_is_visible -%}
+                    {%- render 'nav-link-visible', link: childlink -%}
+                  {%- endcapture -%}
+                  {%- if childlink_is_visible != 'true' -%}
+                    {% continue %}
+                  {%- endif -%}
+                  {%- capture childlink_visible_grandchild_count_raw -%}
+                    {%- render 'nav-link-visible-child-count', link: childlink -%}
+                  {%- endcapture -%}
+                  {%- assign childlink_visible_grandchild_count = childlink_visible_grandchild_count_raw | plus: 0 -%}
                   <li>
-                    {%- if childlink.links == blank -%}
+                    {%- if childlink_visible_grandchild_count == 0 -%}
                       <a
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                         href="{{ childlink.url }}"
@@ -67,6 +87,12 @@
                           class="header__submenu list-menu motion-reduce"
                         >
                           {%- for grandchildlink in childlink.links -%}
+                            {%- capture grandchildlink_is_visible -%}
+                              {%- render 'nav-link-visible', link: grandchildlink -%}
+                            {%- endcapture -%}
+                            {%- if grandchildlink_is_visible != 'true' -%}
+                              {% continue %}
+                            {%- endif -%}
                             <li>
                               <a
                                 id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
@@ -102,7 +128,7 @@
                 class="header__active-menu-item"
               {% endif %}
             >
-              {{- link.title | escape -}}
+              {{- nav_link_title -}}
             </span>
           </a>
         {%- endif -%}

@@ -1,0 +1,25 @@
+{%- liquid
+  capture destination_visible
+    render 'nav-link-destination-visible', link: link
+  endcapture
+  assign destination_visible = destination_visible | strip
+
+  assign is_visible = destination_visible == 'true'
+
+  unless is_visible
+    if link.links != blank
+      for childlink in link.links
+        capture child_visible
+          render 'nav-link-visible', link: childlink
+        endcapture
+        assign child_visible = child_visible | strip
+        if child_visible == 'true'
+          assign is_visible = true
+          break
+        endif
+      endfor
+    endif
+  endunless
+
+  echo is_visible
+-%}

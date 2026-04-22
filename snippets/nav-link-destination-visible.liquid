@@ -1,0 +1,47 @@
+{%- liquid
+  assign is_visible = true
+  assign linked_collection = blank
+  assign linked_product = blank
+  assign collection_handle = blank
+  assign product_handle = blank
+  assign link_path = link.url | split: '#' | first | split: '?' | first
+
+  if link.type == 'collection_link'
+    assign linked_collection = link.object
+  endif
+
+  if linked_collection == blank and link_path contains '/collections/'
+    assign collection_handle = link_path | split: '/collections/' | last | split: '/' | first | strip
+    if collection_handle != blank and collection_handle != 'all' and collections[collection_handle] != blank
+      assign linked_collection = collections[collection_handle]
+    endif
+  endif
+
+  if link.type == 'product_link'
+    assign linked_product = link.object
+  endif
+
+  if linked_product == blank and link_path contains '/products/'
+    assign product_handle = link_path | split: '/products/' | last | split: '/' | first | strip
+    if product_handle != blank and all_products[product_handle] != blank
+      assign linked_product = all_products[product_handle]
+    endif
+  endif
+
+  if link.type == 'collection_link' or linked_collection != blank
+    assign collection_product_count = 0
+    if linked_collection != blank
+      assign collection_product_count = linked_collection.all_products_count | default: linked_collection.products_count | default: 0
+    endif
+
+    if linked_collection == blank or collection_product_count < 1
+      assign is_visible = false
+    endif
+  elsif link.type == 'product_link' or link_path contains '/products/'
+    if linked_product == blank
+      assign is_visible = false
+    endif
+  endif
+
+  echo is_visible
+-%}

@@ -25,11 +25,23 @@
                 {%- if section.settings.hide_blog_link_in_primary_nav and link.url contains '/blogs/' -%}
                   {% continue %}
                 {%- endif -%}
+                {%- capture link_is_visible -%}
+                  {%- render 'nav-link-visible', link: link -%}
+                {%- endcapture -%}
+                {%- if link_is_visible != 'true' -%}
+                  {% continue %}
+                {%- endif -%}
+                {%- capture visible_child_count_raw -%}
+                  {%- render 'nav-link-visible-child-count', link: link -%}
+                {%- endcapture -%}
                 {%- liquid
                   assign nav_link_title = link.title | escape
                   assign nav_link_url = link.url
                   assign normalized_link_title = link.title | strip | downcase
                   assign use_family_direct_link = false
+                  assign family_hub_destination_visible = false
+                  assign skip_nav_link = false
+                  assign visible_child_count = visible_child_count_raw | plus: 0
                   if link.url contains '/blogs/'
                     assign nav_link_title = 'Style Journal'
                   endif
@@ -45,13 +57,22 @@
                     endif
                     if family_hub_collection != blank
                       assign nav_link_url = family_hub_collection.url
+                      if family_hub_collection.all_products_count > 0
+                        assign family_hub_destination_visible = true
+                      endif
                     else
                       assign nav_link_url = '/collections/matching-outfits'
                     endif
                   endif
+                  if use_family_direct_link and family_hub_destination_visible == false and visible_child_count == 0
+                    assign skip_nav_link = true
+                  endif
                 -%}
-                <li class="menu-drawer__main-item{% if link.links != blank %} menu-drawer__main-item--parent{% endif %}">
-                  {%- if use_family_direct_link -%}
+                {%- if skip_nav_link -%}
+                  {% continue %}
+                {%- endif -%}
+                <li class="menu-drawer__main-item{% if visible_child_count > 0 %} menu-drawer__main-item--parent{% endif %}">
+                  {%- if use_family_direct_link and family_hub_destination_visible -%}
                     <a
                       id="HeaderDrawer-{{ link.handle }}"
                       href="{{ nav_link_url }}"
@@ -62,7 +83,7 @@
                     >
                       {{ nav_link_title }}
                     </a>
-                  {%- elsif link.links != blank -%}
+                  {%- elsif visible_child_count > 0 -%}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
                       <summary
                         id="HeaderDrawer-{{ link.handle }}"
@@ -84,12 +105,22 @@
                           </button>
                           <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                             {%- for childlink in link.links -%}
+                              {%- capture childlink_is_visible -%}
+                                {%- render 'nav-link-visible', link: childlink -%}
+                              {%- endcapture -%}
+                              {%- if childlink_is_visible != 'true' -%}
+                                {% continue %}
+                              {%- endif -%}
+                              {%- capture childlink_visible_grandchild_count_raw -%}
+                                {%- render 'nav-link-visible-child-count', link: childlink -%}
+                              {%- endcapture -%}
+                              {%- assign childlink_visible_grandchild_count = childlink_visible_grandchild_count_raw | plus: 0 -%}
                               {%- assign childlink_url = childlink.url -%}
                               {%- if childlink.handle contains 'pajamas' or childlink_url contains 'family-pajamas' -%}
                                 {%- assign childlink_url = '/collections/pajamas' -%}
                               {%- endif -%}
                               <li>
-                                {%- if childlink.links == blank -%}
+                                {%- if childlink_visible_grandchild_count == 0 -%}
                                   <a
                                     id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
                                     href="{{ childlink_url | strip }}"
@@ -127,6 +158,12 @@
                                         tabindex="-1"
                                       >
                                         {%- for grandchildlink in childlink.links -%}
+                                          {%- capture grandchildlink_is_visible -%}
+                                            {%- render 'nav-link-visible', link: grandchildlink -%}
+                                          {%- endcapture -%}
+                                          {%- if grandchildlink_is_visible != 'true' -%}
+                                            {% continue %}
+                                          {%- endif -%}
                                           {%- assign grandchildlink_url = grandchildlink.url -%}
                                           {%- if grandchildlink.handle contains 'pajamas' or grandchildlink_url contains 'family-pajamas' -%}
                                             {%- assign grandchildlink_url = '/collections/pajamas' -%}
@@ -157,13 +194,13 @@
                   {%- else -%}
                     <a
                       id="HeaderDrawer-{{ link.handle }}"
-                      href="{{ link.url }}"
+                      href="{{ nav_link_url }}"
                       class="menu-drawer__menu-item menu-drawer__menu-item--top-level list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
                       {% if link.current %}
                         aria-current="page"
                       {% endif %}
                     >
-                      {{ link.title | escape }}
+                      {{ nav_link_title }}
                     </a>
                   {%- endif -%}
                 </li>
