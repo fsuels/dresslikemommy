@@ -10,7 +10,7 @@
     assign linked_collection = link.object
   endif
 
-  if linked_collection == blank and link_path contains '/collections/'
+  if link_path contains '/collections/'
     assign collection_handle = link_path | split: '/collections/' | last | split: '/' | first | strip
     if collection_handle != blank and collection_handle != 'all' and collections[collection_handle] != blank
       assign linked_collection = collections[collection_handle]
