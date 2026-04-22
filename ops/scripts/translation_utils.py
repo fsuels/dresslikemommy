@@ -12,7 +12,9 @@ import requests
 
 COMMENT_RE = re.compile(r"\A(/\*.*?\*/\s*)", re.S)
 LIQUID_TOKEN_RE = re.compile(r"(\{\{.*?\}\}|\{%.*?%\}|https?://\S+|dresslikemommy\.com|Dresslikemommy|DLM)", re.I | re.S)
+HTML_TAG_RE = re.compile(r"(<!--.*?-->|<[^>]+>)", re.S)
 HTML_ENTITY_RE = re.compile(r"&[a-zA-Z#0-9]+;")
+PLACEHOLDER_TOKEN_RE = re.compile(r"(?:QZXTOKEN|DLMTOKEN)\d{5}(?:QXZ|XYZ)")
 GOOGLE_ENDPOINT = "https://translate.googleapis.com/translate_a/single"
 BATCH_SEPARATOR = "\n___DLMSEP___\n"
 SPLIT_RE = re.compile(r"(\n{2,}|</p>|</li>|</tr>|<br\s*/?>)", re.I)
@@ -26,6 +28,7 @@ GOOGLE_TARGET_MAP = {
     "es": "es",
     "fi": "fi",
     "fr": "fr",
+    "he": "iw",
     "hi": "hi",
     "hr-HR": "hr",
     "hu": "hu",
@@ -36,9 +39,11 @@ GOOGLE_TARGET_MAP = {
     "lt-LT": "lt",
     "nb": "no",
     "nl": "nl",
+    "no": "no",
     "pl": "pl",
     "pt-BR": "pt",
     "pt-PT": "pt",
+    "ro": "ro",
     "ro-RO": "ro",
     "ru": "ru",
     "sk-SK": "sk",
@@ -54,17 +59,24 @@ GOOGLE_TARGET_MAP = {
 MYMEMORY_SOURCE_CODE = "en-GB"
 MYMEMORY_TARGET_MAP = {
     "ar": "ar-SA",
+    "cs": "cs-CZ",
+    "da": "da-DK",
     "de": "de-DE",
+    "el": "el-GR",
     "es": "es-ES",
+    "fi": "fi-FI",
     "fr": "fr-FR",
+    "he": "iw-IL",
     "hi": "hi-IN",
     "id": "id-ID",
     "it": "it-IT",
     "ja": "ja-JP",
     "ko": "ko-KR",
     "nl": "nl-NL",
+    "no": "no-NO",
     "pl": "pl-PL",
     "pt-BR": "pt-BR",
+    "ro": "ro-RO",
     "ru": "ru-RU",
     "sv": "sv-SE",
     "th": "th-TH",
@@ -169,15 +181,20 @@ class TranslationBackend:
     def _mymemory_target_code(self, locale):
         return MYMEMORY_TARGET_MAP.get(locale)
 
+    @staticmethod
+    def _contains_placeholder_tokens(value):
+        return isinstance(value, str) and bool(PLACEHOLDER_TOKEN_RE.search(value))
+
     def _protect(self, text, locale):
         replacements = []
         protected = text
 
         def token_for(value):
-            token = f"___DLMTOK{len(replacements)}___"
+            token = f"QZXTOKEN{len(replacements):05d}QXZ"
             replacements.append((token, value))
             return token
 
+        protected = HTML_TAG_RE.sub(lambda m: token_for(m.group(0)), protected)
         protected = LIQUID_TOKEN_RE.sub(lambda m: token_for(m.group(0)), protected)
 
         for source, locale_map in self.glossary:
@@ -191,7 +208,7 @@ class TranslationBackend:
     @staticmethod
     def _restore(text, replacements):
         restored = text
-        for token, value in replacements:
+        for token, value in reversed(replacements):
             restored = restored.replace(token, value)
         return restored
 
@@ -289,7 +306,10 @@ class TranslationBackend:
     def _translate_single_uncached(self, locale, text, save=True, skip_http_batch=False):
         locale_cache = self.cache.setdefault(locale, {})
         if text in locale_cache:
-            return locale_cache[text]
+            cached = locale_cache[text]
+            if not self._contains_placeholder_tokens(cached):
+                return cached
+            locale_cache.pop(text, None)
 
         lead = re.match(r"^\s*", text).group(0)
         trail = re.search(r"\s*$", text).group(0)
@@ -346,7 +366,10 @@ class TranslationBackend:
         order = []
         for text in texts:
             order.append(text)
-            if text not in locale_cache:
+            cached = locale_cache.get(text)
+            if text not in locale_cache or self._contains_placeholder_tokens(cached):
+                if self._contains_placeholder_tokens(cached):
+                    locale_cache.pop(text, None)
                 missing.append(text)
 
         original_missing = len(missing)
