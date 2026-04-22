@@ -31,6 +31,7 @@
   assign trust_item_count = 0
   assign category_block_count = 0
   assign occasion_block_count = 0
+  assign featured_collection_min_products = 10
 
   if section.settings.show_trust_strip
     if section.settings.trust_item_1 != blank
@@ -50,10 +51,13 @@
   if section.settings.display_mode == 'grouped'
     for block in section.blocks
       if block.settings.collection != blank
-        if block.settings.browse_path == 'occasion'
-          assign occasion_block_count = occasion_block_count | plus: 1
-        else
-          assign category_block_count = category_block_count | plus: 1
+        assign collection_product_count = block.settings.collection.products_count | default: block.settings.collection.products.size
+        if collection_product_count >= featured_collection_min_products
+          if block.settings.browse_path == 'occasion'
+            assign occasion_block_count = occasion_block_count | plus: 1
+          else
+            assign category_block_count = category_block_count | plus: 1
+          endif
         endif
       endif
     endfor
@@ -128,6 +132,11 @@
                   assign icon_image_key = blank
                   assign products = block.settings.collection.products
                   assign product_count = products.size
+                  assign featured_collection_count = block.settings.collection.products_count | default: product_count
+
+                  if featured_collection_count < featured_collection_min_products
+                    continue
+                  endif
 
                   if block.settings.custom_image != blank
                     assign icon_image = block.settings.custom_image
@@ -211,6 +220,11 @@
                   assign icon_image_key = blank
                   assign products = block.settings.collection.products
                   assign product_count = products.size
+                  assign featured_collection_count = block.settings.collection.products_count | default: product_count
+
+                  if featured_collection_count < featured_collection_min_products
+                    continue
+                  endif
 
                   if block.settings.custom_image != blank
                     assign icon_image = block.settings.custom_image
@@ -281,6 +295,11 @@
               assign icon_image_key = blank
               assign products = block.settings.collection.products
               assign product_count = products.size
+              assign featured_collection_count = block.settings.collection.products_count | default: product_count
+
+              if featured_collection_count < featured_collection_min_products
+                continue
+              endif
 
               if block.settings.custom_image != blank
                 assign icon_image = block.settings.custom_image

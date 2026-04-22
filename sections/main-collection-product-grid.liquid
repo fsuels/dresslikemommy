@@ -8,6 +8,16 @@
 
 {% include 'collection-breadcrumbs' %}
 
+{% assign family_pajamas_fallback_url = collections['pajamas'].url | default: '/collections/pajamas' %}
+{% if collection.handle == 'family-pajamas' and collection.products.size == 0 %}
+  <script>
+    window.location.replace({{ family_pajamas_fallback_url | json }});
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url={{ family_pajamas_fallback_url }}">
+  </noscript>
+{% endif %}
+
 {% if collection.handle == 'daddy-me'
   or collection.handle == 'daddy-me-t-shirts'
   or collection.handle == 'daddy-me-shirts'
