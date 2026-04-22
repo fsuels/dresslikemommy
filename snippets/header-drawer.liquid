@@ -27,12 +27,42 @@
                 {%- endif -%}
                 {%- liquid
                   assign nav_link_title = link.title | escape
+                  assign nav_link_url = link.url
+                  assign normalized_link_title = link.title | strip | downcase
+                  assign use_family_direct_link = false
                   if link.url contains '/blogs/'
                     assign nav_link_title = 'Style Journal'
                   endif
+                  if link.handle == 'family-matching' or link.handle == 'matching-outfits' or link.handle == 'family-matching-outfits' or normalized_link_title == 'family matching' or normalized_link_title == 'family matching outfits'
+                    assign nav_link_title = 'Family Matching'
+                    assign use_family_direct_link = true
+                    assign family_hub_collection = collections['matching-outfits']
+                    if family_hub_collection == blank
+                      assign family_hub_collection = collections['family-matching-outfits']
+                    endif
+                    if family_hub_collection == blank
+                      assign family_hub_collection = collections['new-women-outfits']
+                    endif
+                    if family_hub_collection != blank
+                      assign nav_link_url = family_hub_collection.url
+                    else
+                      assign nav_link_url = '/collections/matching-outfits'
+                    endif
+                  endif
                 -%}
                 <li class="menu-drawer__main-item{% if link.links != blank %} menu-drawer__main-item--parent{% endif %}">
-                  {%- if link.links != blank -%}
+                  {%- if use_family_direct_link -%}
+                    <a
+                      id="HeaderDrawer-{{ link.handle }}"
+                      href="{{ nav_link_url }}"
+                      class="menu-drawer__menu-item menu-drawer__menu-item--top-level list-menu__item link link--text focus-inset{% if link.current or link.child_active %} menu-drawer__menu-item--active{% endif %}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{ nav_link_title }}
+                    </a>
+                  {%- elsif link.links != blank -%}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
                       <summary
                         id="HeaderDrawer-{{ link.handle }}"

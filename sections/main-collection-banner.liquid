@@ -2,6 +2,7 @@
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
+  assign collection_handle = collection.handle | default: ''
   capture collection_seo_display_title
     render 'collection-seo-fallback', collection: collection, field: 'display_title'
   endcapture
@@ -65,8 +66,14 @@
         <div class="collection-hero__description rte">{{ collection_description_content }}</div>
       {%- endif -%}
 
-      {% render 'collection-hub-subcategory-cards', collection: collection %}
-      {% render 'collection-merchandising-callout', collection: collection %}
+      {%- unless collection_handle == 'mommy-and-me'
+        or collection_handle == 'matching-outfits'
+        or collection_handle == 'family-matching-outfits'
+        or collection_handle == 'new-women-outfits'
+      -%}
+        {% render 'collection-hub-subcategory-cards', collection: collection %}
+        {% render 'collection-merchandising-callout', collection: collection %}
+      {%- endunless -%}
       {% render 'style-journal-internal-links', mode: 'collection_guide_links', collection: collection %}
     </div>
 

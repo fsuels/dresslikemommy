@@ -13,6 +13,7 @@
       {%- endif -%}
       {%- liquid
         assign nav_link_title = link.title | escape
+        assign nav_link_url = link.url
         assign normalized_link_title = link.title | strip | downcase
         assign use_family_visual_mega_menu = false
         if link.url contains '/blogs/'
@@ -21,10 +22,39 @@
         if link.handle == 'family-matching' or link.handle == 'matching-outfits' or link.handle == 'family-matching-outfits' or normalized_link_title == 'family matching' or normalized_link_title == 'family matching outfits'
           assign use_family_visual_mega_menu = true
           assign nav_link_title = 'Family Matching'
+          assign family_hub_collection = collections['matching-outfits']
+          if family_hub_collection == blank
+            assign family_hub_collection = collections['family-matching-outfits']
+          endif
+          if family_hub_collection == blank
+            assign family_hub_collection = collections['new-women-outfits']
+          endif
+          if family_hub_collection != blank
+            assign nav_link_url = family_hub_collection.url
+          else
+            assign nav_link_url = '/collections/matching-outfits'
+          endif
         endif
       -%}
       <li>
-        {%- if link.links != blank -%}
+        {%- if use_family_visual_mega_menu -%}
+          <a
+            id="HeaderMenu-{{ link.handle }}"
+            href="{{ nav_link_url }}"
+            class="header__menu-item list-menu__item link link--text focus-inset"
+            {% if link.current %}
+              aria-current="page"
+            {% endif %}
+          >
+            <span
+              {%- if link.current or link.child_active %}
+                class="header__active-menu-item"
+              {% endif %}
+            >
+              {{- nav_link_title -}}
+            </span>
+          </a>
+        {%- elsif link.links != blank -%}
           <header-menu>
             <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
               <summary
