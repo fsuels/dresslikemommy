@@ -11,6 +11,35 @@ const BACK_TO_RESULTS_LABEL_STORAGE_KEY = 'dlm:last-results-label';
 const DEFAULT_BACK_TO_RESULTS_TEMPLATE = 'Back to __CONTEXT__';
 const DEFAULT_BACK_TO_SEARCH_RESULTS_LABEL = 'Back to search results';
 
+function getCurrentLocaleCode() {
+  const shopifyLocale = window.Shopify && window.Shopify.locale ? window.Shopify.locale : '';
+  const documentLocale = document.documentElement ? document.documentElement.lang || '' : '';
+  return String(shopifyLocale || documentLocale || '')
+    .replace('_', '-')
+    .trim();
+}
+
+function getProductPageCopy() {
+  const copyMap = window.DLM_PRODUCT_PAGE_COPY;
+  if (!copyMap || typeof copyMap !== 'object') return null;
+
+  const locale = getCurrentLocaleCode().toLowerCase();
+  const root = locale.split('-')[0];
+  const candidates = [locale];
+  if (root && root !== locale) candidates.push(root);
+  if (root === 'pt') candidates.push('pt-BR', 'pt-PT');
+  if (root === 'ro') candidates.push('ro', 'ro-RO');
+  if (root === 'no') candidates.push('no', 'nb');
+
+  const keys = Object.keys(copyMap);
+  for (const candidate of candidates) {
+    const match = keys.find((key) => key.toLowerCase() === candidate.toLowerCase());
+    if (match) return copyMap[match];
+  }
+
+  return copyMap.en || null;
+}
+
 function toSameOriginUrl(value) {
   if (!value) return null;
 
@@ -67,6 +96,15 @@ function formatBackToResultsLabel(
   contextTemplate = DEFAULT_BACK_TO_RESULTS_TEMPLATE,
   searchResultsLabel = DEFAULT_BACK_TO_SEARCH_RESULTS_LABEL
 ) {
+  const localeCopy = getProductPageCopy();
+  if (localeCopy) {
+    if (fallbackLabel === 'Back to results') fallbackLabel = localeCopy.back_to_results || fallbackLabel;
+    if (contextTemplate === DEFAULT_BACK_TO_RESULTS_TEMPLATE) contextTemplate = localeCopy.back_to_context || contextTemplate;
+    if (searchResultsLabel === DEFAULT_BACK_TO_SEARCH_RESULTS_LABEL) {
+      searchResultsLabel = localeCopy.back_to_search_results || searchResultsLabel;
+    }
+  }
+
   const sanitizedLabel = sanitizeResultsLabel(resultsLabel);
   if (!sanitizedLabel) return fallbackLabel;
   if (sanitizedLabel === fallbackLabel || sanitizedLabel === searchResultsLabel) return sanitizedLabel;
@@ -126,21 +164,29 @@ function getPreferredBackToResultsLabel(
 }
 
 function hydrateBackToResultsControls() {
+  const localeCopy = getProductPageCopy();
   document.querySelectorAll('[data-back-to-results]').forEach((control) => {
     const fallbackUrl = toSameOriginUrl(
       control.getAttribute('data-back-to-results-fallback') || control.getAttribute('href')
     );
     const preferredUrl = getPreferredBackToResultsUrl();
     const targetUrl = preferredUrl || (fallbackUrl ? fallbackUrl.toString() : '');
-    const fallbackLabel =
+    let fallbackLabel =
       sanitizeResultsLabel(control.getAttribute('data-back-to-results-label-default')) ||
       sanitizeResultsLabel(control.textContent) ||
       'Back to results';
-    const contextTemplate =
+    let contextTemplate =
       control.getAttribute('data-back-to-results-template') || DEFAULT_BACK_TO_RESULTS_TEMPLATE;
-    const searchResultsLabel =
+    let searchResultsLabel =
       sanitizeResultsLabel(control.getAttribute('data-back-to-search-results-label')) ||
       DEFAULT_BACK_TO_SEARCH_RESULTS_LABEL;
+    if (localeCopy) {
+      if (fallbackLabel === 'Back to results') fallbackLabel = localeCopy.back_to_results || fallbackLabel;
+      if (contextTemplate === DEFAULT_BACK_TO_RESULTS_TEMPLATE) contextTemplate = localeCopy.back_to_context || contextTemplate;
+      if (searchResultsLabel === DEFAULT_BACK_TO_SEARCH_RESULTS_LABEL) {
+        searchResultsLabel = localeCopy.back_to_search_results || searchResultsLabel;
+      }
+    }
     const targetLabel = getPreferredBackToResultsLabel(fallbackLabel, contextTemplate, searchResultsLabel);
     const labelTarget = control.querySelector('[data-back-to-results-label]');
 

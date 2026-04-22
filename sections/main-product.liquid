@@ -2183,17 +2183,83 @@
 {%- endif -%}
 
 <script>
+  window.DLM_PRODUCT_PAGE_COPY = {% render 'product-page-copy-map' %};
+</script>
+
+<script>
   (function () {
+    function currentLocale() {
+      var locale = '';
+      if (window.Shopify && typeof window.Shopify.locale === 'string') {
+        locale = window.Shopify.locale;
+      } else if (document.documentElement && document.documentElement.lang) {
+        locale = document.documentElement.lang;
+      }
+      return String(locale || '').replace('_', '-').trim();
+    }
+
+    function localeCopy() {
+      var copyMap = window.DLM_PRODUCT_PAGE_COPY;
+      if (!copyMap || typeof copyMap !== 'object') return null;
+
+      var locale = currentLocale().toLowerCase();
+      var root = locale.split('-')[0];
+      var candidates = [locale];
+      if (root && root !== locale) candidates.push(root);
+      if (root === 'pt') candidates.push('pt-BR', 'pt-PT');
+      if (root === 'ro') candidates.push('ro', 'ro-RO');
+      if (root === 'no') candidates.push('no', 'nb');
+
+      var keys = Object.keys(copyMap);
+      for (var i = 0; i < candidates.length; i += 1) {
+        var candidate = candidates[i];
+        for (var j = 0; j < keys.length; j += 1) {
+          if (keys[j].toLowerCase() === candidate.toLowerCase()) {
+            return copyMap[keys[j]];
+          }
+        }
+      }
+
+      return copyMap.en || null;
+    }
+
+    var copy = localeCopy();
+    if (!copy) return;
+
     var translations = {
-      'CUSTOMER REVIEWS': {{ 'products.product.review_widget.heading_uppercase' | t | json }},
-      'Customer Reviews': {{ 'products.product.review_widget.heading' | t | json }},
-      'Be the first to write a review': {{ 'products.product.review_widget.empty' | t | json }},
-      'Write a review': {{ 'products.product.review_widget.write_review' | t | json }},
-      'Write a Review': {{ 'products.product.review_widget.write_review_title' | t | json }},
+      'Build your matching set': copy.matching_set_heading,
+      'Choose the family sizes you want and add them together from one product page.': copy.matching_set_copy,
+      'Choose at least one family size to add your set.': copy.matching_set_empty,
+      'Add selected pieces': copy.matching_set_add,
+      'Compare family sizes': copy.grouped_size_guide_label,
+      'Compare all sizes': copy.compare_size_guide_label,
+      'Size guide & fit': copy.single_size_guide_label,
+      'Your size details': copy.selected_size_guide_label,
+      'Open the full chart below to compare nearby sizes.': copy.size_guide_compare_hint,
+      'Customer reviews': copy.reviews_heading,
+      'Customer photo reviews': copy.photo_heading,
+      'Jump to reviews': copy.jump_to_reviews,
+      'Trusted since 2016': copy.trusted_since,
+      'Need help? We typically reply within one business day.': copy.assistance_note,
+      'Complete the Look': copy.complete_the_look,
+      'Similar styles': copy.similar_styles,
+      'Browse similar styles': copy.browse_similar_styles,
+      'Use this collection to compare a few close matches before you go back to shopping.': copy.compare_collection_copy,
+      'Popular with Families': copy.popular_with_families,
+      'Recently Viewed': copy.recently_viewed,
+      'CUSTOMER REVIEWS': copy.review_widget_heading_uppercase,
+      'Customer Reviews': copy.review_widget_heading,
+      'Be the first to write a review': copy.review_widget_empty,
+      'Write a review': copy.review_widget_write_review,
+      'Write a Review': copy.review_widget_write_review_title,
     };
 
     function normalize(text) {
       return text ? text.replace(/\s+/g, ' ').trim() : '';
+    }
+
+    function replaceWithContext(template, context) {
+      return String(template || '').replace(/__CONTEXT__/g, context || '');
     }
 
     function translateTextNodes(root) {
@@ -2209,7 +2275,78 @@
       }
     }
 
-    function applyJudgeMeTranslations() {
+    function applyAttributeTranslations() {
+      var wrapper = document.querySelector('[data-product-desktop-ux]');
+      if (wrapper) {
+        wrapper.setAttribute('data-matching-set-empty', copy.matching_set_empty);
+        wrapper.setAttribute('data-matching-set-add', copy.matching_set_add);
+        wrapper.setAttribute('data-matching-set-success', copy.matching_set_success);
+        wrapper.setAttribute('data-matching-set-error', copy.matching_set_error);
+        wrapper.setAttribute('data-size-guide-single-label', copy.single_size_guide_label);
+        wrapper.setAttribute('data-size-guide-grouped-label', copy.grouped_size_guide_label);
+        wrapper.setAttribute('data-size-guide-compare-label', copy.compare_size_guide_label);
+        wrapper.setAttribute('data-size-guide-selected-label', copy.selected_size_guide_label);
+        wrapper.setAttribute('data-size-guide-compare-hint', copy.size_guide_compare_hint);
+        wrapper.setAttribute('data-size-guide-unit-toggle-label', copy.size_guide_unit_toggle_label);
+      }
+
+      document.querySelectorAll('[data-back-to-results]').forEach(function (control) {
+        control.setAttribute('data-back-to-results-label-default', copy.back_to_results);
+        control.setAttribute('data-back-to-results-template', copy.back_to_context);
+        control.setAttribute('data-back-to-search-results-label', copy.back_to_search_results);
+      });
+    }
+
+    function applyContextTranslations() {
+      document.querySelectorAll('[data-back-to-results-label]').forEach(function (node) {
+        var text = normalize(node.textContent);
+        if (text === 'Back to results') {
+          node.textContent = copy.back_to_results;
+          return;
+        }
+        if (text === 'Back to Family Sets') {
+          node.textContent = copy.back_to_family_sets;
+          return;
+        }
+        if (text.indexOf('Back to ') === 0) {
+          node.textContent = replaceWithContext(copy.back_to_context, text.slice('Back to '.length));
+        }
+      });
+
+      document.querySelectorAll('.buy-box-similar-styles__title').forEach(function (node) {
+        var text = normalize(node.textContent);
+        if (text === 'Browse similar styles') {
+          node.textContent = copy.browse_similar_styles;
+          return;
+        }
+        if (text.indexOf('Browse more from ') === 0) {
+          node.textContent = replaceWithContext(copy.browse_more_from, text.slice('Browse more from '.length));
+        }
+      });
+
+      document.querySelectorAll('.product-breadcrumb__browse-link').forEach(function (link) {
+        var text = normalize(link.textContent);
+        if (text === 'View similar styles') {
+          link.textContent = copy.view_similar_styles;
+        }
+
+        ['aria-label', 'title'].forEach(function (attribute) {
+          var value = normalize(link.getAttribute(attribute));
+          if (!value) return;
+          if (value.indexOf('View similar styles in ') === 0) {
+            link.setAttribute(attribute, replaceWithContext(copy.view_similar_styles_in, value.slice('View similar styles in '.length)));
+          } else if (value === 'View similar styles') {
+            link.setAttribute(attribute, copy.view_similar_styles);
+          }
+        });
+      });
+    }
+
+    function applyProductTranslations() {
+      applyAttributeTranslations();
+      translateTextNodes(document.body);
+      applyContextTranslations();
+
       document.querySelectorAll('[class*="jdgm"]').forEach(function (element) {
         translateTextNodes(element);
       });
@@ -2221,7 +2358,7 @@
       scheduled = true;
       window.requestAnimationFrame(function () {
         scheduled = false;
-        applyJudgeMeTranslations();
+        applyProductTranslations();
       });
     }
 
