@@ -14,7 +14,7 @@
     {% when 'family-pajamas' %}
       {% assign collection_empty_recovery_target_url = collections['pajamas'].url | default: '/collections/pajamas' %}
     {% when 'family-swimsuits', 'family-sets', 'family-tops', 'family-sweaters', 'matching-family-vacation-outfits', 'matching-hawaiian-outfits', 'mother-daughter-matching-dresses' %}
-      {% assign collection_empty_recovery_target_url = collections['matching-outfits'].url | default: collections['family-matching-outfits'].url | default: '/collections/matching-outfits' %}
+      {% assign collection_empty_recovery_target_url = collections['new-women-outfits'].url | default: collections['matching-outfits'].url | default: collections['family-matching-outfits'].url | default: '/collections/new-women-outfits' %}
     {% when 'matching-outfits', 'family-matching-outfits', 'new-women-outfits' %}
       {% assign collection_empty_recovery_target_url = collections['mommy-and-me'].url | default: '/collections/mommy-and-me' %}
     {% when 'mommy-and-me' %}
@@ -188,6 +188,13 @@
               "
             >
               {%- for product in collection.products -%}
+                {%- capture collection_product_is_visible -%}
+                  {%- render 'collection-grid-product-visible', product: product, collection_handle: collection.handle -%}
+                {%- endcapture -%}
+                {%- assign collection_product_is_visible = collection_product_is_visible | strip -%}
+                {%- if collection_product_is_visible != 'true' -%}
+                  {%- continue -%}
+                {%- endif -%}
                 {% assign lazy_load = false %}
                 {%- if forloop.index > 2 -%}
                   {%- assign lazy_load = true -%}
