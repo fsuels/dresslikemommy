@@ -3,14 +3,14 @@
   assign recovery_redirect_url = recovery_redirect_url | default: blank
 
   assign mommy_hub_url = collections['mommy-and-me'].url | default: '/collections/mommy-and-me'
-  assign family_hub_collection = collections['matching-outfits']
+  assign family_hub_collection = collections['new-women-outfits']
+  if family_hub_collection == blank
+    assign family_hub_collection = collections['matching-outfits']
+  endif
   if family_hub_collection == blank
     assign family_hub_collection = collections['family-matching-outfits']
   endif
-  if family_hub_collection == blank
-    assign family_hub_collection = collections['new-women-outfits']
-  endif
-  assign family_hub_url = family_hub_collection.url | default: '/collections/matching-outfits'
+  assign family_hub_url = family_hub_collection.url | default: '/collections/new-women-outfits'
   assign pajamas_url = collections['pajamas'].url | default: '/collections/pajamas'
   assign all_collections_url = routes.collections_url | default: '/collections'
 

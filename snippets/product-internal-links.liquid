@@ -12,7 +12,13 @@
   assign in_pajamas = false
   assign in_mommy_and_me = false
   assign pajama_label = 'Shop all Pajamas'
-  assign family_matching_collection = collections['matching-outfits']
+  assign family_matching_collection = collections['new-women-outfits']
+  if family_matching_collection == blank
+    assign family_matching_collection = collections['matching-outfits']
+  endif
+  if family_matching_collection == blank
+    assign family_matching_collection = collections['family-matching-outfits']
+  endif
   assign new_pajama_drop_collection = collections['new-pajama-drop']
 
   for product_collection in product.collections

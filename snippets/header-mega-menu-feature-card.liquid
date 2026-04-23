@@ -63,7 +63,10 @@
     assign card_label = 'New pajama styles'
   elsif menu_link_url contains '/collections/new-women-outfits'
     assign card_asset = 'family-mega-menu-promo.jpg'
-    assign fallback_collection = collections['matching-outfits']
+    assign fallback_collection = collections['new-women-outfits']
+    if fallback_collection == blank
+      assign fallback_collection = collections['matching-outfits']
+    endif
     if fallback_collection == blank
       assign fallback_collection = collections['family-matching-outfits']
     endif
@@ -113,8 +116,11 @@
       else
         assign menu_link_url = '/collections/pajamas'
       endif
-    when 'matching-outfits', 'family-matching', 'family-matching-outfits'
-      assign fallback_collection = collections['matching-outfits']
+    when 'matching-outfits', 'family-matching', 'family-matching-outfits', 'new-women-outfits'
+      assign fallback_collection = collections['new-women-outfits']
+      if fallback_collection == blank
+        assign fallback_collection = collections['matching-outfits']
+      endif
       if fallback_collection == blank
         assign fallback_collection = collections['family-matching-outfits']
       endif

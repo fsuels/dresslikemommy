@@ -8,14 +8,14 @@
     assign hub_variant = 'family'
   endif
 
-  assign family_hub_collection = collections['matching-outfits']
+  assign family_hub_collection = collections['new-women-outfits']
+  if family_hub_collection == blank
+    assign family_hub_collection = collections['matching-outfits']
+  endif
   if family_hub_collection == blank
     assign family_hub_collection = collections['family-matching-outfits']
   endif
-  if family_hub_collection == blank
-    assign family_hub_collection = collections['new-women-outfits']
-  endif
-  assign family_hub_url = family_hub_collection.url | default: '/collections/matching-outfits'
+  assign family_hub_url = family_hub_collection.url | default: '/collections/new-women-outfits'
   assign mommy_hub_url = collections['mommy-and-me'].url | default: '/collections/mommy-and-me'
 
   assign card_items = '' | split: '|||'
@@ -24,7 +24,7 @@
     when 'mommy'
       assign card_items = 'pajamas::Pajamas::pajamas::mommy-and-me|||dresses::Dresses::dresses::mommy-and-me|||swimsuits::Swimsuits::swimsuits::mommy-and-me|||tops::Tops::tops::mommy-and-me|||sweaters::Sweaters::sweaters::mommy-and-me' | split: '|||'
     when 'family'
-      assign card_items = 'family-pajamas::Pajamas::pajamas::pajamas|||mother-daughter-matching-dresses::Dresses::dresses::matching-outfits|||family-swimsuits::Swimsuits::family-swimsuits::matching-outfits|||family-tops::Tops::family-tops::matching-outfits|||family-sweaters::Sweaters::family-sweaters::matching-outfits' | split: '|||'
+      assign card_items = 'family-pajamas::Pajamas::pajamas::pajamas|||mother-daughter-matching-dresses::Dresses::dresses::new-women-outfits|||family-swimsuits::Swimsuits::family-swimsuits::new-women-outfits|||family-tops::Tops::family-tops::new-women-outfits|||family-sweaters::Sweaters::family-sweaters::new-women-outfits' | split: '|||'
   endcase
 
 -%}

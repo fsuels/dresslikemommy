@@ -35,12 +35,12 @@
         if link.handle == 'family-matching' or link.handle == 'matching-outfits' or link.handle == 'family-matching-outfits' or normalized_link_title == 'family matching' or normalized_link_title == 'family matching outfits'
           assign use_family_visual_mega_menu = true
           assign nav_link_title = 'Family Matching'
-          assign family_hub_collection = collections['matching-outfits']
+          assign family_hub_collection = collections['new-women-outfits']
           if family_hub_collection == blank
-            assign family_hub_collection = collections['family-matching-outfits']
+            assign family_hub_collection = collections['matching-outfits']
           endif
           if family_hub_collection == blank
-            assign family_hub_collection = collections['new-women-outfits']
+            assign family_hub_collection = collections['family-matching-outfits']
           endif
           if family_hub_collection != blank
             assign nav_link_url = family_hub_collection.url
@@ -52,7 +52,7 @@
               assign family_hub_destination_visible = true
             endif
           else
-            assign nav_link_url = '/collections/matching-outfits'
+            assign nav_link_url = '/collections/new-women-outfits'
           endif
         endif
         if use_family_visual_mega_menu and family_hub_destination_visible == false and visible_child_count == 0
