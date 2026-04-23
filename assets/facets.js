@@ -365,6 +365,99 @@ class FacetRemove extends HTMLElement {
 customElements.define('facet-remove', FacetRemove);
 
 (() => {
+  const CREATED_DESC_SORT = 'created-descending';
+  const CREATED_DESC_COLLECTION_HANDLES = new Set([
+    'mommy-and-me',
+    'new-matching-outfits',
+    'popular-mommy-me-1',
+    'pajamas',
+    'dresses',
+    'swimsuits',
+    'tops',
+    'sweaters',
+    'bottoms',
+    'leggings',
+    'pants',
+    'formal-dresses',
+    'maxi-dresses',
+    'midi-dresses',
+    'mini-dresses',
+    'sundresses',
+    'jumpsuits',
+    'rompers',
+    'skirts',
+    'mommy-and-me-easter-dresses',
+    'easter-matching-outfits',
+    'spring-matching-outfits',
+    'matching-outfits',
+    'family-matching-outfits',
+    'new-women-outfits',
+    'popular-family-matching',
+    'family-pajamas',
+    'mother-daughter-matching-dresses',
+    'family-swimsuits',
+    'family-sets',
+    'matching-family-vacation-outfits',
+    'matching-hawaiian-outfits',
+    'family-tops',
+    'family-sweaters',
+    'daddy-me',
+    'daddy-and-me',
+    'daddy-me-t-shirts',
+    'daddy-me-shirts',
+    'trunks',
+    'couples',
+    'couple-matching',
+    'matching-couples-t-shirts',
+    'maternity',
+  ]);
+
+  function currentCollectionHandle() {
+    return document.getElementById('product-grid')?.dataset?.analyticsListId || '';
+  }
+
+  function syncCreatedDescendingSortInputs() {
+    document.querySelectorAll('select[name="sort_by"]').forEach((select) => {
+      if (select.querySelector(`option[value="${CREATED_DESC_SORT}"]`)) {
+        select.value = CREATED_DESC_SORT;
+      }
+    });
+  }
+
+  function shouldEnforceCreatedDescendingDefault() {
+    if (!document.getElementById('ProductGridContainer')) return false;
+
+    const currentHandle = currentCollectionHandle();
+    if (!CREATED_DESC_COLLECTION_HANDLES.has(currentHandle)) return false;
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('sort_by')) return false;
+    if (params.has('section_id')) return false;
+
+    return true;
+  }
+
+  function enforceCreatedDescendingDefault() {
+    if (!shouldEnforceCreatedDescendingDefault()) return;
+
+    const params = new URLSearchParams(window.location.search);
+    params.set('sort_by', CREATED_DESC_SORT);
+
+    const searchParams = params.toString();
+    syncCreatedDescendingSortInputs();
+    FacetFiltersForm.searchParamsInitial = searchParams;
+    FacetFiltersForm.searchParamsPrev = searchParams;
+    FacetFiltersForm.renderPage(searchParams, null, false);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', enforceCreatedDescendingDefault, { once: true });
+  } else {
+    enforceCreatedDescendingDefault();
+  }
+})();
+
+(() => {
   const SECTION_ID = 'main-collection-product-grid';
   const LINK_SELECTOR = ['.collection-category-nav__tab[href]', '.collection-hub-subcategory-card[href]'].join(',');
 
