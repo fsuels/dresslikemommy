@@ -206,7 +206,138 @@
                 endif
               -%}
 
-              {%- if should_interleave_all_hub -%}
+              {%- if should_interleave_all_hub and interleave_branch_key == 'mommy' -%}
+                {%- liquid
+                  assign mommy_interleave_source_handles = 'pajamas|||dresses|||swimsuits|||tops|||sweaters' | split: '|||'
+                  assign mommy_interleave_rendered_tokens = ','
+                  assign mommy_interleave_render_index = 0
+                  assign mommy_interleave_complete = false
+                -%}
+
+                {%- for mommy_round in (0..49) -%}
+                  {%- if mommy_interleave_complete -%}
+                    {%- break -%}
+                  {%- endif -%}
+
+                  {%- for mommy_source_handle in mommy_interleave_source_handles -%}
+                    {%- if mommy_interleave_complete -%}
+                      {%- break -%}
+                    {%- endif -%}
+
+                    {%- assign mommy_source_collection = collections[mommy_source_handle] -%}
+                    {%- if mommy_source_collection == blank or mommy_source_collection.products_count == 0 -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
+                    {%- assign mommy_visible_index = 0 -%}
+
+                    {%- for product in mommy_source_collection.products -%}
+                      {%- capture collection_product_is_visible -%}
+                        {%- render 'collection-grid-product-visible', product: product, collection: collection, collection_handle: collection.handle -%}
+                      {%- endcapture -%}
+                      {%- assign collection_product_is_visible = collection_product_is_visible | strip -%}
+                      {%- if collection_product_is_visible != 'true' -%}
+                        {%- continue -%}
+                      {%- endif -%}
+
+                      {%- assign mommy_product_token = ',' | append: product.handle | append: ',' -%}
+                      {%- if mommy_interleave_rendered_tokens contains mommy_product_token -%}
+                        {%- continue -%}
+                      {%- endif -%}
+
+                      {%- if mommy_visible_index != mommy_round -%}
+                        {%- assign mommy_visible_index = mommy_visible_index | plus: 1 -%}
+                        {%- continue -%}
+                      {%- endif -%}
+
+                      {%- assign mommy_interleave_rendered_tokens = mommy_interleave_rendered_tokens | append: product.handle | append: ',' -%}
+                      {%- assign mommy_interleave_render_index = mommy_interleave_render_index | plus: 1 -%}
+                      {%- assign lazy_load = true -%}
+                      {%- if mommy_interleave_render_index <= 2 -%}
+                        {%- assign lazy_load = false -%}
+                      {%- endif -%}
+
+                      <li
+                        class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                        {% if settings.animations_reveal_on_scroll %}
+                          data-cascade
+                          style="--animation-order: {{ mommy_interleave_render_index }};"
+                        {% endif %}
+                      >
+                        {% render 'card-product',
+                          card_product: product,
+                          media_aspect_ratio: section.settings.image_ratio,
+                          image_shape: section.settings.image_shape,
+                          show_secondary_image: section.settings.show_secondary_image,
+                          show_vendor: section.settings.show_vendor,
+                          show_rating: section.settings.show_rating,
+                          lazy_load: lazy_load,
+                          quick_add: section.settings.quick_add,
+                          section_id: section.id
+                        %}
+                      </li>
+
+                      {%- if mommy_interleave_render_index >= section.settings.products_per_page -%}
+                        {%- assign mommy_interleave_complete = true -%}
+                      {%- endif -%}
+
+                      {%- break -%}
+                    {%- endfor -%}
+                  {%- endfor -%}
+                {%- endfor -%}
+
+                {%- if mommy_interleave_complete == false -%}
+                  {%- for product in collection.products -%}
+                    {%- if mommy_interleave_complete -%}
+                      {%- break -%}
+                    {%- endif -%}
+
+                    {%- capture collection_product_is_visible -%}
+                      {%- render 'collection-grid-product-visible', product: product, collection: collection, collection_handle: collection.handle -%}
+                    {%- endcapture -%}
+                    {%- assign collection_product_is_visible = collection_product_is_visible | strip -%}
+                    {%- if collection_product_is_visible != 'true' -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
+                    {%- assign mommy_product_token = ',' | append: product.handle | append: ',' -%}
+                    {%- if mommy_interleave_rendered_tokens contains mommy_product_token -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
+                    {%- assign mommy_interleave_rendered_tokens = mommy_interleave_rendered_tokens | append: product.handle | append: ',' -%}
+                    {%- assign mommy_interleave_render_index = mommy_interleave_render_index | plus: 1 -%}
+                    {%- assign lazy_load = true -%}
+                    {%- if mommy_interleave_render_index <= 2 -%}
+                      {%- assign lazy_load = false -%}
+                    {%- endif -%}
+
+                    <li
+                      class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                      {% if settings.animations_reveal_on_scroll %}
+                        data-cascade
+                        style="--animation-order: {{ mommy_interleave_render_index }};"
+                      {% endif %}
+                    >
+                      {% render 'card-product',
+                        card_product: product,
+                        media_aspect_ratio: section.settings.image_ratio,
+                        image_shape: section.settings.image_shape,
+                        show_secondary_image: section.settings.show_secondary_image,
+                        show_vendor: section.settings.show_vendor,
+                        show_rating: section.settings.show_rating,
+                        lazy_load: lazy_load,
+                        quick_add: section.settings.quick_add,
+                        section_id: section.id
+                      %}
+                    </li>
+
+                    {%- if mommy_interleave_render_index >= section.settings.products_per_page -%}
+                      {%- assign mommy_interleave_complete = true -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endif -%}
+              {%- elsif should_interleave_all_hub -%}
                 {%- liquid
                   assign interleave_bucket_order = ''
                   assign interleave_bucket_order_tokens = ','
