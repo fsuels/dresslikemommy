@@ -1375,6 +1375,67 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     return token;
   }
 
+  function inferGuideUnitFromText(text) {
+    var normalizedText = String(text || '').toLowerCase();
+    var unitCandidates = [
+      'cm',
+      'cms',
+      'centimeter',
+      'centimeters',
+      'centimetre',
+      'centimetres',
+      'سم',
+      'in',
+      'inch',
+      'inches',
+      'بوصة',
+      'بوصات',
+      'انش',
+      'إنش',
+      'kg',
+      'kgs',
+      'kilogram',
+      'kilograms',
+      'كجم',
+      'كغ',
+      'lb',
+      'lbs',
+      'رطل',
+      'ارطال',
+      'أرطال',
+    ];
+
+    for (var index = 0; index < unitCandidates.length; index += 1) {
+      var token = unitCandidates[index];
+      var escaped = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      var pattern = new RegExp('\\b' + escaped + '\\b', 'i');
+      if (pattern.test(normalizedText)) return normalizeGuideUnit(token);
+    }
+
+    return '';
+  }
+
+  function splitGuideMeasurementParts(text) {
+    return String(text || '')
+      .split(/\s+\/\s+/)
+      .map(function (part) {
+        return String(part || '').trim();
+      })
+      .filter(Boolean);
+  }
+
+  function pickPreferredGuideUnitIndex(units, unitSystem) {
+    var normalizedUnits = (units || []).map(normalizeGuideUnit);
+    var preferredTokens = unitSystem === 'imperial' ? ['in', 'lbs'] : ['cm', 'kg'];
+
+    for (var index = 0; index < preferredTokens.length; index += 1) {
+      var preferredIndex = normalizedUnits.indexOf(preferredTokens[index]);
+      if (preferredIndex !== -1) return preferredIndex;
+    }
+
+    return unitSystem === 'imperial' ? Math.min(1, normalizedUnits.length - 1) : 0;
+  }
+
   function formatGuideNumericValue(num) {
     if (num === null || typeof num === 'undefined' || Number.isNaN(num)) return '';
     return Number(num).toFixed(2).replace(/\.00$/, '').replace(/(\.\d)0$/, '$1');
@@ -1458,16 +1519,27 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   function formatGuideCellValue(value, header, unitSystem) {
     var text = String(value || '').replace(/\s+/g, ' ').trim();
     if (!text || text === '—') return '—';
-    if (!header || !header.units || header.units.length < 2) return text;
+    var parts = splitGuideMeasurementParts(text);
+    var units = header && header.units ? header.units.map(normalizeGuideUnit).filter(Boolean) : [];
 
-    var parts = text.split('/').map(function (part) {
-      return String(part || '').trim();
-    }).filter(Boolean);
-    var units = header.units.map(normalizeGuideUnit).filter(Boolean);
-    var valueIndex = unitSystem === 'imperial' ? Math.min(1, parts.length - 1) : 0;
-    var activeUnit = units[valueIndex] || units[0] || '';
+    if (!units.length) {
+      var inferredUnits = parts.map(inferGuideUnitFromText);
+      if (parts.length >= 2 && inferredUnits.filter(Boolean).length >= 2) {
+        var inferredIndex = pickPreferredGuideUnitIndex(inferredUnits, unitSystem);
+        var inferredUnit = inferredUnits[inferredIndex] || inferredUnits[0] || '';
+        return stripGuideTrailingUnit(parts[inferredIndex] || parts[0] || text, inferredUnit);
+      }
 
-    if (parts.length >= 2) {
+      var inferredSourceUnit = inferGuideUnitFromText(text);
+      var inferredTargetUnit = getGuideTargetUnit(inferredSourceUnit, unitSystem);
+      var inferredConvertedText = convertGuideCellText(text, inferredSourceUnit, inferredTargetUnit);
+      if (inferredConvertedText !== null && inferredConvertedText !== '') return inferredConvertedText;
+      return stripGuideTrailingUnit(text, inferredTargetUnit || inferredSourceUnit);
+    }
+
+    if (units.length >= 2 && parts.length >= 2) {
+      var valueIndex = pickPreferredGuideUnitIndex(units, unitSystem);
+      var activeUnit = units[valueIndex] || units[0] || '';
       return stripGuideTrailingUnit(parts[valueIndex] || parts[0] || text, activeUnit);
     }
 
@@ -1877,6 +1949,44 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     return toggleHtml;
   }
 
+  function getGuideHeadersForUnitToggle(groupList, fallbackHeaders) {
+    var headerSets = [];
+
+    if (Array.isArray(groupList) && groupList.length) {
+      headerSets = groupList
+        .map(function (group) {
+          return group && group.headers ? group.headers : [];
+        })
+        .filter(function (headers) {
+          return headers && headers.length;
+        });
+    }
+
+    if (fallbackHeaders && fallbackHeaders.length) {
+      headerSets.push(fallbackHeaders);
+    }
+
+    for (var index = 0; index < headerSets.length; index += 1) {
+      if (hasUnitToggle(headerSets[index])) return headerSets[index];
+    }
+
+    return fallbackHeaders || [];
+  }
+
+  function renderGuideContentToolbar(headers, label) {
+    if (!hasUnitToggle(headers)) return '';
+
+    var toolbarHtml = '<div class="matching-size-guide__toolbar">';
+    if (label) {
+      toolbarHtml += '<div class="matching-size-guide__intro">';
+      toolbarHtml += '<p class="matching-size-guide__eyebrow">' + escapeHtml(label) + '</p>';
+      toolbarHtml += '</div>';
+    }
+    toolbarHtml += renderGuideUnitToggle(headers);
+    toolbarHtml += '</div>';
+    return toolbarHtml;
+  }
+
   function getSelectedGuideMatch(selectedState) {
     var matchingEntry = getSelectedGuideRowEntry(selectedState);
     if (!matchingEntry) return null;
@@ -2001,13 +2111,17 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   function renderGuide() {
     var selectedState = getSelectedSizeState();
     var selectedMatch = getSelectedGuideMatch(selectedState);
+    var guideSummaryLabel = groups.length > 1 ? groupedLabel : compareLabel;
+    var guideHeadersForToggle = getGuideHeadersForUnitToggle(groups, parsed.headers);
+    var guideToolbarHtml = selectedMatch ? '' : renderGuideContentToolbar(guideHeadersForToggle, guideSummaryLabel);
 
     renderSelectedGuideSnapshot(selectedMatch, selectedState);
 
     if (groups.length >= 1) {
-      if (summary) summary.textContent = groups.length > 1 ? groupedLabel : compareLabel;
+      if (summary) summary.textContent = guideSummaryLabel;
       if (groups.length > 1) {
         content.innerHTML =
+          guideToolbarHtml +
           '<div class="matching-size-guide__grid">' +
           groups
             .map(function (group) {
@@ -2016,11 +2130,13 @@ function initMatchingSizeGuide(wrapper, sectionId) {
             .join('') +
           '</div>';
       } else {
-        content.innerHTML = renderTableCard(groups[0].headers, groups[0].rows, groups[0].label, groups[0].helper, selectedMatch, groups[0].key);
+        content.innerHTML =
+          guideToolbarHtml +
+          renderTableCard(groups[0].headers, groups[0].rows, groups[0].label, groups[0].helper, selectedMatch, groups[0].key);
       }
     } else {
       if (summary) summary.textContent = compareLabel;
-      content.innerHTML = renderTableCard(parsed.headers, parsed.rows, '', '', selectedMatch);
+      content.innerHTML = guideToolbarHtml + renderTableCard(parsed.headers, parsed.rows, '', '', selectedMatch);
     }
 
     bindUnitToggleEvents();
