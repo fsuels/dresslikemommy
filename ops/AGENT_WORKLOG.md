@@ -16535,3 +16535,162 @@ Verification:
 
 Notes:
 - `templates/index.json` still carries Shopify's standard generated comment banner at the top, so strict `jq` JSON parsing does not apply there even though the template remains valid for Shopify themes.
+
+2026-04-23 — Fixed Blue Tie-Dye Mommy & Me collection visibility and normalized breadcrumb labels
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Added a shared concise breadcrumb label helper at `snippets/breadcrumb-label.liquid` so breadcrumb UI uses short taxonomy labels instead of long SEO collection titles.
+- Updated `snippets/collection-breadcrumbs.liquid` to normalize both parent and current breadcrumb labels through that helper, including the dedicated `mother-daughter-matching-dresses` path now resolving as `Mommy and Me > Dresses` instead of inheriting the Family Matching parent.
+- Updated `snippets/breadcrumbs.liquid` so PDP breadcrumb trails, back-to-results labels, similar-styles aria labels, and secondary subcategory links all use the same short breadcrumb labels.
+- Updated `snippets/jsonld-seo.liquid` so active breadcrumb structured data uses the same concise collection names as the visible breadcrumb UI.
+- Patched the live product `blue-tie-dye-butterfly-mommy-and-me-dresses` through Shopify Admin GraphQL `tagsAdd`, adding the missing dress classification tags:
+  - `Dresses`
+  - `Sundresses`
+
+Why this was needed:
+- Live Admin GraphQL showed the product was already in `mommy-and-me` but not in `dresses` or `mother-daughter-matching-dresses`, because those smart collections only admit a narrow set of dress tags and the new listing lacked them.
+- The Mommy & Me `All` grid interleave depends on the dress subcollection as one of its source buckets, so a dress missing from `dresses` could also disappear from the first page of `/collections/mommy-and-me` even while it technically belonged to the broader Mommy & Me collection.
+- The live breadcrumb UI on collection and product pages was pulling collection titles such as `Mommy and Me Matching Outfits for Mother and Daughter`, which made breadcrumbs feel verbose and inconsistent with the intended taxonomy.
+
+Live-updated admin data:
+- Product `gid://shopify/Product/7535362015329` (`blue-tie-dye-butterfly-mommy-and-me-dresses`)
+  - Added tags: `Dresses`, `Sundresses`
+- Follow-up Admin GraphQL verification confirmed the product now belongs to:
+  - `dresses`
+  - `sundresses`
+  - `mommy-and-me`
+  - `mother-daughter-matching-dresses`
+  - plus the existing `new-arrivals`, `new-matching-outfits`, and `popular-mommy-me-1`
+
+Live-uploaded theme files:
+- `snippets/breadcrumb-label.liquid`
+- `snippets/collection-breadcrumbs.liquid`
+- `snippets/breadcrumbs.liquid`
+- `snippets/jsonld-seo.liquid`
+
+Deployment:
+- Uploaded the four snippet files to the live main theme `#133290917985` with:
+  - `shopify theme push --store "$SHOPIFY_STORE_DOMAIN" --theme 133290917985 --allow-live --nodelete --only snippets/breadcrumb-label.liquid --only snippets/collection-breadcrumbs.liquid --only snippets/breadcrumbs.liquid --only snippets/jsonld-seo.liquid --password "$SHOPIFY_ADMIN_ACCESS_TOKEN" --json`
+- Uploaded the follow-up `snippets/collection-breadcrumbs.liquid` tweak to the same live theme after removing the stale Family Matching parent override for `mother-daughter-matching-dresses`.
+
+Verification:
+- `git diff --check -- snippets/breadcrumb-label.liquid snippets/collection-breadcrumbs.liquid snippets/breadcrumbs.liquid snippets/jsonld-seo.liquid`
+- `shopify theme check --path . --fail-level warning --output json | jq -c '.[] | select(.path | endswith("/snippets/breadcrumb-label.liquid") or endswith("/snippets/collection-breadcrumbs.liquid") or endswith("/snippets/breadcrumbs.liquid") or endswith("/snippets/jsonld-seo.liquid"))'`
+  Result: no changed-file Theme Check errors; only the pre-existing `UnusedAssign` warnings in `snippets/collection-breadcrumbs.liquid`.
+- Live Admin GraphQL re-check confirmed the Blue Tie-Dye product now belongs to `dresses`, `sundresses`, `mommy-and-me`, and `mother-daughter-matching-dresses`.
+- Public storefront verification after deploy:
+  - `/collections/dresses?sort_by=created-descending&view=` now includes `blue-tie-dye-butterfly-mommy-and-me-dresses` in the live grid and shows breadcrumb current label `Dresses`.
+  - `/collections/mommy-and-me?sort_by=created-descending&view=` now includes `blue-tie-dye-butterfly-mommy-and-me-dresses` in the live grid and shows breadcrumb current label `Mommy and Me`.
+  - `/collections/mother-daughter-matching-dresses?view=` now renders the breadcrumb trail `Home > Mommy and Me > Dresses`.
+  - `/products/blue-tie-dye-butterfly-mommy-and-me-dresses?view=` now renders the PDP breadcrumb link as `Mommy and Me` instead of `Mommy and Me Matching Outfits for Mother and Daughter`.
+  - Product breadcrumb structured data now uses a concise collection name (`Dresses`) instead of the long Mommy & Me collection title.
+
+Residual note:
+- Internal analytics attributes such as `data-analytics-list-name` still use the underlying collection title for instrumentation; that is not customer-facing and was intentionally left unchanged.
+
+2026-04-23 — Reworked the 1688 listing prompts into a minimal-input operator flow
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Rewrote `ops/prompts/shopify-listing-master-prompt.md` into a reusable universal operator prompt that separates storefront grouping (`Mommy and Me`, `Daddy and Me`, `Family Matching`) from garment category (`Dresses`, `Tops`, `FamilySet`, etc.).
+- Reworked the prompt so the operator now only needs a vendor URL, a size-chart source, and light guidance; the prompt now tells the agent to infer roles, garments, taxonomy, pricing defaults, identifiers, tags, SEO, and metafields unless explicitly overridden.
+- Replaced `ops/prompts/shopify-listing-from-1688.md` with a short quick-start request template plus example request blocks for Mommy and Me, Daddy and Me, and Family Matching listings.
+
+Why this was needed:
+- The earlier prompt was strong on safeguards but still required too many manual inputs (`ROLES`, `ROLE_GARMENTS`, prices, tokens, hooks) for every new listing, which made mixed-category and mixed-role products slower to launch.
+- The new structure keeps the size-chart and verification guardrails intact while shifting repetitive catalog decisions into inference rules, which better matches the desired low-touch workflow.
+
+Files changed:
+- `ops/prompts/shopify-listing-master-prompt.md`
+- `ops/prompts/shopify-listing-from-1688.md`
+
+Verification:
+- `git diff --check -- ops/prompts/shopify-listing-master-prompt.md ops/prompts/shopify-listing-from-1688.md ops/AGENT_WORKLOG.md`
+- Reviewed the rewritten prompt files to confirm they now support:
+  - `Mommy and Me`
+  - `Daddy and Me`
+  - `Family Matching`
+  - category auto-inference
+  - neighbor-price inference before fallback pricing
+  - minimal-input request blocks
+
+Residual note:
+- This change improves the prompt contract only; it does not yet add an executable runner that auto-discovers pricing from live neighbor products. That behavior is now specified in the prompt for the agent to perform during listing creation.
+
+2026-04-23 — Added canonical prompt-file routing to AGENTS.md for fresh sessions
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Updated `AGENTS.md` so new sessions are explicitly told that listing work sourced from vendor pages or size charts must read:
+  - `ops/prompts/shopify-listing-master-prompt.md`
+  - `ops/prompts/shopify-listing-from-1688.md`
+- Marked the `ops/prompts/` files as canonical and told future agents to prefer them over older legacy prompt files under `GPT/`.
+
+Why this was needed:
+- A fresh session reliably gets `AGENTS.md`, but it would not necessarily discover the listing prompt files on its own.
+- Without that routing, the improved minimal-input listing workflow could be missed by a new agent session even though the files existed in the repo.
+
+Files changed:
+- `AGENTS.md`
+- `ops/AGENT_WORKLOG.md`
+
+Verification:
+- Reviewed `AGENTS.md` to confirm the new `Canonical listing workflow` section now points future listing tasks at the prompt files before drafting or shipping listing work.
+
+Residual note:
+- This improves discoverability for repo-aware sessions that read `AGENTS.md`; if the user starts a completely separate chat outside this repo context, the prompt files still need to be linked or pasted explicitly.
+
+2026-04-23 — Added a single START-HERE entrypoint for listing workflows
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Added `ops/prompts/START-HERE.md` as the first-stop file for any new session doing Shopify listing work from vendor pages, size charts, screenshots, or dropship source material.
+- Updated `AGENTS.md` so fresh sessions are now told to read `ops/prompts/START-HERE.md` first, then the canonical prompt files.
+
+Why this was needed:
+- Even after pointing `AGENTS.md` to the canonical prompt files, a single obvious entrypoint is easier for fresh sessions and operators to follow.
+- This reduces the chance that a new session misses the correct listing workflow or opens older legacy prompt files first.
+
+Files changed:
+- `ops/prompts/START-HERE.md`
+- `AGENTS.md`
+- `ops/AGENT_WORKLOG.md`
+
+Verification:
+- Reviewed `AGENTS.md` and `ops/prompts/START-HERE.md` to confirm the read order is now explicit:
+  - `START-HERE.md`
+  - `shopify-listing-master-prompt.md`
+  - `shopify-listing-from-1688.md`
+
+Residual note:
+- This solves discoverability inside repo-aware sessions; external chats still need the prompt files pasted or linked manually.
+
+2026-04-23 — Guarded local Shopify credentials before syncing pending repo changes to main
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Added `.shopify-admin.env` to `.gitignore` so the repo-root local Shopify credential file stays out of source control.
+- Deliberately excluded the repo-root `.shopify-admin.env` from the main-branch sync while keeping the pending prompt, breadcrumb, and translation-cache repo changes eligible for commit.
+
+Why this was needed:
+- Repo policy requires credentials to stay outside repo-tracked files.
+- The repo-root env file held a live Shopify Admin API token, so syncing it to `main` would have exposed a credential.
+
+Files changed:
+- `.gitignore`
+- `ops/AGENT_WORKLOG.md`
+
+Verification:
+- `git check-ignore -v .shopify-admin.env`
+  Result: `.gitignore` now owns the ignore rule for the repo-root credential file.
+- `git status --short --ignored`
+  Result: `.shopify-admin.env` now appears under ignored files (`!!`) instead of as an untracked sync candidate.
+
+Residual note:
+- The local credential file still exists on disk for operator use, but it now remains ignored; the canonical long-term location is still `~/.config/dresslikemommy/shopify-admin.env`.

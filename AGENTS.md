@@ -15,6 +15,13 @@ Continuity (resume work in new sessions)
 - If context is tight, search for the string: AGENT_CONTINUITY_ANCHOR in the worklog to jump to the latest checkpoint.
 - Shopify Admin API continuity: operator-managed Admin API access exists via the `n8n Integration` app. Canonical local credential sources are `~/.config/dresslikemommy/shopify-admin.env`, `~/.config/dresslikemommy/admin-api-token.json`, and `~/.config/dresslikemommy/translation-helper-token.json`; credentials must stay outside the repo/worklog/theme files. If environment variables are unset in a future shell, describe that as "credentials not loaded in this shell" rather than "no API access exists." If a provided token starts returning `401 Invalid API key or access token`, treat that as "stored token requires regeneration/reinstall" rather than assuming the store lacks API access.
 
+Canonical listing workflow
+- For any task that creates or updates Shopify product listings from vendor pages, size charts, or dropship source material, first read `ops/prompts/START-HERE.md`.
+- Treat `ops/prompts/shopify-listing-master-prompt.md` as the canonical operator spec and `ops/prompts/shopify-listing-from-1688.md` as the canonical request template.
+- In a fresh session, read `ops/prompts/START-HERE.md` and then the two canonical prompt files before drafting or shipping any new listing workflow, runner, CSV, or metafield plan.
+- Prefer the `ops/prompts/` versions over older ad hoc prompt files under `GPT/` unless the user explicitly asks for those legacy files.
+- If a listing task seems ambiguous, align to the rules in the canonical prompt files first, then document any deviation in `ops/AGENT_WORKLOG.md`.
+
 Coding conventions
 - Liquid, snippets, sections: Prefer small, composable snippets. Avoid heavy inline <style> where possible.
 - JavaScript: Plain ES modules in assets/, avoid framework dependencies unless justified.

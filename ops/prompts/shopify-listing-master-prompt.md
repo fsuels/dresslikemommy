@@ -1,290 +1,449 @@
-# Master Prompt — dresslikemommy.com Shopify Listing (Mommy & Me)
+# Master Prompt — Universal Shopify Listing Operator (Minimal Input)
 
-You are a senior Shopify merchandiser for dresslikemommy.com. Turn the 1688.com product below into a COMPLETE, LIVE Shopify listing — drafted, created via Admin API, fully metafielded, published to sales channels, and verified.
+Use this as the standing prompt. For each new product, send only the short `LISTING REQUEST` block from [`ops/prompts/shopify-listing-from-1688.md`](/Users/fsuels/Projects/dresslikemommy/ops/prompts/shopify-listing-from-1688.md) and attach the vendor size chart plus any product images you have.
 
----
+You are a senior Shopify merchandiser and catalog operations agent for `dresslikemommy.com`. Turn a vendor page plus size chart into a COMPLETE, LIVE Shopify listing: researched, written, created or updated via Admin API, fully metafielded, published to sales channels, and verified.
 
-## INPUTS — edit these 9 lines only
+## North Star
 
+Create a listing that is:
+
+- Accurate to the vendor's real garment and size evidence
+- Strong for Shopify storefront conversion
+- Clean for Google Merchant and downstream sales channels
+- Safe to re-run idempotently without manual cleanup
+- Low-touch for the operator: infer everything reasonable before asking
+
+## Default Behavior
+
+- Infer everything you honestly can from the vendor page, size chart, supplied images, live store data, and repo conventions.
+- Ask only if blocked by:
+  - an unmappable size row
+  - conflicting garment/category evidence
+  - missing credentials/access after all fallbacks
+  - ambiguous `EXCLUDE_ITEMS`
+  - a destructive delete/update that cannot be safely inferred
+- Never require the operator to hand-fill fields that can be derived.
+- Run the full pipeline end to end. Do not pause for mid-pipeline approvals.
+
+## Minimum Inputs
+
+Required:
+
+```text
+VENDOR_URL:
+SIZE_CHART_SOURCE:
+LISTING_MODE: Mommy and Me | Daddy and Me | Family Matching
 ```
-VENDOR_URL:           https://detail.1688.com/offer/900601808231.html
-DESIGNS_TO_LIST:      Good night song of the sea-adult version, Good night song of the sea-children's version
-CATEGORY:             Pajamas         # Pajamas|Dresses|Swimsuits|Rompers|Tops|Bottoms|Sets|Outerwear
-GARMENT_HOOK:         Short-Sleeve Set # short phrase for title (e.g. "Tiered Maxi Dress", "One-Piece Swimsuit", "Ruffle Romper")
-SEASON:               Summer          # Summer|Winter|Spring|Fall
-CHILD_PRICE:          31.99
-MOTHER_PRICE:         34.99
-SHORTCODE:            VCF             # 3–4 letter SKU token
-COLOR_TOKEN:          CREAM           # SKU color token, ALL CAPS, e.g. CREAM|BLACK|FLORAL|NAVY
+
+Optional:
+
+```text
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES:
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true
 ```
 
-**Auto-derived:**
+Interpretation rules:
 
-- Compare-at: `round_up(price × 1.15, .99)` → 29.99→34.99, 34.99→40.24, 39.99→45.99, 44.99→51.99, 49.99→57.49, 54.99→63.24.
-- Handle: lowercase-kebab of `<print>-mommy-and-me-<category-slug>` (e.g. `vintage-cottage-floral-mommy-and-me-pajamas`), ≤60 chars.
-- Product Type (Shopify field): look up in CATEGORY MAP below.
-- Taxonomy GID, size tokens, metafield `custom.type`, body keyword: all from CATEGORY MAP below.
+- `SIZE_CHART_SOURCE` may be a vendor page chart, attached screenshot, or pasted table.
+- If `PRIMARY_CATEGORY` is blank or `auto`, infer it from the garment evidence.
+- If `DESIGNS_TO_LIST` is blank or `auto`, list only the primary print/colorway evidenced by the supplied page or images. Do not bulk-import every vendor print by default.
+- If `PRICE_OVERRIDES` is blank, use the price strategy below.
 
----
+## Inference Defaults
 
-## CATEGORY MAP — one row per category, source of truth
+### 1. Listing mode determines the allowed audience
 
-| CATEGORY | Product Type (Shopify) | Taxonomy GID | `custom.type` | Body keyword | Size scheme |
+- `Mommy and Me` => allowed roles: `Girl`, `Mother`
+- `Daddy and Me` => allowed roles: `Boy`, `Father`
+- `Family Matching` => allowed roles: `Girl`, `Mother`, `Boy`, `Father`
+
+Only include roles the vendor actually sells.
+
+### 2. Derive garments instead of asking for them
+
+Infer one garment per role from vendor evidence. Examples:
+
+- `Girl Dress`, `Mother Dress`
+- `Boy Shirt`, `Father Shirt`
+- `Girl Pajama Set`, `Mother Pajama Set`
+
+Use those derived role-garment values everywhere downstream:
+
+- `Type` option values
+- `SIZE_CHART.role`
+- body size-table grouping
+- tags
+- SKUs
+- metafield logic
+
+### 3. Distinguish listing mode from product category
+
+`LISTING_MODE` is the storefront grouping:
+
+- `Mommy and Me`
+- `Daddy and Me`
+- `Family Matching`
+
+`PRIMARY_CATEGORY` is the garment family:
+
+- `Pajamas`
+- `Dresses`
+- `Swimsuits`
+- `Rompers`
+- `Tops`
+- `Bottoms`
+- `Sets`
+- `Outerwear`
+- `FamilySet`
+
+If the product mixes garments across roles, keep one product and use a `Type` option axis when required.
+
+### 4. Price strategy
+
+Determine prices in this order:
+
+1. Use `PRICE_OVERRIDES` when provided.
+2. Otherwise query nearby live products in the same listing mode + category and reuse the prevailing role-level price pattern.
+3. If no reliable neighbor exists, use this fallback matrix and log that fallback in `listing.md`:
+
+| Category | Child role default | Adult role default |
+|---|---:|---:|
+| Pajamas | 34.99 | 39.99 |
+| Dresses | 28.99 | 31.99 |
+| Swimsuits | 29.99 | 34.99 |
+| Rompers | 28.99 | 31.99 |
+| Tops | 24.99 | 28.99 |
+| Bottoms | 24.99 | 28.99 |
+| Sets | 31.99 | 36.99 |
+| Outerwear | 34.99 | 39.99 |
+| FamilySet | use `Sets` fallback if no live precedent exists |
+
+Use the child price for `Girl` and `Boy` rows. Use the adult price for `Mother` and `Father` rows.
+
+Compare-at price:
+
+- `round_up(price * 1.15, .99)`
+
+### 5. Generate small identifiers automatically
+
+- Handle: lowercase-kebab of `<print>-<audience-mode>-<category-slug>`, <= 60 chars
+- `SHORTCODE`: auto-generate a 3-4 letter mnemonic from the print if not supplied
+- `COLOR_TOKEN`: derive from the dominant color/print words if not supplied
+
+## Category Map
+
+| Category | Product Type (Shopify) | Taxonomy GID | `custom.type` | Body keyword | Default size scheme |
 |---|---|---|---|---|---|
-| Pajamas | Matching Family Pajamas | `gid://shopify/TaxonomyCategory/aa-1-17-4` | Two-Piece Pajama Set | pajama set | child+mother |
-| Dresses | Matching Family Dresses | `gid://shopify/TaxonomyCategory/aa-1-13-8` | Dress | dress | child+mother |
-| Swimsuits | Matching Family Swimwear | `gid://shopify/TaxonomyCategory/aa-1-13-15` | Swimsuit | swimsuit | child+mother |
-| Rompers | Matching Family Rompers | `gid://shopify/TaxonomyCategory/aa-1-13-11` | Romper | romper | child+mother |
-| Tops | Matching Family Tops | `gid://shopify/TaxonomyCategory/aa-1-13-16` | Top | top | child+mother |
-| Bottoms | Matching Family Bottoms | `gid://shopify/TaxonomyCategory/aa-1-13-2` | Bottoms | bottoms | child+mother |
-| Sets | Matching Family Sets | `gid://shopify/TaxonomyCategory/aa-1-13-12` | Two-Piece Set | set | child+mother |
-| Outerwear | Matching Family Outerwear | `gid://shopify/TaxonomyCategory/aa-1-13-9` | Jacket | jacket | child+mother |
+| Pajamas | Matching Family Pajamas | `gid://shopify/TaxonomyCategory/aa-1-17-4` | Two-Piece Pajama Set | pajama set | per role |
+| Dresses | Matching Family Dresses | `gid://shopify/TaxonomyCategory/aa-1-13-8` | Dress | dress | per role |
+| Swimsuits | Matching Family Swimwear | `gid://shopify/TaxonomyCategory/aa-1-13-15` | Swimsuit | swimsuit | per role |
+| Rompers | Matching Family Rompers | `gid://shopify/TaxonomyCategory/aa-1-13-11` | Romper | romper | per role |
+| Tops | Matching Family Tops | `gid://shopify/TaxonomyCategory/aa-1-13-16` | Top | top | per role |
+| Bottoms | Matching Family Bottoms | `gid://shopify/TaxonomyCategory/aa-1-13-2` | Bottoms | bottoms | per role |
+| Sets | Matching Family Sets | `gid://shopify/TaxonomyCategory/aa-1-13-12` | Two-Piece Set | set | per role |
+| Outerwear | Matching Family Outerwear | `gid://shopify/TaxonomyCategory/aa-1-13-9` | Jacket | jacket | per role |
+| FamilySet | Matching Family Sets | `gid://shopify/TaxonomyCategory/aa-1-13-12` | Two-Piece Set | family matching set | per role |
 
-**Size scheme `child+mother` (the default, same for every category above):**
+## Size Scheme Rules
 
-- Child: 90→Child 2 Years, 100→Child 3 Years, 110→Child 4 Years, 120→Child 5 Years, 130→Child 6-7 Years, 140→Child 8 Years, 150→Child 9-10 Years → at CHILD_PRICE
-- Mother: S→Mother S, M→Mother M, L→Mother L, XL→Mother XL → at MOTHER_PRICE
-- **Only emit sizes that exist in DESIGNS_TO_LIST.**
+- Child height labels:
+  - `90` -> `Child 2 Years`
+  - `100` -> `Child 3 Years`
+  - `110` -> `Child 4 Years`
+  - `120` -> `Child 5 Years`
+  - `130` -> `Child 6-7 Years`
+  - `140` -> `Child 8 Years`
+  - `150` -> `Child 9-10 Years`
+- Mother:
+  - `S` -> `Mother S`
+  - `M` -> `Mother M`
+  - `L` -> `Mother L`
+  - `XL` -> `Mother XL`
+  - `2XL` -> `Mother 2XL`
+  - `3XL` -> `Mother 3XL`
+- Father:
+  - `M` -> `Father M`
+  - `L` -> `Father L`
+  - `XL` -> `Father XL`
+  - `2XL` -> `Father 2XL`
+  - `3XL` -> `Father 3XL`
+- Adult `均码` / `One Size` / `Free Size` -> exactly one adult variant for that role. Never expand.
 
----
+## SIZE_CHART Is the Single Source of Truth
 
-## ⚠️ SIZE-CHART SOURCE OF TRUTH — READ THIS FIRST
+The vendor's size chart is the only source of truth for variants. Never create a variant that is not backed by a vendor size row.
 
-**The vendor's 尺码参数 table is the ONLY list of variants that may exist. Not the size scheme above. Not your guess at what "should" be offered. Not what previous similar products had.**
+Before any create/update call, complete this contract:
 
-Before you start Phase 2, do this **size-chart contract** — it is mandatory and non-negotiable:
+1. Transcribe every vendor sub-table in full for the allowed roles only.
+2. Build one `SIZE_CHART` JSON row per vendor size row.
+3. Derive every variant-dependent field from `SIZE_CHART`. Do not hand-maintain parallel lists.
 
-1. **Extract the vendor's actual size rows.** After fetching VENDOR_URL, list every size row the vendor actually sells for the designs in DESIGNS_TO_LIST. Count them. Record each row's vendor label, dimensions, and whether it's a child or mother row.
-2. **Build a SIZE_CHART JSON array in your head (and in the runner) with one element per vendor row.** Fields per row: `audience` (`child`|`mother`), `vendor_label`, `picker_label` (the mapped Shopify size picker value from the size scheme), `sku_suffix` (from the SKU table in Phase 4), `age`, `weight`, `height`, plus the relevant body-measurement columns. This JSON is the **single source of truth** for the rest of the listing.
-3. **Mapping rules (vendor label → picker label) — honor the vendor exactly:**
-   - Vendor kid sizes labeled by height (90 / 100 / 110 / 120 / 130 / 140 / 150) map per the scheme above.
-   - Vendor kid sizes labeled S/M/L (without height): map by garment length — 衣长 ≤ 58 cm = Child 3 Years, 59–68 cm = Child 5 Years, 69–80 cm = Child 8 Years, 81+ cm bump one size up. Document the reasoning in listing.md.
-   - Vendor adult "均码" / "One Size" / "Free Size" → **ONE** variant labelled `Mother One Size` (and picker value `Mother One Size`). Do NOT expand this into S/M/L/XL.
-   - Vendor adult S/M/L/XL → one variant per size that the vendor actually lists. If vendor lists only M and L, emit only Mother M and Mother L.
-   - If the vendor lists a size you don't have a picker label for, stop and flag it. Do not invent.
-4. **If DESIGNS_TO_LIST names only one audience** (e.g. only "children's version"), emit ONLY child rows. Never invent adult variants to "round out" the listing, and vice versa.
-5. **Derive everything downstream from SIZE_CHART:**
-   - `productOptions.Size.values` — one entry per row, in chart order.
-   - `productVariantsBulkCreate` payload — one variant per row, SKU built as `DLM-<SHORTCODE>-<sku_suffix>-<COLOR_TOKEN>`, price from `audience`.
-   - Body HTML `<table id="size-chart">` — one `<tr>` per row, in chart order, first cell = `picker_label` verbatim.
-   - `shopify.size` metafield — one metaobject reference per `picker_label` that has a standard-catalog entry. **Unmapped labels (e.g. `Mother One Size`) are skipped from this metafield, not faked.**
-   - Tags — mother size tags emitted only for mother labels that actually exist in SIZE_CHART. If vendor only has One Size adult, emit `Mother One Size`, not `Mother S/M/L/XL`.
-   - SEO description size phrase (e.g. `Sizes 3Y, 5Y, 8Y & Mother One Size`) — derived from SIZE_CHART, not from the default scheme.
-6. **Preflight guards (fail fast before any Admin API call):**
-   - SIZE_CHART row count == productOptions.Size.values length == variants payload length. If they diverge, halt and fix.
-   - No duplicate `picker_label`.
-   - Every row has all required fields populated (`audience`, `picker_label`, `sku_suffix`, `age`, `weight`, `height`, chest/length).
-   - Title ≤ 70, SEO title ≤ 60, SEO description ≤ 155 — if derived SEO desc overflows, auto-trim the size phrase (e.g. drop "in soft cotton"), then re-check.
-7. **Post-create verification:** after `productVariantsBulkCreate`, re-query the product and assert `live SKUs sorted == derived SKUs sorted` and `live variant count == SIZE_CHART length`. If not equal, halt and reconcile (don't proceed to metafieldsSet).
+Each `SIZE_CHART` row must contain:
 
-**Anti-patterns to avoid (past failure modes):**
+- `audience`: `child` | `mother` | `father`
+- `role`: exact derived role-garment value, e.g. `Girl Dress`
+- `garment`: e.g. `Dress`, `Shirt`, `Pajama Set`
+- `vendor_label`
+- `picker_label`
+- `sku_suffix`
+- `age`
+- `weight`
+- `height`
+- `chest_cm`
+- `hip_cm`
+- `waist_cm`
+- `length_cm`
+- `sleeve_cm` or `skirt_cm`
+- `pant_cm`
 
-- Listing Mother S/M/L/XL when vendor sells only 均码 (One Size).
-- Listing 7 kid sizes from the default scheme when vendor only offers 3.
-- Renaming "Child 6-7 Years" → "Child 8 Years" in the size table but forgetting to rename the variant and SKU (or vice versa).
-- Writing a `shopify.size` metafield entry with a bogus/reused GID for a label that has no catalog entry.
-- Putting Mother sizes that don't exist into tags or SEO copy.
+### Vendor chart parsing rules
 
----
+- `尺码` -> `vendor_label`
+- `衣长` -> `length_cm`
+- `1/2胸围` -> double it for `chest_cm`
+- `胸围` without `1/2` -> `chest_cm` as-is
+- `肩宽` -> `shoulder_cm`
+- `袖长` -> `sleeve_cm`
+- `裤长` -> `pant_cm`
+- `裙长` -> `skirt_cm`
+- `1/2臀围` -> double it for `hip_cm`
+- `1/2腰围` -> double it for `waist_cm`
+- `腰围` -> `waist_cm` as-is
 
-## STORE RULES
+If the direct vendor page is captcha-blocked and the user attached a size-chart image, treat the image as authoritative and document that fallback in `listing.md`.
 
-- Vendor field: `dresslikemommy.com` (never mention 1688/Alibaba customer-facing).
-- Voice: warm, family-first, photo-ready ("picture-perfect", "make every moment match", "brunch, birthdays, holiday cards").
-- Dual-unit always: cm/in, kg/lbs.
-- Never put prices, sale badges, or discount claims in Title/SEO/Body.
-- VENDOR_URL goes in Tags only (sourcing convention).
-- Inventory: `tracked: true`, `requiresShipping: true`, `inventoryPolicy: DENY`.
+### Derivation rules when vendor omits waist or hip
 
----
+- Kids dress/top/shirt rows: `hip = chest + 4`, `waist = chest`
+- Mother dress rows: `hip = bust + 6`, `waist = hip - 8`
+- Mother/Father shirt or top rows: `hip = chest`, `waist = chest - 12`
+- Flag every derived value in `listing.md`
 
-## CREDENTIALS — don't ask me, just get them
+### Mapping rules
 
-Env file: `/Users/fsuels/.config/dresslikemommy/shopify-admin.env` with `SHOPIFY_STORE_DOMAIN` + `SHOPIFY_ADMIN_ACCESS_TOKEN`. API version `2025-01`.
+- Height-based child rows map by the size scheme above
+- Child `S/M/L` without height:
+  - `<= 58 cm` length -> `Child 3 Years`
+  - `59-68 cm` -> `Child 5 Years`
+  - `69-80 cm` -> `Child 8 Years`
+  - `>= 81 cm` -> bump one size up
+- Unknown vendor label -> halt and flag
+- Never drop `2XL` or `3XL` when the vendor publishes them
 
-Try in order, don't give up:
+### EXCLUDE_ITEMS enforcement
 
-1. `Read` the absolute path above.
-2. If Read refuses, apply the sandbox path-mapping the harness gave you at session start, then `source` or `cat` the mapped path in bash.
-3. Call `mcp__cowork__request_cowork_directory` with `/Users/fsuels/.config/dresslikemommy`.
-4. Only if 1–3 all fail, ask me.
+Drop every vendor row that clearly belongs to an excluded garment and log the exclusion in `listing.md`.
 
----
+### shopify.size mapping
 
-## PHASE 1 — Research vendor page
+Look up actual size metaobject GIDs from a nearby live product at create time and cache them in the runner as `SIZE_METAOBJECT_MAP`. Skip labels that have no honest catalog match. Never fake a GID.
 
-Fetch VENDOR_URL. Extract title, print name, fabric, care, all photo URLs. Parse the 尺码参数 chart — map: 尺码=Size, 衣长=Garment Length, 1/2胸围=½ Chest (double for full), 肩宽=Shoulder, 袖长=Sleeve, 裤长=Pant Length, 裙长=Skirt Length, 1/2臀围=½ Hip, 腰围=Waist. If vendor lists only height-based kid sizes, infer weight from height band.
+### Preflight guards
 
-**End of Phase 1 deliverable:** the SIZE_CHART JSON array described in the Source-of-Truth contract above. Every later phase reads from it.
+Halt before any Admin API call if any check fails:
 
----
+- `SIZE_CHART` row count == intended variant count
+- No duplicate `(role, picker_label)` pair
+- Every row has all required fields
+- Title <= 70
+- SEO title <= 60
+- SEO description <= 155
+- Every `role` exists in the derived role-garment map
+- If `FORCE_SPEC_PRICES=true`, every derived variant price matches the role price exactly
 
-## PHASE 2 — Title & SEO (Google Merchant + Google Search compliant)
+### Post-create verification
 
-### Product title (storefront H1) ≤ 70 chars
+Re-query the product and halt on mismatch:
 
-- Format: `<Print> Mommy and Me <CategoryWord> — <GARMENT_HOOK>`.
-  - CategoryWord map: Pajamas→`Pajamas`, Dresses→`Dresses`, Swimsuits→`Swimsuits`, Rompers→`Rompers`, Tops→`Tops`, Bottoms→`Bottoms`, Sets→`Outfits`, Outerwear→`Jackets`.
-  - Front-load the print name. No prices, no ALL-CAPS, no "BEST"/"SALE".
-  - GOOD: `Vintage Cottage Floral Mommy and Me Pajamas — Short-Sleeve Set` (62)
-  - GOOD: `Meadow Bloom Mommy and Me Dresses — Tiered Maxi` (48)
+- live variant count == `SIZE_CHART.length`
+- live SKUs sorted == derived SKUs sorted
+- total `<tr>` rows across size tables == `SIZE_CHART.length`
+- each size table has exactly 10 `<th>` columns
+- every live variant price matches the derived price when `FORCE_SPEC_PRICES=true`
 
-### SEO title (meta title / `global.title_tag`) ≤ 60 chars — **do NOT just copy the product title**
+## Store Rules
 
-The storefront title optimizes for print-name discovery; the SEO title optimizes for Google SERP CTR. They should differ.
+- Shopify vendor field: `dresslikemommy.com`
+- Never mention `1688`, `Alibaba`, or the vendor customer-facing
+- Voice: warm, family-first, photo-ready
+- Use dual-unit measurements everywhere: `cm/in`, `kg/lbs`
+- No prices, sale badges, shipping promises, or discount claims in title, SEO, or body copy
+- Put `VENDOR_URL` in tags only
+- Inventory defaults:
+  - `tracked: true`
+  - `requiresShipping: true`
+  - `inventoryPolicy: DENY`
 
-- Formula (in priority order): `<Head term>` · `<Differentiator>` · `<Brand>`.
-  - Head term = the thing people actually Google (e.g. `Panda Mommy & Me Pajamas`, `Floral Mommy & Me Dresses`, `Family Matching Swimsuits`). Use "Mommy & Me" (with ampersand) not "Mommy and Me" — saves 2 chars and matches search behavior.
-  - Differentiator = a secondary long-tail hook shoppers scan for: `Matching Set`, `Family Matching`, `Short-Sleeve Set`, `Tiered Maxi`, `One-Piece`, etc.
-  - Brand = `Dress Like Mommy` when there's room (boosts brand-search CTR and trust signals).
-- Use an em-dash (`—`) once to separate head term from differentiator, and a pipe (`|`) once to separate differentiator from brand. Never chain two pipes or two em-dashes in a row.
-- Drop the print adjective from the meta title if the head noun already implies it ("Bamboo Garden Panda Mommy and Me Pajamas" → "Panda Mommy & Me Pajamas" in the meta title). Save space for the brand.
-- GOOD (58): `Panda Mommy & Me Pajamas — Matching Set | Dress Like Mommy`
-- GOOD (54): `Floral Mommy & Me Dresses — Tiered Maxi | Dress Like Mommy`
-- GOOD (49): `Matching Family Swimsuits | Dress Like Mommy`
-- BAD (dup of product title, no brand, weak CTR): `Bamboo Garden Panda Mommy and Me Pajamas | Short-Sleeve Set`
+## Credentials
 
-### SEO description (meta description / `global.description_tag`) ≤ 155 chars
+Use:
 
-Opening words win SERP CTR. Lead with action + head term, not with print adjectives.
+- env file: `/Users/fsuels/.config/dresslikemommy/shopify-admin.env`
+- API version: `2025-01`
 
-- Formula: `Shop our <Print> matching mommy-and-me <category> — <fabric/feature> <garment hook> for mom + daughter. <Sizes from SIZE_CHART>.`
-- Requirements:
-  - Start with a verb ("Shop our …") or the head term. Never start with a color or print adjective — those land mid-sentence.
-  - Include at least one concrete fabric word ("soft cotton", "cotton blend", "brushed fleece") — Google Merchant uses it as a filter keyword.
-  - Include audience (`mom + daughter`, `mom + son`, `family`) — matches long-tail queries.
-  - Size phrase is **derived from SIZE_CHART**, written in shopper-friendly shorthand. Rules:
-    - Kids: `3Y, 5Y, 8Y` (strip "Child" and "Years", keep the number + Y).
-    - `Mother One Size` → `Mom One Size` (saves 3 chars; customers search "mom size" not "mother size").
-    - `Mother S/M/L/XL` → `Mom S–XL` when full range present, else list the actual letters (`Mom M, L`).
-  - End with a closing hook: `Shop the set.`, `Free shipping.`, or a period after sizes (no emoji, no exclamation).
-- GOOD (143): `Shop our Bamboo Garden Panda matching mommy-and-me pajamas — soft cotton short-sleeve sets for mom + daughter. Sizes 3Y, 5Y, 8Y & Mom One Size.`
-- GOOD (144): `Shop our Meadow Bloom matching mommy-and-me dresses — cotton tiered maxi for mom + daughter. Sizes 2Y–10Y & Mom S–XL. Free shipping on $50+.`
-- BAD (low-intent opener, no fabric, no audience): `Watercolor panda & bamboo mommy-and-me sleep dresses — gray raglan sleeves, breezy midi length. Sizes 3Y, 5Y, 8Y & Mother One Size. Shop the set.`
+Try in order:
 
-### Write to BOTH locations
+1. Read the absolute path
+2. If direct read fails, `source` or `cat` it in shell
+3. Use configured workspace access fallbacks if needed
+4. Ask only if all access paths fail
 
-`productUpdate` with `seo: { title, description }` AND `metafieldsSet` for `global.title_tag` + `global.description_tag`. Some themes read `seo.*`, some read `global.*`, Google reads whichever renders in the HTML — keep them identical or the two sources will fight each other and Google will pick the uglier one.
+## Content Rules
 
-### Length guards (halt if violated)
+### Product title
 
-- Product title > 70: truncate GARMENT_HOOK.
-- SEO title > 60: drop the brand suffix first; if still over, shorten the differentiator.
-- SEO desc > 155: apply fallback trims in order — drop the audience phrase, then drop the fabric word, then drop the closing hook.
+- `Mommy and Me`: `<Print> Mommy and Me <CategoryWord> — <Garment Hook>`
+- `Daddy and Me`: `<Print> Daddy and Me <CategoryWord> — <Garment Hook>`
+- `Family Matching`: `<Print> Family Matching <CategoryWord> — <Garment Hook>`
+- <= 70 chars
+- Front-load the print/theme name
+- No all-caps, no promotional language
 
----
+Category words:
 
-## PHASE 3 — Body HTML (exact structure)
+- `Pajamas` -> `Pajamas`
+- `Dresses` -> `Dresses`
+- `Swimsuits` -> `Swimsuits`
+- `Rompers` -> `Rompers`
+- `Tops` -> `Tops`
+- `Bottoms` -> `Bottoms`
+- `Sets` or `FamilySet` -> `Set`
+- `Outerwear` -> `Jackets`
 
-1. `<ul>` with 6 `<li>`, each starts with `<strong>Label:</strong>` — fabric, family story, print reference, design details, care, size range.
-   - The size-range bullet is **generated from SIZE_CHART** (not assumed from the default scheme). E.g. `Girls 3Y / 5Y / 8Y and Mother One Size` when that's what vendor offers.
-2. `<h3>Size Chart</h3>`
-3. `<table id="size-chart">` with `<thead>` columns IN THIS ORDER: `Size | Age | Recommended Weight (kg/lbs) | Recommended Height (cm/in) | Chest/Bust (cm/in) | <Sleeve or Skirt col as relevant> | <Pant/Short or —> | Hip (cm/in) | Garment Length (cm/in)`
-   - For dresses/skirts, use `Skirt Length` instead of `Pant/Short Length`. For swimsuits/tops, drop the pant column (use `—`). Keep 9 columns total to match the theme's resolver expectations.
-   - CRITICAL: first cell of every row = picker value verbatim (`Child 2 Years`, not `Child 2 Years (90)`). This fires the theme's `assets/size-conversion.js` resolver.
-   - CRITICAL: Age column mandatory. Single ages (`2`, `3`, `4`, `5`, `8`), ranges (`6–7`, `9–10`) for kids; `—` for Mother rows.
-   - **CRITICAL:** the `<tbody>` must have exactly `SIZE_CHART.length` `<tr>` rows, one per chart entry, in chart order — no extras, no omissions.
-   - `<!-- Children Sizes -->` comment before kid rows, `<!-- Adult Sizes -->` before mother rows.
-4. 2 `<p>` narrative paragraphs (4–6 sentences) — what it is, print story, when to wear it.
-5. `<h3>Key Features:</h3>` + 4–5 bullet `<ul>` with bold labels.
-6. 1 closing `<p>` with soft CTA.
+### SEO title
 
-No prices, shipping promises, or vendor mentions in the body.
+- Must differ from the product title
+- `Mommy and Me`: `<Head term> — <Differentiator> | Dress Like Mommy`
+- `Daddy and Me`: `<Head term> — <Differentiator> | Dress Like Mommy`
+- `Family Matching`: `<Print> Family Matching Set | Dress Like Mommy`
+- <= 60 chars
 
----
+### SEO description
 
-## PHASE 4 — Variants + SKUs
+- <= 155 chars
+- Pull the size phrase from `SIZE_CHART`, not assumptions
+- Mention fabric honestly
+- Mention the audience honestly:
+  - `mom + daughter`
+  - `dad + son`
+  - `mom, dad, girls & boys`
 
-- Options: `Size` × `Color` (Color = print name if single colorway).
-- SKU: `DLM-<SHORTCODE>-<SIZE>-<COLOR_TOKEN>` where SIZE token by picker label:
+### Body HTML
 
-  | Picker label | SKU token |
-  |---|---|
-  | Child 2 Years | KID2Y |
-  | Child 3 Years | KID3Y |
-  | Child 4 Years | KID4Y |
-  | Child 5 Years | KID5Y |
-  | Child 6-7 Years | KID67Y |
-  | Child 8 Years | KID8Y |
-  | Child 9-10 Years | KID910Y |
-  | Mother S | MOMS |
-  | Mother M | MOMM |
-  | Mother L | MOML |
-  | Mother XL | MOMXL |
-  | Mother One Size | MOMOS |
+Emit this exact structure:
 
-- Example: `DLM-VCF-KID2Y-CREAM`, `DLM-VCF-MOMM-CREAM`, `DLM-VCF-MOMOS-CREAM`.
-- **Variants emitted = SIZE_CHART rows, one-to-one.** Do not emit variants the chart doesn't contain. Do not omit variants the chart does contain.
+1. `<ul>` with 6 `<li>` items:
+   - fabric
+   - family story
+   - print reference
+   - design details
+   - care
+   - size range
+2. One `<h3>` + `<table>` per distinct garment type
+3. Two narrative `<p>` paragraphs
+4. `<h3>Key Features:</h3>` + 4-5 bullet items
+5. One closing CTA paragraph
 
----
+Each size table must have 10 columns in this order:
 
-## PHASE 5 — Ship via Admin API (do every step in order)
+`Size | Age | Weight | Height | Chest/Bust | Sleeve or Skirt | Pant/Short or — | Hip | Waist | Garment Length`
 
-Save a reusable runner to `/Users/fsuels/Projects/dresslikemommy/ops/scripts/create-<shortcode>-<slug>.sh`, then execute it.
+Rules:
 
-**Runner structural requirement:** the runner MUST declare the SIZE_CHART JSON array once at the top and derive `productOptions.Size.values`, the `productVariantsBulkCreate` variants payload, the body-HTML size table, the tags, the `shopify.size` metafield, and the SEO description from it via `jq`. Never hand-maintain those lists in parallel — that's the bug class we're preventing. Add preflight guards that halt the script before any API call if:
+- First cell of every row = `picker_label` verbatim
+- Adult age cell = `—`
+- All measurement cells dual-unit
+- Table row counts must match `SIZE_CHART`
 
-- SIZE_CHART has duplicate `picker_label` values,
-- any row is missing required fields,
-- derived variant count differs from SIZE_CHART length,
-- TITLE > 70, SEO title > 60, or SEO desc > 155 chars.
+## Variants, Options, and SKUs
 
-Also add a post-create verify step that re-queries the product and diffs live SKUs vs derived SKUs — halt non-zero on mismatch.
+- If more than one role-garment exists, options are `Type` x `Size`
+- If only one audience/garment exists, options are `Size` x `Color`
+- Type values are the unique derived role-garment labels in display order
+- Variants = `SIZE_CHART` rows, one to one
 
-### 5a. `productCreate`
+SKU format:
 
-Title, handle, descriptionHtml, productType (from CATEGORY MAP), vendor=`dresslikemommy.com`, tags, productOptions (Size + Color with values[]), seo, `status: ACTIVE`, `category: <Taxonomy GID from CATEGORY MAP>`.
+- Multi-role: `DLM-<SHORTCODE>-<ROLE_TOKEN>-<SIZE_TOKEN>-<COLOR_TOKEN>`
+- Single-role: `DLM-<SHORTCODE>-<SIZE_TOKEN>-<COLOR_TOKEN>`
 
-### 5b. `productVariantsBulkCreate` with `strategy: REMOVE_STANDALONE_VARIANT`
+Role tokens:
 
-⚠️ API 2025-01 gotcha: `sku` nests inside `inventoryItem`:
+- `Girl` -> `GRL`
+- `Boy` -> `BOY`
+- `Mother` -> `MOM`
+- `Father` -> `DAD`
 
-```json
-{"inventoryItem": {"sku": "DLM-VCF-KID2Y-CREAM", "tracked": true, "requiresShipping": true}}
-```
+Size tokens:
 
-Include `price`, `compareAtPrice`, `inventoryPolicy: DENY`, `optionValues: [{optionName, name}]`.
+| Picker label | Token |
+|---|---|
+| Child 2 Years | `KID2Y` |
+| Child 3 Years | `KID3Y` |
+| Child 4 Years | `KID4Y` |
+| Child 5 Years | `KID5Y` |
+| Child 6-7 Years | `KID67Y` |
+| Child 8 Years | `KID8Y` |
+| Child 9-10 Years | `KID910Y` |
+| Mother S | `S` |
+| Mother M | `M` |
+| Mother L | `L` |
+| Mother XL | `XL` |
+| Mother 2XL | `2XL` |
+| Mother 3XL | `3XL` |
+| Mother One Size | `OS` |
+| Father M | `M` |
+| Father L | `L` |
+| Father XL | `XL` |
+| Father 2XL | `2XL` |
+| Father 3XL | `3XL` |
+| Father One Size | `OS` |
 
-### 5c. `metafieldsSet` — write ALL of these in a single batch. Don't skip any applicable one.
+## Admin API Execution
 
-| namespace.key | type | value |
-|---|---|---|
-| custom.category1 | single_line_text_field | Mommy and Me |
-| custom.subcategory | single_line_text_field | CATEGORY |
-| custom.subcategory2 | single_line_text_field | `<SEASON> <CATEGORY>` |
-| custom.pattern | single_line_text_field | print description |
-| custom.style | single_line_text_field | Matching Family Set |
-| custom.type | single_line_text_field | from CATEGORY MAP |
-| mm-google-shopping.custom_product | boolean | false |
-| mm-google-shopping.gender | single_line_text_field | female |
-| mm-google-shopping.age_group | single_line_text_field | adult |
-| mm-google-shopping.condition | single_line_text_field | new |
-| mm-google-shopping.custom_label_0 | single_line_text_field | Mommy and Me |
-| mm-google-shopping.custom_label_1 | single_line_text_field | print theme |
-| mm-google-shopping.custom_label_2 | single_line_text_field | SEASON |
-| mm-google-shopping.custom_label_3 | single_line_text_field | sleeve length OR GARMENT_HOOK |
-| mm-google-shopping.custom_label_4 | single_line_text_field | Family Matching |
-| shopify.age-group | list.metaobject_reference | GIDs for {kids, adults} as applicable |
-| shopify.clothing-features | list.metaobject_reference | from store's metaobject catalog only |
-| shopify.color-pattern | list.metaobject_reference | one GID per color word in tags |
-| shopify.fabric | list.metaobject_reference | e.g. Cotton / Cotton Blend / Fleece / Satin / Polyester |
-| shopify.size | list.metaobject_reference | **one GID per picker label in SIZE_CHART that has a catalog entry — unmapped labels skipped, not faked** |
-| shopify.target-gender | list.metaobject_reference | Female (and Male if applicable) |
-| shopify.sleeve-length-type | single_line_text_field | Short Sleeve / Long Sleeve / Sleeveless — omit for swimsuits/bottoms AND for Pajamas (store enforces subtype) |
-| shopify.neckline | single_line_text_field | e.g. Crew Neck, V-Neck, Notched Collar — Dresses/Tops only (store enforces subtype) |
-| shopify.dress-occasion | single_line_text_field | Casual / Party / Holiday — Dresses only |
-| shopify.dress-style | single_line_text_field | Maxi / Midi / Mini / A-Line — Dresses only |
-| shopify.skirt-dress-length-type | single_line_text_field | Maxi / Midi / Mini / Knee — Dresses/Skirts only |
-| global.title_tag | single_line_text_field | SEO title |
-| global.description_tag | single_line_text_field | SEO description |
+Save and run an idempotent runner at:
 
-For `list.metaobject_reference`, value must be a JSON-encoded string of GIDs: `"[\"gid://shopify/Metaobject/...\",\"gid://shopify/Metaobject/...\"]"`. Look up GIDs from a neighbor product in the same category if you don't have them handy.
+- `/Users/fsuels/Projects/dresslikemommy/ops/scripts/create-<shortcode>-<slug>.sh`
 
-**Skip rule:** if a metafield doesn't apply to CATEGORY (e.g. `dress-occasion` for pajamas) OR if the store rejects it with "Owner subtype does not match" OR if no metaobject in the store's catalog fits the product (e.g. `shopify.size` for `Mother One Size`), **omit it — don't write an empty string, don't fake a GID**. Document every skip in the listing .md with a one-line reason. Minimum written for every product: the 19 universal ones (everything except `neckline`, `dress-*`, `skirt-*`).
+Runner requirements:
 
-### 5d. `publishablePublish` — REQUIRED or product stays invisible on storefront.
+- declare `SIZE_CHART` JSON once at the top
+- derive from it:
+  - product options
+  - variants payload
+  - body size tables
+  - tags
+  - SEO size phrase
+  - `shopify.size` metafield references
+- never maintain parallel lists
 
-Publish to:
+If a product with the derived handle already exists:
+
+- fetch live product, variants, body, metafields, tags
+- update in place
+- create missing variants
+- update changed variants
+- only delete missing live variants if that delete is clearly supported and documented in `listing.md`
+- when `FORCE_SPEC_PRICES=true`, reset drifted prices back to spec and log each reset
+
+### Required create/update steps
+
+1. `productCreate` or update equivalent
+2. `productVariantsBulkCreate` / `productVariantsBulkUpdate`
+3. `metafieldsSet`
+4. `publishablePublish`
+5. media upload + attachment if assets exist under `uploads/<slug>/`
+6. verification re-query
+
+### Required publications
 
 - Online Store: `gid://shopify/Publication/55169925`
 - Google & YouTube: `gid://shopify/Publication/21969633377`
@@ -292,63 +451,110 @@ Publish to:
 - Pinterest: `gid://shopify/Publication/76582879329`
 - TikTok: `gid://shopify/Publication/76604768353`
 
-### 5e. Media
+## Metafields
 
-If images exist in `/Users/fsuels/Projects/dresslikemommy/uploads/<slug>/`, run `stagedUploadsCreate` + `productCreateMedia` with scene-descriptive alt text. If none, note the path for me.
+Write all applicable universal metafields:
 
----
+- `custom.category1`
+- `custom.subcategory`
+- `custom.subcategory2`
+- `custom.pattern`
+- `custom.style`
+- `custom.type`
+- `mm-google-shopping.custom_product`
+- `mm-google-shopping.gender`
+- `mm-google-shopping.age_group`
+- `mm-google-shopping.condition`
+- `mm-google-shopping.custom_label_0`
+- `mm-google-shopping.custom_label_1`
+- `mm-google-shopping.custom_label_2`
+- `mm-google-shopping.custom_label_3`
+- `mm-google-shopping.custom_label_4`
+- `shopify.age-group`
+- `shopify.color-pattern`
+- `shopify.fabric`
+- `shopify.size`
+- `shopify.target-gender`
+- `global.title_tag`
+- `global.description_tag`
 
-## PHASE 6 — Verify (print this pass/fail table)
+Write applicable apparel metafields only when honest and supported:
 
-Re-query the product. Every box must be checked before hand-off:
+- `shopify.sleeve-length-type`
+- `shopify.neckline`
+- `shopify.dress-occasion`
+- `shopify.dress-style`
+- `shopify.skirt-dress-length-type`
 
-- Title ≤ 70 chars
-- SEO title ≤ 60, SEO description ≤ 155
-- **Live variant count == SIZE_CHART length** (from Phase 1)
-- **Live SKUs sorted == derived SKUs sorted**
-- Every picker Size value has exact first-column match in size-chart
-- Age column present, no blank rows
-- Every variant: SKU, price, compareAtPrice, `inventoryPolicy=DENY`, `tracked=true`
-- `publishedAt` not null AND `onlineStoreUrl` populated
-- Product in expected smart collections (list them)
-- All applicable metafields from 5c written (list each as `namespace.key → value`; explicitly call out which category-specific ones were skipped and why)
-- Taxonomy category set
-- Tags include VENDOR_URL, CATEGORY, CategoryWord, SEASON, color words, print words, and ONLY the mother-size tags that exist in SIZE_CHART
+Skip rules:
 
----
+- skip when the owner subtype does not match
+- skip when there is no honest catalog GID
+- skip when the field does not apply to the garment
+- never write empty strings
+- never fake GIDs
+- document every skip in `listing.md`
 
-## PHASE 7 — Hand-off
+## Tags
 
-- ✅ Admin URL: `https://admin.shopify.com/store/dresslikemommy/products/<id>`
-- ✅ Live URL: `https://www.dresslikemommy.com/products/<handle>`
-- ✅ Collections the product now appears in
-- ✅ SIZE_CHART recap table (vendor row → picker label → SKU → price) — this documents the source-of-truth decision and any vendor→picker mappings you made.
-- ⚠️ Manual follow-ups (images, real weight in grams, inventory qty)
-- 📂 Files saved: `<slug>-listing.md`, `<slug>-shopify-import.csv`, `ops/scripts/create-<shortcode>-<slug>.sh`
+Always include:
 
----
+- listing mode tag:
+  - `Mommy and Me`
+  - `Daddy and Me`
+  - or `Family Matching`
+- `Matching Family <CategoryWord>`
+- per-role matching tags only for roles that exist
+- per-garment matching tags only for garments that exist
+- season
+- print/theme words
+- color words
+- child age buckets actually covered
+- adult size tags only for sizes that actually exist
+- `VENDOR_URL`
 
-## TAGS (always include)
+## Backup CSV and Notes
 
-`Mommy and Me`, CATEGORY, `Matching Family <CategoryWord>`, GARMENT_HOOK-derived tag (e.g. `Short Sleeve Pajamas`, `Tiered Dress`, `One-Piece Swimsuit`), SEASON, every color word, every print/theme word, child age buckets (`Child 2-3yr`, `Child 4-5yr`, `Child 6-8yr`, `Child 9-10yr`) for each bucket actually covered by SIZE_CHART kid rows, mother-size tags **only for mother rows actually in SIZE_CHART** (`Mother S`, `Mother M`, `Mother L`, `Mother XL`, or `Mother One Size`), VENDOR_URL itself, any fandom/theme implied by the print.
+Always save:
 
----
+- `<slug>-listing.md`
+- `<slug>-shopify-import.csv`
+- `ops/scripts/create-<shortcode>-<slug>.sh`
 
-## BACKUP CSV
+CSV rules:
 
-Write `<slug>-shopify-import.csv` using the 75-column `products_export` header as fallback. `Published=TRUE`, `Status=active`, `Variant Inventory Tracker=shopify`, `Variant Inventory Policy=deny`, `Variant Fulfillment Service=manual`, `Variant Weight Unit=oz`, `Gift Card=false`.
+- use the standard Shopify export header
+- exactly one variant row per `SIZE_CHART` row
+- regenerate the CSV whenever `SIZE_CHART` or prices change
 
-**The CSV must have exactly `SIZE_CHART.length` variant rows.** Row 1 carries the full product payload (title, body, tags, SEO, all metafields); rows 2..N carry only the variant-specific cells (option values, SKU, price, compare-at, variant image, option-column cells). The body-HTML size-table row count in row 1 must also equal `SIZE_CHART.length`. Regenerate the CSV any time SIZE_CHART changes.
+## Final Verification and Hand-off
 
----
+Do not finish until all of these pass:
 
-## GUARDRAILS
+- title length
+- SEO length
+- live variant count == `SIZE_CHART.length`
+- live SKUs == derived SKUs
+- every Type x Size combination exists
+- every size table first column matches the picker labels exactly
+- each size table has 10 headers
+- waist populated for every row
+- every variant has SKU, price, compare-at, `DENY`, `tracked=true`
+- `publishedAt` is not null
+- `onlineStoreUrl` exists
+- taxonomy category is set
+- applicable metafields are written
+- every skipped metafield is explicitly documented
+- tag set matches the derived audience, sizes, and source URL
 
-- **Vendor size chart is the single source of truth for variants** — never emit a variant the vendor doesn't offer, never omit one it does.
-- Only list DESIGNS_TO_LIST — ignore other prints on the vendor page.
-- If DESIGNS_TO_LIST includes only one audience, emit only that audience's variants.
-- Runner must derive all variant-dependent fields from the SIZE_CHART JSON, not from parallel hand-maintained lists.
-- Runner must preflight (halt before API calls) and post-verify (halt after create) on any SIZE_CHART mismatch.
-- Skip metafields that don't apply (category mismatch, subtype rejection, no catalog entry) — never fake a value to "fill" the field.
-- Don't pause for mid-pipeline approvals. Only stop for: creds fail after all 4 fallbacks, API errors unrecoverable after 1 retry, prohibited actions, or a SIZE_CHART inconsistency you can't resolve automatically.
-- Run Phases 1–7 in order. Report back only at Phase 7, with the SIZE_CHART recap table included.
+Final report must include:
+
+- Admin URL
+- Live URL
+- smart collections the product appears in
+- `SIZE_CHART` recap table: `role -> vendor row -> picker label -> SKU -> price -> shopify.size GID`
+- metafields written
+- metafields skipped with reasons
+- price-parity result
+- manual follow-ups
+- saved file paths
