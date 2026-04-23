@@ -53,6 +53,10 @@
     {% render 'breadcrumb-label', collection_handle: subcategory_handle, default_label: subcategory_display_label %}
   {% endcapture %}
   {% assign subcategory_display_label = resolved_subcategory_display_label | strip %}
+  {% assign rendered_subcategory_label_key = blank %}
+  {% if subcategory_collection != blank and subcategory_display_label != blank %}
+    {% assign rendered_subcategory_label_key = subcategory_display_label | handleize %}
+  {% endif %}
 
   {% assign collection_display_label = blank %}
   {% if collection != blank %}
@@ -158,6 +162,7 @@
     {% if subcategories.size > 0 %}
       {% comment %} --- Build subcategory2 group with existence checks --- {% endcomment %}
       {% assign valid_subcats = '' %}
+      {% assign seen_subcategory2_label_keys = '|' %}
       {% for subcategory in subcategories %}
         {% assign subcat_label = subcategory | strip %}
         {% unless subcat_label == '' %}
@@ -165,11 +170,20 @@
           {% assign subcat_collection = collections[subcat_handle] %}
           {% comment %} Only include if collection exists {% endcomment %}
           {% if subcat_collection != blank %}
-            {% if valid_subcats == '' %}
-              {% assign valid_subcats = subcat_label %}
-            {% else %}
-              {% assign valid_subcats = valid_subcats | append: '|||' | append: subcat_label %}
-            {% endif %}
+            {% capture resolved_subcat_display_label %}
+              {% render 'breadcrumb-label', collection_handle: subcat_handle, default_label: subcat_collection.title | default: subcat_label %}
+            {% endcapture %}
+            {% assign subcat_display_label = resolved_subcat_display_label | strip %}
+            {% assign subcat_display_label_key = subcat_display_label | handleize %}
+            {% assign seen_subcategory2_label_key = '|' | append: subcat_display_label_key | append: '|' %}
+            {% unless subcat_display_label_key == blank or subcat_display_label_key == rendered_subcategory_label_key or seen_subcategory2_label_keys contains seen_subcategory2_label_key %}
+              {% if valid_subcats == '' %}
+                {% assign valid_subcats = subcat_handle | append: ':::' | append: subcat_display_label %}
+              {% else %}
+                {% assign valid_subcats = valid_subcats | append: '|||' | append: subcat_handle | append: ':::' | append: subcat_display_label %}
+              {% endif %}
+              {% assign seen_subcategory2_label_keys = seen_subcategory2_label_keys | append: subcat_display_label_key | append: '|' %}
+            {% endunless %}
           {% endif %}
         {% endunless %}
       {% endfor %}
@@ -177,15 +191,15 @@
       {% if valid_subcats != '' %}
         <span aria-hidden="true" class="product-breadcrumb__separator">&rsaquo;</span>
         <span class="product-breadcrumb__group">
-          {% assign valid_subcat_list = valid_subcats | split: '|||' %}
-          {% for subcat_label in valid_subcat_list %}
-            {% assign subcat_handle = subcat_label | handleize %}
+          {% assign valid_subcat_entries = valid_subcats | split: '|||' %}
+          {% for subcat_entry in valid_subcat_entries %}
+            {% assign subcat_parts = subcat_entry | split: ':::' %}
+            {% assign subcat_handle = subcat_parts[0] | strip %}
+            {% assign subcat_display_label = subcat_parts[1] | strip %}
             {% assign subcat_collection = collections[subcat_handle] %}
-            {% capture resolved_subcat_display_label %}
-              {% render 'breadcrumb-label', collection_handle: subcat_handle, default_label: subcat_collection.title | default: subcat_label %}
-            {% endcapture %}
-            {% assign subcat_display_label = resolved_subcat_display_label | strip %}
-            <a href="{{ subcat_collection.url }}" class="product-breadcrumb__link">{{ subcat_display_label }}</a>{% if forloop.last == false %} <span class="product-breadcrumb__separator">/</span> {% endif %}
+            {% if subcat_collection != blank and subcat_display_label != blank %}
+              <a href="{{ subcat_collection.url }}" class="product-breadcrumb__link">{{ subcat_display_label }}</a>{% if forloop.last == false %} <span class="product-breadcrumb__separator">/</span> {% endif %}
+            {% endif %}
           {% endfor %}
         </span>
       {% endif %}
