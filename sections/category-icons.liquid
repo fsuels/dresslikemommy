@@ -27,11 +27,12 @@
 
 {%- liquid
   assign rotation_seed = 'now' | date: '%M' | plus: 0
-  assign used_image_ids = ''
+  assign used_collection_image_keys = '|'
   assign trust_item_count = 0
   assign category_block_count = 0
   assign occasion_block_count = 0
   assign featured_collection_min_products = 10
+  assign homepage_collection_candidate_limit = 8
 
   if section.settings.show_trust_strip
     if section.settings.trust_item_1 != blank
@@ -129,49 +130,171 @@
                 {%- liquid
                   assign icon_label = block.settings.custom_label | default: block.settings.collection.title
                   assign icon_image = blank
+                  assign icon_theme_asset = blank
+                  assign icon_image_alt = icon_label
                   assign icon_image_key = blank
                   assign products = block.settings.collection.products
                   assign product_count = products.size
                   assign featured_collection_count = block.settings.collection.products_count | default: product_count
+                  assign homepage_collection_image_candidate_count = 0
+                  assign homepage_collection_image_candidates_json = blank
 
                   if featured_collection_count < featured_collection_min_products
                     continue
                   endif
 
-                  if block.settings.custom_image != blank
-                    assign icon_image = block.settings.custom_image
-                  elsif block.settings.custom_theme_asset != blank
-                    assign icon_image_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
-                  elsif product_count > 0
-                    assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
-                    assign found_unique = false
+                  capture homepage_collection_image_candidates_json
+                    echo '['
+                    assign emitted_candidate_keys = '|'
 
-                    for i in (0..product_count)
-                      unless found_unique
-                        assign try_index = start_index | plus: i | modulo: product_count
-                        assign try_product = products[try_index]
+                    if block.settings.custom_image != blank
+                      assign custom_image = block.settings.custom_image
+                      assign custom_image_key = 'image-' | append: custom_image.id
+                      assign custom_image_alt = custom_image.alt | default: icon_label | strip
+                      assign custom_image_key_token = '|' | append: custom_image_key | append: '|'
 
-                        if try_product != blank and try_product.featured_media != blank
-                          assign try_image = try_product.featured_media.preview_image
-                          assign try_id = try_image.id | default: try_product.id
-                          assign try_id_token = '|' | append: try_id | append: '|'
+                      echo '{'
+                      echo '"key":'
+                      echo custom_image_key | json
+                      echo ',"src":'
+                      echo custom_image | image_url: width: 240, height: 300, crop: 'center' | json
+                      echo ',"alt":'
+                      echo custom_image_alt | json
+                      echo ',"width":120,"height":150'
+                      echo '}'
 
-                          unless used_image_ids contains try_id_token
-                            assign icon_image = try_image
-                            assign used_image_ids = used_image_ids | append: try_id_token
-                            assign found_unique = true
-                          endunless
+                      assign emitted_candidate_keys = emitted_candidate_keys | append: custom_image_key | append: '|'
+                      assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
+
+                      if icon_image == blank and icon_theme_asset == blank
+                        unless used_collection_image_keys contains custom_image_key_token
+                          assign icon_image = custom_image
+                          assign icon_image_key = custom_image_key
+                          assign icon_image_alt = custom_image_alt
+                          assign used_collection_image_keys = used_collection_image_keys | append: custom_image_key | append: '|'
+                        endunless
+                      endif
+                    endif
+
+                    if block.settings.custom_theme_asset != blank
+                      assign custom_theme_asset_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
+                      assign custom_theme_asset_alt = block.settings.custom_theme_asset_alt | default: icon_label | strip
+                      assign custom_theme_asset_key_token = '|' | append: custom_theme_asset_key | append: '|'
+
+                      unless emitted_candidate_keys contains custom_theme_asset_key_token
+                        if homepage_collection_image_candidate_count > 0
+                          echo ','
                         endif
+
+                        echo '{'
+                        echo '"key":'
+                        echo custom_theme_asset_key | json
+                        echo ',"src":'
+                        echo block.settings.custom_theme_asset | asset_url | json
+                        echo ',"alt":'
+                        echo custom_theme_asset_alt | json
+                        echo ',"width":120,"height":150'
+                        echo '}'
+
+                        assign emitted_candidate_keys = emitted_candidate_keys | append: custom_theme_asset_key | append: '|'
+                        assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
                       endunless
+
+                      if icon_image == blank and icon_theme_asset == blank
+                        unless used_collection_image_keys contains custom_theme_asset_key_token
+                          assign icon_theme_asset = block.settings.custom_theme_asset
+                          assign icon_image_key = custom_theme_asset_key
+                          assign icon_image_alt = custom_theme_asset_alt
+                          assign used_collection_image_keys = used_collection_image_keys | append: custom_theme_asset_key | append: '|'
+                        endunless
+                      endif
+                    endif
+
+                    assign fresh_collection_products = products | sort: 'published_at' | reverse
+                    for candidate_product in fresh_collection_products
+                      if homepage_collection_image_candidate_count >= homepage_collection_candidate_limit
+                        break
+                      endif
+
+                      assign candidate_media = candidate_product.featured_media.preview_image | default: candidate_product.featured_image
+                      if candidate_media == blank
+                        continue
+                      endif
+
+                      assign candidate_media_id = candidate_media.id | default: candidate_product.id
+                      assign candidate_key = 'image-' | append: candidate_media_id
+                      assign candidate_key_token = '|' | append: candidate_key | append: '|'
+
+                      if emitted_candidate_keys contains candidate_key_token
+                        continue
+                      endif
+
+                      capture candidate_alt
+                        render 'product-image-alt', product: candidate_product, media: candidate_media, collection: block.settings.collection, fallback_title: icon_label
+                      endcapture
+                      assign candidate_alt = candidate_alt | strip
+
+                      if homepage_collection_image_candidate_count > 0
+                        echo ','
+                      endif
+
+                      echo '{'
+                      echo '"key":'
+                      echo candidate_key | json
+                      echo ',"src":'
+                      echo candidate_media | image_url: width: 240, height: 300, crop: 'center' | json
+                      echo ',"alt":'
+                      echo candidate_alt | json
+                      echo ',"width":120,"height":150'
+                      echo '}'
+
+                      assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
+                      assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
+
+                      if icon_image == blank and icon_theme_asset == blank
+                        unless used_collection_image_keys contains candidate_key_token
+                          assign icon_image = candidate_media
+                          assign icon_image_key = candidate_key
+                          assign icon_image_alt = candidate_alt
+                          assign used_collection_image_keys = used_collection_image_keys | append: candidate_key | append: '|'
+                        endunless
+                      endif
                     endfor
 
-                    if found_unique == false and products[0].featured_media != blank
-                      assign icon_image = products[0].featured_media.preview_image
-                    endif
-                  endif
+                    echo ']'
+                  endcapture
+                  assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
 
-                  if icon_image != blank
-                    assign icon_image_key = 'image-' | append: icon_image.id
+                  if icon_image == blank and icon_theme_asset == blank
+                    if block.settings.custom_image != blank
+                      assign icon_image = block.settings.custom_image
+                      assign icon_image_key = 'image-' | append: block.settings.custom_image.id
+                      assign icon_image_alt = block.settings.custom_image.alt | default: icon_label | strip
+                    elsif block.settings.custom_theme_asset != blank
+                      assign icon_theme_asset = block.settings.custom_theme_asset
+                      assign icon_image_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
+                      assign icon_image_alt = block.settings.custom_theme_asset_alt | default: icon_label | strip
+                    elsif product_count > 0
+                      assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
+                      assign fallback_icon_found = false
+
+                      for i in (0..product_count)
+                        unless fallback_icon_found
+                          assign try_index = start_index | plus: i | modulo: product_count
+                          assign try_product = products[try_index]
+
+                          if try_product != blank and try_product.featured_media != blank
+                            assign icon_image = try_product.featured_media.preview_image
+                            assign icon_image_key = 'image-' | append: icon_image.id
+                            capture icon_image_alt
+                              render 'product-image-alt', product: try_product, media: icon_image, collection: block.settings.collection, fallback_title: icon_label
+                            endcapture
+                            assign icon_image_alt = icon_image_alt | strip
+                            assign fallback_icon_found = true
+                          endif
+                        endunless
+                      endfor
+                    endif
                   endif
                 -%}
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
@@ -180,21 +303,21 @@
                       {%- if icon_image != blank -%}
                         <img
                           src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
-                          alt="{{ icon_label | escape }}"
+                          alt="{{ icon_image_alt | escape }}"
                           loading="eager"
                           width="120"
                           height="150"
-                          data-homepage-reserve-image
+                          data-homepage-collection-image
                           data-homepage-collection-image-key="{{ icon_image_key | escape }}"
                         >
-                      {%- elsif block.settings.custom_theme_asset != blank -%}
+                      {%- elsif icon_theme_asset != blank -%}
                         <img
-                          src="{{ block.settings.custom_theme_asset | asset_url }}"
-                          alt="{{ block.settings.custom_theme_asset_alt | default: icon_label | escape }}"
+                          src="{{ icon_theme_asset | asset_url }}"
+                          alt="{{ icon_image_alt | escape }}"
                           loading="eager"
                           width="120"
                           height="150"
-                          data-homepage-reserve-image
+                          data-homepage-collection-image
                           data-homepage-collection-image-key="{{ icon_image_key | escape }}"
                         >
                       {%- else -%}
@@ -203,6 +326,11 @@
                     </div>
                     <span class="category-icons__label">{{ icon_label }}</span>
                   </a>
+                  {%- if homepage_collection_image_candidate_count > 1 -%}
+                    <script type="application/json" class="homepage-collection-card__image-candidates">
+                      {{- homepage_collection_image_candidates_json -}}
+                    </script>
+                  {%- endif -%}
                 </li>
               {%- endif -%}
             {%- endfor -%}
@@ -229,49 +357,171 @@
                 {%- liquid
                   assign icon_label = block.settings.custom_label | default: block.settings.collection.title
                   assign icon_image = blank
+                  assign icon_theme_asset = blank
+                  assign icon_image_alt = icon_label
                   assign icon_image_key = blank
                   assign products = block.settings.collection.products
                   assign product_count = products.size
                   assign featured_collection_count = block.settings.collection.products_count | default: product_count
+                  assign homepage_collection_image_candidate_count = 0
+                  assign homepage_collection_image_candidates_json = blank
 
                   if featured_collection_count < featured_collection_min_products
                     continue
                   endif
 
-                  if block.settings.custom_image != blank
-                    assign icon_image = block.settings.custom_image
-                  elsif block.settings.custom_theme_asset != blank
-                    assign icon_image_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
-                  elsif product_count > 0
-                    assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
-                    assign found_unique = false
+                  capture homepage_collection_image_candidates_json
+                    echo '['
+                    assign emitted_candidate_keys = '|'
 
-                    for i in (0..product_count)
-                      unless found_unique
-                        assign try_index = start_index | plus: i | modulo: product_count
-                        assign try_product = products[try_index]
+                    if block.settings.custom_image != blank
+                      assign custom_image = block.settings.custom_image
+                      assign custom_image_key = 'image-' | append: custom_image.id
+                      assign custom_image_alt = custom_image.alt | default: icon_label | strip
+                      assign custom_image_key_token = '|' | append: custom_image_key | append: '|'
 
-                        if try_product != blank and try_product.featured_media != blank
-                          assign try_image = try_product.featured_media.preview_image
-                          assign try_id = try_image.id | default: try_product.id
-                          assign try_id_token = '|' | append: try_id | append: '|'
+                      echo '{'
+                      echo '"key":'
+                      echo custom_image_key | json
+                      echo ',"src":'
+                      echo custom_image | image_url: width: 240, height: 300, crop: 'center' | json
+                      echo ',"alt":'
+                      echo custom_image_alt | json
+                      echo ',"width":120,"height":150'
+                      echo '}'
 
-                          unless used_image_ids contains try_id_token
-                            assign icon_image = try_image
-                            assign used_image_ids = used_image_ids | append: try_id_token
-                            assign found_unique = true
-                          endunless
+                      assign emitted_candidate_keys = emitted_candidate_keys | append: custom_image_key | append: '|'
+                      assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
+
+                      if icon_image == blank and icon_theme_asset == blank
+                        unless used_collection_image_keys contains custom_image_key_token
+                          assign icon_image = custom_image
+                          assign icon_image_key = custom_image_key
+                          assign icon_image_alt = custom_image_alt
+                          assign used_collection_image_keys = used_collection_image_keys | append: custom_image_key | append: '|'
+                        endunless
+                      endif
+                    endif
+
+                    if block.settings.custom_theme_asset != blank
+                      assign custom_theme_asset_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
+                      assign custom_theme_asset_alt = block.settings.custom_theme_asset_alt | default: icon_label | strip
+                      assign custom_theme_asset_key_token = '|' | append: custom_theme_asset_key | append: '|'
+
+                      unless emitted_candidate_keys contains custom_theme_asset_key_token
+                        if homepage_collection_image_candidate_count > 0
+                          echo ','
                         endif
+
+                        echo '{'
+                        echo '"key":'
+                        echo custom_theme_asset_key | json
+                        echo ',"src":'
+                        echo block.settings.custom_theme_asset | asset_url | json
+                        echo ',"alt":'
+                        echo custom_theme_asset_alt | json
+                        echo ',"width":120,"height":150'
+                        echo '}'
+
+                        assign emitted_candidate_keys = emitted_candidate_keys | append: custom_theme_asset_key | append: '|'
+                        assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
                       endunless
+
+                      if icon_image == blank and icon_theme_asset == blank
+                        unless used_collection_image_keys contains custom_theme_asset_key_token
+                          assign icon_theme_asset = block.settings.custom_theme_asset
+                          assign icon_image_key = custom_theme_asset_key
+                          assign icon_image_alt = custom_theme_asset_alt
+                          assign used_collection_image_keys = used_collection_image_keys | append: custom_theme_asset_key | append: '|'
+                        endunless
+                      endif
+                    endif
+
+                    assign fresh_collection_products = products | sort: 'published_at' | reverse
+                    for candidate_product in fresh_collection_products
+                      if homepage_collection_image_candidate_count >= homepage_collection_candidate_limit
+                        break
+                      endif
+
+                      assign candidate_media = candidate_product.featured_media.preview_image | default: candidate_product.featured_image
+                      if candidate_media == blank
+                        continue
+                      endif
+
+                      assign candidate_media_id = candidate_media.id | default: candidate_product.id
+                      assign candidate_key = 'image-' | append: candidate_media_id
+                      assign candidate_key_token = '|' | append: candidate_key | append: '|'
+
+                      if emitted_candidate_keys contains candidate_key_token
+                        continue
+                      endif
+
+                      capture candidate_alt
+                        render 'product-image-alt', product: candidate_product, media: candidate_media, collection: block.settings.collection, fallback_title: icon_label
+                      endcapture
+                      assign candidate_alt = candidate_alt | strip
+
+                      if homepage_collection_image_candidate_count > 0
+                        echo ','
+                      endif
+
+                      echo '{'
+                      echo '"key":'
+                      echo candidate_key | json
+                      echo ',"src":'
+                      echo candidate_media | image_url: width: 240, height: 300, crop: 'center' | json
+                      echo ',"alt":'
+                      echo candidate_alt | json
+                      echo ',"width":120,"height":150'
+                      echo '}'
+
+                      assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
+                      assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
+
+                      if icon_image == blank and icon_theme_asset == blank
+                        unless used_collection_image_keys contains candidate_key_token
+                          assign icon_image = candidate_media
+                          assign icon_image_key = candidate_key
+                          assign icon_image_alt = candidate_alt
+                          assign used_collection_image_keys = used_collection_image_keys | append: candidate_key | append: '|'
+                        endunless
+                      endif
                     endfor
 
-                    if found_unique == false and products[0].featured_media != blank
-                      assign icon_image = products[0].featured_media.preview_image
-                    endif
-                  endif
+                    echo ']'
+                  endcapture
+                  assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
 
-                  if icon_image != blank
-                    assign icon_image_key = 'image-' | append: icon_image.id
+                  if icon_image == blank and icon_theme_asset == blank
+                    if block.settings.custom_image != blank
+                      assign icon_image = block.settings.custom_image
+                      assign icon_image_key = 'image-' | append: block.settings.custom_image.id
+                      assign icon_image_alt = block.settings.custom_image.alt | default: icon_label | strip
+                    elsif block.settings.custom_theme_asset != blank
+                      assign icon_theme_asset = block.settings.custom_theme_asset
+                      assign icon_image_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
+                      assign icon_image_alt = block.settings.custom_theme_asset_alt | default: icon_label | strip
+                    elsif product_count > 0
+                      assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
+                      assign fallback_icon_found = false
+
+                      for i in (0..product_count)
+                        unless fallback_icon_found
+                          assign try_index = start_index | plus: i | modulo: product_count
+                          assign try_product = products[try_index]
+
+                          if try_product != blank and try_product.featured_media != blank
+                            assign icon_image = try_product.featured_media.preview_image
+                            assign icon_image_key = 'image-' | append: icon_image.id
+                            capture icon_image_alt
+                              render 'product-image-alt', product: try_product, media: icon_image, collection: block.settings.collection, fallback_title: icon_label
+                            endcapture
+                            assign icon_image_alt = icon_image_alt | strip
+                            assign fallback_icon_found = true
+                          endif
+                        endunless
+                      endfor
+                    endif
                   endif
                 -%}
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
@@ -280,21 +530,21 @@
                       {%- if icon_image != blank -%}
                         <img
                           src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
-                          alt="{{ icon_label | escape }}"
+                          alt="{{ icon_image_alt | escape }}"
                           loading="eager"
                           width="120"
                           height="150"
-                          data-homepage-reserve-image
+                          data-homepage-collection-image
                           data-homepage-collection-image-key="{{ icon_image_key | escape }}"
                         >
-                      {%- elsif block.settings.custom_theme_asset != blank -%}
+                      {%- elsif icon_theme_asset != blank -%}
                         <img
-                          src="{{ block.settings.custom_theme_asset | asset_url }}"
-                          alt="{{ block.settings.custom_theme_asset_alt | default: icon_label | escape }}"
+                          src="{{ icon_theme_asset | asset_url }}"
+                          alt="{{ icon_image_alt | escape }}"
                           loading="eager"
                           width="120"
                           height="150"
-                          data-homepage-reserve-image
+                          data-homepage-collection-image
                           data-homepage-collection-image-key="{{ icon_image_key | escape }}"
                         >
                       {%- else -%}
@@ -303,6 +553,11 @@
                     </div>
                     <span class="category-icons__label">{{ icon_label }}</span>
                   </a>
+                  {%- if homepage_collection_image_candidate_count > 1 -%}
+                    <script type="application/json" class="homepage-collection-card__image-candidates">
+                      {{- homepage_collection_image_candidates_json -}}
+                    </script>
+                  {%- endif -%}
                 </li>
               {%- endif -%}
             {%- endfor -%}
@@ -316,49 +571,171 @@
             {%- liquid
               assign icon_label = block.settings.custom_label | default: block.settings.collection.title
               assign icon_image = blank
+              assign icon_theme_asset = blank
+              assign icon_image_alt = icon_label
               assign icon_image_key = blank
               assign products = block.settings.collection.products
               assign product_count = products.size
               assign featured_collection_count = block.settings.collection.products_count | default: product_count
+              assign homepage_collection_image_candidate_count = 0
+              assign homepage_collection_image_candidates_json = blank
 
               if featured_collection_count < featured_collection_min_products
                 continue
               endif
 
-              if block.settings.custom_image != blank
-                assign icon_image = block.settings.custom_image
-              elsif block.settings.custom_theme_asset != blank
-                assign icon_image_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
-              elsif product_count > 0
-                assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
-                assign found_unique = false
+              capture homepage_collection_image_candidates_json
+                echo '['
+                assign emitted_candidate_keys = '|'
 
-                for i in (0..product_count)
-                  unless found_unique
-                    assign try_index = start_index | plus: i | modulo: product_count
-                    assign try_product = products[try_index]
+                if block.settings.custom_image != blank
+                  assign custom_image = block.settings.custom_image
+                  assign custom_image_key = 'image-' | append: custom_image.id
+                  assign custom_image_alt = custom_image.alt | default: icon_label | strip
+                  assign custom_image_key_token = '|' | append: custom_image_key | append: '|'
 
-                    if try_product != blank and try_product.featured_media != blank
-                      assign try_image = try_product.featured_media.preview_image
-                      assign try_id = try_image.id | default: try_product.id
-                      assign try_id_token = '|' | append: try_id | append: '|'
+                  echo '{'
+                  echo '"key":'
+                  echo custom_image_key | json
+                  echo ',"src":'
+                  echo custom_image | image_url: width: 240, height: 300, crop: 'center' | json
+                  echo ',"alt":'
+                  echo custom_image_alt | json
+                  echo ',"width":120,"height":150'
+                  echo '}'
 
-                      unless used_image_ids contains try_id_token
-                        assign icon_image = try_image
-                        assign used_image_ids = used_image_ids | append: try_id_token
-                        assign found_unique = true
-                      endunless
+                  assign emitted_candidate_keys = emitted_candidate_keys | append: custom_image_key | append: '|'
+                  assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
+
+                  if icon_image == blank and icon_theme_asset == blank
+                    unless used_collection_image_keys contains custom_image_key_token
+                      assign icon_image = custom_image
+                      assign icon_image_key = custom_image_key
+                      assign icon_image_alt = custom_image_alt
+                      assign used_collection_image_keys = used_collection_image_keys | append: custom_image_key | append: '|'
+                    endunless
+                  endif
+                endif
+
+                if block.settings.custom_theme_asset != blank
+                  assign custom_theme_asset_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
+                  assign custom_theme_asset_alt = block.settings.custom_theme_asset_alt | default: icon_label | strip
+                  assign custom_theme_asset_key_token = '|' | append: custom_theme_asset_key | append: '|'
+
+                  unless emitted_candidate_keys contains custom_theme_asset_key_token
+                    if homepage_collection_image_candidate_count > 0
+                      echo ','
                     endif
+
+                    echo '{'
+                    echo '"key":'
+                    echo custom_theme_asset_key | json
+                    echo ',"src":'
+                    echo block.settings.custom_theme_asset | asset_url | json
+                    echo ',"alt":'
+                    echo custom_theme_asset_alt | json
+                    echo ',"width":120,"height":150'
+                    echo '}'
+
+                    assign emitted_candidate_keys = emitted_candidate_keys | append: custom_theme_asset_key | append: '|'
+                    assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
                   endunless
+
+                  if icon_image == blank and icon_theme_asset == blank
+                    unless used_collection_image_keys contains custom_theme_asset_key_token
+                      assign icon_theme_asset = block.settings.custom_theme_asset
+                      assign icon_image_key = custom_theme_asset_key
+                      assign icon_image_alt = custom_theme_asset_alt
+                      assign used_collection_image_keys = used_collection_image_keys | append: custom_theme_asset_key | append: '|'
+                    endunless
+                  endif
+                endif
+
+                assign fresh_collection_products = products | sort: 'published_at' | reverse
+                for candidate_product in fresh_collection_products
+                  if homepage_collection_image_candidate_count >= homepage_collection_candidate_limit
+                    break
+                  endif
+
+                  assign candidate_media = candidate_product.featured_media.preview_image | default: candidate_product.featured_image
+                  if candidate_media == blank
+                    continue
+                  endif
+
+                  assign candidate_media_id = candidate_media.id | default: candidate_product.id
+                  assign candidate_key = 'image-' | append: candidate_media_id
+                  assign candidate_key_token = '|' | append: candidate_key | append: '|'
+
+                  if emitted_candidate_keys contains candidate_key_token
+                    continue
+                  endif
+
+                  capture candidate_alt
+                    render 'product-image-alt', product: candidate_product, media: candidate_media, collection: block.settings.collection, fallback_title: icon_label
+                  endcapture
+                  assign candidate_alt = candidate_alt | strip
+
+                  if homepage_collection_image_candidate_count > 0
+                    echo ','
+                  endif
+
+                  echo '{'
+                  echo '"key":'
+                  echo candidate_key | json
+                  echo ',"src":'
+                  echo candidate_media | image_url: width: 240, height: 300, crop: 'center' | json
+                  echo ',"alt":'
+                  echo candidate_alt | json
+                  echo ',"width":120,"height":150'
+                  echo '}'
+
+                  assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
+                  assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
+
+                  if icon_image == blank and icon_theme_asset == blank
+                    unless used_collection_image_keys contains candidate_key_token
+                      assign icon_image = candidate_media
+                      assign icon_image_key = candidate_key
+                      assign icon_image_alt = candidate_alt
+                      assign used_collection_image_keys = used_collection_image_keys | append: candidate_key | append: '|'
+                    endunless
+                  endif
                 endfor
 
-                if found_unique == false and products[0].featured_media != blank
-                  assign icon_image = products[0].featured_media.preview_image
-                endif
-              endif
+                echo ']'
+              endcapture
+              assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
 
-              if icon_image != blank
-                assign icon_image_key = 'image-' | append: icon_image.id
+              if icon_image == blank and icon_theme_asset == blank
+                if block.settings.custom_image != blank
+                  assign icon_image = block.settings.custom_image
+                  assign icon_image_key = 'image-' | append: block.settings.custom_image.id
+                  assign icon_image_alt = block.settings.custom_image.alt | default: icon_label | strip
+                elsif block.settings.custom_theme_asset != blank
+                  assign icon_theme_asset = block.settings.custom_theme_asset
+                  assign icon_image_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
+                  assign icon_image_alt = block.settings.custom_theme_asset_alt | default: icon_label | strip
+                elsif product_count > 0
+                  assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
+                  assign fallback_icon_found = false
+
+                  for i in (0..product_count)
+                    unless fallback_icon_found
+                      assign try_index = start_index | plus: i | modulo: product_count
+                      assign try_product = products[try_index]
+
+                      if try_product != blank and try_product.featured_media != blank
+                        assign icon_image = try_product.featured_media.preview_image
+                        assign icon_image_key = 'image-' | append: icon_image.id
+                        capture icon_image_alt
+                          render 'product-image-alt', product: try_product, media: icon_image, collection: block.settings.collection, fallback_title: icon_label
+                        endcapture
+                        assign icon_image_alt = icon_image_alt | strip
+                        assign fallback_icon_found = true
+                      endif
+                    endunless
+                  endfor
+                endif
               endif
             -%}
             <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
@@ -367,21 +744,21 @@
                   {%- if icon_image != blank -%}
                     <img
                       src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
-                      alt="{{ icon_label | escape }}"
+                      alt="{{ icon_image_alt | escape }}"
                       loading="eager"
                       width="120"
                       height="150"
-                      data-homepage-reserve-image
+                      data-homepage-collection-image
                       data-homepage-collection-image-key="{{ icon_image_key | escape }}"
                     >
-                  {%- elsif block.settings.custom_theme_asset != blank -%}
+                  {%- elsif icon_theme_asset != blank -%}
                     <img
-                      src="{{ block.settings.custom_theme_asset | asset_url }}"
-                      alt="{{ block.settings.custom_theme_asset_alt | default: icon_label | escape }}"
+                      src="{{ icon_theme_asset | asset_url }}"
+                      alt="{{ icon_image_alt | escape }}"
                       loading="eager"
                       width="120"
                       height="150"
-                      data-homepage-reserve-image
+                      data-homepage-collection-image
                       data-homepage-collection-image-key="{{ icon_image_key | escape }}"
                     >
                   {%- else -%}
@@ -390,6 +767,11 @@
                 </div>
                 <span class="category-icons__label">{{ icon_label }}</span>
               </a>
+              {%- if homepage_collection_image_candidate_count > 1 -%}
+                <script type="application/json" class="homepage-collection-card__image-candidates">
+                  {{- homepage_collection_image_candidates_json -}}
+                </script>
+              {%- endif -%}
             </li>
           {%- endif -%}
         {%- endfor -%}
