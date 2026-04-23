@@ -80,6 +80,33 @@
     });
   }
 
+  function updateNavAvailability(nav, cards) {
+    const buttonDownCount = cards.reduce((count, card) => {
+      const title = card.dataset.analyticsTitle || "";
+      return matchesFilter(title, BUTTON_DOWNS_FILTER) ? count + 1 : count;
+    }, 0);
+
+    nav.querySelectorAll("[data-daddy-filter]").forEach((link) => {
+      const navItem = link.closest(".collection-category-nav__item");
+      if (!navItem) return;
+
+      const isCurrent = link.getAttribute("aria-current") === "page";
+      if (link.dataset.daddyFilter === "button-downs") {
+        navItem.hidden = buttonDownCount === 0 && !isCurrent;
+        return;
+      }
+
+      navItem.hidden = false;
+    });
+
+    const secondaryRow = nav.querySelector(".collection-category-nav__row--secondary");
+    if (!secondaryRow) return;
+
+    secondaryRow.hidden = !Array.from(
+      secondaryRow.querySelectorAll(".collection-category-nav__item")
+    ).some((item) => !item.hidden);
+  }
+
   function applyFilter() {
     const nav = collectionNav();
     if (!nav) return;
@@ -92,6 +119,8 @@
       document.querySelectorAll("#product-grid .product-card-wrapper")
     );
     if (!cards.length) return;
+
+    updateNavAvailability(nav, cards);
 
     let visibleCount = 0;
     cards.forEach((card) => {
