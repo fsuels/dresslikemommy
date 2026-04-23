@@ -5,10 +5,23 @@
     endcapture
     assign collection_seo_display_title = collection_seo_display_title | strip
 
+    capture collection_seo_hero_summary
+      render 'collection-seo-fallback', collection: collection, field: 'hero_summary'
+    endcapture
+    assign collection_seo_hero_summary = collection_seo_hero_summary | strip
+
     capture collection_seo_body_description
       render 'collection-seo-fallback', collection: collection, field: 'body_description'
     endcapture
     assign collection_seo_body_description = collection_seo_body_description | strip
+    assign collection_seo_body_description_render = collection_seo_body_description
+
+    if collection_seo_body_description != blank and collection_seo_hero_summary != blank and collection_seo_body_description contains '</p>'
+      assign first_body_paragraph = collection_seo_body_description | split: '</p>' | first | append: '</p>' | strip
+      if first_body_paragraph == collection_seo_hero_summary
+        assign collection_seo_body_description_render = collection_seo_body_description | replace_first: first_body_paragraph, '' | strip
+      endif
+    endif
 
     capture collection_seo_rich_content
       render 'collection-seo-content', collection: collection, field: 'rich_content'
@@ -198,7 +211,7 @@
     </section>
 
     {% render 'faq-schema-from-html', content: collection_seo_rich_content %}
-  {% elsif collection_seo_body_description != blank %}
+  {% elsif collection_seo_body_description_render != blank %}
     {{ 'section-collection-seo.css' | asset_url | stylesheet_tag }}
 
     <section class="collection-seo-rich page-width page-width--narrow section-{{ section.id }}-padding">
@@ -208,12 +221,12 @@
           <h2>A closer look at {{ collection_seo_display_title | escape }}</h2>
         </div>
         <div class="collection-seo-rich__copy">
-          {{ collection_seo_body_description }}
+          {{ collection_seo_body_description_render }}
         </div>
       </div>
     </section>
 
-    {% render 'faq-schema-from-html', content: collection_seo_body_description %}
+    {% render 'faq-schema-from-html', content: collection_seo_body_description_render %}
   {% endif %}
 {% endif %}
 
