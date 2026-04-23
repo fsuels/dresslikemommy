@@ -1,6 +1,6 @@
 {% comment %}
   Filters broad collection hubs so cross-tagged products do not leak between
-  Mommy & Me and Family Matching when smart-collection rules overlap.
+  top-level categories when smart-collection rules overlap.
 
   Accepts:
   - product: Product object
@@ -11,14 +11,35 @@
   assign product_visible = true
   assign current_collection_handle = collection_handle | default: '' | strip
   assign product_category1 = product.metafields.custom.category1 | default: '' | strip
+  assign has_daddy_and_me_tag = false
+  assign has_couples_tag = false
+  assign has_maternity_tag = false
 
   if product_category1 == blank
     for tag in product.tags
       assign normalized_tag = tag | strip
       assign normalized_tag_downcase = normalized_tag | downcase
+      if normalized_tag_downcase == 'daddy and me'
+        assign has_daddy_and_me_tag = true
+      elsif normalized_tag_downcase == 'couples'
+        assign has_couples_tag = true
+      elsif normalized_tag_downcase == 'maternity'
+        assign has_maternity_tag = true
+      endif
       if normalized_tag_downcase contains 'category1:' or normalized_tag_downcase contains 'category:'
         assign product_category1 = normalized_tag | split: ':' | last | strip
         break
+      endif
+    endfor
+  else
+    for tag in product.tags
+      assign normalized_tag_downcase = tag | strip | downcase
+      if normalized_tag_downcase == 'daddy and me'
+        assign has_daddy_and_me_tag = true
+      elsif normalized_tag_downcase == 'couples'
+        assign has_couples_tag = true
+      elsif normalized_tag_downcase == 'maternity'
+        assign has_maternity_tag = true
       endif
     endfor
   endif
@@ -35,6 +56,30 @@
       endif
     when 'matching-outfits', 'family-matching-outfits', 'new-women-outfits', 'family-sets'
       if product_category1 != 'Family Matching'
+        assign product_visible = false
+      endif
+    when 'daddy-me', 'daddy-and-me'
+      if product_category1 != blank
+        if product_category1 != 'Daddy and Me'
+          assign product_visible = false
+        endif
+      elsif has_daddy_and_me_tag == false
+        assign product_visible = false
+      endif
+    when 'couples'
+      if product_category1 != blank
+        if product_category1 != 'Couples'
+          assign product_visible = false
+        endif
+      elsif has_couples_tag == false
+        assign product_visible = false
+      endif
+    when 'maternity'
+      if product_category1 != blank
+        if product_category1 != 'Maternity'
+          assign product_visible = false
+        endif
+      elsif has_maternity_tag == false
         assign product_visible = false
       endif
   endcase
