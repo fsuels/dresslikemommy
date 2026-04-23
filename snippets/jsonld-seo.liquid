@@ -88,14 +88,10 @@
 {%- assign breadcrumb_position = breadcrumb_position | plus: 1 -%}
 
 {%- if template contains 'collection' and collection -%}
-  {%- assign collection_breadcrumb_name = collection.title | strip -%}
-  {%- capture collection_seo_display_title -%}
-    {%- render 'collection-seo-fallback', collection: collection, field: 'display_title' -%}
+  {%- capture collection_breadcrumb_name -%}
+    {%- render 'breadcrumb-label', collection_handle: collection.handle, default_label: collection.title -%}
   {%- endcapture -%}
-  {%- assign collection_seo_display_title = collection_seo_display_title | strip -%}
-  {%- if collection_seo_display_title != blank -%}
-    {%- assign collection_breadcrumb_name = collection_seo_display_title -%}
-  {%- endif -%}
+  {%- assign collection_breadcrumb_name = collection_breadcrumb_name | strip -%}
   {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ collection_breadcrumb_name | json }},"item":{{ collection.url | prepend: shop.url | json }}}{%- endcapture -%}
 {%- elsif template contains 'blog' and blog -%}
   {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ blog.title | json }},"item":{{ blog.url | prepend: shop.url | json }}}{%- endcapture -%}
@@ -113,7 +109,11 @@
     {%- assign primary_collection = product.collections | first -%}
   {%- endif -%}
   {%- if primary_collection -%}
-    {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ primary_collection.title | json }},"item":{{ primary_collection.url | prepend: shop.url | json }}}{%- endcapture -%}
+    {%- capture primary_collection_breadcrumb_name -%}
+      {%- render 'breadcrumb-label', collection_handle: primary_collection.handle, default_label: primary_collection.title -%}
+    {%- endcapture -%}
+    {%- assign primary_collection_breadcrumb_name = primary_collection_breadcrumb_name | strip -%}
+    {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ primary_collection_breadcrumb_name | json }},"item":{{ primary_collection.url | prepend: shop.url | json }}}{%- endcapture -%}
     {%- assign breadcrumb_position = breadcrumb_position | plus: 1 -%}
   {%- endif -%}
   {%- if resolved_canonical_url != blank -%}

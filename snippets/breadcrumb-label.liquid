@@ -1,0 +1,62 @@
+{% comment %}
+  Resolves concise breadcrumb labels from collection handles or raw taxonomy labels.
+
+  Accepts:
+  - collection_handle: Explicit collection handle (optional)
+  - collection: Collection object (optional)
+  - default_label: Fallback label when the handle is unknown (optional)
+{% endcomment %}
+
+{%- liquid
+  assign resolved_handle = collection_handle | default: collection.handle | default: '' | strip
+  assign fallback_label = default_label | default: collection.title | default: '' | strip
+
+  if resolved_handle == blank and fallback_label != blank
+    assign resolved_handle = fallback_label | handleize
+  endif
+
+  assign resolved_label = fallback_label
+
+  case resolved_handle
+    when 'mommy-and-me', 'new-matching-outfits', 'popular-mommy-me-1'
+      assign resolved_label = 'sections.breadcrumbs.cat_mommy_me' | t
+    when 'daddy-me', 'daddy-and-me'
+      assign resolved_label = 'sections.breadcrumbs.cat_daddy_me' | t
+    when 'couples', 'couple-matching'
+      assign resolved_label = 'sections.breadcrumbs.cat_couples' | t
+    when 'maternity'
+      assign resolved_label = 'sections.breadcrumbs.cat_maternity' | t
+    when 'matching-outfits', 'family-matching', 'family-matching-outfits', 'new-women-outfits', 'popular-family-matching'
+      assign resolved_label = 'sections.breadcrumbs.cat_family_matching' | t
+    when 'dresses', 'mother-daughter-matching-dresses', 'formal-dresses', 'maxi-dresses', 'midi-dresses', 'mini-dresses', 'sundresses', 'jumpsuits', 'rompers', 'skirts', 'mommy-and-me-easter-dresses', 'easter-matching-outfits', 'spring-matching-outfits'
+      assign resolved_label = 'Dresses'
+    when 'pajamas', 'family-pajamas', 'christmas-pajamas'
+      assign resolved_label = 'sections.breadcrumbs.label_pajamas' | t
+    when 'swimsuits', 'family-swimsuits'
+      assign resolved_label = 'sections.breadcrumbs.label_swimsuits' | t
+    when 'trunks'
+      assign resolved_label = 'sections.breadcrumbs.label_trunks' | t
+    when 'tops', 'family-tops', 'bottoms', 'leggings', 'pants', 'christmas-tops'
+      assign resolved_label = 'sections.breadcrumbs.label_tops' | t
+    when 'sweaters', 'family-sweaters', 'fall-winter', 'christmas-sweaters'
+      assign resolved_label = 'sections.breadcrumbs.label_sweaters' | t
+    when 'family-sets', 'matching-family-vacation-outfits'
+      assign resolved_label = 'sections.breadcrumbs.label_sets' | t
+    when 'matching-hawaiian-outfits'
+      assign resolved_label = 'Hawaiian Outfits'
+    when 'daddy-me-t-shirts', 'matching-couples-t-shirts'
+      assign resolved_label = 'sections.breadcrumbs.label_tshirts' | t
+    when 'daddy-me-shirts'
+      assign resolved_label = 'sections.breadcrumbs.label_button_downs' | t
+    when 'all', 'shop'
+      assign resolved_label = 'All'
+    when 'new-arrivals'
+      assign resolved_label = 'New Arrivals'
+    when 'sale'
+      assign resolved_label = 'Sale'
+    when 'best-sellers', 'bestsellers'
+      assign resolved_label = 'Best Sellers'
+  endcase
+
+  echo resolved_label
+-%}

@@ -137,6 +137,16 @@
   {% assign parent_collection_label = family_matching_hub_label %}
 {% endif %}
 
+{% capture resolved_parent_collection_label %}
+  {% render 'breadcrumb-label', collection_handle: parent_collection_handle, default_label: parent_collection_label %}
+{% endcapture %}
+{% assign parent_collection_label = resolved_parent_collection_label | strip %}
+
+{% capture resolved_current_breadcrumb_label %}
+  {% render 'breadcrumb-label', collection_handle: current_collection_handle, default_label: current_breadcrumb_label %}
+{% endcapture %}
+{% assign current_breadcrumb_label = resolved_current_breadcrumb_label | strip %}
+
 {% comment %} --- Cross-category / store-wide collections that should show top-level nav pills --- {% endcomment %}
 {% assign cross_category_handles = 'new-arrivals,shop,all,sale,bestsellers' %}
 {% assign is_cross_category = false %}

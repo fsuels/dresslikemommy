@@ -44,8 +44,26 @@
     {% assign subcategory_display_label = 'sections.breadcrumbs.label_tshirts' | t %}
   {% endif %}
 
-  {% if collection != blank and collection.title != blank %}
-    {% assign back_to_results_context = collection.title %}
+  {% capture resolved_category1_display_label %}
+    {% render 'breadcrumb-label', collection_handle: category1_handle, default_label: category1_display_label %}
+  {% endcapture %}
+  {% assign category1_display_label = resolved_category1_display_label | strip %}
+
+  {% capture resolved_subcategory_display_label %}
+    {% render 'breadcrumb-label', collection_handle: subcategory_handle, default_label: subcategory_display_label %}
+  {% endcapture %}
+  {% assign subcategory_display_label = resolved_subcategory_display_label | strip %}
+
+  {% assign collection_display_label = blank %}
+  {% if collection != blank %}
+    {% capture resolved_collection_display_label %}
+      {% render 'breadcrumb-label', collection_handle: collection.handle, default_label: collection.title %}
+    {% endcapture %}
+    {% assign collection_display_label = resolved_collection_display_label | strip %}
+  {% endif %}
+
+  {% if collection != blank and collection_display_label != blank %}
+    {% assign back_to_results_context = collection_display_label %}
   {% elsif subcategory_collection != blank and subcategory_display_label != blank %}
     {% assign back_to_results_context = subcategory_display_label %}
   {% elsif category1_collection != blank and category1_display_label != blank %}
@@ -83,7 +101,13 @@
   {% endif %}
 
   {% if similar_styles_collection != blank and similar_styles_collection.title != blank %}
-    {% assign similar_styles_aria_label = 'sections.product_navigation.view_similar_styles_in' | t: collection: similar_styles_collection.title %}
+    {% capture resolved_similar_styles_collection_label %}
+      {% render 'breadcrumb-label', collection_handle: similar_styles_collection.handle, default_label: similar_styles_collection.title %}
+    {% endcapture %}
+    {% assign resolved_similar_styles_collection_label = resolved_similar_styles_collection_label | strip %}
+    {% if resolved_similar_styles_collection_label != blank %}
+      {% assign similar_styles_aria_label = 'sections.product_navigation.view_similar_styles_in' | t: collection: resolved_similar_styles_collection_label %}
+    {% endif %}
   {% endif %}
 
   <div class="product-breadcrumb__handoff">
@@ -157,7 +181,10 @@
           {% for subcat_label in valid_subcat_list %}
             {% assign subcat_handle = subcat_label | handleize %}
             {% assign subcat_collection = collections[subcat_handle] %}
-            {% assign subcat_display_label = subcat_collection.title | default: subcat_label %}
+            {% capture resolved_subcat_display_label %}
+              {% render 'breadcrumb-label', collection_handle: subcat_handle, default_label: subcat_collection.title | default: subcat_label %}
+            {% endcapture %}
+            {% assign subcat_display_label = resolved_subcat_display_label | strip %}
             <a href="{{ subcat_collection.url }}" class="product-breadcrumb__link">{{ subcat_display_label }}</a>{% if forloop.last == false %} <span class="product-breadcrumb__separator">/</span> {% endif %}
           {% endfor %}
         </span>
