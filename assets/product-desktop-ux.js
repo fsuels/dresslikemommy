@@ -2250,6 +2250,7 @@ function parseSizeGuideTable(table) {
     });
 
   if (!bodyRows.length) return null;
+  headers = enrichSizeGuideHeaders(headers, bodyRows);
 
   return {
     headers: headers,
@@ -2278,6 +2279,114 @@ function parseSizeGuideHeaderText(headerText) {
     label: label || raw,
     units: units,
   };
+}
+
+function getGuideConvertibleUnits(unit) {
+  var normalizedUnit = normalizeGuideUnit(unit);
+  if (normalizedUnit === 'cm' || normalizedUnit === 'in') return ['cm', 'in'];
+  if (normalizedUnit === 'kg' || normalizedUnit === 'lbs') return ['kg', 'lbs'];
+  return [];
+}
+
+function mergeGuideUnitCandidates(targetUnits, candidateUnits) {
+  (candidateUnits || []).forEach(function (unit) {
+    if (unit && targetUnits.indexOf(unit) === -1) targetUnits.push(unit);
+  });
+}
+
+function inferGuideUnitPairFromValues(columnValues) {
+  var detectedUnits = [];
+
+  (columnValues || []).forEach(function (value) {
+    var parts = splitGuideMeasurementParts(value);
+
+    if (parts.length) {
+      parts.forEach(function (part) {
+        mergeGuideUnitCandidates(detectedUnits, getGuideConvertibleUnits(inferGuideUnitFromText(part)));
+      });
+      return;
+    }
+
+    mergeGuideUnitCandidates(detectedUnits, getGuideConvertibleUnits(inferGuideUnitFromText(value)));
+  });
+
+  if (detectedUnits.indexOf('cm') !== -1 || detectedUnits.indexOf('in') !== -1) return ['cm', 'in'];
+  if (detectedUnits.indexOf('kg') !== -1 || detectedUnits.indexOf('lbs') !== -1) return ['kg', 'lbs'];
+
+  return [];
+}
+
+function inferGuideUnitPairFromLabel(labelText) {
+  var normalizedLabel = normalizeText(labelText);
+  if (!normalizedLabel) return [];
+  if (normalizedLabel === 'size' || normalizedLabel === 'age' || normalizedLabel === '—') return [];
+
+  if (normalizedLabel.indexOf('weight') !== -1) return ['kg', 'lbs'];
+
+  var measurementTokens = [
+    'height',
+    'chest',
+    'bust',
+    'hip',
+    'waist',
+    'length',
+    'sleeve',
+    'shoulder',
+    'pant',
+    'short',
+    'skirt',
+    'garment',
+  ];
+
+  if (measurementTokens.some(function (token) {
+    return normalizedLabel.indexOf(token) !== -1;
+  })) {
+    return ['cm', 'in'];
+  }
+
+  return [];
+}
+
+function inferGuideHeaderUnits(header, columnValues) {
+  if (!header) return header;
+
+  var normalizedUnits = (header.units || []).map(normalizeGuideUnit).filter(Boolean);
+  if (normalizedUnits.length >= 2) return header;
+
+  var inferredUnits = [];
+  normalizedUnits.forEach(function (unit) {
+    mergeGuideUnitCandidates(inferredUnits, getGuideConvertibleUnits(unit));
+  });
+
+  if (!inferredUnits.length) {
+    mergeGuideUnitCandidates(inferredUnits, inferGuideUnitPairFromValues(columnValues));
+  }
+
+  if (!inferredUnits.length) {
+    mergeGuideUnitCandidates(inferredUnits, inferGuideUnitPairFromLabel(header.label || header.raw || ''));
+  }
+
+  if (!inferredUnits.length) return header;
+
+  return {
+    raw: header.raw,
+    label: header.label,
+    units: inferredUnits,
+  };
+}
+
+function enrichSizeGuideHeaders(headers, rows) {
+  return (headers || []).map(function (header, index) {
+    var columnValues = (rows || [])
+      .map(function (row) {
+        return row[index];
+      })
+      .filter(function (value) {
+        return !isGuideEmptyValue(value);
+      });
+
+    return inferGuideHeaderUnits(header, columnValues);
+  });
 }
 
 function cellText(cell) {
