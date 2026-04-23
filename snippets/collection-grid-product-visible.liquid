@@ -1,82 +1,112 @@
 {% comment %}
-  Filters broad collection hubs so cross-tagged products do not leak between
-  top-level categories when smart-collection rules overlap.
+  Filters collection grids so cross-tagged products do not leak between
+  top-level category branches when smart-collection rules overlap.
 
   Accepts:
   - product: Product object
+  - collection: Current collection object (optional)
   - collection_handle: Current collection handle
 {% endcomment %}
 
 {%- liquid
   assign product_visible = true
-  assign current_collection_handle = collection_handle | default: '' | strip
+  assign current_collection = collection
+  assign current_collection_handle = collection_handle | default: current_collection.handle | default: '' | strip
+  assign current_handle_token = ',' | append: current_collection_handle | append: ','
+  assign expected_category1 = current_collection.metafields.custom.category1 | default: '' | strip
   assign product_category1 = product.metafields.custom.category1 | default: '' | strip
+  assign has_mommy_and_me_tag = false
+  assign has_family_matching_tag = false
   assign has_daddy_and_me_tag = false
   assign has_couples_tag = false
   assign has_maternity_tag = false
+  assign mommy_branch_handles = ',mommy-and-me,new-matching-outfits,popular-mommy-me-1,pajamas,dresses,swimsuits,tops,sweaters,bottoms,leggings,pants,formal-dresses,maxi-dresses,midi-dresses,mini-dresses,sundresses,jumpsuits,rompers,skirts,mommy-and-me-easter-dresses,easter-matching-outfits,spring-matching-outfits,'
+  assign family_branch_handles = ',matching-outfits,family-matching-outfits,new-women-outfits,popular-family-matching,family-pajamas,mother-daughter-matching-dresses,family-swimsuits,family-sets,matching-family-vacation-outfits,matching-hawaiian-outfits,family-tops,family-sweaters,'
+  assign daddy_branch_handles = ',daddy-and-me,daddy-me,daddy-me-t-shirts,daddy-me-shirts,trunks,'
+  assign couples_branch_handles = ',couples,couple-matching,matching-couples-t-shirts,'
+  assign maternity_branch_handles = ',maternity,'
 
-  if product_category1 == blank
-    for tag in product.tags
-      assign normalized_tag = tag | strip
-      assign normalized_tag_downcase = normalized_tag | downcase
-      if normalized_tag_downcase == 'daddy and me'
-        assign has_daddy_and_me_tag = true
-      elsif normalized_tag_downcase == 'couples'
-        assign has_couples_tag = true
-      elsif normalized_tag_downcase == 'maternity'
-        assign has_maternity_tag = true
-      endif
+  for tag in product.tags
+    assign normalized_tag = tag | strip
+    assign normalized_tag_downcase = normalized_tag | downcase
+
+    if normalized_tag_downcase == 'mommy and me'
+      assign has_mommy_and_me_tag = true
+    elsif normalized_tag_downcase == 'family matching'
+      assign has_family_matching_tag = true
+    elsif normalized_tag_downcase == 'daddy and me'
+      assign has_daddy_and_me_tag = true
+    elsif normalized_tag_downcase == 'couples'
+      assign has_couples_tag = true
+    elsif normalized_tag_downcase == 'maternity'
+      assign has_maternity_tag = true
+    endif
+
+    if product_category1 == blank
       if normalized_tag_downcase contains 'category1:' or normalized_tag_downcase contains 'category:'
         assign product_category1 = normalized_tag | split: ':' | last | strip
-        break
       endif
-    endfor
-  else
-    for tag in product.tags
-      assign normalized_tag_downcase = tag | strip | downcase
-      if normalized_tag_downcase == 'daddy and me'
-        assign has_daddy_and_me_tag = true
-      elsif normalized_tag_downcase == 'couples'
-        assign has_couples_tag = true
-      elsif normalized_tag_downcase == 'maternity'
-        assign has_maternity_tag = true
-      endif
-    endfor
+    endif
+  endfor
+
+  if expected_category1 == blank
+    if mommy_branch_handles contains current_handle_token
+      assign expected_category1 = 'Mommy and Me'
+    elsif family_branch_handles contains current_handle_token
+      assign expected_category1 = 'Family Matching'
+    elsif daddy_branch_handles contains current_handle_token
+      assign expected_category1 = 'Daddy and Me'
+    elsif couples_branch_handles contains current_handle_token
+      assign expected_category1 = 'Couples'
+    elsif maternity_branch_handles contains current_handle_token
+      assign expected_category1 = 'Maternity'
+    endif
   endif
 
   assign normalized_product_title = product.title | default: '' | downcase
   assign normalized_product_handle = product.handle | default: '' | downcase
 
-  case current_collection_handle
-    when 'mommy-and-me', 'new-matching-outfits', 'popular-mommy-me-1'
-      if product_category1 != 'Mommy and Me'
-        assign product_visible = false
-      elsif normalized_product_title contains 'family matching' or normalized_product_handle contains 'family-matching'
-        assign product_visible = false
-      endif
-    when 'matching-outfits', 'family-matching-outfits', 'new-women-outfits', 'family-sets'
-      if product_category1 != 'Family Matching'
-        assign product_visible = false
-      endif
-    when 'daddy-me', 'daddy-and-me'
+  case expected_category1
+    when 'Mommy and Me'
       if product_category1 != blank
-        if product_category1 != 'Daddy and Me'
+        if product_category1 != expected_category1
+          assign product_visible = false
+        endif
+      elsif has_mommy_and_me_tag == false
+        assign product_visible = false
+      endif
+      if has_family_matching_tag
+        if normalized_product_title contains 'family matching' or normalized_product_handle contains 'family-matching'
+          assign product_visible = false
+        endif
+      endif
+    when 'Family Matching'
+      if product_category1 != blank
+        if product_category1 != expected_category1
+          assign product_visible = false
+        endif
+      elsif has_family_matching_tag == false
+        assign product_visible = false
+      endif
+    when 'Daddy and Me'
+      if product_category1 != blank
+        if product_category1 != expected_category1
           assign product_visible = false
         endif
       elsif has_daddy_and_me_tag == false
         assign product_visible = false
       endif
-    when 'couples'
+    when 'Couples'
       if product_category1 != blank
-        if product_category1 != 'Couples'
+        if product_category1 != expected_category1
           assign product_visible = false
         endif
       elsif has_couples_tag == false
         assign product_visible = false
       endif
-    when 'maternity'
+    when 'Maternity'
       if product_category1 != blank
-        if product_category1 != 'Maternity'
+        if product_category1 != expected_category1
           assign product_visible = false
         endif
       elsif has_maternity_tag == false
