@@ -1,0 +1,193 @@
+{% comment %}
+  Resolves a broad collection-hub bucket so the `All` view can interleave
+  products across pill categories instead of stacking one recently-updated type.
+
+  Accepts:
+  - product: Product object
+  - branch_key: Supported values: mommy, family
+{% endcomment %}
+
+{%- liquid
+  assign current_branch_key = branch_key | default: '' | strip
+  assign bucket_key = 'other'
+
+  assign product_subcategory = product.metafields.custom.subcategory | default: '' | strip
+  assign product_subcategory2 = product.metafields.custom.subcategory2 | default: '' | strip
+  assign product_type = product.metafields.custom.type | default: product.type | default: '' | strip
+  assign normalized_subcategory = product_subcategory | downcase
+  assign normalized_subcategory2 = product_subcategory2 | downcase
+  assign normalized_type = product_type | downcase
+  assign normalized_product_title = product.title | default: '' | downcase
+  assign normalized_product_handle = product.handle | default: '' | downcase
+
+  assign dress_tag_tokens = ',dresses,formal-dresses,maxi-dresses,midi-dresses,mini-dresses,sundresses,jumpsuits,rompers,skirts,mother-daughter-matching-dresses,'
+  assign swimsuit_tag_tokens = ',swimsuits,family-swimsuits,trunks,'
+  assign top_tag_tokens = ',tops,bottoms,leggings,pants,family-tops,matching-couples-t-shirts,daddy-me-t-shirts,daddy-me-shirts,'
+  assign sweater_tag_tokens = ',sweaters,family-sweaters,christmas-sweaters,'
+  assign set_tag_tokens = ',sets,family-sets,matching-family-vacation-outfits,'
+  assign hawaiian_tag_tokens = ',hawaiian,matching-hawaiian-outfits,tropical,'
+
+  assign has_pajamas_tag = false
+  assign has_dresses_tag = false
+  assign has_swimsuits_tag = false
+  assign has_tops_tag = false
+  assign has_sweaters_tag = false
+  assign has_sets_tag = false
+  assign has_hawaiian_tag = false
+
+  for tag in product.tags
+    assign normalized_tag = tag | strip
+    assign normalized_tag_downcase = normalized_tag | downcase
+    assign tag_handle = normalized_tag | handleize
+    assign tag_handle_token = ',' | append: tag_handle | append: ','
+
+    if product_subcategory == blank and normalized_tag_downcase contains 'subcategory:'
+      assign product_subcategory = normalized_tag | split: ':' | last | strip
+      assign normalized_subcategory = product_subcategory | downcase
+    endif
+
+    if product_subcategory2 == blank and normalized_tag_downcase contains 'subcategory2:'
+      assign product_subcategory2 = normalized_tag | split: ':' | last | strip
+      assign normalized_subcategory2 = product_subcategory2 | downcase
+    endif
+
+    if product_type == blank and normalized_tag_downcase contains 'type:'
+      assign product_type = normalized_tag | split: ':' | last | strip
+      assign normalized_type = product_type | downcase
+    endif
+
+    if tag_handle == 'pajamas'
+      assign has_pajamas_tag = true
+    endif
+
+    if dress_tag_tokens contains tag_handle_token
+      assign has_dresses_tag = true
+    endif
+
+    if swimsuit_tag_tokens contains tag_handle_token
+      assign has_swimsuits_tag = true
+    endif
+
+    if top_tag_tokens contains tag_handle_token
+      assign has_tops_tag = true
+    endif
+
+    if sweater_tag_tokens contains tag_handle_token
+      assign has_sweaters_tag = true
+    endif
+
+    if set_tag_tokens contains tag_handle_token
+      assign has_sets_tag = true
+    endif
+
+    if hawaiian_tag_tokens contains tag_handle_token
+      assign has_hawaiian_tag = true
+    endif
+  endfor
+
+  assign is_pajamas = false
+  if has_pajamas_tag
+    assign is_pajamas = true
+  elsif normalized_subcategory contains 'pajama' or normalized_subcategory2 contains 'pajama' or normalized_type contains 'pajama'
+    assign is_pajamas = true
+  elsif normalized_product_title contains 'pajama' or normalized_product_handle contains 'pajama' or normalized_product_handle contains 'pjs'
+    assign is_pajamas = true
+  endif
+
+  assign is_dresses = false
+  if has_dresses_tag
+    assign is_dresses = true
+  elsif normalized_subcategory contains 'dress' or normalized_subcategory contains 'jumpsuit' or normalized_subcategory contains 'romper' or normalized_subcategory contains 'skirt'
+    assign is_dresses = true
+  elsif normalized_subcategory2 contains 'dress' or normalized_subcategory2 contains 'maxi' or normalized_subcategory2 contains 'midi' or normalized_subcategory2 contains 'mini' or normalized_subcategory2 contains 'sundress'
+    assign is_dresses = true
+  elsif normalized_type contains 'dress' or normalized_type contains 'jumpsuit' or normalized_type contains 'romper' or normalized_type contains 'skirt'
+    assign is_dresses = true
+  endif
+
+  assign is_swimsuits = false
+  if has_swimsuits_tag
+    assign is_swimsuits = true
+  elsif normalized_subcategory contains 'swim' or normalized_subcategory2 contains 'swim' or normalized_type contains 'swim'
+    assign is_swimsuits = true
+  elsif normalized_product_title contains 'swimsuit' or normalized_product_handle contains 'swimsuit'
+    assign is_swimsuits = true
+  endif
+
+  assign is_tops = false
+  if has_tops_tag
+    assign is_tops = true
+  elsif normalized_subcategory contains 'top' or normalized_subcategory contains 'bottom' or normalized_subcategory contains 'legging' or normalized_subcategory contains 'pant'
+    assign is_tops = true
+  elsif normalized_subcategory2 contains 'top' or normalized_subcategory2 contains 'bottom' or normalized_subcategory2 contains 'legging' or normalized_subcategory2 contains 'pant'
+    assign is_tops = true
+  elsif normalized_type contains 'shirt' or normalized_type contains 'tee' or normalized_type contains 'top' or normalized_type contains 'bottom' or normalized_type contains 'legging' or normalized_type contains 'pant'
+    assign is_tops = true
+  endif
+
+  assign is_sweaters = false
+  if has_sweaters_tag
+    assign is_sweaters = true
+  elsif normalized_subcategory contains 'sweater' or normalized_subcategory contains 'jacket'
+    assign is_sweaters = true
+  elsif normalized_subcategory2 contains 'sweater' or normalized_subcategory2 contains 'jacket'
+    assign is_sweaters = true
+  elsif normalized_type contains 'sweater' or normalized_type contains 'jacket' or normalized_type contains 'pullover'
+    assign is_sweaters = true
+  endif
+
+  assign is_sets = false
+  if has_sets_tag
+    assign is_sets = true
+  elsif normalized_subcategory contains 'set' or normalized_subcategory2 contains 'set' or normalized_type contains 'set'
+    assign is_sets = true
+  endif
+
+  assign is_hawaiian = false
+  if has_hawaiian_tag
+    assign is_hawaiian = true
+  elsif normalized_subcategory contains 'hawaiian' or normalized_subcategory contains 'tropical'
+    assign is_hawaiian = true
+  elsif normalized_subcategory2 contains 'hawaiian' or normalized_subcategory2 contains 'tropical'
+    assign is_hawaiian = true
+  elsif normalized_type contains 'hawaiian' or normalized_type contains 'tropical'
+    assign is_hawaiian = true
+  elsif normalized_product_title contains 'hawaiian' or normalized_product_title contains 'tropical'
+    assign is_hawaiian = true
+  elsif normalized_product_handle contains 'hawaiian' or normalized_product_handle contains 'tropical'
+    assign is_hawaiian = true
+  endif
+
+  case current_branch_key
+    when 'mommy'
+      if is_pajamas
+        assign bucket_key = 'pajamas'
+      elsif is_dresses
+        assign bucket_key = 'dresses'
+      elsif is_swimsuits
+        assign bucket_key = 'swimsuits'
+      elsif is_tops
+        assign bucket_key = 'tops'
+      elsif is_sweaters
+        assign bucket_key = 'sweaters'
+      endif
+    when 'family'
+      if is_pajamas
+        assign bucket_key = 'pajamas'
+      elsif is_dresses
+        assign bucket_key = 'dresses'
+      elsif is_swimsuits
+        assign bucket_key = 'swimsuits'
+      elsif is_sets
+        assign bucket_key = 'sets'
+      elsif is_tops
+        assign bucket_key = 'tops'
+      elsif is_sweaters
+        assign bucket_key = 'sweaters'
+      elsif is_hawaiian
+        assign bucket_key = 'hawaiian'
+      endif
+  endcase
+
+  echo bucket_key
+-%}
