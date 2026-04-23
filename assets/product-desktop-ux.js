@@ -927,13 +927,14 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   var productSection = sectionId ? document.getElementById('MainProduct-' + sectionId) : null;
   var sizeGuideRoot = productSection || wrapper.closest('[id^="MainProduct-"]') || wrapper;
   var descriptionRoot = (sizeGuideRoot && sizeGuideRoot.querySelector('[data-product-description]')) || document.querySelector('[data-product-description]');
+  var variantSelects = sectionId ? document.getElementById('variant-selects-' + sectionId) : null;
   var imagePresetGuide = descriptionRoot ? getImageBasedSizeGuidePreset(descriptionRoot) : null;
   var snapshot = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide-snapshot]') : null;
   var details = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide]') : null;
   var content = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide-content]') : null;
   var summary = details ? details.querySelector('summary') : null;
   var sizeSelect = findSizeGuideSelect(sizeGuideRoot);
-  var sizeTable = getSizeGuideTable(sizeGuideRoot, sizeSelect);
+  var sizeTable = getSizeGuideTable(sizeGuideRoot, sizeSelect, getSelectedGuideTypeValue());
   if (!snapshot || !details || !content || !sizeTable) return;
 
   var parsed = parseSizeGuideTable(sizeTable);
@@ -948,6 +949,17 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   var unitToggleLabel = wrapper.getAttribute('data-size-guide-unit-toggle-label') || 'Size chart units';
   var groups = buildSizeGuideGroups(parsed);
   var selectedUnitSystem = getStoredSizeGuideUnitSystem() || 'metric';
+
+  function getSelectedGuideTypeValue() {
+    var optionContext = getCurrentOptionContext(variantSelects);
+    var optionNames = Object.keys(optionContext);
+
+    for (var index = 0; index < optionNames.length; index += 1) {
+      if (isTypeLikeLabel(optionNames[index])) return optionContext[optionNames[index]];
+    }
+
+    return '';
+  }
 
   function getStoredSizeGuideUnitSystem() {
     try {
@@ -1276,12 +1288,63 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     hideImageBasedSizeGuideMedia(sourceRoot, preset);
   }
 
-  function getSizeGuideTable(root, select) {
-    var existingTable = document.querySelector('table#size-chart, table[id*="size-chart"]');
+  function getSizeGuideTableContextText(table) {
+    if (!table) return '';
 
+    var context = [];
+    if (table.id) context.push(table.id);
+
+    var previous = table.previousElementSibling;
+    while (previous) {
+      if (/^H[1-6]$/i.test(previous.tagName)) {
+        context.push(cellText(previous));
+        break;
+      }
+      if (/^TABLE$/i.test(previous.tagName)) break;
+      previous = previous.previousElementSibling;
+    }
+
+    var headerRow = table.querySelector('thead tr');
+    if (headerRow) context.push(cellText(headerRow));
+
+    return normalizeText(context.join(' '));
+  }
+
+  function tableMatchesSelectedType(table, selectedTypeValue) {
+    var normalizedType = normalizeText(selectedTypeValue);
+    if (!normalizedType) return false;
+
+    var context = getSizeGuideTableContextText(table);
+    if (!context) return false;
+    if (context.indexOf(normalizedType) !== -1) return true;
+
+    return normalizedType
+      .split(/\s+/)
+      .filter(function (token) {
+        return token && token.length > 2;
+      })
+      .some(function (token) {
+        return context.indexOf(token) !== -1;
+      });
+  }
+
+  function getSizeGuideTable(root, select, selectedTypeValue) {
     var descriptionRoot = (root && root.querySelector('[data-product-description]')) || document.querySelector('[data-product-description]');
+    var existingTables = descriptionRoot
+      ? Array.from(descriptionRoot.querySelectorAll('table#size-chart, table[id*="size-chart"]'))
+      : [];
     var fallbackGuide = null;
     var imagePresetGuide = descriptionRoot ? getImageBasedSizeGuidePreset(descriptionRoot) : null;
+
+    if (existingTables.length > 1) {
+      return (
+        existingTables.find(function (table) {
+          return tableMatchesSelectedType(table, selectedTypeValue);
+        }) || existingTables[0]
+      );
+    }
+
+    var existingTable = existingTables[0] || document.querySelector('table#size-chart, table[id*="size-chart"]');
 
     if (descriptionRoot) {
       var lines = extractGuideLines(descriptionRoot);
@@ -2109,6 +2172,14 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   }
 
   function renderGuide() {
+    sizeTable = getSizeGuideTable(sizeGuideRoot, sizeSelect, getSelectedGuideTypeValue());
+    if (!sizeTable) return;
+
+    parsed = parseSizeGuideTable(sizeTable);
+    if (!parsed) return;
+
+    groups = buildSizeGuideGroups(parsed);
+
     var selectedState = getSelectedSizeState();
     var selectedMatch = getSelectedGuideMatch(selectedState);
     var guideSummaryLabel = groups.length > 1 ? groupedLabel : compareLabel;
@@ -2147,6 +2218,12 @@ function initMatchingSizeGuide(wrapper, sectionId) {
 
   if (sizeSelect) {
     sizeSelect.addEventListener('change', function () {
+      renderGuide();
+    });
+  }
+
+  if (variantSelects) {
+    variantSelects.addEventListener('change', function () {
       renderGuide();
     });
   }
