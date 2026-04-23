@@ -106,7 +106,7 @@
   {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
   {% assign current_breadcrumb_label = 'Family Matching Pajamas' %}
 {% elsif current_collection_handle == 'mother-daughter-matching-dresses' %}
-  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_mommy_me' | t %}
   {% assign current_breadcrumb_label = 'Dresses' %}
 {% elsif current_collection_handle == 'family-sets' %}
   {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
@@ -153,12 +153,12 @@
     {% assign current_tag_handle_tokens = current_tag_handle_tokens | append: current_tag_handle | append: ',' %}
   {% endfor %}
 {% endif %}
-{% capture mommy_branch_handles %},mommy-and-me,pajamas,dresses,swimsuits,tops,sweaters,bottoms,leggings,pants,formal-dresses,maxi-dresses,midi-dresses,mini-dresses,sundresses,jumpsuits,rompers,{% endcapture %}
-{% capture mommy_dresses_alias_handles %},dresses,formal-dresses,maxi-dresses,midi-dresses,mini-dresses,sundresses,jumpsuits,rompers,{% endcapture %}
+{% capture mommy_branch_handles %},mommy-and-me,pajamas,dresses,mother-daughter-matching-dresses,swimsuits,tops,sweaters,bottoms,leggings,pants,formal-dresses,maxi-dresses,midi-dresses,mini-dresses,sundresses,jumpsuits,rompers,{% endcapture %}
+{% capture mommy_dresses_alias_handles %},dresses,mother-daughter-matching-dresses,formal-dresses,maxi-dresses,midi-dresses,mini-dresses,sundresses,jumpsuits,rompers,{% endcapture %}
 {% capture mommy_swimsuits_alias_handles %},swimsuits,{% endcapture %}
 {% capture mommy_tops_alias_handles %},tops,bottoms,leggings,pants,{% endcapture %}
 {% capture mommy_sweaters_alias_handles %},sweaters,{% endcapture %}
-{% capture family_branch_handles %},matching-outfits,family-matching-outfits,new-women-outfits,family-pajamas,mother-daughter-matching-dresses,family-swimsuits,family-sets,matching-family-vacation-outfits,matching-hawaiian-outfits,family-tops,family-sweaters,{% endcapture %}
+{% capture family_branch_handles %},matching-outfits,family-matching-outfits,new-women-outfits,family-pajamas,family-swimsuits,family-sets,matching-family-vacation-outfits,matching-hawaiian-outfits,family-tops,family-sweaters,{% endcapture %}
 {% capture family_hub_alias_handle_tokens %},matching-outfits,family-matching-outfits,new-women-outfits,{% endcapture %}
 {% capture family_vacation_alias_handle_tokens %},family-sets,matching-family-vacation-outfits,{% endcapture %}
 
@@ -196,7 +196,7 @@
   {% when 'family' %}
     {% assign branch_row_label = 'Within Family Matching' %}
     {% capture family_priority_pills %}
-      {{ family_matching_hub_handle }}::All::|||family-pajamas::Pajamas::pajamas|||mother-daughter-matching-dresses::Dresses::dresses|||family-swimsuits::Swimsuits::swimsuits|||family-sets::Sets::sets|||matching-hawaiian-outfits::Hawaiian & Tropical::hawaiian|||family-tops::Tops::tops|||family-sweaters::Sweaters::sweaters
+      {{ family_matching_hub_handle }}::All::|||family-swimsuits::Swimsuits::swimsuits|||family-sets::Sets::sets|||family-tops::Tops::tops|||family-sweaters::Sweaters::sweaters|||family-pajamas::Pajamas::pajamas
     {% endcapture %}
     {% assign branch_pill_list = family_priority_pills | split: '|||' %}
   {% when 'daddy' %}
@@ -420,7 +420,7 @@
                           {% assign item_is_current = true %}
                         {% endif %}
                       {% when 'family-sets' %}
-                        {% if current_collection_handle == 'family-sets' or current_collection_handle == 'matching-family-vacation-outfits' or current_tag_handle_tokens contains ',sets,' %}
+                        {% if current_collection_handle == 'family-sets' or current_collection_handle == 'matching-family-vacation-outfits' or current_collection_handle == 'matching-hawaiian-outfits' or current_tag_handle_tokens contains ',sets,' %}
                           {% assign item_is_current = true %}
                         {% endif %}
                       {% when 'matching-hawaiian-outfits' %}

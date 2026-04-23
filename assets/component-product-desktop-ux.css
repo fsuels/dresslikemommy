@@ -439,9 +439,16 @@
   .product-matching-set__button {
     min-width: 20rem;
     min-height: 5rem;
+    padding: 0 2.4rem;
+    border: 0;
     border-radius: 999px;
     background: #101418;
     color: #ffffff;
+  }
+
+  .product-matching-set__button::before,
+  .product-matching-set__button::after {
+    content: none;
   }
 
   .product-matching-set__button[disabled] {

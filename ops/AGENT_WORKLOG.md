@@ -238,6 +238,28 @@ Deferred / risk
 - I did not change `layout/theme.liquid`, so canonical tag handling remains on the existing shared theme path.
 - The repository already has unrelated modified files in the worktree; I left them untouched.
 
+Session: Pajama search shortcuts + nav telemetry
+Date: 2026-04-22
+AGENT_CONTINUITY_ANCHOR: 2026-04-22-pajama-search-nav-telemetry
+
+Changes applied (evidence-first)
+- `assets/search-form.js` - Added shared smart-search helpers and a submit-time pajama shortcut that sends pajama synonym queries to the canonical pajama collection URL when present on the form.
+- `assets/predictive-search.js` - Removed the duplicate submit listener so the inherited smart-search submit path is the single source of truth for predictive search forms.
+- `sections/predictive-search.liquid` - Added a server-rendered pajama collection shortcut at the top of predictive search results for queries containing pajama/pjs synonyms, and updated the result-count/live-region logic to include that shortcut.
+- `snippets/header-search.liquid`, `snippets/visible-header-search.liquid`, `sections/main-search.liquid` - Added `data-pajama-collection-url` to search forms so the smart-submit helper can resolve the canonical pajama destination consistently.
+- `snippets/header-search.liquid` - Extended the mobile search empty-state shortcuts with a `Pajamas` target and synonym keywords so mobile search reroutes the same pajama intents even when predictive results are not present.
+- `assets/analytics.js` - Added non-PII navigation telemetry for homepage card clicks, collection pill clicks, header/menu clicks, and collection-grid product clicks using the existing `window.dataLayer` push pattern.
+
+Verification
+- `node --check assets/analytics.js`
+- `node --check assets/predictive-search.js`
+- `node --check assets/search-form.js`
+- `git diff --check`
+
+Residual risk
+- I did not browser-test the new predictive-search shortcut or the new nav events in a live theme preview, so the final UX and event labels should be spot-checked once in Shopify/GTM preview.
+- If the store ever changes its canonical pajama hub away from `/collections/pajamas`, the new `data-pajama-collection-url` attrs and shortcut logic should be updated together.
+
 Validation snapshot
 - Input validated: `products_export_1 2_IMPORT_READY.csv` (no overwrite performed).
 - Target handles: `588` active handles.
@@ -15193,6 +15215,47 @@ Notes:
 - No theme code or Shopify settings were changed in this step; this was asset generation and review only.
 - If this concept gets applied later, the current `hero-banner` section should be able to use it without structural changes, though final on-store readability should still be checked against the live overlay and text-shadow settings.
 
+2026-04-22 — Live homepage hero image swap to new family boardwalk creative
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Replaced the live homepage hero image assets used by `sections/hero-banner.liquid`:
+  - `assets/hero-desktop.jpg`
+  - `assets/hero-mobile.jpg`
+- Built the replacements from the selected concept:
+  - source concept: `ops/hero-concepts/2026-04-homepage-hero/homepage-hero-primary-coral-boardwalk-v2.png`
+  - source mobile crop: `ops/hero-concepts/2026-04-homepage-hero/homepage-hero-primary-coral-boardwalk-v2-mobile-crop.png`
+- Generated optimized live-sized JPEGs before upload:
+  - desktop: `2400x1000`
+  - mobile: `1200x1600`
+- Uploaded both assets to the published main theme through Shopify Admin REST asset updates on theme id `133290917985`.
+
+Local artifacts:
+- Pre-upload backups:
+  - `ops/tmp/hero-live-rollout/hero-desktop.before.jpg`
+  - `ops/tmp/hero-live-rollout/hero-mobile.before.jpg`
+- Final generated upload files:
+  - `ops/tmp/hero-live-rollout/hero-desktop.new.jpg`
+  - `ops/tmp/hero-live-rollout/hero-mobile.new.jpg`
+- Fresh rendered verification captures:
+  - `ops/tmp/home-desktop-live-updated.png`
+  - `ops/tmp/home-mobile-live-updated.png`
+
+Browser verification:
+- Browser MCP verification confirmed the live homepage swapped to the new cache-busted hero assets:
+  - desktop loaded `/cdn/shop/t/100/assets/hero-desktop.jpg?v=...1776867137`
+  - mobile loaded `/cdn/shop/t/100/assets/hero-mobile.jpg?v=...1776867138`
+- Browser MCP responsive checks confirmed:
+  - desktop viewport `1400x1200` using the desktop asset with `object-position: 58% 50%`
+  - mobile viewport `390x844` using the mobile asset with `object-position: 50% 34%`
+- Additional rendered screenshots confirmed the final composition:
+  - desktop keeps clear headline space on the left with the family grouped on the right
+  - mobile preserves the mother/daughter emotional focus above the CTA card
+
+Outcome:
+- The homepage hero now feels more premium, more store-specific, and more conversion-oriented than the previous softer stock-like image.
+- The new creative still supports the current homepage copy and CTA overlay without requiring section-code changes.
+
 2026-04-22 — Localized PDP shared-copy fix and translation cleanup layer
 AGENT_CONTINUITY_ANCHOR
 
@@ -15322,3 +15385,1153 @@ Verification:
 
 Notes:
 - Local `shopify theme dev` preview was not usable for final QA because unrelated locale JSON files in the current worktree trigger Shopify upload errors (`Failed to Upload Theme Files`), so final confirmation was done against the live storefront after the targeted asset push.
+
+2026-04-22 — Follow-up mobile QA on newest live pajama listings
+
+What changed:
+- No theme-code changes in this pass; this was a live storefront monitoring check on the newest products created after the original PDP card-wrap fix.
+
+Verification:
+- Queried the live storefront product feed and identified the newest listings created on 2026-04-21, then captured fresh iPhone 12 full-page screenshots for:
+  - `peter-rabbit-gauze-mommy-and-me-pajamas`
+  - `red-panda-mommy-and-me-pajamas`
+- Visual QA on both live product pages confirmed the `Why You'll Love It` card bullets are still wrapping as normal full-width text blocks on mobile, with no regression back to the narrow split label/body layout.
+
+Notes:
+- Combined with the earlier live checks for `meow-star-garden-mommy-and-me-pajamas`, `ladybug-dots-mommy-and-me-pajamas`, and `fluttering-butterflies-mommy-and-me-pajamas`, the fix has now been spot-checked successfully across five recent pajama PDPs on the public storefront.
+
+2026-04-22 — Smarter collection pills + pajama discovery hardening live deploy
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Reworked `snippets/collection-breadcrumbs.liquid` into a two-row, priority-based navigation system:
+  - top row: `Mommy & Me`, `Family Matching`, `Daddy & Me`, `Couples`, `Maternity`
+  - second row varies by branch, with `Mommy & Me` ordered as `All`, `Pajamas`, `Dresses`, `Swimsuits`, `Tops`, `Sweaters`
+- Added a direct shopper fail-safe in `sections/main-collection-product-grid.liquid` so direct visits to `/collections/family-pajamas` immediately redirect to `/collections/pajamas` when the shopper-visible collection is empty.
+- Updated `sections/category-icons.liquid` so homepage collection promotion skips thin collections with fewer than 10 products instead of featuring them as primary browse options.
+- Updated `templates/index.json` so the homepage now:
+  - keeps direct entry points to `Mommy & Me` and `Pajamas`
+  - replaces a lower-priority spotlight card with a temporary `New Pajama Drop` card for `ladybug-dots-mommy-and-me-pajamas`
+  - refreshes the curated-grid intro copy to mention the new pajama arrivals
+- Updated `snippets/style-journal-internal-links.liquid` so internal editorial links stop sending traffic to `family-pajamas` and use the live pajamas collection instead.
+- Applied Shopify Admin GraphQL `menuUpdate` to the live `Main menu` (`gid://shopify/Menu/131032517`) so `FAMILY MATCHING > Pajamas` now points to `/collections/pajamas` (`gid://shopify/Collection/240129605`) instead of `/collections/family-pajamas`.
+
+Why:
+- Shoppers were effectively forced into a weak discovery path (`homepage -> another collection -> pajamas pill`) to reach the newly added pajama listings.
+- The live `FAMILY MATCHING > Pajamas` menu item still pointed to a shopper-empty collection, which created a dead end from primary navigation.
+- The old pill logic reflected collection mechanics more than the business priority order of the main selling branches.
+
+Deployment:
+- Uploaded to preview theme `134593970273` first, then uploaded to the live main theme `133290917985`:
+  - `templates/index.json`
+  - `sections/main-collection-product-grid.liquid`
+  - `sections/category-icons.liquid`
+  - `snippets/style-journal-internal-links.liquid`
+  - `snippets/collection-breadcrumbs.liquid`
+  - `assets/template-collection.css`
+- The earlier smart family-link resolver updates in `snippets/header-drawer.liquid`, `snippets/header-mega-menu.liquid`, and `snippets/header-mega-menu-feature-card.liquid` were already live before this pass, so this deployment builds on that routing layer instead of replacing it.
+
+Verification:
+- Passed `git diff --check -- templates/index.json sections/main-collection-product-grid.liquid sections/category-icons.liquid snippets/style-journal-internal-links.liquid snippets/collection-breadcrumbs.liquid assets/template-collection.css`
+- Passed `tail -n +10 templates/index.json | jq empty`
+- Preview verification confirmed:
+  - `/collections/family-pajamas?preview_theme_id=134593970273` contains the redirect script and `<noscript>` refresh to `/collections/pajamas`
+  - the preview homepage sections render the pajama spotlight and direct `Mommy & Me` / `Pajamas` links
+  - the preview family collection pages render the new pill structure with a pajama pill that links to `/collections/pajamas`
+- Live verification confirmed:
+  - Admin GraphQL now returns the live menu child item `Pajamas` with `url: "/collections/pajamas"` and `resourceId: "gid://shopify/Collection/240129605"`
+  - `/collections/family-pajamas` now renders the new two-row nav plus the redirect fallback to `/collections/pajamas`
+  - cache-busted collection responses such as `/collections/family-swimsuits?sort_by=best-selling` render the new two-row pill system and include the `/collections/pajamas` destination
+  - homepage section rendering endpoints serve the new pajama spotlight and homepage browse links
+
+Notes:
+- Shopify is still serving a stale cached full homepage HTML response at `/` even though the live `templates/index.json` asset and section-rendering endpoints already reflect the new pajama spotlight content. The deployed homepage sections are correct; the root page cache may take time to roll over.
+
+2026-04-22 — Collection UX lane: empty-collection recovery + hub subcategory cards
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Generalized `sections/main-collection-product-grid.liquid` so only truly empty collections (`all_products_count == 0`) use the recovery route, while filter-zero states keep the standard "use fewer filters" message.
+- Added empty-collection routing for the main empty branches:
+  - `family-pajamas` -> live `/collections/pajamas`
+  - empty Family Matching branches -> Family Matching hub
+  - empty Mommy & Me branches -> Mommy & Me hub
+  - empty `matching-outfits` / `family-matching-outfits` / `new-women-outfits` -> Mommy & Me hub
+  - empty `mommy-and-me` -> live `/collections/pajamas`
+- Reworked `snippets/collection-empty-recovery.liquid` into a reusable recovery panel with a redirect script when a better live target exists and strong fallback buttons for the sibling hubs.
+- Added `snippets/collection-hub-subcategory-cards.liquid` and rendered it from `sections/main-collection-banner.liquid` so the Mommy & Me and Family Matching hubs now show quick image cards for Pajamas, Dresses, Swimsuits, Tops, and Sweaters near the top of the page.
+- Extended `assets/template-collection.css` with Dawn-consistent styling for the empty-collection panel and the new hub card grid.
+
+Why:
+- The collection lane had a real dead-end risk for empty shopper-facing collections, especially family pajama routing and thin hub pages.
+- The hub cards give shoppers immediate, scannable category jumps without replacing the existing collection breadcrumb/nav system.
+
+Verification:
+- Passed `git diff --check -- sections/main-collection-product-grid.liquid sections/main-collection-banner.liquid assets/template-collection.css snippets/collection-empty-recovery.liquid snippets/collection-hub-subcategory-cards.liquid ops/AGENT_WORKLOG.md`
+- Ran `shopify theme check --path . --fail-level warning --output json | jq -c '.[] | select(.path | test("sections/main-collection-product-grid.liquid|sections/main-collection-banner.liquid|assets/template-collection.css|snippets/collection-empty-recovery.liquid|snippets/collection-hub-subcategory-cards.liquid"))'`
+- The filtered theme-check pass returned no offenses for the touched collection files.
+
+Assumptions / note:
+- I treated the broad hub pages as the top of the browse tree and only redirected them when a stronger live target exists; the hub cards still cover the empty-state recovery path if a hub ever goes thin.
+
+2026-04-22 — Pajama campaign + search synonym + analytics rollout live deploy
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Created a dedicated live campaign collection through Shopify Admin GraphQL:
+  - title: `New Pajama Drop`
+  - handle: `new-pajama-drop`
+  - collection id: `gid://shopify/Collection/355463725153`
+  - Online Store publication confirmed via `publishedOnPublication(publicationId: "gid://shopify/Publication/55169925") == true`
+  - product count confirmed at `19`
+- Wired the pajama campaign through the theme:
+  - homepage hero secondary CTA now points to `/collections/new-pajama-drop`
+  - homepage pajama spotlight card now links its supporting collection CTA to `new-pajama-drop`
+  - collection callouts on `mommy-and-me`, `matching-outfits` / `family-matching-outfits` / `new-women-outfits`, `pajamas`, and `new-pajama-drop` now feature the campaign link
+  - pajama PDPs now render stronger internal links for:
+    - `Shop all Mommy & Me Pajamas`
+    - `Shop Family Matching`
+    - `Shop the New Pajama Drop`
+- Added smarter pajama search handling:
+  - exact broad-intent synonym searches such as `matching pjs`, `family pajamas`, `mommy and me pajamas`, and `mother daughter pajamas` now route to the canonical `/collections/pajamas` destination on submit
+  - predictive search now injects a `Shop Pajamas` shortcut for pajama-intent queries and normalizes any `family-pajamas` collection result link back to `/collections/pajamas`
+  - header and search-page forms now expose `data-pajama-collection-url` so the redirect target stays theme-driven
+- Added navigation analytics on top of the existing ecommerce events:
+  - `homepage_card_click`
+  - `collection_pill_click`
+  - `menu_click`
+  - `collection_product_click`
+- Added `data-homepage-collection-card` to the homepage category-icon cards so those clicks are included in the new homepage-card tracking.
+
+Deployment:
+- Uploaded the touched file set to preview theme `134593970273`, then uploaded the same files to the live main theme `133290917985` using the Shopify Admin Asset API because the shell still does not have an authenticated Shopify CLI session.
+- Live-uploaded theme files:
+  - `assets/analytics.js`
+  - `assets/predictive-search.js`
+  - `assets/search-form.js`
+  - `assets/template-collection.css`
+  - `sections/category-icons.liquid`
+  - `sections/main-collection-banner.liquid`
+  - `sections/main-collection-product-grid.liquid`
+  - `sections/main-search.liquid`
+  - `sections/predictive-search.liquid`
+  - `snippets/collection-breadcrumbs.liquid`
+  - `snippets/collection-empty-recovery.liquid`
+  - `snippets/collection-hub-subcategory-cards.liquid`
+  - `snippets/collection-merchandising-callout.liquid`
+  - `snippets/header-search.liquid`
+  - `snippets/product-internal-links.liquid`
+  - `snippets/style-journal-internal-links.liquid`
+  - `snippets/visible-header-search.liquid`
+  - `templates/index.json`
+
+Verification:
+- Passed:
+  - `node --check assets/analytics.js`
+  - `node --check assets/predictive-search.js`
+  - `node --check assets/search-form.js`
+  - `tail -n +10 templates/index.json | jq empty`
+  - `git diff --check -- assets/analytics.js assets/predictive-search.js assets/search-form.js assets/template-collection.css sections/category-icons.liquid sections/main-collection-banner.liquid sections/main-collection-product-grid.liquid sections/main-search.liquid sections/predictive-search.liquid snippets/collection-breadcrumbs.liquid snippets/collection-empty-recovery.liquid snippets/collection-hub-subcategory-cards.liquid snippets/collection-merchandising-callout.liquid snippets/header-search.liquid snippets/product-internal-links.liquid snippets/style-journal-internal-links.liquid snippets/visible-header-search.liquid templates/index.json`
+- Filtered `shopify theme check --path . --fail-level warning --output json` only surfaced low-signal / preexisting warnings in `sections/main-search.liquid` (`product_settings` unused) and `snippets/collection-breadcrumbs.liquid` (unused assigns); no deploy-blocking offenses were returned for the new files.
+- Live storefront verification confirmed:
+  - `/collections/mommy-and-me?sort_by=best-selling` now renders the quick subcategory cards plus the `See the new pajama drop first` campaign callout with `/collections/new-pajama-drop`
+  - `/collections/matching-outfits?sort_by=best-selling` now renders the quick subcategory cards plus the `Point shoppers to the pajama launch` callout
+  - `/collections/family-pajamas?sort_by=best-selling` now renders the empty-collection recovery UI with `Shop Pajamas`, `Browse Family Matching`, and `Browse Mommy & Me`
+  - `/products/ladybug-dots-mommy-and-me-pajamas` now renders the three pajama/family campaign cross-links under the description
+  - `/search/suggest?...section_id=predictive-search` for `matching pjs` now contains the `Shop Pajamas` shortcut with `data-search-shortcut="pajamas"`
+  - `/collections/new-pajama-drop` is live with the new title/SEO and product list, including `meow-star-garden-mommy-and-me-pajamas`
+- Live theme asset reads through the Admin API also confirmed the deployed source for:
+  - `templates/index.json`
+  - `assets/analytics.js`
+  - `assets/search-form.js`
+  - `sections/predictive-search.liquid`
+
+Notes:
+- Public homepage HTML at `/` can still lag behind the live `templates/index.json` asset because of Shopify page caching. The live theme asset is correct; if the homepage does not immediately show the new pajama campaign CTA, treat that as storefront cache lag rather than a missed deploy.
+- Unrelated local worktree changes remain in `assets/hero-desktop.jpg` and `assets/hero-mobile.jpg`; they were intentionally not part of this deploy.
+
+2026-04-22 — Product-first collection entry fix for top-nav hubs
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Updated `sections/main-collection-banner.liquid` so the broad top-nav hub collections no longer render the image-heavy `collection-hub-subcategory-cards` or `collection-merchandising-callout` blocks above the product grid for:
+  - `mommy-and-me`
+  - `matching-outfits`
+  - `family-matching-outfits`
+  - `new-women-outfits`
+- Updated `snippets/header-mega-menu.liquid` so desktop `FAMILY MATCHING` is now a direct link to the canonical family hub (`/collections/matching-outfits`) instead of an expandable image-heavy mega menu entry.
+- Updated `snippets/header-drawer.liquid` so the mobile drawer uses the same direct-link behavior for `FAMILY MATCHING`.
+
+Why:
+- Live browser inspection showed the shopper complaint was valid: `/collections/mommy-and-me` and `/collections/matching-outfits` were pushing products below large image cards and promo blocks, and the desktop header rendered `FAMILY MATCHING` as a button instead of a collection link.
+- The existing in-grid collection tabs already provide a cleaner way to branch into subcategories without blocking access to products.
+
+Deployment:
+- Uploaded the three touched files to preview theme `134593970273` first, then uploaded the same files to the live main theme `133290917985` through Shopify Admin REST asset updates using the operator-managed credentials loaded from `~/.config/dresslikemommy/shopify-admin.env`.
+- Live-uploaded theme files:
+  - `sections/main-collection-banner.liquid`
+  - `snippets/header-mega-menu.liquid`
+  - `snippets/header-drawer.liquid`
+
+Verification:
+- Passed `git diff --check -- sections/main-collection-banner.liquid snippets/header-mega-menu.liquid snippets/header-drawer.liquid`
+- Filtered `shopify theme check --path . --fail-level warning --output json` to the three touched files and got no offenses.
+- Browser preview verification confirmed:
+  - preview `Mommy & Me` now shows the heading/description followed immediately by breadcrumbs, collection tabs, filters, and products
+  - preview `Family Matching` now shows the same product-first structure
+  - preview header now renders `FAMILY MATCHING` as a direct link
+- Live storefront verification confirmed:
+  - public `/collections/mommy-and-me` no longer returns `Quick categories`, `collection-hub-subcategory-cards`, `collection-merchandising-callout`, or the pajama callout copy in the HTML
+  - public `/collections/matching-outfits` no longer returns the quick-category grid or pajama-launch callout in the HTML
+  - public collection HTML now renders `id="HeaderMenu-family-matching"` with `href="/collections/matching-outfits"`
+  - public drawer HTML now renders `id="HeaderDrawer-family-matching"` with `href="/collections/matching-outfits"`
+
+Notes:
+- I left the underlying quick-category and callout snippets in the repo because they may still be useful on narrower collections later; this pass only removed them from the broad top-nav landing collections where they were hurting first-impression UX.
+
+2026-04-22 — Smart nav filtering for empty collection links
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Added shared nav visibility helpers:
+  - `snippets/nav-link-destination-visible.liquid`
+  - `snippets/nav-link-visible.liquid`
+  - `snippets/nav-link-visible-child-count.liquid`
+- Updated `snippets/header-dropdown-menu.liquid`, `snippets/header-mega-menu.liquid`, and `snippets/header-drawer.liquid` to use those helpers so the header only renders links whose destination is shopper-usable.
+- Empty collection destinations are now skipped automatically in header navigation, including manual `/collections/...` links when the collection exists but has `0` products.
+- Parent menu items now stay visible only when they still have at least one visible descendant; when a parent collection is empty but its child collections are valid, the nav keeps the grouping UI without leaving a clickable empty destination behind.
+- Hardened the special `Family Matching` header override so it only stays a direct link when the canonical family hub collection actually has products; otherwise the menu falls back to child navigation instead of pointing shoppers at an empty hub.
+
+Why:
+- A shopper-facing empty collection such as `maternity` should not remain in the primary navigation and create a dead-end from the header.
+- The previous menu rendering trusted raw Shopify menu links, which meant thin or empty collections could still surface in desktop and mobile navigation even after catalog changes.
+
+Verification:
+- Passed `git diff --check -- snippets/header-dropdown-menu.liquid snippets/header-mega-menu.liquid snippets/header-drawer.liquid snippets/nav-link-destination-visible.liquid snippets/nav-link-visible.liquid snippets/nav-link-visible-child-count.liquid`
+- Ran `shopify theme check --path . --fail-level warning --output json | jq -c '.[] | select(.path == "snippets/header-dropdown-menu.liquid" or .path == "snippets/header-mega-menu.liquid" or .path == "snippets/header-drawer.liquid" or .path == "snippets/nav-link-destination-visible.liquid" or .path == "snippets/nav-link-visible.liquid" or .path == "snippets/nav-link-visible-child-count.liquid")'`
+- The filtered Theme Check pass returned no offenses for the touched nav snippets.
+- A repo-wide `shopify theme check --path .` still reports many pre-existing locale/layout issues outside this change set.
+
+Notes:
+- This pass was local code hardening only; I did not deploy to Shopify or browser-test the updated navigation in a live theme preview from this shell.
+
+2026-04-22 — Preview push and verification for smart empty-collection nav filtering
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Fixed two Liquid edge cases in the new nav filtering helpers before preview verification:
+  - `snippets/nav-link-destination-visible.liquid` now falls back to handles parsed from `/collections/...` and `/products/...` URLs when Shopify menu links do not populate `link.object`.
+  - `snippets/nav-link-visible.liquid` and `snippets/nav-link-visible-child-count.liquid` now strip captured render output before comparing `true` / counting visible descendants, preventing whitespace from collapsing the whole menu.
+- Pushed the nav snippet set to both available preview targets for validation:
+  - development theme `134593970273`
+  - unpublished copy theme `133416255585`
+
+Files pushed:
+- `snippets/header-dropdown-menu.liquid`
+- `snippets/header-mega-menu.liquid`
+- `snippets/header-drawer.liquid`
+- `snippets/nav-link-destination-visible.liquid`
+- `snippets/nav-link-visible.liquid`
+- `snippets/nav-link-visible-child-count.liquid`
+
+Preview verification:
+- `shopify theme push --theme 134593970273 ...` succeeded.
+- `shopify theme push --theme 133416255585 ...` succeeded.
+- Cookie-backed preview requests confirmed both preview storefront renders were using the intended themes:
+  - homepage `server-timing ... theme;desc="134593970273"`
+  - maternity collection `server-timing ... theme;desc="134593970273"`
+  - homepage `server-timing ... theme;desc="133416255585"`
+  - maternity collection `server-timing ... theme;desc="133416255585"`
+- On both preview themes, `/collections/maternity` currently renders the shopper empty-state recovery UI (`This collection is empty right now`) rather than live product cards.
+- In both preview theme homepage HTML responses, the only remaining `maternity` reference inside the header block was the separate mobile search shortcut link from `snippets/header-search.liquid`.
+- I did not find `HeaderMenu-maternity` or `HeaderDrawer-maternity` in either preview-theme homepage response.
+
+Important note:
+- Both preview theme homepage responses also rendered the header menu lists as empty overall in this shell/session, even though the live main theme still renders the normal `HeaderMenu-*` and `HeaderDrawer-*` IDs. Because of that preview-session discrepancy, the strongest direct proof from preview was:
+  - the shopper-facing `maternity` collection is empty on preview,
+  - `maternity` is not rendered as a `HeaderMenu-*` or `HeaderDrawer-*` nav item in those preview responses,
+  - the only remaining `maternity` hit there is the separate mobile search shortcut.
+
+Verification commands:
+- `git diff --check -- snippets/header-dropdown-menu.liquid snippets/header-mega-menu.liquid snippets/header-drawer.liquid snippets/nav-link-destination-visible.liquid snippets/nav-link-visible.liquid snippets/nav-link-visible-child-count.liquid`
+- `shopify theme check --path . --fail-level warning --output json | jq -c '.[] | select(.path == "snippets/header-dropdown-menu.liquid" or .path == "snippets/header-mega-menu.liquid" or .path == "snippets/header-drawer.liquid" or .path == "snippets/nav-link-destination-visible.liquid" or .path == "snippets/nav-link-visible.liquid" or .path == "snippets/nav-link-visible-child-count.liquid")'`
+
+Notes:
+- I did not push this nav change to the live main theme in this pass.
+
+2026-04-22 — Live desktop/mobile spot-check after preview and HTML verification
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- No theme code changed in this pass.
+- Performed one clean-context live desktop browse and one mobile Safari-emulated browse against `https://www.dresslikemommy.com/`.
+
+Why:
+- Production HTML checks and preview verification had already passed, so this pass was meant to confirm the actual shopper-facing live experience on both desktop and mobile before treating the navigation work as fully verified.
+
+Verification:
+- Desktop live pass:
+  - Homepage header renders `FAMILY MATCHING` as a direct link to `/collections/matching-outfits`.
+  - `/collections/matching-outfits` is product-first on load: heading, breadcrumbs, collection tabs, filters, then products; the old image-heavy quick-category/callout blocks are not blocking the grid.
+- Mobile Safari-emulated pass (`390x844`, touch, iPhone Safari UA):
+  - Homepage renders the mobile hero and CTAs correctly.
+  - Mobile menu opens and `FAMILY MATCHING` routes to `/collections/matching-outfits`.
+  - Mobile `/collections/matching-outfits` is also product-first, with collection tabs and the filter disclosure above the product grid.
+
+Findings:
+- Live desktop header still exposes `MATERNITY` in the main nav even though `/collections/maternity` currently shows `0 PRODUCTS` and falls into the empty-collection recovery state.
+- Live mobile menu still exposes the same `MATERNITY` dead-end link.
+- Live collection tabs on `/collections/matching-outfits` and `/collections/maternity` also still expose `MATERNITY`, so shoppers can continue to reach the empty collection from multiple live entry points.
+
+Notes:
+- This live issue matches the local nav-filtering hardening that is already in the worktree (`snippets/header-dropdown-menu.liquid`, `snippets/header-mega-menu.liquid`, `snippets/header-drawer.liquid`, and the `nav-link-visible*` helpers), but that nav-filtering pass has not been deployed yet from this shell.
+
+2026-04-22 — Live nav hardening deployed to main theme and verified against uncached live header render
+
+What changed:
+- Pushed the smart empty-collection nav filter set to live main theme `#133290917985`.
+- Added a shared helper snippet, `snippets/collection-storefront-visible.liquid`, so collection links are hidden when Shopify reports no storefront-visible products.
+- Updated `snippets/nav-link-destination-visible.liquid` to prefer the canonical `collections[handle]` lookup from the menu URL instead of trusting `link.object` first.
+- Fixed a Liquid boolean-assignment bug in `snippets/nav-link-visible.liquid` by replacing `assign is_visible = destination_visible == 'true'` with explicit `if` logic.
+- Kept the header menu snippets (`snippets/header-dropdown-menu.liquid`, `snippets/header-mega-menu.liquid`, `snippets/header-drawer.liquid`) and `snippets/header-search.liquid` wired to the same visibility rules.
+
+Debugging notes:
+- Live homepage and product-page full HTML continued to serve stale header markup for a while after deploys, so direct `curl` checks there kept showing old `HeaderMenu-maternity` / `HeaderDrawer-maternity` links even after the live theme files were updated.
+- To debug safely, I temporarily added header data attributes in `sections/header.liquid` to read Shopify’s live collection counts. The live `header` section render reported:
+  - `maternity`: `all_products_count=0`, `products_count=0`, `products.size=0`
+  - `mommy-and-me`: `all_products_count=128`, `products_count=128`, `products.size=50`
+- The temporary debug markup was removed from the local/live theme source once the root cause was confirmed. If cached live responses still show `data-nav-debug-*` briefly, treat that as cache lag rather than current theme source.
+
+Verification:
+- Confirmed live theme asset timestamps after the final deploy:
+  - `sections/header.liquid`
+  - `snippets/collection-storefront-visible.liquid`
+  - `snippets/nav-link-destination-visible.liquid`
+  - `snippets/nav-link-visible.liquid`
+  - `snippets/header-dropdown-menu.liquid`
+  - `snippets/header-mega-menu.liquid`
+  - `snippets/header-drawer.liquid`
+  - `snippets/header-search.liquid`
+- Verified the live `header` section render at `/?section_id=header` reports `maternity` storefront counts as zero.
+- Verified an uncached live collection page render at `/collections/mommy-and-me?_ab=0&_fd=0&pb=0...` shows normal header menu IDs for:
+  - `HeaderMenu-shop`
+  - `HeaderMenu-new-arrivals`
+  - `HeaderMenu-mommy-me`
+  - `HeaderMenu-daddy-me`
+  - `HeaderMenu-couples`
+  - `HeaderMenu-family-matching`
+  - matching `HeaderDrawer-*` IDs
+- In that same uncached live header render, `HeaderMenu-maternity` and `HeaderDrawer-maternity` are absent.
+
+Residual note:
+- `/collections/maternity` can still appear outside the header nav in other live UI elements, such as the collection category tabs on collection pages. This pass fixed the main header desktop nav, mega-menu/drawer path, and header-search collection shortcut behavior only.
+
+2026-04-22 — Homepage image refresh and conversion-focused content update deployed to live theme
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Replaced the homepage hero with the new coral floral family boardwalk creative on the live main theme `#133290917985`, keeping a desktop-safe text area and a mobile crop that keeps the mother/daughter focus above the CTA card.
+- Added new homepage-only image override support for category and spotlight cards so the homepage can use more editorial, conversion-oriented visuals without changing collection/product imagery across the rest of the theme.
+- Updated homepage messaging in `templates/index.json` to better sell the breadth of the catalog from the first fold: mommy-and-me, pajamas, family sets, swimsuits, and daddy-and-me.
+- Generated and published a coordinated homepage image set for:
+  - category cards: Mommy & Me, Family Matching, Pajamas, Matching Dresses, Swimsuits, Daddy & Me
+  - occasion cards: Vacation, Photo Days, Birthdays, Beach Days
+  - spotlight cards: tie-dye mommy-and-me, new pajama drop, Hawaiian family set, yellow floral spring set
+- Tightened homepage category-grid styling in `assets/section-category-icons.css` so desktop category cards use a cleaner, more intentional layout.
+
+Files changed locally and pushed live:
+- `assets/hero-desktop.jpg`
+- `assets/hero-mobile.jpg`
+- `assets/section-category-icons.css`
+- `sections/category-icons.liquid`
+- `sections/curated-product-grid.liquid`
+- `snippets/home-spotlight-card.liquid`
+- `templates/index.json`
+- `assets/home-cat-mommy-and-me.jpg`
+- `assets/home-cat-family-matching.jpg`
+- `assets/home-cat-pajamas.jpg`
+- `assets/home-cat-matching-dresses.jpg`
+- `assets/home-cat-swimsuits.jpg`
+- `assets/home-cat-daddy-and-me.jpg`
+- `assets/home-cat-photo-days.jpg`
+- `assets/home-promo-tie-dye.jpg`
+- `assets/home-promo-pajamas.jpg`
+- `assets/home-promo-hawaiian-family.jpg`
+- `assets/home-promo-yellow-floral.jpg`
+
+Verification:
+- Parsed `templates/index.json` successfully after the content changes.
+- `git diff --check` passed for the touched homepage files.
+- `shopify theme check --fail-level warning` returned no findings for:
+  - `assets/section-category-icons.css`
+  - `sections/category-icons.liquid`
+  - `sections/curated-product-grid.liquid`
+  - `snippets/home-spotlight-card.liquid`
+  - `templates/index.json`
+- Verified live homepage HTML includes the new hero copy and the new homepage asset filenames such as:
+  - `home-cat-mommy-and-me.jpg`
+  - `home-cat-family-matching.jpg`
+  - `home-promo-tie-dye.jpg`
+  - `home-promo-pajamas.jpg`
+  - `home-promo-hawaiian-family.jpg`
+  - `home-promo-yellow-floral.jpg`
+- Captured fresh live rendered screenshots after publish for both desktop and mobile:
+  - `ops/tmp/home-full-desktop-final.png`
+  - `ops/tmp/home-full-mobile-after.png`
+
+Debugging notes:
+- MCP browser tools were available earlier in the session and were used to verify the live hero asset swap, but the MCP browser transport later closed repeatedly during the final homepage pass. Final visual verification therefore relied on fresh Playwright CLI screenshots plus direct live HTML checks instead of a second MCP snapshot.
+- In desktop full-page screenshots, some lower spotlight-card images can appear blank because the capture does not always trigger below-the-fold lazy-loading the same way a real user scroll does. The live homepage HTML contains the correct image URLs for those cards, and mobile rendered captures showed the spotlight imagery loading as expected in viewport.
+
+Residual note:
+- Shopify edge/cache behavior may briefly serve stale homepage HTML or older asset query strings on `/` even after the live theme assets are updated. Treat that as cache lag unless the latest rendered screenshots and direct live HTML checks both disagree.
+
+2026-04-22 — Collection-page top-stack cleanup for `/collections/pajamas` prepared locally
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Reworked the collection merchandising callout so the pajamas page now keeps the first CTA on-page (`#product-grid`) instead of sending shoppers away before they see the collection.
+- Redesigned that callout into a tighter, warmer, lower-height rail with smaller trust chips, compact actions, and a desktop-only visual so the collection grid can appear sooner.
+- Tightened collection hero spacing and compressed the breadcrumb/category-nav stack to reduce dead space before products.
+- Trimmed duplicated SEO copy in the lower collection note by removing the repeated hero-summary paragraph when the fallback body description starts with the same intro.
+
+Files changed locally:
+- `assets/component-collection-hero.css`
+- `assets/template-collection.css`
+- `sections/main-collection-seo.liquid`
+- `snippets/collection-merchandising-callout.liquid`
+
+Verification:
+- `git diff --check -- assets/component-collection-hero.css assets/template-collection.css sections/main-collection-seo.liquid snippets/collection-merchandising-callout.liquid`
+- `shopify theme check --output json --fail-level warning > /tmp/dresslikemommy-theme-check.json || true`
+- Confirmed the structured Theme Check report contained no offenses for the four touched files, while the broader theme still has unrelated preexisting warnings/errors.
+- Captured the current browser snapshot of `https://www.dresslikemommy.com/collections/pajamas` before editing to ground the redesign in the live page structure and spacing problem.
+
+Residual note:
+- This pass is local-only so far; the improved layout was not pushed to a Shopify theme in this turn, which means the browser snapshot still reflects the pre-change version.
+
+2026-04-22 — Pajamas collection top-stack cleanup synced to live main theme
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Synced the collection-page cleanup for `/collections/pajamas` to the live main theme so the top conversion module now keeps the primary CTA on-page instead of sending shoppers to the new-pajama-drop collection before they see the grid.
+- Deployed the compact, lower-height merchandising rail styling and the tightened hero / breadcrumb / collection-nav spacing.
+- Deployed the collection SEO dedupe so the lower “Collection Note” no longer repeats the hero-summary paragraph when both fallback blocks start with the same intro.
+
+Live-uploaded theme files:
+- `assets/component-collection-hero.css`
+- `assets/template-collection.css`
+- `sections/main-collection-seo.liquid`
+- `snippets/collection-merchandising-callout.liquid`
+
+Deployment:
+- Shopify CLI theme access in this shell still required interactive login, so I used the operator-managed Shopify Admin REST asset flow with credentials loaded from `~/.config/dresslikemommy/shopify-admin.env`.
+- Uploaded the four touched files directly to the published main theme `#133290917985`.
+
+Verification:
+- `git diff --check -- assets/component-collection-hero.css assets/template-collection.css sections/main-collection-seo.liquid snippets/collection-merchandising-callout.liquid ops/AGENT_WORKLOG.md`
+- Verified the live theme asset source now matches local for all four deployed files through Admin API asset reads against theme `133290917985`.
+- Confirmed the public collection HTML for `https://www.dresslikemommy.com/collections/pajamas?_ab=0&_fd=0&pb=0&sync_check=20260422c` contains:
+  - `Shop faster`
+  - `See the full pajama grid first, then jump to the newest drop`
+  - `Shop the pajamas below`
+  - `Browse Mommy & Me`
+- Fresh isolated browser verification on the same live URL also showed:
+  - the new compact top rail copy and CTA structure
+  - the lower collection note reduced to the second paragraph only
+- Saved fresh live screenshots:
+  - `ops/tmp/pajamas-collection-live-synced.png`
+  - `ops/tmp/pajamas-collection-live-synced-fresh.png`
+
+Residual note:
+- A non-isolated browser tab initially showed the old pajama callout copy right after deploy while `curl` and a fresh isolated browser context showed the updated markup. Treat that first mismatch as storefront/browser cache lag rather than a failed deploy.
+
+2026-04-22 — Removed pajamas collection merchandising rail from the live banner section
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Updated `sections/main-collection-banner.liquid` so `/collections/pajamas` now skips the `collection-merchandising-callout` block entirely.
+- Left the broader product-first collection cleanup intact for the other hub collections; this pass only removes the pajamas rail the shopper disliked.
+
+Live-uploaded theme files:
+- `sections/main-collection-banner.liquid`
+
+Deployment:
+- Uploaded the single touched file to the live main theme `#133290917985` through Shopify Admin REST asset updates using the operator-managed credentials from `~/.config/dresslikemommy/shopify-admin.env`.
+
+Verification:
+- Passed `git diff --check -- sections/main-collection-banner.liquid`
+- Filtered `shopify theme check --path . --fail-level warning --output json` to `sections/main-collection-banner.liquid` and got `[]`.
+- Verified the live theme asset source for `sections/main-collection-banner.liquid` now includes `or collection_handle == 'pajamas'` in the skip list.
+- Verified the direct live section render at `https://www.dresslikemommy.com/collections/pajamas?section_id=main-collection-banner...` no longer contains `collection-merchandising-callout` and now renders only the title/description block.
+
+Residual note:
+- The full public collection page HTML at `/collections/pajamas` was still serving cached pre-change markup immediately after deploy, even though the direct section render and the live theme asset both reflected the removal. Treat that as storefront cache lag rather than a failed upload.
+
+2026-04-22 — Bulk-synced the current theme worktree changes to the live main theme
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Treated the user's "sync all 74 changes to main" request as a sync of the current local Shopify theme changes to the live main theme `#133290917985`.
+- Uploaded every changed theme file from the current worktree: `53` Shopify theme assets/templates/sections/snippets under `assets/`, `sections/`, `snippets/`, and `templates/`.
+- Intentionally left `21` non-theme changes local-only, including `ops/`, product-import files, temp files, and `.shopify-admin.env`, since those do not belong in the live theme.
+
+Live-uploaded theme files:
+- `assets/analytics.js`
+- `assets/component-collection-hero.css`
+- `assets/hero-desktop.jpg`
+- `assets/hero-mobile.jpg`
+- `assets/predictive-search.js`
+- `assets/search-form.js`
+- `assets/section-category-icons.css`
+- `assets/template-collection.css`
+- `assets/home-cat-daddy-and-me.jpg`
+- `assets/home-cat-daddy-and-me.png`
+- `assets/home-cat-family-matching.jpg`
+- `assets/home-cat-family-matching.png`
+- `assets/home-cat-matching-dresses.jpg`
+- `assets/home-cat-matching-dresses.png`
+- `assets/home-cat-mommy-and-me.jpg`
+- `assets/home-cat-mommy-and-me.png`
+- `assets/home-cat-pajamas.jpg`
+- `assets/home-cat-pajamas.png`
+- `assets/home-cat-photo-days.jpg`
+- `assets/home-cat-photo-days.png`
+- `assets/home-cat-swimsuits.jpg`
+- `assets/home-cat-swimsuits.png`
+- `assets/home-promo-hawaiian-family.jpg`
+- `assets/home-promo-hawaiian-family.png`
+- `assets/home-promo-pajamas.jpg`
+- `assets/home-promo-tie-dye.jpg`
+- `assets/home-promo-tie-dye.png`
+- `assets/home-promo-yellow-floral.jpg`
+- `assets/home-promo-yellow-floral.png`
+- `sections/category-icons.liquid`
+- `sections/curated-product-grid.liquid`
+- `sections/main-collection-banner.liquid`
+- `sections/main-collection-product-grid.liquid`
+- `sections/main-collection-seo.liquid`
+- `sections/main-search.liquid`
+- `sections/predictive-search.liquid`
+- `snippets/collection-breadcrumbs.liquid`
+- `snippets/collection-empty-recovery.liquid`
+- `snippets/collection-merchandising-callout.liquid`
+- `snippets/header-drawer.liquid`
+- `snippets/header-dropdown-menu.liquid`
+- `snippets/header-mega-menu.liquid`
+- `snippets/header-search.liquid`
+- `snippets/home-spotlight-card.liquid`
+- `snippets/product-internal-links.liquid`
+- `snippets/style-journal-internal-links.liquid`
+- `snippets/visible-header-search.liquid`
+- `snippets/collection-hub-subcategory-cards.liquid`
+- `snippets/collection-storefront-visible.liquid`
+- `snippets/nav-link-destination-visible.liquid`
+- `snippets/nav-link-visible-child-count.liquid`
+- `snippets/nav-link-visible.liquid`
+- `templates/index.json`
+
+Deployment:
+- Uploaded the changed theme files to the live main theme through Shopify Admin REST asset updates using the operator-managed credentials from `~/.config/dresslikemommy/shopify-admin.env`.
+
+Verification:
+- Confirmed the repo still had `74` local status entries before the bulk sync, with `53` uploadable theme files and `21` non-theme files.
+- Passed a whole-worktree `git diff --check` over the changed theme files before upload.
+- Ran filtered Theme Check for the changed theme files; only preexisting warning-level `UnusedAssign` notices remained in `sections/main-search.liquid` and `snippets/collection-breadcrumbs.liquid`.
+- Read every uploaded theme file back from the live main theme and compared it to local. Result: `0` mismatches across all `53` theme files.
+- Confirmed `templates/index.json` semantically matches local after accounting for Shopify's normalization of theme JSON comment headers and escaping.
+
+Residual note:
+- The full repository worktree is still intentionally dirty after this sync because the non-theme files were not part of the live-theme deployment.
+
+2026-04-22 — Rebuilt the local batch commit to exclude `.shopify-admin.env`
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Found that the latest local commit had already captured the current 74-file batch, but it incorrectly included `.shopify-admin.env`.
+- Rewound that unpushed local commit, added `.shopify-admin.env` to `.gitignore`, and prepared the same batch for recommit without the credential file in git history.
+
+Verification:
+- Confirmed the bad commit was local-only before rewriting; the branch had been ahead of `origin/main` by one commit.
+- After adding the ignore rule, `.shopify-admin.env` is intended to remain present only in the working directory and no longer be tracked by git.
+
+Residual note:
+- Replacement local commit created as `d04d0c1` with the same 74-file batch, `.shopify-admin.env` excluded from `HEAD`, and the working tree returned to clean.
+
+2026-04-22 — Fixed homepage Family Matching routing and restored the Sets pill label
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Updated `templates/index.json` so the homepage `Family Matching` category tile now points to `new-women-outfits` instead of `matching-outfits`, which better matches the live Family Matching catalog.
+- Updated the homepage occasion heading link and the curated grid footer's `family matching outfits` text link to use `/collections/new-women-outfits` for the same broad family hub route.
+- Updated `snippets/collection-breadcrumbs.liquid` so Family Matching pill navigation now prefers `new-women-outfits` as the hub handle when that collection exists.
+- Changed the Family Matching branch pill label from `Vacation Outfits` to `Sets`, and restored the `family-sets` breadcrumb label to `Sets`.
+
+Evidence checked:
+- Public storefront sampling showed `/collections/matching-outfits` surfacing `Mommy and Me` products in the first slots, while `/collections/new-women-outfits` and `/collections/family-sets` surfaced mostly `Family Matching` products.
+- Commands used for evidence and verification:
+  - `curl -sL https://www.dresslikemommy.com/collections/matching-outfits | rg -n 'data-analytics-category1=' -m 8`
+  - `curl -sL https://www.dresslikemommy.com/collections/new-women-outfits | rg -n 'data-analytics-category1=' -m 8`
+  - `curl -sL https://www.dresslikemommy.com/collections/family-sets | rg -n 'data-analytics-category1=' -m 8`
+  - `git diff --check -- snippets/collection-breadcrumbs.liquid templates/index.json`
+  - `shopify theme check --path . --fail-level warning --output json | jq -c '.[] | select((.path | endswith("/snippets/collection-breadcrumbs.liquid")) or (.path | endswith("/templates/index.json")))'`
+
+Verification:
+- `git diff --check` passed for `snippets/collection-breadcrumbs.liquid` and `templates/index.json`.
+- Filtered Theme Check reported no errors for the touched files. `snippets/collection-breadcrumbs.liquid` still has pre-existing `UnusedAssign` warnings only.
+
+Residual note:
+- I left an unrelated pre-existing worktree change in `sections/category-icons.liquid` untouched.
+- This pass changed the local theme files only; it did not deploy to Shopify.
+
+2026-04-22 — Restored homepage no-repeat image rotation for the browse hub and synced it live
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Updated `sections/category-icons.liquid` so each homepage browse card now treats custom theme assets as candidates instead of hard-locking them.
+- Added homepage candidate JSON payloads plus `data-homepage-collection-image` hooks for the category/occasion cards, which lets the shared homepage image rotator reshuffle those cards on each load while still avoiding duplicates.
+- Kept server-rendered first paint safe by selecting the first unused image key across the whole browse hub before Liquid renders the cards, so the public HTML no longer ships the same fixed `home-cat-matching-dresses.jpg` / `home-cat-swimsuits.jpg` pair twice.
+- Updated `assets/homepage-collection-card-images.js` so spotlight-card rotation now reserves both static homepage images and the refreshed browse-hub images before choosing product candidates.
+
+Live-uploaded theme files:
+- `sections/category-icons.liquid`
+- `assets/homepage-collection-card-images.js`
+
+Deployment:
+- Uploaded both files to the live main theme `#133290917985` through Shopify Admin REST asset updates using the operator-managed credentials from `~/.config/dresslikemommy/shopify-admin.env`.
+- Read both assets back from Shopify Admin after upload and verified the deployed source matches local, allowing for Shopify's normalized trailing newline on Liquid asset reads.
+
+Verification:
+- `git diff --check -- sections/category-icons.liquid assets/homepage-collection-card-images.js`
+- `node --check assets/homepage-collection-card-images.js`
+- Filtered `shopify theme check --path . --fail-level warning --output json` to the two touched files and got `[]`.
+- The first live upload attempt surfaced a real Shopify Liquid parse error (`Unknown tag 'product'`) caused by multiline `render` syntax inside the `{% liquid %}` block; I tightened those calls to single-line render statements, reran Theme Check, and reuploaded successfully.
+- Captured fresh rendered homepage screenshots on two separate live loads:
+  - `ops/tmp/homepage-dupfix-live-a.png`
+  - `ops/tmp/homepage-dupfix-live-b.png`
+- Visual verification from those live renders showed:
+  - the browse hub no longer repeats the same image for both `Matching Dresses` and `Birthdays`
+  - the browse hub no longer repeats the same image for both `Swimsuits` and `Beach Days`
+  - the category/occasion imagery changes across fresh loads instead of staying locked to the same duplicated asset pair
+
+Residual note:
+- Direct `curl` checks against `/` hit a Cloudflare challenge (`HTTP 429` challenge page) during this pass, so final public verification relied on real rendered Playwright CLI screenshots plus Shopify Admin asset readback instead of raw homepage HTML fetches.
+- Chrome DevTools MCP transport was also closed during this pass, so browser verification fell back to the Playwright CLI screenshots noted above.
+
+2026-04-22 — Scoped Mommy & Me / Family Matching hub grids and synced the collection-link fixes live
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Added `snippets/collection-grid-product-visible.liquid` and wired it into `sections/main-collection-product-grid.liquid` so the broad hub grids can suppress cross-tagged products that were leaking between `Mommy & Me` and `Family Matching`.
+- Tightened the broad Mommy hub handles (`mommy-and-me`, `new-matching-outfits`, `popular-mommy-me-1`) to keep only `custom.category1 == "Mommy and Me"` products and to hide family-matching-title outliers from the Mommy `All` view.
+- Tightened the broad Family hub handles (`new-women-outfits`, `matching-outfits`, `family-matching-outfits`, `family-sets`) to keep only `custom.category1 == "Family Matching"` products, which removes the new cross-tagged Mommy item and blank-category outliers from the Family `All` and `Sets` views.
+- Updated the remaining Family hub fallbacks in `snippets/collection-empty-recovery.liquid`, `snippets/collection-hub-subcategory-cards.liquid`, `snippets/header-mega-menu.liquid`, `snippets/header-drawer.liquid`, `snippets/header-mega-menu-feature-card.liquid`, `snippets/header-search.liquid`, and `snippets/product-internal-links.liquid` so direct Family links now prefer `new-women-outfits` instead of the older `matching-outfits` hub.
+- Included the earlier homepage and pill-routing fixes in the live sync so the homepage Family tile still routes to `new-women-outfits`, the Family pills still use that hub, and `Sets` remains the visible Family branch label.
+
+Evidence checked:
+- Shopify Admin GraphQL confirmed the root issue was overlapping smart-collection membership, not theme-only sorting:
+  - `mommy-and-me` is a smart collection on tag `Mommy and Me` and already uses `sortOrder: CREATED_DESC`.
+  - `new-women-outfits` is a smart collection on tag `Family Matching` and already uses `sortOrder: CREATED_DESC`.
+  - `family-sets` is a smart collection on tags `Family Matching` + `Sets` and already uses `sortOrder: CREATED_DESC`.
+  - The newest product `tropical-meadow-family-matching-set` is tagged into both Mommy and Family collections even though its `custom.category1` is `Mommy and Me`, which is why it surfaced in the wrong Family hub.
+- Admin sampling of the top Family items also showed a blank-`category1` outlier (`Wool Lamb Family Matching Sweatshirt - Mommy and Me | DLM`) in `new-women-outfits`, which the new grid filter now suppresses.
+
+Live-uploaded theme files:
+- `templates/index.json`
+- `snippets/collection-breadcrumbs.liquid`
+- `snippets/collection-grid-product-visible.liquid`
+- `sections/main-collection-product-grid.liquid`
+- `snippets/collection-empty-recovery.liquid`
+- `snippets/collection-hub-subcategory-cards.liquid`
+- `snippets/header-drawer.liquid`
+- `snippets/header-mega-menu-feature-card.liquid`
+- `snippets/header-mega-menu.liquid`
+- `snippets/header-search.liquid`
+- `snippets/product-internal-links.liquid`
+
+Deployment:
+- Uploaded the files above to the live main theme `#133290917985` through Shopify Admin REST asset updates using the operator-managed credentials from `~/.config/dresslikemommy/shopify-admin.env`.
+- Read each uploaded asset back from Shopify Admin immediately after upload and verified the deployed source matches local.
+- For `templates/index.json`, verified semantic equality after Shopify normalized the JSON formatting and escaped slashes on readback.
+
+Verification:
+- `git diff --check -- snippets/collection-grid-product-visible.liquid sections/main-collection-product-grid.liquid snippets/collection-empty-recovery.liquid snippets/collection-hub-subcategory-cards.liquid snippets/header-mega-menu.liquid snippets/header-drawer.liquid snippets/header-mega-menu-feature-card.liquid snippets/header-search.liquid snippets/product-internal-links.liquid`
+- Filtered `shopify theme check --path . --fail-level warning --output json` to the touched files and got no file-specific offenses back.
+- Shopify Admin GraphQL re-checks after the code decision confirmed the broad Mommy and Family collection handles are already newest-first by default (`CREATED_DESC`), so the shipped fix focuses on hub scope and link correctness rather than forcing a second sort override in theme code.
+
+Residual note:
+- The visible product count and pagination still come from Shopify's underlying smart collections, so the grid can now hide a small number of cross-tagged items without changing the store-reported total count on those hub pages.
+- `sections/category-icons.liquid` and `assets/homepage-collection-card-images.js` were already dirty from the earlier live homepage-image rotation work and were intentionally left untouched in this pass.
+
+2026-04-22 — Scoped Daddy & Me, Couples, and Maternity "All" hubs against cross-category mixing
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Extended `snippets/collection-grid-product-visible.liquid` so the broad `daddy-me`, `daddy-and-me`, `couples`, and `maternity` collection pages now enforce same-category product visibility in the rendered grid.
+- The Daddy & Me branch now prefers `custom.category1 == "Daddy and Me"` when present, but still allows legitimate legacy Daddy & Me products with blank `category1` when they carry the exact `Daddy and Me` tag.
+- The Couples and Maternity branches now apply the same pattern: trust `custom.category1` first, and fall back to the exact collection tag only when `category1` is blank.
+
+Evidence checked:
+- Shopify Admin GraphQL confirmed the live broad collection rules:
+  - `daddy-me` is a smart collection on tag `Daddy and Me` with `sortOrder: CREATED_DESC`.
+  - `couples` is a smart collection on tag `Couples`.
+  - `maternity` is a smart collection on tag `Maternity`.
+- Admin sampling showed a real Daddy & Me leak at the top of the broad hub:
+  - `tropical-meadow-family-matching-set`
+  - `custom.category1 = "Mommy and Me"`
+  - still present in `daddy-me` because the product also carries the `Daddy and Me` tag.
+- Full admin category counts for the broad hubs:
+  - `daddy-me`: `57` products with `category1 = Daddy and Me`, `7` with blank `category1`, `1` with `category1 = Mommy and Me`
+  - `couples`: `17` products with `category1 = Couples`
+  - `maternity`: `20` products with `category1 = Maternity`
+- The `7` blank-category Daddy & Me products were checked and are legitimate Daddy & Me items that still carry the exact `Daddy and Me` tag, so the fallback rule intentionally preserves them.
+
+Live-uploaded theme files:
+- `snippets/collection-grid-product-visible.liquid`
+
+Deployment:
+- Uploaded the updated snippet to the live main theme `#133290917985` through Shopify Admin REST asset updates using the operator-managed credentials from `~/.config/dresslikemommy/shopify-admin.env`.
+- Read the asset back from Shopify Admin immediately after upload and verified it matches local after normalizing the trailing newline.
+
+Verification:
+- `git diff --check -- snippets/collection-grid-product-visible.liquid`
+- Filtered `shopify theme check --path . --fail-level warning --output json` to `snippets/collection-grid-product-visible.liquid` and got no file-specific offenses back.
+- Shopify Admin GraphQL checks were used to confirm the live collection rules and category counts before shipping the fallback logic.
+
+Residual note:
+- This pass only changes the rendered "All" grid visibility for Daddy & Me, Couples, and Maternity. It does not rewrite the underlying Shopify smart collections, so Shopify's raw product counts can still include hidden cross-tagged items until the catalog data is cleaned up upstream.
+
+2026-04-22 — Extended branch scoping so Family Matching filters stay inside Family Matching across the whole collection tree
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Reworked `snippets/collection-grid-product-visible.liquid` from a small hub-only guard into a branch-aware collection filter that now derives the expected top-level category from either the collection metafield or the collection-handle branch.
+- The branch guard now applies across:
+  - Mommy & Me collections and subcollections
+  - Family Matching collections and subcollections
+  - Daddy & Me collections and subcollections
+  - Couples collections and subcollections
+  - Maternity collections
+- Updated `sections/main-collection-product-grid.liquid` to pass the full `collection` object into the guard snippet so filtered AJAX section renders use the same branch metadata and visibility rules.
+- Family Matching pages now keep legitimate blank-`category1` family items when they still carry the exact `Family Matching` tag, while still excluding products whose explicit `category1` belongs to another branch.
+
+Evidence checked:
+- Shopify Admin GraphQL confirmed the Family Matching edge case that motivated the change:
+  - In `new-women-outfits`, the blank-`category1` item `Wool Lamb Family Matching Sweatshirt - Mommy and Me | DLM` still carries the exact `Family Matching` tag, so it should remain visible inside Family Matching instead of being dropped with all blank-category items.
+  - The cross-tagged outlier `tropical-meadow-family-matching-set` still has explicit `category1 = Mommy and Me`, so the branch guard continues to suppress it from Family Matching even though it also carries the `Family Matching` tag.
+- Because Dawn facet filtering re-renders `sections/main-collection-product-grid.liquid`, the same guard now applies after shoppers choose Family Matching and then narrow by filters like swimsuits.
+
+Live-uploaded theme files:
+- `snippets/collection-grid-product-visible.liquid`
+- `sections/main-collection-product-grid.liquid`
+
+Deployment:
+- Uploaded both files to the live main theme `#133290917985` through Shopify Admin REST asset updates using the operator-managed credentials from `~/.config/dresslikemommy/shopify-admin.env`.
+- Read both assets back from Shopify Admin immediately after upload and verified the deployed source matches local after normalizing the trailing newline.
+
+Verification:
+- `git diff --check -- snippets/collection-grid-product-visible.liquid sections/main-collection-product-grid.liquid`
+- Filtered `shopify theme check --path . --fail-level warning --output json` to those two files and got no file-specific offenses back.
+- Confirmed via Shopify Admin readback that the live snippet now includes the branch-wide handle map plus the Family Matching blank-tag fallback logic.
+
+Residual note:
+- This makes the rendered filtered grids respect the active top-level branch more consistently, but Shopify's built-in facet counts and raw collection totals can still reflect the underlying smart-collection membership until the catalog tagging/metafields are cleaned upstream.
+
+2026-04-22 — Synced the full current deployable theme batch to the live main theme
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Synced every currently changed deployable theme file from the worktree to the live main theme `dresslikemommy/main`.
+- This batch included the homepage browse-hub image rotation assets, the homepage Family Matching routing changes, the Family `Sets` pill/breadcrumb updates, the collection-grid branch scoping logic, and the Family/Daddy/Couples/Maternity collection-link corrections that were already prepared locally.
+- Two remaining non-theme worktree files were intentionally not part of the Shopify sync:
+  - `ops/AGENT_WORKLOG.md`
+  - `ops/content/shopify-product-translation-live-cache.json`
+
+Live-uploaded theme files:
+- `assets/homepage-collection-card-images.js`
+- `sections/category-icons.liquid`
+- `sections/main-collection-product-grid.liquid`
+- `snippets/collection-breadcrumbs.liquid`
+- `snippets/collection-empty-recovery.liquid`
+- `snippets/collection-grid-product-visible.liquid`
+- `snippets/collection-hub-subcategory-cards.liquid`
+- `snippets/header-drawer.liquid`
+- `snippets/header-mega-menu-feature-card.liquid`
+- `snippets/header-mega-menu.liquid`
+- `snippets/header-search.liquid`
+- `snippets/product-internal-links.liquid`
+- `templates/index.json`
+
+Deployment:
+- Uploaded the 13 deployable theme files above to the live main theme `#133290917985` through Shopify Admin REST asset updates using the operator-managed credentials from `~/.config/dresslikemommy/shopify-admin.env`.
+- Read every uploaded asset back from Shopify Admin immediately after upload and verified it matches local.
+- For `templates/index.json`, verified semantic equality after Shopify normalized the JSON formatting on readback.
+
+Verification:
+- `git diff --check -- assets/homepage-collection-card-images.js sections/category-icons.liquid sections/main-collection-product-grid.liquid snippets/collection-breadcrumbs.liquid snippets/collection-empty-recovery.liquid snippets/collection-grid-product-visible.liquid snippets/collection-hub-subcategory-cards.liquid snippets/header-drawer.liquid snippets/header-mega-menu-feature-card.liquid snippets/header-mega-menu.liquid snippets/header-search.liquid snippets/product-internal-links.liquid templates/index.json`
+- `node --check assets/homepage-collection-card-images.js`
+- Filtered `shopify theme check --path . --fail-level warning --output json` to the uploaded files. Result: no file-specific errors; `snippets/collection-breadcrumbs.liquid` still reports only the same pre-existing `UnusedAssign` warnings.
+
+Residual note:
+- The worktree remains intentionally dirty after this sync because the non-theme `ops/...` files were not part of the live theme deployment.
+
+2026-04-22 — Rewired the Family Matching secondary pills to stay inside the Family hub
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Updated `snippets/collection-breadcrumbs.liquid` so the `Within Family Matching` pills now build Family-hub tag URLs instead of bouncing shoppers into Mommy & Me or the broad vacation collection.
+- The Family row now routes to:
+  - `All` -> Family hub base URL
+  - `Pajamas` -> `.../collections/new-women-outfits/pajamas`
+  - `Dresses` -> `.../collections/new-women-outfits/dresses`
+  - `Swimsuits` -> `.../collections/new-women-outfits/swimsuits`
+  - `Sets` -> `.../collections/new-women-outfits/sets`
+  - `Hawaiian & Tropical` -> `.../collections/new-women-outfits/hawaiian`
+  - `Tops` -> `.../collections/new-women-outfits/tops`
+  - `Sweaters` -> `.../collections/new-women-outfits/sweaters`
+- Added Family tag-aware active-state handling so the correct pill stays highlighted on Family hub tag pages, while still recognizing legacy Family subcollection handles if a shopper lands on them directly.
+- Added Family breadcrumb handling for `mother-daughter-matching-dresses` so that page now presents as part of the Family branch navigation instead of looking like a Mommy-only destination.
+
+Evidence checked:
+- Shopify Admin GraphQL confirmed the relevant Family collections already exist in admin and that the old hardcoded fallbacks were broader than needed:
+  - `family-pajamas`
+  - `family-swimsuits`
+  - `family-sets`
+  - `family-tops`
+  - `family-sweaters`
+- The live theme readback for `snippets/collection-breadcrumbs.liquid` matches local after the upload.
+- Live storefront verification after deploy:
+  - `https://www.dresslikemommy.com/collections/new-women-outfits?section_id=main-collection-product-grid` now returns Family pill links like `/collections/new-women-outfits/pajamas` and `/collections/new-women-outfits/sets`.
+  - `https://www.dresslikemommy.com/collections/new-women-outfits/pajamas` now keeps the shopper inside `Within Family Matching`, marks `Pajamas` active, and shows the Family-hub filtered empty state (`0 of 61 products`) instead of redirecting to Mommy & Me pajamas.
+  - `https://www.dresslikemommy.com/collections/mother-daughter-matching-dresses` now shows `Within Family Matching`, the breadcrumb current label `Dresses`, and Family-hub filter links like `/collections/new-women-outfits/pajamas` and `/collections/new-women-outfits/dresses`.
+
+Live-uploaded theme files:
+- `snippets/collection-breadcrumbs.liquid`
+
+Deployment:
+- Uploaded the updated breadcrumb snippet to the live main theme `#133290917985` through Shopify Admin REST asset updates using the operator-managed credentials from `~/.config/dresslikemommy/shopify-admin.env`.
+- Read the asset back from Shopify Admin immediately after upload and verified it matches local.
+
+Verification:
+- `git diff --check -- snippets/collection-breadcrumbs.liquid`
+- Filtered `shopify theme check --path . --fail-level warning --output json` to `snippets/collection-breadcrumbs.liquid`; result: no file-specific errors, only the same pre-existing `UnusedAssign` warnings in that snippet.
+- Live storefront curl checks against the Family hub section render and Family filter URLs.
+
+Residual note:
+- The plain `https://www.dresslikemommy.com/collections/new-women-outfits` page was still serving stale cached HTML at one edge location immediately after deploy, even though the section render endpoint and the Family tag pages were already serving the updated snippet. If the base hub still briefly shows the old links, that should clear once Shopify edge cache refreshes.
+
+2026-04-22 — Mixed the broad Mommy & Me `All` hub so new pajama drops no longer make the page look pre-filtered
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Added `snippets/collection-grid-product-bucket.liquid` so broad hub grids can classify products into shopper-facing pill buckets (`Pajamas`, `Dresses`, `Swimsuits`, `Tops`, `Sweaters`, plus the Family buckets already used by the Family hub).
+- Updated `sections/main-collection-product-grid.liquid` so broad `All` hubs still only re-order on the default newest-first sort, but the Mommy & Me hub now takes the newest items from the actual pill collections (`pajamas`, `dresses`, `swimsuits`, `tops`, `sweaters`) and round-robins them before falling back to the raw hub list.
+- Kept the Family Matching hub on the earlier branch-aware interleave path, since that hub was already surfacing a healthy mix from the current page slice.
+
+Why this was needed:
+- Public storefront sampling before the fix showed `https://www.dresslikemommy.com/collections/mommy-and-me?section_id=main-collection-product-grid...` returning the first 12 cards as `data-analytics-subcategory="Pajamas"` over and over, which made the broad `All` view feel like a hidden pajama filter after the recent pajama imports.
+- A first same-page-only interleave did not solve the Mommy hub because Shopify’s current first-page slice for that smart collection was still overwhelmingly pajamas. Pulling from the pill collections themselves was the smallest theme-side change that actually produced a mixed first row.
+
+Live-uploaded theme files:
+- `sections/main-collection-product-grid.liquid`
+- `snippets/collection-grid-product-bucket.liquid`
+
+Deployment:
+- Uploaded both files to the published main theme `#133290917985` through Shopify Admin REST asset updates using the operator-managed credentials from `~/.config/dresslikemommy/shopify-admin.env`.
+- For the large section file, switched the final successful upload to the Asset API `attachment` path (base64) because the plain `value` write path was reading back the earlier server copy for that file in this shell.
+- Read both uploaded assets back from Shopify Admin immediately after upload and verified they match local, allowing for Shopify’s normalized trailing newline on readback.
+
+Verification:
+- `git diff --check -- sections/main-collection-product-grid.liquid snippets/collection-grid-product-bucket.liquid`
+- Filtered `shopify theme check --path . --fail-level warning --output json` to:
+  - `sections/main-collection-product-grid.liquid`
+  - `snippets/collection-grid-product-bucket.liquid`
+  Result: `[]`
+- Storefront sampling before the fix:
+  - `https://www.dresslikemommy.com/collections/mommy-and-me?section_id=main-collection-product-grid...`
+  - first 12 `data-analytics-subcategory` values were all `Pajamas`
+- Dynamic same-theme verification after deploy:
+  - `https://dresslikemommy-com.myshopify.com/collections/mommy-and-me?section_id=main-collection-product-grid...`
+  - first 12 `data-analytics-subcategory` values now mix as:
+    - `Pajamas`
+    - `Dresses`
+    - `Swimsuits`
+    - `Tops`
+    - `Sweaters`
+    - then repeat back through the newest eligible products
+  - first card titles on that dynamic render now confirm the mix, e.g. pajamas, a maxi dress, a swimsuit, a plaid shirt, and a cardigan set all appear in the opening slots.
+
+Residual note:
+- At the time of verification, the public `www.dresslikemommy.com` collection section render was still serving an older pajama-heavy `page_cache` variant even though Shopify Admin asset readback and the dynamic `dresslikemommy-com.myshopify.com` render both showed the new code and mixed output. Treat that as storefront edge-cache lag rather than a failed deploy; the published theme id in the response headers remained `133290917985`.
+
+2026-04-22 — Hide empty collection pills/cards instead of linking shoppers into zero-product destinations
+
+What changed:
+- Added a storefront availability guard so collection navigation pills and collection-hub quick-category cards are hidden when their destination collection render has no visible `#product-grid` items.
+- Moved that guard into `assets/facets.js` so it runs on collection pages through the existing Dawn collection JS entrypoint instead of depending on a newly added section script tag.
+- Kept `assets/collection-navigation-availability.js` as a small compatibility shim for any cached page shells that still reference it, but removed the fresh section include from `sections/main-collection-product-grid.liquid`.
+- Updated `assets/daddy-me-collection-filter.js` so the Daddy secondary row also hides the `Button Downs` pill when the client-side filtered count is zero.
+
+Evidence checked:
+- `https://www.dresslikemommy.com/collections/new-women-outfits?preview_theme_id=133290917985&section_id=main-collection-product-grid` now renders the Family `Pajamas` pill as `/collections/new-women-outfits/pajamas`.
+- `https://www.dresslikemommy.com/collections/new-women-outfits/pajamas?preview_theme_id=133290917985&section_id=main-collection-product-grid` returns `0 of 62 products` and no `li.grid__item`, which is the exact empty-state signal the new availability guard uses to hide the pill/card from shoppers.
+- Shopify Admin readback matches local for:
+  - `assets/collection-navigation-availability.js`
+  - `assets/daddy-me-collection-filter.js`
+  - `assets/facets.js`
+  - `sections/main-collection-product-grid.liquid`
+
+Live-uploaded theme files:
+- `assets/collection-navigation-availability.js`
+- `assets/daddy-me-collection-filter.js`
+- `assets/facets.js`
+- `sections/main-collection-product-grid.liquid`
+
+Deployment:
+- Uploaded the four files above to the live main theme `#133290917985` through Shopify Admin REST asset updates using the operator-managed credentials from `~/.config/dresslikemommy/shopify-admin.env`.
+- Read each uploaded asset back from Shopify Admin immediately after upload and verified it matches local.
+
+Verification:
+- `git diff --check -- assets/collection-navigation-availability.js assets/daddy-me-collection-filter.js assets/facets.js sections/main-collection-product-grid.liquid`
+- `node --check assets/collection-navigation-availability.js && node --check assets/daddy-me-collection-filter.js && node --check assets/facets.js`
+- Filtered `shopify theme check --path . --fail-level warning --output json` to `sections/main-collection-product-grid.liquid`; result: no file-specific errors.
+- Live storefront curl checks against the preview section render for the Family hub and the empty Family pajamas filter URL.
+
+Residual note:
+- The public full-page storefront response at one Shopify edge location is still serving the older cached Family hub shell and older fingerprinted asset URLs, so direct full-page fetches can still show `/collections/pajamas` until that cache rolls over. The freshly rendered section output already has the corrected Family filter URL and the empty-state signal needed for the hide rule.
+
+2026-04-22 — Removed the square border artifact from the PDP matching-set CTA
+
+What changed:
+- Updated `assets/component-product-desktop-ux.css` so `.product-matching-set__button` owns its pill styling and suppresses Dawn's shared `.button::before` and `.button::after` pseudo-elements. This removes the rectangular border artifact around the `Add selected pieces` button inside the desktop matching-set module.
+
+Evidence checked:
+- `snippets/product-desktop-ux.liquid` renders the affected CTA as `<button type="button" class="button product-matching-set__button" ...>`.
+- `assets/base.css` applies shared `.button:before` and `.button:after` pseudo-elements to all `.button` elements, which explains why this custom pill CTA was inheriting an extra outline from the global button system.
+- The local diff keeps the override scoped to `.product-matching-set__button` only.
+
+Verification:
+- `git diff -- assets/component-product-desktop-ux.css`
+- `git diff --check -- assets/component-product-desktop-ux.css`
+- `shopify theme check --path . --fail-level warning --output json`
+  Result: the repo still has many unrelated pre-existing Theme Check errors/warnings, and none were reported for `assets/component-product-desktop-ux.css`.
+
+Residual note:
+- This fix was applied locally only in this session. I did not deploy or open a live theme preview in this turn, so the visual result is not browser-verified yet.
+
+2026-04-22 — Realigned Family Matching pills with the requested category split
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- `snippets/collection-breadcrumbs.liquid` - Updated the `Within Family Matching` pill row to the requested order and scope: `All`, `Swimsuits`, `Sets`, `Tops`, `Sweaters`, `Pajamas`.
+- `snippets/collection-breadcrumbs.liquid` - Removed Dresses from the Family Matching branch pills and remapped `mother-daughter-matching-dresses` into the Mommy & Me breadcrumb/nav branch so direct dresses pages now inherit the Mommy `Dresses` tab instead of the Family branch.
+- `snippets/collection-breadcrumbs.liquid` - Treated `matching-hawaiian-outfits` as part of the Sets bucket for active-state purposes so older family-set variants still land on a sensible pill highlight.
+- `snippets/collection-hub-subcategory-cards.liquid` - Synced the Family hub quick-category cards to the same taxonomy by replacing Dresses with Sets and reordering the cards to `Swimsuits`, `Sets`, `Tops`, `Sweaters`, `Pajamas`.
+
+Verification:
+- `git diff --check -- snippets/collection-breadcrumbs.liquid snippets/collection-hub-subcategory-cards.liquid`
+- `shopify theme check --path . --fail-level warning --output json | jq -c '.[] | select((.path | endswith("/snippets/collection-breadcrumbs.liquid")) or (.path | endswith("/snippets/collection-hub-subcategory-cards.liquid")))'`
+  Result: no file-specific Theme Check errors; `snippets/collection-breadcrumbs.liquid` still reports existing `UnusedAssign` warnings only.
+
+Residual note:
+- This pass changed local theme files only. I did not deploy to Shopify or browser-test the updated Family Matching navigation in a live preview during this turn.
+
+2026-04-22 — Fixed White Lace Mommy & Me dress collection visibility
+
+What changed:
+- Investigated live Shopify product `white-lace-mommy-and-me-dresses` (`White Lace Mommy and Me Dresses — Cami Dress`) after it failed to appear in the storefront `Mommy & Me` / `Dresses` flow.
+- Confirmed the product was already `ACTIVE`, tagged `Mommy and Me`, and present in the `mommy-and-me` smart collection, but it was missing the exact pluralized dress subtype tags used by the `dresses` smart collection rules.
+- Updated the live product through Shopify Admin GraphQL:
+  - changed `productType` from `Matching Family Dresses` to `Dresses`
+  - added collection-driving tags `Maxi Dresses`, `Midi Dresses`, and `Sundresses` while preserving the existing tags
+  - normalized `product.metafields.custom.type` from `Dress` to `Dresses`
+- Updated local listing artifacts so a rerun/reimport does not reintroduce the mismatch:
+  - `ops/scripts/create-vcf-white-lace-mommy-and-me-dresses.sh`
+  - `ops/listings/white-lace-mommy-and-me-dresses-shopify-import.csv`
+  - `ops/listings/white-lace-mommy-and-me-dresses-listing.md`
+  - `ops/listings/verify-white-lace-mommy-and-me-dresses.json`
+
+Evidence checked:
+- Live smart collection rule for `mommy-and-me`: tag equals `Mommy and Me`.
+- Live smart collection rule for `dresses`: tag equals one of `Formal Dresses`, `Maxi Dresses`, `Midi Dresses`, `Mini Dresses`, `Sweater Dresses`, `Sundresses`, or `Jumpsuits`.
+- Theme `Mommy & Me` hub interleave in `sections/main-collection-product-grid.liquid` pulls from the `dresses` collection for dress slots before falling back to the raw `mommy-and-me` collection, so missing `dresses` membership also suppresses first-page visibility in the hub.
+
+Verification:
+- Queried live product before fix: product was in `mommy-and-me` but not `dresses`; tags only included singular `Maxi Dress` / `Midi Dress`.
+- Ran live `productUpdate` mutation with no `userErrors`.
+- Re-queried live product after fix: product now resolves inside `dresses`, `maxi-dresses`, `midi-dresses`, `sundresses`, `mommy-and-me`, and `mother-daughter-matching-dresses`.
+
+Residual note:
+- Storefront section/full-page caches may take a short time to refresh, but the underlying Shopify collection membership is now correct.
+
+2026-04-23 — Strengthened Family Matching `All` hub interleaving so fresh drops do not crowd out the opening grid
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Updated `sections/main-collection-product-grid.liquid` so the broad Family Matching `All` hubs (`new-women-outfits`, `matching-outfits`, `family-matching-outfits`, `popular-family-matching`) now use the same source-collection round-robin strategy already used by the Mommy hub.
+- The Family `All` mix now pulls newest eligible products from the real pill collections in pill order:
+  - `family-swimsuits`
+  - `family-sets`
+  - `family-tops`
+  - `family-sweaters`
+  - `family-pajamas`
+- Preserved the existing fallback so any visible Family product that is not present in one of those pill collections still appears afterward from the raw hub collection.
+- Kept the interleave scoped to the default newest-first sort only, so explicit shopper sort choices still behave normally.
+
+Why this was needed:
+- The older Family `All` path only re-bucketed the current paginated slice from `collection.products`, which could still look pre-filtered when one subcategory had the newest batch.
+- The new path now mirrors the stronger Mommy behavior: take the newest item from each Family pill bucket in turn before repeating, instead of letting one fresh run dominate the top of the page.
+
+Live-uploaded theme files:
+- `sections/main-collection-product-grid.liquid`
+
+Deployment:
+- Uploaded the single file above to the live main theme `#133290917985` with:
+  - `shopify theme push --store "$SHOPIFY_STORE_DOMAIN" --theme 133290917985 --allow-live --nodelete --only sections/main-collection-product-grid.liquid --password "$SHOPIFY_ADMIN_ACCESS_TOKEN" --json`
+
+Verification:
+- `git diff --check -- sections/main-collection-product-grid.liquid`
+- `shopify theme check --path . --fail-level warning --output json | jq -c '.[] | select(.path | endswith("/sections/main-collection-product-grid.liquid"))'`
+  Result: no file-specific Theme Check offenses.
+- Preview render against the live theme id:
+  - `https://dresslikemommy-com.myshopify.com/collections/new-women-outfits?preview_theme_id=133290917985&section_id=main-collection-product-grid`
+  - first opening subcategories now mix as:
+    - `Family Swimsuits`
+    - `Set`
+    - `Family Tops`
+    - `Family Sweaters`
+    - then back through the next newest Family items by bucket
+
+Residual note:
+- At the time of verification, `www.dresslikemommy.com` section renders were still serving an older cached Family hub variant without the new swimsuit-first mix, while the direct `myshopify.com` preview render for live theme `#133290917985` showed the updated interleave. Treat that as storefront edge-cache lag rather than a failed deploy.
+
+2026-04-23 — Restored newest-first collection behavior while keeping `All` pills mixed by category
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Updated live Shopify collection sort order back to `CREATED_DESC` for the broad / pill collections that were still using older merchandising defaults:
+  - `dresses`
+  - `swimsuits`
+  - `matching-outfits`
+  - `new-matching-outfits`
+  - `popular-mommy-me-1`
+  - `popular-family-matching`
+  - `couples`
+  - `matching-couples-t-shirts`
+- Kept the theme-side mixed `All` logic in place for broad Mommy / Family hubs so newest items still surface first there without allowing one fresh batch to make the page look pre-filtered.
+- Added a client-side collection fallback in `assets/facets.js` so collection pages in the main merchandising branches automatically fetch the `created-descending` section render on first load when the URL has no explicit `sort_by`.
+- The fallback intentionally does not rewrite the browser URL, which preserves clean canonical collection URLs and avoids turning base collection pages into `sort_by=` variants.
+
+Why this was needed:
+- Live Admin confirmed the new dress product `white-lace-mommy-and-me-dresses` was already inside the `dresses` collection and was the newest eligible dress, but the public `dresses` collection was still defaulting to `BEST_SELLING`, so the new product appeared deep in the grid instead of first.
+- The explicit `?sort_by=created-descending` path already produced the correct opening order immediately, so the missing piece was enforcing that same sort behavior on first page load without relying on Shopify cache timing.
+- The broad Mommy `All` page still needed the mixed-category interleave instead of raw newest-first because recent pajama drops can otherwise make `All` look like a hidden pajamas filter.
+
+Live-updated admin collections:
+- `gid://shopify/Collection/240127941` (`dresses`): `BEST_SELLING -> CREATED_DESC`
+- `gid://shopify/Collection/240130053` (`swimsuits`): `MANUAL -> CREATED_DESC`
+- `gid://shopify/Collection/377555589` (`matching-outfits`): `BEST_SELLING -> CREATED_DESC`
+- `gid://shopify/Collection/33120387169` (`new-matching-outfits`): `BEST_SELLING -> CREATED_DESC`
+- `gid://shopify/Collection/92758114401` (`popular-mommy-me-1`): `BEST_SELLING -> CREATED_DESC`
+- `gid://shopify/Collection/92758311009` (`popular-family-matching`): `BEST_SELLING -> CREATED_DESC`
+- `gid://shopify/Collection/290635284577` (`couples`): `BEST_SELLING -> CREATED_DESC`
+- `gid://shopify/Collection/290659270753` (`matching-couples-t-shirts`): `BEST_SELLING -> CREATED_DESC`
+
+Live-uploaded theme files:
+- `assets/facets.js`
+
+Deployment:
+- Applied the collection sort updates through Shopify Admin GraphQL `collectionUpdate`.
+- Uploaded `assets/facets.js` to the live main theme `#133290917985` with:
+  - `shopify theme push --store "$SHOPIFY_STORE_DOMAIN" --theme 133290917985 --allow-live --nodelete --only assets/facets.js --password "$SHOPIFY_ADMIN_ACCESS_TOKEN" --json`
+
+Verification:
+- Live Admin GraphQL re-check after the updates confirmed:
+  - `dresses`, `swimsuits`, `matching-outfits`, `new-matching-outfits`, `popular-mommy-me-1`, `popular-family-matching`, `couples`, and `matching-couples-t-shirts` now all read `sortOrder: CREATED_DESC`
+- Direct section render with explicit sort param:
+  - `https://www.dresslikemommy.com/collections/dresses?sort_by=created-descending&section_id=main-collection-product-grid`
+  - first handle now starts with `white-lace-mommy-and-me-dresses`
+- Browser verification via headless Chromium against the public storefront after the `assets/facets.js` deploy:
+  - `/collections/dresses`
+    - URL search remained blank (`""`)
+    - rendered sort select value became `created-descending`
+    - first product handle became `white-lace-mommy-and-me-dresses`
+  - `/collections/mommy-and-me`
+    - URL search remained blank (`""`)
+    - rendered sort select value became `created-descending`
+    - opening subcategories still mixed as `Pajamas`, `Dresses`, `Swimsuits`, `Tops`, `Sweaters`, then repeat
+- File checks:
+  - `node --check assets/facets.js`
+  - `git diff --check -- assets/facets.js`
+  - `shopify theme check --path . --fail-level warning --output json | jq -c '.[] | select(.path | endswith("/assets/facets.js"))'`
+  - Result: no file-specific Theme Check output for `assets/facets.js`
+
+Residual note:
+- Raw `curl` HTML against the public collection URLs can still show the older server-rendered best-selling order because the first-load newest-first correction now happens client-side via `assets/facets.js` while Shopify storefront caches converge on the updated collection defaults.
+
+2026-04-22 — Fixed Mommy & Me `All` pagination repeating the same products on later pages
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Updated `sections/main-collection-product-grid.liquid` so the Mommy & Me `All` interleave now tracks a global unique-product sequence and skips the first `(paginate.current_page - 1) * products_per_page` items before rendering the current page.
+- Kept the existing source-collection dedupe in place, so cross-tagged products still render only once within the mixed `All` feed.
+- Left the fallback path intact for visible Mommy & Me products that are not present in one of the five interleave source collections.
+
+Live-uploaded theme files:
+- `sections/main-collection-product-grid.liquid`
+
+Deployment:
+- Uploaded the updated section file to preview theme `#134593970273`, then uploaded the same file to the live main theme `#133290917985` through Shopify Admin REST asset updates using the operator-managed credentials from `~/.config/dresslikemommy/shopify-admin.env`.
+
+Evidence checked:
+- Before the fix, the live storefront `#product-grid` on `/collections/mommy-and-me?page=1` and `/collections/mommy-and-me?page=2` returned the same first `36` unique product handles in the same order.
+- Queried live Shopify Admin GraphQL for the `mommy-and-me`, `pajamas`, `dresses`, `swimsuits`, `tops`, and `sweaters` collections and replayed the Liquid interleave in a local verification script.
+- That replay reproduced the bug with the old logic (`page 1 == page 2`) and showed the patched logic producing distinct `page 1`, `page 2`, and `page 3` sequences.
+
+Verification:
+- `git diff --check -- sections/main-collection-product-grid.liquid`
+- `shopify theme check --path . --fail-level warning --output json | jq -c '.[] | select(.path | endswith("/sections/main-collection-product-grid.liquid"))'`
+  Result: no file-specific Theme Check output.
+- Read the live theme asset back from Shopify Admin for theme `133290917985` and confirmed it now contains both `mommy_interleave_page_offset` and `mommy_interleave_sequence_index`.
+- Verified a dynamic live storefront render using `view=` to bypass Shopify page-cache variants:
+  - `/collections/mommy-and-me?page=1&view=` opens with the original mixed first page.
+  - `/collections/mommy-and-me?page=2&view=` now opens with a different second-page set, beginning with `family-matching-dinosaur-sweatshirt-set-cute-what-are-you-doing-design-in-multiple-colors`, `good-night-song-of-the-sea-mommy-and-me-pajamas`, and `elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits`.
+  - `/collections/mommy-and-me?page=3&view=` now resolves to a third distinct tail page rather than repeating page 1.
+
+Residual note:
+- Immediately after deploy, some plain full-page storefront responses like `/collections/mommy-and-me?page=2` and `/collections/mommy-and-me?page=4` were still serving an older duplicated-grid HTML variant even though the live asset readback and the dynamic `view=` renders showed the fixed pagination. Treat that as Shopify storefront edge-cache lag rather than a failed upload.
+
+2026-04-23 — Synced the 25 pending local theme and ops changes on `main`
+
+AGENT_CONTINUITY_ANCHOR
+
+What changed:
+- Prepared and committed the 25 pending files already present on local `main`, covering collection navigation and merchandising updates, homepage collection-card polish, sort and visibility support, and the new white-lace listing support assets under `ops/`.
+- Included 17 tracked edits plus 8 new files, notably `assets/collection-navigation-availability.js`, `snippets/collection-grid-product-bucket.liquid`, `snippets/collection-grid-product-visible.liquid`, and the new white-lace listing/script artifacts in `ops/listings/` and `ops/scripts/`.
+
+Verification:
+- `git diff --check`
+- `node --check assets/daddy-me-collection-filter.js assets/facets.js assets/homepage-collection-card-images.js assets/collection-navigation-availability.js`
+- `shopify theme check --path . --fail-level warning --output json | jq -c '.[] | select(...)'`
+  Result: the filtered Theme Check output for the synced files returned only `UnusedAssign` warnings in `snippets/collection-breadcrumbs.liquid`; no file-specific Theme Check errors were reported for the rest of the batch.
+
+Notes:
+- `templates/index.json` still carries Shopify's standard generated comment banner at the top, so strict `jq` JSON parsing does not apply there even though the template remains valid for Shopify themes.
