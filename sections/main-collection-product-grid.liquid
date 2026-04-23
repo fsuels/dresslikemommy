@@ -189,7 +189,7 @@
             >
               {%- for product in collection.products -%}
                 {%- capture collection_product_is_visible -%}
-                  {%- render 'collection-grid-product-visible', product: product, collection_handle: collection.handle -%}
+                  {%- render 'collection-grid-product-visible', product: product, collection: collection, collection_handle: collection.handle -%}
                 {%- endcapture -%}
                 {%- assign collection_product_is_visible = collection_product_is_visible | strip -%}
                 {%- if collection_product_is_visible != 'true' -%}
