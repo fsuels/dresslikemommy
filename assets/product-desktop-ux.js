@@ -2023,7 +2023,7 @@ function initMatchingSizeGuide(wrapper, sectionId) {
         if (headerIndex === 0) return '';
 
         var value = formatGuideCellValue(match.row[headerIndex], header, selectedUnitSystem);
-        if (!value || value === '—') return '';
+        if (isGuideEmptyValue(value)) return '';
 
         return (
           '<div class="matching-size-guide__metric">' +
@@ -2209,6 +2209,46 @@ function cellText(cell) {
     .trim();
 }
 
+function isGuideEmptyValue(value) {
+  var text = String(value || '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  return !text || text === '—' || text === '-' || text === '--' || /^n\/a$/i.test(text);
+}
+
+function pruneGuideGroupColumns(headers, rows) {
+  if (!headers || !headers.length || !rows || !rows.length) {
+    return {
+      headers: headers || [],
+      rows: rows || [],
+    };
+  }
+
+  var keepIndexes = headers
+    .map(function (_header, index) {
+      return index;
+    })
+    .filter(function (index) {
+      if (index === 0) return true;
+
+      return rows.some(function (row) {
+        return !isGuideEmptyValue(row[index]);
+      });
+    });
+
+  return {
+    headers: keepIndexes.map(function (index) {
+      return headers[index];
+    }),
+    rows: rows.map(function (row) {
+      return keepIndexes.map(function (index) {
+        return row[index];
+      });
+    }),
+  };
+}
+
 function parseRoleFromHeader(header) {
   var cleaned = String(header && header.raw ? header.raw : header || '')
     .replace(/\s*\(.+?\)\s*$/, '')
@@ -2255,6 +2295,17 @@ function buildSizeGuideGroups(parsed) {
     })
     .sort(function (first, second) {
       return getRoleOrder(first.key) - getRoleOrder(second.key);
+    })
+    .map(function (group) {
+      var prunedGroup = pruneGuideGroupColumns(group.headers, group.rows);
+
+      return {
+        key: group.key,
+        label: group.label,
+        helper: group.helper,
+        headers: prunedGroup.headers,
+        rows: prunedGroup.rows,
+      };
     });
 
   if (groupedRows.length > 1) return groupedRows;
@@ -2301,15 +2352,17 @@ function buildSizeGuideGroups(parsed) {
         })
         .filter(function (rowValues) {
           return rowValues.slice(1).some(function (value) {
-            return value && value !== '—';
+            return !isGuideEmptyValue(value);
           });
         });
+
+      var prunedGroup = pruneGuideGroupColumns(group.headers, rows);
 
       return {
         key: key,
         label: group.label,
-        headers: group.headers,
-        rows: rows,
+        headers: prunedGroup.headers,
+        rows: prunedGroup.rows,
       };
     })
     .filter(function (group) {
