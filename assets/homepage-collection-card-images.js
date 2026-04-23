@@ -5,7 +5,7 @@
   const CARD_SELECTOR = '[data-homepage-collection-card]';
   const IMAGE_SELECTOR = '[data-homepage-collection-image]';
   const CANDIDATE_SELECTOR = '.homepage-collection-card__image-candidates';
-  const RESERVED_IMAGE_SELECTOR = '[data-homepage-reserve-image]';
+  const STATIC_RESERVED_IMAGE_SELECTOR = '[data-homepage-reserve-image]';
   const SPOTLIGHT_CARD_SELECTOR = '[data-homepage-spotlight-card]';
   const SPOTLIGHT_IMAGE_SELECTOR = '[data-homepage-spotlight-image]';
   const SPOTLIGHT_CANDIDATE_SELECTOR = '.homepage-spotlight-card__product-candidates';
@@ -219,10 +219,18 @@
     if (existingSrc) usedSrcs.add(existingSrc);
   }
 
-  function reserveHomepageImages(root, usedKeys, usedSrcs) {
-    root.querySelectorAll(RESERVED_IMAGE_SELECTOR).forEach((image) => {
+  function reserveImages(root, selector, usedKeys, usedSrcs) {
+    root.querySelectorAll(selector).forEach((image) => {
       reserveExistingImage(image, usedKeys, usedSrcs);
     });
+  }
+
+  function reserveStaticHomepageImages(root, usedKeys, usedSrcs) {
+    reserveImages(root, STATIC_RESERVED_IMAGE_SELECTOR, usedKeys, usedSrcs);
+  }
+
+  function reserveHomepageCollectionImages(root, usedKeys, usedSrcs) {
+    reserveImages(root, IMAGE_SELECTOR, usedKeys, usedSrcs);
   }
 
   function refreshHomepageCollectionImages(root = document) {
@@ -231,7 +239,7 @@
 
     const usedKeys = new Set();
     const usedSrcs = new Set();
-    reserveHomepageImages(root, usedKeys, usedSrcs);
+    reserveStaticHomepageImages(root, usedKeys, usedSrcs);
 
     cards.forEach((card) => {
       const image = card.querySelector(IMAGE_SELECTOR);
@@ -262,7 +270,8 @@
     const usedKeys = new Set();
     const usedSrcs = new Set();
     const usedProductIds = new Set();
-    reserveHomepageImages(root, usedKeys, usedSrcs);
+    reserveStaticHomepageImages(root, usedKeys, usedSrcs);
+    reserveHomepageCollectionImages(root, usedKeys, usedSrcs);
 
     cards.forEach((card) => {
       const image = card.querySelector(SPOTLIGHT_IMAGE_SELECTOR);
