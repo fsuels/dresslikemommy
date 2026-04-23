@@ -210,6 +210,9 @@
                 {%- liquid
                   assign mommy_interleave_source_handles = 'pajamas|||dresses|||swimsuits|||tops|||sweaters' | split: '|||'
                   assign mommy_interleave_rendered_tokens = ','
+                  assign mommy_interleave_page_offset = paginate.current_page | default: 1 | minus: 1
+                  assign mommy_interleave_page_offset = mommy_interleave_page_offset | times: section.settings.products_per_page
+                  assign mommy_interleave_sequence_index = 0
                   assign mommy_interleave_render_index = 0
                   assign mommy_interleave_complete = false
                 -%}
@@ -251,6 +254,11 @@
                       {%- endif -%}
 
                       {%- assign mommy_interleave_rendered_tokens = mommy_interleave_rendered_tokens | append: product.handle | append: ',' -%}
+                      {%- assign mommy_interleave_sequence_index = mommy_interleave_sequence_index | plus: 1 -%}
+                      {%- if mommy_interleave_sequence_index <= mommy_interleave_page_offset -%}
+                        {%- break -%}
+                      {%- endif -%}
+
                       {%- assign mommy_interleave_render_index = mommy_interleave_render_index | plus: 1 -%}
                       {%- assign lazy_load = true -%}
                       {%- if mommy_interleave_render_index <= 2 -%}
@@ -306,6 +314,11 @@
                     {%- endif -%}
 
                     {%- assign mommy_interleave_rendered_tokens = mommy_interleave_rendered_tokens | append: product.handle | append: ',' -%}
+                    {%- assign mommy_interleave_sequence_index = mommy_interleave_sequence_index | plus: 1 -%}
+                    {%- if mommy_interleave_sequence_index <= mommy_interleave_page_offset -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
                     {%- assign mommy_interleave_render_index = mommy_interleave_render_index | plus: 1 -%}
                     {%- assign lazy_load = true -%}
                     {%- if mommy_interleave_render_index <= 2 -%}
@@ -334,6 +347,150 @@
 
                     {%- if mommy_interleave_render_index >= section.settings.products_per_page -%}
                       {%- assign mommy_interleave_complete = true -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endif -%}
+              {%- elsif should_interleave_all_hub and interleave_branch_key == 'family' -%}
+                {%- liquid
+                  assign family_interleave_source_handles = 'family-swimsuits|||family-sets|||family-tops|||family-sweaters|||family-pajamas' | split: '|||'
+                  assign family_interleave_rendered_tokens = ','
+                  assign family_interleave_page_offset = paginate.current_page | default: 1 | minus: 1
+                  assign family_interleave_page_offset = family_interleave_page_offset | times: section.settings.products_per_page
+                  assign family_interleave_sequence_index = 0
+                  assign family_interleave_render_index = 0
+                  assign family_interleave_complete = false
+                -%}
+
+                {%- for family_round in (0..49) -%}
+                  {%- if family_interleave_complete -%}
+                    {%- break -%}
+                  {%- endif -%}
+
+                  {%- for family_source_handle in family_interleave_source_handles -%}
+                    {%- if family_interleave_complete -%}
+                      {%- break -%}
+                    {%- endif -%}
+
+                    {%- assign family_source_collection = collections[family_source_handle] -%}
+                    {%- if family_source_collection == blank or family_source_collection.products_count == 0 -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
+                    {%- assign family_visible_index = 0 -%}
+
+                    {%- for product in family_source_collection.products -%}
+                      {%- capture collection_product_is_visible -%}
+                        {%- render 'collection-grid-product-visible', product: product, collection: collection, collection_handle: collection.handle -%}
+                      {%- endcapture -%}
+                      {%- assign collection_product_is_visible = collection_product_is_visible | strip -%}
+                      {%- if collection_product_is_visible != 'true' -%}
+                        {%- continue -%}
+                      {%- endif -%}
+
+                      {%- assign family_product_token = ',' | append: product.handle | append: ',' -%}
+                      {%- if family_interleave_rendered_tokens contains family_product_token -%}
+                        {%- continue -%}
+                      {%- endif -%}
+
+                      {%- if family_visible_index != family_round -%}
+                        {%- assign family_visible_index = family_visible_index | plus: 1 -%}
+                        {%- continue -%}
+                      {%- endif -%}
+
+                      {%- assign family_interleave_rendered_tokens = family_interleave_rendered_tokens | append: product.handle | append: ',' -%}
+                      {%- assign family_interleave_sequence_index = family_interleave_sequence_index | plus: 1 -%}
+                      {%- if family_interleave_sequence_index <= family_interleave_page_offset -%}
+                        {%- break -%}
+                      {%- endif -%}
+
+                      {%- assign family_interleave_render_index = family_interleave_render_index | plus: 1 -%}
+                      {%- assign lazy_load = true -%}
+                      {%- if family_interleave_render_index <= 2 -%}
+                        {%- assign lazy_load = false -%}
+                      {%- endif -%}
+
+                      <li
+                        class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                        {% if settings.animations_reveal_on_scroll %}
+                          data-cascade
+                          style="--animation-order: {{ family_interleave_render_index }};"
+                        {% endif %}
+                      >
+                        {% render 'card-product',
+                          card_product: product,
+                          media_aspect_ratio: section.settings.image_ratio,
+                          image_shape: section.settings.image_shape,
+                          show_secondary_image: section.settings.show_secondary_image,
+                          show_vendor: section.settings.show_vendor,
+                          show_rating: section.settings.show_rating,
+                          lazy_load: lazy_load,
+                          quick_add: section.settings.quick_add,
+                          section_id: section.id
+                        %}
+                      </li>
+
+                      {%- if family_interleave_render_index >= section.settings.products_per_page -%}
+                        {%- assign family_interleave_complete = true -%}
+                      {%- endif -%}
+
+                      {%- break -%}
+                    {%- endfor -%}
+                  {%- endfor -%}
+                {%- endfor -%}
+
+                {%- if family_interleave_complete == false -%}
+                  {%- for product in collection.products -%}
+                    {%- if family_interleave_complete -%}
+                      {%- break -%}
+                    {%- endif -%}
+
+                    {%- capture collection_product_is_visible -%}
+                      {%- render 'collection-grid-product-visible', product: product, collection: collection, collection_handle: collection.handle -%}
+                    {%- endcapture -%}
+                    {%- assign collection_product_is_visible = collection_product_is_visible | strip -%}
+                    {%- if collection_product_is_visible != 'true' -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
+                    {%- assign family_product_token = ',' | append: product.handle | append: ',' -%}
+                    {%- if family_interleave_rendered_tokens contains family_product_token -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
+                    {%- assign family_interleave_rendered_tokens = family_interleave_rendered_tokens | append: product.handle | append: ',' -%}
+                    {%- assign family_interleave_sequence_index = family_interleave_sequence_index | plus: 1 -%}
+                    {%- if family_interleave_sequence_index <= family_interleave_page_offset -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
+                    {%- assign family_interleave_render_index = family_interleave_render_index | plus: 1 -%}
+                    {%- assign lazy_load = true -%}
+                    {%- if family_interleave_render_index <= 2 -%}
+                      {%- assign lazy_load = false -%}
+                    {%- endif -%}
+
+                    <li
+                      class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                      {% if settings.animations_reveal_on_scroll %}
+                        data-cascade
+                        style="--animation-order: {{ family_interleave_render_index }};"
+                      {% endif %}
+                    >
+                      {% render 'card-product',
+                        card_product: product,
+                        media_aspect_ratio: section.settings.image_ratio,
+                        image_shape: section.settings.image_shape,
+                        show_secondary_image: section.settings.show_secondary_image,
+                        show_vendor: section.settings.show_vendor,
+                        show_rating: section.settings.show_rating,
+                        lazy_load: lazy_load,
+                        quick_add: section.settings.quick_add,
+                        section_id: section.id
+                      %}
+                    </li>
+
+                    {%- if family_interleave_render_index >= section.settings.products_per_page -%}
+                      {%- assign family_interleave_complete = true -%}
                     {%- endif -%}
                   {%- endfor -%}
                 {%- endif -%}
