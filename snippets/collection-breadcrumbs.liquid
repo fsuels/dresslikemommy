@@ -22,14 +22,14 @@
 {% assign is_couples_collection_nav = false %}
 {% assign is_family_matching_nav = false %}
 {% assign daddy_button_downs_filter_param = 'dlm-daddy-filter=button-downs' %}
-{% assign family_matching_hub_handle = 'matching-outfits' %}
+{% assign family_matching_hub_handle = 'new-women-outfits' %}
 {% assign family_matching_hub_collection = collections[family_matching_hub_handle] %}
 {% if family_matching_hub_collection == blank %}
-  {% assign family_matching_hub_handle = 'family-matching-outfits' %}
+  {% assign family_matching_hub_handle = 'matching-outfits' %}
   {% assign family_matching_hub_collection = collections[family_matching_hub_handle] %}
 {% endif %}
 {% if family_matching_hub_collection == blank %}
-  {% assign family_matching_hub_handle = 'new-women-outfits' %}
+  {% assign family_matching_hub_handle = 'family-matching-outfits' %}
   {% assign family_matching_hub_collection = collections[family_matching_hub_handle] %}
 {% endif %}
 {% assign family_matching_hub_label = 'Family Matching Outfits' %}
@@ -102,7 +102,7 @@
   {% assign current_breadcrumb_label = 'Family Matching Pajamas' %}
 {% elsif current_collection_handle == 'family-sets' %}
   {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
-  {% assign current_breadcrumb_label = 'Family Vacation Outfits' %}
+  {% assign current_breadcrumb_label = 'Sets' %}
 {% elsif current_collection_handle == 'matching-family-vacation-outfits' %}
   {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
   {% assign current_breadcrumb_label = 'Family Vacation Outfits' %}
@@ -181,7 +181,7 @@
   {% when 'family' %}
     {% assign branch_row_label = 'Within Family Matching' %}
     {% capture family_priority_pills %}
-      {{ family_matching_hub_handle }}::All|||family-pajamas::Pajamas|||mother-daughter-matching-dresses::Dresses|||family-swimsuits::Swimsuits|||{{ family_vacation_collection_handle }}::Vacation Outfits|||matching-hawaiian-outfits::Hawaiian & Tropical|||family-tops::Tops|||family-sweaters::Sweaters
+      {{ family_matching_hub_handle }}::All|||family-pajamas::Pajamas|||mother-daughter-matching-dresses::Dresses|||family-swimsuits::Swimsuits|||{{ family_vacation_collection_handle }}::Sets|||matching-hawaiian-outfits::Hawaiian & Tropical|||family-tops::Tops|||family-sweaters::Sweaters
     {% endcapture %}
     {% assign branch_pill_list = family_priority_pills | split: '|||' %}
   {% when 'daddy' %}
