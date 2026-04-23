@@ -926,15 +926,13 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   var UNIT_SYSTEM_STORAGE_KEY = 'dlm_size_chart_unit_system';
   var productSection = sectionId ? document.getElementById('MainProduct-' + sectionId) : null;
   var sizeGuideRoot = productSection || wrapper.closest('[id^="MainProduct-"]') || wrapper;
-  var descriptionRoot = (sizeGuideRoot && sizeGuideRoot.querySelector('[data-product-description]')) || document.querySelector('[data-product-description]');
-  var variantSelects = sectionId ? document.getElementById('variant-selects-' + sectionId) : null;
+  var descriptionRoot = getCurrentDescriptionRoot();
   var imagePresetGuide = descriptionRoot ? getImageBasedSizeGuidePreset(descriptionRoot) : null;
   var snapshot = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide-snapshot]') : null;
   var details = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide]') : null;
   var content = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide-content]') : null;
   var summary = details ? details.querySelector('summary') : null;
-  var sizeSelect = findSizeGuideSelect(sizeGuideRoot);
-  var sizeTable = getSizeGuideTable(sizeGuideRoot, sizeSelect, getSelectedGuideTypeValue());
+  var sizeTable = getSizeGuideTable(sizeGuideRoot, getCurrentSizeSelect(), getSelectedGuideTypeValue());
   if (!snapshot || !details || !content || !sizeTable) return;
 
   var parsed = parseSizeGuideTable(sizeTable);
@@ -949,9 +947,30 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   var unitToggleLabel = wrapper.getAttribute('data-size-guide-unit-toggle-label') || 'Size chart units';
   var groups = buildSizeGuideGroups(parsed);
   var selectedUnitSystem = getStoredSizeGuideUnitSystem() || 'metric';
+  var scheduledGuideRender = null;
+
+  function getCurrentDescriptionRoot() {
+    return (sizeGuideRoot && sizeGuideRoot.querySelector('[data-product-description]')) || document.querySelector('[data-product-description]');
+  }
+
+  function getCurrentVariantSelects() {
+    return sectionId ? document.getElementById('variant-selects-' + sectionId) : null;
+  }
+
+  function getCurrentSizeSelect() {
+    return findSizeGuideSelect(sizeGuideRoot);
+  }
+
+  function scheduleGuideRender(delay) {
+    if (scheduledGuideRender) window.clearTimeout(scheduledGuideRender);
+    scheduledGuideRender = window.setTimeout(function () {
+      scheduledGuideRender = null;
+      renderGuide();
+    }, typeof delay === 'number' ? delay : 0);
+  }
 
   function getSelectedGuideTypeValue() {
-    var optionContext = getCurrentOptionContext(variantSelects);
+    var optionContext = getCurrentOptionContext(getCurrentVariantSelects());
     var optionNames = Object.keys(optionContext);
 
     for (var index = 0; index < optionNames.length; index += 1) {
@@ -1427,66 +1446,6 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     };
   }
 
-  function normalizeGuideUnit(unit) {
-    var token = normalizeText(unit);
-    if (!token) return '';
-    if (token === 'cms' || token === 'centimeter' || token === 'centimeters' || token === 'centimetre' || token === 'centimetres' || token === 'سم') return 'cm';
-    if (token === 'inch' || token === 'inches' || token === 'بوصة' || token === 'بوصات' || token === 'انش' || token === 'إنش') return 'in';
-    if (token === 'lb' || token === 'lbs') return 'lbs';
-    if (token === 'kilogram' || token === 'kilograms' || token === 'كجم' || token === 'كغ') return 'kg';
-    if (token === 'رطل' || token === 'ارطال' || token === 'أرطال') return 'lbs';
-    return token;
-  }
-
-  function inferGuideUnitFromText(text) {
-    var normalizedText = String(text || '').toLowerCase();
-    var unitCandidates = [
-      'cm',
-      'cms',
-      'centimeter',
-      'centimeters',
-      'centimetre',
-      'centimetres',
-      'سم',
-      'in',
-      'inch',
-      'inches',
-      'بوصة',
-      'بوصات',
-      'انش',
-      'إنش',
-      'kg',
-      'kgs',
-      'kilogram',
-      'kilograms',
-      'كجم',
-      'كغ',
-      'lb',
-      'lbs',
-      'رطل',
-      'ارطال',
-      'أرطال',
-    ];
-
-    for (var index = 0; index < unitCandidates.length; index += 1) {
-      var token = unitCandidates[index];
-      var escaped = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      var pattern = new RegExp('\\b' + escaped + '\\b', 'i');
-      if (pattern.test(normalizedText)) return normalizeGuideUnit(token);
-    }
-
-    return '';
-  }
-
-  function splitGuideMeasurementParts(text) {
-    return String(text || '')
-      .split(/\s+\/\s+/)
-      .map(function (part) {
-        return String(part || '').trim();
-      })
-      .filter(Boolean);
-  }
-
   function pickPreferredGuideUnitIndex(units, unitSystem) {
     var normalizedUnits = (units || []).map(normalizeGuideUnit);
     var preferredTokens = unitSystem === 'imperial' ? ['in', 'lbs'] : ['cm', 'kg'];
@@ -1615,11 +1574,12 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   }
 
   function getSelectedSizeState() {
-    if (!sizeSelect) return null;
+    var currentSizeSelect = getCurrentSizeSelect();
+    if (!currentSizeSelect) return null;
 
-    var rawValue = String(sizeSelect.value || '').trim();
-    var rawText = sizeSelect.selectedOptions && sizeSelect.selectedOptions[0]
-      ? String(sizeSelect.selectedOptions[0].textContent || '').trim()
+    var rawValue = String(currentSizeSelect.value || '').trim();
+    var rawText = currentSizeSelect.selectedOptions && currentSizeSelect.selectedOptions[0]
+      ? String(currentSizeSelect.selectedOptions[0].textContent || '').trim()
       : rawValue;
 
     if (!rawValue && !rawText) return null;
@@ -2172,7 +2132,11 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   }
 
   function renderGuide() {
-    sizeTable = getSizeGuideTable(sizeGuideRoot, sizeSelect, getSelectedGuideTypeValue());
+    descriptionRoot = getCurrentDescriptionRoot();
+    imagePresetGuide = descriptionRoot ? getImageBasedSizeGuidePreset(descriptionRoot) : null;
+    if (descriptionRoot) hideRedundantSizeGuideSources(descriptionRoot, imagePresetGuide);
+
+    sizeTable = getSizeGuideTable(sizeGuideRoot, getCurrentSizeSelect(), getSelectedGuideTypeValue());
     if (!sizeTable) return;
 
     parsed = parseSizeGuideTable(sizeTable);
@@ -2216,15 +2180,20 @@ function initMatchingSizeGuide(wrapper, sectionId) {
 
   renderGuide();
 
-  if (sizeSelect) {
-    sizeSelect.addEventListener('change', function () {
-      renderGuide();
-    });
-  }
+  sizeGuideRoot.addEventListener('change', function (event) {
+    var target = event && event.target;
+    if (!target) return;
 
-  if (variantSelects) {
-    variantSelects.addEventListener('change', function () {
-      renderGuide();
+    var optionName = getOptionNameFromControl(target);
+    if (!optionName || (!isSizeLikeLabel(optionName) && !isTypeLikeLabel(optionName))) return;
+
+    scheduleGuideRender(ON_CHANGE_DEBOUNCE_TIMER + 25);
+  });
+
+  if (typeof subscribe === 'function' && typeof PUB_SUB_EVENTS !== 'undefined' && PUB_SUB_EVENTS.variantChange) {
+    subscribe(PUB_SUB_EVENTS.variantChange, function (event) {
+      if (!event || !event.data || String(event.data.sectionId || '') !== String(sectionId)) return;
+      scheduleGuideRender(0);
     });
   }
 }
@@ -2279,6 +2248,66 @@ function parseSizeGuideHeaderText(headerText) {
     label: label || raw,
     units: units,
   };
+}
+
+function normalizeGuideUnit(unit) {
+  var token = normalizeText(unit);
+  if (!token) return '';
+  if (token === 'cms' || token === 'centimeter' || token === 'centimeters' || token === 'centimetre' || token === 'centimetres' || token === 'سم') return 'cm';
+  if (token === 'inch' || token === 'inches' || token === 'بوصة' || token === 'بوصات' || token === 'انش' || token === 'إنش') return 'in';
+  if (token === 'lb' || token === 'lbs') return 'lbs';
+  if (token === 'kilogram' || token === 'kilograms' || token === 'كجم' || token === 'كغ') return 'kg';
+  if (token === 'رطل' || token === 'ارطال' || token === 'أرطال') return 'lbs';
+  return token;
+}
+
+function inferGuideUnitFromText(text) {
+  var normalizedText = String(text || '').toLowerCase();
+  var unitCandidates = [
+    'cm',
+    'cms',
+    'centimeter',
+    'centimeters',
+    'centimetre',
+    'centimetres',
+    'سم',
+    'in',
+    'inch',
+    'inches',
+    'بوصة',
+    'بوصات',
+    'انش',
+    'إنش',
+    'kg',
+    'kgs',
+    'kilogram',
+    'kilograms',
+    'كجم',
+    'كغ',
+    'lb',
+    'lbs',
+    'رطل',
+    'ارطال',
+    'أرطال',
+  ];
+
+  for (var index = 0; index < unitCandidates.length; index += 1) {
+    var token = unitCandidates[index];
+    var escaped = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    var pattern = new RegExp('\\b' + escaped + '\\b', 'i');
+    if (pattern.test(normalizedText)) return normalizeGuideUnit(token);
+  }
+
+  return '';
+}
+
+function splitGuideMeasurementParts(text) {
+  return String(text || '')
+    .split(/\s+\/\s+/)
+    .map(function (part) {
+      return String(part || '').trim();
+    })
+    .filter(Boolean);
 }
 
 function getGuideConvertibleUnits(unit) {
