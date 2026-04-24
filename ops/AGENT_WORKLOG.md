@@ -18610,3 +18610,16 @@ Verification:
 
 Residual note:
 - Live browser verification is still required after deploy because local `shopify theme dev` requires an interactive Shopify login in this shell.
+
+2026-04-24 — Added dedicated mobile companion for generated hero slide
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-generated-premium-hero-mobile
+
+What changed:
+- Generated a matching vertical mobile hero image so the second slide does not rely on cropping the wide desktop image on phones.
+- Added `assets/hero-family-boardwalk-premium-mobile.jpg` at 1200x1600.
+- Updated the second homepage hero slide to use the dedicated mobile asset.
+
+Verification:
+- Passed `ruby -rjson -e 'JSON.parse(File.read("templates/index.json"))'`.
+- Passed targeted `shopify theme check --path /tmp/dlm-hero-theme-check --fail-level error`.
+- Passed targeted `git diff --check -- templates/index.json assets/hero-family-boardwalk-premium-mobile.jpg`.
