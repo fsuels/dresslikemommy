@@ -18580,3 +18580,16 @@ Verification:
 
 Residual note:
 - The carousel now uses two high-quality hero slides rather than forcing a third available asset that would reduce visual quality or conflict with the desktop copy placement.
+
+2026-04-24 — Deployed and browser-verified homepage hero quality fix
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-hero-quality-live-verified
+
+What changed:
+- Pushed `templates/index.json` to the live Shopify theme `133290917985` so the storefront uses two professional boardwalk/beach hero slides and no longer serves the weaker garden/golden-hour slides.
+
+Verification:
+- Browser MCP desktop and mobile checks confirmed the live homepage now renders 2 slides: `hero-desktop.jpg`/`hero-mobile.jpg` and `hero-beach-boardwalk.jpg`.
+- Manual dot navigation worked in browser checks, and screenshots confirmed the hero remains polished with the three category CTA buttons visible.
+
+Residual note:
+- Public storefront cache may briefly serve old HTML at some edges, but the live theme asset and fresh browser session showed the corrected two-slide hero.
