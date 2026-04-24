@@ -18623,3 +18623,13 @@ Verification:
 - Passed `ruby -rjson -e 'JSON.parse(File.read("templates/index.json"))'`.
 - Passed targeted `shopify theme check --path /tmp/dlm-hero-theme-check --fail-level error`.
 - Passed targeted `git diff --check -- templates/index.json assets/hero-family-boardwalk-premium-mobile.jpg`.
+
+2026-04-24 — Deployed and browser-verified generated premium hero assets
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-generated-premium-hero-live-verified
+
+What changed:
+- Deployed the generated desktop and mobile hero assets plus `templates/index.json` to live theme `133290917985`.
+
+Verification:
+- Browser MCP desktop check confirmed slide 2 uses `hero-family-boardwalk-premium.jpg` at 2400x1000 and keeps copy/buttons readable.
+- Browser MCP mobile check confirmed slide 2 uses `hero-family-boardwalk-premium-mobile.jpg` at 1200x1600 with the full family visible above the CTA buttons.
