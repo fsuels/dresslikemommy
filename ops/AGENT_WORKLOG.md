@@ -18543,3 +18543,21 @@ Residual note:
 - Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
 - If the vendor page becomes directly readable later and publishes garment measurements for this exact print, replace the current backfilled dress/shirt grading with the direct source measurements on a rerun.
 - If the vendor later exposes a verified fabric composition, fill `shopify.fabric` only with that exact evidence rather than broadening from the current image-based copy.
+
+2026-04-24 — Homepage hero slider update checkpoint
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-homepage-hero-slider
+
+What changed:
+- Updated `sections/hero-banner.liquid` to support block-based hero slides with desktop/mobile image fallbacks, scoped autoplay, dots, previous/next controls, arrow-key navigation, focus/hover pause behavior, and reduced-motion handling.
+- Updated `templates/index.json` so the homepage hero uses three existing assets (`hero-desktop.jpg` with `hero-mobile.jpg`, `hero-family-garden.jpg`, and `hero-golden-hour.jpg`) and routes the three visible CTAs to Mommy & Me, Family Matching, and Daddy & Me.
+- Removed the homepage hero's "See New Pajamas" CTA.
+
+Verification:
+- `ruby -rjson` parsing passed for `templates/index.json` and the `sections/hero-banner.liquid` schema JSON.
+- Targeted Shopify theme check passed using a temporary minimal theme containing the updated hero section, homepage hero JSON, `snippets/icon-caret.liquid`, `locales/en.default.json`, and the selected hero assets.
+- `git diff --check -- sections/hero-banner.liquid templates/index.json ops/AGENT_WORKLOG.md` passed.
+
+Residual note:
+- Full `shopify theme check --path . --fail-level error` surfaced existing unrelated locale translation errors, then exited with a Node heap out-of-memory failure before completion.
+- Full `git diff --check` still fails on pre-existing trailing whitespace in `ops/listings/scarlet-blossom-family-matching-set-shopify-import.csv`; the hero-scoped diff check passed.
+- Storefront rendering should be visually checked in a Shopify preview before publishing.

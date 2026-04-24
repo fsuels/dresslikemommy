@@ -12,18 +12,57 @@
     "hero_banner_main": {
       "type": "hero-banner",
       "custom_css": [],
+      "blocks": {
+        "slide_family_boardwalk": {
+          "type": "slide",
+          "settings": {
+            "theme_asset": "hero-desktop.jpg",
+            "mobile_theme_asset": "hero-mobile.jpg",
+            "image_alt": "Family in matching tropical outfits walking on a beach boardwalk at golden hour",
+            "desktop_object_position": "58% center",
+            "mobile_object_position": "center 34%"
+          }
+        },
+        "slide_family_garden": {
+          "type": "slide",
+          "settings": {
+            "theme_asset": "hero-family-garden.jpg",
+            "mobile_theme_asset": "",
+            "image_alt": "Family in coordinated pastel floral outfits walking through a garden",
+            "desktop_object_position": "62% center",
+            "mobile_object_position": "73% center"
+          }
+        },
+        "slide_mommy_golden_hour": {
+          "type": "slide",
+          "settings": {
+            "theme_asset": "hero-golden-hour.jpg",
+            "mobile_theme_asset": "",
+            "image_alt": "Mother and daughter in matching coral floral dresses at golden hour on the beach",
+            "desktop_object_position": "66% center",
+            "mobile_object_position": "66% center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_family_boardwalk",
+        "slide_family_garden",
+        "slide_mommy_golden_hour"
+      ],
       "settings": {
-        "image": "shopify://shop_images/wmremove-transformed.png",
         "heading": "Matching looks for the moments families remember most",
-        "subheading": "Start with Mommy & Me favorites, the new pajama drop, coordinated family sets, swimsuits, and daddy-and-me looks. Free shipping on all orders and thoughtful help with sizing and matching.",
-        "button_label": "Shop Mommy & Me",
+        "subheading": "Start with the matching paths families shop most: sweet Mommy & Me looks, coordinated family sets, and Daddy & Me favorites.",
+        "button_label": "Mommy & Me",
         "button_link": "/collections/mommy-and-me",
-        "secondary_button_label": "See New Pajamas",
-        "secondary_button_link": "/collections/new-pajama-drop",
+        "secondary_button_label": "Family Matching",
+        "secondary_button_link": "/collections/new-women-outfits",
+        "tertiary_button_label": "Daddy & Me",
+        "tertiary_button_link": "/collections/daddy-me",
         "show_trust": false,
         "trust_line": "",
         "height": 500,
         "overlay_opacity": 25,
+        "autoplay_interval": 5,
         "bg_color": "#2e2e2e",
         "text_color": "#ffffff",
         "button_color": "#f39c12",
