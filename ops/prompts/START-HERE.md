@@ -18,6 +18,8 @@ Use this file as the first stop for any new session that needs to create or upda
 
 For new listing work, prefer the `ops/prompts/` workflow over older prompt files under `GPT/` unless the user explicitly asks for a legacy prompt.
 
+Family-matching sanity check: if `Size` labels already encode the shopper role (`Mother S`, `Father M`, `Child 2 Years`), keep `Type` generic to the garment (`Dress`, `Shirt`) instead of repeating the role in the option value.
+
 ## Minimal Request Template
 
 ```text

@@ -48,6 +48,10 @@ The agent should only stop for real blockers:
 - missing credentials/access after fallbacks
 - destructive update/delete decisions that cannot be inferred safely
 
+Family-matching default:
+
+- if sizes already encode role/audience, collapse `Type` to the honest garment labels only, e.g. `Dress` and `Shirt`, instead of `Mother Dress`, `Father Shirt`, `Girl Dress`, `Boy Shirt`
+
 ## Example 1 — Mommy and Me Dresses
 
 ```text
@@ -101,6 +105,11 @@ SHORTCODE_OVERRIDE: VCF
 COLOR_TOKEN_OVERRIDE: CREAM
 FORCE_SPEC_PRICES: true
 ```
+
+Expected option model for Example 3:
+
+- `Type`: `Dress`, `Shirt`
+- `Size`: role-bearing labels such as `Mother S`, `Father M`, `Child 2 Years`
 
 ## Operator Reminder
 

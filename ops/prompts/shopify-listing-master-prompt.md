@@ -68,20 +68,32 @@ Only include roles the vendor actually sells.
 
 ### 2. Derive garments instead of asking for them
 
-Infer one garment per role from vendor evidence. Examples:
+Infer one role label and one garment label from vendor evidence. Examples:
 
 - `Girl Dress`, `Mother Dress`
 - `Boy Shirt`, `Father Shirt`
 - `Girl Pajama Set`, `Mother Pajama Set`
 
-Use those derived role-garment values everywhere downstream:
+Use the role label for:
 
-- `Type` option values
 - `SIZE_CHART.role`
-- body size-table grouping
 - tags
 - SKUs
 - metafield logic
+
+Use the garment label for:
+
+- `SIZE_CHART.garment`
+- body size-table grouping
+- generic `Type` option values when the size labels already encode role
+
+Option-axis rule:
+
+- Default to `Size` + `Color` when the listing is a single honest garment/product across all roles, even if it is sold for both parent and child.
+- Add a `Type` option axis only when the listing truly mixes different products/garments in one listing, or when `Size` alone would create duplicate variant identities.
+- When `Type` is required, use the smallest honest distinction that keeps variants unique.
+- If `Size` already carries the role or audience (`Mother S`, `Father M`, `Child 2 Years`), prefer generic garment labels such as `Dress`, `Shirt`, or `Pajama Set`.
+- Only use role-specific `Type` values when generic garment labels would still collide or would stop being an honest description of what the shopper is selecting.
 
 ### 3. Distinguish listing mode from product category
 
@@ -103,7 +115,14 @@ Use those derived role-garment values everywhere downstream:
 - `Outerwear`
 - `FamilySet`
 
-If the product mixes garments across roles, keep one product and use a `Type` option axis when required.
+If the product mixes garments across roles, keep one product and use a `Type` option axis when required. If all roles are buying the same garment family, do not surface `Type`; use `Size` + `Color` instead.
+
+Storefront merchandising override:
+
+- If the operator explicitly wants a mommy-and-me coordinated look merchandised under `Dresses` because the storefront has no useful `Set` pill or dress visibility depends on it, inspect the live dress collection rules first.
+- Keep the Shopify taxonomy honest for standard category attributes unless the operator explicitly asks you to change the taxonomy too.
+- Apply the requested storefront override through `custom.subcategory`, `custom.subcategory2`, `custom.type`, and the minimum required dress-trigger tag(s) that match the live collection rules.
+- Document the override clearly in `listing.md` so future reruns do not "correct" it back unintentionally.
 
 ### 4. Price strategy
 
@@ -142,14 +161,20 @@ Compare-at price:
 | Category | Product Type (Shopify) | Taxonomy GID | `custom.type` | Body keyword | Default size scheme |
 |---|---|---|---|---|---|
 | Pajamas | Matching Family Pajamas | `gid://shopify/TaxonomyCategory/aa-1-17-4` | Two-Piece Pajama Set | pajama set | per role |
-| Dresses | Matching Family Dresses | `gid://shopify/TaxonomyCategory/aa-1-13-8` | Dress | dress | per role |
+| Dresses | Matching Family Dresses | `gid://shopify/TaxonomyCategory/aa-1-4` | Dress | dress | per role |
 | Swimsuits | Matching Family Swimwear | `gid://shopify/TaxonomyCategory/aa-1-13-15` | Swimsuit | swimsuit | per role |
 | Rompers | Matching Family Rompers | `gid://shopify/TaxonomyCategory/aa-1-13-11` | Romper | romper | per role |
 | Tops | Matching Family Tops | `gid://shopify/TaxonomyCategory/aa-1-13-16` | Top | top | per role |
 | Bottoms | Matching Family Bottoms | `gid://shopify/TaxonomyCategory/aa-1-13-2` | Bottoms | bottoms | per role |
-| Sets | Matching Family Sets | `gid://shopify/TaxonomyCategory/aa-1-13-12` | Two-Piece Set | set | per role |
+| Sets | Matching Family Sets | `gid://shopify/TaxonomyCategory/aa-1-11` | Two-Piece Set | set | per role |
 | Outerwear | Matching Family Outerwear | `gid://shopify/TaxonomyCategory/aa-1-13-9` | Jacket | jacket | per role |
-| FamilySet | Matching Family Sets | `gid://shopify/TaxonomyCategory/aa-1-13-12` | Two-Piece Set | family matching set | per role |
+| FamilySet | Matching Family Sets | `gid://shopify/TaxonomyCategory/aa-1-11` | Two-Piece Set | family matching set | per role |
+
+Taxonomy guard:
+
+- Before any Admin API write, resolve the chosen taxonomy GID through Shopify `node(id: ...)`.
+- The returned `fullName` must match the resolved category family exactly, or the run must halt and fix the map before publishing.
+- Example: `Dresses` must resolve to `Apparel & Accessories > Clothing > Dresses`, not any `Clothing Tops` child.
 
 ## Size Scheme Rules
 
@@ -274,7 +299,9 @@ Re-query the product and halt on mismatch:
 - Shopify vendor field: `dresslikemommy.com`
 - Never mention `1688`, `Alibaba`, or the vendor customer-facing
 - Voice: warm, family-first, photo-ready
-- Use dual-unit measurements everywhere: `cm/in`, `kg/lbs`
+- Use the vendor source unit in the shopper-facing size table.
+- If the vendor chart is metric, render the size table in metric only: `cm` and `kg`.
+- Never combine `cm/in` or `kg/lbs` inside the same size-table cell.
 - No prices, sale badges, shipping promises, or discount claims in title, SEO, or body copy
 - Put `VENDOR_URL` in tags only
 - Inventory defaults:
@@ -360,14 +387,17 @@ Rules:
 
 - First cell of every row = `picker_label` verbatim
 - Adult age cell = `—`
+- Every measurement header that uses dual-unit values must declare its units explicitly, e.g. `Weight (kg/lbs)` and `Chest/Bust (cm/in)`.
 - All measurement cells dual-unit
+- Never ship bare headers like `Weight` or `Height` when the cells contain `kg/lbs` or `cm/in`, because the storefront unit toggle depends on those header cues.
 - Table row counts must match `SIZE_CHART`
 
 ## Variants, Options, and SKUs
 
-- If more than one role-garment exists, options are `Type` x `Size`
+- If more than one honest garment exists, or if `Size` alone would collide, options are `Type` x `Size`
 - If only one audience/garment exists, options are `Size` x `Color`
-- Type values are the unique derived role-garment labels in display order
+- If `Size` already encodes role/audience, Type values are the unique garment labels in display order, e.g. `Dress`, `Shirt`
+- Only use role-specific Type values when generic garment labels would still create duplicate variant identities
 - Variants = `SIZE_CHART` rows, one to one
 
 SKU format:
@@ -482,6 +512,7 @@ Write applicable apparel metafields only when honest and supported:
 
 - `shopify.sleeve-length-type`
 - `shopify.neckline`
+- `shopify.top-length-type`
 - `shopify.dress-occasion`
 - `shopify.dress-style`
 - `shopify.skirt-dress-length-type`
@@ -542,7 +573,7 @@ Do not finish until all of these pass:
 - every variant has SKU, price, compare-at, `DENY`, `tracked=true`
 - `publishedAt` is not null
 - `onlineStoreUrl` exists
-- taxonomy category is set
+- taxonomy category is set and resolves to the expected leaf full name
 - applicable metafields are written
 - every skipped metafield is explicitly documented
 - tag set matches the derived audience, sizes, and source URL

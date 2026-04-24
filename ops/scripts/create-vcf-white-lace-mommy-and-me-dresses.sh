@@ -38,7 +38,7 @@ SEO_TITLE="Mommy & Me White Lace Cami Dress | Dress Like Mommy"
 SEO_DESC="Shop our White Lace matching mommy-and-me dresses — cotton-blend cami dress for mom + daughter. Kids 3Y–10Y, Mom S–M."
 VENDOR="dresslikemommy.com"
 PRODUCT_TYPE="Dresses"
-TAXONOMY_GID="gid://shopify/TaxonomyCategory/aa-1-13-8"
+TAXONOMY_GID="gid://shopify/TaxonomyCategory/aa-1-4"
 CHILD_PRICE="28.99"     # GIRL_PRICE
 MOTHER_PRICE="31.99"    # MOTHER_PRICE
 CHILD_CMP="34.49"       # round_up(28.99 * 1.15, .99) = 33.33 → 33.99; but spec table says 29.99→34.99. 28.99 * 1.15 = 33.34; round_up to next .99 = 33.99
