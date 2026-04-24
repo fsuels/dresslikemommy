@@ -18561,3 +18561,22 @@ Residual note:
 - Full `shopify theme check --path . --fail-level error` surfaced existing unrelated locale translation errors, then exited with a Node heap out-of-memory failure before completion.
 - Full `git diff --check` still fails on pre-existing trailing whitespace in `ops/listings/scarlet-blossom-family-matching-set-shopify-import.csv`; the hero-scoped diff check passed.
 - Storefront rendering should be visually checked in a Shopify preview before publishing.
+
+2026-04-24 — Improved homepage hero image quality after browser review
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-hero-image-quality-pass
+
+What changed:
+- Reviewed the live homepage hero in the browser at desktop and mobile sizes after the slider launch.
+- Removed the weaker garden and golden-hour hero slides from the homepage configuration because they did not match the original hero's professional boardwalk/beach visual quality.
+- Kept the original hero as the quality anchor and paired it only with the stronger beach boardwalk mommy-and-me slide.
+
+Files changed:
+- `templates/index.json`
+
+Verification:
+- Passed `ruby -rjson -e 'JSON.parse(File.read("templates/index.json"))'`.
+- Passed targeted `shopify theme check --path /tmp/dlm-hero-theme-check --fail-level error`.
+- Passed targeted `git diff --check -- templates/index.json`.
+
+Residual note:
+- The carousel now uses two high-quality hero slides rather than forcing a third available asset that would reduce visual quality or conflict with the desktop copy placement.
