@@ -38,7 +38,11 @@
     {% assign category1_display_label = 'sections.breadcrumbs.cat_family_matching' | t %}
   {% endif %}
   {% if has_family_matching_context %}
-    {% if product_collection_handle_tokens contains '|family-tops|' or subcategory_handle == 'tops' %}
+    {% if product_collection_handle_tokens contains '|family-sets|' or subcategory_handle == 'family-sets' %}
+      {% assign subcategory_handle = 'family-sets' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_sets' | t %}
+    {% elsif product_collection_handle_tokens contains '|family-tops|' or subcategory_handle == 'tops' %}
       {% assign subcategory_handle = 'family-tops' %}
       {% assign subcategory_collection = collections[subcategory_handle] %}
       {% assign subcategory_display_label = 'sections.breadcrumbs.label_tops' | t %}
