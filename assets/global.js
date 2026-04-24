@@ -1747,6 +1747,23 @@ class VariantSelects extends HTMLElement {
     if (modalContent && newModalContent) modalContent.innerHTML = newModalContent.innerHTML;
   }
 
+  updateColorImageOptions(html) {
+    const currentPicker = document.getElementById(`variant-selects-${this.dataset.section}`);
+    const updatedPicker = html.getElementById(
+      `variant-selects-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`
+    );
+
+    if (!currentPicker || !updatedPicker) return;
+
+    const currentColorGroups = currentPicker.querySelectorAll('.product-form__input--color-image');
+    const updatedColorGroups = updatedPicker.querySelectorAll('.product-form__input--color-image');
+    if (!currentColorGroups.length || currentColorGroups.length !== updatedColorGroups.length) return;
+
+    currentColorGroups.forEach((currentGroup, index) => {
+      currentGroup.innerHTML = updatedColorGroups[index].innerHTML;
+    });
+  }
+
   renderProductInfo() {
     const requestedVariantId = this.currentVariant.id;
     const sectionId = this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section;
@@ -1779,6 +1796,7 @@ class VariantSelects extends HTMLElement {
           `Volume-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`
         );
 
+        this.updateColorImageOptions(html);
         this.updateMedia(html);
 
         const pricePerItemDestination = document.getElementById(`Price-Per-Item-${this.dataset.section}`);
