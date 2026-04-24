@@ -18593,3 +18593,20 @@ Verification:
 
 Residual note:
 - Public storefront cache may briefly serve old HTML at some edges, but the live theme asset and fresh browser session showed the corrected two-slide hero.
+
+2026-04-24 — Generated replacement premium homepage hero slide
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-generated-premium-hero-slide
+
+What changed:
+- Generated a new high-resolution family boardwalk hero image to replace the second slide that looked off.
+- Added the final 2400x1000 JPEG asset as `assets/hero-family-boardwalk-premium.jpg`.
+- Updated the homepage hero second slide in `templates/index.json` to use the new generated asset.
+
+Verification:
+- Passed `ruby -rjson -e 'JSON.parse(File.read("templates/index.json"))'`.
+- Confirmed the new image is 2400x1000 and about 712 KB.
+- Passed targeted `shopify theme check --path /tmp/dlm-hero-theme-check --fail-level error`.
+- Passed targeted `git diff --check -- templates/index.json assets/hero-family-boardwalk-premium.jpg`.
+
+Residual note:
+- Live browser verification is still required after deploy because local `shopify theme dev` requires an interactive Shopify login in this shell.
