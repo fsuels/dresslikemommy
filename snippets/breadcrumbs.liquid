@@ -15,6 +15,18 @@
     {% assign has_family_sets_context = true %}
   {% endif %}
   {% assign family_sets_collection = collections['family-sets'] %}
+  {% if has_family_sets_context %}
+    {% if category1_collection == blank %}
+      {% assign category1_handle = 'new-women-outfits' %}
+      {% assign category1_collection = collections[category1_handle] %}
+      {% assign category1_display_label = 'sections.breadcrumbs.cat_family_matching' | t %}
+    {% endif %}
+    {% if subcategory_collection == blank and family_sets_collection != blank %}
+      {% assign subcategory_handle = 'family-sets' %}
+      {% assign subcategory_collection = family_sets_collection %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_sets' | t %}
+    {% endif %}
+  {% endif %}
   {% assign back_to_results_url = blank %}
   {% assign back_to_results_label = 'sections.product_navigation.back_to_results' | t %}
   {% assign back_to_results_context = blank %}
