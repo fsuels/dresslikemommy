@@ -87,6 +87,54 @@
       if color_tile_image == blank
         for variant in product.variants
           assign variant_matches_option_value = false
+          assign variant_matches_selected_options = true
+
+          case option.position
+            when 1
+              if variant.option1 == option_value_name
+                assign variant_matches_option_value = true
+              endif
+              if variant.option2 != product.selected_or_first_available_variant.option2
+                assign variant_matches_selected_options = false
+              endif
+              if variant.option3 != product.selected_or_first_available_variant.option3
+                assign variant_matches_selected_options = false
+              endif
+            when 2
+              if variant.option2 == option_value_name
+                assign variant_matches_option_value = true
+              endif
+              if variant.option1 != product.selected_or_first_available_variant.option1
+                assign variant_matches_selected_options = false
+              endif
+              if variant.option3 != product.selected_or_first_available_variant.option3
+                assign variant_matches_selected_options = false
+              endif
+            when 3
+              if variant.option3 == option_value_name
+                assign variant_matches_option_value = true
+              endif
+              if variant.option1 != product.selected_or_first_available_variant.option1
+                assign variant_matches_selected_options = false
+              endif
+              if variant.option2 != product.selected_or_first_available_variant.option2
+                assign variant_matches_selected_options = false
+              endif
+          endcase
+
+          if variant_matches_option_value and variant_matches_selected_options and variant.featured_media and variant.featured_media.preview_image
+            assign color_tile_image = variant.featured_media.preview_image
+            break
+          elsif variant_matches_option_value and variant_matches_selected_options and variant.featured_image
+            assign color_tile_image = variant.featured_image
+            break
+          endif
+        endfor
+      endif
+
+      if color_tile_image == blank
+        for variant in product.variants
+          assign variant_matches_option_value = false
 
           case option.position
             when 1

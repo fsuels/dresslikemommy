@@ -37,9 +37,9 @@
     assign media_width = 0.45
   endif
 
-  assign featured_media = product.featured_media
+  assign featured_media = product.selected_or_first_available_variant.featured_media
   if featured_media == null
-    assign featured_media = product.selected_or_first_available_variant.featured_media
+    assign featured_media = product.featured_media
   endif
 -%}
 
