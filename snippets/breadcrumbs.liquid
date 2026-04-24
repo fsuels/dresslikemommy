@@ -10,9 +10,59 @@
   {% assign subcategory_collection = collections[subcategory_handle] %}
   {% assign subcategory_display_label = subcategory_label %}
   {% assign product_collection_handles = product.collections | map: 'handle' | join: '|' %}
+  {% assign product_collection_handle_tokens = '|' | append: product_collection_handles | append: '|' %}
+  {% assign has_family_matching_context = false %}
+  {% if category1_handle == 'family-matching'
+    or category1_handle == 'matching-outfits'
+    or category1_handle == 'family-matching-outfits'
+    or category1_handle == 'new-women-outfits'
+    or product_collection_handle_tokens contains '|new-women-outfits|'
+    or product_collection_handle_tokens contains '|popular-family-matching|'
+    or product_collection_handle_tokens contains '|family-sets|'
+    or product_collection_handle_tokens contains '|matching-family-vacation-outfits|'
+    or product_collection_handle_tokens contains '|matching-hawaiian-outfits|'
+    or product_collection_handle_tokens contains '|family-tops|'
+    or product_collection_handle_tokens contains '|family-sweaters|'
+    or product_collection_handle_tokens contains '|family-pajamas|'
+    or product_collection_handle_tokens contains '|family-swimsuits|'
+  %}
+    {% assign has_family_matching_context = true %}
+  {% endif %}
   {% assign has_family_sets_context = false %}
-  {% if product_collection_handles contains 'family-sets' or subcategory_handle == 'family-sets' %}
+  {% if product_collection_handle_tokens contains '|family-sets|' or subcategory_handle == 'family-sets' %}
     {% assign has_family_sets_context = true %}
+  {% endif %}
+  {% if has_family_matching_context and category1_collection == blank %}
+    {% assign category1_handle = 'new-women-outfits' %}
+    {% assign category1_collection = collections[category1_handle] %}
+    {% assign category1_display_label = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% endif %}
+  {% if has_family_matching_context %}
+    {% if product_collection_handle_tokens contains '|family-tops|' or subcategory_handle == 'tops' %}
+      {% assign subcategory_handle = 'family-tops' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_tops' | t %}
+    {% elsif product_collection_handle_tokens contains '|family-sweaters|' or subcategory_handle == 'sweaters' %}
+      {% assign subcategory_handle = 'family-sweaters' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_sweaters' | t %}
+    {% elsif product_collection_handle_tokens contains '|family-pajamas|' or subcategory_handle == 'pajamas' %}
+      {% assign subcategory_handle = 'family-pajamas' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_pajamas' | t %}
+    {% elsif product_collection_handle_tokens contains '|family-swimsuits|' or subcategory_handle == 'swimsuits' %}
+      {% assign subcategory_handle = 'family-swimsuits' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_swimsuits' | t %}
+    {% elsif product_collection_handle_tokens contains '|matching-hawaiian-outfits|' or subcategory_handle == 'matching-hawaiian-outfits' %}
+      {% assign subcategory_handle = 'matching-hawaiian-outfits' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'Hawaiian Outfits' %}
+    {% elsif product_collection_handle_tokens contains '|matching-family-vacation-outfits|' or subcategory_handle == 'matching-family-vacation-outfits' %}
+      {% assign subcategory_handle = 'matching-family-vacation-outfits' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'Family Vacation Outfits' %}
+    {% endif %}
   {% endif %}
   {% assign family_sets_collection = collections['family-sets'] %}
   {% if has_family_sets_context %}
