@@ -201,7 +201,7 @@
 {% case current_main_branch_key %}
   {% when 'mommy' %}
     {% assign branch_row_label = 'Within Mommy & Me' %}
-    {% assign branch_pill_list = 'mommy-and-me::All|||pajamas::Pajamas|||dresses::Dresses|||swimsuits::Swimsuits|||tops::Tops|||sweaters::Sweaters' | split: '|||' %}
+    {% assign branch_pill_list = 'mommy-and-me::All::|||mommy-and-me::Sets::sets|||pajamas::Pajamas|||dresses::Dresses|||swimsuits::Swimsuits|||tops::Tops|||sweaters::Sweaters' | split: '|||' %}
   {% when 'family' %}
     {% assign branch_row_label = 'Within Family Matching' %}
     {% capture family_priority_pills %}
@@ -353,6 +353,14 @@
                   {% elsif target_collection != blank %}
                     {% assign pill_url = target_collection.url %}
                   {% endif %}
+                {% elsif current_main_branch_key == 'mommy' and item_tag_handle != blank %}
+                  {% assign force_show_pill = true %}
+                  {% assign mommy_parent_url = collections_base_url | append: 'mommy-and-me' %}
+                  {% assign mommy_parent_collection = collections['mommy-and-me'] %}
+                  {% if mommy_parent_collection != blank %}
+                    {% assign mommy_parent_url = mommy_parent_collection.url %}
+                  {% endif %}
+                  {% assign pill_url = mommy_parent_url | append: '/' | append: item_tag_handle %}
                 {% elsif current_main_branch_key == 'family' %}
                   {% assign force_show_pill = true %}
                   {% if item_tag_handle != blank %}
@@ -386,7 +394,9 @@
                   {% when 'mommy' %}
                     {% case item_handle %}
                       {% when 'mommy-and-me' %}
-                        {% if current_collection_handle == 'mommy-and-me' %}
+                        {% if current_collection_handle == 'mommy-and-me' and current_tag_handle_tokens == ',' and item_tag_handle == blank %}
+                          {% assign item_is_current = true %}
+                        {% elsif current_collection_handle == 'mommy-and-me' and item_tag_handle != blank and current_tag_handle_tokens contains ',sets,' %}
                           {% assign item_is_current = true %}
                         {% endif %}
                       {% when 'pajamas' %}
@@ -477,7 +487,14 @@
                 {% endunless %}
 
                 {% if item_is_current %}
-                  {% if current_main_branch_key == 'family' %}
+                  {% if current_main_branch_key == 'mommy' and item_tag_handle != blank %}
+                    {% assign mommy_parent_url = collections_base_url | append: 'mommy-and-me' %}
+                    {% assign mommy_parent_collection = collections['mommy-and-me'] %}
+                    {% if mommy_parent_collection != blank %}
+                      {% assign mommy_parent_url = mommy_parent_collection.url %}
+                    {% endif %}
+                    {% assign pill_url = mommy_parent_url | append: '/' | append: item_tag_handle %}
+                  {% elsif current_main_branch_key == 'family' %}
                     {% if item_tag_handle != blank %}
                       {% assign pill_url = family_matching_hub_filter_base_url | append: '/' | append: item_tag_handle %}
                     {% else %}

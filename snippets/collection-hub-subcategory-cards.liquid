@@ -22,7 +22,7 @@
 
   case hub_variant
     when 'mommy'
-      assign card_items = 'pajamas::Pajamas::pajamas::mommy-and-me|||dresses::Dresses::dresses::mommy-and-me|||swimsuits::Swimsuits::swimsuits::mommy-and-me|||tops::Tops::tops::mommy-and-me|||sweaters::Sweaters::sweaters::mommy-and-me' | split: '|||'
+      assign card_items = 'mommy-and-me::Sets::mommy-and-me::mommy-and-me::sets|||pajamas::Pajamas::pajamas::mommy-and-me|||dresses::Dresses::dresses::mommy-and-me|||swimsuits::Swimsuits::swimsuits::mommy-and-me|||tops::Tops::tops::mommy-and-me|||sweaters::Sweaters::sweaters::mommy-and-me' | split: '|||'
     when 'family'
       assign card_items = 'family-swimsuits::Swimsuits::family-swimsuits::new-women-outfits|||family-sets::Sets::family-sets::new-women-outfits|||family-tops::Tops::family-tops::new-women-outfits|||family-sweaters::Sweaters::family-sweaters::new-women-outfits|||family-pajamas::Pajamas::pajamas::pajamas' | split: '|||'
   endcase
@@ -40,6 +40,7 @@
         {%- assign item_label = item_parts[1] | strip -%}
         {%- assign item_image_handle = item_parts[2] | strip -%}
         {%- assign item_fallback_handle = item_parts[3] | strip -%}
+        {%- assign item_tag_handle = item_parts[4] | default: '' | strip | handleize -%}
         {%- assign item_target_collection = collections[item_handle] -%}
         {%- assign item_image_collection = collections[item_image_handle] -%}
         {%- assign item_fallback_collection = collections[item_fallback_handle] -%}
@@ -55,6 +56,10 @@
           {%- assign item_url = family_hub_url -%}
         {%- else -%}
           {%- assign item_url = mommy_hub_url -%}
+        {%- endif -%}
+
+        {%- if hub_variant == 'mommy' and item_tag_handle != blank -%}
+          {%- assign item_url = mommy_hub_url | append: '/' | append: item_tag_handle -%}
         {%- endif -%}
 
         {%- if item_image_collection != blank and item_image_collection.image != blank -%}
