@@ -33,10 +33,17 @@ Continuity (resume work in new sessions)
   - Product images are cached under `ops/sourcing/image-cache/` because Alibaba hotlinking can show blank images in Chrome.
   - User-facing controls include Find Fresh Products, Open 1688 Login/Search, Save, Reject/Restore, Open 1688, Save Proof, Draft Package, Copy Listing Agent Prompt, Copy 6-Image Prompt, and category/status filters.
   - Plain-language labels are intentional: Products Found = all saved candidates; To Review = not rejected and worth looking at; Saved = user clicked Save/Keep; Ready for Draft = proof fields filled; Rejected = remembered rejects; Best Leads = internal Gold; Needs Check = internal Test.
+  - Dashboard candidate loading dedupes repeated 1688 offer IDs and keeps the best/current card, so repeated searches should not show the same product over and over.
 - Sourcing/scoring implementation:
   - `ops/scripts/1688_sourcing_cdp_collect.py`: logged-in Chrome DevTools Protocol collector for real 1688 searches, default CDP port `9333`.
+    - `Find Fresh Products` passes `--query-index -1 --target-reviewable 3 --limit 48`, which tries configured category keywords and stops once it has at least 3 `Gold`/`Test` candidates.
   - `ops/sourcing/1688-browser-collector.js`: fallback browser-console collector when CDP is blocked by login/CAPTCHA.
   - `ops/scripts/1688_sourcing_score.py`: scores candidates and writes `shortlist.html`, `scored-candidates.csv`, `scored-candidates.json`, and `summary.md`.
+    - Search-stage scoring should keep plausible products as `Test`/`Needs Check` when they have category fit, usable images, low MOQ, visible 2025/2026/new-style signal, and at least one good signal such as sales, repeat rate, dropship wording, or strong score. Do not reject search-stage cards just because detail-page proof is missing.
+    - Hard rejects at search stage are for previous operator rejects, stale year signals such as 2020-2024 in 2026, no visible 2025/2026 freshness signal, wrong category, missing URL/image, high MOQ, explicit no-dropship/no-size-chart evidence, or brand/IP risk.
+    - The scorer rechecks visible text for category fit; do not trust old `category_match=5` values if the title/raw text does not actually mention mother/daughter, father/child, family, couple, or maternity terms.
+    - Search-card `Sales` is only the number visible on 1688. If the page does not show a time window, treat it as a popularity clue and confirm on the detail page.
+    - If 1688 redirects to a `Captcha Interception` / `_____tmd_____` page, the collector should fail loudly and ask for browser recovery; do not create a normal empty run.
   - Always pass `--decision-state ops/sourcing/state/decisions.json` when scoring real candidates so rejected products stay rejected.
 - Categories are configured in `ops/sourcing/sourcing-categories.json`:
   - `mommy-and-me` / Mommy & Me
@@ -60,22 +67,21 @@ Continuity (resume work in new sessions)
 - Real runs already exist:
   - Original family matching run: `ops/sourcing/2026-04-25-family-dress-shirt-1688/`
   - Automatic category runs: `ops/sourcing/2026-04-24-2354-*-1688-auto/`
-  - Last known dashboard state on 2026-04-25: 36 total candidates, 7 active Test candidates, mainly Family Matching; other categories need better query/detail tuning.
+  - Last known tuned Mommy & Me run: `ops/sourcing/2026-04-25-0056-mommy-and-me-1688-auto/` produced 32 candidates, 8 fresh `Test` / `Needs Check`, 0 `Gold`, 24 `Reject` after stale-year/no-freshness filtering.
 - How to open/run:
   - Preferred: open `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app` or click the Dock icon.
   - Manual: `python3 ops/scripts/1688_sourcing_dashboard.py --open`
-  - In the app, click `Find Fresh Products` to run the collector from the dashboard. If 1688 requires login/CAPTCHA, click `Open 1688 Login/Search`, let the user handle login/CAPTCHA, then click `Find Fresh Products` again.
-  - Fill one category: `python3 ops/scripts/1688_sourcing_cdp_collect.py --category family-matching --limit 24`
-  - Fill all categories: `python3 ops/scripts/1688_sourcing_cdp_collect.py --category all --limit 24`
+  - In the app, click `Find Fresh Products` to run the collector from the dashboard. It tries all configured keywords for the selected category and targets at least 3 reviewable products. If 1688 requires login/CAPTCHA, click `Open 1688 Login/Search`, let the user handle login/CAPTCHA, then click `Find Fresh Products` again.
+  - Fill one category with the tuned behavior: `python3 ops/scripts/1688_sourcing_cdp_collect.py --category mommy-and-me --limit 48 --query-index -1 --target-reviewable 3`
+  - Fill all categories: `python3 ops/scripts/1688_sourcing_cdp_collect.py --category all --limit 48 --query-index -1 --target-reviewable 3`
 - Browser/login safety:
   - Use logged-in browser-assisted workflows; do not do blind server scraping.
   - Do not store 1688 credentials in the repo, worklog, prompts, or generated files.
   - Do not bypass CAPTCHA, browser safety barriers, paywalls, or HTTPS warnings.
   - If 1688 asks for manual login/CAPTCHA, ask the user to take over or use the console collector after login.
 - Next best product-finder improvements:
-  - Improve the one-click `Find Fresh Products` flow with detail-page enrichment and clearer success/failure recovery.
-  - Tune category-specific queries, especially Mommy & Me, Daddy & Me, Couples, and Maternity.
-  - Add detail-page enrichment for supplier evidence, dispatch speed, dropship support, size chart detection, and image download paths before marking products Gold.
+  - Add detail-page enrichment behind saved `Needs Check` products so supplier evidence, dispatch speed, dropship support, size chart detection, and image download paths can be filled automatically before marking products Gold.
+  - Tune category-specific queries next for Daddy & Me, Couples, and Maternity using the same "target at least 3 reviewable candidates" loop.
   - Keep all generated tooling dev/operator-side only; do not add AI UI or backend agent references to the live Shopify theme.
 
 Canonical listing workflow

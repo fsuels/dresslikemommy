@@ -1,11 +1,11 @@
 # 1688 Sourcing Shortlist Summary
 
-- Source: `/Users/fsuels/Projects/dresslikemommy/ops/sourcing/2026-04-24-2354-family-matching-1688-auto/candidates.json`
-- Generated: 2026-04-24T23:54:49
+- Source: `ops/sourcing/2026-04-24-2354-family-matching-1688-auto/candidates.json`
+- Generated: 2026-04-25T01:07:48
 - Candidates: 7
 - Gold: 0
-- Test: 1
-- Reject: 6
+- Test: 3
+- Reject: 4
 
 ## Gold Candidates
 
@@ -13,4 +13,6 @@
 
 ## Immediate Review Queue
 
-- 54 — in stock French Mother and Dresses dress Summer New Family of Three Parent-child Clothes Holiday Floral Shirt Floral Skirt ¥50.00 MOQ 1 Repurchase Rate 86% 3 2K+ sold: size chart still needs confirmation; supplier operating years missing; shop/service rating missing
+- 51 — Family Matching Outfits for Three, High-End Summer 2026 New Style Mother-Daughter Dresses, Beach Vacation Floral Shirts, Trendy ¥48.00 MOQ 1 Repurchase Rate 86% 5 2K+ sold: size chart still needs confirmation; supplier operating years missing; shop/service rating missing
+- 51 — Parent-child Suit Family of Three High-end Summer 2025 New Mother and Women's dress Seaside Vacation Flower Shirt Fashion ¥48.00 MOQ 1 Repurchase Rate 88% 5 1K+ sold: size chart still needs confirmation; supplier operating years missing; shop/service rating missing
+- 49 — Parent-Child Outfits for a Family of Three, High-End Summer 2025 New Mother-Daughter Dresses, Beach Vacation Floral Shirts, Trendy ¥79.00 MOQ 2 Repurchase Rate 72% 5 Hot selling: size chart still needs confirmation; supplier operating years missing; shop/service rating missing

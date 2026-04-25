@@ -53,6 +53,10 @@ CSV_FIELDNAMES = [
     "next_action",
     "raw_card_text",
     "notes",
+    "search_query",
+    "search_url",
+    "sales_context",
+    "category_id",
 ]
 
 ALIASES = {
@@ -78,6 +82,10 @@ ALIASES = {
     "ip_risk_flags": ("ip_risk_flags", "ip_risk", "brand_risk", "copyright_risk", "risk_flags"),
     "raw_card_text": ("raw_card_text", "raw_text", "text", "card_text", "visible_text"),
     "notes": ("notes", "note", "comments", "comment"),
+    "search_query": ("search_query", "query", "keyword", "keywords"),
+    "search_url": ("search_url", "page_url", "source_url", "source_search_url"),
+    "sales_context": ("sales_context", "sales_label", "sales_text", "sales_raw"),
+    "category_id": ("category_id", "category", "category_slug"),
 }
 
 POSITIVE_BADGE_PATTERNS = {
@@ -127,6 +135,10 @@ IP_RISK_TERMS = (
 )
 
 
+CURRENT_YEAR = dt.date.today().year
+MIN_FRESH_YEAR = CURRENT_YEAR - 1
+
+
 @dataclass
 class Candidate:
     candidate_id: str
@@ -152,6 +164,10 @@ class Candidate:
     ip_risk_flags: str = ""
     raw_card_text: str = ""
     notes: str = ""
+    search_query: str = ""
+    search_url: str = ""
+    sales_context: str = ""
+    category_id: str = ""
     score: int = 0
     verdict: str = "Test"
     breakdown: dict[str, float] = field(default_factory=dict)
@@ -189,7 +205,13 @@ def load_rows(path: Path) -> list[dict[str, Any]]:
         payload = json.loads(path.read_text(encoding="utf-8"))
         if isinstance(payload, dict):
             if isinstance(payload.get("candidates"), list):
-                return payload["candidates"]
+                rows = payload["candidates"]
+                category_id = clean(payload.get("category_id"))
+                if category_id:
+                    for row in rows:
+                        if isinstance(row, dict):
+                            row.setdefault("category_id", category_id)
+                return rows
             if isinstance(payload.get("items"), list):
                 return payload["items"]
         if isinstance(payload, list):
@@ -302,6 +324,60 @@ def detect_ip_risks(candidate: Candidate) -> list[str]:
     return sorted({term for term in IP_RISK_TERMS if term in text})
 
 
+def inferred_category_fit(candidate: Candidate) -> float | None:
+    category_id = clean(candidate.category_id)
+    if not category_id:
+        return None
+    haystack = " ".join([candidate.title, candidate.raw_card_text, candidate.badges, candidate.service_flags]).lower()
+    terms = {
+        "mommy-and-me": ("mother", "daughter", "mom", "mommy", "母女", "亲子", "parent-child"),
+        "daddy-and-me": ("father", "son", "dad", "daddy", "父子", "父女", "亲子", "parent-child"),
+        "family-matching": ("family", "mother", "father", "daughter", "son", "家庭", "全家", "亲子", "parent-child"),
+        "couples": ("couple", "情侣", "sweetheart"),
+        "maternity": ("maternity", "pregnant", "pregnancy", "孕妇", "孕妈", "哺乳"),
+    }
+    strong_terms = terms.get(category_id, ())
+    if any(term in haystack for term in strong_terms):
+        return 5.0
+    if category_id == "family-matching" and "dress" in haystack and "shirt" in haystack:
+        return 4.0
+    return 2.0
+
+
+def detected_listing_years(candidate: Candidate) -> list[int]:
+    text = " ".join([candidate.title, candidate.raw_card_text]).lower()
+    years = {int(match) for match in re.findall(r"\b(20[12]\d)\b", text)}
+    for match in re.finditer(
+        r"\b(2[0-6])\s*(?:new|style|summer|spring|autumn|fall|winter|款|上新|新品|新款)",
+        text,
+    ):
+        years.add(2000 + int(match.group(1)))
+    for match in re.finditer(
+        r"(?:new|style|summer|spring|autumn|fall|winter|款|上新|新品|新款)\s*(2[0-6])\b",
+        text,
+    ):
+        years.add(2000 + int(match.group(1)))
+    return sorted(year for year in years if 2018 <= year <= CURRENT_YEAR + 1)
+
+
+def has_fresh_signal(candidate: Candidate, years: list[int]) -> bool:
+    if years and max(years) >= MIN_FRESH_YEAR:
+        return True
+    text = " ".join([candidate.title, candidate.raw_card_text]).lower()
+    return any(
+        term in text
+        for term in (
+            "2026新款",
+            "2025新款",
+            "2026",
+            "2025",
+            "新款",
+            "新品",
+            "上新",
+        )
+    )
+
+
 def is_search_stage_promising(
     *,
     candidate: Candidate,
@@ -313,16 +389,22 @@ def is_search_stage_promising(
 ) -> bool:
     """Search pages rarely expose full supplier evidence; keep good leads alive."""
     if total < 52:
-        return False
+        if total < 45:
+            return False
     if category_fit < 3.5:
         return False
     if not candidate.image_url:
         return False
-    if moq is not None and moq > 3:
+    if moq is not None and moq > 5:
         return False
-    if repurchase is not None and repurchase >= 25:
+    if repurchase is not None and repurchase >= 20:
         return True
-    if monthly_sales is not None and monthly_sales >= 50:
+    if monthly_sales is not None and monthly_sales >= 30:
+        return True
+    text = " ".join([candidate.title, candidate.raw_card_text, candidate.service_flags]).lower()
+    if moq is not None and moq <= 1 and total >= 45:
+        return True
+    if total >= 45 and any(term in text for term in ("一件代发", "dropship", "one-piece", "one piece")):
         return True
     return False
 
@@ -348,9 +430,13 @@ def score_candidate(
     monthly_sales = number(candidate.monthly_sales)
     repurchase = percent(candidate.repurchase_rate_pct)
     rating = number(candidate.rating)
-    category_fit = score_0_to_5(candidate.category_match, 3.0)
+    inferred_fit = inferred_category_fit(candidate)
+    category_fit = inferred_fit if inferred_fit is not None else score_0_to_5(candidate.category_match, 3.0)
+    candidate.category_match = f"{category_fit:g}"
     style_fit = score_0_to_5(candidate.style_fit, 3.0)
     image_quality = score_0_to_5(candidate.image_quality, 3.0 if candidate.image_url else 1.0)
+    listing_years = detected_listing_years(candidate)
+    fresh_signal = has_fresh_signal(candidate, listing_years)
 
     if offer_key(candidate.product_url) in rejected_keys:
         hard_reject_reasons.append("previously rejected by operator")
@@ -358,6 +444,8 @@ def score_candidate(
         hard_reject_reasons.append("missing product URL")
     if category_fit <= 1:
         hard_reject_reasons.append("poor fit for Dress Like Mommy categories")
+    elif review_stage == "search" and category_fit < 3.5:
+        hard_reject_reasons.append("weak visible match for selected store category")
     if size_chart is False:
         hard_reject_reasons.append("no vendor size chart evidence")
     if moq is not None and moq > 10:
@@ -368,6 +456,12 @@ def score_candidate(
         hard_reject_reasons.append("not one-piece/dropship friendly")
     if ip_risks:
         hard_reject_reasons.append("possible IP/brand risk")
+    if review_stage == "search" and listing_years and max(listing_years) < MIN_FRESH_YEAR:
+        hard_reject_reasons.append(
+            f"stale listing year signal ({max(listing_years)}); target {MIN_FRESH_YEAR}-{CURRENT_YEAR} new products"
+        )
+    if review_stage == "search" and not fresh_signal:
+        hard_reject_reasons.append(f"no visible {MIN_FRESH_YEAR}/{CURRENT_YEAR} freshness signal on search card")
 
     if not candidate.image_url:
         caps.append("missing product image URL")
@@ -513,6 +607,15 @@ def score_candidate(
         readiness_score += 6
         positive.append("no obvious IP-risk terms")
 
+    if fresh_signal:
+        readiness_score += 2
+        if listing_years:
+            positive.append(f"fresh year signal ({max(listing_years)})")
+        else:
+            positive.append("fresh/new-style keyword signal")
+    else:
+        concerns.append(f"listing freshness not proven; prefer {MIN_FRESH_YEAR}-{CURRENT_YEAR} products")
+
     if "买家保障" in signals or "品质保障" in signals:
         readiness_score += 4
     elif "包换" in signals:
@@ -564,7 +667,7 @@ def score_candidate(
         verdict = "Reject"
     elif review_stage == "detail" and total >= 78 and not caps:
         verdict = "Gold"
-    elif total >= 58 or (review_stage == "search" and search_promising):
+    elif total >= 55 or (review_stage == "search" and search_promising):
         verdict = "Test"
     else:
         verdict = "Reject"
@@ -660,6 +763,10 @@ def candidate_from_row(row: dict[str, Any], index: int) -> Candidate:
         ip_risk_flags=first_value(row, "ip_risk_flags"),
         raw_card_text=first_value(row, "raw_card_text"),
         notes=first_value(row, "notes"),
+        search_query=first_value(row, "search_query"),
+        search_url=first_value(row, "search_url"),
+        sales_context=first_value(row, "sales_context"),
+        category_id=first_value(row, "category_id"),
     )
 
 
@@ -713,6 +820,10 @@ def write_csv(path: Path, candidates: list[Candidate]) -> None:
                     "next_action": candidate.next_action,
                     "raw_card_text": candidate.raw_card_text,
                     "notes": candidate.notes,
+                    "search_query": candidate.search_query,
+                    "search_url": candidate.search_url,
+                    "sales_context": candidate.sales_context,
+                    "category_id": candidate.category_id,
                 }
             )
 
@@ -750,6 +861,10 @@ def candidate_to_dict(candidate: Candidate) -> dict[str, Any]:
         "listing_request": candidate.listing_request,
         "raw_card_text": candidate.raw_card_text,
         "notes": candidate.notes,
+        "search_query": candidate.search_query,
+        "search_url": candidate.search_url,
+        "sales_context": candidate.sales_context,
+        "category_id": candidate.category_id,
     }
 
 

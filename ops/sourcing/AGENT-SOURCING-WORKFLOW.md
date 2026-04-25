@@ -65,7 +65,14 @@ http://127.0.0.1:8766/
 - `Best Leads`: internal `Gold` verdict.
 - `Needs Check`: internal `Test` verdict; promising, but missing proof.
 
-The dashboard now has a `Find Fresh Products` button. It starts the CDP collector from the browser UI and refreshes the cards when the run completes. If 1688 requires login or CAPTCHA, use `Open 1688 Login/Search`, let the user complete that browser step, then click `Find Fresh Products` again.
+The dashboard has a `Find Fresh Products` button. It starts the CDP collector from the browser UI, tries configured category keywords, and stops once it has at least 3 `Gold`/`Test` candidates. If 1688 requires login or CAPTCHA, use `Open 1688 Login/Search`, let the user complete that browser step, then click `Find Fresh Products` again.
+
+Freshness rules:
+
+- In 2026, visible 2020-2024 year signals should be rejected for the active sourcing queue.
+- A search-stage product should need visible 2025/2026 or Chinese new-style evidence before it becomes `Test` / `Needs Check`.
+- If search-card sales have no stated time window, treat them as a popularity clue only and confirm sales/availability on the detail page.
+- If 1688 redirects to `Captcha Interception` or a `_____tmd_____` punish URL, stop and recover the browser session; do not treat zero cards as a successful search.
 
 ## Fill A Category With Fresh Candidates
 
@@ -77,6 +84,12 @@ One category:
 
 ```bash
 python3 ops/scripts/1688_sourcing_cdp_collect.py --category family-matching --limit 24
+```
+
+Tuned target mode:
+
+```bash
+python3 ops/scripts/1688_sourcing_cdp_collect.py --category mommy-and-me --limit 48 --query-index -1 --target-reviewable 3
 ```
 
 All categories:

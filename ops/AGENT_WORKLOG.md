@@ -20774,3 +20774,40 @@ Verification:
   - `Find Fresh Products` and `Open 1688 Login/Search` buttons render
   - candidate cards render
   - product images still load with real dimensions
+
+2026-04-25 — Tightened 1688 sourcing freshness and CAPTCHA handling
+AGENT_CONTINUITY_ANCHOR: 2026-04-25-sourcing-freshness-captcha-target
+
+What changed:
+- Updated search-stage sourcing logic so stale explicit years are rejected from the active queue:
+  - In 2026, visible 2020-2024 year signals are `Reject`.
+  - Search-stage candidates now need visible 2025/2026 or Chinese new-style evidence before becoming `Test` / `Needs Check`.
+  - Missing detail-page proof still does not automatically reject a fresh candidate; it remains a detail-enrichment task.
+- Updated the 1688 collector target loop:
+  - Dashboard-style collection uses `--query-index -1 --target-reviewable 3 --limit 48`.
+  - The collector now writes/scans after each query and stops once it has at least 3 reviewable candidates, reducing CAPTCHA pressure.
+  - The collector now detects 1688 `Captcha Interception` / `_____tmd_____` pages and fails loudly instead of creating a normal empty successful run.
+- Added dashboard explanation for freshness criteria, old-year rejects, and search-card sales ambiguity.
+- Restored category queries to broad product-finding terms plus strict scoring filters, because fully 2026-only Chinese queries returned zero search cards.
+- Dashboard candidate loading now dedupes repeated 1688 offer IDs and keeps the best/current card.
+
+Real run result:
+- `ops/sourcing/2026-04-25-0056-mommy-and-me-1688-auto` currently has 32 candidates after rescoring:
+  - 8 fresh `Test` / `Needs Check`
+  - 0 `Gold`
+  - 24 `Reject`
+- Top active leads include visible 2025/2026 titles and sales/repeat-rate signals, but still need detail-page proof before draft listing.
+
+Important blocker observed:
+- After repeated live searches, the logged-in helper Chrome session hit 1688 `Captcha Interception`.
+- Do not bypass it. Use `Open 1688 Login/Search`, let the user complete the browser check, then run collection again.
+
+Follow-up in same task:
+- Tightened category-fit validation so the scorer rechecks visible product text against the selected category instead of blindly trusting old `category_match` values in older candidate files.
+- Rescored existing sourcing runs so stale-year and weak-category candidates are no longer active in the dashboard.
+- Current dashboard API after rescore shows 63 deduped candidates and active fresh candidates by category:
+  - Mommy & Me: 8
+  - Family Matching: 3
+  - Couples: 2
+  - Daddy & Me: 0
+  - Maternity: 0

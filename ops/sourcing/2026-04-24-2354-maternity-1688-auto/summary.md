@@ -1,7 +1,7 @@
 # 1688 Sourcing Shortlist Summary
 
-- Source: `/Users/fsuels/Projects/dresslikemommy/ops/sourcing/2026-04-24-2354-maternity-1688-auto/candidates.json`
-- Generated: 2026-04-24T23:55:04
+- Source: `ops/sourcing/2026-04-24-2354-maternity-1688-auto/candidates.json`
+- Generated: 2026-04-25T01:07:48
 - Candidates: 8
 - Gold: 0
 - Test: 0

@@ -183,7 +183,7 @@ def update_collect_job(job_id: str, **updates: Any) -> None:
         job.update(updates)
 
 
-def run_collect_job(job_id: str, category_id: str, limit: int, query_index: int) -> None:
+def run_collect_job(job_id: str, category_id: str, limit: int, query_index: int, target_reviewable: int) -> None:
     command = [
         "python3",
         str(COLLECTOR_PATH),
@@ -195,6 +195,8 @@ def run_collect_job(job_id: str, category_id: str, limit: int, query_index: int)
         str(CDP_PORT),
         "--query-index",
         str(query_index),
+        "--target-reviewable",
+        str(target_reviewable),
     ]
     update_collect_job(job_id, status="running", command=" ".join(command), started_at=now_iso())
     try:
@@ -220,12 +222,16 @@ def run_collect_job(job_id: str, category_id: str, limit: int, query_index: int)
     stdout = completed.stdout or ""
     stderr = completed.stderr or ""
     generated_dirs = [line.strip() for line in stdout.splitlines() if line.strip().startswith("ops/sourcing/")]
+    summary_line = next((line.strip() for line in stdout.splitlines() if line.strip().startswith("reviewable=")), "")
     if completed.returncode == 0:
+        message = f"Found and scored fresh candidates for {category_id}."
+        if summary_line:
+            message = f"{message} {summary_line}."
         update_collect_job(
             job_id,
             status="complete",
             completed_at=now_iso(),
-            message=f"Found and scored fresh candidates for {category_id}.",
+            message=message,
             generated_dirs=generated_dirs,
             stdout=stdout,
             stderr=stderr,
@@ -245,11 +251,12 @@ def run_collect_job(job_id: str, category_id: str, limit: int, query_index: int)
         )
 
 
-def start_collect_job(category_id: str, limit: int, query_index: int) -> dict[str, Any]:
+def start_collect_job(category_id: str, limit: int, query_index: int, target_reviewable: int = 3) -> dict[str, Any]:
     allowed_categories = set(category_lookup()) | {"all"}
     if category_id not in allowed_categories:
         category_id = "family-matching"
     limit = max(1, min(limit, 80))
+    target_reviewable = max(0, min(target_reviewable, 12))
     job_id = hashlib.sha1(f"{now_iso()}-{category_id}-{limit}".encode("utf-8")).hexdigest()[:12]
     with COLLECTION_LOCK:
         COLLECTION_JOBS[job_id] = {
@@ -258,10 +265,15 @@ def start_collect_job(category_id: str, limit: int, query_index: int) -> dict[st
             "category_id": category_id,
             "limit": limit,
             "query_index": query_index,
+            "target_reviewable": target_reviewable,
             "created_at": now_iso(),
-            "message": "Starting 1688 search.",
+            "message": "Starting 1688 search. I will try the configured keywords and aim for at least 3 reviewable candidates.",
         }
-    thread = threading.Thread(target=run_collect_job, args=(job_id, category_id, limit, query_index), daemon=True)
+    thread = threading.Thread(
+        target=run_collect_job,
+        args=(job_id, category_id, limit, query_index, target_reviewable),
+        daemon=True,
+    )
     thread.start()
     return collect_job_snapshot(job_id)
 
@@ -289,6 +301,8 @@ def candidate_search_text(candidate: dict[str, Any]) -> str:
         candidate.get("badges"),
         candidate.get("service_flags"),
         candidate.get("raw_card_text"),
+        candidate.get("search_query"),
+        candidate.get("sales_context"),
     ]
     return clean(" ".join(clean(part) for part in parts)).lower()
 
@@ -328,6 +342,26 @@ def load_candidates() -> list[dict[str, Any]]:
             candidate["draft_package_path"] = str(package_dir_for_key(key).relative_to(REPO_ROOT))
             candidate["search_text"] = candidate_search_text(candidate)
             candidates.append(candidate)
+    deduped: dict[str, dict[str, Any]] = {}
+    verdict_rank = {"Gold": 3, "Test": 2, "Reject": 1}
+    for candidate in candidates:
+        key = clean(candidate.get("key")) or clean(candidate.get("product_url")) or clean(candidate.get("title"))
+        if not key:
+            continue
+        existing = deduped.get(key)
+        candidate_rank = (
+            verdict_rank.get(candidate.get("verdict"), 0),
+            int(candidate.get("score") or 0),
+            clean(candidate.get("run_id")),
+        )
+        existing_rank = (
+            verdict_rank.get(existing.get("verdict"), 0) if existing else 0,
+            int(existing.get("score") or 0) if existing else 0,
+            clean(existing.get("run_id")) if existing else "",
+        )
+        if existing is None or candidate_rank >= existing_rank:
+            deduped[key] = candidate
+    candidates = list(deduped.values())
     candidates.sort(
         key=lambda item: (
             item.get("category_label", ""),
@@ -734,6 +768,36 @@ def dashboard_html() -> str:
       background: var(--red-bg);
       border-color: rgba(166,66,59,.28);
     }
+    .search-plan {
+      display: grid;
+      gap: 8px;
+      padding: 10px;
+      border: 1px solid #e2e8e4;
+      border-radius: 8px;
+      background: #f7faf8;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .search-plan strong {
+      color: var(--ink);
+    }
+    .query-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .query-list li {
+      padding: 5px 7px;
+      border: 1px solid #dce4df;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 12px;
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -989,7 +1053,8 @@ def dashboard_html() -> str:
           <button id="find-products" class="primary">Find Fresh Products</button>
           <button id="open-1688">Open 1688 Login/Search</button>
         </div>
-        <div id="collector-status" class="status-box">Choose a category above, then click Find Fresh Products. If 1688 asks for login or CAPTCHA, use the Open 1688 button once, then click Find again.</div>
+        <div id="search-plan" class="search-plan"></div>
+        <div id="collector-status" class="status-box">Choose a category above, then click Find Fresh Products. The app tries the category keywords and aims for at least 3 products worth checking. If 1688 asks for login or CAPTCHA, use the Open 1688 button once, then click Find again.</div>
       </div>
     </section>
     <div id="empty" class="empty">No candidates match this view.</div>
@@ -1007,6 +1072,7 @@ def dashboard_html() -> str:
     const search = document.querySelector('#search');
     const sort = document.querySelector('#sort');
     const collectorStatus = document.querySelector('#collector-status');
+    const searchPlan = document.querySelector('#search-plan');
 
     async function api(path, options = {}) {
       const response = await fetch(path, {
@@ -1078,6 +1144,24 @@ def dashboard_html() -> str:
       collectorStatus.className = `status-box ${mode}`.trim();
     }
 
+    function activeCategoryConfig() {
+      return data.categories.find(category => category.id === activeCategory) || null;
+    }
+
+    function renderSearchPlan() {
+      const category = activeCategoryConfig();
+      const queries = category?.queries || data.categories.flatMap(item => item.queries || []).slice(0, 8);
+      const queryItems = queries.slice(0, 8).map(query => `<li>${escapeHtml(query)}</li>`).join('');
+      const label = category ? category.label : 'All Categories';
+      searchPlan.innerHTML = `
+        <div><strong>What the button searches:</strong> ${escapeHtml(label)} keyword searches on normal 1688 search pages.</div>
+        <ul class="query-list">${queryItems}</ul>
+        <div><strong>What becomes Needs Check:</strong> correct category, visible 2025/2026 or Chinese new-style signal, usable image, low MOQ, and at least one good signal such as repeat rate, sales, dropship wording, or strong score.</div>
+        <div><strong>What becomes Reject:</strong> previous reject, old year signal such as 2020-2024, no visible 2025/2026 freshness signal, wrong category, no product URL/image, high MOQ, explicit no-dropship/no-size-chart, or brand/IP risk.</div>
+        <div><strong>Sales:</strong> the number visible on the 1688 search card. If 1688 does not show a time window, treat it as a popularity clue and confirm on the detail page.</div>
+      `;
+    }
+
     function visibleCandidates() {
       const term = searchTerm.trim().toLowerCase();
       let items = data.candidates.filter(item => activeCategory === 'all' || item.category_id === activeCategory);
@@ -1142,11 +1226,13 @@ def dashboard_html() -> str:
           return;
         }
         if (job.status === 'failed') {
-          setCollectorStatus(`${job.message} ${job.stderr || ''}`.trim(), 'bad');
+          const detail = (job.stderr || '').split('\\n').filter(Boolean).pop() || '';
+          const shortDetail = detail.length > 220 ? `${detail.slice(0, 220)}...` : detail;
+          setCollectorStatus(`${job.message} ${shortDetail}`.trim(), 'bad');
           flash(button, 'Try again');
           return;
         }
-        setCollectorStatus(`${job.message || 'Searching 1688...'} This can take 20-60 seconds.`);
+        setCollectorStatus(`${job.message || 'Searching 1688...'} Trying several keyword searches; this can take 1-3 minutes.`);
         await new Promise(resolve => setTimeout(resolve, 2000));
       }
       setCollectorStatus('The search is still running. Refresh the view in a minute.', 'bad');
@@ -1157,11 +1243,11 @@ def dashboard_html() -> str:
       button.disabled = true;
       const old = button.textContent;
       button.textContent = 'Searching...';
-      setCollectorStatus(`Searching 1688 for ${category === 'all' ? 'all categories' : category}. Keep the 1688 helper browser logged in.`);
+      setCollectorStatus(`Searching 1688 for ${category === 'all' ? 'all categories' : category}. I am trying the configured keywords and aiming for at least 3 reviewable candidates.`);
       try {
         const job = await api('/api/collect', {
           method: 'POST',
-          body: JSON.stringify({ category_id: category, limit: 24, query_index: 0 }),
+          body: JSON.stringify({ category_id: category, limit: 48, query_index: -1, target_reviewable: 3 }),
         });
         await pollCollection(job.id, button);
       } catch (error) {
@@ -1252,6 +1338,8 @@ def dashboard_html() -> str:
       const positives = shortList(candidate.positive_signals, 'No strong signal captured yet.');
       const concerns = shortList(candidate.concerns, 'No major concern captured yet.');
       const evidence = candidate.evidence || {};
+      const searchQuery = candidate.search_query ? `Search: ${candidate.search_query}` : 'Search keyword not captured';
+      const salesContext = candidate.sales_context || '1688 did not show a clear sales time window on the search card.';
       article.innerHTML = `
         <div class="image">
           ${candidate.image_url ? `<img loading="lazy" src="${escapeHtml(imageSrc(candidate.image_url))}" alt="${escapeHtml(candidate.title)}">` : ''}
@@ -1265,6 +1353,7 @@ def dashboard_html() -> str:
           <div class="meta">
             <div>
               <div class="small">${escapeHtml(candidate.category_label)} - ${escapeHtml(candidate.run_id)}</div>
+              <div class="small">${escapeHtml(searchQuery)}</div>
               <h2>${escapeHtml(candidate.title || candidate.product_url)}</h2>
             </div>
             <div class="score">${escapeHtml(candidate.score)}</div>
@@ -1277,6 +1366,7 @@ def dashboard_html() -> str:
             ${metric('Rating', candidate.rating)}
             ${metric('Years', candidate.years_on_1688)}
           </div>
+          <div class="signal"><strong>Sales meaning:</strong> ${escapeHtml(salesContext)}</div>
           <div class="signal-block">
             <div class="signal"><strong>Why it may be good:</strong> ${escapeHtml(positives)}</div>
             <div class="signal"><strong>What still needs checking:</strong> ${escapeHtml(concerns)}</div>
@@ -1322,6 +1412,7 @@ def dashboard_html() -> str:
 
     function render() {
       renderCategories();
+      renderSearchPlan();
       updateStats();
       renderCards();
     }
@@ -1494,7 +1585,8 @@ class DashboardHandler(BaseHTTPRequestHandler):
             category_id = clean(payload.get("category_id")) or "family-matching"
             limit = int(payload.get("limit") or 24)
             query_index = int(payload.get("query_index") or 0)
-            job = start_collect_job(category_id, limit, query_index)
+            target_reviewable = int(payload.get("target_reviewable") or 3)
+            job = start_collect_job(category_id, limit, query_index, target_reviewable)
             self.send_json(job)
             return
         if parsed.path == "/api/evidence":

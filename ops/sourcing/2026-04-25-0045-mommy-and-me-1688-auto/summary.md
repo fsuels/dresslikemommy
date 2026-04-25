@@ -1,14 +1,16 @@
 # 1688 Sourcing Shortlist Summary
 
-- Source: `/Users/fsuels/Projects/dresslikemommy/ops/sourcing/2026-04-25-0045-mommy-and-me-1688-auto/candidates.json`
-- Generated: 2026-04-25T00:45:09
+- Source: `ops/sourcing/2026-04-25-0045-mommy-and-me-1688-auto/candidates.json`
+- Generated: 2026-04-25T01:07:49
 - Candidates: 3
 - Gold: 0
-- Test: 0
-- Reject: 3
+- Test: 1
+- Reject: 2
 
 ## Gold Candidates
 
 - None yet.
 
 ## Immediate Review Queue
+
+- 47 — Parent-Child Children's Clothing Wholesale, Mother-Daughter Plaid Off-Shoulder Dress, Princess Dress, New Summer 2026 Fashion, Foreign Trade Children's Clothing Wholesale ¥22.00 MOQ 1 5 Hot selling: size chart still needs confirmation; supplier operating years missing; repeat-buyer rate missing
