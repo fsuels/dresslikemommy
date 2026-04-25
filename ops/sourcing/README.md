@@ -24,6 +24,22 @@ The dashboard groups candidates into:
 - Couples
 - Maternity
 
+The top numbers use store-owner language:
+
+- `Products Found`: every 1688 candidate saved locally
+- `To Review`: candidates that are not rejected yet
+- `Saved`: products the operator chose with Save/Keep
+- `Ready for Draft`: saved products with required proof filled in
+- `Rejected`: products remembered so they are not researched again
+- `Best Leads`: internal `Gold` candidates
+- `Needs Check`: internal `Test` candidates that need proof before listing
+
+To add fresh candidates without terminal commands:
+
+1. Pick a category tab, or use All Categories.
+2. Click `Find Fresh Products`.
+3. If 1688 asks for login or CAPTCHA, click `Open 1688 Login/Search`, complete the browser step manually, then click `Find Fresh Products` again.
+
 It also writes Keep/Reject memory to:
 
 ```text

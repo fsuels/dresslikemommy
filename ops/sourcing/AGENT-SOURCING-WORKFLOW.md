@@ -55,9 +55,23 @@ Dashboard URL:
 http://127.0.0.1:8766/
 ```
 
+## Plain-Language Dashboard Labels
+
+- `Products Found`: all 1688 candidates saved locally across runs.
+- `To Review`: candidates that are not rejected and are worth looking at first.
+- `Saved`: products the operator chose with Save/Keep.
+- `Ready for Draft`: saved products with required proof fields filled in.
+- `Rejected`: remembered rejects that should not be researched again unless restored.
+- `Best Leads`: internal `Gold` verdict.
+- `Needs Check`: internal `Test` verdict; promising, but missing proof.
+
+The dashboard now has a `Find Fresh Products` button. It starts the CDP collector from the browser UI and refreshes the cards when the run completes. If 1688 requires login or CAPTCHA, use `Open 1688 Login/Search`, let the user complete that browser step, then click `Find Fresh Products` again.
+
 ## Fill A Category With Fresh Candidates
 
-Use a logged-in Chrome/1688 session. The current browser-assisted collector expects Chrome DevTools Protocol on port `9333`.
+Preferred: use `Find Fresh Products` inside the dashboard.
+
+Manual fallback: use a logged-in Chrome/1688 session. The current browser-assisted collector expects Chrome DevTools Protocol on port `9333`.
 
 One category:
 

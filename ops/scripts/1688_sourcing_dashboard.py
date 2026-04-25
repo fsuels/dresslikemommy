@@ -14,12 +14,14 @@ import hashlib
 import json
 import mimetypes
 import re
+import subprocess
+import threading
 import webbrowser
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, quote_from_bytes, urlparse
 import urllib.request
 
 
@@ -30,6 +32,11 @@ DECISIONS_PATH = SOURCING_ROOT / "state" / "decisions.json"
 DRAFT_PACKAGES_ROOT = SOURCING_ROOT / "draft-packages"
 IMAGE_CACHE_ROOT = SOURCING_ROOT / "image-cache"
 PHOTOSHOOT_PROMPT_PATH = REPO_ROOT / "ops" / "prompts" / "dlm-6-image-photoshoot.md"
+COLLECTOR_PATH = REPO_ROOT / "ops" / "scripts" / "1688_sourcing_cdp_collect.py"
+CDP_PORT = 9333
+HELPER_CHROME_PROFILE = Path.home() / ".dlm-1688-chrome-profile"
+COLLECTION_JOBS: dict[str, dict[str, Any]] = {}
+COLLECTION_LOCK = threading.Lock()
 
 
 def clean(value: Any) -> str:
@@ -130,6 +137,133 @@ def cache_image(url: str) -> tuple[Path, str]:
     path.write_bytes(data)
     write_json(meta_path, {"url": text, "content_type": content_type, "cached_at": now_iso()})
     return path, content_type
+
+
+def gbk_quote(query: str) -> str:
+    return quote_from_bytes(query.encode("gbk", errors="ignore"))
+
+
+def category_search_url(category_id: str, query_index: int = 0) -> str:
+    categories = category_lookup()
+    category = categories.get(category_id) or categories.get("family-matching") or {}
+    queries = category.get("queries") or ["亲子装 连衣裙 衬衫 一件代发"]
+    query = queries[min(max(query_index, 0), len(queries) - 1)]
+    return f"https://s.1688.com/selloffer/offer_search.htm?keywords={gbk_quote(query)}"
+
+
+def open_1688_helper_browser(category_id: str, query_index: int = 0) -> str:
+    category = category_id if category_id != "all" else "family-matching"
+    url = category_search_url(category, query_index)
+    subprocess.Popen(
+        [
+            "open",
+            "-na",
+            "Google Chrome",
+            "--args",
+            f"--remote-debugging-port={CDP_PORT}",
+            f"--user-data-dir={HELPER_CHROME_PROFILE}",
+            "--no-first-run",
+            url,
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    return url
+
+
+def collect_job_snapshot(job_id: str) -> dict[str, Any]:
+    with COLLECTION_LOCK:
+        return dict(COLLECTION_JOBS.get(job_id, {}))
+
+
+def update_collect_job(job_id: str, **updates: Any) -> None:
+    with COLLECTION_LOCK:
+        job = COLLECTION_JOBS.setdefault(job_id, {})
+        job.update(updates)
+
+
+def run_collect_job(job_id: str, category_id: str, limit: int, query_index: int) -> None:
+    command = [
+        "python3",
+        str(COLLECTOR_PATH),
+        "--category",
+        category_id,
+        "--limit",
+        str(limit),
+        "--port",
+        str(CDP_PORT),
+        "--query-index",
+        str(query_index),
+    ]
+    update_collect_job(job_id, status="running", command=" ".join(command), started_at=now_iso())
+    try:
+        completed = subprocess.run(
+            command,
+            cwd=str(REPO_ROOT),
+            capture_output=True,
+            text=True,
+            timeout=900,
+            check=False,
+        )
+    except subprocess.TimeoutExpired as exc:
+        update_collect_job(
+            job_id,
+            status="failed",
+            completed_at=now_iso(),
+            message="The 1688 search took too long. Try one category at a time.",
+            stdout=exc.stdout or "",
+            stderr=exc.stderr or "",
+        )
+        return
+
+    stdout = completed.stdout or ""
+    stderr = completed.stderr or ""
+    generated_dirs = [line.strip() for line in stdout.splitlines() if line.strip().startswith("ops/sourcing/")]
+    if completed.returncode == 0:
+        update_collect_job(
+            job_id,
+            status="complete",
+            completed_at=now_iso(),
+            message=f"Found and scored fresh candidates for {category_id}.",
+            generated_dirs=generated_dirs,
+            stdout=stdout,
+            stderr=stderr,
+        )
+    else:
+        update_collect_job(
+            job_id,
+            status="failed",
+            completed_at=now_iso(),
+            message=(
+                "I could not collect products automatically. Open the 1688 helper browser, "
+                "log in if asked, then click Find Fresh Products again."
+            ),
+            generated_dirs=generated_dirs,
+            stdout=stdout,
+            stderr=stderr,
+        )
+
+
+def start_collect_job(category_id: str, limit: int, query_index: int) -> dict[str, Any]:
+    allowed_categories = set(category_lookup()) | {"all"}
+    if category_id not in allowed_categories:
+        category_id = "family-matching"
+    limit = max(1, min(limit, 80))
+    job_id = hashlib.sha1(f"{now_iso()}-{category_id}-{limit}".encode("utf-8")).hexdigest()[:12]
+    with COLLECTION_LOCK:
+        COLLECTION_JOBS[job_id] = {
+            "id": job_id,
+            "status": "queued",
+            "category_id": category_id,
+            "limit": limit,
+            "query_index": query_index,
+            "created_at": now_iso(),
+            "message": "Starting 1688 search.",
+        }
+    thread = threading.Thread(target=run_collect_job, args=(job_id, category_id, limit, query_index), daemon=True)
+    thread.start()
+    return collect_job_snapshot(job_id)
 
 
 def infer_category(run_dir: Path, metadata: dict[str, Any]) -> str:
@@ -424,10 +558,16 @@ def dashboard_html() -> str:
       line-height: 1.45;
     }
     .runbox {
-      max-width: 360px;
+      max-width: 430px;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.45;
+    }
+    .runbox strong {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      margin-bottom: 4px;
     }
     .stats {
       display: grid;
@@ -445,6 +585,14 @@ def dashboard_html() -> str:
       display: block;
       color: var(--muted);
       font-size: 12px;
+    }
+    .stat em {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      font-style: normal;
+      line-height: 1.25;
     }
     .stat strong {
       display: block;
@@ -515,6 +663,76 @@ def dashboard_html() -> str:
     }
     main {
       padding: 22px clamp(18px, 4vw, 44px) 52px;
+    }
+    .guide {
+      display: grid;
+      grid-template-columns: minmax(280px, 1.35fr) minmax(280px, .9fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .guide-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 16px;
+      box-shadow: 0 10px 24px rgba(31, 37, 35, .06);
+    }
+    .guide-panel h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(110px, 1fr));
+      gap: 8px;
+    }
+    .step {
+      min-height: 92px;
+      padding: 10px;
+      border: 1px solid #e2e8e4;
+      border-radius: 8px;
+      background: #f7faf8;
+    }
+    .step strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+    .step span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .search-panel {
+      display: grid;
+      gap: 9px;
+    }
+    .search-panel .row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .status-box {
+      min-height: 46px;
+      padding: 10px;
+      border: 1px solid #e2e8e4;
+      border-radius: 8px;
+      background: #f7faf8;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .status-box.good {
+      color: var(--green);
+      background: var(--green-bg);
+      border-color: rgba(47,111,94,.28);
+    }
+    .status-box.bad {
+      color: var(--red);
+      background: var(--red-bg);
+      border-color: rgba(166,66,59,.28);
     }
     .grid {
       display: grid;
@@ -641,6 +859,23 @@ def dashboard_html() -> str:
       line-height: 1.4;
       min-height: 38px;
     }
+    .signal-block {
+      display: grid;
+      gap: 8px;
+      margin: 12px 0;
+    }
+    .signal {
+      padding: 9px;
+      border-radius: 8px;
+      border: 1px solid #e2e8e4;
+      background: #f7faf8;
+      font-size: 13px;
+      line-height: 1.35;
+      color: var(--muted);
+    }
+    .signal strong {
+      color: var(--ink);
+    }
     .evidence {
       display: grid;
       gap: 7px;
@@ -691,6 +926,8 @@ def dashboard_html() -> str:
     }
     @media (max-width: 760px) {
       .stats { grid-template-columns: repeat(2, 1fr); }
+      .guide { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
       .grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -700,41 +937,61 @@ def dashboard_html() -> str:
     <div class="top">
       <div>
         <h1>Dress Like Mommy Sourcing</h1>
-        <p class="sub">One dashboard for 1688 candidates by category. Keep strong products, reject weak ones once, then copy the exact listing and photoshoot prompts when a product is ready.</p>
+        <p class="sub">Find matching-family products on 1688, save only the good ones, remember rejects forever, and prepare draft listing packages with the right prompts and image workflow.</p>
       </div>
       <div class="runbox">
-        To add fresh products, run the 1688 search collector from a logged-in browser session, then refresh this dashboard.
+        <strong>Plain English:</strong>
+        Click <b>Find Fresh Products</b>, review the photos, keep only winners, then add proof before creating a Shopify draft package.
       </div>
     </div>
     <div class="stats">
-      <div class="stat"><span>Total</span><strong id="stat-total">0</strong></div>
-      <div class="stat"><span>Active</span><strong id="stat-active">0</strong></div>
-      <div class="stat"><span>Kept</span><strong id="stat-kept">0</strong></div>
-      <div class="stat"><span>Ready</span><strong id="stat-ready">0</strong></div>
-      <div class="stat"><span>Rejected Memory</span><strong id="stat-rejected">0</strong></div>
-      <div class="stat"><span>Gold</span><strong id="stat-gold">0</strong></div>
-      <div class="stat"><span>Test</span><strong id="stat-test">0</strong></div>
+      <div class="stat"><span>Products Found</span><strong id="stat-total">0</strong><em>Everything saved from 1688 searches.</em></div>
+      <div class="stat"><span>To Review</span><strong id="stat-active">0</strong><em>Not rejected yet; look at these first.</em></div>
+      <div class="stat"><span>Saved</span><strong id="stat-kept">0</strong><em>You clicked Keep.</em></div>
+      <div class="stat"><span>Ready for Draft</span><strong id="stat-ready">0</strong><em>Proof is filled in.</em></div>
+      <div class="stat"><span>Rejected</span><strong id="stat-rejected">0</strong><em>Remembered so we do not repeat work.</em></div>
+      <div class="stat"><span>Best Leads</span><strong id="stat-gold">0</strong><em>Strong enough to prioritize.</em></div>
+      <div class="stat"><span>Needs Check</span><strong id="stat-test">0</strong><em>Promising, but proof is missing.</em></div>
     </div>
   </header>
   <nav class="categories" id="categories"></nav>
   <div class="toolbar">
     <input id="search" type="search" placeholder="Search product title, supplier, badge, raw text">
-    <button class="chip active" data-filter="active">Active</button>
-    <button class="chip" data-filter="kept">Kept</button>
-    <button class="chip" data-filter="ready">Ready</button>
+    <button class="chip active" data-filter="active">To Review</button>
+    <button class="chip" data-filter="kept">Saved</button>
+    <button class="chip" data-filter="ready">Ready for Draft</button>
     <button class="chip" data-filter="rejected">Rejected</button>
-    <button class="chip" data-filter="gold">Gold</button>
-    <button class="chip" data-filter="test">Test</button>
+    <button class="chip" data-filter="gold">Best Leads</button>
+    <button class="chip" data-filter="test">Needs Check</button>
     <button class="chip" data-filter="all">All</button>
     <select id="sort">
       <option value="score-desc">Score high to low</option>
       <option value="category">Category</option>
       <option value="newest">Newest run</option>
     </select>
-    <button id="refresh" class="primary">Refresh</button>
-    <button id="copy-command">Copy search command</button>
+    <button id="refresh">Refresh View</button>
   </div>
   <main>
+    <section class="guide">
+      <div class="guide-panel">
+        <h3>How this is supposed to work</h3>
+        <div class="steps">
+          <div class="step"><strong>1. Find</strong><span>The app searches 1688 by category and collects product cards.</span></div>
+          <div class="step"><strong>2. Review</strong><span>You look at images, price, MOQ, sales, repeat rate, and risks.</span></div>
+          <div class="step"><strong>3. Keep or Reject</strong><span>Rejects are remembered so we do not waste time again.</span></div>
+          <div class="step"><strong>4. Add Proof</strong><span>Open 1688 and confirm size chart, dropship, dispatch, supplier, and images.</span></div>
+          <div class="step"><strong>5. Draft</strong><span>Create a draft package for the listing and 6-image workflow.</span></div>
+        </div>
+      </div>
+      <div class="guide-panel search-panel">
+        <h3>Find fresh products</h3>
+        <div class="row">
+          <button id="find-products" class="primary">Find Fresh Products</button>
+          <button id="open-1688">Open 1688 Login/Search</button>
+        </div>
+        <div id="collector-status" class="status-box">Choose a category above, then click Find Fresh Products. If 1688 asks for login or CAPTCHA, use the Open 1688 button once, then click Find again.</div>
+      </div>
+    </section>
     <div id="empty" class="empty">No candidates match this view.</div>
     <div id="grid" class="grid"></div>
   </main>
@@ -749,6 +1006,7 @@ def dashboard_html() -> str:
     const categoriesEl = document.querySelector('#categories');
     const search = document.querySelector('#search');
     const sort = document.querySelector('#sort');
+    const collectorStatus = document.querySelector('#collector-status');
 
     async function api(path, options = {}) {
       const response = await fetch(path, {
@@ -793,8 +1051,31 @@ def dashboard_html() -> str:
       return `<div class="metric"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value || '-')}</strong></div>`;
     }
 
+    function asList(value) {
+      if (Array.isArray(value)) return value.filter(Boolean);
+      if (!value) return [];
+      return String(value).split('|').map(item => item.trim()).filter(Boolean);
+    }
+
+    function shortList(value, fallback) {
+      const items = asList(value).slice(0, 4);
+      return items.length ? items.join('; ') : fallback;
+    }
+
     function imageSrc(url) {
       return url ? `/image?url=${encodeURIComponent(url)}` : '';
+    }
+
+    function verdictLabel(verdict) {
+      if (verdict === 'Gold') return 'Best lead';
+      if (verdict === 'Test') return 'Needs check';
+      if (verdict === 'Reject') return 'Auto rejected';
+      return verdict || 'Review';
+    }
+
+    function setCollectorStatus(message, mode = '') {
+      collectorStatus.textContent = message;
+      collectorStatus.className = `status-box ${mode}`.trim();
     }
 
     function visibleCandidates() {
@@ -847,6 +1128,61 @@ def dashboard_html() -> str:
         button.textContent = `${category.label} (${count})`;
         button.addEventListener('click', () => { activeCategory = category.id; render(); });
         categoriesEl.appendChild(button);
+      }
+    }
+
+    async function pollCollection(jobId, button) {
+      const started = Date.now();
+      while (Date.now() - started < 20 * 60 * 1000) {
+        const job = await api(`/api/collect-status?job=${encodeURIComponent(jobId)}`);
+        if (job.status === 'complete') {
+          await loadData();
+          setCollectorStatus(`${job.message} New products are now in the review cards.`, 'good');
+          flash(button, 'Done');
+          return;
+        }
+        if (job.status === 'failed') {
+          setCollectorStatus(`${job.message} ${job.stderr || ''}`.trim(), 'bad');
+          flash(button, 'Try again');
+          return;
+        }
+        setCollectorStatus(`${job.message || 'Searching 1688...'} This can take 20-60 seconds.`);
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+      setCollectorStatus('The search is still running. Refresh the view in a minute.', 'bad');
+    }
+
+    async function findFreshProducts(button) {
+      const category = activeCategory === 'all' ? 'all' : activeCategory;
+      button.disabled = true;
+      const old = button.textContent;
+      button.textContent = 'Searching...';
+      setCollectorStatus(`Searching 1688 for ${category === 'all' ? 'all categories' : category}. Keep the 1688 helper browser logged in.`);
+      try {
+        const job = await api('/api/collect', {
+          method: 'POST',
+          body: JSON.stringify({ category_id: category, limit: 24, query_index: 0 }),
+        });
+        await pollCollection(job.id, button);
+      } catch (error) {
+        setCollectorStatus(`I could not start the search: ${error.message}`, 'bad');
+      } finally {
+        button.disabled = false;
+        button.textContent = old;
+      }
+    }
+
+    async function open1688Helper(button) {
+      const category = activeCategory === 'all' ? 'family-matching' : activeCategory;
+      try {
+        const payload = await api('/api/open-1688-browser', {
+          method: 'POST',
+          body: JSON.stringify({ category_id: category, query_index: 0 }),
+        });
+        setCollectorStatus(`Opened 1688 helper browser. Login once if asked, then click Find Fresh Products. Search page: ${payload.url}`, 'good');
+        flash(button, 'Opened');
+      } catch (error) {
+        setCollectorStatus(`Could not open Chrome helper: ${error.message}`, 'bad');
       }
     }
 
@@ -913,16 +1249,17 @@ def dashboard_html() -> str:
     function card(candidate) {
       const article = document.createElement('article');
       article.className = `card ${candidate.decision === 'keep' ? 'kept' : ''} ${candidate.decision === 'reject' ? 'rejected' : ''}`;
-      const concerns = (candidate.concerns || []).slice(0, 3).join('; ');
+      const positives = shortList(candidate.positive_signals, 'No strong signal captured yet.');
+      const concerns = shortList(candidate.concerns, 'No major concern captured yet.');
       const evidence = candidate.evidence || {};
       article.innerHTML = `
         <div class="image">
           ${candidate.image_url ? `<img loading="lazy" src="${escapeHtml(imageSrc(candidate.image_url))}" alt="${escapeHtml(candidate.title)}">` : ''}
-          <div class="badge ${escapeHtml(candidate.verdict)}">${escapeHtml(candidate.verdict)}</div>
+          <div class="badge ${escapeHtml(candidate.verdict)}">${escapeHtml(verdictLabel(candidate.verdict))}</div>
         </div>
         <div class="body">
           <div class="decision-row">
-            <button class="keep ${candidate.decision === 'keep' ? 'active' : ''}">${candidate.decision === 'keep' ? 'Kept' : 'Keep'}</button>
+            <button class="keep ${candidate.decision === 'keep' ? 'active' : ''}">${candidate.decision === 'keep' ? 'Saved' : 'Save'}</button>
             <button class="reject ${candidate.decision === 'reject' ? 'active' : ''}">${candidate.decision === 'reject' ? 'Restore' : 'Reject'}</button>
           </div>
           <div class="meta">
@@ -940,10 +1277,13 @@ def dashboard_html() -> str:
             ${metric('Rating', candidate.rating)}
             ${metric('Years', candidate.years_on_1688)}
           </div>
-          <p class="why">${escapeHtml(concerns || 'No major concern captured yet.')}</p>
+          <div class="signal-block">
+            <div class="signal"><strong>Why it may be good:</strong> ${escapeHtml(positives)}</div>
+            <div class="signal"><strong>What still needs checking:</strong> ${escapeHtml(concerns)}</div>
+          </div>
           <div class="evidence">
             <div class="evidence-title">
-              <span>Evidence you check</span>
+              <span>Proof needed before Shopify draft</span>
               <span class="${candidate.ready_for_draft ? 'ready-pill' : ''}">${candidate.ready_for_draft ? 'Ready for draft' : 'Needs proof'}</span>
             </div>
             <input data-evidence="size_chart_source" value="${escapeHtml(evidence.size_chart_source || '')}" placeholder="Size chart screenshot/path or attached image note">
@@ -960,8 +1300,8 @@ def dashboard_html() -> str:
             <a class="button primary" href="${escapeHtml(candidate.product_url)}" target="_blank" rel="noreferrer">Open 1688</a>
             <button class="save-evidence">Save Proof</button>
             <button class="draft-package">Draft Package</button>
-            <button class="copy-listing">Copy Listing Prompt</button>
-            <button class="copy-photo">Copy Photo Prompt</button>
+            <button class="copy-listing">Copy Listing Agent Prompt</button>
+            <button class="copy-photo">Copy 6-Image Prompt</button>
           </div>
         </div>
       `;
@@ -1007,13 +1347,8 @@ def dashboard_html() -> str:
       await loadData();
       flash(button, 'Refreshed');
     });
-    document.querySelector('#copy-command').addEventListener('click', async event => {
-      const button = event.currentTarget;
-      const category = activeCategory === 'all' ? 'family-matching' : activeCategory;
-      const command = `python3 ops/scripts/1688_sourcing_cdp_collect.py --category ${category} --limit 24`;
-      await copyText(command);
-      flash(button, 'Copied command');
-    });
+    document.querySelector('#find-products').addEventListener('click', event => findFreshProducts(event.currentTarget));
+    document.querySelector('#open-1688').addEventListener('click', event => open1688Helper(event.currentTarget));
 
     loadData();
   </script>
@@ -1085,6 +1420,15 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 }
             )
             return
+        if parsed.path == "/api/collect-status":
+            query = parse_qs(parsed.query)
+            job_id = clean(query.get("job", [""])[0])
+            job = collect_job_snapshot(job_id)
+            if not job:
+                self.send_json({"error": "job not found"}, HTTPStatus.NOT_FOUND)
+                return
+            self.send_json(job)
+            return
         if parsed.path == "/api/prompt":
             query = parse_qs(parsed.query)
             key = clean(query.get("key", [""])[0])
@@ -1128,6 +1472,31 @@ class DashboardHandler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         parsed = urlparse(self.path)
+        if parsed.path == "/api/open-1688-browser":
+            payload = self.read_body_json()
+            category_id = clean(payload.get("category_id")) or "family-matching"
+            query_index = int(payload.get("query_index") or 0)
+            try:
+                url = open_1688_helper_browser(category_id, query_index)
+            except Exception as exc:
+                self.send_json({"error": str(exc)}, HTTPStatus.INTERNAL_SERVER_ERROR)
+                return
+            self.send_json(
+                {
+                    "ok": True,
+                    "url": url,
+                    "message": "Opened 1688 helper browser. Log in if asked, then run Find Fresh Products.",
+                }
+            )
+            return
+        if parsed.path == "/api/collect":
+            payload = self.read_body_json()
+            category_id = clean(payload.get("category_id")) or "family-matching"
+            limit = int(payload.get("limit") or 24)
+            query_index = int(payload.get("query_index") or 0)
+            job = start_collect_job(category_id, limit, query_index)
+            self.send_json(job)
+            return
         if parsed.path == "/api/evidence":
             payload = self.read_body_json()
             key = clean(payload.get("key"))

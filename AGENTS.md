@@ -31,7 +31,8 @@ Continuity (resume work in new sessions)
   - Reads all `scored-candidates.json` files under `ops/sourcing/**`.
   - Serves `/api/data` and a local image proxy `/image?url=...`.
   - Product images are cached under `ops/sourcing/image-cache/` because Alibaba hotlinking can show blank images in Chrome.
-  - User-facing controls include Keep, Reject/Restore, Open 1688, Save Proof, Draft Package, Copy Listing Prompt, Copy Photo Prompt, and category/status filters.
+  - User-facing controls include Find Fresh Products, Open 1688 Login/Search, Save, Reject/Restore, Open 1688, Save Proof, Draft Package, Copy Listing Agent Prompt, Copy 6-Image Prompt, and category/status filters.
+  - Plain-language labels are intentional: Products Found = all saved candidates; To Review = not rejected and worth looking at; Saved = user clicked Save/Keep; Ready for Draft = proof fields filled; Rejected = remembered rejects; Best Leads = internal Gold; Needs Check = internal Test.
 - Sourcing/scoring implementation:
   - `ops/scripts/1688_sourcing_cdp_collect.py`: logged-in Chrome DevTools Protocol collector for real 1688 searches, default CDP port `9333`.
   - `ops/sourcing/1688-browser-collector.js`: fallback browser-console collector when CDP is blocked by login/CAPTCHA.
@@ -63,6 +64,7 @@ Continuity (resume work in new sessions)
 - How to open/run:
   - Preferred: open `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app` or click the Dock icon.
   - Manual: `python3 ops/scripts/1688_sourcing_dashboard.py --open`
+  - In the app, click `Find Fresh Products` to run the collector from the dashboard. If 1688 requires login/CAPTCHA, click `Open 1688 Login/Search`, let the user handle login/CAPTCHA, then click `Find Fresh Products` again.
   - Fill one category: `python3 ops/scripts/1688_sourcing_cdp_collect.py --category family-matching --limit 24`
   - Fill all categories: `python3 ops/scripts/1688_sourcing_cdp_collect.py --category all --limit 24`
 - Browser/login safety:
@@ -71,7 +73,7 @@ Continuity (resume work in new sessions)
   - Do not bypass CAPTCHA, browser safety barriers, paywalls, or HTTPS warnings.
   - If 1688 asks for manual login/CAPTCHA, ask the user to take over or use the console collector after login.
 - Next best product-finder improvements:
-  - Add a dashboard button for `Refresh 1688 Candidates` so the user does not need terminal commands.
+  - Improve the one-click `Find Fresh Products` flow with detail-page enrichment and clearer success/failure recovery.
   - Tune category-specific queries, especially Mommy & Me, Daddy & Me, Couples, and Maternity.
   - Add detail-page enrichment for supplier evidence, dispatch speed, dropship support, size chart detection, and image download paths before marking products Gold.
   - Keep all generated tooling dev/operator-side only; do not add AI UI or backend agent references to the live Shopify theme.

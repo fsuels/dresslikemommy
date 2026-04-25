@@ -20737,3 +20737,40 @@ Verification before commit:
 - `node --check ops/sourcing/1688-browser-collector.js` passed.
 - Staged secret scan found no exact 1688 password and no live Shopify/GitHub/OpenAI token patterns; only masked placeholders like `shpat_...` remain in the worklog.
 - `shopify theme check --fail-level error` was attempted, but it emitted many pre-existing locale translation errors under `locales/ar.json` and then ran for several minutes without completing; the process was stopped and not treated as a new sourcing-dashboard regression.
+
+2026-04-25 — Made sourcing dashboard easier and added one-click collection
+AGENT_CONTINUITY_ANCHOR: 2026-04-25-sourcing-dashboard-plain-language-collect
+
+What changed:
+- Updated `ops/scripts/1688_sourcing_dashboard.py` to make the app more operator-friendly:
+  - Replaced internal labels with plain-language labels:
+    - Products Found
+    - To Review
+    - Saved
+    - Ready for Draft
+    - Rejected
+    - Best Leads
+    - Needs Check
+  - Added a visible five-step workflow panel: Find, Review, Keep/Reject, Add Proof, Draft.
+  - Added `Find Fresh Products` button that runs the 1688 CDP collector from the dashboard.
+  - Added `Open 1688 Login/Search` button that opens a dedicated Chrome helper profile with CDP port `9333`.
+  - Added collector status messages inside the dashboard.
+  - Reworded card actions to `Save`, `Copy Listing Agent Prompt`, and `Copy 6-Image Prompt`.
+  - Cards now show both `Why it may be good` and `What still needs checking`.
+- Updated sourcing docs and AGENTS.md so future agents know the dashboard is no longer terminal-only.
+
+Verification:
+- `python3 -m py_compile ops/scripts/1688_sourcing_dashboard.py ops/scripts/1688_sourcing_score.py ops/scripts/1688_sourcing_cdp_collect.py` passed.
+- `node --check ops/sourcing/1688-browser-collector.js` passed.
+- Restarted the local dashboard through `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app`.
+- API check confirmed `/api/data` returns candidates.
+- Tested `/api/collect`; it created a fresh family-matching run:
+  - `ops/sourcing/2026-04-25-0043-family-matching-1688-auto`
+- A second app-triggered test run also created:
+  - `ops/sourcing/2026-04-25-0045-mommy-and-me-1688-auto`
+- Browser check confirmed:
+  - plain-language stats render
+  - workflow/help panel renders
+  - `Find Fresh Products` and `Open 1688 Login/Search` buttons render
+  - candidate cards render
+  - product images still load with real dimensions
