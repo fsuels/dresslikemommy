@@ -21070,3 +21070,46 @@ Residual risks:
 
 Next best action:
 - After the user clears CAPTCHA in the helper Chrome session, run `Find 20 Leads` one category at a time with the safer two-page behavior. If any category still returns fewer than 20, build the next layer: vendor-first sourcing from proven supplier shops and detail-page enrichment queues, not just search result cards.
+
+2026-04-25 — Ran Find 20 Leads after CAPTCHA cleared; Mommy & Me reached target then blocked again
+AGENT_CONTINUITY_ANCHOR: 2026-04-25-sourcing-mommy-20-hit-captcha
+
+Why:
+- User asked to clear/use the 1688 helper browser and run `Find 20 Leads` one category at a time.
+
+What happened:
+- `/api/browser-status` initially reported the helper browser as connected and not blocked.
+- Started the dashboard's collection API for `mommy-and-me` with:
+  - `limit: 200`
+  - `query_index: -1`
+  - `target_reviewable: 20`
+  - `max_pages_per_query: 2`
+- The run created `ops/sourcing/2026-04-25-023954-mommy-and-me-1688-auto/`.
+- Collection result before 1688 blocked again:
+  - 108 new cards saved
+  - 16 new reviewable `Test` leads in that run
+  - 92 rejects
+  - 4 queries attempted
+  - 7 pages checked
+  - 95 already-seen offers skipped
+- The dashboard then showed:
+  - Mommy & Me: 195 stored, 21 active/Test, 0 Gold
+  - Daddy & Me: 1 stored, 0 active
+  - Family Matching: 7 stored, 3 active/Test
+  - Couples: 9 stored, 0 active
+  - Maternity: 8 stored, 0 active
+- 1688 redirected the helper browser to `Captcha Interception`, so the remaining categories were not run.
+- Brought the 1688 CAPTCHA/interception tab to the front in Google Chrome using CDP `Page.bringToFront` plus `osascript`.
+- Do not bypass the CAPTCHA. Wait for the user to clear it manually, then resume with Daddy & Me, Family Matching, Couples, and Maternity.
+
+Verification:
+- Confirmed `/api/browser-status` reports blocked/captcha after the run.
+- Inspected `ops/sourcing/2026-04-25-023954-mommy-and-me-1688-auto/scored-candidates.json`; top 20-lead candidates are mostly parent-child/family matching products with missing supplier/size proof, so they are correctly `Test`, not `Gold`.
+- Secret scan of the new run/search-history found no 1688 password or CAPTCHA `x5secdata` token persisted.
+
+Residual risks:
+- The 21 active Mommy & Me leads still need detail-page enrichment before any can become Best Leads or Shopify drafts.
+- Remaining categories are still underfilled until CAPTCHA is cleared.
+
+Next best action:
+- After the user says the helper-browser CAPTCHA is cleared, run `Find 20 Leads` for `daddy-and-me`, then `family-matching`, `couples`, and `maternity`, one at a time.

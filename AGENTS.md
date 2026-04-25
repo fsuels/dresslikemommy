@@ -83,6 +83,7 @@ Continuity (resume work in new sessions)
   - Last known tuned Mommy & Me run before the offer-ID gate: `ops/sourcing/2026-04-25-0056-mommy-and-me-1688-auto/` produced 32 candidates, 8 fresh `Test` / `Unverified Leads`, 0 `Gold`, 24 `Reject` after stale-year/no-freshness filtering.
   - After the offer-ID freshness gate was added, the dashboard showed 63 deduped stored cards but only 6 active Buyer Shortlist leads total, with 3 in Mommy & Me and 3 in Family Matching. This lower number is intentional until detail-page enrichment can prove more products are worth listing.
   - Operator test on 2026-04-25 with the 20-lead target: `ops/sourcing/2026-04-25-0150-mommy-and-me-1688-auto/` was rescored to 2 real Mommy & Me `Test` leads and 47 rejects. A later app run `ops/sourcing/2026-04-25-015839-mommy-and-me-1688-auto/` checked 3 pages of one Mommy & Me query, found only generic women's dresses, saved 0 reviewable leads, and then 1688 forced `Captcha Interception`.
+  - Latest app run on 2026-04-25: `ops/sourcing/2026-04-25-023954-mommy-and-me-1688-auto/` collected 108 new Mommy & Me cards and 16 new `Test` leads before 1688 forced `Captcha Interception`. Dashboard counts after the run: Mommy & Me 21 active/Test, Family Matching 3 active/Test, Daddy & Me 0, Couples 0, Maternity 0. Continue with Daddy & Me only after the user clears the helper-browser CAPTCHA.
 - How to open/run:
   - Preferred: open `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app` or click the Dock icon.
   - Manual: `python3 ops/scripts/1688_sourcing_dashboard.py --open`
