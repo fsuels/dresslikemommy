@@ -15,6 +15,67 @@ Continuity (resume work in new sessions)
 - If context is tight, search for the string: AGENT_CONTINUITY_ANCHOR in the worklog to jump to the latest checkpoint.
 - Shopify Admin API continuity: operator-managed Admin API access exists via the `n8n Integration` app. Canonical local credential sources are `~/.config/dresslikemommy/shopify-admin.env`, `~/.config/dresslikemommy/admin-api-token.json`, and `~/.config/dresslikemommy/translation-helper-token.json`; credentials must stay outside the repo/worklog/theme files. If environment variables are unset in a future shell, describe that as "credentials not loaded in this shell" rather than "no API access exists." If a provided token starts returning `401 Invalid API key or access token`, treat that as "stored token requires regeneration/reinstall" rather than assuming the store lacks API access.
 
+1688 sourcing dashboard continuity (critical memory)
+- The user is building a semi-automated 1688 -> Shopify product pipeline for Dress Like Mommy. Current goal: keep a beautiful local dashboard full of pre-filtered 1688 candidates by website category, let the user Keep/Reject, save evidence, then generate a draft package for Shopify listing/image agents.
+- Do not restart this from scratch. Phase 1 already exists as a browser-assisted sourcing scorecard and local dashboard.
+- Main local app:
+  - Dock/app path: `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app`
+  - Desktop backup: `/Users/fsuels/Desktop/Dress Like Mommy Sourcing.app`
+  - Bundle id: `com.dresslikemommy.sourcingdashboard`
+  - Dashboard URL: `http://127.0.0.1:8766/`
+  - Auto-start LaunchAgent: `/Users/fsuels/Library/LaunchAgents/com.dresslikemommy.sourcing-dashboard.plist`
+  - Start script: `ops/sourcing/start-sourcing-dashboard.sh`
+  - Branded icon source/assets: `ops/sourcing/app-icon/`
+- Dashboard implementation:
+  - `ops/scripts/1688_sourcing_dashboard.py`
+  - Reads all `scored-candidates.json` files under `ops/sourcing/**`.
+  - Serves `/api/data` and a local image proxy `/image?url=...`.
+  - Product images are cached under `ops/sourcing/image-cache/` because Alibaba hotlinking can show blank images in Chrome.
+  - User-facing controls include Keep, Reject/Restore, Open 1688, Save Proof, Draft Package, Copy Listing Prompt, Copy Photo Prompt, and category/status filters.
+- Sourcing/scoring implementation:
+  - `ops/scripts/1688_sourcing_cdp_collect.py`: logged-in Chrome DevTools Protocol collector for real 1688 searches, default CDP port `9333`.
+  - `ops/sourcing/1688-browser-collector.js`: fallback browser-console collector when CDP is blocked by login/CAPTCHA.
+  - `ops/scripts/1688_sourcing_score.py`: scores candidates and writes `shortlist.html`, `scored-candidates.csv`, `scored-candidates.json`, and `summary.md`.
+  - Always pass `--decision-state ops/sourcing/state/decisions.json` when scoring real candidates so rejected products stay rejected.
+- Categories are configured in `ops/sourcing/sourcing-categories.json`:
+  - `mommy-and-me` / Mommy & Me
+  - `daddy-and-me` / Daddy & Me
+  - `family-matching` / Family Matching
+  - `couples` / Couples
+  - `maternity` / Maternity
+- Persistent memory:
+  - Keep/Reject decisions and evidence live in `ops/sourcing/state/decisions.json`.
+  - A rejected 1688 offer ID must not be researched again unless the user restores it.
+  - Evidence fields saved by the dashboard: size chart source, vendor images path, generated images path, dropship confirmation, dispatch confirmation, supplier confirmation, and notes.
+  - A product becomes `Ready` only after required proof fields are filled.
+- Draft package handoff:
+  - Dashboard writes packages under `ops/sourcing/draft-packages/<1688-offer-id>/`.
+  - Package files: `candidate.json`, `listing-request.txt`, `photoshoot-prompt.md`, `draft-agent-prompt.md`, `README.md`.
+  - `draft-agent-prompt.md` is the safest handoff for creating a Shopify DRAFT product. It explicitly says not to publish live unless the operator asks.
+- Canonical prompts connected to the dashboard:
+  - Listing prompt wrapper points to `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md`.
+  - Six-image photoshoot prompt source is `ops/prompts/dlm-6-image-photoshoot.md`.
+  - Photoshoot workflow generates one 9:16 image at a time and waits for `NEXT`; do not create collages/grids.
+- Real runs already exist:
+  - Original family matching run: `ops/sourcing/2026-04-25-family-dress-shirt-1688/`
+  - Automatic category runs: `ops/sourcing/2026-04-24-2354-*-1688-auto/`
+  - Last known dashboard state on 2026-04-25: 36 total candidates, 7 active Test candidates, mainly Family Matching; other categories need better query/detail tuning.
+- How to open/run:
+  - Preferred: open `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app` or click the Dock icon.
+  - Manual: `python3 ops/scripts/1688_sourcing_dashboard.py --open`
+  - Fill one category: `python3 ops/scripts/1688_sourcing_cdp_collect.py --category family-matching --limit 24`
+  - Fill all categories: `python3 ops/scripts/1688_sourcing_cdp_collect.py --category all --limit 24`
+- Browser/login safety:
+  - Use logged-in browser-assisted workflows; do not do blind server scraping.
+  - Do not store 1688 credentials in the repo, worklog, prompts, or generated files.
+  - Do not bypass CAPTCHA, browser safety barriers, paywalls, or HTTPS warnings.
+  - If 1688 asks for manual login/CAPTCHA, ask the user to take over or use the console collector after login.
+- Next best product-finder improvements:
+  - Add a dashboard button for `Refresh 1688 Candidates` so the user does not need terminal commands.
+  - Tune category-specific queries, especially Mommy & Me, Daddy & Me, Couples, and Maternity.
+  - Add detail-page enrichment for supplier evidence, dispatch speed, dropship support, size chart detection, and image download paths before marking products Gold.
+  - Keep all generated tooling dev/operator-side only; do not add AI UI or backend agent references to the live Shopify theme.
+
 Canonical listing workflow
 - For any task that creates or updates Shopify product listings from vendor pages, size charts, or dropship source material, first read `ops/prompts/START-HERE.md`.
 - Treat `ops/prompts/shopify-listing-master-prompt.md` as the canonical operator spec and `ops/prompts/shopify-listing-from-1688.md` as the canonical request template.

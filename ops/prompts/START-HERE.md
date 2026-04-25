@@ -20,6 +20,8 @@ For new listing work, prefer the `ops/prompts/` workflow over older prompt files
 
 Family-matching sanity check: if `Size` labels already encode the shopper role (`Mother S`, `Father M`, `Child 2 Years`), keep `Type` generic to the garment (`Dress`, `Shirt`) instead of repeating the role in the option value.
 
+Colorway sanity check: if `DESIGNS_TO_LIST` names multiple colorways or print colors for the same garment and vendor size chart, keep them in one Shopify product with a `Color` option. Do not create separate products unless the operator explicitly says "separate listings" or the vendor evidence shows materially different garments or size charts.
+
 ## Minimal Request Template
 
 ```text

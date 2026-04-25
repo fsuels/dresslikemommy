@@ -54,6 +54,7 @@ Interpretation rules:
 - `SIZE_CHART_SOURCE` may be a vendor page chart, attached screenshot, or pasted table.
 - If `PRIMARY_CATEGORY` is blank or `auto`, infer it from the garment evidence.
 - If `DESIGNS_TO_LIST` is blank or `auto`, list only the primary print/colorway evidenced by the supplied page or images. Do not bulk-import every vendor print by default.
+- If `DESIGNS_TO_LIST` names multiple colors or colorways for the same garment and same size chart, create one Shopify product with those values on the `Color` option. Do not split into separate products unless the operator explicitly says `separate listings`, `separate products`, or the evidence shows materially different garments/size charts.
 - If `PRICE_OVERRIDES` is blank, use the price strategy below.
 
 ## Inference Defaults
@@ -90,6 +91,7 @@ Use the garment label for:
 Option-axis rule:
 
 - Default to `Size` + `Color` when the listing is a single honest garment/product across all roles, even if it is sold for both parent and child.
+- Multiple requested colorways for the same garment are never a reason to create multiple Shopify products. They are one product with multiple `Color` option values.
 - Add a `Type` option axis only when the listing truly mixes different products/garments in one listing, or when `Size` alone would create duplicate variant identities.
 - When `Type` is required, use the smallest honest distinction that keeps variants unique.
 - If `Size` already carries the role or audience (`Mother S`, `Father M`, `Child 2 Years`), prefer generic garment labels such as `Dress`, `Shirt`, or `Pajama Set`.
@@ -275,7 +277,9 @@ Look up actual size metaobject GIDs from a nearby live product at create time an
 
 Halt before any Admin API call if any check fails:
 
-- `SIZE_CHART` row count == intended variant count
+- `SIZE_CHART` row count == intended body size-table row count
+- intended Shopify variant count == `SIZE_CHART` row count multiplied by each non-measurement option value set, e.g. colorway count for `Size x Color`
+- if `DESIGNS_TO_LIST` has multiple colorways for the same garment, exactly one product handle is planned and `Color` contains every requested colorway
 - No duplicate `(role, picker_label)` pair
 - Every row has all required fields
 - Title <= 70
@@ -288,7 +292,7 @@ Halt before any Admin API call if any check fails:
 
 Re-query the product and halt on mismatch:
 
-- live variant count == `SIZE_CHART.length`
+- live variant count == derived Shopify variant count
 - live SKUs sorted == derived SKUs sorted
 - total `<tr>` rows across size tables == `SIZE_CHART.length`
 - each size table has exactly 10 `<th>` columns
@@ -396,9 +400,11 @@ Rules:
 
 - If more than one honest garment exists, or if `Size` alone would collide, options are `Type` x `Size`
 - If only one audience/garment exists, options are `Size` x `Color`
+- If multiple requested colorways share the same size chart and garment, keep one product and use `Size x Color`; derive variants as the cartesian product of `SIZE_CHART` rows and requested colorways.
 - If `Size` already encodes role/audience, Type values are the unique garment labels in display order, e.g. `Dress`, `Shirt`
 - Only use role-specific Type values when generic garment labels would still create duplicate variant identities
-- Variants = `SIZE_CHART` rows, one to one
+- For a single colorway, variants = `SIZE_CHART` rows one to one.
+- For multiple colorways, variants = `SIZE_CHART` rows x colorways. The size table still renders each `SIZE_CHART` row once per garment, not once per color.
 
 SKU format:
 
@@ -446,6 +452,7 @@ Save and run an idempotent runner at:
 Runner requirements:
 
 - declare `SIZE_CHART` JSON once at the top
+- declare requested colorways once, when applicable, and derive the `Color` option and variant SKUs from that list
 - derive from it:
   - product options
   - variants payload
@@ -555,7 +562,8 @@ Always save:
 CSV rules:
 
 - use the standard Shopify export header
-- exactly one variant row per `SIZE_CHART` row
+- exactly one variant row per derived Shopify variant
+- for multi-color listings, CSV rows must cover every intended `Size x Color` combination while the body size table still has one row per `SIZE_CHART` row
 - regenerate the CSV whenever `SIZE_CHART` or prices change
 
 ## Final Verification and Hand-off
@@ -564,9 +572,10 @@ Do not finish until all of these pass:
 
 - title length
 - SEO length
-- live variant count == `SIZE_CHART.length`
+- live variant count == derived Shopify variant count
 - live SKUs == derived SKUs
 - every Type x Size combination exists
+- every Size x Color combination exists when a Color option is present
 - every size table first column matches the picker labels exactly
 - each size table has 10 headers
 - waist populated for every row
@@ -583,7 +592,7 @@ Final report must include:
 - Admin URL
 - Live URL
 - smart collections the product appears in
-- `SIZE_CHART` recap table: `role -> vendor row -> picker label -> SKU -> price -> shopify.size GID`
+- `SIZE_CHART` / variant recap table: `role -> vendor row -> picker label -> color/type when applicable -> SKU -> price -> shopify.size GID`
 - metafields written
 - metafields skipped with reasons
 - price-parity result

@@ -52,6 +52,12 @@ Family-matching default:
 
 - if sizes already encode role/audience, collapse `Type` to the honest garment labels only, e.g. `Dress` and `Shirt`, instead of `Mother Dress`, `Father Shirt`, `Girl Dress`, `Boy Shirt`
 
+Multi-color default:
+
+- if `DESIGNS_TO_LIST` names multiple colors or colorways for the same garment and same size chart, create one Shopify product with a `Color` option containing those colorways
+- do not split colorways into separate products unless the request explicitly says `separate listings` or `separate products`
+- keep one size table per garment; multiply Shopify variants by `SIZE_CHART` rows x colorways
+
 ## Example 1 — Mommy and Me Dresses
 
 ```text
@@ -110,6 +116,31 @@ Expected option model for Example 3:
 
 - `Type`: `Dress`, `Shirt`
 - `Size`: role-bearing labels such as `Mother S`, `Father M`, `Child 2 Years`
+
+## Example 4 — Two Dress Colors, One Product
+
+```text
+LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1234567890.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Mommy and Me
+PRIMARY_CATEGORY: Dresses
+DESIGNS_TO_LIST: pink, white
+EXCLUDE_ITEMS:
+NOTES: same dress and same size chart in both colorways
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true
+```
+
+Expected option model for Example 4:
+
+- one Shopify product
+- `Size`: role-bearing labels such as `Child 4 Years`, `Mother S`
+- `Color`: `Pink`, `White`
+- variants = every intended `Size x Color` combination
 
 ## Operator Reminder
 

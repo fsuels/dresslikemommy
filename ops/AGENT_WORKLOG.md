@@ -258,6 +258,37 @@ Verification
 
 Residual risk
 - I did not browser-test the new predictive-search shortcut or the new nav events in a live theme preview, so the final UX and event labels should be spot-checked once in Shopify/GTM preview.
+
+Session: Cable Horse family matching sweater listing
+Date: 2026-04-24
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-cable-horse-family-matching-tops
+
+Changes applied (evidence-first)
+- Created and ran `ops/scripts/create-chrs-cable-horse-family-matching-tops.sh` for vendor URL `https://detail.1688.com/offer/1007389194841.html`.
+- Published live Shopify product `cable-horse-family-matching-tops` (`gid://shopify/Product/7537007198305`) to Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok.
+- Saved listing artifacts:
+  - `ops/listings/cable-horse-family-matching-tops-listing.md`
+  - `ops/listings/cable-horse-family-matching-tops-shopify-import.csv`
+  - `ops/listings/size-chart-cable-horse-family-matching-tops.json`
+  - `ops/listings/body-cable-horse-family-matching-tops.html`
+  - `ops/listings/verify-cable-horse-family-matching-tops.json`
+- Staged and uploaded source images from the operator attachments under `uploads/cable-horse-family-matching-tops/`.
+
+Decisions / deviations documented
+- Direct 1688 fetch returned Alibaba captcha/punish markup, so the attached size chart and product photos were treated as authoritative.
+- The baby romper/crawler sub-table was excluded from the published tops/sweaters listing; child sweater rows `80-150` and adult sweater rows `S-4XL` were published.
+- Adult vendor rows were unisex, so the Shopify picker uses `Adult S` through `Adult 4XL` rather than duplicated mother/father rows.
+- `shopify.fabric` was skipped because the exact fiber composition was not visible in the authoritative attachments.
+
+Verification
+- Runner verification passed: 15 live variants, live SKU parity, price/compare-at parity with `FORCE_SPEC_PRICES=true`, taxonomy `Apparel & Accessories > Clothing > Clothing Tops > Sweaters`, online URL populated, and all required publications live.
+- Local artifact QA passed: 15 size-chart rows, 15 CSV rows, one 10-column size table with 15 body rows, 2 uploaded media items.
+- `bash -n ops/scripts/create-chrs-cable-horse-family-matching-tops.sh` passed.
+- `git diff --check` passed for the new runner/listing artifacts/worklog scope.
+
+Open TODOs
+1) Set inventory quantities and per-variant weights when operator stock data is available.
+2) Re-check exact fiber composition if the vendor page becomes readable later; keep `shopify.fabric` skipped until confirmed.
 - If the store ever changes its canonical pajama hub away from `/collections/pajamas`, the new `data-pajama-collection-url` attrs and shortcut logic should be updated together.
 
 Validation snapshot
@@ -18544,6 +18575,217 @@ Residual note:
 - If the vendor page becomes directly readable later and publishes garment measurements for this exact print, replace the current backfilled dress/shirt grading with the direct source measurements on a rerun.
 - If the vendor later exposes a verified fabric composition, fill `shopify.fabric` only with that exact evidence rather than broadening from the current image-based copy.
 
+2026-04-24 — Fixed Daddy & Me collection pagination gaps at the collection-source level
+
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-daddy-me-pagination-source-fix
+
+What changed:
+- Used Shopify Admin GraphQL with the operator-managed Admin API credentials from `~/.config/dresslikemommy/shopify-admin.env`.
+- Added precise merchandising tags to the existing Daddy & Me product groups:
+  - `Daddy & Me Collection` on `64` non-Family-Matching products currently in the broad Daddy & Me collection pool.
+  - `Daddy & Me Button-Downs` on the `23` button-down products listed in `ops/daddy_me_button_down_overrides.csv`.
+  - `Daddy & Me Tees` on the `13` active tee products that are not button-downs or trunks.
+- Updated live automated collections:
+  - `daddy-me` now uses `TAG EQUALS Daddy & Me Collection` and keeps `CREATED_DESC`.
+  - `daddy-and-me` now uses `TAG EQUALS Daddy & Me Collection` and keeps `CREATED_DESC`.
+  - `daddy-me-t-shirts` now uses `TAG EQUALS Daddy & Me Tees` and keeps `CREATED_DESC`.
+- Created the missing live automated collection:
+  - `daddy-me-shirts`
+  - title `Daddy & Me Shirts`
+  - rule `TAG EQUALS Daddy & Me Button-Downs`
+  - `CREATED_DESC` sort
+  - published to the same `9` publications as `daddy-me`.
+
+Why:
+- The first-page gap was caused by Shopify paginating broad smart-collection products first, while the theme then hid cross-category products or client-side-filtered button-downs afterward.
+- The existing `daddy-me-t-shirts` collection was also affected because its old rule used the broad `T-Shirts` tag that the button-down shirt products also carried.
+- Creating/populating the real `daddy-me-shirts` collection lets the existing Button-Downs pill route to a native Shopify collection instead of the `dlm-daddy-filter=button-downs` fallback.
+
+Verification:
+- Admin GraphQL after the fix confirmed:
+  - `daddy-me`: `productsCount = 64`, rule `TAG EQUALS Daddy & Me Collection`.
+  - `daddy-and-me`: `productsCount = 64`, rule `TAG EQUALS Daddy & Me Collection`.
+  - `daddy-me-t-shirts`: `productsCount = 13`, rule `TAG EQUALS Daddy & Me Tees`.
+  - `daddy-me-shirts`: `productsCount = 23`, rule `TAG EQUALS Daddy & Me Button-Downs`.
+  - `trunks`: unchanged, `productsCount = 14`, `11` active products on the first Admin page.
+- The Admin audit also confirmed the `13` active Family Matching products formerly leaking into the broad Daddy collection were excluded from the new Daddy source tag.
+- Ran `git diff --check`; no whitespace errors.
+
+Residual note:
+- Raw public storefront `curl` verification hit Cloudflare managed-challenge `HTTP 429`, so final storefront HTML/card-count verification could not be completed from this shell.
+- The theme-side fallback script is still harmlessly present for old cached pages and future safety, but once storefront cache converges the Button-Downs pill should resolve through `/collections/daddy-me-shirts` directly.
+
+2026-04-24 — Recreated deleted Scarlet Blossom family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-scarlet-blossom-family-matching-set-recreate
+
+What changed:
+- Re-ran the saved Shopify runner for the previously published listing after the live product was deleted by mistake:
+  - `ops/scripts/create-scbl-scarlet-blossom-family-matching-set.sh`
+- Shopify created a new live product record for the same handle:
+  - `scarlet-blossom-family-matching-set`
+- Refreshed the saved verification artifact and listing log in place.
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7536947003489`
+- Live: `https://www.dresslikemommy.com/products/scarlet-blossom-family-matching-set`
+- Product GID: `gid://shopify/Product/7536947003489`
+
+Verification:
+- Passed:
+  - `./ops/scripts/create-scbl-scarlet-blossom-family-matching-set.sh`
+  - `sleep 5 && ./ops/scripts/create-scbl-scarlet-blossom-family-matching-set.sh` (second pass after a short Shopify reindex window)
+- Immediate post-recreate verification confirms:
+  - 25 live variants matching 25 `SIZE_CHART` rows
+  - handle restored at `scarlet-blossom-family-matching-set`
+  - `publishedAt` populated
+  - `onlineStoreUrl` populated
+  - taxonomy still set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - smart-collection attachment currently visible on `new-matching-outfits`, `new-women-outfits`, `popular-mommy-me-1`, `popular-family-matching`, `family-sets`, `mommy-and-me`, and `matching-family-vacation-outfits`
+
+Residual note:
+- The recreated product now shows a broader smart-collection set after the second pass, but it still does not appear in `daddy-me` / `daddy-and-me`; that likely reflects the store's newer Daddy collection rules rather than a failed publish.
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+
+2026-04-24 — Updated homepage hero to a three-path image slider
+
+What changed:
+- Updated `sections/hero-banner.liquid` from a single hard-coded hero image to a Dawn-style block-driven hero slider.
+- Added slide support for Shopify image pickers plus theme asset filenames, with mobile image fallback to the desktop image when a mobile image is not set.
+- Added accessible previous/next buttons, dots, arrow-key support, reduced-motion handling, and scoped autoplay at the section's configured interval.
+- Added a third global hero CTA so the homepage can show Mommy & Me, Family Matching, and Daddy & Me paths across all slides.
+- Updated `templates/index.json` to remove the "See New Pajamas" CTA, add the three collection-path buttons, and configure three existing hero assets:
+  - `hero-desktop.jpg` / `hero-mobile.jpg`
+  - `hero-family-garden.jpg`
+  - `hero-golden-hour.jpg`
+
+Verification:
+- Passed `ruby -rjson` parsing for `templates/index.json` and the `sections/hero-banner.liquid` schema JSON.
+- Passed targeted Shopify theme check using a temporary minimal theme containing the updated hero section, homepage hero JSON, required snippet, locale file, and selected hero assets.
+- Ran full `shopify theme check --path . --fail-level error`; it surfaced existing unrelated locale translation errors, then exited with a Node heap out-of-memory failure before completion.
+- Ran `git diff --check`; it failed on pre-existing trailing whitespace in the already-modified `ops/listings/scarlet-blossom-family-matching-set-shopify-import.csv`, unrelated to this hero change.
+
+Residual note:
+- Storefront rendering was not previewed in-browser from this shell; visual behavior should still be checked in a Shopify preview before publishing.
+- The full repo check remains blocked by unrelated locale/CSV issues outside this task.
+
+2026-04-24 — Published Blue Apricot Letter family matching tops
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-blue-apricot-letter-family-matching-tops
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `899442174086`.
+- Created and published one new live Shopify product:
+  - `blue-apricot-letter-family-matching-tops`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-bapl-blue-apricot-letter-family-matching-tops.sh`
+- Saved the full listing artifacts:
+  - `ops/listings/blue-apricot-letter-family-matching-tops-listing.md`
+  - `ops/listings/blue-apricot-letter-family-matching-tops-shopify-import.csv`
+  - `ops/listings/verify-blue-apricot-letter-family-matching-tops.json`
+  - `ops/listings/size-chart-blue-apricot-letter-family-matching-tops.json`
+  - `ops/listings/body-blue-apricot-letter-family-matching-tops.html`
+- Added the upload folder and copied the two supplied product screenshots used as media:
+  - `uploads/blue-apricot-letter-family-matching-tops/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7536982163553`
+- Live: `https://www.dresslikemommy.com/products/blue-apricot-letter-family-matching-tops`
+- Product GID: `gid://shopify/Product/7536982163553`
+
+Listing decisions:
+- The direct 1688 page returned anti-bot/login markup, so the attached product images and size-chart screenshot were treated as authoritative.
+- Published as `Matching Family Tops` with live Shopify taxonomy `Apparel & Accessories > Clothing > Clothing Tops > T-Shirts`; the canonical prompt's listed Tops taxonomy GID did not resolve, so the run used the verified live T-shirt leaf.
+- The source chart contains two infant `爬服` rows (`73爬服`, `80爬服`), but those were excluded because the request's primary category is Tops and the product images support tops only.
+- The denim shorts, jeans, cap, bag, and shoes in the supplied images were treated as styling only and are not included.
+- The chart publishes one child top ladder (`90-150`) and one adult top ladder (`S/160-5XL/195`), not separate girl/boy or mother/father rows, so the product uses `Child ...` and `Adult ...` size labels.
+- The source weight ranges appear in Chinese domestic `斤`; these were converted to kg in the saved chart and shopper-facing table.
+- Waist and hip were derived because the chart omits both:
+  - child rows: `hip = chest + 4`, `waist = chest`
+  - adult rows: `hip = chest`, `waist = chest - 12`
+- `Adult 5XL` was kept as a live variant because the vendor chart publishes it; the store has no honest `shopify--size` 5XL metaobject, so it is skipped only from the product-level `shopify.size` reference list.
+- Pricing used the canonical Tops fallback matrix because no reliable modern Family Matching Tops neighbor matched this source:
+  - child variants `24.99 / 28.99`
+  - adult variants `28.99 / 33.99`
+- `shopify.fabric` was intentionally left unset because the source supports only a soft knit tee appearance, not an exact fiber metaobject.
+
+Verification:
+- Passed:
+  - `bash -n ops/scripts/create-bapl-blue-apricot-letter-family-matching-tops.sh`
+  - `./ops/scripts/create-bapl-blue-apricot-letter-family-matching-tops.sh`
+  - `./ops/scripts/create-bapl-blue-apricot-letter-family-matching-tops.sh` (second pass to confirm idempotent rerun)
+  - `./ops/scripts/create-bapl-blue-apricot-letter-family-matching-tops.sh` (third pass after collection indexing, refreshed smart-collection list)
+  - `git diff --check -- ops/scripts/create-bapl-blue-apricot-letter-family-matching-tops.sh ops/listings/blue-apricot-letter-family-matching-tops-listing.md ops/listings/blue-apricot-letter-family-matching-tops-shopify-import.csv ops/listings/verify-blue-apricot-letter-family-matching-tops.json ops/listings/size-chart-blue-apricot-letter-family-matching-tops.json ops/listings/body-blue-apricot-letter-family-matching-tops.html uploads/blue-apricot-letter-family-matching-tops`
+- Final live verification confirms:
+  - 15 live variants matching 15 `SIZE_CHART` rows
+  - option axes `Size / Color`
+  - exact SKU parity with the derived `DLM-BAPL-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Clothing Tops > T-Shirts`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 2 uploaded product images attached
+  - smart-collection attachment to `tops`, `new-arrivals`, `new-matching-outfits`, `new-women-outfits`, `popular-mommy-me-1`, `popular-family-matching`, `family-tops`, `mommy-and-me`, and `matching-family-vacation-outfits`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- The repo still contains unrelated pre-existing modified files from earlier work (`scarlet-blossom...`, `sections/hero-banner.liquid`, and the prior worklog state); they were not altered for this listing beyond appending this note.
+- Full `git diff --check` still reports pre-existing trailing whitespace in `ops/listings/scarlet-blossom-family-matching-set-shopify-import.csv`; the targeted diff check for this new listing passed.
+
+2026-04-24 — Published Black and White Spelling family matching tops
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-black-white-spelling-family-matching-tops
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `903170078162`.
+- Created and published one new live Shopify product:
+  - `black-white-spelling-family-matching-tops`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-bwsp-black-white-spelling-family-matching-tops.sh`
+- Saved the full listing artifacts:
+  - `ops/listings/black-white-spelling-family-matching-tops-listing.md`
+  - `ops/listings/black-white-spelling-family-matching-tops-shopify-import.csv`
+  - `ops/listings/verify-black-white-spelling-family-matching-tops.json`
+  - `ops/listings/size-chart-black-white-spelling-family-matching-tops.json`
+  - `ops/listings/body-black-white-spelling-family-matching-tops.html`
+- Added the upload folder and copied the supplied product screenshot used as media:
+  - `uploads/black-white-spelling-family-matching-tops/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7536982294625`
+- Live: `https://www.dresslikemommy.com/products/black-white-spelling-family-matching-tops`
+- Product GID: `gid://shopify/Product/7536982294625`
+
+Listing decisions:
+- The direct 1688 page returned anti-bot/captcha markup, so the attached product image and size-chart screenshot were treated as authoritative.
+- Published as `Matching Family Tops` with live Shopify taxonomy `Apparel & Accessories > Clothing > Clothing Tops > T-Shirts`; as with the prior tops run, the verified live T-shirt leaf was used.
+- The chart publishes one child top ladder (`90-150`) and one adult top ladder (`S/160-4XL/190`), not separate girl/boy or mother/father rows, so the product uses `Child ...` and `Adult ...` size labels.
+- The source weight ranges appear in Chinese domestic `斤`; these were converted to kg in the saved chart and shopper-facing table.
+- Waist and hip were derived because the chart omits both:
+  - child rows: `hip = chest + 4`, `waist = chest`
+  - adult rows: `hip = chest`, `waist = chest - 12`
+- Pricing used the canonical Tops fallback matrix:
+  - child variants `24.99 / 28.99`
+  - adult variants `28.99 / 33.99`
+- `shopify.fabric` was intentionally left unset because the source supports only a soft knit tee appearance, not an exact fiber metaobject.
+
+Verification:
+- Passed:
+  - `bash -n ops/scripts/create-bwsp-black-white-spelling-family-matching-tops.sh`
+  - `./ops/scripts/create-bwsp-black-white-spelling-family-matching-tops.sh`
+  - `./ops/scripts/create-bwsp-black-white-spelling-family-matching-tops.sh` (second pass to confirm idempotent rerun)
+  - `sleep 8 && ./ops/scripts/create-bwsp-black-white-spelling-family-matching-tops.sh` (third pass after collection indexing)
+  - `git diff --check -- ops/scripts/create-bwsp-black-white-spelling-family-matching-tops.sh ops/listings/black-white-spelling-family-matching-tops-listing.md ops/listings/black-white-spelling-family-matching-tops-shopify-import.csv ops/listings/verify-black-white-spelling-family-matching-tops.json ops/listings/size-chart-black-white-spelling-family-matching-tops.json ops/listings/body-black-white-spelling-family-matching-tops.html uploads/black-white-spelling-family-matching-tops`
+- Final live verification confirms:
+  - 14 live variants matching 14 `SIZE_CHART` rows
+  - option axes `Size / Color`
+  - exact SKU parity with the derived `DLM-BWSP-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Clothing Tops > T-Shirts`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 1 uploaded product image attached
+  - smart-collection attachment to `tops`, `new-arrivals`, `new-matching-outfits`, `new-women-outfits`, `popular-mommy-me-1`, `popular-family-matching`, `family-tops`, `mommy-and-me`, and `matching-family-vacation-outfits`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- Full `git diff --check` still reports pre-existing trailing whitespace in `ops/listings/scarlet-blossom-family-matching-set-shopify-import.csv`; the targeted diff check for this new listing passed.
+
 2026-04-24 — Homepage hero slider update checkpoint
 AGENT_CONTINUITY_ANCHOR: 2026-04-24-homepage-hero-slider
 
@@ -18562,24 +18804,237 @@ Residual note:
 - Full `git diff --check` still fails on pre-existing trailing whitespace in `ops/listings/scarlet-blossom-family-matching-set-shopify-import.csv`; the hero-scoped diff check passed.
 - Storefront rendering should be visually checked in a Shopify preview before publishing.
 
-2026-04-24 — Improved homepage hero image quality after browser review
-AGENT_CONTINUITY_ANCHOR: 2026-04-24-hero-image-quality-pass
+2026-04-24 — Published Green Palm Safari family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-green-palm-safari-family-matching-set
 
 What changed:
-- Reviewed the live homepage hero in the browser at desktop and mobile sizes after the slider launch.
-- Removed the weaker garden and golden-hour hero slides from the homepage configuration because they did not match the original hero's professional boardwalk/beach visual quality.
-- Kept the original hero as the quality anchor and paired it only with the stronger beach boardwalk mommy-and-me slide.
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `754664523823`.
+- Created and published one new live Shopify product:
+  - `green-palm-safari-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-gpsf-green-palm-safari-family-matching-set.sh`
+- Saved the full listing artifacts:
+  - `ops/listings/green-palm-safari-family-matching-set-listing.md`
+  - `ops/listings/green-palm-safari-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-green-palm-safari-family-matching-set.json`
+  - `ops/listings/size-chart-green-palm-safari-family-matching-set.json`
+  - `ops/listings/body-green-palm-safari-family-matching-set.html`
+- Added the upload folder and copied the supplied product screenshot used as media:
+  - `uploads/green-palm-safari-family-matching-set/`
 
-Files changed:
-- `templates/index.json`
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7536984359009`
+- Live: `https://www.dresslikemommy.com/products/green-palm-safari-family-matching-set`
+- Product GID: `gid://shopify/Product/7536984359009`
+
+Listing decisions:
+- The direct 1688 page was captcha-blocked, so the attached product photo and size-chart screenshot were treated as authoritative.
+- Published as `Matching Family Sets` with live Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- The request explicitly listed `dress, shirt, shorts`, so the girls' and mothers' rows publish as `Dress`, and the boys' and fathers' rows publish as `Shirt & Shorts Set`.
+- The vendor `160` child rows were kept and mapped to `Child 12 Years`, matching prior store practice and the live `shopify--size` metaobject label `12`.
+- Source weight guidance appears in Chinese domestic `斤`; saved chart/body values convert those references to kg.
+- Derived fields were documented in the listing notes:
+  - girl dress hip/waist from the canonical kids dress rule
+  - mother dress hip/waist from the canonical mother dress rule
+  - boy set hip as chest + 4 because the chart omits hip
+  - father set waist from the canonical adult shirt/top rule because the chart omits waist
+- Pricing used the live family-set neighbor pattern from `safari-caravan-family-matching-set`:
+  - child variants `28.99 / 33.99`
+  - adult variants `31.99 / 36.99`
 
 Verification:
-- Passed `ruby -rjson -e 'JSON.parse(File.read("templates/index.json"))'`.
-- Passed targeted `shopify theme check --path /tmp/dlm-hero-theme-check --fail-level error`.
-- Passed targeted `git diff --check -- templates/index.json`.
+- Passed:
+  - `bash -n ops/scripts/create-gpsf-green-palm-safari-family-matching-set.sh`
+  - `./ops/scripts/create-gpsf-green-palm-safari-family-matching-set.sh`
+  - `./ops/scripts/create-gpsf-green-palm-safari-family-matching-set.sh` (second pass after verifier adjustment)
+  - `sleep 8 && ./ops/scripts/create-gpsf-green-palm-safari-family-matching-set.sh` (third pass after collection indexing)
+  - `git diff --check -- ops/scripts/create-gpsf-green-palm-safari-family-matching-set.sh ops/listings/green-palm-safari-family-matching-set-listing.md ops/listings/green-palm-safari-family-matching-set-shopify-import.csv ops/listings/verify-green-palm-safari-family-matching-set.json ops/listings/size-chart-green-palm-safari-family-matching-set.json ops/listings/body-green-palm-safari-family-matching-set.html uploads/green-palm-safari-family-matching-set`
+- Final live verification confirms:
+  - 30 live variants matching 30 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-GPSF-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 1 uploaded product image attached
+  - smart-collection attachment to `new-matching-outfits`, `new-women-outfits`, `popular-mommy-me-1`, `popular-family-matching`, `family-sets`, `mommy-and-me`, and `matching-family-vacation-outfits`
 
 Residual note:
-- The carousel now uses two high-quality hero slides rather than forcing a third available asset that would reduce visual quality or conflict with the desktop copy placement.
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- The product did not attach to the store's Daddy-specific smart collections after indexing, despite the Daddy and Me / father-role tags; this appears consistent with recent family-set collection rules.
+
+2026-04-24 — Published Pink Hibiscus family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-pink-hibiscus-family-matching-set
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1013973939291`.
+- Created and published one new live Shopify product:
+  - `pink-hibiscus-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-phib-pink-hibiscus-family-matching-set.sh`
+- Saved the full listing artifacts:
+  - `ops/listings/pink-hibiscus-family-matching-set-listing.md`
+  - `ops/listings/pink-hibiscus-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-pink-hibiscus-family-matching-set.json`
+  - `ops/listings/size-chart-pink-hibiscus-family-matching-set.json`
+  - `ops/listings/body-pink-hibiscus-family-matching-set.html`
+- Added the upload folder and copied the supplied product screenshot used as media:
+  - `uploads/pink-hibiscus-family-matching-set/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7536984752225`
+- Live: `https://www.dresslikemommy.com/products/pink-hibiscus-family-matching-set`
+- Product GID: `gid://shopify/Product/7536984752225`
+
+Listing decisions:
+- The direct 1688 page returned captcha/anti-bot markup, so the attached size-chart image plus supplied family product image were treated as authoritative.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- The request asked for `dress, shorts`; the male chart rows include shirt length/chest plus short length/waist in the same row, so boys and fathers were listed as `Shirt & Shorts Set` rather than shorts-only variants.
+- Option axes are `Type / Size`, with `Type` values `Dress` and `Shirt & Shorts Set`.
+- The source chart publishes girl dress and boy shirt-and-shorts rows for `90-160`, mother dress rows for `S-4XL`, and father shirt-and-shorts rows for `S-4XL`; all 30 rows are live variants.
+- Source `推荐体重` values in Chinese domestic `斤` were converted to kg for the saved chart and shopper-facing table.
+- Chest/bust values were transcribed as full `chest_cm` values because the source header says `胸围`, not `1/2胸围`.
+- Dress hip/waist values and shirt-and-shorts hip values were derived because the chart omits them; direct waist values from the male shorts rows were preserved.
+- Pricing reused the nearby family-set pattern:
+  - child variants `28.99 / 33.99`
+  - adult variants `31.99 / 36.99`
+- `shopify.fabric` was intentionally left unset because the source supports only a lightweight woven appearance, not an exact fiber metaobject.
+
+Verification:
+- Passed:
+  - `bash -n ops/scripts/create-phib-pink-hibiscus-family-matching-set.sh`
+  - `./ops/scripts/create-phib-pink-hibiscus-family-matching-set.sh`
+  - `./ops/scripts/create-phib-pink-hibiscus-family-matching-set.sh` (second pass to confirm idempotent rerun)
+  - `git diff --check -- ops/scripts/create-phib-pink-hibiscus-family-matching-set.sh ops/listings/pink-hibiscus-family-matching-set-listing.md ops/listings/pink-hibiscus-family-matching-set-shopify-import.csv ops/listings/verify-pink-hibiscus-family-matching-set.json ops/listings/size-chart-pink-hibiscus-family-matching-set.json ops/listings/body-pink-hibiscus-family-matching-set.html uploads/pink-hibiscus-family-matching-set`
+- Final live verification confirms:
+  - 30 live variants matching 30 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-PHIB-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 1 uploaded product image attached
+  - smart-collection attachment to `new-matching-outfits`, `new-women-outfits`, `popular-mommy-me-1`, `popular-family-matching`, `family-sets`, `mommy-and-me`, and `matching-family-vacation-outfits`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- Full `git diff --check` still has known unrelated pre-existing trailing whitespace in `ops/listings/scarlet-blossom-family-matching-set-shopify-import.csv`; the targeted diff check for this new listing passed.
+
+2026-04-24 — Published Pink and White Polka Dot mommy-and-me dresses
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-polka-dot-mommy-and-me-dresses
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1041018954140`.
+- Created and published two new live Shopify products because the request listed two color designs and the canonical runner keeps variants one-to-one with `SIZE_CHART` rows:
+  - `pink-polka-dot-mommy-and-me-dresses`
+  - `white-polka-dot-mommy-and-me-dresses`
+- Added idempotent Shopify runners:
+  - `ops/scripts/create-pdot-pink-polka-dot-mommy-and-me-dresses.sh`
+  - `ops/scripts/create-wdot-white-polka-dot-mommy-and-me-dresses.sh`
+- Saved full listing artifacts for both products:
+  - `ops/listings/*polka-dot-mommy-and-me-dresses-listing.md`
+  - `ops/listings/*polka-dot-mommy-and-me-dresses-shopify-import.csv`
+  - `ops/listings/verify-*polka-dot-mommy-and-me-dresses.json`
+  - `ops/listings/size-chart-*polka-dot-mommy-and-me-dresses.json`
+  - `ops/listings/body-*polka-dot-mommy-and-me-dresses.html`
+- Added upload folders and copied the supplied product screenshots:
+  - `uploads/pink-polka-dot-mommy-and-me-dresses/`
+  - `uploads/white-polka-dot-mommy-and-me-dresses/`
+
+Links:
+- Pink Admin: `https://admin.shopify.com/store/dresslikemommy/products/7536987603041`
+- Pink Live: `https://www.dresslikemommy.com/products/pink-polka-dot-mommy-and-me-dresses`
+- Pink Product GID: `gid://shopify/Product/7536987603041`
+- White Admin: `https://admin.shopify.com/store/dresslikemommy/products/7536987668577`
+- White Live: `https://www.dresslikemommy.com/products/white-polka-dot-mommy-and-me-dresses`
+- White Product GID: `gid://shopify/Product/7536987668577`
+
+Listing decisions:
+- The direct 1688 page returned captcha/anti-bot markup, so the pasted size labels plus supplied product screenshots were treated as authoritative.
+- Published as `Matching Family Dresses` with Shopify taxonomy `Apparel & Accessories > Clothing > Dresses`.
+- The supplied size source listed child heights `110-160` and mother heights/sizes `165/S`, `170/M`, `175/L`, `180/XL`.
+- Child `160` was mapped to `Child 12 Years` using the live Shopify `12` size metaobject, consistent with recent listing practice.
+- Because the supplied source gave height/size labels only, garment measurements and weight guidance were derived from the live dress size ladder plus the prompt's child/mother dress derivation rules.
+- Pricing reused the prevailing live mommy-and-me dress pattern from recent dress neighbors:
+  - child variants `31.99 / 36.99`
+  - mother variants `34.99 / 40.99`
+
+Verification:
+- Passed:
+  - `bash -n ops/scripts/create-pdot-pink-polka-dot-mommy-and-me-dresses.sh`
+  - `bash -n ops/scripts/create-wdot-white-polka-dot-mommy-and-me-dresses.sh`
+  - `./ops/scripts/create-pdot-pink-polka-dot-mommy-and-me-dresses.sh`
+  - `./ops/scripts/create-wdot-white-polka-dot-mommy-and-me-dresses.sh`
+  - `sleep 10 && ./ops/scripts/create-wdot-white-polka-dot-mommy-and-me-dresses.sh`
+  - targeted `git diff --check` for the two new runners, listing artifacts, verify JSON, size charts, body HTML files, and upload folders
+- Final live verification confirms for both products:
+  - 10 live variants matching 10 `SIZE_CHART` rows
+  - option axes `Size / Color`
+  - exact SKU parity with derived `DLM-PDOT-*` and `DLM-WDOT-*` sets
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Dresses`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 2 uploaded product images attached per product
+  - smart-collection attachment to `dresses`, `midi-dresses`, `sundresses`, `new-arrivals`, `new-matching-outfits`, `popular-mommy-me-1`, `mommy-and-me`, `matching-family-vacation-outfits`, and `mother-daughter-matching-dresses`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the 1688 page becomes accessible later, confirm exact fiber composition and replace derived measurement guidance with any full vendor garment spec sheet.
+
+2026-04-24 — Published Black Bow mommy-and-me set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-black-bow-mommy-and-me-set
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1044368546950`.
+- Created and published one new live Shopify product:
+  - `black-bow-mommy-and-me-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-bbts-black-bow-mommy-and-me-set.sh`
+- Saved full listing artifacts:
+  - `ops/listings/black-bow-mommy-and-me-set-listing.md`
+  - `ops/listings/black-bow-mommy-and-me-set-shopify-import.csv`
+  - `ops/listings/verify-black-bow-mommy-and-me-set.json`
+  - `ops/listings/size-chart-black-bow-mommy-and-me-set.json`
+  - `ops/listings/body-black-bow-mommy-and-me-set.html`
+- Added the upload folder and copied the supplied product screenshots:
+  - `uploads/black-bow-mommy-and-me-set/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7536988618849`
+- Live: `https://www.dresslikemommy.com/products/black-bow-mommy-and-me-set`
+- Product GID: `gid://shopify/Product/7536988618849`
+
+Listing decisions:
+- The direct 1688 page returned Alibaba anti-bot/captcha markup, so the pasted vendor fit labels plus supplied product screenshots were treated as authoritative.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Storefront merchandising still includes the dress-oriented tags/subcategory pattern used by nearby mommy-and-me set listings so the product attaches to the dress and mommy-and-me collections.
+- Option axes are `Size / Color`, with color `Black`.
+- Size rows are child `90-150` mapped to `Child 2 Years` through `Child 9-10 Years`, plus mother `S/M/L`; all 10 rows are live variants.
+- The supplied source gave size/fit labels only, so garment measurements and weight guidance were derived from the live loose summer-set ladder anchored to `powder-blue-mommy-and-me-set`.
+- Pricing reused the nearby mommy-and-me set pattern:
+  - child variants `28.99 / 33.99`
+  - mother variants `31.99 / 36.99`
+- `shopify.fabric` was intentionally left unset because the accessible source did not confirm one honest fiber metaobject.
+
+Verification:
+- Passed:
+  - `bash -n ops/scripts/create-bbts-black-bow-mommy-and-me-set.sh`
+  - `./ops/scripts/create-bbts-black-bow-mommy-and-me-set.sh`
+  - `./ops/scripts/create-bbts-black-bow-mommy-and-me-set.sh` after duplicate-media cleanup to confirm idempotent rerun
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, and upload folder
+- Final live verification confirms:
+  - 10 live variants matching 10 `SIZE_CHART` rows
+  - option axes `Size / Color`
+  - exact SKU parity with the derived `DLM-BBTS-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 3 uploaded product images attached after removing a duplicate media item
+  - smart-collection attachment to `dresses`, `sundresses`, `new-matching-outfits`, `popular-mommy-me-1`, `mommy-and-me`, `matching-family-vacation-outfits`, and `mother-daughter-matching-dresses`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fiber composition and replace the derived measurement guidance with a full vendor garment spec sheet if available.
 
 2026-04-24 — Deployed and browser-verified homepage hero quality fix
 AGENT_CONTINUITY_ANCHOR: 2026-04-24-hero-quality-live-verified
@@ -18633,3 +19088,1652 @@ What changed:
 Verification:
 - Browser MCP desktop check confirmed slide 2 uses `hero-family-boardwalk-premium.jpg` at 2400x1000 and keeps copy/buttons readable.
 - Browser MCP mobile check confirmed slide 2 uses `hero-family-boardwalk-premium-mobile.jpg` at 1200x1600 with the full family visible above the CTA buttons.
+
+2026-04-24 — Improved homepage hero image quality after browser review
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-hero-image-quality-pass
+
+What changed:
+- Reviewed the live homepage hero in the browser at desktop and mobile sizes after the slider launch.
+- Removed the weaker garden and golden-hour hero slides from the homepage configuration because they did not match the original hero's professional boardwalk/beach visual quality.
+- Kept the original hero as the quality anchor and paired it only with the stronger beach boardwalk mommy-and-me slide.
+
+Files changed:
+- `templates/index.json`
+
+Verification:
+- Passed `ruby -rjson -e 'JSON.parse(File.read("templates/index.json"))'`.
+- Passed targeted `shopify theme check --path /tmp/dlm-hero-theme-check --fail-level error`.
+- Passed targeted `git diff --check -- templates/index.json`.
+
+Residual note:
+- The carousel now uses two high-quality hero slides rather than forcing a third available asset that would reduce visual quality or conflict with the desktop copy placement.
+
+2026-04-24 — Corrected Polka Dot listing to one product with color variants
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-polka-dot-single-product-correction
+
+Correction:
+- Operator clarified that Pink and White should be one Shopify product with a `Color` option, not two separate products.
+- Created and published the corrected combined product:
+  - `polka-dot-mommy-and-me-dresses`
+- Deleted the two split live products:
+  - `pink-polka-dot-mommy-and-me-dresses` / `gid://shopify/Product/7536987603041`
+  - `white-polka-dot-mommy-and-me-dresses` / `gid://shopify/Product/7536987668577`
+- Removed the local runners/artifacts/upload folders for the split products so they are not rerun accidentally.
+
+Links:
+- Combined Admin: `https://admin.shopify.com/store/dresslikemommy/products/7536988520545`
+- Combined Live: `https://www.dresslikemommy.com/products/polka-dot-mommy-and-me-dresses`
+- Combined Product GID: `gid://shopify/Product/7536988520545`
+
+Files kept for the corrected listing:
+- `ops/scripts/create-pdot-polka-dot-mommy-and-me-dresses.sh`
+- `ops/listings/polka-dot-mommy-and-me-dresses-listing.md`
+- `ops/listings/polka-dot-mommy-and-me-dresses-shopify-import.csv`
+- `ops/listings/verify-polka-dot-mommy-and-me-dresses.json`
+- `ops/listings/size-chart-polka-dot-mommy-and-me-dresses.json`
+- `ops/listings/body-polka-dot-mommy-and-me-dresses.html`
+- `uploads/polka-dot-mommy-and-me-dresses/`
+
+Verification:
+- Final live product has 20 variants: 10 sizes x 2 colors (`Pink`, `White`).
+- Option axes are `Size / Color`.
+- Split handles now return `null` from Admin API product lookup.
+- Combined product is published to Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok.
+- Combined product appears in `dresses`, `midi-dresses`, `sundresses`, `new-arrivals`, `new-matching-outfits`, `popular-mommy-me-1`, `mommy-and-me`, `matching-family-vacation-outfits`, and `mother-daughter-matching-dresses`.
+
+2026-04-24 — Updated listing prompts to prevent colorway split listings
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-colorway-single-product-guard
+
+What changed:
+- Updated the canonical listing workflow prompts so future requests like `DESIGNS_TO_LIST: pink, white` create one Shopify product with a `Color` option instead of separate products.
+- Clarified that the body size table remains one row per `SIZE_CHART` row, while Shopify variants become `SIZE_CHART` rows x requested colorways.
+- Added a quick-start example for two dress colors in one product.
+
+Files changed:
+- `ops/prompts/START-HERE.md`
+- `ops/prompts/shopify-listing-master-prompt.md`
+- `ops/prompts/shopify-listing-from-1688.md`
+
+2026-04-24 — Latest checkpoint: Black Bow mommy-and-me set complete
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-black-bow-latest-checkpoint
+
+Status:
+- The Black Bow mommy-and-me set listing is live and verified at `https://www.dresslikemommy.com/products/black-bow-mommy-and-me-set`.
+- Canonical artifacts and runner are saved under `ops/listings/black-bow-mommy-and-me-set*`, `ops/scripts/create-bbts-black-bow-mommy-and-me-set.sh`, and `uploads/black-bow-mommy-and-me-set/`.
+- Final verification confirms 10 variants, 3 product images, required publications, `Outfit Sets` taxonomy, and `Two-Piece Set` custom type.
+
+2026-04-24 — Published Blue Daisy family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-blue-daisy-family-matching-set
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1047178396032`.
+- Created and published one new live Shopify product:
+  - `blue-daisy-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-bdsy-blue-daisy-family-matching-set.sh`
+- Saved full listing artifacts:
+  - `ops/listings/blue-daisy-family-matching-set-listing.md`
+  - `ops/listings/blue-daisy-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-blue-daisy-family-matching-set.json`
+  - `ops/listings/size-chart-blue-daisy-family-matching-set.json`
+  - `ops/listings/body-blue-daisy-family-matching-set.html`
+- Added the upload folder and copied the supplied product screenshots:
+  - `uploads/blue-daisy-family-matching-set/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7536990355553`
+- Live: `https://www.dresslikemommy.com/products/blue-daisy-family-matching-set`
+- Product GID: `gid://shopify/Product/7536990355553`
+
+Listing decisions:
+- The direct 1688 page returned Alibaba anti-bot/captcha markup, so the pasted vendor fit labels and supplied product screenshots were treated as authoritative.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Option axes are `Type / Size`, with `Dress` for girl/mother rows and `Shirt` for boy/father rows.
+- Size rows are child `80-150`, mother `S-4XL`, and father `S-4XL`, for 30 live variants.
+- The supplied source gave size/fit labels only, so garment measurements and weight guidance were backfilled from the live `citrus-bloom-family-matching-set` grading and extended for Mother 3XL/4XL using live size metaobjects.
+- Pricing reused the nearby family matching set pattern:
+  - child variants `28.99 / 33.99`
+  - adult variants `31.99 / 36.99`
+- `shopify.fabric` was intentionally left unset because the accessible source did not confirm one honest fiber metaobject.
+
+Verification:
+- Passed:
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1047178396032.html'` (returned Alibaba anti-bot/captcha markup)
+  - `bash -n ops/scripts/create-bdsy-blue-daisy-family-matching-set.sh`
+  - `./ops/scripts/create-bdsy-blue-daisy-family-matching-set.sh`
+  - `./ops/scripts/create-bdsy-blue-daisy-family-matching-set.sh` idempotent rerun
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, and upload folder
+- Final live verification confirms:
+  - 30 live variants matching 30 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-BDSY-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 3 uploaded product images attached
+  - smart-collection attachment to `family-sets`, `matching-family-vacation-outfits`, `mommy-and-me`, `new-matching-outfits`, `new-women-outfits`, `popular-family-matching`, and `popular-mommy-me-1`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fiber composition and replace the derived measurement guidance with a full vendor garment spec sheet if available.
+
+2026-04-24 — Published Skyfade family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-skyfade-family-matching-listing
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `893219853492`.
+- Created and published one live Shopify product:
+  - `skyfade-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-skyfade-family-matching-set.sh`
+- Saved full listing artifacts:
+  - `ops/listings/skyfade-family-matching-set-listing.md`
+  - `ops/listings/skyfade-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-skyfade-family-matching-set.json`
+  - `ops/listings/size-chart-skyfade-family-matching-set.json`
+  - `ops/listings/body-skyfade-family-matching-set.html`
+- Added the upload folder and copied the two supplied product screenshots:
+  - `uploads/skyfade-family-matching-set/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7536992976993`
+- Live: `https://www.dresslikemommy.com/products/skyfade-family-matching-set`
+- Product GID: `gid://shopify/Product/7536992976993`
+
+Listing decisions:
+- The attached product screenshots and attached size chart image were treated as authoritative.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Option axes are `Type / Size / Color`, with `Type` values `Dress` and `Shirt`, and `Color` values `Blue` and `Lavender`.
+- Size rows are girl dress `90-150`, mother dress `S-3XL`, child shirt `90-150`, and father shirt `S-4XL`, for `27` source size rows and `54` live variants after multiplying by two colors.
+- Vendor weight guidance was listed in Chinese domestic `斤`; saved chart/body values convert those references to kg.
+- Dress hip/waist and shirt hip/waist were derived where the chart omitted them, following the canonical derivation rules and documenting the derived values in the listing notes.
+- The adult shirt chart is labeled men/women by the vendor, but the listing scopes it to father shirt sizes to match the supplied family photos and avoid offering an unsupported mother-shirt presentation.
+- Shorts, hats, sunglasses, bags, jewelry, and footwear are styling only and excluded from variants.
+- `shopify.fabric` was intentionally left unset because the accessible source did not confirm one honest fiber metaobject.
+
+Verification:
+- Passed:
+  - `ops/scripts/create-skyfade-family-matching-set.sh`
+  - `ops/scripts/create-skyfade-family-matching-set.sh` idempotent rerun
+  - CSV/import artifact check: `54` CSV variant rows and `54` live variants
+  - Admin API media/collection check for attached media and smart collections
+- Final live verification confirms:
+  - 54 live variants matching 27 `SIZE_CHART` rows x 2 colors
+  - option axes `Type / Size / Color`
+  - exact SKU parity with the derived `DLM-SKYF-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 2 uploaded product images attached
+  - smart-collection attachment to `family-sets`, `matching-family-vacation-outfits`, `mommy-and-me`, `new-matching-outfits`, `new-women-outfits`, `popular-family-matching`, and `popular-mommy-me-1`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fiber composition and update `shopify.fabric` only with that evidence.
+
+2026-04-24 — Published Tropical Garden family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-tropical-garden-family-matching-set
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1040210359853`.
+- Created and published one live Shopify product:
+  - `tropical-garden-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-trgd-tropical-garden-family-matching-set.sh`
+- Saved listing artifacts:
+  - `ops/listings/tropical-garden-family-matching-set-listing.md`
+  - `ops/listings/tropical-garden-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-tropical-garden-family-matching-set.json`
+  - `ops/listings/size-chart-tropical-garden-family-matching-set.json`
+  - `ops/listings/body-tropical-garden-family-matching-set.html`
+  - `ops/listings/source-tropical-garden-family-matching-set-size-chart.png`
+- Added product media source files:
+  - `uploads/tropical-garden-family-matching-set/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537030234209`
+- Live: `https://www.dresslikemommy.com/products/tropical-garden-family-matching-set`
+- Product GID: `gid://shopify/Product/7537030234209`
+
+Listing decisions:
+- The direct 1688 page returned Alibaba anti-bot/captcha markup, so the attached size chart and product photos were treated as authoritative.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Option axes are `Type / Size`, with `Type` values `Dress` and `Shirt`.
+- Created only chart-backed variants from the relevant 26B089 subtables: girl dress `80-150`, mother dress `S-L`, boy shirt `80-150`, and father shirt `S-3XL`, for 25 live variants.
+- The unrelated upper chart table and styling-only shorts, hats, sandals, handbags, fruit props, and accessories were excluded because the request only asked for `Dress` and `Shirt`.
+- Vendor weight guidance in `斤` was converted to kg in the saved chart/body. Vendor half-bust and half-chest values were doubled. Omitted hip/waist values were derived and documented in the listing notes.
+- Pricing reused the nearby family matching set pattern with FORCE_SPEC_PRICES:
+  - child variants `28.99 / 33.99`
+  - adult variants `31.99 / 36.99`
+- `shopify.fabric` was intentionally skipped because the accessible source did not confirm one honest fiber metaobject.
+
+Verification:
+- Passed:
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1040210359853.html'` (returned Alibaba anti-bot/captcha markup)
+  - `bash -n ops/scripts/create-trgd-tropical-garden-family-matching-set.sh`
+  - `./ops/scripts/create-trgd-tropical-garden-family-matching-set.sh`
+  - `./ops/scripts/create-trgd-tropical-garden-family-matching-set.sh` idempotent rerun
+  - CSV/import artifact check: 25 CSV variant rows and 25 live variants
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, source size-chart image, and upload folder
+- Final live verification confirms:
+  - 25 live variants matching 25 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-TRGD-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 2 uploaded product images attached
+  - smart-collection attachment to `family-sets`, `matching-family-vacation-outfits`, `mommy-and-me`, `new-matching-outfits`, `new-women-outfits`, `popular-family-matching`, and `popular-mommy-me-1`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fiber composition and verify the direct page matches the attached size chart.
+
+2026-04-24 — Published Ivory Dot mommy and me dresses
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-ivory-dot-mommy-and-me-dresses
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1042309825160`.
+- Created and published one live Shopify product:
+  - `ivory-dot-mommy-and-me-dresses`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-idot-ivory-dot-mommy-and-me-dresses.sh`
+- Saved listing artifacts:
+  - `ops/listings/ivory-dot-mommy-and-me-dresses-listing.md`
+  - `ops/listings/ivory-dot-mommy-and-me-dresses-shopify-import.csv`
+  - `ops/listings/verify-ivory-dot-mommy-and-me-dresses.json`
+  - `ops/listings/size-chart-ivory-dot-mommy-and-me-dresses.json`
+  - `ops/listings/body-ivory-dot-mommy-and-me-dresses.html`
+  - `ops/listings/source-ivory-dot-mommy-and-me-dresses-size-chart.png`
+- Added product media source files:
+  - `uploads/ivory-dot-mommy-and-me-dresses/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537025613921`
+- Live: `https://www.dresslikemommy.com/products/ivory-dot-mommy-and-me-dresses`
+- Product GID: `gid://shopify/Product/7537025613921`
+
+Listing decisions:
+- The direct 1688 page returned Alibaba anti-bot/captcha markup, so the attached size-chart image and supplied product screenshots were treated as authoritative.
+- Published as `Matching Family Dresses` with Shopify taxonomy `Apparel & Accessories > Clothing > Dresses`.
+- Option axes are `Size / Color`; color is `Ivory`.
+- Created only chart-backed rows: girl dress `80-150` and mother dress `S-L`, for 11 live variants.
+- Vendor `胸围*2` values were doubled into full `chest_cm`; waist and hip were derived with the canonical dress rules.
+- Vendor `裙长` was used for both `skirt_cm` and `length_cm`.
+- Vendor `80` maps to `Child 1-2 Years`, using the closest live `shopify.size` metaobject `12-18 months`.
+- Pricing reused the nearby mommy-and-me dress pattern:
+  - child variants `31.99 / 36.99`
+  - adult variants `34.99 / 40.99`
+- `shopify.fabric` is set to `Polyester` as the best supported store-catalog match for the visible woven dress; exact fiber still needs supplier confirmation if the page becomes readable.
+
+Verification:
+- Passed:
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1042309825160.html?'` (returned Alibaba anti-bot/captcha markup)
+  - `bash -n ops/scripts/create-idot-ivory-dot-mommy-and-me-dresses.sh`
+  - `./ops/scripts/create-idot-ivory-dot-mommy-and-me-dresses.sh`
+  - `./ops/scripts/create-idot-ivory-dot-mommy-and-me-dresses.sh` idempotent reruns
+  - CSV/import artifact check: 11 CSV variant rows and 11 live variants
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, source size-chart image, and upload folder
+- Final live verification confirms:
+  - 11 live variants matching 11 `SIZE_CHART` rows
+  - option axes `Size / Color`
+  - exact SKU parity with the derived `DLM-IDOT-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Dresses`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 2 uploaded product images attached
+  - smart-collection attachment to `dresses`, `midi-dresses`, `sundresses`, `new-arrivals`, `new-matching-outfits`, `popular-mommy-me-1`, `mommy-and-me`, `matching-family-vacation-outfits`, and `mother-daughter-matching-dresses`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fiber composition and update `shopify.fabric` only if there is direct evidence.
+- Reconfirm whether merchandising prefers the first kid row displayed as `Child 1-2 Years` or `Baby 12-18 Months`; the current label matches prior listing practice while the metafield references the closest live size metaobject.
+
+2026-04-24 — Published Emerald Leaf family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-emerald-leaf-family-matching-set
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1039889504640`.
+- Created and published one live Shopify product:
+  - `emerald-leaf-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-emlf-emerald-leaf-family-matching-set.sh`
+- Saved listing artifacts:
+  - `ops/listings/emerald-leaf-family-matching-set-listing.md`
+  - `ops/listings/emerald-leaf-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-emerald-leaf-family-matching-set.json`
+  - `ops/listings/size-chart-emerald-leaf-family-matching-set.json`
+  - `ops/listings/body-emerald-leaf-family-matching-set.html`
+  - `ops/listings/source-emerald-leaf-family-matching-set-size-chart.png`
+- Added product media sources:
+  - `uploads/emerald-leaf-family-matching-set/01-family.png`
+  - `uploads/emerald-leaf-family-matching-set/02-dresses.png`
+  - `uploads/emerald-leaf-family-matching-set/03-adult-set.png`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537009033313`
+- Live: `https://www.dresslikemommy.com/products/emerald-leaf-family-matching-set`
+- Product GID: `gid://shopify/Product/7537009033313`
+
+Listing decisions:
+- The direct 1688 page returned Alibaba anti-bot/captcha markup, so the attached size chart and product photos were treated as authoritative.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Option axes are `Type / Size`, with `Type` values `Dress` and `Shirt & Shorts Set`.
+- Created only chart-backed variants: girl/mother dress rows and boy/father shirt-and-shorts rows.
+- Size rows total 29 variants: child `90-160`, Mother `S-3XL`, and Father `S-4XL`.
+- Vendor weight guidance in `斤` was converted to kg in the saved chart/body. Omitted waist/hip values were derived and documented in the listing notes.
+- Pricing reused the nearby family-set pattern with FORCE_SPEC_PRICES:
+  - child variants `28.99 / 33.99`
+  - adult variants `31.99 / 36.99`
+- `shopify.fabric` was intentionally skipped/removed because the accessible evidence confirms only a lightweight woven look, not exact fiber composition.
+
+Verification:
+- Passed:
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1039889504640.html'` (returned Alibaba anti-bot/captcha markup)
+  - `bash -n ops/scripts/create-emlf-emerald-leaf-family-matching-set.sh`
+  - `./ops/scripts/create-emlf-emerald-leaf-family-matching-set.sh`
+  - `./ops/scripts/create-emlf-emerald-leaf-family-matching-set.sh` idempotent rerun
+  - CSV/import artifact check: 29 CSV variant rows and 29 live variants
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, source size-chart image, and upload folder
+- Final live verification confirms:
+  - 29 live variants matching 29 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-EMLF-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 3 uploaded product images attached
+  - smart-collection attachment to `family-sets`, `matching-family-vacation-outfits`, `mommy-and-me`, `new-matching-outfits`, `new-women-outfits`, `popular-family-matching`, and `popular-mommy-me-1`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fiber composition before adding any `shopify.fabric` value.
+
+2026-04-24 — Published Ocean Dot family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-ocean-dot-family-matching-set
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1027490923984`.
+- Created and published one live Shopify product:
+  - `ocean-dot-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-odot-ocean-dot-family-matching-set.sh`
+- Saved listing artifacts:
+  - `ops/listings/ocean-dot-family-matching-set-listing.md`
+  - `ops/listings/ocean-dot-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-ocean-dot-family-matching-set.json`
+  - `ops/listings/size-chart-ocean-dot-family-matching-set.json`
+  - `ops/listings/body-ocean-dot-family-matching-set.html`
+  - `ops/listings/source-ocean-dot-family-matching-set-size-chart.png`
+- Added product media sources:
+  - `uploads/ocean-dot-family-matching-set/01-family-cruise.png`
+  - `uploads/ocean-dot-family-matching-set/02-flatlay.png`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537003266145`
+- Live: `https://www.dresslikemommy.com/products/ocean-dot-family-matching-set`
+- Product GID: `gid://shopify/Product/7537003266145`
+
+Listing decisions:
+- The direct 1688 page returned Alibaba anti-bot/captcha markup, so the attached size chart and supplied screenshots were treated as authoritative.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Option axes are `Type / Size`, with `Type` values `Dress`, `Top`, `Shirt`, and `Shorts`.
+- Created only chart-backed variants: girl dress rows, mother top rows, boy/father shirt rows, and boy/father shorts rows. Women/girls white bottoms shown in styling imagery were not created as separate variants because the supplied chart does not provide chart-backed bottom rows for those roles.
+- Size rows total 41 variants: child `90-150`, Mother `S-3XL`, and Father `S-4XL`.
+- Vendor weight guidance in `斤` was converted to kg in the saved chart/body. Omitted hip/waist values were derived and documented in the listing notes.
+- Pricing reused the nearby family-set pattern with FORCE_SPEC_PRICES:
+  - child variants `26.99 / 31.99`
+  - adult variants `29.99 / 34.99`
+- `shopify.fabric` was intentionally skipped because the accessible evidence confirms only a soft woven blue-dot fabric appearance, not exact fiber composition.
+
+Verification:
+- Passed:
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1027490923984.html?'` (returned Alibaba anti-bot/captcha markup)
+  - `bash -n ops/scripts/create-odot-ocean-dot-family-matching-set.sh`
+  - `ops/scripts/create-odot-ocean-dot-family-matching-set.sh`
+  - `ops/scripts/create-odot-ocean-dot-family-matching-set.sh` idempotent rerun
+  - stale-copy scan for ivory/vest remnants in the new runner and listing artifacts
+  - CSV/import artifact check: 41 CSV variant rows and 41 live variants
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, source size-chart image, and upload images
+- Final live verification confirms:
+  - 41 live variants matching 41 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-ODOT-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 2 uploaded product images attached
+  - smart-collection attachment to `family-sets`, `matching-family-vacation-outfits`, `mommy-and-me`, `new-matching-outfits`, `new-women-outfits`, `popular-family-matching`, `popular-mommy-me-1`, and `trunks`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fiber composition and update `shopify.fabric` only with that evidence.
+
+2026-04-24 — Published Terracotta Tile family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-terracotta-tile-family-matching-set
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1032794279712`.
+- Created and published one live Shopify product:
+  - `terracotta-tile-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-ttil-terracotta-tile-family-matching-set.sh`
+- Saved listing artifacts:
+  - `ops/listings/terracotta-tile-family-matching-set-listing.md`
+  - `ops/listings/terracotta-tile-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-terracotta-tile-family-matching-set.json`
+  - `ops/listings/size-chart-terracotta-tile-family-matching-set.json`
+  - `ops/listings/body-terracotta-tile-family-matching-set.html`
+- Added product media source files:
+  - `uploads/terracotta-tile-family-matching-set/01-family-balcony.png`
+  - `uploads/terracotta-tile-family-matching-set/02-family-seaside.png`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537002971233`
+- Live: `https://www.dresslikemommy.com/products/terracotta-tile-family-matching-set`
+- Product GID: `gid://shopify/Product/7537002971233`
+
+Listing decisions:
+- The direct 1688 page returned Alibaba anti-bot/captcha markup, so the operator-supplied size guidance and screenshots were treated as authoritative.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Option axes are `Type / Size`, with `Type` values `Dress`, `Shirt`, and `Top`.
+- Created only requested, source-backed size rows: girl top `90-150cm`, boy shirt `90-150cm`, mother dress `S-4XL`, and father shirt `S-4XL`, for 28 live variants.
+- White pants, shorts, hats, sunglasses, shoes, handbags, and accessories were treated as styling-only and excluded from variants.
+- The supplied fit source has no garment measurement chart, so garment measurements were backfilled from nearby live dress-and-shirt family-set grading and documented in the listing notes.
+- Pricing reused the nearby family matching dress-and-shirt set pattern with FORCE_SPEC_PRICES:
+  - child variants `28.99 / 33.99`
+  - adult variants `31.99 / 36.99`
+- `shopify.fabric` was intentionally skipped because the accessible evidence confirms only a linen-look texture, not exact fiber composition.
+
+Verification:
+- Passed:
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1032794279712.html'` (returned Alibaba anti-bot/captcha markup)
+  - `bash -n ops/scripts/create-ttil-terracotta-tile-family-matching-set.sh`
+  - `./ops/scripts/create-ttil-terracotta-tile-family-matching-set.sh`
+  - `./ops/scripts/create-ttil-terracotta-tile-family-matching-set.sh` idempotent rerun
+  - delayed rerun after smart-collection propagation
+  - CSV/import artifact check: 28 CSV variant rows and 28 live variants
+- Final live verification confirms:
+  - 28 live variants matching 28 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-TTIL-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 2 uploaded product images attached
+  - smart-collection attachment to `family-sets`, `matching-family-vacation-outfits`, `mommy-and-me`, `new-matching-outfits`, `new-women-outfits`, `popular-family-matching`, and `popular-mommy-me-1`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fiber composition and replace the backfilled measurement guidance with a direct vendor garment spec sheet if available.
+
+2026-04-24 — Ivory Linen sizing guidance update
+
+What changed:
+- Added operator-supplied shopper-facing fit guidance to the live `ivory-linen-family-matching-set` PDP body and durable runner:
+  - kids size/age height mapping for `90cm` through `150cm`
+  - adult Asian/1688 sizing estimate for `S` through `4XL`
+  - recommendation to size up one from usual US/EU size
+- Preserved the existing chart-backed variant set instead of adding unsupported rows. Mother `4XL` was not added because the supplied source chart used for this listing only backs Mother `S-3XL`; Father `4XL` already exists.
+
+Verification:
+- Passed `bash -n ops/scripts/create-ivln-ivory-linen-family-matching-set.sh`.
+- Passed targeted `git diff --check` for the runner.
+- Reran `./ops/scripts/create-ivln-ivory-linen-family-matching-set.sh`.
+- Verified via Admin API that the product remains `ACTIVE`, published, has an online store URL, and the live description contains `Adult fit estimate`.
+
+2026-04-24 — Published Garden Floral family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-garden-floral-family-matching-set
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1046964144900`.
+- Created and published one live Shopify product:
+  - `garden-floral-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-gflr-garden-floral-family-matching-set.sh`
+- Saved listing artifacts:
+  - `ops/listings/garden-floral-family-matching-set-listing.md`
+  - `ops/listings/garden-floral-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-garden-floral-family-matching-set.json`
+  - `ops/listings/size-chart-garden-floral-family-matching-set.json`
+  - `ops/listings/body-garden-floral-family-matching-set.html`
+  - `ops/listings/source-garden-floral-family-matching-set-size-chart.png`
+- Added product media source files:
+  - `uploads/garden-floral-family-matching-set/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7536999563361`
+- Live: `https://www.dresslikemommy.com/products/garden-floral-family-matching-set`
+- Product GID: `gid://shopify/Product/7536999563361`
+
+Listing decisions:
+- The direct 1688 page returned Alibaba anti-bot/captcha markup, so the attached fit chart and supplied product screenshots were treated as authoritative.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Option axes are `Type / Size`, with `Dress` for girl/mother rows and `Shirt` for boy/father rows.
+- Size rows are girl dress `80-150`, mother dress `S-2XL`, child shirt `80-150`, and father shirt `S-4XL`, for 28 live variants.
+- The infant table was excluded because the request only asked for `Dress` and `Shirt`.
+- The attached chart provides height/weight fit guidance only, so garment measurements were backfilled from the live `citrus-bloom-family-matching-set` grading and documented in the listing notes.
+- Styling-only shorts, hats, sunglasses, sandals, handbags, baskets, and accessories were excluded from variants.
+- Pricing reused the nearby family matching set pattern:
+  - child variants `28.99 / 33.99`
+  - adult variants `31.99 / 36.99`
+- `shopify.fabric` was intentionally left unset because the accessible source did not confirm one honest fiber metaobject.
+
+Verification:
+- Passed:
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1046964144900.html'` (returned Alibaba anti-bot/captcha markup)
+  - `bash -n ops/scripts/create-gflr-garden-floral-family-matching-set.sh`
+  - `./ops/scripts/create-gflr-garden-floral-family-matching-set.sh`
+  - `./ops/scripts/create-gflr-garden-floral-family-matching-set.sh` idempotent rerun
+  - CSV/import artifact check: 28 CSV variant rows and 28 live variants
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, source size-chart image, and upload folder
+- Final live verification confirms:
+  - 28 live variants matching 28 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-GFLR-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 2 uploaded product images attached
+  - smart-collection attachment to `family-sets`, `matching-family-vacation-outfits`, `mommy-and-me`, `new-matching-outfits`, `new-women-outfits`, `popular-family-matching`, and `popular-mommy-me-1`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fiber composition and replace the backfilled measurement guidance with a direct vendor garment spec sheet if available.
+
+2026-04-24 — Published Ivory Linen family matching separates
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-ivory-linen-family-matching-set
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1034249556745`.
+- Created and published one live Shopify product:
+  - `ivory-linen-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-ivln-ivory-linen-family-matching-set.sh`
+- Saved listing artifacts:
+  - `ops/listings/ivory-linen-family-matching-set-listing.md`
+  - `ops/listings/ivory-linen-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-ivory-linen-family-matching-set.json`
+  - `ops/listings/size-chart-ivory-linen-family-matching-set.json`
+  - `ops/listings/body-ivory-linen-family-matching-set.html`
+  - `ops/listings/source-ivory-linen-family-matching-set-size-chart.png`
+- Added product media source:
+  - `uploads/ivory-linen-family-matching-set/01-product.png`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537001431137`
+- Live: `https://www.dresslikemommy.com/products/ivory-linen-family-matching-set`
+- Product GID: `gid://shopify/Product/7537001431137`
+
+Listing decisions:
+- The direct 1688 page returned Alibaba anti-bot/captcha markup, so the attached size chart and product photo were treated as authoritative.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Option axes are `Type / Size`, with `Type` values `Vest`, `Shirt`, and `Shorts`.
+- Created only chart-backed variants: girl/mother vest rows, boy/father shirt rows, and boy/father shorts rows. Women/girls shorts shown in styling imagery were not created as separate variants because the supplied chart does not provide chart-backed shorts rows for those roles.
+- Size rows total 41 variants: child `90-150`, Mother `S-3XL`, and Father `S-4XL`.
+- Vendor weight guidance in `斤` was converted to kg in the saved chart/body. Omitted hip/waist values were derived and documented in the listing notes.
+- Pricing reused the nearby ivory family-set pattern with FORCE_SPEC_PRICES:
+  - child variants `26.99 / 31.99`
+  - adult variants `29.99 / 34.99`
+- `shopify.fabric` was intentionally skipped because the accessible evidence confirms only a linen-look texture, not exact fiber composition.
+
+Verification:
+- Passed:
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1034249556745.html?'` (returned Alibaba anti-bot/captcha markup)
+  - `bash -n ops/scripts/create-ivln-ivory-linen-family-matching-set.sh`
+  - `./ops/scripts/create-ivln-ivory-linen-family-matching-set.sh`
+  - `./ops/scripts/create-ivln-ivory-linen-family-matching-set.sh` idempotent rerun
+  - delayed Admin API re-query after publication/media updates
+  - CSV/import artifact check: 41 CSV variant rows and 41 live variants
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, source size-chart image, and upload image
+- Final live verification confirms:
+  - 41 live variants matching 41 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-IVLN-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 1 uploaded product image attached
+  - smart-collection attachment to `family-sets`, `matching-family-vacation-outfits`, `mommy-and-me`, `new-matching-outfits`, `new-women-outfits`, `popular-family-matching`, `popular-mommy-me-1`, and `trunks`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fiber composition and update `shopify.fabric` only with that evidence.
+
+2026-04-24 — Published Navy Red Floral family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-navy-red-floral-family-matching-set
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1036133456700`.
+- Created and published one live Shopify product:
+  - `navy-red-floral-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-nrfl-navy-red-floral-family-matching-set.sh`
+- Saved listing artifacts:
+  - `ops/listings/navy-red-floral-family-matching-set-listing.md`
+  - `ops/listings/navy-red-floral-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-navy-red-floral-family-matching-set.json`
+  - `ops/listings/size-chart-navy-red-floral-family-matching-set.json`
+  - `ops/listings/body-navy-red-floral-family-matching-set.html`
+  - `ops/listings/source-navy-red-floral-family-matching-set-size-chart.png`
+- Added product media source files:
+  - `uploads/navy-red-floral-family-matching-set/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537038917729`
+- Live: `https://www.dresslikemommy.com/products/navy-red-floral-family-matching-set`
+- Product GID: `gid://shopify/Product/7537038917729`
+
+Listing decisions:
+- The direct 1688 page returned Alibaba anti-bot/captcha markup, so the attached size chart and supplied product photos were treated as authoritative.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Option axes are `Type / Size`, with `Dress` for girl/mother rows and `Shirt` for boy/father rows.
+- Created only chart-backed requested designs: long sleeveless dress rows and collared short-sleeve shirt rows. The middle shorter skirt/vest table in the attached screenshot was excluded because the request asked for `dress, shirt` and the supplied photos show the long sleeveless dress.
+- Size rows total 25 variants: girl dress `80-150`, mother dress `S-L`, boy shirt `80-150`, and father shirt `S-3XL`.
+- Vendor `1/2` chest/bust-style measurements were doubled; vendor weight guidance in `斤` was converted to kg; waist and hip were derived per the canonical rules; adult height values were left as `—` because the vendor chart omits adult height ranges.
+- Styling-only shorts, sandals, handbags, flowers, baskets, and accessories were excluded from variants.
+- Pricing reused the nearby family matching set pattern with FORCE_SPEC_PRICES:
+  - child variants `28.99 / 33.99`
+  - adult variants `31.99 / 36.99`
+- `shopify.fabric` was intentionally skipped because the accessible evidence does not confirm exact fiber composition.
+
+Verification:
+- Passed:
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1036133456700.html'` (returned Alibaba anti-bot/captcha markup)
+  - `bash -n ops/scripts/create-nrfl-navy-red-floral-family-matching-set.sh`
+  - `./ops/scripts/create-nrfl-navy-red-floral-family-matching-set.sh`
+  - `./ops/scripts/create-nrfl-navy-red-floral-family-matching-set.sh` idempotent rerun
+  - CSV/import artifact check: 25 CSV variant rows and 25 live variants
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, source size-chart image, and upload folder
+- Final live verification confirms:
+  - 25 live variants matching 25 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-NRFL-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 2 uploaded product images attached
+  - smart-collection attachment to `family-sets`, `matching-family-vacation-outfits`, `mommy-and-me`, `new-matching-outfits`, `new-women-outfits`, `popular-family-matching`, and `popular-mommy-me-1`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fiber composition and the table labels for the shirt shoulder/sleeve-line and dress bust measurements against the live source.
+
+2026-04-24 — Published Ocean Marble family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-ocean-marble-family-matching-set
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1043342779774`.
+- Created and published one live Shopify product:
+  - `ocean-marble-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-omrb-ocean-marble-family-matching-set.sh`
+- Saved listing artifacts:
+  - `ops/listings/ocean-marble-family-matching-set-listing.md`
+  - `ops/listings/ocean-marble-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-ocean-marble-family-matching-set.json`
+  - `ops/listings/size-chart-ocean-marble-family-matching-set.json`
+  - `ops/listings/body-ocean-marble-family-matching-set.html`
+  - `ops/listings/source-ocean-marble-family-matching-set-size-chart.png`
+- Added product media sources under:
+  - `uploads/ocean-marble-family-matching-set/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537041342561`
+- Live: `https://www.dresslikemommy.com/products/ocean-marble-family-matching-set`
+- Product GID: `gid://shopify/Product/7537041342561`
+
+Listing decisions:
+- The attached size chart and product screenshots were treated as authoritative for this run.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Option axes are `Type / Size`, with `Type` values `Dress` and `Shirt + Shorts`.
+- Created only chart-backed requested designs: girl/mother dress rows and boy/father shirt+shorts rows.
+- Size rows total 25 variants: child `80-150`, Mother `S-L`, and Father `S-3XL`.
+- Vendor `80` child rows were mapped to `Child 1-2 Years` using the closest honest live size metaobject `12-18 months`.
+- Vendor half-bust measurements were doubled; vendor weight guidance in `斤` was converted to kg; waist and hip derivations are documented in the listing notes.
+- Pricing used the canonical Sets fallback matrix with FORCE_SPEC_PRICES:
+  - child variants `31.99 / 36.99`
+  - adult variants `36.99 / 42.99`
+- `shopify.fabric` was intentionally skipped because the accessible evidence does not confirm exact fiber composition.
+
+Verification:
+- Passed:
+  - `ops/scripts/create-omrb-ocean-marble-family-matching-set.sh`
+  - local artifact check: 25 `SIZE_CHART` rows, 25 CSV rows, 25 live variants, two 10-column size tables, no missing waist values, published live URL populated
+- Final live verification confirms:
+  - 25 live variants matching 25 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-OMRB-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 2 uploaded product images attached
+  - smart-collection attachment to `family-sets`, `matching-family-vacation-outfits`, `mommy-and-me`, `new-matching-outfits`, `new-women-outfits`, `popular-family-matching`, and `popular-mommy-me-1`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fabric composition and the shirt chart column labels before adding fabric or sleeve-length metafields.
+2026-04-24 — Published Iris Bloom family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-iris-bloom-family-matching-set
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `813439102302`.
+- Created and published one live Shopify product:
+  - `iris-bloom-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-iris-iris-bloom-family-matching-set.sh`
+- Saved listing artifacts:
+  - `ops/listings/iris-bloom-family-matching-set-listing.md`
+  - `ops/listings/iris-bloom-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-iris-bloom-family-matching-set.json`
+  - `ops/listings/size-chart-iris-bloom-family-matching-set.json`
+  - `ops/listings/body-iris-bloom-family-matching-set.html`
+  - `ops/listings/source-iris-bloom-family-matching-set-size-chart.png`
+- Added product media source files under:
+  - `uploads/iris-bloom-family-matching-set/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537069752417`
+- Live: `https://www.dresslikemommy.com/products/iris-bloom-family-matching-set`
+- Product GID: `gid://shopify/Product/7537069752417`
+
+Listing decisions:
+- The direct 1688 page returned Alibaba anti-bot/captcha markup, so the attached size chart and supplied product screenshots were treated as authoritative.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Option axes are `Type / Size`, with `Type` values `Dress` and `Shirt`.
+- Created only chart-backed requested designs: girl/mother dress rows and boy/father shirt rows. The infant crawler table was excluded because the request asked for `dress, shirt`.
+- Size rows total 28 variants: child `80-150`, Mother `S-2XL`, and Father `S-4XL`.
+- The supplied chart is a body size reference chart only. It provides size, recommended height, and recommended weight; garment chest, waist, hip, skirt/sleeve/shoulder/pant, and garment length values were unavailable and rendered as `—` rather than guessed.
+- Vendor weight guidance in `斤` was converted to kg in the saved chart/body.
+- Pricing used recent family matching set precedence with FORCE_SPEC_PRICES:
+  - child variants `31.99 / 36.99`
+  - adult variants `36.99 / 42.99`
+- `shopify.fabric` was intentionally skipped because the accessible evidence does not confirm exact fiber composition.
+
+Verification:
+- Passed:
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/813439102302.html'` (returned Alibaba anti-bot/captcha markup)
+  - `bash -n ops/scripts/create-iris-iris-bloom-family-matching-set.sh`
+  - `./ops/scripts/create-iris-iris-bloom-family-matching-set.sh`
+  - `./ops/scripts/create-iris-iris-bloom-family-matching-set.sh` idempotent rerun
+  - local artifact check: 28 `SIZE_CHART` rows, 28 CSV rows, 28 live variants, two 10-column size tables, 2 media images, live URL populated
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, source size-chart image, and upload folder
+- Final live verification confirms:
+  - 28 live variants matching 28 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-IRIS-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 2 uploaded product images attached
+  - smart-collection attachment to `family-sets`, `matching-family-vacation-outfits`, `mommy-and-me`, `new-matching-outfits`, `new-women-outfits`, `popular-family-matching`, and `popular-mommy-me-1`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fabric composition and look for a garment-measurement chart beyond the supplied body reference chart.
+
+2026-04-24 — Updated Blue Apricot Heart family matching tops
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-blue-apricot-heart-family-matching-tops
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `903638707785`.
+- Updated the existing live product ID in place; the older blue-apricot-letter handle is no longer present and the active handle is:
+  - `blue-apricot-heart-family-matching-tops`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-bah-blue-apricot-heart-family-matching-tops.sh`
+- Saved listing artifacts:
+  - `ops/listings/blue-apricot-heart-family-matching-tops-listing.md`
+  - `ops/listings/blue-apricot-heart-family-matching-tops-shopify-import.csv`
+  - `ops/listings/verify-blue-apricot-heart-family-matching-tops.json`
+  - `ops/listings/size-chart-blue-apricot-heart-family-matching-tops.json`
+  - `ops/listings/body-blue-apricot-heart-family-matching-tops.html`
+  - `ops/listings/source-blue-apricot-heart-family-matching-tops-size-chart.png`
+- Added product media source files under:
+  - `uploads/blue-apricot-heart-family-matching-tops/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7536982163553`
+- Live: `https://www.dresslikemommy.com/products/blue-apricot-heart-family-matching-tops`
+- Product GID: `gid://shopify/Product/7536982163553`
+
+Listing decisions:
+- The direct 1688 page returned Alibaba anti-bot/captcha markup, so the attached size chart and supplied product screenshots were treated as authoritative.
+- Published as `Matching Family Tops` with live Shopify taxonomy `Apparel & Accessories > Clothing > Clothing Tops > T-Shirts`.
+- Product copy and image alts describe the visible Smile-and-heart artwork; older small-red-heart/letter media from prior scaffold runs was removed.
+- The source chart includes `73爬服` and `80爬服` crawler rows, but they were excluded because the request and imagery support tops only.
+- The chart publishes one child top ladder (`90-150`) and one adult top ladder (`S/160-5XL/195`), not separate girl/boy or mother/father rows, so the product uses `Child ...` and `Adult ...` size labels.
+- Waist and hip were derived because the chart omits both; child rows use `hip = chest + 4` and `waist = chest`, adult rows use `hip = chest` and `waist = chest - 12`.
+- Pricing used the canonical Tops fallback matrix with FORCE_SPEC_PRICES:
+  - child variants `24.99 / 28.99`
+  - adult variants `28.99 / 33.99`
+- `shopify.fabric` was skipped because the accessible evidence supports only a soft knit tee appearance, not exact fiber composition.
+
+Verification:
+- Passed:
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/903638707785.html?'` (returned Alibaba anti-bot/captcha markup)
+  - `bash -n ops/scripts/create-bah-blue-apricot-heart-family-matching-tops.sh`
+  - `./ops/scripts/create-bah-blue-apricot-heart-family-matching-tops.sh`
+  - `./ops/scripts/create-bah-blue-apricot-heart-family-matching-tops.sh` idempotent rerun after media cleanup
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, source size-chart image, and upload folder
+- Final live verification confirms:
+  - 15 live variants matching 15 `SIZE_CHART` rows
+  - option axes `Size / Color`
+  - exact SKU parity with the derived `DLM-BAH-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Clothing Tops > T-Shirts`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 2 uploaded product images attached, both with processed image URLs and Smile-and-heart alts
+  - smart-collection attachment to `tops`, `new-arrivals`, `new-matching-outfits`, `new-women-outfits`, `popular-mommy-me-1`, `popular-family-matching`, `family-tops`, `mommy-and-me`, and `matching-family-vacation-outfits`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fabric composition and any care guidance before filling `shopify.fabric`.
+
+2026-04-24 — Created Blue Palm Mommy and Me swimsuits
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-blue-palm-mommy-and-me-swimsuits
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1043996254484`.
+- Created the live Shopify product:
+  - Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537097506913`
+  - Live: `https://www.dresslikemommy.com/products/blue-palm-mommy-and-me-swimsuits`
+  - Product GID: `gid://shopify/Product/7537097506913`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-bplm-blue-palm-mommy-and-me-swimsuits.sh`
+- Saved listing artifacts:
+  - `ops/listings/blue-palm-mommy-and-me-swimsuits-listing.md`
+  - `ops/listings/blue-palm-mommy-and-me-swimsuits-shopify-import.csv`
+  - `ops/listings/verify-blue-palm-mommy-and-me-swimsuits.json`
+  - `ops/listings/size-chart-blue-palm-mommy-and-me-swimsuits.json`
+  - `ops/listings/body-blue-palm-mommy-and-me-swimsuits.html`
+  - `ops/listings/source-blue-palm-mommy-and-me-swimsuits-size-chart.png`
+- Added product media source files under:
+  - `uploads/blue-palm-mommy-and-me-swimsuits/`
+
+Listing decisions:
+- The direct 1688 page was inaccessible through the browser tool, so the attached size-chart image and supplied product screenshots were treated as authoritative.
+- Published as `Matching Family Swimwear` with live Shopify taxonomy `Apparel & Accessories > Clothing > Swimwear > Classic Bikinis`.
+- The listing uses `Size / Color` with one color value, `Blue Palm`, and no Type axis.
+- Size chart produced 10 variants: child rows `104, 116, 128, 140, 152, 164` and mother rows `S, M, L, XL`.
+- Pricing followed the nearby live swimsuit pattern with FORCE_SPEC_PRICES:
+  - girl variants `14.99 / 17.99`
+  - mother variants `16.99 / 19.99`
+- `shopify.fabric` is set to the store's verified Polyester metaobject as in nearby swimwear runs, but exact supplier fiber composition still needs confirmation if the page becomes readable.
+
+Verification:
+- Passed:
+  - live taxonomy lookup for `Classic Bikinis` (`gid://shopify/TaxonomyCategory/aa-1-20-6`)
+  - `bash -n ops/scripts/create-bplm-blue-palm-mommy-and-me-swimsuits.sh`
+  - `ops/scripts/create-bplm-blue-palm-mommy-and-me-swimsuits.sh`
+  - idempotent rerun after removing inherited swim-dress leftovers
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, source size-chart image, and upload folder
+- Final live verification confirms:
+  - 10 live variants matching 10 `SIZE_CHART` rows
+  - option axes `Size / Color`
+  - exact SKU parity with the derived `DLM-BPLM-*` set
+  - forced price parity across all variants
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 2 uploaded product images attached
+  - smart-collection attachment to `swimsuits`, `new-matching-outfits`, `popular-mommy-me-1`, `mommy-and-me`, and `matching-family-vacation-outfits`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fiber composition and any additional care guidance.
+
+2026-04-24 — Published Gray Leopard mommy-and-me swimsuits
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-gray-leopard-mommy-and-me-swimsuits
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for 1688 offer `1043999310235`.
+- Created and published one live Shopify product:
+  - `gray-leopard-mommy-and-me-swimsuits`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-glpd-gray-leopard-mommy-and-me-swimsuits.sh`
+- Saved listing artifacts:
+  - `ops/listings/gray-leopard-mommy-and-me-swimsuits-listing.md`
+  - `ops/listings/gray-leopard-mommy-and-me-swimsuits-shopify-import.csv`
+  - `ops/listings/verify-gray-leopard-mommy-and-me-swimsuits.json`
+  - `ops/listings/size-chart-gray-leopard-mommy-and-me-swimsuits.json`
+  - `ops/listings/body-gray-leopard-mommy-and-me-swimsuits.html`
+  - `ops/listings/source-gray-leopard-mommy-and-me-swimsuits-size-chart.png`
+- Added product media source files under:
+  - `uploads/gray-leopard-mommy-and-me-swimsuits/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537096949857`
+- Live: `https://www.dresslikemommy.com/products/gray-leopard-mommy-and-me-swimsuits`
+- Product GID: `gid://shopify/Product/7537096949857`
+
+Listing decisions:
+- The direct 1688 page returned Alibaba anti-bot/captcha markup, so the attached size chart and supplied product screenshots were treated as authoritative.
+- Published as `Matching Family Swimwear` with live Shopify taxonomy `Apparel & Accessories > Clothing > Swimwear > Swim Dresses` because the adult style includes a sheer swim skirt.
+- Option axes are `Size / Color`, with one colorway: `Gray Leopard`.
+- Created only chart-backed requested roles: girl swimsuit rows and mother swimsuit rows.
+- Size rows total 10 variants: child `104, 116, 128, 140, 152, 164` mapped to `Child 2 Years`, `Child 4 Years`, `Child 5 Years`, `Child 6-7 Years`, `Child 9-10 Years`, `Child 12 Years`; Mother `S-XL`.
+- Child rows are fit-guidance rows with height, weight, and age only. Adult rows include bust, waist, and hip; unavailable garment length, skirt, pant, adult height, and adult weight cells are rendered as `-`.
+- Pricing used recent swimwear precedence from `blush-garden-mommy-and-me-swimsuits` with FORCE_SPEC_PRICES:
+  - child variants `14.99 / 17.99`
+  - mother variants `16.99 / 19.99`
+- `shopify.fabric` was set to the live swimwear precedent `Polyester`; the listing notes still flag that screenshots do not confirm exact fiber content.
+
+Verification:
+- Passed:
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1043999310235.html'` (returned Alibaba anti-bot/captcha markup)
+  - `bash -n ops/scripts/create-glpd-gray-leopard-mommy-and-me-swimsuits.sh`
+  - `./ops/scripts/create-glpd-gray-leopard-mommy-and-me-swimsuits.sh`
+  - `./ops/scripts/create-glpd-gray-leopard-mommy-and-me-swimsuits.sh` idempotent rerun
+  - local artifact check: 10 `SIZE_CHART` rows, 10 CSV rows, 10 live variants, one 10-column size table, 3 media images, live URL populated
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, source size-chart image, and upload folder
+- Final live verification confirms:
+  - 10 live variants matching 10 `SIZE_CHART` rows
+  - option axes `Size / Color`
+  - exact SKU parity with the derived `DLM-GLPD-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Swimwear > Swim Dresses`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - 3 uploaded product images attached
+  - smart-collection attachment to `swimsuits`, `new-matching-outfits`, `popular-mommy-me-1`, `mommy-and-me`, and `matching-family-vacation-outfits`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If the supplier page becomes readable later, confirm exact fiber composition and look for garment-length or skirt-length measurements beyond the attached fit chart.
+
+2026-04-24 — Published Ruffle Hem mommy-and-me dresses
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-ruffle-hem-mommy-and-me-dresses
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md`.
+- Created and published one live Shopify product:
+  - `ruffle-hem-mommy-and-me-dresses`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-rrfl-ruffle-hem-mommy-and-me-dresses.sh`
+- Saved listing artifacts:
+  - `ops/listings/ruffle-hem-mommy-and-me-dresses-listing.md`
+  - `ops/listings/ruffle-hem-mommy-and-me-dresses-shopify-import.csv`
+  - `ops/listings/verify-ruffle-hem-mommy-and-me-dresses.json`
+  - `ops/listings/size-chart-ruffle-hem-mommy-and-me-dresses.json`
+  - `ops/listings/body-ruffle-hem-mommy-and-me-dresses.html`
+- Added product media source files under:
+  - `uploads/ruffle-hem-mommy-and-me-dresses/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537105961057`
+- Live: `https://www.dresslikemommy.com/products/ruffle-hem-mommy-and-me-dresses`
+- Product GID: `gid://shopify/Product/7537105961057`
+
+Listing decisions:
+- No direct vendor URL was supplied, so the attached product screenshots and size-chart image were treated as authoritative.
+- Published as `Matching Family Dresses` with live Shopify taxonomy `Apparel & Accessories > Clothing > Dresses`.
+- Option axes are `Size / Color`, with requested colorways `Purple` and `Pink` in one product.
+- Created only chart-backed Mommy and Me roles: girl dress rows and mother dress rows. Boys and fathers shown in the chart were excluded.
+- Size rows total 12 chart rows and 24 variants after multiplying by two colorways: child `90-150` mapped to `Child 2 Years` through `Child 9-10 Years`; Mother `M-3XL`.
+- The chart publishes chest/bust and dress length but omits waist and hip. Derived values follow the master prompt: child hip = chest + 4, child waist = chest; mother hip = bust + 6, mother waist = hip - 8.
+- Pricing used nearby live mommy-and-me dress precedent with FORCE_SPEC_PRICES:
+  - girl variants `31.99 / 36.99`
+  - mother variants `34.99 / 40.99`
+- `shopify.sleeve-length-type` was skipped after Shopify rejected the tested reference as belonging to the wrong metaobject definition.
+
+Verification:
+- Passed:
+  - `bash -n ops/scripts/create-rrfl-ruffle-hem-mommy-and-me-dresses.sh`
+  - Python compile check for the embedded runner body
+  - `./ops/scripts/create-rrfl-ruffle-hem-mommy-and-me-dresses.sh`
+  - `./ops/scripts/create-rrfl-ruffle-hem-mommy-and-me-dresses.sh` idempotent rerun
+  - local artifact check: 24 CSV rows, 24 live variants, 12 size-table rows, 2 media images, live URL populated
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, size chart, body HTML, source size-chart image, and upload folder
+- Final live verification confirms:
+  - 24 live variants matching 12 `SIZE_CHART` rows x 2 colorways
+  - option axes `Size / Color`
+  - exact SKU parity with the derived `DLM-RRFL-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Dresses`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - smart-collection attachment to `dresses`, `sundresses`, `new-arrivals`, `new-matching-outfits`, `popular-mommy-me-1`, `mommy-and-me`, `matching-family-vacation-outfits`, and `mother-daughter-matching-dresses`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- If a supplier URL becomes available later, confirm exact fiber composition and any care guidance against the vendor page.
+
+Session: Willow Mist mommy-and-me dress listing
+Date: 2026-04-24
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-willow-mist-mommy-and-me-dresses
+
+Changes applied (evidence-first)
+- Created and published one live Shopify product:
+  - `willow-mist-mommy-and-me-dresses`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-wmst-willow-mist-mommy-and-me-dresses.sh`
+- Saved listing artifacts:
+  - `ops/listings/willow-mist-mommy-and-me-dresses-listing.md`
+  - `ops/listings/willow-mist-mommy-and-me-dresses-shopify-import.csv`
+  - `ops/listings/verify-willow-mist-mommy-and-me-dresses.json`
+  - `ops/listings/size-chart-willow-mist-mommy-and-me-dresses.json`
+  - `ops/listings/body-willow-mist-mommy-and-me-dresses.html`
+- Added product media source files under:
+  - `uploads/willow-mist-mommy-and-me-dresses/`
+
+Links
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537109991521`
+- Live: `https://www.dresslikemommy.com/products/willow-mist-mommy-and-me-dresses`
+- Product GID: `gid://shopify/Product/7537109991521`
+
+Listing decisions
+- Direct 1688 fetch returned Alibaba anti-bot challenge markup (`bxpunish: 1`), so the attached size-chart image and product screenshots were treated as authoritative.
+- Published as `Matching Family Dresses` with live Shopify taxonomy `Apparel & Accessories > Clothing > Dresses`.
+- Option axes are `Size / Color`, with requested colorways `White` and `Green` in one product.
+- Created only chart-backed Mommy and Me roles: girl dress rows and mother dress rows.
+- Size rows total 9 chart rows and 18 variants after multiplying by two colorways: child `110-160` mapped to `Child 4 Years` through `Child 12 Years`; adult height labels `165/170/175` mapped to `Mother S/M/L` using live Shopify size metaobjects.
+- The chart publishes skirt length and chest/bust in cm, but omits waist, hip, and weight. Derived values follow the master prompt: child hip = chest + 4, child waist = chest; mother hip = bust + 6, mother waist = hip - 8. Weight cells are shown as `-` rather than invented.
+- Pricing used nearby live mommy-and-me dress precedent with FORCE_SPEC_PRICES:
+  - girl variants `31.99 / 36.99`
+  - mother variants `34.99 / 40.99`
+
+Verification
+- Passed:
+  - `bash -n ops/scripts/create-wmst-willow-mist-mommy-and-me-dresses.sh`
+  - `ops/scripts/create-wmst-willow-mist-mommy-and-me-dresses.sh`
+  - idempotent reruns after copy/metafield corrections
+  - local artifact check: 18 CSV rows, 9 size-chart rows, 10 size-table headers, 18 unique SKUs, no price mismatches
+  - targeted `git diff --check` for the new runner and listing artifacts
+- Final live verification confirms:
+  - 18 live variants matching 9 `SIZE_CHART` rows x 2 colorways
+  - option axes `Size / Color`
+  - exact SKU parity with the derived `DLM-WMST-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Dresses`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+
+Smart collections after verification
+- `dresses`, `midi-dresses`, `sundresses`, `new-arrivals`, `new-matching-outfits`, `popular-mommy-me-1`, `mommy-and-me`, `matching-family-vacation-outfits`, and `mother-daughter-matching-dresses`
+
+Residual note
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- Confirm exact fiber composition if the vendor page becomes accessible without anti-bot challenge.
+
+
+Session: Lavender Hydrangea family matching set listing
+Date: 2026-04-24
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-lavender-hydrangea-family-matching-set
+
+Changes applied (evidence-first)
+- Created and published one live Shopify product:
+  - `lavender-hydrangea-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-lhyd-lavender-hydrangea-family-matching-set.sh`
+- Saved listing artifacts:
+  - `ops/listings/lavender-hydrangea-family-matching-set-listing.md`
+  - `ops/listings/lavender-hydrangea-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-lavender-hydrangea-family-matching-set.json`
+  - `ops/listings/size-chart-lavender-hydrangea-family-matching-set.json`
+  - `ops/listings/body-lavender-hydrangea-family-matching-set.html`
+- Added product media/source files under:
+  - `uploads/lavender-hydrangea-family-matching-set/`
+
+Links
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537113563233`
+- Live: `https://www.dresslikemommy.com/products/lavender-hydrangea-family-matching-set`
+- Product GID: `gid://shopify/Product/7537113563233`
+
+Listing decisions
+- Direct 1688 fetch returned Alibaba anti-bot/captcha markup, so the attached vendor size-chart screenshot plus supplied product screenshots were treated as authoritative.
+- Published as `Matching Family Sets` with Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Option axes are `Type / Size`; `Type` values are generic garment labels `Dress` and `Shirt` because the size labels already encode role/audience.
+- Created only chart-backed roles/garments from the request: girl dress, mother dress, boy shirt, and father shirt rows. Styling-only white shorts, sheer cover-up, sandals, watch, and hair accessories were excluded.
+- Size rows total 23: child `90-150` mapped to `Child 2 Years` through `Child 9-10 Years`; mother `M/L/XL/XXL` mapped to `Mother M/L/XL/2XL`; father `M/L/XL/XXL/XXXL` mapped to `Father M/L/XL/2XL/3XL`.
+- Child/mother dress hip and waist values were derived where omitted by the vendor chart, following the canonical prompt rules. Shirt measurements use the vendor's published shirt rows.
+- Pricing used recent family matching set precedent with FORCE_SPEC_PRICES:
+  - child variants `31.99 / 36.99`
+  - adult variants `36.99 / 42.99`
+
+Verification
+- Passed:
+  - `bash -n ops/scripts/create-lhyd-lavender-hydrangea-family-matching-set.sh`
+  - `ops/scripts/create-lhyd-lavender-hydrangea-family-matching-set.sh`
+  - idempotent rerun after listing-log copy corrections
+  - local artifact check: 23 CSV rows, 23 size-chart rows, 4 roles, 23 unique SKUs
+- Final live verification confirms:
+  - 23 live variants matching 23 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-LHYD-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+
+Smart collections after verification
+- `family-sets`, `matching-family-vacation-outfits`, `mommy-and-me`, `new-matching-outfits`, `new-women-outfits`, `popular-family-matching`, and `popular-mommy-me-1`
+
+Residual note
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- Re-confirm exact fiber composition if the vendor page becomes directly readable later; `shopify.fabric` was intentionally left unset rather than guessing.
+2026-04-24 — Published Blue Butterfly family matching set
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-blue-butterfly-family-matching-set
+
+What changed:
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md`.
+- Created and published one live Shopify product:
+  - `blue-butterfly-family-matching-set`
+- Added the idempotent Shopify runner:
+  - `ops/scripts/create-bfly-blue-butterfly-family-matching-set.sh`
+- Saved listing artifacts:
+  - `ops/listings/blue-butterfly-family-matching-set-listing.md`
+  - `ops/listings/blue-butterfly-family-matching-set-shopify-import.csv`
+  - `ops/listings/verify-blue-butterfly-family-matching-set.json`
+  - `ops/listings/size-chart-blue-butterfly-family-matching-set.json`
+  - `ops/listings/body-blue-butterfly-family-matching-set.html`
+  - `ops/listings/source-blue-butterfly-family-matching-set-size-chart.png`
+- Added product media source files under:
+  - `uploads/blue-butterfly-family-matching-set/`
+
+Links:
+- Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537120870497`
+- Live: `https://www.dresslikemommy.com/products/blue-butterfly-family-matching-set`
+- Product GID: `gid://shopify/Product/7537120870497`
+
+Listing decisions:
+- No direct vendor URL was supplied, so the attached size-chart image and product screenshots were treated as authoritative.
+- Published as `Matching Family Sets` with live Shopify taxonomy `Apparel & Accessories > Clothing > Outfit Sets`.
+- Option axes are `Type / Size`, with three requested garment types: `Dress`, `Shirt`, and `Shorts`.
+- Created 39 chart-backed variants:
+  - Dress: child `80-150` mapped to `Child 1-2 Years` through `Child 9-10 Years`; Mother `S-L`.
+  - Shirt: child `80-150`; Father `S-3XL`.
+  - Shorts: child `80-150`; Mother `S-3XL`.
+- Half-bust / half-chest chart values were doubled for chest/bust. Dress waist/hip and shirt waist/hip were derived by the master-prompt garment rules. Shorts hip was derived as waist + 14 cm because the vendor shorts table omits hip.
+- Pricing used live family-set neighbor precedence from `blue-daisy-family-matching-set` with FORCE_SPEC_PRICES:
+  - child variants `28.99 / 33.99`
+  - adult variants `31.99 / 36.99`
+
+Verification:
+- Passed:
+  - `bash -n ops/scripts/create-bfly-blue-butterfly-family-matching-set.sh`
+  - `./ops/scripts/create-bfly-blue-butterfly-family-matching-set.sh`
+  - idempotent reruns after option-order and listing-note corrections
+  - local artifact check: 39 `SIZE_CHART` rows, 39 CSV rows, 39 live variants, 3 size tables, 39 body table rows, 2 media images, live URL populated
+  - targeted `git diff --check` for the new runner, listing artifacts, verify JSON, source size-chart image, and upload folder
+- Final live verification confirms:
+  - 39 live variants matching 39 `SIZE_CHART` rows
+  - option axes `Type / Size`
+  - exact SKU parity with the derived `DLM-BFLY-*` set
+  - forced price parity across all variants
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - smart-collection attachment to `new-matching-outfits`, `new-women-outfits`, `popular-mommy-me-1`, `popular-family-matching`, `family-sets`, `mommy-and-me`, and `matching-family-vacation-outfits`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- Confirm exact fiber composition if a supplier page becomes available later.
+
+2026-04-24 — Fixed selected-variant media on Skyfade PDP
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-skyfade-selected-variant-media
+
+What changed:
+- Fixed the product gallery initial render so a URL-selected variant uses its own `featured_media` before falling back to the product hero image.
+- Improved color image tiles so they prefer variant media matching the currently selected neighboring options before falling back to the first media for that color.
+- Pushed only the two changed snippets to the live Shopify theme `dresslikemommy/main` (`133290917985`) with `--nodelete`.
+
+Files changed:
+- `snippets/product-media-gallery.liquid`
+- `snippets/product-variant-options.liquid`
+- `ops/AGENT_WORKLOG.md`
+
+Verification:
+- Reproduced the live issue at `skyfade-family-matching-set?variant=44083478921313`: selected variant was `Blue / Shirt / Child 2 Years`, but the active gallery image was the product dress hero.
+- After deployment, verified in browser MCP that:
+  - direct URL variant `44083478921313` opens with the shirt variant media active
+  - switching Blue to Lavender keeps the active image matched to the Lavender Shirt variant
+  - switching Type to Dress moves the active image to the Dress variant media
+- `git diff --check -- snippets/product-media-gallery.liquid snippets/product-variant-options.liquid` passed.
+
+Residual note:
+- Full `shopify theme check --path .` is blocked by pre-existing unrelated locale translation errors and warnings, mostly in locale files; no edited-snippet issue was observed before stopping the long scan.
+
+2026-04-24 — Follow-up: refresh Skyfade color tiles on Type changes
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-skyfade-color-tiles-type-refresh
+
+What changed:
+- Added client-side color-image picker refresh in `assets/global.js` using the existing variant section fetch.
+- When a shopper changes Type, the already-fetched updated section markup now replaces the live `.product-form__input--color-image` contents, so color tiles immediately switch between Dress media and Shirt media without a page refresh.
+- Re-pushed the complete scoped set to live theme `dresslikemommy/main` (`133290917985`) with `--nodelete`:
+  - `assets/global.js`
+  - `snippets/product-media-gallery.liquid`
+  - `snippets/product-variant-options.liquid`
+
+Verification:
+- Browser MCP verified on `skyfade-family-matching-set`:
+  - starting on `Dress / Blue / Child 2 Years` shows Blue and Lavender dress color tiles
+  - changing Type to Shirt immediately changes both color tiles to shirt images without refresh
+  - changing Type back to Dress immediately restores dress color tiles
+  - clicking Lavender after switching to Shirt selects `Shirt / Lavender / Child 2 Years` and activates the matching shirt gallery image
+- `git diff --check -- assets/global.js snippets/product-media-gallery.liquid snippets/product-variant-options.liquid` passed.
+
+Residual note:
+- Full theme check remains blocked by pre-existing unrelated repo/theme issues documented in the previous entry.
+
+2026-04-24 — Fixed Skyfade visible breadcrumbs
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-skyfade-visible-breadcrumbs
+
+What changed:
+- Updated `snippets/breadcrumbs.liquid` so products with `family-sets` context get a visible fallback trail when exact metafield-derived collection handles do not exist.
+- The fallback renders the same visible hierarchy used by the page's JSON-LD context:
+  - `Home > Family Matching > Sets`
+- Pushed only `snippets/breadcrumbs.liquid` to live theme `dresslikemommy/main` (`133290917985`) with `--nodelete`.
+
+Verification:
+- Reproduced that `skyfade-family-matching-set?variant=44083478921313` showed only `Home` in the visible breadcrumb trail.
+- Browser MCP verified after deployment that the visible trail is now:
+  - `Home`
+  - `Family Matching` -> `/collections/new-women-outfits`
+  - `Sets` -> `/collections/family-sets`
+- `git diff --check -- snippets/breadcrumbs.liquid` passed.
+
+Residual note:
+- Full theme check remains blocked by pre-existing unrelated repo/theme issues documented above.
+
+2026-04-24 — Generalized family matching product breadcrumbs
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-family-matching-product-breadcrumb-generalization
+
+What changed:
+- Updated `snippets/breadcrumbs.liquid` so family matching product pages normalize visible breadcrumbs from actual product collection context, not only exact custom metafield handles.
+- Family matching products now fallback to:
+  - `Home > Family Matching > Tops` via `/collections/family-tops`
+  - `Home > Family Matching > Sets` via `/collections/family-sets`
+  - `Home > Family Matching > Sweaters & Jackets` via `/collections/family-sweaters`
+  - plus equivalent handling for family pajamas, swimsuits, Hawaiian outfits, and family vacation outfits when those collection contexts are present.
+- Re-pushed only `snippets/breadcrumbs.liquid` to live theme `dresslikemommy/main` (`133290917985`) with `--nodelete`.
+
+Verification:
+- Reproduced `blue-apricot-heart-family-matching-tops` showing `Home > Tops`, with the generic `/collections/tops` link.
+- Browser MCP verified after deployment that it now shows:
+  - `Home`
+  - `Family Matching` -> `/collections/new-women-outfits`
+  - `Tops` -> `/collections/family-tops`
+- Browser MCP storefront sweep fetched product links from six family matching collections (`family-tops`, `family-sets`, `family-pajamas`, `family-swimsuits`, `family-sweaters`, `matching-family-vacation-outfits`) and parsed rendered product breadcrumb HTML.
+- Sweep result: 65 product pages checked, 0 failures.
+  - `Home > Family Matching > Tops`: 22 products
+  - `Home > Family Matching > Sets`: 38 products
+  - `Home > Family Matching > Sweaters & Jackets`: 5 products
+- `git diff --check -- snippets/breadcrumbs.liquid` passed.
+
+Residual note:
+- The sweep used products discoverable from the first rendered collection pages for those family matching collections. Full theme check remains blocked by pre-existing unrelated repo/theme issues documented above.
+
+2026-04-24 — Created Picnic Plaid family matching listing
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-picnic-plaid-family-matching-set
+
+What changed:
+- Created and published `picnic-plaid-family-matching-set` from vendor URL `https://detail.1688.com/offer/914314067847.html` using the attached product images and attached size-chart screenshot as authoritative evidence.
+- Listing model:
+  - Option 1: `Type` -> `Dress`, `Shirt`
+  - Option 2: role-bearing `Size`
+  - Option 3: `Color` -> `Blue`, `Red`
+- Live product:
+  - Admin: `https://admin.shopify.com/store/dresslikemommy/products/7537227890785`
+  - Live: `https://www.dresslikemommy.com/products/picnic-plaid-family-matching-set`
+  - Product GID: `gid://shopify/Product/7537227890785`
+- Saved a new idempotent runner and listing artifacts:
+  - `ops/scripts/create-ppla-picnic-plaid-family-matching-set.sh`
+  - `ops/listings/picnic-plaid-family-matching-set-listing.md`
+  - `ops/listings/picnic-plaid-family-matching-set-shopify-import.csv`
+  - `ops/listings/size-chart-picnic-plaid-family-matching-set.json`
+  - `ops/listings/body-picnic-plaid-family-matching-set.html`
+  - `ops/listings/verify-picnic-plaid-family-matching-set.json`
+  - `uploads/picnic-plaid-family-matching-set/`
+
+Listing decisions:
+- Direct vendor fetch was unreachable from this shell; attached images/chart were used as the source of truth.
+- Included child/adult dress rows and child/adult shirt rows only, matching the request `Type: Shirt, Dress`.
+- Excluded pants/short columns from the vendor shirt tables and styling-only accessories/footwear because the request scoped sellable types to shirts and dresses.
+- Preserved the vendor-published `Mother 3XL` custom row; chest/length were extended from the visible adult-dress grading because the screenshot only shows the weight recommendation for that row.
+- Used live family-set neighbor pricing pattern with `FORCE_SPEC_PRICES=true`:
+  - child variants `28.99 / 33.99`
+  - adult variants `31.99 / 36.99`
+
+Verification:
+- Passed:
+  - `bash -n ops/scripts/create-ppla-picnic-plaid-family-matching-set.sh`
+  - initial runner execution
+  - idempotent runner rerun
+  - `jq 'length' ops/listings/size-chart-picnic-plaid-family-matching-set.json` -> `27`
+  - CSV row count -> `54`
+  - `git diff --check -- ops/scripts/create-ppla-picnic-plaid-family-matching-set.sh ops/listings/picnic-plaid-family-matching-set-listing.md ops/listings/picnic-plaid-family-matching-set-shopify-import.csv ops/listings/verify-picnic-plaid-family-matching-set.json ops/listings/size-chart-picnic-plaid-family-matching-set.json ops/listings/body-picnic-plaid-family-matching-set.html uploads/picnic-plaid-family-matching-set`
+- Final live verification confirms:
+  - 54 live variants matching 27 `SIZE_CHART` rows x 2 colorways
+  - option axes `Type / Size / Color`
+  - exact SKU parity with the derived `DLM-PPLA-*` set
+  - forced price and compare-at parity across all variants
+  - 27 body size-table rows and two 10-column tables
+  - taxonomy set to `Apparel & Accessories > Clothing > Outfit Sets`
+  - 2 product media images uploaded
+  - required publications live on Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok
+  - smart-collection attachment to `new-matching-outfits`, `new-women-outfits`, `popular-mommy-me-1`, `popular-family-matching`, `family-sets`, `mommy-and-me`, and `matching-family-vacation-outfits`
+
+Residual note:
+- Inventory quantities and per-variant grams remain unset / zero and still need operator stock values.
+- Exact fiber composition remains unconfirmed from the supplied evidence, so `shopify.fabric` was intentionally skipped.
+
+2026-04-24 — Fixed Cable Horse size-chart decimal formatting
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-cable-horse-decimal-formatting
+
+What changed:
+- Fixed `ops/scripts/create-chrs-cable-horse-family-matching-tops.sh` so generated dual-unit measurements round converted values to at most two decimals instead of Python `:g` output such as `45.6693`.
+- Rounded existing saved product body artifact `ops/listings/body-cable-horse-family-matching-tops.html`.
+- Updated live product `cable-horse-family-matching-tops` (`7537007198305`) body HTML through Admin REST API.
+- Pushed existing local `assets/product-desktop-ux.js` to live theme `dresslikemommy/main` (`133290917985`) because its size-guide conversion formatter already limits JS-rendered inch/lb values to two decimals.
+
+Verification:
+- `bash -n ops/scripts/create-chrs-cable-horse-family-matching-tops.sh` passed.
+- Local and live product body size-chart content now has zero `\d+\.\d{3,}` measurement values.
+- Storefront HTML for the linked Adult XL variant now shows the size-chart row as `70-80 kg / 154.32-176.37 lbs`, `165-175 cm / 64.96-68.9 in`, `116 cm / 45.67 in`, `63 cm / 24.8 in`, `104 cm / 40.94 in`, and `67 cm / 26.38 in`.
+- `git diff --check -- assets/product-desktop-ux.js ops/scripts/create-chrs-cable-horse-family-matching-tops.sh ops/AGENT_WORKLOG.md` passed.
+- `shopify theme check --fail-level=error` surfaced pre-existing locale/default-translation errors under `locales/ar.json` and did not complete promptly; it was stopped after confirming the failures were unrelated to this size-chart change.
+
+Residual note:
+- The full theme check remains blocked by existing locale translation parity issues, not by the Cable Horse decimal-formatting fix.
+
+2026-04-24 — Added Phase 1 1688 sourcing shortlist tool
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-1688-sourcing-shortlist-phase-1
+
+What changed:
+- Added a dev-only browser-assisted sourcing gate before the canonical Shopify listing workflow.
+- New scorecard/docs:
+  - `ops/sourcing/README.md`
+  - `ops/sourcing/1688-scorecard.md`
+- New logged-in browser collector snippet:
+  - `ops/sourcing/1688-browser-collector.js`
+  - Runs in the browser console on a logged-in 1688 search/result page, reads visible DOM product cards, and exports candidate JSON.
+- New scoring/report generator:
+  - `ops/scripts/1688_sourcing_score.py`
+  - Accepts candidate CSV or JSON.
+  - Outputs `shortlist.html`, `scored-candidates.csv`, `scored-candidates.json`, and `summary.md`.
+  - Scores candidates as `Gold`, `Test`, or `Reject` using product fit, supplier reliability, fulfillment, and risk/readiness.
+  - Includes product image previews, source/supplier URL buttons, score breakdowns, positive signals, concerns, and copyable canonical `LISTING REQUEST` blocks.
+- Added sample/demo artifacts:
+  - `ops/sourcing/sample-candidates.csv`
+  - `ops/sourcing/demo-shortlist/`
+
+Verification:
+- `python3 -m py_compile ops/scripts/1688_sourcing_score.py` passed.
+- `node --check ops/sourcing/1688-browser-collector.js` passed.
+- Generated the demo report with:
+  - `python3 ops/scripts/1688_sourcing_score.py --input ops/sourcing/sample-candidates.csv --output-dir ops/sourcing/demo-shortlist`
+- Parsed generated HTML with Python `html.parser`.
+- Parsed generated JSON and confirmed 3 candidates across `Gold`, `Test`, and `Reject`.
+- Playwright loaded `shortlist.html` through a local static server and captured desktop/mobile screenshots; layout was readable and responsive.
+- `git diff --check` passed for the new sourcing files and demo artifacts.
+
+Residual note:
+- The collector is intentionally heuristic because 1688 DOM/classes can change and logged-in pages may vary. It is a Phase 1 assist, not a guaranteed full scraper.
+- Real vendor quality still requires operator confirmation of size chart, one-piece/dropship support, dispatch evidence, and product images before running the Shopify listing workflow.
+
+2026-04-24 — Ran first real 1688 search shortlist and tuned search-stage scoring
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-1688-real-search-shortlist
+
+What changed:
+- Used an already-authenticated local Chrome debugging session on `127.0.0.1:9333` to access 1688 as a logged-in browser session.
+- Ran a real 1688 search for family matching dress/shirt candidates.
+- Saved collected first-pass candidates under:
+  - `ops/sourcing/2026-04-25-family-dress-shirt-1688/candidates.json`
+- Generated real shortlist outputs:
+  - `ops/sourcing/2026-04-25-family-dress-shirt-1688/shortlist.html`
+  - `ops/sourcing/2026-04-25-family-dress-shirt-1688/scored-candidates.csv`
+  - `ops/sourcing/2026-04-25-family-dress-shirt-1688/scored-candidates.json`
+  - `ops/sourcing/2026-04-25-family-dress-shirt-1688/summary.md`
+- Tuned `ops/scripts/1688_sourcing_score.py` with `--stage search|detail`.
+  - `search` keeps strong visible search-page leads as `Test` even when detail-page-only evidence is missing.
+  - `detail` remains stricter and is the only stage that can produce `Gold`.
+- Added a local-file clipboard fallback for `shortlist.html` copy buttons.
+- Updated sourcing docs to explain the two-stage scorecard.
+
+Verification:
+- `python3 -m py_compile ops/scripts/1688_sourcing_score.py` passed.
+- `node --check ops/sourcing/1688-browser-collector.js` passed.
+- Regenerated demo report with `--stage search`.
+- Regenerated real 1688 report with `--stage search`.
+- Parsed the real generated HTML and confirmed 6 product cards, 6 image tags, 6 1688 product links, and 6 copy buttons.
+
+Result:
+- Real search generated 6 first-pass candidates.
+- Search-stage verdicts: 0 `Gold`, 6 `Test`, 0 `Reject`.
+
+Residual note:
+- Search-page data is good for fast triage, but the next pass must open each strongest product URL and confirm size chart, supplier evidence, one-piece shipping, dispatch speed, and usable product images before any Shopify listing work.
+
+2026-04-24 — Made 1688 shortlist report operator-friendly and tested controls
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-1688-shortlist-operator-controls
+
+What changed:
+- Updated `ops/scripts/1688_sourcing_score.py` report UI so generated `shortlist.html` has clear operator controls:
+  - `Keep` / `Kept` selects a candidate for detail review.
+  - `Hide` removes a candidate from the active shortlist without deleting it.
+  - `Hidden` filter shows hidden candidates and `Restore` brings them back.
+  - `Copy kept URLs` copies selected 1688 product URLs.
+  - `Download kept JSON` exports selected candidates.
+  - `Reset choices` clears local browser choices.
+- Added `Kept` and `Hidden` counters plus a verdict legend for `Gold`, `Test`, and `Reject`.
+- Fixed generated embedded JSON so report interactivity initializes correctly.
+- Added clipboard fallback behavior when browser clipboard permission is unavailable.
+- Regenerated:
+  - `ops/sourcing/2026-04-25-family-dress-shirt-1688/shortlist.html`
+  - `ops/sourcing/demo-shortlist/shortlist.html`
+
+Verification:
+- `python3 -m py_compile ops/scripts/1688_sourcing_score.py` passed.
+- `node --check ops/sourcing/1688-browser-collector.js` passed.
+- Regenerated the real and demo reports with `--stage search`.
+- Parsed the real generated HTML and confirmed 6 cards, 6 Keep buttons, 6 Hide buttons, 6 copy buttons, 6 product links, and a verdict legend.
+- Loaded the report through a local `python3 -m http.server` and used Playwright browser automation to verify:
+  - Keep increments `Kept` to 1 and changes the button to `Kept`.
+  - Hide increments `Hidden` to 1, changes the button to `Restore`, and removes the card from `All`.
+  - `Hidden` filter shows hidden cards.
+  - `Kept` filter shows selected cards.
+  - `Copy kept URLs` reports `Copied URLs`.
+  - `Download kept JSON` reports `Downloaded`.
+  - `Reset choices` returns the report to 0 kept, 0 hidden, and all 6 visible.
+
+Residual note:
+- Keep/Hide choices are local to the browser via `localStorage`; they do not edit `candidates.json` or Shopify.
+
+2026-04-24 — Added category sourcing dashboard, reject memory, and app launcher
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-1688-sourcing-dashboard-app
+
+What changed:
+- Added category configuration for the five store sourcing lanes:
+  - `ops/sourcing/sourcing-categories.json`
+  - Mommy & Me, Daddy & Me, Family Matching, Couples, Maternity
+- Added persistent sourcing memory:
+  - `ops/sourcing/state/decisions.json`
+  - Stores Keep/Reject decisions by 1688 offer ID.
+- Added local dashboard app:
+  - `ops/scripts/1688_sourcing_dashboard.py`
+  - Serves `http://127.0.0.1:8766/`.
+  - Groups candidates by category.
+  - Shows active/kept/rejected/gold/test counts.
+  - Provides persistent `Keep` and `Reject` actions.
+  - Provides `Copy Listing Prompt` and `Copy Photo Prompt` handoff buttons.
+- Added automatic logged-in browser collector:
+  - `ops/scripts/1688_sourcing_cdp_collect.py`
+  - Attaches to an already logged-in Chrome CDP session on port `9333`.
+  - Loads normal 1688 search pages, collects visible card data, writes `candidates.json`, `run.json`, and scored report artifacts.
+  - Uses `ops/sourcing/state/decisions.json` so previously rejected offer IDs score as `Reject`.
+- Added photoshoot prompt template:
+  - `ops/prompts/dlm-6-image-photoshoot.md`
+- Added workflow docs:
+  - `ops/sourcing/AGENT-SOURCING-WORKFLOW.md`
+  - Updated `ops/sourcing/README.md`
+- Added launcher:
+  - `ops/sourcing/Open Dress Like Mommy Sourcing.command`
+  - Created `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app` for Dock/Finder launch.
+- Added `run.json` metadata to the first real family matching run:
+  - `ops/sourcing/2026-04-25-family-dress-shirt-1688/run.json`
+
+Real auto-collection run:
+- Ran:
+  - `python3 ops/scripts/1688_sourcing_cdp_collect.py --category all --limit 8`
+- Generated category run folders:
+  - `ops/sourcing/2026-04-24-2354-mommy-and-me-1688-auto`
+  - `ops/sourcing/2026-04-24-2354-daddy-and-me-1688-auto`
+  - `ops/sourcing/2026-04-24-2354-family-matching-1688-auto`
+  - `ops/sourcing/2026-04-24-2354-couples-1688-auto`
+  - `ops/sourcing/2026-04-24-2354-maternity-1688-auto`
+- Dashboard currently sees 36 candidates total:
+  - Family Matching: 13 total, 7 active `Test`
+  - Mommy & Me: 5 total, 0 active
+  - Daddy & Me: 2 total, 0 active
+  - Couples: 8 total, 0 active
+  - Maternity: 8 total, 0 active
+
+Verification:
+- `python3 -m py_compile ops/scripts/1688_sourcing_score.py ops/scripts/1688_sourcing_dashboard.py ops/scripts/1688_sourcing_cdp_collect.py` passed.
+- `node --check ops/sourcing/1688-browser-collector.js` passed.
+- Parsed category JSON, decision JSON, and run metadata JSON successfully.
+- Dashboard API returned 5 categories and candidate counts.
+- Prompt API returned the canonical filled listing prompt and the 6-image photoshoot prompt.
+- Decision API verified `keep`, `reject`, and `clear`.
+- Scorecard reject-memory check verified a previously rejected 1688 offer is forced to `Reject` with concern `previously rejected by operator`.
+- Playwright verified dashboard UI actions:
+  - Keep increments kept count.
+  - Reject increments rejected memory and removes from active cards.
+  - Rejected and Kept filters work.
+  - Copy Listing Prompt and Copy Photo Prompt report `Copied`.
+  - Refresh and Copy search command work after async fix.
+- Opened `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app`; it started the dashboard and API returned 36 candidates.
+
+Residual note:
+- The first broad automatic all-category run found useful active candidates only for Family Matching. The other categories produced mostly non-matching or low-evidence products and were correctly filtered out of Active. Next tuning should improve category-specific 1688 queries and possibly use image search/detail enrichment for Mommy & Me, Daddy & Me, Couples, and Maternity.
+
+2026-04-24 — Added sourcing-to-draft evidence gate and draft package export
+AGENT_CONTINUITY_ANCHOR: 2026-04-24-sourcing-to-shopify-draft-gate
+
+What changed:
+- Extended `ops/scripts/1688_sourcing_dashboard.py` so each candidate has an evidence/review station:
+  - size chart source
+  - vendor images path
+  - generated 6-image path
+  - dropship confirmation
+  - dispatch confirmation
+  - supplier confirmation
+  - operator notes
+- Evidence is stored inside `ops/sourcing/state/decisions.json` by 1688 offer ID.
+- Added a `Ready` status/filter. A candidate is ready only when all required proof fields are filled.
+- Added `Save Proof` action in the dashboard.
+- Added `Draft Package` action in the dashboard.
+  - Writes local packages under `ops/sourcing/draft-packages/<1688-offer-id>/`.
+  - Package files:
+    - `candidate.json`
+    - `listing-request.txt`
+    - `photoshoot-prompt.md`
+    - `draft-agent-prompt.md`
+    - `README.md`
+- Added draft-agent prompt generation that explicitly instructs agents to create a Shopify DRAFT product only and not publish live unless the operator asks.
+- Listing prompt generation now uses saved size-chart evidence and image paths when present.
+- Updated sourcing workflow docs and README to explain the proof gate and draft package handoff.
+
+Verification:
+- `python3 -m py_compile ops/scripts/1688_sourcing_dashboard.py ops/scripts/1688_sourcing_score.py ops/scripts/1688_sourcing_cdp_collect.py` passed.
+- `git diff --check -- ops/scripts/1688_sourcing_dashboard.py ops/sourcing/AGENT-SOURCING-WORKFLOW.md ops/sourcing/README.md` passed.
+- API evidence test verified saving full proof marks the candidate ready.
+- API draft package test verified package creation and draft-agent prompt generation.
+- Playwright dashboard test verified:
+  - proof fields can be filled
+  - `Save Proof` persists evidence and marks ready
+  - `Draft Package` creates/copies the draft-agent handoff
+  - clearing the decision returns Ready count to 0
+- Test draft package and test decision state were removed after verification.
+
+Residual note:
+- The system now automates sourcing, memory, proof capture, and draft-package handoff. The actual Shopify draft creation still requires a selected ready product plus real size-chart/image evidence, because the canonical listing workflow must parse the actual size chart before creating variants.
+
+2026-04-25 — Fixed sourcing dashboard images and installed click launcher
+AGENT_CONTINUITY_ANCHOR: 2026-04-25-sourcing-dashboard-images-launcher
+
+What changed:
+- Fixed broken dashboard product images by adding a local image proxy/cache to `ops/scripts/1688_sourcing_dashboard.py`.
+  - Dashboard cards now load product images through `/image?url=...`.
+  - Cached image files are stored under `ops/sourcing/image-cache/`.
+  - This avoids browser hotlink/referrer failures from Alibaba image hosts.
+- Added `ops/sourcing/start-sourcing-dashboard.sh`.
+  - Starts the dashboard only if port `8766` is not already listening.
+- Updated `ops/sourcing/Open Dress Like Mommy Sourcing.command` to use the start script.
+- Rebuilt `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app`.
+- Added a clickable Desktop app icon at `/Users/fsuels/Desktop/Dress Like Mommy Sourcing.app`.
+- Installed LaunchAgent:
+  - `/Users/fsuels/Library/LaunchAgents/com.dresslikemommy.sourcing-dashboard.plist`
+  - Starts the local dashboard automatically on login.
+
+Verification:
+- Browser check confirmed dashboard image URLs now use `http://127.0.0.1:8766/image?...`.
+- Playwright confirmed product image dimensions load as `460 x 460` instead of `0 x 0`.
+- API/proxy check confirmed `/image` returns `200` with `image/webp`.
+- `python3 -m py_compile ops/scripts/1688_sourcing_dashboard.py ops/scripts/1688_sourcing_score.py ops/scripts/1688_sourcing_cdp_collect.py` passed.
+- `node --check ops/sourcing/1688-browser-collector.js` passed.
+- Verified Desktop app, Applications app, and LaunchAgent files exist.
+
+Residual note:
+- The dashboard must keep running for `http://127.0.0.1:8766/` to work. It now starts on login, and the Desktop/Applications app also starts it if needed.
+
+2026-04-25 — Added branded Dock icon for sourcing app
+AGENT_CONTINUITY_ANCHOR: 2026-04-25-sourcing-app-branded-icon
+
+What changed:
+- Created a branded macOS app icon for Dress Like Mommy Sourcing using existing Dress Like Mommy assets:
+  - `assets/home-cat-mommy-and-me.jpg`
+  - `ops/brand/dlm-merchant-square-1000x1000.png`
+- Saved the source PNG and generated `.icns` under `ops/sourcing/app-icon/`.
+- Installed the generated `.icns` into:
+  - `/Users/fsuels/Desktop/Dress Like Mommy Sourcing.app`
+  - `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app`
+- Refreshed the Dock cache, pinned the Applications copy in the Dock, and reopened the app.
+- Re-signed both local app bundles after replacing the icon.
+- Rebuilt both launcher apps as clean native macOS bundles instead of Script Editor applets because macOS kept showing the old applet icon in the Dock.
+  - Bundle identifier: `com.dresslikemommy.sourcingdashboard`
+  - Dock shortcut now points to `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app`
+
+Verification:
+- Confirmed the Dock entry still exists for `Dress Like Mommy Sourcing`.
+- Confirmed the generated source icon is `1024 x 1024`.
+- Confirmed both app bundles contain a valid macOS `.icns`.
+- `codesign --verify --deep` passed for both app bundles after launch.
+- Note: strict codesign verification can complain about Finder metadata on the Desktop app after Finder/Open touches it, but normal app verification and launch are OK.
+- Took a desktop screenshot and verified the branded family/logo icon is visible in the Dock between Obsidian and the Dock separator.
+
+2026-04-25 — Promoted sourcing pipeline memory into AGENTS.md
+AGENT_CONTINUITY_ANCHOR: 2026-04-25-sourcing-memory-in-agents
+
+What changed:
+- Added a `1688 sourcing dashboard continuity (critical memory)` section to root `AGENTS.md`.
+- Captured the essential state for future sessions:
+  - local app paths, Dock bundle id, LaunchAgent, and dashboard URL
+  - dashboard/scoring/collector script paths
+  - configured store categories
+  - persistent Keep/Reject/evidence memory path
+  - draft package handoff path and file structure
+  - canonical listing/photoshoot prompt files
+  - existing real run folders and last known candidate state
+  - browser-assisted workflow/safety rules
+  - next product-finder improvements
+
+Reason:
+- The user explicitly asked to make `AGENTS.md` the durable memory source because new sessions may not have the prior conversation context.
+
+Verification:
+- `git diff --check -- AGENTS.md ops/AGENT_WORKLOG.md` passed.
+
+2026-04-25 — Prepared full main sync while excluding browser debug artifacts
+AGENT_CONTINUITY_ANCHOR: 2026-04-25-main-sync-prep
+
+What changed:
+- Updated `.gitignore` to keep browser/debug artifacts out of GitHub:
+  - `.playwright-mcp/`
+  - `ops/tmp/`
+  - root 1688 login/search screenshots and snapshots
+  - `dashboard-images-fixed.png`
+
+Reason:
+- The user asked to sync all current work to `main`, but browser telemetry and login-page snapshots can contain login/session URLs and should not be transmitted to GitHub.
+- The actual project assets, sourcing dashboard, prompts, listings, uploads, docs, and persistent sourcing memory remain eligible for sync.
+
+Verification before commit:
+- `git diff --cached --check` passed after normalizing generated CSV line endings/trailing whitespace.
+- `python3 -m py_compile ops/scripts/1688_sourcing_dashboard.py ops/scripts/1688_sourcing_score.py ops/scripts/1688_sourcing_cdp_collect.py` passed.
+- `node --check ops/sourcing/1688-browser-collector.js` passed.
+- Staged secret scan found no exact 1688 password and no live Shopify/GitHub/OpenAI token patterns; only masked placeholders like `shpat_...` remain in the worklog.
+- `shopify theme check --fail-level error` was attempted, but it emitted many pre-existing locale translation errors under `locales/ar.json` and then ran for several minutes without completing; the process was stopped and not treated as a new sourcing-dashboard regression.

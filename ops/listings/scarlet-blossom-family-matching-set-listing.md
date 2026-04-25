@@ -1,10 +1,10 @@
 # Scarlet Blossom Family Matching Set — Dress & Shirt
 
 ## Links
-- **Admin:** https://admin.shopify.com/store/dresslikemommy/products/7536708485217
+- **Admin:** https://admin.shopify.com/store/dresslikemommy/products/7536947003489
 - **Live:** https://www.dresslikemommy.com/products/scarlet-blossom-family-matching-set
 - **Vendor:** https://detail.1688.com/offer/1031627498200.html
-- **Product GID:** `gid://shopify/Product/7536708485217`
+- **Product GID:** `gid://shopify/Product/7536947003489`
 - **Handle:** `scarlet-blossom-family-matching-set`
 
 ## Inputs (resolved)
@@ -109,12 +109,12 @@ The direct 1688 page was captcha-blocked during this run, so the attached size-c
 | Size tables expose metric + imperial units | ✅ | kg/lbs + cm/in |
 | Each size table has 10 headers | ✅ | [10, 10] |
 | Table row count matches SIZE_CHART | ✅ | 25 |
-| publishedAt is populated | ✅ | 2026-04-24T04:36:37Z |
+| publishedAt is populated | ✅ | 2026-04-24T12:30:37Z |
 | onlineStoreUrl is populated | ✅ | https://www.dresslikemommy.com/products/scarlet-blossom-family-matching-set |
 | Taxonomy category is set | ✅ | gid://shopify/TaxonomyCategory/aa-1-11 |
 | Taxonomy category full name matches expected leaf | ✅ | Apparel & Accessories > Clothing > Outfit Sets |
 | Family-set merchandising tag is present | ✅ | Beach, Boy Shirt, Button Front Shirt, Child 1-2 Years, Child 2 Years, Child 3 Years, Child 4 Years, Child 5 Years, Child 6-7 Years, Child 8 Years, Child 9-10 Years, Collared Shirt, Daddy and Me, Dress & Shirt, Family Matching, Father 2XL, Father 3XL, Father L, Father M, Father S, Father Shirt, Father XL, Floral, Four-Role Matching, Girl Dress, https://detail.1688.com/offer/1031627498200.html, Ivory Floral, Matching Family Dress, Matching Family Outfits, Matching Family Set, Matching Family Shirt, Mommy and Me, Mother Dress, Mother L, Mother M, Mother S, Red, Red Floral, Resort, Scarlet Blossom, Sets, Short Sleeve Shirt, Sleeveless Dress, Summer, Summer Family Matching Set, V-Neck Dress, Vacation, White |
-| Family-set smart collection is attached | ✅ | ['daddy-and-me', 'daddy-me', 'family-sets', 'matching-family-vacation-outfits', 'mommy-and-me', 'new-matching-outfits', 'new-women-outfits', 'popular-family-matching', 'popular-mommy-me-1'] |
+| Family-set smart collection is attached | ✅ | ['family-sets', 'matching-family-vacation-outfits', 'mommy-and-me', 'new-matching-outfits', 'new-women-outfits', 'popular-family-matching', 'popular-mommy-me-1'] |
 | Required publications are live | ✅ | ['gid://shopify/Publication/21969633377', 'gid://shopify/Publication/29172400225', 'gid://shopify/Publication/55169925', 'gid://shopify/Publication/76582879329', 'gid://shopify/Publication/76604768353'] |
 | Applicable metafields are written | ✅ | [] |
 
@@ -201,10 +201,8 @@ The direct 1688 page was captcha-blocked during this run, so the attached size-c
 ## Smart collections
 - New Mommy & Me (`/new-matching-outfits`)
 - Family Matching Outfits (`/new-women-outfits`)
-- Matching Daddy and Me Outfits (`/daddy-and-me`)
 - Popular Mommy & Me (`/popular-mommy-me-1`)
 - Popular Family Matching Outfits (`/popular-family-matching`)
-- Daddy & Me Matching Outfits (`/daddy-me`)
 - Family Matching Sets (`/family-sets`)
 - Mommy and Me Matching Outfits for Mother and Daughter (`/mommy-and-me`)
 - Matching Family Vacation Outfits (`/matching-family-vacation-outfits`)
