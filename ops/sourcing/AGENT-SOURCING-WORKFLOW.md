@@ -121,16 +121,40 @@ python3 ops/scripts/1688_sourcing_score.py \
 
 Previously rejected offers are forced to `Reject` with the concern `previously rejected by operator`.
 
+## Detail-Page Enrichment Gate
+
+Search results can only create `Unverified Leads`. A product should become `Best Lead` / internal `Gold` only after detail-page proof is collected.
+
+Use the detail enricher for a specific shortlisted offer:
+
+```bash
+python3 ops/scripts/1688_sourcing_detail_enrich.py --key <1688-offer-id>
+```
+
+The detail enricher:
+
+- opens the normal 1688 product page through the logged-in Chrome helper on CDP port `9333`
+- stops if 1688 shows login, CAPTCHA, interception, or a punish page
+- extracts supplier name/URL, badges, years/rating when visible, dropship terms, dispatch/stock text, size-chart text, availability, IP-risk text, sales/repeat clues, and product images
+- downloads vendor images to `ops/sourcing/vendor-images/<1688-offer-id>/`
+- writes detail artifacts to `ops/sourcing/detail-enrichment/<1688-offer-id>/`
+- rescored the product with `--stage detail`
+- updates proof fields in `ops/sourcing/state/decisions.json`
+- updates supplier memory in `ops/sourcing/state/vendors.json` when supplier identity is captured
+
+Gold is blocked when critical detail proof is missing. Missing supplier proof, missing size chart, missing dropship/one-piece proof, missing dispatch/ready-stock proof, or missing usable vendor images should keep the product as `Test` or `Reject`.
+
 ## Dashboard Buttons
 
 - `Keep`: promising product to inspect on the detail page.
 - `Reject`: persistent memory. The product is hidden from active review and should not be researched again unless restored.
 - `Restore`: clears a rejected decision.
 - `Open 1688`: opens the vendor product page.
+- `Verify Detail Proof`: opens the 1688 detail page through the helper browser and runs the detail enrichment gate.
 - `Copy Listing Prompt`: copies the fully filled canonical listing request wrapper.
 - `Copy Photo Prompt`: copies the 6-image photoshoot prompt. Upload vendor images before using it.
 - `Save Proof`: stores the detail-page evidence you checked.
-- `Draft Package`: writes a local package with `candidate.json`, `listing-request.txt`, `photoshoot-prompt.md`, and `draft-agent-prompt.md`.
+- `Draft Package`: writes a local package with `candidate.json`, `listing-request.txt`, `photoshoot-prompt.md`, and `draft-agent-prompt.md`. The dashboard blocks this button until required proof fields are filled.
 - `Copy search command`: copies the collector command for the active category.
 
 ## Draft Package Gate

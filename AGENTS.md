@@ -41,11 +41,18 @@ Continuity (resume work in new sessions)
   - `ops/sourcing/1688-browser-collector.js`: fallback browser-console collector when CDP is blocked by login/CAPTCHA.
   - `ops/scripts/1688_sourcing_score.py`: scores candidates and writes `shortlist.html`, `scored-candidates.csv`, `scored-candidates.json`, and `summary.md`.
     - Search-stage scoring should keep plausible products as `Test`/`Unverified Leads` only when they have category fit, usable images, low MOQ, visible 2025/2026/new-style signal, newer 1688 offer ID, and at least one good signal such as sales, repeat rate, dropship wording, or strong score. Do not mark a product `Gold` until detail-page proof is strong.
+    - Detail-stage scoring is the Best Lead gate. `Gold` is impossible unless the product has supplier proof, size-chart proof, dropship/one-piece proof, dispatch or ready-stock proof, usable vendor images, category fit, freshness/no-IP-risk evidence, and enough score. Missing critical detail proof should keep the product `Test` or `Reject`, not `Gold`.
     - `MIN_FRESH_OFFER_ID` is currently `850000000000`. This is a practical 1688 recency proxy: old offers can have edited titles that say 2026, so search-stage cards below this threshold should be hidden from the Buyer Shortlist unless future detail-page proof justifies changing the rule.
     - Hard rejects at search stage are for previous operator rejects, older 1688 offer IDs, stale year signals such as 2020-2024 in 2026, no visible 2025/2026 freshness signal, wrong category, missing URL/image, high MOQ, explicit no-dropship/no-size-chart evidence, or brand/IP risk.
     - The scorer rechecks visible text for category fit; do not trust old `category_match=5` values if the title/raw text does not actually mention mother/daughter, father/child, family, couple, or maternity terms.
     - Search-card `Sales` is only the number visible on 1688. If the page does not show a time window, treat it as a popularity clue and confirm on the detail page.
     - If 1688 redirects to a `Captcha Interception` / `_____tmd_____` page, the collector should fail loudly and ask for browser recovery; do not create a normal empty run.
+  - `ops/scripts/1688_sourcing_detail_enrich.py`: logged-in Chrome detail-page verifier for shortlisted products.
+    - Opens normal 1688 detail pages through CDP port `9333`; it must not bypass login/CAPTCHA.
+    - Extracts supplier name/URL, badges, years/rating when visible, dropship terms, dispatch/stock text, size-chart text, availability, IP-risk text, sales/repeat clues, and product images.
+    - Downloads vendor images under `ops/sourcing/vendor-images/<offer-id>/` and writes detail artifacts under `ops/sourcing/detail-enrichment/<offer-id>/`.
+    - Updates `ops/sourcing/state/decisions.json` with structured proof fields and updates `ops/sourcing/state/vendors.json` when supplier identity is captured.
+    - Detail outputs should override search outputs for the same offer ID in the dashboard so a detail `Reject` cannot remain visible as a search `Test`.
   - Always pass `--decision-state ops/sourcing/state/decisions.json` when scoring real candidates so rejected products stay rejected.
 - Categories are configured in `ops/sourcing/sourcing-categories.json`:
   - `mommy-and-me` / Mommy & Me
@@ -55,6 +62,7 @@ Continuity (resume work in new sessions)
   - `maternity` / Maternity
 - Persistent memory:
   - Keep/Reject decisions and evidence live in `ops/sourcing/state/decisions.json`.
+  - Supplier memory lives in `ops/sourcing/state/vendors.json` once detail enrichment captures supplier identity.
   - A rejected 1688 offer ID must not be researched again unless the user restores it.
   - Evidence fields saved by the dashboard: size chart source, vendor images path, generated images path, dropship confirmation, dispatch confirmation, supplier confirmation, and notes.
   - A product becomes `Ready` only after required proof fields are filled.
@@ -83,6 +91,7 @@ Continuity (resume work in new sessions)
   - Do not bypass CAPTCHA, browser safety barriers, paywalls, or HTTPS warnings.
   - If 1688 asks for manual login/CAPTCHA, ask the user to take over or use the console collector after login.
 - Next best product-finder improvements:
+  - Follow `ops/sourcing/SOURCING-IMPROVEMENT-ROADMAP.md` for the agreed audit plan.
   - Add detail-page enrichment behind saved `Unverified Leads` products so supplier evidence, dispatch speed, dropship support, size chart detection, and image download paths can be filled automatically before marking products Gold.
   - Tune category-specific queries next for Daddy & Me, Couples, and Maternity using the same "target at least 3 reviewable candidates" loop.
   - Keep all generated tooling dev/operator-side only; do not add AI UI or backend agent references to the live Shopify theme.

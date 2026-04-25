@@ -44,6 +44,10 @@ CSV_FIELDNAMES = [
     "service_flags",
     "dropship_supported",
     "size_chart",
+    "vendor_image_urls",
+    "vendor_images_path",
+    "availability",
+    "detail_evidence_path",
     "category_match",
     "style_fit",
     "image_quality",
@@ -76,6 +80,10 @@ ALIASES = {
     "service_flags": ("service_flags", "services", "shipping_flags", "delivery_flags", "保障"),
     "dropship_supported": ("dropship_supported", "dropship", "one_piece_dropship", "一件代发"),
     "size_chart": ("size_chart", "has_size_chart", "sizechart", "尺码表", "size_chart_available"),
+    "vendor_image_urls": ("vendor_image_urls", "image_urls", "gallery_images", "product_images"),
+    "vendor_images_path": ("vendor_images_path", "image_folder", "images_path", "downloaded_images_path"),
+    "availability": ("availability", "stock", "inventory", "stock_status", "现货"),
+    "detail_evidence_path": ("detail_evidence_path", "evidence_path", "detail_report_path"),
     "category_match": ("category_match", "category_fit", "listing_fit", "fit"),
     "style_fit": ("style_fit", "style_score", "brand_fit"),
     "image_quality": ("image_quality", "image_score", "photo_quality"),
@@ -102,6 +110,30 @@ POSITIVE_BADGE_PATTERNS = {
     "一件代发": ("一件代发", "dropship", "drop ship", "one piece"),
     "包换": ("包换", "15天包换", "return/exchange"),
 }
+
+DISPATCH_TERMS = (
+    "24小时发货",
+    "48小时发货",
+    "72小时发货",
+    "当日发货",
+    "现货",
+    "急速发货",
+    "ready stock",
+    "in stock",
+    "fast dispatch",
+    "ships in",
+)
+
+UNAVAILABLE_TERMS = (
+    "已下架",
+    "商品不存在",
+    "找不到该商品",
+    "库存不足",
+    "售罄",
+    "temporarily unavailable",
+    "sold out",
+    "not available",
+)
 
 IP_RISK_TERMS = (
     "disney",
@@ -159,6 +191,10 @@ class Candidate:
     service_flags: str = ""
     dropship_supported: str = ""
     size_chart: str = ""
+    vendor_image_urls: str = ""
+    vendor_images_path: str = ""
+    availability: str = ""
+    detail_evidence_path: str = ""
     category_match: str = ""
     style_fit: str = ""
     image_quality: str = ""
@@ -384,6 +420,45 @@ def has_fresh_signal(candidate: Candidate, years: list[int]) -> bool:
     )
 
 
+def has_dispatch_signal(candidate: Candidate, signals: set[str]) -> bool:
+    if {"24小时发货", "48小时发货", "现货"} & signals:
+        return True
+    text = " ".join([candidate.service_flags, candidate.availability, candidate.raw_card_text]).lower()
+    return any(term.lower() in text for term in DISPATCH_TERMS)
+
+
+def has_unavailable_signal(candidate: Candidate) -> bool:
+    text = " ".join([candidate.title, candidate.availability, candidate.raw_card_text]).lower()
+    return any(term.lower() in text for term in UNAVAILABLE_TERMS)
+
+
+def vendor_image_count(candidate: Candidate) -> int:
+    count = len(split_list(candidate.vendor_image_urls))
+    if count:
+        return count
+    return 1 if candidate.image_url else 0
+
+
+def has_usable_vendor_images(candidate: Candidate, image_quality: float) -> bool:
+    if clean(candidate.vendor_images_path):
+        return True
+    return vendor_image_count(candidate) >= 4 or image_quality >= 4.0
+
+
+def has_supplier_proof(candidate: Candidate) -> bool:
+    if not clean(candidate.vendor_name):
+        return False
+    proof_fields = [
+        candidate.vendor_url,
+        candidate.vendor_location,
+        candidate.years_on_1688,
+        candidate.rating,
+        candidate.badges,
+        candidate.service_flags,
+    ]
+    return any(clean(value) for value in proof_fields)
+
+
 def is_search_stage_promising(
     *,
     candidate: Candidate,
@@ -444,11 +519,17 @@ def score_candidate(
     listing_years = detected_listing_years(candidate)
     fresh_signal = has_fresh_signal(candidate, listing_years)
     offer_id = offer_id_number(candidate.product_url)
+    dispatch_confirmed = has_dispatch_signal(candidate, signals)
+    supplier_confirmed = has_supplier_proof(candidate)
+    image_count = vendor_image_count(candidate)
+    usable_vendor_images = has_usable_vendor_images(candidate, image_quality)
 
     if offer_key(candidate.product_url) in rejected_keys:
         hard_reject_reasons.append("previously rejected by operator")
     if not candidate.product_url:
         hard_reject_reasons.append("missing product URL")
+    if review_stage == "detail" and has_unavailable_signal(candidate):
+        hard_reject_reasons.append("detail page suggests the product is unavailable or removed")
     if category_fit <= 1:
         hard_reject_reasons.append("poor fit for Dress Like Mommy categories")
     elif review_stage == "search" and category_fit < 3.5:
@@ -473,6 +554,17 @@ def score_candidate(
         hard_reject_reasons.append(
             f"older 1688 offer ID ({offer_id}); prefer newer listings above {MIN_FRESH_OFFER_ID}"
         )
+    if review_stage == "detail":
+        if not supplier_confirmed:
+            caps.append("supplier proof not captured on detail page")
+        if size_chart is not True:
+            caps.append("size chart not confirmed on detail page")
+        if dropship is not True:
+            caps.append("dropship/one-piece support not confirmed on detail page")
+        if not dispatch_confirmed:
+            caps.append("dispatch speed or ready-stock proof not captured on detail page")
+        if not usable_vendor_images:
+            caps.append("usable vendor image set not captured on detail page")
 
     if not candidate.image_url:
         caps.append("missing product image URL")
@@ -570,6 +662,9 @@ def score_candidate(
     elif "48小时发货" in signals:
         fulfillment_score += 7
         positive.append("48h dispatch signal")
+    elif dispatch_confirmed:
+        fulfillment_score += 6
+        positive.append("detail-page dispatch/stock signal")
     elif "现货" in signals:
         fulfillment_score += 4
         positive.append("ready-stock signal")
@@ -641,8 +736,18 @@ def score_candidate(
 
     if "现货" in signals:
         readiness_score += 4
+    elif clean(candidate.availability):
+        readiness_score += 3
+        positive.append(f"availability signal ({candidate.availability})")
     else:
         readiness_score += 1.5
+
+    if usable_vendor_images:
+        readiness_score += 2
+        if image_count > 1:
+            positive.append(f"vendor image set captured ({image_count})")
+        elif clean(candidate.vendor_images_path):
+            positive.append("vendor image folder captured")
 
     populated = sum(
         1
@@ -656,10 +761,13 @@ def score_candidate(
             candidate.badges or candidate.service_flags,
             candidate.size_chart,
             candidate.dropship_supported,
+            candidate.vendor_images_path or candidate.vendor_image_urls,
+            candidate.availability,
+            candidate.detail_evidence_path,
         ]
         if clean(value)
     )
-    readiness_score += min(6, populated / 9 * 6)
+    readiness_score += min(6, populated / 12 * 6)
     if populated < 6:
         concerns.append("candidate data is thin")
 
@@ -696,7 +804,7 @@ def score_candidate(
         concerns.append(reason)
 
     if verdict == "Gold":
-        next_action = "Move to listing intake: save size-chart screenshot, collect product images, then use the canonical LISTING REQUEST."
+        next_action = "Best Lead: detail proof passed. Use the saved vendor images and size-chart evidence before creating the Shopify draft."
     elif verdict == "Test":
         if review_stage == "search":
             next_action = "Open the product detail page, confirm size chart, one-piece shipping, dispatch speed, and supplier proof before listing."
@@ -772,6 +880,10 @@ def candidate_from_row(row: dict[str, Any], index: int) -> Candidate:
         service_flags=first_value(row, "service_flags"),
         dropship_supported=first_value(row, "dropship_supported"),
         size_chart=first_value(row, "size_chart"),
+        vendor_image_urls=first_value(row, "vendor_image_urls"),
+        vendor_images_path=first_value(row, "vendor_images_path"),
+        availability=first_value(row, "availability"),
+        detail_evidence_path=first_value(row, "detail_evidence_path"),
         category_match=first_value(row, "category_match"),
         style_fit=first_value(row, "style_fit"),
         image_quality=first_value(row, "image_quality"),
@@ -826,6 +938,10 @@ def write_csv(path: Path, candidates: list[Candidate]) -> None:
                     "service_flags": candidate.service_flags,
                     "dropship_supported": candidate.dropship_supported,
                     "size_chart": candidate.size_chart,
+                    "vendor_image_urls": candidate.vendor_image_urls,
+                    "vendor_images_path": candidate.vendor_images_path,
+                    "availability": candidate.availability,
+                    "detail_evidence_path": candidate.detail_evidence_path,
                     "category_match": candidate.category_match,
                     "style_fit": candidate.style_fit,
                     "image_quality": candidate.image_quality,
@@ -866,6 +982,10 @@ def candidate_to_dict(candidate: Candidate) -> dict[str, Any]:
         "service_flags": candidate.service_flags,
         "dropship_supported": candidate.dropship_supported,
         "size_chart": candidate.size_chart,
+        "vendor_image_urls": candidate.vendor_image_urls,
+        "vendor_images_path": candidate.vendor_images_path,
+        "availability": candidate.availability,
+        "detail_evidence_path": candidate.detail_evidence_path,
         "category_match": candidate.category_match,
         "style_fit": candidate.style_fit,
         "image_quality": candidate.image_quality,

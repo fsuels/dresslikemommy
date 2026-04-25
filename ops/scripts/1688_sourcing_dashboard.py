@@ -33,10 +33,13 @@ DRAFT_PACKAGES_ROOT = SOURCING_ROOT / "draft-packages"
 IMAGE_CACHE_ROOT = SOURCING_ROOT / "image-cache"
 PHOTOSHOOT_PROMPT_PATH = REPO_ROOT / "ops" / "prompts" / "dlm-6-image-photoshoot.md"
 COLLECTOR_PATH = REPO_ROOT / "ops" / "scripts" / "1688_sourcing_cdp_collect.py"
+DETAIL_ENRICH_PATH = REPO_ROOT / "ops" / "scripts" / "1688_sourcing_detail_enrich.py"
 CDP_PORT = 9333
 HELPER_CHROME_PROFILE = Path.home() / ".dlm-1688-chrome-profile"
 COLLECTION_JOBS: dict[str, dict[str, Any]] = {}
 COLLECTION_LOCK = threading.Lock()
+DETAIL_JOBS: dict[str, dict[str, Any]] = {}
+DETAIL_LOCK = threading.Lock()
 
 
 def clean(value: Any) -> str:
@@ -104,6 +107,44 @@ def listing_ready(evidence: dict[str, Any]) -> bool:
         "supplier_confirmed",
     ]
     return all(clean(evidence.get(field)) for field in required)
+
+
+def has_detail_proof(candidate: dict[str, Any]) -> bool:
+    evidence = candidate.get("evidence", {})
+    if not isinstance(evidence, dict):
+        evidence = {}
+    return any(
+        clean(value)
+        for value in [
+            candidate.get("detail_evidence_path"),
+            evidence.get("detail_evidence_path"),
+            evidence.get("detail_verdict"),
+        ]
+    ) or clean(candidate.get("review_stage")) == "detail"
+
+
+def apply_detail_gate(candidate: dict[str, Any]) -> None:
+    raw_verdict = clean(candidate.get("verdict"))
+    evidence = candidate.get("evidence", {})
+    if not isinstance(evidence, dict):
+        evidence = {}
+    detail_verdict = clean(evidence.get("detail_verdict"))
+    detail_verified = has_detail_proof(candidate)
+    candidate["raw_verdict"] = raw_verdict
+    candidate["detail_proof_verified"] = detail_verified
+    if detail_verdict:
+        candidate["verdict"] = detail_verdict
+    if clean(candidate.get("verdict")) == "Gold" and not detail_verified:
+        candidate["verdict"] = "Test"
+        candidate["detail_gate_note"] = "Needs detail-page proof before this can become a Best Lead."
+        gate_concern = "Detail-page proof required before Best Lead"
+        concerns = candidate.get("concerns")
+        if isinstance(concerns, list):
+            if gate_concern not in concerns:
+                candidate["concerns"] = concerns + [gate_concern]
+        else:
+            concerns_text = clean(concerns)
+            candidate["concerns"] = f"{concerns_text} | {gate_concern}" if concerns_text else gate_concern
 
 
 def package_dir_for_key(key: str) -> Path:
@@ -222,6 +263,17 @@ def update_collect_job(job_id: str, **updates: Any) -> None:
         job.update(updates)
 
 
+def detail_job_snapshot(job_id: str) -> dict[str, Any]:
+    with DETAIL_LOCK:
+        return dict(DETAIL_JOBS.get(job_id, {}))
+
+
+def update_detail_job(job_id: str, **updates: Any) -> None:
+    with DETAIL_LOCK:
+        job = DETAIL_JOBS.setdefault(job_id, {})
+        job.update(updates)
+
+
 def run_collect_job(job_id: str, category_id: str, limit: int, query_index: int, target_reviewable: int) -> None:
     command = [
         "python3",
@@ -317,6 +369,91 @@ def start_collect_job(category_id: str, limit: int, query_index: int, target_rev
     return collect_job_snapshot(job_id)
 
 
+def run_detail_job(job_id: str, key: str) -> None:
+    if not DETAIL_ENRICH_PATH.exists():
+        update_detail_job(
+            job_id,
+            status="failed",
+            completed_at=now_iso(),
+            message="Detail verification is not installed yet. The dashboard found no enrichment script.",
+        )
+        return
+    command = [
+        "python3",
+        str(DETAIL_ENRICH_PATH),
+        "--key",
+        key,
+        "--port",
+        str(CDP_PORT),
+    ]
+    update_detail_job(job_id, status="running", command=" ".join(command), started_at=now_iso())
+    try:
+        completed = subprocess.run(
+            command,
+            cwd=str(REPO_ROOT),
+            capture_output=True,
+            text=True,
+            timeout=600,
+            check=False,
+        )
+    except subprocess.TimeoutExpired as exc:
+        update_detail_job(
+            job_id,
+            status="failed",
+            completed_at=now_iso(),
+            message="Detail verification took too long. Try again after opening the product in the helper browser.",
+            stdout=exc.stdout or "",
+            stderr=exc.stderr or "",
+        )
+        return
+
+    stdout = completed.stdout or ""
+    stderr = completed.stderr or ""
+    result_line = next((line.strip() for line in stdout.splitlines() if "detail_verdict=" in line), "")
+    if completed.returncode == 0:
+        message = "Detail proof saved. Refreshing this card now."
+        if result_line:
+            message = f"Detail proof saved: {result_line}."
+        update_detail_job(
+            job_id,
+            status="complete",
+            completed_at=now_iso(),
+            message=message,
+            stdout=stdout,
+            stderr=stderr,
+        )
+    else:
+        update_detail_job(
+            job_id,
+            status="failed",
+            completed_at=now_iso(),
+            message=(
+                "Detail verification could not finish. Open the 1688 helper browser, "
+                "log in or clear CAPTCHA if asked, then try Verify Detail Proof again."
+            ),
+            stdout=stdout,
+            stderr=stderr,
+        )
+
+
+def start_detail_job(key: str) -> dict[str, Any]:
+    candidate = find_candidate(key)
+    if not candidate:
+        raise ValueError("candidate not found")
+    job_id = hashlib.sha1(f"{now_iso()}-detail-{key}".encode("utf-8")).hexdigest()[:12]
+    with DETAIL_LOCK:
+        DETAIL_JOBS[job_id] = {
+            "id": job_id,
+            "status": "queued",
+            "key": key,
+            "created_at": now_iso(),
+            "message": "Opening the 1688 detail page and checking supplier proof.",
+        }
+    thread = threading.Thread(target=run_detail_job, args=(job_id, key), daemon=True)
+    thread.start()
+    return detail_job_snapshot(job_id)
+
+
 def infer_category(run_dir: Path, metadata: dict[str, Any]) -> str:
     explicit = clean(metadata.get("category_id"))
     if explicit:
@@ -382,6 +519,7 @@ def load_candidates() -> list[dict[str, Any]]:
             candidate["search_text"] = candidate_search_text(candidate)
             candidates.append(candidate)
     deduped: dict[str, dict[str, Any]] = {}
+    stage_rank = {"detail": 2, "search": 1}
     verdict_rank = {"Gold": 3, "Test": 2, "Reject": 1}
     for candidate in candidates:
         key = clean(candidate.get("key")) or clean(candidate.get("product_url")) or clean(candidate.get("title"))
@@ -389,11 +527,13 @@ def load_candidates() -> list[dict[str, Any]]:
             continue
         existing = deduped.get(key)
         candidate_rank = (
+            stage_rank.get(clean(candidate.get("review_stage")), 0),
             verdict_rank.get(candidate.get("verdict"), 0),
             int(candidate.get("score") or 0),
             clean(candidate.get("run_id")),
         )
         existing_rank = (
+            stage_rank.get(clean(existing.get("review_stage")), 0) if existing else 0,
             verdict_rank.get(existing.get("verdict"), 0) if existing else 0,
             int(existing.get("score") or 0) if existing else 0,
             clean(existing.get("run_id")) if existing else "",
@@ -401,6 +541,8 @@ def load_candidates() -> list[dict[str, Any]]:
         if existing is None or candidate_rank >= existing_rank:
             deduped[key] = candidate
     candidates = list(deduped.values())
+    for candidate in candidates:
+        apply_detail_gate(candidate)
     candidates.sort(
         key=lambda item: (
             item.get("category_label", ""),
@@ -704,6 +846,10 @@ def dashboard_html() -> str:
       color: var(--ink);
       cursor: pointer;
     }
+    button:disabled, .button.disabled {
+      opacity: .56;
+      cursor: not-allowed;
+    }
     .button {
       display: inline-flex;
       align-items: center;
@@ -806,6 +952,11 @@ def dashboard_html() -> str:
       color: var(--red);
       background: var(--red-bg);
       border-color: rgba(166,66,59,.28);
+    }
+    .detail-status {
+      margin: -4px 0 10px;
+      min-height: 0;
+      font-size: 12px;
     }
     .search-plan {
       display: grid;
@@ -1082,7 +1233,7 @@ def dashboard_html() -> str:
           <div class="step"><strong>1. Find</strong><span>The app searches 1688 by category and collects product cards.</span></div>
           <div class="step"><strong>2. Review</strong><span>You look at images, price, MOQ, sales, repeat rate, and risks.</span></div>
           <div class="step"><strong>3. Keep or Reject</strong><span>Rejects are remembered so we do not waste time again.</span></div>
-          <div class="step"><strong>4. Add Proof</strong><span>Open 1688 and confirm size chart, dropship, dispatch, supplier, and images.</span></div>
+          <div class="step"><strong>4. Verify Proof</strong><span>Use Verify Detail Proof to collect supplier, size chart, dropship, dispatch, and image evidence.</span></div>
           <div class="step"><strong>5. Draft</strong><span>Create a draft package for the listing and 6-image workflow.</span></div>
         </div>
       </div>
@@ -1368,7 +1519,63 @@ def dashboard_html() -> str:
       flash(button, 'Saved');
     }
 
+    function setCardStatus(article, message, mode = '') {
+      const status = article.querySelector('.detail-status');
+      if (!status) return;
+      status.textContent = message;
+      status.className = `status-box detail-status ${mode}`.trim();
+    }
+
+    async function pollDetailProof(jobId, article, button) {
+      const started = Date.now();
+      while (Date.now() - started < 12 * 60 * 1000) {
+        const job = await api(`/api/detail-status?job=${encodeURIComponent(jobId)}`);
+        if (job.status === 'complete') {
+          setCardStatus(article, `${job.message} The card has been refreshed.`, 'good');
+          await loadData(false);
+          return;
+        }
+        if (job.status === 'failed') {
+          const detail = (job.stderr || '').split('\\n').filter(Boolean).pop() || '';
+          const shortDetail = detail.length > 220 ? `${detail.slice(0, 220)}...` : detail;
+          setCardStatus(article, `${job.message} ${shortDetail}`.trim(), 'bad');
+          return;
+        }
+        setCardStatus(article, job.message || 'Checking the 1688 detail page...');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+      setCardStatus(article, 'Detail verification is still running. Refresh the view in a minute.', 'bad');
+    }
+
+    async function verifyDetailProof(candidate, article, button) {
+      button.disabled = true;
+      const old = button.textContent;
+      button.textContent = 'Checking...';
+      try {
+        const browser = await api('/api/browser-status');
+        if (!browser.ok) {
+          setCardStatus(article, `${browser.message} Click Open 1688 Login/Search, complete the browser check, then try Verify Detail Proof again.`, 'bad');
+          return;
+        }
+        setCardStatus(article, 'Opening the product detail page and saving proof from 1688.');
+        const job = await api('/api/detail-enrich', {
+          method: 'POST',
+          body: JSON.stringify({ key: candidate.key }),
+        });
+        await pollDetailProof(job.id, article, button);
+      } catch (error) {
+        setCardStatus(article, `I could not start detail verification: ${error.message}`, 'bad');
+      } finally {
+        button.disabled = false;
+        button.textContent = old;
+      }
+    }
+
     async function createDraftPackage(candidate, button) {
+      if (!candidate.ready_for_draft) {
+        flash(button, 'Needs proof');
+        return;
+      }
       const payload = await api('/api/draft-package', {
         method: 'POST',
         body: JSON.stringify({ key: candidate.key }),
@@ -1386,6 +1593,9 @@ def dashboard_html() -> str:
       const evidence = candidate.evidence || {};
       const searchQuery = candidate.search_query ? `Search: ${candidate.search_query}` : 'Search keyword not captured';
       const salesContext = candidate.sales_context || '1688 did not show a clear sales time window on the search card.';
+      const detailStatus = candidate.detail_proof_verified
+        ? 'Detail proof saved from the 1688 product page.'
+        : (candidate.detail_gate_note || 'Run detail proof before treating this as a Best Lead.');
       article.innerHTML = `
         <div class="image">
           ${candidate.image_url ? `<img loading="lazy" src="${escapeHtml(imageSrc(candidate.image_url))}" alt="${escapeHtml(candidate.title)}">` : ''}
@@ -1413,6 +1623,7 @@ def dashboard_html() -> str:
             ${metric('Years', candidate.years_on_1688)}
           </div>
           <div class="signal"><strong>Sales meaning:</strong> ${escapeHtml(salesContext)}</div>
+          <div class="signal"><strong>Detail proof:</strong> ${escapeHtml(detailStatus)}</div>
           <div class="signal-block">
             <div class="signal"><strong>Why it may be good:</strong> ${escapeHtml(positives)}</div>
             <div class="signal"><strong>What still needs checking:</strong> ${escapeHtml(concerns)}</div>
@@ -1432,10 +1643,12 @@ def dashboard_html() -> str:
             </div>
             <textarea data-evidence="notes" placeholder="Your notes: colors to list, exclude items, quality concerns">${escapeHtml(evidence.notes || '')}</textarea>
           </div>
+          <div class="status-box detail-status">${escapeHtml(detailStatus)}</div>
           <div class="actions">
             <a class="button primary" href="${escapeHtml(candidate.product_url)}" target="_blank" rel="noreferrer">Open 1688</a>
+            <button class="verify-detail">${candidate.detail_proof_verified ? 'Verify Detail Again' : 'Verify Detail Proof'}</button>
             <button class="save-evidence">Save Proof</button>
-            <button class="draft-package">Draft Package</button>
+            <button class="draft-package" ${candidate.ready_for_draft ? '' : 'disabled title="Fill the proof fields before creating a draft package"'}>${candidate.ready_for_draft ? 'Draft Package' : 'Draft Blocked: Needs Proof'}</button>
             <button class="copy-listing">Copy Listing Agent Prompt</button>
             <button class="copy-photo">Copy 6-Image Prompt</button>
           </div>
@@ -1443,6 +1656,7 @@ def dashboard_html() -> str:
       `;
       article.querySelector('.keep').addEventListener('click', event => setDecision(candidate, 'keep', event.currentTarget));
       article.querySelector('.reject').addEventListener('click', event => setDecision(candidate, 'reject', event.currentTarget));
+      article.querySelector('.verify-detail').addEventListener('click', event => verifyDetailProof(candidate, article, event.currentTarget));
       article.querySelector('.save-evidence').addEventListener('click', event => saveEvidence(candidate, article, event.currentTarget));
       article.querySelector('.draft-package').addEventListener('click', event => createDraftPackage(candidate, event.currentTarget));
       article.querySelector('.copy-listing').addEventListener('click', event => copyPrompt(candidate, 'listing', event.currentTarget));
@@ -1566,6 +1780,15 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 return
             self.send_json(job)
             return
+        if parsed.path == "/api/detail-status":
+            query = parse_qs(parsed.query)
+            job_id = clean(query.get("job", [""])[0])
+            job = detail_job_snapshot(job_id)
+            if not job:
+                self.send_json({"error": "job not found"}, HTTPStatus.NOT_FOUND)
+                return
+            self.send_json(job)
+            return
         if parsed.path == "/api/browser-status":
             self.send_json(chrome_browser_status())
             return
@@ -1586,6 +1809,15 @@ class DashboardHandler(BaseHTTPRequestHandler):
             candidate = find_candidate(key)
             if not candidate:
                 self.send_json({"error": "candidate not found"}, HTTPStatus.NOT_FOUND)
+                return
+            if not candidate.get("ready_for_draft"):
+                self.send_json(
+                    {
+                        "error": "Draft Package is blocked until size chart, images, dropship, dispatch, and supplier proof are filled in.",
+                        "ready_for_draft": False,
+                    },
+                    HTTPStatus.BAD_REQUEST,
+                )
                 return
             package_dir = create_draft_package(candidate)
             self.send_json(
@@ -1638,6 +1870,29 @@ class DashboardHandler(BaseHTTPRequestHandler):
             job = start_collect_job(category_id, limit, query_index, target_reviewable)
             self.send_json(job)
             return
+        if parsed.path == "/api/detail-enrich":
+            payload = self.read_body_json()
+            key = clean(payload.get("key"))
+            if not key:
+                self.send_json({"error": "missing key"}, HTTPStatus.BAD_REQUEST)
+                return
+            browser = chrome_browser_status()
+            if not browser.get("ok"):
+                self.send_json(
+                    {
+                        "error": browser.get("message") or "1688 helper browser is not ready.",
+                        "browser": browser,
+                    },
+                    HTTPStatus.CONFLICT,
+                )
+                return
+            try:
+                job = start_detail_job(key)
+            except ValueError as exc:
+                self.send_json({"error": str(exc)}, HTTPStatus.NOT_FOUND)
+                return
+            self.send_json(job)
+            return
         if parsed.path == "/api/evidence":
             payload = self.read_body_json()
             key = clean(payload.get("key"))
@@ -1674,6 +1929,15 @@ class DashboardHandler(BaseHTTPRequestHandler):
             candidate = find_candidate(key)
             if not candidate:
                 self.send_json({"error": "candidate not found"}, HTTPStatus.NOT_FOUND)
+                return
+            if not candidate.get("ready_for_draft"):
+                self.send_json(
+                    {
+                        "error": "Draft Package is blocked until size chart, images, dropship, dispatch, and supplier proof are filled in.",
+                        "ready_for_draft": False,
+                    },
+                    HTTPStatus.BAD_REQUEST,
+                )
                 return
             package_dir = create_draft_package(candidate)
             self.send_json(

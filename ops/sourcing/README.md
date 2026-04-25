@@ -50,6 +50,19 @@ Search-stage filtering is intentionally strict about freshness:
 - Category fit is rechecked from visible title/card text, so an old saved `category_match` value cannot keep a plain women-only dress active for Mommy & Me.
 - `Sales`: the number visible on the 1688 search card. If 1688 does not show a time window, treat it as a popularity clue and verify on the product detail page.
 
+Detail-stage filtering is the Best Lead gate:
+
+- `Best Leads` / internal `Gold` must come from detail-page proof, not search-card data.
+- Detail proof should include supplier identity, supplier quality signals, size chart, dropship/one-piece support, dispatch or ready-stock proof, usable vendor images, no obvious IP risk, and enough overall score.
+- The detail enricher is:
+
+```bash
+python3 ops/scripts/1688_sourcing_detail_enrich.py --key <1688-offer-id>
+```
+
+- It opens the product page through the logged-in helper browser, saves vendor images under `ops/sourcing/vendor-images/<1688-offer-id>/`, writes detail-stage artifacts under `ops/sourcing/detail-enrichment/<1688-offer-id>/`, and records proof back into `ops/sourcing/state/decisions.json`.
+- Supplier memory is tracked in `ops/sourcing/state/vendors.json` when supplier identity is captured.
+
 It also writes Keep/Reject memory to:
 
 ```text
@@ -61,6 +74,8 @@ After you verify a kept product, use `Save Proof` and then `Draft Package` in th
 ```text
 ops/sourcing/draft-packages/<1688-offer-id>/
 ```
+
+The dashboard also has `Verify Detail Proof` on each product card. Use that before treating any product as a Best Lead. `Draft Package` is blocked until the proof fields are filled, so unverified products do not move too early into listing work.
 
 See `ops/sourcing/AGENT-SOURCING-WORKFLOW.md` for the full workflow.
 

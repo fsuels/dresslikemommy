@@ -20901,3 +20901,66 @@ Verification:
 
 Next best action:
 - Build detail-page enrichment before a product can become `Best Lead`: open each shortlisted 1688 detail page through the logged-in browser, collect real supplier name/badges, dispatch/ship timing, availability, size chart/image evidence, and dropship language, then automatically demote anything without proof.
+
+2026-04-25 — Added detail-page enrichment gate for Best Leads
+AGENT_CONTINUITY_ANCHOR: 2026-04-25-sourcing-detail-enrichment-gold-gate
+
+Why:
+- User reported the sourcing app still did not save time because results were weak and unproven.
+- User pasted an audit that correctly identified missing detail-page enrichment, fake vendor scoring, fragile search-card scoring, weak draft gating, no supplier memory, and missing business/image-quality layers.
+- Agreed with the audit, with one nuance: search-stage scoring can keep thin candidates alive as `Unverified Leads`, but missing proof must never create `Best Lead`.
+
+What changed:
+- Added `ops/scripts/1688_sourcing_detail_enrich.py`.
+  - Opens shortlisted 1688 product detail pages through the logged-in helper Chrome CDP session.
+  - Stops on login/CAPTCHA/interception/punish pages; does not bypass 1688 protections.
+  - Extracts supplier name/URL, badges, years/rating when visible, dropship terms, dispatch/stock text, size-chart text, availability, risk text, sales/repeat clues, and product image URLs.
+  - Downloads vendor images under `ops/sourcing/vendor-images/<offer-id>/`.
+  - Writes detail artifacts under `ops/sourcing/detail-enrichment/<offer-id>/`.
+  - Scores the result with `--stage detail`.
+  - Updates detail proof in `ops/sourcing/state/decisions.json`.
+  - Updates supplier memory in `ops/sourcing/state/vendors.json` when supplier identity is captured.
+- Added empty initial supplier memory file:
+  - `ops/sourcing/state/vendors.json`.
+- Tightened `ops/scripts/1688_sourcing_score.py`.
+  - Added detail fields: `vendor_image_urls`, `vendor_images_path`, `availability`, `detail_evidence_path`.
+  - Added detail-stage caps that block `Gold` without supplier proof, size chart, dropship/one-piece proof, dispatch/stock proof, and usable vendor images.
+  - Added unavailable-product detection.
+  - Added positive signals for detail-page dispatch/stock and vendor image sets.
+- Updated `ops/scripts/1688_sourcing_dashboard.py`.
+  - Added `Verify Detail Proof` button on cards.
+  - Added detail enrichment job API and polling.
+  - Dashboard now gates `Gold`/Best Lead behind detail proof.
+  - Detail outputs override search outputs for the same 1688 offer ID so a detail `Reject` cannot stay visible as a search `Test`.
+  - `Draft Package` is disabled in the UI and blocked by API until required proof fields exist.
+- Added focused regression test:
+  - `ops/tests/test_1688_sourcing_score_detail_gate.py`.
+- Added roadmap:
+  - `ops/sourcing/SOURCING-IMPROVEMENT-ROADMAP.md`.
+  - Captures next layers: vendor DB expansion, search-history/seen-offer memory, category tuning, business/margin scoring, image quality scoring, and CAPTCHA-safe operating flow.
+
+Verification:
+- `python3 -m py_compile ops/scripts/1688_sourcing_dashboard.py ops/scripts/1688_sourcing_score.py ops/scripts/1688_sourcing_cdp_collect.py ops/scripts/1688_sourcing_detail_enrich.py` passed.
+- `python3 ops/tests/test_1688_sourcing_score_detail_gate.py` passed.
+- `git diff --check` passed.
+- Restarted dashboard through `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app`.
+- Dashboard API after restart:
+  - 63 stored candidates
+  - 6 active Buyer Shortlist leads
+  - 0 Best Leads
+  - 6 Unverified Leads
+- Browser UI check confirmed:
+  - product cards now show `Verify Detail Proof`
+  - first card shows detail proof warning
+  - `Draft Blocked: Needs Proof` is disabled
+  - clicking `Verify Detail Proof` while helper browser is on 1688 CAPTCHA/interception shows the blocker instead of starting a fake job
+- API check confirmed `/api/draft-package` returns HTTP 400 when proof is incomplete.
+
+Residual risks:
+- Live detail enrichment was not completed because the helper Chrome session is still on 1688 `Captcha Interception`.
+- 1688 DOM selectors are heuristic and will need tuning against real detail pages after CAPTCHA is cleared.
+- Supplier DB is initialized and updated by detail enrichment, but not yet used to boost/penalize future search results.
+- Search history, category query tuning, margin scoring, and image-quality scoring are documented next phases, not fully implemented yet.
+
+Next best action:
+- Clear the 1688 CAPTCHA/interception in the helper browser, then click `Verify Detail Proof` on the 6 current Buyer Shortlist cards. Tune extraction from the first real detail output before batch-verifying categories.
