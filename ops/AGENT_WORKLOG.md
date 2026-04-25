@@ -20964,3 +20964,42 @@ Residual risks:
 
 Next best action:
 - Clear the 1688 CAPTCHA/interception in the helper browser, then click `Verify Detail Proof` on the 6 current Buyer Shortlist cards. Tune extraction from the first real detail output before batch-verifying categories.
+
+2026-04-25 — Fixed repeated 1688 tabs and same-query sourcing loop
+AGENT_CONTINUITY_ANCHOR: 2026-04-25-sourcing-reuse-tab-rotate-query
+
+Why:
+- User reported that clicking the sourcing controls kept opening the same 1688 search in new tabs, producing the same query/result repeatedly and creating no new value.
+
+What changed:
+- Updated `ops/scripts/1688_sourcing_dashboard.py`:
+  - `Open 1688 Login/Search` now reuses an existing helper Chrome/1688 tab through CDP when possible.
+  - It no longer intentionally opens a new 1688 tab every click.
+  - It closes extra 1688 search tabs when a reusable helper tab exists, while leaving non-search/product tabs alone.
+  - It advances the next query index after opening/navigating so repeated clicks rotate configured searches.
+  - UI language now says the app rotates keyword searches and skips already-seen offers.
+  - Collection failure messages now distinguish "no new products found" from CAPTCHA/login/interception.
+- Updated `ops/scripts/1688_sourcing_cdp_collect.py`:
+  - CDP target selection now prefers an existing 1688 tab.
+  - Configured query order rotates from `ops/sourcing/state/search-history.json`.
+  - The collector skips offer IDs already present in prior scored runs, search history, or reject memory.
+  - Search-history records attempted queries, collected pages, skipped-seen counts, blocked events, and next query index.
+- Added initial `ops/sourcing/state/search-history.json`.
+- Updated docs/roadmap/AGENTS memory so future agents know this is required behavior.
+
+Verification:
+- Restarted `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app`.
+- Called `/api/open-1688-browser` twice for `family-matching`.
+- Chrome CDP page count stayed the same before/after; no new repeated tab was created.
+- The two returned search URLs were different:
+  - `亲子装 连衣裙 衬衫 一件代发`
+  - `全家装 度假 亲子装 一件代发`
+- `ops/sourcing/state/search-history.json` advanced `family-matching.next_query_index` to `2`.
+- Import smoke check showed the collector now starts `family-matching` from the third query and knows 12 existing family-matching offer IDs to skip.
+
+Residual risks:
+- Live product collection was not fully run in this fix because 1688 can still trigger CAPTCHA/interception.
+- Query rotation is only as good as the configured query bank; Daddy & Me, Couples, and Maternity still need stronger query tuning.
+
+Next best action:
+- Clear any 1688 browser check, click `Find Qualified Leads` once per category, and inspect whether the rotated/skipped searches now discover genuinely new offers. Tune category queries based on the first no-new-product category.

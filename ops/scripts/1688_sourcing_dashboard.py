@@ -29,6 +29,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 SOURCING_ROOT = REPO_ROOT / "ops" / "sourcing"
 CATEGORIES_PATH = SOURCING_ROOT / "sourcing-categories.json"
 DECISIONS_PATH = SOURCING_ROOT / "state" / "decisions.json"
+SEARCH_HISTORY_PATH = SOURCING_ROOT / "state" / "search-history.json"
 DRAFT_PACKAGES_ROOT = SOURCING_ROOT / "draft-packages"
 IMAGE_CACHE_ROOT = SOURCING_ROOT / "image-cache"
 PHOTOSHOOT_PROMPT_PATH = REPO_ROOT / "ops" / "prompts" / "dlm-6-image-photoshoot.md"
@@ -82,6 +83,34 @@ def load_categories() -> list[dict[str, Any]]:
 
 def category_lookup() -> dict[str, dict[str, Any]]:
     return {category["id"]: category for category in load_categories()}
+
+
+def load_search_history() -> dict[str, Any]:
+    payload = read_json(SEARCH_HISTORY_PATH, {"version": 1, "updated_at": "", "categories": {}})
+    payload.setdefault("version", 1)
+    payload.setdefault("updated_at", "")
+    payload.setdefault("categories", {})
+    return payload
+
+
+def save_search_history(payload: dict[str, Any]) -> None:
+    payload["updated_at"] = now_iso()
+    write_json(SEARCH_HISTORY_PATH, payload)
+
+
+def advance_query_index(category_id: str, used_index: int) -> None:
+    queries = configured_queries(category_id)
+    if not queries:
+        return
+    history = load_search_history()
+    categories = history.setdefault("categories", {})
+    state = categories.setdefault(category_id, {})
+    if not isinstance(state, dict):
+        state = {}
+        categories[category_id] = state
+    state["next_query_index"] = (used_index + 1) % len(queries)
+    state["last_opened_at"] = now_iso()
+    save_search_history(history)
 
 
 def load_decisions() -> dict[str, Any]:
@@ -184,17 +213,108 @@ def gbk_quote(query: str) -> str:
     return quote_from_bytes(query.encode("gbk", errors="ignore"))
 
 
-def category_search_url(category_id: str, query_index: int = 0) -> str:
+def configured_queries(category_id: str) -> list[str]:
     categories = category_lookup()
     category = categories.get(category_id) or categories.get("family-matching") or {}
-    queries = category.get("queries") or ["亲子装 连衣裙 衬衫 一件代发"]
+    raw_queries = category.get("queries") or ["亲子装 连衣裙 衬衫 一件代发"]
+    queries: list[str] = []
+    for item in raw_queries:
+        if isinstance(item, dict):
+            query = clean(item.get("text"))
+        else:
+            query = clean(item)
+        if query:
+            queries.append(query)
+    return queries or ["亲子装 连衣裙 衬衫 一件代发"]
+
+
+def next_query_index(category_id: str) -> int:
+    queries = configured_queries(category_id)
+    history = load_search_history()
+    state = history.get("categories", {}).get(category_id, {})
+    if not isinstance(state, dict):
+        return 0
+    return int(state.get("next_query_index") or 0) % len(queries)
+
+
+def category_search_url(category_id: str, query_index: int = 0) -> str:
+    queries = configured_queries(category_id)
     query = queries[min(max(query_index, 0), len(queries) - 1)]
     return f"https://s.1688.com/selloffer/offer_search.htm?keywords={gbk_quote(query)}"
 
 
+def cdp_pages() -> list[dict[str, Any]]:
+    with urllib.request.urlopen(f"http://127.0.0.1:{CDP_PORT}/json/list", timeout=2) as response:
+        pages = json.loads(response.read().decode("utf-8"))
+    return pages if isinstance(pages, list) else []
+
+
+def reusable_1688_page(pages: list[dict[str, Any]]) -> dict[str, Any] | None:
+    normal_pages = [page for page in pages if page.get("type") == "page"]
+    for page in normal_pages:
+        url = clean(page.get("url"))
+        if "1688.com" in url:
+            return page
+    for page in normal_pages:
+        url = clean(page.get("url"))
+        if url.startswith(("http://", "https://")):
+            return page
+    return normal_pages[0] if normal_pages else None
+
+
+def navigate_existing_cdp_tab(page: dict[str, Any], url: str) -> bool:
+    ws_url = clean(page.get("webSocketDebuggerUrl"))
+    if not ws_url:
+        return False
+    try:
+        import websocket  # type: ignore
+
+        ws = websocket.create_connection(ws_url, timeout=8, suppress_origin=True)
+        ws.send(json.dumps({"id": 1, "method": "Page.bringToFront"}))
+        ws.send(json.dumps({"id": 2, "method": "Page.navigate", "params": {"url": url}}))
+        ws.close()
+        page_id = clean(page.get("id"))
+        if page_id:
+            try:
+                urllib.request.urlopen(f"http://127.0.0.1:{CDP_PORT}/json/activate/{page_id}", timeout=1).read()
+            except Exception:
+                pass
+        return True
+    except Exception:
+        return False
+
+
+def close_duplicate_1688_search_tabs(keep_id: str) -> None:
+    try:
+        pages = cdp_pages()
+    except Exception:
+        return
+    for page in pages:
+        page_id = clean(page.get("id"))
+        url = clean(page.get("url"))
+        if not page_id or page_id == keep_id:
+            continue
+        if "s.1688.com" not in url:
+            continue
+        try:
+            urllib.request.urlopen(f"http://127.0.0.1:{CDP_PORT}/json/close/{page_id}", timeout=1).read()
+        except Exception:
+            pass
+
+
 def open_1688_helper_browser(category_id: str, query_index: int = 0) -> str:
     category = category_id if category_id != "all" else "family-matching"
+    if query_index < 0:
+        query_index = next_query_index(category)
     url = category_search_url(category, query_index)
+    try:
+        page = reusable_1688_page(cdp_pages())
+    except Exception:
+        page = None
+    if page and navigate_existing_cdp_tab(page, url):
+        close_duplicate_1688_search_tabs(clean(page.get("id")))
+        advance_query_index(category, query_index)
+        return url
     subprocess.Popen(
         [
             "open",
@@ -210,13 +330,13 @@ def open_1688_helper_browser(category_id: str, query_index: int = 0) -> str:
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
+    advance_query_index(category, query_index)
     return url
 
 
 def chrome_browser_status() -> dict[str, Any]:
     try:
-        with urllib.request.urlopen(f"http://127.0.0.1:{CDP_PORT}/json/list", timeout=2) as response:
-            pages = json.loads(response.read().decode("utf-8"))
+        pages = cdp_pages()
     except Exception as exc:
         return {
             "ok": False,
@@ -224,7 +344,7 @@ def chrome_browser_status() -> dict[str, Any]:
             "blocked": True,
             "message": f"1688 helper browser is not connected on port {CDP_PORT}: {exc}",
         }
-    page = next((item for item in pages if item.get("type") == "page"), {}) if isinstance(pages, list) else {}
+    page = reusable_1688_page(pages) or {}
     title = clean(page.get("title"))
     url = clean(page.get("url"))
     lower = f"{title} {url}".lower()
@@ -328,14 +448,27 @@ def run_collect_job(job_id: str, category_id: str, limit: int, query_index: int,
             stderr=stderr,
         )
     else:
+        combined = f"{stdout}\n{stderr}"
+        if "No new 1688 product cards" in combined:
+            message = (
+                "No new products found in this pass. The app skipped already-seen offers "
+                "and rotated the configured searches; try another category or tune the query bank."
+            )
+        elif "CAPTCHA" in combined or "interception" in combined or "_____tmd_____" in combined:
+            message = (
+                "1688 blocked the search with login/CAPTCHA/interception. Open the helper browser, "
+                "clear the check, then try Find Qualified Leads again."
+            )
+        else:
+            message = (
+                "I could not collect products automatically. Open the 1688 helper browser, "
+                "log in or clear CAPTCHA if asked, then click Find Qualified Leads again."
+            )
         update_collect_job(
             job_id,
             status="failed",
             completed_at=now_iso(),
-            message=(
-                "I could not collect products automatically. Open the 1688 helper browser, "
-                "log in or clear CAPTCHA if asked, then click Find Qualified Leads again."
-            ),
+            message=message,
             generated_dirs=generated_dirs,
             stdout=stdout,
             stderr=stderr,
@@ -1238,13 +1371,13 @@ def dashboard_html() -> str:
         </div>
       </div>
       <div class="guide-panel search-panel">
-        <h3>Find fresh products</h3>
+        <h3>Find new products</h3>
         <div class="row">
           <button id="find-products" class="primary">Find Qualified Leads</button>
           <button id="open-1688">Open 1688 Login/Search</button>
         </div>
         <div id="search-plan" class="search-plan"></div>
-        <div id="collector-status" class="status-box">Choose a category above, then click Find Qualified Leads. If 1688 asks for login or CAPTCHA, use the Open 1688 button once, complete the browser check, then click Find again.</div>
+        <div id="collector-status" class="status-box">Choose a category above, then click Find Qualified Leads. The app rotates keyword searches and skips offers already saved locally. If 1688 asks for login or CAPTCHA, use Open 1688 Login/Search once, complete the browser check, then click Find again.</div>
       </div>
     </section>
     <div id="empty" class="empty">No candidates match this view.</div>
@@ -1344,7 +1477,7 @@ def dashboard_html() -> str:
       const queryItems = queries.slice(0, 8).map(query => `<li>${escapeHtml(query)}</li>`).join('');
       const label = category ? category.label : 'All Categories';
       searchPlan.innerHTML = `
-        <div><strong>What the button searches:</strong> ${escapeHtml(label)} keyword searches on normal 1688 search pages.</div>
+        <div><strong>What the button searches:</strong> ${escapeHtml(label)} keyword searches on normal 1688 search pages. It now rotates the starting query and skips offers already saved locally.</div>
         <ul class="query-list">${queryItems}</ul>
         <div><strong>What becomes Buyer Shortlist:</strong> correct category, visible 2025/2026 or Chinese new-style signal, newer 1688 offer ID, usable image, low MOQ, and a useful signal such as repeat rate, sales, or dropship wording.</div>
         <div><strong>What gets hidden:</strong> previous reject, old 1688 offer ID, old year signal such as 2020-2024, no visible freshness signal, wrong category, no product URL/image, high MOQ, no-dropship/no-size-chart evidence, or brand/IP risk.</div>
@@ -1422,7 +1555,7 @@ def dashboard_html() -> str:
           flash(button, 'Try again');
           return;
         }
-        setCollectorStatus(`${job.message || 'Searching 1688...'} Trying several keyword searches; this can take 1-3 minutes.`);
+        setCollectorStatus(`${job.message || 'Searching 1688...'} Trying rotated keyword searches and skipping already-seen offers; this can take 1-3 minutes.`);
         await new Promise(resolve => setTimeout(resolve, 2000));
       }
       setCollectorStatus('The search is still running. Refresh the view in a minute.', 'bad');
@@ -1441,7 +1574,7 @@ def dashboard_html() -> str:
           flash(button, 'Blocked');
           return;
         }
-        setCollectorStatus(`Searching 1688 for ${category === 'all' ? 'all categories' : category}. I am hiding old offer IDs and weak category matches before they reach your shortlist.`);
+        setCollectorStatus(`Searching 1688 for ${category === 'all' ? 'all categories' : category}. I am rotating keywords, skipping already-seen offers, and hiding weak matches before they reach your shortlist.`);
         const job = await api('/api/collect', {
           method: 'POST',
           body: JSON.stringify({ category_id: category, limit: 48, query_index: -1, target_reviewable: 3 }),
@@ -1460,9 +1593,9 @@ def dashboard_html() -> str:
       try {
         const payload = await api('/api/open-1688-browser', {
           method: 'POST',
-          body: JSON.stringify({ category_id: category, query_index: 0 }),
+          body: JSON.stringify({ category_id: category, query_index: -1 }),
         });
-        setCollectorStatus(`Opened 1688 helper browser. Login or clear CAPTCHA once if asked, then click Find Qualified Leads. Search page: ${payload.url}`, 'good');
+        setCollectorStatus(`Reused the 1688 helper tab. Login or clear CAPTCHA once if asked, then click Find Qualified Leads. Search page: ${payload.url}`, 'good');
         flash(button, 'Opened');
       } catch (error) {
         setCollectorStatus(`Could not open Chrome helper: ${error.message}`, 'bad');

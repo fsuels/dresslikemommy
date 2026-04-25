@@ -39,6 +39,14 @@ Add `ops/sourcing/state/search-history.json`:
 - Prevent repeated searches from showing the same already-seen products.
 - Record blocked runs as blocked, not empty successful searches.
 
+Initial implementation status:
+
+- The dashboard reuses an existing helper Chrome tab instead of opening a new tab every click.
+- `Open 1688 Login/Search` advances the next query index so repeated clicks do not show the same configured search.
+- The CDP collector rotates the starting query from `search-history.json`.
+- The CDP collector skips offer IDs already present in prior scored runs, search history, or reject memory.
+- The failure message now distinguishes "no new products found" from login/CAPTCHA problems.
+
 ## Phase 4 - Category Tuning
 
 Tune categories separately:

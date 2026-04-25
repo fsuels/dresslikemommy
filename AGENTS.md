@@ -35,9 +35,11 @@ Continuity (resume work in new sessions)
   - Plain-language labels are intentional: Stored Cards = all raw saved cards; Buyer Shortlist = fresh/category-fit leads not rejected; Saved = user clicked Save/Keep; Ready for Draft = proof fields filled; Rejected = remembered rejects; Best Leads = internal Gold; Unverified Leads = internal Test.
   - Dashboard candidate loading dedupes repeated 1688 offer IDs and keeps the best/current card, so repeated searches should not show the same product over and over.
   - `/api/browser-status` checks the Chrome helper tab before collection. If 1688 is on login, CAPTCHA, `Captcha Interception`, `_____tmd_____`, or a punish URL, the dashboard must show the blocker and not create a fake empty run.
+  - `Open 1688 Login/Search` must reuse the existing helper Chrome tab through CDP when possible. Do not open a fresh tab every click.
 - Sourcing/scoring implementation:
   - `ops/scripts/1688_sourcing_cdp_collect.py`: logged-in Chrome DevTools Protocol collector for real 1688 searches, default CDP port `9333`.
     - `Find Qualified Leads` passes `--query-index -1 --target-reviewable 3 --limit 48`, which tries configured category keywords and stops once it has at least 3 `Gold`/`Test` candidates.
+    - Query order rotates via `ops/sourcing/state/search-history.json`, and the collector skips already-seen offer IDs from prior scored runs/search history so repeated clicks do not keep collecting the same first-page products.
   - `ops/sourcing/1688-browser-collector.js`: fallback browser-console collector when CDP is blocked by login/CAPTCHA.
   - `ops/scripts/1688_sourcing_score.py`: scores candidates and writes `shortlist.html`, `scored-candidates.csv`, `scored-candidates.json`, and `summary.md`.
     - Search-stage scoring should keep plausible products as `Test`/`Unverified Leads` only when they have category fit, usable images, low MOQ, visible 2025/2026/new-style signal, newer 1688 offer ID, and at least one good signal such as sales, repeat rate, dropship wording, or strong score. Do not mark a product `Gold` until detail-page proof is strong.
@@ -63,6 +65,7 @@ Continuity (resume work in new sessions)
 - Persistent memory:
   - Keep/Reject decisions and evidence live in `ops/sourcing/state/decisions.json`.
   - Supplier memory lives in `ops/sourcing/state/vendors.json` once detail enrichment captures supplier identity.
+  - Search/query memory lives in `ops/sourcing/state/search-history.json`; use it to rotate starting queries, track blocked runs, and avoid already-seen offer IDs.
   - A rejected 1688 offer ID must not be researched again unless the user restores it.
   - Evidence fields saved by the dashboard: size chart source, vendor images path, generated images path, dropship confirmation, dispatch confirmation, supplier confirmation, and notes.
   - A product becomes `Ready` only after required proof fields are filled.

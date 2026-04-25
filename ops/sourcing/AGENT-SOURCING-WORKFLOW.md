@@ -65,7 +65,9 @@ http://127.0.0.1:8766/
 - `Best Leads`: internal `Gold` verdict.
 - `Unverified Leads`: internal `Test` verdict; promising, but missing supplier/detail-page proof.
 
-The dashboard has a `Find Qualified Leads` button. It first checks the helper Chrome tab through `/api/browser-status`; if 1688 is showing login, CAPTCHA, `Captcha Interception`, `_____tmd_____`, or a punish URL, the dashboard must show that blocker and avoid creating a fake empty run. Once the browser is clear, it starts the CDP collector from the browser UI, tries configured category keywords, and stops once it has at least 3 `Gold`/`Test` candidates. If 1688 requires login or CAPTCHA, use `Open 1688 Login/Search`, let the user complete that browser step, then click `Find Qualified Leads` again.
+The dashboard has a `Find Qualified Leads` button. It first checks the helper Chrome tab through `/api/browser-status`; if 1688 is showing login, CAPTCHA, `Captcha Interception`, `_____tmd_____`, or a punish URL, the dashboard must show that blocker and avoid creating a fake empty run. Once the browser is clear, it starts the CDP collector from the browser UI, rotates configured category keywords, skips already-seen offer IDs, and stops once it has at least 3 `Gold`/`Test` candidates. If 1688 requires login or CAPTCHA, use `Open 1688 Login/Search`, let the user complete that browser step, then click `Find Qualified Leads` again.
+
+`Open 1688 Login/Search` should reuse one helper tab through CDP when possible. Do not create many repeated 1688 search tabs.
 
 Freshness rules:
 
@@ -100,6 +102,16 @@ python3 ops/scripts/1688_sourcing_cdp_collect.py --category all --limit 24
 ```
 
 If the CDP collector cannot attach or 1688 asks for CAPTCHA/login, do not bypass it. Use the browser manually, run `ops/sourcing/1688-browser-collector.js` in the console, save `candidates.json`, and run the scorecard.
+
+## Search History
+
+Persistent search memory lives here:
+
+```text
+ops/sourcing/state/search-history.json
+```
+
+The collector uses this file to rotate the next starting query, record blocked CAPTCHA/login events, and avoid collecting offer IDs already saved in prior runs. Repeated dashboard clicks should therefore try a different starting query instead of collecting the same first-page products again.
 
 ## Reject Memory
 

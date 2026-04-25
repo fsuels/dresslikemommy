@@ -24,6 +24,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 SOURCING_ROOT = REPO_ROOT / "ops" / "sourcing"
 CATEGORIES_PATH = SOURCING_ROOT / "sourcing-categories.json"
 DECISIONS_PATH = SOURCING_ROOT / "state" / "decisions.json"
+SEARCH_HISTORY_PATH = SOURCING_ROOT / "state" / "search-history.json"
 SCORER_PATH = REPO_ROOT / "ops" / "scripts" / "1688_sourcing_score.py"
 
 
@@ -151,7 +152,10 @@ class CdpClient:
             raise SystemExit("Missing Python package websocket-client. Install it or use the browser console collector.") from exc
         self.websocket = websocket
         pages = json.load(urllib.request.urlopen(f"http://127.0.0.1:{port}/json/list", timeout=8))
-        page = next((item for item in pages if item.get("type") == "page"), None)
+        normal_pages = [item for item in pages if item.get("type") == "page"]
+        page = next((item for item in normal_pages if "1688.com" in str(item.get("url", ""))), None)
+        page = page or next((item for item in normal_pages if str(item.get("url", "")).startswith(("http://", "https://"))), None)
+        page = page or (normal_pages[0] if normal_pages else None)
         if not page:
             raise SystemExit(f"No Chrome page found on CDP port {port}.")
         self.ws = websocket.create_connection(page["webSocketDebuggerUrl"], timeout=20, suppress_origin=True)
@@ -194,6 +198,148 @@ def search_url(query: str) -> str:
 def load_categories() -> dict[str, dict[str, Any]]:
     payload = json.loads(CATEGORIES_PATH.read_text(encoding="utf-8"))
     return {item["id"]: item for item in payload.get("categories", [])}
+
+
+def read_json(path: Path, default: Any) -> Any:
+    if not path.exists():
+        return default
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def write_json(path: Path, payload: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def query_text(item: Any) -> str:
+    if isinstance(item, dict):
+        return str(item.get("text") or "").strip()
+    return str(item or "").strip()
+
+
+def normalize_queries(raw_queries: list[Any]) -> list[str]:
+    return [query for query in (query_text(item) for item in raw_queries) if query]
+
+
+def load_search_history() -> dict[str, Any]:
+    payload = read_json(SEARCH_HISTORY_PATH, {"version": 1, "updated_at": "", "categories": {}})
+    payload.setdefault("version", 1)
+    payload.setdefault("updated_at", "")
+    payload.setdefault("categories", {})
+    return payload
+
+
+def save_search_history(payload: dict[str, Any]) -> None:
+    payload["updated_at"] = dt.datetime.now(dt.timezone.utc).isoformat()
+    write_json(SEARCH_HISTORY_PATH, payload)
+
+
+def rotated_queries(category_id: str, queries: list[str]) -> list[str]:
+    if not queries:
+        return []
+    history = load_search_history()
+    state = history.get("categories", {}).get(category_id, {})
+    start = int(state.get("next_query_index") or 0) % len(queries) if isinstance(state, dict) else 0
+    return queries[start:] + queries[:start]
+
+
+def offer_id_from_row(row: dict[str, Any]) -> str:
+    return re_search_offer(str(row.get("product_url", "")))
+
+
+def existing_offer_ids(category_id: str) -> set[str]:
+    ids: set[str] = set()
+    for scored_path in SOURCING_ROOT.glob("**/scored-candidates.json"):
+        if scored_path.parent.name == "demo-shortlist":
+            continue
+        payload = read_json(scored_path, {})
+        if not isinstance(payload, dict):
+            continue
+        run_metadata = read_json(scored_path.parent / "run.json", {})
+        run_category = str(run_metadata.get("category_id") or "")
+        if category_id and run_category and run_category != category_id:
+            continue
+        for item in payload.get("candidates", []):
+            if not isinstance(item, dict):
+                continue
+            offer_id = re_search_offer(str(item.get("product_url", "")))
+            if offer_id:
+                ids.add(offer_id)
+    history = load_search_history()
+    state = history.get("categories", {}).get(category_id, {})
+    if isinstance(state, dict):
+        ids.update(str(item) for item in state.get("offer_ids_seen", []) if item)
+    decisions = read_json(DECISIONS_PATH, {})
+    for key in (decisions.get("items", {}) if isinstance(decisions, dict) else {}):
+        if key:
+            ids.add(str(key))
+    return ids
+
+
+def update_search_history(
+    *,
+    category_id: str,
+    queries: list[str],
+    attempted_queries: list[str],
+    collected_pages: list[dict[str, Any]],
+    rows: list[dict[str, Any]],
+    blocked: bool = False,
+) -> None:
+    history = load_search_history()
+    categories = history.setdefault("categories", {})
+    state = categories.setdefault(
+        category_id,
+        {
+            "last_run_at": "",
+            "next_query_index": 0,
+            "offer_ids_seen": [],
+            "reviewable_offer_ids": [],
+            "blocked_events": [],
+            "runs": [],
+        },
+    )
+    if not isinstance(state, dict):
+        state = {}
+        categories[category_id] = state
+    seen = set(str(item) for item in state.get("offer_ids_seen", []) if item)
+    run_offer_ids = []
+    for row in rows:
+        offer_id = offer_id_from_row(row)
+        if offer_id:
+            seen.add(offer_id)
+            run_offer_ids.append(offer_id)
+    if queries and attempted_queries:
+        last_query = attempted_queries[-1]
+        try:
+            state["next_query_index"] = (queries.index(last_query) + 1) % len(queries)
+        except ValueError:
+            state["next_query_index"] = (int(state.get("next_query_index") or 0) + 1) % len(queries)
+    state["last_run_at"] = dt.datetime.now(dt.timezone.utc).isoformat()
+    state["offer_ids_seen"] = sorted(seen)
+    runs = state.setdefault("runs", [])
+    if isinstance(runs, list):
+        runs.append(
+            {
+                "run_at": state["last_run_at"],
+                "attempted_queries": attempted_queries,
+                "collected_pages": collected_pages,
+                "new_offer_ids": sorted(set(run_offer_ids)),
+                "blocked": blocked,
+            }
+        )
+        del runs[:-30]
+    if blocked:
+        blocked_events = state.setdefault("blocked_events", [])
+        if isinstance(blocked_events, list):
+            blocked_events.append(
+                {
+                    "blocked_at": state["last_run_at"],
+                    "attempted_queries": attempted_queries,
+                    "page": collected_pages[-1] if collected_pages else {},
+                }
+            )
+            del blocked_events[:-20]
+    save_search_history(history)
 
 
 def dedupe_candidates(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -322,10 +468,10 @@ def collect_category(category_id: str, limit: int, port: int, query_index: int, 
     if category_id not in categories:
         raise SystemExit(f"Unknown category: {category_id}")
     category = categories[category_id]
-    queries = category.get("queries", [])
+    queries = normalize_queries(category.get("queries", []))
     if not queries:
         raise SystemExit(f"No queries configured for category: {category_id}")
-    selected_queries = queries if query_index < 0 or target_reviewable > 0 else [queries[min(query_index, len(queries) - 1)]]
+    selected_queries = rotated_queries(category_id, queries) if query_index < 0 or target_reviewable > 0 else [queries[min(query_index, len(queries) - 1)]]
     stamp = dt.datetime.now().strftime("%Y-%m-%d-%H%M")
     output_dir = SOURCING_ROOT / f"{stamp}-{category_id}-1688-auto"
     candidate_path = output_dir / "candidates.json"
@@ -334,6 +480,8 @@ def collect_category(category_id: str, limit: int, port: int, query_index: int, 
     all_rows: list[dict[str, Any]] = []
     collected_pages: list[dict[str, Any]] = []
     attempted_queries: list[str] = []
+    known_offer_ids = existing_offer_ids(category_id)
+    blocked = False
     try:
         for query in selected_queries:
             attempted_queries.append(query)
@@ -342,17 +490,47 @@ def collect_category(category_id: str, limit: int, port: int, query_index: int, 
             if is_blocked_page(payload):
                 page_title = payload.get("page_title") or "Captcha/verification page"
                 page_url = payload.get("page_url") or url
+                blocked = True
+                collected_pages.append(
+                    {
+                        "query": query,
+                        "search_url": url,
+                        "page_url": page_url,
+                        "page_title": page_title,
+                        "count": 0,
+                        "new_count": 0,
+                        "skipped_seen": 0,
+                        "blocked": True,
+                    }
+                )
                 if not all_rows:
+                    update_search_history(
+                        category_id=category_id,
+                        queries=queries,
+                        attempted_queries=attempted_queries,
+                        collected_pages=collected_pages,
+                        rows=[],
+                        blocked=True,
+                    )
                     raise SystemExit(
                         "1688 CAPTCHA/interception page is open. Use Open 1688 Login/Search, "
                         f"complete the browser check, then run again. Page title: {page_title}. URL: {page_url}"
                     )
                 break
             page_rows = payload.get("candidates", [])
+            new_page_rows = []
+            skipped_seen = 0
             for row in page_rows:
+                offer_id = offer_id_from_row(row)
+                if offer_id and offer_id in known_offer_ids:
+                    skipped_seen += 1
+                    continue
+                if offer_id:
+                    known_offer_ids.add(offer_id)
                 row["search_query"] = query
                 row["search_url"] = payload.get("page_url") or url
-            all_rows.extend(page_rows)
+                new_page_rows.append(row)
+            all_rows.extend(new_page_rows)
             collected_pages.append(
                 {
                     "query": query,
@@ -360,21 +538,25 @@ def collect_category(category_id: str, limit: int, port: int, query_index: int, 
                     "page_url": payload.get("page_url"),
                     "page_title": payload.get("page_title"),
                     "count": len(page_rows),
+                    "new_count": len(new_page_rows),
+                    "skipped_seen": skipped_seen,
+                    "blocked": False,
                 }
             )
             rows = dedupe_candidates(all_rows)[:limit]
             for row in rows:
                 row["category_match"] = category_match_score(row, category_id)
-            write_run_files(
-                output_dir=output_dir,
-                candidate_path=candidate_path,
-                rows=rows,
-                category_id=category_id,
-                selected_queries=attempted_queries.copy(),
-                collected_pages=collected_pages,
-                target_reviewable=target_reviewable,
-            )
-            if target_reviewable and reviewable_count(output_dir) >= target_reviewable:
+            if rows:
+                write_run_files(
+                    output_dir=output_dir,
+                    candidate_path=candidate_path,
+                    rows=rows,
+                    category_id=category_id,
+                    selected_queries=attempted_queries.copy(),
+                    collected_pages=collected_pages,
+                    target_reviewable=target_reviewable,
+                )
+            if target_reviewable and rows and reviewable_count(output_dir) >= target_reviewable:
                 break
     finally:
         client.close()
@@ -383,7 +565,18 @@ def collect_category(category_id: str, limit: int, port: int, query_index: int, 
     for row in rows:
         row["category_match"] = category_match_score(row, category_id)
     if not rows:
-        raise SystemExit("No 1688 product cards were collected. The browser may need login/CAPTCHA recovery.")
+        update_search_history(
+            category_id=category_id,
+            queries=queries,
+            attempted_queries=attempted_queries or selected_queries,
+            collected_pages=collected_pages,
+            rows=[],
+            blocked=blocked,
+        )
+        raise SystemExit(
+            "No new 1688 product cards were collected. The app skipped already-seen offers; "
+            "try another category/query after clearing any browser checks."
+        )
     write_run_files(
         output_dir=output_dir,
         candidate_path=candidate_path,
@@ -393,7 +586,19 @@ def collect_category(category_id: str, limit: int, port: int, query_index: int, 
         collected_pages=collected_pages,
         target_reviewable=target_reviewable,
     )
-    print(f"reviewable={reviewable_count(output_dir)} total={len(rows)} queries={len(attempted_queries or selected_queries)}")
+    update_search_history(
+        category_id=category_id,
+        queries=queries,
+        attempted_queries=attempted_queries or selected_queries,
+        collected_pages=collected_pages,
+        rows=rows,
+        blocked=blocked,
+    )
+    skipped = sum(int(page.get("skipped_seen") or 0) for page in collected_pages)
+    print(
+        f"reviewable={reviewable_count(output_dir)} total={len(rows)} "
+        f"queries={len(attempted_queries or selected_queries)} skipped_seen={skipped}"
+    )
     return output_dir
 
 

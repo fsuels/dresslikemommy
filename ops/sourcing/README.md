@@ -39,8 +39,10 @@ To add fresh candidates without terminal commands:
 1. Pick a category tab, or use All Categories.
 2. Click `Find Qualified Leads`.
 3. The app first checks the helper Chrome tab. If 1688 is on login/CAPTCHA/interception, it shows that blocker instead of pretending the fetch worked.
-4. The collector tries the category keywords and stops once it has at least 3 `Unverified Leads`/`Best Leads` candidates.
+4. The collector rotates the category keywords, skips already-seen offer IDs, and stops once it has at least 3 `Unverified Leads`/`Best Leads` candidates.
 5. If 1688 asks for login or CAPTCHA, click `Open 1688 Login/Search`, complete the browser step manually, then click `Find Qualified Leads` again.
+
+`Open 1688 Login/Search` reuses the existing helper tab when possible. It should not create a new tab on every click.
 
 Search-stage filtering is intentionally strict about freshness:
 
@@ -67,6 +69,12 @@ It also writes Keep/Reject memory to:
 
 ```text
 ops/sourcing/state/decisions.json
+```
+
+Search history and seen-offer memory live in:
+
+```text
+ops/sourcing/state/search-history.json
 ```
 
 After you verify a kept product, use `Save Proof` and then `Draft Package` in the dashboard. Draft packages are written to:
