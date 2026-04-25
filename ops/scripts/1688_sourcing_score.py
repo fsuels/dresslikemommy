@@ -137,6 +137,7 @@ IP_RISK_TERMS = (
 
 CURRENT_YEAR = dt.date.today().year
 MIN_FRESH_YEAR = CURRENT_YEAR - 1
+MIN_FRESH_OFFER_ID = 850_000_000_000
 
 
 @dataclass
@@ -279,6 +280,11 @@ def offer_key(product_url: str) -> str:
     if match:
         return match.group(1)
     return clean(product_url)
+
+
+def offer_id_number(product_url: str) -> int | None:
+    key = offer_key(product_url)
+    return int(key) if key.isdigit() else None
 
 
 def load_rejected_keys(path: Path | None) -> set[str]:
@@ -437,6 +443,7 @@ def score_candidate(
     image_quality = score_0_to_5(candidate.image_quality, 3.0 if candidate.image_url else 1.0)
     listing_years = detected_listing_years(candidate)
     fresh_signal = has_fresh_signal(candidate, listing_years)
+    offer_id = offer_id_number(candidate.product_url)
 
     if offer_key(candidate.product_url) in rejected_keys:
         hard_reject_reasons.append("previously rejected by operator")
@@ -462,6 +469,10 @@ def score_candidate(
         )
     if review_stage == "search" and not fresh_signal:
         hard_reject_reasons.append(f"no visible {MIN_FRESH_YEAR}/{CURRENT_YEAR} freshness signal on search card")
+    if review_stage == "search" and offer_id is not None and offer_id < MIN_FRESH_OFFER_ID:
+        hard_reject_reasons.append(
+            f"older 1688 offer ID ({offer_id}); prefer newer listings above {MIN_FRESH_OFFER_ID}"
+        )
 
     if not candidate.image_url:
         caps.append("missing product image URL")
@@ -615,6 +626,10 @@ def score_candidate(
             positive.append("fresh/new-style keyword signal")
     else:
         concerns.append(f"listing freshness not proven; prefer {MIN_FRESH_YEAR}-{CURRENT_YEAR} products")
+
+    if offer_id is not None and offer_id >= MIN_FRESH_OFFER_ID:
+        readiness_score += 1
+        positive.append("newer 1688 offer-id signal")
 
     if "买家保障" in signals or "品质保障" in signals:
         readiness_score += 4

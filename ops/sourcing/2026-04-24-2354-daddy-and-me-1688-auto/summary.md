@@ -1,7 +1,7 @@
 # 1688 Sourcing Shortlist Summary
 
 - Source: `ops/sourcing/2026-04-24-2354-daddy-and-me-1688-auto/candidates.json`
-- Generated: 2026-04-25T01:07:48
+- Generated: 2026-04-25T01:17:47
 - Candidates: 2
 - Gold: 0
 - Test: 0

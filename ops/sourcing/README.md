@@ -26,25 +26,27 @@ The dashboard groups candidates into:
 
 The top numbers use store-owner language:
 
-- `Products Found`: every 1688 candidate saved locally
-- `To Review`: candidates that are not rejected yet
+- `Stored Cards`: every raw 1688 card saved locally
+- `Buyer Shortlist`: only fresh, category-fit leads that are worth opening
 - `Saved`: products the operator chose with Save/Keep
 - `Ready for Draft`: saved products with required proof filled in
 - `Rejected`: products remembered so they are not researched again
 - `Best Leads`: internal `Gold` candidates
-- `Needs Check`: internal `Test` candidates that need proof before listing
+- `Unverified Leads`: internal `Test` candidates that need proof before listing
 
 To add fresh candidates without terminal commands:
 
 1. Pick a category tab, or use All Categories.
-2. Click `Find Fresh Products`.
-3. The collector tries the category keywords and stops once it has at least 3 `Needs Check`/`Best Leads` candidates.
-4. If 1688 asks for login or CAPTCHA, click `Open 1688 Login/Search`, complete the browser step manually, then click `Find Fresh Products` again.
+2. Click `Find Qualified Leads`.
+3. The app first checks the helper Chrome tab. If 1688 is on login/CAPTCHA/interception, it shows that blocker instead of pretending the fetch worked.
+4. The collector tries the category keywords and stops once it has at least 3 `Unverified Leads`/`Best Leads` candidates.
+5. If 1688 asks for login or CAPTCHA, click `Open 1688 Login/Search`, complete the browser step manually, then click `Find Qualified Leads` again.
 
 Search-stage filtering is intentionally strict about freshness:
 
-- `Needs Check`: correct category, visible 2025/2026 or Chinese new-style signal, usable image, low MOQ, and at least one useful signal such as repeat rate, sales, dropship wording, or strong score.
-- `Reject`: previous reject, stale year signal such as 2020-2024 in 2026, no visible freshness signal, wrong category, no product URL/image, high MOQ, explicit no-dropship/no-size-chart evidence, or brand/IP risk.
+- `Unverified Leads`: correct category, visible 2025/2026 or Chinese new-style signal, newer 1688 offer ID, usable image, low MOQ, and at least one useful signal such as repeat rate, sales, dropship wording, or strong score.
+- `Reject`: previous reject, older 1688 offer ID, stale year signal such as 2020-2024 in 2026, no visible freshness signal, wrong category, no product URL/image, high MOQ, explicit no-dropship/no-size-chart evidence, or brand/IP risk.
+- `MIN_FRESH_OFFER_ID` is currently `850000000000`. It is a practical recency proxy because old 1688 listings can be edited to say 2026.
 - Category fit is rechecked from visible title/card text, so an old saved `category_match` value cannot keep a plain women-only dress active for Mommy & Me.
 - `Sales`: the number visible on the 1688 search card. If 1688 does not show a time window, treat it as a popularity clue and verify on the product detail page.
 

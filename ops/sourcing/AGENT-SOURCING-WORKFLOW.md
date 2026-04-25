@@ -57,26 +57,27 @@ http://127.0.0.1:8766/
 
 ## Plain-Language Dashboard Labels
 
-- `Products Found`: all 1688 candidates saved locally across runs.
-- `To Review`: candidates that are not rejected and are worth looking at first.
+- `Stored Cards`: all raw 1688 cards saved locally across runs.
+- `Buyer Shortlist`: fresh, category-fit leads that are worth opening first.
 - `Saved`: products the operator chose with Save/Keep.
 - `Ready for Draft`: saved products with required proof fields filled in.
 - `Rejected`: remembered rejects that should not be researched again unless restored.
 - `Best Leads`: internal `Gold` verdict.
-- `Needs Check`: internal `Test` verdict; promising, but missing proof.
+- `Unverified Leads`: internal `Test` verdict; promising, but missing supplier/detail-page proof.
 
-The dashboard has a `Find Fresh Products` button. It starts the CDP collector from the browser UI, tries configured category keywords, and stops once it has at least 3 `Gold`/`Test` candidates. If 1688 requires login or CAPTCHA, use `Open 1688 Login/Search`, let the user complete that browser step, then click `Find Fresh Products` again.
+The dashboard has a `Find Qualified Leads` button. It first checks the helper Chrome tab through `/api/browser-status`; if 1688 is showing login, CAPTCHA, `Captcha Interception`, `_____tmd_____`, or a punish URL, the dashboard must show that blocker and avoid creating a fake empty run. Once the browser is clear, it starts the CDP collector from the browser UI, tries configured category keywords, and stops once it has at least 3 `Gold`/`Test` candidates. If 1688 requires login or CAPTCHA, use `Open 1688 Login/Search`, let the user complete that browser step, then click `Find Qualified Leads` again.
 
 Freshness rules:
 
 - In 2026, visible 2020-2024 year signals should be rejected for the active sourcing queue.
-- A search-stage product should need visible 2025/2026 or Chinese new-style evidence before it becomes `Test` / `Needs Check`.
+- A search-stage product should need visible 2025/2026 or Chinese new-style evidence before it becomes `Test` / `Unverified Leads`.
+- A search-stage product should also need a newer 1688 offer ID. Current `MIN_FRESH_OFFER_ID` is `850000000000`, because old 1688 products can be edited with a fresh-looking title.
 - If search-card sales have no stated time window, treat them as a popularity clue only and confirm sales/availability on the detail page.
 - If 1688 redirects to `Captcha Interception` or a `_____tmd_____` punish URL, stop and recover the browser session; do not treat zero cards as a successful search.
 
 ## Fill A Category With Fresh Candidates
 
-Preferred: use `Find Fresh Products` inside the dashboard.
+Preferred: use `Find Qualified Leads` inside the dashboard.
 
 Manual fallback: use a logged-in Chrome/1688 session. The current browser-assisted collector expects Chrome DevTools Protocol on port `9333`.
 

@@ -172,6 +172,45 @@ def open_1688_helper_browser(category_id: str, query_index: int = 0) -> str:
     return url
 
 
+def chrome_browser_status() -> dict[str, Any]:
+    try:
+        with urllib.request.urlopen(f"http://127.0.0.1:{CDP_PORT}/json/list", timeout=2) as response:
+            pages = json.loads(response.read().decode("utf-8"))
+    except Exception as exc:
+        return {
+            "ok": False,
+            "running": False,
+            "blocked": True,
+            "message": f"1688 helper browser is not connected on port {CDP_PORT}: {exc}",
+        }
+    page = next((item for item in pages if item.get("type") == "page"), {}) if isinstance(pages, list) else {}
+    title = clean(page.get("title"))
+    url = clean(page.get("url"))
+    lower = f"{title} {url}".lower()
+    captcha = "captcha" in lower or "_____tmd_____" in lower or "punish" in lower
+    login = "login.taobao.com" in lower or "login.1688.com" in lower
+    blocked = captcha or login
+    if captcha:
+        message = "1688 is showing CAPTCHA/interception in Chrome. Clear that browser check before fetching."
+    elif login:
+        message = "1688 is on a login page in Chrome. Log in before fetching."
+    elif page:
+        message = "1688 helper browser is connected."
+    else:
+        message = "Chrome is connected, but no normal page tab is available."
+        blocked = True
+    return {
+        "ok": bool(page) and not blocked,
+        "running": True,
+        "blocked": blocked,
+        "captcha": captcha,
+        "login": login,
+        "title": title,
+        "url": url,
+        "message": message,
+    }
+
+
 def collect_job_snapshot(job_id: str) -> dict[str, Any]:
     with COLLECTION_LOCK:
         return dict(COLLECTION_JOBS.get(job_id, {}))
@@ -243,7 +282,7 @@ def run_collect_job(job_id: str, category_id: str, limit: int, query_index: int,
             completed_at=now_iso(),
             message=(
                 "I could not collect products automatically. Open the 1688 helper browser, "
-                "log in if asked, then click Find Fresh Products again."
+                "log in or clear CAPTCHA if asked, then click Find Qualified Leads again."
             ),
             generated_dirs=generated_dirs,
             stdout=stdout,
@@ -1005,28 +1044,28 @@ def dashboard_html() -> str:
       </div>
       <div class="runbox">
         <strong>Plain English:</strong>
-        Click <b>Find Fresh Products</b>, review the photos, keep only winners, then add proof before creating a Shopify draft package.
+        Click <b>Find Qualified Leads</b>. The app should hide weak search cards and only show fresh products worth checking.
       </div>
     </div>
     <div class="stats">
-      <div class="stat"><span>Products Found</span><strong id="stat-total">0</strong><em>Everything saved from 1688 searches.</em></div>
-      <div class="stat"><span>To Review</span><strong id="stat-active">0</strong><em>Not rejected yet; look at these first.</em></div>
+      <div class="stat"><span>Stored Cards</span><strong id="stat-total">0</strong><em>Raw cards saved locally.</em></div>
+      <div class="stat"><span>Buyer Shortlist</span><strong id="stat-active">0</strong><em>Fresh, category-fit leads only.</em></div>
       <div class="stat"><span>Saved</span><strong id="stat-kept">0</strong><em>You clicked Keep.</em></div>
       <div class="stat"><span>Ready for Draft</span><strong id="stat-ready">0</strong><em>Proof is filled in.</em></div>
       <div class="stat"><span>Rejected</span><strong id="stat-rejected">0</strong><em>Remembered so we do not repeat work.</em></div>
       <div class="stat"><span>Best Leads</span><strong id="stat-gold">0</strong><em>Strong enough to prioritize.</em></div>
-      <div class="stat"><span>Needs Check</span><strong id="stat-test">0</strong><em>Promising, but proof is missing.</em></div>
+      <div class="stat"><span>Unverified Leads</span><strong id="stat-test">0</strong><em>Fresh leads needing supplier proof.</em></div>
     </div>
   </header>
   <nav class="categories" id="categories"></nav>
   <div class="toolbar">
     <input id="search" type="search" placeholder="Search product title, supplier, badge, raw text">
-    <button class="chip active" data-filter="active">To Review</button>
+    <button class="chip active" data-filter="active">Buyer Shortlist</button>
     <button class="chip" data-filter="kept">Saved</button>
     <button class="chip" data-filter="ready">Ready for Draft</button>
     <button class="chip" data-filter="rejected">Rejected</button>
     <button class="chip" data-filter="gold">Best Leads</button>
-    <button class="chip" data-filter="test">Needs Check</button>
+    <button class="chip" data-filter="test">Unverified Leads</button>
     <button class="chip" data-filter="all">All</button>
     <select id="sort">
       <option value="score-desc">Score high to low</option>
@@ -1050,11 +1089,11 @@ def dashboard_html() -> str:
       <div class="guide-panel search-panel">
         <h3>Find fresh products</h3>
         <div class="row">
-          <button id="find-products" class="primary">Find Fresh Products</button>
+          <button id="find-products" class="primary">Find Qualified Leads</button>
           <button id="open-1688">Open 1688 Login/Search</button>
         </div>
         <div id="search-plan" class="search-plan"></div>
-        <div id="collector-status" class="status-box">Choose a category above, then click Find Fresh Products. The app tries the category keywords and aims for at least 3 products worth checking. If 1688 asks for login or CAPTCHA, use the Open 1688 button once, then click Find again.</div>
+        <div id="collector-status" class="status-box">Choose a category above, then click Find Qualified Leads. If 1688 asks for login or CAPTCHA, use the Open 1688 button once, complete the browser check, then click Find again.</div>
       </div>
     </section>
     <div id="empty" class="empty">No candidates match this view.</div>
@@ -1134,7 +1173,7 @@ def dashboard_html() -> str:
 
     function verdictLabel(verdict) {
       if (verdict === 'Gold') return 'Best lead';
-      if (verdict === 'Test') return 'Needs check';
+      if (verdict === 'Test') return 'Unverified lead';
       if (verdict === 'Reject') return 'Auto rejected';
       return verdict || 'Review';
     }
@@ -1156,8 +1195,8 @@ def dashboard_html() -> str:
       searchPlan.innerHTML = `
         <div><strong>What the button searches:</strong> ${escapeHtml(label)} keyword searches on normal 1688 search pages.</div>
         <ul class="query-list">${queryItems}</ul>
-        <div><strong>What becomes Needs Check:</strong> correct category, visible 2025/2026 or Chinese new-style signal, usable image, low MOQ, and at least one good signal such as repeat rate, sales, dropship wording, or strong score.</div>
-        <div><strong>What becomes Reject:</strong> previous reject, old year signal such as 2020-2024, no visible 2025/2026 freshness signal, wrong category, no product URL/image, high MOQ, explicit no-dropship/no-size-chart, or brand/IP risk.</div>
+        <div><strong>What becomes Buyer Shortlist:</strong> correct category, visible 2025/2026 or Chinese new-style signal, newer 1688 offer ID, usable image, low MOQ, and a useful signal such as repeat rate, sales, or dropship wording.</div>
+        <div><strong>What gets hidden:</strong> previous reject, old 1688 offer ID, old year signal such as 2020-2024, no visible freshness signal, wrong category, no product URL/image, high MOQ, no-dropship/no-size-chart evidence, or brand/IP risk.</div>
         <div><strong>Sales:</strong> the number visible on the 1688 search card. If 1688 does not show a time window, treat it as a popularity clue and confirm on the detail page.</div>
       `;
     }
@@ -1243,8 +1282,15 @@ def dashboard_html() -> str:
       button.disabled = true;
       const old = button.textContent;
       button.textContent = 'Searching...';
-      setCollectorStatus(`Searching 1688 for ${category === 'all' ? 'all categories' : category}. I am trying the configured keywords and aiming for at least 3 reviewable candidates.`);
+      setCollectorStatus(`Checking 1688 browser status before searching.`);
       try {
+        const browser = await api('/api/browser-status');
+        if (!browser.ok) {
+          setCollectorStatus(`${browser.message} Click Open 1688 Login/Search, complete the browser check, then try Find Qualified Leads again.`, 'bad');
+          flash(button, 'Blocked');
+          return;
+        }
+        setCollectorStatus(`Searching 1688 for ${category === 'all' ? 'all categories' : category}. I am hiding old offer IDs and weak category matches before they reach your shortlist.`);
         const job = await api('/api/collect', {
           method: 'POST',
           body: JSON.stringify({ category_id: category, limit: 48, query_index: -1, target_reviewable: 3 }),
@@ -1265,7 +1311,7 @@ def dashboard_html() -> str:
           method: 'POST',
           body: JSON.stringify({ category_id: category, query_index: 0 }),
         });
-        setCollectorStatus(`Opened 1688 helper browser. Login once if asked, then click Find Fresh Products. Search page: ${payload.url}`, 'good');
+        setCollectorStatus(`Opened 1688 helper browser. Login or clear CAPTCHA once if asked, then click Find Qualified Leads. Search page: ${payload.url}`, 'good');
         flash(button, 'Opened');
       } catch (error) {
         setCollectorStatus(`Could not open Chrome helper: ${error.message}`, 'bad');
@@ -1520,6 +1566,9 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 return
             self.send_json(job)
             return
+        if parsed.path == "/api/browser-status":
+            self.send_json(chrome_browser_status())
+            return
         if parsed.path == "/api/prompt":
             query = parse_qs(parsed.query)
             key = clean(query.get("key", [""])[0])
@@ -1576,7 +1625,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 {
                     "ok": True,
                     "url": url,
-                    "message": "Opened 1688 helper browser. Log in if asked, then run Find Fresh Products.",
+                    "message": "Opened 1688 helper browser. Log in or clear CAPTCHA if asked, then run Find Qualified Leads.",
                 }
             )
             return

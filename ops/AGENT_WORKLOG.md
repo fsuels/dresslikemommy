@@ -20811,3 +20811,93 @@ Follow-up in same task:
   - Couples: 2
   - Daddy & Me: 0
   - Maternity: 0
+
+2026-04-25 — Ran reversible MemPalace local pilot
+AGENT_CONTINUITY_ANCHOR: 2026-04-25-mempalace-local-pilot
+
+What changed:
+- Installed `mempalace==3.3.3` in an isolated local venv outside the repo:
+  - `/Users/fsuels/.cache/dresslikemommy/mempalace-pilot-20260425-010721/venv`
+- Kept MemPalace config, cache, and palace data inside the same pilot root by running commands with:
+  - `HOME=/Users/fsuels/.cache/dresslikemommy/mempalace-pilot-20260425-010721/home`
+  - `--palace /Users/fsuels/.cache/dresslikemommy/mempalace-pilot-20260425-010721/palace-small`
+- Built an allowlisted small corpus at:
+  - `/Users/fsuels/.cache/dresslikemommy/mempalace-pilot-20260425-010721/corpus-small`
+- Corpus contents:
+  - `AGENTS.md`
+  - latest `1200` lines of `ops/AGENT_WORKLOG.md` as `ops/AGENT_WORKLOG.latest.md`
+  - `ops/prompts/*.md`
+  - top-level `ops/sourcing/*.md` and `ops/sourcing/*.json`
+  - `ops/sourcing/state/decisions.json`
+  - selected sourcing run `summary.md` and `scored-candidates.json` files
+- Did not add MemPalace to repo dependencies, package files, theme files, live Shopify code, MCP config, or auto-save hooks.
+- Attempted a full-worklog mine first, but stopped it after it remained high-CPU for more than five minutes; cleaned up the aborted full corpus/palace copy and kept only the successful small pilot.
+
+Verification:
+- Secret-pattern scan of the small corpus found no live-looking token patterns (`shpat_...`, GitHub tokens, OpenAI keys, AWS keys, private keys, direct `access_token` assignments, or `client_secret` assignments).
+- `mempalace mine` on the small corpus processed `33` files and filed `664` drawers.
+- `mempalace status` reported:
+  - wing `dresslikemommy-pilot`
+  - room `ops`
+  - `664` drawers
+- Five recall searches were tested:
+  - dashboard URL/app/LaunchAgent: useful results in top 3
+  - Keep/Reject decisions and evidence path: exact result at rank 1
+  - draft package files/path: exact result in top 3
+  - canonical listing prompt workflow: exact result in top 3
+  - sourcing categories: relevant category list in top 3, configured-source result appeared lower; ranking is useful but imperfect
+
+Pilot findings:
+- MemPalace is useful as a developer-side semantic lookup layer over curated continuity docs.
+- It should not replace `AGENTS.md`, `ops/AGENT_WORKLOG.md`, or structured state files as canonical memory.
+- Full-worklog ingestion is too slow/noisy for routine use on this machine; curated summaries, latest continuity slices, and structured sourcing docs are a better fit.
+- Entity detection misclassified domain words like `Keep`, `Size`, and `Sourcing` as people, so its detected entity taxonomy should not be trusted without curation.
+- Search can surface stale and newer memories together; future use should prefer exact source dates/anchors before acting on "current" state.
+
+Residual note:
+- Pilot footprint after cleanup is about `479M`, mostly the venv and local embedding/model cache. Remove `/Users/fsuels/.cache/dresslikemommy/mempalace-pilot-20260425-010721` to fully reverse it.
+- Recommendation: keep this as an optional local lookup experiment. Do not enable auto-save hooks or MCP wiring until a curated memory refresh script and stale-memory policy exist.
+
+2026-04-25 — Made 1688 sourcing a stricter buyer shortlist
+AGENT_CONTINUITY_ANCHOR: 2026-04-25-sourcing-buyer-shortlist-offer-id
+
+Why:
+- User reported the app was not saving time because it surfaced too many weak/old products, fetches appeared to do nothing, and results felt random.
+
+What changed:
+- Added a search-stage 1688 offer ID freshness gate in `ops/scripts/1688_sourcing_score.py`:
+  - `MIN_FRESH_OFFER_ID = 850000000000`.
+  - Search-stage candidates with older numeric offer IDs are now hard rejected from the active Buyer Shortlist.
+  - Newer offer IDs add a small readiness signal.
+- Updated `ops/scripts/1688_sourcing_dashboard.py` to use stronger buyer language:
+  - `Stored Cards`: raw cards saved locally.
+  - `Buyer Shortlist`: fresh/category-fit leads only.
+  - `Unverified Leads`: fresh leads needing supplier/detail-page proof.
+  - `Find Qualified Leads`: collection button.
+- Added `/api/browser-status` so the app checks the helper Chrome session before collection:
+  - Detects login, CAPTCHA/interception, `_____tmd_____`, and punish-style URLs.
+  - If blocked, the button now tells the operator to clear the browser check instead of starting a misleading empty run.
+- Rescored existing real sourcing runs with `--decision-state ops/sourcing/state/decisions.json`.
+
+Current observed result after rescore:
+- Dashboard API returned 63 deduped stored cards.
+- Only 6 remained active in the Buyer Shortlist:
+  - Mommy & Me: 3
+  - Family Matching: 3
+  - Couples: 0
+  - Daddy & Me: 0
+  - Maternity: 0
+- This lower active count is intentional. The product finder should show fewer leads until detail-page enrichment can verify supplier quality, availability, dispatch speed, dropship support, size chart, and vendor image assets.
+
+Important blocker:
+- The helper Chrome session currently reports 1688 `Captcha Interception`.
+- Do not bypass CAPTCHA. Use `Open 1688 Login/Search`, have the operator clear the browser check, then click `Find Qualified Leads` again.
+
+Verification:
+- `python3 -m py_compile ops/scripts/1688_sourcing_dashboard.py ops/scripts/1688_sourcing_score.py ops/scripts/1688_sourcing_cdp_collect.py` passed.
+- `node --check ops/sourcing/1688-browser-collector.js` passed.
+- `git diff --check` passed after normalizing generated CSV line endings.
+- Browser/API check confirmed dashboard labels render, category filters work, Mommy & Me shows 3 active Buyer Shortlist leads, and `/api/browser-status` returns the CAPTCHA blocker instead of silently fetching.
+
+Next best action:
+- Build detail-page enrichment before a product can become `Best Lead`: open each shortlisted 1688 detail page through the logged-in browser, collect real supplier name/badges, dispatch/ship timing, availability, size chart/image evidence, and dropship language, then automatically demote anything without proof.
