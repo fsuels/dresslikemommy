@@ -70,6 +70,51 @@ def main() -> None:
     assert search_stage.review_stage == "search"
     assert "size chart not confirmed" in search_stage.concerns
 
+    new_offer_without_year = scorer.score_candidate(
+        Candidate(
+            **{
+                **base_candidate_fields(),
+                "product_url": "https://detail.1688.com/offer/917144772330.html",
+                "title": "in stock French Mother and Daughter family matching floral holiday dress",
+                "raw_card_text": "母女 亲子 现货 MOQ 1 回头率 86% 2000 sold",
+                "vendor_name": "",
+                "size_chart": "",
+                "dropship_supported": "",
+                "vendor_image_urls": "",
+                "availability": "",
+            }
+        ),
+        review_stage="search",
+    )
+
+    assert new_offer_without_year.verdict == "Test"
+    assert "no visible 2025/2026 freshness signal on search card" not in new_offer_without_year.concerns
+    assert "freshness not visible on search card; detail page must prove current availability" in new_offer_without_year.concerns
+
+    query_category_fit = scorer.score_candidate(
+        Candidate(
+            **{
+                **base_candidate_fields(),
+                "candidate_id": "query-fit",
+                "product_url": "https://detail.1688.com/offer/917144772331.html",
+                "title": "Summer resort men shirt and women dress matching set",
+                "raw_card_text": "MOQ 1 回头率 45% 500 sold 一件代发 现货",
+                "search_query": "情侣装 2026 夏季 一件代发",
+                "category_id": "couples",
+                "category_match": "",
+                "vendor_name": "",
+                "size_chart": "",
+                "dropship_supported": "",
+                "vendor_image_urls": "",
+                "availability": "",
+            }
+        ),
+        review_stage="search",
+    )
+
+    assert query_category_fit.verdict == "Test"
+    assert query_category_fit.category_match == "4"
+
     detail_missing_proof = scorer.score_candidate(
         Candidate(
             **{

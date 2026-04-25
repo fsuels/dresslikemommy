@@ -370,19 +370,60 @@ def inferred_category_fit(candidate: Candidate) -> float | None:
     category_id = clean(candidate.category_id)
     if not category_id:
         return None
-    haystack = " ".join([candidate.title, candidate.raw_card_text, candidate.badges, candidate.service_flags]).lower()
+    product_haystack = " ".join([candidate.title, candidate.raw_card_text, candidate.badges, candidate.service_flags]).lower()
     terms = {
-        "mommy-and-me": ("mother", "daughter", "mom", "mommy", "母女", "亲子", "parent-child"),
-        "daddy-and-me": ("father", "son", "dad", "daddy", "父子", "父女", "亲子", "parent-child"),
-        "family-matching": ("family", "mother", "father", "daughter", "son", "家庭", "全家", "亲子", "parent-child"),
-        "couples": ("couple", "情侣", "sweetheart"),
+        "mommy-and-me": (
+            "mother",
+            "daughter",
+            "mother-daughter",
+            "mom",
+            "mommy",
+            "mommy and me",
+            "母女",
+            "亲子",
+            "parent-child",
+        ),
+        "daddy-and-me": (
+            "father",
+            "son",
+            "father-son",
+            "father-daughter",
+            "dad",
+            "daddy",
+            "父子",
+            "父女",
+            "亲子",
+            "parent-child",
+        ),
+        "family-matching": (
+            "family",
+            "family of",
+            "mother",
+            "father",
+            "daughter",
+            "son",
+            "家庭",
+            "全家",
+            "一家",
+            "亲子",
+            "parent-child",
+        ),
+        "couples": ("couple", "couples", "情侣", "情侣装", "情侣款", "sweetheart", "his and hers"),
         "maternity": ("maternity", "pregnant", "pregnancy", "孕妇", "孕妈", "哺乳"),
     }
     strong_terms = terms.get(category_id, ())
-    if any(term in haystack for term in strong_terms):
+    if any(term in product_haystack for term in strong_terms):
         return 5.0
-    if category_id == "family-matching" and "dress" in haystack and "shirt" in haystack:
+    if category_id == "family-matching" and "dress" in product_haystack and "shirt" in product_haystack:
         return 4.0
+    if category_id == "couples":
+        english_pair = ("men" in product_haystack or "man" in product_haystack) and (
+            "women" in product_haystack or "woman" in product_haystack
+        )
+        chinese_pair = "男" in product_haystack and "女" in product_haystack
+        mixed_outfit = "shirt" in product_haystack and "dress" in product_haystack
+        if english_pair or chinese_pair or mixed_outfit:
+            return 4.0
     return 2.0
 
 
@@ -490,6 +531,26 @@ def is_search_stage_promising(
     return False
 
 
+def has_search_demand_signal(
+    *,
+    candidate: Candidate,
+    moq: float | None,
+    repurchase: float | None,
+    monthly_sales: float | None,
+    signals: set[str],
+) -> bool:
+    if repurchase is not None and repurchase >= 20:
+        return True
+    if monthly_sales is not None and monthly_sales >= 30:
+        return True
+    if moq is not None and moq <= 1:
+        return True
+    if {"一件代发", "24小时发货", "48小时发货", "现货"} & signals:
+        return True
+    text = " ".join([candidate.title, candidate.raw_card_text, candidate.service_flags]).lower()
+    return any(term in text for term in ("一件代发", "dropship", "one piece", "in stock", "现货"))
+
+
 def score_candidate(
     candidate: Candidate,
     review_stage: str = "search",
@@ -549,7 +610,17 @@ def score_candidate(
             f"stale listing year signal ({max(listing_years)}); target {MIN_FRESH_YEAR}-{CURRENT_YEAR} new products"
         )
     if review_stage == "search" and not fresh_signal:
-        hard_reject_reasons.append(f"no visible {MIN_FRESH_YEAR}/{CURRENT_YEAR} freshness signal on search card")
+        demand_signal = has_search_demand_signal(
+            candidate=candidate,
+            moq=moq,
+            repurchase=repurchase,
+            monthly_sales=monthly_sales,
+            signals=signals,
+        )
+        if offer_id is not None and offer_id >= MIN_FRESH_OFFER_ID and category_fit >= 3.5 and demand_signal:
+            caps.append("freshness not visible on search card; detail page must prove current availability")
+        else:
+            hard_reject_reasons.append(f"no visible {MIN_FRESH_YEAR}/{CURRENT_YEAR} freshness signal on search card")
     if review_stage == "search" and offer_id is not None and offer_id < MIN_FRESH_OFFER_ID:
         hard_reject_reasons.append(
             f"older 1688 offer ID ({offer_id}); prefer newer listings above {MIN_FRESH_OFFER_ID}"
@@ -913,7 +984,7 @@ def dedupe_candidates(candidates: list[Candidate]) -> list[Candidate]:
 def write_csv(path: Path, candidates: list[Candidate]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=CSV_FIELDNAMES)
+        writer = csv.DictWriter(handle, fieldnames=CSV_FIELDNAMES, lineterminator="\n")
         writer.writeheader()
         for candidate in candidates:
             writer.writerow(
@@ -1807,7 +1878,10 @@ def write_summary(path: Path, candidates: list[Candidate], source: str) -> None:
         for candidate in gold:
             lines.append(f"- {candidate.score} — [{candidate.title or candidate.product_url}]({candidate.product_url})")
     lines.extend(["", "## Immediate Review Queue", ""])
-    for candidate in [c for c in candidates if c.verdict == "Test"][:10]:
+    test_candidates = [c for c in candidates if c.verdict == "Test"][:10]
+    if not test_candidates:
+        lines.append("- None yet.")
+    for candidate in test_candidates:
         concern = "; ".join(candidate.concerns[:3])
         suffix = f": {concern}" if concern else ""
         lines.append(f"- {candidate.score} — {candidate.title or candidate.product_url}{suffix}")

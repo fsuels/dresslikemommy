@@ -191,8 +191,11 @@ def gbk_quote(query: str) -> str:
     return urllib.parse.quote_from_bytes(query.encode("gbk", errors="ignore"))
 
 
-def search_url(query: str) -> str:
-    return f"https://s.1688.com/selloffer/offer_search.htm?keywords={gbk_quote(query)}"
+def search_url(query: str, page: int = 1) -> str:
+    url = f"https://s.1688.com/selloffer/offer_search.htm?keywords={gbk_quote(query)}"
+    if page > 1:
+        url += f"&beginPage={page}"
+    return url
 
 
 def load_categories() -> dict[str, dict[str, Any]]:
@@ -416,6 +419,14 @@ def is_blocked_page(payload: dict[str, Any]) -> bool:
     return "_____tmd_____" in page_url or "punish" in page_url or "captcha" in page_title
 
 
+def safe_blocked_url(url: str) -> str:
+    """Do not persist volatile CAPTCHA query tokens in repo artifacts."""
+    text = str(url or "")
+    if "_____tmd_____" not in text and "punish" not in text and "x5secdata" not in text:
+        return text
+    return text.split("?", 1)[0]
+
+
 def collect_from_page(client: CdpClient, url: str) -> dict[str, Any]:
     client.navigate(url)
     time.sleep(5)
@@ -463,7 +474,14 @@ def write_run_files(
     run_scorer(candidate_path, output_dir)
 
 
-def collect_category(category_id: str, limit: int, port: int, query_index: int, target_reviewable: int = 0) -> Path:
+def collect_category(
+    category_id: str,
+    limit: int,
+    port: int,
+    query_index: int,
+    target_reviewable: int = 0,
+    max_pages_per_query: int = 1,
+) -> Path:
     categories = load_categories()
     if category_id not in categories:
         raise SystemExit(f"Unknown category: {category_id}")
@@ -472,7 +490,7 @@ def collect_category(category_id: str, limit: int, port: int, query_index: int, 
     if not queries:
         raise SystemExit(f"No queries configured for category: {category_id}")
     selected_queries = rotated_queries(category_id, queries) if query_index < 0 or target_reviewable > 0 else [queries[min(query_index, len(queries) - 1)]]
-    stamp = dt.datetime.now().strftime("%Y-%m-%d-%H%M")
+    stamp = dt.datetime.now().strftime("%Y-%m-%d-%H%M%S")
     output_dir = SOURCING_ROOT / f"{stamp}-{category_id}-1688-auto"
     candidate_path = output_dir / "candidates.json"
 
@@ -485,78 +503,88 @@ def collect_category(category_id: str, limit: int, port: int, query_index: int, 
     try:
         for query in selected_queries:
             attempted_queries.append(query)
-            url = search_url(query)
-            payload = collect_from_page(client, url)
-            if is_blocked_page(payload):
-                page_title = payload.get("page_title") or "Captcha/verification page"
-                page_url = payload.get("page_url") or url
-                blocked = True
+            for page_number in range(1, max(1, max_pages_per_query) + 1):
+                url = search_url(query, page_number)
+                payload = collect_from_page(client, url)
+                if is_blocked_page(payload):
+                    page_title = payload.get("page_title") or "Captcha/verification page"
+                    page_url = safe_blocked_url(payload.get("page_url") or url)
+                    blocked = True
+                    collected_pages.append(
+                        {
+                            "query": query,
+                            "page": page_number,
+                            "search_url": url,
+                            "page_url": page_url,
+                            "page_title": page_title,
+                            "count": 0,
+                            "new_count": 0,
+                            "skipped_seen": 0,
+                            "blocked": True,
+                        }
+                    )
+                    if not all_rows:
+                        update_search_history(
+                            category_id=category_id,
+                            queries=queries,
+                            attempted_queries=attempted_queries,
+                            collected_pages=collected_pages,
+                            rows=[],
+                            blocked=True,
+                        )
+                        raise SystemExit(
+                            "1688 CAPTCHA/interception page is open. Use Open 1688 Login/Search, "
+                            f"complete the browser check, then run again. Page title: {page_title}. URL: {page_url}"
+                        )
+                    break
+                page_rows = payload.get("candidates", [])
+                new_page_rows = []
+                skipped_seen = 0
+                for row in page_rows:
+                    offer_id = offer_id_from_row(row)
+                    if offer_id and offer_id in known_offer_ids:
+                        skipped_seen += 1
+                        continue
+                    if offer_id:
+                        known_offer_ids.add(offer_id)
+                    row["search_query"] = query
+                    row["search_url"] = payload.get("page_url") or url
+                    row["search_page"] = page_number
+                    new_page_rows.append(row)
+                all_rows.extend(new_page_rows)
                 collected_pages.append(
                     {
                         "query": query,
+                        "page": page_number,
                         "search_url": url,
-                        "page_url": page_url,
-                        "page_title": page_title,
-                        "count": 0,
-                        "new_count": 0,
-                        "skipped_seen": 0,
-                        "blocked": True,
+                        "page_url": payload.get("page_url"),
+                        "page_title": payload.get("page_title"),
+                        "count": len(page_rows),
+                        "new_count": len(new_page_rows),
+                        "skipped_seen": skipped_seen,
+                        "blocked": False,
                     }
                 )
-                if not all_rows:
-                    update_search_history(
+                rows = dedupe_candidates(all_rows)[:limit]
+                for row in rows:
+                    row["category_match"] = category_match_score(row, category_id)
+                if rows:
+                    write_run_files(
+                        output_dir=output_dir,
+                        candidate_path=candidate_path,
+                        rows=rows,
                         category_id=category_id,
-                        queries=queries,
-                        attempted_queries=attempted_queries,
+                        selected_queries=attempted_queries.copy(),
                         collected_pages=collected_pages,
-                        rows=[],
-                        blocked=True,
+                        target_reviewable=target_reviewable,
                     )
-                    raise SystemExit(
-                        "1688 CAPTCHA/interception page is open. Use Open 1688 Login/Search, "
-                        f"complete the browser check, then run again. Page title: {page_title}. URL: {page_url}"
-                    )
-                break
-            page_rows = payload.get("candidates", [])
-            new_page_rows = []
-            skipped_seen = 0
-            for row in page_rows:
-                offer_id = offer_id_from_row(row)
-                if offer_id and offer_id in known_offer_ids:
-                    skipped_seen += 1
-                    continue
-                if offer_id:
-                    known_offer_ids.add(offer_id)
-                row["search_query"] = query
-                row["search_url"] = payload.get("page_url") or url
-                new_page_rows.append(row)
-            all_rows.extend(new_page_rows)
-            collected_pages.append(
-                {
-                    "query": query,
-                    "search_url": url,
-                    "page_url": payload.get("page_url"),
-                    "page_title": payload.get("page_title"),
-                    "count": len(page_rows),
-                    "new_count": len(new_page_rows),
-                    "skipped_seen": skipped_seen,
-                    "blocked": False,
-                }
-            )
-            rows = dedupe_candidates(all_rows)[:limit]
-            for row in rows:
-                row["category_match"] = category_match_score(row, category_id)
-            if rows:
-                write_run_files(
-                    output_dir=output_dir,
-                    candidate_path=candidate_path,
-                    rows=rows,
-                    category_id=category_id,
-                    selected_queries=attempted_queries.copy(),
-                    collected_pages=collected_pages,
-                    target_reviewable=target_reviewable,
-                )
+                if target_reviewable and rows and reviewable_count(output_dir) >= target_reviewable:
+                    break
+                if not page_rows:
+                    break
             if target_reviewable and rows and reviewable_count(output_dir) >= target_reviewable:
+                break
+            if blocked:
                 break
     finally:
         client.close()
@@ -595,10 +623,16 @@ def collect_category(category_id: str, limit: int, port: int, query_index: int, 
         blocked=blocked,
     )
     skipped = sum(int(page.get("skipped_seen") or 0) for page in collected_pages)
+    reviewable = reviewable_count(output_dir)
     print(
-        f"reviewable={reviewable_count(output_dir)} total={len(rows)} "
-        f"queries={len(attempted_queries or selected_queries)} skipped_seen={skipped}"
+        f"reviewable={reviewable} total={len(rows)} "
+        f"queries={len(attempted_queries or selected_queries)} pages={len(collected_pages)} skipped_seen={skipped}"
     )
+    if blocked:
+        raise SystemExit(
+            "1688 CAPTCHA/interception interrupted this run after partial collection. "
+            f"Saved {len(rows)} new cards and {reviewable} reviewable leads; clear the browser check before continuing."
+        )
     return output_dir
 
 
@@ -609,12 +643,20 @@ def main() -> None:
     parser.add_argument("--port", type=int, default=9333, help="Local Chrome DevTools Protocol port.")
     parser.add_argument("--query-index", type=int, default=0, help="Which configured query to use for the category. Use -1 to try all configured queries.")
     parser.add_argument("--target-reviewable", type=int, default=0, help="Try all configured queries and aim for this many Gold/Test candidates.")
+    parser.add_argument("--max-pages-per-query", type=int, default=1, help="Search result pages to visit for each query.")
     args = parser.parse_args()
 
     categories = load_categories()
     category_ids = list(categories) if args.category == "all" else [args.category]
     for category_id in category_ids:
-        output_dir = collect_category(category_id, args.limit, args.port, args.query_index, args.target_reviewable)
+        output_dir = collect_category(
+            category_id,
+            args.limit,
+            args.port,
+            args.query_index,
+            args.target_reviewable,
+            args.max_pages_per_query,
+        )
         print(output_dir.relative_to(REPO_ROOT))
 
 

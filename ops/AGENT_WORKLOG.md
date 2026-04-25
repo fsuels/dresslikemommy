@@ -21003,3 +21003,70 @@ Residual risks:
 
 Next best action:
 - Clear any 1688 browser check, click `Find Qualified Leads` once per category, and inspect whether the rotated/skipped searches now discover genuinely new offers. Tune category queries based on the first no-new-product category.
+
+2026-04-25 — Operator-tested 20-lead sourcing target and tightened discovery quality
+AGENT_CONTINUITY_ANCHOR: 2026-04-25-sourcing-20-lead-operator-test-captcha
+
+Why:
+- User asked Codex to use the sourcing app like a real user and find 20 filtered-good products per category, specifically to expose practical problems in the app.
+
+What changed:
+- Updated `ops/scripts/1688_sourcing_score.py`:
+  - Search-stage products with a newer 1688 offer ID plus real demand/fulfillment signals can survive as `Test` even when the search card does not show an explicit 2025/2026 freshness label.
+  - The scorer still hard-rejects old offer IDs and stale years, and it no longer trusts the search keyword alone for category fit.
+  - This prevents broad Mommy & Me searches from filling the shortlist with generic women's dresses.
+  - Couples category now recognizes clear men+women / shirt+dress product patterns without needing literal "couple" text.
+- Updated `ops/scripts/1688_sourcing_cdp_collect.py`:
+  - Added `--max-pages-per-query`.
+  - Search URLs can visit `beginPage=2`/later result pages through the logged-in browser.
+  - Output run IDs now include seconds to avoid same-minute category run collisions.
+  - If 1688 redirects to `Captcha Interception` after partial collection, the run artifacts are kept but the process exits as blocked instead of looking like a normal success.
+- Updated `ops/scripts/1688_sourcing_dashboard.py`:
+  - Button language changed from `Find Qualified Leads` to `Find 20 Leads`.
+  - Dashboard collection now targets 20 reviewable leads, limit 200, and two pages per query by default.
+  - UI copy explains that the app rotates keywords, checks up to two pages, skips seen offers, and blocks drafts until detail proof exists.
+- Expanded `ops/sourcing/sourcing-categories.json` query banks for Mommy & Me, Daddy & Me, Family Matching, Couples, and Maternity.
+- Updated `ops/tests/test_1688_sourcing_score_detail_gate.py` with regressions for:
+  - newer-offer/no-visible-year search cards staying `Test` only when demand proof exists
+  - couples category fit from visible men+women product pattern.
+- Updated `AGENTS.md` sourcing memory so future sessions understand the 20-lead target, CAPTCHA behavior, and the "do not trust query-only category fit" rule.
+
+Operator test results:
+- Before code changes, the dashboard had:
+  - Mommy & Me: 83 stored, 3 active
+  - Daddy & Me: 2 stored, 0 active
+  - Family Matching: 8 stored, 3 active
+  - Couples: 9 stored, 0 active
+  - Maternity: 8 stored, 0 active
+- Real Mommy & Me app/collector run created `ops/sourcing/2026-04-25-0150-mommy-and-me-1688-auto/`:
+  - 49 cards collected
+  - 0 passed before scoring fix
+  - after rescoring with the safer freshness proxy: 2 true Mommy & Me `Test` leads, 47 rejects
+- A second app-driven Mommy & Me run created `ops/sourcing/2026-04-25-015839-mommy-and-me-1688-auto/`:
+  - checked 3 pages of `母女装 连衣裙 一件代发`
+  - page 1 had 7 already-seen cards
+  - page 2 added 3 new cards, all rejected as generic women's dresses / weak category fit
+  - page 3 triggered 1688 `Captcha Interception`
+- After the operator test, dashboard counts were:
+  - Mommy & Me: 87 stored, 5 active, 0 Gold
+  - Daddy & Me: 2 stored, 0 active
+  - Family Matching: 7 stored, 3 active, 0 Gold
+  - Couples: 9 stored, 0 active
+  - Maternity: 8 stored, 0 active
+- Honest conclusion: the app cannot currently find 20 good products per category in one automated pass. The limiting factors are real 1688 CAPTCHA pressure, thin search-card supplier evidence, and weak supplier/product discovery from basic search pages.
+
+Verification:
+- `python3 -m py_compile ops/scripts/1688_sourcing_dashboard.py ops/scripts/1688_sourcing_score.py ops/scripts/1688_sourcing_cdp_collect.py` passed.
+- `python3 ops/tests/test_1688_sourcing_score_detail_gate.py` passed.
+- Restarted `/Users/fsuels/Applications/Dress Like Mommy Sourcing.app`.
+- Verified via Playwright that the dashboard loads and category counts reflect the rescored real data.
+- Called `/api/collect` like the dashboard button for Mommy & Me and observed the blocked/low-quality result above.
+- Called `/api/open-1688-browser`; 1688 still returns `Captcha Interception`, so further live collection is blocked until the user clears it.
+
+Residual risks:
+- Need user/manual browser recovery for 1688 CAPTCHA; do not bypass it.
+- The app still needs a smarter discovery layer than 1688 search pages alone if the target is 20 genuinely good leads per category.
+- Detail enrichment could not be run in this pass because the helper browser is blocked by CAPTCHA.
+
+Next best action:
+- After the user clears CAPTCHA in the helper Chrome session, run `Find 20 Leads` one category at a time with the safer two-page behavior. If any category still returns fewer than 20, build the next layer: vendor-first sourcing from proven supplier shops and detail-page enrichment queues, not just search result cards.

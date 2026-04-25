@@ -394,7 +394,14 @@ def update_detail_job(job_id: str, **updates: Any) -> None:
         job.update(updates)
 
 
-def run_collect_job(job_id: str, category_id: str, limit: int, query_index: int, target_reviewable: int) -> None:
+def run_collect_job(
+    job_id: str,
+    category_id: str,
+    limit: int,
+    query_index: int,
+    target_reviewable: int,
+    max_pages_per_query: int,
+) -> None:
     command = [
         "python3",
         str(COLLECTOR_PATH),
@@ -408,6 +415,8 @@ def run_collect_job(job_id: str, category_id: str, limit: int, query_index: int,
         str(query_index),
         "--target-reviewable",
         str(target_reviewable),
+        "--max-pages-per-query",
+        str(max_pages_per_query),
     ]
     update_collect_job(job_id, status="running", command=" ".join(command), started_at=now_iso())
     try:
@@ -457,12 +466,12 @@ def run_collect_job(job_id: str, category_id: str, limit: int, query_index: int,
         elif "CAPTCHA" in combined or "interception" in combined or "_____tmd_____" in combined:
             message = (
                 "1688 blocked the search with login/CAPTCHA/interception. Open the helper browser, "
-                "clear the check, then try Find Qualified Leads again."
+                "clear the check, then try Find 20 Leads again."
             )
         else:
             message = (
                 "I could not collect products automatically. Open the 1688 helper browser, "
-                "log in or clear CAPTCHA if asked, then click Find Qualified Leads again."
+                "log in or clear CAPTCHA if asked, then click Find 20 Leads again."
             )
         update_collect_job(
             job_id,
@@ -475,12 +484,19 @@ def run_collect_job(job_id: str, category_id: str, limit: int, query_index: int,
         )
 
 
-def start_collect_job(category_id: str, limit: int, query_index: int, target_reviewable: int = 3) -> dict[str, Any]:
+def start_collect_job(
+    category_id: str,
+    limit: int,
+    query_index: int,
+    target_reviewable: int = 20,
+    max_pages_per_query: int = 2,
+) -> dict[str, Any]:
     allowed_categories = set(category_lookup()) | {"all"}
     if category_id not in allowed_categories:
         category_id = "family-matching"
-    limit = max(1, min(limit, 80))
-    target_reviewable = max(0, min(target_reviewable, 12))
+    limit = max(1, min(limit, 240))
+    target_reviewable = max(0, min(target_reviewable, 25))
+    max_pages_per_query = max(1, min(max_pages_per_query, 3))
     job_id = hashlib.sha1(f"{now_iso()}-{category_id}-{limit}".encode("utf-8")).hexdigest()[:12]
     with COLLECTION_LOCK:
         COLLECTION_JOBS[job_id] = {
@@ -490,12 +506,13 @@ def start_collect_job(category_id: str, limit: int, query_index: int, target_rev
             "limit": limit,
             "query_index": query_index,
             "target_reviewable": target_reviewable,
+            "max_pages_per_query": max_pages_per_query,
             "created_at": now_iso(),
-            "message": "Starting 1688 search. I will try the configured keywords and aim for at least 3 reviewable candidates.",
+            "message": f"Starting 1688 search. I will rotate the configured keywords and aim for up to {target_reviewable} reviewable leads.",
         }
     thread = threading.Thread(
         target=run_collect_job,
-        args=(job_id, category_id, limit, query_index, target_reviewable),
+        args=(job_id, category_id, limit, query_index, target_reviewable, max_pages_per_query),
         daemon=True,
     )
     thread.start()
@@ -1328,7 +1345,7 @@ def dashboard_html() -> str:
       </div>
       <div class="runbox">
         <strong>Plain English:</strong>
-        Click <b>Find Qualified Leads</b>. The app should hide weak search cards and only show fresh products worth checking.
+        Click <b>Find 20 Leads</b>. The app searches normal logged-in 1688 pages, fills the shortlist with promising products, then blocks drafts until detail proof is verified.
       </div>
     </div>
     <div class="stats">
@@ -1373,11 +1390,11 @@ def dashboard_html() -> str:
       <div class="guide-panel search-panel">
         <h3>Find new products</h3>
         <div class="row">
-          <button id="find-products" class="primary">Find Qualified Leads</button>
+          <button id="find-products" class="primary">Find 20 Leads</button>
           <button id="open-1688">Open 1688 Login/Search</button>
         </div>
         <div id="search-plan" class="search-plan"></div>
-        <div id="collector-status" class="status-box">Choose a category above, then click Find Qualified Leads. The app rotates keyword searches and skips offers already saved locally. If 1688 asks for login or CAPTCHA, use Open 1688 Login/Search once, complete the browser check, then click Find again.</div>
+        <div id="collector-status" class="status-box">Choose a category above, then click Find 20 Leads. The app rotates keyword searches, checks up to two pages per query, and skips offers already saved locally. If 1688 asks for login or CAPTCHA, use Open 1688 Login/Search once, complete the browser check, then click Find again.</div>
       </div>
     </section>
     <div id="empty" class="empty">No candidates match this view.</div>
@@ -1479,8 +1496,8 @@ def dashboard_html() -> str:
       searchPlan.innerHTML = `
         <div><strong>What the button searches:</strong> ${escapeHtml(label)} keyword searches on normal 1688 search pages. It now rotates the starting query and skips offers already saved locally.</div>
         <ul class="query-list">${queryItems}</ul>
-        <div><strong>What becomes Buyer Shortlist:</strong> correct category, visible 2025/2026 or Chinese new-style signal, newer 1688 offer ID, usable image, low MOQ, and a useful signal such as repeat rate, sales, or dropship wording.</div>
-        <div><strong>What gets hidden:</strong> previous reject, old 1688 offer ID, old year signal such as 2020-2024, no visible freshness signal, wrong category, no product URL/image, high MOQ, no-dropship/no-size-chart evidence, or brand/IP risk.</div>
+        <div><strong>What becomes Buyer Shortlist:</strong> correct category, usable product image, low MOQ, newer 1688 offer ID or visible 2025/2026/new-style wording, and a useful signal such as repeat rate, sales, stock, dispatch, or dropship wording.</div>
+        <div><strong>What gets hidden:</strong> previous reject, old 1688 offer ID, old year signal such as 2020-2024, wrong category, no product URL/image, high MOQ, no-dropship/no-size-chart evidence, brand/IP risk, or no useful demand/fulfillment signal.</div>
         <div><strong>Sales:</strong> the number visible on the 1688 search card. If 1688 does not show a time window, treat it as a popularity clue and confirm on the detail page.</div>
       `;
     }
@@ -1570,14 +1587,14 @@ def dashboard_html() -> str:
       try {
         const browser = await api('/api/browser-status');
         if (!browser.ok) {
-          setCollectorStatus(`${browser.message} Click Open 1688 Login/Search, complete the browser check, then try Find Qualified Leads again.`, 'bad');
+          setCollectorStatus(`${browser.message} Click Open 1688 Login/Search, complete the browser check, then try Find 20 Leads again.`, 'bad');
           flash(button, 'Blocked');
           return;
         }
-        setCollectorStatus(`Searching 1688 for ${category === 'all' ? 'all categories' : category}. I am rotating keywords, skipping already-seen offers, and hiding weak matches before they reach your shortlist.`);
+        setCollectorStatus(`Searching 1688 for ${category === 'all' ? 'all categories' : category}. I am aiming for 20 reviewable leads, rotating keywords, checking extra pages, skipping already-seen offers, and hiding weak matches before they reach your shortlist.`);
         const job = await api('/api/collect', {
           method: 'POST',
-          body: JSON.stringify({ category_id: category, limit: 48, query_index: -1, target_reviewable: 3 }),
+          body: JSON.stringify({ category_id: category, limit: 200, query_index: -1, target_reviewable: 20, max_pages_per_query: 2 }),
         });
         await pollCollection(job.id, button);
       } catch (error) {
@@ -1595,7 +1612,7 @@ def dashboard_html() -> str:
           method: 'POST',
           body: JSON.stringify({ category_id: category, query_index: -1 }),
         });
-        setCollectorStatus(`Reused the 1688 helper tab. Login or clear CAPTCHA once if asked, then click Find Qualified Leads. Search page: ${payload.url}`, 'good');
+        setCollectorStatus(`Reused the 1688 helper tab. Login or clear CAPTCHA once if asked, then click Find 20 Leads. Search page: ${payload.url}`, 'good');
         flash(button, 'Opened');
       } catch (error) {
         setCollectorStatus(`Could not open Chrome helper: ${error.message}`, 'bad');
@@ -1990,7 +2007,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 {
                     "ok": True,
                     "url": url,
-                    "message": "Opened 1688 helper browser. Log in or clear CAPTCHA if asked, then run Find Qualified Leads.",
+                    "message": "Opened 1688 helper browser. Log in or clear CAPTCHA if asked, then run Find 20 Leads.",
                 }
             )
             return
@@ -1999,8 +2016,9 @@ class DashboardHandler(BaseHTTPRequestHandler):
             category_id = clean(payload.get("category_id")) or "family-matching"
             limit = int(payload.get("limit") or 24)
             query_index = int(payload.get("query_index") or 0)
-            target_reviewable = int(payload.get("target_reviewable") or 3)
-            job = start_collect_job(category_id, limit, query_index, target_reviewable)
+            target_reviewable = int(payload.get("target_reviewable") or 20)
+            max_pages_per_query = int(payload.get("max_pages_per_query") or 2)
+            job = start_collect_job(category_id, limit, query_index, target_reviewable, max_pages_per_query)
             self.send_json(job)
             return
         if parsed.path == "/api/detail-enrich":
