@@ -138,6 +138,16 @@
             if forloop.first
               assign spotlight_fetchpriority = 'high'
             endif
+
+            assign spotlight_static_theme_asset = block.settings.custom_theme_asset | strip
+            assign spotlight_static_theme_asset_alt = block.settings.custom_theme_asset_alt | strip
+            if request.page_type == 'index' and block.settings.secondary_collection != blank
+              assign spotlight_rotation_product_count = block.settings.secondary_collection.products_count | default: block.settings.secondary_collection.products.size
+              if spotlight_rotation_product_count > 1
+                assign spotlight_static_theme_asset = blank
+                assign spotlight_static_theme_asset_alt = blank
+              endif
+            endif
           -%}
           <div {{ block.shopify_attributes }}>
             {% render 'home-spotlight-card',
@@ -145,8 +155,8 @@
               spotlight_badge: block.settings.badge,
               spotlight_caption: block.settings.caption,
               spotlight_button_label: block.settings.button_label,
-              spotlight_theme_asset: block.settings.custom_theme_asset,
-              spotlight_theme_asset_alt: block.settings.custom_theme_asset_alt,
+              spotlight_theme_asset: spotlight_static_theme_asset,
+              spotlight_theme_asset_alt: spotlight_static_theme_asset_alt,
               spotlight_collection: block.settings.secondary_collection,
               spotlight_rotation_collection: block.settings.secondary_collection,
               spotlight_collection_link_label: block.settings.collection_link_label,

@@ -16,6 +16,7 @@
   assign spotlight_image_key = blank
   assign spotlight_image_id = blank
   assign spotlight_fetchpriority = spotlight_fetchpriority | default: '' | strip
+  assign homepage_spotlight_product_candidate_limit = 24
   assign homepage_spotlight_product_candidate_count = 0
   assign homepage_spotlight_product_candidates_json = blank
   assign spotlight_badge = spotlight_badge | strip
@@ -53,7 +54,8 @@
       echo '['
 
       if spotlight_rotation_collection != blank and spotlight_rotation_collection.products.size > 0
-        for candidate_product in spotlight_rotation_collection.products limit: 12
+        assign spotlight_candidate_products = spotlight_rotation_collection.products | sort: 'published_at' | reverse
+        for candidate_product in spotlight_candidate_products limit: homepage_spotlight_product_candidate_limit
           assign candidate_variant = candidate_product.selected_or_first_available_variant
           assign candidate_image = candidate_product.featured_media.preview_image | default: candidate_product.featured_image
           assign candidate_image_id = candidate_image.id | default: candidate_product.featured_media.id | default: candidate_product.id
