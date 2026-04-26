@@ -142,11 +142,8 @@
             assign spotlight_static_theme_asset = block.settings.custom_theme_asset | strip
             assign spotlight_static_theme_asset_alt = block.settings.custom_theme_asset_alt | strip
             if request.page_type == 'index' and block.settings.secondary_collection != blank
-              assign spotlight_rotation_product_count = block.settings.secondary_collection.products_count | default: block.settings.secondary_collection.products.size
-              if spotlight_rotation_product_count > 1
-                assign spotlight_static_theme_asset = blank
-                assign spotlight_static_theme_asset_alt = blank
-              endif
+              assign spotlight_static_theme_asset = blank
+              assign spotlight_static_theme_asset_alt = blank
             endif
           -%}
           <div {{ block.shopify_attributes }}>
