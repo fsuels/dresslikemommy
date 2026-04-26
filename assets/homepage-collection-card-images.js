@@ -230,7 +230,21 @@
   }
 
   function reserveHomepageCollectionImages(root, usedKeys, usedSrcs) {
-    reserveImages(root, IMAGE_SELECTOR, usedKeys, usedSrcs);
+    root.querySelectorAll(CARD_SELECTOR).forEach((card) => {
+      const image = card.querySelector(IMAGE_SELECTOR);
+      if (!image) return;
+
+      reserveExistingImage(image, usedKeys, usedSrcs);
+
+      const existingKey = String(image.dataset.homepageCollectionImageKey || '').trim();
+      if (!existingKey.startsWith('asset-')) return;
+
+      parseCandidates(card).forEach((candidate) => {
+        if (candidate.key.startsWith('asset-')) return;
+        usedKeys.add(candidate.key);
+        usedSrcs.add(candidate.src);
+      });
+    });
   }
 
   function refreshHomepageCollectionImages(root = document) {
