@@ -55,7 +55,7 @@ TEXTUAL_FIELDS = {
     "name", "label", "product_type", "value", "alt", "body", "text",
 }
 URL_RE = re.compile(r"^https?://|^[\w.-]+\.[a-z]{2,}(/|$)", re.I)
-SCRIPTISH_RE = re.compile(r"<\s*(script|style|iframe)\b|\{\{|\}\}|shopify-payment-button|loox|judge\.me|review", re.I)
+SCRIPTISH_RE = re.compile(r"<\s*(script|style|iframe)\b|\{\{|\}\}|shopify-payment-button|loox|judge\.me|\bjdgm[-_]", re.I)
 ENGLISH_WORD_RE = re.compile(r"[A-Za-z][A-Za-z&+'-]*")
 JSONISH_RE = re.compile(r'^\s*[\[{].*[\]}]\s*$', re.S)
 

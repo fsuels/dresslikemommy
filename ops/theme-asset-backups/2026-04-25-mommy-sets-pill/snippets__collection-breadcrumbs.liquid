@@ -1,0 +1,515 @@
+{% comment %}
+  Collection breadcrumbs with category navigation tabs.
+  Uses metafields:
+    - custom.category1: Parent category (e.g. "Mommy and Me"). Defaults to "Mommy and Me".
+    - custom.product_tag: Comma-separated style/sub-collection links.
+  Smart fallback: If product_tag contains top-level parent categories instead of
+  subcategories, automatically uses product types from the collection instead.
+  Cross-category collections (new-arrivals, etc.) show top-level category pills.
+{% endcomment %}
+
+{% assign parent_category = collection.metafields.custom.category1 | strip %}
+{% if parent_category == blank %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_mommy_me' | t %}
+{% endif %}
+{% assign product_tags_raw = collection.metafields.custom.product_tag | default: '' %}
+{% assign product_tags = product_tags_raw | split: ',' %}
+{% assign current_collection_handle = collection.handle %}
+{% assign current_collection_label = collection.title | strip %}
+{% assign current_breadcrumb_label = current_collection_label %}
+{% assign collections_base_url = routes.collections_url | append: '/' %}
+{% assign is_daddy_collection_nav = false %}
+{% assign is_couples_collection_nav = false %}
+{% assign is_family_matching_nav = false %}
+{% assign daddy_button_downs_filter_param = 'dlm-daddy-filter=button-downs' %}
+{% assign family_matching_hub_handle = 'new-women-outfits' %}
+{% assign family_matching_hub_collection = collections[family_matching_hub_handle] %}
+{% if family_matching_hub_collection == blank %}
+  {% assign family_matching_hub_handle = 'matching-outfits' %}
+  {% assign family_matching_hub_collection = collections[family_matching_hub_handle] %}
+{% endif %}
+{% if family_matching_hub_collection == blank %}
+  {% assign family_matching_hub_handle = 'family-matching-outfits' %}
+  {% assign family_matching_hub_collection = collections[family_matching_hub_handle] %}
+{% endif %}
+{% assign family_matching_hub_label = 'Family Matching Outfits' %}
+{% assign family_matching_hub_url = family_matching_hub_collection.url | default: '' %}
+{% assign family_matching_hub_filter_base_url = family_matching_hub_url %}
+{% if family_matching_hub_filter_base_url == blank %}
+  {% assign family_matching_hub_filter_base_url = collections_base_url | append: family_matching_hub_handle %}
+{% endif %}
+{% assign family_vacation_collection_handle = 'matching-family-vacation-outfits' %}
+{% assign family_vacation_alias_handles = 'family-sets,matching-family-vacation-outfits' %}
+{% assign family_hub_alias_handles = 'matching-outfits,family-matching-outfits,new-women-outfits' %}
+{% assign parent_collection_handle = parent_category | handleize %}
+{% assign parent_collection_label = parent_category %}
+
+{% if current_collection_handle == 'daddy-me'
+  or current_collection_handle == 'daddy-me-t-shirts'
+  or current_collection_handle == 'daddy-me-shirts'
+  or current_collection_handle == 'trunks'
+%}
+  {% assign is_daddy_collection_nav = true %}
+{% endif %}
+
+{% if current_collection_handle == 'couples'
+  or current_collection_handle == 'matching-couples-t-shirts'
+%}
+  {% assign is_couples_collection_nav = true %}
+{% endif %}
+
+{% if current_collection_handle == 'matching-outfits'
+  or current_collection_handle == 'family-matching-outfits'
+  or current_collection_handle == 'new-women-outfits'
+  or current_collection_handle == 'family-pajamas'
+  or current_collection_handle == 'family-swimsuits'
+  or current_collection_handle == 'family-sets'
+  or current_collection_handle == 'matching-family-vacation-outfits'
+  or current_collection_handle == 'matching-hawaiian-outfits'
+  or current_collection_handle == 'family-tops'
+  or current_collection_handle == 'family-sweaters'
+%}
+  {% assign is_family_matching_nav = true %}
+{% endif %}
+
+{% assign family_vacation_collection = collections[family_vacation_collection_handle] %}
+{% if family_vacation_collection == blank or family_vacation_collection.all_products_count == 0 %}
+  {% assign family_vacation_collection_handle = 'family-sets' %}
+{% endif %}
+
+{% if current_collection_handle == 'daddy-me' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_daddy_me' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.cat_daddy_me' | t %}
+{% elsif current_collection_handle == 'daddy-me-t-shirts' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_daddy_me' | t %}
+  {% assign current_breadcrumb_label = 'Tees' %}
+{% elsif current_collection_handle == 'daddy-me-shirts' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_daddy_me' | t %}
+  {% assign current_breadcrumb_label = 'Button-Downs' %}
+{% elsif current_collection_handle == 'trunks' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_daddy_me' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.label_trunks' | t %}
+{% elsif current_collection_handle == 'couples' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_couples' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.cat_couples' | t %}
+{% elsif current_collection_handle == 'matching-couples-t-shirts' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_couples' | t %}
+  {% assign current_breadcrumb_label = 'T-Shirts' %}
+{% elsif current_collection_handle == 'maternity' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_maternity' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.cat_maternity' | t %}
+{% elsif current_collection_handle == 'family-swimsuits' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'Family Matching Swimsuits' %}
+{% elsif current_collection_handle == 'family-pajamas' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'Family Matching Pajamas' %}
+{% elsif current_collection_handle == 'mother-daughter-matching-dresses' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_mommy_me' | t %}
+  {% assign current_breadcrumb_label = 'Dresses' %}
+{% elsif current_collection_handle == 'family-sets' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'Sets' %}
+{% elsif current_collection_handle == 'matching-family-vacation-outfits' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'Family Vacation Outfits' %}
+{% elsif current_collection_handle == 'matching-hawaiian-outfits' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'Matching Hawaiian Outfits' %}
+{% elsif current_collection_handle == 'family-tops' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.label_tops' | t %}
+{% elsif current_collection_handle == 'family-sweaters' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'sections.breadcrumbs.label_sweaters' | t %}
+{% elsif current_collection_handle == 'new-women-outfits' or current_collection_handle == 'matching-outfits' or current_collection_handle == 'family-matching-outfits' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% assign current_breadcrumb_label = 'Family Matching Outfits' %}
+{% endif %}
+
+{% assign parent_collection_handle = parent_category | handleize %}
+{% assign parent_collection_label = parent_category %}
+
+{% if is_family_matching_nav %}
+  {% assign parent_category = family_matching_hub_label %}
+  {% assign parent_collection_handle = family_matching_hub_handle %}
+  {% assign parent_collection_label = family_matching_hub_label %}
+{% endif %}
+
+{% capture resolved_parent_collection_label %}
+  {% render 'breadcrumb-label', collection_handle: parent_collection_handle, default_label: parent_collection_label %}
+{% endcapture %}
+{% assign parent_collection_label = resolved_parent_collection_label | strip %}
+
+{% capture resolved_current_breadcrumb_label %}
+  {% render 'breadcrumb-label', collection_handle: current_collection_handle, default_label: current_breadcrumb_label %}
+{% endcapture %}
+{% assign current_breadcrumb_label = resolved_current_breadcrumb_label | strip %}
+
+{% comment %} --- Cross-category / store-wide collections that should show top-level nav pills --- {% endcomment %}
+{% assign cross_category_handles = 'new-arrivals,shop,all,sale,bestsellers' %}
+{% assign is_cross_category = false %}
+{% if cross_category_handles contains current_collection_handle %}
+  {% assign is_cross_category = true %}
+{% endif %}
+
+{% comment %} --- Priority navigation configuration --- {% endcomment %}
+{% capture current_handle_token %},{{ current_collection_handle }},{% endcapture %}
+{% assign current_tag_handle_tokens = ',' %}
+{% if current_tags %}
+  {% for current_tag in current_tags %}
+    {% assign current_tag_handle = current_tag | handleize %}
+    {% assign current_tag_handle_tokens = current_tag_handle_tokens | append: current_tag_handle | append: ',' %}
+  {% endfor %}
+{% endif %}
+{% capture mommy_branch_handles %},mommy-and-me,pajamas,dresses,mother-daughter-matching-dresses,swimsuits,tops,sweaters,bottoms,leggings,pants,formal-dresses,maxi-dresses,midi-dresses,mini-dresses,sundresses,jumpsuits,rompers,{% endcapture %}
+{% capture mommy_dresses_alias_handles %},dresses,mother-daughter-matching-dresses,formal-dresses,maxi-dresses,midi-dresses,mini-dresses,sundresses,jumpsuits,rompers,{% endcapture %}
+{% capture mommy_swimsuits_alias_handles %},swimsuits,{% endcapture %}
+{% capture mommy_tops_alias_handles %},tops,bottoms,leggings,pants,{% endcapture %}
+{% capture mommy_sweaters_alias_handles %},sweaters,{% endcapture %}
+{% capture family_branch_handles %},matching-outfits,family-matching-outfits,new-women-outfits,family-pajamas,family-swimsuits,family-sets,matching-family-vacation-outfits,matching-hawaiian-outfits,family-tops,family-sweaters,{% endcapture %}
+{% capture family_hub_alias_handle_tokens %},matching-outfits,family-matching-outfits,new-women-outfits,{% endcapture %}
+{% capture family_vacation_alias_handle_tokens %},family-sets,matching-family-vacation-outfits,{% endcapture %}
+
+{% assign current_main_branch_key = '' %}
+{% assign current_main_branch_label = '' %}
+
+{% if family_branch_handles contains current_handle_token %}
+  {% assign current_main_branch_key = 'family' %}
+  {% assign current_main_branch_label = 'Family Matching' %}
+{% elsif is_daddy_collection_nav %}
+  {% assign current_main_branch_key = 'daddy' %}
+  {% assign current_main_branch_label = 'Daddy & Me' %}
+{% elsif is_couples_collection_nav %}
+  {% assign current_main_branch_key = 'couples' %}
+  {% assign current_main_branch_label = 'Couples' %}
+{% elsif current_collection_handle == 'maternity' %}
+  {% assign current_main_branch_key = 'maternity' %}
+  {% assign current_main_branch_label = 'Maternity' %}
+{% elsif mommy_branch_handles contains current_handle_token %}
+  {% assign current_main_branch_key = 'mommy' %}
+  {% assign current_main_branch_label = 'Mommy & Me' %}
+{% endif %}
+
+{% capture main_pill_items %}
+  mommy-and-me::Mommy & Me|||{{ family_matching_hub_handle }}::Family Matching|||daddy-me::Daddy & Me|||couples::Couples|||maternity::Maternity
+{% endcapture %}
+{% assign main_pill_list = main_pill_items | split: '|||' %}
+{% assign branch_row_label = '' %}
+{% assign branch_pill_list = '' | split: '|||' %}
+
+{% case current_main_branch_key %}
+  {% when 'mommy' %}
+    {% assign branch_row_label = 'Within Mommy & Me' %}
+    {% assign branch_pill_list = 'mommy-and-me::All|||pajamas::Pajamas|||dresses::Dresses|||swimsuits::Swimsuits|||tops::Tops|||sweaters::Sweaters' | split: '|||' %}
+  {% when 'family' %}
+    {% assign branch_row_label = 'Within Family Matching' %}
+    {% capture family_priority_pills %}
+      {{ family_matching_hub_handle }}::All::|||family-swimsuits::Swimsuits::swimsuits|||family-sets::Sets::sets|||family-tops::Tops::tops|||family-sweaters::Sweaters::sweaters|||family-pajamas::Pajamas::pajamas
+    {% endcapture %}
+    {% assign branch_pill_list = family_priority_pills | split: '|||' %}
+  {% when 'daddy' %}
+    {% assign branch_row_label = 'Within Daddy & Me' %}
+    {% capture daddy_priority_pills %}
+      daddy-me::All|||daddy-me-t-shirts::Tees|||daddy-me-shirts::Button-Downs|||trunks::{{ 'sections.breadcrumbs.label_trunks' | t }}
+    {% endcapture %}
+    {% assign branch_pill_list = daddy_priority_pills | split: '|||' %}
+  {% when 'couples' %}
+    {% assign branch_row_label = 'Within Couples' %}
+    {% assign branch_pill_list = 'couples::All|||matching-couples-t-shirts::T-Shirts' | split: '|||' %}
+  {% when 'maternity' %}
+    {% assign branch_row_label = 'Within Maternity' %}
+    {% assign branch_pill_list = 'maternity::All' | split: '|||' %}
+{% endcase %}
+
+{% assign has_priority_nav = false %}
+{% if main_pill_list.size > 0 %}
+  {% assign has_priority_nav = true %}
+{% endif %}
+{% assign has_branch_nav = false %}
+{% if branch_pill_list.size > 0 and current_main_branch_key != blank %}
+  {% assign has_branch_nav = true %}
+{% endif %}
+
+{% comment %} --- Detect if breadcrumb parent should be hidden --- {% endcomment %}
+{% assign hide_parent = false %}
+{% assign parent_handle = parent_collection_handle | default: parent_category | handleize %}
+{% assign parent_collection = collections[parent_handle] %}
+{% if current_collection_handle == parent_handle %}
+  {% assign hide_parent = true %}
+{% endif %}
+{% if is_cross_category %}
+  {% assign hide_parent = true %}
+{% endif %}
+{% if current_collection_handle == 'matching-outfits' or current_collection_handle == 'family-matching-outfits' or current_collection_handle == 'new-women-outfits' %}
+  {% assign hide_parent = true %}
+{% endif %}
+{% comment %} --- Hide parent link if parent collection doesn't exist --- {% endcomment %}
+{% if parent_collection == blank %}
+  {% assign hide_parent = true %}
+{% endif %}
+
+<div class="page-width page-width--collection-breadcrumbs">
+  <nav class="breadcrumb collection-breadcrumb" aria-label="breadcrumbs">
+    <a href="{{ routes.root_url }}" title="{{ 'sections.breadcrumbs.home' | t }}" class="collection-breadcrumb__link mobile-hide">{{ 'sections.breadcrumbs.home' | t }}</a>
+
+    {% unless hide_parent %}
+      <span aria-hidden="true" class="collection-breadcrumb__separator mobile-hide">&rsaquo;</span>
+      <a href="{{ collections_base_url }}{{ parent_handle }}" class="collection-breadcrumb__link mobile-hide">
+        {{ parent_collection_label }}
+      </a>
+    {% endunless %}
+
+    <span aria-hidden="true" class="collection-breadcrumb__separator mobile-hide">&rsaquo;</span>
+    <span class="collection-breadcrumb__current">{{ current_breadcrumb_label }}</span>
+  </nav>
+
+  {% if has_priority_nav %}
+    <div
+      class="collection-category-nav"
+      role="navigation"
+      aria-label="Collection categories"
+      {% if is_daddy_collection_nav %}
+        data-daddy-collection-nav="true"
+        data-current-collection-handle="{{ current_collection_handle | escape }}"
+      {% endif %}
+    >
+      <div class="collection-category-nav__row collection-category-nav__row--primary">
+        <span class="collection-category-nav__row-label">Main collections</span>
+        <div class="collection-category-nav__tabs-wrap">
+          <ul class="collection-category-nav__tabs collection-category-nav__tabs--primary list-unstyled" role="list">
+            {% for item in main_pill_list %}
+              {% assign item_entry = item | strip %}
+              {% assign item_parts = item_entry | split: '::' %}
+              {% assign item_handle = item_parts.first | strip | handleize %}
+              {% assign item_display_label = item_parts.last | strip %}
+              {% assign target_collection = collections[item_handle] %}
+              {% assign pill_url = collections_base_url | append: item_handle %}
+              {% if item_handle == family_matching_hub_handle and family_matching_hub_url != blank %}
+                {% assign pill_url = family_matching_hub_url %}
+              {% elsif target_collection != blank %}
+                {% assign pill_url = target_collection.url %}
+              {% endif %}
+              {% assign item_is_current = false %}
+              {% case item_handle %}
+                {% when 'mommy-and-me' %}
+                  {% if current_main_branch_key == 'mommy' %}
+                    {% assign item_is_current = true %}
+                  {% endif %}
+                {% when 'daddy-me' %}
+                  {% if current_main_branch_key == 'daddy' %}
+                    {% assign item_is_current = true %}
+                  {% endif %}
+                {% when 'couples' %}
+                  {% if current_main_branch_key == 'couples' %}
+                    {% assign item_is_current = true %}
+                  {% endif %}
+                {% when 'maternity' %}
+                  {% if current_main_branch_key == 'maternity' %}
+                    {% assign item_is_current = true %}
+                  {% endif %}
+                {% else %}
+                  {% if item_handle == family_matching_hub_handle and current_main_branch_key == 'family' %}
+                    {% assign item_is_current = true %}
+                  {% endif %}
+              {% endcase %}
+              <li class="collection-category-nav__item">
+                <a
+                  href="{{ pill_url }}"
+                  class="collection-category-nav__tab{% if item_is_current %} is-active{% endif %}"
+                  {% if item_is_current %}
+                    aria-current="page"
+                  {% endif %}
+                >
+                  {{ item_display_label }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      {% if has_branch_nav %}
+        <div class="collection-category-nav__row collection-category-nav__row--secondary">
+          <span class="collection-category-nav__row-label">{{ branch_row_label }}</span>
+          <div class="collection-category-nav__tabs-wrap">
+            <ul class="collection-category-nav__tabs collection-category-nav__tabs--secondary list-unstyled" role="list">
+              {% for item in branch_pill_list %}
+                {% assign item_entry = item | strip %}
+                {% assign item_parts = item_entry | split: '::' %}
+                {% assign item_handle = item_parts.first | strip | handleize %}
+                {% assign item_display_label = item_parts[1] | default: item_parts.last | strip %}
+                {% assign item_tag_handle = item_parts[2] | default: '' | strip | handleize %}
+                {% assign target_collection = collections[item_handle] %}
+                {% assign target_collection_count = 0 %}
+                {% assign force_show_pill = false %}
+                {% assign item_filter_key = '' %}
+                {% assign pill_url = collections_base_url | append: item_handle %}
+
+                {% if item_handle == family_matching_hub_handle %}
+                  {% assign target_collection = family_matching_hub_collection %}
+                  {% if family_matching_hub_url != blank %}
+                    {% assign pill_url = family_matching_hub_url %}
+                  {% elsif target_collection != blank %}
+                    {% assign pill_url = target_collection.url %}
+                  {% endif %}
+                {% elsif current_main_branch_key == 'family' %}
+                  {% assign force_show_pill = true %}
+                  {% if item_tag_handle != blank %}
+                    {% assign pill_url = family_matching_hub_filter_base_url | append: '/' | append: item_tag_handle %}
+                  {% else %}
+                    {% assign pill_url = family_matching_hub_filter_base_url %}
+                  {% endif %}
+                {% elsif item_handle == 'daddy-me-shirts' %}
+                  {% if target_collection == blank %}
+                    {% assign item_filter_key = 'button-downs' %}
+                    {% assign force_show_pill = true %}
+                    {% assign daddy_parent_url = collections_base_url | append: 'daddy-me' %}
+                    {% assign daddy_parent_collection = collections['daddy-me'] %}
+                    {% if daddy_parent_collection != blank %}
+                      {% assign daddy_parent_url = daddy_parent_collection.url %}
+                    {% endif %}
+                    {% assign pill_url = daddy_parent_url | append: '?' | append: daddy_button_downs_filter_param %}
+                  {% elsif target_collection != blank %}
+                    {% assign pill_url = target_collection.url %}
+                  {% endif %}
+                {% elsif target_collection != blank %}
+                  {% assign pill_url = target_collection.url %}
+                {% endif %}
+
+                {% if target_collection != blank %}
+                  {% assign target_collection_count = target_collection.products_count | default: target_collection.all_products_count %}
+                {% endif %}
+
+                {% assign item_is_current = false %}
+                {% case current_main_branch_key %}
+                  {% when 'mommy' %}
+                    {% case item_handle %}
+                      {% when 'mommy-and-me' %}
+                        {% if current_collection_handle == 'mommy-and-me' %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% when 'pajamas' %}
+                        {% if current_handle_token contains ',pajamas,' %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% when 'dresses' %}
+                        {% if mommy_dresses_alias_handles contains current_handle_token %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% when 'swimsuits' %}
+                        {% if mommy_swimsuits_alias_handles contains current_handle_token %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% when 'tops' %}
+                        {% if mommy_tops_alias_handles contains current_handle_token %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% when 'sweaters' %}
+                        {% if mommy_sweaters_alias_handles contains current_handle_token %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                    {% endcase %}
+                  {% when 'family' %}
+                    {% case item_handle %}
+                      {% when 'new-women-outfits', 'matching-outfits', 'family-matching-outfits' %}
+                        {% if family_hub_alias_handle_tokens contains current_handle_token and current_tag_handle_tokens == ',' %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% when 'family-pajamas' %}
+                        {% if current_collection_handle == 'family-pajamas' or current_tag_handle_tokens contains ',pajamas,' %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% when 'mother-daughter-matching-dresses' %}
+                        {% if current_collection_handle == 'mother-daughter-matching-dresses' or current_tag_handle_tokens contains ',dresses,' %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% when 'family-swimsuits' %}
+                        {% if current_collection_handle == 'family-swimsuits' or current_tag_handle_tokens contains ',swimsuits,' %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% when 'family-sets' %}
+                        {% if current_collection_handle == 'family-sets' or current_collection_handle == 'matching-family-vacation-outfits' or current_collection_handle == 'matching-hawaiian-outfits' or current_tag_handle_tokens contains ',sets,' %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% when 'matching-hawaiian-outfits' %}
+                        {% if current_collection_handle == 'matching-hawaiian-outfits' or current_tag_handle_tokens contains ',hawaiian,' %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% when 'family-tops' %}
+                        {% if current_collection_handle == 'family-tops' or current_tag_handle_tokens contains ',tops,' %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% when 'family-sweaters' %}
+                        {% if current_collection_handle == 'family-sweaters' or current_tag_handle_tokens contains ',sweaters,' %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% else %}
+                        {% if item_handle == family_vacation_collection_handle and family_vacation_alias_handle_tokens contains current_handle_token %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                    {% endcase %}
+                  {% when 'daddy' %}
+                    {% if item_handle == current_collection_handle %}
+                      {% assign item_is_current = true %}
+                    {% elsif item_handle == 'daddy-me' and current_collection_handle == 'daddy-me' %}
+                      {% assign item_is_current = true %}
+                    {% endif %}
+                  {% when 'couples' %}
+                    {% if item_handle == current_collection_handle %}
+                      {% assign item_is_current = true %}
+                    {% endif %}
+                  {% when 'maternity' %}
+                    {% if item_handle == 'maternity' and current_collection_handle == 'maternity' %}
+                      {% assign item_is_current = true %}
+                    {% endif %}
+                {% endcase %}
+
+                {% unless item_is_current %}
+                  {% unless force_show_pill %}
+                    {% if target_collection == blank %}
+                      {% continue %}
+                    {% endif %}
+                    {% if target_collection_count == 0 %}
+                      {% continue %}
+                    {% endif %}
+                  {% endunless %}
+                {% endunless %}
+
+                {% if item_is_current %}
+                  {% if current_main_branch_key == 'family' %}
+                    {% if item_tag_handle != blank %}
+                      {% assign pill_url = family_matching_hub_filter_base_url | append: '/' | append: item_tag_handle %}
+                    {% else %}
+                      {% assign pill_url = family_matching_hub_filter_base_url %}
+                    {% endif %}
+                  {% else %}
+                    {% assign pill_url = collection.url %}
+                  {% endif %}
+                  {% if current_main_branch_key != 'family' and item_handle == family_matching_hub_handle and family_matching_hub_url != blank %}
+                    {% assign pill_url = family_matching_hub_url %}
+                  {% endif %}
+                {% endif %}
+
+                <li class="collection-category-nav__item">
+                  <a
+                    href="{{ pill_url }}"
+                    class="collection-category-nav__tab{% if item_is_current %} is-active{% endif %}"
+                    {% if item_is_current %}
+                      aria-current="page"
+                    {% endif %}
+                    {% if item_filter_key != blank %}
+                      data-daddy-filter="{{ item_filter_key }}"
+                    {% endif %}
+                  >
+                    {{ item_display_label }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

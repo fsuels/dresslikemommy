@@ -135,7 +135,8 @@
         "from_price_html": "Fra {{ price }}",
         "regular_price": "Vanlig pris",
         "sale_price": "Salgspris",
-        "unit_price": "Enhetspris"
+        "unit_price": "Enhetspris",
+        "compare_at_price": "Sammenlign på {{ price }}"
       },
       "share": "Del dette produktet",
       "sold_out": "Utsolgt",
@@ -199,7 +200,17 @@
         "guide_and_fit": "Størrelsesguide og passform",
         "your_size_details": "Dine størrelsesdetaljer",
         "compare_hint": "Åpne hele diagrammet nedenfor for å sammenligne nærliggende størrelser.",
-        "chart_units": "Størrelsesdiagramenheter"
+        "chart_units": "Størrelsesdiagramenheter",
+        "columns": {
+          "size": "Størrelse",
+          "us_size": "US størrelse",
+          "bust_cm_in": "Byste (cm/in)",
+          "waist_cm_in": "Midje (cm/in)",
+          "hips_cm_in": "Hofter (cm/in)",
+          "height_cm_in": "Høyde (cm/in)",
+          "weight_kg": "Vekt (kg)",
+          "age": "Alder"
+        }
       },
       "reviews": {
         "heading": "Kundeanmeldelser",
@@ -212,6 +223,16 @@
         "empty": "Vær den første til å skrive en anmeldelse",
         "write_review": "Skriv en anmeldelse",
         "write_review_title": "Skriv en anmeldelse"
+      },
+      "free_shipping_all_orders": "Gratis frakt på alle bestillinger",
+      "selected_size_label": "Størrelse: {{ size }}",
+      "description_sections": {
+        "details_eyebrow": "Detaljer",
+        "highlights_heading": "Hvorfor du vil elske det",
+        "size_chart_heading": "Størrelseskart",
+        "product_details_heading": "Produktdetaljer",
+        "size_chart_meta": "Mål fra leverandørkildetabellen",
+        "product_details_meta": "Strukturert produktinformasjon"
       }
     },
     "modal": {
@@ -471,7 +492,274 @@
       "compare_collection_copy": "Bruk denne samlingen til å sammenligne noen få nærkamper før du går tilbake til shopping."
     },
     "breadcrumbs": {
-      "label_button_downs": "Knapp-ned"
+      "label_button_downs": "Knapp-ned",
+      "label_tees": "T-skjorter",
+      "label_dresses": "Kjoler",
+      "label_hawaiian_outfits": "Hawaiiantrekk",
+      "label_all": "Alle",
+      "label_new_arrivals": "Nye ankomster",
+      "label_sale": "Salg",
+      "label_best_sellers": "Bestselgere",
+      "label_sweaters_short": "Gensere",
+      "home": "Hjem",
+      "cat_mommy_me": "Mamma og meg",
+      "cat_daddy_me": "Pappa og meg",
+      "cat_couples": "Par",
+      "cat_maternity": "Barsel",
+      "cat_family_matching": "Familiematching",
+      "label_swimsuits": "Badedrakter",
+      "label_sets": "Sett",
+      "label_tops": "Topper",
+      "label_sweaters": "Gensere og jakker",
+      "label_pajamas": "Pyjamas",
+      "label_tshirts": "T-skjorter",
+      "label_trunks": "Trunks",
+      "label_daddy_tshirts": "Daddy & Me T-skjorter",
+      "prefix_mother_daughter": "Mor Datter ",
+      "prefix_mommy_me": "Mamma og meg ",
+      "prefix_matching": "Matchende ",
+      "prefix_daddy_me": "Pappa og meg ",
+      "prefix_family_matching": "Familiematching "
+    },
+    "collection_navigation": {
+      "collection_categories": "Samlingskategorier",
+      "main_collections": "Hovedsamlinger",
+      "within_mommy_me": "Innen mamma og meg",
+      "within_family_matching": "Innen Family Matching",
+      "within_daddy_me": "Innenfor pappa og meg",
+      "within_couples": "Innenfor par",
+      "within_maternity": "Innen barsel"
+    },
+    "collection_seo": {
+      "note_eyebrow": "Samlingsnotat",
+      "closer_look_at": "En nærmere titt på {{ title }}",
+      "display_titles": {
+        "all": "Alle matchende antrekk",
+        "swimsuits": "Familiematchende badedrakter",
+        "mommy_and_me": "Mamma og meg antrekk",
+        "dresses": "Mamma og meg kjoler",
+        "family_swimsuits": "Familie badetøy",
+        "family_sets": "Familieferieantrekk",
+        "new_women_outfits": "Familiematchende antrekk",
+        "family_matching": "Familiematchende antrekk",
+        "daddy_me": "Pappa og meg antrekk",
+        "daddy_me_tshirts": "Pappa og meg T-skjorter",
+        "daddy_me_shirts": "Far og sønn skjorter",
+        "couples": "Matchende antrekk for par",
+        "couples_tshirts": "Matchende t-skjorter for par",
+        "spring_matching": "Mamma og meg påskekjoler og vårens matchende antrekk",
+        "tops": "Matchende topper og t-skjorter",
+        "pajamas": "Matchende familiepyjamas",
+        "sweaters": "Matchende gensere og jakker",
+        "maxi_dresses": "Mamma og meg Maxikjoler",
+        "jumpsuits": "Matchende jumpsuits",
+        "midi_dresses": "Mamma og meg midikjoler",
+        "mini_dresses": "Mamma og meg minikjoler",
+        "rompers": "Matchende bukser",
+        "sundresses": "Mamma og meg solkjoler",
+        "bottoms": "Matchende underdeler",
+        "skirts": "Matchende skjørt",
+        "leggings": "Matchende leggings",
+        "pants": "Matchende bukser",
+        "new_arrivals": "Nye matchende antrekk ankommer",
+        "new_matching_outfits": "Nye mamma og meg antrekk",
+        "maternity": "Barsel- og pleiestiler",
+        "best_sellers": "Bestselgere",
+        "popular_mommy_me": "Populær mamma og meg",
+        "popular_family_matching": "Populære familiematchende antrekk",
+        "hawaiian_outfits": "Familie Hawaiiantrekk",
+        "trunks": "Matchende badebukse",
+        "fall_winter": "Høst og vinter matchende antrekk",
+        "formal_dresses": "Matchende formelle kjoler",
+        "family_sweaters": "Familiegensere og jakker",
+        "christmas_sweaters": "Matchende gensere til jul",
+        "christmas_tops": "Julematchende topper",
+        "christmas_pajamas": "Julematchende pyjamas",
+        "valentines": "Matchende antrekk for valentinsdag"
+      },
+      "meta_titles": {
+        "swimsuits": "Matchende familie badedrakter | Mor og datter",
+        "mommy_and_me": "Mamma og meg antrekk | Kjoler, badedrakter og matchende sett",
+        "family_swimsuits": "Matchende familie badedrakter | Familie badetøy",
+        "family_sets": "Matchende familieferieantrekk | Strand- og reisesett",
+        "family_matching": "Familiematchende antrekk | Mamma og meg",
+        "new_women_outfits": "Familiematchende antrekk | Kjoler, badetøy og familiesett",
+        "dresses": "Mamma og meg kjoler | Mor Datter",
+        "maxi_dresses": "Matchende Maxikjoler | Mor og datter",
+        "best_sellers": "Bestselgende mamma og meg-antrekk | Kjoler, badedrakter og mer",
+        "daddy_me": "Daddy and Me-skjorter, T-skjorter og matchende antrekk",
+        "daddy_me_tshirts": "Daddy and Me skjorter | Matchende T-skjorter for pappaer og barn",
+        "daddy_me_shirts": "Far og sønn matchende skjorter | Button-Up, kjole og Hawaiian",
+        "couples": "Matchende antrekk for par | Koordinerte søk etter ham og henne",
+        "couples_tshirts": "Matchende skjorter for par | Par T-skjorter og T-skjorter",
+        "spring_matching": "Mamma og meg påskekjoler | Vårens matchende antrekk"
+      },
+      "meta_descriptions": {
+        "all": "Handle alle matchende antrekk på ett sted, inkludert mamma og meg, pappa og meg, par og familiesett. Komfortable stiler med rask levering.",
+        "mommy_and_me": "Kjøp mamma og meg antrekk, kjoler, badedrakter og matchende sett for bursdager, familiebilder, ferier og hverdagslige vennskapsøyeblikk.",
+        "spring_matching": "Handle påskekjoler til mamma og meg og matchende vårantrekk for kirken, brunsj, eggjakt, familiebilder og andre sesongmessige feiringer.",
+        "dresses": "Kjøp mamma og meg kjoler og mor datter matchende kjoler for bilder, fester, ferier og polert hverdagstøy.",
+        "maxi_dresses": "Handle maxikjoler til mamma og meg og matchende maxikjoler for bilder, reiser, feiringer og lett polert hverdagstøy.",
+        "swimsuits": "Handle matchende familiebadedrakter og matchende badedrakter til mor og datter for strandturer, bassengdager, cruise og koordinerte sommerbilder.",
+        "family_swimsuits": "Handle matchende familiebadedrakter og familiebadetøy for strandferier, bassengdager, cruise og koordinerte sommerbilder.",
+        "family_sets": "Handle matchende familieferieantrekk og strandsett for cruise, feriesteder, familiebilder og koordinerte sommerreiser.",
+        "new_women_outfits": "Handle familiematchende antrekk for kjoler, badetøy, mamma- og meg-looks og reiseklare sett på ett sted, og avgrens deretter til kolleksjonen som passer din reise, sesong eller anledning.",
+        "family_matching": "Handle matchende familieantrekk og mamma og meg-antrekk for bilder, ferier, ferier og lett koordinerte utseende for hver sesong.",
+        "daddy_me": "Kjøp pappa og meg skjorter, t-skjorter, t-skjorter og matchende antrekk for familiebilder, farsdag, ferier og enkel hverdagskoordinering.",
+        "daddy_me_tshirts": "Handle pappa- og meg-skjorter og matchende t-skjorter til farsdag, ferier, bursdager, bilder og enkle hverdagsantrekk for pappaer og barn.",
+        "daddy_me_shirts": "Handle matchende skjorter til far og sønn, inkludert knapper, skjorter og Hawaii-stiler for ferier, bilder, fester og polerte familieantrekk.",
+        "couples": "Kjøp par som matcher antrekk med koordinerte sett, topper, pyjamas og ferieklare looks for datekvelder, gaver, turer og hverdagstøy.",
+        "couples_tshirts": "Handle matchende skjorter og par-t-skjorter for datekvelder, turer, konserter, ferier, gaver og enkle hverdagskoordinerte utseende."
+      },
+      "swimsuits": {
+        "eyebrow": "Guide til badetøy",
+        "title": "Koordinert badetøy for mødre, døtre og familieplaner",
+        "copy_1": "Start her når du først vil ha det bredeste svømmeutvalget. Denne siden samler mor-og-datter-stiler, matchende familiebadedrakter og ferieklare alternativer uten å sende deg gjennom flere svømmesamlinger.",
+        "copy_2": "Når du vet hvem som trenger å matche, kan du gå inn i de dedikerte familiebadetøy- eller trunksamlingene for en strammere redigering. For dimensjonering er den raskeste veien alltid produktsiden og størrelsestabellen på stilen du liker best.",
+        "related_aria": "Relaterte svømmesamlinger",
+        "related_label": "Utforsk relaterte svømmesamlinger",
+        "family_swimwear_title": "Familie badetøy",
+        "family_swimwear_caption": "Gå rett til hele familiens svømmeredigering når alle trenger å koordinere.",
+        "trunks_title": "Matchende kofferter",
+        "trunks_caption": "Legg til far-og-gutt-badetøy når du vil ha et komplett sett med stranddager.",
+        "mommy_me_caption": "Hold det koordinerte utseendet utover badetøy med matchende antrekk for andre anledninger.",
+        "faq_eyebrow": "Vanlige spørsmål om badedrakt",
+        "faq_title": "Raske svar før du bestiller",
+        "faq_question_1": "Hvilke størrelser kommer de matchende badedraktene i?",
+        "faq_answer_1": "Størrelse varierer etter stil, så se gjennom de tilgjengelige variantene og bruk størrelsestabellen på hver produktside før du betaler. Denne kolleksjonen dekker koordinerte svømmealternativer for mødre og døtre, og noen stiler kobler deg også til bredere familiesvømmeutseende.",
+        "faq_question_2": "Tilbyr du familiesett til pappa også?",
+        "faq_answer_2": "Ja. Hvis du vil ha hele familieutseendet, kan du handle den matchende familiebadedraktkolleksjonen og trunkkolleksjonen for å legge til koordinerte deler for pappaer og gutter sammen med de viktigste svømmestilene for mamma og meg.",
+        "faq_question_3": "Hva er forskjellen mellom mamma og meg badedrakter og matchende familiebadetøy?",
+        "faq_answer_3": "Mamma og meg badedrakter fokuserer vanligvis på mor-og-datter-sammenkoblinger. Matchende familiebadetøy utvider ideen slik at du kan bygge et koordinert utseende på tvers av flere familiemedlemmer, inkludert pappa og gutter når disse stilene er tilgjengelige.",
+        "faq_question_4": "Hvor skal jeg begynne hvis jeg også vil ha guttestykker?",
+        "faq_answer_4": "Begynn på denne badedraktsiden hvis du vil ha det bredeste svømmeutvalget først, og bruk deretter de relaterte familiebadedrakter- og trunksamlingene for å avgrense til familieutseende eller far-og-gutt-tillegg.",
+        "faq_answer_2_rich_html": "Ja. Hvis du vil ha hele familieutseendet, kan du handle <a href=\"{{ family_swim_url }}\">Matchende familiebadedrakter</a> samling og <a href=\"{{ trunks_url }}\">Trunks</a> samling for å legge til koordinerte stykker for pappaer og gutter sammen med de viktigste svømmestilene for mamma og meg.",
+        "faq_answer_4_rich_html": "Start på denne badedraktsiden hvis du vil ha det bredeste svømmeutvalget først, bruk deretter <a href=\"{{ family_swim_url }}\">Matchende familiebadedrakter</a> og <a href=\"{{ trunks_url }}\">Trunks</a> samlinger for å begrense til familieutseende eller pappa-og-gutt-tillegg."
+      },
+      "body": {
+        "mommy_and_me_html": "<p>Handle vår {{ title }} for bursdager, familiebilder, ferier og enkle hverdagslige tvillinger, med kjoler, badedrakter og matchende sett på ett sted.</p><p>Begynn med kjoler for portretter og spesielle anledninger, flytt inn i badedrakter for strand- og bassengdager, og bruk den bredere antrekksmiksen for å bygge en matchende garderobe som fungerer på tvers av årstider i stedet for bare én begivenhet.</p>",
+        "spring_matching_html": "<p>Bla gjennom {{ title }} med pastellpaletter, vårblomster og anledningsklare looker bygget for kirke, brunsj, eggjakt, familiebilder og andre sesongfester.</p><p>Disse stilene er designet for shoppere som allerede vet øyeblikket de kler seg for og vil ha matchende antrekk som føles polerte, komfortable og enkle å ha på seg igjen gjennom resten av våren.</p>",
+        "dresses_html": "<p>Bla gjennom {{ title }} for familiebilder, feiringer og polerte hverdagsøyeblikk. Denne redigeringen holder de sterkeste kjolestilene samlet på ett sted, med koordinerte utseende som føles pene, bærbare og enkle å handle.</p>",
+        "maxi_dresses_html": "<p>Bla gjennom {{ title }} for flytende matchende stiler som føles grasiøse, enkle å ha på seg og klare for bilder, reiser, feiringer og polerte hverdagsøyeblikk.</p>",
+        "swimsuits_html": "<p>Bla gjennom {{ title }} for strandturer, bassengdager, cruise og solfylte familiebilder. Denne kolleksjonen hjelper shoppere med å sammenligne matchende familiebadedrakter, matchende badedrakter til mor og datter, og familiematchende badedrakter uten å hoppe mellom separate svømmekategorier.</p><p>Bruk denne siden som det brede svømmenavet først, og forgren deg deretter til den dedikerte familiebadesamlingen eller matchende bukser når hele familien trenger å koordinere seg rundt én utskrift eller fargehistorie.</p>",
+        "family_swimsuits_html": "<p>Oppdag {{ title }} for strandferier, bassengdager, cruise og sommerbilder. Dette er den tydeligste landingssiden for matchende familiebadedrakter når mødre, pappaer, jenter og gutter alle trenger å koordinere seg rundt én utskrift, palett eller ferieklar fargehistorie.</p><p>Bruk denne siden når hele familien vil ha matchende badetøy først, og avrund deretter utseendet med trunks, cover-ups og relaterte mamma-og-meg-badealternativer for en fyldigere turgarderobe.</p>",
+        "family_sets_html": "<p>Utforsk {{ title }} med koordinert utseende designet for familieferier, strandturer, cruise, reisebilder og utflukter i varmt vær. Disse settene hjelper deg med å lage en klar familiepalett uten å tvinge hver person inn i nøyaktig det samme stykket.</p><p>Bruk denne siden for å matche familieferieantrekk og matchende familiestrandantrekk, og forgren deg deretter til bredere familiematchende samlinger når du trenger flere sesongbaserte eller ikke-reisespesifikke alternativer.</p>",
+        "new_women_outfits_html": "<p>Utforsk {{ title }} som det brede Family Matching Outfits-senteret når du vil sammenligne koordinerte antrekk før du begrenser deg til en bestemt kategori. Denne siden er ment å hjelpe shoppere med å gå fra en generell surfing til kjoler, badetøy, feriesett, mamma og meg-looks eller andre matchende stiler uten å starte på nytt.</p><p>Bruk lenkene nedenfor for å hoppe inn i kolleksjonene som passer best til anledningen, enten du handler familiebilder, en tur, en sesongbasert oppfriskning eller en mer spesifikk matchende antrekksstil.</p>",
+        "family_matching_html": "<p>Bla gjennom {{ title }} for familiebilder, reiser, bursdager, ferier og enkel hverdagslig vennskap. Det er det beste stedet å begynne når du vil sammenligne koordinerte utseende på tvers av familien før du begrenser deg til kjoler, badetøy eller feriesett.</p>",
+        "daddy_me_html": "<p>Utforsk {{ title }} for familiebilder, ferier, farsdagsgaver og daglig koordinering. Denne destinasjonssiden er bygget rundt den sterkeste søkehensikten for pappa og barn, med matchende t-skjorter, uformelle topper og alternativer for bedre skjorter på ett sted.</p><p>Bruk denne kolleksjonen når du vil ha bred dekning på tvers av pappa- og meg-skjorter, t-skjorter og antrekk, og avgrens deg deretter til knappe-, hawaii- eller t-skjorte-stiler basert på anledningen.</p>",
+        "daddy_me_tshirts_html": "<p>Handle {{ title }} når du vil ha uformelle, gavevennlige matchende topper for pappaer og barn. Denne siden er bygget rundt pappa- og meg-skjorter, matchende t-skjorter og enkle hverdagsutseende som fungerer for farsdagen, bursdager, familieturer og raske fotoøyeblikk.</p><p>Begynn her for slagord-t-skjorter og enkle grafiske stiler, og flytt deretter til skjorter eller Hawaii-sett hvis anledningen krever et skarpere utseende eller et mer ferieklart antrekk.</p>",
+        "daddy_me_shirts_html": "<p>Bla gjennom {{ title }} for shoppere som spesifikt ser etter button-up, dress-skjorte og far-sønn-antrekk i Hawaii-stil. Denne kolleksjonen fokuserer på krageutseende som fungerer for portretter, middager, strandturer, bryllup og andre polerte anledninger.</p><p>Sammenlignet med uformelle t-skjorter, er disse stilene mer strukturerte og fotoklare, noe som gjør dem til en sterkere passform når du vil ha matchende antrekk som fortsatt ser opphøyde ut.</p>",
+        "couples_html": "<p>Utforsk {{ title }} for datekvelder, ferier, feriegaver, forlovelsesbilder og hverdagskoordinering. Denne siden er designet for shoppere som ønsker mer enn én matchende topp og trenger et bredere utgangspunkt for koordinert utseende.</p><p>Start med enkle t-skjorter eller loungesett, og bygg deretter et mer komplett antrekk rundt turen, anledningen eller fotoøyeblikket du handler etter.</p>",
+        "couples_tshirts_html": "<p>Bla gjennom {{ title }} for kunder som søker etter matchende skjorter, par-t-skjorter og koordinerte topper til hverdags. Disse stilene fungerer best når du vil ha et uformelt, gavevennlig utseende for turer, ferier, konserter, datekvelder og bilder.</p><p>Bruk denne siden for enkel hverdagsmatching, og gå deretter opp til den bredere parkolleksjonen hvis du vil ha et fyldigere antrekk bygget rundt mer enn t-skjorter alene.</p>"
+      },
+      "rich_parts": {
+        "new_women_outfits": {
+          "part_1_html": "<h2>Familiematchende antrekk for familiebilder, turer, ferier og hverdagskoordinering</h2>",
+          "part_2_html": "<p>Dette er det brede Family Matching Outfits-senteret for shoppere som ønsker å sammenligne koordinert utseende før de begrenser seg til én spesifikk stil. Den er bygget for familiebilder, ferier, ferier, sesongoppdateringer og enkel hverdagskoordinering når kunden kjenner det generelle utseendet, men ikke den eksakte kategorien ennå.</p>",
+          "part_3_html": "<h3>Hva du skal handle først</h3>",
+          "part_4_html": "<ul><li>Start her når du vil ha den bredeste familiematchingssiden før du velger en smalere samling.</li><li>Bruk den til å gå fra en generell surfing til kjoler, badetøy, feriesett eller mamma og meg-stiler.</li><li>Gå til en mer spesifikk samling når anledningen allerede er klar og kunden ønsker raskere filtrering.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ dresses_url }}\">Handle mor datter brudekjoler</a> når kjolen er midtpunktet i den matchende looken.</p>",
+          "part_6_html": "<p><a href=\"{{ family_swimsuits_url }}\">Se gjennom matchende badedrakter til stranden</a> når planen er sentrert om strandturer, bassengdager og sommerreiser.</p>",
+          "part_7_html": "<p><a href=\"{{ family_sets_url }}\">Handle matchende familieferieantrekk</a> for feriestedopphold, cruise og koordinerte reisedager.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Kjøp skjorter til pappa og meg</a> når familien trenger en polert skjorte-ledet match i stedet for kjoler eller badetøy.</p>",
+          "part_9_html": "<p><a href=\"{{ mommy_and_me_url }}\">Se den bredere Mommy and Me-samlingen</a> når koordinasjonen for det meste er mor-og-datter-fokusert.</p>"
+        },
+        "family_matching": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Samlingsnotat</p><h2>Et polert utgangspunkt for koordinert familieutseende</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Denne kolleksjonen samler de sterkeste familiestilene på ett sted, så det er enkelt å starte bredt og foredle når anledningen er klar.</p><p>Det fungerer spesielt bra for bilder, ferier, reiser, bursdager og hverdagsmatching som føles gjennomtenkt i stedet for overdrevet.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related family collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Handle mor datter brudekjoler</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Se gjennom matchende badedrakter til stranden</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Handle matchende familieferieantrekk</a><a class=\"collection-seo-rich__link\" href=\"{{ daddy_me_shirts_url }}\">Kjøp skjorter til pappa og meg</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Utforsk den bredere Mommy and Me-samlingen</a></div>"
+        },
+        "dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Samlingsnotat</p><h2>Kjoleledede stiler for bilder, feiringer og hverdagslige vennskap</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Denne redigeringen er bygget for øyeblikkene når kjolen setter tonen. Fokuset er på silhuetter som føles polert på kameraet, behagelige å ha på seg og enkle å nå igjen etter arrangementet.</p><p>Begynn her når du allerede vet at du vil ha en kjoledrevet look, og forgren deg deretter til bredere familiesamlinger hvis du trenger å koordinere utover mor og datter.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Bla gjennom Family Matching-huben</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Se alle mamma og meg-antrekkene</a></div>"
+        },
+        "maxi_dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Samlingsnotat</p><h2>Flytende kjoler i full lengde med en enkel, polert følelse</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Maxikjoler er et sterkt utgangspunkt når du vil ha grasiøs bevegelse, litt mer dekning og en silhuett som føles vakker på bilder uten å være for formell.</p><p>Denne redigeringen forblir fokusert på de sterkeste stilene med lang lengde for mødre og døtre, med alternativer som fungerer for ferier, kirker, feiringer og kjoler i varmt vær som fortsatt føles avslappet.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related maxi dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Bla gjennom alle kjoler</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Se alle mamma og meg</a></div>"
+        },
+        "mommy_and_me": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Samlingsnotat</p><h2>Den brede mamma-og-meg-redigeringen for bilder, reiser og hverdagslig vennskap</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Dette er det enkleste stedet å starte når du vil ha koordinerte stiler for mødre og døtre uten å bestemme deg for én produkttype først.</p><p>Begynn her for kjoler, badetøy og matchende sett, og avgrens deg deretter til kategorien som passer best til anledningen når du vet hvilket utseende du vil ha.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related mommy and me collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Handle mor datter brudekjoler</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Se gjennom matchende badedrakter til stranden</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Se matchende familieferieantrekk</a></div>"
+        },
+        "family_swimsuits": {
+          "part_1_html": "<h2>Matchende familiebadedrakter for strandferier, bassengdager, cruise og koordinerte sommerbilder</h2>",
+          "part_2_html": "<p>Denne siden er bygget rundt de sterkeste familiebadebegrepene: matchende familiebadedrakter, familiematchende badedrakter og koordinert familiebadetøy for ferier og bilder i varmt vær. Det fungerer best når hele familien trenger å matche rundt én utskrift eller fargehistorie uten å sette sammen separate svømmekategorier én etter én.</p>",
+          "part_3_html": "<h3>Hvorfor denne siden er forskjellig fra en generell badetøykolleksjon</h3>",
+          "part_4_html": "<ul><li>Det er sentrert på koordinering av hele familien i stedet for bare mor-og-datter-svømmeutseende.</li><li>Den snakker direkte til hensikten med ferie, cruise og strandfoto, der matchende familiebadedrakter er hovedmålet.</li><li>Det gir shoppere en renere vei til familiebadeantrekk før de forgrener seg til trunks eller bredere matchende kolleksjoner.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ trunks_url }}\">Legg til matchende kofferter</a> når du trenger svømmeplagg for far og gutt for å fullføre settet med stranddager.</p>",
+          "part_6_html": "<p><a href=\"{{ swimsuits_url }}\">Se mor og datter matchende badedrakter</a> hvis handlehensikten er smalere enn koordinering av hele familien.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">Bla gjennom antrekkene til mamma og meg</a> hvis hovedbehovet er mor-og-datter-koordinering utover badetøy.</p>",
+          "part_8_html": "<p><a href=\"{{ family_sets_url }}\">Handle familieferieantrekk</a> når det koordinerte utseendet trenger dekning, reise eller støtte til strandmiddag utenfor bassenget.</p>"
+        },
+        "family_sets": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Samlingsnotat</p><h2>Reiseklare antrekk for stranddager, cruise og koordinerte ferieplaner</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Denne redigeringen holder det sterkeste familieutseendet i varmt vær sammen, så det er enkelt å handle for tur i stedet for å starte fra en bredere helårskolleksjon.</p><p>Bruk den når ferien i seg selv er grunnen til å handle, og forgren deg deretter til badetøy eller bredere familiekategorier hvis du trenger å bygge ut hele planen.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related vacation collections\"><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Legg til matchende strandbadedrakter</a><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Bla gjennom Family Matching-huben</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Utforsk mamma og meg-antrekk</a></div>"
+        },
+        "daddy_me": {
+          "part_1_html": "<h2>Pappa og meg-antrekk bygget rundt skjorter, t-skjorter og enkle fotoklare looks</h2>",
+          "part_2_html": "<p>Søkebehovet rundt denne kategorien er konsentrert om pappa-og-meg-skjorter, pappa-og-meg-t-skjorter, pappa-og-meg-t-skjorter og koordinerte far-barn-antrekk. Denne siden er laget for å dekke hele intensjonen, fra uformelle grafiske topper til skarpere krageutseende som føles polert for portretter, ferier og spesielle begivenheter.</p>",
+          "part_3_html": "<h3>Hva kjøpere vanligvis vil ha fra denne siden</h3>",
+          "part_4_html": "<ul><li>Uformelle t-skjorter med pappa og meg for bursdager, gaver, tematurer og hverdagsbruk.</li><li>Skjortealternativer med krage eller knapper som fungerer for familiebilder, middager og bedre utflukter.</li><li>Matchende antrekk i varmt vær som føles ferieklare uten å se kostymeaktige ut.</li></ul>",
+          "part_5_html": "<h3>Hvordan handle samlingen raskere</h3>",
+          "part_6_html": "<p>Start med tees hvis målet er enkel hverdagskoordinasjon. Hvis anledningen trenger en renere, mer polert finish, gå over til dressskjorter, hawaiiskjorter eller andre kragestiler med mer struktur.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Kjøp skjorter til pappa og meg</a> for casual matchende topper og gaveidelige hverdagsstiler.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Handle skjorter til pappa og meg for mer dressede anledninger</a> for button-up, dressskjorte og hawaiisk utseende bygget rundt skjortesøk med høyere intensjon.</p>",
+          "part_9_html": "<p><a href=\"{{ trunks_url }}\">Bla gjennom matchende kofferter</a> når antrekket trenger et strand- eller bassengvennlig tillegg.</p>"
+        },
+        "daddy_me_tshirts": {
+          "part_1_html": "<h2>Pappa og meg-skjorter og matchende t-skjorter for uformell, gaveidelig koordinering</h2>",
+          "part_2_html": "<p>Denne kolleksjonen er rettet mot kunder som leter etter pappa-og-meg-skjorter, pappa-og-meg-t-skjorter, pappa-og-meg-t-skjorter og enkle far-barn-topper som fungerer utover ett bildeøyeblikk. Disse stilene passer raskest til hverdagsbruk, bursdager, farsdagsgaver, fornøyelsesparker og avslappede reisedager.</p>",
+          "part_3_html": "<h3>Hvorfor denne siden er viktig</h3>",
+          "part_4_html": "<ul><li>Det begrenser pappa-og-barn-kategorien til uformelle topper i stedet for å blande inn alle antrekkstyper.</li><li>Det samsvarer med høyintensjonssøk rundt pappa-og-meg-skjorter, pappa-og-meg-t-skjorter og matchende t-skjorter.</li><li>Det gir kunder en enklere vei når de vil ha et raskt, gavevennlig matchende utseende.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ daddy_me_url }}\">Gå tilbake til hele Daddy and Me-samlingen</a> hvis du vil ha tees, trunks og dressier skjortealternativer på ett sted.</p>",
+          "part_6_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Trenger du et skarpere utseende?</a> Bla gjennom matchende skjorter for far og sønn for å finne knappe-, kjole- og Hawaii-stiler.</p>"
+        },
+        "daddy_me_shirts": {
+          "part_1_html": "<h2>Far og sønn matchende skjorter for knapp-up, dress-skjorte og Hawaii-søk</h2>",
+          "part_2_html": "<p>Denne landingssiden er bygget rundt skjorteforespørslene med høyest hensikt i pappa-klyngen: pappa og sønn som matcher knappeskjorter, pappa og sønn matchende kjoleskjorter, og farsønns matchende hawaiianske skjorter. Den er designet for shoppere som ønsker mer struktur, krager og styling som er klar for anledninger enn en uformell t-skjorte-kolleksjon kan tilby.</p>",
+          "part_3_html": "<h3>Beste anledninger for disse stilene</h3>",
+          "part_4_html": "<ul><li>Familiebilder, feriesammenkomster, bryllup, kirker og middager der skjorter med krage ser mer polerte ut.</li><li>Strandturer, cruise og feriereiser der hawaiiskjorter eller kortermede knapper passer innstillingen.</li><li>Bursdags- og farsdagsgaver når det matchende utseendet skal føles opphøyet, ikke bare nyhet.</li></ul>",
+          "part_5_html": "<h3>Hvordan dette skiller seg fra pappa-og-meg-t-skjorter</h3>",
+          "part_6_html": "<p>Forvent flere vevde stoffer, renere krager og mer elegante silhuetter. Hvis målet er myk tilfeldig grafikk eller hverdagstopper, er tee-kolleksjonen det bedre utgangspunktet.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_url }}\">Bla gjennom hele Daddy and Me-samlingen</a> for bredere antrekksdekning på tvers av t-skjorter, trunks og koordinerte sett.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Kjøp skjorter til pappa og meg</a> hvis du vil ha et mykere, mer uformelt matchende alternativ.</p>"
+        },
+        "couples": {
+          "part_1_html": "<h2>Par som matcher antrekk for turer, datekvelder, ferier og gaver</h2>",
+          "part_2_html": "<p>Den brede par søkeordfamilien går utover tees alene. Denne siden er utformet som hovedlandingssiden for par som matcher antrekk og koordinerte utseende som kan inkludere topper, loungewear, ferieplagg og uformelle sett for ham og henne.</p>",
+          "part_3_html": "<h3>Populære shoppinghensikter i denne kategorien</h3>",
+          "part_4_html": "<ul><li>Par som matcher antrekk for reiser, helgeplaner og sosiale bilder.</li><li>Giftable hans-og-hennes looks for jubileer, bryllupsreiser og ferieøyeblikk.</li><li>Enkelt koordinerte antrekk som holder farge og trykk på linje uten å tvinge frem en identisk topp-til-tå-look.</li></ul>",
+          "part_5_html": "<h3>Hvor du skal begynne</h3>",
+          "part_6_html": "<p>Hvis målet er et uformelt hverdagsantrekk, er matchende T-skjorter den raskeste gevinsten. Hvis målet er et fyldigere koordinert utseende, start med den bredere parsamlingen og arbeid utover basert på turen, sesongen eller anledningen.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">Handle parskjorter og matchende T-skjorter</a> når du vil ha en enkel tilfeldig inngang til kategorien.</p>"
+        },
+        "couples_tshirts": {
+          "part_1_html": "<h2>Par matchende skjorter og T-skjorter for uformell, gaveidelig koordinering</h2>",
+          "part_2_html": "<p>Denne kolleksjonen retter seg mot kunder som leter etter matchende skjorter, parskjorter, par-t-skjorter og andre matchende topper som er enkle å ha på datekvelder, turer, ferier, konserter og hverdagsantrekk. Det er det beste inngangspunktet når shopperens hensikt tydeligvis handler om tees først.</p>",
+          "part_3_html": "<h3>Hvorfor kjøpere velger matchende t-skjorter</h3>",
+          "part_4_html": "<ul><li>De er enkle å gi i gave til jubileer, bryllupsreiser, ferier og temautflukter.</li><li>De holder et koordinert utseende enkelt uten å kreve et komplett antrekkskjøp.</li><li>De fungerer bra for uformelle bilder, reisedager og hverdagsbruk med lav friksjon.</li></ul>",
+          "part_5_html": "<h3>Leter du etter mer enn T-skjorter?</h3>",
+          "part_6_html": "<p>Bruk den bredere siden med matchende antrekk for par hvis du vil ha et koordinert utseende som utvider seg utover topper til en mer komplett antrekkshistorie.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">Bla gjennom alle par som matcher antrekk</a> for en bredere blanding av koordinerte utseender og anledninger.</p>"
+        },
+        "spring_matching": {
+          "part_1_html": "<h2>Mamma og meg påskekjoler og vårens matchende antrekk for spesielle anledninger</h2>",
+          "part_2_html": "<p>Denne siden er laget for påske- og vårintensjonssøk der kunden allerede kjenner anledningen. Fokuset er på pastellpaletter, blomster, lysere stoffer og fotoklare silhuetter som fungerer til kirke, brunsj, eggjakt, familieportretter og andre sesongfester.</p>",
+          "part_3_html": "<h3>Beste vårøyeblikk for matchende antrekk</h3>",
+          "part_4_html": "<ul><li>Påskedag, kirke, brunsj og familiesammenkomster.</li><li>Vårens familiebilder, hagefester og morsdagssesongen.</li><li>Reiser, dusjer og arrangementer i varmt vær som fortsatt trenger et polert utseende.</li></ul>",
+          "part_5_html": "<h3>Slik bruker du denne sesongsiden</h3>",
+          "part_6_html": "<p>Begynn med påskekjoler hvis du trenger et spesifikt eventantrekk, og bruk deretter samme kolleksjon for å finne vårens matchende antrekk som kan fungere igjen etter ferien.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">Bla gjennom hele Mommy and Me-samlingen</a> hvis du ønsker flere helårs matchende stiler utenfor påske- og vårvinduet.</p>",
+          "part_8_html": "<p><a href=\"{{ dresses_url }}\">Handle matchende kjoler</a> for en bredere kjolefokusert redigering utover sesongbasert vårstyling.</p>"
+        }
+      }
+    },
+    "collection": {
+      "swimsuits_override": "Badedrakter"
     }
   },
   "localization": {

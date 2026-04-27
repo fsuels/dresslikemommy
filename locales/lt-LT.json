@@ -145,7 +145,8 @@
         "from_price_html": "Nuo {{ price }}",
         "regular_price": "Įprasta kaina",
         "sale_price": "Išpardavimo kaina",
-        "unit_price": "Vieneto kaina"
+        "unit_price": "Vieneto kaina",
+        "compare_at_price": "Palyginkite su {{ price }}"
       },
       "pickup_availability": {
         "view_store_info": "Žiūrėti parduotuvės informaciją",
@@ -201,7 +202,17 @@
         "guide_and_fit": "Dydžių vadovas ir tinka",
         "your_size_details": "Jūsų dydžio detalės",
         "compare_hint": "Norėdami palyginti netoliese esančius dydžius, atidarykite visą lentelę.",
-        "chart_units": "Dydžių lentelės vienetai"
+        "chart_units": "Dydžių lentelės vienetai",
+        "columns": {
+          "size": "Dydis",
+          "us_size": "JAV dydis",
+          "bust_cm_in": "Krūtinė (cm/in)",
+          "waist_cm_in": "Juosmuo (cm/col.)",
+          "hips_cm_in": "Klubai (cm/in)",
+          "height_cm_in": "Aukštis (cm/in)",
+          "weight_kg": "Svoris (kg)",
+          "age": "Amžius"
+        }
       },
       "reviews": {
         "heading": "Klientų atsiliepimai",
@@ -214,6 +225,16 @@
         "empty": "Būkite pirmas, parašęs atsiliepimą",
         "write_review": "Parašyk atsiliepimą",
         "write_review_title": "Parašykite atsiliepimą"
+      },
+      "free_shipping_all_orders": "Nemokamas visų užsakymų pristatymas",
+      "selected_size_label": "Dydis: {{ size }}",
+      "description_sections": {
+        "details_eyebrow": "Detalės",
+        "highlights_heading": "Kodėl jums tai patiks",
+        "size_chart_heading": "Dydžių lentelė",
+        "product_details_heading": "Produkto informacija",
+        "size_chart_meta": "Matavimai iš tiekėjo šaltinio lentelės",
+        "product_details_meta": "Struktūrizuota produkto informacija"
       }
     },
     "modal": {
@@ -495,7 +516,274 @@
       "compare_collection_copy": "Naudokite šią kolekciją, kad palygintumėte keletą artimų atitikmenų prieš grįždami į apsipirkimą."
     },
     "breadcrumbs": {
-      "label_button_downs": "Mygtukai žemyn"
+      "label_button_downs": "Mygtukai žemyn",
+      "label_tees": "Marškinėliai",
+      "label_dresses": "Suknelės",
+      "label_hawaiian_outfits": "Havajų apranga",
+      "label_all": "Visi",
+      "label_new_arrivals": "Nauji atvykėliai",
+      "label_sale": "Išpardavimas",
+      "label_best_sellers": "Geriausi pardavėjai",
+      "label_sweaters_short": "Megztiniai",
+      "home": "Pradžia",
+      "cat_mommy_me": "Mama ir aš",
+      "cat_daddy_me": "Tėtis ir aš",
+      "cat_couples": "Poros",
+      "cat_maternity": "Motinystė",
+      "cat_family_matching": "Šeimos atitikimas",
+      "label_swimsuits": "Maudymosi kostiumėliai",
+      "label_sets": "Rinkiniai",
+      "label_tops": "Viršutiniai",
+      "label_sweaters": "Megztiniai ir striukės",
+      "label_pajamas": "Pižama",
+      "label_tshirts": "Marškinėliai",
+      "label_trunks": "Kamienai",
+      "label_daddy_tshirts": "„Daddy & Me“ marškinėliai",
+      "prefix_mother_daughter": "Motina Dukra ",
+      "prefix_mommy_me": "Mama ir aš ",
+      "prefix_matching": "Atitikimas ",
+      "prefix_daddy_me": "Tėtis ir aš ",
+      "prefix_family_matching": "Šeimos atitikimas "
+    },
+    "collection_navigation": {
+      "collection_categories": "Kolekcijos kategorijos",
+      "main_collections": "Pagrindinės kolekcijos",
+      "within_mommy_me": "„Mama ir aš“ viduje",
+      "within_family_matching": "Per šeimos atitikimą",
+      "within_daddy_me": "Tėtis ir aš viduje",
+      "within_couples": "Porų viduje",
+      "within_maternity": "Motinystės viduje"
+    },
+    "collection_seo": {
+      "note_eyebrow": "Kolekcijos pastaba",
+      "closer_look_at": "Atidžiau pažvelkite į {{ title }}",
+      "display_titles": {
+        "all": "Visi derantys komplektai",
+        "swimsuits": "Šeimai tinkantys maudymosi kostiumėliai",
+        "mommy_and_me": "Apranga mama ir aš",
+        "dresses": "Suknelės mama ir aš",
+        "family_swimsuits": "Šeimos maudymosi kostiumėliai",
+        "family_sets": "Šeimos atostogų komplektai",
+        "new_women_outfits": "Šeimai tinkantys komplektai",
+        "family_matching": "Šeimai tinkantys komplektai",
+        "daddy_me": "Tėtis ir aš apranga",
+        "daddy_me_tshirts": "Tėtis ir aš marškinėliai",
+        "daddy_me_shirts": "Tėčio ir sūnaus marškiniai",
+        "couples": "Porų derantys drabužiai",
+        "couples_tshirts": "Poroms tinkantys marškinėliai",
+        "spring_matching": "Mamyte ir aš velykinės suknelės ir pavasario derantys drabužiai",
+        "tops": "Tinkantys marškinėliai ir marškinėliai",
+        "pajamas": "Tinkanti šeimyninė pižama",
+        "sweaters": "Tinkantys megztiniai ir striukės",
+        "maxi_dresses": "Mama ir aš Maxi suknelės",
+        "jumpsuits": "Derantys kombinezonai",
+        "midi_dresses": "Mommy and Me Midi suknelės",
+        "mini_dresses": "Mama ir aš mini suknelės",
+        "rompers": "Tinkantys šliaužtinukai",
+        "sundresses": "Mama ir aš sarafanai",
+        "bottoms": "Atitinkantys dugnai",
+        "skirts": "Derantys sijonai",
+        "leggings": "Derantys antblauzdžiai",
+        "pants": "Tinkančios kelnės",
+        "new_arrivals": "Atkeliauja nauja deranti apranga",
+        "new_matching_outfits": "Nauji mamytės ir aš drabužiai",
+        "maternity": "Motinystės ir slaugos stiliai",
+        "best_sellers": "Geriausi pardavėjai",
+        "popular_mommy_me": "Populiarus „Mama ir aš“.",
+        "popular_family_matching": "Populiarūs šeimos deriniai",
+        "hawaiian_outfits": "Šeimos havajietiški drabužiai",
+        "trunks": "Atitinkamos maudymosi kelnaitės",
+        "fall_winter": "Rudens ir žiemos deriniai",
+        "formal_dresses": "Tinkančios iškilmingos suknelės",
+        "family_sweaters": "Šeimos megztiniai ir striukės",
+        "christmas_sweaters": "Kalėdiniai derinantys megztiniai",
+        "christmas_tops": "Kalėdiniai derinantys kelnaitės",
+        "christmas_pajamas": "Kalėdų derinimo pižama",
+        "valentines": "Valentino dienai tinkantys kostiumai"
+      },
+      "meta_titles": {
+        "swimsuits": "Tinkantys šeimos maudymosi kostiumėliai | Mama & Dukra",
+        "mommy_and_me": "Mama ir aš apranga | Suknelės, maudymosi kostiumėliai ir derantys komplektai",
+        "family_swimsuits": "Tinkantys šeimyniniai maudymosi kostiumėliai | Šeimos maudymosi kostiumėliai",
+        "family_sets": "Tinkanti šeimos atostogų apranga | Paplūdimio ir kelionių rinkiniai",
+        "family_matching": "Šeimai tinkantys komplektai | Mama ir aš",
+        "new_women_outfits": "Šeimai tinkantys komplektai | Suknelės, maudymosi kostiumėliai ir šeimos komplektai",
+        "dresses": "Suknelės mama ir aš | Motina Dukra",
+        "maxi_dresses": "Tinkančios Maxi suknelės | Mama ir dukra",
+        "best_sellers": "Perkamiausi mamos ir aš kostiumai | Suknelės, maudymosi kostiumėliai ir kt",
+        "daddy_me": "„Tėtis ir aš“ marškiniai, marškinėliai ir derantys drabužiai",
+        "daddy_me_tshirts": "Tėtis ir aš Marškiniai | Tinkantys marškinėliai tėčiams ir vaikams",
+        "daddy_me_shirts": "Tėčio ir sūnaus derantys marškiniai | Užsegimas, suknelė ir havajietiška",
+        "couples": "Porų derinimo apranga | Suderintos jo ir jos paieškos",
+        "couples_tshirts": "Poroms tinkantys marškiniai | Pora marškinėliai ir marškinėliai",
+        "spring_matching": "Mamyte ir aš velykinės suknelės | Pavasario derinimo apranga"
+      },
+      "meta_descriptions": {
+        "all": "Pirkite visus derančius drabužius vienoje vietoje, įskaitant mamą ir mane, tėtis ir aš, poras ir šeimos komplektus. Patogūs stiliai su greitu pristatymu.",
+        "mommy_and_me": "Pirkite mamytės ir aš drabužius, sukneles, maudymosi kostiumėlius ir derančius rinkinius gimtadieniams, šeimos nuotraukoms, atostogoms ir kasdienėms dvynių akimirkoms.",
+        "spring_matching": "Įsigykite mamytės ir manęs velykines sukneles ir pavasarinius derinius bažnyčioms, priešpiečiams, kiaušinių medžioklei, šeimos nuotraukoms ir kitoms sezoninėms šventėms.",
+        "dresses": "Įsigykite mamytės ir manęs sukneles bei mamai dukrai tinkančias sukneles nuotraukoms, vakarėliams, atostogoms ir išblizgintam kasdieniam dėvėjimui.",
+        "maxi_dresses": "Įsigykite mamytės ir aš maksimalų suknelę ir prie jų tinkančias dideles sukneles nuotraukoms, kelionėms, šventėms ir lengvai nublizgintam kasdieniam dėvėjimui.",
+        "swimsuits": "Įsigykite derančius šeimyninius maudymosi kostiumėlius ir mamos ir dukros maudymosi kostiumėlius kelionėms paplūdimyje, baseino dienoms, kruizams ir suderintoms vasaros nuotraukoms.",
+        "family_swimsuits": "Įsigykite derančius šeimyninius maudymosi kostiumėlius ir šeimyninius maudymosi kostiumus, skirtus atostogoms paplūdimyje, baseino dienoms, kruizams ir suderintoms vasaros nuotraukoms.",
+        "family_sets": "Įsigykite derančius šeimos atostogų komplektus ir paplūdimio rinkinius kruizams, kelionėms į kurortą, šeimos nuotraukas ir suderintą vasaros kelionių išvaizdą.",
+        "new_women_outfits": "Įsigykite šeimyninius kostiumus, skirtus suknelėms, maudymosi kostiumėliams, mamai ir aš išvaizdai, ir kelionėms paruoštus rinkinius vienoje vietoje, tada susiraskite kolekciją, kuri tinka jūsų kelionei, sezonui ar progai.",
+        "family_matching": "Įsigykite derančius šeimyninius drabužius ir mamytės ir aš drabužių derinius, skirtus nuotraukoms, atostogoms, atostogoms ir lengvai suderintai išvaizdai kiekvieną sezoną.",
+        "daddy_me": "Pirkite tėtis ir aš marškinius, marškinėlius, marškinėlius ir derančius drabužius, skirtus šeimos nuotraukoms, Tėvo dienai, atostogoms ir paprastam kasdieniniam koordinavimui.",
+        "daddy_me_tshirts": "Įsigykite tėtis ir aš marškinius ir derančius marškinėlius Tėvo dienai, atostogoms, gimtadieniams, nuotraukoms ir lengvus kasdienius drabužius tėčiams ir vaikams.",
+        "daddy_me_shirts": "Įsigykite tėčiui ir sūnui derančius marškinius, įskaitant užsegtus, suknelių marškinius ir Havajų stiliaus marškinius, skirtus atostogoms, nuotraukoms, vakarėliams ir išblizgintai šeimos aprangai.",
+        "couples": "Įsigykite porų, derančių aprangą su suderintais komplektais, viršutiniais drabužiais, pižama ir atostogoms paruoštais drabužiais, skirtus pasimatymams, dovanoms, kelionėms ir kasdieniam drabužiui.",
+        "couples_tshirts": "Įsigykite poroms derančius marškinius ir marškinėlius pasimatymams, kelionėms, koncertams, šventėms, dovanoms ir lengvai suderinamam kasdieniniam įvaizdžiui."
+      },
+      "swimsuits": {
+        "eyebrow": "Maudymosi kostiumėlių vadovas",
+        "title": "Suderinti maudymosi kostiumėliai mamoms, dukroms ir visai šeimai",
+        "copy_1": "Pradėkite čia, kai pirmiausia norite plačiausio plaukimo asortimento. Šiame puslapyje pateikiami mamos ir dukros stiliai, derantys šeimyniniai maudymosi kostiumėliai ir atostogoms paruoštos parinktys, nesiunčiant jums kelių maudymosi kolekcijų.",
+        "copy_2": "Sužinoję, kas turi atitikti, pereikite prie specialių šeimyninių maudymosi kostiumėlių ar lagaminų kolekcijų, kad galėtumėte griežčiau redaguoti. Norint nustatyti dydį, greičiausias kelias visada yra produkto puslapis ir dydžių lentelė su jums labiausiai patinkančiu stiliumi.",
+        "related_aria": "Susijusios plaukimo kolekcijos",
+        "related_label": "Naršykite susijusias plaukimo kolekcijas",
+        "family_swimwear_title": "Šeimos maudymosi kostiumėliai",
+        "family_swimwear_caption": "Eikite tiesiai į visos šeimos plaukimo redagavimą, kai visi turi suderinti.",
+        "trunks_title": "Sutampantys lagaminai",
+        "trunks_caption": "Pridėkite tėčio ir berniuko plaukimo detales, kai norite pilno paplūdimio dienos rinkinio.",
+        "mommy_me_caption": "Išsaugokite suderintą išvaizdą ne tik maudymosi kostiumėlius, bet ir kitoms progoms pritaikytą aprangą.",
+        "faq_eyebrow": "Maudymosi kostiumėlių DUK",
+        "faq_title": "Greiti atsakymai prieš užsakant",
+        "faq_question_1": "Kokių dydžių yra jūsų tinkami maudymosi kostiumėliai?",
+        "faq_answer_1": "Dydis skiriasi priklausomai nuo stiliaus, todėl prieš atsiskaitydami peržiūrėkite galimus variantus ir naudokite dydžių lentelę kiekviename produkto puslapyje. Ši kolekcija apima suderintas maudymosi galimybes mamoms ir dukroms, o kai kurie stiliai taip pat sujungia jus su platesne šeimos plaukimo išvaizda.",
+        "faq_question_2": "Ar siūlote šeimyninius rinkinius ir tėčiui?",
+        "faq_answer_2": "Taip. Jei norite visapusiško šeimyninio įvaizdžio, įsigykite derančią šeimyninių maudymosi kostiumėlių kolekciją ir lagaminų kolekciją, kad papildytumėte suderintus tėčių ir berniukų drabužius, kartu su pagrindiniais mamos ir aš plaukimo stiliais.",
+        "faq_question_3": "Kuo skiriasi mano ir maudymosi kostiumėliai nuo prie jų derančių šeimyninių maudymosi kostiumėlių?",
+        "faq_answer_3": "Maudymosi kostiumėliai „Mama ir aš“ dažniausiai yra skirti mamos ir dukros poroms. Tinkami šeimyniniai maudymosi kostiumėliai išplečia šią idėją, todėl galite sukurti suderintą daugiau šeimos narių, įskaitant tėtį ir berniukus, vaizdą, kai yra tokių stilių.",
+        "faq_question_4": "Nuo ko pradėti, jei noriu ir berniukiškų kūrinių?",
+        "faq_answer_4": "Pradėkite nuo šio maudymosi kostiumėlių puslapio, jei pirmiausia norite plačiausio maudymosi kostiumėlių asortimento, tada naudokite susijusias šeimyninių maudymosi kostiumėlių ir lagaminų kolekcijas, kad susiaurintumėte iki visai šeimai tinkančių įvaizdžių arba tėčio ir berniuko priedų.",
+        "faq_answer_2_rich_html": "Taip. Jei norite visos šeimos įvaizdžio, apsipirkite <a href=\"{{ family_swim_url }}\">Tinkantys šeimyniniai maudymosi kostiumėliai</a> kolekcija ir <a href=\"{{ trunks_url }}\">Kamienai</a> kolekciją, kad pridėtumėte suderintų kūrinių tėčiams ir berniukams kartu su pagrindiniais mamytės ir aš plaukimo stiliais.",
+        "faq_answer_4_rich_html": "Pradėkite nuo šio maudymosi kostiumėlių puslapio, jei pirmiausia norite plačiausio maudymosi kostiumėlių asortimento, tada naudokite <a href=\"{{ family_swim_url }}\">Tinkantys šeimyniniai maudymosi kostiumėliai</a> ir <a href=\"{{ trunks_url }}\">Kamienai</a> kolekcijos, kad būtų galima susiaurinti iki visai šeimai skirtų išvaizdų arba tėčio ir berniuko priedų."
+      },
+      "body": {
+        "mommy_and_me_html": "<p>Įsigykite mūsų {{ title }}, skirtą gimtadieniams, šeimos nuotraukoms, atostogoms ir paprastam kasdieniniam poravimuisi, su suknelėmis, maudymosi kostiumėliais ir atitinkamais komplektais vienoje vietoje.</p><p>Pradėkite nuo suknelių, skirtų portretams ir ypatingoms progoms, perkelkite į maudymosi kostiumėlius paplūdimio ir baseino dienomis ir naudokite platesnį drabužių derinį, kad sukurtumėte tinkamą drabužių spintą, kuri tinka įvairiems sezonams, o ne tik vienam renginiui.</p>",
+        "spring_matching_html": "<p>Naršykite {{ title }} su pastelinėmis paletėmis, pavasario gėlėmis ir progomis paruoštais įvaizdžiais, skirtais bažnyčioms, vėlyviesiems pusryčiams, kiaušinių medžioklei, šeimos nuotraukoms ir kitoms sezoninėms šventėms.</p><p>Šie stiliai skirti pirkėjams, kurie jau žino, kada rengiasi, ir nori derančių aprangų, kurios atrodytų išblizgintos, patogios ir būtų lengvai dėvimos visą likusį pavasarį.</p>",
+        "dresses_html": "<p>Naršykite {{ title }}, kad gautumėte šeimos nuotraukų, švenčių ir nušlifuotų kasdienių akimirkų. Šis redagavimas išlaiko stipriausius suknelių stilius vienoje vietoje, o išvaizda yra graži, dėvima ir lengvai perkama.</p>",
+        "maxi_dresses_html": "<p>Naršykite {{ title }}, kad rastumėte derančius stilius, kurie atrodo grakštūs, lengvai dėvimi ir paruošti nuotraukoms, kelionėms, šventėms ir nušlifuotoms kasdienėms akimirkoms.</p>",
+        "swimsuits_html": "<p>Naršykite {{ title }} ir ieškokite kelionių paplūdimyje, baseino dienų, kruizų ir saulėtų šeimos nuotraukų. Ši kolekcija padeda pirkėjams palyginti derančius šeimyninius maudymosi kostiumėlius, mamos ir dukros derančius maudymosi kostiumėlius ir šeimai tinkamus maudymosi kostiumėlius neperšokdami tarp atskirų maudymosi kategorijų.</p><p>Pirmiausia naudokite šį puslapį kaip platų plaukimo centrą, o tada pereikite prie specialios šeimos maudymosi kolekcijos arba atitinkamų lagaminų, kai visai šeimai reikia derinti vieną spausdintą ar spalvotą istoriją.</p>",
+        "family_swimsuits_html": "<p>Atraskite {{ title }} atostogoms paplūdimyje, baseino dienoms, kruizams ir vasaros nuotraukoms. Tai aiškiausias nukreipimo puslapis, skirtas derinti šeimyninius maudymosi kostiumėlius, kai mamos, tėčiai, mergaitės ir berniukai turi derinti vieną spaudinį, paletę ar atostogoms paruoštą spalvų istoriją.</p><p>Naudokite šį puslapį, kai visa šeima pirmiausia nori tinkamų maudymosi kostiumėlių, o tada papildykite išvaizdą lagaminais, priedangomis ir susijusiomis maudymosi „mama ir aš“ galimybėmis, kad kelionės drabužių spinta būtų pilnesnė.</p>",
+        "family_sets_html": "<p>Naršykite {{ title }} su suderinta išvaizda, skirta šeimos atostogoms, kelionėms paplūdimyje, kruizams, kelionių nuotraukoms ir išvykoms šiltu oru. Šie rinkiniai padeda sukurti aiškią šeimos paletę, neversdami kiekvieno žmogaus į tą patį kūrinį.</p><p>Naudokite šį puslapį, kad derintumėte šeimos atostogų aprangą ir šeimos paplūdimio aprangą, o tada, kai jums reikia daugiau sezoninių ar ne kelionėms skirtų variantų, įsigykite platesnes šeimai tinkančias kolekcijas.</p>",
+        "new_women_outfits_html": "<p>Naršykite {{ title }} kaip platų Family Matching Outfits centrą, kai norite palyginti suderintas aprangas prieš susiaurindami į konkrečią kategoriją. Šis puslapis skirtas padėti pirkėjams pereiti prie suknelių, maudymosi kostiumėlių, atostogų komplektų, išvaizdos „mamyte ir aš“ ar kitų derančių stilių, nepradėdami iš naujo.</p><p>Naudokite toliau pateiktas nuorodas, jei norite pereiti prie kolekcijų, kurios geriausiai tinka šiai progai, nesvarbu, ar perkate šeimos nuotraukas, kelionę, sezoninį atnaujinimą ar konkretesnį derantį aprangos stilių.</p>",
+        "family_matching_html": "<p>Naršykite {{ title }}, kad gautumėte šeimos nuotraukas, keliones, gimtadienius, atostogas ir paprastus kasdienius dvynius. Tai geriausia vieta pradėti, kai norite palyginti suderintą išvaizdą visoje šeimoje prieš susiaurindami sukneles, maudymosi kostiumėlius ar atostogų komplektus.</p>",
+        "daddy_me_html": "<p>Ištirkite {{ title }}, kad gautumėte šeimos nuotraukas, atostogautumėte, dovanotumėte Tėvo dienos dovanas ir kasdien dirbtumėte. Šis nukreipimo puslapis sukurtas atsižvelgiant į stipriausią tėvo ir vaiko paieškos tikslą – vienoje vietoje yra tinkamų marškinėlių, laisvalaikio palaidinių ir puošnesnių marškinėlių.</p><p>Naudokite šią kolekciją, kai norite plačiai aprėpti tėtis ir aš marškinius, marškinėlius ir aprangą, tada susiaurinkite iki užsegamų, havajietiškų ar marškinėlių stilių pagal progą.</p>",
+        "daddy_me_tshirts_html": "<p>Įsigykite {{ title }}, kai norite laisvalaikio, dovanoti tinkančių viršutinių drabužių tėčiams ir vaikams. Šis puslapis sukurtas pagal tėtis ir aš marškinius, derančius marškinėlius ir paprastą kasdienę išvaizdą, tinkančią Tėvo dienai, gimtadieniams, šeimos kelionėms ir greitoms fotografavimo akimirkoms.</p><p>Pradėkite čia, norėdami pasimėgauti marškinėliais su šūkiais ir lengvais grafiniais stiliais, tada pereikite prie marškinėlių ar havajietiškų komplektų, jei proga reikia ryškesnės išvaizdos ar labiau atostogoms pritaikytos aprangos.</p>",
+        "daddy_me_shirts_html": "<p>Naršykite {{ title }} pirkėjams, ieškantiems specialiai užsegamų, marškinėlių ir havajietiško stiliaus tėvo ir sūnaus aprangos. Šioje kolekcijoje pagrindinis dėmesys skiriamas išvaizdai su apykakle, kuri tinka portretams, vakarienėms, kelionėms į paplūdimį, vestuvėms ir kitoms dailioms progoms.</p><p>Palyginti su laisvalaikio marškinėliais, šie modeliai yra labiau struktūriški ir labiau tinkami nuotraukoms, todėl jie labiau tinka, kai norite derančių drabužių, kurie vis dar atrodytų pakylėti.</p>",
+        "couples_html": "<p>Naršykite {{ title }} pasimatymų vakarams, atostogoms, šventinėms dovanoms, sužadėtuvių nuotraukoms ir kasdieniam koordinavimui. Šis puslapis skirtas pirkėjams, kurie nori daugiau nei vieno derančio viršaus ir kuriems reikia platesnio atspirties taško suderintai išvaizdai.</p><p>Pradėkite nuo lengvų marškinėlių ar poilsio komplektų, tada susikurkite išsamesnę aprangą per kelionę, progą ar fotografuodamiesi.</p>",
+        "couples_tshirts_html": "<p>Naršykite {{ title }} pirkėjams, ieškantiems porų, atitinkančių marškinius, porinius marškinėlius ir kasdienius derinius. Šie stiliai geriausiai tinka, kai kelionėms, atostogoms, koncertams, pasimatymų vakarams ir nuotraukoms norite kasdienės, dovanotos išvaizdos.</p><p>Naudokitės šiuo puslapiu, kad galėtumėte lengvai susiderinti kiekvieną dieną, o tada pereikite prie platesnės porų kolekcijos, jei norite, kad apranga būtų daugiau nei vien marškinėliai.</p>"
+      },
+      "rich_parts": {
+        "new_women_outfits": {
+          "part_1_html": "<h2>Šeimai tinkanti apranga, skirta šeimos nuotraukoms, kelionėms, atostogoms ir kasdieniniam derinimui</h2>",
+          "part_2_html": "<p>Tai platus „Family Matching Outfits“ centras, skirtas pirkėjams, kurie nori palyginti suderintą išvaizdą prieš susiaurindami į vieną konkretų stilių. Jis skirtas šeimos nuotraukoms, atostogoms, atostogoms, sezoniniams atnaujinimams ir paprastam kasdieniniam derinimui, kai pirkėjas žino bendrą išvaizdą, bet dar nežino tikslios kategorijos.</p>",
+          "part_3_html": "<h3>Ką pirmiausia pirkti</h3>",
+          "part_4_html": "<ul><li>Prieš rinkdamiesi siauresnę kolekciją, pradėkite čia, kai norite plačiausiai šeimai atitinkančio puslapio.</li><li>Naudokite jį norėdami pereiti prie suknelių, maudymosi kostiumėlių, atostogų komplektų ar mamos ir aš stilių.</li><li>Pereikite prie konkretesnės kolekcijos, kai proga jau aiški ir pirkėjas nori greitesnio filtravimo.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ dresses_url }}\">Parduodu mamos dukros vestuvines sukneles</a> kai suknelė yra derančios išvaizdos pagrindas.</p>",
+          "part_6_html": "<p><a href=\"{{ family_swimsuits_url }}\">Peržiūrėkite atitinkamus paplūdimio maudymosi kostiumėlius</a> kai planas sutelktas į keliones paplūdimyje, baseino dienas ir vasaros keliones.</p>",
+          "part_7_html": "<p><a href=\"{{ family_sets_url }}\">Parduokite derančius šeimos atostogų komplektus</a> poilsiui kurorte, kruizams ir suderintoms kelionės dienoms.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Pirkite tėtis ir aš marškinius</a> kai šeimai vietoj suknelių ar maudymosi kostiumėlių reikia nublizgintų marškinių degtukų.</p>",
+          "part_9_html": "<p><a href=\"{{ mommy_and_me_url }}\">Peržiūrėkite platesnę „Mama ir aš“ kolekciją</a> kai koordinacija daugiausia orientuota į mamą ir dukrą.</p>"
+        },
+        "family_matching": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Kolekcijos pastaba</p><h2>Puikus atspirties taškas suderintai šeimos išvaizdai</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Šioje kolekcijoje vienoje vietoje sujungiami stipriausi šeimos stiliai, todėl lengva pradėti plačiau ir tobulinti, kai tik bus aišku.</p><p>Tai ypač tinka nuotraukoms, atostogoms, kelionėms, gimtadieniams ir kasdieniniam derinimui, kuris atrodo apgalvotas, o ne per didelis.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related family collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Parduodu mamos dukros vestuvines sukneles</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Peržiūrėkite atitinkamus paplūdimio maudymosi kostiumėlius</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Parduokite derančius šeimos atostogų komplektus</a><a class=\"collection-seo-rich__link\" href=\"{{ daddy_me_shirts_url }}\">Pirkite tėtis ir aš marškinius</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Naršykite platesnę „Mama ir aš“ kolekciją</a></div>"
+        },
+        "dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Kolekcijos pastaba</p><h2>Suknelių stilius nuotraukoms, šventėms ir kasdieniams dvyniams</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Šis redagavimas skirtas akimirkoms, kai suknelė nustato toną. Pagrindinis dėmesys skiriamas siluetams, kurie fotoaparate jaučiasi nugludinti, patogūs dėvėti ir lengvai pasiekiami po renginio.</p><p>Pradėkite čia, kai jau žinote, kad norite suknelės, o tada, jei reikia, ne tik mama ir dukra, bet ir platesnės šeimos kolekcijos.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Naršykite „Family Matching“ centrą</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Peržiūrėkite visus „Mama ir aš“ drabužius</a></div>"
+        },
+        "maxi_dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Kolekcijos pastaba</p><h2>Lengvai nugludintos viso ūgio suknelės</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Maxi suknelės yra tvirtas atspirties taškas, kai norisi grakštaus judesio, šiek tiek daugiau dengimo ir silueto, kuris nuotraukose jaustųsi gražiai, nebūdamas per daug formalus.</p><p>Šis redagavimas sutelkiamas į stipriausius ilgo ilgio stilius mamoms ir dukroms su parinktimis, tinkančiomis atostogoms, bažnyčioms, šventėms ir šiltu oru apsirengimui, kuris vis dar jaučiasi atsipalaidavęs.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related maxi dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Peržiūrėkite visas sukneles</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Pamatykite visus mamą ir mane</a></div>"
+        },
+        "mommy_and_me": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Kolekcijos pastaba</p><h2>Platus „mama ir aš“ redagavimas nuotraukoms, kelionėms ir kasdieniams dvyniams</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Tai lengviausia vieta pradėti, kai norite suderintų mamų ir dukrų stilių, prieš tai neapsisprendę dėl vieno produkto tipo.</p><p>Pradėkite nuo suknelių, maudymosi kostiumėlių ir prie jų derančių komplektų, tada susiaurinkite iki geriausiai progai tinkančios kategorijos, kai žinosite, kokios išvaizdos norite.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related mommy and me collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Parduodu mamos dukros vestuvines sukneles</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Peržiūrėkite atitinkamus paplūdimio maudymosi kostiumėlius</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Peržiūrėkite derančius šeimos atostogų komplektus</a></div>"
+        },
+        "family_swimsuits": {
+          "part_1_html": "<h2>Tinkantys šeimyniniai maudymosi kostiumėliai atostogoms paplūdimyje, baseino dienoms, kruizams ir suderintoms vasaros nuotraukoms</h2>",
+          "part_2_html": "<p>Šis puslapis sukurtas remiantis stipriausiais šeimos maudymosi terminais: derantys šeimyniniai maudymosi kostiumėliai, šeimai tinkantys maudymosi kostiumėliai ir suderinti šeimyniniai maudymosi kostiumėliai atostogoms ir šilto oro nuotraukoms. Tai geriausiai veikia, kai visai šeimai reikia suderinti vieną spausdintą ar spalvotą istoriją, nesudedant atskirų plaukimo kategorijų po vieną.</p>",
+          "part_3_html": "<h3>Kodėl šis puslapis skiriasi nuo bendros maudymosi kostiumėlių kolekcijos</h3>",
+          "part_4_html": "<ul><li>Jis orientuotas į visos šeimos koordinavimą, o ne tik mamos ir dukters plaukimo išvaizdą.</li><li>Tai tiesiogiai kalba apie atostogas, kruizus ir paplūdimio nuotraukas, kur pagrindinis tikslas yra derinti šeimyninius maudymosi kostiumėlius.</li><li>Tai suteikia pirkėjams švaresnį kelią į šeimyninius maudymosi kostiumus, kol jie išsišakoja į lagaminus ar platesnes deramas kolekcijas.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ trunks_url }}\">Pridėkite atitinkamus kamienus</a> kai jums reikia tėčio ir berniuko plaukimo dalių, kad užbaigtumėte paplūdimio dienos rinkinį.</p>",
+          "part_6_html": "<p><a href=\"{{ swimsuits_url }}\">Pamatykite, kaip mama ir dukra derina maudymosi kostiumėlius</a> jei apsipirkimo ketinimas yra siauresnis nei visos šeimos derinimas.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">Naršykite „Mamyte ir aš“ drabužius</a> jei pagrindinis poreikis yra mamos ir dukros koordinacija ne tik maudymosi kostiumėliuose.</p>",
+          "part_8_html": "<p><a href=\"{{ family_sets_url }}\">Pirkite šeimos atostogų kostiumus</a> kai suderintai išvaizdai reikia pridengti, keliauti ar palaikyti paplūdimyje-vakarienę už baseino.</p>"
+        },
+        "family_sets": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Kolekcijos pastaba</p><h2>Kelionėms paruošta apranga paplūdimio dienoms, kruizams ir suderintiems atostogų planams</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Šis redagavimas išlaiko stipriausią šilto oro šeimos išvaizdą, todėl lengva apsipirkti keliaujant, o ne pradedant nuo platesnės kolekcijos ištisus metus.</p><p>Naudokite jį, kai pačios atostogos yra apsipirkimo priežastis, o tada, jei reikia sukurti visą planą, pasidalykite maudymosi kostiumėliais ar platesne šeima.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related vacation collections\"><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Pridėkite derančius paplūdimio maudymosi kostiumėlius</a><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Naršykite „Family Matching“ centrą</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Ištirkite „Mama ir aš“ aprangą</a></div>"
+        },
+        "daddy_me": {
+          "part_1_html": "<h2>Tėtis ir mano drabužiai, sukurti iš marškinių, marškinėlių ir lengvai paruoštų nuotraukų</h2>",
+          "part_2_html": "<p>Paieškos poreikis šioje kategorijoje sutelktas į marškinius „tėtis ir aš“, „tėtis ir aš“ marškinėlius, „tėtis ir aš“ marškinėlius ir suderintus tėvo ir vaiko drabužius. Šis puslapis sukurtas taip, kad apimtų visus tikslus – nuo ​​įprastų grafinių viršutinių dalių iki ryškesnės išvaizdos su apykakle, kuri puikiai tinka portretams, atostogoms ir ypatingiems įvykiams.</p>",
+          "part_3_html": "<h3>Ko pirkėjai dažniausiai nori iš šio puslapio</h3>",
+          "part_4_html": "<ul><li>Įprasti tėtis ir aš marškinėliai gimtadieniams, dovanoms, teminėms kelionėms ir kasdieniam dėvėjimui.</li><li>Marškiniai su apykakle arba susagstomi, tinkantys šeimos nuotraukoms, vakarienei ir puošnesnėms išvykoms.</li><li>Prie šilto oro derantys drabužiai, kurie yra pasiruošę atostogoms ir neatrodo kaip kostiumai.</li></ul>",
+          "part_5_html": "<h3>Kaip greičiau nusipirkti kolekciją</h3>",
+          "part_6_html": "<p>Pradėkite nuo marškinėlių, jei tikslas yra lengvas kasdienis koordinavimas. Jei progai reikia švaresnės, labiau poliruotos apdailos, pereikite prie marškinių, havajietiškų marškinių ar kitų daugiau struktūros su apykaklėmis.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Pirkite tėtis ir aš marškinius</a> laisvalaikio derinimui ir dovanojamiems kasdieniams stiliams.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Pirkite tėtis ir aš marškinius puošnesnėms progoms</a> užsisegusiems, marškiniams ir havajietiškam išvaizdui, paremtam tikslesnėmis marškinių paieškomis.</p>",
+          "part_9_html": "<p><a href=\"{{ trunks_url }}\">Naršykite atitinkančius kamienus</a> kai aprangai reikia paplūdimio ar baseino pritaikymo priedo.</p>"
+        },
+        "daddy_me_tshirts": {
+          "part_1_html": "<h2>Tėtis ir aš marškiniai ir derantys marškinėliai kasdieniam, dovanotam koordinavimui</h2>",
+          "part_2_html": "<p>Ši kolekcija skirta pirkėjams, ieškantiems marškinėlių „tėtis ir aš“, „tėtis ir aš“ marškinėlių, „tėtis ir aš“ marškinėlių ir lengvų tėčio ir vaiko marškinėlių, kurie veikia ilgiau nei vieną fotografavimo akimirką. Šie stiliai greičiausiai tinka kasdieniam dėvėjimui, gimtadieniams, Tėvo dienos dovanoms, pramogų parkams ir ramioms kelionių dienoms.</p>",
+          "part_3_html": "<h3>Kodėl šis puslapis svarbus</h3>",
+          "part_4_html": "<ul><li>Jis susiaurina tėtis ir vaikas kategoriją iki laisvalaikio viršutinių drabužių, o ne derina visus aprangos tipus.</li><li>Tai suderinama su didelio tikslo paieška apie marškinius „tėtis ir aš“, „tėtis ir aš“ marškinėlius ir atitinkamus marškinėlius.</li><li>Tai suteikia pirkėjams paprastesnį kelią, kai jie nori greitai ir dovanoti derančios išvaizdos.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ daddy_me_url }}\">Grįžkite į visą kolekciją „Tėtis ir aš“.</a> jei norite marškinėlių, lagaminų ir puošnesnių marškinių variantų vienoje vietoje.</p>",
+          "part_6_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Reikia ryškesnio žvilgsnio?</a> Naršykite prie tėčio ir sūnaus derinančių marškinių su sagomis, suknelių-marškinių ir havajietiško stiliaus.</p>"
+        },
+        "daddy_me_shirts": {
+          "part_1_html": "<h2>Tėtis ir sūnus derina marškinius užsegamus, marškinius ir Havajų paieškas</h2>",
+          "part_2_html": "<p>Šis nukreipimo puslapis sukurtas atsižvelgiant į didžiausio tikslo siekiančias marškinių užklausas tėčių grupėje: tėtis ir sūnus derina užsegamus marškinius, tėtis ir sūnus derina marškinius, o tėvas sūnus – havajietiškus marškinius. Jis skirtas pirkėjams, kurie nori daugiau struktūros, apykaklių ir progoms pritaikyto stiliaus, nei gali pasiūlyti kasdienių marškinėlių kolekcija.</p>",
+          "part_3_html": "<h3>Geriausios progos šiems stiliams</h3>",
+          "part_4_html": "<ul><li>Šeimos nuotraukos, šventiniai susibūrimai, vestuvės, bažnyčia ir vakarienės, kur marškiniai su apykakle atrodo labiau išblizginti.</li><li>Kelionės paplūdimiu, kruizai ir kelionės į kurortą, kur tinka havajietiški marškiniai arba trumpų rankovių sagomis.</li><li>Gimtadienio ir Tėvo dienos dovanos, kai deranti išvaizda turėtų atrodyti pakylėta, o ne tik naujovė.</li></ul>",
+          "part_5_html": "<h3>Kuo tai skiriasi nuo tėtis ir aš marškinėlių</h3>",
+          "part_6_html": "<p>Tikėkitės daugiau austų audinių, švaresnių apykaklių ir gražesnių siluetų. Jei tikslas yra švelni kasdienė grafika arba kasdieniai drabužiai, marškinėlių kolekcija yra geresnis atspirties taškas.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_url }}\">Naršykite visą kolekciją „Tėtis ir aš“.</a> plačiau aprėpti trišakius, lagaminus ir suderintus komplektus.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Pirkite tėtis ir aš marškinius</a> jei norite švelnesnio, įprastesnio derinimo varianto.</p>"
+        },
+        "couples": {
+          "part_1_html": "<h2>Poros, derančios aprangą kelionėms, pasimatymams, šventėms ir dovanoms</h2>",
+          "part_2_html": "<p>Plati poros raktinių žodžių šeima apima ne tik marškinėlius. Šis puslapis sukurtas kaip pagrindinis nukreipimo puslapis poroms, kurios derina aprangą ir suderina išvaizdą, įskaitant viršutinius drabužius, poilsio drabužius, šventinius drabužius ir laisvalaikio komplektus jam ir jai.</p>",
+          "part_3_html": "<h3>Populiarūs apsipirkimo tikslai šioje kategorijoje</h3>",
+          "part_4_html": "<ul><li>Poros, derančios aprangą kelionėms, savaitgalio planams ir socialinėms nuotraukoms.</li><li>Dovaningi jo ir jos artimieji ieško jubiliejui, medaus mėnesiui ir švenčių akimirkoms.</li><li>Lengvai suderinti drabužiai, kurie išlaiko spalvų ir spausdinimo lygius, nesukeldami identiškos išvaizdos nuo galvos iki kojų.</li></ul>",
+          "part_5_html": "<h3>Nuo ko pradėti</h3>",
+          "part_6_html": "<p>Jei tikslas yra kasdienė kasdienė apranga, greičiausias laimėjimas yra tinkami marškinėliai. Jei tikslas yra labiau suderinta išvaizda, pradėkite nuo platesnės porų kolekcijos ir dirbkite pagal kelionę, sezoną ar progą.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">Pirkite porų marškinius ir prie jų derančius marškinėlius</a> kai norite lengvai patekti į kategoriją.</p>"
+        },
+        "couples_tshirts": {
+          "part_1_html": "<h2>Poros, derančios prie marškinių ir marškinėlių, skirtos kasdieniam, dovanotam koordinavimui</h2>",
+          "part_2_html": "<p>Ši kolekcija skirta pirkėjams, ieškantiems porų, derančių marškinius, porinius marškinius, porinius marškinėlius ir kitus derančius viršutinius drabužius, kuriuos būtų lengva dėvėti pasimatymų vakarams, kelionėms, atostogoms, koncertams ir kasdienei aprangai. Tai yra geriausias įėjimo taškas, kai pirkėjo ketinimai pirmiausia susiję su trišakiais.</p>",
+          "part_3_html": "<h3>Kodėl pirkėjai renkasi derančius marškinėlius</h3>",
+          "part_4_html": "<ul><li>Juos lengva dovanoti jubiliejaus, medaus mėnesio, atostogų ir teminių išvykų proga.</li><li>Jie išlaiko suderintą išvaizdą paprastai ir nereikalauja viso aprangos pirkimo.</li><li>Jie puikiai tinka kasdienioms nuotraukoms, kelionių dienoms ir kasdieniam dėvėjimui su maža trintimi.</li></ul>",
+          "part_5_html": "<h3>Ieškote daugiau nei marškinėlių?</h3>",
+          "part_6_html": "<p>Naudokite platesnį porų derinimo aprangos puslapį, jei norite suderintos išvaizdos, kuri išsiplėstų ne tik viršūnėse, bet ir taptų išsamesne aprangos istorija.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">Peržiūrėkite visas poras, atitinkančias aprangą</a> platesniam suderintos išvaizdos ir progų deriniui.</p>"
+        },
+        "spring_matching": {
+          "part_1_html": "<h2>Mamyte ir aš velykinės suknelės ir pavasariškai derantys drabužiai ypatingoms progoms</h2>",
+          "part_2_html": "<p>Šis puslapis sukurtas Velykų ir pavasario paieškoms, kai pirkėjas jau žino šią progą. Didžiausias dėmesys skiriamas pastelinėms paletėms, gėlėms, šviesesniems audiniams ir fotografijai paruoštiems siluetams, kurie tinka bažnyčioms, priešpiečiams, kiaušinių medžioklei, šeimos portretams ir kitoms sezoninėms šventėms.</p>",
+          "part_3_html": "<h3>Geriausios pavasario akimirkos derinant aprangą</h3>",
+          "part_4_html": "<ul><li>Velykų sekmadienis, bažnyčia, priešpiečiai ir šeimos susibūrimai.</li><li>Pavasarinės šeimos nuotraukos, sodo vakarėliai ir Motinos dienos sezonas.</li><li>Kelionės, dušai ir šilto oro įvykiai, kuriems vis dar reikia patobulintos išvaizdos.</li></ul>",
+          "part_5_html": "<h3>Kaip naudotis šiuo sezoniniu puslapiu</h3>",
+          "part_6_html": "<p>Pradėkite nuo velykinių suknelių, jei jums reikia konkretaus renginio aprangos, tada naudokite tą pačią kolekciją, kad surastumėte pavasariui tinkančius drabužius, kurie vėl gali būti tinkami po šventės.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">Naršykite visą „Mama ir aš“ kolekciją</a> jei norite daugiau ištisus metus derančių stilių už Velykų ir pavasario lango.</p>",
+          "part_8_html": "<p><a href=\"{{ dresses_url }}\">Parduotuvė derančios suknelės</a> platesniam, į suknelę orientuotam redagavimui, ne tik sezoniniam pavasario stiliui.</p>"
+        }
+      }
+    },
+    "collection": {
+      "swimsuits_override": "Maudymosi kostiumėliai"
     }
   },
   "localization": {

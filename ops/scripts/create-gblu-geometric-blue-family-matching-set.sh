@@ -1,0 +1,596 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="/Users/fsuels/Projects/dresslikemommy"
+ENV_FILE="${SHOPIFY_ENV_FILE:-${HOME}/.config/dresslikemommy/shopify-admin.env}"
+
+if [[ -f "$ENV_FILE" ]]; then
+  # shellcheck disable=SC1090
+  source "$ENV_FILE"
+fi
+
+: "${SHOPIFY_STORE_DOMAIN:=dresslikemommy-com.myshopify.com}"
+: "${SHOPIFY_ADMIN_ACCESS_TOKEN:?SHOPIFY_ADMIN_ACCESS_TOKEN not set}"
+
+python3 - <<'PY'
+from __future__ import annotations
+
+import csv
+import html
+import json
+import math
+import mimetypes
+import os
+import re
+import sys
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+ROOT = Path("/Users/fsuels/Projects/dresslikemommy")
+API = f"https://{os.environ['SHOPIFY_STORE_DOMAIN']}/admin/api/2025-01/graphql.json"
+TOKEN = os.environ["SHOPIFY_ADMIN_ACCESS_TOKEN"]
+
+HANDLE = "geometric-blue-family-matching-set"
+TITLE = "Geometric Blue Family Matching Set - Dress, Shirt & Shorts"
+SEO_TITLE = "Geometric Blue Family Set | Dress Like Mommy"
+SEO_DESCRIPTION = "Family matching set in a geometric blue print for mom, dad, girls and boys. Dresses, shirts and shorts in Child 1-10Y and Adult S-3XL."
+PRINT_NAME = "Geometric Blue"
+SHORTCODE = "GBLU"
+COLOR_TOKEN = "BLUE"
+COLOR_NAME = "Geometric Blue"
+VENDOR_URL = "https://detail.1688.com/offer/1040150618595.html"
+VENDOR = "dresslikemommy.com"
+PRODUCT_TYPE = "Matching Family Sets"
+TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
+EXPECTED_TAXONOMY_FULL_NAME = "Apparel & Accessories > Clothing > Outfit Sets"
+CHILD_PRICE = "31.99"
+ADULT_PRICE = "36.99"
+
+UPLOAD_DIR = ROOT / "uploads" / HANDLE
+LISTING_MD = ROOT / "ops" / "listings" / f"{HANDLE}-listing.md"
+CSV_OUT = ROOT / "ops" / "listings" / f"{HANDLE}-shopify-import.csv"
+VERIFY_JSON_OUT = ROOT / "ops" / "listings" / f"verify-{HANDLE}.json"
+SIZE_CHART_OUT = ROOT / "ops" / "listings" / f"size-chart-{HANDLE}.json"
+BODY_HTML_OUT = ROOT / "ops" / "listings" / f"body-{HANDLE}.html"
+
+SIZE_MAP = {
+    "Child 1-2 Years": ("gid://shopify/Metaobject/129972797537", "12-18 months"),
+    "Child 2 Years": ("gid://shopify/Metaobject/129972863073", "2-3 years"),
+    "Child 3 Years": ("gid://shopify/Metaobject/129972895841", "3-4 years"),
+    "Child 4 Years": ("gid://shopify/Metaobject/129972928609", "4-5 years"),
+    "Child 5 Years": ("gid://shopify/Metaobject/129972961377", "5-6 years"),
+    "Child 6-7 Years": ("gid://shopify/Metaobject/139840323681", "6-7 years"),
+    "Child 8 Years": ("gid://shopify/Metaobject/129973026913", "8"),
+    "Child 9-10 Years": ("gid://shopify/Metaobject/129971552353", "10"),
+    "Mother S": ("gid://shopify/Metaobject/129975255137", "S"),
+    "Mother M": ("gid://shopify/Metaobject/129975222369", "M"),
+    "Mother L": ("gid://shopify/Metaobject/129975189601", "L"),
+    "Mother XL": ("gid://shopify/Metaobject/129975287905", "XL"),
+    "Mother 2XL": ("gid://shopify/Metaobject/129975156833", "2XL"),
+    "Mother 3XL": ("gid://shopify/Metaobject/139840421985", "3XL"),
+    "Father S": ("gid://shopify/Metaobject/129975255137", "S"),
+    "Father M": ("gid://shopify/Metaobject/129975222369", "M"),
+    "Father L": ("gid://shopify/Metaobject/129975189601", "L"),
+    "Father XL": ("gid://shopify/Metaobject/129975287905", "XL"),
+    "Father 2XL": ("gid://shopify/Metaobject/129975156833", "2XL"),
+    "Father 3XL": ("gid://shopify/Metaobject/139840421985", "3XL"),
+}
+
+SIZE_CHART = [
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"80","picker_label":"Child 1-2 Years","sku_suffix":"KID12Y","age":"1-2","weight":"9-11.5 kg","height":"75-85 cm","chest_cm":76,"hip_cm":80,"waist_cm":76,"length_cm":29,"skirt_cm":29,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"90","picker_label":"Child 2 Years","sku_suffix":"KID2Y","age":"2","weight":"12-14.5 kg","height":"86-95 cm","chest_cm":80,"hip_cm":84,"waist_cm":80,"length_cm":32,"skirt_cm":32,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"100","picker_label":"Child 3 Years","sku_suffix":"KID3Y","age":"3","weight":"15-17.5 kg","height":"96-105 cm","chest_cm":84,"hip_cm":88,"waist_cm":84,"length_cm":35,"skirt_cm":35,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"110","picker_label":"Child 4 Years","sku_suffix":"KID4Y","age":"4","weight":"18-20 kg","height":"106-115 cm","chest_cm":88,"hip_cm":92,"waist_cm":88,"length_cm":38,"skirt_cm":38,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"120","picker_label":"Child 5 Years","sku_suffix":"KID5Y","age":"5","weight":"20.5-22.5 kg","height":"116-125 cm","chest_cm":92,"hip_cm":96,"waist_cm":92,"length_cm":41,"skirt_cm":41,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"130","picker_label":"Child 6-7 Years","sku_suffix":"KID67Y","age":"6-7","weight":"23-25 kg","height":"126-135 cm","chest_cm":96,"hip_cm":100,"waist_cm":96,"length_cm":44,"skirt_cm":44,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"140","picker_label":"Child 8 Years","sku_suffix":"KID8Y","age":"8","weight":"25.5-30 kg","height":"136-145 cm","chest_cm":100,"hip_cm":104,"waist_cm":100,"length_cm":47,"skirt_cm":47,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"150","picker_label":"Child 9-10 Years","sku_suffix":"KID910Y","age":"9-10","weight":"30.5-40 kg","height":"145-155 cm","chest_cm":104,"hip_cm":108,"waist_cm":104,"length_cm":50,"skirt_cm":50,"pant_cm":0},
+    {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"S","picker_label":"Mother S","sku_suffix":"S","age":"—","weight":"47.5-57.5 kg","height":"—","chest_cm":108,"hip_cm":114,"waist_cm":106,"length_cm":56,"skirt_cm":56,"pant_cm":0},
+    {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"M","picker_label":"Mother M","sku_suffix":"M","age":"—","weight":"58-62.5 kg","height":"—","chest_cm":112,"hip_cm":118,"waist_cm":110,"length_cm":57,"skirt_cm":57,"pant_cm":0},
+    {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"L","picker_label":"Mother L","sku_suffix":"L","age":"—","weight":"63-69.5 kg","height":"—","chest_cm":116,"hip_cm":122,"waist_cm":114,"length_cm":58,"skirt_cm":58,"pant_cm":0},
+    {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"XL","picker_label":"Mother XL","sku_suffix":"XL","age":"—","weight":"70-77.5 kg","height":"—","chest_cm":120,"hip_cm":126,"waist_cm":118,"length_cm":59,"skirt_cm":59,"pant_cm":0},
+    {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"XXL","picker_label":"Mother 2XL","sku_suffix":"2XL","age":"—","weight":"78-85 kg","height":"—","chest_cm":124,"hip_cm":130,"waist_cm":122,"length_cm":60,"skirt_cm":60,"pant_cm":0},
+    {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"3XL","picker_label":"Mother 3XL","sku_suffix":"3XL","age":"—","weight":"85.5-95 kg","height":"—","chest_cm":128,"hip_cm":134,"waist_cm":126,"length_cm":61,"skirt_cm":61,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"80","picker_label":"Child 1-2 Years","sku_suffix":"KID12Y","age":"1-2","weight":"9-11.5 kg","height":"75-85 cm","chest_cm":74,"hip_cm":78,"waist_cm":74,"length_cm":33,"shoulder_cm":34,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"90","picker_label":"Child 2 Years","sku_suffix":"KID2Y","age":"2","weight":"12-14.5 kg","height":"86-95 cm","chest_cm":78,"hip_cm":82,"waist_cm":78,"length_cm":36,"shoulder_cm":36,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"100","picker_label":"Child 3 Years","sku_suffix":"KID3Y","age":"3","weight":"15-17.5 kg","height":"96-105 cm","chest_cm":82,"hip_cm":86,"waist_cm":82,"length_cm":39,"shoulder_cm":38,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"110","picker_label":"Child 4 Years","sku_suffix":"KID4Y","age":"4","weight":"18-20 kg","height":"106-115 cm","chest_cm":86,"hip_cm":90,"waist_cm":86,"length_cm":42,"shoulder_cm":40,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"120","picker_label":"Child 5 Years","sku_suffix":"KID5Y","age":"5","weight":"20.5-22.5 kg","height":"116-125 cm","chest_cm":90,"hip_cm":94,"waist_cm":90,"length_cm":45,"shoulder_cm":42,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"130","picker_label":"Child 6-7 Years","sku_suffix":"KID67Y","age":"6-7","weight":"23-25 kg","height":"126-135 cm","chest_cm":94,"hip_cm":98,"waist_cm":94,"length_cm":48,"shoulder_cm":44,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"140","picker_label":"Child 8 Years","sku_suffix":"KID8Y","age":"8","weight":"25.5-30 kg","height":"136-145 cm","chest_cm":98,"hip_cm":102,"waist_cm":98,"length_cm":51,"shoulder_cm":46,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"150","picker_label":"Child 9-10 Years","sku_suffix":"KID910Y","age":"9-10","weight":"30.5-40 kg","height":"145-155 cm","chest_cm":102,"hip_cm":106,"waist_cm":102,"length_cm":54,"shoulder_cm":48,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"S","picker_label":"Father S","sku_suffix":"S","age":"—","weight":"47.5-57.5 kg","height":"—","chest_cm":122,"hip_cm":122,"waist_cm":110,"length_cm":65,"shoulder_cm":53,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"M","picker_label":"Father M","sku_suffix":"M","age":"—","weight":"58-62.5 kg","height":"—","chest_cm":126,"hip_cm":126,"waist_cm":114,"length_cm":67,"shoulder_cm":54,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"L","picker_label":"Father L","sku_suffix":"L","age":"—","weight":"63-69.5 kg","height":"—","chest_cm":130,"hip_cm":130,"waist_cm":118,"length_cm":69,"shoulder_cm":56,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"XL","picker_label":"Father XL","sku_suffix":"XL","age":"—","weight":"70-77.5 kg","height":"—","chest_cm":134,"hip_cm":134,"waist_cm":122,"length_cm":71,"shoulder_cm":58,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"XXL","picker_label":"Father 2XL","sku_suffix":"2XL","age":"—","weight":"78-85 kg","height":"—","chest_cm":138,"hip_cm":138,"waist_cm":126,"length_cm":73,"shoulder_cm":59,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"3XL","picker_label":"Father 3XL","sku_suffix":"3XL","age":"—","weight":"85.5-95 kg","height":"—","chest_cm":142,"hip_cm":142,"waist_cm":130,"length_cm":76,"shoulder_cm":60,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shorts","garment":"Shorts","vendor_label":"80","picker_label":"Child 1-2 Years","sku_suffix":"KID12Y","age":"1-2","weight":"9-11.5 kg","height":"75-85 cm","chest_cm":0,"hip_cm":52,"waist_cm":48,"length_cm":27,"skirt_cm":0,"sleeve_cm":0,"pant_cm":27},
+    {"audience":"child","role":"Boy Shorts","garment":"Shorts","vendor_label":"90","picker_label":"Child 2 Years","sku_suffix":"KID2Y","age":"2","weight":"12-14.5 kg","height":"86-95 cm","chest_cm":0,"hip_cm":58,"waist_cm":54,"length_cm":28,"skirt_cm":0,"sleeve_cm":0,"pant_cm":28},
+    {"audience":"child","role":"Boy Shorts","garment":"Shorts","vendor_label":"100","picker_label":"Child 3 Years","sku_suffix":"KID3Y","age":"3","weight":"15-17.5 kg","height":"96-105 cm","chest_cm":0,"hip_cm":64,"waist_cm":60,"length_cm":30,"skirt_cm":0,"sleeve_cm":0,"pant_cm":30},
+    {"audience":"child","role":"Boy Shorts","garment":"Shorts","vendor_label":"110","picker_label":"Child 4 Years","sku_suffix":"KID4Y","age":"4","weight":"18-20 kg","height":"106-115 cm","chest_cm":0,"hip_cm":70,"waist_cm":66,"length_cm":31,"skirt_cm":0,"sleeve_cm":0,"pant_cm":31},
+    {"audience":"child","role":"Boy Shorts","garment":"Shorts","vendor_label":"120","picker_label":"Child 5 Years","sku_suffix":"KID5Y","age":"5","weight":"20.5-22.5 kg","height":"116-125 cm","chest_cm":0,"hip_cm":76,"waist_cm":72,"length_cm":32,"skirt_cm":0,"sleeve_cm":0,"pant_cm":32},
+    {"audience":"child","role":"Boy Shorts","garment":"Shorts","vendor_label":"130","picker_label":"Child 6-7 Years","sku_suffix":"KID67Y","age":"6-7","weight":"23-25 kg","height":"126-135 cm","chest_cm":0,"hip_cm":82,"waist_cm":78,"length_cm":34,"skirt_cm":0,"sleeve_cm":0,"pant_cm":34},
+    {"audience":"child","role":"Boy Shorts","garment":"Shorts","vendor_label":"140","picker_label":"Child 8 Years","sku_suffix":"KID8Y","age":"8","weight":"25.5-30 kg","height":"136-145 cm","chest_cm":0,"hip_cm":88,"waist_cm":84,"length_cm":36,"skirt_cm":0,"sleeve_cm":0,"pant_cm":36},
+    {"audience":"child","role":"Boy Shorts","garment":"Shorts","vendor_label":"150","picker_label":"Child 9-10 Years","sku_suffix":"KID910Y","age":"9-10","weight":"30.5-40 kg","height":"145-155 cm","chest_cm":0,"hip_cm":94,"waist_cm":90,"length_cm":38,"skirt_cm":0,"sleeve_cm":0,"pant_cm":38},
+    {"audience":"father","role":"Father Shorts","garment":"Shorts","vendor_label":"S","picker_label":"Father S","sku_suffix":"S","age":"—","weight":"47.5-57.5 kg","height":"—","chest_cm":0,"hip_cm":105,"waist_cm":93,"length_cm":43,"skirt_cm":0,"sleeve_cm":0,"pant_cm":43},
+    {"audience":"father","role":"Father Shorts","garment":"Shorts","vendor_label":"M","picker_label":"Father M","sku_suffix":"M","age":"—","weight":"58-62.5 kg","height":"—","chest_cm":0,"hip_cm":106,"waist_cm":94,"length_cm":44,"skirt_cm":0,"sleeve_cm":0,"pant_cm":44},
+    {"audience":"father","role":"Father Shorts","garment":"Shorts","vendor_label":"L","picker_label":"Father L","sku_suffix":"L","age":"—","weight":"63-69.5 kg","height":"—","chest_cm":0,"hip_cm":108,"waist_cm":96,"length_cm":46,"skirt_cm":0,"sleeve_cm":0,"pant_cm":46},
+]
+
+
+def gql(query: str, variables: dict | None = None) -> dict:
+    payload = json.dumps({"query": query, "variables": variables or {}}).encode()
+    req = urllib.request.Request(API, data=payload, headers={
+        "X-Shopify-Access-Token": TOKEN,
+        "Content-Type": "application/json",
+    })
+    try:
+        with urllib.request.urlopen(req) as res:
+            data = json.loads(res.read())
+    except urllib.error.HTTPError as exc:
+        raise RuntimeError(exc.read().decode()) from exc
+    if data.get("errors"):
+        raise RuntimeError(json.dumps(data["errors"], indent=2))
+    return data
+
+
+def require_no_user_errors(data: dict, path: list[str]) -> None:
+    cur = data
+    for key in path:
+        cur = cur[key]
+    if cur:
+        raise RuntimeError(json.dumps(cur, indent=2))
+
+
+def compare_at(price: str) -> str:
+    value = float(price) * 1.15
+    dollars = math.floor(value)
+    candidate = dollars + 0.99
+    if candidate < value:
+        candidate = dollars + 1.99
+    return f"{candidate:.2f}"
+
+
+def cm_to_in(value):
+    if not value or value in {"—", "-"}:
+        return "—"
+    return f"{value:g} cm / {float(value) / 2.54:.1f} in"
+
+
+def kg_to_lb(text: str) -> str:
+    if not text or text == "—":
+        return "—"
+    nums = [float(n) for n in re.findall(r"\d+(?:\.\d+)?", text)]
+    if len(nums) == 2:
+        return f"{nums[0]:g}-{nums[1]:g} kg / {nums[0]*2.20462:.1f}-{nums[1]*2.20462:.1f} lbs"
+    if len(nums) == 1:
+        return f"{nums[0]:g} kg / {nums[0]*2.20462:.1f} lbs"
+    return text
+
+
+def role_token(role: str) -> str:
+    if role.startswith("Girl"):
+        return "GRL"
+    if role.startswith("Boy"):
+        return "BOY"
+    if role.startswith("Mother"):
+        return "MOM"
+    if role.startswith("Father"):
+        return "DAD"
+    return "BABY"
+
+
+def garment_token(garment: str) -> str:
+    return {
+        "Dress": "DRS",
+        "Shirt": "SHT",
+        "Shorts": "SHR",
+    }.get(garment, re.sub(r"[^A-Z0-9]", "", garment.upper())[:4])
+
+
+def price_for(row: dict) -> str:
+    return ADULT_PRICE if row["audience"] in {"mother", "father"} else CHILD_PRICE
+
+
+def build_body() -> str:
+    by_garment: dict[str, list[dict]] = {}
+    for row in SIZE_CHART:
+        by_garment.setdefault(row["garment"], []).append(row)
+
+    def table_for(garment: str, rows: list[dict]) -> str:
+        measure = "Skirt Length" if garment == "Dress" else "Short Length" if garment == "Shorts" else "Sleeve or —"
+        parts = [f"<h3>Size Chart - {html.escape(garment)}</h3>", "<table id=\"size-chart\">", "<thead><tr>"]
+        headers = ["Size", "Age", "Weight (kg/lbs)", "Height (cm/in)", "Chest/Bust (cm/in)", f"{measure} (cm/in)", "Pant/Short or — (cm/in)", "Hip (cm/in)", "Waist (cm/in)", "Garment Length (cm/in)"]
+        parts.extend(f"<th>{h}</th>" for h in headers)
+        parts.append("</tr></thead><tbody>")
+        for row in rows:
+            side = row.get("skirt_cm") if garment == "Dress" else row.get("pant_cm") if garment == "Shorts" else row.get("sleeve_cm")
+            cells = [
+                row["picker_label"],
+                row["age"],
+                kg_to_lb(row["weight"]),
+                "—" if row["height"] == "—" else cm_to_in(row["height"].replace(" cm", "")) if re.fullmatch(r"[\d.]+-[\d.]+ cm", row["height"]) is None else f"{row['height']} / " + "-".join(f"{float(n)/2.54:.1f}" for n in re.findall(r"[\d.]+", row["height"])) + " in",
+                cm_to_in(row["chest_cm"]),
+                cm_to_in(side),
+                cm_to_in(row.get("pant_cm")) if garment == "Shorts" else "—",
+                cm_to_in(row["hip_cm"]),
+                cm_to_in(row["waist_cm"]),
+                cm_to_in(row["length_cm"]),
+            ]
+            parts.append("<tr>" + "".join(f"<td>{html.escape(str(c))}</td>" for c in cells) + "</tr>")
+        parts.append("</tbody></table>")
+        return "\n".join(parts)
+
+    intro = """
+<ul>
+<li><strong>Fabric:</strong> Lightweight woven fabric in a soft summer hand-feel, based on the supplied vendor imagery.</li>
+<li><strong>Family story:</strong> A four-role family matching look for mom, dad, girls, and boys in one coordinated geometric blue print.</li>
+<li><strong>Print:</strong> Geometric Blue pairs a deep blue base with small repeated medallion dots for easy vacation photos.</li>
+<li><strong>Design details:</strong> Moms and girls wear sleeveless dresses, dads and boys wear short-sleeve button shirts, with coordinating shorts available for boys and dads.</li>
+<li><strong>Care:</strong> Machine wash cold on gentle, line dry, do not bleach, and cool iron inside-out if needed.</li>
+<li><strong>Size range:</strong> Girls and boys Child 1-2Y-10Y; Mother S-3XL; Father S-3XL for shirts and Father S-L for shorts.</li>
+</ul>
+""".strip()
+    tables = "\n\n".join(table_for(name, rows) for name, rows in by_garment.items())
+    narrative = """
+<p>Geometric Blue is made for relaxed family photos, beach walks, summer birthdays, and easy vacation mornings. The blue print keeps everyone coordinated while each piece still feels natural: breezy sleeveless dresses for moms and girls, crisp collared shirts for dads and boys, and simple pull-on shorts for the guys.</p>
+
+<p>The look is polished without feeling precious. The repeated geometric motif photographs cleanly, the sleeveless dress shape keeps the mood warm-weather friendly, and the separates make it simple to build only the pieces each family member needs.</p>
+
+<h3>Key Features:</h3>
+<ul>
+<li><strong>Four-role coordination:</strong> Dress, shirt, and shorts options cover moms, dads, girls, and boys.</li>
+<li><strong>Blue geometric palette:</strong> A deep blue ground with small repeated motifs keeps the set coordinated without looking too busy.</li>
+<li><strong>Mix-and-match pieces:</strong> Shirts and shorts can be selected separately for boys and dads.</li>
+<li><strong>Attached chart backed:</strong> Variants are built only from the supplied vendor size chart.</li>
+<li><strong>Draft-only safety:</strong> Created as an unpublished Shopify draft pending operator review.</li>
+</ul>
+
+<p>Choose each role and size you need to build a crisp blue family matching look for the next sunny memory.</p>
+""".strip()
+    return "\n\n".join([intro, tables, narrative])
+
+
+def build_variants() -> list[dict]:
+    variants = []
+    for row in SIZE_CHART:
+        price = price_for(row)
+        sku = f"DLM-{SHORTCODE}-{role_token(row['role'])}-{garment_token(row['garment'])}-{row['sku_suffix']}-{COLOR_TOKEN}"
+        variants.append({
+            "price": price,
+            "compareAtPrice": compare_at(price),
+            "inventoryPolicy": "DENY",
+            "optionValues": [
+                {"optionName": "Type", "name": row["garment"]},
+                {"optionName": "Size", "name": row["picker_label"]},
+            ],
+            "inventoryItem": {
+                "sku": sku,
+                "tracked": True,
+                "requiresShipping": True,
+            },
+        })
+    return variants
+
+
+def validate_preflight(body: str, variants: list[dict]) -> None:
+    if len(SIZE_CHART) != len(variants):
+        raise RuntimeError("SIZE_CHART/variant count mismatch")
+    if len(TITLE) > 70 or len(SEO_TITLE) > 60 or len(SEO_DESCRIPTION) > 155:
+        raise RuntimeError("Title or SEO length guard failed")
+    if len({(r["role"], r["picker_label"]) for r in SIZE_CHART}) != len(SIZE_CHART):
+        raise RuntimeError("Duplicate role/picker pair")
+    if body.count("<tr>") - 3 != len(SIZE_CHART):
+        raise RuntimeError("Body row count mismatch")
+    if any(body_part.count("<th>") != 10 for body_part in re.findall(r"<table.*?</table>", body, re.S)):
+        raise RuntimeError("One or more size tables does not have 10 headers")
+
+
+def tags() -> list[str]:
+    values = [
+        "Family Matching", "Mommy and Me", "Daddy and Me", "Sets", "Summer Family Matching Set",
+        "Matching Family Outfits", "Matching Family Set", "Matching Family Dress", "Matching Family Shirt",
+        "Matching Family Shorts", "Dress Shirt Shorts", "Summer", "Beach", "Resort", "Vacation",
+        PRINT_NAME, "Blue", "Geometric", "Dot Print", "Medallion Print",
+        "Girl Dress", "Mother Dress", "Boy Shirt", "Father Shirt", "Boy Shorts", "Father Shorts", "Four-Role Matching",
+        VENDOR_URL,
+    ]
+    values.extend(sorted({row["picker_label"] for row in SIZE_CHART}))
+    values.extend(sorted({row["role"] for row in SIZE_CHART}))
+    return sorted(dict.fromkeys(values))
+
+
+def metafields(product_id: str) -> list[dict]:
+    size_refs = list(dict.fromkeys(SIZE_MAP[row["picker_label"]][0] for row in SIZE_CHART))
+    return [
+        {"ownerId": product_id, "namespace": "custom", "key": "category1", "type": "single_line_text_field", "value": "Family Matching"},
+        {"ownerId": product_id, "namespace": "custom", "key": "subcategory", "type": "single_line_text_field", "value": "Set"},
+        {"ownerId": product_id, "namespace": "custom", "key": "subcategory2", "type": "single_line_text_field", "value": "Summer Family Matching Set"},
+        {"ownerId": product_id, "namespace": "custom", "key": "pattern", "type": "single_line_text_field", "value": PRINT_NAME},
+        {"ownerId": product_id, "namespace": "custom", "key": "style", "type": "single_line_text_field", "value": "Matching Family Set"},
+        {"ownerId": product_id, "namespace": "custom", "key": "type", "type": "single_line_text_field", "value": "Two-Piece Set"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_product", "type": "boolean", "value": "false"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "gender", "type": "single_line_text_field", "value": "unisex"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "age_group", "type": "single_line_text_field", "value": "adult"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "condition", "type": "single_line_text_field", "value": "new"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_0", "type": "single_line_text_field", "value": "Family Matching"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_1", "type": "single_line_text_field", "value": PRINT_NAME},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_2", "type": "single_line_text_field", "value": "Summer"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_3", "type": "single_line_text_field", "value": "Dress, Shirt & Shorts"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_4", "type": "single_line_text_field", "value": "Four-Role Matching"},
+        {"ownerId": product_id, "namespace": "shopify", "key": "age-group", "type": "list.metaobject_reference", "value": json.dumps(["gid://shopify/Metaobject/128116523105","gid://shopify/Metaobject/128116490337"])},
+        {"ownerId": product_id, "namespace": "shopify", "key": "care-instructions", "type": "list.metaobject_reference", "value": json.dumps(["gid://shopify/Metaobject/130283503713"])},
+        {"ownerId": product_id, "namespace": "shopify", "key": "color-pattern", "type": "list.metaobject_reference", "value": json.dumps(["gid://shopify/Metaobject/69639766113","gid://shopify/Metaobject/69639733345","gid://shopify/Metaobject/130283143265"])},
+        {"ownerId": product_id, "namespace": "shopify", "key": "size", "type": "list.metaobject_reference", "value": json.dumps(size_refs)},
+        {"ownerId": product_id, "namespace": "shopify", "key": "target-gender", "type": "list.metaobject_reference", "value": json.dumps(["gid://shopify/Metaobject/129971617889","gid://shopify/Metaobject/130231107681"])},
+        {"ownerId": product_id, "namespace": "global", "key": "title_tag", "type": "single_line_text_field", "value": SEO_TITLE},
+        {"ownerId": product_id, "namespace": "global", "key": "description_tag", "type": "single_line_text_field", "value": SEO_DESCRIPTION},
+    ]
+
+
+def upload_media(product_id: str) -> None:
+    if not UPLOAD_DIR.exists():
+        return
+    existing = gql("""query($id:ID!){ product(id:$id){ media(first:50){ nodes{ ... on MediaImage{ alt } } } } }""", {"id": product_id})
+    existing_alts = {node.get("alt") for node in existing["data"]["product"]["media"]["nodes"]}
+    alt_by_prefix = {
+        "01": "Family in geometric blue matching dress, shirt and shorts set.",
+        "02": "Family wearing geometric blue matching shirts and sleeveless dresses.",
+        "03": "Mother and daughter in geometric blue sleeveless matching dresses.",
+    }
+    for path in sorted(UPLOAD_DIR.iterdir()):
+        if path.name.startswith("source-") or path.suffix.lower() not in {".jpg", ".jpeg", ".png", ".webp"}:
+            continue
+        alt = alt_by_prefix.get(path.name[:2], "Geometric Blue family matching set.")
+        if alt in existing_alts:
+            continue
+        mime = mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+        staged = gql("""mutation($input:[StagedUploadInput!]!){ stagedUploadsCreate(input:$input){ stagedTargets{ url resourceUrl parameters{name value} } userErrors{field message} } }""", {
+            "input": [{"filename": path.name, "mimeType": mime, "resource": "IMAGE", "httpMethod": "POST"}]
+        })
+        require_no_user_errors(staged, ["data", "stagedUploadsCreate", "userErrors"])
+        target = staged["data"]["stagedUploadsCreate"]["stagedTargets"][0]
+        boundary = "----DLMBOUNDARY"
+        chunks = []
+        for p in target["parameters"]:
+            chunks.append(f"--{boundary}\r\nContent-Disposition: form-data; name=\"{p['name']}\"\r\n\r\n{p['value']}\r\n".encode())
+        chunks.append(f"--{boundary}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"{path.name}\"\r\nContent-Type: {mime}\r\n\r\n".encode() + path.read_bytes() + b"\r\n")
+        chunks.append(f"--{boundary}--\r\n".encode())
+        req = urllib.request.Request(target["url"], data=b"".join(chunks), headers={"Content-Type": f"multipart/form-data; boundary={boundary}"})
+        urllib.request.urlopen(req).read()
+        media = gql("""mutation($productId:ID!,$media:[CreateMediaInput!]!){ productCreateMedia(productId:$productId, media:$media){ media{ ... on MediaImage{ id alt } } userErrors{field message} } }""", {
+            "productId": product_id,
+            "media": [{"originalSource": target["resourceUrl"], "mediaContentType": "IMAGE", "alt": alt}],
+        })
+        require_no_user_errors(media, ["data", "productCreateMedia", "userErrors"])
+
+
+def write_csv(body: str, variants: list[dict]) -> None:
+    header = (ROOT / "ops" / "listings" / "fresh-blue-plaid-family-matching-set-shopify-import.csv").read_text().splitlines()[0].split(",")
+    rows = []
+    tags_text = ", ".join(tags())
+    for i, (row, variant) in enumerate(zip(SIZE_CHART, variants), start=1):
+        values = {key: "" for key in header}
+        values.update({
+            "Handle": HANDLE,
+            "Title": TITLE if i == 1 else "",
+            "Body (HTML)": body if i == 1 else "",
+            "Vendor": VENDOR if i == 1 else "",
+            "Product Category": EXPECTED_TAXONOMY_FULL_NAME if i == 1 else "",
+            "Type": PRODUCT_TYPE if i == 1 else "",
+            "Tags": tags_text if i == 1 else "",
+            "Published": "FALSE",
+            "Option1 Name": "Type",
+            "Option1 Value": row["garment"],
+            "Option2 Name": "Size",
+            "Option2 Value": row["picker_label"],
+            "Variant SKU": variant["inventoryItem"]["sku"],
+            "Variant Grams": "300",
+            "Variant Inventory Tracker": "shopify",
+            "Variant Inventory Policy": "deny",
+            "Variant Fulfillment Service": "manual",
+            "Variant Price": variant["price"],
+            "Variant Compare At Price": variant["compareAtPrice"],
+            "Variant Requires Shipping": "TRUE",
+            "Variant Taxable": "TRUE",
+            "Gift Card": "FALSE",
+            "SEO Title": SEO_TITLE if i == 1 else "",
+            "SEO Description": SEO_DESCRIPTION if i == 1 else "",
+            "Google Shopping / Gender": "unisex" if i == 1 else "",
+            "Google Shopping / Age Group": "adult" if i == 1 else "",
+            "Google Shopping / Condition": "new" if i == 1 else "",
+            "Google Shopping / Custom Product": "FALSE" if i == 1 else "",
+            "Google Shopping / Custom Label 0": "Family Matching" if i == 1 else "",
+            "Google Shopping / Custom Label 1": PRINT_NAME if i == 1 else "",
+            "Google Shopping / Custom Label 2": "Summer" if i == 1 else "",
+            "Google Shopping / Custom Label 3": "Dress, Shirt & Shorts" if i == 1 else "",
+            "Google Shopping / Custom Label 4": "Four-Role Matching" if i == 1 else "",
+            "Category1 (product.metafields.custom.category1)": "Family Matching" if i == 1 else "",
+            "Pattern (product.metafields.custom.pattern)": PRINT_NAME if i == 1 else "",
+            "Style (product.metafields.custom.style)": "Matching Family Set" if i == 1 else "",
+            "SubCategory (product.metafields.custom.subcategory)": "Set" if i == 1 else "",
+            "SubCategory2 (product.metafields.custom.subcategory2)": "Summer Family Matching Set" if i == 1 else "",
+            "Type (product.metafields.custom.type)": "Two-Piece Set" if i == 1 else "",
+            "Google: Custom Product (product.metafields.mm-google-shopping.custom_product)": "false" if i == 1 else "",
+            "Status": "draft",
+        })
+        rows.append(values)
+    with CSV_OUT.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=header)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def write_listing(product: dict, body: str, variants: list[dict], verify: dict) -> None:
+    admin_url = f"https://admin.shopify.com/store/dresslikemommy/products/{product['id'].split('/')[-1]}"
+    recap = []
+    for row, variant in zip(SIZE_CHART, variants):
+        gid, label = SIZE_MAP[row["picker_label"]]
+        recap.append(f"| {row['role']} | {row['vendor_label']} | {row['picker_label']} | {row['garment']} | `{variant['inventoryItem']['sku']}` | {variant['price']} | `{gid}` ({label}) |")
+    skipped = [
+        ("shopify.sleeve-length-type", "Mixed sleeveless dresses, shirts with no sleeve measurement, and shorts; one product-level value would mislead."),
+        ("shopify.dress-occasion", "Product taxonomy is Outfit Sets and includes shirts plus shorts, not dress-only."),
+        ("shopify.dress-style", "Mixed garment listing under Outfit Sets."),
+        ("shopify.skirt-dress-length-type", "Mixed garment listing; dress-only length would overstate scope."),
+        ("shopify.neckline", "Different necklines across dress and shirt pieces."),
+        ("shopify.top-length-type", "Mixed garment listing; no single honest top-length value applies."),
+        ("shopify.fabric", "The supplied chart/images do not confirm one honest fiber metaobject, so fabric was left unset rather than guessing cotton vs. synthetic."),
+    ]
+    lines = [
+        f"# {TITLE}",
+        "",
+        "## Links",
+        f"- **Admin:** {admin_url}",
+        "- **Live:** not published",
+        f"- **Vendor:** {VENDOR_URL}",
+        f"- **Product GID:** `{product['id']}`",
+        f"- **Handle:** `{HANDLE}`",
+        "",
+        "## Inputs (resolved)",
+        "| Field | Value |",
+        "|---|---|",
+        f"| VENDOR_URL | {VENDOR_URL} |",
+        "| SIZE_CHART_SOURCE | attached size-chart screenshot and supplied product images |",
+        "| LISTING_MODE | Family Matching |",
+        "| PRIMARY_CATEGORY | FamilySet / Outfit Sets |",
+        "| DESIGNS_TO_LIST | auto -> Dress, Shirt, Shorts in Geometric Blue |",
+        "| FORCE_SPEC_PRICES | true |",
+        f"| SHORTCODE | {SHORTCODE} |",
+        f"| COLOR_TOKEN | {COLOR_TOKEN} |",
+        "",
+        "## Vendor fetch status",
+        "Detail enrichment for this exact offer captured supplier and image proof but still scored the product Reject: the detail page showed MOQ 70, no machine-readable size chart, a weak 4.5 shop/service rating, and a possible generic brand/IP token. Positive proof included 12+ years on 1688, 89% repeat-buyer signal, 380 recent sales, dispatch/stock wording, one-piece/dropship wording, a 2026 freshness signal, and 24 vendor images captured. The attached size-chart screenshot and supplied product images are the listing source of truth, so the product was created as a Shopify draft only.",
+        "",
+        "## Title & SEO",
+        "| Field | Value | Chars |",
+        "|---|---|---|",
+        f"| Product title | `{TITLE}` | {len(TITLE)} |",
+        f"| SEO title | `{SEO_TITLE}` | {len(SEO_TITLE)} |",
+        f"| SEO description | `{SEO_DESCRIPTION}` | {len(SEO_DESCRIPTION)} |",
+        "",
+        "## SIZE_CHART / Variant Recap",
+        "| Role | Vendor | Picker | Type | SKU | Price | shopify.size GID |",
+        "|---|---|---|---|---|---|---|",
+        *recap,
+        "",
+        "## Derivations",
+        "- Adult and child weight guidance was converted from vendor 斤 ranges into kg/lbs in the shopper-facing table.",
+        "- Shirt and dress chest values were doubled from the vendor half-chest chart values.",
+        "- Dress hip and waist values were derived with the canonical dress rules because the chart omits both.",
+        "- Shirt hip and waist values were derived with the canonical shirt/top rules because the chart omits both.",
+        "- Shorts hip and pant length values were transcribed directly; shorts waist values were derived because the chart omits waist.",
+        "- Child 80 keeps the catalog's established closest `12-18 months` size reference.",
+        "",
+        "## Verification",
+        "| Check | Result | Detail |",
+        "|---|---|---|",
+        f"| Product status is DRAFT | {'PASS' if verify['status'] == 'DRAFT' else 'FAIL'} | {verify['status']} |",
+        f"| publishedAt is null | {'PASS' if not verify.get('publishedAt') else 'FAIL'} | {verify.get('publishedAt')} |",
+        f"| Variant count matches SIZE_CHART | {'PASS' if len(verify['variants']['nodes']) == len(SIZE_CHART) else 'FAIL'} | {len(verify['variants']['nodes'])} vs {len(SIZE_CHART)} |",
+        f"| Taxonomy fullName matches | {'PASS' if verify['category']['fullName'] == EXPECTED_TAXONOMY_FULL_NAME else 'FAIL'} | {verify['category']['fullName']} |",
+        f"| Publications not live | {'PASS' if not any(p['isPublished'] for p in verify['resourcePublicationsV2']['nodes']) else 'FAIL'} | {[p['publication']['name'] for p in verify['resourcePublicationsV2']['nodes'] if p['isPublished']]} |",
+        "",
+        "## Metafields Written",
+        *[f"- `{m['namespace']}.{m['key']}`" for m in verify["metafields"]["nodes"] if m["namespace"] not in {"judgeme"}],
+        "",
+        "## Metafields Skipped",
+        *[f"- `{key}`: {reason}" for key, reason in skipped],
+        "",
+        "## Smart Collections",
+        "Collection indexing may wait until publication because the product is an unpublished draft.",
+        "",
+        "## Manual Follow-ups",
+        "- Re-confirm exact fabric composition from the vendor page before publishing.",
+        "- Resolve the detail-enrichment sourcing risk before publishing: MOQ 70, weak 4.5 shop/service rating, and possible generic brand/IP token.",
+        "- Inventory quantities and per-variant weights still need operator stock values.",
+        "- Father shorts are chart-backed only through L; do not add XL-3XL shorts without new vendor proof.",
+        "",
+        "## Files saved",
+        f"- `{ROOT / 'ops' / 'scripts' / 'create-gblu-geometric-blue-family-matching-set.sh'}`",
+        f"- `{LISTING_MD}`",
+        f"- `{CSV_OUT}`",
+        f"- `{SIZE_CHART_OUT}`",
+        f"- `{BODY_HTML_OUT}`",
+        f"- `{VERIFY_JSON_OUT}`",
+        f"- `{UPLOAD_DIR}`",
+        "",
+    ]
+    LISTING_MD.write_text("\n".join(lines), encoding="utf-8")
+
+
+def main() -> None:
+    (ROOT / "ops" / "listings").mkdir(parents=True, exist_ok=True)
+    body = build_body()
+    variants = build_variants()
+    validate_preflight(body, variants)
+    SIZE_CHART_OUT.write_text(json.dumps(SIZE_CHART, indent=2), encoding="utf-8")
+    BODY_HTML_OUT.write_text(body, encoding="utf-8")
+    write_csv(body, variants)
+
+    tax = gql("""query($id:ID!){ node(id:$id){ __typename ... on TaxonomyCategory{ id fullName isLeaf } } }""", {"id": TAXONOMY_GID})["data"]["node"]
+    if tax["fullName"] != EXPECTED_TAXONOMY_FULL_NAME or not tax["isLeaf"]:
+        raise RuntimeError(f"Taxonomy guard failed: {tax}")
+
+    existing = gql("""query($handle:String!){ productByHandle(handle:$handle){ id status variants(first:100){nodes{sku}} } }""", {"handle": HANDLE})["data"]["productByHandle"]
+    product_options = [
+        {"name": "Type", "values": [{"name": value} for value in ["Dress", "Shirt", "Shorts"]]},
+        {"name": "Size", "values": [{"name": value} for value in list(dict.fromkeys(row["picker_label"] for row in SIZE_CHART))]},
+    ]
+    product_input = {
+        "handle": HANDLE,
+        "title": TITLE,
+        "descriptionHtml": body,
+        "vendor": VENDOR,
+        "productType": PRODUCT_TYPE,
+        "tags": tags(),
+        "status": "DRAFT",
+        "category": TAXONOMY_GID,
+        "seo": {"title": SEO_TITLE, "description": SEO_DESCRIPTION},
+    }
+    if existing:
+        if existing["status"] == "ACTIVE":
+            raise RuntimeError(f"Existing product {HANDLE} is ACTIVE; refusing to change publish state.")
+        product_id = existing["id"]
+        res = gql("""mutation($product:ProductUpdateInput!){ productUpdate(product:$product){ product{id handle title status} userErrors{field message} } }""", {"product": {"id": product_id, **product_input}})
+        require_no_user_errors(res, ["data", "productUpdate", "userErrors"])
+        live_skus = sorted(v["sku"] for v in existing["variants"]["nodes"] if v.get("sku"))
+        spec_skus = sorted(v["inventoryItem"]["sku"] for v in variants)
+        if live_skus and live_skus != spec_skus:
+            raise RuntimeError("Existing draft has unexpected variants; refusing to create duplicates.")
+    else:
+        res = gql("""mutation($input:ProductInput!){ productCreate(input:$input){ product{id handle title status} userErrors{field message} } }""", {"input": {**product_input, "productOptions": product_options}})
+        require_no_user_errors(res, ["data", "productCreate", "userErrors"])
+        product_id = res["data"]["productCreate"]["product"]["id"]
+        bulk = gql("""mutation($productId:ID!,$variants:[ProductVariantsBulkInput!]!,$strategy:ProductVariantsBulkCreateStrategy){ productVariantsBulkCreate(productId:$productId, variants:$variants, strategy:$strategy){ productVariants{id sku title price compareAtPrice inventoryPolicy} userErrors{field message} } }""", {
+            "productId": product_id,
+            "variants": variants,
+            "strategy": "REMOVE_STANDALONE_VARIANT",
+        })
+        require_no_user_errors(bulk, ["data", "productVariantsBulkCreate", "userErrors"])
+
+    mf = metafields(product_id)
+    for i in range(0, len(mf), 25):
+        res = gql("""mutation($metafields:[MetafieldsSetInput!]!){ metafieldsSet(metafields:$metafields){ metafields{namespace key type value} userErrors{field message} } }""", {"metafields": mf[i:i+25]})
+        require_no_user_errors(res, ["data", "metafieldsSet", "userErrors"])
+
+    upload_media(product_id)
+    time.sleep(2)
+    verify = gql("""query($id:ID!){ product(id:$id){ id title handle status publishedAt onlineStoreUrl descriptionHtml tags seo{title description} category{id fullName} options{name values} variants(first:100){nodes{id sku title price compareAtPrice inventoryPolicy selectedOptions{name value} inventoryItem{tracked requiresShipping}}} media(first:50){nodes{... on MediaImage{alt image{url}}}} collections(first:50){nodes{title handle}} metafields(first:120){nodes{namespace key type value}} resourcePublicationsV2(first:20){nodes{isPublished publishDate publication{id name}}} } }""", {"id": product_id})["data"]["product"]
+    VERIFY_JSON_OUT.write_text(json.dumps({"data": {"product": verify}}, indent=2), encoding="utf-8")
+    write_listing({"id": product_id}, body, variants, verify)
+    print(json.dumps({
+        "admin_url": f"https://admin.shopify.com/store/dresslikemommy/products/{product_id.split('/')[-1]}",
+        "status": verify["status"],
+        "publishedAt": verify["publishedAt"],
+        "variant_count": len(verify["variants"]["nodes"]),
+        "files": [str(LISTING_MD), str(CSV_OUT), str(VERIFY_JSON_OUT)],
+    }, indent=2))
+
+
+if __name__ == "__main__":
+    main()
+PY

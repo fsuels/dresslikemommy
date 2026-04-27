@@ -139,7 +139,8 @@
         "from_price_html": "Da {{ price }}",
         "regular_price": "Prezzo di listino",
         "sale_price": "Prezzo scontato",
-        "unit_price": "Prezzo unitario"
+        "unit_price": "Prezzo unitario",
+        "compare_at_price": "Confronta con {{ price }}"
       },
       "share": "Condividi questo prodotto",
       "sold_out": "Esaurito",
@@ -206,7 +207,17 @@
         "guide_and_fit": "Guida alle taglie e vestibilità",
         "your_size_details": "Dettagli sulla tua taglia",
         "compare_hint": "Apri la tabella completa qui sotto per confrontare le taglie vicine.",
-        "chart_units": "Unità della tabella delle taglie"
+        "chart_units": "Unità della tabella delle taglie",
+        "columns": {
+          "size": "Dimensioni",
+          "us_size": "Taglia USA",
+          "bust_cm_in": "Busto (cm/pollici)",
+          "waist_cm_in": "Vita (cm/pollici)",
+          "hips_cm_in": "Fianchi (cm/pollici)",
+          "height_cm_in": "Altezza (cm/pollici)",
+          "weight_kg": "Peso (kg)",
+          "age": "Età"
+        }
       },
       "reviews": {
         "heading": "Recensioni dei clienti",
@@ -219,6 +230,16 @@
         "empty": "Sii il primo a scrivere una recensione",
         "write_review": "Scrivi una recensione",
         "write_review_title": "Scrivi una recensione"
+      },
+      "free_shipping_all_orders": "Spedizione gratuita su tutti gli ordini",
+      "selected_size_label": "Dimensioni: {{ size }}",
+      "description_sections": {
+        "details_eyebrow": "Dettagli",
+        "highlights_heading": "Perché lo adorerai",
+        "size_chart_heading": "Tabella delle taglie",
+        "product_details_heading": "Dettagli del prodotto",
+        "size_chart_meta": "Misurazioni dalla tabella di origine del fornitore",
+        "product_details_meta": "Informazioni strutturate sul prodotto"
       }
     },
     "modal": {
@@ -499,7 +520,15 @@
       "prefix_matching": "Corrispondenza ",
       "prefix_daddy_me": "Papà e Me ",
       "prefix_family_matching": "Outfit coordinati per la famiglia ",
-      "label_button_downs": "Abbottonatura"
+      "label_button_downs": "Abbottonatura",
+      "label_tees": "Magliette",
+      "label_dresses": "Abiti",
+      "label_hawaiian_outfits": "Abiti hawaiani",
+      "label_all": "Tutto",
+      "label_new_arrivals": "Nuovi Arrivi",
+      "label_sale": "Vendita",
+      "label_best_sellers": "I più venduti",
+      "label_sweaters_short": "Maglioni"
     },
     "collection": {
       "swimsuits_override": "Costumi da bagno"
@@ -515,6 +544,243 @@
       "browse_more_from": "Scopri di più da {{ collection }}",
       "browse_similar_styles": "Sfoglia stili simili",
       "compare_collection_copy": "Utilizza questa raccolta per confrontare alcune corrispondenze ravvicinate prima di tornare a fare acquisti."
+    },
+    "collection_navigation": {
+      "collection_categories": "Categorie di raccolta",
+      "main_collections": "Principali collezioni",
+      "within_mommy_me": "Entro Mamma e Me",
+      "within_family_matching": "All'interno del Family Matching",
+      "within_daddy_me": "Entro Papà e Me",
+      "within_couples": "All'interno delle coppie",
+      "within_maternity": "All'interno della maternità"
+    },
+    "collection_seo": {
+      "note_eyebrow": "Nota di raccolta",
+      "closer_look_at": "Uno sguardo più da vicino a {{ title }}",
+      "display_titles": {
+        "all": "Tutti gli abiti coordinati",
+        "swimsuits": "Corrispondenza famiglia Costumi da bagno",
+        "mommy_and_me": "Mamma e Me Abiti",
+        "dresses": "Mamma e Me Abiti",
+        "family_swimsuits": "Costumi da bagno per famiglie",
+        "family_sets": "Abiti per le vacanze in famiglia",
+        "new_women_outfits": "Abiti coordinati per la famiglia",
+        "family_matching": "Abiti coordinati per la famiglia",
+        "daddy_me": "Papà e Me Abiti",
+        "daddy_me_tshirts": "Papà e Me T",
+        "daddy_me_shirts": "Camicie papà e figlio",
+        "couples": "Abiti coordinati per coppie",
+        "couples_tshirts": "Magliette abbinate per coppie",
+        "spring_matching": "Mamma e Me Abiti pasquali e abbinamenti primaverili",
+        "tops": "Top e T abbinati",
+        "pajamas": "Famiglia corrispondente Pigiami",
+        "sweaters": "Maglioni e giacche abbinati",
+        "maxi_dresses": "Mamma e Me Abiti lunghi",
+        "jumpsuits": "Tute abbinate",
+        "midi_dresses": "Mamma e Me Abiti midi",
+        "mini_dresses": "Mamma e Me Mini abiti",
+        "rompers": "Tutine abbinate",
+        "sundresses": "Mamma e Me Prendisole",
+        "bottoms": "Pantaloni abbinati",
+        "skirts": "Gonne abbinate",
+        "leggings": "Leggings abbinati",
+        "pants": "Pantaloni abbinati",
+        "new_arrivals": "Nuovi arrivi di abiti coordinati",
+        "new_matching_outfits": "Nuovi abiti Mamma e Me",
+        "maternity": "Stili di maternità e allattamento",
+        "best_sellers": "I più venduti",
+        "popular_mommy_me": "Popolare Mamma e Me",
+        "popular_family_matching": "Abiti coordinati per la famiglia popolari",
+        "hawaiian_outfits": "Abiti hawaiani per la famiglia",
+        "trunks": "Nuoto abbinato Costumi boxer",
+        "fall_winter": "Abiti coordinati per l'autunno e l'inverno",
+        "formal_dresses": "Abiti formali abbinati",
+        "family_sweaters": "Maglioni e giacche per la famiglia",
+        "christmas_sweaters": "Maglioni abbinati a Natale",
+        "christmas_tops": "Abbinamento natalizio Top",
+        "christmas_pajamas": "Abbinamento natalizio Pigiami",
+        "valentines": "Abiti coordinati per San Valentino"
+      },
+      "meta_titles": {
+        "swimsuits": "Famiglia corrispondente Costumi da bagno | Mamma e figlia",
+        "mommy_and_me": "Mamma e Me Abiti | Abiti, Costumi da bagno e Set abbinati",
+        "family_swimsuits": "Costumi da bagno coordinati per la famiglia | Costumi da bagno per famiglie",
+        "family_sets": "Abiti coordinati per le vacanze in famiglia | Spiaggia e viaggi Set",
+        "family_matching": "Abiti coordinati per la famiglia | Mamma e Me",
+        "new_women_outfits": "Abiti coordinati per la famiglia | Abiti, costumi da bagno e famiglia Set",
+        "dresses": "Mamma e Me Abiti | Madre Figlia",
+        "maxi_dresses": "Abiti maxi abbinati | Mamma e figlia",
+        "best_sellers": "Abiti Mamma e Me più venduti | Abiti, Costumi da bagno e altro ancora",
+        "daddy_me": "Papà e Me Camicie, magliette e abiti coordinati",
+        "daddy_me_tshirts": "Papà e Me Camicie | Magliette abbinate per papà e bambini",
+        "daddy_me_shirts": "Camicie abbinate a papà e figlio | Abbottonatura, vestito e hawaiano",
+        "couples": "Abiti coordinati per coppie | Look Coordinati per Lui e Lei",
+        "couples_tshirts": "Camicie abbinate per coppie | Coppia T-shirt e Tees",
+        "spring_matching": "Mamma e Me Abiti pasquali | Abiti coordinati primaverili"
+      },
+      "meta_descriptions": {
+        "all": "Acquista tutti gli abiti coordinati in un unico posto, inclusi io e mamma, io e papà, set per coppie e famiglia. Stili comodi con spedizione veloce.",
+        "mommy_and_me": "Acquista abiti, vestiti, costumi da bagno e set coordinati per me e la mamma per compleanni, foto di famiglia, vacanze e momenti di gemellaggio quotidiani.",
+        "spring_matching": "Acquista abiti pasquali per me e mamma e abbinamenti primaverili per la chiesa, il brunch, la caccia alle uova, le foto di famiglia e altre celebrazioni stagionali.",
+        "dresses": "Acquista abiti per me e mamma e abiti coordinati per mamma e figlia per foto, feste, vacanze e abiti raffinati per tutti i giorni.",
+        "maxi_dresses": "Acquista maxi abiti per me e mamma e maxi abiti coordinati per foto, viaggi, celebrazioni e un semplice ed elegante abbigliamento quotidiano.",
+        "swimsuits": "Acquista costumi da bagno coordinati per la famiglia e costumi da bagno coordinati per mamma e figlia per gite in spiaggia, giornate in piscina, crociere e foto estive coordinate.",
+        "family_swimsuits": "Acquista costumi da bagno e costumi da bagno per tutta la famiglia abbinati per vacanze al mare, giornate in piscina, crociere e foto estive coordinate.",
+        "family_sets": "Acquista abiti coordinati per le vacanze in famiglia e set da spiaggia per crociere, viaggi in resort, foto di famiglia e look coordinati per i viaggi estivi.",
+        "new_women_outfits": "Acquista abiti coordinati per la famiglia per abiti, costumi da bagno, look per la mamma e per me e set pronti per il viaggio in un unico posto, quindi restringi la collezione che si adatta al tuo viaggio, stagione o occasione.",
+        "family_matching": "Acquista abiti coordinati per la famiglia e abiti per me e mamma per foto, vacanze, vacanze e semplici look coordinati per ogni stagione.",
+        "daddy_me": "Acquista camicie, magliette, magliette e abiti coordinati per me e papà per le foto di famiglia, la festa del papà, le vacanze e un facile coordinamento quotidiano.",
+        "daddy_me_tshirts": "Acquista camicie \"daddy and me\" e magliette abbinate per la festa del papà, vacanze, compleanni, foto e semplici outfit quotidiani per papà e bambini.",
+        "daddy_me_shirts": "Acquista camicie abbinate a papà e figlio, comprese camicie abbottonate, eleganti e in stile hawaiano per vacanze, foto, feste e raffinati abiti per la famiglia.",
+        "couples": "Acquista abiti coordinati per coppie con set coordinati, top, pigiami e look pronti per le vacanze per appuntamenti serali, regali, viaggi e abbigliamento quotidiano.",
+        "couples_tshirts": "Acquista camicie e t-shirt abbinate per coppie per appuntamenti serali, viaggi, concerti, vacanze, regali e semplici look coordinati per tutti i giorni."
+      },
+      "swimsuits": {
+        "eyebrow": "Guida ai costumi da bagno",
+        "title": "Costumi da bagno coordinati per mamme, figlie e piani per tutta la famiglia",
+        "copy_1": "Inizia da qui se desideri prima il più ampio assortimento di costumi da bagno. Questa pagina riunisce stili per mamma e figlia, costumi da bagno per la famiglia abbinati e opzioni pronte per le vacanze senza doverti consultare più collezioni di costumi da bagno.",
+        "copy_2": "Una volta che sai chi deve abbinarsi, passa alle collezioni dedicate di costumi da bagno o boxer per tutta la famiglia per una modifica più ristretta. Per quanto riguarda le taglie, il percorso più veloce è sempre la pagina del prodotto e la tabella delle taglie del modello che ti piace di più.",
+        "related_aria": "Collezioni di nuoto correlate",
+        "related_label": "Esplora le raccolte di costumi da bagno correlate",
+        "family_swimwear_title": "Costumi da bagno per famiglie",
+        "family_swimwear_caption": "Vai direttamente alla modifica del nuoto per tutta la famiglia quando tutti hanno bisogno di coordinarsi.",
+        "trunks_title": "Corrispondenza Costumi boxer",
+        "trunks_caption": "Aggiungi i costumi da bagno per papà e bambino quando desideri un set completo per la giornata in spiaggia.",
+        "mommy_me_caption": "Mantieni il look coordinato andando oltre i costumi da bagno con abiti coordinati per altre occasioni.",
+        "faq_eyebrow": "Domande frequenti sui costumi da bagno",
+        "faq_title": "Risposte rapide prima di ordinare",
+        "faq_question_1": "In quali taglie sono disponibili i costumi da bagno abbinati?",
+        "faq_answer_1": "Le taglie variano in base allo stile, quindi esamina le varianti disponibili e utilizza la tabella delle taglie su ciascuna pagina del prodotto prima del pagamento. Questa collezione copre opzioni di nuoto coordinate per mamme e figlie e alcuni stili ti collegano anche a look da bagno più ampi per tutta la famiglia.",
+        "faq_question_2": "Offrite set famiglia anche per papà?",
+        "faq_answer_2": "SÌ. Se desideri un look completo per la famiglia, acquista la collezione di costumi da bagno per la famiglia abbinata e la collezione di boxer per aggiungere pezzi coordinati per papà e ragazzi insieme ai principali stili di nuoto per me e mamma.",
+        "faq_question_3": "Qual è la differenza tra i costumi da bagno mamma e me e i costumi da bagno coordinati per la famiglia?",
+        "faq_answer_3": "I costumi da bagno mamma e io di solito si concentrano sugli abbinamenti mamma e figlia. I costumi da bagno coordinati per la famiglia ampliano quest'idea in modo da poter creare un look coordinato per più membri della famiglia, inclusi papà e ragazzi quando questi stili sono disponibili.",
+        "faq_question_4": "Da dove dovrei cominciare se voglio anche dei pezzi per ragazzi?",
+        "faq_answer_4": "Inizia da questa pagina di costumi da bagno se desideri prima l'assortimento di costumi da bagno più ampio, quindi utilizza le collezioni di costumi da bagno e boxer per tutta la famiglia correlate per restringere il look a look per tutta la famiglia o accessori aggiuntivi per papà e ragazzo.",
+        "faq_answer_2_rich_html": "SÌ. Se vuoi un look per tutta la famiglia, acquista il <a href=\"{{ family_swim_url }}\">Costumi da bagno per tutta la famiglia abbinati</a> raccolta e il <a href=\"{{ trunks_url }}\">Costumi boxer</a> collezione per aggiungere pezzi coordinati per papà e ragazzi accanto ai principali stili di nuoto per me e mamma.",
+        "faq_answer_4_rich_html": "Inizia da questa pagina dei costumi da bagno se desideri prima l'assortimento di costumi da bagno più ampio, quindi utilizza il <a href=\"{{ family_swim_url }}\">Costumi da bagno per tutta la famiglia abbinati</a> E <a href=\"{{ trunks_url }}\">Costumi boxer</a> collezioni per restringere i look a tutta la famiglia o componenti aggiuntivi per papà e figlio."
+      },
+      "body": {
+        "mommy_and_me_html": "<p>Acquista il nostro {{ title }} per compleanni, foto di famiglia, vacanze e semplici gemellaggi quotidiani, con abiti, costumi da bagno e set coordinati in un unico posto.</p><p>Inizia con abiti per ritratti e occasioni speciali, passa ai costumi da bagno per le giornate in spiaggia e in piscina e utilizza il mix di outfit più ampio per costruire un guardaroba coordinato che funzioni per tutte le stagioni invece che per un solo evento.</p>",
+        "spring_matching_html": "<p>Sfoglia {{ title }} con tavolozze pastello, fiori primaverili e look pronti per le occasioni creati per chiesa, brunch, caccia alle uova, foto di famiglia e altre celebrazioni stagionali.</p><p>Questi stili sono pensati per gli acquirenti che conoscono già il momento in cui si vestono e desiderano abiti abbinati che siano raffinati, comodi e facili da indossare di nuovo per il resto della primavera.</p>",
+        "dresses_html": "<p>Sfoglia {{ title }} per foto di famiglia, celebrazioni e momenti raffinati di tutti i giorni. Questa modifica riunisce gli stili di abbigliamento più forti in un unico posto, con look coordinati belli, indossabili e facili da acquistare.</p>",
+        "maxi_dresses_html": "<p>Sfoglia {{ title }} per stili fluidi abbinati che sembrano aggraziati, facili da indossare e pronti per foto, viaggi, celebrazioni e momenti raffinati di tutti i giorni.</p>",
+        "swimsuits_html": "<p>Sfoglia {{ title }} per gite in spiaggia, giornate in piscina, crociere e foto di famiglia soleggiate. Questa raccolta aiuta gli acquirenti a confrontare i costumi da bagno coordinati per la famiglia, i costumi da bagno coordinati per mamma e figlia e i costumi da bagno coordinati per la famiglia senza saltare tra categorie di nuoto separate.</p><p>Utilizza questa pagina innanzitutto come un ampio centro per il nuoto, poi passa alla collezione di costumi da bagno dedicata alla famiglia o ai boxer coordinati quando tutta la famiglia ha bisogno di coordinarsi attorno a una stampa o una storia a colori.</p>",
+        "family_swimsuits_html": "<p>Scopri {{ title }} per vacanze al mare, giornate in piscina, crociere e foto estive. Questa è la pagina di destinazione più chiara per abbinare costumi da bagno per la famiglia quando mamme, papà, ragazze e ragazzi hanno tutti bisogno di coordinarsi attorno a una stampa, tavolozza o storia di colori pronta per le vacanze.</p><p>Utilizza questa pagina quando tutta la famiglia desidera prima abbinare i costumi da bagno, quindi completa il look con boxer, copricostumi e relative opzioni di nuoto per mamma e io per un guardaroba da viaggio più completo.</p>",
+        "family_sets_html": "<p>Esplora {{ title }} con look coordinati progettati per vacanze in famiglia, gite in spiaggia, crociere, foto di viaggio e gite nella stagione calda. Questi set ti aiutano a creare una tavolozza familiare chiara senza costringere ogni persona a scegliere esattamente lo stesso pezzo.</p><p>Utilizza questa pagina per abbinare abiti per le vacanze in famiglia e abiti da spiaggia per tutta la famiglia, poi passa a collezioni di abbinamenti per famiglie più ampie quando hai bisogno di opzioni più stagionali o non specifiche per i viaggi.</p>",
+        "new_women_outfits_html": "<p>Esplora {{ title }} come ampio hub di abiti coordinati per tutta la famiglia quando desideri confrontare abiti coordinati prima di restringere il campo a una categoria specifica. Questa pagina ha lo scopo di aiutare gli acquirenti a passare da una ricerca generale ad abiti, costumi da bagno, set per le vacanze, look per me e mamma o altri stili abbinati senza ricominciare da capo.</p><p>Utilizza i collegamenti sottostanti per accedere alle collezioni più adatte all'occasione, sia che tu stia acquistando foto di famiglia, un viaggio, un aggiornamento stagionale o uno stile di outfit abbinato più specifico.</p>",
+        "family_matching_html": "<p>Sfoglia {{ title }} per foto di famiglia, viaggi, compleanni, vacanze e semplici gemellaggi quotidiani. È il posto migliore da cui iniziare quando vuoi confrontare i look coordinati di tutta la famiglia prima di restringere il campo a vestiti, costumi da bagno o set da vacanza.</p>",
+        "daddy_me_html": "<p>Esplora {{ title }} per foto di famiglia, vacanze, regali per la festa del papà e coordinazione quotidiana. Questa pagina di destinazione è costruita attorno al più forte intento di ricerca di papà e figlio, con magliette abbinate, top casual e opzioni di camicie più eleganti tutto in un unico posto.</p><p>Utilizza questa collezione quando desideri un'ampia copertura di camicie, magliette e abiti per me e papà, quindi restringila agli stili abbottonati, hawaiani o di t-shirt in base all'occasione.</p>",
+        "daddy_me_tshirts_html": "<p>Acquista {{ title }} quando desideri top coordinati casual e regalabili per papà e bambini. Questa pagina è costruita attorno alle magliette mie e di papà, alle magliette abbinate e ai look semplici di tutti i giorni che funzionano per la festa del papà, i compleanni, i viaggi di famiglia e i momenti fotografici veloci.</p><p>Inizia da qui con magliette con slogan e stili grafici semplici, quindi passa a camicie eleganti o set hawaiani se l'occasione richiede un look più deciso o un outfit più pronto per le vacanze.</p>",
+        "daddy_me_shirts_html": "<p>Sfoglia {{ title }} per gli acquirenti che cercano specificamente abiti abbottonati, camicie eleganti e abiti padre-figlio in stile hawaiano. Questa collezione si concentra su look con colletto adatti a ritratti, cene, gite in spiaggia, matrimoni e altre occasioni raffinate.</p><p>Rispetto alle magliette casual, questi stili sono più strutturati e pronti per le foto, rendendoli più adatti quando desideri abiti abbinati che sembrino comunque elevati.</p>",
+        "couples_html": "<p>Esplora {{ title }} per appuntamenti serali, vacanze, regali natalizi, foto di fidanzamento e coordinazione quotidiana. Questa pagina è progettata per gli acquirenti che desiderano più di un top coordinato e hanno bisogno di un punto di partenza più ampio per look coordinati.</p><p>Inizia con semplici magliette o set da salotto, quindi crea un outfit più completo per il viaggio, l'occasione o il momento fotografico che desideri acquistare.</p>",
+        "couples_tshirts_html": "<p>Sfoglia {{ title }} per gli acquirenti che cercano camicie abbinate alle coppie, magliette per coppie e top coordinati per tutti i giorni. Questi stili funzionano meglio quando desideri un look casual e regalabile per viaggi, vacanze, concerti, appuntamenti serali e foto.</p><p>Utilizza questa pagina per abbinamenti facili per tutti i giorni, quindi passa alla collezione più ampia per coppie se desideri un outfit più completo costruito attorno a qualcosa di più delle sole magliette.</p>"
+      },
+      "rich_parts": {
+        "new_women_outfits": {
+          "part_1_html": "<h2>Abiti coordinati per la famiglia per foto di famiglia, viaggi, vacanze e coordinazione quotidiana</h2>",
+          "part_2_html": "<p>Questo è l'ampio hub di Family Matching Outfits per gli acquirenti che desiderano confrontare look coordinati prima di restringersi a uno stile specifico. È progettato per foto di famiglia, vacanze, vacanze, aggiornamenti stagionali e un facile coordinamento quotidiano quando l'acquirente conosce l'aspetto generale ma non ancora la categoria esatta.</p>",
+          "part_3_html": "<h3>Cosa acquistare per primo</h3>",
+          "part_4_html": "<ul><li>Inizia da qui quando desideri la pagina di corrispondenza della famiglia più ampia prima di scegliere una raccolta più ristretta.</li><li>Usalo per passare da una ricerca generale a vestiti, costumi da bagno, set per le vacanze o stili per me e mamma.</li><li>Passa a una collezione più specifica quando l'occasione è già chiara e l'acquirente desidera un filtraggio più rapido.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ dresses_url }}\">Acquista abiti da madre e figlia per gli invitati al matrimonio</a> quando l'abito è il fulcro del look coordinato.</p>",
+          "part_6_html": "<p><a href=\"{{ family_swimsuits_url }}\">Sfoglia i costumi da bagno da spiaggia abbinati</a> quando il piano è incentrato su gite in spiaggia, giornate in piscina e viaggi estivi.</p>",
+          "part_7_html": "<p><a href=\"{{ family_sets_url }}\">Acquista abiti coordinati per le vacanze in famiglia</a> per soggiorni in resort, crociere e giorni di viaggio coordinati.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Acquista le magliette per me e papà</a> quando la famiglia ha bisogno di un elegante abbinamento guidato da una camicia invece di vestiti o costumi da bagno.</p>",
+          "part_9_html": "<p><a href=\"{{ mommy_and_me_url }}\">Guarda la collezione più ampia Mamma e Me</a> quando il coordinamento è principalmente focalizzato su mamma e figlia.</p>"
+        },
+        "family_matching": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Nota di raccolta</p><h2>Un punto di partenza raffinato per look coordinati per tutta la famiglia</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Questa collezione riunisce in un unico posto gli stili familiari più forti, quindi è facile iniziare in modo ampio e perfezionare una volta che l'occasione è chiara.</p><p>Funziona particolarmente bene per foto, vacanze, viaggi, compleanni e abbinamenti quotidiani che sembrano premurosi piuttosto che esagerati.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related family collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Acquista abiti da madre e figlia per gli invitati al matrimonio</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Sfoglia i costumi da bagno da spiaggia abbinati</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Acquista abiti coordinati per le vacanze in famiglia</a><a class=\"collection-seo-rich__link\" href=\"{{ daddy_me_shirts_url }}\">Acquista le magliette per me e papà</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Esplora la più ampia collezione Mamma e Me</a></div>"
+        },
+        "dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Nota di raccolta</p><h2>Stili di abbigliamento guidati per foto, celebrazioni e gemellaggi quotidiani</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Questa modifica è pensata per i momenti in cui l'abito dà il tono. L'attenzione si concentra su silhouette che appaiono raffinate davanti alla fotocamera, comode da indossare e facili da raggiungere dopo l'evento.</p><p>Inizia da qui quando sai già di volere un look basato sull'abito, quindi allarga le collezioni per famiglie più ampie se hai bisogno di coordinarti oltre a mamma e figlia.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Sfoglia l'hub Family Matching</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Vedi tutti gli outfit Mamma e Me</a></div>"
+        },
+        "maxi_dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Nota di raccolta</p><h2>Abiti lunghi fluidi dal look semplice e ricercato</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>I vestiti lunghi sono un ottimo punto di partenza quando desideri un movimento aggraziato, un po' più di copertura e una silhouette che risulti bella nelle foto senza essere eccessivamente formale.</p><p>Questa modifica rimane focalizzata sugli stili lunghi più forti per mamme e figlie, con opzioni che funzionano per le vacanze, la chiesa, le celebrazioni e l'abbigliamento per la stagione calda che sembra comunque rilassato.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related maxi dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Sfoglia tutti gli abiti</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Vedi tutto, mamma e me</a></div>"
+        },
+        "mommy_and_me": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Nota di raccolta</p><h2>L'ampio editing \"mamma e io\" per foto, viaggi e gemellaggi quotidiani</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Questo è il punto di partenza più semplice se desideri stili coordinati per mamme e figlie senza decidere prima un tipo di prodotto.</p><p>Inizia qui per abiti, costumi da bagno e set coordinati, quindi restringi la categoria che meglio si adatta all'occasione una volta che hai individuato il look che desideri.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related mommy and me collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Acquista abiti da madre e figlia per gli invitati al matrimonio</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Sfoglia i costumi da bagno da spiaggia abbinati</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Scopri gli abiti coordinati per le vacanze in famiglia</a></div>"
+        },
+        "family_swimsuits": {
+          "part_1_html": "<h2>Costumi da bagno coordinati per tutta la famiglia per vacanze al mare, giornate in piscina, crociere e foto estive coordinate</h2>",
+          "part_2_html": "<p>Questa pagina è costruita attorno ai termini più forti del nuoto per famiglie: costumi da bagno per famiglie abbinati, costumi da bagno coordinati per famiglia e costumi da bagno coordinati per famiglie per le vacanze e foto della stagione calda. Funziona meglio quando tutta la famiglia ha bisogno di abbinare una stampa o una storia a colori senza mettere insieme categorie di nuoto separate una per una.</p>",
+          "part_3_html": "<h3>Perché questa pagina è diversa da una collezione generale di costumi da bagno</h3>",
+          "part_4_html": "<ul><li>È incentrato sulla coordinazione di tutta la famiglia anziché solo sui look da bagno di mamma e figlia.</li><li>Si riferisce direttamente all'intento delle vacanze, delle crociere e delle foto in spiaggia, dove l'obiettivo principale è l'abbinamento dei costumi da bagno per la famiglia.</li><li>Offre agli acquirenti un percorso più semplice verso i costumi da bagno per la famiglia prima di passare ai bauli o alle collezioni abbinate più ampie.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ trunks_url }}\">Aggiungi bauli corrispondenti</a> quando hai bisogno di costumi da bagno per papà e ragazzo per completare il set da spiaggia.</p>",
+          "part_6_html": "<p><a href=\"{{ swimsuits_url }}\">Guarda i costumi da bagno abbinati per mamma e figlia</a> se l'intento di acquisto è più ristretto del coordinamento dell'intera famiglia.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">Sfoglia gli outfit Mamma e Me</a> se l'esigenza principale è la coordinazione tra mamma e figlia oltre al costume da bagno.</p>",
+          "part_8_html": "<p><a href=\"{{ family_sets_url }}\">Acquista abiti per le vacanze in famiglia</a> quando il look coordinato necessita di supporto per copertura, viaggio o cena in spiaggia oltre la piscina.</p>"
+        },
+        "family_sets": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Nota di raccolta</p><h2>Abiti pronti per il viaggio per giornate in spiaggia, crociere e piani di vacanza coordinati</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Questa modifica mantiene insieme i look familiari più forti per la stagione calda, quindi è facile fare acquisti in viaggio invece di iniziare da una collezione più ampia per tutto l'anno.</p><p>Usalo quando la vacanza stessa è il motivo dello shopping, quindi passa ai costumi da bagno o a categorie familiari più ampie se hai bisogno di costruire il piano completo.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related vacation collections\"><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Aggiungi costumi da spiaggia abbinati</a><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Sfoglia l'hub Family Matching</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Esplora gli outfit Mamma e Me</a></div>"
+        },
+        "daddy_me": {
+          "part_1_html": "<h2>Abiti per me e papà costruiti attorno a camicie, magliette e look semplici pronti per essere fotografati</h2>",
+          "part_2_html": "<p>La domanda di ricerca in questa categoria si concentra su camicie \"papà e io\", magliette \"papà e io\", magliette \"papà e io\" e abiti coordinati padre-figlio. Questa pagina è stata creata per coprire questo intento completo, dai top grafici casual ai look dal colletto più raffinato che sembrano raffinati per ritratti, vacanze ed eventi speciali.</p>",
+          "part_3_html": "<h3>Ciò che solitamente gli acquirenti desiderano da questa pagina</h3>",
+          "part_4_html": "<ul><li>Magliette casual per me e papà per compleanni, regali, viaggi a tema e da indossare tutti i giorni.</li><li>Opzioni di camicia con colletto o abbottonatura adatte per foto di famiglia, cene e gite più eleganti.</li><li>Abiti coordinati per la stagione calda che ti fanno sentire pronto per le vacanze senza sembrare un costume.</li></ul>",
+          "part_5_html": "<h3>Come acquistare la collezione più velocemente</h3>",
+          "part_6_html": "<p>Inizia con le magliette se l'obiettivo è un facile coordinamento quotidiano. Se l'occasione ha bisogno di una finitura più pulita e lucida, scegli camicie eleganti, camicie hawaiane o altri modelli con colletto più strutturati.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Acquista le magliette per me e papà</a> per top abbinati casual e stili regalabili per tutti i giorni.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Acquista camicie papà e me per le occasioni più eleganti</a> per abbottonature, camicie eleganti e look hawaiani basati su ricerche di camicie con intenti più elevati.</p>",
+          "part_9_html": "<p><a href=\"{{ trunks_url }}\">Sfoglia i bauli abbinati</a> quando l'outfit ha bisogno di un componente aggiuntivo adatto alla spiaggia o alla piscina.</p>"
+        },
+        "daddy_me_tshirts": {
+          "part_1_html": "<h2>Camicie per me e papà e magliette abbinate per un coordinamento casual e regalabile</h2>",
+          "part_2_html": "<p>Questa collezione è rivolta agli acquirenti che cercano magliette \"papà e io\", magliette \"papà e io\", magliette \"papà e io\" e semplici top padre-figlio che funzionino oltre un momento fotografico. Questi stili sono la soluzione più veloce per l'uso quotidiano, i compleanni, i regali per la festa del papà, i parchi a tema e le giornate di viaggio rilassanti.</p>",
+          "part_3_html": "<h3>Perché questa pagina è importante</h3>",
+          "part_4_html": "<ul><li>Restringe la categoria papà e figlio ai top casual invece di mescolare ogni tipo di outfit.</li><li>Si allinea con le ricerche ad alto intento relative alle magliette papà e me, alle magliette papà e me e alle magliette abbinate.</li><li>Offre agli acquirenti un percorso più semplice quando desiderano un look coordinato rapido e regalabile.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ daddy_me_url }}\">Torna alla raccolta completa Papà e Me</a> se desideri magliette, pantaloncini e camicie più eleganti in un unico posto.</p>",
+          "part_6_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Hai bisogno di uno sguardo più nitido?</a> Sfoglia le camicie abbinate di papà e figlio per scoprire gli stili abbottonati, camicie eleganti e hawaiane.</p>"
+        },
+        "daddy_me_shirts": {
+          "part_1_html": "<h2>Papà e figlio abbinano camicie per abbottonare, camicie eleganti e ricerche hawaiane</h2>",
+          "part_2_html": "<p>Questa pagina di destinazione è costruita attorno alle query sulle camicie con l'intento più elevato nel cluster papà: papà e figlio abbinano camicie abbottonate, papà e figlio abbinano camicie eleganti e padre e figlio abbinano camicie hawaiane. È progettato per gli acquirenti che desiderano più struttura, colletti e uno stile pronto per l'occasione rispetto a quello che una collezione di t-shirt casual può offrire.</p>",
+          "part_3_html": "<h3>Le migliori occasioni per questi stili</h3>",
+          "part_4_html": "<ul><li>Foto di famiglia, riunioni di vacanza, matrimoni, chiesa e cene in cui le camicie con colletto sembrano più raffinate.</li><li>Gite in spiaggia, crociere e viaggi in resort in cui camicie hawaiane o bottoni a maniche corte si adattano all'ambiente.</li><li>Regali per il compleanno e la festa del papà in cui il look coordinato dovrebbe sembrare elevato, non solo una novità.</li></ul>",
+          "part_5_html": "<h3>In che cosa differisce dalle magliette \"papà e io\".</h3>",
+          "part_6_html": "<p>Aspettatevi tessuti più intrecciati, colletti più puliti e silhouette più eleganti. Se l'obiettivo è una grafica casual morbida o top per tutti i giorni, la collezione di magliette è il punto di partenza migliore.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_url }}\">Sfoglia la collezione completa Papà e Me</a> per una copertura più ampia dell'outfit tra magliette, bauli e set coordinati.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Acquista le magliette per me e papà</a> se desideri un'opzione di abbinamento più morbida e casual.</p>"
+        },
+        "couples": {
+          "part_1_html": "<h2>Coppie che abbinano abiti per viaggi, appuntamenti serali, vacanze e regali</h2>",
+          "part_2_html": "<p>L’ampia famiglia di parole chiave “coppia” va oltre le sole magliette. Questa pagina è progettata come pagina di destinazione principale per le coppie che abbinano abiti e look coordinati che possono includere top, abbigliamento da casa, capi per le vacanze e set casual per lui e lei.</p>",
+          "part_3_html": "<h3>Intenzioni di acquisto popolari in questa categoria</h3>",
+          "part_4_html": "<ul><li>Coppie che abbinano abiti per viaggi, programmi per il fine settimana e foto social.</li><li>Look regalabili per lui e per lei per anniversari, lune di miele e momenti di vacanza.</li><li>Abiti facilmente coordinabili che mantengono allineati colori e stampe senza forzare un look identico dalla testa ai piedi.</li></ul>",
+          "part_5_html": "<h3>Da dove cominciare</h3>",
+          "part_6_html": "<p>Se l'obiettivo è un outfit casual per tutti i giorni, le magliette abbinate sono la vittoria più rapida. Se l'obiettivo è un look coordinato più completo, inizia con la collezione coppia più ampia e procedi verso l'esterno in base al viaggio, alla stagione o all'occasione.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">Acquista coppie di camicie e magliette abbinate</a> quando desideri un punto di ingresso semplice e casuale nella categoria.</p>"
+        },
+        "couples_tshirts": {
+          "part_1_html": "<h2>Coppie abbinate a camicie e T-shirt per un coordinamento casual e regalabile</h2>",
+          "part_2_html": "<p>Questa collezione si rivolge agli acquirenti che cercano camicie abbinate per coppie, camicie per coppie, magliette per coppie e altri top abbinati facili da indossare per appuntamenti serali, viaggi, vacanze, concerti e abiti di tutti i giorni. È il miglior punto di ingresso quando l'intento dell'acquirente è chiaramente rivolto innanzitutto alle magliette.</p>",
+          "part_3_html": "<h3>Perché gli acquirenti scelgono le magliette abbinate</h3>",
+          "part_4_html": "<ul><li>Sono facili da regalare per anniversari, lune di miele, vacanze e gite a tema.</li><li>Mantengono un look coordinato semplice senza richiedere l'acquisto di un completo completo.</li><li>Funzionano bene per foto casuali, giorni di viaggio e abbigliamento quotidiano a basso attrito.</li></ul>",
+          "part_5_html": "<h3>Cerchi qualcosa di più delle magliette?</h3>",
+          "part_6_html": "<p>Utilizza la pagina più ampia degli abbinamenti di coppia se desideri un look coordinato che si espanda oltre i top in una storia di outfit più completa.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">Sfoglia tutti gli abiti abbinati delle coppie</a> per un mix più ampio di look e occasioni coordinate.</p>"
+        },
+        "spring_matching": {
+          "part_1_html": "<h2>Mamma e io Abiti pasquali e abbinamenti primaverili per occasioni speciali</h2>",
+          "part_2_html": "<p>Questa pagina è stata creata per le ricerche pasquali e primaverili in cui l'acquirente conosce già l'occasione. L'attenzione si concentra su tavolozze pastello, fiori, tessuti più leggeri e silhouette pronte per le foto che funzionano per la chiesa, il brunch, la caccia alle uova, i ritratti di famiglia e altre celebrazioni stagionali.</p>",
+          "part_3_html": "<h3>I migliori momenti primaverili per abbinare gli outfit</h3>",
+          "part_4_html": "<ul><li>Domenica di Pasqua, chiesa, brunch e riunioni di famiglia.</li><li>Foto di famiglia primaverili, feste in giardino e la stagione della festa della mamma.</li><li>Viaggi, docce ed eventi con clima caldo che necessitano ancora di un aspetto raffinato.</li></ul>",
+          "part_5_html": "<h3>Come utilizzare questa pagina stagionale</h3>",
+          "part_6_html": "<p>Inizia con gli abiti pasquali se hai bisogno di un outfit specifico per un evento, quindi utilizza la stessa collezione per trovare outfit primaverili abbinati che possano funzionare di nuovo dopo le vacanze.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">Sfoglia la collezione completa Mamma e Me</a> se desideri più stili abbinabili per tutto l'anno al di fuori del periodo pasquale e primaverile.</p>",
+          "part_8_html": "<p><a href=\"{{ dresses_url }}\">Acquista abiti coordinati</a> per una modifica più ampia incentrata sull'abito che va oltre lo stile primaverile stagionale.</p>"
+        }
+      }
     }
   },
   "localization": {

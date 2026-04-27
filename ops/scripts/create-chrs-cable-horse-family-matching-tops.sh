@@ -32,11 +32,11 @@ API = f"https://{os.environ['SHOPIFY_STORE_DOMAIN']}/admin/api/2025-01/graphql.j
 TOKEN = os.environ["SHOPIFY_ADMIN_ACCESS_TOKEN"]
 
 HANDLE = "cable-horse-family-matching-tops"
-TITLE = "Cable Horse Family Matching Tops - Cozy Sweater"
+TITLE = "Cable Horse Family Matching Sweaters - Cozy Sweater"
 SEO_TITLE = "Cable Horse Family Sweaters | Dress Like Mommy"
 SEO_DESCRIPTION = "Cable-knit family matching sweaters in cream for mom, dad, girls & boys. Sizes 1-2Y-10Y and Adult S-4XL."
 VENDOR_URL = "https://detail.1688.com/offer/1007389194841.html"
-PRODUCT_TYPE = "Matching Family Tops"
+PRODUCT_TYPE = "Matching Family Sweaters"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-13-12"
 EXPECTED_TAXONOMY = "Apparel & Accessories > Clothing > Clothing Tops > Sweaters"
 SHORTCODE = "CHRS"
@@ -116,7 +116,7 @@ chart = []
 
 
 def add_row(audience, role, vendor_label, picker_label, age, weight, height, length, chest, sleeve, shoulder):
-    # Tops rule: hip = chest, waist = chest for kids; adult waist = chest - 12.
+    # Sweater sizing proxy: hip = chest, waist = chest for kids; adult waist = chest - 12.
     waist = chest if audience == "child" else chest - 12
     chart.append(
         {
@@ -252,7 +252,7 @@ body_html = "\n".join(
         "</ul>",
         table(chart),
         "<p>Cable Horse brings a polished winter-family look into one easy sweater silhouette. The cream cable knit keeps the outfit classic, while the red horse patch gives every size a playful shared detail that reads clearly in family photos.</p>",
-        "<p>The attached chart publishes sweater measurements for child sizes 80-150 and adult sizes S-4XL. Baby romper rows from the same chart are excluded from this tops listing, and the styled pants, boots, scarf, hats, and accessories are not included.</p>",
+        "<p>The attached chart publishes sweater measurements for child sizes 80-150 and adult sizes S-4XL. Baby romper rows from the same chart are excluded from this sweater listing, and the styled pants, boots, scarf, hats, and accessories are not included.</p>",
         "<h3>Key Features:</h3>",
         "<ul>",
         "<li><strong>Cozy matching sweater:</strong> One cream cable-knit pullover for children and adults.</li>",
@@ -310,11 +310,9 @@ tags = sorted(
             "Family Matching",
             "Mommy and Me",
             "Daddy and Me",
-            "Matching Family Tops",
             "Matching Family Outfits",
             "Family Sweaters",
             "Sweaters",
-            "Tops",
             "Cable Knit",
             "Cable Horse",
             "Horse Patch",
@@ -400,8 +398,8 @@ else:
 
 metafields = [
     {"ownerId": product_id, "namespace": "custom", "key": "category1", "type": "single_line_text_field", "value": "Family Matching"},
-    {"ownerId": product_id, "namespace": "custom", "key": "subcategory", "type": "single_line_text_field", "value": "Tops"},
-    {"ownerId": product_id, "namespace": "custom", "key": "subcategory2", "type": "single_line_text_field", "value": "Family Sweaters"},
+    {"ownerId": product_id, "namespace": "custom", "key": "subcategory", "type": "single_line_text_field", "value": "Family Sweaters"},
+    {"ownerId": product_id, "namespace": "custom", "key": "subcategory2", "type": "single_line_text_field", "value": "Sweaters"},
     {"ownerId": product_id, "namespace": "custom", "key": "pattern", "type": "single_line_text_field", "value": "Cable Horse"},
     {"ownerId": product_id, "namespace": "custom", "key": "style", "type": "single_line_text_field", "value": "Matching Family Sweater"},
     {"ownerId": product_id, "namespace": "custom", "key": "type", "type": "single_line_text_field", "value": "Sweater"},
@@ -413,7 +411,7 @@ metafields = [
     {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_1", "type": "single_line_text_field", "value": "Cable Horse"},
     {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_2", "type": "single_line_text_field", "value": "Winter"},
     {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_3", "type": "single_line_text_field", "value": "Sweater"},
-    {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_4", "type": "single_line_text_field", "value": "Family Tops"},
+    {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_4", "type": "single_line_text_field", "value": "Family Sweaters"},
     {"ownerId": product_id, "namespace": "shopify", "key": "age-group", "type": "list.metaobject_reference", "value": json.dumps(["gid://shopify/Metaobject/128116523105", "gid://shopify/Metaobject/128116490337"])},
     {"ownerId": product_id, "namespace": "shopify", "key": "care-instructions", "type": "list.metaobject_reference", "value": json.dumps(["gid://shopify/Metaobject/130283503713"])},
     {"ownerId": product_id, "namespace": "shopify", "key": "color-pattern", "type": "list.metaobject_reference", "value": json.dumps(["gid://shopify/Metaobject/69639733345", "gid://shopify/Metaobject/69622104161"])},
@@ -568,12 +566,12 @@ for row in recap:
         "Google Shopping / Custom Label 1": "Cable Horse",
         "Google Shopping / Custom Label 2": "Winter",
         "Google Shopping / Custom Label 3": "Sweater",
-        "Google Shopping / Custom Label 4": "Family Tops",
+        "Google Shopping / Custom Label 4": "Family Sweaters",
         "Category1 (product.metafields.custom.category1)": "Family Matching",
         "Pattern (product.metafields.custom.pattern)": "Cable Horse",
         "Style (product.metafields.custom.style)": "Matching Family Sweater",
-        "SubCategory (product.metafields.custom.subcategory)": "Tops",
-        "SubCategory2 (product.metafields.custom.subcategory2)": "Family Sweaters",
+        "SubCategory (product.metafields.custom.subcategory)": "Family Sweaters",
+        "SubCategory2 (product.metafields.custom.subcategory2)": "Sweaters",
         "Type (product.metafields.custom.type)": "Sweater",
         "Google: Custom Product (product.metafields.mm-google-shopping.custom_product)": "false",
         "Age group (product.metafields.shopify.age-group)": "kids, adults",
@@ -619,15 +617,15 @@ lines = [
     f"| VENDOR_URL | {VENDOR_URL} |",
     "| SIZE_CHART_SOURCE | attached image |",
     "| LISTING_MODE | Family Matching |",
-    "| PRIMARY_CATEGORY | Tops -> Sweaters taxonomy |",
+    "| PRIMARY_CATEGORY | Sweaters |",
     "| DESIGNS_TO_LIST | auto -> cream cable-knit sweater with red horse patch |",
-    "| EXCLUDE_ITEMS | baby romper/crawler rows excluded from the tops listing; styled pants, boots, scarves, hats, and accessories excluded |",
+    "| EXCLUDE_ITEMS | baby romper/crawler rows excluded from the sweater listing; styled pants, boots, scarves, hats, and accessories excluded |",
     "| FORCE_SPEC_PRICES | true |",
     "| SHORTCODE | auto -> `CHRS` |",
     "| COLOR_TOKEN | auto -> `CREAM` |",
     "",
     "## Vendor Fetch Status",
-    "The direct 1688 page returned Alibaba captcha/punish markup, so the attached size-chart image and supplied product photos were used as the authoritative source. The chart publishes baby romper rows, child sweater rows, and adult sweater rows; this listing uses the child and adult sweater rows only so the product remains an honest family matching tops/sweaters listing.",
+    "The direct 1688 page returned Alibaba captcha/punish markup, so the attached size-chart image and supplied product photos were used as the authoritative source. The chart publishes baby romper rows, child sweater rows, and adult sweater rows; this listing uses the child and adult sweater rows only so the product remains an honest family matching sweater listing.",
     "",
     "## Option Axes",
     "- Option 1: Size",

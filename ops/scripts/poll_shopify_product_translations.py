@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import time
 from collections import defaultdict
@@ -53,6 +54,20 @@ query RecentProducts($first: Int!, $after: String, $reverse: Boolean!) {
 }
 """
 
+PRODUCT_OPTION_VALUES_QUERY = """
+query ProductOptionValues($id: ID!) {
+  product(id: $id) {
+    options(first: 10) {
+      id
+      optionValues {
+        id
+        name
+      }
+    }
+  }
+}
+"""
+
 SHOP_LOCALES_QUERY = """
 query ShopLocales {
   shopLocales {
@@ -83,12 +98,403 @@ mutation RegisterTranslations($resourceId: ID!, $translations: [TranslationInput
 DEFAULT_STATE_PATH = DEFAULT_CONFIG_DIR / "shopify-product-translation-state.json"
 DEFAULT_LOG_PATH = Path.home() / "Library" / "Logs" / "dresslikemommy" / "shopify-product-translation.jsonl"
 DEFAULT_CACHE_PATH = REPO_ROOT / "ops" / "content" / "shopify-product-translation-live-cache.json"
+DEFAULT_BULK_JSONL_PATH = REPO_ROOT / "ops" / "content" / "shopify-product-translation-bulk-repair.jsonl"
 DEFAULT_NESTED_LIMIT = 100
 
 RESOURCE_FIELD_ALLOWLIST = {
     "Product": {"title", "body_html", "product_type", "meta_title", "meta_description"},
+    "Metafield": {"value"},
     "ProductOption": {"name"},
     "ProductOptionValue": {"name", "value"},
+}
+OPTION_RESOURCE_TYPES = {"ProductOption", "ProductOptionValue"}
+
+OPTION_NAME_TRANSLATIONS = {
+    "type": {
+        "ar": "النوع",
+        "cs": "Typ",
+        "da": "Type",
+        "de": "Typ",
+        "el": "Τύπος",
+        "es": "Tipo",
+        "fi": "Tyyppi",
+        "fr": "Type",
+        "he": "סוג",
+        "hi": "प्रकार",
+        "it": "Tipo",
+        "ja": "タイプ",
+        "ko": "유형",
+        "nl": "Type",
+        "no": "Type",
+        "pl": "Typ",
+        "pt": "Tipo",
+        "ro": "Tip",
+        "ru": "Тип",
+        "sv": "Typ",
+        "zh": "类型",
+    },
+    "size": {
+        "ar": "المقاس",
+        "cs": "Velikost",
+        "da": "Størrelse",
+        "de": "Größe",
+        "el": "Μέγεθος",
+        "es": "Talla",
+        "fi": "Koko",
+        "fr": "Taille",
+        "he": "מידה",
+        "hi": "आकार",
+        "it": "Taglia",
+        "ja": "サイズ",
+        "ko": "사이즈",
+        "nl": "Maat",
+        "no": "Størrelse",
+        "pl": "Rozmiar",
+        "pt": "Tamanho",
+        "ro": "Mărime",
+        "ru": "Размер",
+        "sv": "Storlek",
+        "zh": "尺寸",
+    },
+    "color": {
+        "ar": "اللون",
+        "cs": "Barva",
+        "da": "Farve",
+        "de": "Farbe",
+        "el": "Χρώμα",
+        "es": "Color",
+        "fi": "Väri",
+        "fr": "Couleur",
+        "he": "צבע",
+        "hi": "रंग",
+        "it": "Colore",
+        "ja": "カラー",
+        "ko": "색상",
+        "nl": "Kleur",
+        "no": "Farge",
+        "pl": "Kolor",
+        "pt": "Cor",
+        "ro": "Culoare",
+        "ru": "Цвет",
+        "sv": "Färg",
+        "zh": "颜色",
+    },
+}
+
+ROLE_TRANSLATIONS = {
+    "child": {
+        "ar": "للأطفال عمر",
+        "cs": "Dítě",
+        "da": "Barn",
+        "de": "Kind",
+        "el": "Παιδί",
+        "es": "Infantil",
+        "fi": "Lapsi",
+        "fr": "Enfant",
+        "he": "גיל",
+        "hi": "बच्चों के लिए",
+        "it": "Bimbi",
+        "ja": "子供",
+        "ko": "아동",
+        "nl": "Kind",
+        "no": "Barn",
+        "pl": "Dziecko",
+        "pt": "Infantil",
+        "ro": "Copil",
+        "ru": "Дети",
+        "sv": "Barn",
+        "zh": "儿童",
+    },
+    "girl": {
+        "ar": "للبنات عمر",
+        "cs": "Dívka",
+        "da": "Pige",
+        "de": "Mädchen",
+        "el": "Κορίτσι",
+        "es": "Niña",
+        "fi": "Tyttö",
+        "fr": "Fille",
+        "he": "ילדה",
+        "hi": "लड़की",
+        "it": "Bambina",
+        "ja": "女の子",
+        "ko": "여아",
+        "nl": "Meisje",
+        "no": "Jente",
+        "pl": "Dziewczynka",
+        "pt": "Menina",
+        "ro": "Fată",
+        "ru": "Девочка",
+        "sv": "Flicka",
+        "zh": "女孩",
+    },
+    "boy": {
+        "ar": "للأولاد عمر",
+        "cs": "Chlapec",
+        "da": "Dreng",
+        "de": "Junge",
+        "el": "Αγόρι",
+        "es": "Niño",
+        "fi": "Poika",
+        "fr": "Garçon",
+        "he": "ילד",
+        "hi": "लड़का",
+        "it": "Bambino",
+        "ja": "男の子",
+        "ko": "남아",
+        "nl": "Jongen",
+        "no": "Gutt",
+        "pl": "Chłopiec",
+        "pt": "Menino",
+        "ro": "Băiat",
+        "ru": "Мальчик",
+        "sv": "Pojke",
+        "zh": "男孩",
+    },
+    "mother": {
+        "ar": "الأم",
+        "cs": "Maminka",
+        "da": "Mor",
+        "de": "Mama",
+        "el": "Μητέρα",
+        "es": "Mamá",
+        "fi": "Äiti",
+        "fr": "Maman",
+        "he": "אמא",
+        "hi": "माँ",
+        "it": "Mamma",
+        "ja": "ママ",
+        "ko": "엄마",
+        "nl": "Mama",
+        "no": "Mamma",
+        "pl": "Mama",
+        "pt": "Mãe",
+        "ro": "Mamă",
+        "ru": "Мама",
+        "sv": "Mamma",
+        "zh": "妈妈",
+    },
+    "father": {
+        "ar": "الأب",
+        "cs": "Tatínek",
+        "da": "Far",
+        "de": "Papa",
+        "el": "Πατέρας",
+        "es": "Papá",
+        "fi": "Isä",
+        "fr": "Papa",
+        "he": "אבא",
+        "hi": "पिता",
+        "it": "Papà",
+        "ja": "パパ",
+        "ko": "아빠",
+        "nl": "Papa",
+        "no": "Pappa",
+        "pl": "Tata",
+        "pt": "Pai",
+        "ro": "Tată",
+        "ru": "Папа",
+        "sv": "Pappa",
+        "zh": "爸爸",
+    },
+    "adult": {
+        "ar": "للكبار",
+        "cs": "Dospělý",
+        "da": "Voksen",
+        "de": "Erwachsene",
+        "el": "Ενήλικας",
+        "es": "Adulto",
+        "fi": "Aikuinen",
+        "fr": "Adulte",
+        "he": "מבוגר",
+        "hi": "वयस्क",
+        "it": "Adulto",
+        "ja": "大人",
+        "ko": "성인",
+        "nl": "Volwassene",
+        "no": "Voksen",
+        "pl": "Dorosły",
+        "pt": "Adulto",
+        "ro": "Adult",
+        "ru": "Взрослый",
+        "sv": "Vuxen",
+        "zh": "成人",
+    },
+}
+
+SIZE_ROLE_RE = re.compile(r"^(Child|Girl|Boy|Mother|Father|Adult)\s+(.+)$", flags=re.I)
+AGE_SUFFIX_RE = re.compile(r"^(\d+(?:\s*[-–]\s*\d+)?)\s+Years?$", flags=re.I)
+SIZE_CHART_TABLE_RE = re.compile(
+    r"(<table\b(?=[^>]*(?:id=[\"'][^\"']*size-chart|class=[\"'][^\"']*size-chart))[^>]*>)(.*?)(</table>)",
+    flags=re.I | re.S,
+)
+TABLE_ROW_RE = re.compile(r"(<tr\b[^>]*>)(.*?)(</tr>)", flags=re.I | re.S)
+TABLE_CELL_RE = re.compile(r"(<td\b[^>]*>)(.*?)(</td>)", flags=re.I | re.S)
+TAG_RE = re.compile(r"<[^>]+>")
+
+GARMENT_TRANSLATIONS = {
+    "Dress": {
+        "ar": "فستان",
+        "cs": "Šaty",
+        "da": "Kjole",
+        "de": "Kleid",
+        "el": "Φόρεμα",
+        "es": "Vestido",
+        "fi": "Mekko",
+        "fr": "Robe",
+        "he": "שמלה",
+        "hi": "ड्रेस",
+        "it": "Vestito",
+        "ja": "ワンピース",
+        "ko": "드레스",
+        "nl": "Jurk",
+        "no": "Kjole",
+        "pl": "Sukienka",
+        "pt": "Vestido",
+        "ro": "Rochie",
+        "ru": "Платье",
+        "sv": "Klänning",
+        "zh": "连衣裙",
+    },
+    "Shirt": {
+        "ar": "قميص",
+        "cs": "Košile",
+        "da": "Skjorte",
+        "de": "Hemd",
+        "el": "Πουκάμισο",
+        "es": "Camisa",
+        "fi": "Paita",
+        "fr": "Chemise",
+        "he": "חולצה",
+        "hi": "शर्ट",
+        "it": "Camicia",
+        "ja": "シャツ",
+        "ko": "셔츠",
+        "nl": "Shirt",
+        "no": "Skjorte",
+        "pl": "Koszula",
+        "pt": "Camisa",
+        "ro": "Cămașă",
+        "ru": "Рубашка",
+        "sv": "Skjorta",
+        "zh": "衬衫",
+    },
+    "Shorts": {
+        "ar": "شورت",
+        "cs": "Šortky",
+        "da": "Shorts",
+        "de": "Shorts",
+        "el": "Σορτς",
+        "es": "Shorts",
+        "fi": "Shortsit",
+        "fr": "Short",
+        "he": "מכנסיים קצרים",
+        "hi": "शॉर्ट्स",
+        "it": "Shorts",
+        "ja": "ショーツ",
+        "ko": "반바지",
+        "nl": "Shorts",
+        "no": "Shorts",
+        "pl": "Szorty",
+        "pt": "Shorts",
+        "ro": "Șorturi",
+        "ru": "Шорты",
+        "sv": "Shorts",
+        "zh": "短裤",
+    },
+    "Top": {
+        "ar": "توب",
+        "cs": "Top",
+        "da": "Top",
+        "de": "Top",
+        "el": "Τοπ",
+        "es": "Top",
+        "fi": "Yläosa",
+        "fr": "Haut",
+        "he": "טופ",
+        "hi": "टॉप",
+        "it": "Top",
+        "ja": "トップス",
+        "ko": "상의",
+        "nl": "Top",
+        "no": "Topp",
+        "pl": "Top",
+        "pt": "Top",
+        "ro": "Top",
+        "ru": "Топ",
+        "sv": "Topp",
+        "zh": "上衣",
+    },
+    "Romper": {
+        "ar": "رومبر",
+        "cs": "Overal",
+        "da": "Heldragt",
+        "de": "Strampler",
+        "el": "Φορμάκι",
+        "es": "Pelele",
+        "fi": "Haalari",
+        "fr": "Barboteuse",
+        "he": "אוברול",
+        "hi": "रोम्पर",
+        "it": "Pagliaccetto",
+        "ja": "ロンパース",
+        "ko": "롬퍼",
+        "nl": "Boxpakje",
+        "no": "Romper",
+        "pl": "Rampers",
+        "pt": "Macacão",
+        "ro": "Salopetă",
+        "ru": "Ромпер",
+        "sv": "Romper",
+        "zh": "连体衣",
+    },
+    "Shirt & Shorts Set": {
+        "ar": "طقم قميص وشورت",
+        "cs": "Set košile a šortek",
+        "da": "Skjorte- og shortssæt",
+        "de": "Hemd- und Shorts-Set",
+        "el": "Σετ πουκάμισο και σορτς",
+        "es": "Conjunto de camisa y shorts",
+        "fi": "Paita- ja shortsisetti",
+        "fr": "Ensemble chemise et short",
+        "he": "סט חולצה ומכנסיים קצרים",
+        "hi": "शर्ट और शॉर्ट्स सेट",
+        "it": "Set camicia e shorts",
+        "ja": "シャツ＆ショーツセット",
+        "ko": "셔츠와 반바지 세트",
+        "nl": "Shirt- en shortset",
+        "no": "Skjorte- og shortsett",
+        "pl": "Zestaw koszula i szorty",
+        "pt": "Conjunto de camisa e shorts",
+        "ro": "Set cămașă și șorturi",
+        "ru": "Комплект рубашка и шорты",
+        "sv": "Skjorta och shorts-set",
+        "zh": "衬衫短裤套装",
+    },
+}
+
+YEAR_UNITS = {
+    "ar": ("سنة", "سنوات", " "),
+    "cs": ("rok", "let", " "),
+    "da": ("år", "år", " "),
+    "de": ("Jahr", "Jahre", " "),
+    "el": ("έτος", "ετών", " "),
+    "es": ("año", "años", " "),
+    "fi": ("vuosi", "vuotta", " "),
+    "fr": ("an", "ans", " "),
+    "he": ("שנה", "שנים", " "),
+    "hi": ("वर्ष", "वर्ष", " "),
+    "it": ("anno", "anni", " "),
+    "ja": ("歳", "歳", ""),
+    "ko": ("세", "세", ""),
+    "nl": ("jaar", "jaar", " "),
+    "no": ("år", "år", " "),
+    "pl": ("rok", "lat", " "),
+    "pt": ("ano", "anos", " "),
+    "ro": ("an", "ani", " "),
+    "ru": ("год", "лет", " "),
+    "sv": ("år", "år", " "),
+    "zh": ("岁", "岁", ""),
 }
 
 
@@ -285,17 +691,33 @@ class ShopifyClient:
         )
 
     def graphql(self, query: str, variables: dict[str, Any] | None = None) -> dict[str, Any]:
-        response = self.session.post(
-            self.endpoint,
-            json={"query": query, "variables": variables or {}},
-            timeout=90,
-        )
-        response.raise_for_status()
-        payload = response.json()
-        errors = payload.get("errors") or []
-        if errors:
+        last_errors: list[dict[str, Any]] = []
+        for attempt in range(6):
+            response = self.session.post(
+                self.endpoint,
+                json={"query": query, "variables": variables or {}},
+                timeout=90,
+            )
+            if response.status_code == 429 and attempt < 5:
+                time.sleep(min(30, 2 ** attempt))
+                continue
+            response.raise_for_status()
+            payload = response.json()
+            errors = payload.get("errors") or []
+            if not errors:
+                return payload["data"]
+
+            last_errors = errors
+            throttled = any(
+                (error.get("extensions") or {}).get("code") == "THROTTLED"
+                for error in errors
+            )
+            if throttled and attempt < 5:
+                time.sleep(min(30, 2 ** attempt))
+                continue
             raise RuntimeError(json.dumps(errors, ensure_ascii=False))
-        return payload["data"]
+
+        raise RuntimeError(json.dumps(last_errors, ensure_ascii=False))
 
     def shop_locales(self) -> list[dict[str, Any]]:
         return self.graphql(SHOP_LOCALES_QUERY)["shopLocales"]
@@ -325,6 +747,54 @@ class ShopifyClient:
                 break
             after = clean(data.get("pageInfo", {}).get("endCursor"))
         return rows
+
+    def products_by_handles(self, handles: list[str]) -> list[RecentProduct]:
+        rows: list[RecentProduct] = []
+        query = """
+        query ProductByHandle($handle: String!) {
+          productByHandle(handle: $handle) {
+            id
+            legacyResourceId
+            handle
+            title
+            status
+            createdAt
+            updatedAt
+          }
+        }
+        """
+        for handle in handles:
+            product = self.graphql(query, {"handle": handle}).get("productByHandle")
+            if not product:
+                continue
+            rows.append(
+                RecentProduct(
+                    product_gid=clean(product.get("id")),
+                    product_id=clean(product.get("legacyResourceId")),
+                    handle=clean(product.get("handle")),
+                    title=clean(product.get("title")),
+                    status=clean(product.get("status")),
+                    created_at=clean(product.get("createdAt")),
+                    updated_at=clean(product.get("updatedAt")),
+                )
+            )
+        return rows
+
+    def product_option_value_ids(self, product_gid: str) -> list[str]:
+        product = self.graphql(PRODUCT_OPTION_VALUES_QUERY, {"id": product_gid}).get("product")
+        if not product:
+            return []
+
+        option_value_ids: list[str] = []
+        seen: set[str] = set()
+        for option in product.get("options") or []:
+            for option_value in option.get("optionValues") or []:
+                option_value_id = clean(option_value.get("id"))
+                if not option_value_id or option_value_id in seen:
+                    continue
+                seen.add(option_value_id)
+                option_value_ids.append(option_value_id)
+        return option_value_ids
 
     def fetch_resource(self, resource_id: str, locales: list[str], nested_first: int) -> ResourceSnapshot:
         translations_fragment, alias_to_locale = locale_alias_fragment(locales)
@@ -374,6 +844,156 @@ class ShopifyClient:
             raise RuntimeError(json.dumps(data["userErrors"], ensure_ascii=False))
         return data
 
+    def staged_upload(self, jsonl_path: Path) -> str:
+        mutation = """
+        mutation CreateStagedUpload($input: [StagedUploadInput!]!) {
+          stagedUploadsCreate(input: $input) {
+            stagedTargets {
+              url
+              resourceUrl
+              parameters {
+                name
+                value
+              }
+            }
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+        """
+        data = self.graphql(
+            mutation,
+            {
+                "input": [
+                    {
+                        "resource": "BULK_MUTATION_VARIABLES",
+                        "filename": jsonl_path.name,
+                        "mimeType": "text/jsonl",
+                        "httpMethod": "POST",
+                    }
+                ]
+            },
+        )["stagedUploadsCreate"]
+        if data["userErrors"]:
+            raise RuntimeError(json.dumps(data["userErrors"], ensure_ascii=False))
+
+        target = data["stagedTargets"][0]
+        form = {item["name"]: item["value"] for item in target["parameters"]}
+        with jsonl_path.open("rb") as handle:
+            response = requests.post(
+                target["url"],
+                data=form,
+                files={"file": (jsonl_path.name, handle, "text/jsonl")},
+                timeout=300,
+            )
+            response.raise_for_status()
+
+        resource_url = clean(target.get("resourceUrl"))
+        if "/admin/tmp/files/" in resource_url:
+            return resource_url.split("/admin/tmp/files/", 1)[-1]
+        if form.get("key"):
+            return form["key"]
+        return resource_url
+
+    def run_bulk_translation_mutation(self, staged_upload_path: str) -> str:
+        mutation = """
+        mutation RunTranslationsBulk($mutation: String!, $stagedUploadPath: String!) {
+          bulkOperationRunMutation(mutation: $mutation, stagedUploadPath: $stagedUploadPath) {
+            bulkOperation {
+              id
+              status
+            }
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+        """
+        mutation_body = """
+        mutation call($resourceId: ID!, $translations: [TranslationInput!]!) {
+          translationsRegister(resourceId: $resourceId, translations: $translations) {
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+        """
+        data = self.graphql(
+            mutation,
+            {
+                "mutation": mutation_body,
+                "stagedUploadPath": staged_upload_path,
+            },
+        )["bulkOperationRunMutation"]
+        if data["userErrors"]:
+            raise RuntimeError(json.dumps(data["userErrors"], ensure_ascii=False))
+        return clean(data["bulkOperation"]["id"])
+
+    def current_bulk_operation(self) -> dict[str, Any] | None:
+        query = """
+        query {
+          currentBulkOperation {
+            id
+            status
+            errorCode
+            objectCount
+            fileSize
+            url
+            partialDataUrl
+          }
+        }
+        """
+        return self.graphql(query)["currentBulkOperation"]
+
+    def bulk_operation_by_id(self, operation_id: str) -> dict[str, Any] | None:
+        query = """
+        query BulkOperationById($id: ID!) {
+          node(id: $id) {
+            __typename
+            ... on BulkOperation {
+              id
+              status
+              errorCode
+              objectCount
+              fileSize
+              url
+              partialDataUrl
+            }
+          }
+        }
+        """
+        node = self.graphql(query, {"id": operation_id})["node"]
+        if not node or node.get("__typename") != "BulkOperation":
+            return None
+        return {key: value for key, value in node.items() if key != "__typename"}
+
+    def poll_bulk_operation(self, operation_id: str) -> dict[str, Any] | None:
+        while True:
+            current = self.current_bulk_operation()
+            if current and current.get("id") == operation_id:
+                if current.get("status") in {"CREATED", "RUNNING", "CANCELING"}:
+                    print(
+                        f"bulk status={current.get('status')} objects={current.get('objectCount')}",
+                        flush=True,
+                    )
+                    time.sleep(3)
+                    continue
+                return current
+
+            by_id = self.bulk_operation_by_id(operation_id)
+            if by_id and by_id.get("status") in {"CREATED", "RUNNING", "CANCELING"}:
+                print(
+                    f"bulk status={by_id.get('status')} objects={by_id.get('objectCount')}",
+                    flush=True,
+                )
+                time.sleep(3)
+                continue
+            return by_id
+
 
 def resolve_target_locales(client: ShopifyClient, requested_locales: str) -> list[str]:
     if requested_locales:
@@ -388,7 +1008,330 @@ def resolve_target_locales(client: ShopifyClient, requested_locales: str) -> lis
     return locales
 
 
-def should_translate_field(resource_type: str, key: str, value: str) -> bool:
+def locale_root(locale: str) -> str:
+    root = clean(locale).replace("_", "-").split("-", 1)[0]
+    return "zh" if root == "zh" else root
+
+
+def locale_lookup(mapping: dict[str, str], locale: str, fallback: str = "") -> str:
+    root = locale_root(locale)
+    return mapping.get(locale) or mapping.get(root) or fallback
+
+
+def leading_age_number(age_span: str) -> int:
+    match = re.match(r"^\d+", clean(age_span))
+    return int(match.group(0)) if match else 0
+
+
+def translated_option_name(value: str, locale: str) -> str | None:
+    normalized = clean(value).lower()
+    if normalized not in OPTION_NAME_TRANSLATIONS:
+        return None
+    return locale_lookup(OPTION_NAME_TRANSLATIONS[normalized], locale, clean(value))
+
+
+def translated_garment(value: str, locale: str) -> str | None:
+    source = clean(value)
+    if source in GARMENT_TRANSLATIONS:
+        return locale_lookup(GARMENT_TRANSLATIONS[source], locale, source)
+    return None
+
+
+def translated_age_label(role: str, age_span: str, locale: str) -> str:
+    role_label = locale_lookup(ROLE_TRANSLATIONS[role], locale, role.title())
+    root = locale_root(locale)
+    singular, plural, joiner = YEAR_UNITS.get(root, ("Year", "Years", " "))
+    normalized_age = clean(age_span).replace("–", "-")
+    if root == "ar" and normalized_age == "2":
+        return f"{role_label} سنتين"
+    number = leading_age_number(normalized_age)
+    if "-" not in normalized_age:
+        if root == "cs":
+            plural = "roky" if 2 <= number <= 4 else plural
+        elif root == "pl":
+            last = number % 10
+            last_two = number % 100
+            plural = "lata" if 2 <= last <= 4 and not 12 <= last_two <= 14 else plural
+        elif root == "ru":
+            last = number % 10
+            last_two = number % 100
+            if last == 1 and last_two != 11:
+                plural = singular
+            elif 2 <= last <= 4 and not 12 <= last_two <= 14:
+                plural = "года"
+    unit = plural if "-" in normalized_age or normalized_age != "1" else singular
+    return f"{role_label} {normalized_age}{joiner}{unit}"
+
+
+def strip_markup(value: str) -> str:
+    return re.sub(r"\s+", " ", TAG_RE.sub(" ", clean(value))).strip()
+
+
+def infer_product_context(product: RecentProduct | None, snapshots: list[ResourceSnapshot]) -> dict[str, Any]:
+    text_parts = [clean(product.handle if product else ""), clean(product.title if product else "")]
+    for snapshot in snapshots:
+        if snapshot.resource_type != "Product":
+            continue
+        for item in snapshot.translatable_content:
+            if item.get("key") in {"title", "body_html", "product_type", "meta_title", "meta_description"}:
+                text_parts.append(clean(item.get("value")))
+    haystack = strip_markup(" ".join(text_parts)).lower()
+
+    girl_score = sum(
+        1
+        for token in (
+            "girl",
+            "girls",
+            "daughter",
+            "daughters",
+            "mother daughter",
+            "mom and daughter",
+            "mom + daughter",
+            "girl dress",
+            "mommy and me dress",
+            "mommy-and-me dress",
+        )
+        if token in haystack
+    )
+    boy_score = sum(
+        1
+        for token in (
+            "boy",
+            "boys",
+            "son",
+            "sons",
+            "father son",
+            "dad and son",
+            "dad + son",
+            "boy shirt",
+            "daddy and me",
+            "daddy-and-me",
+        )
+        if token in haystack
+    )
+
+    child_role = "child"
+    if girl_score and not boy_score:
+        child_role = "girl"
+    elif boy_score and not girl_score:
+        child_role = "boy"
+
+    return {
+        "ambiguous_child_role": child_role,
+        "has_girl_context": bool(girl_score),
+        "has_boy_context": bool(boy_score),
+    }
+
+
+def child_role_for_table(source_prefix: str, source_table: str, product_context: dict[str, Any] | None) -> str:
+    product_context = product_context or {}
+    context_text = strip_markup(f"{source_prefix[-500:]} {source_table}").lower()
+
+    if "dress" in context_text and product_context.get("has_girl_context") and not product_context.get("has_boy_context"):
+        return "girl"
+    if "shirt" in context_text and product_context.get("has_boy_context") and not product_context.get("has_girl_context"):
+        return "boy"
+    if "girl" in context_text or "daughter" in context_text:
+        return "girl"
+    if "boy" in context_text or "son" in context_text:
+        return "boy"
+    return clean(product_context.get("ambiguous_child_role")) or "child"
+
+
+def translated_role_word(
+    role: str,
+    locale: str,
+    *,
+    product_context: dict[str, Any] | None = None,
+    table_child_role: str = "",
+) -> str:
+    source_role = clean(role).lower()
+    if source_role == "child":
+        product_context = product_context or {}
+        source_role = clean(table_child_role) or clean(product_context.get("ambiguous_child_role")) or "child"
+        if source_role not in ROLE_TRANSLATIONS:
+            source_role = "child"
+    return locale_lookup(ROLE_TRANSLATIONS.get(source_role, {}), locale, role.title())
+
+
+def translate_embedded_role_words(
+    value: str,
+    locale: str,
+    *,
+    product_context: dict[str, Any] | None = None,
+    table_child_role: str = "",
+) -> str:
+    def replace_role(match: re.Match[str]) -> str:
+        return translated_role_word(
+            match.group(1),
+            locale,
+            product_context=product_context,
+            table_child_role=table_child_role,
+        )
+
+    return re.sub(r"\b(Child|Girl|Boy|Mother|Father|Adult)\b", replace_role, value, flags=re.I)
+
+
+def translated_role_size_label(
+    source: str,
+    locale: str,
+    *,
+    product_context: dict[str, Any] | None = None,
+    table_child_role: str = "",
+) -> str | None:
+    size_match = SIZE_ROLE_RE.match(clean(source))
+    if not size_match:
+        return None
+
+    role = size_match.group(1).lower()
+    suffix = clean(size_match.group(2))
+    resolved_role = role
+    if role == "child":
+        product_context = product_context or {}
+        resolved_role = clean(table_child_role) or clean(product_context.get("ambiguous_child_role")) or "child"
+        if resolved_role not in ROLE_TRANSLATIONS:
+            resolved_role = "child"
+
+    age_match = AGE_SUFFIX_RE.match(suffix)
+    if resolved_role in {"child", "girl", "boy"} and age_match:
+        return translated_age_label(resolved_role, age_match.group(1), locale)
+
+    role_label = translated_role_word(
+        resolved_role,
+        locale,
+        product_context=product_context,
+        table_child_role=table_child_role,
+    )
+    suffix = translate_embedded_role_words(
+        suffix,
+        locale,
+        product_context=product_context,
+        table_child_role=table_child_role,
+    )
+    return f"{role_label} {suffix}"
+
+
+def first_body_cell_text(row_html: str) -> str:
+    match = TABLE_CELL_RE.search(row_html)
+    if not match:
+        return ""
+    return strip_markup(match.group(2))
+
+
+def replace_first_body_cell(row_html: str, replacement: str) -> str:
+    return TABLE_CELL_RE.sub(
+        lambda match: f"{match.group(1)}{replacement}{match.group(3)}",
+        row_html,
+        count=1,
+    )
+
+
+def repair_product_html_size_labels(
+    source_html: str,
+    translated_html: str,
+    locale: str,
+    product_context: dict[str, Any] | None = None,
+) -> str:
+    if not source_html or not translated_html or "size-chart" not in source_html:
+        return translated_html
+
+    source_tables = list(SIZE_CHART_TABLE_RE.finditer(source_html))
+    translated_tables = list(SIZE_CHART_TABLE_RE.finditer(translated_html))
+    if not source_tables or not translated_tables:
+        return translated_html
+
+    repaired = translated_html
+    offset = 0
+    all_replacement_labels: list[tuple[str, str]] = []
+    for table_index, source_table_match in enumerate(source_tables):
+        if table_index >= len(translated_tables):
+            break
+        translated_table_match = translated_tables[table_index]
+        translated_start = translated_table_match.start() + offset
+        translated_end = translated_table_match.end() + offset
+        translated_table_html = repaired[translated_start:translated_end]
+        source_table_html = source_table_match.group(0)
+        table_child_role = child_role_for_table(source_html[: source_table_match.start()], source_table_html, product_context)
+        source_rows = list(TABLE_ROW_RE.finditer(source_table_html))
+        translated_rows = list(TABLE_ROW_RE.finditer(translated_table_html))
+        next_row_index = 0
+        replacement_labels: list[tuple[str, str]] = []
+
+        for source_row_match in source_rows:
+            source_row_html = source_row_match.group(0)
+            source_label = first_body_cell_text(source_row_html)
+            if not source_label:
+                continue
+            repaired_label = translated_role_size_label(
+                source_label,
+                locale,
+                product_context=product_context,
+                table_child_role=table_child_role,
+            )
+            if not repaired_label:
+                continue
+            replacement_labels.append((source_label, repaired_label))
+            all_replacement_labels.append((source_label, repaired_label))
+
+            while next_row_index < len(translated_rows):
+                translated_row_match = translated_rows[next_row_index]
+                next_row_index += 1
+                translated_row_html = translated_row_match.group(0)
+                if not first_body_cell_text(translated_row_html):
+                    continue
+                new_row_html = replace_first_body_cell(translated_row_html, repaired_label)
+                row_start, row_end = translated_row_match.span()
+                translated_table_html = (
+                    translated_table_html[:row_start]
+                    + new_row_html
+                    + translated_table_html[row_end:]
+                )
+                delta = len(new_row_html) - (row_end - row_start)
+                if delta:
+                    translated_rows = list(TABLE_ROW_RE.finditer(translated_table_html))
+                    next_row_index = min(next_row_index, len(translated_rows))
+                break
+
+        for source_label, repaired_label in replacement_labels:
+            translated_table_html = re.sub(re.escape(source_label), repaired_label, translated_table_html)
+
+        repaired = repaired[:translated_start] + translated_table_html + repaired[translated_end:]
+        offset += len(translated_table_html) - (translated_end - translated_start)
+
+    # Catch English labels that leaked outside the chart, such as "Child 1-2Y-10Y".
+    for source_label, repaired_label in sorted(set(all_replacement_labels), key=lambda item: len(item[0]), reverse=True):
+        repaired = repaired.replace(source_label, repaired_label)
+
+    return repaired
+
+
+def deterministic_option_translation(
+    resource_type: str,
+    key: str,
+    value: str,
+    locale: str,
+    product_context: dict[str, Any] | None = None,
+) -> str | None:
+    source = clean(value)
+    if not source:
+        return None
+
+    if resource_type == "ProductOption" and key == "name":
+        return translated_option_name(source, locale)
+
+    if resource_type != "ProductOptionValue" or key not in {"name", "value"}:
+        return None
+
+    garment = translated_garment(source, locale)
+    if garment:
+        return garment
+
+    return translated_role_size_label(source, locale, product_context=product_context)
+
+
+def should_translate_field(resource_type: str, key: str, value: str, *, option_resources_only: bool = False) -> bool:
+    if option_resources_only and resource_type not in OPTION_RESOURCE_TYPES:
+        return False
     allowed_fields = RESOURCE_FIELD_ALLOWLIST.get(resource_type)
     if not allowed_fields or key not in allowed_fields:
         return False
@@ -409,6 +1352,8 @@ def collect_resource_snapshots(
         if nested.resource_type == "ProductOption":
             snapshots_by_id[nested.resource_id] = nested
             option_ids.append(nested.resource_id)
+        elif nested.resource_type == "Metafield":
+            snapshots_by_id[nested.resource_id] = nested
 
     for option_id in option_ids:
         option_snapshot = client.fetch_resource(option_id, locales, nested_limit)
@@ -416,6 +1361,13 @@ def collect_resource_snapshots(
         for nested in option_snapshot.nested_resources:
             if nested.resource_type == "ProductOptionValue":
                 snapshots_by_id[nested.resource_id] = nested
+
+    for option_value_id in client.product_option_value_ids(product_gid):
+        if option_value_id in snapshots_by_id:
+            continue
+        option_value_snapshot = client.fetch_resource(option_value_id, locales, nested_limit)
+        if option_value_snapshot.resource_type == "ProductOptionValue":
+            snapshots_by_id[option_value_id] = option_value_snapshot
 
     return list(snapshots_by_id.values())
 
@@ -426,30 +1378,74 @@ def build_translation_payload(
     translator: TranslationBackend,
     *,
     progress_prefix: str,
+    product: RecentProduct | None = None,
     force_refresh: bool = False,
+    option_resources_only: bool = False,
+    deterministic_repairs_only: bool = False,
 ) -> tuple[dict[str, list[dict[str, str]]], dict[str, Any]]:
     pending_rows = []
     texts_by_locale: dict[str, list[str]] = defaultdict(list)
     skipped = defaultdict(int)
+    product_context = infer_product_context(product, snapshots)
 
     for snapshot in snapshots:
         for item in snapshot.translatable_content:
             key = item["key"]
             default_value = item["value"]
             digest = item["digest"]
-            if not should_translate_field(snapshot.resource_type, key, default_value):
+            if not should_translate_field(
+                snapshot.resource_type,
+                key,
+                default_value,
+                option_resources_only=option_resources_only,
+            ):
                 skipped[f"filtered:{snapshot.resource_type}:{key}"] += 1
                 continue
             for locale in locales:
                 existing = snapshot.existing_translations.get((locale, key))
+                deterministic_value = deterministic_option_translation(
+                    snapshot.resource_type,
+                    key,
+                    default_value,
+                    locale,
+                    product_context=product_context,
+                )
+                repaired_existing_value = None
+                if (
+                    existing
+                    and clean(existing.value)
+                    and snapshot.resource_type == "Product"
+                    and key == "body_html"
+                ):
+                    repaired_existing_value = repair_product_html_size_labels(
+                        default_value,
+                        existing.value,
+                        locale,
+                        product_context=product_context,
+                    )
                 if (
                     existing
                     and clean(existing.value)
                     and not existing.outdated
                     and not TranslationBackend._contains_placeholder_tokens(existing.value)  # noqa: SLF001
+                    and (
+                        deterministic_value is None
+                        or clean(deterministic_value) == clean(existing.value)
+                    )
+                    and (
+                        repaired_existing_value is None
+                        or clean(repaired_existing_value) == clean(existing.value)
+                    )
                     and not force_refresh
                 ):
                     skipped[f"already_current:{locale}"] += 1
+                    continue
+                if (
+                    deterministic_repairs_only
+                    and repaired_existing_value is None
+                    and deterministic_value is None
+                ):
+                    skipped[f"deterministic_repair_only:{locale}"] += 1
                     continue
                 pending_rows.append(
                     {
@@ -461,9 +1457,13 @@ def build_translation_payload(
                         "digest": digest,
                         "outdated": bool(existing.outdated) if existing else False,
                         "existing_value": clean(existing.value) if existing else "",
+                        "deterministic_value": repaired_existing_value
+                        if repaired_existing_value is not None
+                        else deterministic_value,
                     }
                 )
-                texts_by_locale[locale].append(default_value)
+                if repaired_existing_value is None and deterministic_value is None:
+                    texts_by_locale[locale].append(default_value)
 
     translated_by_locale: dict[str, dict[str, str | None]] = {}
     for locale, texts in texts_by_locale.items():
@@ -478,11 +1478,22 @@ def build_translation_payload(
     translated_count = 0
     failed_count = 0
     for row in pending_rows:
-        translated_value = translated_by_locale[row["locale"]].get(row["default"])
+        translated_value = row.get("deterministic_value")
+        if translated_value is not None:
+            skipped[f"deterministic:{row['locale']}"] += 1
+        else:
+            translated_value = translated_by_locale[row["locale"]].get(row["default"])
         if translated_value is None:
             failed_count += 1
             skipped[f"translation_failed:{row['locale']}"] += 1
             continue
+        if row["resource_type"] == "Product" and row["key"] == "body_html":
+            translated_value = repair_product_html_size_labels(
+                row["default"],
+                translated_value,
+                row["locale"],
+                product_context=product_context,
+            )
         if row["existing_value"] and clean(translated_value) == row["existing_value"]:
             skipped[f"already_matches_generated:{row['locale']}"] += 1
             continue
@@ -502,9 +1513,11 @@ def build_translation_payload(
         "translated_count": translated_count,
         "failed_count": failed_count,
         "skipped": dict(sorted(skipped.items())),
+        "product_context": product_context,
         "resources": {
             snapshot.resource_id: snapshot.resource_type for snapshot in snapshots
         },
+        "deterministic_repairs_only": deterministic_repairs_only,
     }
     return payload_by_resource, summary
 
@@ -519,6 +1532,8 @@ def process_product(
     pause_ms: int,
     execute: bool,
     force_refresh: bool = False,
+    option_resources_only: bool = False,
+    deterministic_repairs_only: bool = False,
 ) -> dict[str, Any]:
     snapshots = collect_resource_snapshots(client, product.product_gid, locales, nested_limit)
     payload_by_resource, summary = build_translation_payload(
@@ -526,7 +1541,10 @@ def process_product(
         locales,
         translator,
         progress_prefix=f"product={product.handle}",
+        product=product,
         force_refresh=force_refresh,
+        option_resources_only=option_resources_only,
+        deterministic_repairs_only=deterministic_repairs_only,
     )
 
     registered_counts = {}
@@ -549,9 +1567,41 @@ def process_product(
             "registered_counts": registered_counts,
             "execute": bool(execute),
             "force_refresh": bool(force_refresh),
+            "option_resources_only": bool(option_resources_only),
+            "deterministic_repairs_only": bool(deterministic_repairs_only),
         }
     )
     return summary
+
+
+def merge_payload(
+    target: dict[str, list[dict[str, str]]],
+    source: dict[str, list[dict[str, str]]],
+) -> None:
+    for resource_id, translations in source.items():
+        target.setdefault(resource_id, []).extend(translations)
+
+
+def write_bulk_jsonl(payload_by_resource: dict[str, list[dict[str, str]]], path: Path) -> dict[str, int]:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    resource_count = 0
+    translation_count = 0
+    with path.open("w", encoding="utf-8") as handle:
+        for resource_id, translations in payload_by_resource.items():
+            deduped = []
+            seen = set()
+            for item in translations:
+                signature = (item["locale"], item["key"])
+                if signature in seen:
+                    continue
+                seen.add(signature)
+                deduped.append(item)
+            if not deduped:
+                continue
+            resource_count += 1
+            translation_count += len(deduped)
+            handle.write(json.dumps({"resourceId": resource_id, "translations": deduped}, ensure_ascii=False) + "\n")
+    return {"resource_count": resource_count, "translation_count": translation_count}
 
 
 def main() -> None:
@@ -561,8 +1611,11 @@ def main() -> None:
     parser.add_argument("--state-path", default=str(DEFAULT_STATE_PATH), help="Persistent worker state path.")
     parser.add_argument("--jsonl-log", default=str(DEFAULT_LOG_PATH), help="Append-only JSONL log path.")
     parser.add_argument("--cache-path", default=str(DEFAULT_CACHE_PATH), help="Shared translation cache path.")
+    parser.add_argument("--bulk-jsonl-path", default=str(DEFAULT_BULK_JSONL_PATH), help="JSONL path for staged bulk translation repair.")
     parser.add_argument("--glossary", default=str(DEFAULT_GLOSSARY), help="Optional glossary JSON path.")
     parser.add_argument("--locales", default="", help="Comma-separated locale list. Defaults to live published non-primary shop locales.")
+    parser.add_argument("--handles", default="", help="Comma-separated product handles to process, bypassing cursor state.")
+    parser.add_argument("--created-since", default="", help="Process recent products created on/after this ISO timestamp, bypassing cursor state.")
     parser.add_argument("--min-age-seconds", type=int, default=300, help="Only process products older than this.")
     parser.add_argument("--page-size", type=int, default=25, help="Recent products page size.")
     parser.add_argument("--max-pages", type=int, default=4, help="Maximum recent-products pages per run.")
@@ -570,7 +1623,14 @@ def main() -> None:
     parser.add_argument("--max-nested-resources", type=int, default=DEFAULT_NESTED_LIMIT, help="Nested translatable resources fetched per product or option.")
     parser.add_argument("--pause-ms", type=int, default=250, help="Pause between live translation writes.")
     parser.add_argument("--execute", action="store_true", help="Apply translations live instead of dry-run.")
+    parser.add_argument("--bulk", action="store_true", help="Stage one bulk translationsRegister mutation instead of direct per-resource writes.")
     parser.add_argument("--force-refresh", action="store_true", help="Rebuild current translations and rewrite only values that differ.")
+    parser.add_argument("--option-resources-only", action="store_true", help="Only repair ProductOption and ProductOptionValue translations.")
+    parser.add_argument(
+        "--deterministic-repairs-only",
+        action="store_true",
+        help="Only stage deterministic option/body size-label repairs; skip machine translation for missing prose.",
+    )
     parser.add_argument("--initialize-now", action="store_true", help="Initialize first-run cursor to now.")
     parser.add_argument("--bootstrap-hours", type=int, default=0, help="On first run only, process products this many hours back.")
     args = parser.parse_args()
@@ -601,9 +1661,149 @@ def main() -> None:
         batch_char_limit=12000,
     )
 
-    recent_products = client.recent_products(max_pages=max(args.max_pages, 1), page_size=max(args.page_size, 1))
-    eligible_new = [product for product in recent_products if is_newer_than_cursor(product, state)]
+    explicit_handles = [item.strip() for item in args.handles.split(",") if item.strip()]
+    created_since = clean(args.created_since)
+
+    if explicit_handles:
+        eligible_new = client.products_by_handles(explicit_handles)
+    else:
+        recent_products = client.recent_products(max_pages=max(args.max_pages, 1), page_size=max(args.page_size, 1))
+        if created_since:
+            since_dt = parse_iso8601(created_since)
+            eligible_new = [
+                product
+                for product in recent_products
+                if parse_iso8601(product.created_at) >= since_dt
+            ]
+        else:
+            eligible_new = [product for product in recent_products if is_newer_than_cursor(product, state)]
     eligible_new.sort(key=lambda item: (item.created_at, item.product_id))
+
+    if args.bulk:
+        merged_payload: dict[str, list[dict[str, str]]] = {}
+        product_summaries = []
+        processed_count = 0
+        blocked_by_error = False
+        min_age_delta = timedelta(seconds=max(args.min_age_seconds, 0))
+
+        for product in eligible_new:
+            if processed_count >= max(args.max_products_per_run, 1):
+                break
+
+            if clean(product.status).upper() == "ARCHIVED":
+                append_log(
+                    log_path,
+                    {
+                        "event": "skipped",
+                        "reason": "archived",
+                        "product_id": product.product_id,
+                        "handle": product.handle,
+                        "created_at": product.created_at,
+                    },
+                )
+                processed_count += 1
+                continue
+
+            created_at_dt = parse_iso8601(product.created_at)
+            if utc_now() - created_at_dt < min_age_delta:
+                append_log(
+                    log_path,
+                    {
+                        "event": "deferred",
+                        "reason": "product_too_new",
+                        "product_id": product.product_id,
+                        "handle": product.handle,
+                        "created_at": product.created_at,
+                    },
+                )
+                continue
+
+            try:
+                snapshots = collect_resource_snapshots(
+                    client,
+                    product.product_gid,
+                    locales,
+                    max(args.max_nested_resources, 1),
+                )
+                payload_by_resource, summary = build_translation_payload(
+                    snapshots,
+                    locales,
+                    translator,
+                    progress_prefix=f"product={product.handle}",
+                    product=product,
+                    force_refresh=args.force_refresh,
+                    option_resources_only=args.option_resources_only,
+                    deterministic_repairs_only=args.deterministic_repairs_only,
+                )
+                merge_payload(merged_payload, payload_by_resource)
+                summary.update(
+                    {
+                        "handle": product.handle,
+                        "product_id": product.product_id,
+                        "created_at": product.created_at,
+                        "locales": locales,
+                        "resource_payload_counts": {
+                            key: len(value) for key, value in payload_by_resource.items()
+                        },
+                        "execute": bool(args.execute),
+                        "bulk": True,
+                        "force_refresh": bool(args.force_refresh),
+                        "option_resources_only": bool(args.option_resources_only),
+                        "deterministic_repairs_only": bool(args.deterministic_repairs_only),
+                    }
+                )
+                product_summaries.append(summary)
+                append_log(
+                    log_path,
+                    {
+                        "event": "bulk_prepared",
+                        "product_id": product.product_id,
+                        "handle": product.handle,
+                        "created_at": product.created_at,
+                        "summary": summary,
+                    },
+                )
+                processed_count += 1
+            except Exception as exc:  # noqa: BLE001
+                blocked_by_error = True
+                append_log(
+                    log_path,
+                    {
+                        "event": "error",
+                        "product_id": product.product_id,
+                        "handle": product.handle,
+                        "created_at": product.created_at,
+                        "message": str(exc),
+                    },
+                )
+                break
+
+        bulk_jsonl_path = Path(args.bulk_jsonl_path).expanduser()
+        bulk_counts = write_bulk_jsonl(merged_payload, bulk_jsonl_path)
+        bulk_result = None
+        if args.execute and bulk_counts["translation_count"] > 0:
+            staged_upload_path = client.staged_upload(bulk_jsonl_path)
+            operation_id = client.run_bulk_translation_mutation(staged_upload_path)
+            bulk_result = client.poll_bulk_operation(operation_id)
+
+        report = {
+            "store_domain": store_domain,
+            "locales": locales,
+            "candidate_products": len(eligible_new),
+            "processed_products": processed_count,
+            "blocked_by_error": blocked_by_error,
+            "execute": bool(args.execute),
+            "bulk": True,
+            "option_resources_only": bool(args.option_resources_only),
+            "deterministic_repairs_only": bool(args.deterministic_repairs_only),
+            "bulk_counts": bulk_counts,
+            "bulk_jsonl_path": str(bulk_jsonl_path),
+            "bulk_result": bulk_result,
+            "cache_path": str(cache_path),
+        }
+        append_log(log_path, {"event": "bulk_complete", "summary": report})
+        print(json.dumps(report, indent=2, ensure_ascii=False))
+        return
 
     finalized: list[RecentProduct] = []
     processed_count = 0
@@ -625,7 +1825,7 @@ def main() -> None:
                     "created_at": product.created_at,
                 },
             )
-            if args.execute:
+            if args.execute and not (explicit_handles or created_since):
                 finalized.append(product)
                 processed_count += 1
             continue
@@ -654,6 +1854,8 @@ def main() -> None:
                 pause_ms=max(args.pause_ms, 0),
                 execute=args.execute,
                 force_refresh=args.force_refresh,
+                option_resources_only=args.option_resources_only,
+                deterministic_repairs_only=args.deterministic_repairs_only,
             )
             append_log(
                 log_path,
@@ -666,7 +1868,7 @@ def main() -> None:
                 },
             )
             processed_count += 1
-            if args.execute:
+            if args.execute and not (explicit_handles or created_since):
                 finalized.append(product)
                 update_cursor_state(state, [product])
                 state["last_run_at"] = isoformat_utc(utc_now())
@@ -685,7 +1887,7 @@ def main() -> None:
             )
             break
 
-    if args.execute and finalized:
+    if args.execute and finalized and not (explicit_handles or created_since):
         update_cursor_state(state, finalized)
         state["last_run_at"] = isoformat_utc(utc_now())
         save_state(state_path, state)
@@ -700,6 +1902,8 @@ def main() -> None:
                 "finalized_product_ids": [item.product_id for item in finalized],
                 "blocked_by_error": blocked_by_error,
                 "execute": bool(args.execute),
+                "option_resources_only": bool(args.option_resources_only),
+                "deterministic_repairs_only": bool(args.deterministic_repairs_only),
                 "state_path": str(state_path),
                 "cache_path": str(cache_path),
             },

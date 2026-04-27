@@ -18,9 +18,13 @@ Use this file as the first stop for any new session that needs to create or upda
 
 For new listing work, prefer the `ops/prompts/` workflow over older prompt files under `GPT/` unless the user explicitly asks for a legacy prompt.
 
+Shopify safety default: new Admin API listing work creates or updates Shopify products as drafts only. Do not set products `ACTIVE`, call `publishablePublish`, or publish to sales channels unless the operator explicitly asks for a separate live publish step.
+
 Family-matching sanity check: if `Size` labels already encode the shopper role (`Mother S`, `Father M`, `Child 2 Years`), keep `Type` generic to the garment (`Dress`, `Shirt`) instead of repeating the role in the option value.
 
 Colorway sanity check: if `DESIGNS_TO_LIST` names multiple colorways or print colors for the same garment and vendor size chart, keep them in one Shopify product with a `Color` option. Do not create separate products unless the operator explicitly says "separate listings" or the vendor evidence shows materially different garments or size charts.
+
+Separate-item sanity check: if the vendor item/color selector contains separate garment choices such as `上衣`/top/shirt and `裤`/pants/shorts, those are not colorways. Build `Type x Size` variants with shopper-facing Type values like `Top` and `Pants`, or halt before any Shopify write. Do not collapse separable pieces into one `Set` variant per size unless the vendor sells only the complete set as a single purchasable option.
 
 ## Minimal Request Template
 

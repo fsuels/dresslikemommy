@@ -13,6 +13,7 @@ import datetime as dt
 import hashlib
 import json
 import mimetypes
+import os
 import re
 import subprocess
 import threading
@@ -37,6 +38,8 @@ COLLECTOR_PATH = REPO_ROOT / "ops" / "scripts" / "1688_sourcing_cdp_collect.py"
 DETAIL_ENRICH_PATH = REPO_ROOT / "ops" / "scripts" / "1688_sourcing_detail_enrich.py"
 CDP_PORT = 9333
 HELPER_CHROME_PROFILE = Path.home() / ".dlm-1688-chrome-profile"
+MEMORY_CACHE_ROOT = Path.home() / ".cache" / "dresslikemommy"
+MEMORY_WING = "dresslikemommy-pilot"
 COLLECTION_JOBS: dict[str, dict[str, Any]] = {}
 COLLECTION_LOCK = threading.Lock()
 DETAIL_JOBS: dict[str, dict[str, Any]] = {}
@@ -74,6 +77,282 @@ def write_json(path: Path, payload: Any) -> None:
 def write_text(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content.rstrip() + "\n", encoding="utf-8")
+
+
+def latest_memory_pilot_root() -> Path:
+    configured = clean(os.environ.get("DLM_MEMORY_PILOT_ROOT"))
+    if configured:
+        return Path(configured).expanduser()
+    candidates = [
+        path
+        for path in MEMORY_CACHE_ROOT.glob("mempalace-pilot-*")
+        if (path / "venv" / "bin" / "mempalace").exists() and (path / "palace-small").exists()
+    ]
+    if not candidates:
+        return MEMORY_CACHE_ROOT / "mempalace-pilot-20260425-010721"
+    return max(candidates, key=lambda path: (path.stat().st_mtime, path.name))
+
+
+def memory_paths() -> dict[str, Path]:
+    root = latest_memory_pilot_root()
+    return {
+        "root": root,
+        "home": root / "home",
+        "bin": root / "venv" / "bin" / "mempalace",
+        "palace": root / "palace-small",
+        "corpus": root / "corpus-small",
+    }
+
+
+def memory_cli_command(paths: dict[str, Path], *args: str) -> list[str]:
+    command = [str(paths["bin"]), *args]
+    arch = Path("/usr/bin/arch")
+    if arch.exists():
+        return [str(arch), "-arm64", *command]
+    return command
+
+
+def memory_status() -> dict[str, Any]:
+    paths = memory_paths()
+    missing = [name for name, path in paths.items() if name != "corpus" and not path.exists()]
+    available = not missing
+    status = {
+        "available": available,
+        "root": str(paths["root"]),
+        "wing": MEMORY_WING,
+        "missing": missing,
+        "message": "Project Memory is ready." if available else "Project Memory is not set up yet.",
+    }
+    if not available:
+        return status
+    try:
+        completed = subprocess.run(
+            memory_cli_command(paths, "--palace", str(paths["palace"]), "status"),
+            cwd=str(REPO_ROOT),
+            env={**os.environ, "HOME": str(paths["home"]), "ANONYMIZED_TELEMETRY": "FALSE"},
+            capture_output=True,
+            text=True,
+            timeout=12,
+            check=False,
+        )
+    except Exception as exc:
+        status.update({"available": False, "message": f"Project Memory exists but could not start: {exc}"})
+        return status
+    output = completed.stdout or completed.stderr or ""
+    drawers_match = re.search(r"MemPalace Status\s+—\s+(\d+)\s+drawers", output)
+    status.update(
+        {
+            "available": completed.returncode == 0,
+            "drawers": int(drawers_match.group(1)) if drawers_match else None,
+            "message": (
+                f"Project Memory is ready with {drawers_match.group(1)} indexed notes."
+                if completed.returncode == 0 and drawers_match
+                else "Project Memory exists, but status could not be confirmed."
+            ),
+            "raw_status": output,
+        }
+    )
+    return status
+
+
+def parse_memory_results(output: str) -> list[dict[str, Any]]:
+    results: list[dict[str, Any]] = []
+    blocks = re.split(r"\n\s*─{8,}\s*\n", output)
+    for block in blocks:
+        index_match = re.search(r"\[(\d+)\]\s+([^\n]+)", block)
+        if not index_match:
+            continue
+        source_match = re.search(r"Source:\s*(.+)", block)
+        score_match = re.search(r"Match:\s*([0-9.]+)", block)
+        snippet = block[score_match.end() :] if score_match else block[index_match.end() :]
+        snippet = re.sub(r"^\s+", "", snippet.strip(), flags=re.MULTILINE)
+        snippet = re.sub(r"\n{3,}", "\n\n", snippet).strip()
+        results.append(
+            {
+                "rank": int(index_match.group(1)),
+                "location": clean(index_match.group(2)),
+                "source": clean(source_match.group(1)) if source_match else "",
+                "score": float(score_match.group(1)) if score_match else None,
+                "snippet": snippet,
+            }
+        )
+    return results
+
+
+def memory_answer(title: str, summary: str, steps: list[str] | None = None, note: str = "") -> dict[str, Any]:
+    return {
+        "title": title,
+        "summary": summary,
+        "steps": steps or [],
+        "note": note,
+    }
+
+
+def live_dashboard_memory_answer() -> dict[str, Any]:
+    candidates = load_candidates()
+    counts = category_counts(candidates)
+    total = len(candidates)
+    active = sum(bucket.get("active", 0) for bucket in counts.values())
+    kept = sum(bucket.get("kept", 0) for bucket in counts.values())
+    ready = sum(bucket.get("ready", 0) for bucket in counts.values())
+    category_lines: list[str] = []
+    categories = category_lookup()
+    for category_id, category in categories.items():
+        bucket = counts.get(category_id, {})
+        category_lines.append(
+            f"{category.get('label', category_id)}: {bucket.get('active', 0)} active leads from {bucket.get('total', 0)} stored cards"
+        )
+    return memory_answer(
+        "Current dashboard state",
+        f"Right now the local dashboard has {total} stored cards, {active} active leads, {kept} saved products, and {ready} products ready for draft.",
+        category_lines,
+        "This answer uses the live dashboard data, so it is safer than an old memory note for current counts.",
+    )
+
+
+def humanize_memory_answer(query: str, results: list[dict[str, Any]]) -> dict[str, Any]:
+    q_lower = query.lower()
+    text = f"{query} " + " ".join(clean(result.get("snippet")) for result in results[:3])
+    lower = text.lower()
+
+    if ("latest" in q_lower or "current" in q_lower or "now" in q_lower) and "dashboard" in q_lower:
+        return live_dashboard_memory_answer()
+    if "captcha" in q_lower or "interception" in q_lower or "blocked" in q_lower or "1688 is blocked" in q_lower:
+        return memory_answer(
+            "1688 is asking for a browser check",
+            "Do not try to bypass it. Open the 1688 helper browser, complete the login or CAPTCHA check in Chrome, then come back to this app and click Find 20 Leads again.",
+            [
+                "Click Open 1688 Login/Search.",
+                "Finish the login or CAPTCHA check in the Chrome tab that opens.",
+                "Return to this dashboard.",
+                "Click Find 20 Leads again, one category at a time.",
+            ],
+            "If 1688 keeps blocking, wait a bit before trying again. The app should not force or bypass that check.",
+        )
+    if ("keep" in q_lower or "reject" in q_lower or "decision" in q_lower) and (
+        "live" in q_lower or "memory" in q_lower or "where" in q_lower or "remember" in q_lower
+    ):
+        return memory_answer(
+            "Saved and rejected products are remembered automatically",
+            "Use the Save and Reject buttons on product cards. The app remembers those choices so rejected products should not keep coming back.",
+            [
+                "Click Save when a product is worth checking later.",
+                "Click Reject when a product is wrong, stale, risky, or not useful.",
+                "Rejected products stay hidden from the active shortlist unless you restore them.",
+                "You do not need to edit the decision file yourself.",
+            ],
+        )
+    if "draft package" in q_lower or "package" in q_lower:
+        return memory_answer(
+            "Draft Package is the handoff for creating a Shopify draft",
+            "After proof is complete, Draft Package gathers the product details, listing request, and image prompt into one local package. It is for draft creation only, not live publishing.",
+            [
+                "Fill and save all proof fields first.",
+                "Click Draft Package on the product card.",
+                "The app copies the agent handoff prompt.",
+                "The product should remain a Shopify draft until you approve it.",
+            ],
+        )
+    if "ready" in q_lower or "proof" in q_lower or "draft" in q_lower:
+        return memory_answer(
+            "A product needs proof before it can become a draft",
+            "The Draft Package button stays blocked until the important proof fields are filled in. This protects the store from weak or unverified listings.",
+            [
+                "Add the size chart source.",
+                "Add the vendor image folder or path.",
+                "Add the generated 6-image folder or path.",
+                "Confirm dropship support.",
+                "Confirm dispatch speed.",
+                "Confirm the supplier looks usable.",
+                "Click Save Proof.",
+            ],
+        )
+    if "prompt" in q_lower or "listing" in q_lower or "shopify" in q_lower:
+        return memory_answer(
+            "Use the built-in listing prompt buttons",
+            "For listing work, use Copy Listing Agent Prompt or Draft Package from the product card. Those prompts point the agent to the right workflow and keep the product as a draft unless you ask to publish.",
+            [
+                "Use Copy Listing Agent Prompt when you want help creating listing copy.",
+                "Use Copy 6-Image Prompt when you are ready to generate product images.",
+                "Use Draft Package only after proof is complete.",
+                "Do not publish live unless you explicitly ask for that.",
+            ],
+        )
+    if "category" in q_lower or "categories" in q_lower:
+        return memory_answer(
+            "The sourcing app uses five store categories",
+            "The dashboard groups products by the same main sourcing buckets you use for the shop.",
+            ["Mommy & Me", "Daddy & Me", "Family Matching", "Couples", "Maternity"],
+        )
+    if results:
+        sources = ", ".join(result.get("source", "memory note") for result in results[:2])
+        return memory_answer(
+            "I found related memory notes",
+            "I found project notes that may answer this, but I am not confident enough to turn them into a simple instruction yet.",
+            [
+                f"Best matching source: {sources}.",
+                "Try asking with simpler words, for example: 'What proof is needed?' or 'What do I do if 1688 is blocked?'",
+            ],
+            "The detailed source cards are hidden below so the screen stays readable.",
+        )
+    return memory_answer(
+        "I did not find a clear memory answer",
+        "Try asking a shorter question with everyday words.",
+        [
+            "Examples: 'What proof is needed?'",
+            "Examples: 'Where are rejects remembered?'",
+            "Examples: 'What do I do if 1688 is blocked?'",
+        ],
+    )
+
+
+def search_project_memory(query: str, result_count: int = 5) -> dict[str, Any]:
+    query = clean(query)
+    if not query:
+        raise ValueError("Ask a question first.")
+    result_count = max(1, min(result_count, 8))
+    status = memory_status()
+    if not status.get("available"):
+        return {"ok": False, "status": status, "results": [], "message": status.get("message")}
+    paths = memory_paths()
+    completed = subprocess.run(
+        memory_cli_command(
+            paths,
+            "--palace",
+            str(paths["palace"]),
+            "search",
+            query,
+            "--wing",
+            MEMORY_WING,
+            "--results",
+            str(result_count),
+        ),
+        cwd=str(REPO_ROOT),
+        env={**os.environ, "HOME": str(paths["home"]), "ANONYMIZED_TELEMETRY": "FALSE"},
+        capture_output=True,
+        text=True,
+        timeout=30,
+        check=False,
+    )
+    output = completed.stdout or ""
+    if completed.returncode != 0:
+        return {
+            "ok": False,
+            "status": status,
+            "results": [],
+            "message": clean(completed.stderr) or "Project Memory search failed.",
+            "raw": output,
+        }
+    results = parse_memory_results(output)
+    return {
+        "ok": True,
+        "status": status,
+        "query": query,
+        "results": results,
+        "raw": output,
+        "message": "Memory search finished.",
+        "answer": humanize_memory_answer(query, results),
+    }
 
 
 def load_categories() -> list[dict[str, Any]]:
@@ -752,7 +1031,7 @@ def build_listing_prompt(candidate: dict[str, Any]) -> str:
         f"Sourcing category: {candidate.get('category_label')}; "
         f"score {candidate.get('score')}; verdict {candidate.get('verdict')}. "
         f"Product title: {title}. Confirm size chart, images, dropship support, "
-        f"dispatch speed, and supplier evidence before publishing.{image_note}"
+        f"dispatch speed, and supplier evidence before draft creation or any later publishing.{image_note}"
     )
     return "\n".join(
         [
@@ -764,6 +1043,8 @@ def build_listing_prompt(candidate: dict[str, Any]) -> str:
             "3. ops/prompts/shopify-listing-from-1688.md",
             "",
             "Then execute the canonical Shopify listing workflow from those files for this request:",
+            "",
+            "Create or update a Shopify DRAFT product only. Do not set the product ACTIVE, call publishablePublish, or publish to any sales channel unless the operator explicitly asks for a separate publish-live action.",
             "",
             "LISTING REQUEST",
             "",
@@ -1138,6 +1419,183 @@ def dashboard_html() -> str:
       color: var(--ink);
       font-size: 12px;
     }
+    .memory-panel {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(31, 37, 35, .06);
+    }
+    .memory-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: start;
+      flex-wrap: wrap;
+    }
+    .memory-top h3 {
+      margin: 0 0 5px;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+    .memory-top p {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .memory-status {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border: 1px solid #dce4df;
+      border-radius: 999px;
+      background: #f7faf8;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .memory-status.good {
+      color: var(--green);
+      background: var(--green-bg);
+      border-color: rgba(47,111,94,.28);
+    }
+    .memory-status.bad {
+      color: var(--red);
+      background: var(--red-bg);
+      border-color: rgba(166,66,59,.28);
+    }
+    .memory-form {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .memory-form input {
+      min-width: min(100%, 420px);
+    }
+    .memory-examples {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+    .memory-examples button {
+      min-height: 32px;
+      font-size: 12px;
+      color: var(--green);
+      border-color: rgba(47,111,94,.28);
+      background: var(--green-bg);
+    }
+    .memory-results {
+      display: grid;
+      gap: 10px;
+    }
+    .memory-answer {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      border: 1px solid rgba(47,111,94,.28);
+      border-radius: 8px;
+      background: var(--green-bg);
+      color: var(--ink);
+    }
+    .memory-answer h4 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+    .memory-answer p {
+      margin: 0;
+      color: #24433a;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .memory-answer ol {
+      margin: 4px 0 0;
+      padding-left: 22px;
+      color: #24433a;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .memory-answer li + li {
+      margin-top: 3px;
+    }
+    .memory-note {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .memory-details {
+      display: grid;
+      gap: 10px;
+    }
+    .memory-details summary {
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .memory-details[open] summary {
+      margin-bottom: 10px;
+    }
+    .memory-empty {
+      padding: 12px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      background: #f7faf8;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .memory-card {
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+      border: 1px solid #e2e8e4;
+      border-radius: 8px;
+      background: #f7faf8;
+    }
+    .memory-card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: start;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .memory-card-head strong {
+      display: block;
+      color: var(--ink);
+      font-size: 13px;
+    }
+    .memory-score {
+      color: var(--accent);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .memory-snippet {
+      max-height: 220px;
+      overflow: auto;
+      padding: 10px;
+      border: 1px solid #dce4df;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+    .memory-card button {
+      justify-self: start;
+      min-height: 32px;
+      font-size: 12px;
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -1332,6 +1790,7 @@ def dashboard_html() -> str:
       .stats { grid-template-columns: repeat(2, 1fr); }
       .guide { grid-template-columns: 1fr; }
       .steps { grid-template-columns: 1fr; }
+      .memory-form input, .memory-form button { width: 100%; }
       .grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -1397,6 +1856,29 @@ def dashboard_html() -> str:
         <div id="collector-status" class="status-box">Choose a category above, then click Find 20 Leads. The app rotates keyword searches, checks up to two pages per query, and skips offers already saved locally. If 1688 asks for login or CAPTCHA, use Open 1688 Login/Search once, complete the browser check, then click Find again.</div>
       </div>
     </section>
+    <section class="memory-panel" aria-labelledby="memory-title">
+      <div class="memory-top">
+        <div>
+          <h3 id="memory-title">Ask project memory</h3>
+          <p>Ask normal questions about this sourcing system, listing workflow, proof gates, prompts, or past decisions. Results come from the curated local memory pilot, not the live website.</p>
+        </div>
+        <span id="memory-status" class="memory-status">Checking memory</span>
+      </div>
+      <form id="memory-form" class="memory-form">
+        <input id="memory-query" type="search" placeholder="Ask: What do I do when 1688 shows CAPTCHA?">
+        <button id="memory-search" class="primary" type="submit">Search Memory</button>
+      </form>
+      <div class="memory-examples">
+        <button type="button" data-memory-query="What do I do when 1688 shows CAPTCHA?">1688 is blocked</button>
+        <button type="button" data-memory-query="Where do Keep and Reject decisions live?">Keep and Reject memory</button>
+        <button type="button" data-memory-query="What proof is required before Ready for Draft?">Ready proof fields</button>
+        <button type="button" data-memory-query="Which prompts must be read before creating a 1688 Shopify listing?">Listing prompts</button>
+        <button type="button" data-memory-query="What is the latest sourcing dashboard state?">Latest dashboard state</button>
+      </div>
+      <div id="memory-results" class="memory-results">
+        <div class="memory-empty">Type a question or click one of the quick questions above.</div>
+      </div>
+    </section>
     <div id="empty" class="empty">No candidates match this view.</div>
     <div id="grid" class="grid"></div>
   </main>
@@ -1413,6 +1895,11 @@ def dashboard_html() -> str:
     const sort = document.querySelector('#sort');
     const collectorStatus = document.querySelector('#collector-status');
     const searchPlan = document.querySelector('#search-plan');
+    const memoryStatus = document.querySelector('#memory-status');
+    const memoryForm = document.querySelector('#memory-form');
+    const memoryQuery = document.querySelector('#memory-query');
+    const memorySearchButton = document.querySelector('#memory-search');
+    const memoryResults = document.querySelector('#memory-results');
 
     async function api(path, options = {}) {
       const response = await fetch(path, {
@@ -1482,6 +1969,105 @@ def dashboard_html() -> str:
     function setCollectorStatus(message, mode = '') {
       collectorStatus.textContent = message;
       collectorStatus.className = `status-box ${mode}`.trim();
+    }
+
+    function setMemoryStatus(message, mode = '') {
+      memoryStatus.textContent = message;
+      memoryStatus.className = `memory-status ${mode}`.trim();
+    }
+
+    function renderMemoryResults(payload) {
+      if (!payload.ok) {
+        memoryResults.innerHTML = `<div class="memory-empty">${escapeHtml(payload.message || 'Project Memory is not ready yet.')}</div>`;
+        return;
+      }
+      const results = payload.results || [];
+      const answer = payload.answer || {
+        title: 'Memory search finished',
+        summary: results.length ? 'I found related memory notes.' : 'No memory notes matched. Try a simpler phrase.',
+        steps: [],
+        note: ''
+      };
+      const answerSteps = (answer.steps || []).map(step => `<li>${escapeHtml(step)}</li>`).join('');
+      const answerHtml = `
+        <section class="memory-answer">
+          <h4>${escapeHtml(answer.title || 'Plain answer')}</h4>
+          <p>${escapeHtml(answer.summary || '')}</p>
+          ${answerSteps ? `<ol>${answerSteps}</ol>` : ''}
+          ${answer.note ? `<div class="memory-note">${escapeHtml(answer.note)}</div>` : ''}
+          <button type="button" class="copy-memory-answer">Copy plain answer</button>
+        </section>
+      `;
+      const detailCards = results.map(result => `
+        <article class="memory-card">
+          <div class="memory-card-head">
+            <div>
+              <strong>${escapeHtml(result.source || 'Memory note')}</strong>
+              <span>${escapeHtml(result.location || 'dresslikemommy-pilot')}</span>
+            </div>
+            <span class="memory-score">${result.score == null ? '' : escapeHtml(Number(result.score).toFixed(3))}</span>
+          </div>
+          <div class="memory-snippet">${escapeHtml(result.snippet || '')}</div>
+          <button type="button" class="copy-memory">Copy this result</button>
+        </article>
+      `).join('');
+      memoryResults.innerHTML = `
+        ${answerHtml}
+        ${results.length ? `<details class="memory-details"><summary>Show source details for verification</summary>${detailCards}</details>` : ''}
+      `;
+      memoryResults.querySelector('.copy-memory-answer')?.addEventListener('click', async event => {
+        const text = [
+          answer.title || 'Plain answer',
+          answer.summary || '',
+          ...(answer.steps || []).map((step, index) => `${index + 1}. ${step}`),
+          answer.note || '',
+        ].filter(Boolean).join('\\n');
+        await copyText(text);
+        flash(event.currentTarget, 'Copied');
+      });
+      memoryResults.querySelectorAll('.copy-memory').forEach((button, index) => {
+        button.addEventListener('click', async () => {
+          const result = results[index];
+          await copyText(`${result.source || 'Memory note'}\n\n${result.snippet || ''}`);
+          flash(button, 'Copied');
+        });
+      });
+    }
+
+    async function loadMemoryStatus() {
+      try {
+        const status = await api('/api/memory-status');
+        setMemoryStatus(status.message || 'Memory ready', status.available ? 'good' : 'bad');
+      } catch (error) {
+        setMemoryStatus('Memory status unavailable', 'bad');
+      }
+    }
+
+    async function searchMemory(query) {
+      const text = query.trim();
+      if (!text) {
+        memoryResults.innerHTML = '<div class="memory-empty">Type a question first.</div>';
+        return;
+      }
+      memorySearchButton.disabled = true;
+      const old = memorySearchButton.textContent;
+      memorySearchButton.textContent = 'Searching...';
+      setMemoryStatus('Searching memory');
+      memoryResults.innerHTML = '<div class="memory-empty">Looking through the local project memory...</div>';
+      try {
+        const payload = await api('/api/memory-search', {
+          method: 'POST',
+          body: JSON.stringify({ query: text, results: 5 }),
+        });
+        setMemoryStatus(payload.status?.message || payload.message || 'Memory search finished', payload.ok ? 'good' : 'bad');
+        renderMemoryResults(payload);
+      } catch (error) {
+        setMemoryStatus('Memory search failed', 'bad');
+        memoryResults.innerHTML = `<div class="memory-empty">I could not search memory: ${escapeHtml(error.message)}</div>`;
+      } finally {
+        memorySearchButton.disabled = false;
+        memorySearchButton.textContent = old;
+      }
     }
 
     function activeCategoryConfig() {
@@ -1850,8 +2436,19 @@ def dashboard_html() -> str:
     });
     document.querySelector('#find-products').addEventListener('click', event => findFreshProducts(event.currentTarget));
     document.querySelector('#open-1688').addEventListener('click', event => open1688Helper(event.currentTarget));
+    memoryForm.addEventListener('submit', event => {
+      event.preventDefault();
+      searchMemory(memoryQuery.value);
+    });
+    document.querySelectorAll('[data-memory-query]').forEach(button => {
+      button.addEventListener('click', () => {
+        memoryQuery.value = button.dataset.memoryQuery || '';
+        searchMemory(memoryQuery.value);
+      });
+    });
 
     loadData();
+    loadMemoryStatus();
   </script>
 </body>
 </html>
@@ -1941,6 +2538,9 @@ class DashboardHandler(BaseHTTPRequestHandler):
             return
         if parsed.path == "/api/browser-status":
             self.send_json(chrome_browser_status())
+            return
+        if parsed.path == "/api/memory-status":
+            self.send_json(memory_status())
             return
         if parsed.path == "/api/prompt":
             query = parse_qs(parsed.query)
@@ -2043,6 +2643,29 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 self.send_json({"error": str(exc)}, HTTPStatus.NOT_FOUND)
                 return
             self.send_json(job)
+            return
+        if parsed.path == "/api/memory-search":
+            payload = self.read_body_json()
+            query = clean(payload.get("query"))
+            result_count = int(payload.get("results") or 5)
+            try:
+                self.send_json(search_project_memory(query, result_count))
+            except ValueError as exc:
+                self.send_json({"ok": False, "message": str(exc), "results": []}, HTTPStatus.BAD_REQUEST)
+            except subprocess.TimeoutExpired:
+                self.send_json(
+                    {
+                        "ok": False,
+                        "message": "Project Memory search took too long. Try a shorter question.",
+                        "results": [],
+                    },
+                    HTTPStatus.GATEWAY_TIMEOUT,
+                )
+            except Exception as exc:
+                self.send_json(
+                    {"ok": False, "message": f"Project Memory search failed: {exc}", "results": []},
+                    HTTPStatus.INTERNAL_SERVER_ERROR,
+                )
             return
         if parsed.path == "/api/evidence":
             payload = self.read_body_json()

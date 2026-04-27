@@ -139,7 +139,8 @@
         "from_price_html": "Dari {{ price }}",
         "regular_price": "Harga reguler",
         "sale_price": "Harga obral",
-        "unit_price": "Harga satuan"
+        "unit_price": "Harga satuan",
+        "compare_at_price": "Bandingkan di {{ price }}"
       },
       "share": "Bagikan produk ini",
       "sold_out": "Habis",
@@ -205,7 +206,17 @@
         "guide_and_fit": "Panduan ukuran & pas",
         "your_size_details": "Detail ukuran Anda",
         "compare_hint": "Buka tabel lengkap di bawah untuk membandingkan ukuran terdekat.",
-        "chart_units": "Satuan tabel ukuran"
+        "chart_units": "Satuan tabel ukuran",
+        "columns": {
+          "size": "Ukuran",
+          "us_size": "Ukuran AS",
+          "bust_cm_in": "Lingkar Dada (cm/inci)",
+          "waist_cm_in": "Pinggang (cm/inci)",
+          "hips_cm_in": "Pinggul (cm/inci)",
+          "height_cm_in": "Tinggi (cm/inci)",
+          "weight_kg": "Berat (kg)",
+          "age": "Usia"
+        }
       },
       "reviews": {
         "heading": "Ulasan pelanggan",
@@ -218,6 +229,16 @@
         "empty": "Jadilah yang pertama menulis ulasan",
         "write_review": "Tulis ulasan",
         "write_review_title": "Tulis Ulasan"
+      },
+      "free_shipping_all_orders": "Pengiriman gratis untuk semua pesanan",
+      "selected_size_label": "Ukuran: {{ size }}",
+      "description_sections": {
+        "details_eyebrow": "Detail",
+        "highlights_heading": "Mengapa Anda Akan Menyukainya",
+        "size_chart_heading": "Bagan Ukuran",
+        "product_details_heading": "Detail Produk",
+        "size_chart_meta": "Pengukuran dari tabel sumber pemasok",
+        "product_details_meta": "Informasi produk terstruktur"
       }
     },
     "modal": {
@@ -487,7 +508,15 @@
       "prefix_matching": "Cocok ",
       "prefix_daddy_me": "Ayah dan Aku ",
       "prefix_family_matching": "Pakaian Keluarga Serasi ",
-      "label_button_downs": "Tombol-Bawah"
+      "label_button_downs": "Tombol-Bawah",
+      "label_tees": "kaos",
+      "label_dresses": "Gaun",
+      "label_hawaiian_outfits": "Pakaian Hawaii",
+      "label_all": "Semua",
+      "label_new_arrivals": "Pendatang Baru",
+      "label_sale": "Penjualan",
+      "label_best_sellers": "Terlaris",
+      "label_sweaters_short": "sweter"
     },
     "collection": {
       "swimsuits_override": "Baju Renang"
@@ -503,6 +532,243 @@
       "browse_more_from": "Jelajahi lebih banyak dari {{ collection }}",
       "browse_similar_styles": "Jelajahi gaya serupa",
       "compare_collection_copy": "Gunakan koleksi ini untuk membandingkan beberapa kecocokan sebelum Anda kembali berbelanja."
+    },
+    "collection_navigation": {
+      "collection_categories": "Kategori koleksi",
+      "main_collections": "Koleksi utama",
+      "within_mommy_me": "Dalam Ibu dan Aku",
+      "within_family_matching": "Dalam Pencocokan Keluarga",
+      "within_daddy_me": "Dalam Ayah dan Aku",
+      "within_couples": "Dalam Pasangan",
+      "within_maternity": "Dalam Persalinan"
+    },
+    "collection_seo": {
+      "note_eyebrow": "Catatan Koleksi",
+      "closer_look_at": "Melihat lebih dekat pada {{ title }}",
+      "display_titles": {
+        "all": "Semua Pakaian Yang Cocok",
+        "swimsuits": "Pencocokan Keluarga Baju Renang",
+        "mommy_and_me": "Pakaian Ibu dan Aku",
+        "dresses": "Gaun Ibu dan Aku",
+        "family_swimsuits": "Pakaian Renang Keluarga",
+        "family_sets": "Pakaian Liburan Keluarga",
+        "new_women_outfits": "Pakaian Keluarga yang Cocok",
+        "family_matching": "Pakaian Keluarga yang Cocok",
+        "daddy_me": "Pakaian Ayah dan Aku",
+        "daddy_me_tshirts": "Kaos Ayah dan Aku",
+        "daddy_me_shirts": "Kemeja Ayah dan Anak",
+        "couples": "Pakaian Pasangan yang Cocok",
+        "couples_tshirts": "Kaos Pasangan Yang Cocok",
+        "spring_matching": "Ibu dan Aku Gaun Paskah dan Pakaian Serasi Musim Semi",
+        "tops": "Mencocokkan Atasan dan Tee",
+        "pajamas": "Keluarga yang Cocok Piyama",
+        "sweaters": "Sweater dan Jaket yang Cocok",
+        "maxi_dresses": "Gaun Maxi Ibu dan Aku",
+        "jumpsuits": "Jumpsuit yang Cocok",
+        "midi_dresses": "Gaun Midi Ibu dan Aku",
+        "mini_dresses": "Gaun Mini Ibu dan Aku",
+        "rompers": "Romper yang Cocok",
+        "sundresses": "Ibu dan Aku Gaun Malam",
+        "bottoms": "Bawahan yang Cocok",
+        "skirts": "Rok yang Cocok",
+        "leggings": "Legging yang Cocok",
+        "pants": "Celana yang Cocok",
+        "new_arrivals": "Kedatangan Pakaian Pencocokan Baru",
+        "new_matching_outfits": "Pakaian Ibu dan Aku Baru",
+        "maternity": "Gaya Bersalin dan Menyusui",
+        "best_sellers": "Terlaris",
+        "popular_mommy_me": "Ibu dan Aku yang populer",
+        "popular_family_matching": "Pakaian Cocok Keluarga Populer",
+        "hawaiian_outfits": "Pakaian Keluarga Hawaii",
+        "trunks": "Renang Cocok Celana renang",
+        "fall_winter": "Pakaian Cocok Musim Gugur dan Musim Dingin",
+        "formal_dresses": "Gaun Formal yang Cocok",
+        "family_sweaters": "Sweater dan Jaket Keluarga",
+        "christmas_sweaters": "Sweater Natal yang Cocok",
+        "christmas_tops": "Pencocokan Natal Atasan",
+        "christmas_pajamas": "Pencocokan Natal Piyama",
+        "valentines": "Pakaian yang Cocok di Hari Valentine"
+      },
+      "meta_titles": {
+        "swimsuits": "Keluarga yang Cocok Baju Renang | Ibu & Putri",
+        "mommy_and_me": "Pakaian Ibu dan Aku | Gaun, Baju Renang dan Set yang serasi",
+        "family_swimsuits": "Pakaian Renang Keluarga yang Cocok | Pakaian Renang Keluarga",
+        "family_sets": "Pakaian Liburan Keluarga yang Cocok | Pantai dan Perjalanan Set",
+        "family_matching": "Pakaian Cocok Keluarga | Ibu dan Aku",
+        "new_women_outfits": "Pakaian Cocok Keluarga | Gaun, Pakaian Renang dan Keluarga Set",
+        "dresses": "Gaun Ibu dan Aku | Ibu Anak Perempuan",
+        "maxi_dresses": "Gaun Maxi Yang Cocok | Ibu dan Putri",
+        "best_sellers": "Pakaian Ibu dan Aku Terlaris | Gaun, Baju Renang dan Lainnya",
+        "daddy_me": "Ayah dan Aku Kemeja, Tee dan Pakaian Serasi",
+        "daddy_me_tshirts": "Kemeja Ayah dan Aku | Kaos yang Cocok untuk Ayah dan Anak",
+        "daddy_me_shirts": "Kemeja Cocok Ayah dan Anak | Button-Up, Dress dan Hawaii",
+        "couples": "Pakaian Pasangan Yang Cocok | Pencarian Terkoordinasi untuk Dia dan Dia",
+        "couples_tshirts": "Kemeja Pasangan Yang Cocok | Pasangan Kaos dan Tee",
+        "spring_matching": "Gaun Paskah Ibu dan Aku | Pakaian Pencocokan Musim Semi"
+      },
+      "meta_descriptions": {
+        "all": "Belanja semua pakaian yang serasi di satu tempat, termasuk saya dan ibu, saya dan ayah, pasangan, dan perlengkapan keluarga. Gaya nyaman dengan pengiriman cepat.",
+        "mommy_and_me": "Belanja pakaian, gaun, pakaian renang, dan set yang serasi untuk ibu dan saya untuk ulang tahun, foto keluarga, liburan, dan momen kembar setiap hari.",
+        "spring_matching": "Belanja gaun Paskah untuk ibu dan saya dan pakaian musim semi yang serasi untuk gereja, makan siang, berburu telur, foto keluarga, dan perayaan musiman lainnya.",
+        "dresses": "Belanja gaun ibu dan saya serta gaun ibu dan anak yang serasi untuk foto, pesta, liburan, dan pakaian sehari-hari yang mewah.",
+        "maxi_dresses": "Belanja gaun maxi ibu dan saya serta gaun maxi yang serasi untuk foto, perjalanan, perayaan, dan pakaian sehari-hari yang mudah dipoles.",
+        "swimsuits": "Belanja pakaian renang keluarga yang serasi dan pakaian renang ibu dan anak yang serasi untuk wisata pantai, hari di kolam renang, kapal pesiar, dan foto musim panas yang terkoordinasi.",
+        "family_swimsuits": "Belanja pakaian renang keluarga dan pakaian renang keluarga yang serasi untuk liburan pantai, hari di kolam renang, kapal pesiar, dan foto musim panas yang terkoordinasi.",
+        "family_sets": "Belanja pakaian liburan keluarga dan perlengkapan pantai yang serasi untuk kapal pesiar, perjalanan resor, foto keluarga, dan penampilan perjalanan musim panas yang terkoordinasi.",
+        "new_women_outfits": "Belanja Pakaian Keluarga yang Cocok untuk gaun, pakaian renang, penampilan ibu dan saya, dan set siap bepergian di satu tempat, lalu persempit koleksi yang sesuai dengan perjalanan, musim, atau acara Anda.",
+        "family_matching": "Belanja pakaian keluarga yang serasi serta pakaian ibu dan saya untuk foto, liburan, liburan, dan penampilan terkoordinasi yang mudah untuk setiap musim.",
+        "daddy_me": "Belanja kemeja, kaos oblong, kaus, dan pakaian yang serasi untuk ayah dan saya untuk foto keluarga, Hari Ayah, liburan, dan koordinasi sehari-hari yang mudah.",
+        "daddy_me_tshirts": "Belanja kemeja ayah dan saya serta kaus yang serasi untuk Hari Ayah, liburan, ulang tahun, foto, dan pakaian sehari-hari yang mudah untuk ayah dan anak.",
+        "daddy_me_shirts": "Belanja kemeja yang serasi untuk ayah dan anak, termasuk kemeja berkancing, kemeja formal, dan gaya Hawaii untuk liburan, foto, pesta, dan pakaian keluarga yang mewah.",
+        "couples": "Belanja pakaian pasangan yang serasi dengan set, atasan, piyama, dan penampilan siap liburan yang terkoordinasi untuk kencan malam, hadiah, perjalanan, dan pakaian sehari-hari.",
+        "couples_tshirts": "Belanja kaos pasangan yang serasi dan kaos pasangan untuk kencan malam, perjalanan, konser, liburan, hadiah, dan penampilan sehari-hari yang mudah dikoordinasikan."
+      },
+      "swimsuits": {
+        "eyebrow": "Panduan Pakaian Renang",
+        "title": "Pakaian renang terkoordinasi untuk ibu, anak perempuan, dan seluruh keluarga berencana",
+        "copy_1": "Mulailah di sini jika Anda menginginkan koleksi renang terluas terlebih dahulu. Halaman ini menyatukan gaya ibu dan anak, pakaian renang keluarga yang serasi, dan pilihan siap liburan tanpa harus mengarahkan Anda ke beberapa koleksi renang.",
+        "copy_2": "Setelah Anda mengetahui siapa yang perlu mengenakannya, beralihlah ke koleksi pakaian renang atau celana keluarga khusus untuk pengeditan yang lebih ketat. Untuk penentuan ukuran, jalur tercepat selalu berupa halaman produk dan tabel ukuran pada gaya yang paling Anda sukai.",
+        "related_aria": "Koleksi renang terkait",
+        "related_label": "Jelajahi koleksi renang terkait",
+        "family_swimwear_title": "Pakaian Renang Keluarga",
+        "family_swimwear_caption": "Langsung ke pengeditan renang seluruh keluarga ketika semua orang perlu berkoordinasi.",
+        "trunks_title": "Cocok dengan Celana renang",
+        "trunks_caption": "Tambahkan pakaian renang ayah dan anak laki-laki jika Anda menginginkan rangkaian hari pantai yang lengkap.",
+        "mommy_me_caption": "Pertahankan tampilan terkoordinasi lebih dari sekadar pakaian renang dengan pakaian yang serasi untuk acara lain.",
+        "faq_eyebrow": "FAQ Baju Renang",
+        "faq_title": "Jawaban cepat sebelum Anda memesan",
+        "faq_question_1": "Berapa ukuran pakaian renang Anda yang cocok?",
+        "faq_answer_1": "Ukuran bervariasi menurut model, jadi tinjau varian yang tersedia dan gunakan tabel ukuran di setiap halaman produk sebelum checkout. Koleksi ini mencakup pilihan renang terkoordinasi untuk ibu dan anak perempuan, dan beberapa gaya juga menghubungkan Anda dengan penampilan renang keluarga yang lebih luas.",
+        "faq_question_2": "Apakah Anda juga menawarkan perlengkapan keluarga untuk ayah?",
+        "faq_answer_2": "Ya. Jika Anda menginginkan tampilan keluarga seutuhnya, belanjalah koleksi pakaian renang keluarga yang serasi dan koleksi celana pendek untuk menambahkan potongan terkoordinasi untuk ayah dan anak laki-laki di samping gaya renang utama ibu dan saya.",
+        "faq_question_3": "Apa perbedaan antara baju renang ibu dan saya dengan pakaian renang keluarga yang serasi?",
+        "faq_answer_3": "Pakaian renang ibu dan saya biasanya fokus pada pasangan ibu dan anak. Pakaian renang keluarga yang serasi memperluas gagasan tersebut sehingga Anda dapat membangun tampilan yang terkoordinasi di lebih banyak anggota keluarga, termasuk ayah dan anak laki-laki jika gaya tersebut tersedia.",
+        "faq_question_4": "Di mana saya harus memulai jika saya ingin pakaian laki-laki juga?",
+        "faq_answer_4": "Mulailah dari halaman pakaian renang ini jika Anda menginginkan koleksi pakaian renang terluas terlebih dahulu, kemudian gunakan koleksi pakaian renang dan celana keluarga terkait untuk mempersempit penampilan seluruh keluarga atau tambahan ayah dan anak laki-laki.",
+        "faq_answer_2_rich_html": "Ya. Jika Anda ingin tampilan keluarga seutuhnya, belilah <a href=\"{{ family_swim_url }}\">Pakaian Renang Keluarga yang Cocok</a> koleksi dan <a href=\"{{ trunks_url }}\">Celana renang</a> koleksi untuk menambahkan potongan terkoordinasi untuk ayah dan anak laki-laki di samping gaya renang utama ibu dan saya.",
+        "faq_answer_4_rich_html": "Mulailah dari halaman pakaian renang ini jika Anda menginginkan koleksi pakaian renang terluas terlebih dahulu, lalu gunakan <a href=\"{{ family_swim_url }}\">Pakaian Renang Keluarga yang Cocok</a> Dan <a href=\"{{ trunks_url }}\">Celana renang</a> koleksi untuk dipersempit menjadi penampilan seluruh keluarga atau tambahan ayah dan anak laki-laki."
+      },
+      "body": {
+        "mommy_and_me_html": "<p>Belanja {{ title }} kami untuk ulang tahun, foto keluarga, liburan, dan pakaian kembar sehari-hari yang mudah, dengan gaun, pakaian renang, dan set yang serasi, semuanya di satu tempat.</p><p>Mulailah dengan gaun untuk potret dan acara-acara khusus, beralih ke pakaian renang untuk hari-hari di pantai dan kolam renang, dan gunakan perpaduan pakaian yang lebih luas untuk membuat lemari pakaian serasi yang dapat digunakan sepanjang musim, bukan hanya untuk satu acara.</p>",
+        "spring_matching_html": "<p>Telusuri {{ title }} dengan palet pastel, motif bunga musim semi, dan penampilan siap acara yang dibuat untuk gereja, makan siang, berburu telur, foto keluarga, dan perayaan musiman lainnya.</p><p>Gaya ini dirancang untuk pembeli yang sudah mengetahui kapan mereka akan berpakaian dan menginginkan pakaian serasi yang terasa halus, nyaman, dan mudah dipakai lagi sepanjang sisa musim semi.</p>",
+        "dresses_html": "<p>Jelajahi {{ title }} untuk foto keluarga, perayaan, dan momen sehari-hari yang menarik. Pengeditan ini menyatukan gaya berpakaian terkuat di satu tempat, dengan tampilan terkoordinasi yang terasa cantik, dapat dikenakan, dan mudah dibeli.</p>",
+        "maxi_dresses_html": "<p>Telusuri {{ title }} untuk gaya serasi mengalir yang terasa anggun, mudah dipakai, dan siap untuk foto, perjalanan, perayaan, dan momen sehari-hari yang menawan.</p>",
+        "swimsuits_html": "<p>Telusuri {{ title }} untuk wisata pantai, hari di kolam renang, kapal pesiar, dan foto keluarga yang cerah. Koleksi ini membantu pembeli membandingkan pakaian renang keluarga yang serasi, pakaian renang ibu dan anak yang serasi, dan pakaian renang keluarga yang serasi tanpa harus beralih ke kategori renang yang berbeda.</p><p>Gunakan halaman ini sebagai pusat renang yang luas terlebih dahulu, kemudian bercabang menjadi koleksi renang keluarga khusus atau celana pendek yang serasi ketika seluruh keluarga perlu berkoordinasi dalam satu cerita cetak atau warna.</p>",
+        "family_swimsuits_html": "<p>Temukan {{ title }} untuk liburan pantai, hari di kolam renang, kapal pesiar, dan foto musim panas. Ini adalah halaman arahan paling jelas untuk mencocokkan pakaian renang keluarga ketika ibu, ayah, anak perempuan, dan anak laki-laki semua perlu berkoordinasi dalam satu cetakan, palet, atau cerita warna siap liburan.</p><p>Gunakan halaman ini ketika seluruh keluarga menginginkan pakaian renang yang serasi terlebih dahulu, lalu lengkapi tampilannya dengan celana pendek, pakaian penutup, dan opsi renang ibu-dan-saya terkait untuk lemari pakaian perjalanan yang lebih lengkap.</p>",
+        "family_sets_html": "<p>Jelajahi {{ title }} dengan penampilan terkoordinasi yang dirancang untuk liburan keluarga, wisata pantai, kapal pesiar, foto perjalanan, dan tamasya cuaca hangat. Set ini membantu Anda membuat palet keluarga yang jelas tanpa memaksa setiap orang untuk menggunakan bagian yang sama persis.</p><p>Gunakan halaman ini untuk mencocokkan pakaian liburan keluarga dan pakaian pantai keluarga yang serasi, lalu mengembangkan koleksi pencocokan keluarga yang lebih luas saat Anda membutuhkan lebih banyak pilihan musiman atau non-perjalanan khusus.</p>",
+        "new_women_outfits_html": "<p>Jelajahi {{ title }} sebagai pusat Pakaian Cocok Keluarga saat Anda ingin membandingkan pakaian terkoordinasi sebelum mempersempit ke dalam kategori tertentu. Halaman ini dimaksudkan untuk membantu pembeli beralih dari penelusuran umum ke gaun, pakaian renang, set liburan, penampilan ibu dan saya, atau gaya serasi lainnya tanpa memulai dari awal.</p><p>Gunakan tautan di bawah untuk melihat koleksi yang paling sesuai dengan acara, apakah Anda berbelanja untuk foto keluarga, perjalanan, penyegaran musiman, atau gaya pakaian serasi yang lebih spesifik.</p>",
+        "family_matching_html": "<p>Telusuri {{ title }} untuk foto keluarga, perjalanan, ulang tahun, liburan, dan acara kembaran sehari-hari yang mudah. Ini adalah tempat terbaik untuk memulai ketika Anda ingin membandingkan penampilan terkoordinasi di seluruh keluarga sebelum mempersempitnya ke gaun, pakaian renang, atau set liburan.</p>",
+        "daddy_me_html": "<p>Jelajahi {{ title }} untuk foto keluarga, liburan, hadiah Hari Ayah, dan koordinasi sehari-hari. Laman landas ini dibuat berdasarkan maksud penelusuran ayah-dan-anak yang paling kuat, dengan kaus yang serasi, atasan kasual, dan pilihan kemeja yang lebih bergaya, semuanya di satu tempat.</p><p>Gunakan koleksi ini jika Anda ingin cakupan luas seputar kemeja, kaus, dan pakaian ayah dan saya, lalu persempit ke gaya kancing, Hawaii, atau kaus berdasarkan acara.</p>",
+        "daddy_me_tshirts_html": "<p>Belanja {{ title }} jika Anda menginginkan atasan kasual yang serasi dan cocok untuk ayah dan anak. Halaman ini dibuat berdasarkan kemeja ayah dan saya, kaos yang serasi, dan penampilan sehari-hari yang cocok untuk Hari Ayah, ulang tahun, perjalanan keluarga, dan momen foto singkat.</p><p>Mulai dari sini untuk kaos slogan dan gaya grafis yang mudah, lalu beralih ke kemeja resmi atau set Hawaii jika ada kesempatan yang membutuhkan tampilan yang lebih tajam atau pakaian yang lebih siap untuk liburan.</p>",
+        "daddy_me_shirts_html": "<p>Telusuri {{ title }} untuk pembeli yang secara khusus mencari pakaian berkancing, kemeja resmi, dan pakaian ayah-anak gaya Hawaii. Koleksi ini berfokus pada tampilan berkerah yang cocok untuk potret, makan malam, jalan-jalan ke pantai, pernikahan, dan acara mewah lainnya.</p><p>Dibandingkan dengan kaus kasual, gaya ini lebih terstruktur dan siap difoto, menjadikannya lebih pas saat Anda menginginkan pakaian serasi yang tetap terlihat anggun.</p>",
+        "couples_html": "<p>Jelajahi {{ title }} untuk kencan malam, liburan, hadiah liburan, foto pertunangan, dan koordinasi sehari-hari. Halaman ini dirancang untuk pembeli yang menginginkan lebih dari satu atasan yang serasi dan membutuhkan titik awal yang lebih luas untuk penampilan yang terkoordinasi.</p><p>Mulailah dengan kaus atau set lounge yang simpel, lalu buat pakaian yang lebih lengkap untuk perjalanan, acara, atau momen foto yang Anda belanjakan.</p>",
+        "couples_tshirts_html": "<p>Telusuri {{ title }} untuk pembeli yang mencari kemeja pasangan yang serasi, kaos pasangan, dan atasan serasi sehari-hari. Gaya ini paling cocok digunakan saat Anda menginginkan tampilan kasual dan menarik untuk perjalanan, liburan, konser, kencan malam, dan foto.</p><p>Gunakan halaman ini untuk memudahkan pencocokan sehari-hari, lalu lanjutkan ke koleksi pasangan yang lebih luas jika Anda menginginkan pakaian yang lebih lengkap daripada hanya kaus saja.</p>"
+      },
+      "rich_parts": {
+        "new_women_outfits": {
+          "part_1_html": "<h2>Family Matching Outfits untuk foto keluarga, perjalanan, liburan, dan koordinasi sehari-hari</h2>",
+          "part_2_html": "<p>Ini adalah pusat Pakaian Pencocokan Keluarga bagi pembeli yang ingin membandingkan penampilan terkoordinasi sebelum mempersempit ke satu gaya tertentu. Itu dibuat untuk foto keluarga, liburan, liburan, pembaruan musiman, dan koordinasi sehari-hari yang mudah ketika pembeli mengetahui tampilan umum tetapi belum mengetahui kategori pastinya.</p>",
+          "part_3_html": "<h3>Apa yang harus dibeli terlebih dahulu</h3>",
+          "part_4_html": "<ul><li>Mulailah di sini bila Anda menginginkan halaman pencocokan keluarga terluas sebelum memilih koleksi yang lebih sempit.</li><li>Gunakan untuk beralih dari penelusuran umum ke gaun, pakaian renang, set liburan, atau gaya ibu dan saya.</li><li>Lompat ke koleksi yang lebih spesifik ketika kesempatannya sudah jelas dan pembeli ingin memfilter lebih cepat.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ dresses_url }}\">Belanja gaun tamu pernikahan putri ibu</a> ketika gaun menjadi pusat tampilan yang serasi.</p>",
+          "part_6_html": "<p><a href=\"{{ family_swimsuits_url }}\">Telusuri pakaian renang pantai yang serasi</a> ketika rencananya berpusat pada wisata pantai, hari-hari di kolam renang, dan perjalanan musim panas.</p>",
+          "part_7_html": "<p><a href=\"{{ family_sets_url }}\">Belanja pakaian liburan keluarga yang serasi</a> untuk menginap di resor, kapal pesiar, dan hari perjalanan terkoordinasi.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Belanja baju ayah dan aku</a> ketika keluarga membutuhkan pakaian bertali kemeja alih-alih gaun atau pakaian renang.</p>",
+          "part_9_html": "<p><a href=\"{{ mommy_and_me_url }}\">Lihat koleksi Ibu dan Aku yang lebih luas</a> ketika koordinasi sebagian besar terfokus pada ibu dan anak.</p>"
+        },
+        "family_matching": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Catatan Koleksi</p><h2>Titik awal yang sempurna untuk penampilan keluarga yang terkoordinasi</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Koleksi ini menyatukan gaya keluarga terkuat di satu tempat, sehingga mudah untuk memulai secara luas dan menyempurnakannya setelah acaranya jelas.</p><p>Ini bekerja sangat baik terutama untuk foto, liburan, perjalanan, ulang tahun, dan pencocokan sehari-hari yang terasa bijaksana dan tidak berlebihan.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related family collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Belanja gaun tamu pernikahan putri ibu</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Telusuri pakaian renang pantai yang serasi</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Belanja pakaian liburan keluarga yang serasi</a><a class=\"collection-seo-rich__link\" href=\"{{ daddy_me_shirts_url }}\">Belanja baju ayah dan aku</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Jelajahi koleksi Ibu dan Aku yang lebih luas</a></div>"
+        },
+        "dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Catatan Koleksi</p><h2>Gaya berbusana untuk foto, perayaan, dan acara kembaran sehari-hari</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Pengeditan ini dibuat untuk momen ketika gaun menentukan warnanya. Fokusnya adalah pada siluet yang terlihat menawan di kamera, nyaman dipakai, dan mudah dijangkau lagi setelah acara.</p><p>Mulailah dari sini saat Anda sudah tahu bahwa Anda menginginkan tampilan berbusana, lalu kembangkan ke koleksi keluarga yang lebih luas jika Anda perlu berkoordinasi lebih dari sekadar ibu dan anak.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Jelajahi hub Family Matching</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Lihat semua pakaian Ibu dan Aku</a></div>"
+        },
+        "maxi_dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Catatan Koleksi</p><h2>Gaun panjang penuh yang mengalir dengan kesan santai dan halus</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Gaun maxi adalah titik awal yang kuat jika Anda menginginkan gerakan anggun, cakupan lebih luas, dan siluet yang terasa indah di foto tanpa terlalu formal.</p><p>Pengeditan ini tetap fokus pada gaya panjang terkuat untuk ibu dan anak perempuan, dengan opsi yang cocok untuk liburan, gereja, perayaan, dan pakaian cuaca hangat yang tetap terasa santai.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related maxi dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Jelajahi semua gaun</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Lihat semua ibu dan aku</a></div>"
+        },
+        "mommy_and_me": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Catatan Koleksi</p><h2>Pengeditan ibu-dan-saya secara luas untuk foto, perjalanan, dan kegiatan kembaran sehari-hari</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Ini adalah tempat termudah untuk memulai ketika Anda menginginkan gaya yang terkoordinasi untuk ibu dan anak perempuan tanpa memutuskan satu jenis produk terlebih dahulu.</p><p>Mulailah di sini untuk gaun, pakaian renang, dan set yang serasi, lalu persempit ke dalam kategori yang paling sesuai dengan acara setelah Anda mengetahui tampilan yang Anda inginkan.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related mommy and me collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Belanja gaun tamu pernikahan putri ibu</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Telusuri pakaian renang pantai yang serasi</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Lihat pakaian liburan keluarga yang serasi</a></div>"
+        },
+        "family_swimsuits": {
+          "part_1_html": "<h2>Pakaian renang keluarga yang serasi untuk liburan pantai, hari di kolam renang, kapal pesiar, dan foto musim panas yang terkoordinasi</h2>",
+          "part_2_html": "<p>Halaman ini dibuat berdasarkan istilah renang keluarga yang paling kuat: pakaian renang keluarga yang serasi, pakaian renang keluarga yang serasi, dan pakaian renang keluarga yang terkoordinasi untuk liburan dan foto cuaca hangat. Ini bekerja paling baik ketika seluruh keluarga perlu mencocokkan satu cerita cetak atau warna tanpa menyatukan kategori renang terpisah satu per satu.</p>",
+          "part_3_html": "<h3>Mengapa halaman ini berbeda dengan koleksi pakaian renang pada umumnya</h3>",
+          "part_4_html": "<ul><li>Ini berpusat pada koordinasi seluruh keluarga, bukan hanya penampilan renang ibu dan anak saja.</li><li>Ini berbicara langsung tentang liburan, pelayaran, dan tujuan berfoto di pantai di mana pakaian renang keluarga yang serasi adalah tujuan utamanya.</li><li>Hal ini memberi pembeli cara yang lebih mudah untuk memilih pakaian renang keluarga sebelum beralih ke celana pendek atau koleksi yang lebih serasi.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ trunks_url }}\">Tambahkan batang yang cocok</a> ketika Anda membutuhkan pakaian renang ayah dan anak laki-laki untuk melengkapi set hari pantai.</p>",
+          "part_6_html": "<p><a href=\"{{ swimsuits_url }}\">Lihat pakaian renang ibu dan anak yang serasi</a> jika niat berbelanja lebih sempit daripada koordinasi seluruh keluarga.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">Telusuri pakaian Ibu dan Aku</a> jika kebutuhan utamanya adalah koordinasi ibu dan anak di luar pakaian renang.</p>",
+          "part_8_html": "<p><a href=\"{{ family_sets_url }}\">Belanja pakaian liburan keluarga</a> ketika tampilan terkoordinasi membutuhkan dukungan untuk menutup-nutupi, bepergian, atau makan malam di pantai di luar kolam renang.</p>"
+        },
+        "family_sets": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Catatan Koleksi</p><h2>Pakaian siap bepergian untuk hari-hari pantai, kapal pesiar, dan rencana liburan terkoordinasi</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Pengeditan ini menyatukan penampilan keluarga dalam cuaca hangat yang paling kuat, sehingga mudah untuk berbelanja berdasarkan perjalanan alih-alih memulai dari koleksi yang lebih luas sepanjang tahun.</p><p>Gunakan saat liburan itu sendiri adalah alasan untuk berbelanja, lalu kembangkan ke dalam kategori pakaian renang atau keluarga yang lebih luas jika Anda perlu membuat rencana lengkap.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related vacation collections\"><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Tambahkan pakaian renang pantai yang serasi</a><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Jelajahi hub Family Matching</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Jelajahi pakaian Ibu dan Aku</a></div>"
+        },
+        "daddy_me": {
+          "part_1_html": "<h2>Pakaian ayah dan saya dibuat berdasarkan kemeja, kaus, dan penampilan siap foto yang mudah</h2>",
+          "part_2_html": "<p>Permintaan penelusuran pada kategori ini terkonsentrasi pada kaos ayah dan saya, kaos ayah dan saya, kaos ayah dan saya, serta pakaian ayah-anak yang terkoordinasi. Halaman ini dibuat untuk mencakup keseluruhan maksud tersebut, mulai dari atasan bergambar kasual hingga tampilan berkerah lebih tajam yang terasa halus untuk potret, liburan, dan acara khusus.</p>",
+          "part_3_html": "<h3>Apa yang biasanya diinginkan pembeli dari halaman ini</h3>",
+          "part_4_html": "<ul><li>Kaus kasual ayah dan saya untuk ulang tahun, hadiah, perjalanan bertema, dan pakaian sehari-hari.</li><li>Pilihan kemeja berkerah atau berkancing yang cocok untuk foto keluarga, makan malam, dan acara jalan-jalan yang lebih bergaya.</li><li>Pakaian serasi untuk cuaca hangat yang terasa siap liburan tanpa terlihat seperti kostum.</li></ul>",
+          "part_5_html": "<h3>Cara berbelanja koleksi lebih cepat</h3>",
+          "part_6_html": "<p>Mulailah dengan tee jika tujuannya adalah koordinasi sehari-hari yang mudah. Jika acara tersebut membutuhkan hasil akhir yang lebih bersih dan halus, gantilah dengan kemeja resmi, kemeja Hawaii, atau gaya berkerah lainnya yang lebih berstruktur.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Belanja baju ayah dan aku</a> untuk atasan kasual yang serasi dan gaya sehari-hari yang menarik.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Belanja kemeja ayah dan saya untuk acara yang lebih bergaya</a> untuk tampilan berkancing, kemeja resmi, dan gaya Hawaii yang dibuat berdasarkan penelusuran kemeja dengan maksud lebih tinggi.</p>",
+          "part_9_html": "<p><a href=\"{{ trunks_url }}\">Jelajahi batang yang cocok</a> ketika pakaian tersebut membutuhkan tambahan yang ramah pantai atau kolam renang.</p>"
+        },
+        "daddy_me_tshirts": {
+          "part_1_html": "<h2>Kemeja ayah dan saya serta kaos yang serasi untuk koordinasi yang kasual dan menarik</h2>",
+          "part_2_html": "<p>Koleksi ini ditujukan untuk pembeli yang mencari kemeja ayah dan saya, kaos ayah dan saya, kaos ayah dan saya, serta atasan ayah-anak yang simpel dan dapat digunakan lebih dari satu momen foto. Gaya ini paling cocok untuk dipakai sehari-hari, ulang tahun, hadiah Hari Ayah, taman hiburan, dan hari perjalanan santai.</p>",
+          "part_3_html": "<h3>Mengapa halaman ini penting</h3>",
+          "part_4_html": "<ul><li>Ini mempersempit kategori ayah-dan-anak menjadi atasan kasual alih-alih memadukan setiap jenis pakaian.</li><li>Hal ini selaras dengan penelusuran dengan niat tinggi seputar kemeja ayah dan saya, kaos ayah dan saya, serta kaus yang serasi.</li><li>Ini memberi pembeli jalur yang lebih sederhana ketika mereka menginginkan tampilan serasi yang cepat dan menarik.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ daddy_me_url }}\">Kembali ke koleksi lengkap Ayah dan Aku</a> jika Anda ingin pilihan kaos, celana pendek, dan kemeja yang lebih bergaya di satu tempat.</p>",
+          "part_6_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Butuh tampilan yang lebih tajam?</a> Telusuri kemeja serasi ayah dan anak untuk kancing, kemeja, dan gaya Hawaii.</p>"
+        },
+        "daddy_me_shirts": {
+          "part_1_html": "<h2>Ayah dan anak mencocokkan kemeja untuk penelusuran berkancing, kemeja resmi, dan Hawaii</h2>",
+          "part_2_html": "<p>Laman landas ini dibuat berdasarkan kueri kemeja dengan niat tertinggi di kelompok ayah: kemeja berkancing yang serasi dengan ayah dan anak, kemeja berkancing yang serasi dengan ayah dan anak, dan kemeja hawaii yang serasi dengan ayah dan anak. Ini dirancang untuk pembeli yang menginginkan lebih banyak struktur, kerah, dan gaya yang siap untuk acara daripada yang ditawarkan koleksi kaos kasual.</p>",
+          "part_3_html": "<h3>Kesempatan terbaik untuk gaya ini</h3>",
+          "part_4_html": "<ul><li>Foto keluarga, kumpul-kumpul liburan, pernikahan, gereja, dan makan malam di mana kemeja berkerah terlihat lebih halus.</li><li>Perjalanan ke pantai, kapal pesiar, dan perjalanan resor di mana kemeja Hawaii atau kancing lengan pendek cocok dengan suasananya.</li><li>Hadiah ulang tahun dan Hari Ayah dengan tampilan yang serasi harus terasa mewah, bukan hanya sekedar hal baru.</li></ul>",
+          "part_5_html": "<h3>Perbedaannya dengan kaos daddy-and-me</h3>",
+          "part_6_html": "<p>Harapkan lebih banyak kain tenun, kerah yang lebih bersih, dan siluet yang lebih bergaya. Jika tujuannya adalah grafis kasual yang lembut atau atasan sehari-hari, koleksi kaos adalah titik awal yang lebih baik.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_url }}\">Telusuri koleksi lengkap Ayah dan Aku</a> untuk cakupan pakaian yang lebih luas pada kaus, celana pendek, dan set terkoordinasi.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Belanja baju ayah dan aku</a> jika Anda menginginkan opsi pencocokan yang lebih lembut dan kasual.</p>"
+        },
+        "couples": {
+          "part_1_html": "<h2>Pakaian pasangan yang serasi untuk perjalanan, kencan malam, liburan, dan hadiah</h2>",
+          "part_2_html": "<p>Kelompok kata kunci pasangan yang luas lebih dari sekadar tee saja. Halaman ini dirancang sebagai halaman arahan utama untuk pakaian pasangan yang serasi dan penampilan terkoordinasi yang dapat mencakup atasan, pakaian santai, pakaian liburan, dan set kasual untuk dia dan dia.</p>",
+          "part_3_html": "<h3>Tujuan belanja populer dalam kategori ini</h3>",
+          "part_4_html": "<ul><li>Pasangan yang serasi dengan pakaian untuk perjalanan, rencana akhir pekan, dan foto sosial.</li><li>Hadiah miliknya dan miliknya terlihat untuk hari jadi, bulan madu, dan momen liburan.</li><li>Pakaian terkoordinasi mudah yang menjaga warna dan cetakan tetap selaras tanpa memaksakan tampilan kepala hingga ujung kaki yang identik.</li></ul>",
+          "part_5_html": "<h3>Di mana untuk memulai</h3>",
+          "part_6_html": "<p>Jika tujuannya adalah pakaian kasual sehari-hari, T-shirt yang serasi adalah solusi tercepat. Jika tujuannya adalah tampilan terkoordinasi yang lebih lengkap, mulailah dengan koleksi pasangan yang lebih luas dan lanjutkan berdasarkan perjalanan, musim, atau acara.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">Belanja kaos couple dan kaos oblong yang serasi</a> bila Anda menginginkan titik masuk kasual yang mudah ke dalam kategori.</p>"
+        },
+        "couples_tshirts": {
+          "part_1_html": "<h2>Pasangan yang serasi dengan kemeja dan T-shirt untuk koordinasi kasual dan menarik</h2>",
+          "part_2_html": "<p>Koleksi ini menyasar pembeli yang mencari kaos couple couple, kaos couple, kaos couple, dan atasan serasi lainnya yang mudah dikenakan untuk kencan malam, jalan-jalan, liburan, konser, dan pakaian sehari-hari. Ini adalah titik masuk terbaik ketika niat pembeli jelas-jelas mengutamakan kaos.</p>",
+          "part_3_html": "<h3>Mengapa pembeli memilih kaos yang serasi</h3>",
+          "part_4_html": "<ul><li>Mereka mudah diberikan untuk hari jadi, bulan madu, liburan, dan acara bertema.</li><li>Mereka menjaga tampilan terkoordinasi tetap sederhana tanpa memerlukan pembelian pakaian lengkap.</li><li>Mereka cocok untuk foto santai, hari perjalanan, dan pakaian sehari-hari dengan gesekan rendah.</li></ul>",
+          "part_5_html": "<h3>Mencari lebih dari sekadar T-shirt?</h3>",
+          "part_6_html": "<p>Gunakan halaman pakaian serasi pasangan yang lebih luas jika Anda menginginkan tampilan terkoordinasi yang melampaui atasan menjadi cerita pakaian yang lebih lengkap.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">Jelajahi semua pakaian pasangan yang serasi</a> untuk perpaduan yang lebih luas antara penampilan dan acara terkoordinasi.</p>"
+        },
+        "spring_matching": {
+          "part_1_html": "<h2>Gaun Paskah ibu dan saya dan pakaian musim semi yang serasi untuk acara-acara khusus</h2>",
+          "part_2_html": "<p>Halaman ini dibuat untuk penelusuran menjelang Paskah dan musim semi di mana pembeli sudah mengetahui acara tersebut. Fokusnya adalah pada palet pastel, motif bunga, kain ringan, dan siluet siap foto yang cocok untuk gereja, makan siang, berburu telur, potret keluarga, dan perayaan musiman lainnya.</p>",
+          "part_3_html": "<h3>Momen musim semi terbaik untuk pakaian yang serasi</h3>",
+          "part_4_html": "<ul><li>Minggu Paskah, gereja, makan siang, dan pertemuan keluarga.</li><li>Foto keluarga musim semi, pesta kebun, dan musim Hari Ibu.</li><li>Perjalanan, mandi, dan acara cuaca hangat yang masih perlu tampilan yang apik.</li></ul>",
+          "part_5_html": "<h3>Cara menggunakan halaman musiman ini</h3>",
+          "part_6_html": "<p>Mulailah dengan gaun Paskah jika Anda membutuhkan pakaian acara tertentu, lalu gunakan koleksi yang sama untuk menemukan pakaian serasi musim semi yang dapat digunakan kembali setelah liburan.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">Telusuri koleksi lengkap Ibu dan Aku</a> jika Anda ingin lebih banyak gaya serasi sepanjang tahun di luar jendela Paskah dan musim semi.</p>",
+          "part_8_html": "<p><a href=\"{{ dresses_url }}\">Belanja gaun yang serasi</a> untuk pengeditan yang berfokus pada pakaian yang lebih luas di luar gaya musim semi musiman.</p>"
+        }
+      }
     }
   },
   "localization": {

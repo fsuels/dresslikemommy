@@ -40,6 +40,13 @@ If you leave a field blank or `auto`, the agent should infer:
 - pricing from nearby live products, then fallback matrix if needed
 - which vendor rows belong in variants
 
+Shopify safety default:
+
+- create or update a Shopify draft only
+- do not set the product `ACTIVE`
+- do not call `publishablePublish`
+- do not publish to any sales channel unless the operator explicitly asks for a separate publish-live action
+
 The agent should only stop for real blockers:
 
 - size rows that cannot be mapped honestly
@@ -51,12 +58,14 @@ The agent should only stop for real blockers:
 Family-matching default:
 
 - if sizes already encode role/audience, collapse `Type` to the honest garment labels only, e.g. `Dress` and `Shirt`, instead of `Mother Dress`, `Father Shirt`, `Girl Dress`, `Boy Shirt`
+- if the vendor selector lists separate garment choices such as `白色上衣` and `红色格子裤`, treat them as item Types, not Colors; expected options are `Type` x `Size` with values such as `Top` and `Pants`
 
 Multi-color default:
 
 - if `DESIGNS_TO_LIST` names multiple colors or colorways for the same garment and same size chart, create one Shopify product with a `Color` option containing those colorways
 - do not split colorways into separate products unless the request explicitly says `separate listings` or `separate products`
 - keep one size table per garment; multiply Shopify variants by `SIZE_CHART` rows x colorways
+- do not use `Color` for separate purchasable garments, even when the vendor labels them under a translated "Color" selector
 
 ## Example 1 — Mommy and Me Dresses
 

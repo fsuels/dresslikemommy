@@ -1,0 +1,151 @@
+{%- liquid
+  assign collection_handle = collection.handle | default: ''
+  assign hub_variant = blank
+
+  if collection_handle == 'mommy-and-me'
+    assign hub_variant = 'mommy'
+  elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching-outfits' or collection_handle == 'new-women-outfits'
+    assign hub_variant = 'family'
+  endif
+
+  assign family_hub_collection = collections['new-women-outfits']
+  if family_hub_collection == blank
+    assign family_hub_collection = collections['matching-outfits']
+  endif
+  if family_hub_collection == blank
+    assign family_hub_collection = collections['family-matching-outfits']
+  endif
+  assign family_hub_url = family_hub_collection.url | default: '/collections/new-women-outfits'
+  assign mommy_hub_url = collections['mommy-and-me'].url | default: '/collections/mommy-and-me'
+
+  assign card_items = '' | split: '|||'
+
+  case hub_variant
+    when 'mommy'
+      assign card_items = 'pajamas::Pajamas::pajamas::mommy-and-me|||dresses::Dresses::dresses::mommy-and-me|||swimsuits::Swimsuits::swimsuits::mommy-and-me|||tops::Tops::tops::mommy-and-me|||sweaters::Sweaters::sweaters::mommy-and-me' | split: '|||'
+    when 'family'
+      assign card_items = 'family-swimsuits::Swimsuits::family-swimsuits::new-women-outfits|||family-sets::Sets::family-sets::new-women-outfits|||family-tops::Tops::family-tops::new-women-outfits|||family-sweaters::Sweaters::family-sweaters::new-women-outfits|||family-pajamas::Pajamas::pajamas::pajamas' | split: '|||'
+  endcase
+
+-%}
+
+{%- if card_items.size > 0 and hub_variant != blank -%}
+  <div class="collection-hub-subcategory-cards" aria-label="Shop by subcategory">
+    <p class="collection-hub-subcategory-cards__eyebrow">Quick categories</p>
+    <ul class="collection-hub-subcategory-cards__grid list-unstyled" role="list">
+      {%- for item in card_items -%}
+        {%- assign item_entry = item | strip -%}
+        {%- assign item_parts = item_entry | split: '::' -%}
+        {%- assign item_handle = item_parts[0] | strip -%}
+        {%- assign item_label = item_parts[1] | strip -%}
+        {%- assign item_image_handle = item_parts[2] | strip -%}
+        {%- assign item_fallback_handle = item_parts[3] | strip -%}
+        {%- assign item_target_collection = collections[item_handle] -%}
+        {%- assign item_image_collection = collections[item_image_handle] -%}
+        {%- assign item_fallback_collection = collections[item_fallback_handle] -%}
+        {%- assign item_url = item_target_collection.url | default: '' -%}
+        {%- assign item_image_alt = item_label -%}
+        {%- assign item_media = blank -%}
+
+        {%- if item_target_collection != blank and item_target_collection.all_products_count > 0 -%}
+          {%- assign item_url = item_target_collection.url -%}
+        {%- elsif item_fallback_collection != blank and item_fallback_collection.all_products_count > 0 -%}
+          {%- assign item_url = item_fallback_collection.url -%}
+        {%- elsif hub_variant == 'family' -%}
+          {%- assign item_url = family_hub_url -%}
+        {%- else -%}
+          {%- assign item_url = mommy_hub_url -%}
+        {%- endif -%}
+
+        {%- if item_image_collection != blank and item_image_collection.image != blank -%}
+          {%- assign item_media = item_image_collection.image -%}
+          {%- capture item_image_alt -%}
+            {%- render 'product-image-alt', media: item_media, collection: item_image_collection, fallback_title: item_label -%}
+          {%- endcapture -%}
+          {%- assign item_image_alt = item_image_alt | strip -%}
+        {%- elsif item_target_collection != blank and item_target_collection.image != blank -%}
+          {%- assign item_media = item_target_collection.image -%}
+          {%- capture item_image_alt -%}
+            {%- render 'product-image-alt', media: item_media, collection: item_target_collection, fallback_title: item_label -%}
+          {%- endcapture -%}
+          {%- assign item_image_alt = item_image_alt | strip -%}
+        {%- elsif item_fallback_collection != blank and item_fallback_collection.image != blank -%}
+          {%- assign item_media = item_fallback_collection.image -%}
+          {%- capture item_image_alt -%}
+            {%- render 'product-image-alt', media: item_media, collection: item_fallback_collection, fallback_title: item_label -%}
+          {%- endcapture -%}
+          {%- assign item_image_alt = item_image_alt | strip -%}
+        {%- endif -%}
+
+        {%- if item_media == blank and item_image_collection != blank and item_image_collection.products_count > 0 -%}
+          {%- for item_product in item_image_collection.products limit: 8 -%}
+            {%- assign item_media = item_product.featured_media.preview_image | default: item_product.featured_image -%}
+            {%- if item_media != blank -%}
+              {%- capture item_image_alt -%}
+                {%- render 'product-image-alt', product: item_product, media: item_media, collection: item_image_collection, fallback_title: item_label -%}
+              {%- endcapture -%}
+              {%- assign item_image_alt = item_image_alt | strip -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+
+        {%- if item_media == blank and item_target_collection != blank and item_target_collection.products_count > 0 -%}
+          {%- for item_product in item_target_collection.products limit: 8 -%}
+            {%- assign item_media = item_product.featured_media.preview_image | default: item_product.featured_image -%}
+            {%- if item_media != blank -%}
+              {%- capture item_image_alt -%}
+                {%- render 'product-image-alt', product: item_product, media: item_media, collection: item_target_collection, fallback_title: item_label -%}
+              {%- endcapture -%}
+              {%- assign item_image_alt = item_image_alt | strip -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+
+        {%- if item_media == blank and item_fallback_collection != blank and item_fallback_collection.products_count > 0 -%}
+          {%- for item_product in item_fallback_collection.products limit: 8 -%}
+            {%- assign item_media = item_product.featured_media.preview_image | default: item_product.featured_image -%}
+            {%- if item_media != blank -%}
+              {%- capture item_image_alt -%}
+                {%- render 'product-image-alt', product: item_product, media: item_media, collection: item_fallback_collection, fallback_title: item_label -%}
+              {%- endcapture -%}
+              {%- assign item_image_alt = item_image_alt | strip -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+
+        <li class="collection-hub-subcategory-cards__item">
+          <a href="{{ item_url }}" class="collection-hub-subcategory-card">
+            <div class="collection-hub-subcategory-card__media">
+              {%- if item_media != blank -%}
+                <img
+                  srcset="
+                    {%- if item_media.width >= 180 -%}{{ item_media | image_url: width: 180 }} 180w,{%- endif -%}
+                    {%- if item_media.width >= 360 -%}{{ item_media | image_url: width: 360 }} 360w,{%- endif -%}
+                    {%- if item_media.width >= 540 -%}{{ item_media | image_url: width: 540 }} 540w,{%- endif -%}
+                    {%- if item_media.width >= 720 -%}{{ item_media | image_url: width: 720 }} 720w,{%- endif -%}
+                    {{ item_media | image_url }} {{ item_media.width }}w
+                  "
+                  src="{{ item_media | image_url: width: 540 }}"
+                  sizes="(min-width: 990px) 18vw, (min-width: 750px) 20vw, 45vw"
+                  alt="{{ item_image_alt | escape }}"
+                  width="{{ item_media.width }}"
+                  height="{{ item_media.height }}"
+                  loading="lazy"
+                  decoding="async"
+                >
+              {%- else -%}
+                <span class="collection-hub-subcategory-card__placeholder">{{ item_label }}</span>
+              {%- endif -%}
+            </div>
+            <div class="collection-hub-subcategory-card__body">
+              <span class="collection-hub-subcategory-card__label">{{ item_label }}</span>
+            </div>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}

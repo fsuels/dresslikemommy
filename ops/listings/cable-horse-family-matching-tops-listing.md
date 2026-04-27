@@ -1,4 +1,4 @@
-# Cable Horse Family Matching Tops - Cozy Sweater
+# Cable Horse Family Matching Sweaters - Cozy Sweater
 
 ## Links
 - **Admin:** https://admin.shopify.com/store/dresslikemommy/products/7537007198305
@@ -13,15 +13,15 @@
 | VENDOR_URL | https://detail.1688.com/offer/1007389194841.html |
 | SIZE_CHART_SOURCE | attached image |
 | LISTING_MODE | Family Matching |
-| PRIMARY_CATEGORY | Tops -> Sweaters taxonomy |
+| PRIMARY_CATEGORY | Sweaters |
 | DESIGNS_TO_LIST | auto -> cream cable-knit sweater with red horse patch |
-| EXCLUDE_ITEMS | baby romper/crawler rows excluded from the tops listing; styled pants, boots, scarves, hats, and accessories excluded |
+| EXCLUDE_ITEMS | baby romper/crawler rows excluded from the sweater listing; styled pants, boots, scarves, hats, and accessories excluded |
 | FORCE_SPEC_PRICES | true |
 | SHORTCODE | auto -> `CHRS` |
 | COLOR_TOKEN | auto -> `CREAM` |
 
 ## Vendor Fetch Status
-The direct 1688 page returned Alibaba captcha/punish markup, so the attached size-chart image and supplied product photos were used as the authoritative source. The chart publishes baby romper rows, child sweater rows, and adult sweater rows; this listing uses the child and adult sweater rows only so the product remains an honest family matching tops/sweaters listing.
+The direct 1688 page returned Alibaba captcha/punish markup, so the attached size-chart image and supplied product photos were used as the authoritative source. The chart publishes baby romper rows, child sweater rows, and adult sweater rows; this listing uses the child and adult sweater rows only so the product remains an honest family matching sweater listing.
 
 ## Option Axes
 - Option 1: Size

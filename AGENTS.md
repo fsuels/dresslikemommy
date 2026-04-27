@@ -31,7 +31,8 @@ Continuity (resume work in new sessions)
   - Reads all `scored-candidates.json` files under `ops/sourcing/**`.
   - Serves `/api/data` and a local image proxy `/image?url=...`.
   - Product images are cached under `ops/sourcing/image-cache/` because Alibaba hotlinking can show blank images in Chrome.
-  - User-facing controls include Find 20 Leads, Open 1688 Login/Search, Save, Reject/Restore, Open 1688, Verify Detail Proof, Save Proof, Draft Package, Copy Listing Agent Prompt, Copy 6-Image Prompt, and category/status filters.
+  - User-facing controls include Find 20 Leads, Open 1688 Login/Search, Ask project memory, Save, Reject/Restore, Open 1688, Verify Detail Proof, Save Proof, Draft Package, Copy Listing Agent Prompt, Copy 6-Image Prompt, and category/status filters.
+  - `Ask project memory` is backed by the local MemPalace pilot under `~/.cache/dresslikemommy/mempalace-pilot-*`. It must show a plain-English answer first and keep technical source snippets hidden behind source details; the user does not want code-like memory output.
   - Plain-language labels are intentional: Stored Cards = all raw saved cards; Buyer Shortlist = fresh/category-fit leads not rejected; Saved = user clicked Save/Keep; Ready for Draft = proof fields filled; Rejected = remembered rejects; Best Leads = internal Gold; Unverified Leads = internal Test.
   - Dashboard candidate loading dedupes repeated 1688 offer IDs and keeps the best/current card, so repeated searches should not show the same product over and over.
   - `/api/browser-status` checks the Chrome helper tab before collection. If 1688 is on login, CAPTCHA, `Captcha Interception`, `_____tmd_____`, or a punish URL, the dashboard must show the blocker and not create a fake empty run.
