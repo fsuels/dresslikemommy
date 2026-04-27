@@ -29,7 +29,24 @@
             class="article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
             {{ block.shopify_attributes }}
           >
-            {%- if article.image -%}
+            {%- if blog.handle == 'news' -%}
+              {%- capture article_fallback_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
+              {%- capture article_fallback_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
+              {%- capture article_fallback_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
+              {%- capture article_fallback_image_alt -%}{% render 'article-featured-image-fallback', article: article, field: 'alt' %}{%- endcapture -%}
+              <div class="article-template__hero-{{ block.settings.image_height }} media article-template__hero-fallback" itemprop="image">
+                {% comment %}theme-check-disable RemoteAsset{% endcomment %}
+                <img
+                  src="{{ article_fallback_image_url | strip }}"
+                  loading="eager"
+                  fetchpriority="high"
+                  width="{{ article_fallback_image_width | strip | default: 1200 }}"
+                  height="{{ article_fallback_image_height | strip | default: 1500 }}"
+                  alt="{{ article_fallback_image_alt | strip | default: article.title | escape }}"
+                >
+                {% comment %}theme-check-enable RemoteAsset{% endcomment %}
+              </div>
+            {%- elsif article.image -%}
               <div
                 class="article-template__hero-{{ block.settings.image_height }} media"
                 itemprop="image"
@@ -56,7 +73,7 @@
                   alt="{{ article.image.alt | default: article.title | escape }}"
                 >
               </div>
-            {%- elsif blog.handle == 'news' -%}
+            {%- else -%}
               {%- capture article_fallback_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
               {%- capture article_fallback_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
               {%- capture article_fallback_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
@@ -558,7 +575,7 @@
   assign article_schema_image_width = blank
   assign article_schema_image_height = blank
 
-  if blog.handle == 'news'
+  if blog.handle == 'news' or article.image == blank
     capture article_schema_image_url
       render 'article-featured-image-fallback', article: article, field: 'url'
     endcapture
@@ -571,20 +588,12 @@
     assign article_schema_image_url = article_schema_image_url | strip
     assign article_schema_image_width = article_schema_image_width | strip
     assign article_schema_image_height = article_schema_image_height | strip
-  elsif article.image
+  else
     assign article_schema_image_url = article.image | image_url: width: 1920 | prepend: 'https:'
     assign article_schema_image_width = 1920
     assign article_schema_image_height = 1920 | divided_by: article.image.aspect_ratio | round
   endif
 -%}
-{%- unless article.image or blog.handle == 'news' -%}
-  {%- capture article_schema_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
-  {%- capture article_schema_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
-  {%- capture article_schema_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
-  {%- assign article_schema_image_url = article_schema_image_url | strip -%}
-  {%- assign article_schema_image_width = article_schema_image_width | strip -%}
-  {%- assign article_schema_image_height = article_schema_image_height | strip -%}
-{%- endunless -%}
 
 <script type="application/ld+json">
   {

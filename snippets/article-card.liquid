@@ -27,10 +27,10 @@
     assign article_fallback_image_height = blank
     assign article_fallback_image_alt = blank
     assign render_article_media = false
-    assign prefer_article_fallback = false
+    assign use_article_fallback = false
 
-    if blog.handle == 'news'
-      assign prefer_article_fallback = true
+    if blog.handle == 'news' or article.url contains '/blogs/news/'
+      assign use_article_fallback = true
     endif
 
     if article_excerpt == blank
@@ -38,7 +38,7 @@
     endif
 
     if show_image == true
-      if prefer_article_fallback or article.image == blank
+      if use_article_fallback or article.image == blank
         capture article_fallback_image_url
           render 'article-featured-image-fallback', article: article, field: 'url'
         endcapture
@@ -75,14 +75,16 @@
           style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%; --article-card-media-ratio: {{ ratio }};"
         >
           <a href="{{ article.url }}" class="article-card__image-wrapper card__media">
-            {%- if prefer_article_fallback and article_fallback_image_url != blank -%}
+            {%- if use_article_fallback and article_fallback_image_url != blank -%}
               <div class="article-card__image article-card__image--fallback media media--hover-effect">
                 {% comment %}theme-check-disable RemoteAsset{% endcomment %}
                 <img
                   src="{{ article_fallback_image_url }}"
                   alt="{{ article_fallback_image_alt | default: article.title | escape }}"
                   class="motion-reduce"
-                  loading="eager"
+                  {% unless lazy_load == false %}
+                    loading="lazy"
+                  {% endunless %}
                   width="{{ article_fallback_image_width | default: 1200 }}"
                   height="{{ article_fallback_image_height | default: 1500 }}"
                 >
@@ -113,7 +115,7 @@
                 >
                 {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
               </div>
-            {%- else -%}
+            {%- elsif article_fallback_image_url != blank -%}
               <div class="article-card__image article-card__image--fallback media media--hover-effect">
                 {% comment %}theme-check-disable RemoteAsset{% endcomment %}
                 <img

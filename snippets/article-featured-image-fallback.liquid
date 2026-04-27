@@ -1,69 +1,174 @@
 {%- liquid
-  assign article_source = article.title | append: ' ' | append: article.handle | downcase
-  assign image_key = 'FAMILY_MATCHING'
-
-  if article_source contains 'swimsuit' or article_source contains 'swimwear' or article_source contains 'bathing suit' or article_source contains 'beach' or article_source contains 'pool'
-    assign image_key = 'SWIM'
-  elsif article_source contains 'vacation' or article_source contains 'cruise' or article_source contains 'resort' or article_source contains 'travel' or article_source contains 'summer' or article_source contains 'july' or article_source contains 'june' or article_source contains 'august'
-    assign image_key = 'VACATION'
-  elsif article_source contains 'daddy' or article_source contains 'father' or article_source contains 'dad'
-    assign image_key = 'DADDY'
-  elsif article_source contains 'valentine' or article_source contains 'heart' or article_source contains 'love' or article_source contains 'couple'
-    assign image_key = 'COUPLES'
-  elsif article_source contains 'christmas' or article_source contains 'holiday' or article_source contains 'pajama' or article_source contains 'winter' or article_source contains 'cold' or article_source contains 'cozy' or article_source contains 'january' or article_source contains 'december'
-    assign image_key = 'PAJAMAS'
-  elsif article_source contains 'easter' or article_source contains 'mother' or article_source contains 'mothers day' or article_source contains 'mother s day' or article_source contains 'mom day'
-    assign image_key = 'MOMMY'
-  elsif article_source contains 'spring' or article_source contains 'floral' or article_source contains 'march' or article_source contains 'april'
-    assign image_key = 'MOMMY'
-  elsif article_source contains '4th of july' or article_source contains 'fourth' or article_source contains 'patriotic' or article_source contains 'independence'
-    assign image_key = 'SWIM'
-  elsif article_source contains 'school' or article_source contains 'back to'
-    assign image_key = 'MOMMY'
-  elsif article_source contains 'dress' or article_source contains 'mommy' or article_source contains 'mother daughter'
-    assign image_key = 'MOMMY'
-  elsif article_source contains 'photo' or article_source contains 'portrait' or article_source contains 'picture'
-    assign image_key = 'FAMILY_PHOTO'
-  endif
-
-  assign image_asset = 'home-cat-family-matching.jpg'
+  assign article_handle = article.handle | default: '' | downcase
+  assign article_handle = article_handle | split: '/' | last
+  assign image_asset = 'style-journal-001-halloween-family-matching-costume-ideas.jpg'
   assign image_width = 1200
   assign image_height = 1500
   assign image_alt = article.title | default: 'Dress Like Mommy Style Journal article image'
 
-  case image_key
-    when 'MOMMY'
-      assign image_asset = 'home-cat-mommy-and-me.jpg'
-      assign image_width = 1200
-      assign image_height = 1500
-    when 'DADDY'
-      assign image_asset = 'home-cat-daddy-and-me.jpg'
-      assign image_width = 1200
-      assign image_height = 1500
-    when 'SWIM'
-      assign image_asset = 'home-cat-swimsuits.jpg'
-      assign image_width = 1200
-      assign image_height = 1500
-    when 'VACATION'
-      assign image_asset = 'family-mega-menu-vacation-outfits.jpg'
-      assign image_width = 960
-      assign image_height = 1200
-    when 'PAJAMAS'
-      assign image_asset = 'home-cat-pajamas.jpg'
-      assign image_width = 1200
-      assign image_height = 1500
-    when 'COUPLES'
-      assign image_asset = 'home-promo-hawaiian-family.png'
-      assign image_width = 972
-      assign image_height = 1619
-    when 'FAMILY_PHOTO'
-      assign image_asset = 'home-cat-photo-days.png'
-      assign image_width = 1003
-      assign image_height = 1568
-    when 'FAMILY_MATCHING'
-      assign image_asset = 'home-cat-family-matching.jpg'
-      assign image_width = 1200
-      assign image_height = 1500
+  case article_handle
+    when 'halloween-family-matching-costume-ideas'
+      assign image_asset = 'style-journal-001-halloween-family-matching-costume-ideas.jpg'
+    when 'spring-matching-outfits-for-mommy-and-me'
+      assign image_asset = 'style-journal-002-spring-matching-outfits-for-mommy-and-me.jpg'
+    when 'summer-matching-family-outfits'
+      assign image_asset = 'style-journal-003-summer-matching-family-outfits.jpg'
+    when 'ultimate-gift-guide-matching-outfits-for-every-occasion'
+      assign image_asset = 'style-journal-004-ultimate-gift-guide-matching-outfits-for-every-occasion.jpg'
+    when 'matching-outfit-sizing-guide-right-fit-for-everyone'
+      assign image_asset = 'style-journal-005-matching-outfit-sizing-guide-right-fit-for-everyone.jpg'
+    when 'how-to-care-for-your-matching-family-outfits'
+      assign image_asset = 'style-journal-006-how-to-care-for-your-matching-family-outfits.jpg'
+    when 'best-matching-family-outfits-for-winter'
+      assign image_asset = 'style-journal-007-best-matching-family-outfits-for-winter.jpg'
+    when 'mommy-and-me-easter-outfit-ideas'
+      assign image_asset = 'style-journal-008-mommy-and-me-easter-outfit-ideas.jpg'
+    when 'new-year-new-matching-looks-family-fashion'
+      assign image_asset = 'style-journal-009-new-year-new-matching-looks-family-fashion.jpg'
+    when 'holiday-family-matching-outfits-complete-guide'
+      assign image_asset = 'style-journal-010-holiday-family-matching-outfits-complete-guide.jpg'
+    when 'mommy-and-me-valentines-day-outfits'
+      assign image_asset = 'style-journal-011-mommy-and-me-valentines-day-outfits.jpg'
+    when 'christmas-matching-family-pajamas'
+      assign image_asset = 'style-journal-012-christmas-matching-family-pajamas.jpg'
+    when 'mommy-and-me-thanksgiving-style-guide'
+      assign image_asset = 'style-journal-013-mommy-and-me-thanksgiving-style-guide.jpg'
+    when 'thanksgiving-family-matching-outfit-ideas'
+      assign image_asset = 'style-journal-014-thanksgiving-family-matching-outfit-ideas.jpg'
+    when 'mommy-and-me-matching-outfit-ideas'
+      assign image_asset = 'style-journal-015-mommy-and-me-matching-outfit-ideas.jpg'
+    when 'daddy-and-me-fall-outfit-ideas'
+      assign image_asset = 'style-journal-016-daddy-and-me-fall-outfit-ideas.jpg'
+    when 'fall-family-matching-outfits'
+      assign image_asset = 'style-journal-017-fall-family-matching-outfits.jpg'
+    when 'mommy-and-me-back-to-school-style-guide'
+      assign image_asset = 'style-journal-018-mommy-and-me-back-to-school-style-guide.jpg'
+    when 'mommy-and-me-summer-dress-guide'
+      assign image_asset = 'style-journal-019-mommy-and-me-summer-dress-guide.jpg'
+    when 'family-matching-outfits-spring-photos'
+      assign image_asset = 'style-journal-020-family-matching-outfits-spring-photos.jpg'
+    when 'best-matching-swimsuits-for-the-whole-family'
+      assign image_asset = 'style-journal-021-best-matching-swimsuits-for-the-whole-family.jpg'
+    when 'mothers-day-matching-outfits-mommy-and-me-guide'
+      assign image_asset = 'style-journal-022-mothers-day-matching-outfits-mommy-and-me-guide.jpg'
+    when 'mother-daughter-matching-swimsuits-complete-guide-for-summer'
+      assign image_asset = 'style-journal-023-mother-daughter-matching-swimsuits-complete-guide-for-summer.jpg'
+    when 'daddy-and-me-spring-outfits'
+      assign image_asset = 'style-journal-024-daddy-and-me-spring-outfits.jpg'
+    when 'easter-sunday-family-matching-outfits'
+      assign image_asset = 'style-journal-025-easter-sunday-family-matching-outfits.jpg'
+    when 'daddy-and-me-matching-outfits-the-ultimate-guide'
+      assign image_asset = 'style-journal-026-daddy-and-me-matching-outfits-the-ultimate-guide.jpg'
+    when 'family-matching-pajamas-our-top-picks-for-cozy-nights'
+      assign image_asset = 'style-journal-027-family-matching-pajamas-our-top-picks-for-cozy-nights.jpg'
+    when 'what-to-wear-for-family-photos-matching-outfit-ideas'
+      assign image_asset = 'style-journal-028-what-to-wear-for-family-photos-matching-outfit-ideas.jpg'
+    when 'september-style-guide-transitional-family-matching-looks'
+      assign image_asset = 'style-journal-029-september-style-guide-transitional-family-matching-looks.jpg'
+    when 'mommy-and-me-outfits-for-every-budget'
+      assign image_asset = 'style-journal-030-mommy-and-me-outfits-for-every-budget.jpg'
+    when 'hot-weather-family-coordinating-outfit-ideas'
+      assign image_asset = 'style-journal-031-hot-weather-family-coordinating-outfit-ideas.jpg'
+    when 'the-complete-guide-to-family-matching-outfits'
+      assign image_asset = 'style-journal-032-the-complete-guide-to-family-matching-outfits.jpg'
+    when 'floral-matching-outfits-for-spring'
+      assign image_asset = 'style-journal-033-floral-matching-outfits-for-spring.jpg'
+    when 'end-of-summer-mommy-and-me-beach-style'
+      assign image_asset = 'style-journal-034-end-of-summer-mommy-and-me-beach-style.jpg'
+    when 'coordinating-family-outfits-for-october-events'
+      assign image_asset = 'style-journal-035-coordinating-family-outfits-for-october-events.jpg'
+    when 'pumpkin-spice-and-everything-nice-fall-family-fashion'
+      assign image_asset = 'style-journal-036-pumpkin-spice-and-everything-nice-fall-family-fashion.jpg'
+    when 'matching-family-outfits-for-august-vacations'
+      assign image_asset = 'style-journal-037-matching-family-outfits-for-august-vacations.jpg'
+    when 'best-family-matching-outfits-for-harvest-season'
+      assign image_asset = 'style-journal-038-best-family-matching-outfits-for-harvest-season.jpg'
+    when 'autumn-matching-family-style-plaid-flannel-and-more'
+      assign image_asset = 'style-journal-039-autumn-matching-family-style-plaid-flannel-and-more.jpg'
+    when 'last-chance-summer-matching-family-outfits'
+      assign image_asset = 'style-journal-040-last-chance-summer-matching-family-outfits.jpg'
+    when 'cozy-matching-outfits-for-the-thanksgiving-holiday'
+      assign image_asset = 'style-journal-041-cozy-matching-outfits-for-the-thanksgiving-holiday.jpg'
+    when 'october-family-style-cozy-matching-looks-for-autumn'
+      assign image_asset = 'style-journal-042-october-family-style-cozy-matching-looks-for-autumn.jpg'
+    when 'fall-family-photo-session-complete-matching-outfit-guide'
+      assign image_asset = 'style-journal-043-fall-family-photo-session-complete-matching-outfit-guide.jpg'
+    when 'back-to-school-daddy-and-me-photo-outfits'
+      assign image_asset = 'style-journal-044-back-to-school-daddy-and-me-photo-outfits.jpg'
+    when 'fall-family-photo-outfits-for-november'
+      assign image_asset = 'style-journal-045-fall-family-photo-outfits-for-november.jpg'
+    when 'mommy-and-me-halloween-outfits-that-are-actually-stylish'
+      assign image_asset = 'style-journal-046-mommy-and-me-halloween-outfits-that-are-actually-stylish.jpg'
+    when 'mommy-and-me-fall-fashion-cozy-coordinating-outfits'
+      assign image_asset = 'style-journal-047-mommy-and-me-fall-fashion-cozy-coordinating-outfits.jpg'
+    when 'transitioning-from-summer-to-fall-family-matching-tips'
+      assign image_asset = 'style-journal-048-transitioning-from-summer-to-fall-family-matching-tips.jpg'
+    when 'best-matching-outfits-for-family-beach-trips'
+      assign image_asset = 'style-journal-049-best-matching-outfits-for-family-beach-trips.jpg'
+    when 'black-friday-deals-top-matching-family-outfits'
+      assign image_asset = 'style-journal-050-black-friday-deals-top-matching-family-outfits.jpg'
+    when 'fall-festival-matching-outfits-for-the-whole-family'
+      assign image_asset = 'style-journal-051-fall-festival-matching-outfits-for-the-whole-family.jpg'
+    when 'best-fall-colors-for-family-matching-looks'
+      assign image_asset = 'style-journal-052-best-fall-colors-for-family-matching-looks.jpg'
+    when 'end-of-summer-matching-family-beach-looks'
+      assign image_asset = 'style-journal-053-end-of-summer-matching-family-beach-looks.jpg'
+    when 'summer-vacation-matching-family-outfits-guide'
+      assign image_asset = 'style-journal-054-summer-vacation-matching-family-outfits-guide.jpg'
+    when 'winter-family-photo-outfits-matching-looks-for-cold-weather'
+      assign image_asset = 'style-journal-055-winter-family-photo-outfits-matching-looks-for-cold-weather.jpg'
+    when 'best-matching-outfits-for-thanksgiving-dinner'
+      assign image_asset = 'style-journal-056-best-matching-outfits-for-thanksgiving-dinner.jpg'
+    when 'matching-family-outfits-for-pumpkin-patch-photos'
+      assign image_asset = 'style-journal-057-matching-family-outfits-for-pumpkin-patch-photos.jpg'
+    when 'apple-picking-matching-outfits-for-the-whole-family'
+      assign image_asset = 'style-journal-058-apple-picking-matching-outfits-for-the-whole-family.jpg'
+    when 'late-summer-family-matching-outfit-ideas'
+      assign image_asset = 'style-journal-059-late-summer-family-matching-outfit-ideas.jpg'
+    when 'back-to-school-matching-outfits-for-first-day-photos'
+      assign image_asset = 'style-journal-060-back-to-school-matching-outfits-for-first-day-photos.jpg'
+    when 'red-white-and-blue-patriotic-family-matching-looks'
+      assign image_asset = 'style-journal-061-red-white-and-blue-patriotic-family-matching-looks.jpg'
+    when 'fathers-day-daddy-and-me-matching-outfit-ideas'
+      assign image_asset = 'style-journal-062-fathers-day-daddy-and-me-matching-outfit-ideas.jpg'
+    when 'matching-family-outfits-for-mothers-day-brunch'
+      assign image_asset = 'style-journal-063-matching-family-outfits-for-mothers-day-brunch.jpg'
+    when 'spring-break-matching-looks-for-the-whole-family'
+      assign image_asset = 'style-journal-064-spring-break-matching-looks-for-the-whole-family.jpg'
+    when 'transitional-weather-family-matching-style-guide'
+      assign image_asset = 'style-journal-065-transitional-weather-family-matching-style-guide.jpg'
+    when 'adorable-matching-valentines-day-looks-for-the-whole-family'
+      assign image_asset = 'style-journal-066-adorable-matching-valentines-day-looks-for-the-whole-family.jpg'
+    when 'how-to-style-cozy-mommy-and-me-looks-in-january'
+      assign image_asset = 'style-journal-067-how-to-style-cozy-mommy-and-me-looks-in-january.jpg'
+    else
+      assign image_variant = article.id | modulo: 12
+      case image_variant
+        when 0
+          assign image_asset = 'style-journal-001-halloween-family-matching-costume-ideas.jpg'
+        when 1
+          assign image_asset = 'style-journal-002-spring-matching-outfits-for-mommy-and-me.jpg'
+        when 2
+          assign image_asset = 'style-journal-003-summer-matching-family-outfits.jpg'
+        when 3
+          assign image_asset = 'style-journal-004-ultimate-gift-guide-matching-outfits-for-every-occasion.jpg'
+        when 4
+          assign image_asset = 'style-journal-005-matching-outfit-sizing-guide-right-fit-for-everyone.jpg'
+        when 5
+          assign image_asset = 'style-journal-006-how-to-care-for-your-matching-family-outfits.jpg'
+        when 6
+          assign image_asset = 'style-journal-007-best-matching-family-outfits-for-winter.jpg'
+        when 7
+          assign image_asset = 'style-journal-008-mommy-and-me-easter-outfit-ideas.jpg'
+        when 8
+          assign image_asset = 'style-journal-009-new-year-new-matching-looks-family-fashion.jpg'
+        when 9
+          assign image_asset = 'style-journal-010-holiday-family-matching-outfits-complete-guide.jpg'
+        when 10
+          assign image_asset = 'style-journal-011-mommy-and-me-valentines-day-outfits.jpg'
+        else
+          assign image_asset = 'style-journal-012-christmas-matching-family-pajamas.jpg'
+      endcase
   endcase
 
   assign image_url = image_asset | asset_url
@@ -102,7 +207,7 @@
 
   case field
     when 'key'
-      echo image_key
+      echo article_handle
     when 'width'
       echo image_width
     when 'height'
