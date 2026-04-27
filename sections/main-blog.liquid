@@ -139,6 +139,22 @@
                   loading: 'eager',
                   alt: featured_article.image.alt | default: featured_article.title
               }}
+            {%- else -%}
+              {%- capture featured_fallback_image_url -%}{% render 'article-featured-image-fallback', article: featured_article, field: 'url' %}{%- endcapture -%}
+              {%- capture featured_fallback_image_width -%}{% render 'article-featured-image-fallback', article: featured_article, field: 'width' %}{%- endcapture -%}
+              {%- capture featured_fallback_image_height -%}{% render 'article-featured-image-fallback', article: featured_article, field: 'height' %}{%- endcapture -%}
+              {%- capture featured_fallback_image_alt -%}{% render 'article-featured-image-fallback', article: featured_article, field: 'alt' %}{%- endcapture -%}
+              {% comment %}theme-check-disable RemoteAsset{% endcomment %}
+              <img
+                src="{{ featured_fallback_image_url | strip }}"
+                alt="{{ featured_fallback_image_alt | strip | default: featured_article.title | escape }}"
+                class="main-blog__featured-image main-blog__featured-image--fallback"
+                loading="eager"
+                fetchpriority="high"
+                width="{{ featured_fallback_image_width | strip | default: 1200 }}"
+                height="{{ featured_fallback_image_height | strip | default: 1500 }}"
+              >
+              {% comment %}theme-check-enable RemoteAsset{% endcomment %}
             {%- endif -%}
           </a>
         {%- endif -%}

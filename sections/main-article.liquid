@@ -24,29 +24,12 @@
           {% render block %}
         </div>
       {%- when 'featured_image' -%}
-        {%- if blog.handle == 'news' or article.image -%}
+        {%- if article.image or blog.handle == 'news' -%}
           <div
             class="article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
             {{ block.shopify_attributes }}
           >
-            {%- if blog.handle == 'news' -%}
-              {%- capture article_fallback_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
-              {%- capture article_fallback_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
-              {%- capture article_fallback_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
-              {%- capture article_fallback_image_alt -%}{% render 'article-featured-image-fallback', article: article, field: 'alt' %}{%- endcapture -%}
-              <div class="article-template__hero-{{ block.settings.image_height }} media article-template__hero-fallback" itemprop="image">
-                {% comment %}theme-check-disable RemoteAsset{% endcomment %}
-                <img
-                  src="{{ article_fallback_image_url | strip }}"
-                  loading="eager"
-                  fetchpriority="high"
-                  width="{{ article_fallback_image_width | strip | default: 1200 }}"
-                  height="{{ article_fallback_image_height | strip | default: 1500 }}"
-                  alt="{{ article_fallback_image_alt | strip | default: article.title | escape }}"
-                >
-                {% comment %}theme-check-enable RemoteAsset{% endcomment %}
-              </div>
-            {%- elsif article.image -%}
+            {%- if article.image -%}
               <div
                 class="article-template__hero-{{ block.settings.image_height }} media"
                 itemprop="image"
@@ -70,8 +53,25 @@
                   fetchpriority="high"
                   width="{{ article.image.width }}"
                   height="{{ article.image.height }}"
-                  alt="{{ article.image.alt | escape }}"
+                  alt="{{ article.image.alt | default: article.title | escape }}"
                 >
+              </div>
+            {%- elsif blog.handle == 'news' -%}
+              {%- capture article_fallback_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
+              {%- capture article_fallback_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
+              {%- capture article_fallback_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
+              {%- capture article_fallback_image_alt -%}{% render 'article-featured-image-fallback', article: article, field: 'alt' %}{%- endcapture -%}
+              <div class="article-template__hero-{{ block.settings.image_height }} media article-template__hero-fallback" itemprop="image">
+                {% comment %}theme-check-disable RemoteAsset{% endcomment %}
+                <img
+                  src="{{ article_fallback_image_url | strip }}"
+                  loading="eager"
+                  fetchpriority="high"
+                  width="{{ article_fallback_image_width | strip | default: 1200 }}"
+                  height="{{ article_fallback_image_height | strip | default: 1500 }}"
+                  alt="{{ article_fallback_image_alt | strip | default: article.title | escape }}"
+                >
+                {% comment %}theme-check-enable RemoteAsset{% endcomment %}
               </div>
             {%- endif -%}
           </div>
