@@ -863,7 +863,7 @@
                 <!-- Free shipping inline badge -->
                 <div class="free-shipping-badge">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 18H3a1 1 0 01-1-1V7a1 1 0 011-1h10l4 4v7a1 1 0 01-1 1h-2"/><circle cx="7" cy="18" r="2"/><circle cx="15" cy="18" r="2"/><path d="M17 6h4l2 4v5h-2"/></svg>
-                  Free shipping on all orders
+                  {{ 'products.product.free_shipping_all_orders' | t }}
                 </div>
                 <div class="product__tax caption rte" style="display:none;">
                   {%- if cart.taxes_included -%}

@@ -429,7 +429,7 @@ var ROLE_DEFINITIONS = [
   {
     key: 'child',
     label: 'Child',
-    labels: { ar: 'الطفل', es: 'Niño', fr: 'Enfant' },
+    labels: { ar: 'الطفل', es: 'Infantil', fr: 'Enfant' },
     aliases: ['child', 'children', 'kid', 'kids', 'infantil', 'enfant', 'enfants', 'infant', 'kind', 'kinder', 'bambini', 'barn', 'dziecko', 'dzieci', 'dítě', 'детский', 'ребенок', 'ребёнок', '儿童', '兒童', '子供', '아동', 'ילדים', 'बच्चा', 'طفل', 'الطفل', 'أطفال', 'اطفال'],
   },
   {
@@ -460,7 +460,7 @@ var ROLE_FIT_COPY_BY_LOCALE = {
     father: 'Consejo: compáralo con tu talla habitual de hombre.',
     girl: 'Consejo: compáralo con su talla infantil habitual.',
     boy: 'Consejo: compáralo con su talla infantil habitual.',
-    child: 'Consejo: compáralo con la talla habitual del niño.',
+    child: 'Consejo: compáralo con su talla infantil habitual.',
     baby: 'Consejo: compáralo con la talla habitual del bebé.',
     adult: 'Consejo: compáralo con tu talla habitual de adulto.',
   },
