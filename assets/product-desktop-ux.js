@@ -263,6 +263,78 @@ var SIZE_LABEL_TOKENS = [
 ];
 var TYPE_LABEL_TOKENS = ['type', 'style', 'tipo', 'estilo', 'genre', 'coupe', 'نوع', 'ستايل', 'نمط'];
 var HEIGHT_LABEL_TOKENS = ['height', 'hauteur', 'altura', 'estatura', 'الارتفاع', 'الطول'];
+var ROLE_LABELS_BY_LOCALE = {
+  en: { mother: 'Mother', father: 'Father', girl: 'Girl', boy: 'Boy', child: 'Child', baby: 'Baby', adult: 'Adult' },
+  ar: { mother: 'الأم', father: 'الأب', girl: 'البنت', boy: 'الولد', child: 'الأطفال', baby: 'الرضيع', adult: 'الكبار' },
+  cs: { mother: 'Maminka', father: 'Tatínek', girl: 'Dívka', boy: 'Chlapec', child: 'Dítě', baby: 'Miminko', adult: 'Dospělý' },
+  da: { mother: 'Mor', father: 'Far', girl: 'Pige', boy: 'Dreng', child: 'Barn', baby: 'Baby', adult: 'Voksen' },
+  de: { mother: 'Mama', father: 'Papa', girl: 'Mädchen', boy: 'Junge', child: 'Kind', baby: 'Baby', adult: 'Erwachsene' },
+  el: { mother: 'Μητέρα', father: 'Πατέρας', girl: 'Κορίτσι', boy: 'Αγόρι', child: 'Παιδί', baby: 'Μωρό', adult: 'Ενήλικας' },
+  es: { mother: 'Mamá', father: 'Papá', girl: 'Niña', boy: 'Niño', child: 'Infantil', baby: 'Bebé', adult: 'Adulto' },
+  fi: { mother: 'Äiti', father: 'Isä', girl: 'Tyttö', boy: 'Poika', child: 'Lapsi', baby: 'Vauva', adult: 'Aikuinen' },
+  fr: { mother: 'Maman', father: 'Papa', girl: 'Fille', boy: 'Garçon', child: 'Enfant', baby: 'Bébé', adult: 'Adulte' },
+  he: { mother: 'אמא', father: 'אבא', girl: 'ילדה', boy: 'ילד', child: 'ילדים', baby: 'תינוק', adult: 'מבוגר' },
+  hi: { mother: 'माँ', father: 'पिता', girl: 'लड़की', boy: 'लड़का', child: 'बच्चा', baby: 'शिशु', adult: 'वयस्क' },
+  it: { mother: 'Mamma', father: 'Papà', girl: 'Bambina', boy: 'Bambino', child: 'Bimbi', baby: 'Bebè', adult: 'Adulto' },
+  ja: { mother: 'ママ', father: 'パパ', girl: '女の子', boy: '男の子', child: '子供', baby: 'ベビー', adult: '大人' },
+  ko: { mother: '엄마', father: '아빠', girl: '여아', boy: '남아', child: '아동', baby: '베이비', adult: '성인' },
+  nl: { mother: 'Mama', father: 'Papa', girl: 'Meisje', boy: 'Jongen', child: 'Kind', baby: 'Baby', adult: 'Volwassene' },
+  no: { mother: 'Mamma', father: 'Pappa', girl: 'Jente', boy: 'Gutt', child: 'Barn', baby: 'Baby', adult: 'Voksen' },
+  pl: { mother: 'Mama', father: 'Tata', girl: 'Dziewczynka', boy: 'Chłopiec', child: 'Dziecko', baby: 'Niemowlę', adult: 'Dorosły' },
+  pt: { mother: 'Mãe', father: 'Pai', girl: 'Menina', boy: 'Menino', child: 'Infantil', baby: 'Bebê', adult: 'Adulto' },
+  ro: { mother: 'Mamă', father: 'Tată', girl: 'Fată', boy: 'Băiat', child: 'Copil', baby: 'Bebeluș', adult: 'Adult' },
+  ru: { mother: 'Мама', father: 'Папа', girl: 'Девочка', boy: 'Мальчик', child: 'Дети', baby: 'Малыш', adult: 'Взрослый' },
+  sv: { mother: 'Mamma', father: 'Pappa', girl: 'Flicka', boy: 'Pojke', child: 'Barn', baby: 'Baby', adult: 'Vuxen' },
+  zh: { mother: '妈妈', father: '爸爸', girl: '女孩', boy: '男孩', child: '儿童', baby: '婴儿', adult: '成人' },
+};
+var GARMENT_LABELS_BY_LOCALE = {
+  en: { dress: 'Dress', shirt: 'Shirt', shorts: 'Shorts', top: 'Top', romper: 'Romper', pants: 'Pants', shirtShortsSet: 'Shirt & Shorts Set' },
+  ar: { dress: 'فستان', shirt: 'قميص', shorts: 'شورت', top: 'توب', romper: 'رومبر', pants: 'بنطال', shirtShortsSet: 'طقم قميص وشورت' },
+  cs: { dress: 'Šaty', shirt: 'Košile', shorts: 'Šortky', top: 'Top', romper: 'Overal', pants: 'Kalhoty', shirtShortsSet: 'Set košile a šortek' },
+  da: { dress: 'Kjole', shirt: 'Skjorte', shorts: 'Shorts', top: 'Top', romper: 'Heldragt', pants: 'Bukser', shirtShortsSet: 'Skjorte- og shortssæt' },
+  de: { dress: 'Kleid', shirt: 'Hemd', shorts: 'Shorts', top: 'Top', romper: 'Strampler', pants: 'Hose', shirtShortsSet: 'Hemd- und Shorts-Set' },
+  el: { dress: 'Φόρεμα', shirt: 'Πουκάμισο', shorts: 'Σορτς', top: 'Τοπ', romper: 'Φορμάκι', pants: 'Παντελόνι', shirtShortsSet: 'Σετ πουκάμισο και σορτς' },
+  es: { dress: 'Vestido', shirt: 'Camisa', shorts: 'Shorts', top: 'Top', romper: 'Pelele', pants: 'Pantalón', shirtShortsSet: 'Conjunto de camisa y shorts' },
+  fi: { dress: 'Mekko', shirt: 'Paita', shorts: 'Shortsit', top: 'Yläosa', romper: 'Haalari', pants: 'Housut', shirtShortsSet: 'Paita- ja shortsisetti' },
+  fr: { dress: 'Robe', shirt: 'Chemise', shorts: 'Short', top: 'Haut', romper: 'Barboteuse', pants: 'Pantalon', shirtShortsSet: 'Ensemble chemise et short' },
+  he: { dress: 'שמלה', shirt: 'חולצה', shorts: 'מכנסיים קצרים', top: 'טופ', romper: 'אוברול', pants: 'מכנסיים', shirtShortsSet: 'סט חולצה ומכנסיים קצרים' },
+  hi: { dress: 'ड्रेस', shirt: 'शर्ट', shorts: 'शॉर्ट्स', top: 'टॉप', romper: 'रोम्पर', pants: 'पैंट', shirtShortsSet: 'शर्ट और शॉर्ट्स सेट' },
+  it: { dress: 'Vestito', shirt: 'Camicia', shorts: 'Shorts', top: 'Top', romper: 'Pagliaccetto', pants: 'Pantaloni', shirtShortsSet: 'Set camicia e shorts' },
+  ja: { dress: 'ワンピース', shirt: 'シャツ', shorts: 'ショーツ', top: 'トップス', romper: 'ロンパース', pants: 'パンツ', shirtShortsSet: 'シャツ＆ショーツセット' },
+  ko: { dress: '드레스', shirt: '셔츠', shorts: '반바지', top: '상의', romper: '롬퍼', pants: '바지', shirtShortsSet: '셔츠와 반바지 세트' },
+  nl: { dress: 'Jurk', shirt: 'Shirt', shorts: 'Shorts', top: 'Top', romper: 'Boxpakje', pants: 'Broek', shirtShortsSet: 'Shirt- en shortset' },
+  no: { dress: 'Kjole', shirt: 'Skjorte', shorts: 'Shorts', top: 'Topp', romper: 'Romper', pants: 'Bukse', shirtShortsSet: 'Skjorte- og shortsett' },
+  pl: { dress: 'Sukienka', shirt: 'Koszula', shorts: 'Szorty', top: 'Top', romper: 'Rampers', pants: 'Spodnie', shirtShortsSet: 'Zestaw koszula i szorty' },
+  pt: { dress: 'Vestido', shirt: 'Camisa', shorts: 'Shorts', top: 'Top', romper: 'Macacão', pants: 'Calça', shirtShortsSet: 'Conjunto de camisa e shorts' },
+  ro: { dress: 'Rochie', shirt: 'Cămașă', shorts: 'Șorturi', top: 'Top', romper: 'Salopetă', pants: 'Pantaloni', shirtShortsSet: 'Set cămașă și șorturi' },
+  ru: { dress: 'Платье', shirt: 'Рубашка', shorts: 'Шорты', top: 'Топ', romper: 'Ромпер', pants: 'Брюки', shirtShortsSet: 'Комплект рубашка и шорты' },
+  sv: { dress: 'Klänning', shirt: 'Skjorta', shorts: 'Shorts', top: 'Topp', romper: 'Romper', pants: 'Byxor', shirtShortsSet: 'Skjorta och shorts-set' },
+  zh: { dress: '连衣裙', shirt: '衬衫', shorts: '短裤', top: '上衣', romper: '连体衣', pants: '长裤', shirtShortsSet: '衬衫短裤套装' },
+};
+var SIZE_UNIT_LABELS_BY_LOCALE = {
+  en: { year: 'Year', years: 'Years', month: 'Month', months: 'Months', joiner: ' ' },
+  ar: { year: 'سنة', years: 'سنوات', month: 'شهر', months: 'أشهر', joiner: ' ' },
+  cs: { year: 'rok', years: 'let', month: 'měsíc', months: 'měsíců', joiner: ' ' },
+  da: { year: 'år', years: 'år', month: 'mdr.', months: 'mdr.', joiner: ' ' },
+  de: { year: 'Jahr', years: 'Jahre', month: 'Monat', months: 'Monate', joiner: ' ' },
+  el: { year: 'έτος', years: 'ετών', month: 'μήνας', months: 'μηνών', joiner: ' ' },
+  es: { year: 'año', years: 'años', month: 'mes', months: 'meses', joiner: ' ' },
+  fi: { year: 'vuosi', years: 'vuotta', month: 'kk', months: 'kk', joiner: ' ' },
+  fr: { year: 'an', years: 'ans', month: 'mois', months: 'mois', joiner: ' ' },
+  he: { year: 'שנה', years: 'שנים', month: 'חודש', months: 'חודשים', joiner: ' ' },
+  hi: { year: 'वर्ष', years: 'वर्ष', month: 'महीना', months: 'महीने', joiner: ' ' },
+  it: { year: 'anno', years: 'anni', month: 'mese', months: 'mesi', joiner: ' ' },
+  ja: { year: '歳', years: '歳', month: 'か月', months: 'か月', joiner: '' },
+  ko: { year: '세', years: '세', month: '개월', months: '개월', joiner: '' },
+  nl: { year: 'jaar', years: 'jaar', month: 'maand', months: 'maanden', joiner: ' ' },
+  no: { year: 'år', years: 'år', month: 'mnd.', months: 'mnd.', joiner: ' ' },
+  pl: { year: 'rok', years: 'lat', month: 'mies.', months: 'mies.', joiner: ' ' },
+  pt: { year: 'ano', years: 'anos', month: 'mês', months: 'meses', joiner: ' ' },
+  ro: { year: 'an', years: 'ani', month: 'lună', months: 'luni', joiner: ' ' },
+  ru: { year: 'год', years: 'лет', month: 'мес.', months: 'мес.', joiner: ' ' },
+  sv: { year: 'år', years: 'år', month: 'mån', months: 'mån', joiner: ' ' },
+  zh: { year: '岁', years: '岁', month: '个月', months: '个月', joiner: '' },
+};
 var GUIDE_MEASUREMENT_TOKENS = [
   'length',
   'bust',
@@ -334,31 +406,31 @@ var ROLE_DEFINITIONS = [
     key: 'mother',
     label: 'Mother',
     labels: { ar: 'الأم', es: 'Mamá', fr: 'Maman' },
-    aliases: ['mother', 'mom', 'mom dress', 'madre', 'mama', 'mamá', 'mere', 'mère', 'maman', 'الأم', 'الام'],
+    aliases: ['mother', 'mom', 'mom dress', 'madre', 'mama', 'mamá', 'mere', 'mère', 'maman', 'mutter', 'mãe', 'mae', 'moeder', 'mor', 'äiti', 'mamma', 'maminka', 'אמא', 'mama', 'мама', 'мать', '妈妈', '媽媽', 'ママ', '엄마', '어머니', 'माँ', 'الأم', 'الام'],
   },
   {
     key: 'father',
     label: 'Father',
     labels: { ar: 'الأب', es: 'Papá', fr: 'Papa' },
-    aliases: ['father', 'dad', 'dad shirt', 'padre', 'papa', 'papá', 'pere', 'père', 'الأب', 'الاب'],
+    aliases: ['father', 'dad', 'dad shirt', 'padre', 'papa', 'papá', 'pere', 'père', 'vater', 'pai', 'vader', 'far', 'isä', 'papà', 'tatínek', 'אבא', 'папа', 'отец', '爸爸', 'パパ', '아빠', 'पिता', 'الأب', 'الاب'],
   },
   {
     key: 'girl',
     label: 'Girl',
     labels: { ar: 'البنت', es: 'Niña', fr: 'Fille' },
-    aliases: ['girl', 'daughter', 'daughter dress', 'nina', 'niña', 'fille', 'البنت', 'فتاة', 'الفتاة'],
+    aliases: ['girl', 'daughter', 'daughter dress', 'nina', 'niña', 'fille', 'menina', 'ragazza', 'mädchen', 'maedchen', 'pige', 'jente', 'flicka', 'dziewczynka', 'dívka', 'אילדה', 'ילדה', 'девочка', '女孩', '女の子', '여아', 'लड़की', 'البنت', 'فتاة', 'الفتاة'],
   },
   {
     key: 'boy',
     label: 'Boy',
     labels: { ar: 'الولد', es: 'Niño', fr: 'Garçon' },
-    aliases: ['boy', 'son', 'son shirt', 'nino', 'niño', 'garcon', 'garçon', 'الولد', 'ولد', 'فتى', 'الفتى'],
+    aliases: ['boy', 'son', 'son shirt', 'nino', 'niño', 'garcon', 'garçon', 'menino', 'ragazzo', 'junge', 'dreng', 'gutt', 'pojke', 'chłopiec', 'chlapec', 'ילד', 'мальчик', '男孩', '男の子', '남아', 'लड़का', 'الولد', 'ولد', 'فتى', 'الفتى'],
   },
   {
     key: 'child',
     label: 'Child',
     labels: { ar: 'الطفل', es: 'Niño', fr: 'Enfant' },
-    aliases: ['child', 'children', 'kid', 'kids', 'enfant', 'enfants', 'infant', 'طفل', 'الطفل', 'أطفال', 'اطفال'],
+    aliases: ['child', 'children', 'kid', 'kids', 'infantil', 'enfant', 'enfants', 'infant', 'kind', 'kinder', 'bambini', 'barn', 'dziecko', 'dzieci', 'dítě', 'детский', 'ребенок', 'ребёнок', '儿童', '兒童', '子供', '아동', 'ילדים', 'बच्चा', 'طفل', 'الطفل', 'أطفال', 'اطفال'],
   },
   {
     key: 'baby',
@@ -448,7 +520,14 @@ var IMAGE_BASED_SIZE_GUIDE_PRESETS = [
 
 function getLocaleRoot() {
   var locale = document.documentElement.getAttribute('lang') || document.documentElement.lang || '';
-  return normalizeText(locale).split(/[-_]/)[0] || 'en';
+  var root = normalizeText(locale).split(/[-_]/)[0] || 'en';
+  if (root === 'zh') return 'zh';
+  return root;
+}
+
+function getLocaleMap(source, fallbackLocale) {
+  var locale = getLocaleRoot();
+  return source[locale] || source[fallbackLocale || 'en'] || {};
 }
 
 function containsDictionaryToken(value, tokens) {
@@ -510,8 +589,12 @@ function normalizeLocalizedSizeValue(value) {
 
 function getLocalizedRoleLabel(roleDefinition) {
   if (!roleDefinition) return '';
-  var locale = getLocaleRoot();
-  return (roleDefinition.labels && roleDefinition.labels[locale]) || roleDefinition.label || '';
+  return getLocalizedRoleLabelByKey(roleDefinition.key) || roleDefinition.label || '';
+}
+
+function getLocalizedRoleLabelByKey(roleKey) {
+  var labels = getLocaleMap(ROLE_LABELS_BY_LOCALE, 'en');
+  return labels[roleKey] || (ROLE_LABELS_BY_LOCALE.en && ROLE_LABELS_BY_LOCALE.en[roleKey]) || roleKey || '';
 }
 
 function sanitizeRoleSizeLabel(value) {
@@ -519,6 +602,209 @@ function sanitizeRoleSizeLabel(value) {
     .replace(/^(?:de|del|da|do|du|des|d'|من)\s+/i, '')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+function getTypeOptionValue(variant, options, sizeOptionIndex) {
+  for (var optionIndex = 0; optionIndex < options.length; optionIndex += 1) {
+    if (optionIndex === sizeOptionIndex) continue;
+
+    var optionName = normalizeText(options[optionIndex].name);
+    if (!isTypeLikeLabel(optionName)) continue;
+
+    return String(getOptionValue(variant, optionIndex) || '').trim();
+  }
+
+  return '';
+}
+
+function getGarmentKey(value) {
+  var text = normalizeText(value);
+  if (!text) return '';
+
+  if (
+    text.indexOf('shirt & shorts') !== -1 ||
+    text.indexOf('shirt and shorts') !== -1 ||
+    text.indexOf('camisa y short') !== -1 ||
+    text.indexOf('chemise et short') !== -1 ||
+    text.indexOf('قميص وشورت') !== -1
+  ) {
+    return 'shirtShortsSet';
+  }
+
+  if (/(dress|skirt|robe|vestido|vestito|kleid|jurk|kjole|sukienka|rochie|плать|فستان|שמלה|ड्रेस|ワンピース|드레스|连衣裙|連衣裙|洋裝)/i.test(text)) {
+    return 'dress';
+  }
+  if (/(shirt|tee|t-shirt|camisa|chemise|hemd|skjorte|koszula|cămașă|camicie|рубаш|قميص|חולצה|शर्ट|シャツ|셔츠|衬衫|襯衫)/i.test(text)) {
+    return 'shirt';
+  }
+  if (/(short|shorts|trunk|bermuda|шорт|شورت|מכנסיים קצרים|ショーツ|반바지|短裤|短褲)/i.test(text)) {
+    return 'shorts';
+  }
+  if (/(romper|pelele|barboteuse|strampler|pagliaccetto|rampers|אוברול|ロンパース|롬퍼|连体衣|連身衣)/i.test(text)) {
+    return 'romper';
+  }
+  if (/(pant|pants|trouser|pantal|hose|broek|bukse|spodnie|брюк|بنطال|מכנסיים|पैंट|パンツ|바지|长裤|長褲)/i.test(text)) {
+    return 'pants';
+  }
+  if (/(top|haut|topp|yläosa|上衣|トップス|상의|טופ|टॉप|توب)/i.test(text)) {
+    return 'top';
+  }
+
+  return '';
+}
+
+function localizeTypeLabel(value) {
+  var garmentKey = getGarmentKey(value);
+  if (!garmentKey) return String(value || '').trim();
+
+  var labels = getLocaleMap(GARMENT_LABELS_BY_LOCALE, 'en');
+  return labels[garmentKey] || (GARMENT_LABELS_BY_LOCALE.en && GARMENT_LABELS_BY_LOCALE.en[garmentKey]) || String(value || '').trim();
+}
+
+function inferRoleKeyFromSku(sku) {
+  var text = normalizeText(sku).replace(/[^a-z0-9]+/g, '-');
+  if (!text) return '';
+
+  if (/(^|-)(grl|girl|daughter)(-|$)/.test(text)) return 'girl';
+  if (/(^|-)(boy|son)(-|$)/.test(text)) return 'boy';
+  if (/(^|-)(mom|mum|mother)(-|$)/.test(text)) return 'mother';
+  if (/(^|-)(dad|father)(-|$)/.test(text)) return 'father';
+  if (/(^|-)(baby|bby)(-|$)/.test(text)) return 'baby';
+  if (/(^|-)(adult)(-|$)/.test(text)) return 'adult';
+
+  return '';
+}
+
+function inferRoleKeyFromType(typeValue, baseRoleKey) {
+  var garmentKey = getGarmentKey(typeValue);
+  if (!garmentKey) return '';
+
+  if (garmentKey === 'dress') {
+    return baseRoleKey === 'adult' ? 'mother' : 'girl';
+  }
+
+  if (['shirt', 'shorts', 'shirtShortsSet'].indexOf(garmentKey) !== -1) {
+    return baseRoleKey === 'adult' ? 'father' : 'boy';
+  }
+
+  return '';
+}
+
+function cloneRoleInfoWithKey(roleInfo, roleKey) {
+  if (!roleInfo || !roleKey || roleInfo.key === roleKey) return roleInfo;
+
+  return {
+    key: roleKey,
+    label: getLocalizedRoleLabelByKey(roleKey),
+    sizeLabel: roleInfo.sizeLabel,
+    fullLabel: roleInfo.fullLabel,
+  };
+}
+
+function getRoleInfoForVariant(variant, options, sizeOptionIndex) {
+  var roleInfo = parseRoleFromSizeLabel(getOptionValue(variant, sizeOptionIndex));
+  if (!roleInfo) return null;
+
+  var skuRoleKey = inferRoleKeyFromSku(variant && variant.sku);
+  if (skuRoleKey) {
+    roleInfo = cloneRoleInfoWithKey(roleInfo, skuRoleKey);
+  }
+
+  var typeValue = getTypeOptionValue(variant, options, sizeOptionIndex);
+  var typeRoleKey = inferRoleKeyFromType(typeValue, roleInfo.key);
+  if (
+    typeRoleKey &&
+    (!skuRoleKey || roleInfo.key === 'child' || roleInfo.key === 'adult' || roleInfo.key === 'boy' || roleInfo.key === 'girl')
+  ) {
+    if (
+      roleInfo.key === 'child' ||
+      roleInfo.key === 'adult' ||
+      (roleInfo.key === 'boy' && typeRoleKey === 'girl') ||
+      (roleInfo.key === 'girl' && typeRoleKey === 'boy')
+    ) {
+      roleInfo = cloneRoleInfoWithKey(roleInfo, typeRoleKey);
+    }
+  }
+
+  return roleInfo;
+}
+
+function getRoleGroupKey(roleInfo, typeValue) {
+  if (!roleInfo) return '';
+
+  var groupKey = roleInfo.key;
+  var garmentKey = getGarmentKey(typeValue);
+  if (garmentKey && ['girl', 'boy', 'child', 'adult'].indexOf(roleInfo.key) !== -1) {
+    groupKey += ':' + garmentKey;
+  }
+
+  return groupKey;
+}
+
+function normalizeAgeSpan(value) {
+  return String(value || '').replace(/\s*[–-]\s*/g, '-').trim();
+}
+
+function getLeadingAgeNumber(value) {
+  var match = String(value || '').match(/^\d+/);
+  return match ? Number(match[0]) : 0;
+}
+
+function isPluralAgeSpan(value) {
+  var normalized = normalizeAgeSpan(value);
+  if (normalized.indexOf('-') !== -1) return true;
+  return Number(normalized) !== 1;
+}
+
+function getLocalizedAgeUnitLabel(value, unit, units) {
+  var root = getLocaleRoot();
+  var normalizedValue = normalizeAgeSpan(value);
+  var isRange = normalizedValue.indexOf('-') !== -1;
+  var number = getLeadingAgeNumber(normalizedValue);
+
+  if (unit === 'year') {
+    if (root === 'ar' && normalizedValue === '2') return 'سنتين';
+    if (root === 'cs' && !isRange) return number === 1 ? 'rok' : number >= 2 && number <= 4 ? 'roky' : 'let';
+    if (root === 'pl' && !isRange) {
+      var plLast = number % 10;
+      var plLastTwo = number % 100;
+      return number === 1 ? 'rok' : plLast >= 2 && plLast <= 4 && (plLastTwo < 12 || plLastTwo > 14) ? 'lata' : 'lat';
+    }
+    if (root === 'ru' && !isRange) {
+      var ruLast = number % 10;
+      var ruLastTwo = number % 100;
+      return ruLast === 1 && ruLastTwo !== 11 ? 'год' : ruLast >= 2 && ruLast <= 4 && (ruLastTwo < 12 || ruLastTwo > 14) ? 'года' : 'лет';
+    }
+  }
+
+  var plural = isPluralAgeSpan(normalizedValue);
+  var unitKey = unit === 'month' ? (plural ? 'months' : 'month') : plural ? 'years' : 'year';
+  return units[unitKey] || SIZE_UNIT_LABELS_BY_LOCALE.en[unitKey];
+}
+
+function formatLocalizedAge(value, unit) {
+  var units = getLocaleMap(SIZE_UNIT_LABELS_BY_LOCALE, 'en');
+  var normalizedValue = normalizeAgeSpan(value);
+  var unitLabel = getLocalizedAgeUnitLabel(normalizedValue, unit, units);
+  if (getLocaleRoot() === 'ar' && unit === 'year' && normalizedValue === '2') return unitLabel;
+  return normalizedValue + (units.joiner || ' ') + unitLabel;
+}
+
+function localizeSizeLabel(sizeLabel, roleKey) {
+  var text = sanitizeRoleSizeLabel(sizeLabel);
+  if (!text) return '';
+
+  var yearMatch = text.match(/^(\d+(?:\s*[–-]\s*\d+)?)\s*(?:years?|yrs?|yr|y|años?|anos?|ans?|jahre|jahr|anni|anno|jaar|år|lata|lat|ani|an|года|год|лет|سنة|سنوات|שנים|שנה|वर्ष|년|세|歳|才|岁|歲)?$/i);
+  if (yearMatch && (roleKey === 'child' || roleKey === 'girl' || roleKey === 'boy' || roleKey === 'baby')) {
+    return formatLocalizedAge(yearMatch[1], roleKey === 'baby' && /month|mes|mois|monat|mese|maand|mån|mies|חודש|شهر|ヶ月|개월/i.test(text) ? 'month' : 'year');
+  }
+
+  var monthMatch = text.match(/^(\d+(?:\s*[–-]\s*\d+)?)\s*(?:months?|mos?|mo|meses?|mois|monate|mesi|maanden|måneder|mnd|mies|شهر|أشهر|חודשים|חודש|महीने|か月|ヶ月|개월)$/i);
+  if (monthMatch) {
+    return formatLocalizedAge(monthMatch[1], 'month');
+  }
+
+  return text;
 }
 
 function findSizeOptionIndex(options) {
@@ -632,46 +918,43 @@ function buildRoleGroups(productData, currentOptionContext) {
       }
     }
 
-    var roleInfo = parseRoleFromSizeLabel(getOptionValue(variant, sizeOptionIndex));
-    if (!roleInfo) return;
+	    var roleInfo = getRoleInfoForVariant(variant, productData.options, sizeOptionIndex);
+	    if (!roleInfo) return;
+	    var typeValue = getTypeOptionValue(variant, productData.options, sizeOptionIndex);
+	    var groupKey = getRoleGroupKey(roleInfo, typeValue);
 
-    if (!roleGroups[roleInfo.key]) {
-      roleGroups[roleInfo.key] = {
-        key: roleInfo.key,
-        label: roleInfo.label,
-        helper: getRoleHelperLabel(variant, productData.options, sizeOptionIndex),
-        options: [],
-      };
-    }
+	    if (!roleGroups[groupKey]) {
+	      roleGroups[groupKey] = {
+	        key: groupKey,
+	        roleKey: roleInfo.key,
+	        label: roleInfo.label,
+	        helper: localizeTypeLabel(typeValue),
+	        helperRaw: typeValue,
+	        options: [],
+	      };
+	    }
 
-    roleGroups[roleInfo.key].options.push({
-      id: String(variant.id),
-      sizeLabel: roleInfo.sizeLabel,
-      fullLabel: roleInfo.fullLabel,
-      price: Number(variant.price) || 0,
-    });
+	    roleGroups[groupKey].options.push({
+	      id: String(variant.id),
+	      sizeLabel: localizeSizeLabel(roleInfo.sizeLabel, roleInfo.key),
+	      fullLabel: roleInfo.fullLabel,
+	      price: Number(variant.price) || 0,
+	    });
   });
 
   return Object.keys(roleGroups)
     .map(function (key) {
       return roleGroups[key];
     })
-    .sort(function (first, second) {
-      return getRoleOrder(first.key) - getRoleOrder(second.key);
-    });
+	    .sort(function (first, second) {
+	      var roleSort = getRoleOrder(first.roleKey || first.key) - getRoleOrder(second.roleKey || second.key);
+	      if (roleSort !== 0) return roleSort;
+	      return String(first.helperRaw || '').localeCompare(String(second.helperRaw || ''));
+	    });
 }
 
 function getRoleHelperLabel(variant, options, sizeOptionIndex) {
-  for (var optionIndex = 0; optionIndex < options.length; optionIndex += 1) {
-    if (optionIndex === sizeOptionIndex) continue;
-
-    var optionName = normalizeText(options[optionIndex].name);
-    if (!isTypeLikeLabel(optionName)) continue;
-
-    return String(getOptionValue(variant, optionIndex) || '').trim();
-  }
-
-  return '';
+  return localizeTypeLabel(getTypeOptionValue(variant, options, sizeOptionIndex));
 }
 
 function getMatchingSetSelections(builder) {
@@ -681,6 +964,11 @@ function getMatchingSetSelections(builder) {
     selections[select.getAttribute('data-role-select')] = String(select.value);
   });
   return selections;
+}
+
+function getMatchingSetOptionLabel(group, option) {
+  var parts = [group && group.label, group && group.helper, option && option.sizeLabel].filter(Boolean);
+  return parts.join(' ');
 }
 
 function initMatchingSetBuilder(wrapper, sectionId, productData) {
@@ -781,7 +1069,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
               '" data-price="' +
               escapeHtml(option.price) +
               '">' +
-              escapeHtml(group.label + ' ' + option.sizeLabel) +
+	              escapeHtml(getMatchingSetOptionLabel(group, option)) +
               '</option>'
             );
           })
@@ -818,10 +1106,17 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     var nextSelections = preservedSelections || {};
     if (!Object.keys(nextSelections).length) {
       var currentVariant = getCurrentVariant();
-      if (currentVariant && !getFirstMissingOption(variantSelects)) {
-        var currentRole = parseRoleFromSizeLabel(getOptionValue(currentVariant, findSizeOptionIndex(productData.options)));
-        if (currentRole) nextSelections[currentRole.key] = String(currentVariant.id);
-      }
+	      if (currentVariant && !getFirstMissingOption(variantSelects)) {
+	        var sizeIndex = findSizeOptionIndex(productData.options);
+	        var currentRole = getRoleInfoForVariant(currentVariant, productData.options, sizeIndex);
+	        if (currentRole) {
+	          var currentGroupKey = getRoleGroupKey(
+	            currentRole,
+	            getTypeOptionValue(currentVariant, productData.options, sizeIndex)
+	          );
+	          if (currentGroupKey) nextSelections[currentGroupKey] = String(currentVariant.id);
+	        }
+	      }
     }
 
     builder.querySelectorAll('[data-role-select]').forEach(function (select) {
