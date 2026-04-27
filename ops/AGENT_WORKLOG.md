@@ -22654,3 +22654,63 @@ Residual risks:
 - Baby 66/73/80/90 variant labels are live variants, but `shopify.size` product-level references skip those labels because no verified baby numeric size metaobject GIDs are available locally.
 - Father 4XL exists in the operator-supplied purchasable rows; garment measurements were extrapolated because the visible shirt measurement chart stops at 3XL.
 - Nursing Dress S-XL is included because the operator supplied purchasable rows; merchandising should decide whether it should stay in this family listing or split later.
+
+2026-04-27 — Shopify tag and collection taxonomy audit
+AGENT_CONTINUITY_ANCHOR: 2026-04-27-shopify-tag-collection-audit
+
+Why:
+- User requested a full Admin API audit of product tags, collection handles/titles, and existing product-type/marketing/margin taxonomy signals.
+
+What changed:
+- Added `ops/reports/shopify-tags-collections-2026-04-27.json` with the complete machine-readable audit.
+- The report includes all de-duplicated product tag counts, all collection handle/title product counts, inferred product type and marketing signal dimensions, and notes on queried metafields.
+
+Verification:
+- Used Shopify Admin GraphQL with operator-managed credentials from `~/.config/dresslikemommy/shopify-admin.env`.
+- Fetched 793 products, 1,047 exact unique tags, 1,040 case-fold de-duplicated returned tags, and 46 collections.
+- JSON validation passed with `python3 -m json.tool ops/reports/shopify-tags-collections-2026-04-27.json`.
+
+Residual risks:
+- The audit identifies dimensions by existing tag/collection/metafield naming only; it does not prove how every automated collection rule or external feed uses those labels.
+- No obvious margin/profit/tier/cost markup tags, collection handles/titles, or product metafield definitions were found.
+
+2026-04-27 — Applied marketing product dimension metafields
+AGENT_CONTINUITY_ANCHOR: 2026-04-27-marketing-dimension-metafields
+
+Why:
+- User approved applying the tag/collection-derived product dimension mapping to Shopify products as product metafields.
+
+What changed:
+- Created five product metafield definitions in namespace `marketing`:
+  - `marketing.margin_tier`
+  - `marketing.product_set_type`
+  - `marketing.best_seller`
+  - `marketing.seasonality`
+  - `marketing.price_tier`
+- Applied changed/blank product metafields through Shopify Admin GraphQL `metafieldsSet`.
+- Wrote the detailed product_id change log to `ops/reports/marketing-metafield-apply-2026-04-27.json`.
+
+Live write summary:
+- Updated 3,291 metafield values across 793 products.
+- Updated count by dimension:
+  - `product_set_type`: 793
+  - `best_seller`: 793
+  - `seasonality`: 793
+  - `price_tier`: 793
+  - `margin_tier`: 119
+- Skipped `margin_tier` for 674 products where margin was not safely inferable from Shopify unit cost data.
+- No Shopify API user errors or permission failures occurred.
+
+Verification:
+- JSON validation passed for `ops/reports/marketing-metafield-apply-2026-04-27.json`.
+- Shopify Admin GraphQL readback returned:
+  - `marketing.product_set_type`: 793 present (`set` 762, `single` 31)
+  - `marketing.best_seller`: 793 present (`true` 730, `false` 63)
+  - `marketing.seasonality`: 793 present (`summer` 581, `year-round` 104, `holiday` 108)
+  - `marketing.price_tier`: 793 present (`0-25` 670, `25-50` 117, `50+` 6)
+  - `marketing.margin_tier`: 119 present (`high` 106, `medium` 2, `low` 11), 674 missing intentionally
+
+Residual risks:
+- Writes likely changed product `updatedAt` timestamps and may have triggered Shopify Flow product-update workflows, webhooks, feed/app indexing, or search/index refreshes.
+- `best_seller` is broad because existing `best-sellers`/popular collections include most products.
+- `margin_tier` remains blank where no safe cost basis was available.
