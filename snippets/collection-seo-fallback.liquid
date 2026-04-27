@@ -414,7 +414,11 @@
 
   capture generated_body_description
     if body_description_key != blank
-      echo body_description_key | t: title: effective_display_title
+      capture translated_body_description
+        echo body_description_key | t: title: effective_display_title
+      endcapture
+      assign translated_body_description = translated_body_description | replace: '&lt;', '<' | replace: '&gt;', '>' | replace: '&quot;', '"' | replace: '&#39;', "'" | replace: '&amp;', '&'
+      echo translated_body_description
     elsif collection_handle == 'mommy-and-me'
       echo '<p>Shop our '
       echo effective_display_title | escape
