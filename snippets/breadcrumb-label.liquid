@@ -29,7 +29,7 @@
     when 'matching-outfits', 'family-matching', 'family-matching-outfits', 'new-women-outfits', 'popular-family-matching'
       assign resolved_label = 'sections.breadcrumbs.cat_family_matching' | t
     when 'dresses', 'mother-daughter-matching-dresses', 'formal-dresses', 'maxi-dresses', 'midi-dresses', 'mini-dresses', 'sundresses', 'jumpsuits', 'rompers', 'skirts', 'mommy-and-me-easter-dresses', 'easter-matching-outfits', 'spring-matching-outfits'
-      assign resolved_label = 'Dresses'
+      assign resolved_label = 'sections.breadcrumbs.label_dresses' | t
     when 'pajamas', 'family-pajamas', 'christmas-pajamas'
       assign resolved_label = 'sections.breadcrumbs.label_pajamas' | t
     when 'swimsuits', 'family-swimsuits'
@@ -43,19 +43,19 @@
     when 'family-sets', 'matching-family-vacation-outfits'
       assign resolved_label = 'sections.breadcrumbs.label_sets' | t
     when 'matching-hawaiian-outfits'
-      assign resolved_label = 'Hawaiian Outfits'
+      assign resolved_label = 'sections.breadcrumbs.label_hawaiian_outfits' | t
     when 'daddy-me-t-shirts', 'matching-couples-t-shirts'
       assign resolved_label = 'sections.breadcrumbs.label_tshirts' | t
     when 'daddy-me-shirts'
       assign resolved_label = 'sections.breadcrumbs.label_button_downs' | t
     when 'all', 'shop'
-      assign resolved_label = 'All'
+      assign resolved_label = 'sections.breadcrumbs.label_all' | t
     when 'new-arrivals'
-      assign resolved_label = 'New Arrivals'
+      assign resolved_label = 'sections.breadcrumbs.label_new_arrivals' | t
     when 'sale'
-      assign resolved_label = 'Sale'
+      assign resolved_label = 'sections.breadcrumbs.label_sale' | t
     when 'best-sellers', 'bestsellers'
-      assign resolved_label = 'Best Sellers'
+      assign resolved_label = 'sections.breadcrumbs.label_best_sellers' | t
   endcase
 
   echo resolved_label

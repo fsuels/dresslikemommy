@@ -4,6 +4,7 @@
       render 'collection-seo-fallback', collection: collection, field: 'display_title'
     endcapture
     assign collection_seo_display_title = collection_seo_display_title | strip
+    assign collection_seo_display_title_escaped = collection_seo_display_title | escape
 
     capture collection_seo_hero_summary
       render 'collection-seo-fallback', collection: collection, field: 'hero_summary'
@@ -38,17 +39,17 @@
       assign related_trunks_url = routes.collections_url | append: '/trunks'
       assign related_mommy_me_url = routes.collections_url | append: '/mommy-and-me'
 
-      assign faq_question_1 = 'What sizes do your matching swimsuits come in?'
-      assign faq_answer_1 = 'Sizing varies by style, so review the available variants and use the size chart on each product page before checkout. This collection covers coordinated swim options for moms and daughters, and some styles also connect you to broader family swim looks.'
+      assign faq_question_1 = 'sections.collection_seo.swimsuits.faq_question_1' | t
+      assign faq_answer_1 = 'sections.collection_seo.swimsuits.faq_answer_1' | t
 
-      assign faq_question_2 = 'Do you offer family sets for dad too?'
-      assign faq_answer_2 = 'Yes. If you want the full family look, shop the matching family swimsuits collection and the trunks collection to add coordinated pieces for dads and boys alongside the main mommy and me swim styles.'
+      assign faq_question_2 = 'sections.collection_seo.swimsuits.faq_question_2' | t
+      assign faq_answer_2 = 'sections.collection_seo.swimsuits.faq_answer_2' | t
 
-      assign faq_question_3 = 'What is the difference between mommy and me swimsuits and matching family swimwear?'
-      assign faq_answer_3 = 'Mommy and me swimsuits usually focus on mom-and-daughter pairings. Matching family swimwear expands that idea so you can build a coordinated look across more family members, including dad and boys when those styles are available.'
+      assign faq_question_3 = 'sections.collection_seo.swimsuits.faq_question_3' | t
+      assign faq_answer_3 = 'sections.collection_seo.swimsuits.faq_answer_3' | t
 
-      assign faq_question_4 = 'Where should I start if I want boys pieces too?'
-      assign faq_answer_4 = 'Start on this swimsuits page if you want the broadest swim assortment first, then use the related family swimsuits and trunks collections to narrow into full-family looks or dad-and-boy add-ons.'
+      assign faq_question_4 = 'sections.collection_seo.swimsuits.faq_question_4' | t
+      assign faq_answer_4 = 'sections.collection_seo.swimsuits.faq_answer_4' | t
     -%}
   {% endif %}
 
@@ -70,35 +71,35 @@
     <section class="collection-seo page-width section-{{ section.id }}-padding">
       <div class="collection-seo__panel color-{{ section.settings.color_scheme }} gradient">
         <div class="collection-seo__content">
-          <p class="collection-seo__eyebrow">Swimwear Guide</p>
-          <h2 class="collection-seo__title">Coordinated swimwear for moms, daughters, and full-family plans</h2>
+          <p class="collection-seo__eyebrow">{{ 'sections.collection_seo.swimsuits.eyebrow' | t }}</p>
+          <h2 class="collection-seo__title">{{ 'sections.collection_seo.swimsuits.title' | t }}</h2>
           <div class="collection-seo__copy">
-            <p>Start here when you want the broadest swim assortment first. This page brings together mom-and-daughter styles, matching family swimsuits, and vacation-ready options without sending you through multiple swim collections.</p>
-            <p>Once you know who needs to match, move into the dedicated family swimwear or trunks collections for a tighter edit. For sizing, the fastest path is always the product page and size chart on the style you like best.</p>
+            <p>{{ 'sections.collection_seo.swimsuits.copy_1' | t }}</p>
+            <p>{{ 'sections.collection_seo.swimsuits.copy_2' | t }}</p>
           </div>
         </div>
 
-        <aside class="collection-seo__aside" aria-label="Related swim collections">
-          <p class="collection-seo__aside-label">Explore related swim collections</p>
+        <aside class="collection-seo__aside" aria-label="{{ 'sections.collection_seo.swimsuits.related_aria' | t }}">
+          <p class="collection-seo__aside-label">{{ 'sections.collection_seo.swimsuits.related_label' | t }}</p>
           <a href="{{ related_family_swim_url }}" class="collection-seo__link-card">
-            <span class="collection-seo__link-title">Family Swimwear</span>
-            <span class="collection-seo__link-caption">Go straight to the full-family swim edit when everyone needs to coordinate.</span>
+            <span class="collection-seo__link-title">{{ 'sections.collection_seo.swimsuits.family_swimwear_title' | t }}</span>
+            <span class="collection-seo__link-caption">{{ 'sections.collection_seo.swimsuits.family_swimwear_caption' | t }}</span>
           </a>
           <a href="{{ related_trunks_url }}" class="collection-seo__link-card">
-            <span class="collection-seo__link-title">Matching Trunks</span>
-            <span class="collection-seo__link-caption">Add dad-and-boy swim pieces when you want a complete beach-day set.</span>
+            <span class="collection-seo__link-title">{{ 'sections.collection_seo.swimsuits.trunks_title' | t }}</span>
+            <span class="collection-seo__link-caption">{{ 'sections.collection_seo.swimsuits.trunks_caption' | t }}</span>
           </a>
           <a href="{{ related_mommy_me_url }}" class="collection-seo__link-card">
-            <span class="collection-seo__link-title">Mommy &amp; Me</span>
-            <span class="collection-seo__link-caption">Keep the coordinated look going beyond swimwear with matching outfits for other occasions.</span>
+            <span class="collection-seo__link-title">{{ 'sections.breadcrumbs.cat_mommy_me' | t }}</span>
+            <span class="collection-seo__link-caption">{{ 'sections.collection_seo.swimsuits.mommy_me_caption' | t }}</span>
           </a>
         </aside>
       </div>
 
       <div class="collection-seo__faq-card color-{{ section.settings.color_scheme }} gradient">
         <div class="collection-seo__faq-header">
-          <p class="collection-seo__eyebrow">Swimsuit FAQs</p>
-          <h2 class="collection-seo__faq-title">Quick answers before you order</h2>
+          <p class="collection-seo__eyebrow">{{ 'sections.collection_seo.swimsuits.faq_eyebrow' | t }}</p>
+          <h2 class="collection-seo__faq-title">{{ 'sections.collection_seo.swimsuits.faq_title' | t }}</h2>
         </div>
 
         <div class="collection-seo__faq-list">
@@ -111,7 +112,7 @@
                 {% render 'icon-caret' %}
               </summary>
               <div class="accordion__content rte">
-                <p>Sizing varies by style, so review the available variants and use the size chart on each product page before checkout. This collection covers coordinated swim options for moms and daughters, and some styles also connect you to broader family swim looks.</p>
+                <p>{{ faq_answer_1 }}</p>
               </div>
             </details>
           </div>
@@ -125,7 +126,7 @@
                 {% render 'icon-caret' %}
               </summary>
               <div class="accordion__content rte">
-                <p>Yes. If you want the full family look, shop the <a href="{{ related_family_swim_url }}">Matching Family Bathing Suits</a> collection and the <a href="{{ related_trunks_url }}">Trunks</a> collection to add coordinated pieces for dads and boys alongside the main mommy and me swim styles.</p>
+                <p>{{ 'sections.collection_seo.swimsuits.faq_answer_2_rich' | t: family_swim_url: related_family_swim_url, trunks_url: related_trunks_url }}</p>
               </div>
             </details>
           </div>
@@ -139,7 +140,7 @@
                 {% render 'icon-caret' %}
               </summary>
               <div class="accordion__content rte">
-                <p>Mommy and me swimsuits usually focus on mom-and-daughter pairings. Matching family swimwear expands that idea so you can build a coordinated look across more family members, including dad and boys when those styles are available.</p>
+                <p>{{ faq_answer_3 }}</p>
               </div>
             </details>
           </div>
@@ -153,7 +154,7 @@
                 {% render 'icon-caret' %}
               </summary>
               <div class="accordion__content rte">
-                <p>Start on this swimsuits page if you want the broadest swim assortment first, then use the <a href="{{ related_family_swim_url }}">Matching Family Bathing Suits</a> and <a href="{{ related_trunks_url }}">Trunks</a> collections to narrow into full-family looks or dad-and-boy add-ons.</p>
+                <p>{{ 'sections.collection_seo.swimsuits.faq_answer_4_rich' | t: family_swim_url: related_family_swim_url, trunks_url: related_trunks_url }}</p>
               </div>
             </details>
           </div>
@@ -217,8 +218,8 @@
     <section class="collection-seo-rich page-width page-width--narrow section-{{ section.id }}-padding">
       <div class="collection-seo-rich__panel rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
         <div class="collection-seo-rich__intro">
-          <p class="collection-seo-rich__eyebrow">Collection Note</p>
-          <h2>A closer look at {{ collection_seo_display_title | escape }}</h2>
+          <p class="collection-seo-rich__eyebrow">{{ 'sections.collection_seo.note_eyebrow' | t }}</p>
+          <h2>{{ 'sections.collection_seo.closer_look_at' | t: title: collection_seo_display_title_escaped }}</h2>
         </div>
         <div class="collection-seo-rich__copy">
           {{ collection_seo_body_description_render }}

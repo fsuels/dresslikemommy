@@ -174,7 +174,8 @@
         "from_price_html": "From {{ price }}",
         "regular_price": "Regular price",
         "sale_price": "Sale price",
-        "unit_price": "Unit price"
+        "unit_price": "Unit price",
+        "compare_at_price": "Compare at {{ price }}"
       },
       "share": "Share this product",
       "sold_out": "Sold out",
@@ -205,7 +206,17 @@
         "guide_and_fit": "Size guide & fit",
         "your_size_details": "Your size details",
         "compare_hint": "Open the full chart below to compare nearby sizes.",
-        "chart_units": "Size chart units"
+        "chart_units": "Size chart units",
+        "columns": {
+          "size": "Size",
+          "us_size": "US Size",
+          "bust_cm_in": "Bust (cm/in)",
+          "waist_cm_in": "Waist (cm/in)",
+          "hips_cm_in": "Hips (cm/in)",
+          "height_cm_in": "Height (cm/in)",
+          "weight_kg": "Weight (kg)",
+          "age": "Age"
+        }
       },
       "reviews": {
         "heading": "Customer reviews",
@@ -218,6 +229,16 @@
         "empty": "Be the first to write a review",
         "write_review": "Write a review",
         "write_review_title": "Write a Review"
+      },
+      "free_shipping_all_orders": "Free shipping on all orders",
+      "selected_size_label": "Size: {{ size }}",
+      "description_sections": {
+        "details_eyebrow": "Details",
+        "highlights_heading": "Why You'll Love It",
+        "size_chart_heading": "Size Chart",
+        "product_details_heading": "Product Details",
+        "size_chart_meta": "Measurements from the supplier source table",
+        "product_details_meta": "Structured product information"
       }
     },
     "modal": {
@@ -499,10 +520,255 @@
       "prefix_mommy_me": "Mommy and Me ",
       "prefix_matching": "Matching ",
       "prefix_daddy_me": "Daddy and Me ",
-      "prefix_family_matching": "Family Matching "
+      "prefix_family_matching": "Family Matching ",
+      "label_tees": "Tees",
+      "label_dresses": "Dresses",
+      "label_hawaiian_outfits": "Hawaiian Outfits",
+      "label_all": "All",
+      "label_new_arrivals": "New Arrivals",
+      "label_sale": "Sale",
+      "label_best_sellers": "Best Sellers",
+      "label_sweaters_short": "Sweaters"
     },
     "collection": {
       "swimsuits_override": "Swimsuits"
+    },
+    "collection_navigation": {
+      "collection_categories": "Collection categories",
+      "main_collections": "Main collections",
+      "within_mommy_me": "Within Mommy & Me",
+      "within_family_matching": "Within Family Matching",
+      "within_daddy_me": "Within Daddy & Me",
+      "within_couples": "Within Couples",
+      "within_maternity": "Within Maternity"
+    },
+    "collection_seo": {
+      "note_eyebrow": "Collection Note",
+      "closer_look_at": "A closer look at {{ title }}",
+      "display_titles": {
+        "all": "All Matching Outfits",
+        "swimsuits": "Family Matching Swimsuits",
+        "mommy_and_me": "Mommy and Me Outfits",
+        "dresses": "Mommy and Me Dresses",
+        "family_swimsuits": "Family Swimwear",
+        "family_sets": "Family Vacation Outfits",
+        "new_women_outfits": "Family Matching Outfits",
+        "family_matching": "Family Matching Outfits",
+        "daddy_me": "Daddy and Me Outfits",
+        "daddy_me_tshirts": "Daddy and Me Tees",
+        "daddy_me_shirts": "Dad and Son Shirts",
+        "couples": "Couples Matching Outfits",
+        "couples_tshirts": "Couples Matching Tees",
+        "spring_matching": "Mommy and Me Easter Dresses and Spring Matching Outfits",
+        "tops": "Matching Tops and Tees",
+        "pajamas": "Matching Family Pajamas",
+        "sweaters": "Matching Sweaters and Jackets",
+        "maxi_dresses": "Mommy and Me Maxi Dresses",
+        "jumpsuits": "Matching Jumpsuits",
+        "midi_dresses": "Mommy and Me Midi Dresses",
+        "mini_dresses": "Mommy and Me Mini Dresses",
+        "rompers": "Matching Rompers",
+        "sundresses": "Mommy and Me Sundresses",
+        "bottoms": "Matching Bottoms",
+        "skirts": "Matching Skirts",
+        "leggings": "Matching Leggings",
+        "pants": "Matching Pants",
+        "new_arrivals": "New Matching Outfit Arrivals",
+        "new_matching_outfits": "New Mommy and Me Outfits",
+        "maternity": "Maternity and Nursing Styles",
+        "best_sellers": "Best Sellers",
+        "popular_mommy_me": "Popular Mommy and Me",
+        "popular_family_matching": "Popular Family Matching Outfits",
+        "hawaiian_outfits": "Family Hawaiian Outfits",
+        "trunks": "Matching Swim Trunks",
+        "fall_winter": "Fall and Winter Matching Outfits",
+        "formal_dresses": "Matching Formal Dresses",
+        "family_sweaters": "Family Sweaters and Jackets",
+        "christmas_sweaters": "Christmas Matching Sweaters",
+        "christmas_tops": "Christmas Matching Tops",
+        "christmas_pajamas": "Christmas Matching Pajamas",
+        "valentines": "Valentine's Day Matching Outfits"
+      },
+      "meta_titles": {
+        "swimsuits": "Matching Family Swimsuits | Mom & Daughter",
+        "mommy_and_me": "Mommy and Me Outfits | Dresses, Swimsuits and Matching Sets",
+        "family_swimsuits": "Matching Family Bathing Suits | Family Swimwear",
+        "family_sets": "Matching Family Vacation Outfits | Beach and Travel Sets",
+        "family_matching": "Family Matching Outfits | Mommy and Me",
+        "new_women_outfits": "Family Matching Outfits | Dresses, Swimwear and Family Sets",
+        "dresses": "Mommy and Me Dresses | Mother Daughter",
+        "maxi_dresses": "Matching Maxi Dresses | Mom and Daughter",
+        "best_sellers": "Best-Selling Mommy and Me Outfits | Dresses, Swimsuits and More",
+        "daddy_me": "Daddy and Me Shirts, Tees and Matching Outfits",
+        "daddy_me_tshirts": "Daddy and Me Shirts | Matching Tees for Dads and Kids",
+        "daddy_me_shirts": "Dad and Son Matching Shirts | Button-Up, Dress and Hawaiian",
+        "couples": "Couples Matching Outfits | Coordinated Looks for Him and Her",
+        "couples_tshirts": "Couples Matching Shirts | Couple T-Shirts and Tees",
+        "spring_matching": "Mommy and Me Easter Dresses | Spring Matching Outfits"
+      },
+      "meta_descriptions": {
+        "all": "Shop all matching outfits in one place, including mommy and me, daddy and me, couples, and family sets. Comfortable styles with fast shipping.",
+        "mommy_and_me": "Shop mommy and me outfits, dresses, swimsuits, and matching sets for birthdays, family photos, vacations, and everyday twinning moments.",
+        "spring_matching": "Shop mommy and me Easter dresses and spring matching outfits for church, brunch, egg hunts, family photos, and other seasonal celebrations.",
+        "dresses": "Shop mommy and me dresses and mother daughter matching dresses for photos, parties, vacations, and polished everyday wear.",
+        "maxi_dresses": "Shop mommy and me maxi dresses and matching maxi dresses for photos, travel, celebrations, and easy polished everyday wear.",
+        "swimsuits": "Shop matching family swimsuits and mom and daughter matching swimsuits for beach trips, pool days, cruises, and coordinated summer photos.",
+        "family_swimsuits": "Shop matching family bathing suits and family swimwear for beach vacations, pool days, cruises, and coordinated summer photos.",
+        "family_sets": "Shop matching family vacation outfits and beach sets for cruises, resort trips, family photos, and coordinated summer travel looks.",
+        "new_women_outfits": "Shop Family Matching Outfits for dresses, swimwear, mommy and me looks, and travel-ready sets in one place, then narrow into the collection that fits your trip, season, or occasion.",
+        "family_matching": "Shop matching family outfits and mommy and me outfits for photos, vacations, holidays, and easy coordinated looks for every season.",
+        "daddy_me": "Shop daddy and me shirts, t-shirts, tees, and matching outfits for family photos, Father's Day, vacations, and easy everyday coordination.",
+        "daddy_me_tshirts": "Shop daddy and me shirts and matching tees for Father's Day, vacations, birthdays, photos, and easy everyday outfits for dads and kids.",
+        "daddy_me_shirts": "Shop dad and son matching shirts, including button-up, dress shirt, and Hawaiian styles for vacations, photos, parties, and polished family outfits.",
+        "couples": "Shop couples matching outfits with coordinated sets, tops, pajamas, and vacation-ready looks for date nights, gifts, trips, and everyday wear.",
+        "couples_tshirts": "Shop couples matching shirts and couple t-shirts for date nights, trips, concerts, holidays, gifts, and easy everyday coordinated looks."
+      },
+      "swimsuits": {
+        "eyebrow": "Swimwear Guide",
+        "title": "Coordinated swimwear for moms, daughters, and full-family plans",
+        "copy_1": "Start here when you want the broadest swim assortment first. This page brings together mom-and-daughter styles, matching family swimsuits, and vacation-ready options without sending you through multiple swim collections.",
+        "copy_2": "Once you know who needs to match, move into the dedicated family swimwear or trunks collections for a tighter edit. For sizing, the fastest path is always the product page and size chart on the style you like best.",
+        "related_aria": "Related swim collections",
+        "related_label": "Explore related swim collections",
+        "family_swimwear_title": "Family Swimwear",
+        "family_swimwear_caption": "Go straight to the full-family swim edit when everyone needs to coordinate.",
+        "trunks_title": "Matching Trunks",
+        "trunks_caption": "Add dad-and-boy swim pieces when you want a complete beach-day set.",
+        "mommy_me_caption": "Keep the coordinated look going beyond swimwear with matching outfits for other occasions.",
+        "faq_eyebrow": "Swimsuit FAQs",
+        "faq_title": "Quick answers before you order",
+        "faq_question_1": "What sizes do your matching swimsuits come in?",
+        "faq_answer_1": "Sizing varies by style, so review the available variants and use the size chart on each product page before checkout. This collection covers coordinated swim options for moms and daughters, and some styles also connect you to broader family swim looks.",
+        "faq_question_2": "Do you offer family sets for dad too?",
+        "faq_answer_2": "Yes. If you want the full family look, shop the matching family swimsuits collection and the trunks collection to add coordinated pieces for dads and boys alongside the main mommy and me swim styles.",
+        "faq_question_3": "What is the difference between mommy and me swimsuits and matching family swimwear?",
+        "faq_answer_3": "Mommy and me swimsuits usually focus on mom-and-daughter pairings. Matching family swimwear expands that idea so you can build a coordinated look across more family members, including dad and boys when those styles are available.",
+        "faq_question_4": "Where should I start if I want boys pieces too?",
+        "faq_answer_4": "Start on this swimsuits page if you want the broadest swim assortment first, then use the related family swimsuits and trunks collections to narrow into full-family looks or dad-and-boy add-ons.",
+        "faq_answer_2_rich": "Yes. If you want the full family look, shop the <a href=\"{{ family_swim_url }}\">Matching Family Bathing Suits</a> collection and the <a href=\"{{ trunks_url }}\">Trunks</a> collection to add coordinated pieces for dads and boys alongside the main mommy and me swim styles.",
+        "faq_answer_4_rich": "Start on this swimsuits page if you want the broadest swim assortment first, then use the <a href=\"{{ family_swim_url }}\">Matching Family Bathing Suits</a> and <a href=\"{{ trunks_url }}\">Trunks</a> collections to narrow into full-family looks or dad-and-boy add-ons."
+      },
+      "body": {
+        "mommy_and_me": "<p>Shop our {{ title }} for birthdays, family photos, vacations, and easy everyday twinning, with dresses, swimsuits, and matching sets all in one place.</p><p>Start with dresses for portraits and special occasions, move into swimsuits for beach and pool days, and use the broader outfit mix to build a matching wardrobe that works across seasons instead of only one event.</p>",
+        "spring_matching": "<p>Browse {{ title }} with pastel palettes, spring florals, and occasion-ready looks built for church, brunch, egg hunts, family photos, and other seasonal celebrations.</p><p>These styles are designed for shoppers who already know the moment they are dressing for and want matching outfits that feel polished, comfortable, and easy to wear again through the rest of spring.</p>",
+        "dresses": "<p>Browse {{ title }} for family photos, celebrations, and polished everyday moments. This edit keeps the strongest dress styles together in one place, with coordinated looks that feel pretty, wearable, and easy to shop.</p>",
+        "maxi_dresses": "<p>Browse {{ title }} for flowing matching styles that feel graceful, easy to wear, and ready for photos, travel, celebrations, and polished everyday moments.</p>",
+        "swimsuits": "<p>Browse {{ title }} for beach trips, pool days, cruises, and sunny family photos. This collection helps shoppers compare matching family swimsuits, mom and daughter matching swimsuits, and family matching bathing suits without jumping between separate swim categories.</p><p>Use this page as the broad swim hub first, then branch into the dedicated family swim collection or matching trunks when the whole family needs to coordinate around one print or color story.</p>",
+        "family_swimsuits": "<p>Discover {{ title }} for beach vacations, pool days, cruises, and summer photos. This is the clearest landing page for matching family bathing suits when moms, dads, girls, and boys all need to coordinate around one print, palette, or vacation-ready color story.</p><p>Use this page when the whole family wants matching swimwear first, then round out the look with trunks, cover-ups, and related mommy-and-me swim options for a fuller trip wardrobe.</p>",
+        "family_sets": "<p>Explore {{ title }} with coordinated looks designed for family vacations, beach trips, cruises, travel photos, and warm-weather outings. These sets help you create a clear family palette without forcing every person into the exact same piece.</p><p>Use this page for matching family vacation outfits and matching family beach outfits, then branch into broader family matching collections when you need more seasonal or non-travel-specific options.</p>",
+        "new_women_outfits": "<p>Explore {{ title }} as the broad Family Matching Outfits hub when you want to compare coordinated outfits before narrowing into a specific category. This page is meant to help shoppers move from a general browse into dresses, swimwear, vacation sets, mommy and me looks, or other matching styles without starting over.</p><p>Use the links below to jump into the collections that best fit the occasion, whether you are shopping for family photos, a trip, a seasonal refresh, or a more specific matching outfit style.</p>",
+        "family_matching": "<p>Browse {{ title }} for family photos, travel, birthdays, holidays, and easy everyday twinning. It is the best place to start when you want to compare coordinated looks across the family before narrowing into dresses, swimwear, or vacation sets.</p>",
+        "daddy_me": "<p>Explore {{ title }} for family photos, vacations, Father's Day gifts, and everyday coordination. This landing page is built around the strongest daddy-and-kid search intent, with matching tees, casual tops, and dressier shirt options all in one place.</p><p>Use this collection when you want broad coverage across daddy and me shirts, tees, and outfits, then narrow into button-up, Hawaiian, or t-shirt styles based on the occasion.</p>",
+        "daddy_me_tshirts": "<p>Shop {{ title }} when you want casual, giftable matching tops for dads and kids. This page is built around daddy and me shirts, matching tees, and easy everyday looks that work for Father's Day, birthdays, family trips, and quick photo moments.</p><p>Start here for slogan tees and easy graphic styles, then move into dress shirts or Hawaiian sets if the occasion calls for a sharper look or a more vacation-ready outfit.</p>",
+        "daddy_me_shirts": "<p>Browse {{ title }} for shoppers looking specifically for button-up, dress shirt, and Hawaiian-style father-son outfits. This collection focuses on collared looks that work for portraits, dinners, beach trips, weddings, and other polished occasions.</p><p>Compared with casual tees, these styles lean more structured and photo-ready, making them a stronger fit when you want matching outfits that still look elevated.</p>",
+        "couples": "<p>Explore {{ title }} for date nights, vacations, holiday gifting, engagement photos, and everyday coordination. This page is designed for shoppers who want more than one matching top and need a broader starting point for coordinated looks.</p><p>Start with easy tees or lounge sets, then build a more complete outfit around the trip, occasion, or photo moment you are shopping for.</p>",
+        "couples_tshirts": "<p>Browse {{ title }} for shoppers searching couples matching shirts, couple t shirts, and everyday coordinated tops. These styles work best when you want a casual, giftable look for trips, holidays, concerts, date nights, and photos.</p><p>Use this page for easy everyday matching, then step up to the broader couples collection if you want a fuller outfit built around more than tees alone.</p>"
+      },
+      "rich_parts": {
+        "new_women_outfits": {
+          "part_1": "<h2>Family Matching Outfits for family photos, trips, holidays, and everyday coordination</h2>",
+          "part_2": "<p>This is the broad Family Matching Outfits hub for shoppers who want to compare coordinated looks before narrowing into one specific style. It is built for family photos, vacations, holidays, seasonal updates, and easy everyday coordination when the shopper knows the general look but not the exact category yet.</p>",
+          "part_3": "<h3>What to shop first</h3>",
+          "part_4": "<ul><li>Start here when you want the broadest family matching page before choosing a narrower collection.</li><li>Use it to move from a general browse into dresses, swimwear, vacation sets, or mommy and me styles.</li><li>Jump to a more specific collection when the occasion is already clear and the shopper wants faster filtering.</li></ul>",
+          "part_5": "<p><a href=\"{{ dresses_url }}\">Shop mother daughter wedding guest dresses</a> when the dress is the centerpiece of the matching look.</p>",
+          "part_6": "<p><a href=\"{{ family_swimsuits_url }}\">Browse matching beach swimsuits</a> when the plan is centered on beach trips, pool days, and summer travel.</p>",
+          "part_7": "<p><a href=\"{{ family_sets_url }}\">Shop matching family vacation outfits</a> for resort stays, cruises, and coordinated travel days.</p>",
+          "part_8": "<p><a href=\"{{ daddy_me_shirts_url }}\">Shop daddy and me shirts</a> when the family needs a polished shirt-led match instead of dresses or swimwear.</p>",
+          "part_9": "<p><a href=\"{{ mommy_and_me_url }}\">See the broader Mommy and Me collection</a> when the coordination is mostly mom-and-daughter focused.</p>"
+        },
+        "family_matching": {
+          "part_1": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Collection Note</p><h2>A polished starting point for coordinated family looks</h2></div>",
+          "part_2": "<div class=\"collection-seo-rich__copy\"><p>This collection brings the strongest family styles together in one place, so it is easy to start broad and refine once the occasion is clear.</p><p>It works especially well for photos, holidays, travel, birthdays, and everyday matching that feels thoughtful rather than overdone.</p></div>",
+          "part_3": "<div class=\"collection-seo-rich__links\" aria-label=\"Related family collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Shop mother daughter wedding guest dresses</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Browse matching beach swimsuits</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Shop matching family vacation outfits</a><a class=\"collection-seo-rich__link\" href=\"{{ daddy_me_shirts_url }}\">Shop daddy and me shirts</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Explore the broader Mommy and Me collection</a></div>"
+        },
+        "dresses": {
+          "part_1": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Collection Note</p><h2>Dress-led styles for photos, celebrations, and everyday twinning</h2></div>",
+          "part_2": "<div class=\"collection-seo-rich__copy\"><p>This edit is built for the moments when the dress sets the tone. The focus is on silhouettes that feel polished on camera, comfortable to wear, and easy to reach for again after the event.</p><p>Start here when you already know you want a dress-led look, then branch into broader family collections if you need to coordinate beyond mom and daughter.</p></div>",
+          "part_3": "<div class=\"collection-seo-rich__links\" aria-label=\"Related dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Browse the Family Matching hub</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">See all Mommy and Me outfits</a></div>"
+        },
+        "maxi_dresses": {
+          "part_1": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Collection Note</p><h2>Flowing full-length dresses with an easy, polished feel</h2></div>",
+          "part_2": "<div class=\"collection-seo-rich__copy\"><p>Maxi dresses are a strong starting point when you want graceful movement, a little more coverage, and a silhouette that feels beautiful in photos without being overly formal.</p><p>This edit stays focused on the strongest long-length styles for moms and daughters, with options that work for vacations, church, celebrations, and warm-weather dressing that still feels relaxed.</p></div>",
+          "part_3": "<div class=\"collection-seo-rich__links\" aria-label=\"Related maxi dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Browse all dresses</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">See all mommy and me</a></div>"
+        },
+        "mommy_and_me": {
+          "part_1": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Collection Note</p><h2>The broad mommy-and-me edit for photos, travel, and everyday twinning</h2></div>",
+          "part_2": "<div class=\"collection-seo-rich__copy\"><p>This is the easiest place to start when you want coordinated styles for moms and daughters without deciding on one product type first.</p><p>Begin here for dresses, swimwear, and matching sets, then narrow into the category that best fits the occasion once you know the look you want.</p></div>",
+          "part_3": "<div class=\"collection-seo-rich__links\" aria-label=\"Related mommy and me collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Shop mother daughter wedding guest dresses</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Browse matching beach swimsuits</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">See matching family vacation outfits</a></div>"
+        },
+        "family_swimsuits": {
+          "part_1": "<h2>Matching family bathing suits for beach vacations, pool days, cruises, and coordinated summer photos</h2>",
+          "part_2": "<p>This page is built around the strongest family swim terms: matching family bathing suits, family matching swimsuits, and coordinated family swimwear for vacations and warm-weather photos. It works best when the whole family needs to match around one print or color story without piecing together separate swim categories one by one.</p>",
+          "part_3": "<h3>Why this page is different from a general swimwear collection</h3>",
+          "part_4": "<ul><li>It is centered on full-family coordination instead of only mom-and-daughter swim looks.</li><li>It speaks directly to vacation, cruise, and beach-photo intent where matching family bathing suits are the main goal.</li><li>It gives shoppers a cleaner route into family swim outfits before they branch into trunks or broader matching collections.</li></ul>",
+          "part_5": "<p><a href=\"{{ trunks_url }}\">Add matching trunks</a> when you need dad and boy swim pieces to complete the beach-day set.</p>",
+          "part_6": "<p><a href=\"{{ swimsuits_url }}\">See mom and daughter matching swimsuits</a> if the shopping intent is narrower than full-family coordination.</p>",
+          "part_7": "<p><a href=\"{{ mommy_and_me_url }}\">Browse Mommy and Me outfits</a> if the main need is mom-and-daughter coordination beyond swimwear.</p>",
+          "part_8": "<p><a href=\"{{ family_sets_url }}\">Shop family vacation outfits</a> when the coordinated look needs cover-up, travel, or beach-dinner support beyond the pool.</p>"
+        },
+        "family_sets": {
+          "part_1": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Collection Note</p><h2>Travel-ready outfits for beach days, cruises, and coordinated vacation plans</h2></div>",
+          "part_2": "<div class=\"collection-seo-rich__copy\"><p>This edit keeps the strongest warm-weather family looks together, so it is easy to shop by trip instead of starting from a broader year-round collection.</p><p>Use it when the vacation itself is the reason for shopping, then branch into swimwear or broader family categories if you need to build out the full plan.</p></div>",
+          "part_3": "<div class=\"collection-seo-rich__links\" aria-label=\"Related vacation collections\"><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Add matching beach swimsuits</a><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Browse the Family Matching hub</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Explore Mommy and Me outfits</a></div>"
+        },
+        "daddy_me": {
+          "part_1": "<h2>Daddy and me outfits built around shirts, tees, and easy photo-ready looks</h2>",
+          "part_2": "<p>Search demand around this category is concentrated on daddy and me shirts, daddy and me t shirts, daddy and me tees, and coordinated father-child outfits. This page is built to cover that full intent, from casual graphic tops to sharper collared looks that feel polished for portraits, vacations, and special events.</p>",
+          "part_3": "<h3>What shoppers usually want from this page</h3>",
+          "part_4": "<ul><li>Casual daddy and me tees for birthdays, gifts, theme trips, and everyday wear.</li><li>Collared or button-up shirt options that work for family photos, dinners, and dressier outings.</li><li>Warm-weather matching outfits that feel vacation-ready without looking costume-like.</li></ul>",
+          "part_5": "<h3>How to shop the collection faster</h3>",
+          "part_6": "<p>Start with tees if the goal is easy everyday coordination. If the occasion needs a cleaner, more polished finish, move into dress shirts, Hawaiian shirts, or other collared styles with more structure.</p>",
+          "part_7": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Shop daddy and me shirts</a> for casual matching tops and giftable everyday styles.</p>",
+          "part_8": "<p><a href=\"{{ daddy_me_shirts_url }}\">Shop daddy and me shirts for dressier occasions</a> for button-up, dress shirt, and Hawaiian looks built around higher-intent shirt searches.</p>",
+          "part_9": "<p><a href=\"{{ trunks_url }}\">Browse matching trunks</a> when the outfit needs a beach or pool-friendly add-on.</p>"
+        },
+        "daddy_me_tshirts": {
+          "part_1": "<h2>Daddy and me shirts and matching tees for casual, giftable coordination</h2>",
+          "part_2": "<p>This collection is aimed at shoppers looking for daddy and me shirts, daddy and me t shirts, daddy and me tees, and easy father-child tops that work beyond one photo moment. These styles are the fastest fit for everyday wear, birthdays, Father's Day gifts, theme parks, and laid-back travel days.</p>",
+          "part_3": "<h3>Why this page matters</h3>",
+          "part_4": "<ul><li>It narrows the daddy-and-kid category down to casual tops instead of mixing in every outfit type.</li><li>It aligns with high-intent searches around daddy and me shirts, daddy and me t shirts, and matching tees.</li><li>It gives shoppers a simpler path when they want a quick, giftable matching look.</li></ul>",
+          "part_5": "<p><a href=\"{{ daddy_me_url }}\">Return to the full Daddy and Me collection</a> if you want tees, trunks, and dressier shirt options in one place.</p>",
+          "part_6": "<p><a href=\"{{ daddy_me_shirts_url }}\">Need a sharper look?</a> Browse dad and son matching shirts for button-up, dress-shirt, and Hawaiian styles.</p>"
+        },
+        "daddy_me_shirts": {
+          "part_1": "<h2>Dad and son matching shirts for button-up, dress shirt, and Hawaiian searches</h2>",
+          "part_2": "<p>This landing page is built around the highest-intent shirt queries in the daddy cluster: dad and son matching button up shirts, dad and son matching dress shirts, and father son matching hawaiian shirts. It is designed for shoppers who want more structure, collars, and occasion-ready styling than a casual tee collection can offer.</p>",
+          "part_3": "<h3>Best occasions for these styles</h3>",
+          "part_4": "<ul><li>Family photos, holiday gatherings, weddings, church, and dinners where collared shirts look more polished.</li><li>Beach trips, cruises, and resort travel where Hawaiian shirts or short-sleeve button-ups fit the setting.</li><li>Birthday and Father's Day gifts when the matching look should feel elevated, not novelty-only.</li></ul>",
+          "part_5": "<h3>How this differs from daddy-and-me tees</h3>",
+          "part_6": "<p>Expect more woven fabrics, cleaner collars, and dressier silhouettes. If the goal is soft casual graphics or everyday tops, the tee collection is the better starting point.</p>",
+          "part_7": "<p><a href=\"{{ daddy_me_url }}\">Browse the full Daddy and Me collection</a> for broader outfit coverage across tees, trunks, and coordinated sets.</p>",
+          "part_8": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Shop daddy and me shirts</a> if you want a softer, more casual matching option.</p>"
+        },
+        "couples": {
+          "part_1": "<h2>Couples matching outfits for trips, date nights, holidays, and gifts</h2>",
+          "part_2": "<p>The broad couple keyword family goes beyond tees alone. This page is designed as the main landing page for couples matching outfits and coordinated looks that can include tops, loungewear, vacation pieces, and casual sets for him and her.</p>",
+          "part_3": "<h3>Popular shopping intents in this category</h3>",
+          "part_4": "<ul><li>Couples matching outfits for travel, weekend plans, and social photos.</li><li>Giftable his-and-hers looks for anniversaries, honeymoons, and holiday moments.</li><li>Easy coordinated outfits that keep color and print aligned without forcing an identical head-to-toe look.</li></ul>",
+          "part_5": "<h3>Where to start</h3>",
+          "part_6": "<p>If the goal is a casual everyday outfit, matching T-shirts are the quickest win. If the goal is a fuller coordinated look, start with the broader couples collection and work outward based on the trip, season, or occasion.</p>",
+          "part_7": "<p><a href=\"{{ couples_url }}\">Shop couple shirts and matching T-shirts</a> when you want an easy casual entry point into the category.</p>"
+        },
+        "couples_tshirts": {
+          "part_1": "<h2>Couples matching shirts and T-shirts for casual, giftable coordination</h2>",
+          "part_2": "<p>This collection targets shoppers looking for couples matching shirts, couple shirts, couple t shirts, and other matching tops that are easy to wear for date nights, trips, holidays, concerts, and everyday outfits. It is the best entry point when the shopper intent is clearly about tees first.</p>",
+          "part_3": "<h3>Why shoppers choose matching tees</h3>",
+          "part_4": "<ul><li>They are easy to gift for anniversaries, honeymoons, vacations, and themed outings.</li><li>They keep a coordinated look simple without requiring a full outfit purchase.</li><li>They work well for casual photos, travel days, and low-friction everyday wear.</li></ul>",
+          "part_5": "<h3>Looking for more than T-shirts?</h3>",
+          "part_6": "<p>Use the broader couples matching outfits page if you want a coordinated look that expands beyond tops into a more complete outfit story.</p>",
+          "part_7": "<p><a href=\"{{ couples_url }}\">Browse all couples matching outfits</a> for a broader mix of coordinated looks and occasions.</p>"
+        },
+        "spring_matching": {
+          "part_1": "<h2>Mommy and me Easter dresses and spring matching outfits for special occasions</h2>",
+          "part_2": "<p>This page is built for Easter and spring-intent searches where the shopper already knows the occasion. The focus is on pastel palettes, florals, lighter fabrics, and photo-ready silhouettes that work for church, brunch, egg hunts, family portraits, and other seasonal celebrations.</p>",
+          "part_3": "<h3>Best spring moments for matching outfits</h3>",
+          "part_4": "<ul><li>Easter Sunday, church, brunch, and family gatherings.</li><li>Spring family photos, garden parties, and Mother's Day season.</li><li>Travel, showers, and warm-weather events that still need a polished look.</li></ul>",
+          "part_5": "<h3>How to use this seasonal page</h3>",
+          "part_6": "<p>Start with Easter dresses if you need a specific event outfit, then use the same collection to find spring matching outfits that can work again after the holiday.</p>",
+          "part_7": "<p><a href=\"{{ mommy_and_me_url }}\">Browse the full Mommy and Me collection</a> if you want more year-round matching styles outside the Easter and spring window.</p>",
+          "part_8": "<p><a href=\"{{ dresses_url }}\">Shop matching dresses</a> for a broader dress-focused edit beyond seasonal spring styling.</p>"
+        }
+      }
     }
   },
   "localization": {

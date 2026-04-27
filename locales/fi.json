@@ -138,7 +138,8 @@
         "from_price_html": "Alkaen {{ price }}",
         "regular_price": "Normaalihinta",
         "sale_price": "Alennushinta",
-        "unit_price": "Yksikköhinta"
+        "unit_price": "Yksikköhinta",
+        "compare_at_price": "Vertaa {{ price }}"
       },
       "share": "Jaa tämä tuote",
       "sold_out": "Loppuunmyyty",
@@ -205,7 +206,17 @@
         "guide_and_fit": "Koko- ja istuvuusopas",
         "your_size_details": "Kokosi tiedot",
         "compare_hint": "Avaa koko taulukko alla ja vertaa lähellä olevia kokoja.",
-        "chart_units": "Kokotaulukon yksiköt"
+        "chart_units": "Kokotaulukon yksiköt",
+        "columns": {
+          "size": "Koko",
+          "us_size": "Yhdysvaltain koko",
+          "bust_cm_in": "Rinta (cm/in)",
+          "waist_cm_in": "Vyötärö (cm/in)",
+          "hips_cm_in": "Lonkat (cm/in)",
+          "height_cm_in": "Korkeus (cm/in)",
+          "weight_kg": "Paino (kg)",
+          "age": "Ikä"
+        }
       },
       "reviews": {
         "heading": "Asiakkaiden arvostelut",
@@ -218,6 +229,16 @@
         "empty": "Ole ensimmäinen, joka kirjoittaa arvostelun",
         "write_review": "Kirjoita arvostelu",
         "write_review_title": "Kirjoita arvostelu"
+      },
+      "free_shipping_all_orders": "Ilmainen toimitus kaikille tilauksille",
+      "selected_size_label": "Koko: {{ size }}",
+      "description_sections": {
+        "details_eyebrow": "Yksityiskohdat",
+        "highlights_heading": "Miksi tulet rakastamaan sitä",
+        "size_chart_heading": "Kokotaulukko",
+        "product_details_heading": "Tuotetiedot",
+        "size_chart_meta": "Mittaukset toimittajan lähdetaulukosta",
+        "product_details_meta": "Strukturoidut tuotetiedot"
       }
     },
     "modal": {
@@ -487,7 +508,15 @@
       "prefix_matching": "Vastaava",
       "prefix_daddy_me": "Isä ja minä",
       "prefix_family_matching": "Perheen yhteensopivuus",
-      "label_button_downs": "Painikkeet"
+      "label_button_downs": "Painikkeet",
+      "label_tees": "T-paidat",
+      "label_dresses": "Mekot",
+      "label_hawaiian_outfits": "Havaijilaiset asut",
+      "label_all": "Kaikki",
+      "label_new_arrivals": "Uusia tulokkaita",
+      "label_sale": "Myynti",
+      "label_best_sellers": "Parhaat myyjät",
+      "label_sweaters_short": "Neulepuserot"
     },
     "collection": {
       "swimsuits_override": "Uimapuvut"
@@ -503,6 +532,243 @@
       "browse_more_from": "Selaa lisää {{ collection }}:stä",
       "browse_similar_styles": "Selaa samanlaisia ​​tyylejä",
       "compare_collection_copy": "Käytä tätä kokoelmaa vertaillaksesi muutamia läheisiä osumia ennen kuin palaat ostoksille."
+    },
+    "collection_navigation": {
+      "collection_categories": "Kokoelman luokat",
+      "main_collections": "Pääkokoelmat",
+      "within_mommy_me": "Äidin ja minun sisällä",
+      "within_family_matching": "Family Matchingin sisällä",
+      "within_daddy_me": "Daddy & Me sisällä",
+      "within_couples": "Parien sisällä",
+      "within_maternity": "Äitiyden sisällä"
+    },
+    "collection_seo": {
+      "note_eyebrow": "Kokoelma Huomautus",
+      "closer_look_at": "Katso tarkemmin {{ title }}",
+      "display_titles": {
+        "all": "Kaikki yhteensopivat asut",
+        "swimsuits": "Family Matching Swimsuits",
+        "mommy_and_me": "Äiti ja minä -asut",
+        "dresses": "Äiti ja minä -mekot",
+        "family_swimsuits": "Perheen uima-asut",
+        "family_sets": "Perheen loma-asut",
+        "new_women_outfits": "Perheeseen sopivat asut",
+        "family_matching": "Perheeseen sopivat asut",
+        "daddy_me": "Isä ja minä -asut",
+        "daddy_me_tshirts": "Isä ja minä Tees",
+        "daddy_me_shirts": "Isä ja poika paidat",
+        "couples": "Pariskuntien yhteensopivia asuja",
+        "couples_tshirts": "Couples Matching T-paidat",
+        "spring_matching": "Äiti ja minä pääsiäismekot ja kevään yhteensopivia asuja",
+        "tops": "Yhteensopivia toppeja ja t-paitoja",
+        "pajamas": "Yhteensopiva perheen pyjama",
+        "sweaters": "Yhteensopivia neuleita ja takkeja",
+        "maxi_dresses": "Mommy and Me Maxi Dresses",
+        "jumpsuits": "Sopivat haalarit",
+        "midi_dresses": "Mommy and Me Midi Dresses",
+        "mini_dresses": "Mommy and Me Mini Dresses",
+        "rompers": "Yhteensopivia housuja",
+        "sundresses": "Äiti ja minä aurinkomekot",
+        "bottoms": "Vastaavat pohjat",
+        "skirts": "Yhteensopivia hameita",
+        "leggings": "Sopivat leggingsit",
+        "pants": "Sopivat housut",
+        "new_arrivals": "Uusia yhteensopivia asuja saapuu",
+        "new_matching_outfits": "Uudet äiti ja minä -asut",
+        "maternity": "Äitiys- ja hoitotyylit",
+        "best_sellers": "Parhaat myyjät",
+        "popular_mommy_me": "Suosittu äiti ja minä",
+        "popular_family_matching": "Suosittuja perheasuja",
+        "hawaiian_outfits": "Perheen havaijilaiset asut",
+        "trunks": "Sopivat uimahousut",
+        "fall_winter": "Syksyn ja talven yhteensopivia asuja",
+        "formal_dresses": "Sopivat juhlamekot",
+        "family_sweaters": "Perhepaidat ja takit",
+        "christmas_sweaters": "Jouluiset yhteensopivat neuleet",
+        "christmas_tops": "Jouluiset yhteensopivat topit",
+        "christmas_pajamas": "Jouluiset pyjamat",
+        "valentines": "Ystävänpäivän yhteensopivia asuja"
+      },
+      "meta_titles": {
+        "swimsuits": "Matching Family Swimsuits | Äiti & Tytär",
+        "mommy_and_me": "Äiti ja minä -asut | Dresses, Swimsuits and Matching Sets",
+        "family_swimsuits": "Matching Family Bathing Suits | Perheen uima-asut",
+        "family_sets": "Matching Family Vacation Outfits | Ranta- ja matkasetit",
+        "family_matching": "Family Matching Outfits | Äiti ja minä",
+        "new_women_outfits": "Perheeseen sopivat asut | Mekot, uima-asut ja perheasut",
+        "dresses": "Mommy and Me Mekot | Äiti Tytär",
+        "maxi_dresses": "Yhteensopivia Maxi Mekot | Äiti ja tytär",
+        "best_sellers": "Myydyimmät äiti ja minä -asut | Mekot, uimapuvut ja paljon muuta",
+        "daddy_me": "Daddy and Me Shirts, Tees and Matching Outfits",
+        "daddy_me_tshirts": "Daddy and Me Paidat | Sopivat t-paidat isille ja lapsille",
+        "daddy_me_shirts": "Isä ja poika Yhteensopivia paidat | Napit ylös, mekko ja havaijilainen",
+        "couples": "Pariskunnat Yhteensopivia asuja | Koordinoidut etsinnät hänelle ja hänelle",
+        "couples_tshirts": "Couples Matching Shirts | Parin T-paidat ja T-paidat",
+        "spring_matching": "Mommy and Me Easter Dresses | Kevään yhteensopivia asuja"
+      },
+      "meta_descriptions": {
+        "all": "Osta kaikki yhteensopivat asut yhdestä paikasta, mukaan lukien äiti ja minä, isä ja minä, pariskunnat ja perheasut. Mukavat mallit nopealla toimituksella.",
+        "mommy_and_me": "Osta äiti ja minä -asuja, mekkoja, uimapukuja ja vastaavia settejä syntymäpäiviä, perhekuvia, lomaa ja arjen ystävyyssuhteita varten.",
+        "spring_matching": "Osta äiti ja minä pääsiäispukuja ja kevään yhteensopivia asuja kirkkoon, brunssiin, munametsästykseen, perhekuviin ja muihin sesongin juhliin.",
+        "dresses": "Osta äiti ja minä -mekkoja ja äitityttären yhteensopivia mekkoja valokuviin, juhliin, lomiin ja kiillotettuun arkeen.",
+        "maxi_dresses": "Osta äiti ja minä -maximekot ja niihin sopivat maksimekot valokuviin, matkoihin, juhliin ja helposti kiillotettuun arkeen.",
+        "swimsuits": "Osta yhteensopivia perheuimapukuja sekä äidin ja tyttären uima-asuja rantamatkoille, uima-allaspäiville, risteilyille ja koordinoituihin kesäkuviin.",
+        "family_swimsuits": "Osta perheille sopivia uimapukuja ja uima-asuja rantalomalle, allaspäiville, risteilyille ja koordinoiduille kesäkuville.",
+        "family_sets": "Osta yhteensopivia perheen lomaasuja ja rantaasuja risteilyille, lomamatkoille, perhekuville ja koordinoiduille kesämatkoille.",
+        "new_women_outfits": "Osta perheen yhteensopivia asuja mekkoja, uimapukuja, äiti ja minä -asuja ja matkavalmiita settejä yhdestä paikasta ja kavenna sitten matkaasi, vuodenaikaasi tai tilaisuuksiin sopiva mallisto.",
+        "family_matching": "Osta yhteensopivia perheasuja sekä äiti ja minä -asuja valokuvia, lomaa, lomaa varten ja helposti yhteensovitettuja asuja jokaiseen vuodenaikaan.",
+        "daddy_me": "Osta isi ja minä -paitoja, t-paitoja, t-paitoja ja yhteensopivia asuja perhekuviin, isänpäivään, lomiin ja helppoon päivittäiseen koordinointiin.",
+        "daddy_me_tshirts": "Osta isä ja minä paitoja ja yhteensopivia t-paitoja isänpäivää, lomaa, syntymäpäivää varten, valokuvia ja helppoja arjen asuja isille ja lapsille.",
+        "daddy_me_shirts": "Osta isälle ja pojalle yhteensopivia paitoja, mukaan lukien napit, mekkopaita ja havaijilaisia ​​tyylejä lomille, valokuville, juhliin ja kiillotettuja perheasuja varten.",
+        "couples": "Osta pariskunnille yhteensopivia asukokonaisuuksia, toppeja, pyjamoja ja lomavalmiita asuja treffi-iltoja, lahjoja, matkoja ja arkea varten.",
+        "couples_tshirts": "Osta pariskunnille yhteensopivia paitoja ja pari-t-paitoja treffi-iltoja, matkoja, konsertteja, lomapäiviä, lahjoja ja helppoja arkipäiviä varten."
+      },
+      "swimsuits": {
+        "eyebrow": "Uimapukuopas",
+        "title": "Koordinoidut uima-asut äideille, tyttärille ja koko perheen suunnitelmille",
+        "copy_1": "Aloita tästä, kun haluat ensin laajimman uintivalikoiman. Tämä sivu kokoaa yhteen äiti ja tytär -tyylejä, yhteensopivia perheuimapukuja ja lomavalmiita vaihtoehtoja lähettämättä sinulle useita uimakokoelmia.",
+        "copy_2": "Kun tiedät, kenen on yhteensopiva, siirry perheiden uima-asu- tai -housumallistoihin tiukempaa muokkausta varten. Mitoituksessa nopein polku on aina tuotesivu ja kokotaulukko valitsemallasi tyylillä.",
+        "related_aria": "Aiheeseen liittyvät uintikokoelmat",
+        "related_label": "Tutustu aiheeseen liittyviin uintikokoelmiin",
+        "family_swimwear_title": "Perheen uima-asut",
+        "family_swimwear_caption": "Siirry suoraan koko perheen uintimuokkaukseen, kun kaikkien on koordinoitava.",
+        "trunks_title": "Vastaavat arkut",
+        "trunks_caption": "Lisää isän ja pojan uima-asuja, kun haluat täydellisen rantapäiväsetin.",
+        "mommy_me_caption": "Säilytä koordinoitu ulkoasu uimapukujen lisäksi yhteensopivilla asuilla muihin tilanteisiin.",
+        "faq_eyebrow": "Uimapukujen UKK",
+        "faq_title": "Nopeat vastaukset ennen tilaamista",
+        "faq_question_1": "Minkä kokoisia yhteensopivat uimapuvut ovat saatavilla?",
+        "faq_answer_1": "Koot vaihtelevat tyylin mukaan, joten tarkista saatavilla olevat versiot ja käytä kunkin tuotesivun kokotaulukkoa ennen kassalle siirtymistä. Tämä kokoelma kattaa koordinoidut uintivaihtoehdot äideille ja tyttäreille, ja jotkin tyylit yhdistävät sinut myös laajempaan perheuintiin.",
+        "faq_question_2": "Do you offer family sets for dad too?",
+        "faq_answer_2": "Kyllä. Jos haluat koko perheen ilmeen, osta yhteensopivia koko perheen uimapuku- ja arkkumallistoa ja lisää yhteensovitettuja kappaleita isille ja pojille tärkeimpien äiti ja minä -uintityylien rinnalle.",
+        "faq_question_3": "Mitä eroa on äiti ja minä -uimapuvuilla ja yhteensopivilla perheen uima-asuilla?",
+        "faq_answer_3": "Äiti ja minä -uimapuvut keskittyvät yleensä äiti-tytär-pareihin. Yhteensopiva perheuimapuku laajentaa tätä ideaa, jotta voit luoda koordinoidun ilmeen useammille perheenjäsenille, mukaan lukien isä ja pojat, kun nämä tyylit ovat saatavilla.",
+        "faq_question_4": "Mistä minun pitäisi aloittaa, jos haluan myös poikien kappaleita?",
+        "faq_answer_4": "Aloita tältä uimapukusivulta, jos haluat ensin laajimman uima-asun valikoiman, ja käytä sitten niihin liittyviä perheuimapuku- ja -housukokoelmia koko perheen ulkoasuihin tai isä ja poika -lisäosiksi.",
+        "faq_answer_2_rich": "Kyllä. Jos haluat koko perheen ilmeen, osta <a href=\"{{ family_swim_url }}\">Yhteensopivia koko perheen uimapukuja</a> kokoelma ja <a href=\"{{ trunks_url }}\">Rungot</a> kokoelma, joka lisää koordinoituja kappaleita isille ja pojille tärkeimpien äiti- ja minä-uintityylien rinnalle.",
+        "faq_answer_4_rich": "Aloita tältä uimapukusivulta, jos haluat ensin laajimman uima-asuntovalikoiman, ja käytä sitten <a href=\"{{ family_swim_url }}\">Yhteensopivia koko perheen uimapukuja</a> ja <a href=\"{{ trunks_url }}\">Rungot</a> kokoelmia koko perheen ulkoasuiksi tai isä ja poika -lisäosiksi."
+      },
+      "body": {
+        "mommy_and_me": "<p>Osta {{ title }} syntymäpäiviä, perhekuvia, lomaa ja helppoa jokapäiväistä ystävyyskuntaa varten, mekot, uimapuvut ja yhteensopivat setit yhdessä paikassa.</p><p>Aloita mekoilla muotokuviin ja erikoistilaisuuksiin, vaihda uimapukuihin ranta- ja allaspäiviä varten ja käytä laajempaa asukokonaisuutta rakentaaksesi yhteensopivan vaatekaapin, joka toimii eri vuodenaikoina yhden tapahtuman sijaan.</p>",
+        "spring_matching": "<p>Selaa {{ title }} pastellipaletteja, kevään kukkasia ja tilaisuuksiin sopivia ulkoasuja, jotka on rakennettu kirkkoon, brunssiin, munanmetsästykseen, perhekuviin ja muihin sesongin juhliin.</p><p>Nämä tyylit on suunniteltu ostajille, jotka tietävät jo pukeutumishetkensä ja haluavat yhteensopivia asuja, jotka tuntuvat kiillotetuilta, mukavilta ja helppokäyttöisiltä uudelleen loppukevään ajan.</p>",
+        "dresses": "<p>Selaa {{ title }} perhekuvia, juhlia ja hienoja arjen hetkiä. Tämä muokkaus pitää vahvimmat pukeutumistyylit yhdessä paikassa ja yhteensovitettuja ulkoasuja, jotka tuntuvat kauniilta, puettavilta ja helppoja tehdä ostoksia.</p>",
+        "maxi_dresses": "<p>Selaa {{ title }} ja etsi yhteensopivia tyylejä, jotka tuntuvat siroilta, helppokäyttöisiltä ja valmiina valokuviin, matkustamiseen, juhliin ja kiillotettuihin arjen hetkiin.</p>",
+        "swimsuits": "<p>Selaa {{ title }} rantamatkoja, uima-allaspäiviä, risteilyjä ja aurinkoisia perhekuvia. Tämä kokoelma auttaa ostajia vertailemaan yhteensopivia perheen uimapukuja, äidin ja tyttären yhteensopivia uimapukuja ja perheille sopivia uimapukuja ilman hyppäämistä eri uimaluokkien välillä.</p><p>Käytä tätä sivua ensin laajana uintikeskuksena ja haaraudu sitten perheuimakokoelmaan tai yhteensopiviin arkuihin, kun koko perhe tarvitsee koordinaatiota yhden printin tai värillisen tarinan ympärillä.</p>",
+        "family_swimsuits": "<p>Löydä {{ title }} rantalomille, allaspäiville, risteilyille ja kesäkuville. Tämä on selkein aloitussivu perheiden uimapukujen yhdistämiseen, kun äitien, isien, tyttöjen ja poikien on sovittava yhteen printin, paletin tai lomavalmiiden väritarinoiden ympärillä.</p><p>Käytä tätä sivua, kun koko perhe haluaa ensin yhteensopivia uimapukuja, ja täydennä sitten ulkoasua arkuilla, peitteillä ja niihin liittyvillä äiti ja minä -uintivaihtoehdoilla saadaksesi täydellisemmän matkavaatekaapin.</p>",
+        "family_sets": "<p>Tutustu {{ title }}-malliin koordinoidulla ulkoasulla, joka on suunniteltu perhelomille, rantamatkoille, risteilyille, matkakuville ja lämpimän sään retkille. Nämä setit auttavat luomaan selkeän perhepaletin pakottamatta kaikkia ihmisiä samaan kappaleeseen.</p><p>Käytä tätä sivua perheen loma-asujen ja perheiden rantaasujen yhdistämiseen ja haaroittele sitten laajempia perhekokoelmia, kun tarvitset enemmän kausiluonteisia tai ei-matkakohtaisia ​​vaihtoehtoja.</p>",
+        "new_women_outfits": "<p>Tutustu {{ title }}:ään laajana Family Matching Outfits -asukeskuksena, kun haluat verrata yhteensovitettuja asuja ennen kuin rajaat tiettyyn kategoriaan. Tämän sivun tarkoituksena on auttaa ostajia siirtymään yleisestä selaamisesta mekkojen, uimapukujen, loma-asujen, äiti ja minä -ulkoasun tai muiden yhteensopivien tyylien pariin aloittamatta alusta.</p><p>Käytä alla olevia linkkejä hypätäksesi tilaisuuteen parhaiten sopiviin kokoelmiin, olitpa sitten ostamassa perhekuvia, matkaa, sesongin virkistystä tai tarkempaa yhteensopivaa asutyyliä.</p>",
+        "family_matching": "<p>Selaa {{ title }} perhekuvia, matkoja, syntymäpäiviä, lomapäiviä ja helppoa jokapäiväistä ystävyyskuntatoimintaa. Se on paras paikka aloittaa, kun haluat verrata yhteensopivia ulkoasuja eri puolilla perhettä ennen kuin rajaat mekoihin, uima-asuihin tai loma-asuihin.</p>",
+        "daddy_me": "<p>Tutki {{ title }} perhekuvia, lomia, isänpäivälahjoja ja jokapäiväistä koordinaatiota varten. Tämä aloitussivu on rakennettu voimakkaimman isä ja lapsi -hakutarkoituksen ympärille, ja siinä on yhteensopivia t-paitaa, rentoja toppeja ja tyylikkäämpiä paitavaihtoehtoja yhdessä paikassa.</p><p>Käytä tätä kokoelmaa, kun haluat laajan kattavuuden isä ja minä -paidoissa, t-paidoissa ja asuissa, ja rajaa sitten nappi-, havaiji- tai t-paitatyylejä tilaisuuden mukaan.</p>",
+        "daddy_me_tshirts": "<p>Osta {{ title }}, kun haluat rentoja, lahjakkaita yhteensopivia toppeja isille ja lapsille. Tämä sivu on rakennettu isän ja minun paitojen, yhteensopivien t-paitojen ja helppojen arjen ulkoasun ympärille, jotka sopivat isänpäivään, syntymäpäiviin, perhematkoihin ja nopeisiin valokuvaushetkiin.</p><p>Aloita tästä slogan-t-paitojen ja helppojen graafisten tyylien parissa, ja siirry sitten mekkopaitoihin tai havaijilaisiin setteihin, jos tilaisuus vaatii terävämpää ilmettä tai enemmän loma-asua.</p>",
+        "daddy_me_shirts": "<p>Selaa {{ title }}:tä ostajille, jotka etsivät nimenomaan nappeja, mekkopaitaa ja havaijilaistyylisiä isä-poika-asuja. Tämä kokoelma keskittyy kauluksiin, jotka sopivat muotokuviin, illallisiin, rantamatkoihin, häihin ja muihin hienoihin tilaisuuksiin.</p><p>Verrattuna rentoihin t-paikkoihin nämä mallit ovat rakenteellisempia ja valokuvavalmiimpia, joten ne sopivat paremmin, kun haluat yhteensopivia asuja, jotka näyttävät edelleen korkealta.</p>",
+        "couples": "<p>Tutustu {{ title }}:iin treffi-iltojen, lomien, lomalahjojen, kihlakuvien ja arjen koordinointiin. Tämä sivu on suunniteltu ostajille, jotka haluavat useamman kuin yhden yhteensopivan topin ja tarvitsevat laajemman lähtökohdan koordinoidulle ulkoasulle.</p><p>Aloita helpoista t-paidoista tai lounge-setistä ja rakenna sitten täydellisempi asu matkan, tilaisuuden tai valokuvaushetken ympärille.</p>",
+        "couples_tshirts": "<p>Selaa {{ title }}-sivua ostajille, jotka etsivät pariskunnille sopivia paitoja, t-paitoja ja jokapäiväisiä yhteensopivia toppeja. Nämä tyylit toimivat parhaiten, kun haluat rennon ja lahjakkaan ulkoasun matkoille, lomille, konsertteille, treffi-iltoille ja valokuville.</p><p>Käytä tätä sivua helpottaaksesi päivittäistä yhteensovittamista ja siirry sitten laajempaan pariskuntamallistoon, jos haluat täydellisemmän asun, joka on rakennettu muuhun kuin t-paidiin.</p>"
+      },
+      "rich_parts": {
+        "new_women_outfits": {
+          "part_1": "<h2>Perheen yhteensopivat asut perhekuviin, matkoille, lomille ja jokapäiväiseen koordinointiin</h2>",
+          "part_2": "<p>Tämä on laaja Family Matching Outfits -keskitin ostajille, jotka haluavat verrata yhteensovitettuja ulkoasuja ennen kuin rajaavat yhteen tiettyyn tyyliin. Se on suunniteltu perhekuville, lomille, lomille, kausipäivityksille ja helppoon päivittäiseen koordinointiin, kun ostaja tietää yleisilmeen, mutta ei vielä tarkkaa luokkaa.</p>",
+          "part_3": "<h3>Mitä ostaa ensin</h3>",
+          "part_4": "<ul><li>Aloita tästä, kun haluat laajimman perhettä vastaavan sivun, ennen kuin valitset kapeamman kokoelman.</li><li>Käytä sitä siirtyäksesi yleisestä selaamisesta mekkojen, uimapukujen, loma-asujen tai äiti ja minä -tyyleihin.</li><li>Siirry tarkempaan kokoelmaan, kun tilaisuus on jo selvä ja ostaja haluaa nopeamman suodatuksen.</li></ul>",
+          "part_5": "<p><a href=\"{{ dresses_url }}\">Osta äidin tyttären häävieraspukuja</a> kun mekko on yhteensopivan lookin keskipiste.</p>",
+          "part_6": "<p><a href=\"{{ family_swimsuits_url }}\">Selaa yhteensopivia rantauimapukuja</a> kun suunnitelma keskittyy rantamatkoille, uima-allaspäiville ja kesämatkoille.</p>",
+          "part_7": "<p><a href=\"{{ family_sets_url }}\">Osta yhteensopivia perheen lomaasuja</a> lomakohteessa, risteilyillä ja koordinoiduilla matkapäivillä.</p>",
+          "part_8": "<p><a href=\"{{ daddy_me_shirts_url }}\">Osta isi ja minä paitoja</a> kun perhe tarvitsee kiillotettua paita-lehdistä tulitikkua mekkojen tai uimapukujen sijaan.</p>",
+          "part_9": "<p><a href=\"{{ mommy_and_me_url }}\">Katso laajempi Mommy and Me -kokoelma</a> kun koordinaatio keskittyy enimmäkseen äitiin ja tyttäreen.</p>"
+        },
+        "family_matching": {
+          "part_1": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Kokoelma Huomautus</p><h2>Hienostunut lähtökohta yhteensovitetulle perheilmeelle</h2></div>",
+          "part_2": "<div class=\"collection-seo-rich__copy\"><p>Tämä kokoelma kokoaa vahvimmat perhetyylit yhteen paikkaan, joten sitä on helppo aloittaa laajasti ja tarkentaa, kun tilaisuus on selvä.</p><p>Se toimii erityisen hyvin valokuvissa, lomilla, matkoilla, syntymäpäivillä ja jokapäiväisessä sovittelussa, joka tuntuu mieluummin harkitulta kuin liioitellulta.</p></div>",
+          "part_3": "<div class=\"collection-seo-rich__links\" aria-label=\"Related family collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Osta äidin tyttären häävieraspukuja</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Selaa yhteensopivia rantauimapukuja</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Osta yhteensopivia perheen lomaasuja</a><a class=\"collection-seo-rich__link\" href=\"{{ daddy_me_shirts_url }}\">Osta isi ja minä paitoja</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Tutustu laajempaan Mommy and Me -kokoelmaan</a></div>"
+        },
+        "dresses": {
+          "part_1": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Kokoelma Huomautus</p><h2>Pukeutumistyylit valokuviin, juhliin ja jokapäiväiseen ystävyyskuntatoimintaan</h2></div>",
+          "part_2": "<div class=\"collection-seo-rich__copy\"><p>Tämä muokkaus on rakennettu hetkiä varten, jolloin mekko antaa sävyn. Painopiste on siluetteissa, jotka tuntuvat kamerassa kiillotetuilta, mukavilta päällä ja helposti tavoitettavissa tapahtuman jälkeen.</p><p>Aloita tästä, kun tiedät jo haluavasi mekkovetoisen lookin, ja haara sitten laajempiin perhekokoelmiin, jos haluat koordinoida enemmän kuin äiti ja tytär.</p></div>",
+          "part_3": "<div class=\"collection-seo-rich__links\" aria-label=\"Related dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Selaa Family Matching -keskusta</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Katso kaikki Äiti ja minä -asut</a></div>"
+        },
+        "maxi_dresses": {
+          "part_1": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Kokoelma Huomautus</p><h2>Leveät täyspitkät mekot, joissa on helppo, kiillotettu tuntuma</h2></div>",
+          "part_2": "<div class=\"collection-seo-rich__copy\"><p>Maximekot ovat vahva lähtökohta, kun haluat siroa liikettä, hieman enemmän peittävyyttä ja siluettia, joka tuntuu kuvissa kauniilta ilman liiallista muodollisuutta.</p><p>Tämä muokkaus keskittyy vahvimpiin pitkäkestoisiin malleihin äideille ja tyttäreille, ja vaihtoehtoja, jotka sopivat lomiin, kirkkoon, juhliin ja lämpimän sään pukeutumiseen, joka tuntuu silti rentolta.</p></div>",
+          "part_3": "<div class=\"collection-seo-rich__links\" aria-label=\"Related maxi dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Selaa kaikkia mekkoja</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Näe kaikki äiti ja minä</a></div>"
+        },
+        "mommy_and_me": {
+          "part_1": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Kokoelma Huomautus</p><h2>Laaja äiti ja minä -muokkaus valokuviin, matkoihin ja jokapäiväiseen ystävyyskuntatoimintaan</h2></div>",
+          "part_2": "<div class=\"collection-seo-rich__copy\"><p>Tämä on helpoin paikka aloittaa, kun haluat koordinoidut tyylit äideille ja tyttärille ilman, että päätät ensin yhdestä tuotetyypistä.</p><p>Aloita tästä mekkojen, uima-asujen ja yhteensopivien sarjojen etsimisessä ja kavenna sitten tilaisuuteen parhaiten sopivaan kategoriaan, kun tiedät haluamasi lookin.</p></div>",
+          "part_3": "<div class=\"collection-seo-rich__links\" aria-label=\"Related mommy and me collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Osta äidin tyttären häävieraspukuja</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Selaa yhteensopivia rantauimapukuja</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Katso yhteensopivia perheen lomaasuja</a></div>"
+        },
+        "family_swimsuits": {
+          "part_1": "<h2>Perheen uimapuvut rantalomiin, uima-allaspäiviin, risteilyihin ja koordinoituihin kesäkuviin</h2>",
+          "part_2": "<p>Tämä sivu on rakennettu vahvimpien perheuintiehtojen ympärille: yhteensopivia perheen uimapukuja, perheille sopivia uimapukuja ja koordinoituja perheen uima-asuja lomalle ja lämpimän sään kuviin. Se toimii parhaiten, kun koko perheen on sovittava yhteen printti- tai väritarinaan yhdistämättä erillisiä uintiluokkia yksitellen.</p>",
+          "part_3": "<h3>Miksi tämä sivu eroaa yleisestä uimapukukokoelmasta</h3>",
+          "part_4": "<ul><li>Se keskittyy koko perheen koordinaatioon pelkän äidin ja tyttären välisen uinnin sijaan.</li><li>Se puhuu suoraan loma-, risteily- ja rantavalokuvausaiheista, joissa yhteensopivien perheiden uimapuvut ovat päätavoitteena.</li><li>Se antaa ostajille puhtaamman reitin perheen uima-asuihin ennen kuin ne haarautuvat arkkuihin tai laajempiin yhteensopiviin kokoelmiin.</li></ul>",
+          "part_5": "<p><a href=\"{{ trunks_url }}\">Lisää vastaavat arkut</a> kun tarvitset isän ja pojan uimapaloja täydentääksesi rantapäiväsetin.</p>",
+          "part_6": "<p><a href=\"{{ swimsuits_url }}\">Katso äidin ja tyttären yhteensopivat uimapuvut</a> jos ostoaikeet ovat suppeampia kuin koko perheen koordinointi.</p>",
+          "part_7": "<p><a href=\"{{ mommy_and_me_url }}\">Selaa Äiti ja minä -asuja</a> jos tärkein tarve on äidin ja tyttären välinen koordinaatio uimapukujen lisäksi.</p>",
+          "part_8": "<p><a href=\"{{ family_sets_url }}\">Osta perheen lomaasuja</a> kun koordinoitu ulkoasu tarvitsee peittämistä, matkustamista tai ranta-illallistukea uima-altaan ulkopuolella.</p>"
+        },
+        "family_sets": {
+          "part_1": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Kokoelma Huomautus</p><h2>Matkavalmiit asut rantapäiviin, risteilyihin ja koordinoituihin lomasuunnitelmiin</h2></div>",
+          "part_2": "<div class=\"collection-seo-rich__copy\"><p>Tämä muokkaus pitää vahvimmat lämpimän sään perheen ilmeet yhdessä, joten ostoksia on helppo tehdä matkalla sen sijaan, että aloittaisit laajemmasta ympärivuotisesta mallistosta.</p><p>Käytä sitä, kun loma itsessään on syy ostoksille, ja haaraudu sitten uima-asuihin tai laajempiin perhekategorioihin, jos haluat rakentaa koko suunnitelman.</p></div>",
+          "part_3": "<div class=\"collection-seo-rich__links\" aria-label=\"Related vacation collections\"><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Lisää yhteensopivat rantauimapuvut</a><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Selaa Family Matching -keskusta</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Tutustu äiti ja minä -asuihin</a></div>"
+        },
+        "daddy_me": {
+          "part_1": "<h2>Isä ja minä -asuja, jotka on rakennettu paitojen, t-paitojen ja helppokäyttöisten kuvien ympärille</h2>",
+          "part_2": "<p>Tämän kategorian hakukysyntä keskittyy isä ja minä -paitoihin, isä ja minä -t-paitoihin, isä ja minä -paitoja sekä koordinoituihin isä-lapsi-asuihin. Tämä sivu on suunniteltu kattamaan koko tarkoitus, rento graafisista yläosista terävämpiin kaulusnäköisiin, jotka tuntuvat muotokuviin, lomiin ja erikoistapahtumiin hienostuneelta.</p>",
+          "part_3": "<h3>Mitä ostajat yleensä haluavat tältä sivulta</h3>",
+          "part_4": "<ul><li>Rento isä ja minä t-paidat syntymäpäiville, lahjoille, teemamatkoille ja jokapäiväiseen käyttöön.</li><li>Kaulus- tai nappipaitavaihtoehtoja, jotka sopivat perhekuviin, illallisiin ja pukeutuneempiin retkiin.</li><li>Lämpimään keliin sopivat asut, jotka tuntuvat lomavalmiilta näyttämättä pukumaisilta.</li></ul>",
+          "part_5": "<h3>Kuinka ostaa kokoelma nopeammin</h3>",
+          "part_6": "<p>Aloita t-paidoista, jos tavoitteena on helppo arjen koordinointi. Jos tilaisuus kaipaa puhtaampaa, kiillotetumpaa viimeistelyä, vaihda mekkopaitoihin, havaijilaisiin paitoihin tai muihin kauluksiin, joissa on enemmän rakennetta.</p>",
+          "part_7": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Osta isi ja minä paitoja</a> rennon yhteensopiviin toppeihin ja lahjakkaisiin jokapäiväisiin tyyleihin.</p>",
+          "part_8": "<p><a href=\"{{ daddy_me_shirts_url }}\">Osta isi ja minä -paitoja tyylikkäämpiin tilaisuuksiin</a> napitettuihin, mekkopaidoihin ja havaijilaisiin ulkoasuihin, jotka rakentuvat tarkempien paitahakujen ympärille.</p>",
+          "part_9": "<p><a href=\"{{ trunks_url }}\">Selaa vastaavia arkuja</a> kun asu tarvitsee rannalle tai uima-altaalle sopivan lisäosan.</p>"
+        },
+        "daddy_me_tshirts": {
+          "part_1": "<h2>Isä ja minä -paidat ja yhteensopivat t-paidat rentoon, lahjakkaaseen koordinaatioon</h2>",
+          "part_2": "<p>Tämä mallisto on suunnattu ostajille, jotka etsivät isä ja minä -paitoja, isä ja minä -paitoja, isä ja minä -paitoja sekä helppoja isä-lapsi-toppeja, jotka toimivat yli yhden valokuvaushetken. Nämä tyylit sopivat nopeimmin jokapäiväiseen käyttöön, syntymäpäiviin, isänpäivälahjoihin, teemapuistoihin ja rennon matkapäiviin.</p>",
+          "part_3": "<h3>Miksi tällä sivulla on merkitystä</h3>",
+          "part_4": "<ul><li>Se kaventaa isä ja lapsi -kategorian rennon toppeihin sen sijaan, että se sekoittuisi kaikkiin asutyyppeihin.</li><li>Se sopii yhteen isä ja minä -paitojen, isä ja minä -t-paitojen ja vastaavien t-paitojen ympärillä tehtyjen korkea-aikeisten hakujen kanssa.</li><li>Se antaa ostajille yksinkertaisemman tien, kun he haluavat nopean, lahjakkaan yhteensopivan ilmeen.</li></ul>",
+          "part_5": "<p><a href=\"{{ daddy_me_url }}\">Palaa koko Daddy and Me -kokoelmaan</a> jos haluat t-paidat, arkut ja tyylikkäät paitavaihtoehdot yhdessä paikassa.</p>",
+          "part_6": "<p><a href=\"{{ daddy_me_shirts_url }}\">Tarvitsetko terävämmän ilmeen?</a> Selaa isän ja pojan yhteensopivia paitoja nappeilla, mekkopaidoilla ja havaijilaisilla tyyleillä.</p>"
+        },
+        "daddy_me_shirts": {
+          "part_1": "<h2>Isä ja poika sopivat paitoja nappeille, mekkopaidalle ja havaijilaisiin hakuihin</h2>",
+          "part_2": "<p>Tämä aloitussivu on rakennettu isäklusterin tärkeimpien paitahakujen ympärille: isä ja poika yhdistävät nappipaidat, isä ja poika sopivat mekkopaidat ja isä poika sopivat havaijilaisia ​​paitoja. Se on suunniteltu ostajille, jotka haluavat enemmän rakennetta, kauluksia ja tilaisuuksiin sopivaa muotoilua kuin rento teemallisto voi tarjota.</p>",
+          "part_3": "<h3>Parhaat tilaisuudet näille tyyleille</h3>",
+          "part_4": "<ul><li>Perhekuvat, juhlatapaamiset, häät, kirkko ja illalliset, joissa kauluspaidat näyttävät kiillotetuilta.</li><li>Rantamatkat, risteilyt ja lomamatkat, joissa havaijilaiset paidat tai lyhythihaiset napit sopivat ympäristöön.</li><li>Syntymäpäivä- ja isänpäivälahjat, joiden yhteensopivan ilmeen pitäisi tuntua ylemmältä, ei pelkästään uutuudelta.</li></ul>",
+          "part_5": "<h3>Kuinka tämä eroaa isä ja minä -paidoista</h3>",
+          "part_6": "<p>Odota enemmän kudottuja kankaita, puhtaampia kauluksia ja tyylikkäämpiä siluetteja. Jos tavoitteena on pehmeä rento grafiikka tai arkiset topit, teemallisto on parempi lähtökohta.</p>",
+          "part_7": "<p><a href=\"{{ daddy_me_url }}\">Selaa koko Daddy and Me -kokoelmaa</a> Laajempi asukokonaisuus T-paidoissa, -housuissa ja koordinoiduissa sarjoissa.</p>",
+          "part_8": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Osta isi ja minä paitoja</a> jos haluat pehmeämmän, rennomman sovitusvaihtoehdon.</p>"
+        },
+        "couples": {
+          "part_1": "<h2>Pariskunnat sopivat asuihin matkoille, treffi-iltoille, lomille ja lahjoille</h2>",
+          "part_2": "<p>Laaja pari-avainsanaperhe ulottuu pidemmälle kuin pelkät t-paidat. Tämä sivu on suunniteltu pääaloitussivuksi pariskunnille, jotka etsivät yhteensopivia asuja ja yhteensopivia ulkoasuja, jotka voivat sisältää toppeja, lounge-asuja, loma-asuja ja arkiasuja hänelle ja hänelle.</p>",
+          "part_3": "<h3>Suosittuja ostosaiheita tässä luokassa</h3>",
+          "part_4": "<ul><li>Pariskunnat sopivat asuihin matkoilla, viikonloppusuunnitelmilla ja sosiaalisilla kuvilla.</li><li>Lahjakkaat omat etsivät merkkipäiviä, häämatkaa ja lomahetkiä.</li><li>Helposti yhteensovitetut asut, jotka pitävät värit ja painatukset kohdakkain pakottamatta identtistä ilmettä päästä varpaisiin.</li></ul>",
+          "part_5": "<h3>Mistä aloittaa</h3>",
+          "part_6": "<p>Jos tavoitteena on rento arkiasu, yhteensopivat T-paidat ovat nopein voitto. Jos tavoitteena on täydellisempi koordinoitu ulkoasu, aloita laajemmasta pariskunnista ja siirry ulospäin matkan, vuodenajan tai tilaisuuden perusteella.</p>",
+          "part_7": "<p><a href=\"{{ couples_url }}\">Osta paripaitoja ja niihin sopivia T-paitoja</a> kun haluat helpon rennon sisäänpääsyn luokkaan.</p>"
+        },
+        "couples_tshirts": {
+          "part_1": "<h2>Parit, jotka sopivat yhteen paitojen ja T-paitojen kanssa rentoon ja lahjakkaaseen koordinaatioon</h2>",
+          "part_2": "<p>Tämä kokoelma on suunnattu ostajille, jotka etsivät pariskunnille yhteensopivia paitoja, paripaitoja, pari-t-paitoja ja muita yhteensopivia toppeja, joita on helppo käyttää treffi-iltoina, matkoilla, lomilla, konserteissa ja arjen asuissa. Se on paras lähtökohta, kun ostajan tarkoitus on selkeästi ensin t-paidat.</p>",
+          "part_3": "<h3>Miksi ostajat valitsevat yhteensopivat t-paidat?</h3>",
+          "part_4": "<ul><li>Ne on helppo antaa lahjaksi merkkipäiville, häämatkalle, lomalle ja teemaretkille.</li><li>Ne pitävät koordinoidun ulkonäön yksinkertaisena vaatimatta täydellistä asun ostoa.</li><li>Ne sopivat hyvin arkisiin kuviin, matkapäiviin ja vähäkitkaiseen arkikäyttöön.</li></ul>",
+          "part_5": "<h3>Etsitkö muutakin kuin T-paitoja?</h3>",
+          "part_6": "<p>Käytä laajempaa pariskunnille sopivaa asua -sivua, jos haluat koordinoidun lookin, joka laajenee toppeja pidemmälle täydellisemmäksi asutarinaksi.</p>",
+          "part_7": "<p><a href=\"{{ couples_url }}\">Selaa kaikkia pariskunnille sopivia asuja</a> laajempaan yhdistelmään koordinoituja ulkoasuja ja tilaisuuksia.</p>"
+        },
+        "spring_matching": {
+          "part_1": "<h2>Äiti ja minä pääsiäismekot ja kevään yhteensopivia asuja erikoistilaisuuksiin</h2>",
+          "part_2": "<p>Tämä sivu on tehty pääsiäis- ja keväthakuja varten, joissa ostaja tietää jo tilaisuuden. Painopiste on pastellipaletteissa, kukkakuvissa, kevyemmissä kankaissa ja valokuvavalmiissa siluetteissa, jotka sopivat kirkkoon, brunssiin, munametsästykseen, perhemuotokuviin ja muihin sesongin juhliin.</p>",
+          "part_3": "<h3>Kevään parhaita hetkiä yhteensopiviin asuihin</h3>",
+          "part_4": "<ul><li>Pääsiäissunnuntai, kirkko, brunssi ja perhejuhlat.</li><li>Kevään perhekuvia, puutarhajuhlia ja äitienpäivää.</li><li>Matkat, suihkut ja lämpimän sään tapahtumat, jotka vaativat vielä hienostuneen ilmeen.</li></ul>",
+          "part_5": "<h3>Kuinka käyttää tätä kausisivua</h3>",
+          "part_6": "<p>Aloita pääsiäismekoilla, jos tarvitset tietyn tapahtumaasun, ja käytä sitten samaa mallistoa löytääksesi kevääseen sopivat asut, jotka voivat toimia taas loman jälkeen.</p>",
+          "part_7": "<p><a href=\"{{ mommy_and_me_url }}\">Selaa koko Mommy and Me -kokoelmaa</a> jos haluat enemmän ympärivuotisia yhteensopivia tyylejä pääsiäisen ja kevään ikkunan ulkopuolelle.</p>",
+          "part_8": "<p><a href=\"{{ dresses_url }}\">Osta yhteensopivia mekkoja</a> Laajempaan pukeutumiseen keskittyvään muokkaukseen kuin sesongin kevättyyliin.</p>"
+        }
+      }
     }
   },
   "localization": {

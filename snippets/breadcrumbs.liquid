@@ -61,11 +61,11 @@
     {% elsif product_collection_handle_tokens contains '|matching-hawaiian-outfits|' or subcategory_handle == 'matching-hawaiian-outfits' %}
       {% assign subcategory_handle = 'matching-hawaiian-outfits' %}
       {% assign subcategory_collection = collections[subcategory_handle] %}
-      {% assign subcategory_display_label = 'Hawaiian Outfits' %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_hawaiian_outfits' | t %}
     {% elsif product_collection_handle_tokens contains '|matching-family-vacation-outfits|' or subcategory_handle == 'matching-family-vacation-outfits' %}
       {% assign subcategory_handle = 'matching-family-vacation-outfits' %}
       {% assign subcategory_collection = collections[subcategory_handle] %}
-      {% assign subcategory_display_label = 'Family Vacation Outfits' %}
+      {% assign subcategory_display_label = 'sections.collection_seo.display_titles.family_sets' | t %}
     {% endif %}
   {% endif %}
   {% assign family_sets_collection = collections['family-sets'] %}
