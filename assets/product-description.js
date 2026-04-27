@@ -3,6 +3,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!descriptions.length) return;
 
+  const getLocaleCopy = function () {
+    const copyMap = window.DLM_PRODUCT_PAGE_COPY;
+    if (!copyMap || typeof copyMap !== "object") return {};
+
+    const localeSource =
+      (window.Shopify && typeof window.Shopify.locale === "string" && window.Shopify.locale) ||
+      (document.documentElement && document.documentElement.lang) ||
+      "";
+    const locale = String(localeSource || "").replace("_", "-").toLowerCase();
+    const root = locale.split("-")[0];
+    const candidates = [locale];
+
+    if (root && root !== locale) candidates.push(root);
+    if (root === "pt") candidates.push("pt-BR", "pt-PT");
+    if (root === "ro") candidates.push("ro", "ro-RO");
+    if (root === "no") candidates.push("no", "nb");
+    candidates.push("en");
+
+    const keys = Object.keys(copyMap);
+    for (let index = 0; index < candidates.length; index += 1) {
+      const candidate = candidates[index];
+      const key = keys.find(function (mapKey) {
+        return mapKey.toLowerCase() === candidate.toLowerCase();
+      });
+      if (key && copyMap[key]) return copyMap[key];
+    }
+
+    return {};
+  };
+
+  const localeCopy = getLocaleCopy();
+  const copy = {
+    detailsEyebrow: localeCopy.description_details_eyebrow || "Details",
+    highlightsHeading: localeCopy.description_highlights_heading || "Why You'll Love It",
+    sizeChartHeading: localeCopy.description_size_chart_heading || "Size Chart",
+    productDetailsHeading: localeCopy.description_product_details_heading || "Product Details",
+    sizeChartMeta: localeCopy.description_size_chart_meta || "Measurements from the supplier source table",
+    productDetailsMeta: localeCopy.description_product_details_meta || "Structured product information",
+  };
+
   const getTextContent = function (element) {
     return String(element && element.textContent ? element.textContent : "")
       .replace(/\s+/g, " ")
@@ -239,12 +279,12 @@ document.addEventListener("DOMContentLoaded", function () {
     tableHeader.className = "product-copy__table-header";
     tableTitle.className = "product-copy__section-title";
     tableTitle.textContent = tableCard.classList.contains("product-copy__table-card--size-chart")
-      ? "Size Chart"
-      : "Product Details";
+      ? copy.sizeChartHeading
+      : copy.productDetailsHeading;
     tableMeta.className = "product-copy__section-meta";
     tableMeta.textContent = tableCard.classList.contains("product-copy__table-card--size-chart")
-      ? "Measurements from the supplier source table"
-      : "Structured product information";
+      ? copy.sizeChartMeta
+      : copy.productDetailsMeta;
 
     tableScroll.className = "product-copy__table-scroll";
     tableElement.classList.add("product-copy__table");
@@ -271,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (variantClass) heading.classList.add(variantClass);
 
     eyebrow.className = "product-copy__section-eyebrow";
-    eyebrow.textContent = "Details";
+    eyebrow.textContent = copy.detailsEyebrow;
 
     headingTitle.className = "product-copy__section-title";
     headingTitle.textContent = title;
@@ -311,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function () {
           paragraph.remove();
         });
 
-        ensureSectionHeading(list, "Why You'll Love It", "product-copy__section-heading--features");
+        ensureSectionHeading(list, copy.highlightsHeading, "product-copy__section-heading--features");
         highlightsAssigned = true;
       } else {
         pendingFeatureParagraphs.forEach(function (paragraph) {
@@ -361,7 +401,7 @@ document.addEventListener("DOMContentLoaded", function () {
           highlightsAssigned ? "product-copy__body-list" : "product-copy__highlights product-copy__feature-list"
         );
         if (!highlightsAssigned) {
-          ensureSectionHeading(child, "Why You'll Love It", "product-copy__section-heading--features");
+          ensureSectionHeading(child, copy.highlightsHeading, "product-copy__section-heading--features");
         }
         highlightsAssigned = true;
         return;

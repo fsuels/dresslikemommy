@@ -859,7 +859,7 @@
                 <!-- Free shipping inline badge -->
                 <div class="free-shipping-badge">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 18H3a1 1 0 01-1-1V7a1 1 0 011-1h10l4 4v7a1 1 0 01-1 1h-2"/><circle cx="7" cy="18" r="2"/><circle cx="15" cy="18" r="2"/><path d="M17 6h4l2 4v5h-2"/></svg>
-                  Free shipping on all orders
+                  {{ 'products.product.free_shipping_all_orders' | t }}
                 </div>
                 <div class="product__tax caption rte" style="display:none;">
                   {%- if cart.taxes_included -%}
@@ -1633,6 +1633,8 @@
       var chooseSizeLabel = {{ 'products.product.select_size' | t | json }};
       var chooseColorLabel = {{ 'products.product.select_color' | t | json }};
       var sizeRequiredMessageText = {{ 'products.product.size_required_message' | t | json }};
+      var compareAtPriceTemplate = {{ 'products.product.price.compare_at_price' | t: price: '__PRICE__' | json }};
+      var selectedSizeTemplate = {{ 'products.product.selected_size_label' | t: size: '__SIZE__' | json }};
 
       if (!atcBtn && productForm) atcBtn = productForm.querySelector('[name="add"]');
       if (!atcBtn || !stickyBtn) return;
@@ -1991,7 +1993,7 @@
         if (priceState.isOnSale && priceState.compareAtPrice && priceState.compareAtPrice !== priceState.currentPrice) {
           stickyPrice.setAttribute(
             'aria-label',
-            priceState.currentPrice + ', compare at ' + priceState.compareAtPrice
+            priceState.currentPrice + ', ' + compareAtPriceTemplate.replace('__PRICE__', priceState.compareAtPrice)
           );
           stickyPrice.title = priceState.compareAtPrice;
           return;
@@ -2020,7 +2022,7 @@
           var visibleSizeValues = currentSizeState.selectedSizeValues.map(function (value) {
             return formatter ? formatter(value) : value;
           });
-          stickySize.textContent = 'Size: ' + visibleSizeValues.join(' / ');
+          stickySize.textContent = selectedSizeTemplate.replace('__SIZE__', visibleSizeValues.join(' / '));
           stickySize.removeAttribute('hidden');
           return;
         }
