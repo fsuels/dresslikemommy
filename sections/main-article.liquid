@@ -30,10 +30,23 @@
             {{ block.shopify_attributes }}
           >
             {%- if blog.handle == 'news' -%}
-              <div class="article-template__hero-{{ block.settings.image_height }} article-template__hero-cover">
-                {% render 'article-editorial-cover', article: article, context: 'hero' %}
+              {%- capture article_fallback_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
+              {%- capture article_fallback_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
+              {%- capture article_fallback_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
+              {%- capture article_fallback_image_alt -%}{% render 'article-featured-image-fallback', article: article, field: 'alt' %}{%- endcapture -%}
+              <div class="article-template__hero-{{ block.settings.image_height }} media article-template__hero-fallback" itemprop="image">
+                {% comment %}theme-check-disable RemoteAsset{% endcomment %}
+                <img
+                  src="{{ article_fallback_image_url | strip }}"
+                  loading="eager"
+                  fetchpriority="high"
+                  width="{{ article_fallback_image_width | strip | default: 1200 }}"
+                  height="{{ article_fallback_image_height | strip | default: 1500 }}"
+                  alt="{{ article_fallback_image_alt | strip | default: article.title | escape }}"
+                >
+                {% comment %}theme-check-enable RemoteAsset{% endcomment %}
               </div>
-            {%- else -%}
+            {%- elsif article.image -%}
               <div
                 class="article-template__hero-{{ block.settings.image_height }} media"
                 itemprop="image"
@@ -252,18 +265,20 @@
         <h3 class="article-template__author-name" itemprop="author" itemscope itemtype="https://schema.org/Person">
           <span itemprop="name">{{ article.author }}</span>
         </h3>
-        <p class="article-template__author-bio">Family fashion editor at Dress Like Mommy. Mom of two, styling matching outfits for families since 2019. Passionate about helping parents create picture-perfect moments without breaking the bank.</p>
+        <p class="article-template__author-bio">Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.</p>
       </div>
     </div>
   </section>
 
   <section class="article-template__social-proof page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <div class="article-template__testimonial-card">
-      <p class="article-template__testimonial-label">What our customers say</p>
-      <blockquote class="article-template__testimonial-quote">
-        <p>"We get compliments every time we wear our matching outfits! The quality is amazing and they wash beautifully."</p>
-        <cite>- Sarah M., verified buyer</cite>
-      </blockquote>
+      <p class="article-template__testimonial-label">Shop the look</p>
+      <h2 class="article-template__testimonial-title">Ready to compare matching outfits?</h2>
+      <p class="article-template__testimonial-text">Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.</p>
+      <div class="article-template__testimonial-actions">
+        <a href="{{ routes.collections_url }}/mommy-and-me" class="button">Mommy &amp; Me</a>
+        <a href="{{ routes.collections_url }}/matching-outfits" class="button button--secondary">Family Matching</a>
+      </div>
     </div>
   </section>
 
@@ -543,13 +558,26 @@
   assign article_schema_image_width = blank
   assign article_schema_image_height = blank
 
-  if article.image
+  if blog.handle == 'news'
+    capture article_schema_image_url
+      render 'article-featured-image-fallback', article: article, field: 'url'
+    endcapture
+    capture article_schema_image_width
+      render 'article-featured-image-fallback', article: article, field: 'width'
+    endcapture
+    capture article_schema_image_height
+      render 'article-featured-image-fallback', article: article, field: 'height'
+    endcapture
+    assign article_schema_image_url = article_schema_image_url | strip
+    assign article_schema_image_width = article_schema_image_width | strip
+    assign article_schema_image_height = article_schema_image_height | strip
+  elsif article.image
     assign article_schema_image_url = article.image | image_url: width: 1920 | prepend: 'https:'
     assign article_schema_image_width = 1920
     assign article_schema_image_height = 1920 | divided_by: article.image.aspect_ratio | round
   endif
 -%}
-{%- unless article.image -%}
+{%- unless article.image or blog.handle == 'news' -%}
   {%- capture article_schema_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
   {%- capture article_schema_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
   {%- capture article_schema_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}

@@ -5,8 +5,14 @@
 
 .main-blog__header {
   display: grid;
+  gap: 2.4rem;
+  align-items: center;
+  padding: 2.4rem 0 1rem;
+}
+
+.main-blog__header-copy {
+  display: grid;
   gap: 1.2rem;
-  padding-bottom: 0.4rem;
 }
 
 .main-blog__eyebrow {
@@ -24,9 +30,23 @@
 }
 
 .main-blog__title {
-  margin: 0;
-  max-width: 12ch;
-  line-height: 0.96;
+  margin: 0 !important;
+  max-width: 72rem;
+  font-size: clamp(3.4rem, 6vw, 6.4rem) !important;
+  font-weight: var(--font-heading-weight) !important;
+  letter-spacing: 0 !important;
+  line-height: 1;
+  text-transform: none !important;
+  text-wrap: balance;
+}
+
+.main-blog .main-blog__title.title--primary {
+  margin: 0 !important;
+  font-size: clamp(3.4rem, 6vw, 6.4rem) !important;
+  font-weight: var(--font-heading-weight) !important;
+  letter-spacing: 0 !important;
+  line-height: 1 !important;
+  text-transform: none !important;
 }
 
 .main-blog__intro {
@@ -40,6 +60,22 @@
   margin: 0;
 }
 
+.main-blog__header-media {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.8rem;
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.main-blog__header-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% center;
+}
+
 .main-blog__spotlight {
   grid-column: 1 / -1;
 }
@@ -48,10 +84,25 @@
   display: grid;
   gap: 2rem;
   padding: 2.8rem 2.2rem;
-  border-radius: 3rem;
+  border-radius: 0.8rem;
   border: 0.1rem solid rgba(var(--color-foreground), 0.08);
-  background: linear-gradient(140deg, rgba(var(--color-background), 1) 0%, rgba(var(--color-foreground), 0.04) 100%);
-  box-shadow: 0 2rem 4.4rem rgba(var(--color-shadow), 0.06);
+  background: rgb(var(--color-background));
+  box-shadow: 0 1.4rem 3.4rem rgba(var(--color-shadow), 0.06);
+}
+
+.main-blog__spotlight-media {
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 0.8rem;
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.main-blog__spotlight-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
 }
 
 .main-blog__spotlight-copy {
@@ -92,9 +143,9 @@
   display: grid;
   overflow: hidden;
   border: 0.1rem solid rgba(var(--color-foreground), 0.08);
-  border-radius: 3rem;
+  border-radius: 0.8rem;
   background: rgb(var(--color-background));
-  box-shadow: 0 2.4rem 5rem rgba(var(--color-shadow), 0.08);
+  box-shadow: 0 1.6rem 3.8rem rgba(var(--color-shadow), 0.08);
 }
 
 .main-blog__featured-media {
@@ -106,6 +157,7 @@
 }
 
 .main-blog__featured-image {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -178,12 +230,13 @@
   }
 
   .main-blog__header {
+    grid-template-columns: minmax(0, 0.95fr) minmax(34rem, 0.8fr);
     padding-bottom: 0.8rem;
   }
 
   .main-blog__spotlight-card {
-    grid-template-columns: minmax(0, 1.35fr) auto;
-    align-items: end;
+    grid-template-columns: 18rem minmax(0, 1.35fr) auto;
+    align-items: center;
     padding: 3.2rem 3rem;
   }
 
@@ -239,8 +292,8 @@
 
 .main-blog__newsletter-card {
   padding: 3.2rem 2.4rem;
-  border-radius: 2.8rem;
-  background: linear-gradient(135deg, rgba(var(--color-foreground), 0.02) 0%, rgba(var(--color-foreground), 0.06) 100%);
+  border-radius: 0.8rem;
+  background: rgba(var(--color-foreground), 0.04);
   text-align: center;
 }
 
@@ -329,7 +382,7 @@
 .main-blog__about-card {
   padding: 3.2rem;
   border: 0.1rem solid rgba(var(--color-foreground), 0.08);
-  border-radius: 2rem;
+  border-radius: 0.8rem;
   background: rgba(var(--color-foreground), 0.02);
   text-align: center;
 }
@@ -353,33 +406,6 @@
   font-size: 1.5rem;
   line-height: 1.7;
   color: rgba(var(--color-foreground), 0.75);
-  max-width: 70rem;
-  margin: 0 auto 2.4rem;
-}
-
-.main-blog__about-stats {
-  display: flex;
-  justify-content: center;
-  gap: 4rem;
-  flex-wrap: wrap;
-}
-
-.main-blog__about-stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.main-blog__about-stat-number {
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: rgb(var(--color-foreground));
-}
-
-.main-blog__about-stat-label {
-  font-size: 1.2rem;
-  letter-spacing: 0.1rem;
-  text-transform: uppercase;
-  color: rgba(var(--color-foreground), 0.5);
+  max-width: 76rem;
+  margin: 0 auto;
 }

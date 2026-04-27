@@ -1,88 +1,104 @@
 {%- liquid
   assign article_source = article.title | append: ' ' | append: article.handle | downcase
-  assign image_key = 'FAMILY_RED'
+  assign image_key = 'FAMILY_MATCHING'
 
-  if article_source contains 'valentine' or article_source contains 'heart' or article_source contains 'love'
-    assign image_key = 'HEARTS_PINK'
-  elsif article_source contains 'christmas' or article_source contains 'holiday' or article_source contains 'pajama'
-    assign image_key = 'SWEATERS'
-  elsif article_source contains 'new year' or article_source contains 'winter' or article_source contains 'cold' or article_source contains 'cozy' or article_source contains 'january' or article_source contains 'december'
-    assign image_key = 'SWEATERS'
-  elsif article_source contains 'thanksgiving' or article_source contains 'november'
-    assign image_key = 'SWEATERS'
-  elsif article_source contains 'halloween' or article_source contains 'costume' or article_source contains 'october'
-    assign image_key = 'LIFESTYLE'
-  elsif article_source contains 'fall' or article_source contains 'autumn' or article_source contains 'apple' or article_source contains 'september'
-    assign image_key = 'SWEATERS'
-  elsif article_source contains 'easter'
-    assign image_key = 'EASTER_MOM'
-  elsif article_source contains 'mother' or article_source contains 'mothers day' or article_source contains 'mother s day' or article_source contains 'mom day'
-    assign image_key = 'EASTER_MOM'
+  if article_source contains 'swimsuit' or article_source contains 'swimwear' or article_source contains 'bathing suit' or article_source contains 'beach' or article_source contains 'pool'
+    assign image_key = 'SWIM'
+  elsif article_source contains 'vacation' or article_source contains 'cruise' or article_source contains 'resort' or article_source contains 'travel' or article_source contains 'summer' or article_source contains 'july' or article_source contains 'june' or article_source contains 'august'
+    assign image_key = 'VACATION'
+  elsif article_source contains 'daddy' or article_source contains 'father' or article_source contains 'dad'
+    assign image_key = 'DADDY'
+  elsif article_source contains 'valentine' or article_source contains 'heart' or article_source contains 'love' or article_source contains 'couple'
+    assign image_key = 'COUPLES'
+  elsif article_source contains 'christmas' or article_source contains 'holiday' or article_source contains 'pajama' or article_source contains 'winter' or article_source contains 'cold' or article_source contains 'cozy' or article_source contains 'january' or article_source contains 'december'
+    assign image_key = 'PAJAMAS'
+  elsif article_source contains 'easter' or article_source contains 'mother' or article_source contains 'mothers day' or article_source contains 'mother s day' or article_source contains 'mom day'
+    assign image_key = 'MOMMY'
   elsif article_source contains 'spring' or article_source contains 'floral' or article_source contains 'march' or article_source contains 'april'
-    assign image_key = 'GARDEN_FAMILY'
-  elsif article_source contains 'father' or article_source contains 'daddy' or article_source contains 'dad'
-    assign image_key = 'GARDEN_FAMILY'
+    assign image_key = 'MOMMY'
   elsif article_source contains '4th of july' or article_source contains 'fourth' or article_source contains 'patriotic' or article_source contains 'independence'
-    assign image_key = 'FAMILY_RED'
-  elsif article_source contains 'summer' or article_source contains 'beach' or article_source contains 'swim' or article_source contains 'vacation' or article_source contains 'july' or article_source contains 'june' or article_source contains 'august'
-    assign image_key = 'BEACH_DAD'
+    assign image_key = 'SWIM'
   elsif article_source contains 'school' or article_source contains 'back to'
-    assign image_key = 'EASTER_MOM'
-  elsif article_source contains 'dress' and article_source contains 'mommy'
-    assign image_key = 'PINK_DRESS'
+    assign image_key = 'MOMMY'
+  elsif article_source contains 'dress' or article_source contains 'mommy' or article_source contains 'mother daughter'
+    assign image_key = 'MOMMY'
   elsif article_source contains 'photo' or article_source contains 'portrait' or article_source contains 'picture'
-    assign image_key = 'FAMILY_GROUP'
-  elsif article_source contains 'budget' or article_source contains 'guide' or article_source contains 'complete' or article_source contains 'best' or article_source contains 'top' or article_source contains 'idea'
-    assign image_key = 'FAMILY_RED'
+    assign image_key = 'FAMILY_PHOTO'
   endif
 
-  assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/ChatGPT_Image_Mar_23_2026_03_06_20_AM.png'
-  assign image_width = 1024
-  assign image_height = 1536
+  assign image_asset = 'home-cat-family-matching.jpg'
+  assign image_width = 1200
+  assign image_height = 1500
   assign image_alt = article.title | default: 'Dress Like Mommy Style Journal article image'
 
   case image_key
-    when 'SWEATERS'
-      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/family-sweaters-1152x2048-fixed.png'
-      assign image_width = 1152
-      assign image_height = 2048
-    when 'EASTER_MOM'
-      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/mommy-me-easter-outfit-ideas-2026-hero.jpg'
-      assign image_width = 1318
-      assign image_height = 896
-    when 'FAMILY_RED'
-      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/ChatGPT_Image_Mar_23_2026_03_06_20_AM.png'
-      assign image_width = 1024
-      assign image_height = 1536
-    when 'GARDEN_FAMILY'
-      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/approve-image-1080x1920.png'
-      assign image_width = 1080
-      assign image_height = 1920
-    when 'PINK_DRESS'
-      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_44.png'
-      assign image_width = 756
-      assign image_height = 1344
-    when 'BEACH_DAD'
-      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_46.png'
-      assign image_width = 756
-      assign image_height = 1344
-    when 'SUMMER_PINK'
-      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_47.png'
-      assign image_width = 768
-      assign image_height = 1365
-    when 'HEARTS_PINK'
-      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_38.png'
-      assign image_width = 768
-      assign image_height = 1365
-    when 'LIFESTYLE'
-      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/fixed-size-1080x1920-from-upload.jpg'
-      assign image_width = 1080
-      assign image_height = 1920
-    when 'FAMILY_GROUP'
-      assign image_url = 'https://cdn.shopify.com/s/files/1/1557/1635/files/ChatGPT_Image_Mar_23_2026_02_48_47_AM.png'
-      assign image_width = 1024
-      assign image_height = 1536
+    when 'MOMMY'
+      assign image_asset = 'home-cat-mommy-and-me.jpg'
+      assign image_width = 1200
+      assign image_height = 1500
+    when 'DADDY'
+      assign image_asset = 'home-cat-daddy-and-me.jpg'
+      assign image_width = 1200
+      assign image_height = 1500
+    when 'SWIM'
+      assign image_asset = 'home-cat-swimsuits.jpg'
+      assign image_width = 1200
+      assign image_height = 1500
+    when 'VACATION'
+      assign image_asset = 'family-mega-menu-vacation-outfits.jpg'
+      assign image_width = 960
+      assign image_height = 1200
+    when 'PAJAMAS'
+      assign image_asset = 'home-cat-pajamas.jpg'
+      assign image_width = 1200
+      assign image_height = 1500
+    when 'COUPLES'
+      assign image_asset = 'home-promo-hawaiian-family.png'
+      assign image_width = 972
+      assign image_height = 1619
+    when 'FAMILY_PHOTO'
+      assign image_asset = 'home-cat-photo-days.png'
+      assign image_width = 1003
+      assign image_height = 1568
+    when 'FAMILY_MATCHING'
+      assign image_asset = 'home-cat-family-matching.jpg'
+      assign image_width = 1200
+      assign image_height = 1500
   endcase
+
+  assign image_url = image_asset | asset_url
+  assign image_url_origin = request.origin | default: shop.url
+  if image_url_origin == blank
+    assign image_origin_source = canonical_url | default: request.url | default: shop.url
+    if image_origin_source contains '://'
+      assign image_origin_protocol = image_origin_source | split: '://' | first
+      assign image_origin_without_protocol = image_origin_source | split: '://' | last
+      assign image_origin_host = image_origin_without_protocol | split: '/' | first
+      if image_origin_protocol != blank and image_origin_host != blank
+        assign image_url_origin = image_origin_protocol | append: '://' | append: image_origin_host
+      endif
+    endif
+  endif
+  if image_url_origin == blank and shop.permanent_domain != blank
+    assign image_url_origin = 'https://' | append: shop.permanent_domain
+  endif
+  if image_url_origin == blank and request.host != blank
+    assign image_url_origin = 'https://' | append: request.host
+  endif
+  assign image_url_prefix = image_url | slice: 0, 2
+  assign image_url_prefix_one = image_url | slice: 0, 1
+  if image_url contains '://'
+    assign image_url = image_url
+  elsif image_url_prefix == '//'
+    assign image_url = 'https:' | append: image_url
+  elsif image_url contains '/cdn/'
+    assign image_url = 'https://www.dresslikemommy.com' | append: image_url
+  elsif image_url_prefix_one == '/'
+    if image_url_origin == blank
+      assign image_url_origin = 'https://www.dresslikemommy.com'
+    endif
+    assign image_url = image_url_origin | append: image_url
+  endif
 
   case field
     when 'key'

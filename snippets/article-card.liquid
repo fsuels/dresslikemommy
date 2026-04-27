@@ -22,31 +22,73 @@
     assign article_title = article.title | escape
     assign article_excerpt = article.excerpt | strip_html
     assign article_image_alt = article.image.alt | default: article.title
-    assign use_editorial_cover = false
+    assign article_fallback_image_url = blank
+    assign article_fallback_image_width = blank
+    assign article_fallback_image_height = blank
+    assign article_fallback_image_alt = blank
+    assign render_article_media = false
+    assign prefer_article_fallback = false
+
+    if blog.handle == 'news'
+      assign prefer_article_fallback = true
+    endif
 
     if article_excerpt == blank
       assign article_excerpt = article.content | strip_html
     endif
 
-    if article.url contains '/blogs/news/'
-      assign use_editorial_cover = true
+    if show_image == true
+      if prefer_article_fallback or article.image == blank
+        capture article_fallback_image_url
+          render 'article-featured-image-fallback', article: article, field: 'url'
+        endcapture
+        capture article_fallback_image_width
+          render 'article-featured-image-fallback', article: article, field: 'width'
+        endcapture
+        capture article_fallback_image_height
+          render 'article-featured-image-fallback', article: article, field: 'height'
+        endcapture
+        capture article_fallback_image_alt
+          render 'article-featured-image-fallback', article: article, field: 'alt'
+        endcapture
+        assign article_fallback_image_url = article_fallback_image_url | strip
+        assign article_fallback_image_width = article_fallback_image_width | strip
+        assign article_fallback_image_height = article_fallback_image_height | strip
+        assign article_fallback_image_alt = article_fallback_image_alt | strip
+        if article_fallback_image_url != blank
+          assign render_article_media = true
+        endif
+      elsif article.image
+        assign render_article_media = true
+      endif
     endif
   -%}
   <div class="article-card-wrapper card-wrapper underline-links-hover">
     <article
-      class="card article-card{% if media_height and media_height != 'adapt' %} article-card__image--{{ media_height }}{% endif %}{% if article.image and show_image %} card--media{% else %} card--text{% endif %}"
+      class="card article-card{% if media_height and media_height != 'adapt' %} article-card__image--{{ media_height }}{% endif %}{% if render_article_media %} card--media{% else %} card--text{% endif %}"
       aria-labelledby="Article-{{ article.id }}"
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%; --article-card-media-ratio: {{ ratio }};"
     >
-      {%- if show_image == true and article.image or use_editorial_cover -%}
+      {%- if render_article_media -%}
         <div
           class="card__inner article-card__inner ratio"
           style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%; --article-card-media-ratio: {{ ratio }};"
         >
           <a href="{{ article.url }}" class="article-card__image-wrapper card__media">
-            {%- if use_editorial_cover -%}
-              {% render 'article-editorial-cover', article: article, context: 'card' %}
-            {%- else -%}
+            {%- if prefer_article_fallback and article_fallback_image_url != blank -%}
+              <div class="article-card__image article-card__image--fallback media media--hover-effect">
+                {% comment %}theme-check-disable RemoteAsset{% endcomment %}
+                <img
+                  src="{{ article_fallback_image_url }}"
+                  alt="{{ article_fallback_image_alt | default: article.title | escape }}"
+                  class="motion-reduce"
+                  loading="eager"
+                  width="{{ article_fallback_image_width | default: 1200 }}"
+                  height="{{ article_fallback_image_height | default: 1500 }}"
+                >
+                {% comment %}theme-check-enable RemoteAsset{% endcomment %}
+              </div>
+            {%- elsif article.image -%}
               <div class="article-card__image media media--hover-effect">
                 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
                 <img
@@ -70,6 +112,21 @@
                   height="{{ article.image.height }}"
                 >
                 {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+              </div>
+            {%- else -%}
+              <div class="article-card__image article-card__image--fallback media media--hover-effect">
+                {% comment %}theme-check-disable RemoteAsset{% endcomment %}
+                <img
+                  src="{{ article_fallback_image_url }}"
+                  alt="{{ article_fallback_image_alt | default: article.title | escape }}"
+                  class="motion-reduce"
+                  {% unless lazy_load == false %}
+                    loading="lazy"
+                  {% endunless %}
+                  width="{{ article_fallback_image_width | default: 1200 }}"
+                  height="{{ article_fallback_image_height | default: 1500 }}"
+                >
+                {% comment %}theme-check-enable RemoteAsset{% endcomment %}
               </div>
             {%- endif -%}
           </a>

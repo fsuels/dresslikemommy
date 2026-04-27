@@ -4,9 +4,14 @@
   assign cover_theme = 'neutral'
   assign cover_label = 'Family Style Guide'
   assign article_summary = article.excerpt | strip_html
+  assign image_loading = 'lazy'
 
   if article_summary == blank
     assign article_summary = article.content | strip_html
+  endif
+
+  if cover_context == 'featured' or cover_context == 'hero'
+    assign image_loading = 'eager'
   endif
 
   if article_handle contains 'swimsuit' or article_handle contains 'beach'
@@ -36,16 +41,34 @@
   endif
 -%}
 
+{%- capture cover_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
+{%- capture cover_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
+{%- capture cover_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
+{%- capture cover_image_alt -%}{% render 'article-featured-image-fallback', article: article, field: 'alt' %}{%- endcapture -%}
+
 <div class="article-editorial-cover article-editorial-cover--{{ cover_theme }} article-editorial-cover--{{ cover_context }}">
+  {% comment %}theme-check-disable RemoteAsset{% endcomment %}
+  <img
+    src="{{ cover_image_url | strip }}"
+    alt="{{ cover_image_alt | strip | escape }}"
+    class="article-editorial-cover__image"
+    width="{{ cover_image_width | strip }}"
+    height="{{ cover_image_height | strip }}"
+    loading="{{ image_loading }}"
+    decoding="async"
+  >
+  {% comment %}theme-check-enable RemoteAsset{% endcomment %}
   <div class="article-editorial-cover__top">
     <p class="article-editorial-cover__kicker">{{ cover_label }}</p>
     {%- if cover_context == 'hero' or cover_context == 'featured' -%}<p class="article-editorial-cover__brand">Dress Like Mommy</p>{%- endif -%}
   </div>
-  <div class="article-editorial-cover__body">
-    {%- if cover_context == 'hero' -%}<p class="article-editorial-cover__journal">Style Journal</p>{%- endif -%}
-    <p class="article-editorial-cover__title">{{ article.title | escape }}</p>
-    {%- if cover_context == 'hero' and article_summary != blank -%}
-      <p class="article-editorial-cover__summary">{{ article_summary | truncatewords: 26 }}</p>
-    {%- endif -%}
-  </div>
+  {%- if cover_context == 'hero' -%}
+    <div class="article-editorial-cover__body">
+      <p class="article-editorial-cover__journal">Style Journal</p>
+      <p class="article-editorial-cover__title">{{ article.title | escape }}</p>
+      {%- if article_summary != blank -%}
+        <p class="article-editorial-cover__summary">{{ article_summary | truncatewords: 26 }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
 </div>

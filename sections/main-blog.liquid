@@ -3,7 +3,7 @@
 {{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
 
 {%- capture default_blog_intro -%}
-  <p>Outfit guides, styling ideas, and practical shopping advice for mommy and me, daddy and me, and full family matching looks.</p>
+  <p>Practical shopping guides for mommy and me outfits, daddy and me shirts, family matching swimsuits, vacation looks, and photo-ready matching family outfits.</p>
 {%- endcapture -%}
 
 {%- liquid
@@ -49,28 +49,50 @@
   -%}
   <div class="main-blog page-width section-{{ section.id }}-padding">
     <header class="main-blog__header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {%- if display_eyebrow != blank -%}
-        <p class="main-blog__eyebrow">{{ display_eyebrow | escape }}</p>
-      {%- endif -%}
-      <div class="main-blog__heading-group">
-        <h1 class="main-blog__title title--primary">
-          {{ display_title | escape }}
-        </h1>
-        {%- if display_intro != blank -%}
-          <div class="main-blog__intro rte">
-            {{ display_intro }}
-          </div>
+      <div class="main-blog__header-copy">
+        {%- if display_eyebrow != blank -%}
+          <p class="main-blog__eyebrow">{{ display_eyebrow | escape }}</p>
         {%- endif -%}
+        <div class="main-blog__heading-group">
+          <h1 class="main-blog__title title--primary">
+            {{ display_title | escape }}
+          </h1>
+          {%- if display_intro != blank -%}
+            <div class="main-blog__intro rte">
+              {{ display_intro }}
+            </div>
+          {%- endif -%}
+        </div>
       </div>
+      {%- if blog.handle == 'news' -%}
+        <div class="main-blog__header-media" aria-hidden="true">
+          <img
+            src="{{ 'hero-family-boardwalk-premium.jpg' | asset_url }}"
+            alt=""
+            loading="eager"
+            width="2400"
+            height="1000"
+          >
+        </div>
+      {%- endif -%}
     </header>
 
     {%- if blog.handle == 'news' -%}
       <section class="main-blog__spotlight{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <div class="main-blog__spotlight-card">
+          <div class="main-blog__spotlight-media" aria-hidden="true">
+            <img
+              src="{{ 'home-cat-swimsuits.jpg' | asset_url }}"
+              alt=""
+              loading="lazy"
+              width="1200"
+              height="1500"
+            >
+          </div>
           <div class="main-blog__spotlight-copy">
-            <p class="main-blog__spotlight-eyebrow">Seasonal collection</p>
-            <h2 class="main-blog__spotlight-title">Planning a beach day or family trip?</h2>
-            <p class="main-blog__spotlight-text">Shop mommy and me swimsuits, mother daughter bathing suits, and matching family swimwear for pool days, vacations, cruises, and summer photos.</p>
+            <p class="main-blog__spotlight-eyebrow">Trending now</p>
+            <h2 class="main-blog__spotlight-title">Family swimwear that looks polished in photos</h2>
+            <p class="main-blog__spotlight-text">Use the swim guides to compare mother-daughter swimsuits, matching family bathing suits, and beach outfits before you shop.</p>
           </div>
           <div class="main-blog__spotlight-actions">
             <a href="{{ routes.collections_url }}/swimsuits" class="button">Shop swimsuits</a>
@@ -91,7 +113,21 @@
         {%- if section.settings.show_image -%}
           <a href="{{ featured_article.url }}" class="main-blog__featured-media">
             {%- if blog.handle == 'news' -%}
-              {% render 'article-editorial-cover', article: featured_article, context: 'featured' %}
+              {%- capture featured_fallback_image_url -%}{% render 'article-featured-image-fallback', article: featured_article, field: 'url' %}{%- endcapture -%}
+              {%- capture featured_fallback_image_width -%}{% render 'article-featured-image-fallback', article: featured_article, field: 'width' %}{%- endcapture -%}
+              {%- capture featured_fallback_image_height -%}{% render 'article-featured-image-fallback', article: featured_article, field: 'height' %}{%- endcapture -%}
+              {%- capture featured_fallback_image_alt -%}{% render 'article-featured-image-fallback', article: featured_article, field: 'alt' %}{%- endcapture -%}
+              {% comment %}theme-check-disable RemoteAsset{% endcomment %}
+              <img
+                src="{{ featured_fallback_image_url | strip }}"
+                alt="{{ featured_fallback_image_alt | strip | default: featured_article.title | escape }}"
+                class="main-blog__featured-image main-blog__featured-image--fallback"
+                loading="eager"
+                fetchpriority="high"
+                width="{{ featured_fallback_image_width | strip | default: 1200 }}"
+                height="{{ featured_fallback_image_height | strip | default: 1500 }}"
+              >
+              {% comment %}theme-check-enable RemoteAsset{% endcomment %}
             {%- elsif featured_article.image -%}
               {{
                 featured_article.image
@@ -144,6 +180,7 @@
           {% endif %}
         >
           {%- render 'article-card',
+            blog: blog,
             article: article,
             media_height: section.settings.image_height,
             media_aspect_ratio: article.image.aspect_ratio,
@@ -162,24 +199,10 @@
 
     <section class="main-blog__about{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <div class="main-blog__about-card">
-        <p class="main-blog__about-eyebrow">About the Style Journal</p>
-        <h2 class="main-blog__about-title">Real advice from real parents</h2>
+        <p class="main-blog__about-eyebrow">How to use the Style Journal</p>
+        <h2 class="main-blog__about-title">Find the guide, then shop the matching look</h2>
         <div class="main-blog__about-content">
-          <p>The Style Journal is written by our editorial team of parents who live and breathe family fashion. We test every outfit, research every trend, and share only what we would dress our own families in. Our guides are based on hands-on experience styling hundreds of matching family looks since 2019.</p>
-          <div class="main-blog__about-stats">
-            <div class="main-blog__about-stat">
-              <span class="main-blog__about-stat-number">500+</span>
-              <span class="main-blog__about-stat-label">Families styled</span>
-            </div>
-            <div class="main-blog__about-stat">
-              <span class="main-blog__about-stat-number">50+</span>
-              <span class="main-blog__about-stat-label">Styling guides</span>
-            </div>
-            <div class="main-blog__about-stat">
-              <span class="main-blog__about-stat-number">4.9/5</span>
-              <span class="main-blog__about-stat-label">Average rating</span>
-            </div>
-          </div>
+          <p>Every article is organized around a real shopping moment: family photos, beach vacations, Father's Day, Mother's Day, holidays, and everyday matching. Start with the guide that matches your occasion, then use the collection links to compare the pieces that fit.</p>
         </div>
       </div>
     </section>
