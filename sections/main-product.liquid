@@ -744,6 +744,10 @@
     }
   {%- endstyle -%}
 
+  <script>
+    window.DLM_PRODUCT_PAGE_COPY = {% render 'product-page-copy-map' %};
+  </script>
+
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-desktop-ux.js' | asset_url }}" defer="defer"></script>
@@ -859,7 +863,7 @@
                 <!-- Free shipping inline badge -->
                 <div class="free-shipping-badge">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 18H3a1 1 0 01-1-1V7a1 1 0 011-1h10l4 4v7a1 1 0 01-1 1h-2"/><circle cx="7" cy="18" r="2"/><circle cx="15" cy="18" r="2"/><path d="M17 6h4l2 4v5h-2"/></svg>
-                  {{ 'products.product.free_shipping_all_orders' | t }}
+                  Free shipping on all orders
                 </div>
                 <div class="product__tax caption rte" style="display:none;">
                   {%- if cart.taxes_included -%}
@@ -1633,11 +1637,43 @@
       var chooseSizeLabel = {{ 'products.product.select_size' | t | json }};
       var chooseColorLabel = {{ 'products.product.select_color' | t | json }};
       var sizeRequiredMessageText = {{ 'products.product.size_required_message' | t | json }};
-      var compareAtPriceTemplate = {{ 'products.product.price.compare_at_price' | t: price: '__PRICE__' | json }};
-      var selectedSizeTemplate = {{ 'products.product.selected_size_label' | t: size: '__SIZE__' | json }};
+      var compareAtPriceTemplate = getProductPageCopyValue('compare_at_price') || 'Compare at __PRICE__';
+      var selectedSizeTemplate = getProductPageCopyValue('selected_size_label') || 'Size: __SIZE__';
 
       if (!atcBtn && productForm) atcBtn = productForm.querySelector('[name="add"]');
       if (!atcBtn || !stickyBtn) return;
+
+      function getProductPageCopyValue(key) {
+        var copyMap = window.DLM_PRODUCT_PAGE_COPY;
+        if (!copyMap || typeof copyMap !== 'object') return '';
+
+        var locale = '';
+        if (window.Shopify && typeof window.Shopify.locale === 'string') {
+          locale = window.Shopify.locale;
+        } else if (document.documentElement && document.documentElement.lang) {
+          locale = document.documentElement.lang;
+        }
+
+        locale = String(locale || '').replace('_', '-').toLowerCase();
+        var root = locale.split('-')[0];
+        var candidates = [locale];
+        if (root && root !== locale) candidates.push(root);
+        if (root === 'pt') candidates.push('pt-BR', 'pt-PT');
+        if (root === 'ro') candidates.push('ro', 'ro-RO');
+        if (root === 'no') candidates.push('no', 'nb');
+        candidates.push('en');
+
+        var keys = Object.keys(copyMap);
+        for (var index = 0; index < candidates.length; index += 1) {
+          var candidate = candidates[index];
+          for (var keyIndex = 0; keyIndex < keys.length; keyIndex += 1) {
+            if (keys[keyIndex].toLowerCase() !== candidate.toLowerCase()) continue;
+            return copyMap[keys[keyIndex]] && copyMap[keys[keyIndex]][key] ? copyMap[keys[keyIndex]][key] : '';
+          }
+        }
+
+        return '';
+      }
 
       function getButtonLabel() {
         var labelNode = atcBtn.querySelector('span');
@@ -2185,10 +2221,6 @@
 {%- endif -%}
 
 <script>
-  window.DLM_PRODUCT_PAGE_COPY = {% render 'product-page-copy-map' %};
-</script>
-
-<script>
   (function () {
     function currentLocale() {
       var locale = '';
@@ -2250,6 +2282,7 @@
       'Est. Delivery': copy.estimated_delivery,
       'Want it faster? Spend $100+ and get': copy.faster_shipping_prefix,
       'FREE Premium Shipping': copy.free_premium_shipping,
+      'Free shipping on all orders': copy.free_shipping_all_orders,
       'Return Policy': copy.return_policy_title,
       'We gladly accept returns within 30 days of purchase.': copy.return_policy_line_1,
       'Items should be in their original condition and packaging to qualify for a full refund. Please note that buyers are responsible for return shipping costs.': copy.return_policy_line_2,
