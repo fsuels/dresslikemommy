@@ -210,11 +210,13 @@ function addBusinessDays(startDate, businessDays) {
 }
 
 function formatShortDate(date) {
-  var locale = document.documentElement.getAttribute('lang') || undefined;
+  var shopifyLocale = window.Shopify && window.Shopify.locale ? window.Shopify.locale : '';
+  var documentLocale = document.documentElement ? document.documentElement.lang || document.documentElement.getAttribute('lang') || '' : '';
+  var locale = shopifyLocale || documentLocale || navigator.language || 'en-US';
   try {
-    return new Intl.DateTimeFormat(locale, { month: 'short', day: 'numeric' }).format(date);
+    return new Intl.DateTimeFormat(locale, { month: 'long', day: 'numeric' }).format(date);
   } catch (_error) {
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
   }
 }
 

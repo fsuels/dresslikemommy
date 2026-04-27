@@ -531,7 +531,7 @@ customElements.define('cart-items', CartItems);
   function updateDeliveryDates() {
     const today = new Date();
     const deliveryDate = addBusinessDays(today, 10);
-    const options = { month: 'short', day: 'numeric' };
+    const options = { month: 'long', day: 'numeric' };
     const shopifyLocale = window.Shopify && window.Shopify.locale ? window.Shopify.locale : '';
     const documentLang =
       document.documentElement && typeof document.documentElement.getAttribute === 'function'
