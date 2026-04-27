@@ -97,18 +97,27 @@
     {%- if rich_content_prefix != blank and rich_content_parts > 0 -%}
       {%- for part_index in (1..rich_content_parts) -%}
         {%- assign rich_content_key = rich_content_prefix | append: part_index -%}
-        {{- rich_content_key | t:
-          dresses_url: dresses_url,
-          family_swimsuits_url: family_swimsuits_url,
-          family_sets_url: family_sets_url,
-          daddy_me_url: daddy_me_url,
-          daddy_me_tshirts_url: daddy_me_tshirts_url,
-          daddy_me_shirts_url: daddy_me_shirts_url,
-          matching_outfits_url: matching_outfits_url,
-          mommy_and_me_url: mommy_and_me_url,
-          trunks_url: trunks_url,
-          swimsuits_url: swimsuits_url,
-          couples_url: couples_url
+        {%- capture translated_rich_part -%}
+          {{- rich_content_key | t:
+            dresses_url: dresses_url,
+            family_swimsuits_url: family_swimsuits_url,
+            family_sets_url: family_sets_url,
+            daddy_me_url: daddy_me_url,
+            daddy_me_tshirts_url: daddy_me_tshirts_url,
+            daddy_me_shirts_url: daddy_me_shirts_url,
+            matching_outfits_url: matching_outfits_url,
+            mommy_and_me_url: mommy_and_me_url,
+            trunks_url: trunks_url,
+            swimsuits_url: swimsuits_url,
+            couples_url: couples_url
+          -}}
+        {%- endcapture -%}
+        {{- translated_rich_part
+          | replace: '&lt;', '<'
+          | replace: '&gt;', '>'
+          | replace: '&quot;', '"'
+          | replace: '&#39;', "'"
+          | replace: '&amp;', '&'
         -}}
       {%- endfor -%}
     {%- endif -%}
