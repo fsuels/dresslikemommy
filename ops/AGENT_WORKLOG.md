@@ -22714,3 +22714,44 @@ Residual risks:
 - Writes likely changed product `updatedAt` timestamps and may have triggered Shopify Flow product-update workflows, webhooks, feed/app indexing, or search/index refreshes.
 - `best_seller` is broad because existing `best-sellers`/popular collections include most products.
 - `margin_tier` remains blank where no safe cost basis was available.
+
+2026-04-27 — Synced Google custom labels from marketing metafields
+AGENT_CONTINUITY_ANCHOR: 2026-04-27-google-custom-label-writeback
+
+Why:
+- User needed the feed-facing `mm-google-shopping.custom_label_0..4` metafields to mirror the new `marketing.*` product metafields before building PMax filters.
+
+What changed:
+- Wrote Shopify product metafields so:
+  - `mm-google-shopping.custom_label_0` mirrors `marketing.margin_tier`
+  - `mm-google-shopping.custom_label_1` mirrors `marketing.product_set_type`
+  - `mm-google-shopping.custom_label_2` mirrors `marketing.best_seller`
+  - `mm-google-shopping.custom_label_3` mirrors `marketing.seasonality`
+  - `mm-google-shopping.custom_label_4` mirrors `marketing.price_tier`
+- Preserved blank margin tiers as blanks by deleting stale `custom_label_0` values where `marketing.margin_tier` is empty.
+- Wrote the detailed Shopify writeback/readback report to `ops/reports/google-custom-label-writeback-2026-04-27.json`.
+
+Live write summary:
+- Set 3,291 nonblank custom-label metafields:
+  - `product_set_type`: 793
+  - `best_seller`: 793
+  - `seasonality`: 793
+  - `price_tier`: 793
+  - `margin_tier`: 119
+- Deleted 87 stale `custom_label_0` values so blank margin tiers remain blank.
+- No Shopify API user errors or permission failures remained after the corrected delete retry.
+
+Verification:
+- Shopify Admin GraphQL readback covered 793 products and found 0 mismatches between `marketing.*` and `mm-google-shopping.custom_label_0..4`.
+- Product `7536696295521` read back as:
+  - `custom_label_0`: blank
+  - `custom_label_1`: `set`
+  - `custom_label_2`: `true`
+  - `custom_label_3`: `summer`
+  - `custom_label_4`: `25-50`
+- JSON validation passed for `ops/reports/google-custom-label-writeback-2026-04-27.json`.
+
+Residual risks:
+- Merchant Center Content API was not used; verification is Shopify-side only.
+- The `mm-google-shopping.custom_label_0..4` fields are unstructured Shopify product metafields without formal metafield definitions, but existing feed-facing fields were present and Shopify write/readback succeeded.
+- Feed app indexing, Merchant Center ingestion, Google product-list columns, Shopify Flow, webhooks, or product update timestamps may lag or trigger after these writes.
