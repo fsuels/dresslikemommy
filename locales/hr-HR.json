@@ -144,7 +144,8 @@
         "from_price_html": "Od {{ price }}",
         "regular_price": "Redovna cijena",
         "sale_price": "Prodajna cijena",
-        "unit_price": "Jedinična cijena"
+        "unit_price": "Jedinična cijena",
+        "compare_at_price": "Usporedi na {{ price }}"
       },
       "pickup_availability": {
         "view_store_info": "Prikaži informacije o trgovini",
@@ -200,7 +201,17 @@
         "guide_and_fit": "Vodič za veličinu i pristajanje",
         "your_size_details": "Podaci o vašoj veličini",
         "compare_hint": "Otvorite cijeli grafikon u nastavku da biste usporedili veličine u blizini.",
-        "chart_units": "Jedinice tablice veličina"
+        "chart_units": "Jedinice tablice veličina",
+        "columns": {
+          "size": "Veličina",
+          "us_size": "Američka veličina",
+          "bust_cm_in": "Poprsje (cm/in)",
+          "waist_cm_in": "Struk (cm/in)",
+          "hips_cm_in": "Bokovi (cm/in)",
+          "height_cm_in": "Visina (cm/in)",
+          "weight_kg": "Težina (kg)",
+          "age": "Dob"
+        }
       },
       "reviews": {
         "heading": "Recenzije kupaca",
@@ -213,6 +224,16 @@
         "empty": "Budite prvi koji će napisati recenziju",
         "write_review": "Napišite recenziju",
         "write_review_title": "Napišite recenziju"
+      },
+      "free_shipping_all_orders": "Besplatna dostava za sve narudžbe",
+      "selected_size_label": "Veličina: {{ size }}",
+      "description_sections": {
+        "details_eyebrow": "pojedinosti",
+        "highlights_heading": "Zašto će vam se svidjeti",
+        "size_chart_heading": "Tablica veličina",
+        "product_details_heading": "Pojedinosti o proizvodu",
+        "size_chart_meta": "Mjerenja iz izvorne tablice dobavljača",
+        "product_details_meta": "Strukturirane informacije o proizvodu"
       }
     },
     "modal": {
@@ -483,7 +504,274 @@
       "compare_collection_copy": "Upotrijebite ovu kolekciju za usporedbu nekoliko sličnih proizvoda prije nego što se vratite kupnji."
     },
     "breadcrumbs": {
-      "label_button_downs": "Gumbi za spuštanje"
+      "label_button_downs": "Gumbi za spuštanje",
+      "label_tees": "Majice",
+      "label_dresses": "Haljine",
+      "label_hawaiian_outfits": "Havajska odjeća",
+      "label_all": "Sve",
+      "label_new_arrivals": "Novi dolasci",
+      "label_sale": "Prodaja",
+      "label_best_sellers": "Najprodavanije",
+      "label_sweaters_short": "Džemperi",
+      "home": "Dom",
+      "cat_mommy_me": "Mama i ja",
+      "cat_daddy_me": "tata i ja",
+      "cat_couples": "Parovi",
+      "cat_maternity": "Majčinstvo",
+      "cat_family_matching": "Spajanje obitelji",
+      "label_swimsuits": "Kupaći kostimi",
+      "label_sets": "Setovi",
+      "label_tops": "Topovi",
+      "label_sweaters": "Džemperi i jakne",
+      "label_pajamas": "Pidžama",
+      "label_tshirts": "Majice kratkih rukava",
+      "label_trunks": "Debla",
+      "label_daddy_tshirts": "Majice kratkih rukava Tata i ja",
+      "prefix_mother_daughter": "Majka Kći ",
+      "prefix_mommy_me": "Mama i ja ",
+      "prefix_matching": "Podudaranje ",
+      "prefix_daddy_me": "tata i ja ",
+      "prefix_family_matching": "Spajanje obitelji "
+    },
+    "collection_navigation": {
+      "collection_categories": "Kategorije zbirke",
+      "main_collections": "Glavne zbirke",
+      "within_mommy_me": "Unutar mama i ja",
+      "within_family_matching": "Unutar Family Matchinga",
+      "within_daddy_me": "Unutar Tata i ja",
+      "within_couples": "Unutar Parova",
+      "within_maternity": "U okviru rodilišta"
+    },
+    "collection_seo": {
+      "note_eyebrow": "Napomena zbirke",
+      "closer_look_at": "Pogled izbliza na {{ title }}",
+      "display_titles": {
+        "all": "Sva odgovarajuća odjeća",
+        "swimsuits": "Obiteljski odgovarajući kupaći kostimi",
+        "mommy_and_me": "Mama i ja odjeća",
+        "dresses": "Haljine mama i ja",
+        "family_swimsuits": "Obiteljski kupaći kostimi",
+        "family_sets": "Odjeća za obiteljski odmor",
+        "new_women_outfits": "Obiteljska odgovarajuća odjeća",
+        "family_matching": "Obiteljska odgovarajuća odjeća",
+        "daddy_me": "Odjeća za tatu i mene",
+        "daddy_me_tshirts": "Tata i ja majice",
+        "daddy_me_shirts": "Košulje za tatu i sina",
+        "couples": "Odijelo za parove",
+        "couples_tshirts": "Majice za parove",
+        "spring_matching": "Uskrsne haljine Mama i ja i odgovarajuća proljetna odjeća",
+        "tops": "Odgovarajuće majice i majice",
+        "pajamas": "Odgovarajuća obiteljska pidžama",
+        "sweaters": "Odgovarajući džemperi i jakne",
+        "maxi_dresses": "Maxi haljine Mama i ja",
+        "jumpsuits": "Odgovarajući kombinezoni",
+        "midi_dresses": "Midi haljine mama i ja",
+        "mini_dresses": "Mini haljine mama i ja",
+        "rompers": "Odgovarajuće hlače",
+        "sundresses": "Sarafani mama i ja",
+        "bottoms": "Odgovarajuće dno",
+        "skirts": "Odgovarajuće suknje",
+        "leggings": "Odgovarajuće tajice",
+        "pants": "Odgovarajuće hlače",
+        "new_arrivals": "Nova odgovarajuća odjeća",
+        "new_matching_outfits": "Nova odjeća za mamu i mene",
+        "maternity": "Stilovi majčinstva i dojenja",
+        "best_sellers": "Najprodavanije",
+        "popular_mommy_me": "Popularno Mama i ja",
+        "popular_family_matching": "Popularna obiteljska kombinacija odjeće",
+        "hawaiian_outfits": "Obiteljska havajska odjeća",
+        "trunks": "Odgovarajuće kupaće hlače",
+        "fall_winter": "Odjevne kombinacije za jesen i zimu",
+        "formal_dresses": "Odgovarajuće svečane haljine",
+        "family_sweaters": "Obiteljski džemperi i jakne",
+        "christmas_sweaters": "Božićni odgovarajući džemperi",
+        "christmas_tops": "Božićne odgovarajuće majice",
+        "christmas_pajamas": "Božićna odgovarajuća pidžama",
+        "valentines": "Odijela za Valentinovo"
+      },
+      "meta_titles": {
+        "swimsuits": "Odgovarajući obiteljski kupaći kostimi | Mama & Kći",
+        "mommy_and_me": "Mama i ja odjeća | Haljine, kupaći kostimi i odgovarajući kompleti",
+        "family_swimsuits": "Odgovarajući obiteljski kupaći kostimi | Obiteljski kupaći kostimi",
+        "family_sets": "Odgovarajuća odjeća za obiteljski odmor | Setovi za plažu i putovanja",
+        "family_matching": "Obiteljska odgovarajuća odjeća | Mama i ja",
+        "new_women_outfits": "Obiteljska odgovarajuća odjeća | Haljine, kupaći kostimi i obiteljski kompleti",
+        "dresses": "Haljine mama i ja | Majka Kći",
+        "maxi_dresses": "Odgovarajuće maksi haljine | Mama i kći",
+        "best_sellers": "Najprodavanija odjeća za mamu i mene | Haljine, kupaći kostimi i više",
+        "daddy_me": "Košulje, majice i odgovarajuća odjeća Daddy and Me",
+        "daddy_me_tshirts": "Tata i ja majice | Odgovarajuće majice za tate i djecu",
+        "daddy_me_shirts": "Odgovarajuće košulje za tatu i sina | Na kopčanje, haljina i havajski",
+        "couples": "Odijelo za parove | Usklađeni pogledi za njega i nju",
+        "couples_tshirts": "Košulje za parove | Majice i majice kratkih rukava za par",
+        "spring_matching": "Uskrsne haljine mama i ja | Proljetna odgovarajuća odjeća"
+      },
+      "meta_descriptions": {
+        "all": "Kupujte svu odgovarajuću odjeću na jednom mjestu, uključujući mamu i mene, tatu i mene, parove i obiteljske setove. Udobni stilovi s brzom dostavom.",
+        "mommy_and_me": "Kupujte maminu i ja odjeću, haljine, kupaće kostime i odgovarajuće komplete za rođendane, obiteljske fotografije, odmore i svakodnevne trenutke blizanstva.",
+        "spring_matching": "Kupujte mame i ja uskrsne haljine i odgovarajuću proljetnu odjeću za crkvu, doručak, traženje jaja, obiteljske fotografije i druga sezonska slavlja.",
+        "dresses": "Kupujte haljine za mamu i mene i odgovarajuće haljine za majku i kćer za fotografije, zabave, odmore i uglađenu svakodnevnu odjeću.",
+        "maxi_dresses": "Kupujte mami i ja maksi haljine i odgovarajuće maksi haljine za fotografije, putovanja, proslave i lako dotjeranu svakodnevnu odjeću.",
+        "swimsuits": "Kupujte odgovarajuće kupaće kostime za obitelj i kupaće kostime za mame i kćeri za izlete na plažu, dane uz bazen, krstarenja i koordinirane ljetne fotografije.",
+        "family_swimsuits": "Kupujte odgovarajuće obiteljske kupaće kostime i kupaće kostime za odmor na plaži, dane uz bazen, krstarenja i koordinirane ljetne fotografije.",
+        "family_sets": "Kupujte odgovarajuću odjeću za obiteljski odmor i setove za plažu za krstarenja, putovanja u odmarališta, obiteljske fotografije i usklađene lookove za ljetna putovanja.",
+        "new_women_outfits": "Kupite obiteljsku odjeću za haljine, kupaće kostime, lookove za mamu i ja i komplete za putovanje na jednom mjestu, a zatim suzite na kolekciju koja odgovara vašem putovanju, godišnjem dobu ili prilici.",
+        "family_matching": "Kupujte odgovarajuću obiteljsku odjeću i odjeću za mamu i mene za fotografije, odmore, praznike i jednostavno usklađene lookove za svako godišnje doba.",
+        "daddy_me": "Kupujte košulje, majice kratkih rukava, majice i odgovarajuću odjeću za obiteljske fotografije, Očev dan, odmore i jednostavnu svakodnevnu koordinaciju.",
+        "daddy_me_tshirts": "Kupujte košulje za tatu i mene i odgovarajuće majice za Očev dan, odmore, rođendane, fotografije i jednostavnu svakodnevnu odjeću za tate i djecu.",
+        "daddy_me_shirts": "Kupujte iste košulje za tatu i sina, uključujući košulje na kopčanje, svečane košulje i havajske stilove za odmor, fotografije, zabave i dotjeranu obiteljsku odjeću.",
+        "couples": "Kupujte parove koji odgovaraju odjevnim kombinacijama s usklađenim setovima, topovima, pidžamama i izgledom spremnim za odmor za izlaske, darove, putovanja i svakodnevnu odjeću.",
+        "couples_tshirts": "Kupujte košulje i majice kratkih rukava za parove za izlaske, putovanja, koncerte, praznike, darove i lagane svakodnevne usklađene lookove."
+      },
+      "swimsuits": {
+        "eyebrow": "Vodič za kupaće kostime",
+        "title": "Usklađeni kupaći kostimi za mame, kćeri i planove za cijelu obitelj",
+        "copy_1": "Počnite ovdje ako prvo želite najširi asortiman za plivanje. Ova stranica spaja stilove za mame i kćeri, odgovarajuće obiteljske kupaće kostime i opcije spremne za odmor bez slanja kroz više kolekcija kupaćih kostima.",
+        "copy_2": "Nakon što saznate s kim se trebate slagati, prijeđite u namjenske obiteljske kolekcije kupaćih kostima ili gaća za strožiju izmjenu. Za određivanje veličine, najbrži put uvijek je stranica proizvoda i tablica veličina u stilu koji vam se najviše sviđa.",
+        "related_aria": "Povezane zbirke za plivanje",
+        "related_label": "Istražite povezane kolekcije plivanja",
+        "family_swimwear_title": "Obiteljski kupaći kostimi",
+        "family_swimwear_caption": "Prijeđite ravno na uređivanje plivanja za cijelu obitelj kada se svi trebaju koordinirati.",
+        "trunks_title": "Odgovarajuće gaće",
+        "trunks_caption": "Dodajte kupaće komade za tatu i dječaka kada želite kompletan komplet za dan na plaži.",
+        "mommy_me_caption": "Zadržite usklađeni izgled izvan kupaćih kostima s odgovarajućom odjećom za druge prilike.",
+        "faq_eyebrow": "Česta pitanja o kupaćem kostimu",
+        "faq_title": "Brzi odgovori prije naručivanja",
+        "faq_question_1": "U kojim veličinama dolaze vaši odgovarajući kupaći kostimi?",
+        "faq_answer_1": "Veličina se razlikuje prema stilu, stoga pregledajte dostupne varijante i upotrijebite tablicu veličina na svakoj stranici proizvoda prije naplate. Ova kolekcija pokriva koordinirane opcije kupanja za mame i kćeri, a neki vas stilovi povezuju i sa širim obiteljskim kupaćim izgledom.",
+        "faq_question_2": "Nudite li i obiteljske setove za tatu?",
+        "faq_answer_2": "Da. Ako želite potpuni obiteljski izgled, kupujte odgovarajuću kolekciju obiteljskih kupaćih kostima i kolekciju gaća kako biste dodali koordinirane komade za tate i dječake uz glavne stilove kupanja mama i ja.",
+        "faq_question_3": "Koja je razlika između kupaćih kostima mama i ja i odgovarajućih obiteljskih kupaćih kostima?",
+        "faq_answer_3": "Kupaći kostimi Mommy and me obično se fokusiraju na parove mama i kći. Usklađivanje obiteljskih kupaćih kostima proširuje tu ideju tako da možete izgraditi koordinirani izgled za više članova obitelji, uključujući tatu i dječake kada su ti stilovi dostupni.",
+        "faq_question_4": "Gdje da počnem ako želim i komade za dječake?",
+        "faq_answer_4": "Započnite na ovoj stranici kupaćih kostima ako prvo želite najširi asortiman kupaćih kostima, a zatim upotrijebite srodne obiteljske kolekcije kupaćih kostima i gaća kako biste suzili na izgled za cijelu obitelj ili dodatke za tatu i dječaka.",
+        "faq_answer_2_rich_html": "Da. Ako želite puni obiteljski izgled, kupujte <a href=\"{{ family_swim_url }}\">Odgovarajući obiteljski kupaći kostimi</a> zbirka i <a href=\"{{ trunks_url }}\">Debla</a> kolekciju za dodavanje usklađenih komada za tate i dječake uz glavne stilove plivanja mama i ja.",
+        "faq_answer_4_rich_html": "Započnite na ovoj stranici kupaćih kostima ako prvo želite najširi asortiman kupaćih kostima, a zatim koristite <a href=\"{{ family_swim_url }}\">Odgovarajući obiteljski kupaći kostimi</a> i <a href=\"{{ trunks_url }}\">Debla</a> kolekcije za sužavanje na izgled cijele obitelji ili dodatke za tatu i dječaka."
+      },
+      "body": {
+        "mommy_and_me_html": "<p>Kupujte naš {{ title }} za rođendane, obiteljske fotografije, odmore i jednostavno svakodnevno spajanje, s haljinama, kupaćim kostimima i odgovarajućim kompletima na jednom mjestu.</p><p>Započnite s haljinama za portrete i posebne prigode, obucite kupaće kostime za dane na plaži i bazenu i upotrijebite širu kombinaciju odjeće kako biste izgradili odgovarajuću garderobu koja funkcionira kroz godišnja doba umjesto samo za jedan događaj.</p>",
+        "spring_matching_html": "<p>Pregledajte {{ title }} s pastelnim paletama, proljetnim cvjetnim motivima i izgledom spremnim za svaku prigodu za crkvu, užinu, potragu za jajima, obiteljske fotografije i druga sezonska slavlja.</p><p>Ovi su stilovi dizajnirani za kupce koji već znaju za koji trenutak se odijevaju i žele odgovarajuću odjeću koja djeluje dotjerano, udobno i lako za nošenje do kraja proljeća.</p>",
+        "dresses_html": "<p>Pregledajte {{ title }} za obiteljske fotografije, proslave i uglađene svakodnevne trenutke. Ovo uređivanje drži najjače stilove odijevanja na jednom mjestu, s koordiniranim izgledom koji djeluje lijepo, nosivo i jednostavno za kupnju.</p>",
+        "maxi_dresses_html": "<p>Pregledajte {{ title }} za lepršave usklađene stilove koji djeluju graciozno, lako se nose i spremni su za fotografije, putovanja, slavlja i uglađene svakodnevne trenutke.</p>",
+        "swimsuits_html": "<p>Pregledajte {{ title }} za izlete na plažu, dane uz bazen, krstarenja i sunčane obiteljske fotografije. Ova kolekcija pomaže kupcima da usporede odgovarajuće kupaće kostime za obitelj, kupaće kostime za mame i kćeri i kupaće kostime za obitelj bez preskakanja između zasebnih kategorija plivanja.</p><p>Prvo upotrijebite ovu stranicu kao široko središte kupaćih kostima, a zatim se ogranite u namjensku obiteljsku kolekciju kupaćih gaćica ili odgovarajućih gaća kada se cijela obitelj treba koordinirati oko jedne priče o printu ili boji.</p>",
+        "family_swimsuits_html": "<p>Otkrijte {{ title }} za odmor na plaži, dane uz bazen, krstarenja i ljetne fotografije. Ovo je najjasnija odredišna stranica za slaganje obiteljskih kupaćih kostima kada se mame, tate, djevojčice i dječaci moraju koordinirati oko jednog ispisa, palete ili priče u boji spremne za odmor.</p><p>Upotrijebite ovu stranicu kada cijela obitelj prvo želi odgovarajuće kupaće kostime, a zatim zaokružite izgled gaćama, pokrivalima i srodnim opcijama kupaćih kostima mama i ja za puniju garderobu za putovanje.</p>",
+        "family_sets_html": "<p>Istražite {{ title }} s usklađenim izgledom dizajniranim za obiteljski odmor, izlete na plažu, krstarenja, fotografije s putovanja i izlete po toplom vremenu. Ovi setovi vam pomažu stvoriti jasnu obiteljsku paletu bez prisiljavanja svake osobe na potpuno isti komad.</p><p>Upotrijebite ovu stranicu za usklađivanje odjeće za obiteljski odmor i odgovarajuću obiteljsku odjeću za plažu, a zatim se razgranajte u šire obiteljske kolekcije kada trebate više sezonskih opcija ili opcija koje nisu specifične za putovanja.</p>",
+        "new_women_outfits_html": "<p>Istražite {{ title }} kao široko središte Family Matching Outfits kada želite usporediti usklađenu odjeću prije sužavanja na određenu kategoriju. Ova je stranica namijenjena kupcima za prelazak s općeg pretraživanja na haljine, kupaće kostime, komplete za odmor, lookove mama i ja ili druge stilove koji se podudaraju bez počinjanja ispočetka.</p><p>Upotrijebite poveznice u nastavku da uskočite u kolekcije koje najbolje odgovaraju prigodi, bilo da kupujete obiteljske fotografije, putovanje, sezonsko osvježenje ili specifičniji stil koji odgovara odjevnom stilu.</p>",
+        "family_matching_html": "<p>Pregledajte {{ title }} za obiteljske fotografije, putovanja, rođendane, praznike i jednostavno svakodnevno bratimljenje. To je najbolje mjesto za početak kada želite usporediti usklađene izglede cijele obitelji prije nego što se suzite na haljine, kupaće kostime ili setove za odmor.</p>",
+        "daddy_me_html": "<p>Istražite {{ title }} za obiteljske fotografije, odmore, darove za Očev dan i svakodnevnu koordinaciju. Ova je odredišna stranica izgrađena oko najjače namjere pretraživanja tata i dijete, s odgovarajućim majicama, ležernim topovima i elegantnijim košuljama na jednom mjestu.</p><p>Upotrijebite ovu kolekciju kada želite široku pokrivenost u košuljama, majicama i odjeći za tatu i mene, a zatim suzite na stilove na kopčanje, havajske ili majice na temelju prilike.</p>",
+        "daddy_me_tshirts_html": "<p>Kupujte {{ title }} kada želite ležerne, poklonjene majice za tate i djecu. Ova je stranica izgrađena oko košulja za tatu i mene, odgovarajućih majica i jednostavnih svakodnevnih lookova koji pristaju za Očev dan, rođendane, obiteljska putovanja i brze foto trenutke.</p><p>Započnite ovdje za majice sa sloganom i jednostavne grafičke stilove, a zatim se preselite u košulje ili havajske setove ako prilika zahtijeva oštriji izgled ili odjeću spremniju za odmor.</p>",
+        "daddy_me_shirts_html": "<p>Pregledajte {{ title }} za kupce koji posebno traže odjeću na kopčanje, košulje i odjeću za oca i sina u havajskom stilu. Ova kolekcija usredotočena je na izgled s ovratnikom koji pristaje za portrete, večere, izlete na plažu, vjenčanja i druge uglađene prigode.</p><p>U usporedbi s ležernim majicama, ovi su stilovi strukturiraniji i spremniji za fotografije, što ih čini snažnijim kad želite odgovarajuću odjeću koja i dalje izgleda povišeno.</p>",
+        "couples_html": "<p>Istražite {{ title }} za noćne spojeve, odmore, darivanje za praznike, fotografije zaruka i svakodnevnu koordinaciju. Ova je stranica osmišljena za kupce koji žele više od jedne odgovarajuće majice i trebaju šire polazište za koordinirani izgled.</p><p>Započnite s jednostavnim majicama ili salonskim setovima, a zatim izgradite potpuniju odjeću za putovanje, prigodu ili trenutak fotografiranja za koji kupujete.</p>",
+        "couples_tshirts_html": "<p>Pregledajte {{ title }} za kupce koji traže košulje za parove, majice za parove i svakodnevne usklađene majice. Ovi stilovi najbolje funkcioniraju kada želite ležeran, darovit izgled za putovanja, praznike, koncerte, izlaske i fotografije.</p><p>Upotrijebite ovu stranicu za jednostavno svakodnevno spajanje, a zatim prijeđite na širu kolekciju za parove ako želite puniju odjeću koja se temelji više od samih majica.</p>"
+      },
+      "rich_parts": {
+        "new_women_outfits": {
+          "part_1_html": "<h2>Obiteljska odgovarajuća odjeća za obiteljske fotografije, putovanja, odmore i svakodnevnu koordinaciju</h2>",
+          "part_2_html": "<p>Ovo je središte Family Matching Outfits za kupce koji žele usporediti usklađene izglede prije nego što se suze na jedan određeni stil. Napravljen je za obiteljske fotografije, odmore, praznike, sezonska ažuriranja i jednostavnu svakodnevnu koordinaciju kada kupac zna opći izgled, ali još ne i točnu kategoriju.</p>",
+          "part_3_html": "<h3>Što prvo kupiti</h3>",
+          "part_4_html": "<ul><li>Započnite ovdje ako želite najširu stranicu za podudaranje obitelji prije nego odaberete užu zbirku.</li><li>Koristite ga za prelazak s općeg pretraživanja na haljine, kupaće kostime, setove za odmor ili stilove za mamu i ja.</li><li>Preskočite na specifičniju kolekciju kada je prilika već jasna i kupac želi brže filtriranje.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ dresses_url }}\">Kupujte vjenčane haljine za majke i kćeri</a> kada je haljina središnji dio odgovarajućeg izgleda.</p>",
+          "part_6_html": "<p><a href=\"{{ family_swimsuits_url }}\">Pregledajte odgovarajuće kupaće kostime za plažu</a> kada je plan usmjeren na izlete na plažu, dane uz bazen i ljetna putovanja.</p>",
+          "part_7_html": "<p><a href=\"{{ family_sets_url }}\">Kupujte odgovarajuću odjeću za obiteljski odmor</a> za boravak u odmaralištima, krstarenja i koordinirane dane putovanja.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Kupujte košulje za tatu i mene</a> kada obitelj treba ulaštenu košulju umjesto haljina ili kupaćih kostima.</p>",
+          "part_9_html": "<p><a href=\"{{ mommy_and_me_url }}\">Pogledajte širu kolekciju Mama i ja</a> kada je koordinacija uglavnom usmjerena na mamu i kćer.</p>"
+        },
+        "family_matching": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Napomena zbirke</p><h2>Uglađeno polazište za usklađeni obiteljski izgled</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Ova kolekcija okuplja najjače obiteljske stilove na jednom mjestu, tako da je lako započeti široko i doraditi kada je prilika jasna.</p><p>Posebno dobro funkcionira za fotografije, praznike, putovanja, rođendane i svakodnevno spajanje koje djeluje promišljeno, a ne pretjerano.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related family collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Kupujte vjenčane haljine za majke i kćeri</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Pregledajte odgovarajuće kupaće kostime za plažu</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Kupujte odgovarajuću odjeću za obiteljski odmor</a><a class=\"collection-seo-rich__link\" href=\"{{ daddy_me_shirts_url }}\">Kupujte košulje za tatu i mene</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Istražite širu kolekciju Mommy and Me</a></div>"
+        },
+        "dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Napomena zbirke</p><h2>Stilovi odijevanja za fotografije, proslave i svakodnevno spajanje</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Ova je izmjena stvorena za trenutke kada haljina daje ton. Fokus je na siluetama koje izgledaju uglađene pred kamerom, udobne za nošenje i lako dostupne nakon događaja.</p><p>Započnite ovdje kada već znate da želite izgled koji se temelji na haljini, a zatim se proširite na šire obiteljske kolekcije ako trebate koordinirati više od mame i kćeri.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Pregledajte središte Family Matching</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Pogledajte sve Mommy and Me outfite</a></div>"
+        },
+        "maxi_dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Napomena zbirke</p><h2>Lepršave haljine pune dužine s laganim, uglađenim dojmom</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Maxi haljine snažna su polazna točka kada želite graciozne pokrete, malo više pokrivenosti i siluetu koja izgleda lijepo na fotografijama, a da nije pretjerano formalna.</p><p>Ovo uređivanje ostaje usredotočeno na najjače duge stilove za mame i kćeri, s opcijama koje odgovaraju za odmor, crkvu, proslave i odijevanje za toplo vrijeme koje još uvijek djeluje opušteno.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related maxi dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Pregledaj sve haljine</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Vidi sve mama i ja</a></div>"
+        },
+        "mommy_and_me": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Napomena zbirke</p><h2>Široko uređivanje mama i ja za fotografije, putovanja i svakodnevno spajanje</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Ovo je najlakše mjesto za početak kada želite usklađene stilove za mame i kćeri, a da se prethodno ne odlučite za jednu vrstu proizvoda.</p><p>Započnite ovdje s haljinama, kupaćim kostimima i odgovarajućim kompletima, a zatim suzite na kategoriju koja najbolje odgovara prilici kada znate koji izgled želite.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related mommy and me collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Kupujte vjenčane haljine za majke i kćeri</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Pregledajte odgovarajuće kupaće kostime za plažu</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Pogledajte odgovarajuću odjeću za obiteljski odmor</a></div>"
+        },
+        "family_swimsuits": {
+          "part_1_html": "<h2>Odgovarajući obiteljski kupaći kostimi za odmor na plaži, dane uz bazen, krstarenja i koordinirane ljetne fotografije</h2>",
+          "part_2_html": "<p>Ova je stranica izgrađena oko najjačih obiteljskih kupaćih kostima: odgovarajući obiteljski kupaći kostimi, obiteljski kupaći kostimi i usklađeni obiteljski kupaći kostimi za odmor i fotografije po toplom vremenu. Najbolje funkcionira kada se cijela obitelj treba uskladiti oko jedne priče o ispisu ili boji bez spajanja zasebnih kategorija plivanja jednu po jednu.</p>",
+          "part_3_html": "<h3>Zašto se ova stranica razlikuje od opće kolekcije kupaćih kostima</h3>",
+          "part_4_html": "<ul><li>Usmjeren je na koordinaciju cijele obitelji umjesto samo na izgledu plivanja mame i kćeri.</li><li>Govori izravno o namjerama za odmor, krstarenje i fotografiranje na plaži gdje je glavni cilj podudaranje obiteljskih kupaćih kostima.</li><li>Kupcima daje čišći put do obiteljske kupaće odjeće prije nego što krenu u gaće ili šire odgovarajuće kolekcije.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ trunks_url }}\">Dodajte odgovarajuća debla</a> kada trebate kupaće komade za tatu i dječaka da upotpunite komplet za dan na plaži.</p>",
+          "part_6_html": "<p><a href=\"{{ swimsuits_url }}\">Pogledajte kako mama i kći slažu kupaće kostime</a> ako je namjera kupovine uža od koordinacije cijele obitelji.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">Pregledajte Mommy and Me odjeću</a> ako je glavna potreba koordinacija majke i kćeri izvan kupaćih kostima.</p>",
+          "part_8_html": "<p><a href=\"{{ family_sets_url }}\">Kupujte odjeću za obiteljski odmor</a> kada koordinirani izgled treba pokrivanje, putovanje ili podršku na večeri na plaži izvan bazena.</p>"
+        },
+        "family_sets": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Napomena zbirke</p><h2>Odjevni predmeti spremni za putovanja za dane na plaži, krstarenja i usklađene planove za odmor</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Ovo uređivanje održava na okupu najsnažniji obiteljski izgled za toplo vrijeme, tako da je jednostavno kupovati na putovanju umjesto da krenete od šire kolekcije za cijelu godinu.</p><p>Upotrijebite ga kada je sam odmor razlog za kupovinu, a zatim se uključite u kategorije kupaćih kostima ili šire obiteljske kategorije ako trebate izraditi cijeli plan.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related vacation collections\"><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Dodajte odgovarajuće kupaće kostime za plažu</a><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Pregledajte središte Family Matching</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Istražite Mommy and Me odjeću</a></div>"
+        },
+        "daddy_me": {
+          "part_1_html": "<h2>Odjeća za tatu i mene sastavljena od košulja, majica i lakih izgleda za fotografije</h2>",
+          "part_2_html": "<p>Potražnja za pretraživanjem oko ove kategorije koncentrirana je na košulje za tatu i ja, majice za tatu i ja, majice za tatu i ja i usklađenu odjeću za oca i djeteta. Ova je stranica osmišljena da pokrije tu potpunu namjeru, od ležernih majica s grafičkim motivima do izgleda s oštrijim ovratnicima koji izgledaju dotjerano za portrete, odmore i posebne događaje.</p>",
+          "part_3_html": "<h3>Što kupci obično žele od ove stranice</h3>",
+          "part_4_html": "<ul><li>Ležerne majice za rođendane, darove, tematska putovanja i svakodnevno nošenje.</li><li>Opcije košulja s ovratnikom ili na kopčanje koje odgovaraju za obiteljske fotografije, večere i elegantnije izlaske.</li><li>Odjeća koja se slaže s toplim vremenskim uvjetima koja djeluje spremno za odmor, a ne izgleda poput kostima.</li></ul>",
+          "part_5_html": "<h3>Kako brže kupiti kolekciju</h3>",
+          "part_6_html": "<p>Počnite s majicama ako je cilj laka svakodnevna koordinacija. Ako prilika treba čišću, uglađeniju završnicu, preselite se u košulje, havajske košulje ili druge stilove s ovratnikom s više strukture.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Kupujte košulje za tatu i mene</a> za ležerne topove i svakodnevne stilove na dar.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Kupite košulje za tatu i mene za dotjeranije prilike</a> za kopčanje, košulju i havajski izgled izgrađen oko pretraživanja košulja s većom namjerom.</p>",
+          "part_9_html": "<p><a href=\"{{ trunks_url }}\">Pregledajte odgovarajuće prtljažnike</a> kada je odjeći potreban dodatak za plažu ili bazen.</p>"
+        },
+        "daddy_me_tshirts": {
+          "part_1_html": "<h2>Košulje za tatu i mene i odgovarajuće majice za ležernu kombinaciju na dar</h2>",
+          "part_2_html": "<p>Ova kolekcija namijenjena je kupcima koji traže košulje za tatu i ja, majice za tatu i ja, majice za tatu i ja i jednostavne majice za tatu i dijete koje funkcioniraju više od jednog trenutka fotografiranja. Ovi stilovi najbrže odgovaraju svakodnevnom nošenju, rođendanima, darovima za Očev dan, tematskim parkovima i opuštenim danima putovanja.</p>",
+          "part_3_html": "<h3>Zašto je ova stranica važna</h3>",
+          "part_4_html": "<ul><li>Sužava kategoriju tata i dijete na ležerne majice umjesto miješanja u svaku vrstu odjeće.</li><li>Usklađuje se s pretraživanjima visoke namjere oko majica tata i ja, majica tata i ja i odgovarajućih majica.</li><li>Kupcima pruža jednostavniji put kada žele brzi odgovarajući izgled na dar.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ daddy_me_url }}\">Povratak na punu kolekciju Tata i ja</a> ako želite majice, gaće i elegantnije košulje na jednom mjestu.</p>",
+          "part_6_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Trebate oštriji pogled?</a> Pregledajte košulje koje se slažu za tatu i sina za stilove na kopčanje, košulje i havajske stilove.</p>"
+        },
+        "daddy_me_shirts": {
+          "part_1_html": "<h2>Tata i sin odgovaraju košuljama na kopčanje, košuljama i Havajima</h2>",
+          "part_2_html": "<p>Ova je odredišna stranica izgrađena oko upita o košuljama s najvećom namjerom u klasteru tata: tata i sin odgovaraju košuljama na zakopčavanje, tata i sin odgovaraju košuljama i tata i sin odgovaraju havajskim košuljama. Dizajniran je za kupce koji žele više strukture, ovratnika i stajlinga za prigodu nego što to može ponuditi ležerna kolekcija majica.</p>",
+          "part_3_html": "<h3>Najbolje prilike za ove stilove</h3>",
+          "part_4_html": "<ul><li>Obiteljske fotografije, blagdanska okupljanja, vjenčanja, crkva i večere na kojima košulje s kragnom izgledaju uglađenije.</li><li>Putovanja na plažu, krstarenja i putovanja u odmarališta gdje havajske košulje ili kopčanje kratkih rukava odgovaraju okruženju.</li><li>Darovi za rođendan i Očev dan kada bi odgovarajući izgled trebao djelovati uzvišeno, a ne samo novost.</li></ul>",
+          "part_5_html": "<h3>Kako se ovo razlikuje od majica tata i ja</h3>",
+          "part_6_html": "<p>Očekujte više tkanina, čistije ovratnike i dotjeranije siluete. Ako je cilj nježna ležerna grafika ili svakodnevni topovi, kolekcija majica bolja je polazna točka.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_url }}\">Pregledajte cijelu kolekciju Daddy and Me</a> za širu pokrivenost odjeće preko majica, gaćica i koordiniranih kompleta.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Kupujte košulje za tatu i mene</a> ako želite mekšu, ležerniju opciju pristajanja.</p>"
+        },
+        "couples": {
+          "part_1_html": "<h2>Parovi koji usklađuju odjeću za putovanja, izlaske, praznike i darove</h2>",
+          "part_2_html": "<p>Široka obitelj ključnih riječi par ide dalje od samih majica. Ova je stranica osmišljena kao glavna odredišna stranica za parove koji usklađuju odjeću i koordinirani izgled koji može uključivati ​​majice, salonke, komade za odmor i ležerne setove za njega i nju.</p>",
+          "part_3_html": "<h3>Popularne namjere kupnje u ovoj kategoriji</h3>",
+          "part_4_html": "<ul><li>Parovi koji usklađuju odjeću za putovanja, planove za vikend i fotografije na društvenim mrežama.</li><li>Njegovi i njezini izgledi za godišnjice, medene mjesece i blagdanske trenutke koji se mogu pokloniti.</li><li>Jednostavna usklađena odjeća koja održava boju i ispis usklađenima bez forsiranja identičnog izgleda od glave do pete.</li></ul>",
+          "part_5_html": "<h3>Gdje početi</h3>",
+          "part_6_html": "<p>Ako je cilj ležerna svakodnevna kombinacija, odgovarajuće majice su najbrža pobjeda. Ako je cilj potpuniji koordinirani izgled, počnite sa širom kolekcijom za parove i proširite je ovisno o putovanju, sezoni ili prigodi.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">Kupujte nekoliko košulja i odgovarajućih majica</a> kada želite laganu ležernu ulaznu točku u kategoriju.</p>"
+        },
+        "couples_tshirts": {
+          "part_1_html": "<h2>Parovi koji usklađuju košulje i majice za ležernu koordinaciju na dar</h2>",
+          "part_2_html": "<p>Ova je kolekcija namijenjena kupcima koji traže odgovarajuće košulje za parove, košulje za parove, majice za parove i druge odgovarajuće majice koje je lako nositi za izlaske, putovanja, praznike, koncerte i svakodnevne kombinacije. To je najbolja ulazna točka kada je namjera kupca najprije o majicama.</p>",
+          "part_3_html": "<h3>Zašto kupci biraju odgovarajuće majice</h3>",
+          "part_4_html": "<ul><li>Lako ih je darovati za obljetnice, medeni mjesec, odmor i tematske izlete.</li><li>Održavaju jednostavan koordinirani izgled bez potrebe za kupnjom cijele odjeće.</li><li>Dobro služe za ležerne fotografije, dane putovanja i svakodnevno nošenje s niskim trenjem.</li></ul>",
+          "part_5_html": "<h3>Tražite više od majica kratkih rukava?</h3>",
+          "part_6_html": "<p>Upotrijebite širu stranicu za usklađivanje odjevnih kombinacija za parove ako želite koordinirani izgled koji se širi izvan gornjih dijelova u potpuniju priču o odjevnim kombinacijama.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">Pregledajte sve odjevne kombinacije za parove</a> za širu kombinaciju usklađenih izgleda i prilika.</p>"
+        },
+        "spring_matching": {
+          "part_1_html": "<h2>Mama i ja uskrsne haljine i proljetne kombinacije za posebne prigode</h2>",
+          "part_2_html": "<p>Ova je stranica napravljena za uskrsna i proljetna pretraživanja gdje kupac već zna prigodu. Fokus je na pastelnim paletama, cvjetnim motivima, svjetlijim tkaninama i siluetama spremnim za fotografije koje su prikladne za crkvu, doručak, lov na jaja, obiteljske portrete i druga sezonska slavlja.</p>",
+          "part_3_html": "<h3>Najbolji proljetni trenuci za slaganje odjevnih kombinacija</h3>",
+          "part_4_html": "<ul><li>Uskrsna nedjelja, crkva, marenda i obiteljska okupljanja.</li><li>Proljetne obiteljske fotografije, vrtne zabave i sezona Majčinog dana.</li><li>Putovanja, pljuskovi i događaji po toplom vremenu koji još uvijek trebaju dotjerani izgled.</li></ul>",
+          "part_5_html": "<h3>Kako koristiti ovu sezonsku stranicu</h3>",
+          "part_6_html": "<p>Započnite s uskršnjim haljinama ako vam je potrebna posebna odjeća za događaj, a zatim upotrijebite istu kolekciju da pronađete odgovarajuću odjeću za proljeće koja može ponovno funkcionirati nakon praznika.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">Pregledajte cijelu kolekciju Mommy and Me</a> ako želite više usklađenih stilova tijekom cijele godine izvan uskršnjeg i proljetnog prozora.</p>",
+          "part_8_html": "<p><a href=\"{{ dresses_url }}\">Kupite odgovarajuće haljine</a> za šire uređenje usmjereno na haljinu izvan sezonskog proljetnog stajlinga.</p>"
+        }
+      }
+    },
+    "collection": {
+      "swimsuits_override": "Kupaći kostimi"
     }
   },
   "localization": {

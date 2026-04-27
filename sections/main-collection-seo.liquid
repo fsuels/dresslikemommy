@@ -52,12 +52,12 @@
       assign faq_answer_4 = 'sections.collection_seo.swimsuits.faq_answer_4' | t
 
       capture faq_answer_2_rich
-        echo 'sections.collection_seo.swimsuits.faq_answer_2_rich' | t: family_swim_url: related_family_swim_url, trunks_url: related_trunks_url
+        echo 'sections.collection_seo.swimsuits.faq_answer_2_rich_html' | t: family_swim_url: related_family_swim_url, trunks_url: related_trunks_url
       endcapture
       assign faq_answer_2_rich = faq_answer_2_rich | replace: '&lt;', '<' | replace: '&gt;', '>' | replace: '&quot;', '"' | replace: '&#39;', "'" | replace: '&amp;', '&'
 
       capture faq_answer_4_rich
-        echo 'sections.collection_seo.swimsuits.faq_answer_4_rich' | t: family_swim_url: related_family_swim_url, trunks_url: related_trunks_url
+        echo 'sections.collection_seo.swimsuits.faq_answer_4_rich_html' | t: family_swim_url: related_family_swim_url, trunks_url: related_trunks_url
       endcapture
       assign faq_answer_4_rich = faq_answer_4_rich | replace: '&lt;', '<' | replace: '&gt;', '>' | replace: '&quot;', '"' | replace: '&#39;', "'" | replace: '&amp;', '&'
     -%}

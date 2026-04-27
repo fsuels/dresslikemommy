@@ -136,7 +136,8 @@
         "from_price_html": "Legalacsonyabb ár: {{ price }}",
         "regular_price": "Normál ár",
         "sale_price": "Akciós ár",
-        "unit_price": "Egységár"
+        "unit_price": "Egységár",
+        "compare_at_price": "Hasonlítsa össze: {{ price }}"
       },
       "share": "A termék megosztása",
       "sold_out": "Elfogyott",
@@ -199,7 +200,17 @@
         "guide_and_fit": "Méret útmutató és illeszkedés",
         "your_size_details": "A méret adatai",
         "compare_hint": "Nyissa meg az alábbi teljes táblázatot a közeli méretek összehasonlításához.",
-        "chart_units": "Mérettáblázat egységei"
+        "chart_units": "Mérettáblázat egységei",
+        "columns": {
+          "size": "Méret",
+          "us_size": "Amerikai méret",
+          "bust_cm_in": "mell (cm/in)",
+          "waist_cm_in": "Derék (cm/in)",
+          "hips_cm_in": "Csípő (cm/in)",
+          "height_cm_in": "Magasság (cm/in)",
+          "weight_kg": "Súly (kg)",
+          "age": "Életkor"
+        }
       },
       "reviews": {
         "heading": "Vásárlói vélemények",
@@ -212,6 +223,16 @@
         "empty": "Legyen Ön az első, aki véleményt ír",
         "write_review": "Írjon véleményt",
         "write_review_title": "Írjon véleményt"
+      },
+      "free_shipping_all_orders": "Ingyenes szállítás minden rendelésre",
+      "selected_size_label": "Méret: {{ size }}",
+      "description_sections": {
+        "details_eyebrow": "Részletek",
+        "highlights_heading": "Miért fogod szeretni",
+        "size_chart_heading": "Mérettáblázat",
+        "product_details_heading": "Termék részletek",
+        "size_chart_meta": "Mérések a szállítói forrástáblázatból",
+        "product_details_meta": "Strukturált termékinformáció"
       }
     },
     "modal": {
@@ -471,7 +492,274 @@
       "compare_collection_copy": "Használja ezt a gyűjteményt néhány szoros egyezés összehasonlítására, mielőtt visszatérne a vásárláshoz."
     },
     "breadcrumbs": {
-      "label_button_downs": "Gomblehúzások"
+      "label_button_downs": "Gomblehúzások",
+      "label_tees": "Pólók",
+      "label_dresses": "Ruhák",
+      "label_hawaiian_outfits": "Hawaii ruhák",
+      "label_all": "Minden",
+      "label_new_arrivals": "Újdonságok",
+      "label_sale": "Eladás",
+      "label_best_sellers": "Legjobb eladók",
+      "label_sweaters_short": "Pulóverek",
+      "home": "Otthon",
+      "cat_mommy_me": "Anyu és én",
+      "cat_daddy_me": "Apu és én",
+      "cat_couples": "Párok",
+      "cat_maternity": "Anyaság",
+      "cat_family_matching": "Családi egyeztetés",
+      "label_swimsuits": "Fürdőruha",
+      "label_sets": "Készletek",
+      "label_tops": "Felsők",
+      "label_sweaters": "Pulóverek és dzsekik",
+      "label_pajamas": "Pizsama",
+      "label_tshirts": "Pólók",
+      "label_trunks": "Csomagtartók",
+      "label_daddy_tshirts": "Daddy & Me pólók",
+      "prefix_mother_daughter": "Anya Lánya ",
+      "prefix_mommy_me": "Anyu és én ",
+      "prefix_matching": "Illesztés ",
+      "prefix_daddy_me": "Apu és én ",
+      "prefix_family_matching": "Családi egyeztetés "
+    },
+    "collection_navigation": {
+      "collection_categories": "Gyűjtemény kategóriák",
+      "main_collections": "Fő gyűjtemények",
+      "within_mommy_me": "Az Anyu és én keretein belül",
+      "within_family_matching": "Családi egyezésen belül",
+      "within_daddy_me": "A Daddy & Me-ben",
+      "within_couples": "Páron belül",
+      "within_maternity": "Az anyaságon belül"
+    },
+    "collection_seo": {
+      "note_eyebrow": "Gyűjtemény Megjegyzés",
+      "closer_look_at": "A {{ title }} közelebbi pillantása",
+      "display_titles": {
+        "all": "Minden hozzáillő ruha",
+        "swimsuits": "Családi fürdőruhák",
+        "mommy_and_me": "Anyu és én ruhák",
+        "dresses": "Anyu és én ruhák",
+        "family_swimsuits": "Családi fürdőruha",
+        "family_sets": "Családi nyaralás ruhák",
+        "new_women_outfits": "Családhoz illő ruhák",
+        "family_matching": "Családhoz illő ruhák",
+        "daddy_me": "Apu és én ruhák",
+        "daddy_me_tshirts": "Daddy and Me Tees",
+        "daddy_me_shirts": "Apa és fia ingek",
+        "couples": "Pároknak megfelelő ruhák",
+        "couples_tshirts": "Pároknak megfelelő póló",
+        "spring_matching": "Anyu és én húsvéti ruhák és tavaszi hozzáillő ruhák",
+        "tops": "Hozzáillő felsők és pólók",
+        "pajamas": "Hozzáillő családi pizsama",
+        "sweaters": "Hozzáillő pulóverek és dzsekik",
+        "maxi_dresses": "Anyu és én Maxi ruhák",
+        "jumpsuits": "Hozzáillő Jumpsuits",
+        "midi_dresses": "Anyu és én Midi ruhák",
+        "mini_dresses": "Anyu és én mini ruhák",
+        "rompers": "Hozzáillő Rompers",
+        "sundresses": "Anyu és én Sundresses",
+        "bottoms": "Egyező alsó",
+        "skirts": "Hozzáillő szoknyák",
+        "leggings": "Hozzáillő leggings",
+        "pants": "Hozzáillő nadrág",
+        "new_arrivals": "Új hozzáillő ruhák érkeztek",
+        "new_matching_outfits": "Új Anyu és én ruhák",
+        "maternity": "Szülési és ápolási stílusok",
+        "best_sellers": "Legjobb eladók",
+        "popular_mommy_me": "Népszerű Anyu és én",
+        "popular_family_matching": "Népszerű családi összeillő ruhák",
+        "hawaiian_outfits": "Családi hawaii ruhák",
+        "trunks": "Hozzáillő úszónadrágok",
+        "fall_winter": "Őszi és téli összeillő ruhák",
+        "formal_dresses": "Hozzáillő formális ruhák",
+        "family_sweaters": "Családi pulóverek és dzsekik",
+        "christmas_sweaters": "Karácsonyi passzoló pulóverek",
+        "christmas_tops": "Karácsonyi egyező felsők",
+        "christmas_pajamas": "Karácsonyi Matching Pizsama",
+        "valentines": "Valentin-napi összeillő ruhák"
+      },
+      "meta_titles": {
+        "swimsuits": "Hozzáillő családi fürdőruhák | Anya és lánya",
+        "mommy_and_me": "Anyu és én ruhák | Ruhák, fürdőruhák és hozzáillő szettek",
+        "family_swimsuits": "Hozzáillő családi fürdőruhák | Családi fürdőruha",
+        "family_sets": "Hozzáillő családi vakációs ruhák | Strand és utazási készletek",
+        "family_matching": "Családhoz illő ruhák | Anyu és én",
+        "new_women_outfits": "Családhoz illő ruhák | Ruhák, fürdőruhák és családi készletek",
+        "dresses": "Anyu és én ruhák | Anya Lánya",
+        "maxi_dresses": "Hozzáillő Maxi ruhák | Anya és lánya",
+        "best_sellers": "A legkeresettebb Anyu és én ruhák | Ruhák, fürdőruhák és egyebek",
+        "daddy_me": "Daddy and Me ingek, pólók és hozzáillő ruhák",
+        "daddy_me_tshirts": "Apa és én ingek | Hozzáillő pólók apukáknak és gyerekeknek",
+        "daddy_me_shirts": "Apa és fia összeillő ingek | Gombfelhúzás, ruha és hawaii",
+        "couples": "Pároknak megfelelő ruhák | Összehangolt keresések neki és neki",
+        "couples_tshirts": "Pároknak megfelelő ingek | Páros pólók és pólók",
+        "spring_matching": "Anyu és én húsvéti ruhák | Tavaszi passzoló ruhák"
+      },
+      "meta_descriptions": {
+        "all": "Vásároljon egy helyen minden hozzáillő ruhát, beleértve a mamát és engem, az apát és engem, a párokat és a családi készleteket. Kényelmes stílusok gyors szállítással.",
+        "mommy_and_me": "Vásároljon anyu és én ruhákat, ruhákat, fürdőruhákat és hozzáillő szetteket születésnapokra, családi fotókra, nyaralásokra és a mindennapi testvérvárosi pillanatokra.",
+        "spring_matching": "Vásároljon anyu és én húsvéti ruhákat és tavaszi hozzáillő ruhákat templomi, villásreggeli, tojásvadászathoz, családi fotók és más szezonális ünnepségek alkalmából.",
+        "dresses": "Vásároljon anyu és én ruhákat és anya lányomhoz illő ruhákat fotókhoz, bulikhoz, nyaralásokhoz és polírozott mindennapi viselethez.",
+        "maxi_dresses": "Vásároljon anyu és én maxiruhákat és hozzáillő maxiruhákat fényképekhez, utazásokhoz, ünnepségekhez és könnyen polírozott mindennapi viselethez.",
+        "swimsuits": "Vásároljon hozzáillő családi fürdőruhákat, valamint anya és lánya hozzáillő fürdőruhákat tengerparti kirándulásokhoz, medencés napokhoz, sétahajózáshoz és összehangolt nyári fotókhoz.",
+        "family_swimsuits": "Vásároljon hozzáillő családi fürdőruhákat és családi fürdőruhákat tengerparti nyaralásokhoz, medencés napokhoz, sétahajózáshoz és összehangolt nyári fotókhoz.",
+        "family_sets": "Vásároljon hozzáillő családi nyaralási ruhákat és tengerparti szetteket körutazásokhoz, üdülőhelyi kirándulásokhoz, családi fényképekhez és összehangolt nyári utazásokhoz.",
+        "new_women_outfits": "Vásároljon egy helyen a ruhákhoz, fürdőruhákhoz, anyu és én megjelenéshez és utazásra kész szettekhez tartozó, családi összeillő ruhákat, majd szűkítse az utazáshoz, szezonhoz vagy alkalomhoz illő kollekciót.",
+        "family_matching": "Vásároljon hozzáillő családi ruhákat, valamint anyu és én ruhákat fotókhoz, nyaralásokhoz, ünnepekhez és könnyen összehangolt megjelenéshez minden évszakban.",
+        "daddy_me": "Vásároljon apa és én ingeket, pólókat, pólókat és hozzáillő ruhákat családi fotókhoz, Apák napjára, nyaralásra és egyszerű hétköznapi koordinációra.",
+        "daddy_me_tshirts": "Vásároljon apa és én ingeket és hozzáillő pólókat Apák napjára, nyaralásra, születésnapra, fényképekre, valamint egyszerű mindennapi ruhákat apáknak és gyerekeknek.",
+        "daddy_me_shirts": "Vásároljon apának és fiának passzoló ingeket, beleértve a gombos, inget és hawaii stílusú ingeket nyaraláshoz, fényképezéshez, bulikhoz és csiszolt családi ruhákhoz.",
+        "couples": "Vásároljon párokat, akik összeillő szettekkel, felsőkkel, pizsamákkal és vakációra kész ruhákkal rendelkeznek randevúzáshoz, ajándékokhoz, kirándulásokhoz és mindennapi viselethez.",
+        "couples_tshirts": "Vásároljon pároknak hozzáillő ingeket és pólókat randevúzáshoz, kirándulásokhoz, koncertekhez, ünnepekhez, ajándékokhoz és könnyen összehangolt mindennapi megjelenéshez."
+      },
+      "swimsuits": {
+        "eyebrow": "Úszóruha útmutató",
+        "title": "Összehangolt fürdőruhák anyukáknak, lányaiknak és az egész családnak",
+        "copy_1": "Kezdje itt, ha először a legszélesebb úszókínálatot szeretné. Ez az oldal az anya-lánya stílusokat, a hozzáillő családi fürdőruhákat és a vakációra kész lehetőségeket egyesíti anélkül, hogy több úszókollekciót kellene átküldenie.",
+        "copy_2": "Ha már tudod, hogy kinek kell megfelelnie, költözz be a dedikált családi fürdőruha- és fürdőnadrág-kollekcióba a szűkebb szerkesztés érdekében. Méretezésnél a leggyorsabb út mindig a termékoldal és a mérettáblázat az Önnek leginkább tetsző stíluson.",
+        "related_aria": "Kapcsolódó úszógyűjtemények",
+        "related_label": "Fedezze fel a kapcsolódó úszógyűjteményeket",
+        "family_swimwear_title": "Családi fürdőruha",
+        "family_swimwear_caption": "Menjen közvetlenül a teljes család úszás szerkesztéséhez, amikor mindenkinek koordinálnia kell.",
+        "trunks_title": "Egyező törzsek",
+        "trunks_caption": "Adjon hozzá apa-fiú úszódarabokat, ha teljes strandnapi szettet szeretne.",
+        "mommy_me_caption": "Tartsa meg az összehangolt megjelenést a fürdőruhákon túl a más alkalmakra is megfelelő ruhákkal.",
+        "faq_eyebrow": "Fürdőruha GYIK",
+        "faq_title": "Gyors válaszok rendelés előtt",
+        "faq_question_1": "Milyen méretűek a hozzáillő fürdőruhák?",
+        "faq_answer_1": "A méretek stílusonként eltérőek, ezért a fizetés előtt tekintse át az elérhető változatokat, és használja a mérettáblázatot az egyes termékoldalakon. Ez a kollekció összehangolt úszási lehetőségeket takar anyukák és lányai számára, és egyes stílusok a szélesebb családi úszáshoz is kapcsolódnak.",
+        "faq_question_2": "Apának is kínálsz családi készleteket?",
+        "faq_answer_2": "Igen. Ha teljes családi megjelenésre vágyik, vásárolja meg a hozzáillő családi fürdőruha kollekciót és a bőrönd kollekciót, hogy az apák és fiúk számára összehangolt darabokat adjon a fő anyu és én úszási stílusok mellé.",
+        "faq_question_3": "Mi a különbség a mama és én fürdőruha és a hozzáillő családi fürdőruha között?",
+        "faq_answer_3": "A mama és én fürdőruhák általában az anya-lánya párosításra helyezik a hangsúlyt. A hozzáillő családi fürdőruha kibővíti ezt az ötletet, így több családtagra, köztük apára és fiúkra is összehangolt megjelenést építhet, ha ezek a stílusok rendelkezésre állnak.",
+        "faq_question_4": "Hol kezdjem, ha fiús darabokat is szeretnék?",
+        "faq_answer_4": "Kezdje el ezen a fürdőruha-oldalon, ha először a legszélesebb úszóruházati kínálatra vágyik, majd használja a kapcsolódó családi fürdőruhák és -nadrágok kollekcióit, hogy szűkítse a teljes családi megjelenésre vagy az apa-fiú kiegészítőkre.",
+        "faq_answer_2_rich_html": "Igen. Ha teljes családi megjelenésre vágyik, vásárolja meg a <a href=\"{{ family_swim_url }}\">Hozzáillő családi fürdőruhák</a> gyűjtemény és a <a href=\"{{ trunks_url }}\">Csomagtartók</a> kollekció, amely összehangolt darabokat ad hozzá apukáknak és fiúknak a fő anyu és én úszási stílusok mellé.",
+        "faq_answer_4_rich_html": "Kezdje el ezen a fürdőruhák oldalon, ha először a legszélesebb úszóruházatot szeretné, majd használja a <a href=\"{{ family_swim_url }}\">Hozzáillő családi fürdőruhák</a> és <a href=\"{{ trunks_url }}\">Csomagtartók</a> gyűjtemények, amelyek a teljes családi megjelenésre vagy az apa és fiú kiegészítőkre szűkíthetők."
+      },
+      "body": {
+        "mommy_and_me_html": "<p>Vásároljon {{ title }}-nket születésnapokra, családi fényképekre, nyaralásokra és egyszerű mindennapi testvérvárosi kapcsolatokra ruhákkal, fürdőruhákkal és hozzáillő készletekkel egy helyen.</p><p>Kezdje a portrékhoz és különleges alkalmakhoz készült ruhákkal, válasszon fürdőruhát a strandon és a medencés napokon, és használja a szélesebb ruházati keveréket, hogy összeillő ruhásszekrényt építsen, amely több évszakon át működik, egyetlen esemény helyett.</p>",
+        "spring_matching_html": "<p>Böngésszen a {{ title }} pasztellpalettákkal, tavaszi virágokkal és alkalomra kész megjelenésekkel, amelyeket templomi, villásreggeli, tojásvadászathoz, családi fotókhoz és más szezonális ünnepségekhez terveztek.</p><p>Ezeket a stílusokat azoknak a vásárlóknak tervezték, akik már ismerik az öltözködés pillanatát, és hozzáillő ruhákra vágynak, amelyek fényezettek, kényelmesek és könnyen viselhetők a tavasz hátralévő részében.</p>",
+        "dresses_html": "<p>Böngésszen a {{ title }} oldalon családi fotókért, ünnepségekért és csiszolt hétköznapi pillanatokért. Ez a szerkesztés a legerősebb ruhastílusokat egy helyen tartja, összehangolt megjelenéssel, amely csinosnak, viselhetőnek és könnyen vásárolhatónak tűnik.</p>",
+        "maxi_dresses_html": "<p>Böngésszen a {{ title }} között az egymáshoz illő stílusok között, amelyek kecsesek, könnyen viselhetők, és készen állnak a fotózásra, utazásra, ünnepekre és kifényesített hétköznapi pillanatokra.</p>",
+        "swimsuits_html": "<p>Böngésszen a {{ title }} oldalon tengerparti kirándulások, medencés napok, körutazások és napsütéses családi fotók között. Ez a kollekció segít a vásárlóknak összehasonlítani a hozzáillő családi fürdőruhákat, az anya és lánya hozzáillő fürdőruháit, valamint a családhoz illő fürdőruhákat anélkül, hogy külön úszókategóriák között ugrálnának.</p><p>Használja ezt az oldalt először széles úszóközpontként, majd ágazz el a dedikált családi úszókollekcióhoz vagy a hozzáillő nadrágokhoz, amikor az egész családnak egy nyomtatott vagy színes történet körül kell összehangolnia.</p>",
+        "family_swimsuits_html": "<p>Fedezze fel a {{ title }}-t tengerparti nyaralásokhoz, medencés napokhoz, sétahajózáshoz és nyári fotókhoz. Ez a legegyértelműbb céloldal a családi fürdőruhák összeállításához, amikor az anyukáknak, apukáknak, lányoknak és fiúknak egy nyomat, paletta vagy vakációra kész színtörténet körül kell összehangolniuk.</p><p>Használja ezt az oldalt, ha az egész család először egy hozzáillő fürdőruhát szeretne, majd egészítse ki a megjelenést ládákkal, takarókkal és a kapcsolódó anyu és én úszási lehetőségekkel a teljesebb utazási ruhatár érdekében.</p>",
+        "family_sets_html": "<p>Fedezze fel a {{ title }}-t az összehangolt megjelenéssel, amelyet családi nyaralásokhoz, tengerparti kirándulásokhoz, körutakhoz, utazási fényképekhez és meleg időjárási kirándulásokhoz terveztek. Ezekkel a készletekkel világos családi palettát hozhat létre anélkül, hogy mindenkit ugyanarra a darabra kényszerítene.</p><p>Használja ezt az oldalt a családi nyaraláshoz és a hozzáillő családi strandruhák összeállításához, majd ágazz szét a szélesebb családhoz illő kollekciókba, ha több szezonális vagy nem utazási specifikus opcióra van szüksége.</p>",
+        "new_women_outfits_html": "<p>Fedezze fel a {{ title }}-t, mint a széles körű Family Matching Outfits központot, ha össze szeretné hasonlítani az összehangolt ruhákat, mielőtt egy adott kategóriára szűkítene. Ennek az oldalnak az a célja, hogy segítse a vásárlókat az általános böngészésről a ruhák, fürdőruhák, nyaralógarnitúrák, anyu és én megjelenések vagy más hozzáillő stílusok között anélkül, hogy újrakezdené.</p><p>Használja az alábbi linkeket, hogy beugorjon az alkalomhoz legjobban passzoló kollekciókba, legyen szó családi fotók vásárlásáról, kirándulásról, szezonális felfrissülésről vagy egy konkrétabb, hozzáillő öltözékstílusról.</p>",
+        "family_matching_html": "<p>Böngésszen a {{ title }} között családi fotókhoz, utazásokhoz, születésnapokhoz, ünnepekhez és egyszerű mindennapi testvérvárosi kapcsolatokhoz. Ez a legjobb kiindulópont, ha szeretné összehasonlítani a családon belüli összehangolt megjelenést, mielőtt ruhákra, fürdőruhákra vagy nyaralási szettekre szűkítené.</p>",
+        "daddy_me_html": "<p>Fedezze fel a {{ title }}-t családi fotókért, nyaralásokért, Apák napi ajándékokért és mindennapi koordinációért. Ez a céloldal a legerősebb apa-gyerekkeresési szándék köré épül, a hozzáillő pólókkal, hétköznapi felsőkkel és elegánsabb ingekkel egy helyen.</p><p>Használja ezt a kollekciót, ha széles körű lefedettséget szeretne az apa és én ingjeinél, pólóinál és ruháinál, majd szűkítse a gombos, hawaii vagy pólóstílusokat az alkalomnak megfelelően.</p>",
+        "daddy_me_tshirts_html": "<p>Vásároljon {{ title }}, ha alkalmi, ajándékba illő felsőket szeretne apukáknak és gyerekeknek. Ez az oldal apa és én ingekre, hozzáillő pólókra és egyszerű mindennapi megjelenésekre épül, amelyek alkalmasak Apák napjára, születésnapokra, családi kirándulásokra és gyors fotózási pillanatokra.</p><p>Kezdje itt a szlogenes pólókért és az egyszerű grafikai stílusokért, majd válasszon ingeket vagy hawaii szetteket, ha az alkalom egy élesebb megjelenést vagy egy nyaralásra készebb ruhát kíván.</p>",
+        "daddy_me_shirts_html": "<p>Böngésszen a {{ title }} között azoknak a vásárlóknak, akik kifejezetten gombos, inget és hawaii stílusú apa-fiú ruhákat keresnek. Ez a kollekció a galléros megjelenésekre összpontosít, amelyek alkalmasak portrékhoz, vacsorákhoz, tengerparti kirándulásokhoz, esküvőkhöz és más csiszolt alkalmakhoz.</p><p>A hétköznapi pólókkal összehasonlítva ezek a stílusok strukturáltabbak és fotókészebbek, így erősebben illeszkednek, ha olyan ruhákat szeretne, amelyek még mindig emelkedettnek tűnnek.</p>",
+        "couples_html": "<p>Fedezze fel a {{ title }}-t randevúzáshoz, nyaraláshoz, ünnepi ajándékozáshoz, eljegyzési fényképekhez és mindennapi koordinációhoz. Ez az oldal azoknak a vásárlóknak készült, akik egynél több hozzáillő felsőt szeretnének, és szélesebb kiindulási pontra van szükségük az összehangolt megjelenéshez.</p><p>Kezdje egyszerű pólókkal vagy társalgó szettekkel, majd építsen egy teljesebb ruhát az utazás, alkalom vagy fotózási pillanat körül.</p>",
+        "couples_tshirts_html": "<p>Böngésszen a {{ title }} oldalon azoknak a vásárlóknak, akik párokat keresnek a megfelelő ingek, páros pólók és a mindennapi használatra tervezett felsők között. Ezek a stílusok akkor működnek a legjobban, ha lezser, ajándékozható megjelenésre vágyik utazásokhoz, nyaralásokhoz, koncertekhez, randevúzáshoz és fényképekhez.</p><p>Használja ezt az oldalt az egyszerű mindennapi párosításhoz, majd lépjen be a szélesebb páros kollekcióba, ha egy teltebb ruhát szeretne, amely nem csak pólóra épül.</p>"
+      },
+      "rich_parts": {
+        "new_women_outfits": {
+          "part_1_html": "<h2>Családhoz illő ruhák családi fotókhoz, kirándulásokhoz, nyaralásokhoz és mindennapi koordinációhoz</h2>",
+          "part_2_html": "<p>Ez a széles körű Family Matching Outfits központ azoknak a vásárlóknak, akik szeretnék összehasonlítani az összehangolt megjelenést, mielőtt egy adott stílusra szűkítenének. Családi fényképekhez, nyaralásokhoz, ünnepekhez, szezonális frissítésekhez és egyszerű mindennapi koordinációhoz készült, amikor a vásárló ismeri az általános megjelenést, de még nem a pontos kategóriát.</p>",
+          "part_3_html": "<h3>Mit vásároljon először</h3>",
+          "part_4_html": "<ul><li>Kezdje itt, ha a legszélesebb családnak megfelelő oldalt szeretné, mielőtt szűkebb gyűjteményt választana.</li><li>Használja az általános böngészésről a ruhák, fürdőruhák, nyaralókészletek vagy a mama és én stílusok között.</li><li>Ugorjon egy konkrétabb kollekcióra, ha már világos az alkalom, és a vásárló gyorsabb szűrést szeretne.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ dresses_url }}\">Vásároljon anya lánya esküvői vendég ruhákat</a> amikor a ruha a hozzáillő megjelenés középpontja.</p>",
+          "part_6_html": "<p><a href=\"{{ family_swimsuits_url }}\">Böngésszen a hozzáillő strandfürdőruhák között</a> amikor a terv középpontjában a tengerparti kirándulások, a medencés napok és a nyári utazások állnak.</p>",
+          "part_7_html": "<p><a href=\"{{ family_sets_url }}\">Vásároljon hozzáillő családi nyaralási ruhákat</a> üdülőhelyi tartózkodásokhoz, körutazásokhoz és összehangolt utazási napokhoz.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Vásároljon apának és nekem ingeket</a> amikor a családnak ruhák vagy fürdőruha helyett fényezett ing-vezérelt gyufára van szüksége.</p>",
+          "part_9_html": "<p><a href=\"{{ mommy_and_me_url }}\">Tekintse meg a szélesebb Anyu és én kollekciót</a> amikor a koordináció többnyire anya-lánya-központú.</p>"
+        },
+        "family_matching": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Gyűjtemény Megjegyzés</p><h2>Csiszolt kiindulópont az összehangolt családi megjelenéshez</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Ez a kollekció a legerősebb családi stílusokat egyesíti egy helyen, így könnyű kezdeni, és finomítani, ha az alkalom már világos.</p><p>Különösen jól működik fotókhoz, nyaralásokhoz, utazásokhoz, születésnapokhoz és mindennapi egyeztetésekhez, amelyek inkább átgondoltnak tűnnek, mint túlzásba vittek.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related family collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Vásároljon anya lánya esküvői vendég ruhákat</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Böngésszen a hozzáillő strandfürdőruhák között</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Vásároljon hozzáillő családi nyaralási ruhákat</a><a class=\"collection-seo-rich__link\" href=\"{{ daddy_me_shirts_url }}\">Vásároljon apának és nekem ingeket</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Fedezze fel a szélesebb Anyu és én kollekciót</a></div>"
+        },
+        "dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Gyűjtemény Megjegyzés</p><h2>Öltözetvezérelt stílusok fényképekhez, ünnepekhez és mindennapi ikerintézményekhez</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Ez a szerkesztés azokra a pillanatokra készült, amikor a ruha megadja az alaphangot. A hangsúly azokon a sziluetteken van, amelyek fényesnek tűnnek a fényképezőgépen, kényelmes viseletet biztosítanak, és az esemény után könnyen elérhetők.</p><p>Kezdje itt, amikor már tudja, hogy ruhavezérelt megjelenésre vágyik, majd ágasszon szét szélesebb családi kollekciókat, ha az anyán és a lányán túl is koordinálnia kell.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Böngésszen a Family Matching központban</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Tekintse meg az összes Anyu és én ruhát</a></div>"
+        },
+        "maxi_dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Gyűjtemény Megjegyzés</p><h2>Lenyűgöző, egész hosszúságú ruhák könnyű, csiszolt tapintással</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>A maxi ruhák erős kiindulópontot jelentenek, ha kecses mozgásra, egy kicsit nagyobb fedésre és olyan sziluettere vágysz, amely gyönyörűnek tűnik a fényképeken anélkül, hogy túlzottan formális lenne.</p><p>Ez a szerkesztés továbbra is az anyukák és lányok legerősebb hosszú hosszúságú stílusaira összpontosít, olyan opciókkal, amelyek a nyaraláshoz, a templomhoz, az ünnepekhez és a meleg időjárási öltözködéshez is megfelelőek.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related maxi dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Böngésszen az összes ruha között</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Lásd az összes anyut és engem</a></div>"
+        },
+        "mommy_and_me": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Gyűjtemény Megjegyzés</p><h2>Átfogó anya és én szerkesztés fényképekhez, utazásokhoz és mindennapi testvérvárosi kapcsolatokhoz</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Itt a legegyszerűbb kezdeni, ha összehangolt stílusokat szeretne anyukáknak és lányainak anélkül, hogy először egy terméktípus mellett döntene.</p><p>Kezdje itt a ruhák, fürdőruhák és a hozzáillő szettek tekintetében, majd szűkítse az alkalomhoz leginkább illő kategóriát, ha már tudja, milyen megjelenést szeretne.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related mommy and me collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Vásároljon anya lánya esküvői vendég ruhákat</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Böngésszen a hozzáillő strandfürdőruhák között</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Tekintse meg a hozzáillő családi nyaralási ruhákat</a></div>"
+        },
+        "family_swimsuits": {
+          "part_1_html": "<h2>Hozzáillő családi fürdőruhák tengerparti nyaraláshoz, medencés napokhoz, sétahajózáshoz és összehangolt nyári fotókhoz</h2>",
+          "part_2_html": "<p>Ez az oldal a legerősebb családi fürdőzési feltételek köré épül: hozzáillő családi fürdőruhák, családhoz illő fürdőruhák és összehangolt családi fürdőruhák nyaraláshoz és meleg időjárási fotókhoz. Ez akkor működik a legjobban, ha az egész családnak egy nyomtatott vagy színes történethez kell illeszkednie anélkül, hogy külön úszáskategóriákat egyesítene.</p>",
+          "part_3_html": "<h3>Miért különbözik ez az oldal egy általános fürdőruha kollekciótól?</h3>",
+          "part_4_html": "<ul><li>Középpontjában a teljes család koordinációja áll, ahelyett, hogy csak anya és lánya úszna.</li><li>Közvetlenül szól a nyaraláshoz, sétahajózáshoz és tengerparti fotózáshoz, ahol a fő cél a hozzáillő családi fürdőruhák.</li><li>Tisztább utat biztosít a vásárlóknak a családi fürdőruhák megvásárlásához, mielőtt a csomagtartókba vagy szélesebb, hozzáillő kollekciókba ágaznának.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ trunks_url }}\">Adjon hozzá megfelelő törzseket</a> amikor apa és fiú úszódarabokra van szüksége a strandnapi készlet teljessé tételéhez.</p>",
+          "part_6_html": "<p><a href=\"{{ swimsuits_url }}\">Nézze meg anya és lánya összeillő fürdőruháit</a> ha a vásárlási szándék szűkebb a teljes családi koordinációnál.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">Böngésszen Anyu és én ruhák között</a> ha a fő szükséglet az anya-lánya koordináció a fürdőruhán túl.</p>",
+          "part_8_html": "<p><a href=\"{{ family_sets_url }}\">Vásároljon családi nyaralási ruhákat</a> amikor az összehangolt megjelenéshez eltakarás, utazás vagy strand-vacsora támogatása szükséges a medencén túl.</p>"
+        },
+        "family_sets": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Gyűjtemény Megjegyzés</p><h2>Utazásra kész ruhák tengerparti napokhoz, sétahajózáshoz és összehangolt nyaralási tervekhez</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Ez a szerkesztés a legerősebb meleg időjárási családi megjelenést tartja egyben, így könnyű utazással vásárolni ahelyett, hogy egy szélesebb, egész éves kollekcióból indulna ki.</p><p>Használja, ha maga a nyaralás a vásárlás oka, majd ágazz el fürdőruhák vagy szélesebb családi kategóriákba, ha a teljes tervet ki kell alakítani.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related vacation collections\"><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Adjon hozzá megfelelő strandfürdőruhát</a><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Böngésszen a Family Matching központban</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Fedezze fel az Anyu és én ruhákat</a></div>"
+        },
+        "daddy_me": {
+          "part_1_html": "<h2>Apu és én ruhák, amelyek ingekre, pólókra és könnyen fotózható megjelenésre épülnek</h2>",
+          "part_2_html": "<p>A keresési kereslet ebben a kategóriában az apa és én ingekre, az apa és én pólókra, az apa és én pólókra, valamint az összehangolt apa-gyerek ruhákra összpontosul. Ezt az oldalt úgy hoztuk létre, hogy teljes mértékben lefedje ezt a célt, a hétköznapi grafikai felsőktől az élesebb galléros megjelenésig, amely portrékhoz, nyaralásokhoz és különleges eseményekhez is kifinomultnak tűnik.</p>",
+          "part_3_html": "<h3>Amit a vásárlók általában szeretnének ettől az oldaltól</h3>",
+          "part_4_html": "<ul><li>Alkalmi pólók apa és én születésnapokra, ajándékokra, tematikus kirándulásokra és mindennapi viseletre.</li><li>Galléros vagy gombos ingek, amelyek alkalmasak családi fotókhoz, vacsorákhoz és elegánsabb kirándulásokhoz.</li><li>Meleg időjáráshoz passzoló ruhák, amelyek úgy érzik, készen állnak a nyaralásra, anélkül, hogy jelmeznek tűnnének.</li></ul>",
+          "part_5_html": "<h3>Hogyan vásárolhatja meg gyorsabban a kollekciót</h3>",
+          "part_6_html": "<p>Kezdje a pólókkal, ha a cél a könnyű mindennapi koordináció. Ha az alkalomra tisztább, csiszoltabb felületre van szükség, válasszon ingeket, hawaii ingeket vagy más, strukturáltabb galléros stílusokat.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Vásároljon apának és nekem ingeket</a> alkalmi passzoló felsőkhöz és ajándékozható hétköznapi stílusokhoz.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Vásároljon apának és nekem ingeket a szebb alkalmakra</a> a gombos, ing és hawaii megjelenéshez, amely a nagyobb szándékú ingkeresés köré épül.</p>",
+          "part_9_html": "<p><a href=\"{{ trunks_url }}\">Böngésszen a megfelelő törzsek között</a> amikor az öltözékhez strand- vagy medencebarát kiegészítőre van szükség.</p>"
+        },
+        "daddy_me_tshirts": {
+          "part_1_html": "<h2>Apa és én ingek és hozzáillő pólók az alkalmi, ajándékozáshoz</h2>",
+          "part_2_html": "<p>Ez a kollekció azoknak a vásárlóknak szól, akik apa és én ingeket, apa és én pólókat, apa és én pólókat és könnyű apa-gyerek felsőket keresnek, amelyek egy fotózási pillanaton túl működnek. Ezek a stílusok a leggyorsabban illeszkednek mindennapi viselethez, születésnapokhoz, Apák napi ajándékokhoz, vidámparkokhoz és laza utazási napokhoz.</p>",
+          "part_3_html": "<h3>Miért fontos ez az oldal?</h3>",
+          "part_4_html": "<ul><li>Leszűkíti az apa és gyerek kategóriát a hétköznapi felsőkre, ahelyett, hogy minden öltözéktípusban keveredne.</li><li>Ez igazodik a nagy szándékú keresésekhez az apa és én ingek, az apa és én pólók és a hozzáillő pólók körül.</li><li>Egyszerűbb utat kínál a vásárlóknak, amikor egy gyors, ajándékba illő megjelenésre vágynak.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ daddy_me_url }}\">Térjen vissza a teljes Daddy and Me kollekcióhoz</a> ha pólót, nadrágot és elegánsabb inget szeretne egy helyen.</p>",
+          "part_6_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Élesebb megjelenésre van szüksége?</a> Böngésszen az apa és fia összeillő ingei között a gombos, inges és hawaii stílusban.</p>"
+        },
+        "daddy_me_shirts": {
+          "part_1_html": "<h2>Apa és fia összeillő ingek gombolásához, inghez és hawaii keresésekhez</h2>",
+          "part_2_html": "<p>Ez a nyitóoldal az apa klaszterben a legnagyobb szándékú inglekérdezések köré épül: apa és fia gombos ingekhez, apa és fia ingekhez, apa fia pedig hawaii ingekhez. Olyan vásárlók számára készült, akik több szerkezetre, gallérra és alkalomra alkalmas stílusra vágynak, mint amit egy hétköznapi pólókollekció kínálhat.</p>",
+          "part_3_html": "<h3>A legjobb alkalmak ezekhez a stílusokhoz</h3>",
+          "part_4_html": "<ul><li>Családi fotók, ünnepi összejövetelek, esküvők, templomok és vacsorák, ahol a galléros ingek fényesebbnek tűnnek.</li><li>Tengerparti kirándulások, sétahajózások és üdülőhelyi utazások, ahol a hawaii ingek vagy a rövid ujjú gombosok illik a környezethez.</li><li>Születésnapi és Apák napi ajándékok, amikor a hozzáillő megjelenésnek emelkedettnek kell lennie, nem csak újdonságnak.</li></ul>",
+          "part_5_html": "<h3>Miben különbözik ez a papa és én pólótól</h3>",
+          "part_6_html": "<p>Több szövött anyagra, tisztább gallérokra és elegánsabb sziluettekre számíthat. Ha a cél a puha alkalmi grafika vagy a hétköznapi felsők, a pólókollekció a jobb kiindulópont.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_url }}\">Böngésszen a teljes Daddy and Me kollekcióban</a> a pólók, ládák és összehangolt készletek szélesebb lefedettségéhez.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Vásároljon apának és nekem ingeket</a> ha lágyabb, hétköznapibb párosítási lehetőséget szeretne.</p>"
+        },
+        "couples": {
+          "part_1_html": "<h2>Párok, akik utazásokhoz, randevúzáshoz, ünnepekhez és ajándékokhoz passzolnak</h2>",
+          "part_2_html": "<p>A széles páros kulcsszócsalád túlmutat a pólókon. Ez az oldal a fő céloldal a párok számára, akik összeillő ruhákkal és összehangolt megjelenéssel rendelkeznek, beleértve a felsőket, nappali ruhákat, nyaralási darabokat és alkalmi szetteket.</p>",
+          "part_3_html": "<h3>Népszerű vásárlási szándékok ebben a kategóriában</h3>",
+          "part_4_html": "<ul><li>Párok az utazáshoz, hétvégi tervekhez és közösségi fotókhoz illő ruhákhoz.</li><li>Ajándékba kerülő övéi évfordulókra, nászutakra és ünnepi pillanatokra.</li><li>Könnyen összehangolt ruhák, amelyek összehangolják a színeket és a nyomatokat anélkül, hogy tetőtől-talpig azonos megjelenést kényszerítenének ki.</li></ul>",
+          "part_5_html": "<h3>Hol kezdjem</h3>",
+          "part_6_html": "<p>Ha a cél egy hétköznapi viselet, akkor a hozzáillő pólók a leggyorsabb nyeremény. Ha a cél egy teljesebb, összehangolt megjelenés, kezdje a szélesebb párok gyűjteményével, és dolgozzon kifelé az utazás, évszak vagy alkalom alapján.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">Vásároljon páros ingeket és hozzáillő pólókat</a> ha egy egyszerű alkalmi belépési pontot szeretne a kategóriában.</p>"
+        },
+        "couples_tshirts": {
+          "part_1_html": "<h2>Ingekhez és pólókhoz illő párok az alkalmi, ajándékozáshoz</h2>",
+          "part_2_html": "<p>Ez a kollekció azokat a vásárlókat célozza meg, akik olyan párokat keresnek, akik összeillő ingeket, páros ingeket, páros pólókat és más összeillő felsőket keresnek, amelyeket könnyű viselni randevúzásra, kirándulásokra, ünnepekre, koncertekre és mindennapi ruhákra. Ez a legjobb belépési pont, ha a vásárló szándéka egyértelműen a pólókra irányul.</p>",
+          "part_3_html": "<h3>Miért választják a vásárlók a megfelelő pólót?</h3>",
+          "part_4_html": "<ul><li>Könnyen ajándékozhatók évfordulókra, nászutakra, nyaralásokra és tematikus kirándulásokra.</li><li>Egyszerűen összehangolt megjelenést biztosítanak anélkül, hogy teljes ruhát kellene vásárolniuk.</li><li>Jól használhatók hétköznapi fotókhoz, utazási napokon és alacsony súrlódású mindennapi viselethez.</li></ul>",
+          "part_5_html": "<h3>Többet keres, mint pólókat?</h3>",
+          "part_6_html": "<p>Használja a tágabb értelemben vett pároknak megfelelő ruhák oldalát, ha olyan összehangolt megjelenést szeretne, amely a felsőkön túl egy teljesebb öltözéktörténetté válik.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">Böngésszen az összes párhoz illő ruhák között</a> az összehangolt megjelenések és alkalmak szélesebb keverékéhez.</p>"
+        },
+        "spring_matching": {
+          "part_1_html": "<h2>Anyu és én húsvéti ruhák és tavaszi hozzáillő ruhák különleges alkalmakra</h2>",
+          "part_2_html": "<p>Ez az oldal húsvéti és tavaszi célú keresésekre készült, ahol a vásárló már ismeri az alkalmat. A középpontban a pasztell paletták, virágok, világosabb szövetek és fotókész sziluettek állnak, amelyek alkalmasak templomokra, villásreggelire, tojásvadászatra, családi portrékra és más szezonális ünnepségekre.</p>",
+          "part_3_html": "<h3>A legjobb tavaszi pillanatok a hozzáillő ruhákhoz</h3>",
+          "part_4_html": "<ul><li>Húsvét vasárnap, templom, villásreggeli és családi összejövetelek.</li><li>Tavaszi családi fotók, kerti partik és anyák napi szezon.</li><li>Utazások, záporok és meleg időjárási események, amelyeknek még csiszolt megjelenésre van szükségük.</li></ul>",
+          "part_5_html": "<h3>Hogyan használd ezt a szezonális oldalt</h3>",
+          "part_6_html": "<p>Kezdje a húsvéti ruhákkal, ha egy adott eseményre van szüksége, majd használja ugyanazt a kollekciót, hogy megtalálja a tavaszhoz illő ruhákat, amelyek újra működhetnek az ünnep után.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">Böngésszen a teljes Anyu és én kollekcióban</a> ha több egész évben összeillő stílust szeretne a húsvéti és tavaszi ablakon kívül.</p>",
+          "part_8_html": "<p><a href=\"{{ dresses_url }}\">Vásároljon hozzáillő ruhákat</a> a szezonális tavaszi stíluson túlmenően a ruhákra fókuszáló szerkesztéshez.</p>"
+        }
+      }
+    },
+    "collection": {
+      "swimsuits_override": "Fürdőruha"
     }
   },
   "localization": {

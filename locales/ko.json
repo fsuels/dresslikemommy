@@ -139,7 +139,8 @@
         "from_price_html": "{{ price }}에서",
         "regular_price": "정가",
         "sale_price": "할인가",
-        "unit_price": "단가"
+        "unit_price": "단가",
+        "compare_at_price": "{{ price }}에서 비교"
       },
       "share": "이 제품 공유",
       "sold_out": "품절",
@@ -205,7 +206,17 @@
         "guide_and_fit": "사이즈 가이드 및 핏",
         "your_size_details": "사이즈 세부정보",
         "compare_hint": "아래의 전체 차트를 열어 주변 크기를 비교해 보세요.",
-        "chart_units": "사이즈 차트 단위"
+        "chart_units": "사이즈 차트 단위",
+        "columns": {
+          "size": "크기",
+          "us_size": "미국 사이즈",
+          "bust_cm_in": "가슴(cm/인치)",
+          "waist_cm_in": "허리(cm/인치)",
+          "hips_cm_in": "엉덩이(cm/인치)",
+          "height_cm_in": "높이(cm/인치)",
+          "weight_kg": "체중(kg)",
+          "age": "나이"
+        }
       },
       "reviews": {
         "heading": "고객 리뷰",
@@ -218,6 +229,16 @@
         "empty": "첫 번째로 리뷰를 작성해 보세요",
         "write_review": "리뷰 작성",
         "write_review_title": "리뷰 작성"
+      },
+      "free_shipping_all_orders": "모든 주문에 대해 무료 배송",
+      "selected_size_label": "크기: {{ size }}",
+      "description_sections": {
+        "details_eyebrow": "세부",
+        "highlights_heading": "당신이 그것을 좋아할 이유",
+        "size_chart_heading": "사이즈 차트",
+        "product_details_heading": "제품 세부정보",
+        "size_chart_meta": "공급업체 소스 테이블의 측정값",
+        "product_details_meta": "구조화된 제품 정보"
       }
     },
     "modal": {
@@ -487,7 +508,15 @@
       "prefix_matching": "어울리는 ",
       "prefix_daddy_me": "_아빠와 나 ",
       "prefix_family_matching": "_가족 매칭 ",
-      "label_button_downs": "버튼다운"
+      "label_button_downs": "버튼다운",
+      "label_tees": "티셔츠",
+      "label_dresses": "드레스",
+      "label_hawaiian_outfits": "하와이안 의상",
+      "label_all": "모두",
+      "label_new_arrivals": "새로운 도착",
+      "label_sale": "판매",
+      "label_best_sellers": "베스트셀러",
+      "label_sweaters_short": "스웨터"
     },
     "collection": {
       "swimsuits_override": "_수영복"
@@ -503,6 +532,243 @@
       "browse_more_from": "{{ collection }}에서 더 찾아보세요",
       "browse_similar_styles": "비슷한 스타일 찾아보기",
       "compare_collection_copy": "쇼핑으로 돌아가기 전에 이 컬렉션을 사용하여 몇 가지 일치하는 항목을 비교하세요."
+    },
+    "collection_navigation": {
+      "collection_categories": "컬렉션 카테고리",
+      "main_collections": "주요 컬렉션",
+      "within_mommy_me": "엄마와 나 내",
+      "within_family_matching": "가족 내 매칭",
+      "within_daddy_me": "아빠와 나 내",
+      "within_couples": "커플 내에서",
+      "within_maternity": "출산 내에서"
+    },
+    "collection_seo": {
+      "note_eyebrow": "컬렉션 노트",
+      "closer_look_at": "{{ title }} 자세히 살펴보기",
+      "display_titles": {
+        "all": "어울리는 모든 의상",
+        "swimsuits": "패밀리 매칭 수영복",
+        "mommy_and_me": "엄마와 나 의상",
+        "dresses": "엄마와 나 드레스",
+        "family_swimsuits": "가족용 수영복",
+        "family_sets": "가족 휴가 복장",
+        "new_women_outfits": "가족과 어울리는 의상",
+        "family_matching": "가족과 어울리는 의상",
+        "daddy_me": "아빠와 나 의상",
+        "daddy_me_tshirts": "아빠와 나 티셔츠",
+        "daddy_me_shirts": "아빠와 아들 셔츠",
+        "couples": "커플 매칭 의상",
+        "couples_tshirts": "커플 매칭 티셔츠",
+        "spring_matching": "엄마와 나 부활절 드레스와 봄에 어울리는 의상",
+        "tops": "탑와 티셔츠 매칭",
+        "pajamas": "일치하는 계열 잠옷",
+        "sweaters": "어울리는 스웨터와 재킷",
+        "maxi_dresses": "엄마와 나 맥시 드레스",
+        "jumpsuits": "어울리는 점프수트",
+        "midi_dresses": "엄마와 나 미디 드레스",
+        "mini_dresses": "엄마와 나 미니 드레스",
+        "rompers": "어울리는 롬퍼",
+        "sundresses": "엄마와 나 선드레스",
+        "bottoms": "어울리는 하의",
+        "skirts": "어울리는 스커트",
+        "leggings": "어울리는 레깅스",
+        "pants": "어울리는 바지",
+        "new_arrivals": "새로운 어울리는 의상 도착",
+        "new_matching_outfits": "새로운 엄마와 나 의상",
+        "maternity": "출산 및 간호 스타일",
+        "best_sellers": "베스트셀러",
+        "popular_mommy_me": "인기 엄마와 나",
+        "popular_family_matching": "인기 있는 가족 매칭 의상",
+        "hawaiian_outfits": "가족 하와이 복장",
+        "trunks": "매칭 수영 수영 반바지",
+        "fall_winter": "가을과 겨울에 어울리는 의상",
+        "formal_dresses": "어울리는 정장 드레스",
+        "family_sweaters": "패밀리 스웨터와 재킷",
+        "christmas_sweaters": "크리스마스 매칭 스웨터",
+        "christmas_tops": "크리스마스 매칭 탑",
+        "christmas_pajamas": "크리스마스 매칭 잠옷",
+        "valentines": "발렌타인데이 어울리는 의상"
+      },
+      "meta_titles": {
+        "swimsuits": "매칭 패밀리 수영복 | 엄마와 딸",
+        "mommy_and_me": "엄마와 나 의상 | 드레스, 수영복 및 매칭 세트",
+        "family_swimsuits": "어울리는 가족 수영복 | 가족용 수영복",
+        "family_sets": "어울리는 가족 휴가 의상 | 해변과 여행 세트",
+        "family_matching": "가족 매칭 의상 | 엄마와 나",
+        "new_women_outfits": "가족 매칭 의상 | 드레스, 수영복 및 가족 세트",
+        "dresses": "엄마와 나 드레스 | 엄마와 딸",
+        "maxi_dresses": "어울리는 맥시 드레스 | 엄마와 딸",
+        "best_sellers": "베스트셀러 엄마와 나 의상 | 드레스, 수영복 등",
+        "daddy_me": "아빠와 나 셔츠, 티셔츠 및 어울리는 의상",
+        "daddy_me_tshirts": "아빠와 나 셔츠 | 아빠와 아이를 위한 어울리는 티셔츠",
+        "daddy_me_shirts": "아빠와 아들 매칭 셔츠 | 버튼 업, 드레스 및 하와이안",
+        "couples": "커플 매칭 의상 | 그와 그녀를 위한 조화로운 룩",
+        "couples_tshirts": "커플 매칭 셔츠 | 티셔츠 커플과 티셔츠",
+        "spring_matching": "엄마와 나 부활절 드레스 | 봄에 어울리는 의상"
+      },
+      "meta_descriptions": {
+        "all": "엄마와 나, 아빠와 나, 커플 세트, 가족 세트 등 어울리는 모든 의상을 한 곳에서 쇼핑하세요. 빠른 배송으로 편안한 스타일.",
+        "mommy_and_me": "생일, 가족 사진, 휴가 및 일상적인 자매 결연 순간을 위한 엄마와 나 의상, 드레스, 수영복 및 매칭 세트를 쇼핑하세요.",
+        "spring_matching": "교회, 브런치, 계란 찾기, 가족 사진 및 기타 계절 축하 행사를 위해 엄마와 나 부활절 드레스와 봄에 어울리는 의상을 쇼핑하세요.",
+        "dresses": "사진, 파티, 휴가 및 세련된 일상복을 위해 엄마와 나 드레스와 엄마 딸에게 어울리는 드레스를 쇼핑하세요.",
+        "maxi_dresses": "사진, 여행, 축하 행사 및 쉽게 세련된 일상복을 위해 엄마와 나에게 맥시 드레스와 어울리는 맥시 드레스를 쇼핑하세요.",
+        "swimsuits": "해변 여행, 수영장 데이, 크루즈 및 조화로운 여름 사진을 위해 어울리는 가족 수영복과 엄마와 딸에게 어울리는 수영복을 쇼핑하세요.",
+        "family_swimsuits": "해변 휴가, 수영장 데이, 크루즈 및 여름 사진 촬영에 어울리는 가족 수영복과 가족 수영복을 쇼핑하세요.",
+        "family_sets": "크루즈, 리조트 여행, 가족 사진, 조화로운 여름 여행 룩에 어울리는 가족 휴가 의상과 해변 세트를 쇼핑하세요.",
+        "new_women_outfits": "드레스, 수영복, 엄마와 나 룩, 여행용 세트 등 패밀리 매칭 의상을 한 곳에서 쇼핑한 다음 여행, 계절 또는 상황에 맞는 컬렉션을 선택하세요.",
+        "family_matching": "사진, 휴가, 휴일 및 매 시즌 쉽게 코디할 수 있는 룩에 어울리는 가족 의상과 엄마와 나 의상을 쇼핑하세요.",
+        "daddy_me": "가족 사진, 아버지의 날, 휴가 및 간편한 일상 코디를 위한 아빠와 나 셔츠, 티셔츠, 티셔츠, 어울리는 의상을 쇼핑하세요.",
+        "daddy_me_tshirts": "아버지의 날, 휴가, 생일, 사진을 위한 아빠와 나 셔츠와 어울리는 티셔츠, 아빠와 아이들을 위한 간편한 일상 의상을 쇼핑하세요.",
+        "daddy_me_shirts": "휴가, 사진, 파티, 세련된 가족 의상을 위한 버튼 업 셔츠, 드레스 셔츠, 하와이안 스타일 등 아빠와 아들에게 어울리는 셔츠를 쇼핑하세요.",
+        "couples": "데이트 밤, 선물, 여행 및 평상복을 위한 조화로운 세트, 탑, 파자마 및 휴가 준비 룩으로 커플에게 어울리는 의상을 쇼핑하세요.",
+        "couples_tshirts": "데이트 밤, 여행, 콘서트, 휴일, 선물 및 쉽게 일상에서 코디할 수 있는 룩을 위한 커플 매칭 셔츠와 커플 티셔츠를 쇼핑하세요."
+      },
+      "swimsuits": {
+        "eyebrow": "수영복 가이드",
+        "title": "엄마, 딸, 온 가족을 위한 코디된 수영복",
+        "copy_1": "가장 광범위한 수영 제품을 먼저 원할 때 여기에서 시작하십시오. 이 페이지에서는 여러 수영 컬렉션을 살펴보지 않고도 엄마와 딸 스타일, 어울리는 가족 수영복, 휴가 준비 옵션을 함께 제공합니다.",
+        "copy_2": "매칭이 필요한 사람이 누구인지 알게 되면 전용 가족 수영복 또는 트렁크 컬렉션으로 이동하여 더 정밀하게 편집하세요. 사이즈 조정의 경우 가장 빠른 경로는 항상 가장 좋아하는 스타일의 제품 페이지와 사이즈 차트입니다.",
+        "related_aria": "관련 수영 컬렉션",
+        "related_label": "관련 수영 컬렉션 살펴보기",
+        "family_swimwear_title": "가족용 수영복",
+        "family_swimwear_caption": "모두가 협력해야 할 때 전체 가족 수영 편집으로 바로 이동하세요.",
+        "trunks_title": "수영 반바지 매칭",
+        "trunks_caption": "해변에서 완벽한 세트를 원할 경우 아빠와 아들의 수영복을 추가하세요.",
+        "mommy_me_caption": "다른 상황에 어울리는 의상과 함께 수영복을 넘어 조화로운 룩을 유지하세요.",
+        "faq_eyebrow": "수영복 FAQ",
+        "faq_title": "주문 전 빠른 답변",
+        "faq_question_1": "어울리는 수영복은 어떤 사이즈로 나오나요?",
+        "faq_answer_1": "사이즈는 스타일에 따라 다르므로 사용 가능한 변형을 검토하고 결제하기 전에 각 제품 페이지의 사이즈 차트를 사용하세요. 이 컬렉션은 엄마와 딸을 위한 조화로운 수영 옵션을 다루며, 일부 스타일은 더 넓은 가족용 수영 룩으로 연결됩니다.",
+        "faq_question_2": "아빠를 위한 패밀리 세트도 제공되나요?",
+        "faq_answer_2": "예. 완전한 가족룩을 원한다면, 어울리는 가족 수영복 컬렉션과 트렁크 컬렉션을 쇼핑하여 주요 엄마와 나 수영 스타일과 함께 아빠와 소년을 위한 조화로운 제품을 추가하세요.",
+        "faq_question_3": "엄마와 나 수영복과 어울리는 가족 수영복의 차이점은 무엇인가요?",
+        "faq_answer_3": "엄마와 나 수영복은 대개 엄마와 딸의 페어링에 중점을 둡니다. 가족 수영복을 매치하면 아이디어가 확장되어 아빠와 아들을 포함한 더 많은 가족 구성원이 함께 코디할 수 있는 스타일을 만들 수 있습니다.",
+        "faq_question_4": "남아용 제품도 원한다면 어디서부터 시작해야 하나요?",
+        "faq_answer_4": "가장 광범위한 수영 제품군을 먼저 원한다면 이 수영복 페이지에서 시작한 다음 관련 가족 수영복 및 트렁크 컬렉션을 사용하여 전체 가족 룩 또는 아빠와 소년 추가 품목으로 범위를 좁히세요.",
+        "faq_answer_2_rich_html": "예. 온전한 가족룩을 원하신다면, <a href=\"{{ family_swim_url }}\">어울리는 가족 수영복</a> 컬렉션과 <a href=\"{{ trunks_url }}\">수영 반바지</a> 엄마와 나의 주요 수영 스타일과 함께 아빠와 아들을 위한 조화로운 제품을 추가하는 컬렉션입니다.",
+        "faq_answer_4_rich_html": "가장 다양한 수영 제품을 먼저 원하시면 이 수영복 페이지에서 시작한 다음, <a href=\"{{ family_swim_url }}\">어울리는 가족 수영복</a> 그리고 <a href=\"{{ trunks_url }}\">수영 반바지</a> collections to narrow into full-family looks or dad-and-boy add-ons."
+      },
+      "body": {
+        "mommy_and_me_html": "<p>생일, 가족 사진, 휴가 및 간편한 일상 자매 결연을 위해 {{ title }}를 쇼핑하세요. 드레스, 수영복, 매칭 세트가 모두 한 곳에서 제공됩니다.</p><p>인물 사진과 특별한 날을 위한 드레스로 시작하고, 해변과 수영장을 갈 때 수영복으로 바꾸고, 더 폭넓은 의상 믹스를 사용하여 한 가지 이벤트만 하는 것이 아니라 계절에 관계없이 어울리는 옷장을 만드세요.</p>",
+        "spring_matching_html": "<p>교회, 브런치, 계란 사냥, 가족 사진 및 기타 계절 축하 행사를 위해 제작된 파스텔 팔레트, 봄 꽃, 상황에 맞는 룩으로 {{ title }}를 찾아보세요.</p><p>이러한 스타일은 자신이 어떤 옷을 입어야 할지 이미 알고 있고, 세련되고 편안하며 남은 봄 내내 쉽게 입을 수 있는 어울리는 의상을 원하는 쇼핑객을 위해 디자인되었습니다.</p>",
+        "dresses_html": "<p>가족 사진, 축하 행사, 세련된 일상의 순간을 위해 {{ title }}를 찾아보세요. 이 편집에서는 예쁘고 착용하기 쉬우며 쇼핑하기 쉬운 조화로운 룩과 함께 가장 강력한 드레스 스타일을 한 곳에 모았습니다.</p>",
+        "maxi_dresses_html": "<p>{{ title }}를 찾아 우아하고 착용하기 쉬우며 사진, 여행, 축하 행사 및 세련된 일상의 순간에 어울리는 흐르는 듯한 매칭 스타일을 찾아보세요.</p>",
+        "swimsuits_html": "<p>{{ title }}를 찾아 해변 여행, 수영장 여행, 크루즈, 화창한 가족 사진을 찍으세요. 이 컬렉션은 쇼핑객이 별도의 수영 카테고리 사이를 이동하지 않고도 어울리는 가족 수영복, 엄마와 딸에게 어울리는 수영복, 가족 일치 수영복을 비교할 수 있도록 도와줍니다.</p><p>먼저 이 페이지를 광범위한 수영 허브로 사용한 다음 온 가족이 하나의 인쇄물이나 컬러 스토리를 중심으로 조정해야 할 때 전용 가족 수영 컬렉션이나 어울리는 트렁크로 분기하십시오.</p>",
+        "family_swimsuits_html": "<p>해변 휴가, 수영장 이용, 크루즈 및 여름 사진을 위해 {{ title }}를 찾아보세요. 엄마, 아빠, 소녀, 소년 모두가 하나의 프린트, 팔레트 또는 휴가 준비 색상 스토리를 중심으로 조화를 이루어야 할 때 가족 수영복 매칭을 위한 가장 명확한 랜딩 페이지입니다.</p><p>온 가족이 먼저 어울리는 수영복을 원할 때 이 페이지를 사용하고, 트렁크, 커버업 및 관련 엄마와 나 수영 옵션으로 룩을 마무리하여 더 풍성한 여행 옷장을 만드세요.</p>",
+        "family_sets_html": "<p>가족 휴가, 해변 여행, 크루즈, 여행 사진, 따뜻한 날씨 나들이를 위해 디자인된 조화로운 룩으로 {{ title }}를 탐험해보세요. 이 세트는 모든 사람을 똑같은 작품에 강요하지 않고도 명확한 가족 팔레트를 만드는 데 도움이 됩니다.</p><p>가족 휴가 의상과 가족 해변 의상을 매칭하려면 이 페이지를 사용하고, 더 많은 계절 또는 여행에 특화된 옵션이 필요할 때 더 넓은 가족 매칭 컬렉션으로 분류하세요.</p>",
+        "new_women_outfits_html": "<p>특정 카테고리로 범위를 좁히기 전에 조화로운 의상을 비교하고 싶다면 광범위한 가족 매칭 의상 허브인 {{ title }}를 살펴보세요. 이 페이지는 쇼핑객이 처음부터 다시 시작하지 않고도 일반적인 검색에서 드레스, 수영복, 휴가 세트, 엄마와 나 룩 또는 기타 어울리는 스타일로 이동할 수 있도록 돕기 위해 만들어졌습니다.</p><p>아래 링크를 사용하여 가족 사진, 여행, 계절에 맞는 새로 고침을 위한 쇼핑 또는 보다 구체적인 어울리는 의상 스타일 등 상황에 가장 적합한 컬렉션을 살펴보세요.</p>",
+        "family_matching_html": "<p>가족 사진, 여행, 생일, 휴일 및 손쉬운 일상 자매 결연을 위해 {{ title }}를 찾아보세요. 드레스, 수영복, 바캉스 세트로 범위를 좁히기 전에 가족 전체가 함께 코디한 룩을 비교하고 싶을 때 시작하기 가장 좋은 곳입니다.</p>",
+        "daddy_me_html": "<p>가족 사진, 휴가, 아버지의 날 선물, 일상 코디를 위한 {{ title }}를 살펴보세요. 이 랜딩 페이지는 가장 강력한 아빠와 아이 검색 의도를 중심으로 구축되었으며, 어울리는 티셔츠, 캐주얼 상의, 멋진 셔츠 옵션을 모두 한곳에 제공합니다.</p><p>아빠와 나 셔츠, 티셔츠, 의상을 폭넓게 다루고, 상황에 따라 버튼업, 하와이안 또는 티셔츠 스타일로 범위를 좁힐 때 이 컬렉션을 사용하세요.</p>",
+        "daddy_me_tshirts_html": "<p>아빠와 아이들을 위한 캐주얼하고 선물하기 좋은 매칭 상의를 원할 때 {{ title }}를 쇼핑하세요. 이 페이지는 아버지의 날, 생일, 가족 여행 및 짧은 사진 촬영 순간에 어울리는 아빠와 나 셔츠, 어울리는 티셔츠, 쉬운 데일리 룩을 중심으로 구성되었습니다.</p><p>슬로건 티셔츠와 쉬운 그래픽 스타일을 위해 여기에서 시작한 다음, 상황에 따라 더 선명한 룩이나 휴가에 적합한 의상이 필요할 경우 드레스 셔츠나 하와이안 세트로 전환하세요.</p>",
+        "daddy_me_shirts_html": "<p>버튼 업, 드레스 셔츠, 하와이 스타일 아버지와 아들 의상을 특별히 찾는 쇼핑객을 위해 {{ title }}를 찾아보세요. 이 컬렉션은 인물 사진, 저녁 식사, 해변 여행, 결혼식 및 기타 세련된 행사에 어울리는 칼라 룩에 중점을 둡니다.</p><p>캐주얼 티셔츠에 비해 이러한 스타일은 더욱 구조화되고 사진 촬영에 적합하므로 여전히 고급스러워 보이는 어울리는 의상을 원할 때 더 잘 맞습니다.</p>",
+        "couples_html": "<p>데이트 밤, 휴가, 명절 선물, 약혼 사진 및 일상 코디네이션을 위해 {{ title }}를 살펴보세요. 이 페이지는 하나 이상의 어울리는 상의를 원하고 조화로운 룩을 위한 더 넓은 출발점이 필요한 쇼핑객을 위해 설계되었습니다.</p><p>간편한 티셔츠나 라운지 세트로 시작한 다음 여행, 행사 또는 쇼핑하려는 사진 촬영 순간에 맞춰 더욱 완벽한 의상을 만들어 보세요.</p>",
+        "couples_tshirts_html": "<p>커플에게 어울리는 셔츠, 커플 티셔츠, 일상에 어울리는 상의를 검색하는 쇼핑객을 위해 {{ title }}를 찾아보세요. 이러한 스타일은 여행, 휴가, 콘서트, 데이트, 사진 촬영 시 캐주얼하고 선물하기 좋은 룩을 원할 때 가장 잘 어울립니다.</p><p>쉽게 일상적인 매칭을 위해 이 페이지를 사용하고, 티셔츠보다 더 풍성한 의상을 원한다면 더 광범위한 커플 컬렉션을 살펴보세요.</p>"
+      },
+      "rich_parts": {
+        "new_women_outfits": {
+          "part_1_html": "<h2>가족 사진, 여행, 휴가 및 일상 코디를 위한 가족 매칭 의상</h2>",
+          "part_2_html": "<p>이는 하나의 특정 스타일로 범위를 좁히기 전에 조화로운 룩을 비교하려는 쇼핑객을 위한 광범위한 패밀리 매칭 의상 허브입니다. 가족 사진, 휴가, 휴일, 계절별 업데이트, 쇼핑객이 일반적인 룩을 알고 있지만 아직 정확한 카테고리를 모르는 경우 쉬운 일상 코디네이션을 위해 제작되었습니다.</p>",
+          "part_3_html": "<h3>무엇을 먼저 쇼핑할지</h3>",
+          "part_4_html": "<ul><li>더 좁은 컬렉션을 선택하기 전에 가장 광범위한 가족 일치 페이지를 원할 때 여기에서 시작하십시오.</li><li>일반적인 검색에서 드레스, 수영복, 휴가 세트 또는 엄마와 나 스타일로 이동하는 데 사용하세요.</li><li>상황이 이미 명확하고 구매자가 더 빠른 필터링을 원할 경우 보다 구체적인 컬렉션으로 이동하세요.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ dresses_url }}\">어머니 딸 결혼식 하객 드레스 쇼핑하기</a> 드레스가 어울리는 룩의 중심이 될 때.</p>",
+          "part_6_html": "<p><a href=\"{{ family_swimsuits_url }}\">어울리는 해변 수영복 찾아보기</a> 해변 여행, 수영장 여행, 여름 여행을 중심으로 계획을 세울 때.</p>",
+          "part_7_html": "<p><a href=\"{{ family_sets_url }}\">어울리는 가족 휴가 의상 쇼핑</a> 리조트 숙박, 크루즈 및 여행 일정 조정을 위해.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">아빠와 나 셔츠 쇼핑하기</a> 가족이 드레스나 수영복 대신 세련된 셔츠에 어울리는 매치가 필요할 때.</p>",
+          "part_9_html": "<p><a href=\"{{ mommy_and_me_url }}\">더 광범위한 엄마와 나 컬렉션 보기</a> 코디가 주로 엄마와 딸 중심일 때.</p>"
+        },
+        "family_matching": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">컬렉션 노트</p><h2>조화로운 패밀리 룩을 위한 세련된 출발점</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>이 컬렉션은 가장 강력한 가족 스타일을 한 곳에 모아두었기 때문에 폭넓게 시작하고 상황이 명확해지면 쉽게 다듬을 수 있습니다.</p><p>과하지 않고 사려 깊은 느낌이 드는 사진, 휴가, 여행, 생일, 데일리 매칭에 특히 잘 어울립니다.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related family collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">어머니 딸 결혼식 하객 드레스 쇼핑하기</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">어울리는 해변 수영복 찾아보기</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">어울리는 가족 휴가 의상 쇼핑</a><a class=\"collection-seo-rich__link\" href=\"{{ daddy_me_shirts_url }}\">아빠와 나 셔츠 쇼핑하기</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">더 광범위한 엄마와 나 컬렉션 살펴보기</a></div>"
+        },
+        "dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">컬렉션 노트</p><h2>사진, 축하, 일상적인 자매 결연을 위한 드레스 주도 스타일</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>이 편집은 드레스가 분위기를 조성하는 순간을 위해 만들어졌습니다. 카메라에서 세련된 느낌을 주고, 착용하기 편하며, 이벤트 후에 쉽게 손이 닿는 실루엣에 중점을 둡니다.</p><p>드레스 중심의 룩을 원한다는 것을 이미 알고 있을 때 여기에서 시작한 다음, 엄마와 딸을 넘어서 조화를 이루어야 하는 경우 더 넓은 가족 컬렉션으로 확장하세요.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">가족 매칭 허브 찾아보기</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">엄마와 나 의상 모두 보기</a></div>"
+        },
+        "maxi_dresses": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">컬렉션 노트</p><h2>편안하고 세련된 느낌을 주는 흐르는 듯한 전장 드레스</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>우아한 움직임, 조금 더 커버력, 지나치게 격식을 차리지 않으면서도 사진에서 아름답게 느껴지는 실루엣을 원할 때 맥시 드레스는 강력한 출발점입니다.</p><p>이번 편집에서는 엄마와 딸을 위한 가장 강력한 긴 길이의 스타일에 초점을 맞춰 휴가, 교회, 축하 행사, 따뜻한 날씨에 편안하게 입을 수 있는 옵션을 제공합니다.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related maxi dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">모든 드레스 찾아보기</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">엄마와 나 모두 보기</a></div>"
+        },
+        "mommy_and_me": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">컬렉션 노트</p><h2>사진, 여행, 일상적인 자매 결연을 위한 폭넓은 엄마와 나 편집</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>하나의 제품 유형을 먼저 정하지 않고도 엄마와 딸의 조화로운 스타일을 원할 때 가장 쉽게 시작할 수 있는 곳이다.</p><p>드레스, 수영복, 어울리는 세트를 여기에서 시작한 다음, 원하는 룩을 알고 나면 상황에 가장 잘 맞는 카테고리로 범위를 좁혀보세요.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related mommy and me collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">어머니 딸 결혼식 하객 드레스 쇼핑하기</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">어울리는 해변 수영복 찾아보기</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">어울리는 가족 휴가 의상을 확인하세요</a></div>"
+        },
+        "family_swimsuits": {
+          "part_1_html": "<h2>해변 휴가, 수영장 이용, 크루즈 및 여름 사진 촬영에 어울리는 가족 수영복</h2>",
+          "part_2_html": "<p>이 페이지는 가장 강력한 가족 수영 용어를 중심으로 만들어졌습니다. 가족 수영복, 가족 수영복, 휴가 및 따뜻한 날씨 사진을 위한 가족 수영복 코디입니다. 별도의 수영 카테고리를 하나씩 연결하지 않고 온 가족이 하나의 인쇄물이나 컬러 스토리를 일치시켜야 할 때 가장 효과적입니다.</p>",
+          "part_3_html": "<h3>이 페이지가 일반 수영복 컬렉션과 다른 이유</h3>",
+          "part_4_html": "<ul><li>엄마와 딸의 수영룩만이 아닌 온가족 코디를 중심으로 제작되었습니다.</li><li>이는 가족 수영복을 맞추는 것이 주요 목표인 휴가, 크루즈 및 해변 사진 의도를 직접적으로 나타냅니다.</li><li>이는 쇼핑객이 트렁크나 더 넓은 매칭 컬렉션으로 분류하기 전에 가족용 수영복을 구입할 수 있는 더 깔끔한 경로를 제공합니다.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ trunks_url }}\">일치하는 트렁크 추가</a> when you need dad and boy swim pieces to complete the beach-day set.</p>",
+          "part_6_html": "<p><a href=\"{{ swimsuits_url }}\">엄마와 딸이 어울리는 수영복 보기</a> if the shopping intent is narrower than full-family coordination.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">엄마와 나 의상 찾아보기</a> if the main need is mom-and-daughter coordination beyond swimwear.</p>",
+          "part_8_html": "<p><a href=\"{{ family_sets_url }}\">가족 여행 의상 쇼핑하기</a> 조화로운 룩이 커버업, 여행 또는 수영장 너머의 해변-저녁 지원이 필요할 때.</p>"
+        },
+        "family_sets": {
+          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">컬렉션 노트</p><h2>해변에서의 휴가, 크루즈 및 휴가 계획을 위한 여행 준비 복장</h2></div>",
+          "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>이 편집은 가장 따뜻한 날씨에 가장 강한 가족 룩을 함께 유지하므로 더 광범위한 일년 내내 컬렉션을 시작하는 대신 여행으로 쇼핑하기가 쉽습니다.</p><p>휴가 자체가 쇼핑의 이유일 때 이 기능을 사용하고, 전체 계획을 세워야 하는 경우 수영복이나 더 넓은 가족 카테고리로 분류하세요.</p></div>",
+          "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related vacation collections\"><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">어울리는 해변 수영복 추가</a><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">가족 매칭 허브 찾아보기</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">엄마와 나 의상 살펴보기</a></div>"
+        },
+        "daddy_me": {
+          "part_1_html": "<h2>아빠와 나의 의상은 셔츠, 티셔츠, 쉽게 사진에 찍을 수 있는 룩으로 구성되었습니다.</h2>",
+          "part_2_html": "<p>이 카테고리의 검색 수요는 아빠와 나 셔츠, 아빠와 나 티셔츠, 아빠와 나 티셔츠, 아빠와 아이가 함께 코디한 의상에 집중되어 있습니다. 이 페이지는 캐주얼한 그래픽 탑부터 인물 사진, 휴가 및 특별 이벤트에 맞게 세련된 느낌을 주는 날카로운 칼라 룩까지 모든 의도를 다루도록 제작되었습니다.</p>",
+          "part_3_html": "<h3>쇼핑객이 일반적으로 이 페이지에서 원하는 것</h3>",
+          "part_4_html": "<ul><li>생일, 선물, 테마 여행, 평상복으로 활용 가능한 캐주얼한 아빠와 나 티셔츠입니다.</li><li>가족 사진, 저녁 식사, 멋진 외출에 적합한 칼라가 있는 셔츠 또는 버튼 업 셔츠 옵션입니다.</li><li>의상처럼 보이지 않으면서 휴가 준비가 된 듯한 따뜻한 날씨에 어울리는 의상.</li></ul>",
+          "part_5_html": "<h3>컬렉션을 더 빠르게 쇼핑하는 방법</h3>",
+          "part_6_html": "<p>간편한 일상 코디가 목표라면 티셔츠부터 시작해 보세요. 더욱 깨끗하고 세련된 마감이 필요한 경우 드레스 셔츠, 하와이안 셔츠 또는 기타 구조가 있는 칼라 스타일로 전환하세요.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">아빠와 나 셔츠 쇼핑하기</a> 캐주얼한 매칭 상의와 선물하기 좋은 데일리 스타일을 위한 제품입니다.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">멋진 행사를 위한 아빠와 나 셔츠 쇼핑하기</a> 버튼업, 드레스 셔츠, 하와이안 룩은 관심도가 높은 셔츠 검색을 중심으로 만들어졌습니다.</p>",
+          "part_9_html": "<p><a href=\"{{ trunks_url }}\">어울리는 트렁크 찾아보기</a> 의상에 해변이나 수영장 친화적인 추가 기능이 필요할 때.</p>"
+        },
+        "daddy_me_tshirts": {
+          "part_1_html": "<h2>캐주얼하고 선물하기 좋은 코디를 위한 아빠와 나 셔츠와 매칭 티셔츠</h2>",
+          "part_2_html": "<p>이 컬렉션은 아빠와 나 셔츠, 아빠와 나 티셔츠, 아빠와 나 티셔츠, 사진 촬영 그 이상으로 활용하기 쉬운 아버지와 아이 상의를 찾는 쇼핑객을 대상으로 합니다. 이러한 스타일은 평상복, 생일, 아버지의 날 선물, 테마파크 및 여유로운 여행에 가장 적합합니다.</p>",
+          "part_3_html": "<h3>이 페이지가 중요한 이유</h3>",
+          "part_4_html": "<ul><li>모든 의상 유형을 혼합하는 대신 아빠와 아이 카테고리를 캐주얼 상의로 좁힙니다.</li><li>이는 아빠와 나 셔츠, 아빠와 나 티셔츠, 어울리는 티셔츠에 대한 관심도가 높은 검색과 일치합니다.</li><li>빠르고 선물하기 좋은 매칭 룩을 원하는 쇼핑객에게 더 간단한 경로를 제공합니다.</li></ul>",
+          "part_5_html": "<p><a href=\"{{ daddy_me_url }}\">전체 아빠와 나 컬렉션으로 돌아가기</a> if you want tees, trunks, and dressier shirt options in one place.</p>",
+          "part_6_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">좀 더 선명한 모습이 필요하신가요?</a> 버튼업 셔츠, 드레스 셔츠, 하와이안 스타일에 어울리는 아빠와 아들의 셔츠를 찾아보세요.</p>"
+        },
+        "daddy_me_shirts": {
+          "part_1_html": "<h2>버튼업, 드레스 셔츠, 하와이안 검색을 위한 아빠와 아들의 매칭 셔츠</h2>",
+          "part_2_html": "<p>이 랜딩 페이지는 아빠 클러스터에서 가장 의도가 높은 셔츠 검색어를 중심으로 구축되었습니다. 즉, 아빠와 아들은 버튼 업 셔츠, 아빠와 아들은 드레스 셔츠, 아버지와 아들은 하와이안 셔츠를 매칭합니다. 캐주얼 티셔츠 컬렉션이 제공할 수 있는 것보다 더 많은 구조, 칼라 및 상황에 맞는 스타일을 원하는 쇼핑객을 위해 디자인되었습니다.</p>",
+          "part_3_html": "<h3>이 스타일에 가장 적합한 경우</h3>",
+          "part_4_html": "<ul><li>가족 사진, 휴일 모임, 결혼식, 교회, 저녁 식사 등 칼라 셔츠가 더욱 세련되어 보입니다.</li><li>하와이안 셔츠나 반팔 버튼업이 어울리는 해변 여행, 크루즈, 리조트 여행.</li><li>생일이나 어버이날 선물로 어울리는 룩은 참신함이 아닌 고급스러운 느낌을 주어야 합니다.</li></ul>",
+          "part_5_html": "<h3>이것이 아빠와 나 티셔츠와 어떻게 다른지</h3>",
+          "part_6_html": "<p>더 많은 우븐 소재, 더 깔끔한 칼라, 더 멋진 실루엣을 기대하세요. 부드러운 캐주얼 그래픽이나 일상적인 상의가 목표라면 티셔츠 컬렉션이 더 좋은 출발점입니다.</p>",
+          "part_7_html": "<p><a href=\"{{ daddy_me_url }}\">전체 아빠와 나 컬렉션 찾아보기</a> 티셔츠, 트렁크, 코디네이터 세트 전반에 걸쳐 더 넓은 아웃핏 커버리지를 제공합니다.</p>",
+          "part_8_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">아빠와 나 셔츠 쇼핑하기</a> 좀 더 부드럽고 캐주얼한 매칭을 원한다면.</p>"
+        },
+        "couples": {
+          "part_1_html": "<h2>여행, 데이트 밤, 휴일 및 선물을 위한 커플 의상</h2>",
+          "part_2_html": "<p>폭넓은 커플 키워드 패밀리는 티셔츠 그 이상입니다. 이 페이지는 그와 그녀를 위한 탑, 라운지웨어, 바캉스 피스, 캐주얼 세트를 포함할 수 있는 커플 매칭 의상과 조화로운 룩을 위한 메인 랜딩 페이지로 디자인되었습니다.</p>",
+          "part_3_html": "<h3>이 카테고리의 인기 있는 쇼핑 의도</h3>",
+          "part_4_html": "<ul><li>여행, 주말 계획, 소셜 사진 촬영에 어울리는 커플 의상입니다.</li><li>선물할 수 있는 부부는 기념일, 신혼여행, 휴일 순간을 찾습니다.</li><li>머리부터 발끝까지 동일한 룩을 강요하지 않고 색상과 프린트를 정렬하여 쉽게 코디할 수 있는 의상입니다.</li></ul>",
+          "part_5_html": "<h3>어디서부터 시작해야 할까요?</h3>",
+          "part_6_html": "<p>캐주얼한 일상복이 목표라면 티셔츠를 매치하는 것이 가장 빠른 승리다. 더욱 완벽하게 조화를 이루는 룩이 목표라면 더 폭넓은 커플 컬렉션으로 시작하여 여행, 계절, 상황에 따라 바깥쪽으로 작업하세요.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">커플 셔츠와 어울리는 티셔츠 쇼핑하기</a> 카테고리에 쉽게 진입할 수 있는 지점을 원할 때.</p>"
+        },
+        "couples_tshirts": {
+          "part_1_html": "<h2>커플룩으로 셔츠와 티셔츠를 매치해 캐주얼하고 선물하기 좋은 코디</h2>",
+          "part_2_html": "<p>이 컬렉션은 데이트 밤, 여행, 휴일, 콘서트 및 일상 복장에 쉽게 착용할 수 있는 커플 매칭 셔츠, 커플 셔츠, 커플 티셔츠 및 기타 매칭 탑을 찾는 쇼핑객을 대상으로 합니다. 구매자의 의도가 명확하게 티셔츠에 관한 것일 때 이는 가장 좋은 진입점입니다.</p>",
+          "part_3_html": "<h3>쇼핑객이 어울리는 티셔츠를 선택하는 이유</h3>",
+          "part_4_html": "<ul><li>기념일, 신혼여행, 휴가, 테마 여행 등을 위해 선물하기 쉽습니다.</li><li>전체 의상을 구매하지 않고도 코디된 룩을 심플하게 유지합니다.</li><li>캐주얼한 사진, 여행일, 마찰이 적은 일상복에 잘 어울립니다.</li></ul>",
+          "part_5_html": "<h3>티셔츠 그 이상을 찾고 계십니까?</h3>",
+          "part_6_html": "<p>상의를 넘어 더욱 완벽한 의상 스토리로 확장되는 조화로운 룩을 원한다면 더 폭넓은 커플 매칭 의상 페이지를 사용하세요.</p>",
+          "part_7_html": "<p><a href=\"{{ couples_url }}\">커플에게 어울리는 의상 모두 찾아보기</a> 조화로운 룩과 상황을 더욱 다양하게 믹스할 수 있습니다.</p>"
+        },
+        "spring_matching": {
+          "part_1_html": "<h2>엄마와 나 특별한 날을 위한 부활절 드레스와 봄에 어울리는 의상</h2>",
+          "part_2_html": "<p>이 페이지는 쇼핑객이 이미 해당 행사를 알고 있는 부활절 및 봄철 검색을 위해 만들어졌습니다. 교회, 브런치, 계란 찾기, 가족 초상화 및 기타 계절 축하 행사에 적합한 파스텔 팔레트, 꽃 무늬, 가벼운 직물 및 사진에 바로 사용할 수 있는 실루엣에 중점을 둡니다.</p>",
+          "part_3_html": "<h3>옷차림이 가장 잘 어울리는 봄의 순간</h3>",
+          "part_4_html": "<ul><li>부활절 일요일, 교회, 브런치 및 가족 모임.</li><li>봄에는 가족 사진, 가든 파티, 어버이날 시즌이 있습니다.</li><li>아직 세련된 룩이 필요한 여행, 샤워, 따뜻한 날씨의 이벤트.</li></ul>",
+          "part_5_html": "<h3>이 시즌 페이지를 사용하는 방법</h3>",
+          "part_6_html": "<p>특정 이벤트 복장이 필요한 경우 부활절 드레스로 시작한 다음, 동일한 컬렉션을 사용하여 휴일 후에도 다시 입을 수 있는 봄에 어울리는 복장을 찾으세요.</p>",
+          "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">전체 엄마와 나 컬렉션 찾아보기</a> 부활절과 봄 기간 외에 더 많은 연중 매칭 스타일을 원한다면.</p>",
+          "part_8_html": "<p><a href=\"{{ dresses_url }}\">어울리는 드레스 쇼핑하기</a> for a broader dress-focused edit beyond seasonal spring styling.</p>"
+        }
+      }
     }
   },
   "localization": {
