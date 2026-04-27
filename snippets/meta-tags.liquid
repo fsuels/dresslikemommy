@@ -150,6 +150,11 @@
     assign social_image_url = 'dlm-social-share-home-1200x628.jpg' | asset_url
     assign social_image_width = 1200
     assign social_image_height = 628
+  elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
+    assign social_image_url = 'hero-family-boardwalk-premium.jpg' | asset_url
+    assign social_image_width = 2400
+    assign social_image_height = 1000
+    assign social_image_alt = 'Family in matching outfits by the beach'
   elsif page_image
     assign social_image_url = page_image | image_url
     assign social_image_width = page_image.width
@@ -159,15 +164,40 @@
 
   if social_image_url != blank
     assign social_image_href = social_image_url | append: ''
+    assign social_image_origin = request.origin | default: shop.url
+    if social_image_origin == blank and resolved_canonical_url contains '://'
+      assign social_image_origin_protocol = resolved_canonical_url | split: '://' | first
+      assign social_image_origin_without_protocol = resolved_canonical_url | split: '://' | last
+      assign social_image_origin_host = social_image_origin_without_protocol | split: '/' | first
+      if social_image_origin_protocol != blank and social_image_origin_host != blank
+        assign social_image_origin = social_image_origin_protocol | append: '://' | append: social_image_origin_host
+      endif
+    endif
+    if social_image_origin == blank and shop.permanent_domain != blank
+      assign social_image_origin = 'https://' | append: shop.permanent_domain
+    endif
+    if social_image_origin == blank and request.host != blank
+      assign social_image_origin = 'https://' | append: request.host
+    endif
     assign social_image_href_prefix = social_image_href | slice: 0, 2
-    if social_image_href_prefix == '//'
+    assign social_image_href_prefix_one = social_image_href | slice: 0, 1
+    if social_image_href contains '://'
+      assign social_image_href = social_image_href
+    elsif social_image_href_prefix == '//'
       assign social_image_href = 'https:' | append: social_image_href
+    elsif social_image_href contains '/cdn/'
+      assign social_image_href = 'https://www.dresslikemommy.com' | append: social_image_href
+    elsif social_image_href_prefix_one == '/'
+      if social_image_origin == blank
+        assign social_image_origin = 'https://www.dresslikemommy.com'
+      endif
+      assign social_image_href = social_image_origin | append: social_image_href
     endif
   endif
 %}
 
 {%- if request.page_type == 'article' and article != blank -%}
-  {%- unless article.image -%}
+  {%- if blog.handle == 'news' or article.image == blank -%}
     {%- capture article_fallback_social_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
     {%- capture article_fallback_social_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
     {%- capture article_fallback_social_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
@@ -183,7 +213,7 @@
       {%- assign social_image_height = article_fallback_social_image_height -%}
       {%- assign social_image_alt = article_fallback_social_image_alt | default: og_title -%}
     {%- endif -%}
-  {%- endunless -%}
+  {%- endif -%}
 {%- endif -%}
 
 {%- if should_noindex -%}
@@ -257,6 +287,7 @@
 -%}
 
 {%- if localization.available_languages and localization.available_languages.size > 0 -%}
+  {% comment %}theme-check-disable RemoteAsset{% endcomment %}
   {%- for language in localization.available_languages -%}
     {%- liquid
       assign hreflang_href = hreflang_origin
@@ -276,6 +307,7 @@
     <link rel="alternate" hreflang="{{ language.iso_code | downcase | escape }}" href="{{ hreflang_href | escape }}">
   {%- endfor -%}
   <link rel="alternate" hreflang="x-default" href="{{ hreflang_primary_href | escape }}">
+  {% comment %}theme-check-enable RemoteAsset{% endcomment %}
 {%- endif -%}
 
 {%- if settings.social_twitter_link != blank -%}
