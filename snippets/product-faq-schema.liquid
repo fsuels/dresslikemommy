@@ -32,10 +32,6 @@
       echo 'products.additional_info.free_shipping_label' | t
       echo '. '
       echo 'products.additional_info.estimated_delivery' | t
-      echo '. '
-      echo 'products.additional_info.faster_shipping_prefix' | t
-      echo ' '
-      echo 'products.additional_info.free_premium_shipping' | t
       echo '.'
     endcapture
     assign shipping_answer = shipping_answer | strip | strip_newlines | replace: '  ', ' '

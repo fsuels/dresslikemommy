@@ -728,7 +728,8 @@
 
         var row = element.closest('[data-delivery-estimate-row]') || element.closest('p');
         if (row) {
-          row.hidden = !isVisible;
+          row.hidden = false;
+          row.classList.toggle('delivery-estimate-row--dynamic', isVisible);
         }
       }
 

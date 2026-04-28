@@ -1274,9 +1274,9 @@
   </button>
   <div class="content" id="collapsible-shipping" style="display: block;">
     <div id="delivery-info-content">
-      <p style="margin-bottom:0.6em;" data-delivery-estimate-row data-delivery-estimate-tier="standard" hidden><strong>{{ 'products.additional_info.free_shipping_label' | t }}</strong><br>{{ 'products.additional_info.estimated_delivery' | t }} <strong><span id="dhl-delivery-date"></span></strong></p>
+      <p style="margin-bottom:0.6em;" data-delivery-estimate-row data-delivery-estimate-tier="standard"><strong>{{ 'products.additional_info.free_shipping_label' | t }}</strong><br><span id="dhl-delivery-date">{{ 'products.additional_info.estimated_delivery' | t }}</span></p>
       {%- comment -%} TODO: Move free premium shipping threshold to theme settings {%- endcomment -%}
-      <p style="margin-top:0;padding-top:0.6em;border-top:1px solid #e5e7eb;color:#374151;font-size:0.92em;" data-delivery-estimate-row data-delivery-estimate-tier="premium" hidden>{{ 'products.additional_info.faster_shipping_prefix' | t }} <strong>{{ 'products.additional_info.free_premium_shipping' | t }}</strong><br>{{ 'products.additional_info.estimated_delivery' | t }} <strong><span id="ups-delivery-date"></span></strong></p>
+      <p style="margin-top:0;padding-top:0.6em;border-top:1px solid #e5e7eb;color:#374151;font-size:0.92em;" data-delivery-estimate-row data-delivery-estimate-tier="premium" hidden>{{ 'products.additional_info.faster_shipping_prefix' | t }} <strong><span id="ups-delivery-date"></span></strong></p>
     </div>
   </div>
   <button class="collapsible" aria-expanded="false" aria-controls="collapsible-returns">
@@ -2290,6 +2290,7 @@
       ['Free Shipping ' + 'Worldwide']: copy.shipping_title,
       'FREE Shipping': copy.free_shipping_label,
       'Est. Delivery': copy.estimated_delivery,
+      'Delivery details at checkout': copy.estimated_delivery,
       'Want it faster? Spend $100+ and get': copy.faster_shipping_prefix,
       'FREE Premium Shipping': copy.free_premium_shipping,
       'Free shipping on all orders': copy.free_shipping_all_orders,
@@ -2301,9 +2302,9 @@
       'Shopping Security': copy.shopping_security_title,
       'Safe Payment Options': copy.safe_payment_options_title,
       'We accept all major credit and debit cards. Your card details are secure and never shared with our partners. You can easily manage your saved cards anytime. For any transaction inquiries, please contact your card issuer.': copy.safe_payment_description,
-      'Secure Logistics': copy.secure_logistics_title,
-      ['Package ' + 'safety: Full refund for your damaged or lost package.']: copy.secure_logistics_line_1,
-      ['Delivery ' + 'guaranteed: Accurate and precise order tracking.']: copy.secure_logistics_line_2,
+      'Shipping Support': copy.secure_logistics_title,
+      'If a package is damaged or lost in transit, contact us so we can help review the shipment.': copy.secure_logistics_line_1,
+      'Use your order tracking link for the latest carrier updates.': copy.secure_logistics_line_2,
       'Secure Privacy': copy.secure_privacy_title,
       'Protecting your privacy is important to us! Please be assured that your information will be kept secured and uncompromised. We do not sell your personal information for money and will only use your information in accordance with our privacy and cookie policy to provide and improve our services to you.': copy.secure_privacy_description,
       'Complete the Look': copy.complete_the_look,

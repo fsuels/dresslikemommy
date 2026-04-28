@@ -24,7 +24,7 @@
       endif
 
       assign show_dynamic_checkout = false
-      if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
+      if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false and has_selling_plan_groups
         assign show_dynamic_checkout = true
       endif
 
