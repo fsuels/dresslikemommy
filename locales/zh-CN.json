@@ -194,8 +194,8 @@
       "size_required_message": "添加到购物车之前请选择尺寸。",
       "matching_set": {
         "heading": "构建您的匹配集",
-        "copy": "选择您想要的家庭尺寸，然后从一个产品页面将它们添加在一起。",
-        "empty": "至少选择一种家庭尺寸来添加您的套装。",
+        "copy": "选择您需要的每个家庭尺寸，并从一个产品页面添加完整的配套套装。",
+        "empty": "至少选择一种家庭规模来开始您的套装。",
         "add": "添加选定的作品",
         "success": "配套套装已添加到购物车。",
         "error": "无法添加选定的片段。请再试一次。"
@@ -277,29 +277,29 @@
     },
     "trust": {
       "secure_checkout": "安全结账",
-      "ssl_encrypted": "SSL Encrypted",
-      "returns": "30 天退货",
-      "free_shipping": "Free Shipping",
-      "trusted_since": "自 2016 年以来备受信赖",
+      "ssl_encrypted": "SSL 加密",
+      "returns": "轻松退货",
+      "free_shipping": "免运费",
+      "trusted_since": "家庭配对变得简单",
       "assistance_note": "需要帮助吗？我们通常会在一个工作日内回复。"
     },
     "additional_info": {
-      "shipping_title": "全球免费送货",
+      "shipping_title": "运输与交付",
       "free_shipping_label": "免运费",
-      "estimated_delivery": "预计。送货",
+      "estimated_delivery": "结帐时的送货详情",
       "faster_shipping_prefix": "想要更快吗？花费 100+ 美元即可获得",
       "free_premium_shipping": "免费优质送货",
       "return_policy_title": "退货政策",
-      "return_policy_line_1": "我们很乐意接受购买后 30 天内的退货。",
-      "return_policy_line_2": "商品应保持原始状态和包装才有资格获得全额退款。请注意，买家需承担退货运费。",
-      "return_policy_line_3": "如果退回的商品损坏、已使用或缺少零件，我们可能会扣除部分退款，以弥补商品价值的任何损失。",
-      "return_policy_line_4": "为确保退货流程顺利，请按收到时的原样退回商品，包括所有包装和原始内容。",
+      "return_policy_line_1": "您可以在交货后 30 天内申请退货或换货。",
+      "return_policy_line_2": "物品必须未穿过、未清洗、处于原始状态且采用原始包装且附有标签。",
+      "return_policy_line_3": "出于卫生原因，某些商品（包括泳装和内衣）不可退货；最终销售和个性化商品也不包括在内。",
+      "return_policy_line_4": "在寄回任何东西之前，请查看退款政策的资格、退货运费和退款时间。",
       "shopping_security_title": "购物安全",
       "safe_payment_options_title": "安全付款选项",
       "safe_payment_description": "我们接受所有主要信用卡和借记卡。您的银行卡详细信息是安全的，绝不会与我们的合作伙伴共享。您可以随时轻松管理已保存的卡片。如有任何交易查询，请联系您的发卡机构。",
       "secure_logistics_title": "安全物流",
-      "secure_logistics_line_1": "包裹安全：对于损坏或丢失的包裹全额退款。",
-      "secure_logistics_line_2": "交货保证：准确、精确的订单跟踪。",
+      "secure_logistics_line_1": "如果包裹在运输过程中损坏或丢失，请联系我们，以便我们帮助检查货件。",
+      "secure_logistics_line_2": "使用您的订单跟踪链接获取最新的运营商更新。",
       "secure_privacy_title": "安全隐私",
       "secure_privacy_description": "保护您的隐私对我们很重要！请放心，您的信息将受到保护且不会泄露。我们不会为了金钱而出售您的个人信息，只会根据我们的隐私和 cookie 政策使用您的信息来为您提供和改进我们的服务。"
     }
@@ -390,27 +390,28 @@
       },
       "estimated_total": "预计总额",
       "new_estimated_total": "没有预计总额",
-      "order_today_delivery": "Order today, Est. Delivery",
-      "est_delivery": "Est. Delivery",
-      "store_rating_prefix": "Rated",
-      "store_rating_suffix": "by 15,200+ families",
+      "order_today_delivery": "结帐时的送货详情",
+      "est_delivery": "结帐时的送货详情",
+      "store_rating_prefix": "",
+      "store_rating_suffix": "",
       "we_accept": "We accept",
       "complete_the_look": "完成外观",
       "you_may_also_like": "You may also like",
       "trust": {
-        "secure_checkout": "Secure Checkout",
-        "ssl_encrypted": "SSL Encrypted",
-        "free_shipping": "Free Shipping",
-        "returns": "30-Day Returns",
-        "secure": "Secure",
-        "encrypted": "Encrypted",
-        "free_ship": "Free Ship"
+        "secure_checkout": "安全结账",
+        "ssl_encrypted": "SSL 加密",
+        "free_shipping": "免运费",
+        "returns": "轻松退货",
+        "secure": "安全的",
+        "encrypted": "加密",
+        "free_ship": "免费送货"
       },
       "discount_code_toggle": "有折扣码吗？",
       "shipping_label": "船运",
       "shipping_free": "自由的",
       "popular_with_families": "深受家庭欢迎",
-      "recently_viewed": "最近浏览过"
+      "recently_viewed": "最近浏览过",
+      "savings_html": "您正在保存 <strong>{{ amount }}</strong>"
     },
     "footer": {
       "payment": "付款方式"
@@ -453,7 +454,7 @@
       "carousel": "轮播",
       "announcement": "公告",
       "announcement_bar": "公告栏",
-      "default_promo": "FREE SHIPPING ON ALL ORDERS | 30-DAY EASY RETURNS | SECURE CHECKOUT"
+      "default_promo": "所有订单免运费|轻松退货 |安全结帐"
     },
     "quick_order_list": {
       "product_total": "产品小计",

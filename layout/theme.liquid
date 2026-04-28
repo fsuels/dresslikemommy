@@ -685,7 +685,7 @@
         firstCollapsible.setAttribute('aria-expanded', 'true');
       }
 
-      // Calculate delivery dates
+      // Calculate delivery dates only when approved market/product ranges are provided.
       function formatDate(date) {
         const options = { month: 'long', day: 'numeric' };
         const shopifyLocale = window.Shopify && window.Shopify.locale ? window.Shopify.locale : '';
@@ -709,18 +709,45 @@
         return date;
       }
 
+      function getDeliveryBusinessDays(tier) {
+        var estimates = window.DLM_DELIVERY_ESTIMATES;
+        if (!estimates || !estimates[tier]) return null;
+
+        var businessDays = Number(estimates[tier].maxBusinessDays);
+        if (!Number.isFinite(businessDays) || businessDays < 1) return null;
+
+        return businessDays;
+      }
+
+      function setDeliveryRowVisibility(element, isVisible) {
+        if (!element) return;
+
+        var row = element.closest('[data-delivery-estimate-row]') || element.closest('p');
+        if (row) {
+          row.hidden = !isVisible;
+        }
+      }
+
       function calculateDeliveryDates() {
         const today = new Date();
 
-        // Premium Shipping (UPS): 7 business days
-        const upsDate = addBusinessDays(today, 7);
+        const upsBusinessDays = getDeliveryBusinessDays('premium');
         const upsEl = document.getElementById('ups-delivery-date');
-        if (upsEl) upsEl.textContent = formatDate(upsDate);
+        if (upsEl && upsBusinessDays) {
+          upsEl.textContent = formatDate(addBusinessDays(today, upsBusinessDays));
+          setDeliveryRowVisibility(upsEl, true);
+        } else {
+          setDeliveryRowVisibility(upsEl, false);
+        }
 
-        // FREE Shipping: 10 business days
-        const dhlDate = addBusinessDays(today, 10);
+        const dhlBusinessDays = getDeliveryBusinessDays('standard');
         const dhlEl = document.getElementById('dhl-delivery-date');
-        if (dhlEl) dhlEl.textContent = formatDate(dhlDate);
+        if (dhlEl && dhlBusinessDays) {
+          dhlEl.textContent = formatDate(addBusinessDays(today, dhlBusinessDays));
+          setDeliveryRowVisibility(dhlEl, true);
+        } else {
+          setDeliveryRowVisibility(dhlEl, false);
+        }
       }
 
       calculateDeliveryDates();

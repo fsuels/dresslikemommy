@@ -194,8 +194,8 @@
       "size_required_message": "Vänligen välj en storlek innan du lägger i varukorgen.",
       "matching_set": {
         "heading": "Bygg ditt matchande set",
-        "copy": "Välj de familjestorlekar du vill ha och lägg ihop dem från en produktsida.",
-        "empty": "Välj minst en familjestorlek för att lägga till ditt set.",
+        "copy": "Välj varje familjestorlek du behöver och lägg till hela matchande set från en produktsida.",
+        "empty": "Välj minst en familjestorlek för att starta ditt set.",
         "add": "Lägg till valda bitar",
         "success": "Matchande set lagts till i kundvagnen.",
         "error": "Det gick inte att lägga till de valda bitarna. Försök igen."
@@ -277,29 +277,29 @@
     },
     "trust": {
       "secure_checkout": "Säker utcheckning",
-      "ssl_encrypted": "SSL Encrypted",
-      "returns": "30-dagars returer",
-      "free_shipping": "Free Shipping",
-      "trusted_since": "Tillförlitlig sedan 2016",
+      "ssl_encrypted": "SSL-krypterad",
+      "returns": "Enkla returer",
+      "free_shipping": "Fri frakt",
+      "trusted_since": "Familjematchning på ett enkelt sätt",
       "assistance_note": "Behöver du hjälp? Vi svarar vanligtvis inom en arbetsdag."
     },
     "additional_info": {
-      "shipping_title": "Fri frakt över hela världen",
+      "shipping_title": "Frakt & leverans",
       "free_shipping_label": "GRATIS frakt",
-      "estimated_delivery": "Uppskattad Leverans",
+      "estimated_delivery": "Leveransdetaljer i kassan",
       "faster_shipping_prefix": "Vill du ha det snabbare? Spendera $100+ och få",
       "free_premium_shipping": "GRATIS premiumfrakt",
       "return_policy_title": "Returpolicy",
-      "return_policy_line_1": "Vi tar gärna emot returer inom 30 dagar efter köpet.",
-      "return_policy_line_2": "Varorna bör vara i originalskick och förpackning för att kvalificera sig för full återbetalning. Observera att köpare står för returfraktkostnader.",
-      "return_policy_line_3": "Om en vara returneras skadad, använda eller saknade delar kan vi dra av en del av återbetalningen för att täcka eventuell förlust av varans värde.",
-      "return_policy_line_4": "För att säkerställa en smidig returprocess, vänligen returnera varor i samma skick som mottagits, inklusive all förpackning och originalinnehåll.",
+      "return_policy_line_1": "Du har 30 dagar på dig från leverans på dig att begära retur eller byte.",
+      "return_policy_line_2": "Varorna måste vara oanvända, otvättade, i originalskick och i originalförpackning med etiketter fästa.",
+      "return_policy_line_3": "Vissa föremål, inklusive badkläder och närbesvär, kan inte returneras av hygienskäl; slutförsäljning och personliga föremål är också undantagna.",
+      "return_policy_line_4": "Läs återbetalningspolicyn för kvalificering, returfrakt och tidpunkt för återbetalning innan du skickar tillbaka något.",
       "shopping_security_title": "Shoppingsäkerhet",
       "safe_payment_options_title": "Säkra betalningsalternativ",
       "safe_payment_description": "Vi accepterar alla vanliga kredit- och betalkort. Dina kortuppgifter är säkra och delas aldrig med våra partners. Du kan enkelt hantera dina sparade kort när som helst. För eventuella transaktionsförfrågningar, kontakta din kortutgivare.",
       "secure_logistics_title": "Säker logistik",
-      "secure_logistics_line_1": "Paketsäkerhet: Full återbetalning för ditt skadade eller förlorade paket.",
-      "secure_logistics_line_2": "Leverans garanterad: Exakt och exakt orderspårning.",
+      "secure_logistics_line_1": "Om ett paket är skadat eller försvunnet under transporten, kontakta oss så att vi kan hjälpa till att granska försändelsen.",
+      "secure_logistics_line_2": "Använd din beställningsspårningslänk för de senaste operatörsuppdateringarna.",
       "secure_privacy_title": "Säker integritet",
       "secure_privacy_description": "Att skydda din integritet är viktigt för oss! Du kan vara säker på att din information kommer att hållas säker och kompromisslös. Vi säljer inte din personliga information för pengar och kommer endast att använda din information i enlighet med vår integritets- och cookiepolicy för att tillhandahålla och förbättra våra tjänster till dig."
     }
@@ -390,27 +390,28 @@
       },
       "estimated_total": "Beräknad totalsumma",
       "new_estimated_total": "Nytt beräknat totalbelopp",
-      "order_today_delivery": "Order today, Est. Delivery",
-      "est_delivery": "Est. Delivery",
-      "store_rating_prefix": "Rated",
-      "store_rating_suffix": "by 15,200+ families",
+      "order_today_delivery": "Leveransdetaljer i kassan",
+      "est_delivery": "Leveransdetaljer i kassan",
+      "store_rating_prefix": "",
+      "store_rating_suffix": "",
       "we_accept": "We accept",
       "complete_the_look": "Slutför utseendet",
       "you_may_also_like": "You may also like",
       "trust": {
-        "secure_checkout": "Secure Checkout",
-        "ssl_encrypted": "SSL Encrypted",
-        "free_shipping": "Free Shipping",
-        "returns": "30-Day Returns",
-        "secure": "Secure",
-        "encrypted": "Encrypted",
-        "free_ship": "Free Ship"
+        "secure_checkout": "Säker utcheckning",
+        "ssl_encrypted": "SSL-krypterad",
+        "free_shipping": "Fri frakt",
+        "returns": "Enkla returer",
+        "secure": "Säkra",
+        "encrypted": "Krypterad",
+        "free_ship": "Gratis frakt"
       },
       "discount_code_toggle": "Har du en rabattkod?",
       "shipping_label": "Frakt",
       "shipping_free": "GRATIS",
       "popular_with_families": "Populärt bland familjer",
-      "recently_viewed": "Nyligen visade"
+      "recently_viewed": "Nyligen visade",
+      "savings_html": "Du sparar <strong>{{ amount }}</strong>"
     },
     "footer": {
       "payment": "Betalningsmetoder"
@@ -453,7 +454,7 @@
       "carousel": "Karusell",
       "announcement": "Meddelande",
       "announcement_bar": "Meddelandefält",
-      "default_promo": "FREE SHIPPING ON ALL ORDERS | 30-DAY EASY RETURNS | SECURE CHECKOUT"
+      "default_promo": "GRATIS FRAKT PÅ ALLA BESTÄLLNINGAR | ENKLA RETURER | SÄKER KASSA"
     },
     "quick_order_list": {
       "product_total": "Delsumma för produkt",

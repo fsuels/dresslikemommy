@@ -497,7 +497,7 @@ customElements.define('cart-items', CartItems);
   });
 })();
 
-/* ── Delivery date calculation (10 business days — matches product page FREE Shipping) ── */
+/* Delivery estimate: render only when approved market/product ranges are provided. */
 /* Only runs when .js-delivery-date elements exist (cart has items) */
 (function() {
   if (!document.querySelector('.js-delivery-date')) {
@@ -528,9 +528,37 @@ customElements.define('cart-items', CartItems);
     return date;
   }
 
+  function getStandardDeliveryBusinessDays() {
+    const estimates = window.DLM_DELIVERY_ESTIMATES;
+    if (!estimates || !estimates.standard) return null;
+
+    const businessDays = Number(estimates.standard.maxBusinessDays);
+    if (!Number.isFinite(businessDays) || businessDays < 1) return null;
+
+    return businessDays;
+  }
+
+  function setDeliveryContainerVisibility(dateElement, isVisible) {
+    if (!dateElement) return;
+
+    const container = dateElement.closest('.cart-page__delivery-estimate, .cart-drawer__checkout-reassurance');
+    if (container) {
+      container.hidden = !isVisible;
+    }
+  }
+
   function updateDeliveryDates() {
+    const businessDays = getStandardDeliveryBusinessDays();
+    if (!businessDays) {
+      document.querySelectorAll('.js-delivery-date').forEach(function(el) {
+        el.textContent = '';
+        setDeliveryContainerVisibility(el, false);
+      });
+      return;
+    }
+
     const today = new Date();
-    const deliveryDate = addBusinessDays(today, 10);
+    const deliveryDate = addBusinessDays(today, businessDays);
     const options = { month: 'long', day: 'numeric' };
     const shopifyLocale = window.Shopify && window.Shopify.locale ? window.Shopify.locale : '';
     const documentLang =
@@ -546,6 +574,7 @@ customElements.define('cart-items', CartItems);
     }
     document.querySelectorAll('.js-delivery-date').forEach(function(el) {
       el.textContent = formatted;
+      setDeliveryContainerVisibility(el, true);
     });
   }
 

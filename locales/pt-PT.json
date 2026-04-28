@@ -192,8 +192,8 @@
       },
       "matching_set": {
         "heading": "Construa seu conjunto correspondente",
-        "copy": "Escolha os tamanhos de família desejados e adicione-os em uma página de produto.",
-        "empty": "Escolha pelo menos um tamanho de família para adicionar seu conjunto.",
+        "copy": "Escolha cada tamanho de família que você precisa e adicione o conjunto completo correspondente em uma página de produto.",
+        "empty": "Escolha pelo menos um tamanho de família para iniciar seu conjunto.",
         "add": "Adicione peças selecionadas",
         "success": "Conjunto correspondente adicionado ao carrinho.",
         "error": "Não foi possível adicionar as peças selecionadas. Por favor, tente novamente."
@@ -281,29 +281,29 @@
     },
     "trust": {
       "secure_checkout": "Check-out seguro",
-      "ssl_encrypted": "SSL Encrypted",
-      "returns": "Devoluções em 30 dias",
-      "free_shipping": "Free Shipping",
-      "trusted_since": "Confiável desde 2016",
+      "ssl_encrypted": "SSL criptografado",
+      "returns": "Devoluções fáceis",
+      "free_shipping": "Frete grátis",
+      "trusted_since": "Combinação familiar facilitada",
       "assistance_note": "Precisar de ajuda? Normalmente respondemos dentro de um dia útil."
     },
     "additional_info": {
-      "shipping_title": "Frete grátis para todo o mundo",
+      "shipping_title": "Envio e entrega",
       "free_shipping_label": "Frete grátis",
-      "estimated_delivery": "Husa. Entrega",
+      "estimated_delivery": "Detalhes de entrega na finalização da compra",
       "faster_shipping_prefix": "Quer mais rápido? Gaste mais de US$ 100 e ganhe",
       "free_premium_shipping": "Frete Premium GRATUITO",
       "return_policy_title": "Política de devolução",
-      "return_policy_line_1": "Aceitamos devoluções no prazo de 30 dias após a compra.",
-      "return_policy_line_2": "Os itens devem estar em suas condições e embalagens originais para se qualificarem para um reembolso total. Observe que os compradores são responsáveis ​​pelos custos de envio da devolução.",
-      "return_policy_line_3": "Se um item for devolvido danificado, usado ou com peças faltando, poderemos deduzir uma parte do reembolso para cobrir qualquer perda no valor do item.",
-      "return_policy_line_4": "Para garantir um processo de devolução tranquilo, devolva os itens nas mesmas condições em que foram recebidos, incluindo todas as embalagens e conteúdos originais.",
+      "return_policy_line_1": "Você tem 30 dias a partir da entrega para solicitar devolução ou troca.",
+      "return_policy_line_2": "Os itens devem estar sem uso, sem lavagem, em condições originais e em sua embalagem original com etiquetas anexadas.",
+      "return_policy_line_3": "Alguns itens, incluindo trajes de banho e roupas íntimas, não podem ser devolvidos por motivos de higiene; venda final e itens personalizados também estão excluídos.",
+      "return_policy_line_4": "Revise a política de reembolso quanto à elegibilidade, frete de devolução e prazo de reembolso antes de enviar qualquer coisa de volta.",
       "shopping_security_title": "Segurança de compras",
       "safe_payment_options_title": "Opções de pagamento seguras",
       "safe_payment_description": "Aceitamos todos os principais cartões de crédito e débito. Os dados do seu cartão são seguros e nunca são compartilhados com nossos parceiros. Você pode gerenciar facilmente seus cartões salvos a qualquer momento. Para qualquer dúvida sobre transações, entre em contato com o emissor do seu cartão.",
       "secure_logistics_title": "Logística Segura",
-      "secure_logistics_line_1": "Segurança do pacote: Reembolso total para seu pacote danificado ou perdido.",
-      "secure_logistics_line_2": "Entrega garantida: Rastreamento de pedidos preciso e preciso.",
+      "secure_logistics_line_1": "Se um pacote for danificado ou perdido durante o transporte, entre em contato conosco para que possamos ajudar a revisar a remessa.",
+      "secure_logistics_line_2": "Use seu link de rastreamento de pedido para obter as atualizações mais recentes da operadora.",
       "secure_privacy_title": "Privacidade segura",
       "secure_privacy_description": "Proteger sua privacidade é importante para nós! Tenha certeza de que suas informações serão mantidas seguras e descomprometidas. Não vendemos suas informações pessoais por dinheiro e apenas as usaremos de acordo com nossa política de privacidade e cookies para fornecer e melhorar nossos serviços para você."
     }
@@ -400,27 +400,28 @@
       },
       "estimated_total": "Total estimado",
       "new_estimated_total": "Novo total estimado",
-      "order_today_delivery": "Order today, Est. Delivery",
-      "est_delivery": "Est. Delivery",
-      "store_rating_prefix": "Rated",
-      "store_rating_suffix": "by 15,200+ families",
+      "order_today_delivery": "Detalhes de entrega na finalização da compra",
+      "est_delivery": "Detalhes de entrega na finalização da compra",
+      "store_rating_prefix": "",
+      "store_rating_suffix": "",
       "we_accept": "We accept",
       "complete_the_look": "Complete o visual",
       "you_may_also_like": "You may also like",
       "trust": {
-        "secure_checkout": "Secure Checkout",
-        "ssl_encrypted": "SSL Encrypted",
-        "free_shipping": "Free Shipping",
-        "returns": "30-Day Returns",
-        "secure": "Secure",
-        "encrypted": "Encrypted",
-        "free_ship": "Free Ship"
+        "secure_checkout": "Check-out seguro",
+        "ssl_encrypted": "SSL criptografado",
+        "free_shipping": "Frete grátis",
+        "returns": "Devoluções fáceis",
+        "secure": "Seguro",
+        "encrypted": "Criptografado",
+        "free_ship": "Navio Grátis"
       },
       "popular_with_families": "Popular entre famílias",
       "recently_viewed": "Vistos recentemente",
       "discount_code_toggle": "Have a discount code?",
       "shipping_free": "FREE",
-      "shipping_label": "Shipping"
+      "shipping_label": "Shipping",
+      "savings_html": "Você está salvando <strong>{{ amount }}</strong>"
     },
     "footer": {
       "payment": "Métodos de pagamento"
@@ -463,7 +464,7 @@
       "carousel": "Carrossel",
       "announcement": "Comunicado",
       "announcement_bar": "Barra de comunicado",
-      "default_promo": "FREE SHIPPING ON ALL ORDERS | 30-DAY EASY RETURNS | SECURE CHECKOUT"
+      "default_promo": "FRETE GRATUITO EM TODOS OS PEDIDOS | RETORNOS FÁCEIS | VERIFICAÇÃO SEGURA"
     },
     "quick_order_list": {
       "product_total": "Subtotal dos produtos",
