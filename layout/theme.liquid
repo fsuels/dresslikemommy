@@ -183,6 +183,10 @@
         assign resolved_page_description = article.excerpt | default: article.content | strip_html | truncatewords: 28
       endif
     endif
+
+    if resolved_page_description != blank
+      assign resolved_page_description = resolved_page_description | replace: '30-day easy returns', 'easy returns' | replace: '30-Day Easy Returns', 'Easy Returns' | replace: '30-DAY EASY RETURNS', 'EASY RETURNS'
+    endif
   -%}
 
   <!-- Title and Meta Description for SEO -->
