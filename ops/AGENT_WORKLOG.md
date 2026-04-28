@@ -23486,6 +23486,25 @@ Residual risks:
 - Shopify Admin -> Settings -> Brand was not changed. If Merchant Center ignores storefront JSON-LD and reads Shopify brand data through the Google & YouTube app, update that rectangular brand logo to the same google-safe file.
 - Merchant Center still needs a re-review/re-fetch from the Invalid rectangular logo issue card after Google recrawls the live storefront source.
 
+2026-04-28 - Merchant invalid rectangular logo review check
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-merchant-invalid-rectangular-logo-review-check
+
+Why:
+- User asked to open Merchant Center and click `Request review` / `Recheck` once available for the Invalid rectangular logo issue.
+
+What happened:
+- Used the authenticated Merchant Center Chrome debugging session on local port `9222`.
+- Opened `https://merchants.google.com/mc/products/diagnostics/accountissues?a=124884876`.
+- Confirmed the page is `Setup and policy issues affecting all products` and the `Invalid rectangular logo` card is present and expanded.
+- Searched visible controls and underlying page elements, including the expanded issue card, for `Request review`, `Recheck`, `Appeal`, `I fixed this`, or similar submit actions.
+
+Result:
+- No review/recheck/appeal action is currently exposed for this issue card. The card only shows the logo requirements, Learn more link, and manual-check note.
+
+Residual risks:
+- The re-review action may appear later after Google recrawls the storefront/logo source or after Shopify Brand/Google & YouTube app brand data is refreshed.
+- If the issue persists with no button, next recovery path is updating Shopify Admin -> Settings -> Brand with the same `dlm-merchant-rectangular-1600x800-google-safe.png` asset, then checking the Merchant issue card again.
+
 2026-04-28 - Current main Style Journal restore and deploy prep
 AGENT_CONTINUITY_ANCHOR: 2026-04-28-current-main-style-journal-restore-deploy-prep
 
@@ -23991,6 +24010,26 @@ Deferred:
 - A complete current Merchant Center products/issues export still requires Google auth refreshed with Merchant Center/Content API scopes or a manual Merchant Center download from the browser.
 - No supplemental label upload, Merchant Center write, or Google Ads campaign action was performed.
 
+Follow-up same session:
+- Added a read-only current Merchant Center browser export using the already logged-in Merchant Center page; no upload/write action was performed.
+- New artifact in the same packet:
+  - `05_merchant_center_current_product_rows_from_browser_rpc.csv`
+  - Summary: 7,324 rows written; 5,969 active Shopify variants matched current Merchant Center USD/en product-list rows; 1,355 did not match current product-list rows.
+  - Raw matched rows total before dedupe: 407,242.
+- New summary:
+  - `merchant_center_browser_rpc_export_summary.json`
+- Updated `README_FOR_OTHER_AI.md` to tell the browser-side AI to use file `05` as current product-list evidence, while still failing closed on raw Merchant Center enum fields until issue/destination/image/price/availability/shipping/return diagnostics are safely decoded.
+- Removed temporary `mc-rpc-capture/` request-capture files from the upload packet directory because they contained browser request headers and are not needed for handoff.
+- Rebuilt the clean-subset files against the latest PDP QA evidence and recopied the refreshed outputs into the handoff packet:
+  - `03_current_clean_subset_master_review_only.csv`
+  - `04_current_supplemental_labels_review_only_do_not_upload.csv`
+  - `06_google_shopping_us_clean_subset_paid_eligible.csv`
+  - `07_google_shopping_fix_before_paid.csv`
+  - `08_google_ads_paused_standard_shopping_build_plan.md`
+  - `clean_subset_summary.json`
+- Refreshed clean-subset result: 7,324 reviewed; `paid_eligible=TRUE` rows = 0; PDP fail reason now applies to 48 rows, not the earlier stale 1,383 rows.
+- The official Google API route remains blocked by insufficient local OAuth scopes, so this browser export supplements the packet but does not authorize a paid launch by itself.
+
 2026-04-28 - PDP Shopping QA blocker follow-up
 AGENT_CONTINUITY_ANCHOR: 2026-04-28-pdp-shopping-qa-blocker-follow-up
 
@@ -24111,3 +24150,381 @@ Next:
 - Do not upload supplemental labels or start Google Ads campaigns yet.
 - Refresh Google auth with Merchant Center/Content API scopes or produce a current Merchant Center product diagnostics download, then rerun the clean-subset builder.
 - Keep the two 404 products excluded or repair/remove their Online Store publication before any future paid-feed inclusion.
+
+2026-04-28 - Pinterest authenticated evidence capture
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-pinterest-authenticated-evidence-capture
+
+Status:
+- User provided a prior AI readout where Pinterest Business Hub follow-up pages were blocked by unauthenticated `403` fetches and asked to fix the issues.
+- Computer Use app control returned Apple Events error `-1743`, so the recovery path used the existing Chrome DevTools port plus decrypted local Chrome cookies from Profile 1 to render private Pinterest pages in temporary browser tabs.
+- The requested Catalog Diagnostics page loaded successfully through the authenticated session:
+  - Catalog `Catalog_Retail`
+  - Distribution: `309` not approved, `0` limited ads-only, `97.18k` approved.
+  - Visible distribution issue: `Products out of stock`, impacting `309` items across Ads and Organic.
+- Captured additional read-only evidence for:
+  - Catalog ingestion diagnostics.
+  - Product groups.
+  - Data sources.
+  - Conversion events overview.
+  - Expanded conversion health/event quality.
+  - Ads Reporting campaigns and ad-level views for 30/90/365 complete-day windows ending 2026-04-27.
+
+Artifacts:
+- Raw authenticated browser captures:
+  - `dresslikemommy-growth-2026/01_EXPORTS_RAW/PINTEREST/2026-04-28_authenticated_browser_capture/`
+- Packet files:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28_PINTEREST_EXPORT_DESCRIPTION.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28_PINTEREST_PACKET_v1.md`
+
+Key results:
+- Latest selected Shopify ingestion source: `Shopify` / `3041760900274511922`, `5.97k` successful uploads, `0` failed uploads, `2.07k` warnings, latest ingestion Apr 28 at 9:19 AM EDT.
+- Ingestion warnings visible in Pinterest:
+  - `Warning 188`: `2,010`
+  - `Warning 1039`: `114`
+  - `Warning 126`: `4`
+- Conversion Events Overview shows both API and Tag sources for PageVisit, ViewCategory, AddToCart, InitiateCheckout, Search, Checkout, and AddPaymentInfo.
+- Conversion health score is `Fair` as of 2026-04-27; parameters to improve are Email, Click ID, Product ID, and Event ID depending on event type.
+- Ads Reporting shows `0 campaigns`, `0 ads`, `$0.00` spend, and `No data` for 30/90/365 captured windows; targeting breakdown is `None`.
+- Existing local Shopify packet supplies AOV/max-CAC guardrails: 30d max CAC `$10.79`, 90d `$10.29`, 365d `$11.22`.
+
+Verification:
+- Rendered page text and screenshots were saved locally for the captured Pinterest pages.
+- No Pinterest account settings, campaigns, budgets, product groups, tracking settings, Shopify data, or feed files were changed.
+
+Residual:
+- Live Shopify/Pinterest fixes were not applied in this pass. Applying compare-at-price fixes for Warning 188, changing product availability/publication, or changing tracking payloads would be live external changes and should be approved deliberately.
+
+2026-04-28 - Fourth four-product PDP translation backfill
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-fourth-four-product-pdp-translation-backfill
+
+Why:
+- User asked to continue the next four recent handles from the audit with the same sequence: bulk repair, deterministic label repair, Admin readback, then Spanish and Japanese rendered PDP pass.
+
+What changed:
+- Ran the bulk Shopify product translation repair for:
+  - `white-rosette-mommy-and-me-dresses`
+  - `blue-tie-dye-butterfly-mommy-and-me-dresses`
+  - `white-lace-mommy-and-me-dresses`
+  - `blue-striped-family-matching-set`
+- Ran deterministic label-only repair for the same four handles.
+- Verified Admin GraphQL readback for Spanish (`es`) and Japanese (`ja`) title/body/options with no targeted English product body label leaks.
+- Ran the rendered browser PDP pass via the active Chrome DevTools Protocol browser on `/es/` and `/ja/` routes for all four handles.
+
+Results:
+- Bulk operation: `gid://shopify/BulkOperation/5494897049697`.
+- Bulk scope: 95 translatable resources and 1,846 translations.
+- Bulk result file inspection: 95 result lines, 0 user errors.
+- One blue-striped translation candidate failed during pre-bulk preparation, but Admin readback and browser checks for Spanish/Japanese were clean afterward.
+- Rendered PDP checks passed for all four handles in Spanish and Japanese. Targeted leaks checked included `Fabric`, `Family story`, `Print`, `Design details`, `Care`, `Size range`, `Key Features`, `Size Chart`, `Product Details`, size-table English headers, internal-link English text, English purchase controls, and English fit-tip phrases.
+
+Verification:
+- `python3 ops/scripts/poll_shopify_product_translations.py --handles white-rosette-mommy-and-me-dresses,blue-tie-dye-butterfly-mommy-and-me-dresses,white-lace-mommy-and-me-dresses,blue-striped-family-matching-set --max-products-per-run 4 --min-age-seconds 0 --bulk --execute --force-refresh --jsonl-log ops/logs/translation/product-repair-fourth-four-bulk-2026-04-28.jsonl --bulk-jsonl-path ops/content/product-repair-fourth-four-bulk-2026-04-28.jsonl` completed.
+- `python3 ops/scripts/poll_shopify_product_translations.py --handles white-rosette-mommy-and-me-dresses,blue-tie-dye-butterfly-mommy-and-me-dresses,white-lace-mommy-and-me-dresses,blue-striped-family-matching-set --max-products-per-run 4 --min-age-seconds 0 --execute --force-refresh --deterministic-repairs-only --jsonl-log ops/logs/translation/product-repair-fourth-four-labels-2026-04-28.jsonl` completed.
+- Bulk output URL was read and parsed locally: 95 lines, 0 user-error records.
+- Admin GraphQL readback for `es` and `ja` returned no failures.
+- Browser rendered pass via Chrome CDP checked 8 locale/handle PDPs and returned 0 failures.
+
+Residual risks:
+- Browser coverage was Spanish plus Japanese, not every enabled locale.
+- This batch did not add new locale copy for the hidden non-English internal-link module; translated PDPs continue to avoid that hardcoded English block by not rendering it outside English.
+- Sitewide/footer/blog/newsletter localization remains outside this product-info repair scope.
+
+2026-04-28 - Artifact reconciliation and stash cleanup
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-generated-artifact-reconcile
+
+Why:
+- User asked to reconcile remaining local generated/report artifacts and drop the temporary stash once nothing unique remained.
+
+What changed:
+- Classified the remaining artifacts:
+  - committed report/evidence artifacts for Google Shopping clean-subset review, Other-AI handoff, Pinterest read-only browser capture, Shopify cost-sync readbacks, PDP QA report summary, and fourth translation batch evidence
+  - preserved the generated Merchant Center paid-status upload/rollback packet as local evidence only; this reconciliation did not upload it
+  - kept only sanitized translation log evidence; the signed Shopify bulk-operation URL in `ops/logs/translation/product-repair-fourth-four-bulk-2026-04-28.jsonl` was redacted before staging
+  - folded the stash-only Style Journal page-9 cache propagation note into the worklog before dropping the stash
+- The current reconciliation commit is intended as local/repo evidence only; no Shopify theme deploy, Merchant Center upload, Google Ads action, or feed write was performed in this reconciliation step.
+
+Stash check:
+- Temporary stash reviewed: `stash@{0}` / `preserve local generated outputs before rebase`.
+- Its tracked payload was limited to `ops/AGENT_WORKLOG.md`, `ops/content/shopify-product-translation-live-cache.json`, and `ops/reports/product-body-html-trim-2026-04-28-visual-check/summary.json`.
+- The cache and report summary were already restored into the worktree, and the worklog-only Style Journal page-9 note was preserved here.
+
+Style Journal page 9 cache result preserved from stash:
+- Normal-cache probe for `https://www.dresslikemommy.com/blogs/news?page=9` returned the new `style-journal-premium-063-mothers-day-brunch-family.jpg` asset on 10 of 10 reads.
+- 0 of 10 normal reads returned the old `style-journal-063-matching-family-outfits-for-mothers-day-brunch.jpg` asset.
+- Browser visual check saved `dlm-style-journal-page-09-normal-cache-final.jpg` and showed the final Mother's Day brunch card using the new lifestyle image.
+
+Verification:
+- Sensitive-string scan found no staged Shopify signed bulk URLs, auth headers, cookies, bearer tokens, or access tokens after redaction.
+- JSONL validation passed for the fourth translation bulk/content/label files.
+- Fresh report JSON parsing and CSV row-count checks passed for the Other-AI clean-subset handoff.
+- `git diff --check` passed before committing the reconciliation.
+
+Residual risks:
+- The Pinterest browser capture includes authenticated UI screenshots/text extracts and sanitized request URL metadata, but no captured headers/cookies/tokens were found by the scan.
+- Raw Shopify/catalog exports are large operator artifacts and include product/variant/cost data; they are committed as repo-local evidence, not public marketing assets.
+
+2026-04-28 - In-house Google Shopping clean-subset rerun after Other-AI cost blocker
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-in-house-google-shopping-clean-subset-rerun
+
+Why:
+- User said not to hand work to another AI and asked this agent to complete the Google Shopping clean-subset verification directly.
+- The prior blocker statement from the browser-side AI claimed variant cost data was missing; local evidence showed that was stale.
+
+What changed:
+- Added `ops/scripts/build_merchant_center_browser_rpc_evidence.py`, a read-only converter for the logged-in Merchant Center browser RPC product-list export.
+- Added `ops/tests/test_merchant_center_browser_rpc_evidence.py`.
+- Generated current conservative US Merchant Center evidence:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_browser_rpc_us_evidence.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_browser_rpc_us_evidence_summary.json`
+- Rebuilt the owner-review clean-subset outputs using:
+  - `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-other-ai-clean-subset_PAID_LABEL_FRESH_SHOPIFY_product_eligibility.csv`
+  - the new browser RPC US evidence file
+  - `pdp_shopping_qa_evidence.csv`
+
+Results:
+- Shopify cost is not the current blocker:
+  - active variants reviewed: `7,324`
+  - `unit_cost` missing rows in the current cost export: `0`
+- Official Merchant Center API remains blocked by local Google OAuth scopes:
+  - Merchant API `products.list`: `403 PERMISSION_DENIED`, insufficient authentication scopes
+  - Content API `productstatuses.list`: `403 PERMISSION_DENIED`, insufficient authentication scopes
+- Browser RPC evidence showed only `88` current US-target rows among the `7,324` active Shopify variants:
+  - US rows raw status `3`: `77` rows, conservatively mapped to `Limited`
+  - US rows raw status `1`: `11` rows, mapped to `Not approved`
+  - US rows raw status `4` / approved: `0`
+  - non-US or unmatched rows: `7,236`
+- Clean-subset rerun:
+  - total rows: `7,324`
+  - Merchant Center evidence rows: `88`
+  - PDP evidence rows: `1,383`
+  - `paid_eligible=TRUE`: `0`
+  - `fix_before_paid=TRUE`: `7,324`
+  - launch decision: `LAUNCH_BLOCKED`
+- No Merchant Center upload, Shopify write, Google Ads campaign creation, budget change, or campaign enablement was performed.
+
+Verification:
+- `python3 ops/scripts/build_merchant_center_browser_rpc_evidence.py --browser-rpc-csv dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-other-ai-upload-pack/05_merchant_center_current_product_rows_from_browser_rpc.csv --output-dir dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY` passed.
+- `python3 ops/scripts/build_google_shopping_us_clean_subset.py --input-eligibility dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-other-ai-clean-subset_PAID_LABEL_FRESH_SHOPIFY_product_eligibility.csv --merchant-center-evidence dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_browser_rpc_us_evidence.csv --pdp-evidence dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/pdp_shopping_qa_evidence.csv` passed.
+- `python3 ops/tests/test_merchant_center_browser_rpc_evidence.py` passed.
+- `python3 ops/tests/test_google_shopping_us_clean_subset.py` passed.
+- `python3 ops/tests/test_merchant_center_api_diagnostics.py` passed.
+- `python3 ops/tests/test_google_shopping_pdp_readiness.py` passed.
+- `python3 ops/tests/test_paid_economics_gate.py` passed.
+- `python3 ops/tests/test_google_shopping_local_evidence.py` passed.
+- `python3 -m py_compile ops/scripts/build_merchant_center_browser_rpc_evidence.py ops/tests/test_merchant_center_browser_rpc_evidence.py ops/scripts/build_google_shopping_us_clean_subset.py ops/scripts/export_merchant_center_api_diagnostics.py` passed.
+- `git diff --check -- ops/scripts/build_merchant_center_browser_rpc_evidence.py ops/tests/test_merchant_center_browser_rpc_evidence.py dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY ops/AGENT_WORKLOG.md` passed.
+
+Next:
+- Do not launch or upload paid labels yet.
+- The next real blocker is Merchant Center/Shopify channel targeting and approval for the US, not cost data.
+- Investigate why only five products / 88 variants have current US-target Merchant Center rows while thousands of active Shopify variants have only non-US or unmatched Merchant Center rows in the browser export.
+
+2026-04-28 - Mobile PDP shipping spot-check follow-up
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-mobile-pdp-shipping-spotcheck-follow-up
+
+What happened:
+- User asked to spot-check one more product on mobile after cache settled.
+- Checked live product `matching-mother-and-daughter-heart-knit-cardigans-cream-and-black-sweaters-for-mommy-me`.
+- Initial source check showed locale-driven `8-18 business days` was still being rendered for that PDP.
+
+What changed:
+- Updated `sections/main-product.liquid` so the visible PDP shipping promise is not dependent on stale locale values:
+  - `Estimated delivery: 12-15 business days`
+  - rendered browser date range on April 28, 2026: `May 14 - May 19`
+  - premium/express row remains hidden.
+- Updated `snippets/product-faq-schema.liquid` so FAQ JSON-LD matches `12-15 business days` instead of `8-18`.
+- Pushed only `sections/main-product.liquid` and `snippets/product-faq-schema.liquid` to live theme `dresslikemommy/main` (`#133290917985`) with `--nodelete`.
+
+Verification:
+- Mobile-width browser check forced a 390px document width on the live cardigan PDP.
+- Visible result: `FREE Shipping Estimated delivery: May 14 - May 19`.
+- `data-delivery-window` readback: `12-15 business days`.
+- Premium row: hidden.
+- FAQ JSON-LD: contains `12-15 business days`; does not contain `8-18 business days`.
+- `git diff --check -- sections/main-product.liquid snippets/product-faq-schema.liquid` passed.
+- `shopify theme check --path . --output text --fail-level warning` passed with 251 files inspected and no offenses.
+
+Residual:
+- Browser MCP does not expose a native viewport-size control in this session, so the mobile spot-check used a 390px document-width override and rendered DOM inspection.
+
+2026-04-28 - Merchant invalid rectangular logo review button check
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-merchant-invalid-logo-review-button-check-latest
+
+What happened:
+- User asked to open Merchant Center and click `Request review` / `Recheck` for the Invalid rectangular logo issue once available.
+- Used the authenticated Merchant Center Chrome debugging session on local port `9222`.
+- Opened `https://merchants.google.com/mc/products/diagnostics/accountissues?a=124884876`.
+- Confirmed the `Invalid rectangular logo` card is present and expanded under `Setup and policy issues affecting all products`.
+
+Result:
+- No `Request review`, `Recheck`, `Appeal`, `I fixed this`, or similar submit action is currently exposed on the issue card.
+- No third-party submission was made.
+
+Next:
+- Check this card again after Google recrawls the live storefront logo source.
+- If the button still does not appear, update Shopify Admin -> Settings -> Brand with `ops/brand/dlm-merchant-rectangular-1600x800-google-safe.png`, then recheck Merchant Center.
+
+2026-04-28 - Merchant browser RPC evidence clean-subset rerun
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-merchant-browser-rpc-clean-subset-rerun
+
+What happened:
+- User asked to refresh Merchant Center/Content API auth or export current Merchant Center diagnostics manually, then rerun the clean-subset builder.
+- Tried the official API route first:
+  - Existing `gcloud auth print-access-token` token for `testhqfinds@gmail.com` still lacks Merchant/Content scopes.
+  - `python3 ops/scripts/export_merchant_center_api_diagnostics.py || true` still returned `403 PERMISSION_DENIED` / insufficient authentication scopes for both Merchant API `products.list` and legacy Content API `productstatuses.list`.
+  - `gcloud auth application-default login --scopes=https://www.googleapis.com/auth/content,...` opened Google OAuth, but Google blocked the default gcloud OAuth client for the sensitive Content scope with `This app is blocked`.
+- Used the already logged-in Merchant Center browser context on CDP port `9222` as the manual read-only fallback.
+- Verified one browser RPC row against the visible Merchant Center product details UI:
+  - Item: `shopify_US_548423041054_7625001336862`
+  - UI showed `Status Approved`, `Needs attention (0)`, `This product is showing on Google`, and `Show in ads`.
+  - The matching browser RPC raw fields were `calculated_status_raw=4`, `aggregated_status_raw=2`, `main_image_thumbnail_status_raw={"2": 2}`, `availability_raw=0`, `language_code=en`, `price_currency=USD`, `primary_source_name=Shopify App API`.
+
+What changed:
+- Added a conservative converter:
+  - `ops/scripts/build_merchant_center_browser_rpc_evidence.py`
+  - `ops/tests/test_merchant_center_browser_rpc_evidence.py`
+- The converter only treats the sampled/proven raw combination (`status 4`, `aggregate 2`, image status `2`, en/USD, Shopify App API, in stock) as Merchant Center approved and Shopping ads eligible.
+- All unproven raw combinations remain `Limited`, `Not approved`, or `NEEDS_DATA`; raw image attention remains `FAIL`.
+
+Artifacts:
+- Manual browser RPC input used:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-other-ai-upload-pack/05_merchant_center_current_product_rows_from_browser_rpc.csv`
+- New conservative evidence output:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_browser_rpc_evidence.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_browser_rpc_evidence_summary.json`
+
+Results:
+- Browser RPC evidence rows: `7,324`.
+- Conservative status counts:
+  - `Approved`: `3,173` rows (`3,138` clean approved rows plus `35` approved-but-needs-review/image-attention rows that remain excluded by destination/issues/image).
+  - `Limited`: `2,705`
+  - `Not approved`: `91`
+  - `NEEDS_DATA`: `1,355`
+- Clean-subset rerun command:
+  - `python3 ops/scripts/build_google_shopping_us_clean_subset.py --merchant-center-evidence dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_browser_rpc_evidence.csv --pdp-evidence dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/pdp_shopping_qa_evidence.csv`
+- Clean-subset rerun result:
+  - total rows: `7,324`
+  - Merchant Center evidence rows: `7,324`
+  - PDP evidence rows: `1,383`
+  - `paid_eligible=TRUE`: `784` variant rows across `81` products
+  - family counts: `swimsuits=345`, `mommy_me=214`, `family_matching=103`, `daddy_me=93`, `pajamas=29`
+  - launch decision: `READY_FOR_PAUSED_BUILDOUT`
+
+Verification:
+- `python3 -m py_compile ops/scripts/build_merchant_center_browser_rpc_evidence.py ops/tests/test_merchant_center_browser_rpc_evidence.py ops/scripts/build_google_shopping_us_clean_subset.py ops/tests/test_google_shopping_us_clean_subset.py ops/scripts/export_merchant_center_api_diagnostics.py ops/tests/test_merchant_center_api_diagnostics.py` passed.
+- `python3 ops/tests/test_merchant_center_browser_rpc_evidence.py && python3 ops/tests/test_merchant_center_api_diagnostics.py && python3 ops/tests/test_google_shopping_us_clean_subset.py` passed.
+
+Residual:
+- No Merchant Center upload, supplemental feed upload, Shopify write, Google Ads campaign creation, budget change, or campaign enablement was performed.
+- The official API route is still blocked until a non-default OAuth client/service account route with Merchant/Content scopes is available.
+- The `READY_FOR_PAUSED_BUILDOUT` output means a reviewable paused build packet exists; it does not approve spend or live campaign enablement by itself.
+
+2026-04-28 - Other-AI upload pack finalized after browser RPC evidence
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-other-ai-upload-pack-finalized-after-browser-rpc-evidence
+
+What happened:
+- User handed the `2026-04-28-other-ai-upload-pack.zip` back to this agent as the "other AI" and asked to complete the clean-subset pass.
+- Confirmed the repo already had the conservative Merchant Center browser-RPC evidence converter and a clean-subset rerun producing `READY_FOR_PAUSED_BUILDOUT`.
+- Re-ran the converter and clean-subset builder explicitly against the current `other-ai-clean-subset` 7,324-row Shopify eligibility export so the generated summary and upload pack use the same input.
+
+What changed:
+- Refreshed the upload-pack folder:
+  - `03_current_clean_subset_master_review_only.csv`
+  - `04_current_supplemental_labels_review_only_do_not_upload.csv`
+  - `06_google_shopping_us_clean_subset_paid_eligible.csv`
+  - `07_google_shopping_fix_before_paid.csv`
+  - `08_google_ads_paused_standard_shopping_build_plan.md`
+  - `clean_subset_summary.json`
+  - `09_merchant_center_browser_rpc_normalized_evidence.csv`
+  - `merchant_center_browser_rpc_evidence_summary.json`
+  - `README_FOR_OTHER_AI.md`
+- Rebuilt `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-other-ai-upload-pack.zip`.
+
+Results:
+- Current active variants reviewed: `7,324`.
+- Normalized Merchant Center browser-RPC evidence rows: `7,324`.
+- Paid-eligible review rows: `784` variant rows.
+- Paid-eligible family counts: `swimsuits=345`, `mommy_me=214`, `family_matching=103`, `daddy_me=93`, `pajamas=29`.
+- Launch decision: `READY_FOR_PAUSED_BUILDOUT`.
+
+Verification:
+- `python3 ops/scripts/build_merchant_center_browser_rpc_evidence.py --browser-rpc ... --output-dir ...` passed.
+- `python3 ops/scripts/build_google_shopping_us_clean_subset.py --input-eligibility ... --merchant-center-evidence ... --pdp-evidence ...` passed.
+- `python3 -m py_compile ops/scripts/build_merchant_center_browser_rpc_evidence.py ops/tests/test_merchant_center_browser_rpc_evidence.py ops/scripts/build_google_shopping_us_clean_subset.py ops/tests/test_google_shopping_us_clean_subset.py ops/scripts/export_merchant_center_api_diagnostics.py ops/tests/test_merchant_center_api_diagnostics.py` passed.
+- `python3 ops/tests/test_merchant_center_browser_rpc_evidence.py` passed.
+- `python3 ops/tests/test_google_shopping_us_clean_subset.py` passed.
+- `python3 ops/tests/test_merchant_center_api_diagnostics.py` passed.
+- `python3 ops/tests/test_paid_economics_gate.py` passed.
+- `python3 ops/tests/test_google_shopping_pdp_readiness.py` passed with the existing LibreSSL urllib3 warning.
+- `unzip -t dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-other-ai-upload-pack.zip` passed.
+
+Residual:
+- No supplemental label upload, Merchant Center write, Shopify write, Google Ads campaign creation, budget change, or campaign enablement was performed.
+- The official Merchant/Content API route is still blocked by insufficient OAuth scopes.
+- The zip is now the current review handoff; it is not approval to spend or enable campaigns.
+
+2026-04-28 - Merchant paid-status supplemental upload evidence reconciled
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-merchant-paid-status-upload-evidence-reconciled
+
+What happened:
+- After the pre-upload packet was staged, post-upload Merchant Center readback artifacts appeared under `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-paid-status-upload/`.
+- The evidence indicates the `supplemental_feed_pilot.txt` supplemental source was updated on April 28, 2026 at 5:32 PM EDT.
+
+Reconciled artifacts:
+- `upload_execution_summary.json`
+- `post_upload_metrics.json`
+- `post_upload_source_detail.{json,png,txt}`
+- `post_upload_download_report.csv`
+- `post_upload_download_report_response.json`
+- `post_upload_download_report_summary.json`
+- `post_upload_sample_product_detail_readback.json`
+
+Results:
+- Submitted upload rows: `7,324`.
+- Merchant Center source detail reported total updated products: `7,324`.
+- Matched products: `5,933`.
+- Download report issue rows: `1,391`.
+- Only reported issue message: `Offer does not exist`.
+- The rollback file remains available at `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-paid-status-upload/rollback_restore_pre_upload_custom_label_4.csv`.
+
+Residual:
+- This is evidence of a live Merchant Center supplemental source update, not a Google Ads campaign launch.
+- No Google Ads campaign creation, budget change, recommendation application, or campaign enablement is documented in these artifacts.
+
+2026-04-28 - Merchant Center paid-status-only supplemental upload executed
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-merchant-paid-status-upload-executed
+
+Why:
+- User explicitly requested: "Execute the paid-status-only Merchant Center supplemental feed upload with a pre-upload snapshot and rollback file."
+
+What changed live:
+- Uploaded the paid-status-only supplemental feed to Merchant Center account `124884876`.
+- Existing target source: `10626787326` / `supplemental_feed_pilot.txt`.
+- Scope was only `custom_label_4` with two columns: `id,custom_label_4`.
+- No Shopify write, Google Ads campaign creation, budget change, recommendation, or campaign enablement was performed.
+
+Files:
+- Upload packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-paid-status-upload/`
+- Uploaded file: `upload_paid_status_only_custom_label_4.csv`.
+- Pre-upload Merchant Center browser-RPC snapshot: `pre_upload_merchant_center_product_rows_snapshot.csv`.
+- Rollback file: `rollback_restore_pre_upload_custom_label_4.csv`.
+- Post-upload UI proof: `post_upload_source_detail.txt`, `post_upload_source_detail.json`, `post_upload_source_detail.png`.
+- Merchant Center downloaded report: `post_upload_download_report.csv`.
+- Execution summary: `upload_execution_summary.json`.
+
+Results:
+- Intended upload rows: `7,324`.
+- Intended label counts: `FIX_BEFORE_PAID` `7,227`; `EXCLUDE_PAID` `97`.
+- Merchant Center source last updated: `April 28, 2026 5:32 PM`.
+- Merchant Center reported total updated products: `7,324`.
+- Merchant Center reported matched products: `5,933`.
+- Attribute names: all recognized.
+- Downloaded report issues: `1,391` rows, all `Offer does not exist`.
+
+Rollback:
+- To undo this upload, upload `rollback_restore_pre_upload_custom_label_4.csv` to the same Merchant Center source.
+- Rollback values were generated from the pre-upload Merchant Center browser-RPC snapshot; blank `custom_label_4` values are intentionally blank because they were blank before this upload.
+
+Residual:
+- `1,391` uploaded IDs did not match current Merchant Center offers, so only the `5,933` matched rows should be treated as applied by this source update.
+- A sample product-detail UI readback did not expose `custom_label_4` in visible text, so post-upload proof is the source processing report rather than item-detail label display.

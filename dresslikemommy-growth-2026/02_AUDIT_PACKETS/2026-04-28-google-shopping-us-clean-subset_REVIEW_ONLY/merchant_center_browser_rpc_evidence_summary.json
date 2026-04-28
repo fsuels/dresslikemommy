@@ -1,0 +1,23 @@
+{
+  "browser_rpc_input": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-other-ai-upload-pack/05_merchant_center_current_product_rows_from_browser_rpc.csv",
+  "browser_rpc_rows": 7324,
+  "evidence_rows": 7324,
+  "generated_at": "2026-04-28T17:33:52",
+  "issue_rows": 3064,
+  "mode": "READ_ONLY_MERCHANT_CENTER_BROWSER_RPC_EVIDENCE",
+  "notes": [
+    "Official Merchant/Content API remained blocked by insufficient OAuth scopes.",
+    "Only raw status 4 / aggregate 2 / image 2 rows are treated as approved.",
+    "All unproven raw combinations fail closed as limited, not approved, or needs data."
+  ],
+  "outputs": {
+    "evidence": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_browser_rpc_evidence.csv",
+    "summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_browser_rpc_evidence_summary.json"
+  },
+  "status_counts": {
+    "Approved": 3173,
+    "Limited": 2705,
+    "NEEDS_DATA": 1355,
+    "Not approved": 91
+  }
+}

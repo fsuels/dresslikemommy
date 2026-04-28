@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-04-28T17:31:57",
+  "merchant_center_account": "124884876",
+  "approved_destination": "merchant_center_supplemental_feed_paid_status_only",
+  "target_source_id": "10626787326",
+  "target_source_name": "supplemental_feed_pilot.txt",
+  "write_scope": "Merchant Center supplemental source upload only; custom_label_4 only",
+  "upload_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-paid-status-upload/upload_paid_status_only_custom_label_4.csv",
+  "rollback_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-paid-status-upload/rollback_restore_pre_upload_custom_label_4.csv",
+  "pre_upload_snapshot": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-paid-status-upload/pre_upload_merchant_center_product_rows_snapshot.csv",
+  "pre_upload_snapshot_source_summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-other-ai-upload-pack/merchant_center_browser_rpc_export_summary.json",
+  "upload_row_count": 7324,
+  "upload_label_counts": {
+    "EXCLUDE_PAID": 97,
+    "FIX_BEFORE_PAID": 7227
+  },
+  "rollback_row_count": 7324,
+  "rollback_label_counts": {
+    "": 3992,
+    "0-25": 2142,
+    "25-50": 453,
+    "family matching": 179,
+    "family matching outfit": 67,
+    "family sweaters": 15,
+    "four-role matching": 322,
+    "two-role matching": 70,
+    "unisex family top": 84
+  },
+  "notes": [
+    "Rollback file restores Merchant Center custom_label_4 values captured before this upload.",
+    "Rows with blank custom_label_4 are intentionally blank in rollback because that was the pre-upload value in the browser-RPC snapshot.",
+    "No Google Ads campaign creation, budget, recommendation, or status change is included."
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "generated_at": "2026-04-28T17:31:57",
+  "merchant_center_account": "124884876",
+  "approved_destination": "merchant_center_supplemental_feed_paid_status_only",
+  "target_source_id": "10626787326",
+  "target_source_name": "supplemental_feed_pilot.txt",
+  "write_scope": "Merchant Center supplemental source upload only; custom_label_4 only",
+  "upload_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-paid-status-upload/upload_paid_status_only_custom_label_4.csv",
+  "rollback_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-paid-status-upload/rollback_restore_pre_upload_custom_label_4.csv",
+  "pre_upload_snapshot": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-paid-status-upload/pre_upload_merchant_center_product_rows_snapshot.csv",
+  "pre_upload_snapshot_source_summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-other-ai-upload-pack/merchant_center_browser_rpc_export_summary.json",
+  "upload_row_count": 7324,
+  "upload_label_counts": {
+    "EXCLUDE_PAID": 97,
+    "FIX_BEFORE_PAID": 7227
+  },
+  "rollback_row_count": 7324,
+  "rollback_label_counts": {
+    "": 3992,
+    "0-25": 2142,
+    "25-50": 453,
+    "family matching": 179,
+    "family matching outfit": 67,
+    "family sweaters": 15,
+    "four-role matching": 322,
+    "two-role matching": 70,
+    "unisex family top": 84
+  },
+  "notes": [
+    "Rollback file restores Merchant Center custom_label_4 values captured before this upload.",
+    "Rows with blank custom_label_4 are intentionally blank in rollback because that was the pre-upload value in the browser-RPC snapshot.",
+    "No Google Ads campaign creation, budget, recommendation, or status change is included."
+  ],
+  "post_upload_metrics": {
+    "href": "https://merchants.google.com/mc/products/sources/joindetails?a=124884876&joinFeedId=10626787326",
+    "title": "supplemental_feed_pilot.txt details - Merchant Center",
+    "last_updated": "April 28, 2026 5:32\u202fPM",
+    "total_updated_products": "7,324",
+    "matched_products": "5,933",
+    "attribute_names_status": "All recognized",
+    "issue_found_text": "1 issue found",
+    "offer_does_not_exist_affected_products": "1391",
+    "download_report_links": [
+      {
+        "i": 18,
+        "text": "Analytics",
+        "aria": null,
+        "href": "https://merchants.google.com/mc/reporting/performance/summary?a=124884876"
+      },
+      {
+        "i": 19,
+        "text": "Summary",
+        "aria": null,
+        "href": "https://merchants.google.com/mc/reporting/performance/summary?a=124884876"
+      },
+      {
+        "i": 20,
+        "text": "Products",
+        "aria": null,
+        "href": "https://merchants.google.com/mc/reporting/performance/products?a=124884876"
+      },
+      {
+        "i": 21,
+        "text": "Pricing",
+        "aria": null,
+        "href": "https://merchants.google.com/mc/reporting/performance/pricing?a=124884876"
+      },
+      {
+        "i": 22,
+        "text": "Online store",
+        "aria": null,
+        "href": "https://merchants.google.com/mc/reporting/performance/website?a=124884876"
+      },
+      {
+        "i": 23,
+        "text": "Custom reports",
+        "aria": null,
+        "href": "https://merchants.google.com/mc/reporting/customreports?a=124884876"
+      },
+      {
+        "i": 30,
+        "text": "(Opens in new window.)",
+        "aria": "Download report",
+        "href": "https://merchants.google.com/mc_feeds/downloadfeedreport?fid=407335945&ulid=1777411954962026&gl=US&hl=en&a=124884876&authuser=0"
+      }
+    ]
+  },
+  "post_upload_download_report": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-paid-status-upload/post_upload_download_report.csv",
+  "post_upload_upload_row_count_verified": 7324,
+  "post_upload_rollback_row_count_verified": 7324,
+  "post_upload_write_status": "MERCHANT_CENTER_SUPPLEMENTAL_SOURCE_UPLOADED",
+  "post_upload_download_report_issue_row_count": 1391,
+  "post_upload_download_report_message_counts": {
+    "Offer does not exist": 1391
+  },
+  "post_upload_download_report_summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-paid-status-upload/post_upload_download_report_summary.json"
+}
