@@ -5,11 +5,10 @@
 {% endcomment %}
 
 {%- liquid
-  assign organization_logo_url = ''
-  if settings.logo != blank
-    assign organization_logo_url = settings.logo | image_url: width: 600 | prepend: 'https:'
-  else
-    assign organization_logo_url = 'dlm-social-share-home-1200x628.jpg' | asset_url | prepend: 'https:'
+  assign organization_logo_url = 'dlm-merchant-rectangular-1600x800-google-safe.png' | asset_url
+  assign organization_logo_prefix = organization_logo_url | slice: 0, 2
+  if organization_logo_prefix == '//'
+    assign organization_logo_url = organization_logo_url | prepend: 'https:'
   endif
 -%}
 
@@ -50,7 +49,12 @@
   "@type": "Organization",
   "name": "Dress Like Mommy",
   "url": "https://dresslikemommy.com",
-  "logo": {{ organization_logo_url | json }},
+  "logo": {
+    "@type": "ImageObject",
+    "url": {{ organization_logo_url | json }},
+    "width": 1600,
+    "height": 800
+  },
   "sameAs": [
     "https://www.facebook.com/dresslikemommy",
     "https://www.instagram.com/dresslikemommy",

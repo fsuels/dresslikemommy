@@ -7,6 +7,12 @@
 
 {%- if article -%}
 {%- liquid
+  assign merchant_logo_url = 'dlm-merchant-rectangular-1600x800-google-safe.png' | asset_url
+  assign merchant_logo_prefix = merchant_logo_url | slice: 0, 2
+  if merchant_logo_prefix == '//'
+    assign merchant_logo_url = merchant_logo_url | prepend: 'https:'
+  endif
+
   assign word_count = article.content | strip_html | split: ' ' | size
   assign read_time = word_count | divided_by: 200 | at_least: 1
   assign article_schema_image_url = blank
@@ -87,7 +93,9 @@
     "url": "{{ request.origin }}",
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ settings.logo | image_url: width: 600 }}"
+      "url": {{ merchant_logo_url | json }},
+      "width": 1600,
+      "height": 800
     }
   },
   "wordCount": {{ word_count }},

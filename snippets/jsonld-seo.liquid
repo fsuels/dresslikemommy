@@ -22,12 +22,7 @@
   {%- endif -%}
 {%- endfor -%}
 
-{%- assign organization_logo = '' -%}
-{%- if settings.logo != blank -%}
-  {%- assign organization_logo = settings.logo | image_url: width: 600 -%}
-{%- elsif shop.brand.logo != blank -%}
-  {%- assign organization_logo = shop.brand.logo | image_url: width: 600 -%}
-{%- endif -%}
+{%- assign organization_logo = 'dlm-merchant-rectangular-1600x800-google-safe.png' | asset_url -%}
 {%- assign organization_logo_prefix = organization_logo | slice: 0, 2 -%}
 {%- if organization_logo != blank and organization_logo_prefix == '//' -%}
   {%- assign organization_logo = organization_logo | prepend: 'https:' -%}
@@ -47,7 +42,12 @@
   "@type": "Organization",
   "name": {{ schema_brand_name | json }},
   "url": {{ shop.url | json }}{% if organization_logo != blank %},
-  "logo": {{ organization_logo | json }}{% endif %},
+  "logo": {
+    "@type": "ImageObject",
+    "url": {{ organization_logo | json }},
+    "width": 1600,
+    "height": 800
+  }{% endif %},
   "contactPoint": [{
     "@type": "ContactPoint",
     "contactType": "customer support",
