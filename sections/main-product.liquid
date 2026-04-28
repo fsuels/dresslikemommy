@@ -1261,6 +1261,23 @@
 </style>
 
 <div class="additional-info">
+  {%- liquid
+    assign delivery_estimate_copy = 'products.additional_info.estimated_delivery' | t
+    assign standard_delivery_window = 'products.additional_info.standard_delivery_window' | t
+    assign premium_delivery_window = 'products.additional_info.premium_delivery_window' | t
+
+    if delivery_estimate_copy == 'Delivery details at checkout' or delivery_estimate_copy contains 'translation missing' or delivery_estimate_copy contains '8-18 business days'
+      assign delivery_estimate_copy = 'Estimated delivery: 12-15 business days'
+    endif
+
+    if standard_delivery_window contains 'translation missing' or standard_delivery_window contains '8-18 business days' or standard_delivery_window == blank
+      assign standard_delivery_window = '12-15 business days'
+    endif
+
+    if premium_delivery_window contains 'translation missing' or premium_delivery_window contains '5-7 business days' or premium_delivery_window == blank
+      assign premium_delivery_window = ''
+    endif
+  -%}
   <button class="collapsible active" aria-expanded="true" aria-controls="collapsible-shipping">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1D8656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="1" y="3" width="15" height="13"></rect>
@@ -1274,9 +1291,9 @@
   </button>
   <div class="content" id="collapsible-shipping" style="display: block;">
     <div id="delivery-info-content">
-      <p style="margin-bottom:0.6em;" data-delivery-estimate-row data-delivery-estimate-tier="standard"><strong>{{ 'products.additional_info.free_shipping_label' | t }}</strong><br><span id="dhl-delivery-date">{{ 'products.additional_info.estimated_delivery' | t }}</span></p>
+      <p style="margin-bottom:0.6em;" data-delivery-estimate-row data-delivery-estimate-tier="standard" data-delivery-fallback-visible><strong>{{ 'products.additional_info.free_shipping_label' | t }}</strong><br><span id="dhl-delivery-date" data-delivery-window="{{ standard_delivery_window | escape }}" data-delivery-fallback="{{ delivery_estimate_copy | escape }}">{{ delivery_estimate_copy }}</span></p>
       {%- comment -%} TODO: Move free premium shipping threshold to theme settings {%- endcomment -%}
-      <p style="margin-top:0;padding-top:0.6em;border-top:1px solid #e5e7eb;color:#374151;font-size:0.92em;" data-delivery-estimate-row data-delivery-estimate-tier="premium" hidden>{{ 'products.additional_info.faster_shipping_prefix' | t }} <strong><span id="ups-delivery-date"></span></strong></p>
+      <p style="margin-top:0;padding-top:0.6em;border-top:1px solid #e5e7eb;color:#374151;font-size:0.92em;" data-delivery-estimate-row data-delivery-estimate-tier="premium" hidden>{{ 'products.additional_info.faster_shipping_prefix' | t }} <strong><span id="ups-delivery-date" data-delivery-window="{{ premium_delivery_window | escape }}" data-delivery-fallback="{{ premium_delivery_window | escape }}"></span></strong></p>
     </div>
   </div>
   <button class="collapsible" aria-expanded="false" aria-controls="collapsible-returns">

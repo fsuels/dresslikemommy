@@ -689,7 +689,7 @@
         firstCollapsible.setAttribute('aria-expanded', 'true');
       }
 
-      // Calculate delivery dates only when approved market/product ranges are provided.
+      // Keep a visible shipping fallback, then enhance it with a date window when a range is available.
       function formatDate(date) {
         const options = { month: 'long', day: 'numeric' };
         const shopifyLocale = window.Shopify && window.Shopify.locale ? window.Shopify.locale : '';
@@ -713,14 +713,59 @@
         return date;
       }
 
-      function getDeliveryBusinessDays(tier) {
+      function parseBusinessDayWindow(value) {
+        var matches = String(value || '').match(/\d+/g);
+        if (!matches || !matches.length) return null;
+
+        var minBusinessDays = Number(matches[0]);
+        var maxBusinessDays = Number(matches[1] || matches[0]);
+        if (!Number.isFinite(minBusinessDays) || !Number.isFinite(maxBusinessDays)) return null;
+        if (minBusinessDays < 1 || maxBusinessDays < minBusinessDays) return null;
+
+        return {
+          minBusinessDays: minBusinessDays,
+          maxBusinessDays: maxBusinessDays,
+        };
+      }
+
+      function getDeliveryWindow(tier, element) {
         var estimates = window.DLM_DELIVERY_ESTIMATES;
-        if (!estimates || !estimates[tier]) return null;
+        var configuredEstimate = estimates && estimates[tier] ? estimates[tier] : null;
 
-        var businessDays = Number(estimates[tier].maxBusinessDays);
-        if (!Number.isFinite(businessDays) || businessDays < 1) return null;
+        if (configuredEstimate) {
+          var minBusinessDays = Number(configuredEstimate.minBusinessDays || configuredEstimate.maxBusinessDays);
+          var maxBusinessDays = Number(configuredEstimate.maxBusinessDays || configuredEstimate.minBusinessDays);
+          if (Number.isFinite(minBusinessDays) && Number.isFinite(maxBusinessDays) && minBusinessDays >= 1 && maxBusinessDays >= minBusinessDays) {
+            return {
+              minBusinessDays: minBusinessDays,
+              maxBusinessDays: maxBusinessDays,
+            };
+          }
+        }
 
-        return businessDays;
+        if (!element) return null;
+
+        var row = element.closest('[data-delivery-estimate-row]');
+        if (!row || !row.hasAttribute('data-delivery-fallback-visible')) return null;
+
+        return parseBusinessDayWindow(element.getAttribute('data-delivery-window'));
+      }
+
+      function formatDeliveryWindow(startDate, estimate) {
+        var minDate = addBusinessDays(startDate, estimate.minBusinessDays);
+        var maxDate = addBusinessDays(startDate, estimate.maxBusinessDays);
+        var minText = formatDate(minDate);
+        var maxText = formatDate(maxDate);
+
+        return minText === maxText ? minText : minText + ' - ' + maxText;
+      }
+
+      function updateDeliveryText(element, dateWindow) {
+        if (!element || !dateWindow) return;
+
+        var fallback = element.getAttribute('data-delivery-fallback') || element.textContent || '';
+        var updated = fallback.replace(/\b\d+\s*[-–]\s*\d+\s+business days\b/i, dateWindow);
+        element.textContent = updated === fallback ? 'Estimated delivery: ' + dateWindow : updated;
       }
 
       function setDeliveryRowVisibility(element, isVisible) {
@@ -728,7 +773,7 @@
 
         var row = element.closest('[data-delivery-estimate-row]') || element.closest('p');
         if (row) {
-          row.hidden = false;
+          row.hidden = !isVisible && !row.hasAttribute('data-delivery-fallback-visible');
           row.classList.toggle('delivery-estimate-row--dynamic', isVisible);
         }
       }
@@ -736,19 +781,19 @@
       function calculateDeliveryDates() {
         const today = new Date();
 
-        const upsBusinessDays = getDeliveryBusinessDays('premium');
         const upsEl = document.getElementById('ups-delivery-date');
-        if (upsEl && upsBusinessDays) {
-          upsEl.textContent = formatDate(addBusinessDays(today, upsBusinessDays));
+        const upsWindow = getDeliveryWindow('premium', upsEl);
+        if (upsEl && upsWindow) {
+          updateDeliveryText(upsEl, formatDeliveryWindow(today, upsWindow));
           setDeliveryRowVisibility(upsEl, true);
         } else {
           setDeliveryRowVisibility(upsEl, false);
         }
 
-        const dhlBusinessDays = getDeliveryBusinessDays('standard');
         const dhlEl = document.getElementById('dhl-delivery-date');
-        if (dhlEl && dhlBusinessDays) {
-          dhlEl.textContent = formatDate(addBusinessDays(today, dhlBusinessDays));
+        const dhlWindow = getDeliveryWindow('standard', dhlEl);
+        if (dhlEl && dhlWindow) {
+          updateDeliveryText(dhlEl, formatDeliveryWindow(today, dhlWindow));
           setDeliveryRowVisibility(dhlEl, true);
         } else {
           setDeliveryRowVisibility(dhlEl, false);
