@@ -30,11 +30,7 @@
 
     capture shipping_answer
       echo 'products.additional_info.free_shipping_label' | t
-      echo '. '
-      echo 'products.additional_info.estimated_delivery' | t
-      echo ' '
-      echo 'products.additional_info.standard_delivery_window' | t
-      echo '.'
+      echo '. Estimated delivery: 12-15 business days.'
     endcapture
     assign shipping_answer = shipping_answer | strip | strip_newlines | replace: '  ', ' '
 
