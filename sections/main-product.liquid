@@ -1262,17 +1262,9 @@
 
 <div class="additional-info">
   {%- liquid
-    assign delivery_estimate_copy = 'products.additional_info.estimated_delivery' | t
-    assign standard_delivery_window = 'products.additional_info.standard_delivery_window' | t
+    assign delivery_estimate_copy = 'Estimated delivery:'
+    assign standard_delivery_window = '12-15 business days'
     assign premium_delivery_window = 'products.additional_info.premium_delivery_window' | t
-
-    if delivery_estimate_copy == 'Delivery details at checkout' or delivery_estimate_copy contains 'translation missing'
-      assign delivery_estimate_copy = 'Estimated U.S. delivery: 8-18 business days including processing'
-    endif
-
-    if standard_delivery_window contains 'translation missing' or standard_delivery_window == blank
-      assign standard_delivery_window = '8-18 business days including processing'
-    endif
 
     if premium_delivery_window contains 'translation missing' or premium_delivery_window contains '5-7 business days' or premium_delivery_window == blank
       assign premium_delivery_window = ''
