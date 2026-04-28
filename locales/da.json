@@ -194,8 +194,8 @@
       "size_required_message": "Vælg venligst en størrelse, før du lægger i kurven.",
       "matching_set": {
         "heading": "Byg dit matchende sæt",
-        "copy": "Vælg de familiestørrelser, du ønsker, og føj dem sammen fra én produktside.",
-        "empty": "Vælg mindst én familiestørrelse for at tilføje dit sæt.",
+        "copy": "Vælg hver familiestørrelse, du har brug for, og tilføj det komplette matchende sæt fra én produktside.",
+        "empty": "Vælg mindst én familiestørrelse for at starte dit sæt.",
         "add": "Tilføj valgte stykker",
         "success": "Matchende sæt tilføjet til indkøbskurven.",
         "error": "Kan ikke tilføje de valgte stykker. Prøv venligst igen."
@@ -277,29 +277,29 @@
     },
     "trust": {
       "secure_checkout": "Sikker checkout",
-      "ssl_encrypted": "SSL Encrypted",
-      "returns": "30-dages retur",
-      "free_shipping": "Free Shipping",
-      "trusted_since": "Tillid siden 2016",
+      "ssl_encrypted": "SSL krypteret",
+      "returns": "Nem retur",
+      "free_shipping": "Gratis forsendelse",
+      "trusted_since": "Familiematching gjort let",
       "assistance_note": "Har du brug for hjælp? Vi svarer typisk inden for en hverdag."
     },
     "additional_info": {
-      "shipping_title": "Gratis forsendelse til hele verden",
+      "shipping_title": "Forsendelse & Levering",
       "free_shipping_label": "GRATIS forsendelse",
-      "estimated_delivery": "Est. Levering",
+      "estimated_delivery": "Leveringsdetaljer ved kassen",
       "faster_shipping_prefix": "Vil du have det hurtigere? Brug $100+ og få",
       "free_premium_shipping": "GRATIS Premium forsendelse",
       "return_policy_title": "Returpolitik",
-      "return_policy_line_1": "Vi modtager gerne returnering inden for 30 dage efter købet.",
-      "return_policy_line_2": "Varer skal være i deres originale stand og emballage for at kvalificere sig til fuld refusion. Bemærk venligst, at købere er ansvarlige for returneringsomkostninger.",
-      "return_policy_line_3": "Hvis en vare returneres beskadiget, brugte eller manglende dele, kan vi trække en del af tilbagebetalingen for at dække ethvert tab i varens værdi.",
-      "return_policy_line_4": "For at sikre en smidig returproces, bedes du venligst returnere varer i samme stand som modtaget, inklusive al emballage og originalt indhold.",
+      "return_policy_line_1": "Du har 30 dage fra levering til at anmode om returnering eller ombytning.",
+      "return_policy_line_2": "Varerne skal være ubrugte, uvaskede, i original stand og i original emballage med mærker påsat.",
+      "return_policy_line_3": "Nogle varer, herunder badetøj og intimiteter, kan ikke returneres af hygiejnemæssige årsager; endeligt salg og personlige varer er også udelukket.",
+      "return_policy_line_4": "Gennemgå refusionspolitikken for berettigelse, returforsendelse og tidspunkt for refusion, før du sender noget tilbage.",
       "shopping_security_title": "Indkøbssikkerhed",
       "safe_payment_options_title": "Sikre betalingsmuligheder",
       "safe_payment_description": "Vi accepterer alle større kredit- og betalingskort. Dine kortoplysninger er sikre og deles aldrig med vores partnere. Du kan nemt administrere dine gemte kort når som helst. For eventuelle transaktionsforespørgsler bedes du kontakte din kortudsteder.",
       "secure_logistics_title": "Sikker logistik",
-      "secure_logistics_line_1": "Pakkesikkerhed: Fuld refusion for din beskadigede eller mistede pakke.",
-      "secure_logistics_line_2": "Leveringsgaranti: Nøjagtig og præcis ordresporing.",
+      "secure_logistics_line_1": "Hvis en pakke er beskadiget eller bortkommet under transporten, så kontakt os, så vi kan hjælpe med at gennemgå forsendelsen.",
+      "secure_logistics_line_2": "Brug dit ordresporingslink for at få de seneste opdateringer fra transportøren.",
       "secure_privacy_title": "Sikkert privatliv",
       "secure_privacy_description": "Beskyttelse af dit privatliv er vigtigt for os! Vær sikker på, at dine oplysninger vil blive opbevaret sikret og kompromisløst. Vi sælger ikke dine personlige oplysninger for penge og vil kun bruge dine oplysninger i overensstemmelse med vores privatlivs- og cookiepolitik til at levere og forbedre vores tjenester til dig."
     }
@@ -390,27 +390,28 @@
       },
       "estimated_total": "Estimeret totalbeløb",
       "new_estimated_total": "Ny estimeret totalbeløb",
-      "order_today_delivery": "Order today, Est. Delivery",
-      "est_delivery": "Est. Delivery",
-      "store_rating_prefix": "Rated",
-      "store_rating_suffix": "by 15,200+ families",
+      "order_today_delivery": "Leveringsdetaljer ved kassen",
+      "est_delivery": "Leveringsdetaljer ved kassen",
+      "store_rating_prefix": "",
+      "store_rating_suffix": "",
       "we_accept": "We accept",
       "complete_the_look": "Fuldfør looket",
       "you_may_also_like": "You may also like",
       "trust": {
-        "secure_checkout": "Secure Checkout",
-        "ssl_encrypted": "SSL Encrypted",
-        "free_shipping": "Free Shipping",
-        "returns": "30-Day Returns",
-        "secure": "Secure",
-        "encrypted": "Encrypted",
-        "free_ship": "Free Ship"
+        "secure_checkout": "Sikker checkout",
+        "ssl_encrypted": "SSL krypteret",
+        "free_shipping": "Gratis forsendelse",
+        "returns": "Nem retur",
+        "secure": "Sikker",
+        "encrypted": "Krypteret",
+        "free_ship": "Gratis forsendelse"
       },
       "discount_code_toggle": "Har du en rabatkode?",
       "shipping_label": "Forsendelse",
       "shipping_free": "GRATIS",
       "popular_with_families": "Populær blandt familier",
-      "recently_viewed": "For nylig set"
+      "recently_viewed": "For nylig set",
+      "savings_html": "Du gemmer <strong>{{ amount }}</strong>"
     },
     "footer": {
       "payment": "Betalingsmetoder"
@@ -453,7 +454,7 @@
       "carousel": "Karrusel",
       "announcement": "Meddelelse",
       "announcement_bar": "Meddelelseslinje",
-      "default_promo": "FREE SHIPPING ON ALL ORDERS | 30-DAY EASY RETURNS | SECURE CHECKOUT"
+      "default_promo": "GRATIS FRAGT PÅ ALLE BESTILLINGER | NEMT RETUR | SIKKER KASSE"
     },
     "quick_order_list": {
       "product_total": "Subtotal for produkt",

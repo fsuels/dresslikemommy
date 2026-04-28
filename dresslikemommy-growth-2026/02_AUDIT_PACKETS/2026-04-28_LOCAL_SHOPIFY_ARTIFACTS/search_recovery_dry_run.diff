@@ -1,0 +1,44 @@
+--- sections/main-search.liquid
++++ sections/main-search.liquid.dry-run
+@@ no-results recovery links @@
+         {%- if search.results_count == 0 and search.filters == empty -%}
+           <p role="status">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
++          <nav class="template-search__recovery" aria-label="Suggested searches">
++            <div class="template-search__recovery-group">
++              <a href="/collections/mommy-and-me">Mommy & Me</a>
++              <a href="/collections/family-sets">Family Matching</a>
++              <a href="/collections/daddy-and-me">Daddy & Me</a>
++              <a href="/collections/pajamas">Pajamas</a>
++              <a href="/collections/new-arrivals">New Arrivals</a>
++            </div>
++            <div class="template-search__recovery-group">
++              <a href="{{ routes.search_url }}?q=mommy%20and%20me&type=product&options%5Bprefix%5D=last">mommy and me</a>
++              <a href="{{ routes.search_url }}?q=family%20matching&type=product&options%5Bprefix%5D=last">family matching</a>
++              <a href="{{ routes.search_url }}?q=matching%20pajamas&type=product&options%5Bprefix%5D=last">matching pajamas</a>
++              <a href="{{ routes.search_url }}?q=matching%20swimsuits&type=product&options%5Bprefix%5D=last">matching swimsuits</a>
++            </div>
++          </nav>
+         {%- endif -%}
+@@ search recovery styles @@
+   .search__button .icon {
+     height: 1.8rem;
+   }
++
++  .template-search__recovery {
++    display: grid;
++    gap: 1.2rem;
++    margin: 2rem auto 0;
++    max-width: 74.1rem;
++  }
++
++  .template-search__recovery-group {
++    display: flex;
++    flex-wrap: wrap;
++    gap: 0.8rem;
++    justify-content: center;
++  }
++
++  .template-search__recovery a {
++    text-decoration: underline;
++    text-underline-offset: 0.25rem;
++  }

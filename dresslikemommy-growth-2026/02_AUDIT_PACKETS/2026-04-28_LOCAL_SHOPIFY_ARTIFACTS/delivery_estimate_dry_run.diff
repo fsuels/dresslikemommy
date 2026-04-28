@@ -1,0 +1,50 @@
+--- layout/theme.liquid
++++ layout/theme.liquid.dry-run
+@@ product delivery estimate calculation @@
+-      // Calculate delivery dates
++      // Calculate delivery dates only when approved market/product ranges are provided.
+@@
+-      function calculateDeliveryDates() {
++      function calculateDeliveryDates() {
++        var estimates = window.DLM_DELIVERY_ESTIMATES;
++        if (!estimates || !estimates.standard || !estimates.premium) {
++          document.querySelectorAll('#dhl-delivery-date, #ups-delivery-date').forEach(function (el) {
++            var row = el.closest('p');
++            if (row) row.hidden = true;
++          });
++          return;
++        }
+         const today = new Date();
+@@
+-        // Premium Shipping (UPS): 7 business days
+-        const upsDate = addBusinessDays(today, 7);
++        const upsDate = addBusinessDays(today, estimates.premium.maxBusinessDays);
+@@
+-        // FREE Shipping: 10 business days
+-        const dhlDate = addBusinessDays(today, 10);
++        const dhlDate = addBusinessDays(today, estimates.standard.maxBusinessDays);
+--- assets/cart.js
++++ assets/cart.js.dry-run
+@@ cart delivery estimate calculation @@
+-/* ── Delivery date calculation (10 business days — matches product page FREE Shipping) ── */
++/* Delivery estimate: render only when approved market/product ranges are provided. */
+@@
+   function updateDeliveryDates() {
++    const estimates = window.DLM_DELIVERY_ESTIMATES;
++    if (!estimates || !estimates.standard) {
++      document.querySelectorAll('.js-delivery-date').forEach(function(el) {
++        const container = el.closest('.cart-page__delivery-estimate, .cart-drawer__checkout-reassurance');
++        if (container) container.hidden = true;
++      });
++      return;
++    }
+     const today = new Date();
+-    const deliveryDate = addBusinessDays(today, 10);
++    const deliveryDate = addBusinessDays(today, estimates.standard.maxBusinessDays);
+--- snippets/jsonld-seo.liquid
++++ snippets/jsonld-seo.liquid.dry-run
+@@ OfferShippingDetails deliveryTime @@
+-        "deliveryTime": {
++        {%- comment -%} Emit deliveryTime only after approved market/product handling and transit ranges exist. {%- endcomment -%}
++        "deliveryTime": {
+           "@type": "ShippingDeliveryTime",

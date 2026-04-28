@@ -692,13 +692,10 @@
       {%- endif -%}
     </div>
     {%- if section.settings.show_trust -%}
-      <div class="hero-banner__trust"{% if section.settings.trust_line != blank %} aria-label="{{ section.settings.trust_line | escape }}"{% else %} aria-label="{{ 'sections.cart.store_rating_prefix' | t }} 4.8/5 {{ 'sections.cart.store_rating_suffix' | t }}"{% endif %}>
+      <div class="hero-banner__trust"{% if section.settings.trust_line != blank %} aria-label="{{ section.settings.trust_line | escape }}"{% else %} aria-label="{{ 'sections.cart.trust.secure_checkout' | t | escape }}"{% endif %}>
         {%- if section.settings.trust_line != blank -%}
           <p class="hero-banner__trust-line">{{ section.settings.trust_line }}</p>
         {%- else -%}
-          <p class="hero-banner__trust-rating">
-            {{ 'sections.cart.store_rating_prefix' | t }} <strong>4.8/5</strong> {{ 'sections.cart.store_rating_suffix' | t }}
-          </p>
           <div class="hero-banner__trust-pills">
             <a class="hero-banner__trust-pill" href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}">
               {{ 'sections.cart.trust.free_shipping' | t }}
@@ -1052,7 +1049,7 @@
     {
       "type": "text",
       "id": "trust_line",
-      "default": "Family-owned since 2016 • Thousands of happy families • Responds within 1 business day.",
+      "default": "Family matching made easy • Helpful sizing support • Secure checkout.",
       "label": "Trust line"
     },
     {

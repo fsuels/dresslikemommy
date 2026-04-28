@@ -57,16 +57,13 @@
         <div class="home-conversion-hero__trust">
           <a class="home-conversion-hero__trust-link" href="{{ shipping_policy_url }}">
             <span class="home-conversion-hero__trust-icon">{% render 'icon-padlock' %}</span>
-            <span>Free Shipping on All Orders</span>
+            <span>{{ 'products.product.free_shipping_all_orders' | t }}</span>
           </a>
           <a class="home-conversion-hero__trust-link" href="{{ refund_policy_url }}">
             <span class="home-conversion-hero__trust-icon">{% render 'icon-checkmark' %}</span>
-            <span>30-Day Easy Returns</span>
+            <span>{{ 'sections.cart.trust.returns' | t }}</span>
           </a>
-          <div class="home-conversion-hero__trust-item">
-            <span class="home-conversion-hero__trust-icon">★★★★★</span>
-            <span>{{ 'sections.cart.store_rating_prefix' | t }} <strong>4.8/5</strong> {{ 'sections.cart.store_rating_suffix' | t }}</span>
-          </div>
+          {%- comment -%} Storewide aggregate rating removed pending owner-provided proof. {%- endcomment -%}
         </div>
 
         {%- if section.settings.eyebrow != blank -%}

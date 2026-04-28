@@ -497,6 +497,84 @@ YEAR_UNITS = {
     "zh": ("岁", "岁", ""),
 }
 
+BODY_LABEL_TRANSLATIONS = {
+    "fabric": {
+        "ar": "القماش", "cs": "Látka", "da": "Stof", "de": "Stoff", "el": "Ύφασμα",
+        "es": "Tela", "fi": "Kangas", "fr": "Tissu", "he": "בד", "hi": "कपड़ा",
+        "it": "Tessuto", "ja": "生地", "ko": "원단", "nl": "Stof", "no": "Stoff",
+        "pl": "Materiał", "pt": "Tecido", "ro": "Țesătură", "ru": "Ткань",
+        "sv": "Tyg", "zh": "面料",
+    },
+    "family story": {
+        "ar": "قصة عائلية", "cs": "Rodinný příběh", "da": "Familiehistorie", "de": "Familiengeschichte",
+        "el": "Οικογενειακή ιστορία", "es": "Historia familiar", "fi": "Perhetarina", "fr": "Histoire familiale",
+        "he": "סיפור משפחתי", "hi": "पारिवारिक कहानी", "it": "Storia di famiglia", "ja": "ファミリーストーリー",
+        "ko": "가족 이야기", "nl": "Familieverhaal", "no": "Familiehistorie", "pl": "Historia rodzinna",
+        "pt": "História familiar", "ro": "Poveste de familie", "ru": "Семейная история", "sv": "Familjeberättelse",
+        "zh": "家庭故事",
+    },
+    "print": {
+        "ar": "النقشة", "cs": "Potisk", "da": "Print", "de": "Muster", "el": "Μοτίβο",
+        "es": "Estampado", "fi": "Kuosi", "fr": "Imprimé", "he": "הדפס", "hi": "प्रिंट",
+        "it": "Stampa", "ja": "柄", "ko": "프린트", "nl": "Print", "no": "Mønster",
+        "pl": "Wzór", "pt": "Estampa", "ro": "Imprimeu", "ru": "Принт", "sv": "Mönster",
+        "zh": "印花",
+    },
+    "design details": {
+        "ar": "تفاصيل التصميم", "cs": "Detaily designu", "da": "Designdetaljer", "de": "Designdetails",
+        "el": "Λεπτομέρειες σχεδίου", "es": "Detalles de diseño", "fi": "Suunnittelun yksityiskohdat",
+        "fr": "Détails du design", "he": "פרטי העיצוב", "hi": "डिज़ाइन विवरण", "it": "Dettagli del design",
+        "ja": "デザインの詳細", "ko": "디자인 디테일", "nl": "Ontwerpdetails", "no": "Designdetaljer",
+        "pl": "Detale projektu", "pt": "Detalhes do design", "ro": "Detalii de design", "ru": "Детали дизайна",
+        "sv": "Designdetaljer", "zh": "设计细节",
+    },
+    "care": {
+        "ar": "العناية", "cs": "Péče", "da": "Pleje", "de": "Pflege", "el": "Φροντίδα",
+        "es": "Cuidado", "fi": "Hoito", "fr": "Entretien", "he": "טיפול", "hi": "देखभाल",
+        "it": "Cura", "ja": "お手入れ", "ko": "관리", "nl": "Onderhoud", "no": "Pleie",
+        "pl": "Pielęgnacja", "pt": "Cuidados", "ro": "Îngrijire", "ru": "Уход", "sv": "Skötsel",
+        "zh": "护理",
+    },
+    "size range": {
+        "ar": "نطاق المقاسات", "cs": "Rozsah velikostí", "da": "Størrelsesudvalg", "de": "Größenbereich",
+        "el": "Εύρος μεγεθών", "es": "Rango de tallas", "fi": "Kokovalikoima", "fr": "Gamme de tailles",
+        "he": "טווח מידות", "hi": "साइज़ रेंज", "it": "Gamma taglie", "ja": "サイズ展開",
+        "ko": "사이즈 범위", "nl": "Maatbereik", "no": "Størrelsesutvalg", "pl": "Zakres rozmiarów",
+        "pt": "Faixa de tamanhos", "ro": "Gama de mărimi", "ru": "Диапазон размеров", "sv": "Storleksintervall",
+        "zh": "尺码范围",
+    },
+    "key features": {
+        "ar": "الميزات الرئيسية", "cs": "Klíčové vlastnosti", "da": "Nøglefunktioner", "de": "Wichtige Merkmale",
+        "el": "Βασικά χαρακτηριστικά", "es": "Características principales", "fi": "Tärkeimmät ominaisuudet",
+        "fr": "Caractéristiques principales", "he": "מאפיינים עיקריים", "hi": "मुख्य विशेषताएँ",
+        "it": "Caratteristiche principali", "ja": "主な特徴", "ko": "주요 특징", "nl": "Belangrijkste kenmerken",
+        "no": "Viktige funksjoner", "pl": "Najważniejsze cechy", "pt": "Principais características",
+        "ro": "Caracteristici principale", "ru": "Основные характеристики", "sv": "Viktiga egenskaper",
+        "zh": "主要特点",
+    },
+    "size chart": {
+        "ar": "جدول المقاسات", "cs": "Tabulka velikostí", "da": "Størrelsesskema", "de": "Größentabelle",
+        "el": "Πίνακας μεγεθών", "es": "Tabla de tallas", "fi": "Kokotaulukko", "fr": "Guide des tailles",
+        "he": "טבלת מידות", "hi": "साइज़ चार्ट", "it": "Tabella taglie", "ja": "サイズ表",
+        "ko": "사이즈 차트", "nl": "Maattabel", "no": "Størrelsestabell", "pl": "Tabela rozmiarów",
+        "pt": "Tabela de tamanhos", "ro": "Tabel de mărimi", "ru": "Таблица размеров", "sv": "Storlekstabell",
+        "zh": "尺码表",
+    },
+}
+
+TABLE_HEADER_TRANSLATIONS = {
+    "size": {"es": "Talla", "ja": "サイズ", "ar": "المقاس", "cs": "Velikost", "da": "Størrelse", "de": "Größe", "el": "Μέγεθος", "fi": "Koko", "fr": "Taille", "he": "מידה", "hi": "आकार", "it": "Taglia", "ko": "사이즈", "nl": "Maat", "no": "Størrelse", "pl": "Rozmiar", "pt": "Tamanho", "ro": "Mărime", "ru": "Размер", "sv": "Storlek", "zh": "尺码"},
+    "age": {"es": "Edad", "ja": "年齢", "ar": "العمر", "cs": "Věk", "da": "Alder", "de": "Alter", "el": "Ηλικία", "fi": "Ikä", "fr": "Âge", "he": "גיל", "hi": "उम्र", "it": "Età", "ko": "연령", "nl": "Leeftijd", "no": "Alder", "pl": "Wiek", "pt": "Idade", "ro": "Vârstă", "ru": "Возраст", "sv": "Ålder", "zh": "年龄"},
+    "weight (kg/lbs)": {"es": "Peso (kg/lb)", "ja": "体重 (kg/lb)", "ar": "الوزن (كجم/رطل)", "cs": "Hmotnost (kg/lb)", "da": "Vægt (kg/lb)", "de": "Gewicht (kg/lb)", "el": "Βάρος (kg/lb)", "fi": "Paino (kg/lb)", "fr": "Poids (kg/lb)", "he": "משקל (קג/ליברה)", "hi": "वजन (kg/lb)", "it": "Peso (kg/lb)", "ko": "체중 (kg/lb)", "nl": "Gewicht (kg/lb)", "no": "Vekt (kg/lb)", "pl": "Waga (kg/lb)", "pt": "Peso (kg/lb)", "ro": "Greutate (kg/lb)", "ru": "Вес (кг/фунты)", "sv": "Vikt (kg/lb)", "zh": "体重 (kg/lb)"},
+    "height (cm/in)": {"es": "Altura (cm/in)", "ja": "身長 (cm/in)", "ar": "الطول (سم/بوصة)", "cs": "Výška (cm/in)", "da": "Højde (cm/in)", "de": "Größe (cm/in)", "el": "Ύψος (cm/in)", "fi": "Pituus (cm/in)", "fr": "Taille (cm/in)", "he": "גובה (סמ/אינץ')", "hi": "ऊँचाई (cm/in)", "it": "Altezza (cm/in)", "ko": "키 (cm/in)", "nl": "Lengte (cm/in)", "no": "Høyde (cm/in)", "pl": "Wzrost (cm/in)", "pt": "Altura (cm/in)", "ro": "Înălțime (cm/in)", "ru": "Рост (см/дюйм)", "sv": "Längd (cm/in)", "zh": "身高 (cm/in)"},
+    "chest/bust (cm/in)": {"es": "Pecho/busto (cm/in)", "ja": "胸囲/バスト (cm/in)", "ar": "الصدر/البست (سم/بوصة)", "cs": "Hrudník/prsa (cm/in)", "da": "Bryst (cm/in)", "de": "Brust (cm/in)", "el": "Στήθος (cm/in)", "fi": "Rinta (cm/in)", "fr": "Poitrine (cm/in)", "he": "חזה (סמ/אינץ')", "hi": "छाती/बस्ट (cm/in)", "it": "Petto/busto (cm/in)", "ko": "가슴/버스트 (cm/in)", "nl": "Borst (cm/in)", "no": "Bryst (cm/in)", "pl": "Klatka/biust (cm/in)", "pt": "Peito/busto (cm/in)", "ro": "Piept/bust (cm/in)", "ru": "Грудь/бюст (см/дюйм)", "sv": "Bröst (cm/in)", "zh": "胸围 (cm/in)"},
+    "skirt length (cm/in)": {"es": "Largo de falda (cm/in)", "ja": "スカート丈 (cm/in)", "ar": "طول التنورة (سم/بوصة)", "cs": "Délka sukně (cm/in)", "da": "Nederdelslængde (cm/in)", "de": "Rocklänge (cm/in)", "el": "Μήκος φούστας (cm/in)", "fi": "Hameen pituus (cm/in)", "fr": "Longueur de jupe (cm/in)", "he": "אורך חצאית (סמ/אינץ')", "hi": "स्कर्ट लंबाई (cm/in)", "it": "Lunghezza gonna (cm/in)", "ko": "스커트 길이 (cm/in)", "nl": "Roklengte (cm/in)", "no": "Skjørtlengde (cm/in)", "pl": "Długość spódnicy (cm/in)", "pt": "Comprimento da saia (cm/in)", "ro": "Lungime fustă (cm/in)", "ru": "Длина юбки (см/дюйм)", "sv": "Kjollängd (cm/in)", "zh": "裙长 (cm/in)"},
+    "pant/short or — (cm/in)": {"es": "Pantalón/short o — (cm/in)", "ja": "パンツ/ショーツまたは — (cm/in)", "ar": "بنطال/شورت أو — (سم/بوصة)", "cs": "Kalhoty/šortky nebo — (cm/in)", "da": "Bukser/shorts eller — (cm/in)", "de": "Hose/Shorts oder — (cm/in)", "el": "Παντελόνι/σορτς ή — (cm/in)", "fi": "Housut/shortsit tai — (cm/in)", "fr": "Pantalon/short ou — (cm/in)", "he": "מכנסיים/שורט או — (סמ/אינץ')", "hi": "पैंट/शॉर्ट्स या — (cm/in)", "it": "Pantaloni/shorts o — (cm/in)", "ko": "팬츠/쇼츠 또는 — (cm/in)", "nl": "Broek/short of — (cm/in)", "no": "Bukse/shorts eller — (cm/in)", "pl": "Spodnie/szorty lub — (cm/in)", "pt": "Calça/short ou — (cm/in)", "ro": "Pantaloni/șorturi sau — (cm/in)", "ru": "Брюки/шорты или — (см/дюйм)", "sv": "Byxa/shorts eller — (cm/in)", "zh": "裤长/短裤或 — (cm/in)"},
+    "hip (cm/in)": {"es": "Cadera (cm/in)", "ja": "ヒップ (cm/in)", "ar": "الورك (سم/بوصة)", "cs": "Boky (cm/in)", "da": "Hofte (cm/in)", "de": "Hüfte (cm/in)", "el": "Γοφοί (cm/in)", "fi": "Lantio (cm/in)", "fr": "Hanches (cm/in)", "he": "ירכיים (סמ/אינץ')", "hi": "कूल्हे (cm/in)", "it": "Fianchi (cm/in)", "ko": "힙 (cm/in)", "nl": "Heup (cm/in)", "no": "Hofte (cm/in)", "pl": "Biodra (cm/in)", "pt": "Quadril (cm/in)", "ro": "Șold (cm/in)", "ru": "Бедра (см/дюйм)", "sv": "Höft (cm/in)", "zh": "臀围 (cm/in)"},
+    "waist (cm/in)": {"es": "Cintura (cm/in)", "ja": "ウエスト (cm/in)", "ar": "الخصر (سم/بوصة)", "cs": "Pas (cm/in)", "da": "Talje (cm/in)", "de": "Taille (cm/in)", "el": "Μέση (cm/in)", "fi": "Vyötärö (cm/in)", "fr": "Taille (cm/in)", "he": "מותן (סמ/אינץ')", "hi": "कमर (cm/in)", "it": "Vita (cm/in)", "ko": "허리 (cm/in)", "nl": "Taille (cm/in)", "no": "Midje (cm/in)", "pl": "Talia (cm/in)", "pt": "Cintura (cm/in)", "ro": "Talie (cm/in)", "ru": "Талия (см/дюйм)", "sv": "Midja (cm/in)", "zh": "腰围 (cm/in)"},
+    "garment length (cm/in)": {"es": "Largo de prenda (cm/in)", "ja": "着丈 (cm/in)", "ar": "طول القطعة (سم/بوصة)", "cs": "Délka oděvu (cm/in)", "da": "Tøjlængde (cm/in)", "de": "Kleidungsstücklänge (cm/in)", "el": "Μήκος ρούχου (cm/in)", "fi": "Vaatteen pituus (cm/in)", "fr": "Longueur du vêtement (cm/in)", "he": "אורך הבגד (סמ/אינץ')", "hi": "परिधान लंबाई (cm/in)", "it": "Lunghezza capo (cm/in)", "ko": "의류 길이 (cm/in)", "nl": "Kledinglengte (cm/in)", "no": "Plagglengde (cm/in)", "pl": "Długość ubrania (cm/in)", "pt": "Comprimento da peça (cm/in)", "ro": "Lungime articol (cm/in)", "ru": "Длина изделия (см/дюйм)", "sv": "Plagglängd (cm/in)", "zh": "衣长 (cm/in)"},
+}
+
 
 @dataclass
 class RecentProduct:
@@ -1226,6 +1304,57 @@ def replace_first_body_cell(row_html: str, replacement: str) -> str:
     )
 
 
+def translated_body_label(label_key: str, locale: str) -> str:
+    source = clean(label_key).lower()
+    return locale_lookup(BODY_LABEL_TRANSLATIONS.get(source, {}), locale, clean(label_key).title())
+
+
+def translated_table_header(label_key: str, locale: str) -> str:
+    source = clean(label_key).lower()
+    return locale_lookup(TABLE_HEADER_TRANSLATIONS.get(source, {}), locale, clean(label_key))
+
+
+def translated_size_chart_heading(match: re.Match[str], locale: str) -> str:
+    prefix = match.group(1)
+    chart_label = translated_body_label("size chart", locale)
+    garment = clean(match.group(2))
+    garment_label = translated_garment(garment, locale) or garment
+    return f"{prefix}{chart_label} - {garment_label}"
+
+
+def repair_common_product_html_labels(translated_html: str, locale: str) -> str:
+    repaired = translated_html
+    if not repaired:
+        return repaired
+
+    for source in sorted(BODY_LABEL_TRANSLATIONS, key=len, reverse=True):
+        target = translated_body_label(source, locale)
+        repaired = re.sub(
+            rf"(?<![A-Za-z]){re.escape(source)}(\s*:)",
+            lambda match, target=target: f"{target}{match.group(1)}",
+            repaired,
+            flags=re.I,
+        )
+
+    repaired = re.sub(
+        r"((?:>|^)\s*)Size\s+Chart\s*-\s*([A-Za-z &]+)(?=\s*(?:<|$))",
+        lambda match: translated_size_chart_heading(match, locale),
+        repaired,
+        flags=re.I,
+    )
+
+    for source in sorted(TABLE_HEADER_TRANSLATIONS, key=len, reverse=True):
+        target = translated_table_header(source, locale)
+        repaired = re.sub(
+            rf"(>\s*){re.escape(source)}(\s*<)",
+            lambda match, target=target: f"{match.group(1)}{target}{match.group(2)}",
+            repaired,
+            flags=re.I,
+        )
+
+    return repaired
+
+
 def repair_product_html_size_labels(
     source_html: str,
     translated_html: str,
@@ -1303,6 +1432,21 @@ def repair_product_html_size_labels(
         repaired = repaired.replace(source_label, repaired_label)
 
     return repaired
+
+
+def repair_product_html_translation(
+    source_html: str,
+    translated_html: str,
+    locale: str,
+    product_context: dict[str, Any] | None = None,
+) -> str:
+    repaired = repair_product_html_size_labels(
+        source_html,
+        translated_html,
+        locale,
+        product_context=product_context,
+    )
+    return repair_common_product_html_labels(repaired, locale)
 
 
 def deterministic_option_translation(
@@ -1417,7 +1561,7 @@ def build_translation_payload(
                     and snapshot.resource_type == "Product"
                     and key == "body_html"
                 ):
-                    repaired_existing_value = repair_product_html_size_labels(
+                    repaired_existing_value = repair_product_html_translation(
                         default_value,
                         existing.value,
                         locale,
@@ -1488,7 +1632,7 @@ def build_translation_payload(
             skipped[f"translation_failed:{row['locale']}"] += 1
             continue
         if row["resource_type"] == "Product" and row["key"] == "body_html":
-            translated_value = repair_product_html_size_labels(
+            translated_value = repair_product_html_translation(
                 row["default"],
                 translated_value,
                 row["locale"],

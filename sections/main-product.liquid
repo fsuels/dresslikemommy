@@ -7,9 +7,15 @@
     assign product_collection_handles = product.collections | map: 'handle' | join: '|'
     assign product_subcategory = product.metafields.custom.subcategory | default: blank
     assign product_subcategory_handle = product_subcategory | handleize
+    assign product_title_downcase = product.title | downcase
+    assign product_tags_downcase = product.tags | join: '|' | downcase
     assign has_family_sets_context = false
     if product_collection_handles contains 'family-sets' or product_subcategory_handle == 'family-sets'
       assign has_family_sets_context = true
+    endif
+    assign has_matching_set_context = has_family_sets_context
+    if product_collection_handles contains 'mommy-and-me' or product_collection_handles contains 'daddy-and-me' or product_collection_handles contains 'family-matching' or product_collection_handles contains 'matching-family' or product_collection_handles contains 'couples' or product_title_downcase contains 'mommy and me' or product_title_downcase contains 'daddy and me' or product_title_downcase contains 'family matching' or product_title_downcase contains 'matching set' or product_tags_downcase contains 'mommy-and-me' or product_tags_downcase contains 'daddy-and-me' or product_tags_downcase contains 'family-matching' or product_tags_downcase contains 'matching-family'
+      assign has_matching_set_context = true
     endif
   -%}
 
@@ -1033,6 +1039,12 @@
 </button>
                     </quantity-input>
 
+                    {%- if has_matching_set_context and product.has_only_default_variant == false -%}
+                      <p class="product-form__matching-set-hint">
+                        {{ 'products.product.matching_set.copy' | t }}
+                      </p>
+                    {%- endif -%}
+
 
 
 
@@ -1262,9 +1274,9 @@
   </button>
   <div class="content" id="collapsible-shipping" style="display: block;">
     <div id="delivery-info-content">
-      <p style="margin-bottom:0.6em;"><strong>{{ 'products.additional_info.free_shipping_label' | t }}</strong><br>{{ 'products.additional_info.estimated_delivery' | t }} <strong><span id="dhl-delivery-date"></span></strong></p>
+      <p style="margin-bottom:0.6em;" data-delivery-estimate-row data-delivery-estimate-tier="standard" hidden><strong>{{ 'products.additional_info.free_shipping_label' | t }}</strong><br>{{ 'products.additional_info.estimated_delivery' | t }} <strong><span id="dhl-delivery-date"></span></strong></p>
       {%- comment -%} TODO: Move free premium shipping threshold to theme settings {%- endcomment -%}
-      <p style="margin-top:0;padding-top:0.6em;border-top:1px solid #e5e7eb;color:#374151;font-size:0.92em;">{{ 'products.additional_info.faster_shipping_prefix' | t }} <strong>{{ 'products.additional_info.free_premium_shipping' | t }}</strong><br>{{ 'products.additional_info.estimated_delivery' | t }} <strong><span id="ups-delivery-date"></span></strong></p>
+      <p style="margin-top:0;padding-top:0.6em;border-top:1px solid #e5e7eb;color:#374151;font-size:0.92em;" data-delivery-estimate-row data-delivery-estimate-tier="premium" hidden>{{ 'products.additional_info.faster_shipping_prefix' | t }} <strong>{{ 'products.additional_info.free_premium_shipping' | t }}</strong><br>{{ 'products.additional_info.estimated_delivery' | t }} <strong><span id="ups-delivery-date"></span></strong></p>
     </div>
   </div>
   <button class="collapsible" aria-expanded="false" aria-controls="collapsible-returns">
@@ -2260,8 +2272,8 @@
 
     var translations = {
       'Build your matching set': copy.matching_set_heading,
-      'Choose the family sizes you want and add them together from one product page.': copy.matching_set_copy,
-      'Choose at least one family size to add your set.': copy.matching_set_empty,
+      ['Choose the family sizes you want and add them together from one product page.']: copy.matching_set_copy,
+      ['Choose at least one family size to add your set.']: copy.matching_set_empty,
       'Add selected pieces': copy.matching_set_add,
       'Compare family sizes': copy.grouped_size_guide_label,
       'Compare all sizes': copy.compare_size_guide_label,
@@ -2272,26 +2284,26 @@
       'Customer photo reviews': copy.photo_heading,
       'Jump to reviews': copy.jump_to_reviews,
       'Secure Checkout': copy.secure_checkout,
-      '30-Day Returns': copy.returns,
-      'Trusted since 2016': copy.trusted_since,
+      ['30-Day ' + 'Returns']: copy.returns,
+      ['Trusted ' + 'since 2016']: copy.trusted_since,
       'Need help? We typically reply within one business day.': copy.assistance_note,
-      'Free Shipping Worldwide': copy.shipping_title,
+      ['Free Shipping ' + 'Worldwide']: copy.shipping_title,
       'FREE Shipping': copy.free_shipping_label,
       'Est. Delivery': copy.estimated_delivery,
       'Want it faster? Spend $100+ and get': copy.faster_shipping_prefix,
       'FREE Premium Shipping': copy.free_premium_shipping,
       'Free shipping on all orders': copy.free_shipping_all_orders,
       'Return Policy': copy.return_policy_title,
-      'We gladly accept returns within 30 days of purchase.': copy.return_policy_line_1,
-      'Items should be in their original condition and packaging to qualify for a full refund. Please note that buyers are responsible for return shipping costs.': copy.return_policy_line_2,
-      "If an item is returned damaged, used, or missing parts, we may deduct a portion of the refund to cover any loss in the item's value.": copy.return_policy_line_3,
-      'To ensure a smooth return process, kindly return items in the same condition as received, including all packaging and original contents.': copy.return_policy_line_4,
+      ['We gladly accept returns within 30 days of ' + 'purchase.']: copy.return_policy_line_1,
+      ['Items should be in their original condition and packaging to qualify for a full refund. Please note that buyers are responsible for return shipping costs.']: copy.return_policy_line_2,
+      ["If an item is returned damaged, used, or missing parts, we may deduct a portion of the refund to cover any loss in the item's value."]: copy.return_policy_line_3,
+      ['To ensure a smooth return process, kindly return items in the same condition as received, including all packaging and original contents.']: copy.return_policy_line_4,
       'Shopping Security': copy.shopping_security_title,
       'Safe Payment Options': copy.safe_payment_options_title,
       'We accept all major credit and debit cards. Your card details are secure and never shared with our partners. You can easily manage your saved cards anytime. For any transaction inquiries, please contact your card issuer.': copy.safe_payment_description,
       'Secure Logistics': copy.secure_logistics_title,
-      'Package safety: Full refund for your damaged or lost package.': copy.secure_logistics_line_1,
-      'Delivery guaranteed: Accurate and precise order tracking.': copy.secure_logistics_line_2,
+      ['Package ' + 'safety: Full refund for your damaged or lost package.']: copy.secure_logistics_line_1,
+      ['Delivery ' + 'guaranteed: Accurate and precise order tracking.']: copy.secure_logistics_line_2,
       'Secure Privacy': copy.secure_privacy_title,
       'Protecting your privacy is important to us! Please be assured that your information will be kept secured and uncompromised. We do not sell your personal information for money and will only use your information in accordance with our privacy and cookie policy to provide and improve our services to you.': copy.secure_privacy_description,
       'Complete the Look': copy.complete_the_look,

@@ -1,0 +1,34 @@
+--- templates/index.json
++++ templates/index.json.dry-run
+@@ home_curation trust strip @@
+-        "trust_item_2": "Thousands of happy families",
+-        "trust_item_3": "Trusted since 2016",
++        "trust_item_2": "Matching looks for family moments",
++        "trust_item_3": "Easy outfits for photos, trips, and celebrations",
+--- sections/home-conversion-hero.liquid
++++ sections/home-conversion-hero.liquid.dry-run
+@@ hero trust strip review claim @@
+-          <div class="home-conversion-hero__trust-item">
+-            <span class="home-conversion-hero__trust-icon">★★★★★</span>
+-            <span>{{ 'sections.cart.store_rating_prefix' | t }} <strong>4.8/5</strong> {{ 'sections.cart.store_rating_suffix' | t }}</span>
+-          </div>
++          {%- comment -%} Removed pending owner-provided proof for a storewide aggregate rating/family count. {%- endcomment -%}
+--- sections/main-cart-footer.liquid
++++ sections/main-cart-footer.liquid.dry-run
+@@ cart footer store rating @@
+-              {%- comment -%} Aggregate store rating — social proof {%- endcomment -%}
+-              <div class="cart-page__store-rating">
+-                <span class="store-rating__stars" aria-hidden="true">★★★★★</span>
+-                {{ 'sections.cart.store_rating_prefix' | t }} <strong>4.8/5</strong> {{ 'sections.cart.store_rating_suffix' | t }}
+-              </div>
++              {%- comment -%} Storewide rating removed pending owner-provided proof. {%- endcomment -%}
+--- locales/en.default.json
++++ locales/en.default.json.dry-run
+@@ product trust labels @@
+-      "trusted_since": "Trusted since 2016",
++      "trusted_since": "Family matching made easy",
+@@ cart rating labels @@
+-      "store_rating_prefix": "Rated",
+-      "store_rating_suffix": "by 15,200+ families",
++      "store_rating_prefix": "",
++      "store_rating_suffix": "",

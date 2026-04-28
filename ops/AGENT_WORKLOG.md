@@ -22352,6 +22352,55 @@ Residual risks:
 Next best action:
 - Run the new bulk repair in smaller handle batches for the remaining recent products identified by the subagent, starting with `geometric-blue-family-matching-set`, `summer-plaid-family-matching-set`, `seaside-blue-plaid-family-matching-set`, and `red-gingham-mommy-and-me-set`, then verify one non-Spanish locale on each batch.
 
+2026-04-28 — Four-product PDP translation backfill
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-four-product-pdp-translation-backfill
+
+Why:
+- User asked to continue the product-page translation repair in smaller handle batches for:
+  - `geometric-blue-family-matching-set`
+  - `summer-plaid-family-matching-set`
+  - `seaside-blue-plaid-family-matching-set`
+  - `red-gingham-mommy-and-me-set`
+- Required spot check: Spanish plus one non-Latin locale.
+
+What changed:
+- Ran the Shopify product translation bulk repair for exactly those four handles across all currently published non-primary locales:
+  - `ar`, `cs`, `da`, `de`, `el`, `es`, `fi`, `fr`, `he`, `hi`, `it`, `ja`, `ko`, `nl`, `no`, `pl`, `pt-BR`, `ro`, `ru`, `sv`.
+- Added deterministic body-label repair logic to `ops/scripts/poll_shopify_product_translations.py` for common PDP body labels and size-chart table headings that machine translation can leave in English:
+  - `Fabric`, `Family story`, `Print`, `Design details`, `Care`, `Size range`, `Key Features`, `Size Chart`.
+  - Common table headers such as `Size`, `Age`, `Weight`, `Height`, `Chest/Bust`, `Hip`, `Waist`, and `Garment Length`.
+- Re-ran deterministic-only repair over the same four products after the bulk write, so existing translations were corrected without re-translating all prose.
+
+Execution notes:
+- Bulk operation completed:
+  - Operation ID: `gid://shopify/BulkOperation/5490651955297`
+  - Resource count: 62
+  - Translation count: 1297
+  - Status: `COMPLETED`
+- The bulk output reported one product-level digest error for `seaside-blue-plaid-family-matching-set` body HTML. It was repaired with a targeted non-bulk refresh after fetching the current digest.
+- Deterministic label repair registered product-body updates:
+  - Red Gingham: 16 product body label repairs.
+  - Seaside Blue Plaid: 7 product body label repairs.
+  - Summer Plaid: 7 product body label repairs.
+  - Geometric Blue: 7 product body label repairs.
+
+Verification:
+- `python3 -m py_compile ops/scripts/poll_shopify_product_translations.py` passed after the label-repair patch.
+- `git diff --check -- ops/scripts/poll_shopify_product_translations.py` passed after the label-repair patch.
+- Admin GraphQL readback spot-checked Spanish (`es`) and Japanese (`ja`) for all four handles:
+  - Product title translations present/current.
+  - Product `body_html` translations present/current.
+  - Sampled option names and option values present/current.
+  - No leaked English target labels from `Fabric`, `Family story`, `Print`, `Design details`, `Care`, `Size range`, `Key Features`, or `Size Chart`.
+
+Residual risks:
+- Spot check covered Spanish and Japanese, not every published locale visually. The live write was submitted for all published non-primary locales.
+- The deterministic label map covers the common PDP/listing labels seen in these recent products; future listing templates with new labels may need the same deterministic layer extended.
+- Browser visual verification was still not run; verification was through Shopify Admin GraphQL readback.
+
+Next best action:
+- Continue the same batch pattern for the next recent products from the earlier audit, and periodically run a visual PDP check once a browser automation path is available.
+
 2026-04-27 — Red Stripe family tee vendor size repair
 
 Why:
@@ -23043,3 +23092,166 @@ Verification:
 Residual risks:
 - The full public PDP HTML still served a stale pre-cleanup copy shortly after the write, even with a cache-busting query string. Admin and product JSON are clean, so this appears to be Shopify storefront HTML cache lag.
 - Blue Check's mobile size-comparison module is dense but contained inside the viewport; this is the existing PDP size module rather than source `body_html`.
+
+2026-04-28 - LOCAL_SHOPIFY profit-fixes dry-run packet v2
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-local-shopify-profit-fixes-dry-run-v2
+
+Why:
+- User requested a local dry-run-only profit/policy/trust/feed cleanup packet on branch `dlm-profit-fixes-2026-04-28`, with no deploy and no Shopify writes.
+
+What changed:
+- Created branch `dlm-profit-fixes-2026-04-28`.
+- Created packet/export notes:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28_LOCAL_SHOPIFY_PACKET_v2.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28_LOCAL_SHOPIFY_EXPORT_DESCRIPTION_v2.md`
+- Created local dry-run artifacts under `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28_LOCAL_SHOPIFY_ARTIFACTS/`, including FAQ URL, trust-claim, delivery-estimate, pricing, and search-recovery dry-run diffs plus requested feed/product CSVs.
+
+Read-only results:
+- FAQ evidence found off-domain `assassinshoodies.com` links in live digest/export material; same-domain `/pages/size-guide` and `/pages/track-your-order` page handles exist in the live digest.
+- Policy copy remains blocked on owner inputs for shipping coverage, timing, customs/duties, return values, payment wording, and swimwear handling; no policy copy was written.
+- Storewide trust proof is insufficient for `4.8/5 by 15,200+ families`, `Thousands of happy families`, and `Trusted since 2016`; local active-product Loox evidence sums to 61 reviews across 12 active products.
+- Feed CSVs generated locally only: 5,928 missing unit-cost rows, 1,604 missing SKU rows, 5,897 missing barcode/GTIN rows, 388 color/size/gender/age_group defect rows, and 7,324 custom-label rows.
+
+Verification:
+- Parsed the existing local Shopify raw export and v1 analysis CSVs.
+- Ran `shopify theme check --path . --output text --fail-level warning`; it passed with 251 files inspected and no offenses.
+- Checked generated artifact file list and CSV row counts.
+- No Shopify Admin mutation, theme deploy, feed upload, or live page write was performed.
+
+Residual risks:
+- Dry-run diffs are review artifacts only and are not applied to theme/page source.
+- Search recovery draft uses English labels and needs localization before implementation.
+- Delivery estimate hiding is safer than inventing shipping times, but the owner still needs to approve real market/product ranges.
+- Existing unrelated worktree changes remain untouched.
+
+2026-04-28 — Style Journal premium image review follow-up
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-style-journal-premium-image-review
+
+Why:
+- User asked to review the live Style Journal visually and choose individual article images to make more premium after the duplicate-image fix.
+
+What changed:
+- Reviewed live Style Journal pagination pages 1 through 10 in Browser MCP.
+- Replaced four weak individual fallback mappings:
+  - `family-matching-pajamas-our-top-picks-for-cozy-nights`: text/size-chart graphic -> `home-cat-pajamas.jpg`.
+  - `back-to-school-daddy-and-me-photo-outfits`: size-chart graphic -> `home-cat-daddy-and-me.jpg`.
+  - `fall-festival-matching-outfits-for-the-whole-family`: cropped product-detail fragment -> `hero-family-garden.jpg`.
+  - `best-matching-outfits-for-thanksgiving-dinner`: low-quality cropped bench/product shot -> `family-mega-menu-promo.jpg`.
+- Added a fallback-card image crop rule so Style Journal fallback cards bias upward toward faces/outfits instead of centering on torsos.
+- Pushed the scoped changes live to `dresslikemommy/main` (#133290917985).
+
+Verification:
+- Local duplicate audit across `/blogs/news?page=1..10`: 67 article image slots, 67 unique image URLs, 0 duplicate image groups.
+- Live duplicate audit across `https://www.dresslikemommy.com/blogs/news?page=1..10`: 67 article image slots, 67 unique image URLs, 0 duplicate image groups.
+- Browser MCP screenshot-checked live pages 4, 7, and 8 after push; targeted weak image slots no longer render size-chart graphics or the worst cropped product-detail shots.
+- `git diff --check -- snippets/article-featured-image-fallback.liquid assets/component-article-card.css` passed.
+- `shopify theme check --path . --output json --fail-level crash` completed; touched files had no offenses.
+
+Residual risks:
+- Some older lower-page article visuals remain product/vendor-style rather than fully bespoke campaign photography. The next creative upgrade would be generating or sourcing net-new unique 9:16 lifestyle images for selected lower-page articles, then uploading those assets and updating the per-article map.
+
+2026-04-28 - Paid spend product economics rule
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-paid-spend-product-economics
+
+Why:
+- Operator clarified product economics for paid-spend decisions: all-in non-marketing cost is basically 50% of selling price, including product cost, shipping, and fees.
+
+What changed:
+- Added a paid-spend economics section to `dresslikemommy-growth-2026/00_MASTER/MASTER_RULES.md`.
+- Added an active decision-log row in `dresslikemommy-growth-2026/00_MASTER/DECISION_LOG.md`.
+- Added `dresslikemommy-growth-2026/04_IMPLEMENTATION_PLANS/2026-04-28-paid-spend-product-economics.md` with the current AOV math.
+
+Current rule:
+- Current AOV benchmark: $63.25.
+- Max CAC: $9.49, calculated as AOV x 15%.
+- Required ROAS: 6.67.
+- Products or collections with low AOV or unknown cost should be excluded from paid spend until bundled, repriced, or backed by a reliable cost basis.
+- Marketing cost, returns, and chargebacks are deducted after the 50% product/shipping/fees cost assumption.
+
+Verification:
+- Documentation-only update; no Shopify write, theme deploy, feed upload, or runtime code change.
+
+Residual risks:
+- The current AOV benchmark is operator-provided and should be recomputed from exports whenever the paid-spend packet is refreshed.
+
+2026-04-28 - Local theme trust-claim and price-label cleanup
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-local-theme-trust-price-cleanup
+
+Why:
+- User requested a scoped local theme fix for unsupported storewide trust/review claims and product-card pricing clutter, limited to the named theme files unless a locale key was required.
+
+What changed:
+- Removed visible storewide aggregate rating blocks from the home conversion hero and main cart footer.
+- Replaced homepage trust-strip age/social-proof text with neutral matching-family copy.
+- Neutralized the English `trusted_since` locale copy and blanked now-unused cart aggregate-rating locale fragments.
+- Wrapped the redundant hidden regular-price label in `snippets/price.liquid` only when the product is on sale; unit pricing markup was left intact.
+
+Verification:
+- `rg -n "4\\.8/5|15,200|Thousands of happy families|Trusted since 2016|trusted since 2016|store_rating_suffix|store_rating_prefix|trusted_since" templates/index.json sections/home-conversion-hero.liquid sections/main-cart-footer.liquid snippets/price.liquid locales/en.default.json`
+- `git diff --check -- templates/index.json sections/home-conversion-hero.liquid sections/main-cart-footer.liquid snippets/price.liquid locales/en.default.json`
+- `shopify theme check --path . --output text --fail-level warning` passed with 251 files inspected and no offenses found.
+
+Residual risks:
+- Other pre-existing unsupported trust-claim findings in dry-run artifacts remain outside this user's requested file scope and were not edited.
+
+2026-04-28 - Paid-traffic storefront blocker repair
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-paid-traffic-storefront-blockers
+
+Why:
+- User asked to plan, orchestrate subagents, and fix the highest-risk public storefront blockers before sending paid traffic.
+
+What changed:
+- Orchestrated focused subagents for trust/pricing, product/cart AOV and delivery-estimate UX, policy/page-content evidence, and localization defects.
+- Live Shopify Admin page fixes:
+  - FAQ page now links the size guide and order tracking to `dresslikemommy.com`, removes the old Assassin's Hoodies links, replaces worldwide/all-countries/15-30-day/no-customs/gift-marking copy, and fixes broken `mailto:` links.
+  - Shipping and Return pages now mirror the current Shopify shipping and refund policies.
+  - About page no longer claims thousands of families, "Founded in 2016" as a trust proof, or a 30-day hassle-free purchase-window return policy.
+- Local theme/live theme fixes:
+  - Removed unsupported storewide rating/social-proof fallbacks from hero, cart, category icons, home hero, and homepage JSON settings.
+  - Hid PDP/cart delivery-date rows unless `window.DLM_DELIVERY_ESTIMATES` supplies approved business-day ranges; removed hardcoded JSON-LD delivery-time ranges.
+  - Aligned PDP return/shipping/security copy to current policy language and neutralized unsupported logistics guarantees.
+  - Strengthened matching-set copy/hint so matching products prompt shoppers to add the full family set from one product page.
+  - Reduced cart/price clutter by localizing savings text and `/ea` unit labels.
+  - Backfilled storefront locale files for the risky trust, return, delivery, and cart strings, then regenerated `snippets/product-page-copy-map.liquid`.
+  - Added `ops/scripts/fix_storefront_blockers.py` for idempotent dry-run/execute repair with before/after/live artifacts.
+- Pushed the scoped theme files live to `dresslikemommy/main` (#133290917985), excluding unrelated dirty files.
+- Artifacts saved under `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28_STOREFRONT_BLOCKER_FIXES/`.
+
+Verification:
+- `python3 ops/scripts/fix_storefront_blockers.py` dry-run showed all targeted Admin bad patterns would clear.
+- `python3 ops/scripts/fix_storefront_blockers.py --execute` wrote the four live Admin pages; live Admin readback showed zero targeted hits for FAQ/shipping/return/about.
+- `git diff --check` passed for the touched theme/script/locale files.
+- `node --check assets/cart.js` passed.
+- Locale JSON parse check passed for all storefront locale files.
+- `snippets/product-page-copy-map.liquid` parsed as JSON after stripping the Liquid comment and contained 35 locales.
+- `rg` over theme assets/sections/snippets/templates/locales found no targeted blocker phrases after local edits.
+- `shopify theme check --path . --output text --fail-level warning` passed with 251 files inspected and no offenses found.
+- `shopify theme push --store dresslikemommy-com.myshopify.com --theme 133290917985 --path . --nodelete --allow-live ...` succeeded for the scoped blocker files.
+- Public readback of `/`, `/pages/faqs`, `/pages/return-policy`, and `/pages/about-us` showed zero targeted hits.
+- Public readback of `/pages/shipping-and-delivery?view=default` showed the theme-sanitized policy route is clean.
+
+Residual risks:
+- The normal cached Shopify policy URL still showed the old global shop meta description phrase "30-day easy returns" immediately after deploy, even though the live theme preview/default render is sanitized. Updating the underlying global Online Store meta description requires operator confirmation because it edits public site metadata.
+- Shopify CLI emitted non-fatal warnings about existing directory patterns in ignore/config files during theme push; the scoped uploads succeeded.
+- Existing unrelated dirty files in the worktree were left untouched.
+
+2026-04-28 - Global Online Store meta description follow-up
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-global-online-store-meta-description
+
+Why:
+- User confirmed the public Online Store meta description edit: replace "30-day easy returns" with "easy returns."
+
+What happened:
+- Readback from Admin GraphQL still shows the global shop `meta_description` source as: `Free shipping on ALL orders + 30-day easy returns`.
+- The Shopify Admin UI route for Online Store preferences required a Shopify account login in the available browser session.
+- REST `PUT /admin/api/2026-01/shop.json` did not update the field.
+- Admin GraphQL schema has no `shopUpdate` mutation for this field.
+- `translatableResource` exposes the shop `meta_description`, but `translationsRegister` rejected an English write because English is the shop primary locale.
+
+Verification:
+- Public policy pages without `?view=default` still showed the old global phrase in OG/Twitter meta tags.
+- Public pages with `?view=default` rendered the theme-sanitized `easy returns` phrase.
+- Theme source and live theme files both contain the sanitizing fallback in `layout/theme.liquid` and `snippets/meta-tags.liquid`.
+
+Residual risks:
+- The underlying global Online Store meta description still needs an authenticated Shopify Admin UI update from Online Store preferences, or a supported Shopify API endpoint if Shopify exposes one later.

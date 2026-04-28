@@ -191,8 +191,8 @@
       "product_variants": "Produktvarianter",
       "matching_set": {
         "heading": "Bygg ditt matchende sett",
-        "copy": "Velg familiestørrelsene du ønsker og legg dem sammen fra én produktside.",
-        "empty": "Velg minst én familiestørrelse for å legge til settet ditt.",
+        "copy": "Velg alle familiestørrelser du trenger og legg til det komplette matchende settet fra én produktside.",
+        "empty": "Velg minst én familiestørrelse for å starte settet.",
         "add": "Legg til valgte stykker",
         "success": "Matchende sett lagt i handlekurven.",
         "error": "Kan ikke legge til de valgte delene. Vennligst prøv igjen."
@@ -277,29 +277,29 @@
     },
     "trust": {
       "secure_checkout": "Sikker utsjekking",
-      "ssl_encrypted": "SSL Encrypted",
-      "returns": "30-dagers retur",
-      "free_shipping": "Free Shipping",
-      "trusted_since": "Godkjent siden 2016",
+      "ssl_encrypted": "SSL kryptert",
+      "returns": "Enkel retur",
+      "free_shipping": "Gratis frakt",
+      "trusted_since": "Familiematching gjort enkelt",
       "assistance_note": "Trenger du hjelp? Vi svarer vanligvis innen én virkedag."
     },
     "additional_info": {
-      "shipping_title": "Gratis frakt over hele verden",
+      "shipping_title": "Frakt og levering",
       "free_shipping_label": "GRATIS frakt",
-      "estimated_delivery": "Est. Leveranse",
+      "estimated_delivery": "Leveringsdetaljer i kassen",
       "faster_shipping_prefix": "Vil du ha det raskere? Bruk $100+ og få",
       "free_premium_shipping": "GRATIS premium frakt",
       "return_policy_title": "Returpolicy",
-      "return_policy_line_1": "Vi tar gjerne imot retur innen 30 dager etter kjøpet.",
-      "return_policy_line_2": "Varene må være i original stand og emballasje for å kvalifisere for full refusjon. Vær oppmerksom på at kjøpere er ansvarlige for returfraktkostnader.",
-      "return_policy_line_3": "Hvis en vare returneres skadet, brukte eller mangler deler, kan vi trekke fra en del av refusjonen for å dekke eventuelle tap i varens verdi.",
-      "return_policy_line_4": "For å sikre en jevn returprosess, vennligst returner varer i samme stand som mottatt, inkludert all emballasje og originalt innhold.",
+      "return_policy_line_1": "Du har 30 dager fra levering til å be om retur eller bytte.",
+      "return_policy_line_2": "Varene må være ubrukte, uvaskede, i original stand og i originalemballasje med merkelapper.",
+      "return_policy_line_3": "Noen gjenstander, inkludert badetøy og intimiteter, kan ikke returneres av hygieniske årsaker; sluttsalg og personlige varer er også ekskludert.",
+      "return_policy_line_4": "Gå gjennom refusjonsreglene for kvalifisering, returfrakt og tidspunkt for refusjon før du sender noe tilbake.",
       "shopping_security_title": "Shoppingsikkerhet",
       "safe_payment_options_title": "Trygge betalingsalternativer",
       "safe_payment_description": "Vi aksepterer alle vanlige kreditt- og debetkort. Kortopplysningene dine er sikre og deles aldri med våre partnere. Du kan enkelt administrere dine lagrede kort når som helst. For eventuelle spørsmål om transaksjoner, vennligst kontakt kortutstederen din.",
       "secure_logistics_title": "Sikker logistikk",
-      "secure_logistics_line_1": "Pakkesikkerhet: Full refusjon for din skadede eller tapte pakke.",
-      "secure_logistics_line_2": "Levering garantert: Nøyaktig og presis ordresporing.",
+      "secure_logistics_line_1": "Hvis en pakke er skadet eller mistet under transport, kontakt oss slik at vi kan hjelpe deg med å vurdere forsendelsen.",
+      "secure_logistics_line_2": "Bruk koblingen for bestillingssporing for de siste operatøroppdateringene.",
       "secure_privacy_title": "Sikkert personvern",
       "secure_privacy_description": "Å beskytte personvernet ditt er viktig for oss! Vær sikker på at informasjonen din vil bli holdt sikret og kompromissløs. Vi selger ikke din personlige informasjon for penger og vil kun bruke informasjonen din i samsvar med vår personvern- og informasjonskapselpolicy for å tilby og forbedre tjenestene våre til deg."
     }
@@ -390,27 +390,28 @@
       },
       "estimated_total": "Estimert totalsum",
       "new_estimated_total": "Ny estimert totalsum",
-      "order_today_delivery": "Order today, Est. Delivery",
-      "est_delivery": "Est. Delivery",
-      "store_rating_prefix": "Rated",
-      "store_rating_suffix": "by 15,200+ families",
+      "order_today_delivery": "Leveringsdetaljer i kassen",
+      "est_delivery": "Leveringsdetaljer i kassen",
+      "store_rating_prefix": "",
+      "store_rating_suffix": "",
       "we_accept": "We accept",
       "complete_the_look": "Fullfør utseendet",
       "you_may_also_like": "You may also like",
       "trust": {
-        "secure_checkout": "Secure Checkout",
-        "ssl_encrypted": "SSL Encrypted",
-        "free_shipping": "Free Shipping",
-        "returns": "30-Day Returns",
-        "secure": "Secure",
-        "encrypted": "Encrypted",
-        "free_ship": "Free Ship"
+        "secure_checkout": "Sikker utsjekking",
+        "ssl_encrypted": "SSL kryptert",
+        "free_shipping": "Gratis frakt",
+        "returns": "Enkel retur",
+        "secure": "Sikker",
+        "encrypted": "Kryptert",
+        "free_ship": "Gratis frakt"
       },
       "popular_with_families": "Populært blant familier",
       "recently_viewed": "Nylig sett",
       "discount_code_toggle": "Have a discount code?",
       "shipping_free": "FREE",
-      "shipping_label": "Shipping"
+      "shipping_label": "Shipping",
+      "savings_html": "Du sparer <strong>{{ amount }}</strong>"
     },
     "footer": {
       "payment": "Betalingsmåter"
@@ -453,7 +454,7 @@
       "carousel": "Karusell",
       "announcement": "Kunngjøring",
       "announcement_bar": "Kunngjøringslinje",
-      "default_promo": "FREE SHIPPING ON ALL ORDERS | 30-DAY EASY RETURNS | SECURE CHECKOUT"
+      "default_promo": "GRATIS FRAKT PÅ ALLE BESTILLINGER | ENKEL RETUR | SIKKER KASSE"
     },
     "quick_order_list": {
       "product_total": "Produktets delsum",

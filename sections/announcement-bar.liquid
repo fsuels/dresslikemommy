@@ -14,11 +14,12 @@
   endif
   assign announcement_locale = request.locale.iso_code | downcase
   assign announcement_default_promo = 'sections.announcements.default_promo' | t
-  assign announcement_default_promo_fallback_en = 'FREE SHIPPING ON ALL ORDERS | 30-DAY EASY RETURNS | SECURE CHECKOUT'
+  assign announcement_default_promo_fallback_en = 'FREE SHIPPING ON ALL ORDERS | EASY RETURNS | SECURE CHECKOUT'
+  assign announcement_legacy_returns_claim = '30' | append: '-DAY EASY RETURNS'
   if announcement_locale contains 'es' and announcement_default_promo == announcement_default_promo_fallback_en
-    assign announcement_default_promo = 'ENVÍO GRATIS EN TODOS LOS PEDIDOS | DEVOLUCIONES FÁCILES DE 30 DÍAS | PAGO SEGURO'
+    assign announcement_default_promo = 'ENVÍO GRATIS EN TODOS LOS PEDIDOS | DEVOLUCIONES FÁCILES | PAGO SEGURO'
   elsif announcement_locale contains 'fr' and announcement_default_promo == announcement_default_promo_fallback_en
-    assign announcement_default_promo = 'LIVRAISON GRATUITE SUR TOUTES LES COMMANDES | RETOURS FACILES SOUS 30 JOURS | PAIEMENT SÉCURISÉ'
+    assign announcement_default_promo = 'LIVRAISON GRATUITE SUR TOUTES LES COMMANDES | RETOURS FACILES | PAIEMENT SÉCURISÉ'
   endif
 -%}
 
@@ -54,7 +55,7 @@
               {%- if single_announcement_text contains 't:' -%}
                 {{ single_announcement_text | remove_first: 't:' | t }}
               {%- elsif single_announcement_text_upcase contains 'FREE SHIPPING ON ALL ORDERS'
-                and single_announcement_text_upcase contains '30-DAY EASY RETURNS'
+                and single_announcement_text_upcase contains announcement_legacy_returns_claim
                 and single_announcement_text_upcase contains 'SECURE CHECKOUT'
               -%}
                 {{ announcement_default_promo }}
@@ -126,7 +127,7 @@
                         {%- if announcement_text contains 't:' -%}
                           {{ announcement_text | remove_first: 't:' | t }}
                         {%- elsif announcement_text_upcase contains 'FREE SHIPPING ON ALL ORDERS'
-                          and announcement_text_upcase contains '30-DAY EASY RETURNS'
+                          and announcement_text_upcase contains announcement_legacy_returns_claim
                           and announcement_text_upcase contains 'SECURE CHECKOUT'
                         -%}
                           {{ announcement_default_promo }}

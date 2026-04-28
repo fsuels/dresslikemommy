@@ -116,7 +116,8 @@
                 {%- if total_savings > 0 -%}
                   <div class="cart-savings">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-                    You're saving <strong>{{ total_savings | money }}</strong>
+                    {%- assign savings_amount = total_savings | money -%}
+                    {{ 'sections.cart.savings_html' | t: amount: savings_amount }}
                   </div>
                 {%- endif -%}
 
@@ -143,16 +144,12 @@
               </div>
             {%- else -%}
               {%- comment -%} Estimated delivery date — 10 business days (matches product page FREE Shipping) {%- endcomment -%}
-              <div class="cart-page__delivery-estimate">
+              <div class="cart-page__delivery-estimate" hidden>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
                 {{ 'sections.cart.order_today_delivery' | t }} <strong><span class="js-delivery-date"></span></strong>
               </div>
 
-              {%- comment -%} Aggregate store rating — social proof {%- endcomment -%}
-              <div class="cart-page__store-rating">
-                <span class="store-rating__stars" aria-hidden="true">★★★★★</span>
-                {{ 'sections.cart.store_rating_prefix' | t }} <strong>4.8/5</strong> {{ 'sections.cart.store_rating_suffix' | t }}
-              </div>
+              {%- comment -%} Storewide aggregate rating removed pending owner-provided proof. {%- endcomment -%}
 
               <div class="cart__ctas" {{ block.shopify_attributes }}>
                 <button

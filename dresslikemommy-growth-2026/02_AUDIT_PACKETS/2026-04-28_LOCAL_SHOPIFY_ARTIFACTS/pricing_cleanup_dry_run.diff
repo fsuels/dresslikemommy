@@ -1,0 +1,13 @@
+--- snippets/price.liquid
++++ snippets/price.liquid.dry-run
+@@ regular-price label in hidden sale-state regular block @@
+-        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
++        {%- unless is_on_sale -%}
++          <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
++        {%- endunless -%}
+@@ unit-price compliance @@
+       <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+       <span class="price-item price-item--last">
+         <span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>
+         <span aria-hidden="true">/</span>
+         <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>

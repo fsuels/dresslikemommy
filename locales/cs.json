@@ -194,8 +194,8 @@
       "size_required_message": "Prosím, vyberte velikost před přidáním do košíku.",
       "matching_set": {
         "heading": "Sestavte si odpovídající sadu",
-        "copy": "Vyberte si požadované velikosti rodiny a přidejte je dohromady na jedné stránce produktu.",
-        "empty": "Vyberte alespoň jednu rodinnou velikost, kterou chcete přidat.",
+        "copy": "Vyberte si každou velikost rodiny, kterou potřebujete, a přidejte celou odpovídající sadu z jedné produktové stránky.",
+        "empty": "Pro začátek sady vyberte alespoň jednu rodinnou velikost.",
         "add": "Přidejte vybrané kusy",
         "success": "Odpovídající sada přidána do košíku.",
         "error": "Vybrané kusy nelze přidat. Zkuste to prosím znovu."
@@ -245,30 +245,30 @@
       "label": "Mediální galerie"
     },
     "trust": {
-      "secure_checkout": "Bezpečná platba",
+      "secure_checkout": "Bezpečná pokladna",
       "ssl_encrypted": "SSL šifrováno",
-      "returns": "30denní vrácení zboží",
+      "returns": "Snadné vrácení",
       "free_shipping": "Doprava zdarma",
-      "trusted_since": "Důvěryhodný od roku 2016",
+      "trusted_since": "Rodinné párování je snadné",
       "assistance_note": "Potřebujete pomoc? Obvykle odpovídáme do jednoho pracovního dne."
     },
     "additional_info": {
-      "shipping_title": "Doprava zdarma po celém světě",
+      "shipping_title": "Doprava a doručení",
       "free_shipping_label": "DOPRAVA ZDARMA",
-      "estimated_delivery": "Odhadované doručení",
+      "estimated_delivery": "Podrobnosti o doručení na pokladně",
       "faster_shipping_prefix": "Chcete to rychleji? Utraťte více než 100 $ a získejte",
       "free_premium_shipping": "DOPRAVA Premium zdarma",
       "return_policy_title": "Reklamační řád",
-      "return_policy_line_1": "Vracíme zboží do 30 dnů od nákupu.",
-      "return_policy_line_2": "Položky by měly být v původním stavu a balení, aby měly nárok na plnou refundaci. Upozorňujeme, že kupující hradí náklady na zpětné zaslání.",
-      "return_policy_line_3": "Pokud je položka vrácena poškozená, použitá nebo chybí její části, můžeme odečíst část refundace, aby pokryla ztrátu hodnoty položky.",
-      "return_policy_line_4": "Pro zajištění hladkého průběhu vrácení prosíme, abyste položky vrátili ve stejném stavu, v jakém jste je obdrželi, včetně veškerého obalu a původního obsahu.",
+      "return_policy_line_1": "Na žádost o vrácení nebo výměnu máte 30 dní od doručení.",
+      "return_policy_line_2": "Zboží musí být nenošené, neprané, v původním stavu a v původním obalu s připevněnými visačkami.",
+      "return_policy_line_3": "Některé položky, včetně plavek a intimek, nelze z hygienických důvodů vrátit; doprodej a personalizované položky jsou rovněž vyloučeny.",
+      "return_policy_line_4": "Než něco odešlete zpět, prostudujte si zásady pro vrácení peněz, abyste zjistili způsobilost, zpáteční dopravu a načasování vrácení peněz.",
       "shopping_security_title": "Bezpečnost nákupu",
       "safe_payment_options_title": "Bezpečné platební možnosti",
       "safe_payment_description": "Přijímáme všechny hlavní kreditní a debetní karty. Údaje o vaší kartě jsou zabezpečené a nikdy nejsou sdíleny s našimi partnery. Své uložené karty můžete kdykoli snadno spravovat. Pro jakékoli dotazy ohledně transakcí kontaktujte prosím vydavatele vaší karty.",
       "secure_logistics_title": "Bezpečná logistika",
-      "secure_logistics_line_1": "Bezpečnost balíčku: Plná náhrada za váš poškozený nebo ztracený balíček.",
-      "secure_logistics_line_2": "Doručení zaručeno: Přesné a precizní sledování objednávky.",
+      "secure_logistics_line_1": "Pokud je balík poškozen nebo ztracen při přepravě, kontaktujte nás, abychom vám mohli pomoci zásilku zkontrolovat.",
+      "secure_logistics_line_2": "Použijte svůj odkaz pro sledování objednávek pro nejnovější aktualizace operátora.",
       "secure_privacy_title": "Zabezpečené soukromí",
       "secure_privacy_description": "Ochrana vašeho soukromí je pro nás důležitá! Buďte si jisti, že vaše informace budou uchovávány v bezpečí a nebudou zneužity. Vaše osobní údaje neprodáváme za peníze a budeme je používat pouze v souladu s našimi zásadami ochrany osobních údajů a cookies, abychom vám mohli poskytovat a zlepšovat naše služby."
     },
@@ -513,7 +513,7 @@
       "carousel": "Kolotoč",
       "announcement": "Oznámení",
       "announcement_bar": "Oznamovací lišta",
-      "default_promo": "DOPRAVA ZDARMA NA VŠECHNY OBJEDNÁVKY | 30 DNÍ NA JEDNODUCHÉ VRÁCENÍ | BEZPEČNÁ PLATBA"
+      "default_promo": "DOPRAVA ZDARMA NA VŠECHNY OBJEDNÁVKY | SNADNÁ VRÁCENÍ | ZABEZPEČENÁ POKLADNA"
     },
     "header": {
       "announcement": "Oznámení",
@@ -550,27 +550,28 @@
         "title": "Máte účet?",
         "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Přihlaste se</a>, abyste mohli rychleji dokončit nákup."
       },
-      "order_today_delivery": "Objednejte dnes, Odhadované doručení",
-      "est_delivery": "Odhadované doručení",
-      "store_rating_prefix": "Hodnoceno",
-      "store_rating_suffix": "více než 15 200 rodinám",
+      "order_today_delivery": "Podrobnosti o doručení na pokladně",
+      "est_delivery": "Podrobnosti o doručení na pokladně",
+      "store_rating_prefix": "",
+      "store_rating_suffix": "",
       "we_accept": "Přijímáme",
       "complete_the_look": "Dokončete vzhled",
       "you_may_also_like": "Mohlo by se vám také líbit",
       "trust": {
-        "secure_checkout": "Bezpečná platba",
+        "secure_checkout": "Bezpečná pokladna",
         "ssl_encrypted": "SSL šifrováno",
         "free_shipping": "Doprava zdarma",
-        "returns": "30denní vrácení zboží",
-        "secure": "Zabezpečeno",
-        "encrypted": "Šifrovaný",
-        "free_ship": "Doprava zdarma"
+        "returns": "Snadné vrácení",
+        "secure": "Zajistit",
+        "encrypted": "Zašifrováno",
+        "free_ship": "Loď zdarma"
       },
       "discount_code_toggle": "Máte slevový kód?",
       "shipping_label": "Doprava",
       "shipping_free": "ZDARMA",
       "popular_with_families": "Oblíbené u rodin",
-      "recently_viewed": "Nedávno zobrazené"
+      "recently_viewed": "Nedávno zobrazené",
+      "savings_html": "Ukládáte <strong>{{ amount }}</strong>"
     },
     "footer": {
       "payment": "Platební metody"

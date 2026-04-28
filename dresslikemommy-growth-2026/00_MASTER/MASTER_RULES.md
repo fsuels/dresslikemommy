@@ -17,6 +17,15 @@ This workspace holds evidence, analysis, implementation plans, screenshots, and 
 - Every recommendation should cite concrete evidence from exports, screenshots, repo files, or a captured external-system state.
 - Use dated filenames in `YYYY-MM-DD-topic.ext` form unless a source export already has a canonical name.
 
+## Paid Spend Economics
+
+- Current operator economics assumption: all-in non-marketing cost is 50% of selling price, including product cost, shipping, and fees.
+- Marketing cost, returns, and chargebacks are deducted after that 50% all-in cost.
+- Current AOV benchmark: $63.25.
+- Max CAC at the current AOV is $9.49, calculated as AOV x 15%.
+- Required ROAS is 6.67, calculated as revenue / max CAC.
+- Product or collection eligibility for paid spend requires known cost/AOV economics. Low-AOV products or unknown-cost products should be excluded until bundled, repriced, or backed by a reliable cost basis.
+
 ## Evidence Standard
 
 Each audit packet or implementation plan should answer:

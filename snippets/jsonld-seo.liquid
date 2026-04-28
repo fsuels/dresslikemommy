@@ -296,28 +296,13 @@
           "@type": "MonetaryAmount",
           "value": 0,
           "currency": {{ currency_code | json }}
-        },
-        {%- if shipping_country_code != blank -%}
+        }
+        {%- if shipping_country_code != blank -%},
         "shippingDestination": {
           "@type": "DefinedRegion",
           "addressCountry": {{ shipping_country_code | json }}
-        },
-        {%- endif -%}
-        "deliveryTime": {
-          "@type": "ShippingDeliveryTime",
-          "handlingTime": {
-            "@type": "QuantitativeValue",
-            "minValue": 2,
-            "maxValue": 2,
-            "unitCode": "d"
-          },
-          "transitTime": {
-            "@type": "QuantitativeValue",
-            "minValue": 7,
-            "maxValue": 10,
-            "unitCode": "d"
-          }
         }
+        {%- endif -%}
       }
     }
     {%- assign taxonomy_additional_properties = '' -%}
