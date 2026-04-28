@@ -473,6 +473,15 @@ var ROLE_FIT_COPY_BY_LOCALE = {
     baby: 'Conseil coupe : comparez avec la taille habituelle du bébé.',
     adult: 'Conseil coupe : comparez avec votre taille adulte habituelle.',
   },
+  ja: {
+    mother: 'フィットの目安：普段のレディースサイズと比べてください。',
+    father: 'フィットの目安：普段のメンズサイズと比べてください。',
+    girl: 'フィットの目安：普段のお子さまサイズと比べてください。',
+    boy: 'フィットの目安：普段のお子さまサイズと比べてください。',
+    child: 'フィットの目安：お子さまの普段のサイズと比べてください。',
+    baby: 'フィットの目安：赤ちゃんの普段のサイズと比べてください。',
+    adult: 'フィットの目安：普段の大人サイズと比べてください。',
+  },
   ar: {
     mother: 'نصيحة للمقاس: قارنيها بمقاسك المعتاد للسيدات.',
     father: 'نصيحة للمقاس: قارنها بمقاسك المعتاد للرجال.',
@@ -870,9 +879,13 @@ function getRoleOrder(roleKey) {
 
 function getRoleFitCopy(roleKey) {
   var locale = getLocaleRoot();
-  var copy = ROLE_FIT_COPY_BY_LOCALE[locale] || ROLE_FIT_COPY_BY_LOCALE.en;
+  var copy = ROLE_FIT_COPY_BY_LOCALE[locale];
 
-  return Object.prototype.hasOwnProperty.call(copy, roleKey) ? copy[roleKey] : '';
+  if (!copy && locale === 'en') {
+    copy = ROLE_FIT_COPY_BY_LOCALE.en;
+  }
+
+  return copy && Object.prototype.hasOwnProperty.call(copy, roleKey) ? copy[roleKey] : '';
 }
 
 function getCurrentOptionContext(variantSelects) {
