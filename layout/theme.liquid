@@ -199,7 +199,7 @@
     {%- endif -%}
   </title>
   {% if resolved_page_description %}
-  <meta name="description" content="{{ resolved_page_description | escape }}">
+  <meta name="description" content="{{ resolved_page_description | replace: '30-day ', '' | replace: '30-Day ', '' | replace: '30-DAY ', '' | escape }}">
   {% endif %}
 
   <!-- Other Meta Tags -->

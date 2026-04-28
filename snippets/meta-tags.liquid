@@ -228,7 +228,7 @@
 <meta property="og:url" content="{{ og_url }}">
 <meta property="og:title" content="{{ og_title | escape }}">
 <meta property="og:type" content="{{ og_type }}">
-<meta property="og:description" content="{{ og_description | escape }}">
+<meta property="og:description" content="{{ og_description | replace: '30-day ', '' | replace: '30-Day ', '' | replace: '30-DAY ', '' | escape }}">
 
 {%- if social_image_href != blank -%}
   <meta property="og:image" content="{{ social_image_href }}">
@@ -319,7 +319,7 @@
 {%- endif -%}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title | escape }}">
-<meta name="twitter:description" content="{{ og_description | escape }}">
+<meta name="twitter:description" content="{{ og_description | replace: '30-day ', '' | replace: '30-Day ', '' | replace: '30-DAY ', '' | escape }}">
 {%- if social_image_href != blank -%}
   <meta name="twitter:image" content="{{ social_image_href }}">
   <meta name="twitter:image:alt" content="{{ social_image_alt | escape }}">
