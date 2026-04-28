@@ -76,10 +76,31 @@ query ProductVariants($first: Int!, $after: String, $query: String!) {
         productType
         vendor
         tags
+        onlineStoreUrl
         totalInventory
         createdAt
         updatedAt
         publishedAt
+        featuredImage {
+          url
+          altText
+        }
+        collections(first: 10) {
+          nodes {
+            handle
+            title
+          }
+        }
+        resourcePublications(first: 20) {
+          edges {
+            node {
+              isPublished
+              publication {
+                name
+              }
+            }
+          }
+        }
         marketingMetafields: metafields(first: 20, namespace: "marketing") {
           nodes {
             id
@@ -150,6 +171,14 @@ class ShopifyClient:
                 raise RuntimeError(f"Shopify GraphQL HTTP {exc.code}: {response_body}") from exc
 
             if body.get("errors"):
+                throttled = any(
+                    ((err.get("extensions") or {}).get("code") == "THROTTLED")
+                    for err in body.get("errors", [])
+                    if isinstance(err, dict)
+                )
+                if throttled and attempt < 6:
+                    time.sleep(min(30.0, (2.0**attempt) + random.uniform(1.0, 3.0)))
+                    continue
                 raise RuntimeError(f"Shopify GraphQL errors: {body['errors']}")
 
             throttle = (body.get("extensions") or {}).get("cost", {}).get("throttleStatus", {})
@@ -198,6 +227,30 @@ def margin_label(price: Decimal | None, unit_cost: Decimal | None) -> str:
     if gross_margin >= Decimal("0.35"):
         return "MID_MARGIN"
     return "LOW_MARGIN"
+
+
+def product_collection_handles(product: dict[str, Any]) -> str:
+    nodes = ((product.get("collections") or {}).get("nodes")) or []
+    return "|".join(sorted({node.get("handle", "") for node in nodes if node.get("handle")}))
+
+
+def product_publication_names(product: dict[str, Any]) -> str:
+    names: list[str] = []
+    edges = ((product.get("resourcePublications") or {}).get("edges")) or []
+    for edge in edges:
+        node = edge.get("node") or {}
+        if not node.get("isPublished"):
+            continue
+        publication = node.get("publication") or {}
+        name = (publication.get("name") or "").strip()
+        if name:
+            names.append(name)
+    return "|".join(sorted(set(names)))
+
+
+def primary_image_url(product: dict[str, Any]) -> str:
+    image = product.get("featuredImage") or {}
+    return image.get("url") or ""
 
 
 def fetch_active_variants(client: ShopifyClient) -> list[dict[str, Any]]:
@@ -276,6 +329,9 @@ def build_rows(
 
         paid_status_reasons = ";".join(reasons)
         offer_id = merchant_center_offer_id(product_id, variant_id)
+        online_store_url = product.get("onlineStoreUrl") or ""
+        published_channels = product_publication_names(product)
+        online_store_published = bool(online_store_url)
         label_0 = google.get("custom_label_0", {}).get("value") or marketing_margin_tier
         label_1 = google.get("custom_label_1", {}).get("value") or product_set_type
         label_2 = google.get("custom_label_2", {}).get("value") or (
@@ -299,11 +355,21 @@ def build_rows(
                 "sku": variant.get("sku") or "",
                 "barcode": variant.get("barcode") or "",
                 "price": str(variant.get("price") or ""),
+                "compare_at_price": str(variant.get("compareAtPrice") or ""),
                 "unit_cost": unit_cost_amount(variant),
                 "margin_label": margin_label(price, unit_cost),
                 "inventory_tracked": str((variant.get("inventoryItem") or {}).get("tracked")),
                 "inventory_quantity": str(inventory_quantity),
                 "inventory_policy": variant.get("inventoryPolicy") or "",
+                "product_type": product.get("productType") or "",
+                "vendor": product.get("vendor") or "",
+                "tags": "|".join(product.get("tags") or []),
+                "collections": product_collection_handles(product),
+                "primary_image_url": primary_image_url(product),
+                "online_store_url": online_store_url,
+                "online_store_published": "TRUE" if online_store_published else "FALSE",
+                "published_sales_channels": published_channels,
+                "market_availability": "online_store_available" if online_store_published else "not_online_store_available",
                 "marketing_product_set_type": product_set_type,
                 "marketing_margin_tier": marketing_margin_tier,
                 "marketing_best_seller": marketing.get("best_seller", {}).get("value") or "",

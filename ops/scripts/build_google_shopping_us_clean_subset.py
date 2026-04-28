@@ -73,6 +73,15 @@ MASTER_FIELDNAMES = [
     "exclusion_reason",
 ]
 
+SUPPLEMENTAL_LABEL_FIELDNAMES = [
+    "id",
+    "custom_label_0",
+    "custom_label_1",
+    "custom_label_2",
+    "custom_label_3",
+    "custom_label_4",
+]
+
 
 @dataclass(frozen=True)
 class Evidence:
@@ -164,6 +173,9 @@ def load_evidence(path: Path | None) -> dict[str, Evidence]:
 
 
 def product_url(row: dict[str, str], storefront_base_url: str) -> str:
+    online_store_url = clean(row.get("online_store_url"))
+    if online_store_url:
+        return online_store_url
     handle = clean(row.get("handle"))
     if not handle:
         return ""
@@ -306,7 +318,10 @@ def build_master_row(
     availability_status = merchant.get("availability_status")
     shipping_status = merchant.get("shipping_policy_status")
     return_status = merchant.get("return_policy_status")
-    image_url = merchant.get("image_url", default=NEEDS_DATA)
+    image_url = merchant.get(
+        "image_url",
+        default=clean(row.get("primary_image_url") or row.get("image_url")) or NEEDS_DATA,
+    )
     pdp_status = pdp.get("pdp_status", "status")
 
     local_reasons: list[str] = []
@@ -327,6 +342,8 @@ def build_master_row(
         local_reasons.append("exclude_inventory_needs_data")
     elif inventory_quantity <= 0:
         local_reasons.append("exclude_out_of_stock")
+    if "online_store_url" in row and is_blank(row.get("online_store_url")):
+        local_reasons.append("exclude_not_online_store_available")
     if family in {"maternity", "couples"}:
         local_reasons.append(f"exclude_weak_initial_collection_{family}")
     if price is not None and price < aov and not multi_item:
@@ -374,7 +391,7 @@ def build_master_row(
     reasons = list(dict.fromkeys([*local_reasons, *evidence_reasons]))
     paid_eligible = not reasons
     fix_before_paid = not paid_eligible and any(
-        reason.startswith(("needs_", "exclude_missing_", "exclude_unknown_", "exclude_low_aov", "exclude_out_of_stock"))
+        reason.startswith(("needs_", "exclude_missing_", "exclude_unknown_", "exclude_low_aov", "exclude_out_of_stock", "exclude_not_"))
         for reason in reasons
     )
     label_1 = margin_tier(price, cost)
@@ -519,6 +536,21 @@ def write_campaign_plan(path: Path, summary: dict[str, object]) -> None:
     )
 
 
+def build_supplemental_label_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    return [
+        {
+            "id": row["merchant_center_item_id"],
+            "custom_label_0": row["custom_label_0"],
+            "custom_label_1": row["custom_label_1"],
+            "custom_label_2": row["custom_label_2"],
+            "custom_label_3": row["custom_label_3"],
+            "custom_label_4": row["custom_label_4"],
+        }
+        for row in rows
+        if row.get("merchant_center_item_id")
+    ]
+
+
 def summarize(rows: list[dict[str, str]], merchant_evidence_rows: int, pdp_evidence_rows: int) -> dict[str, object]:
     reason_counts = Counter(
         reason
@@ -577,6 +609,7 @@ def build_outputs(
         "paid_eligible": output_dir / "google_shopping_us_clean_subset_paid_eligible.csv",
         "excluded": output_dir / "google_shopping_excluded_products_with_reasons.csv",
         "fix_before_paid": output_dir / "google_shopping_fix_before_paid.csv",
+        "supplemental_labels": output_dir / "google_shopping_us_clean_subset_supplemental_labels.csv",
         "campaign_plan": output_dir / "google_ads_paused_standard_shopping_build_plan.md",
         "summary": output_dir / "summary.json",
     }
@@ -584,6 +617,7 @@ def build_outputs(
     write_csv(paths["paid_eligible"], MASTER_FIELDNAMES, paid_rows)
     write_csv(paths["excluded"], MASTER_FIELDNAMES, excluded_rows)
     write_csv(paths["fix_before_paid"], MASTER_FIELDNAMES, fix_rows)
+    write_csv(paths["supplemental_labels"], SUPPLEMENTAL_LABEL_FIELDNAMES, build_supplemental_label_rows(rows))
     summary = summarize(rows, len(merchant_evidence), len(pdp))
     summary["input_eligibility"] = str(input_eligibility)
     summary["outputs"] = {key: str(path) for key, path in paths.items()}

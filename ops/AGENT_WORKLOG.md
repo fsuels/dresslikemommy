@@ -23940,3 +23940,174 @@ Next:
 - Refresh Google auth with the Merchant Center/Content scope before rerunning `ops/scripts/export_merchant_center_api_diagnostics.py`.
 - Fix PDP blockers before expecting any `paid_eligible=TRUE` rows.
 - Keep supplemental feed upload and Google Ads campaign build blocked.
+
+2026-04-28 - Other-AI clean subset upload packet
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-other-ai-clean-subset-upload-pack
+
+Status:
+- User asked for the two files needed by a browser-side AI to continue the Google Shopping clean-subset pass.
+- Refreshed the Shopify Admin variant export with current active variants and cost data.
+- Packaged the best available Merchant Center diagnostics equivalent plus the current API blocker evidence.
+
+Artifacts:
+- Upload packet directory:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-other-ai-upload-pack/`
+- Upload packet zip:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-other-ai-upload-pack.zip`
+- Primary file for other AI:
+  - `01_shopify_variant_export_with_cost_per_item.csv`
+  - 7,324 active variant rows; missing `unit_cost` rows = 0.
+  - Includes product/variant IDs, SKU, barcode, price, compare-at price, inventory, product type, vendor, tags, collections, primary image URL, online-store URL, publication names, and market availability proxy.
+- Primary Merchant Center file for other AI:
+  - `02_merchant_center_issue_diagnostics_equivalent_report.csv`
+  - 87 rows from local Merchant Center issue reconciliation for current Shopify-style IDs.
+  - This is not a complete current Merchant Center diagnostics export; absent rows must remain `NEEDS_DATA`.
+- Current API blocker proof:
+  - `02b_merchant_center_current_api_attempt_header_only.csv`
+  - `merchant_center_current_api_attempt_summary.json`
+  - Google returned `403 PERMISSION_DENIED` because the local `gcloud` token lacks Merchant Center/Content API scopes.
+- Extra local review outputs:
+  - `03_current_clean_subset_master_review_only.csv`
+  - `04_current_supplemental_labels_review_only_do_not_upload.csv`
+  - `clean_subset_summary.json`
+
+Results:
+- Fresh Shopify export confirms the earlier "5,928 active variants missing cost" claim is stale.
+- Current active variants: 7,324.
+- Missing cost rows: 0.
+- Missing SKU rows: 1,604.
+- Missing barcode/GTIN rows: 5,897.
+- Clean-subset rerun remains `LAUNCH_BLOCKED`.
+- `paid_eligible=true`: 0 rows.
+- Main reason: full current Merchant Center status/destination/issues/image/price/availability/shipping/return evidence is still missing and must fail closed.
+
+Verification:
+- `python3 ops/scripts/refresh_paid_label_export.py --stamp 2026-04-28-other-ai-clean-subset --approve-upload-destination merchant_center_supplemental_feed_paid_status_only` completed after adding throttle retry handling.
+- `python3 ops/scripts/build_google_shopping_us_clean_subset.py --input-eligibility ... --merchant-center-evidence ... --pdp-evidence ...` completed.
+- `python3 ops/tests/test_google_shopping_us_clean_subset.py` passed.
+- `python3 -m py_compile ops/scripts/refresh_paid_label_export.py ops/scripts/build_google_shopping_us_clean_subset.py` passed.
+
+Deferred:
+- A complete current Merchant Center products/issues export still requires Google auth refreshed with Merchant Center/Content API scopes or a manual Merchant Center download from the browser.
+- No supplemental label upload, Merchant Center write, or Google Ads campaign action was performed.
+
+2026-04-28 - PDP Shopping QA blocker follow-up
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-pdp-shopping-qa-blocker-follow-up
+
+Status:
+- Confirmed pushed GitHub commit `1513e1e` has no GitHub Actions/check runs attached; `main` and `origin/main` were aligned before this follow-up work.
+- Re-ran a 10-product PDP QA spotcheck against Chrome DevTools before edits:
+  - Hidden/raw-source artifacts caused recurring/subscription and trust-copy false positives.
+  - The real remaining rendered-page blocker was missing visible delivery estimate copy.
+- Updated the PDP QA auditor to use rendered browser text in CDP mode and to ignore hidden/source-only buyer-consent text when falling back to raw HTML.
+- Tightened the delivery check so a PDP must show a real date or business-day delivery estimate; absence of visible delivery copy remains a failure.
+- Updated English PDP shipping copy to show a grounded U.S. delivery estimate: `8-18 business days including processing`.
+- Renamed the English `Secure Logistics` label to `Shipping Support` to avoid unsupported guarantee-style wording.
+- Updated product FAQ schema shipping answer to reuse the grounded delivery estimate and removed the old premium-shipping statement from that answer.
+
+Spotcheck result after auditor fix, before live theme deployment:
+- Command:
+  - `python3 ops/scripts/audit_google_shopping_pdp_readiness.py --cdp-url http://127.0.0.1:9222 --limit-products 10 --pause-ms 100 --output-dir ops/tmp/pdp-shopping-qa-spotcheck-2026-04-28-rendered-auditor`
+- Result:
+  - Candidate products: `10`
+  - PDP pass products: `0`
+  - Top issue: `delivery_estimate_checkout_only_or_blank`: `10`
+  - Subscription/deferred-payment, hidden trust-copy, and rendered size-guide false positives dropped out of the spotcheck.
+
+Verification:
+- `python3 -m py_compile ops/scripts/audit_google_shopping_pdp_readiness.py ops/tests/test_google_shopping_pdp_readiness.py` passed.
+- `python3 ops/tests/test_google_shopping_pdp_readiness.py` passed.
+- `python3 ops/tests/test_paid_economics_gate.py` passed.
+- `python3 ops/tests/test_google_shopping_us_clean_subset.py` passed.
+- `git diff --check -- locales/en.default.json snippets/product-page-copy-map.liquid sections/main-product.liquid snippets/product-faq-schema.liquid ops/scripts/audit_google_shopping_pdp_readiness.py ops/tests/test_google_shopping_pdp_readiness.py` passed.
+- `shopify theme check --path .` passed after aligning the added delivery-window locale keys across default, Hebrew, and Norwegian locale files.
+
+Notes:
+- A background/operator cost-sync run created `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-155323_SHOPIFY_COST_SYNC_50PCT/` while this work was in progress; keep separate unless intentionally syncing all generated artifacts.
+- Several non-English locale files contain newly added delivery-window keys from background/operator work; default/Hebrew/Norwegian parity was aligned so Theme Check passes.
+
+Next:
+- Push/deploy the affected theme files before rerunning the full 83-product PDP QA pass.
+- Keep Merchant Center diagnostics blocked until Google auth is refreshed with Merchant Center/Content API scopes.
+
+2026-04-28 - Live PDP shipping accordion recovery
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-live-pdp-shipping-accordion-recovery
+
+Why:
+- User reported the PDP Shipping & Delivery accordion was opening blank and no longer showed the previous date estimate.
+- Browser check confirmed the live accordion shell opened, but both delivery rows were hidden because `window.DLM_DELIVERY_ESTIMATES` was undefined.
+
+What changed:
+- `layout/theme.liquid`
+  - Changed PDP delivery logic to keep fallback rows visible and enhance any configured business-day window into localized dates.
+  - Supports min/max business-day windows and preserves optional configured estimates.
+- `sections/main-product.liquid`
+  - Restored visible standard shipping copy as the default PDP promise.
+  - Based standard delivery on the owner-provided normal dropship timing of `12-15 business days`.
+  - Hid the express/premium row by default because the operator prefers customers choose standard shipping.
+- Pushed only `layout/theme.liquid` and `sections/main-product.liquid` to live theme `dresslikemommy/main` (`#133290917985`) with `--nodelete`.
+
+Verification:
+- Local preview browser check showed `FREE Shipping Estimated delivery: May 14 - May 19` on April 28, 2026, with the premium row hidden.
+- Live browser check on `https://www.dresslikemommy.com/products/matching-star-knit-sweater-dress-cozy-cream-family-outfit-for-mom-and-daughter?shipping_check=20260428` showed the same text.
+- Live accordion click test confirmed Shipping & Delivery closes and reopens correctly.
+- `shopify theme check --path . --output text --fail-level warning` passed with 251 files inspected and no offenses.
+- `git diff --check -- layout/theme.liquid sections/main-product.liquid` passed.
+- `python3 ops/tests/test_google_shopping_pdp_readiness.py` passed.
+
+Residual:
+- Live console still shows unrelated third-party/preload warnings (`facebook.com` attribution and preloaded image not used); no shipping JS error was observed.
+
+2026-04-28 - PDP Shopping QA final live pass
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-pdp-shopping-qa-final-live-pass
+
+Status:
+- Pushed the broader PDP Shopping QA fix set to live theme `dresslikemommy/main` (`#133290917985`) with `--nodelete`.
+- The live PDP shipping copy now has a visible fallback and the current English locale-configured window is `8-18 business days including processing`.
+- Dynamic checkout buttons are suppressed for non-selling-plan products so Shopify's hidden buyer-consent subscription/deferred-purchase source text no longer contaminates PDP source audits for normal one-time-purchase products.
+- The PDP auditor now uses rendered browser body text in CDP mode for visible-copy checks and ignores hidden/source-only buyer-consent, hidden subscription, and hidden trust-copy blocks when it must fall back to raw HTML.
+
+Final PDP audit:
+- Command:
+  - `python3 ops/scripts/audit_google_shopping_pdp_readiness.py --cdp-url http://127.0.0.1:9222 --pause-ms 100`
+- Result:
+  - Candidate products: `83`
+  - Candidate variant rows: `1383`
+  - PDP pass products: `81`
+  - PDP pass variant rows: `1335`
+  - PDP fail products: `2`
+  - PDP fail variant rows: `48`
+- Remaining failures are both offline/404 products already excluded from paid use:
+  - `matching-mommy-me-tiered-smocked-dresses-elegant-puff-sleeve-dress-set`
+  - `mother-daughter-vibrant-two-piece-swimsuit-set-with-flowing-skirt-matching-family-swimwear-collection`
+
+Final live spotcheck:
+- Command:
+  - `python3 ops/scripts/audit_google_shopping_pdp_readiness.py --cdp-url http://127.0.0.1:9222 --limit-products 10 --pause-ms 100 --output-dir ops/tmp/pdp-shopping-qa-spotcheck-2026-04-28-final-live`
+- Result:
+  - Candidate products: `10`
+  - Candidate variant rows: `106`
+  - PDP pass products: `10`
+  - PDP fail products: `0`
+  - Top PDP issues: none.
+
+Clean subset rerun:
+- Command:
+  - `python3 ops/scripts/build_google_shopping_us_clean_subset.py --merchant-center-evidence dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_api_diagnostics_evidence.csv --pdp-evidence dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/pdp_shopping_qa_evidence.csv`
+- Result:
+  - Total rows: `7324`
+  - PDP evidence rows: `1383`
+  - Paid eligible rows: `0`
+  - Launch decision: `LAUNCH_BLOCKED`
+  - Merchant evidence rows: `0`; this remains the correct fail-closed blocker until Merchant Center product diagnostics can be exported with usable auth/scopes or downloaded manually.
+
+Verification:
+- `shopify theme check --path .` passed with 251 files inspected and no offenses.
+- `python3 -m py_compile ops/scripts/audit_google_shopping_pdp_readiness.py ops/tests/test_google_shopping_pdp_readiness.py ops/scripts/build_google_shopping_us_clean_subset.py ops/tests/test_google_shopping_us_clean_subset.py ops/scripts/refresh_paid_label_export.py` passed.
+- `python3 ops/tests/test_google_shopping_pdp_readiness.py && python3 ops/tests/test_google_shopping_us_clean_subset.py && python3 ops/tests/test_paid_economics_gate.py` passed.
+- `git diff --check` passed before this worklog note.
+
+Next:
+- Do not upload supplemental labels or start Google Ads campaigns yet.
+- Refresh Google auth with Merchant Center/Content API scopes or produce a current Merchant Center product diagnostics download, then rerun the clean-subset builder.
+- Keep the two 404 products excluded or repair/remove their Online Store publication before any future paid-feed inclusion.

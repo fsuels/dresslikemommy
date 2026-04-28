@@ -125,6 +125,7 @@ class CdpFetcher:
         self.next_id = 1
         self.command("Page.enable")
         self.command("Runtime.enable")
+        self.command("Page.navigate", {"url": start_url})
         time.sleep(1.0)
 
     def command(self, method: str, params: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -168,6 +169,12 @@ class CdpFetcher:
             value.get("text") or "",
             clean(value.get("error")),
         )
+
+    def rendered_text(self, url: str) -> str:
+        self.command("Page.navigate", {"url": url})
+        time.sleep(4.0)
+        value = self.evaluate("document.body ? document.body.innerText : ''")
+        return clean(value)
 
     def add_to_cart(self, variant_id: str) -> tuple[str, str]:
         expression = f"""
@@ -287,8 +294,19 @@ def get_url(session: requests.Session, url: str) -> HttpResult:
 
 def visible_text(html: str) -> str:
     soup = BeautifulSoup(html or "", "html.parser")
-    for tag in soup(["script", "style", "noscript", "svg"]):
+    for tag in soup(["script", "style", "noscript", "svg", "template"]):
         tag.decompose()
+    for tag in soup.select(
+        "[hidden], [aria-hidden='true'], #shopify-buyer-consent, "
+        ".shopify-buyer-consent, [data-consent-type='subscription']"
+    ):
+        tag.decompose()
+    for tag in list(soup.find_all(style=True)):
+        if tag.attrs is None:
+            continue
+        style = re.sub(r"\s+", "", tag.get("style", "").lower())
+        if "display:none" in style or "visibility:hidden" in style:
+            tag.decompose()
     return clean(soup.get_text(" "))
 
 
@@ -394,6 +412,19 @@ def text_has_any(text: str, patterns: list[str]) -> bool:
     return any(re.search(pattern, text, flags=re.I) for pattern in patterns)
 
 
+def has_delivery_estimate(text: str) -> bool:
+    if not text_has_any(text, [r"\b(delivery|shipping|arrives?|business days?)\b"]):
+        return False
+    return text_has_any(
+        text,
+        [
+            r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,2}",
+            r"\b\d+\s*[-–]\s*\d+\s+business days\b",
+            r"\b\d+\s+business days\b",
+        ],
+    )
+
+
 def audit_product(
     product_rows: list[dict[str, str]],
     pause_ms: int,
@@ -407,11 +438,17 @@ def audit_product(
     if cdp:
         page = cdp.fetch_text(product_url, accept="text/html,application/xhtml+xml")
         product_json, product_json_error = load_product_json_cdp(cdp, product_url)
+        rendered_page_text = cdp.rendered_text(product_url)
     else:
         page = get_url(session, product_url)
         product_json, product_json_error = load_product_json(session, product_url)
-    text = visible_text(page.text)
+        rendered_page_text = ""
+    text = rendered_page_text or visible_text(page.text)
     html_checks = parse_html_checks(page.text)
+    if rendered_page_text:
+        html_checks["has_size_guide"] = bool(
+            re.search(r"size (guide|chart)|compare family sizes|your size details", rendered_page_text, re.I)
+        )
     sample_variant = first_available_candidate_variant(product_json, product_rows)
     sample_variant_id = clean(sample_variant.get("id"))
     add_status, add_note = cdp.add_to_cart(sample_variant_id) if cdp else add_to_cart_check(session, sample_variant_id)
@@ -487,13 +524,9 @@ def audit_product(
         issues.append("recurring_subscription_deferred_text_present")
 
     checkout_only_delivery = re.search(r"Delivery details at checkout", text, flags=re.I)
-    date_like_delivery = re.search(
-        r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\\s+\\d{1,2}",
-        text,
-        flags=re.I,
-    )
+    delivery_estimate_visible = has_delivery_estimate(text)
     status_fields["delivery_estimate_status"] = (
-        "NEEDS_DATA" if verification_blocked else "FAIL" if checkout_only_delivery and not date_like_delivery else "PASS"
+        "NEEDS_DATA" if verification_blocked else "PASS" if delivery_estimate_visible and not checkout_only_delivery else "FAIL"
     )
     if status_fields["delivery_estimate_status"] == "FAIL":
         issues.append("delivery_estimate_checkout_only_or_blank")

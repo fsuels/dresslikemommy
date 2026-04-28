@@ -12,6 +12,7 @@ if str(REPO_ROOT) not in sys.path:
 
 from ops.scripts.audit_google_shopping_pdp_readiness import (  # noqa: E402
     first_available_candidate_variant,
+    has_delivery_estimate,
     local_viable,
     parse_html_checks,
     product_handle,
@@ -30,6 +31,9 @@ def main() -> None:
       <variant-selects></variant-selects>
       <p>Size guide & fit</p><p>United States | USD $</p>
       <script>subscription hidden</script>
+      <p hidden>Delivery details at checkout subscription hidden</p>
+      <p style="display:none">Secure Logistics</p>
+      <p id="shopify-buyer-consent">This item is a deferred, subscription, or recurring purchase.</p>
     </body></html>
     """
     checks = parse_html_checks(html)
@@ -39,6 +43,11 @@ def main() -> None:
     assert checks["has_size_guide"]
     assert checks["has_us_currency"]
     assert "subscription hidden" not in visible_text(html)
+    assert "Secure Logistics" not in visible_text(html)
+    assert "deferred, subscription, or recurring purchase" not in visible_text(html)
+    assert has_delivery_estimate("Estimated U.S. delivery: 8-18 business days including processing")
+    assert has_delivery_estimate("Estimated delivery May 12")
+    assert not has_delivery_estimate("Delivery details at checkout")
 
     product_json = {
         "variants": [
