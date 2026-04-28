@@ -37,6 +37,12 @@ API_VERSION = "2026-04"
 PAGE_SIZE = 100
 MERCHANT_CENTER_FEED_LABEL = "US"
 CANONICAL_OUTPUT_PREFIX = "PAID_LABEL_FRESH_SHOPIFY"
+RECOMMENDED_UPLOAD_DESTINATION = "merchant_center_supplemental_feed_paid_status_only"
+VALID_UPLOAD_DESTINATIONS = {
+    RECOMMENDED_UPLOAD_DESTINATION,
+    "merchant_center_supplemental_feed_full_custom_labels",
+    "shopify_product_metafields_mm-google-shopping",
+}
 
 
 PRODUCT_VARIANTS_QUERY = """
@@ -266,6 +272,7 @@ def build_rows(
         if inventory_quantity <= 0:
             paid_status = "EXCLUDE_PAID"
             reasons.append("OUT_OF_STOCK")
+        paid_eligible = not reasons
 
         paid_status_reasons = ";".join(reasons)
         offer_id = merchant_center_offer_id(product_id, variant_id)
@@ -309,6 +316,7 @@ def build_rows(
                 "current_google_custom_label_4": google.get("custom_label_4", {}).get("value") or "",
                 "aov_benchmark": str(aov_benchmark),
                 "reliable_cost_basis": "TRUE" if gate.reliable_cost_basis else "FALSE",
+                "paid_eligible": "TRUE" if paid_eligible else "FALSE",
                 "economics_gate_status": "BLOCKED" if reasons else gate.gate_status,
                 "economics_gate_reasons": "|".join(reasons),
                 "economics_gate_exceptions": "|".join(gate.exceptions),
@@ -347,6 +355,29 @@ def build_rows(
 
 
 def write_destination_approval(path: Path, summary: dict[str, Any], result_paths: BuildResult) -> None:
+    approved_destination = summary.get("approved_upload_destination") or ""
+    if approved_destination:
+        approval_lines = [
+            f"Destination approved for a future writeback: `{approved_destination}`.",
+            "",
+            "Prepared locally only. Not uploaded. No Shopify, Merchant Center, feed, or ads write was performed.",
+            "",
+            "Rejected for this gate:",
+            "",
+            "- `merchant_center_supplemental_feed_full_custom_labels` because it would also override existing non-paid labels.",
+            "- `shopify_product_metafields_mm-google-shopping` because those labels are product-level in this store and live `custom_label_4` currently stores price tier.",
+        ]
+    else:
+        approval_lines = [
+            "Prepared locally only. Not uploaded. No Shopify, Merchant Center, feed, or ads write was performed.",
+            "",
+            "Before upload, explicitly approve one destination:",
+            "",
+            f"- `{RECOMMENDED_UPLOAD_DESTINATION}`",
+            "- `merchant_center_supplemental_feed_full_custom_labels`",
+            "- `shopify_product_metafields_mm-google-shopping` (not recommended for this gate)",
+        ]
+
     path.write_text(
         "\n".join(
             [
@@ -360,8 +391,8 @@ def write_destination_approval(path: Path, summary: dict[str, Any], result_paths
                 "(`shopify_US_<product_id>_<variant_id>`) for paid-status labels.",
                 "",
                 "Reason: the paid gate is variant-level. Shopify `mm-google-shopping.custom_label_*`",
-                "metafields are product-level in this store, and live `custom_label_4` currently ",
-                "stores price tier. A supplemental feed can override or test paid-status labels ",
+                "metafields are product-level in this store, and live `custom_label_4` currently",
+                "stores price tier. A supplemental feed can override or test paid-status labels",
                 "without mutating Shopify product metafields first.",
                 "",
                 "## Prepared Upload Preview Files",
@@ -371,20 +402,15 @@ def write_destination_approval(path: Path, summary: dict[str, Any], result_paths
                 "",
                 "## Approval Status",
                 "",
-                "Prepared locally only. Not uploaded. No Shopify, Merchant Center, feed, or ads write was performed.",
-                "",
-                "Before upload, explicitly approve one destination:",
-                "",
-                "- `merchant_center_supplemental_feed_paid_status_only`",
-                "- `merchant_center_supplemental_feed_full_custom_labels`",
-                "- `shopify_product_metafields_mm-google-shopping` (not recommended for this gate)",
+                *approval_lines,
                 "",
                 "## Current Counts",
                 "",
                 f"- Active variant rows: {summary['active_variant_rows']}",
+                f"- Missing unit-cost rows: {summary['missing_unit_cost_rows']}",
+                f"- Paid eligible rows: {summary['paid_eligible_rows']}",
                 f"- Paid status counts: {json.dumps(summary['paid_status_counts'], sort_keys=True)}",
                 f"- Gate reason counts: {json.dumps(summary['gate_reason_counts'], sort_keys=True)}",
-                "",
             ]
         )
         + "\n",
@@ -398,6 +424,7 @@ def refresh_paid_label_export(
     store_domain: str,
     access_token: str,
     aov_benchmark: Decimal,
+    approved_upload_destination: str = "",
 ) -> BuildResult:
     client = ShopifyClient(store_domain, access_token, API_VERSION)
     variants = fetch_active_variants(client)
@@ -460,6 +487,11 @@ def refresh_paid_label_export(
         for reason in row["economics_gate_reasons"].split("|")
         if reason
     )
+    approval_status = (
+        "DESTINATION_APPROVED_LOCAL_ONLY_NO_UPLOAD"
+        if approved_upload_destination
+        else "PENDING_OPERATOR_DESTINATION_APPROVAL"
+    )
     summary = {
         "generated_at": raw_payload["generated_at"],
         "store_domain": store_domain,
@@ -473,7 +505,13 @@ def refresh_paid_label_export(
         "reliable_cost_basis_rows": sum(
             1 for row in eligibility_rows if row["reliable_cost_basis"] == "TRUE"
         ),
-        "recommended_upload_destination": "merchant_center_supplemental_feed_paid_status_only",
+        "paid_eligible_rows": sum(
+            1 for row in eligibility_rows if row["paid_eligible"] == "TRUE"
+        ),
+        "missing_unit_cost_rows": sum(1 for row in eligibility_rows if not row["unit_cost"]),
+        "recommended_upload_destination": RECOMMENDED_UPLOAD_DESTINATION,
+        "approved_upload_destination": approved_upload_destination,
+        "approval_status": approval_status,
         "write_status": "NO_SHOPIFY_OR_FEED_WRITES",
         "files": {
             "product_eligibility": str(eligibility_path),
@@ -507,6 +545,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--store-domain", default="")
     parser.add_argument("--access-token", default="")
     parser.add_argument("--aov-benchmark", default=str(DEFAULT_AOV_BENCHMARK))
+    parser.add_argument(
+        "--approve-upload-destination",
+        choices=sorted(VALID_UPLOAD_DESTINATIONS),
+        default="",
+        help="Record a local approval for the future upload destination. Does not upload.",
+    )
     return parser.parse_args()
 
 
@@ -523,6 +567,7 @@ def main() -> None:
         store_domain=store_domain,
         access_token=access_token,
         aov_benchmark=Decimal(str(args.aov_benchmark)),
+        approved_upload_destination=args.approve_upload_destination,
     )
     print(f"raw_export={paths.raw_export_path}")
     print(f"summary={paths.summary_path}")

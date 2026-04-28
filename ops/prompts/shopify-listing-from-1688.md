@@ -144,6 +144,13 @@ COLOR_TOKEN_OVERRIDE:
 FORCE_SPEC_PRICES: true
 ```
 
+Cost rule for every generated or updated Shopify variant:
+
+- Cost per item is automatic and equals 50% of the Shopify selling price.
+- In Admin API variant payloads, set `inventoryItem.cost` to `price * 0.50`, rounded to cents.
+- In Shopify CSV backups, populate `Cost per item` with the same value.
+- If any variant is missing Cost per item after verification, set/report `paid_eligible=false` and keep the listing in `DRAFT` until the cost is fixed.
+
 Expected option model for Example 4:
 
 - one Shopify product

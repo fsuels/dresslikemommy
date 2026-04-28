@@ -23512,3 +23512,431 @@ Verification:
 Residual risks:
 - Translation cache/log outputs remain local and intentionally unstaged. Do not commit the JSONL logs without reviewing for bulk-operation signed URLs or other Admin-derived details.
 - Fresh paid-label export scratch files and Style Journal browser screenshots remain untracked local artifacts and were not included in the theme deploy candidate.
+
+2026-04-28 — Blue Check public PDP cache recheck latest checkpoint
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-blue-check-public-cache-clean-latest
+
+Why:
+- User asked to recheck the public Blue Check PDP route after a longer cache window and avoid additional Admin writes unless stale HTML persisted.
+
+What changed:
+- Waited a longer cache window and performed read-only public route checks.
+- Added/updated artifacts under `ops/reports/product-body-html-trim-2026-04-28-visual-check/`:
+  - `blue-check-public-route-cache-recheck.json`
+  - `blue-check-public-route-after-cache-recheck-visual.json`
+  - `blue-check-family-matching-set-public-route-after-cache-recheck.png`
+  - `summary.json`
+
+Verification:
+- Canonical public PDP HTML for `blue-check-family-matching-set` is clean: no `Size Chart - Shirt`, no raw `<table>`.
+- Cache-busted public PDP HTML is also clean.
+- Storefront product JSON is clean.
+- Admin API readback remains clean: `descriptionHtml` length 1,957, no `Size Chart - Shirt`, no raw `<table>`.
+- Headless Chrome visual recheck showed the lower PDP body flowing from `Why You'll Love It` into `Key Features:` with no orphan raw size-chart heading.
+- No Admin writes were performed during this recheck.
+
+Residual risks:
+- Normal downstream feed/search indexing lag may still apply, but the public PDP route itself has caught up.
+
+2026-04-28 - Fresh Shopify paid-label export with approved destination
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-fresh-paid-label-export-destination-latest
+
+Why:
+- User instructed: regenerate from a fresh Shopify export before any real feed/custom-label writeback, then approve the upload destination.
+
+What changed:
+- Added `ops/scripts/refresh_paid_label_export.py` to perform a read-only Shopify Admin GraphQL export of active variants and regenerate paid-label artifacts.
+- The script now supports `--approve-upload-destination` so approval can be recorded locally without executing any upload.
+- Reran the fresh export with:
+  - `python3 ops/scripts/refresh_paid_label_export.py --stamp 2026-04-28-132500 --approve-upload-destination merchant_center_supplemental_feed_paid_status_only`
+- Generated/refreshed:
+  - `dresslikemommy-growth-2026/01_EXPORTS_RAW/SHOPIFY/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_raw.json`
+  - `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_summary.json`
+  - `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_product_eligibility.csv`
+  - `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_custom_labels.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_ARTIFACTS/merchant_center_supplemental_paid_status_only.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_ARTIFACTS/merchant_center_supplemental_full_custom_labels.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_ARTIFACTS/upload_destination_approval.md`
+- Recorded the approved destination in `dresslikemommy-growth-2026/00_MASTER/APPROVED_ACTIONS.md`.
+
+Results:
+- Store: `dresslikemommy-com.myshopify.com`, API version `2026-04`.
+- Fresh active rows: 7,324 active variants across 335 active products.
+- Paid status counts: `EXCLUDE_PAID` 5,910; `FIX_BEFORE_PAID` 1,414.
+- Gate reason counts: `UNKNOWN_COST_NO_RELIABLE_COST_BASIS` 5,910; `OUT_OF_STOCK` 97; `LOW_AOV_NO_BUNDLE_REPRICE_OR_COST_BASIS` 4.
+- Approved future upload destination: `merchant_center_supplemental_feed_paid_status_only`, keyed by `shopify_US_<product_id>_<variant_id>`.
+- No Shopify, Merchant Center, feed, or ads write/upload was performed.
+
+Verification:
+- `python3 -m py_compile ops/scripts/refresh_paid_label_export.py ops/scripts/apply_paid_economics_gate.py ops/tests/test_paid_economics_gate.py` passed.
+- `python3 ops/tests/test_paid_economics_gate.py` passed.
+- Fresh raw JSON, summary JSON, and all four generated CSVs parsed successfully; each generated CSV has 7,324 rows.
+- Whitespace scan on the fresh approval artifacts and scripts passed.
+
+Residual risks:
+- The paid-status-only supplemental feed is approved as the destination, but the actual Merchant Center upload has not been executed.
+- Feed IDs assume the live Merchant Center item ID format is `shopify_US_<product_id>_<variant_id>`; confirm against current Merchant item IDs immediately before upload.
+
+2026-04-28 - Third four-product PDP translation backfill
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-third-four-product-pdp-translation-backfill
+
+Why:
+- User asked to continue the same four-product repair pattern for the next recent handles:
+  - `safari-caravan-family-matching-set`
+  - `pink-horizon-family-matching-set`
+  - `pastel-bloom-mommy-and-me-dresses`
+  - `powder-blue-mommy-and-me-set`
+
+What changed:
+- Ran the bulk translation repair worker for the four handles with forced cache refresh and live Admin writes.
+- Ran the deterministic label-only repair pass for the same four handles.
+- Verified Admin GraphQL readback for Spanish (`es`) and Japanese (`ja`) title/body/options with no targeted English label leaks.
+- During the browser PDP pass, confirmed the product-specific translated fields were clean and found a theme-side hardcoded English internal-link module in the product info area on translated PDPs.
+- Confirmed `snippets/product-internal-links.liquid` now gates that internal-link module to English locales only, and pushed that snippet to the live theme so translated PDPs no longer render the hardcoded English internal-link copy.
+
+Results:
+- Bulk operation: `gid://shopify/BulkOperation/5494177693793`.
+- Bulk scope: 83 translatable resources and 1,632 translations.
+- Bulk result file inspection: 83 result lines, 0 user errors.
+- Rendered PDP checks passed for all four handles in Spanish and Japanese. Targeted leaks checked included `Fabric`, `Family story`, `Print`, `Design details`, `Care`, `Size range`, `Key Features`, `Size Chart`, `See more`, `for coordinated`, `Free shipping on all orders`, `Select size`, `Build your matching set`, `Your size details`, `Compare family sizes`, and English fit-tip phrases.
+
+Verification:
+- `python3 ops/scripts/poll_shopify_product_translations.py --handles safari-caravan-family-matching-set,pink-horizon-family-matching-set,pastel-bloom-mommy-and-me-dresses,powder-blue-mommy-and-me-set --max-products-per-run 4 --min-age-seconds 0 --bulk --execute --force-refresh --jsonl-log ops/logs/translation/product-repair-third-four-bulk-2026-04-28.jsonl --bulk-jsonl-path ops/content/product-repair-third-four-bulk-2026-04-28.jsonl` completed.
+- `python3 ops/scripts/poll_shopify_product_translations.py --handles safari-caravan-family-matching-set,pink-horizon-family-matching-set,pastel-bloom-mommy-and-me-dresses,powder-blue-mommy-and-me-set --max-products-per-run 4 --min-age-seconds 0 --execute --force-refresh --deterministic-repairs-only --jsonl-log ops/logs/translation/product-repair-third-four-labels-2026-04-28.jsonl` completed.
+- `git diff --check -- snippets/product-internal-links.liquid ops/scripts/poll_shopify_product_translations.py assets/product-desktop-ux.js` passed before deploy.
+- `shopify theme check --path . --output text --fail-level warning` passed with 251 files inspected and no offenses found.
+- `shopify theme push --store dresslikemommy-com.myshopify.com --theme 133290917985 --path . --nodelete --allow-live --only snippets/product-internal-links.liquid` completed.
+- Browser PDP pass via Chrome DevTools passed for the four handles in `/es/` and `/ja/` after the snippet deploy.
+
+Residual risks:
+- Browser spot-check coverage was Spanish plus Japanese, not every enabled locale.
+- The internal-link module is hidden on non-English PDPs until fully localized internal-link copy exists; this avoids English leakage but removes that small SEO/internal-link block from translated PDPs.
+- Sitewide footer/blog/newsletter copy observed outside the product-info area may still have separate localization gaps and was not part of this PDP product-content repair batch.
+
+2026-04-28 - Corrected current main Style Journal restore deployed live
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-current-main-style-journal-restore-live
+
+Why:
+- User asked to deploy the corrected latest `main` after restoring the four Style Journal mappings from `960be5a`, waiting for the translation poller, excluding generated translation outputs, and rerunning checks.
+
+What changed live:
+- Pushed the scoped current-main Style Journal repair to live theme `dresslikemommy/main` (`#133290917985`):
+  - `snippets/article-featured-image-fallback.liquid`
+  - `assets/dlm-merchant-rectangular-1600x800-google-safe.png`
+  - 11 `assets/style-journal-premium-*.jpg` files
+- The pushed snippet restores the four reverted mappings for family pajamas, back-to-school Daddy & Me, fall festival, and Thanksgiving dinner while preserving the premium lower-page image mappings.
+
+Verification:
+- Current `main` was rebased on top of the latest Shopify-sync commits and pushed to GitHub as `5f7615e`.
+- `python3 ops/scripts/audit_style_journal_images.py` passed after rebase.
+- `shopify theme check --path . --output text --fail-level warning` passed after rebase.
+- `python3 -m py_compile ops/scripts/apply_paid_economics_gate.py ops/scripts/poll_shopify_product_translations.py ops/scripts/refresh_paid_label_export.py ops/tests/test_paid_economics_gate.py` passed.
+- `python3 ops/tests/test_paid_economics_gate.py` passed.
+- `shopify theme push --store dresslikemommy-com.myshopify.com --theme 133290917985 --path . --nodelete --allow-live --strict --only ...` succeeded; Shopify strict Theme Check passed during push.
+- Live theme pull/readback matched the local snippet and all 12 scoped assets byte-for-byte/text-for-text.
+- Public cache-busted article pages for the four restored handles contained the expected restored asset filenames.
+
+Residual risks:
+- Local generated translation JSONL/log files, translation live cache changes, report screenshots, and newer paid-label scratch changes remain intentionally outside this deploy.
+- A temporary stash named `preserve local generated outputs before rebase` remains because later local tracked artifacts changed before it could be fully popped; the translation cache and report summary from that stash were restored manually.
+
+2026-04-28 - Third four-product PDP translation backfill latest checkpoint
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-third-four-product-pdp-translation-backfill-latest
+
+Status:
+- Latest PDP translation batch completed for `safari-caravan-family-matching-set`, `pink-horizon-family-matching-set`, `pastel-bloom-mommy-and-me-dresses`, and `powder-blue-mommy-and-me-set`.
+- Admin bulk repair operation `gid://shopify/BulkOperation/5494177693793` completed with 83 resources, 1,632 translations, and 0 result-line errors.
+- Deterministic label repair completed after the bulk run.
+- Browser PDP checks passed in Spanish and Japanese for all four handles after deploying the English-only gate for `snippets/product-internal-links.liquid`.
+
+Next:
+- Continue with the next four recent handles from the audit using the same bulk repair, deterministic label repair, Admin readback, and Spanish/Japanese rendered PDP pass.
+
+2026-04-28 - Shopify Cost per item 50pct live backfill and automation
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-shopify-cost-per-item-50pct-live-automation
+
+Why:
+- User clarified the store economics rule: Cost per item is always 50% of the Shopify selling price, including product, fees, and shipping to customer.
+- User asked to fix current active listings, make future listings automatic, and keep `paid_eligible=false` when Cost per item is missing.
+
+What changed live:
+- Backfilled Shopify inventory-item Cost per item for all active variants to `variant.price * 0.50`, rounded to cents.
+- Also backfilled existing draft variants so draft listing workflow products are not waiting until publish to get costs.
+- Installed local hourly LaunchAgent:
+  - Template in repo: `ops/shopify/com.dresslikemommy.shopify-cost-sync.plist`
+  - Installed path: `/Users/fsuels/Library/LaunchAgents/com.dresslikemommy.shopify-cost-sync.plist`
+  - Label: `com.dresslikemommy.shopify-cost-sync`
+  - Command: `python3 ops/scripts/sync_shopify_variant_costs.py --execute --statuses ACTIVE,DRAFT --output-root dresslikemommy-growth-2026`
+  - Interval: 3600 seconds
+
+What changed locally:
+- Added `ops/scripts/sync_shopify_variant_costs.py`, a Shopify Admin GraphQL cost sync with dry-run, live execution, before/after readback, CSV/JSON audit packets, and `paid_eligible` reporting.
+- Added `ops/tests/test_shopify_variant_cost_sync.py`.
+- Tightened `ops/scripts/apply_paid_economics_gate.py` so only actual Shopify `inventoryItem.unitCost` counts as a reliable cost basis; product margin-tier labels no longer bypass missing Cost per item.
+- Updated `ops/scripts/refresh_paid_label_export.py` to include `paid_eligible`, `missing_unit_cost_rows`, and `paid_eligible_rows` in fresh export artifacts.
+- Updated canonical listing prompts so future Admin API/CSV listing work sets `inventoryItem.cost = price * 0.50`, and missing cost forces `paid_eligible=false` plus draft hold.
+- Updated growth master rules/paid economics plan with the explicit 50% Cost per item rule.
+
+Results:
+- Active live backfill pre-read: 7,324 active variants needed updates: 5,928 missing cost and 1,396 not matching 50% of price.
+- Active live backfill post-read: 7,324 active variants were `skip_already_synced`; missing Cost per item rows = 0; errors = 0.
+- Active+DRAFT live pass pre-read: 30 draft variants still needed missing-cost updates.
+- Active+DRAFT live pass post-read: 7,354 active/draft variants were `skip_already_synced`; missing Cost per item rows = 0; errors = 0.
+- LaunchAgent kickstart readback: 7,354 active/draft variants already synced; applied rows = 0; errors = 0; launchctl last exit code = 0.
+- Fresh post-sync paid-label export: 7,324 active variants; missing unit-cost rows = 0; reliable cost basis rows = 7,324; paid eligible rows = 7,227; remaining `EXCLUDE_PAID` rows = 97 due to `OUT_OF_STOCK`, not cost.
+
+Artifacts:
+- Active live sync: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-variant-cost-50pct-active-live_SHOPIFY_COST_SYNC_50PCT/`
+- Active+DRAFT live sync: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-variant-cost-50pct-active-draft-live_SHOPIFY_COST_SYNC_50PCT/`
+- LaunchAgent kickstart verification: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-135204_SHOPIFY_COST_SYNC_50PCT/`
+- Fresh post-sync paid-label export: `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-variant-cost-50pct-post-sync_PAID_LABEL_FRESH_SHOPIFY_summary.json`
+
+Verification:
+- `python3 -m py_compile ops/scripts/sync_shopify_variant_costs.py ops/scripts/apply_paid_economics_gate.py ops/scripts/refresh_paid_label_export.py ops/scripts/1688_sourcing_dashboard.py ops/tests/test_paid_economics_gate.py ops/tests/test_shopify_variant_cost_sync.py` passed.
+- `python3 ops/tests/test_paid_economics_gate.py` passed.
+- `python3 ops/tests/test_shopify_variant_cost_sync.py` passed.
+- `git diff --check -- ...` passed for the touched scripts, prompts, docs, tests, and LaunchAgent plist.
+- `plutil -lint ops/shopify/com.dresslikemommy.shopify-cost-sync.plist /Users/fsuels/Library/LaunchAgents/com.dresslikemommy.shopify-cost-sync.plist` passed.
+
+Residual risks:
+- The automation depends on the local machine and stored Shopify Admin credentials; if the machine is off or the token expires, the hourly sync will not run until credentials are restored.
+- The LaunchAgent writes active and draft variant costs hourly according to the 50% rule; intentional manual Cost per item deviations will be corrected back to 50% on the next run.
+- Merchant Center supplemental paid-status upload still has not been executed; this task fixed Shopify unit costs and refreshed local artifacts only.
+
+2026-04-28 - Google Shopping US clean subset orchestration plan
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-google-shopping-us-clean-subset-orchestration
+
+Status:
+- User provided the controlling Google Shopping test-subset plan and explicitly wants a clean US Standard Shopping subset, not live ads, not PMax, not all-products Shopping.
+- External writes are frozen for this workflow:
+  - no further Merchant Center upload
+  - no Shopify feed-label/metafield write
+  - no Google Ads campaign creation
+  - no Google Ads budget/status/recommendation change
+- Created orchestration plan:
+  - `dresslikemommy-growth-2026/04_IMPLEMENTATION_PLANS/2026-04-28-google-shopping-us-clean-subset-orchestration.md`
+
+Subagent review:
+- Shopify/export subagent confirmed the current post-cost-sync `7,227` eligible count is only cost/inventory eligible, not Google Shopping ready.
+- Shopify/export subagent confirmed current label schema diverges from the requested clean-subset schema:
+  - current export uses `custom_label_0=margin_tier` and `custom_label_4=paid_status`
+  - requested plan needs `custom_label_0=paid eligibility` and `custom_label_4=US test status`
+- Merchant Center/feed-history subagent confirmed the historical supplemental source `10626787326` / `supplemental_feed_pilot.txt` previously matched Shopify-style item IDs, but the April 28 tab-delimited paid-status-only upload attempt should be treated as zero-match, not a successful label update.
+- PDP/readiness subagent confirmed no repo artifact proves a final `READY_FOR_PAID` product set; existing accessibility/storefront checks are not enough for per-product Google Shopping eligibility.
+
+Current local evidence:
+- Latest post-cost-sync export:
+  - `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-variant-cost-50pct-post-sync_PAID_LABEL_FRESH_SHOPIFY_summary.json`
+- Active variants: 7,324
+- Missing Shopify Cost per item rows: 0
+- Reliable cost basis rows: 7,324
+- Cost/inventory preliminary eligible rows: 7,227
+- Out-of-stock excluded rows: 97
+- Missing SKU rows still present in eligibility table: 1,604
+- Missing barcode/GTIN rows still present in eligibility table: 5,897
+
+Decision:
+- Current campaign/feed launch gate is `LAUNCH_BLOCKED`.
+- Reason: Merchant Center item-level eligibility is not joined, PDP pass/fail is not complete, SKU/GTIN gaps remain, the custom-label schema must be rebuilt, and the prior zero-match supplemental source state needs read-only review before any further write.
+
+Next:
+- Build a read-only clean-subset generator that outputs owner-review CSVs only:
+  - `google_shopping_us_clean_subset_paid_eligible.csv`
+  - `google_shopping_excluded_products_with_reasons.csv`
+  - `google_shopping_fix_before_paid.csv`
+  - `google_ads_paused_standard_shopping_build_plan.md`
+- Then run browser/Merchant Center read-only diagnostics and PDP verification against candidate rows.
+- Only after owner approval should any supplemental feed upload or paused Google Ads Standard Shopping build happen.
+
+2026-04-28 - Google Shopping US clean subset read-only generator
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-google-shopping-us-clean-subset-generator
+
+Status:
+- Built the local read-only clean-subset generator requested by the user.
+- Script:
+  - `ops/scripts/build_google_shopping_us_clean_subset.py`
+- Regression test:
+  - `ops/tests/test_google_shopping_us_clean_subset.py`
+- The generator reads local CSV evidence only. It does not call Shopify, Merchant Center, Google Ads, or the storefront.
+- It accepts optional local Merchant Center and PDP evidence CSVs, but fails closed with `NEEDS_DATA` when those inputs are absent.
+
+Generated review packet:
+- Directory:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/`
+- Files:
+  - `google_shopping_us_clean_subset_master.csv`
+  - `google_shopping_us_clean_subset_paid_eligible.csv`
+  - `google_shopping_excluded_products_with_reasons.csv`
+  - `google_shopping_fix_before_paid.csv`
+  - `google_ads_paused_standard_shopping_build_plan.md`
+  - `summary.json`
+
+Results:
+- Input: latest post-cost-sync Shopify eligibility table.
+- Total variants reviewed: 7,324.
+- Merchant Center evidence rows joined: 0.
+- PDP evidence rows joined: 0.
+- `paid_eligible=TRUE`: 0.
+- Excluded/not eligible rows: 7,324.
+- `fix_before_paid=TRUE`: 7,324.
+- Launch decision: `LAUNCH_BLOCKED`.
+- Main blockers:
+  - all rows need Merchant Center status/destination/issues/image/price/availability/shipping/return evidence
+  - all rows need PDP verification
+  - 5,897 rows still lack barcode/GTIN
+  - 1,604 rows still lack SKU
+  - 97 rows are out of stock
+  - Couples and Maternity remain excluded from the first clean US Shopping test
+
+Verification:
+- `python3 -m py_compile ops/scripts/build_google_shopping_us_clean_subset.py ops/tests/test_google_shopping_us_clean_subset.py` passed.
+- `python3 ops/tests/test_google_shopping_us_clean_subset.py` passed.
+- `git diff --check -- ops/scripts/build_google_shopping_us_clean_subset.py ops/tests/test_google_shopping_us_clean_subset.py` passed.
+- `python3 ops/scripts/build_google_shopping_us_clean_subset.py` generated the review packet successfully.
+
+Next:
+- Provide local Merchant Center diagnostics and PDP evidence CSVs, or have a read-only browser agent create those evidence files.
+- Re-run the generator with `--merchant-center-evidence ... --pdp-evidence ...`.
+- Keep all feed uploads and Google Ads campaign actions blocked until the owner reviews the corrected clean-subset files.
+
+2026-04-28 - Google Shopping local evidence CSVs and rerun
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-google-shopping-local-evidence-rerun
+
+Status:
+- Created a local, read-only evidence converter:
+  - `ops/scripts/build_google_shopping_local_evidence.py`
+- Created regression test:
+  - `ops/tests/test_google_shopping_local_evidence.py`
+- Updated the orchestration plan:
+  - `dresslikemommy-growth-2026/04_IMPLEMENTATION_PLANS/2026-04-28-google-shopping-us-clean-subset-orchestration.md`
+
+Evidence files created:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_diagnostics_evidence.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/pdp_evidence.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/local_evidence_build_summary.json`
+
+Evidence source limits:
+- Merchant Center source was the local March 30 issue reconciliation CSV:
+  - `ops/feed-engineering/2026-03-30-phase-4a-mc-issue-reconciliation/merchant_center_issue_reconciliation.csv`
+- That file is not a full Merchant Center approval diagnostics export. It proves issue rows for matched items only.
+- Products absent from that issue export remain `NEEDS_DATA`, not approved.
+- PDP source was the March 29 Google product page accessibility audit:
+  - `ops/feed-engineering/2026-03-29-phase-3z-google-page-accessibility-audit/google_product_page_accessibility_audit.csv`
+- Accessibility pass is not a full PDP Shopping QA pass, so those rows remain `NEEDS_DATA` for `pdp_status`.
+
+Evidence results:
+- Current variants scanned: `7,324`.
+- Merchant Center issue rows scanned: `1,552`.
+- Current US Merchant Center issue rows found: `350`.
+- Current item IDs with Merchant Center issue evidence: `87`.
+- Merchant Center issue titles found in current US evidence:
+  - `Missing age group`
+  - `Missing gender`
+  - `Missing color`
+- PDP accessibility products scanned: `223`.
+- Current products matched to PDP accessibility export: `199`.
+- PDP evidence variant rows created: `4,246`.
+
+Clean-subset rerun:
+- Command used:
+  - `python3 ops/scripts/build_google_shopping_us_clean_subset.py --merchant-center-evidence dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_diagnostics_evidence.csv --pdp-evidence dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/pdp_evidence.csv`
+- Output summary:
+  - Total variants reviewed: `7,324`
+  - Merchant Center evidence rows joined: `87`
+  - PDP evidence rows joined: `4,246`
+  - `paid_eligible=TRUE`: `0`
+  - `fix_before_paid=TRUE`: `7,324`
+  - excluded rows: `7,324`
+  - launch decision: `LAUNCH_BLOCKED`
+
+Verification:
+- `python3 -m py_compile ops/scripts/build_google_shopping_local_evidence.py ops/scripts/build_google_shopping_us_clean_subset.py ops/tests/test_google_shopping_local_evidence.py ops/tests/test_google_shopping_us_clean_subset.py` passed.
+- `python3 ops/tests/test_google_shopping_local_evidence.py` passed.
+- `python3 ops/tests/test_google_shopping_us_clean_subset.py` passed.
+- `git diff --check -- ops/scripts/build_google_shopping_local_evidence.py ops/tests/test_google_shopping_local_evidence.py ops/scripts/build_google_shopping_us_clean_subset.py ops/tests/test_google_shopping_us_clean_subset.py` passed.
+
+Next:
+- Get a true current Merchant Center product diagnostics export/API readout for status, Shopping ads destination, item issues, image, price, availability, US shipping, and return policy.
+- Run a real PDP Shopping QA evidence pass on candidate rows before any product can become `paid_eligible=TRUE`.
+- Do not upload any supplemental feed or create any Google Ads campaign without owner approval.
+
+2026-04-28 - Merchant Center API blocker and browser-context PDP QA
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-merchant-api-pdp-qa
+
+Status:
+- Added a read-only Merchant Center API diagnostics exporter:
+  - `ops/scripts/export_merchant_center_api_diagnostics.py`
+- Added a browser-context PDP Shopping QA auditor:
+  - `ops/scripts/audit_google_shopping_pdp_readiness.py`
+- Added regression tests:
+  - `ops/tests/test_merchant_center_api_diagnostics.py`
+  - `ops/tests/test_google_shopping_pdp_readiness.py`
+
+Merchant Center API result:
+- Command:
+  - `python3 ops/scripts/export_merchant_center_api_diagnostics.py || true`
+- The local `gcloud auth print-access-token` token was available, but Google rejected both read-only diagnostics endpoints with `403 PERMISSION_DENIED`.
+- Attempted endpoints:
+  - Merchant API `products.list`
+  - Content API `productstatuses.list`
+- Shared failure:
+  - `Request had insufficient authentication scopes.`
+- Browser state:
+  - Chrome reached Merchant Center but the Google session was not usable for a diagnostics export; sign-in/scoped auth is still required.
+- Files written:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_api_diagnostics_evidence.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_api_diagnostics_raw.jsonl`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_api_diagnostics_summary.json`
+- Evidence rows from current API pull: `0`.
+- Interpretation: current Merchant Center diagnostics remain `NEEDS_DATA`; no item can become paid eligible from Merchant Center evidence yet.
+
+PDP QA result:
+- Initial raw HTTP pass hit Shopify rate limiting after a few products, so the auditor was upgraded to use the active Chrome DevTools browser context.
+- Final command:
+  - `python3 ops/scripts/audit_google_shopping_pdp_readiness.py --cdp-url http://127.0.0.1:9222 --pause-ms 300`
+- Candidate selection:
+  - Started from the clean-subset master.
+  - Selected locally viable candidates only: no missing cost/margin, no missing SKU, no missing GTIN/barcode, not out of stock, not weak initial collections, and not low-AOV/no-multi-item.
+- Candidate products audited: `83`.
+- Candidate variant rows covered: `1,383`.
+- PDP pass products: `0`.
+- PDP fail products: `83`.
+- PDP pass variant rows: `0`.
+- PDP fail variant rows: `1,383`.
+- Top PDP blockers:
+  - `delivery_estimate_checkout_only_or_blank`: `83`
+  - `recurring_subscription_deferred_text_present`: `81`
+  - `unsupported_trust_or_guarantee_claim`: `81`
+  - `price_not_clear_on_pdp`: `15`
+  - `page_load_http_404`: `2`
+  - `product_json_missing_or_empty`: `2`
+  - `product_image_missing`: `2`
+  - `variant_selection_or_add_button_unclear`: `2`
+  - `size_guide_missing_or_unclear`: `2`
+  - `add_to_cart_failed`: `2`
+- Files written:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/pdp_shopping_qa_evidence.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/pdp_shopping_qa_product_summary.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/pdp_shopping_qa_summary.json`
+
+Clean-subset rerun:
+- Command:
+  - `python3 ops/scripts/build_google_shopping_us_clean_subset.py --merchant-center-evidence dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/merchant_center_api_diagnostics_evidence.csv --pdp-evidence dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/pdp_shopping_qa_evidence.csv`
+- Output:
+  - Total variants reviewed: `7,324`
+  - Merchant Center API evidence rows joined: `0`
+  - PDP Shopping QA evidence rows joined: `1,383`
+  - `paid_eligible=TRUE`: `0`
+  - `fix_before_paid=TRUE`: `7,324`
+  - excluded rows: `7,324`
+  - launch decision: `LAUNCH_BLOCKED`
+
+Verification:
+- `python3 -m py_compile ops/scripts/audit_google_shopping_pdp_readiness.py ops/tests/test_google_shopping_pdp_readiness.py ops/scripts/export_merchant_center_api_diagnostics.py ops/tests/test_merchant_center_api_diagnostics.py` passed.
+- `python3 ops/tests/test_google_shopping_pdp_readiness.py` passed.
+- `python3 ops/tests/test_merchant_center_api_diagnostics.py` passed.
+
+Next:
+- Refresh Google auth with the Merchant Center/Content scope before rerunning `ops/scripts/export_merchant_center_api_diagnostics.py`.
+- Fix PDP blockers before expecting any `paid_eligible=TRUE` rows.
+- Keep supplemental feed upload and Google Ads campaign build blocked.

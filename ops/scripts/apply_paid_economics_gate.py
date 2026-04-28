@@ -14,12 +14,12 @@ from typing import Iterable
 
 
 DEFAULT_AOV_BENCHMARK = Decimal("63.25")
-RELIABLE_MARKETING_MARGIN_TIERS = {"high", "medium", "low"}
 GATE_FIELDNAMES = [
     "aov_benchmark",
     "product_set_type",
     "marketing_margin_tier",
     "reliable_cost_basis",
+    "paid_eligible",
     "economics_gate_status",
     "economics_gate_reasons",
     "economics_gate_exceptions",
@@ -39,6 +39,7 @@ class GateResult:
     reasons: tuple[str, ...]
     exceptions: tuple[str, ...]
     reliable_cost_basis: bool
+    paid_eligible: bool
 
 
 def parse_money(value: str | None) -> Decimal | None:
@@ -105,14 +106,13 @@ def paid_gate_for_row(
 ) -> GateResult:
     price = parse_money(row.get("price"))
     unit_cost = parse_money(row.get("unit_cost"))
-    reliable_cost_basis = (
-        unit_cost is not None
-        or evidence.marketing_margin_tier in RELIABLE_MARKETING_MARGIN_TIERS
-    )
+    reliable_cost_basis = unit_cost is not None
     bundled_aov_basis = evidence.product_set_type == "set"
     repriced_aov_basis = price is not None and price >= aov_benchmark
 
     reasons: list[str] = []
+    if price is None:
+        reasons.append("UNKNOWN_PRICE")
     if not reliable_cost_basis:
         reasons.append("UNKNOWN_COST_NO_RELIABLE_COST_BASIS")
     if (price is None or price < aov_benchmark) and not (
@@ -135,6 +135,7 @@ def paid_gate_for_row(
             reasons=tuple(reasons),
             exceptions=tuple(exceptions),
             reliable_cost_basis=reliable_cost_basis,
+            paid_eligible=False,
         )
 
     return GateResult(
@@ -143,6 +144,7 @@ def paid_gate_for_row(
         reasons=(),
         exceptions=tuple(exceptions),
         reliable_cost_basis=reliable_cost_basis,
+        paid_eligible=True,
     )
 
 
@@ -175,6 +177,7 @@ def apply_gate_to_eligibility_rows(
                 "product_set_type": evidence.product_set_type,
                 "marketing_margin_tier": evidence.marketing_margin_tier,
                 "reliable_cost_basis": "TRUE" if gate.reliable_cost_basis else "FALSE",
+                "paid_eligible": "TRUE" if gate.paid_eligible else "FALSE",
                 "economics_gate_status": gate.gate_status,
                 "economics_gate_reasons": "|".join(gate.reasons),
                 "economics_gate_exceptions": "|".join(gate.exceptions),
@@ -272,11 +275,11 @@ def update_analysis_json(
                 "they are bundled, repriced, or backed by a reliable cost basis."
             ),
             "reliable_cost_basis_policy": (
-                "Reliable cost basis means a variant unitCost or operator-approved "
-                "marketing.margin_tier is present in the Shopify export."
+                "Reliable cost basis means Shopify inventoryItem.unitCost is present. "
+                "Product margin tiers are descriptive labels, not cost substitutes."
             ),
             "unknown_cost_policy": (
-                "Unknown-cost variants without a reliable cost basis are EXCLUDE_PAID."
+                "Unknown-cost variants are EXCLUDE_PAID and paid_eligible=FALSE."
             ),
         }
     )
@@ -307,6 +310,9 @@ def update_analysis_json(
         "reliable_cost_basis_variant_rows": sum(
             1 for row in eligibility_rows if row.get("reliable_cost_basis") == "TRUE"
         ),
+        "paid_eligible_variant_rows": sum(
+            1 for row in eligibility_rows if row.get("paid_eligible") == "TRUE"
+        ),
         "reason_counts": dict(
             sorted(
                 Counter(
@@ -331,7 +337,7 @@ def update_analysis_json(
 
     limitation = (
         "Paid eligibility/custom-label artifacts apply the 2026-04-28 economics gate: "
-        "unknown-cost variants without reliable cost basis are EXCLUDE_PAID, and "
+        "unknown-cost variants are EXCLUDE_PAID with paid_eligible=FALSE, and "
         "low-AOV variants require bundled, repriced, or reliable-cost-basis evidence."
     )
     data.setdefault("limitations", [])

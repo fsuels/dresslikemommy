@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.dresslikemommy.shopify-cost-sync</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/fsuels/Projects/dresslikemommy/ops/scripts/sync_shopify_variant_costs.py</string>
+    <string>--execute</string>
+    <string>--statuses</string>
+    <string>ACTIVE,DRAFT</string>
+    <string>--output-root</string>
+    <string>/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>/Users/fsuels/Projects/dresslikemommy</string>
+  <key>StartInterval</key>
+  <integer>3600</integer>
+  <key>RunAtLoad</key>
+  <false/>
+  <key>StandardOutPath</key>
+  <string>/Users/fsuels/Projects/dresslikemommy/ops/logs/shopify-cost-sync.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/fsuels/Projects/dresslikemommy/ops/logs/shopify-cost-sync.err.log</string>
+</dict>
+</plist>

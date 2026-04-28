@@ -7,6 +7,8 @@ Mode: operating rule for growth, product eligibility, and paid-spend decisions.
 
 - All-in non-marketing cost is basically 50% of selling price.
 - That 50% includes product cost, shipping, and fees.
+- Shopify Cost per item must be written as selling price x 50% for every variant.
+- If Cost per item is missing, `paid_eligible=false`; margin-tier labels do not count as a cost basis.
 - The remaining deductions after that are marketing cost, returns, and chargebacks.
 - Any product or collection with low AOV or unknown cost should be excluded from paid spend until the economics are known or improved.
 
@@ -22,7 +24,7 @@ Mode: operating rule for growth, product eligibility, and paid-spend decisions.
 
 ## Paid Eligibility Gate
 
-- Include only products/collections with known selling price, known or operator-approved cost basis, and enough AOV to support the CAC target.
+- Include only products/collections with known selling price, populated Shopify Cost per item, and enough AOV to support the CAC target.
 - Exclude unknown-cost items from paid campaigns and feed scale labels.
 - Exclude low-AOV products unless they can be bundled, cross-sold, or repriced so the product can still support a realistic CAC.
 - Use 6.67 ROAS as the minimum paid-spend guardrail at the current margin/CAC assumption.

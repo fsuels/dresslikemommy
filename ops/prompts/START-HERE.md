@@ -20,6 +20,8 @@ For new listing work, prefer the `ops/prompts/` workflow over older prompt files
 
 Shopify safety default: new Admin API listing work creates or updates Shopify products as drafts only. Do not set products `ACTIVE`, call `publishablePublish`, or publish to sales channels unless the operator explicitly asks for a separate live publish step.
 
+Cost default: every variant's Shopify Cost per item is `selling price x 0.50`, rounded to cents. If Cost per item is missing after verification, report `paid_eligible=false` and keep the product in draft until fixed.
+
 Family-matching sanity check: if `Size` labels already encode the shopper role (`Mother S`, `Father M`, `Child 2 Years`), keep `Type` generic to the garment (`Dress`, `Shirt`) instead of repeating the role in the option value.
 
 Colorway sanity check: if `DESIGNS_TO_LIST` names multiple colorways or print colors for the same garment and vendor size chart, keep them in one Shopify product with a `Color` option. Do not create separate products unless the operator explicitly says "separate listings" or the vendor evidence shows materially different garments or size charts.

@@ -20,6 +20,8 @@ This workspace holds evidence, analysis, implementation plans, screenshots, and 
 ## Paid Spend Economics
 
 - Current operator economics assumption: all-in non-marketing cost is 50% of selling price, including product cost, shipping, and fees.
+- Shopify Cost per item should be populated automatically as `variant price x 0.50` for current active listings and future listings.
+- If Shopify Cost per item is missing, `paid_eligible` is false; product-level margin labels are not a substitute for unit cost.
 - Marketing cost, returns, and chargebacks are deducted after that 50% all-in cost.
 - Current AOV benchmark: $63.25.
 - Max CAC at the current AOV is $9.49, calculated as AOV x 15%.

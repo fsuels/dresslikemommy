@@ -462,6 +462,7 @@ Runner requirements:
 - derive from it:
   - product options
   - variants payload
+  - inventory-item cost: every variant must set `inventoryItem.cost` to exactly 50% of its Shopify selling price, rounded to cents
   - body size tables
   - tags
   - SEO size phrase
@@ -477,11 +478,12 @@ If a product with the derived handle already exists:
 - update changed variants
 - only delete missing live variants if that delete is clearly supported and documented in `listing.md`
 - when `FORCE_SPEC_PRICES=true`, reset drifted prices back to spec and log each reset
+- when any variant price is created or changed, set the matching Shopify Cost per item to `price * 0.50`; if the cost cannot be written, mark `paid_eligible=false`, keep the product in `DRAFT`, and document the blocker
 
 ### Required create/update steps
 
 1. `productCreate` or update equivalent
-2. `productVariantsBulkCreate` / `productVariantsBulkUpdate`
+2. `productVariantsBulkCreate` / `productVariantsBulkUpdate` with `inventoryItem.cost = price * 0.50` on every variant
 3. `metafieldsSet`
 4. media upload + attachment if assets exist under `uploads/<slug>/`
 5. verification re-query
@@ -578,6 +580,7 @@ CSV rules:
 
 - use the standard Shopify export header
 - exactly one variant row per derived Shopify variant
+- populate Shopify CSV `Cost per item` as exactly 50% of the row price, rounded to cents
 - for multi-color listings, CSV rows must cover every intended `Size x Color` combination while the body size table still has one row per `SIZE_CHART` row
 - regenerate the CSV whenever `SIZE_CHART` or prices change
 
@@ -594,7 +597,8 @@ Do not finish until all of these pass:
 - every size table first column matches the picker labels exactly
 - each size table has 10 headers
 - waist populated for every row
-- every variant has SKU, price, compare-at, `DENY`, `tracked=true`
+- every variant has SKU, price, compare-at, `DENY`, `tracked=true`, and Cost per item equal to `price * 0.50`
+- no variant is missing Cost per item; if any cost is missing, `paid_eligible=false` and the final report must call it out
 - product `status` is `DRAFT`
 - `publishedAt` is null
 - no required sales-channel publication is marked live
