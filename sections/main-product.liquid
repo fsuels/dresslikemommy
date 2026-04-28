@@ -14,7 +14,7 @@
   -%}
 
   <div class="page-width page-width--product-breadcrumbs">
-    {% include 'breadcrumbs' %}
+    {% render 'breadcrumbs' %}
   </div>
 
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
@@ -1267,10 +1267,6 @@
       <p style="margin-top:0;padding-top:0.6em;border-top:1px solid #e5e7eb;color:#374151;font-size:0.92em;">{{ 'products.additional_info.faster_shipping_prefix' | t }} <strong>{{ 'products.additional_info.free_premium_shipping' | t }}</strong><br>{{ 'products.additional_info.estimated_delivery' | t }} <strong><span id="ups-delivery-date"></span></strong></p>
     </div>
   </div>
-</div>
-
-
-
   <button class="collapsible" aria-expanded="false" aria-controls="collapsible-returns">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1a936f" width="24px" height="24px">
       <path d="M0 0h24v24H0z" fill="none"/>
@@ -1429,10 +1425,12 @@
                                   {% endif %}
                                 >
                                   <ul class="list-unstyled" role="list">
+                                    {% comment %}theme-check-disable UndefinedObject{% endcomment %}
                                     {%- for product in recommendations.products
                                       limit: block.settings.products_per_page
                                       offset: continue
                                     -%}
+                                      {% comment %}theme-check-enable UndefinedObject{% endcomment %}
                                       <li>
                                         {%- if block.settings.enable_quick_add -%}
                                           {% assign quick_add = "standard" %}

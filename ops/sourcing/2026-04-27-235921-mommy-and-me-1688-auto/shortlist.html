@@ -1,0 +1,1131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1688 Sourcing Shortlist</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23c45d45'/%3E%3Cpath d='M17 36h30M22 25h20M26 47h12' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #f5f7f6;
+      --ink: #1f2523;
+      --muted: #68716b;
+      --line: #d8ded9;
+      --panel: #ffffff;
+      --gold: #b98513;
+      --gold-bg: #fff3ce;
+      --test: #287d7d;
+      --test-bg: #dff4f1;
+      --reject: #a6423b;
+      --reject-bg: #ffe3df;
+      --accent: #c45d45;
+      --selected: #2f6f5e;
+      --selected-bg: #e3f3ec;
+      --hidden-bg: #edf0ef;
+      --shadow: 0 18px 45px rgba(31, 37, 35, .10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    header {
+      padding: 28px clamp(18px, 4vw, 46px) 18px;
+      background: linear-gradient(180deg, #fbfdfb 0%, #f5f7f6 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    .topline {
+      display: flex;
+      gap: 18px;
+      align-items: end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 3vw, 42px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 920px;
+      line-height: 1.45;
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(110px, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .summary-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .summary-card span, .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.2;
+    }
+    .summary-card strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 24px;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .status-chip strong {
+      margin-right: 5px;
+      color: var(--ink);
+    }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 14px clamp(18px, 4vw, 46px);
+      background: rgba(245, 247, 246, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    input, select, button, .button {
+      min-height: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      font: inherit;
+    }
+    input {
+      flex: 1 1 300px;
+      min-width: 220px;
+      padding: 0 12px;
+      background: #fff;
+      color: var(--ink);
+    }
+    select {
+      padding: 0 12px;
+      background: #fff;
+      color: var(--ink);
+    }
+    .filter {
+      padding: 0 13px;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .filter.active {
+      border-color: var(--accent);
+      color: #7b301f;
+      background: #fff1ec;
+    }
+    .toolbar-action {
+      padding: 0 13px;
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+      cursor: pointer;
+      font-weight: 750;
+    }
+    .toolbar-action.secondary {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    main {
+      padding: 24px clamp(18px, 4vw, 46px) 52px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+    .card {
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    .card.selected {
+      border-color: var(--selected);
+      box-shadow: 0 0 0 3px rgba(47, 111, 94, .16), var(--shadow);
+    }
+    .card.user-hidden {
+      opacity: .58;
+      background: var(--hidden-bg);
+    }
+    .image-wrap {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background: #e7ece9;
+      overflow: hidden;
+    }
+    .image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .image-missing {
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .verdict {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+      border: 1px solid rgba(255,255,255,.7);
+    }
+    .verdict-gold { background: var(--gold-bg); color: #6f4d07; }
+    .verdict-test { background: var(--test-bg); color: #135b5a; }
+    .verdict-reject { background: var(--reject-bg); color: #7a211b; }
+    .card-body { padding: 16px; }
+    .decision-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .decision {
+      min-height: 36px;
+      padding: 0 12px;
+      cursor: pointer;
+      font-weight: 800;
+      background: #fff;
+    }
+    .decision.keep {
+      color: var(--selected);
+      border-color: #a9ccb9;
+    }
+    .card.selected .decision.keep {
+      background: var(--selected-bg);
+      border-color: var(--selected);
+    }
+    .decision.hide-card {
+      color: #7a211b;
+      border-color: #e5b8b1;
+    }
+    .card.user-hidden .decision.hide-card {
+      background: var(--reject-bg);
+      border-color: var(--reject);
+    }
+    .score-row {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: start;
+    }
+    .candidate-id {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+    .score {
+      min-width: 54px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: 850;
+      line-height: 1;
+      color: var(--accent);
+    }
+    .score-bar {
+      height: 8px;
+      margin: 13px 0 10px;
+      background: #e4e9e6;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .score-bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--test));
+    }
+    .vendor-line {
+      color: var(--muted);
+      font-size: 13px;
+      min-height: 20px;
+    }
+    .status-note {
+      margin: 0 0 10px;
+      color: #39413d;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .metrics, .breakdown {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 13px;
+    }
+    .breakdown { grid-template-columns: repeat(4, 1fr); }
+    .metric {
+      padding: 9px;
+      background: #f7faf8;
+      border: 1px solid #e2e8e4;
+      border-radius: 8px;
+      min-width: 0;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 3px;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      max-width: 100%;
+      min-height: 26px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #edf5ef;
+      color: #2d6040;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .pill-muted { background: #e9eeeb; color: var(--muted); }
+    .why {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    h3 {
+      margin: 0 0 7px;
+      font-size: 13px;
+      letter-spacing: 0;
+    }
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .next {
+      margin: 14px 0 0;
+      color: #39413d;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      border-color: var(--ink);
+      font-weight: 750;
+    }
+    .button.secondary {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    details {
+      margin-top: 12px;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    summary { cursor: pointer; color: var(--ink); font-weight: 700; }
+    details p { overflow-wrap: anywhere; line-height: 1.45; }
+    .hidden { display: none !important; }
+    @media (max-width: 760px) {
+      .summary { grid-template-columns: repeat(2, 1fr); }
+      .grid { grid-template-columns: 1fr; }
+      .why { grid-template-columns: 1fr; }
+      .breakdown { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topline">
+      <div>
+        <h1>1688 Sourcing Shortlist</h1>
+        <p class="subtitle">Browser-assisted candidate review for Dress Like Mommy. This report shows product images, source URLs, supplier evidence, score reasons, and the next action before anything enters Shopify.</p>
+      </div>
+      <div class="candidate-id">Generated 2026-04-28 00:01<br>Source: /Users/fsuels/Projects/dresslikemommy/ops/sourcing/2026-04-27-235921-mommy-and-me-1688-auto/candidates.json</div>
+    </div>
+    <div class="summary">
+      <div class="summary-card"><span>Total</span><strong>7</strong></div>
+      <div class="summary-card"><span>Gold</span><strong>0</strong></div>
+      <div class="summary-card"><span>Test</span><strong>3</strong></div>
+      <div class="summary-card"><span>Reject</span><strong>4</strong></div>
+      <div class="summary-card"><span>Kept</span><strong id="selected-count">0</strong></div>
+      <div class="summary-card"><span>Hidden</span><strong id="hidden-count">0</strong></div>
+      <div class="summary-card"><span>Avg Score</span><strong>48.1</strong></div>
+    </div>
+    <div class="legend" aria-label="Verdict meaning">
+      <div class="status-chip"><strong>Gold</strong> verified enough for listing intake</div>
+      <div class="status-chip"><strong>Test</strong> promising, needs detail-page proof</div>
+      <div class="status-chip"><strong>Reject</strong> skip unless evidence changes</div>
+    </div>
+  </header>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search title, supplier, badge, service flag">
+    <button class="filter active" data-filter="All">All</button>
+    <button class="filter" data-filter="Selected">Kept</button>
+    <button class="filter" data-filter="Hidden">Hidden</button>
+    <button class="filter" data-filter="Gold">Gold</button>
+    <button class="filter" data-filter="Test">Test</button>
+    <button class="filter" data-filter="Reject">Reject</button>
+    <select id="sort">
+      <option value="default">Sort by verdict</option>
+      <option value="score-desc">Score high to low</option>
+      <option value="score-asc">Score low to high</option>
+    </select>
+    <button id="copy-selected" class="toolbar-action" type="button">Copy kept URLs</button>
+    <button id="download-selected" class="toolbar-action secondary" type="button">Download kept JSON</button>
+    <button id="reset-choices" class="toolbar-action secondary" type="button">Reset choices</button>
+  </div>
+  <main>
+    <div class="grid" id="grid">
+
+    <article class="card" data-id="C007-6d87ca59" data-verdict="Test" data-score="50" data-search="family matching outfits for a family of three: summer mother-son beach vacation printed shirts, mother-daughter long skirts, thin beach dresses ¥55.00 moq 1 repurchase rate 86% 100+ sold   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01NsEh3r1ZVC4Rt8zxO_!!2671333199-0-cib.jpg_460x460q100.jpg_.webp" alt="Family Matching Outfits for a Family of Three: Summer Mother-Son Beach Vacation Printed Shirts, Mother-Daughter Long Skirts, Thin Beach Dresses ¥55.00 MOQ 1 Repurchase Rate 86% 100+ sold">
+        <div class="verdict verdict-test">Test</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C007-6d87ca59</div>
+            <h2>Family Matching Outfits for a Family of Three: Summer Mother-Son Beach Vacation Printed Shirts, Mother-Daughter Long Skirts, Thin Beach Dresses ¥55.00 MOQ 1 Repurchase Rate 86% 100+ sold</h2>
+          </div>
+          <div class="score">50</div>
+        </div>
+        <div class="score-bar" aria-label="Score 50 out of 100"><span style="width:50%"></span></div>
+        <p class="status-note">Promising lead. Open 1688 and verify the missing proof before listing.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>55.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>100</strong></div>
+          <div class="metric"><span>Repeat</span><strong>86%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>17.8</strong></div>
+          <div class="metric"><span>Supplier</span><strong>10.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>12.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (86%)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li><li>listing freshness not proven; prefer 2025-2026 products</li><li>buyer/quality protection signal missing</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Open the product detail page, confirm size chart, one-piece shipping, dispatch speed, and supplier proof before listing.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/923350999310.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/923350999310.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Test; score 50. Confirmed from sourcing report: Family Matching Outfits for a Family of Three: Summer Mother-Son Beach Vacation Printed Shirts, Mother-Daughter Long Skirts, Thin Beach Dresses ¥55.00 MOQ 1 Repurchase Rate 86% 100+ sold
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>Family Matching Outfits for a Family of Three: Summer Mother-Son Beach Vacation Printed Shirts, Mother-Daughter Long Skirts, Thin Beach Dresses ¥55.00 MOQ 1 Repurchase Rate 86% 100+ sold</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C004-9435273e" data-verdict="Test" data-score="47" data-search="family matching outfits, fashionable summer dresses, mother-daughter outfits, 2026 summer new style children&#x27;s and adult cheongsam dresses ¥60.00 元宝可抵1% repurchase rate 57% hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01IxtwoJ1bI1uQbAfFJ_!!4166133441-0-cib.jpg_460x460q100.jpg_.webp" alt="Family Matching Outfits, Fashionable Summer Dresses, Mother-Daughter Outfits, 2026 Summer New Style Children&#x27;s and Adult Cheongsam Dresses ¥60.00 元宝可抵1% Repurchase Rate 57% Hot selling">
+        <div class="verdict verdict-test">Test</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C004-9435273e</div>
+            <h2>Family Matching Outfits, Fashionable Summer Dresses, Mother-Daughter Outfits, 2026 Summer New Style Children&#x27;s and Adult Cheongsam Dresses ¥60.00 元宝可抵1% Repurchase Rate 57% Hot selling</h2>
+          </div>
+          <div class="score">47</div>
+        </div>
+        <div class="score-bar" aria-label="Score 47 out of 100"><span style="width:47%"></span></div>
+        <p class="status-note">Promising lead. Open 1688 and verify the missing proof before listing.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>60.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>—</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>57%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>17.8</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>7.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>13.5</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (57%)</li><li>no obvious IP-risk terms</li><li>fresh year signal (2026)</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li><li>MOQ missing</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Open the product detail page, confirm size chart, one-piece shipping, dispatch speed, and supplier proof before listing.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/908913618369.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/908913618369.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Test; score 47. Confirmed from sourcing report: Family Matching Outfits, Fashionable Summer Dresses, Mother-Daughter Outfits, 2026 Summer New Style Children&#x27;s and Adult Cheongsam Dresses ¥60.00 元宝可抵1% Repurchase Rate 57% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>Family Matching Outfits, Fashionable Summer Dresses, Mother-Daughter Outfits, 2026 Summer New Style Children&#x27;s and Adult Cheongsam Dresses ¥60.00 元宝可抵1% Repurchase Rate 57% Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C002-45d1bf54" data-verdict="Test" data-score="47" data-search="playing with parents and daughter summer mother and daughter mori korean style embroidered lace back vest top with polo dot pants set ¥53.80 moq 1 5 200+ sold   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01lVSOH31IpwX8pKRL7_!!1899080943-0-cib.jpg_460x460q100.jpg_.webp" alt="Playing with Parents and Daughter Summer Mother and Daughter Mori Korean Style Embroidered Lace Back Vest Top with Polo Dot Pants Set ¥53.80 MOQ 1 5 200+ sold">
+        <div class="verdict verdict-test">Test</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C002-45d1bf54</div>
+            <h2>Playing with Parents and Daughter Summer Mother and Daughter Mori Korean Style Embroidered Lace Back Vest Top with Polo Dot Pants Set ¥53.80 MOQ 1 5 200+ sold</h2>
+          </div>
+          <div class="score">47</div>
+        </div>
+        <div class="score-bar" aria-label="Score 47 out of 100"><span style="width:47%"></span></div>
+        <p class="status-note">Promising lead. Open 1688 and verify the missing proof before listing.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>53.80</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>200</strong></div>
+          <div class="metric"><span>Repeat</span><strong>—</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>17.8</strong></div>
+          <div class="metric"><span>Supplier</span><strong>7.5</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>12.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong recent sales volume (200)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>repeat-buyer rate missing</li><li>shop/service rating missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li><li>listing freshness not proven; prefer 2025-2026 products</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Open the product detail page, confirm size chart, one-piece shipping, dispatch speed, and supplier proof before listing.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/903438056060.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/903438056060.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Test; score 47. Confirmed from sourcing report: Playing with Parents and Daughter Summer Mother and Daughter Mori Korean Style Embroidered Lace Back Vest Top with Polo Dot Pants Set ¥53.80 MOQ 1 5 200+ sold
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>Playing with Parents and Daughter Summer Mother and Daughter Mori Korean Style Embroidered Lace Back Vest Top with Polo Dot Pants Set ¥53.80 MOQ 1 5 200+ sold</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C005-962893f7" data-verdict="Reject" data-score="50" data-search="beach seaside parent-child dress mother-daughter dress family of three and four summer plus size sanya holiday short-sleeved suit ¥48.00 moq 1 repurchase rate 93% 5 1k+ sold   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01KStfhc2BWyvFVBqGY_!!2215907038347-0-cib.jpg_460x460q100.jpg_.webp" alt="Beach Seaside Parent-child Dress Mother-daughter dress Family of Three and Four Summer plus size Sanya Holiday Short-sleeved suit ¥48.00 MOQ 1 Repurchase Rate 93% 5 1K+ sold">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C005-962893f7</div>
+            <h2>Beach Seaside Parent-child Dress Mother-daughter dress Family of Three and Four Summer plus size Sanya Holiday Short-sleeved suit ¥48.00 MOQ 1 Repurchase Rate 93% 5 1K+ sold</h2>
+          </div>
+          <div class="score">50</div>
+        </div>
+        <div class="score-bar" aria-label="Score 50 out of 100"><span style="width:50%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>48.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>1000</strong></div>
+          <div class="metric"><span>Repeat</span><strong>93%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>17.8</strong></div>
+          <div class="metric"><span>Supplier</span><strong>11.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>11.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (93%)</li><li>strong recent sales volume (1000)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>older 1688 offer ID (802623995443); prefer newer listings above 850000000000</li><li>no visible 2025/2026 freshness signal on search card</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/802623995443.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/802623995443.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 50. Confirmed from sourcing report: Beach Seaside Parent-child Dress Mother-daughter dress Family of Three and Four Summer plus size Sanya Holiday Short-sleeved suit ¥48.00 MOQ 1 Repurchase Rate 93% 5 1K+ sold
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>Beach Seaside Parent-child Dress Mother-daughter dress Family of Three and Four Summer plus size Sanya Holiday Short-sleeved suit ¥48.00 MOQ 1 Repurchase Rate 93% 5 1K+ sold</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C003-06377886" data-verdict="Reject" data-score="50" data-search="dropshipping french-style elegant silk scarf collar top and cropped pants set for women, 2025 summer fashion two-piece set ¥72.00 moq 1 repurchase rate 48% hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01dCg6Up1mGA5xaIjHm_!!2218157294926-0-cib.jpg_460x460q100.jpg_.webp" alt="Dropshipping French-Style Elegant Silk Scarf Collar Top and Cropped Pants Set for Women, 2025 Summer Fashion Two-Piece Set ¥72.00 MOQ 1 Repurchase Rate 48% Hot selling">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C003-06377886</div>
+            <h2>Dropshipping French-Style Elegant Silk Scarf Collar Top and Cropped Pants Set for Women, 2025 Summer Fashion Two-Piece Set ¥72.00 MOQ 1 Repurchase Rate 48% Hot selling</h2>
+          </div>
+          <div class="score">50</div>
+        </div>
+        <div class="score-bar" aria-label="Score 50 out of 100"><span style="width:50%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>72.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>48%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>13.0</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>14.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>14.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (48%)</li><li>one-piece/dropship signal</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>fresh year signal (2025)</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>weak visible match for selected store category</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>buyer/quality protection signal missing</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/953028299903.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/953028299903.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 50. Confirmed from sourcing report: Dropshipping French-Style Elegant Silk Scarf Collar Top and Cropped Pants Set for Women, 2025 Summer Fashion Two-Piece Set ¥72.00 MOQ 1 Repurchase Rate 48% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>Dropshipping French-Style Elegant Silk Scarf Collar Top and Cropped Pants Set for Women, 2025 Summer Fashion Two-Piece Set ¥72.00 MOQ 1 Repurchase Rate 48% Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C006-dbc035bf" data-verdict="Reject" data-score="48" data-search="亲子装夏装2024母女连衣裙一件代发新款短袖韩版洋气家庭装套装 ¥40.0  一件代发 一件代发">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/13973372511_1619526159.jpg_460x460q100.jpg_.webp" alt="亲子装夏装2024母女连衣裙一件代发新款短袖韩版洋气家庭装套装 ¥40.0">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C006-dbc035bf</div>
+            <h2>亲子装夏装2024母女连衣裙一件代发新款短袖韩版洋气家庭装套装 ¥40.0</h2>
+          </div>
+          <div class="score">48</div>
+        </div>
+        <div class="score-bar" aria-label="Score 48 out of 100"><span style="width:48%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>40.0</strong></div>
+          <div class="metric"><span>MOQ</span><strong>—</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>—</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill">一件代发</span><span class="pill">一件代发</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>17.8</strong></div>
+          <div class="metric"><span>Supplier</span><strong>5.5</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>11.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>13.5</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>one-piece/dropship signal</li><li>no obvious IP-risk terms</li><li>fresh/new-style keyword signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>older 1688 offer ID (614134065360); prefer newer listings above 850000000000</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>repeat-buyer rate missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/614134065360.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/614134065360.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: 亲子装夏装2024母女连衣裙一件代发新款短袖韩版洋气家庭装套装 ¥40.0
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>亲子装夏装2024母女连衣裙一件代发新款短袖韩版洋气家庭装套装 ¥40.0</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C001-9bda46bf" data-verdict="Reject" data-score="45" data-search="a generation of modal pajamas women korean version of loose solid color summer thin short sleeve suit home clothes can be worn outside ¥43.00 moq 1 repurchase rate 56% 5 1k+ sold   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01TRBrOc2LNUeH1JLnY_!!2212946069680-0-cib.jpg_460x460q100.jpg_.webp" alt="A generation of modal pajamas women Korean version of loose solid color summer thin short sleeve suit home clothes can be worn outside ¥43.00 MOQ 1 Repurchase Rate 56% 5 1K+ sold">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C001-9bda46bf</div>
+            <h2>A generation of modal pajamas women Korean version of loose solid color summer thin short sleeve suit home clothes can be worn outside ¥43.00 MOQ 1 Repurchase Rate 56% 5 1K+ sold</h2>
+          </div>
+          <div class="score">45</div>
+        </div>
+        <div class="score-bar" aria-label="Score 45 out of 100"><span style="width:45%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>43.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>1000</strong></div>
+          <div class="metric"><span>Repeat</span><strong>56%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>13.0</strong></div>
+          <div class="metric"><span>Supplier</span><strong>11.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>11.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (56%)</li><li>strong recent sales volume (1000)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>older 1688 offer ID (665318487193); prefer newer listings above 850000000000</li><li>no visible 2025/2026 freshness signal on search card</li><li>weak visible match for selected store category</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>fast dispatch signal missing</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/665318487193.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/665318487193.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 45. Confirmed from sourcing report: A generation of modal pajamas women Korean version of loose solid color summer thin short sleeve suit home clothes can be worn outside ¥43.00 MOQ 1 Repurchase Rate 56% 5 1K+ sold
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>A generation of modal pajamas women Korean version of loose solid color summer thin short sleeve suit home clothes can be worn outside ¥43.00 MOQ 1 Repurchase Rate 56% 5 1K+ sold</p></details>
+      </div>
+    </article>
+
+    </div>
+  </main>
+  <script id="candidate-data" type="application/json">[{"candidate_id": "C007-6d87ca59", "review_stage": "search", "verdict": "Test", "score": 50, "breakdown": {"product_fit": 17.8, "vendor_reliability": 10.0, "fulfillment": 10.0, "risk_readiness": 12.0}, "product_url": "https://detail.1688.com/offer/923350999310.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01NsEh3r1ZVC4Rt8zxO_!!2671333199-0-cib.jpg_460x460q100.jpg_.webp", "title": "Family Matching Outfits for a Family of Three: Summer Mother-Son Beach Vacation Printed Shirts, Mother-Daughter Long Skirts, Thin Beach Dresses ¥55.00 MOQ 1 Repurchase Rate 86% 100+ sold", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "55.00", "moq": "1", "monthly_sales": "100", "repurchase_rate_pct": "86%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "5", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (86%)", "MOQ 1", "no obvious IP-risk terms", "newer 1688 offer-id signal"], "concerns": ["size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "listing freshness not proven; prefer 2025-2026 products", "buyer/quality protection signal missing", "candidate data is thin", "freshness not visible on search card; detail page must prove current availability", "size chart not confirmed"], "next_action": "Open the product detail page, confirm size chart, one-piece shipping, dispatch speed, and supplier proof before listing.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/923350999310.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Test; score 50. Confirmed from sourcing report: Family Matching Outfits for a Family of Three: Summer Mother-Son Beach Vacation Printed Shirts, Mother-Daughter Long Skirts, Thin Beach Dresses ¥55.00 MOQ 1 Repurchase Rate 86% 100+ sold\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "Family Matching Outfits for a Family of Three: Summer Mother-Son Beach Vacation Printed Shirts, Mother-Daughter Long Skirts, Thin Beach Dresses ¥55.00 MOQ 1 Repurchase Rate 86% 100+ sold", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%C4%B8%C5%AE%D7%B0%20%CF%C4%BC%BE%20%CC%D7%D7%B0%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "母女装 新款 连衣裙 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%C4%B8%C5%AE%D7%B0%20%CF%C4%BC%BE%20%CC%D7%D7%B0%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "100+ sold (Visible 1688 search-card sales label; exact time window not shown.)", "category_id": "mommy-and-me"}, {"candidate_id": "C004-9435273e", "review_stage": "search", "verdict": "Test", "score": 47, "breakdown": {"product_fit": 17.8, "vendor_reliability": 9.0, "fulfillment": 7.0, "risk_readiness": 13.5}, "product_url": "https://detail.1688.com/offer/908913618369.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01IxtwoJ1bI1uQbAfFJ_!!4166133441-0-cib.jpg_460x460q100.jpg_.webp", "title": "Family Matching Outfits, Fashionable Summer Dresses, Mother-Daughter Outfits, 2026 Summer New Style Children's and Adult Cheongsam Dresses ¥60.00 元宝可抵1% Repurchase Rate 57% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "60.00", "moq": "", "monthly_sales": "", "repurchase_rate_pct": "57%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "5", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (57%)", "no obvious IP-risk terms", "fresh year signal (2026)", "newer 1688 offer-id signal"], "concerns": ["size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "MOQ missing", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed", "dropship support not confirmed"], "next_action": "Open the product detail page, confirm size chart, one-piece shipping, dispatch speed, and supplier proof before listing.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/908913618369.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Test; score 47. Confirmed from sourcing report: Family Matching Outfits, Fashionable Summer Dresses, Mother-Daughter Outfits, 2026 Summer New Style Children's and Adult Cheongsam Dresses ¥60.00 元宝可抵1% Repurchase Rate 57% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "Family Matching Outfits, Fashionable Summer Dresses, Mother-Daughter Outfits, 2026 Summer New Style Children's and Adult Cheongsam Dresses ¥60.00 元宝可抵1% Repurchase Rate 57% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%C4%B8%C5%AE%D7%B0%20%CF%C4%BC%BE%20%CC%D7%D7%B0%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "母女装 夏季 套装 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%C4%B8%C5%AE%D7%B0%20%CF%C4%BC%BE%20%CC%D7%D7%B0%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "mommy-and-me"}, {"candidate_id": "C002-45d1bf54", "review_stage": "search", "verdict": "Test", "score": 47, "breakdown": {"product_fit": 17.8, "vendor_reliability": 7.5, "fulfillment": 10.0, "risk_readiness": 12.0}, "product_url": "https://detail.1688.com/offer/903438056060.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01lVSOH31IpwX8pKRL7_!!1899080943-0-cib.jpg_460x460q100.jpg_.webp", "title": "Playing with Parents and Daughter Summer Mother and Daughter Mori Korean Style Embroidered Lace Back Vest Top with Polo Dot Pants Set ¥53.80 MOQ 1 5 200+ sold", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "53.80", "moq": "1", "monthly_sales": "200", "repurchase_rate_pct": "", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "5", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong recent sales volume (200)", "MOQ 1", "no obvious IP-risk terms", "newer 1688 offer-id signal"], "concerns": ["size chart still needs confirmation", "supplier operating years missing", "repeat-buyer rate missing", "shop/service rating missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "listing freshness not proven; prefer 2025-2026 products", "buyer/quality protection signal missing", "candidate data is thin", "freshness not visible on search card; detail page must prove current availability", "size chart not confirmed"], "next_action": "Open the product detail page, confirm size chart, one-piece shipping, dispatch speed, and supplier proof before listing.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/903438056060.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Test; score 47. Confirmed from sourcing report: Playing with Parents and Daughter Summer Mother and Daughter Mori Korean Style Embroidered Lace Back Vest Top with Polo Dot Pants Set ¥53.80 MOQ 1 5 200+ sold\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "Playing with Parents and Daughter Summer Mother and Daughter Mori Korean Style Embroidered Lace Back Vest Top with Polo Dot Pants Set ¥53.80 MOQ 1 5 200+ sold", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%C4%B8%C5%AE%D7%B0%20%CF%C4%BC%BE%20%CC%D7%D7%B0%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "母女装 夏季 套装 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%C4%B8%C5%AE%D7%B0%20%CF%C4%BC%BE%20%CC%D7%D7%B0%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "200+ sold (Visible 1688 search-card sales label; exact time window not shown.)", "category_id": "mommy-and-me"}, {"candidate_id": "C005-962893f7", "review_stage": "search", "verdict": "Reject", "score": 50, "breakdown": {"product_fit": 17.8, "vendor_reliability": 11.0, "fulfillment": 10.0, "risk_readiness": 11.0}, "product_url": "https://detail.1688.com/offer/802623995443.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01KStfhc2BWyvFVBqGY_!!2215907038347-0-cib.jpg_460x460q100.jpg_.webp", "title": "Beach Seaside Parent-child Dress Mother-daughter dress Family of Three and Four Summer plus size Sanya Holiday Short-sleeved suit ¥48.00 MOQ 1 Repurchase Rate 93% 5 1K+ sold", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "48.00", "moq": "1", "monthly_sales": "1000", "repurchase_rate_pct": "93%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "5", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (93%)", "strong recent sales volume (1000)", "MOQ 1", "no obvious IP-risk terms"], "concerns": ["older 1688 offer ID (802623995443); prefer newer listings above 850000000000", "no visible 2025/2026 freshness signal on search card", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "listing freshness not proven; prefer 2025-2026 products", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/802623995443.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 50. Confirmed from sourcing report: Beach Seaside Parent-child Dress Mother-daughter dress Family of Three and Four Summer plus size Sanya Holiday Short-sleeved suit ¥48.00 MOQ 1 Repurchase Rate 93% 5 1K+ sold\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "Beach Seaside Parent-child Dress Mother-daughter dress Family of Three and Four Summer plus size Sanya Holiday Short-sleeved suit ¥48.00 MOQ 1 Repurchase Rate 93% 5 1K+ sold", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%C4%B8%C5%AE%D7%B0%20%CF%C4%BC%BE%20%CC%D7%D7%B0%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "母女装 夏季 套装 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%C4%B8%C5%AE%D7%B0%20%CF%C4%BC%BE%20%CC%D7%D7%B0%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "1K+ sold (Visible 1688 search-card sales label; exact time window not shown.)", "category_id": "mommy-and-me"}, {"candidate_id": "C003-06377886", "review_stage": "search", "verdict": "Reject", "score": 50, "breakdown": {"product_fit": 13.0, "vendor_reliability": 9.0, "fulfillment": 14.0, "risk_readiness": 14.0}, "product_url": "https://detail.1688.com/offer/953028299903.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01dCg6Up1mGA5xaIjHm_!!2218157294926-0-cib.jpg_460x460q100.jpg_.webp", "title": "Dropshipping French-Style Elegant Silk Scarf Collar Top and Cropped Pants Set for Women, 2025 Summer Fashion Two-Piece Set ¥72.00 MOQ 1 Repurchase Rate 48% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "72.00", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "48%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "2", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (48%)", "one-piece/dropship signal", "MOQ 1", "no obvious IP-risk terms", "fresh year signal (2025)", "newer 1688 offer-id signal"], "concerns": ["weak visible match for selected store category", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/953028299903.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 50. Confirmed from sourcing report: Dropshipping French-Style Elegant Silk Scarf Collar Top and Cropped Pants Set for Women, 2025 Summer Fashion Two-Piece Set ¥72.00 MOQ 1 Repurchase Rate 48% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "Dropshipping French-Style Elegant Silk Scarf Collar Top and Cropped Pants Set for Women, 2025 Summer Fashion Two-Piece Set ¥72.00 MOQ 1 Repurchase Rate 48% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%C4%B8%C5%AE%D7%B0%20%CF%C4%BC%BE%20%CC%D7%D7%B0%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "母女装 夏季 套装 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%C4%B8%C5%AE%D7%B0%20%CF%C4%BC%BE%20%CC%D7%D7%B0%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "mommy-and-me"}, {"candidate_id": "C006-dbc035bf", "review_stage": "search", "verdict": "Reject", "score": 48, "breakdown": {"product_fit": 17.8, "vendor_reliability": 5.5, "fulfillment": 11.0, "risk_readiness": 13.5}, "product_url": "https://detail.1688.com/offer/614134065360.html", "image_url": "https://cbu01.alicdn.com/img/ibank/13973372511_1619526159.jpg_460x460q100.jpg_.webp", "title": "亲子装夏装2024母女连衣裙一件代发新款短袖韩版洋气家庭装套装 ¥40.0", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "40.0", "moq": "", "monthly_sales": "", "repurchase_rate_pct": "", "rating": "", "years_on_1688": "", "badges": "一件代发", "service_flags": "一件代发", "dropship_supported": "yes", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "5", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["one-piece/dropship signal", "no obvious IP-risk terms", "fresh/new-style keyword signal"], "concerns": ["older 1688 offer ID (614134065360); prefer newer listings above 850000000000", "size chart still needs confirmation", "supplier operating years missing", "repeat-buyer rate missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "MOQ missing", "buyer/quality protection signal missing", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/614134065360.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: 亲子装夏装2024母女连衣裙一件代发新款短袖韩版洋气家庭装套装 ¥40.0\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "亲子装夏装2024母女连衣裙一件代发新款短袖韩版洋气家庭装套装 ¥40.0", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%C7%D7%D7%D3%D7%B0%20%C4%B8%C5%AE%20%CF%C4%BC%BE%20%C1%AC%D2%C2%C8%B9%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "亲子装 母女 夏季 连衣裙 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%C7%D7%D7%D3%D7%B0%20%C4%B8%C5%AE%20%CF%C4%BC%BE%20%C1%AC%D2%C2%C8%B9%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "mommy-and-me"}, {"candidate_id": "C001-9bda46bf", "review_stage": "search", "verdict": "Reject", "score": 45, "breakdown": {"product_fit": 13.0, "vendor_reliability": 11.0, "fulfillment": 10.0, "risk_readiness": 11.0}, "product_url": "https://detail.1688.com/offer/665318487193.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01TRBrOc2LNUeH1JLnY_!!2212946069680-0-cib.jpg_460x460q100.jpg_.webp", "title": "A generation of modal pajamas women Korean version of loose solid color summer thin short sleeve suit home clothes can be worn outside ¥43.00 MOQ 1 Repurchase Rate 56% 5 1K+ sold", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "43.00", "moq": "1", "monthly_sales": "1000", "repurchase_rate_pct": "56%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "2", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (56%)", "strong recent sales volume (1000)", "MOQ 1", "no obvious IP-risk terms"], "concerns": ["older 1688 offer ID (665318487193); prefer newer listings above 850000000000", "no visible 2025/2026 freshness signal on search card", "weak visible match for selected store category", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "listing freshness not proven; prefer 2025-2026 products", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/665318487193.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 45. Confirmed from sourcing report: A generation of modal pajamas women Korean version of loose solid color summer thin short sleeve suit home clothes can be worn outside ¥43.00 MOQ 1 Repurchase Rate 56% 5 1K+ sold\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "A generation of modal pajamas women Korean version of loose solid color summer thin short sleeve suit home clothes can be worn outside ¥43.00 MOQ 1 Repurchase Rate 56% 5 1K+ sold", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%C4%B8%C5%AE%D7%B0%20%CF%C4%BC%BE%20%CC%D7%D7%B0%20%D2%BB%BC%FE%B4%FA%B7%A2", "search_query": "母女装 夏季 套装 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%C4%B8%C5%AE%D7%B0%20%CF%C4%BC%BE%20%CC%D7%D7%B0%20%D2%BB%BC%FE%B4%FA%B7%A2", "sales_context": "1K+ sold (Visible 1688 search-card sales label; exact time window not shown.)", "category_id": "mommy-and-me"}]</script>
+  <script>
+    const grid = document.querySelector('#grid');
+    const cards = Array.from(document.querySelectorAll('.card'));
+    const search = document.querySelector('#search');
+    const sort = document.querySelector('#sort');
+    const selectedCount = document.querySelector('#selected-count');
+    const hiddenCount = document.querySelector('#hidden-count');
+    const copySelected = document.querySelector('#copy-selected');
+    const downloadSelected = document.querySelector('#download-selected');
+    const resetChoices = document.querySelector('#reset-choices');
+    const candidateData = JSON.parse(document.querySelector('#candidate-data').textContent);
+    const candidateById = new Map(candidateData.map(item => [item.candidate_id, item]));
+    const storageKey = `dlm-1688-shortlist:${location.pathname}`;
+    let activeFilter = 'All';
+    let choices = loadChoices();
+
+    function loadChoices() {
+      try {
+        return JSON.parse(localStorage.getItem(storageKey)) || {};
+      } catch {
+        return {};
+      }
+    }
+
+    function saveChoices() {
+      localStorage.setItem(storageKey, JSON.stringify(choices));
+    }
+
+    function cardChoice(card) {
+      return choices[card.dataset.id] || {};
+    }
+
+    function setCardChoice(card, patch) {
+      const current = cardChoice(card);
+      choices[card.dataset.id] = { ...current, ...patch };
+      if (!choices[card.dataset.id].selected && !choices[card.dataset.id].hidden) {
+        delete choices[card.dataset.id];
+      }
+      saveChoices();
+      syncChoiceUi();
+      applyFilters();
+    }
+
+    function selectedCards() {
+      return cards.filter(card => {
+        const choice = cardChoice(card);
+        return choice.selected && !choice.hidden;
+      });
+    }
+
+    function hiddenCards() {
+      return cards.filter(card => cardChoice(card).hidden);
+    }
+
+    function syncChoiceUi() {
+      cards.forEach(card => {
+        const choice = cardChoice(card);
+        const keep = card.querySelector('.keep');
+        const hide = card.querySelector('.hide-card');
+        card.classList.toggle('selected', Boolean(choice.selected));
+        card.classList.toggle('user-hidden', Boolean(choice.hidden));
+        keep.textContent = choice.selected ? 'Kept' : 'Keep';
+        hide.textContent = choice.hidden ? 'Restore' : 'Hide';
+      });
+      selectedCount.textContent = String(selectedCards().length);
+      hiddenCount.textContent = String(hiddenCards().length);
+    }
+
+    function applyFilters() {
+      const term = search.value.trim().toLowerCase();
+      cards.forEach(card => {
+        const choice = cardChoice(card);
+        let verdictMatch = false;
+        if (activeFilter === 'All') {
+          verdictMatch = !choice.hidden;
+        } else if (activeFilter === 'Selected') {
+          verdictMatch = choice.selected && !choice.hidden;
+        } else if (activeFilter === 'Hidden') {
+          verdictMatch = choice.hidden;
+        } else {
+          verdictMatch = card.dataset.verdict === activeFilter && !choice.hidden;
+        }
+        const searchMatch = !term || card.dataset.search.includes(term);
+        card.classList.toggle('hidden', !(verdictMatch && searchMatch));
+      });
+    }
+
+    function applySort() {
+      const mode = sort.value;
+      const order = { Gold: 0, Test: 1, Reject: 2 };
+      const sorted = [...cards].sort((a, b) => {
+        if (mode === 'score-desc') return Number(b.dataset.score) - Number(a.dataset.score);
+        if (mode === 'score-asc') return Number(a.dataset.score) - Number(b.dataset.score);
+        return order[a.dataset.verdict] - order[b.dataset.verdict] || Number(b.dataset.score) - Number(a.dataset.score);
+      });
+      sorted.forEach(card => grid.appendChild(card));
+    }
+
+    function downloadJson(filename, items) {
+      const blob = new Blob([JSON.stringify(items, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function flash(button, text) {
+      const old = button.textContent;
+      button.textContent = text;
+      setTimeout(() => button.textContent = old, 1200);
+    }
+
+    document.querySelectorAll('.filter').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.filter').forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        activeFilter = button.dataset.filter;
+        applyFilters();
+      });
+    });
+    search.addEventListener('input', applyFilters);
+    sort.addEventListener('change', () => { applySort(); applyFilters(); });
+
+    async function copyText(text) {
+      if (navigator.clipboard?.writeText && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return;
+        } catch {
+        }
+      }
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.left = '-9999px';
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand('copy');
+      area.remove();
+    }
+
+    document.querySelectorAll('.copy').forEach(button => {
+      button.addEventListener('click', async () => {
+        try {
+          await copyText(button.dataset.copy);
+          flash(button, 'Copied');
+        } catch {
+          flash(button, 'Copy failed');
+        }
+      });
+    });
+
+    document.querySelectorAll('.keep').forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.card');
+        const choice = cardChoice(card);
+        setCardChoice(card, { selected: !choice.selected, hidden: false });
+      });
+    });
+
+    document.querySelectorAll('.hide-card').forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.card');
+        const choice = cardChoice(card);
+        setCardChoice(card, { hidden: !choice.hidden, selected: choice.hidden ? choice.selected : false });
+      });
+    });
+
+    copySelected.addEventListener('click', async () => {
+      const urls = selectedCards()
+        .map(card => candidateById.get(card.dataset.id)?.product_url)
+        .filter(Boolean);
+      if (!urls.length) {
+        flash(copySelected, 'Keep products first');
+        return;
+      }
+      try {
+        await copyText(urls.join('\n'));
+        flash(copySelected, 'Copied URLs');
+      } catch {
+        flash(copySelected, 'Copy failed');
+      }
+    });
+
+    downloadSelected.addEventListener('click', () => {
+      const items = selectedCards()
+        .map(card => candidateById.get(card.dataset.id))
+        .filter(Boolean);
+      if (!items.length) {
+        flash(downloadSelected, 'Keep products first');
+        return;
+      }
+      downloadJson('1688-kept-candidates.json', items);
+      flash(downloadSelected, 'Downloaded');
+    });
+
+    resetChoices.addEventListener('click', () => {
+      choices = {};
+      saveChoices();
+      syncChoiceUi();
+      applyFilters();
+      flash(resetChoices, 'Reset');
+    });
+
+    syncChoiceUi();
+    applySort();
+    applyFilters();
+  </script>
+</body>
+</html>

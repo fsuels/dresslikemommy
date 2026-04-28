@@ -4,6 +4,15 @@
   Added: 2026-01-27
 {% endcomment %}
 
+{%- liquid
+  assign organization_logo_url = ''
+  if settings.logo != blank
+    assign organization_logo_url = settings.logo | image_url: width: 600 | prepend: 'https:'
+  else
+    assign organization_logo_url = 'dlm-social-share-home-1200x628.jpg' | asset_url | prepend: 'https:'
+  endif
+-%}
+
 {% if product %}
 <script type="application/ld+json">
 {
@@ -41,7 +50,7 @@
   "@type": "Organization",
   "name": "Dress Like Mommy",
   "url": "https://dresslikemommy.com",
-  "logo": "{{ 'dlm-square-logo.png' | asset_url }}",
+  "logo": {{ organization_logo_url | json }},
   "sameAs": [
     "https://www.facebook.com/dresslikemommy",
     "https://www.instagram.com/dresslikemommy",

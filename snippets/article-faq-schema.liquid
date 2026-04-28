@@ -20,7 +20,6 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {%- assign faq_items = '' -%}
     {%- assign h2_splits = content_text | split: '<h2>' -%}
     {%- assign faq_count = 0 -%}
     {%- for segment in h2_splits -%}

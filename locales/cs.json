@@ -157,7 +157,9 @@
       "volume_pricing": {
         "title": "Množstevní ceny",
         "note": "K dispozici množstevní ceny",
-        "price_at_each": "za {{ price }}/ks"
+        "price_at_each": "za {{ price }}/ks",
+        "minimum": "{{ quantity }}+",
+        "price_range": "{{ minimum }} - {{ maximum }}"
       },
       "pickup_availability": {
         "view_store_info": "Zobrazit informace o obchodě",
@@ -304,7 +306,8 @@
   },
   "templates": {
     "404": {
-      "title": "Stránka nenalezena"
+      "title": "Stránka nenalezena",
+      "subtext": "404"
     },
     "search": {
       "no_results": "Nebyly nalezeny žádné výsledky pro „{{ terms }}“. Zkontrolujte pravopis nebo použijte jiné slovo či frázi.",

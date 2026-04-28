@@ -35,7 +35,9 @@
       endif
     endif
   -%}
+  {% comment %}theme-check-disable RemoteAsset{% endcomment %}
   <link rel="canonical" href="{{ resolved_canonical_url | escape }}">
+  {% comment %}theme-check-enable RemoteAsset{% endcomment %}
  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
   {% if template == 'product' %}
@@ -86,6 +88,7 @@
   {%- endif -%}
   {%- if product_lcp_media != blank and product_lcp_media.preview_image != blank -%}
     {%- assign product_lcp_image = product_lcp_media.preview_image -%}
+    {% comment %}theme-check-disable AssetPreload{% endcomment %}
     <link
       rel="preload"
       as="image"
@@ -101,6 +104,7 @@
       "
       imagesizes="(min-width: 990px) 50vw, 100vw"
     >
+    {% comment %}theme-check-enable AssetPreload{% endcomment %}
   {%- endif -%}
   {% endif %}
 
@@ -242,7 +246,9 @@
     endif
   -%}
   {%- if resolved_favicon_url != blank -%}
+    {% comment %}theme-check-disable RemoteAsset{% endcomment %}
     <link rel="icon" type="image/png" href="{{ resolved_favicon_url }}">
+    {% comment %}theme-check-enable RemoteAsset{% endcomment %}
   {%- endif -%}
 
   {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
@@ -406,6 +412,7 @@
     assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
     assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
     assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
+    assign scheme_classes = ''
   %}
 
   <style>
@@ -622,14 +629,14 @@
     -%}
 
     {%- if body_font_preload_url != blank -%}
-      {% comment %}theme-check-disable AssetPreload{% endcomment %}
+      {% comment %}theme-check-disable AssetPreload, RemoteAsset{% endcomment %}
       <link rel="preload" as="font" href="{{ body_font_preload_url }}" type="font/woff2" crossorigin>
-      {% comment %}theme-check-enable AssetPreload{% endcomment %}
+      {% comment %}theme-check-enable AssetPreload, RemoteAsset{% endcomment %}
     {%- endif -%}
     {%- if header_font_preload_url != blank and header_font_preload_url != body_font_preload_url -%}
-      {% comment %}theme-check-disable AssetPreload{% endcomment %}
+      {% comment %}theme-check-disable AssetPreload, RemoteAsset{% endcomment %}
       <link rel="preload" as="font" href="{{ header_font_preload_url }}" type="font/woff2" crossorigin>
-      {% comment %}theme-check-enable AssetPreload{% endcomment %}
+      {% comment %}theme-check-enable AssetPreload, RemoteAsset{% endcomment %}
     {%- endif -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}

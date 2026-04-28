@@ -157,7 +157,9 @@
       "volume_pricing": {
         "title": "Prețuri în funcție de cantitate",
         "note": "Prețuri în funcție de cantitate disponibile",
-        "price_at_each": "la {{ price }}/buc"
+        "price_at_each": "la {{ price }}/buc",
+        "minimum": "{{ quantity }}+",
+        "price_range": "{{ minimum }} - {{ maximum }}"
       },
       "pickup_availability": {
         "view_store_info": "Vezi informațiile magazinului",
@@ -304,7 +306,8 @@
   },
   "templates": {
     "404": {
-      "title": "Pagina nu a fost găsită"
+      "title": "Pagina nu a fost găsită",
+      "subtext": "404"
     },
     "search": {
       "no_results": "Nu au fost găsite rezultate pentru „{{ terms }}”. Verifică ortografia sau folosește un cuvânt ori o expresie diferită.",

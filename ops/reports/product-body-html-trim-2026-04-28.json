@@ -1,0 +1,681 @@
+{
+  "generated_at": "2026-04-28T03:01:29.487444+00:00",
+  "api_version": "2026-01",
+  "execute": true,
+  "selection": {
+    "threshold": 10000,
+    "max_length": 8000,
+    "expected_count": 21,
+    "source_handle_suffix": "family-matching-set",
+    "requested_handles": [
+      "blue-check-family-matching-set",
+      "fruit-green-family-matching-set",
+      "geometric-blue-family-matching-set",
+      "seaside-blue-family-matching-set",
+      "summer-plaid-family-matching-set",
+      "willow-wildflower-family-matching-set"
+    ],
+    "products_count_query": "body_html:>10000",
+    "products_count_probe": {
+      "data": {
+        "productsCount": {
+          "count": 793,
+          "precision": "EXACT"
+        }
+      },
+      "extensions": {
+        "cost": {
+          "requestedQueryCost": 10,
+          "actualQueryCost": 10,
+          "throttleStatus": {
+            "maximumAvailable": 2000.0,
+            "currentlyAvailable": 1972,
+            "restoreRate": 100.0
+          }
+        },
+        "search": [
+          {
+            "path": [
+              "productsCount"
+            ],
+            "query": "body_html:>10000",
+            "parsed": {
+              "field": "body_html",
+              "range_gt": 10000
+            },
+            "warnings": [
+              {
+                "field": "body_html",
+                "message": "Invalid search field for this query.",
+                "code": "invalid_field"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "note": "Shopify currently returns an invalid_field warning for the body_html productsCount search filter, so target selection is verified by direct descriptionHtml length reads."
+  },
+  "summary": {
+    "total_products_read": 793,
+    "target_count": 21,
+    "changed_count": 21,
+    "applied_count": 21,
+    "max_after_length_planned": 7786,
+    "still_over_target_planned": [],
+    "max_after_length_readback": 7558,
+    "over_8000_readback": [],
+    "readback_under_max_count": 21,
+    "exact_html_readback_mismatch_count": 19,
+    "exact_html_readback_mismatch_note": "Shopify may normalize HTML serialization during productUpdate; length/readback-under-target checks are the primary verification."
+  },
+  "products": [
+    {
+      "id": "gid://shopify/Product/7536337125473",
+      "legacy_resource_id": "7536337125473",
+      "handle": "trail-plaid-family-matching-set",
+      "title": "Trail Plaid Family Matching Set — Hooded Sun Shirt & Cargo Shorts",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:27Z",
+      "before_length": 16424,
+      "after_length_planned": 2530,
+      "before_sha256": "e614147f9c43179389be621eca68951321748866e40b0d406200e8392b1f740b",
+      "after_sha256_planned": "f632b22a34af2e29dddc7dc4ef81a9f171ffa87dc1f5589c4bc8e22ec2f5f320",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart — Cargo Shorts",
+        "Size Chart — Hooded Sun Shirt"
+      ],
+      "remaining_size_chart_sections": [],
+      "final_table_count": 0,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:06Z",
+      "after_length_readback": 2512,
+      "after_sha256_readback": "251f482637a933f0dafdfaf9ea9ad9c8aabb2a6a1026c8d87e00449ed5c689f0",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7537003266145",
+      "legacy_resource_id": "7537003266145",
+      "handle": "ocean-dot-family-matching-set",
+      "title": "Ocean Dot Family Matching Set - Dress, Top, Shirt & Shorts",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:33Z",
+      "before_length": 13672,
+      "after_length_planned": 6684,
+      "before_sha256": "1399c081cb7b22e0e7775905598b61278de8262c70d24c884d990c1c6a410786",
+      "after_sha256_planned": "2a256e47dd3ac9e35d616e5a6f983b0ca71cb4eb1aa1eed12ed0072272873d99",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart - Shorts",
+        "Size Chart - Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart - Dress",
+        "Size Chart - Top"
+      ],
+      "final_table_count": 2,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:08Z",
+      "after_length_readback": 6402,
+      "after_sha256_readback": "18197116472a36cea13499e4e38431f135b416b2d0170216045e8d987c18c926",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7537001431137",
+      "legacy_resource_id": "7537001431137",
+      "handle": "ivory-linen-family-matching-set",
+      "title": "Ivory Linen Family Matching Set - Vest, Shirt & Shorts",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:33Z",
+      "before_length": 13261,
+      "after_length_planned": 6267,
+      "before_sha256": "c4f4de7278a246fb2cd5947f6bc4a0dbe4f8c422d6a7768085c1376a1e6e50e1",
+      "after_sha256_planned": "caf98768fdc8b38df9971aa478001551325ab5e6867061dd0360f7fbfc7653c6",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart - Shorts",
+        "Size Chart - Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart - Vest"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:09Z",
+      "after_length_readback": 5991,
+      "after_sha256_readback": "49db8f076368b4c58d63d48ee65640853875ef5753bc92ef138d5e16277f62fc",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7537120870497",
+      "legacy_resource_id": "7537120870497",
+      "handle": "blue-butterfly-family-matching-set",
+      "title": "Blue Butterfly Family Matching Set",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:35Z",
+      "before_length": 13180,
+      "after_length_planned": 5809,
+      "before_sha256": "af4f4a6e4bbb99c3b91cc5b8d2c380df879d9525ef97be03cac2c1b4a73b1d33",
+      "after_sha256_planned": "6a96de3b036051dfa199ec753294cef11fb86d6b79bf6ed0a4fb2cc6b3e70cc8",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart — Shorts",
+        "Size Chart — Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart — Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:10Z",
+      "after_length_readback": 5695,
+      "after_sha256_readback": "f714d1bc6572c7a3a844188f5dcdc68027c873eb2a7dd83449de73732ddd0173",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7537369088097",
+      "legacy_resource_id": "7537369088097",
+      "handle": "summer-plaid-family-matching-set",
+      "title": "Summer Plaid Family Matching Set - Hoodie & Shorts",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T23:17:53Z",
+      "before_length": 12915,
+      "after_length_planned": 5999,
+      "before_sha256": "2161e83870f78ffa6615e2ce72b097469d0daed9078e5f6e7c55d1012a5902d3",
+      "after_sha256_planned": "184edb2f63c68629c517c2ce36532711ebbf25f18058007af8b4e92fb218071f",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart - Shorts",
+        "Size Chart - T-Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart - Hooded Shirt"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:11Z",
+      "after_length_readback": 5837,
+      "after_sha256_readback": "f4ab373bd09cd0e0a3ebdf337f47fa78251ebad17d5b6d582bfa2090addc9758",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7537370628193",
+      "legacy_resource_id": "7537370628193",
+      "handle": "geometric-blue-family-matching-set",
+      "title": "Geometric Blue Family Matching Set - Dress, Shirt & Shorts",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T22:54:32Z",
+      "before_length": 12536,
+      "after_length_planned": 6091,
+      "before_sha256": "98fe52921c5ad1a5ee72005140d33cea93d224a2978e98efdd4a12ad39ab70b8",
+      "after_sha256_planned": "f4d0fe7a71e1a974e384ddd3c4be3d9da52e0c36644a3412d447409f1bcd0850",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart - Shorts",
+        "Size Chart - Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart - Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:12Z",
+      "after_length_readback": 5929,
+      "after_sha256_readback": "f025547b90bb84b4090099e485c36367535a03e64d6d330735d05ae41fb8200e",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7537920999521",
+      "legacy_resource_id": "7537920999521",
+      "handle": "blue-check-family-matching-set",
+      "title": "Blue Check Family Matching Set - Shirt, Skirt & Shorts",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T23:39:23Z",
+      "before_length": 12405,
+      "after_length_planned": 5609,
+      "before_sha256": "3b02f4b0a30bd3667799e13c5209a11485485952e484812191ab0b9bc2a766c6",
+      "after_sha256_planned": "b69bb8e02fc06b83589e9bc17d6d6746fbf5ceec0d4e542d6d7218dc05dc050c",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart - Skirt",
+        "Size Chart - Shorts"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart - Shirt"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:13Z",
+      "after_length_readback": 5609,
+      "after_sha256_readback": "b69bb8e02fc06b83589e9bc17d6d6746fbf5ceec0d4e542d6d7218dc05dc050c",
+      "readback_matches_plan": true,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7538067898465",
+      "legacy_resource_id": "7538067898465",
+      "handle": "fruit-green-family-matching-set",
+      "title": "Fruit Green Family Matching Set - Polo Dresses & Shirts",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:35Z",
+      "before_length": 11609,
+      "after_length_planned": 5546,
+      "before_sha256": "15a0db60d3ee38d3863b2bd00f248542bb4c4e140db435c8091ab32bf44cb2e4",
+      "after_sha256_planned": "75ba25efb1c0d17a443974b11b91df4bfae557f2d01e99298e274d8d259988f9",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart - Nursing Dress",
+        "Size Chart - Baby Romper",
+        "Size Chart - Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart - Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:14Z",
+      "after_length_readback": 5486,
+      "after_sha256_readback": "d3c947975cee68518f5800796b6ef92fc5007daecf7ee6d45f1d03ac37f7b580",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7536990355553",
+      "legacy_resource_id": "7536990355553",
+      "handle": "blue-daisy-family-matching-set",
+      "title": "Blue Daisy Family Matching Set — Dress & Shirt",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:32Z",
+      "before_length": 11210,
+      "after_length_planned": 7062,
+      "before_sha256": "8a03d6eafe10ab26bc22b2cb43fa318835194ab0159ccbfc44ffec73b2d1bfe5",
+      "after_sha256_planned": "20bd3d3412b5efe2a42da99234f0b88453bee629fdc097d0d36c093caffb5608",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart — Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart — Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:15Z",
+      "after_length_readback": 6918,
+      "after_sha256_readback": "f9ba2837ea44ac10f957655a3c2a024f20d288a5f14f27555ea530de29f5b7b6",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7537367023713",
+      "legacy_resource_id": "7537367023713",
+      "handle": "seaside-blue-plaid-family-matching-set",
+      "title": "Seaside Blue Plaid Family Matching Set - Dress, Shirt & Romper",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:35Z",
+      "before_length": 10996,
+      "after_length_planned": 5635,
+      "before_sha256": "cae144ebbc08affb7b03df235fda292515593c8d3c43bdb80a5ba7ceb4745b1e",
+      "after_sha256_planned": "25398560cbd3d9971ce39477fb0f2a4a4e940383d6ba88edca933bd68a52f183",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart - Romper",
+        "Size Chart - Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart - Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:16Z",
+      "after_length_readback": 5533,
+      "after_sha256_readback": "4b47c7f8253fec2b6b6a38ad6b322daddba977f19200ab3a194185ecf1ba4ee1",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7537367056481",
+      "legacy_resource_id": "7537367056481",
+      "handle": "seaside-blue-family-matching-set",
+      "title": "Seaside Blue Family Matching Set — Dress & Shirt",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:36Z",
+      "before_length": 10727,
+      "after_length_planned": 6555,
+      "before_sha256": "2bc90da6250c7d37ceb314d4c5b517cfac6cfa0d5d8bb877afacd9f89139f393",
+      "after_sha256_planned": "fa5dd7c46f8b1f7587857c7fe4b96ebac17b359a3340718d8f17aee59678c8b0",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart — Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart — Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:18Z",
+      "after_length_readback": 6435,
+      "after_sha256_readback": "a5b4e728a06f3f94a2cd821cc43e6db020c6e85ffcc7e4624ae0fff5fbc2a178",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7536999563361",
+      "legacy_resource_id": "7536999563361",
+      "handle": "garden-floral-family-matching-set",
+      "title": "Garden Floral Family Matching Set — Dress & Shirt",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:32Z",
+      "before_length": 10709,
+      "after_length_planned": 6537,
+      "before_sha256": "202511fa142fc08dee7e81d2a21c82786a10b4611c49b34935d69ad5e60f815f",
+      "after_sha256_planned": "2c3a1cea4126082e64403bffa09dafa5ebfc9fc33441d8867239a9750af5e1cb",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart — Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart — Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:19Z",
+      "after_length_readback": 6417,
+      "after_sha256_readback": "6636ec23cd7d6db2e3add567dcc7f8a0b20bd363c676dd94289b3e43037e4273",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7536709501025",
+      "legacy_resource_id": "7536709501025",
+      "handle": "bluebell-meadow-family-matching-set",
+      "title": "Bluebell Meadow Family Matching Set — Dress & Shirt",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:29Z",
+      "before_length": 10670,
+      "after_length_planned": 6498,
+      "before_sha256": "0c6b3350f3e8f572415ca42a984beb59d5bfe93d671101ed9b9f362f1ba471a1",
+      "after_sha256_planned": "268eb4b43ec174abe759c843104f72c38e86474b59c0a13e0dc0f90afc0c4ef0",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart — Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart — Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:20Z",
+      "after_length_readback": 6378,
+      "after_sha256_readback": "c8927f5ca0eb2f06f78f55247ae2b44c310d0fe9e8b9660d9941b56c51d7f0b3",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7536700391521",
+      "legacy_resource_id": "7536700391521",
+      "handle": "citrus-bloom-family-matching-set",
+      "title": "Citrus Bloom Family Matching Set — Dress & Shirt",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:28Z",
+      "before_length": 10485,
+      "after_length_planned": 6313,
+      "before_sha256": "f80745245722a8407fe31732b698d5a4788a0eacdd242b700af519e0ac65c90a",
+      "after_sha256_planned": "0ab4a34d45db9d83e4e2941ed4820ce1cc3858c25702f90d82358ea20409121e",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart — Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart — Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:21Z",
+      "after_length_readback": 6193,
+      "after_sha256_readback": "564f36405a24019662c28efa8dc13b942ae46de7c6745bce778305abbc8446be",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7536341024865",
+      "legacy_resource_id": "7536341024865",
+      "handle": "ivory-stripe-cargo-family-matching-set",
+      "title": "Ivory Stripe Cargo Family Matching Set — Dress, Shirt & Shorts",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:28Z",
+      "before_length": 10461,
+      "after_length_planned": 7786,
+      "before_sha256": "35c5b7f66c60d07443d64ac6bd8332b176e7db02d56c90359f6f26db29f6c805",
+      "after_sha256_planned": "09396974d407b6df54f6686c1e83526ec58ea64e34c5bb9bc3988f598d54fa6d",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart — Shorts"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart — Dress",
+        "Size Chart — Shirt"
+      ],
+      "final_table_count": 2,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:22Z",
+      "after_length_readback": 7558,
+      "after_sha256_readback": "2f9b9a28987716a423b20c36c6a4e4cebcc6ef34c365661e4ade5ad5706578b2",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7537002971233",
+      "legacy_resource_id": "7537002971233",
+      "handle": "terracotta-tile-family-matching-set",
+      "title": "Terracotta Tile Family Matching Set - Dress, Shirt & Top",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:33Z",
+      "before_length": 10346,
+      "after_length_planned": 4476,
+      "before_sha256": "502ddf53e495043a89538ab339b1d8bb1b2ff04a7c7674d9a7cde37fad1ced69",
+      "after_sha256_planned": "531825df0cd52bb277c7281811cbfe3b0411ea2f009b1a3febe319caf56adb89",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart - Top",
+        "Size Chart - Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart - Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:23Z",
+      "after_length_readback": 4476,
+      "after_sha256_readback": "531825df0cd52bb277c7281811cbfe3b0411ea2f009b1a3febe319caf56adb89",
+      "readback_matches_plan": true,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7536992976993",
+      "legacy_resource_id": "7536992976993",
+      "handle": "skyfade-family-matching-set",
+      "title": "Skyfade Family Matching Set - Dress & Shirt",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:32Z",
+      "before_length": 10296,
+      "after_length_planned": 6165,
+      "before_sha256": "6193a199adfa0ff6d85f7c610ded2b215a3ade7d8a4660f42153a4e99e4d1e0c",
+      "after_sha256_planned": "83790dd62a48d7bcfded63bf6f3fcbee8b45fe8c53b4d58ffa02792b4ef8f1b0",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart — Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart — Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:24Z",
+      "after_length_readback": 6039,
+      "after_sha256_readback": "23dbdd508d20d22dfe6015c763d3730280a981ebe658332d5550c80dd4cd7f97",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7536984752225",
+      "legacy_resource_id": "7536984752225",
+      "handle": "pink-hibiscus-family-matching-set",
+      "title": "Pink Hibiscus Family Matching Set - Dress & Shorts",
+      "status": "DRAFT",
+      "before_updated_at": "2026-04-27T20:35:31Z",
+      "before_length": 10263,
+      "after_length_planned": 6494,
+      "before_sha256": "43bff894286a700ffc797f5854141303b393dcea617618cf5582c6a6e2f8e550",
+      "after_sha256_planned": "6a8ac4eb1842679974079c069e69f7d5d821ffe1572ade4fcf961fc264d97f78",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart — Shirt & Shorts Set"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart — Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:25Z",
+      "after_length_readback": 6308,
+      "after_sha256_readback": "150dd34dda2076279d2a0ff6af1399f7e40ad0f4b940a4b0e9e0e0d8ebb2e083",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7537009033313",
+      "legacy_resource_id": "7537009033313",
+      "handle": "emerald-leaf-family-matching-set",
+      "title": "Emerald Leaf Family Matching Set - Dress & Shirt",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:34Z",
+      "before_length": 10165,
+      "after_length_planned": 6184,
+      "before_sha256": "fbc0ce45a5e3041b54dc76577ef72f1c0e330dd93d1d63f6b9862f4b5c1205a3",
+      "after_sha256_planned": "20ae1f9330b47702ae3f25fdaa1b3a398b9d84f43fce851a28b96c947032f636",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart — Shirt & Shorts Set"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart — Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:26Z",
+      "after_length_readback": 6058,
+      "after_sha256_readback": "fdb2f943147047f3b801ada5e2b6b2e48d36b557c2158830edbe2a8fd370bf1b",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7536984359009",
+      "legacy_resource_id": "7536984359009",
+      "handle": "green-palm-safari-family-matching-set",
+      "title": "Green Palm Safari Family Matching Set - Dress & Shirt",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-27T20:35:30Z",
+      "before_length": 10003,
+      "after_length_planned": 6262,
+      "before_sha256": "ede5062e020ec3ca31e0f1204491b0dd5dab4597f9ee20f94e955ed1f1c3019f",
+      "after_sha256_planned": "e8fd889eae12715c9ddc0b06efe66bfea57499cc69702bd17ff31cfc3a9e2155",
+      "changed": true,
+      "requested_handle_below_threshold": false,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart — Shirt & Shorts Set"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart — Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:27Z",
+      "after_length_readback": 6082,
+      "after_sha256_readback": "375c77320eb887919bde226471bb6aef0a63fb4843ca9d84d07028f2cfc36343",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    },
+    {
+      "id": "gid://shopify/Product/7537979359329",
+      "legacy_resource_id": "7537979359329",
+      "handle": "willow-wildflower-family-matching-set",
+      "title": "Willow Wildflower Family Matching Set - Dresses & Shirts",
+      "status": "ACTIVE",
+      "before_updated_at": "2026-04-28T01:02:23Z",
+      "before_length": 9620,
+      "after_length_planned": 5706,
+      "before_sha256": "9b5e08489311b757b26a9df625598e1aa78b3c65c6facc4bc5b67ecab54f97a6",
+      "after_sha256_planned": "f25fa666e3d5f4ed9266a9972f63e23e0165c8151369d93c0c0b68f3c10dba50",
+      "changed": true,
+      "requested_handle_below_threshold": true,
+      "removed_policy_or_tail_blocks": [],
+      "removed_size_chart_sections": [
+        "Size Chart - Shirt"
+      ],
+      "remaining_size_chart_sections": [
+        "Size Chart - Dress"
+      ],
+      "final_table_count": 1,
+      "applied": true,
+      "after_updated_at": "2026-04-28T03:01:28Z",
+      "after_length_readback": 5676,
+      "after_sha256_readback": "c7b9190f7dd2eb26722aba0b98d2f13514b1192e38a48f75a66bcbca28bb61f8",
+      "readback_matches_plan": false,
+      "readback_under_max_length": true
+    }
+  ],
+  "verification": {
+    "current_source_family_matching_over_10000_after_execute": 0,
+    "all_target_readbacks_under_8000": true,
+    "max_target_readback_length": 7558,
+    "json_report_validated": true,
+    "script_py_compile_passed": true,
+    "git_diff_check_passed": true
+  }
+}

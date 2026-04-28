@@ -20,13 +20,19 @@ Publishing workflow:
 
 1. Review a draft in `articles/`.
 2. Replace the `featured_image_prompt` note with a real article image URL if you have one.
-3. Run a dry run:
+3. Before any blog image or fallback mapping update is pushed live, run the duplicate-image audit:
+
+```bash
+python3 ops/scripts/audit_style_journal_images.py
+```
+
+4. Run a dry run:
 
 ```bash
 python3 ops/scripts/publish_blog_articles.py
 ```
 
-4. Publish a specific article after review:
+5. Publish a specific article after review:
 
 ```bash
 SHOPIFY_STORE_DOMAIN=your-store.myshopify.com \
@@ -37,7 +43,7 @@ python3 ops/scripts/publish_blog_articles.py \
   --publish
 ```
 
-5. Update an existing live article with a rewrite draft:
+6. Update an existing live article with a rewrite draft:
 
 ```bash
 SHOPIFY_STORE_DOMAIN=your-store.myshopify.com \
@@ -49,7 +55,7 @@ python3 ops/scripts/publish_blog_articles.py \
   --publish
 ```
 
-6. Audit or publish the priority gap-fill batch:
+7. Audit or publish the priority gap-fill batch:
 
 ```bash
 python3 ops/scripts/publish_style_journal_group.py --group gap_fill
@@ -66,7 +72,7 @@ python3 ops/scripts/publish_style_journal_group.py \
   --publish
 ```
 
-7. Build a localization queue only after English winners are confirmed:
+8. Build a localization queue only after English winners are confirmed:
 
 ```bash
 python3 ops/scripts/build_style_journal_localization_queue.py \

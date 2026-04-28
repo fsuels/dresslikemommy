@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-04-28T05:08:40.980190+00:00",
+  "checked_products": [
+    "trail-plaid-family-matching-set",
+    "blue-check-family-matching-set"
+  ],
+  "screenshots": [
+    "trail-plaid-family-matching-set-desktop-trimmed-content.png",
+    "blue-check-family-matching-set-desktop-trimmed-content.png",
+    "blue-check-family-matching-set-mobile-size-module.png",
+    "blue-check-family-matching-set-desktop-body-description.png",
+    "blue-check-family-matching-set-desktop-body-description-after-cleanup.png"
+  ],
+  "findings": [
+    "Trail Plaid desktop body section rendered cleanly after the first trim; no raw size tables remain in source body.",
+    "Blue Check retained a visible raw body size-chart heading after the first trim, while the body table was hidden by the theme and the PDP size module rendered separately.",
+    "A follow-up Admin API cleanup removed remaining raw size-chart sections from all 21 target descriptions.",
+    "Admin API and /products/blue-check-family-matching-set.js readback returned the cleaned Blue Check body: 1957 chars, no Size Chart - Shirt heading, no raw tables.",
+    "The full public HTML page still served a stale pre-cleanup copy shortly after the write; this appears to be storefront HTML cache lag because product JSON and Admin readback are clean.",
+    "Blue Check mobile size-comparison tables fit within the viewport container but are horizontally dense; this is the existing PDP size module, not raw body_html."
+  ],
+  "post_cleanup_admin_summary": {
+    "target_count": 21,
+    "applied_count": 21,
+    "max_after_length_readback": 2821,
+    "over_8000_readback": []
+  },
+  "residual_risk": "Public full-page HTML cache may need more time before the post-cleanup body is visible on the PDP route."
+}

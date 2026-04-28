@@ -22755,3 +22755,291 @@ Residual risks:
 - Merchant Center Content API was not used; verification is Shopify-side only.
 - The `mm-google-shopping.custom_label_0..4` fields are unstructured Shopify product metafields without formal metafield definitions, but existing feed-facing fields were present and Shopify write/readback succeeded.
 - Feed app indexing, Merchant Center ingestion, Google product-list columns, Shopify Flow, webhooks, or product update timestamps may lag or trigger after these writes.
+
+2026-04-28 — Trimmed long source product body HTML
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-source-body-html-trim
+
+Why:
+- User requested fixing the current source family-matching products whose source `body_html` had grown beyond roughly 10,000 characters by removing repeated size-chart table blocks and any bottom policy boilerplate while keeping the meaningful description under about 8,000 characters.
+
+What changed:
+- Added `ops/scripts/trim_long_product_body_html.py`, a Shopify Admin GraphQL runner that:
+  - records the requested `productsCount(query: "body_html:>10000")` probe,
+  - fetches live product `descriptionHtml` directly because Shopify returns an `invalid_field` warning for the `body_html` product search field,
+  - targets non-archived current `*-family-matching-set` products over 10,000 characters plus the explicitly requested `willow-wildflower-family-matching-set`,
+  - removes trailing policy blocks if present and then removes size-chart sections from the bottom until each target is under 8,000 characters.
+- Ran the script with `--execute`, updating 21 live Shopify product `descriptionHtml` values.
+- Wrote the execution/readback report to `ops/reports/product-body-html-trim-2026-04-28.json`.
+
+Live write summary:
+- 21 target products updated.
+- Before lengths ranged from 9,620 to 16,424 characters.
+- Readback lengths ranged from 2,512 to 7,558 characters.
+- The explicitly named `willow-wildflower-family-matching-set` was included even though the live source body had already fallen below 10,000 characters.
+
+Verification:
+- Admin API readback found all 21 target descriptions under 8,000 characters.
+- Admin API re-query found 0 non-archived current `*-family-matching-set` source products still over 10,000 characters.
+- JSON validation passed for `ops/reports/product-body-html-trim-2026-04-28.json`.
+- `python3 -m py_compile ops/scripts/trim_long_product_body_html.py` passed.
+- `git diff --check` passed.
+
+Residual risks:
+- Product `updatedAt` timestamps changed and may trigger Shopify Flow, webhooks, feed indexing, translation digest changes, or app refreshes.
+- Shopify normalizes HTML serialization during `productUpdate`, so 19 exact byte-for-byte readbacks differed from the local plan while still reading back under the length target.
+- The trim removes repeated/lower-priority size-chart table sections from the body; original size evidence remains in listing artifacts and product/source media, but some product body pages now show fewer inline measurement tables.
+
+2026-04-28 — PDP visual spot-check after body HTML trim
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-source-body-html-visual-check
+
+Why:
+- User asked to let feed/indexing settle and spot-check one or two PDPs visually for description layout after the long-body cleanup.
+
+What changed:
+- Captured headless Chrome PDP screenshots and DOM/layout evidence under `ops/reports/product-body-html-trim-2026-04-28-visual-check/`.
+- Checked:
+  - `trail-plaid-family-matching-set`
+  - `blue-check-family-matching-set`
+- Found that Trail Plaid rendered cleanly after the first trim.
+- Found that Blue Check still displayed a raw `Size Chart - Shirt` heading in the lower body while the raw table was hidden by the theme and the separate PDP size-comparison module rendered above.
+- Applied a follow-up Admin API cleanup to remove remaining raw size-chart heading/table sections from the same 21 target product descriptions.
+- Wrote `ops/reports/product-body-html-trim-2026-04-28-visual-cleanup.json` and `ops/reports/product-body-html-trim-2026-04-28-visual-check/summary.json`.
+
+Live write summary:
+- 21 target products received the visual cleanup pass.
+- Admin readback after visual cleanup:
+  - max target `descriptionHtml` length: 2,821 characters
+  - 0 target products over 8,000 characters
+  - Blue Check source body: 1,957 characters, no `Size Chart - Shirt`, no raw `<table>`
+
+Verification:
+- Headless Chrome desktop screenshots were captured for Trail Plaid and Blue Check.
+- Headless Chrome mobile screenshot was captured for Blue Check's size-comparison module.
+- Shopify Admin API readback confirmed the cleaned Blue Check source body.
+- Storefront `/products/blue-check-family-matching-set.js` returned the cleaned body with no raw size-chart heading/table.
+- JSON validation passed for the visual cleanup/check reports.
+- `git diff --check` passed.
+
+Residual risks:
+- Full public PDP HTML still served a stale pre-cleanup body during the immediate recheck, even with a cache-busting query string. Because Admin API and product JSON readback are clean, this appears to be storefront HTML cache lag rather than a failed write.
+- Blue Check's mobile size-comparison module remains horizontally dense; this is the existing PDP size module, not raw `body_html`.
+
+2026-04-28 — Pinterest Warning 188 pricing dry run
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-pinterest-warning-188-pricing-dry-run
+
+Why:
+- User requested clearing Pinterest Warning 188 by fixing Shopify variant `compareAtPrice` values where `compareAtPrice <= price`, with a dry-run CSV before applying live pricing writes.
+
+What changed:
+- Added `ops/scripts/fix_pinterest_warning_188.py`.
+- The script uses Shopify Admin GraphQL `2026-04`, verifies Online Store and Pinterest publication IDs, fetches variants through the `productVariants` connection with cursor pagination, and writes an approval artifact before any live pricing mutation.
+- Default pricing scope is active products published to both Online Store and Pinterest because that exactly matches the reported audit count; archived/out-of-channel variants can be included with `--include-archived-products`.
+- Generated dry-run artifacts:
+  - `ops/reports/pinterest-warning-188-2026-04-28-price-changes.csv`
+  - `ops/reports/pinterest-warning-188-2026-04-28-price-plan.json`
+  - `ops/reports/pinterest-warning-188-2026-04-28-summary.json`
+  - `ops/reports/pinterest-warning-188-2026-04-28-body-html-changes.csv`
+
+Dry-run summary:
+- Scanned 19,661 variants through `productVariants`.
+- Found 7,622 total invalid `compareAtPrice <= price` variants.
+- Targeted 3,220 invalid variants across 129 active Online Store + Pinterest products.
+- Skipped 4,402 invalid variants across 154 archived/out-of-scope products.
+- Planned pricing actions:
+  - 1,038 clear equal compare-at prices.
+  - 8 clear near-zero compare-at prices.
+  - 437 clear probable wholesale-cost compare-at prices.
+  - 1,737 raise close-lower compare-at prices to `price * 1.35`.
+
+Verification:
+- Existing custom app token from the canonical local config has `read_products` and `write_products`.
+- `python3 -m py_compile ops/scripts/fix_pinterest_warning_188.py` passed.
+- JSON validation passed for the generated summary and price plan.
+- Spot readback confirmed sample pricing row is still unchanged live, so pricing writes have not been applied.
+
+Residual risks / next steps:
+- Await operator approval before running `ops/scripts/fix_pinterest_warning_188.py --apply-prices --approved ...`.
+- After pricing is applied, run live readback, report mutation success/userErrors, then trigger the Pinterest catalog refresh step.
+- Secondary body HTML cleanup is already represented separately in the `2026-04-28-source-body-html-trim` worklog entry and live readback is under the 8,000-character target for the 21 source products.
+
+2026-04-28 — Growth workspace scaffold
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-growth-workspace-scaffold
+
+Why:
+- User provided the desired `dresslikemommy-growth-2026/` growth-audit workspace layout.
+
+What changed:
+- Added tracked master documents under `dresslikemommy-growth-2026/00_MASTER/`:
+  - `MASTER_RULES.md`
+  - `DECISION_LOG.md`
+  - `APPROVED_ACTIONS.md`
+- Added `.gitkeep` markers so the raw export, audit packet, local analysis, implementation plan, screenshot, and rollback directories remain tracked while empty.
+
+Verification:
+- Confirmed the requested folder/file structure exists with `find`.
+- Reviewed the new-file diff for scope.
+
+Residual risks:
+- The master docs are starter operating templates only; no external exports or live growth-channel data have been added yet.
+
+2026-04-28 — Shopify profit readout aggregate
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-shopify-profit-readout-aggregate
+
+Why:
+- User asked the growth worker to read/export first, avoid guessing, and respect paid marketing efficiency constraints.
+
+What changed:
+- Created `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-shopify-profit-readout-2026-03-29_to_2026-04-27.json`.
+- Pulled aggregate Shopify Admin GraphQL order metrics for 2026-03-29 through 2026-04-27 only; no customer names, emails, addresses, phone numbers, payment details, cookies, tokens, or order names were exported.
+
+Verification:
+- Shopify Admin GraphQL `orders` read succeeded on API `2026-04`.
+- Export shows 16 processed orders, 15 non-canceled orders, $1,078.59 total price, $71.91 AOV, and a 15% marketing cap of $161.79 for the period.
+
+Residual risks:
+- No Google Ads, Pinterest Ads, Meta Ads, GA4, Merchant Center performance, or Search Console raw exports were present in the growth workspace, so ROAS/CAC by platform remain blocked.
+- Gross margin is estimated from the operator-provided approximate 50% margin, not SKU-level COGS.
+
+2026-04-28 — LOCAL_SHOPIFY canonical growth audit packet
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-local-shopify-growth-audit-packet
+
+Why:
+- User requested a read/export/analyze-only Shopify profitability, catalog, feed, tracking, localization, and conversion audit for last 30/90/365 complete days, with no Shopify writes and no implementation changes.
+
+What changed:
+- Created the canonical packet and export notes:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28_LOCAL_SHOPIFY_PACKET_v1.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28_LOCAL_SHOPIFY_EXPORT_DESCRIPTION.md`
+- Created local read-only exports/analysis under:
+  - `dresslikemommy-growth-2026/01_EXPORTS_RAW/SHOPIFY/2026-04-28_LOCAL_SHOPIFY_EXPORT_raw.json`
+  - `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_*.csv`
+  - `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_ANALYSIS_v1.json`
+  - `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_public_theme_validation.json`
+  - `dresslikemommy-growth-2026/05_SCREENSHOTS/2026-04-28_LOCAL_SHOPIFY_SCREENSHOTS/README.md`
+
+Read-only results:
+- Shopify scope: 793 total products, 335 active products, 19,661 total variants, 7,324 active variants.
+- Financial windows:
+  - Last 30 complete days: 15 non-canceled orders, $1,078.59 revenue, $71.91 AOV, $161.79 marketing cap, $10.79 max CAC.
+  - Last 90 complete days: 36 non-canceled orders, $2,469.79 revenue, $68.61 AOV, $370.47 marketing cap, $10.29 max CAC.
+  - Last 365 complete days: 81 non-canceled orders, $6,057.22 revenue, $74.78 AOV, $908.58 marketing cap, $11.22 max CAC.
+- Paid eligibility: 0 SCALE_PAID, 0 TEST_PAID, 0 ORGANIC_ONLY, 7,227 FIX_BEFORE_PAID, 97 EXCLUDE_PAID.
+- Active variant cost coverage: 5,928 UNKNOWN_MARGIN and 1,396 variants with unit cost.
+
+Verification:
+- JSON validation passed for generated JSON files.
+- CSV row counts were checked for the major tables.
+- Public static HTTP validation covered home, `/collections/bottoms`, `/collections/all`, one sample PDP, Spanish/French localized sample PDPs, and shipping/refund policies.
+- No Shopify mutations, theme code edits, ad-platform writes, feed writes, or live settings changes were made.
+
+Residual risks:
+- Paid ROAS/CAC by platform remain blocked until Google Ads / Pinterest / Meta / GA4 exports are supplied.
+- Browser screenshots were not captured because Playwright is not installed locally; the required screenshot folder was created with a README.
+- Product translation English-fragment detection is heuristic and should be visually reviewed before localization writes.
+
+2026-04-28 — Matching-set PDP spot-check and Theme Check backlog cleanup
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-matching-builder-spotcheck-theme-check-cleanup
+
+Why:
+- User asked to spot-check two or three affected live PDPs after CDN/cache settling, then separately clean the existing locale/theme-check backlog.
+
+Live PDP spot-check:
+- Checked the live CDN asset `https://www.dresslikemommy.com/cdn/shop/t/100/assets/product-desktop-ux.js?v=63441973312560917791777305587` against live PDP `ProductMatchingSetData` for:
+  - `pink-horizon-family-matching-set`
+  - `geometric-blue-family-matching-set`
+  - `picnic-plaid-family-matching-set`
+- All three passed the role split check.
+- English grouping read back as Mother, Father, Girl/Dress, Boy/Shirt; Geometric Blue also correctly split Boy/Shorts as a separate child-garment group.
+- Spanish forced-locale evaluation read back representative labels:
+  - `Niña Vestido 2 años`
+  - `Niño Camisa 2 años`
+  - `Niña Vestido 1-2 años`
+  - `Niño Camisa 1-2 años`
+
+Theme Check cleanup:
+- Added `.theme-check.yml` so Theme Check scans theme-relevant files and ignores dev/operator artifacts such as `ops/**`, `tmp/**`, generated screenshots, uploads, and the growth workspace.
+- Repaired missing locale keys reported by Theme Check:
+  - Filled small missing-key gaps in `cs`, `hr-HR`, `hu`, `lt-LT`, `nb`, `pt-PT`, `ro`, `ro-RO`, `sk-SK`, and `sl-SI`.
+  - Filled the large missing theme-key gaps in `he` and `no` using the English default fallback where local translations were absent.
+- Cleaned remaining Theme Check errors/warnings in theme code:
+  - Fixed invalid `sections/email-signup-banner.liquid` schema by moving password-template availability to `enabled_on`.
+  - Replaced the missing `dlm-square-logo.png` Organization schema asset reference with the configured theme logo URL and an existing fallback asset.
+  - Scoped third-party CJ POD Theme Check suppressions and deferred its remote script.
+  - Removed/replaced unused assignments, fixed the 404 collections route, initialized `scheme_classes`, replaced a legacy `include`, fixed undefined announcement-bar block attributes, and corrected the product additional-info wrapper imbalance.
+
+Verification:
+- `shopify theme check --path . --output json --fail-level crash > ops/reports/theme-check-before-cleanup-2026-04-28.json` initially found 654 offenses: 624 errors and 30 warnings.
+- After cleanup, `shopify theme check --path . --output text --fail-level warning` passed with `251 files inspected with no offenses found`.
+- Final JSON report: `ops/reports/theme-check-after-full-cleanup-2026-04-28.json` contains no offenses.
+- `git diff --check` passed for the touched Theme Check, theme, snippet, section, layout, and locale files.
+
+Residual risks:
+- The Theme Check cleanup has not been pushed to the live Shopify theme in this session; it is a repo-local cleanup unless the operator asks for deployment.
+- Several locale files were completed with English fallback strings where proper native translations were missing. That is better than missing keys and matches Shopify fallback behavior, but native localization polish can still be improved later.
+- The live PDP spot-check used live HTML/JSON plus the live CDN JavaScript in a Node VM because the Playwright MCP browser was locked by another running browser context.
+
+2026-04-28 - Main sync staging cleanup
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-main-sync-staging-cleanup
+
+Why:
+- User asked to sync all local changes to `main`.
+
+What changed:
+- Staged the full current worktree scope for a direct `main` commit/push.
+- Normalized generated CSV line endings and removed minor Markdown trailing whitespace so `git diff --cached --check` passes before commit.
+- Included the valid pre-existing `ops/reports/theme-check-before-cleanup-2026-04-28.json` report that surfaced during full staging.
+- Included late-surfaced completed local work in the final sync scope: product translation/cache/locale updates, Theme Check cleanup reports, article fallback image mappings, style-journal audit tooling, visual-check artifacts, and style-journal review PNGs.
+
+Verification:
+- Confirmed `origin/main` and local `main` had no divergence before committing.
+- Validated new JSON artifacts parse.
+- Confirmed new Python scripts compile with `python3 -m py_compile`.
+- Confirmed staged whitespace check passes.
+- Scanned current sync scope for live-looking token and email patterns before commit.
+
+Residual risks:
+- The staged scope includes a large Shopify raw export around 60 MB, still below GitHub's hard single-file limit.
+
+2026-04-28 - Style Journal duplicate-image audit
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-style-journal-duplicate-image-audit
+
+Why:
+- User asked for a small guard so future blog/image updates fail before duplicated blog images can be pushed live.
+
+What changed:
+- Added `ops/scripts/audit_style_journal_images.py`.
+- The audit checks the Style Journal manifest, article fallback Liquid mapping, local asset presence, duplicate manifest handles/assets/sources, and byte-identical image files.
+- Corrected three local article fallback mappings that had drifted back to older shared images so the local mapping matches the one-image-per-article manifest.
+- Documented the audit command in `ops/content/style-journal/README.md` before the publishing steps.
+
+Verification:
+- `python3 -m py_compile ops/scripts/audit_style_journal_images.py`
+- `python3 ops/scripts/audit_style_journal_images.py`
+- Temporary duplicate-manifest fixture failed as expected.
+- Filtered `shopify theme check --path . --output json --fail-level crash` returned no issues for `snippets/article-featured-image-fallback.liquid`.
+- `git diff --check -- ops/scripts/audit_style_journal_images.py snippets/article-featured-image-fallback.liquid ops/content/style-journal/README.md ops/AGENT_WORKLOG.md`
+
+Residual risks:
+- This is an offline repo guard; it cannot see a newly created Shopify Admin blog article unless that article is also added to the manifest/Liquid mapping before push.
+
+2026-04-28 — Source body HTML PDP visual-check latest checkpoint
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-source-body-html-visual-check-latest
+
+Why:
+- Follow-up to the long source body HTML cleanup: user asked to let feed/indexing settle and spot-check PDP description layout visually.
+
+What changed:
+- Captured headless Chrome visual-check artifacts for Trail Plaid and Blue Check under `ops/reports/product-body-html-trim-2026-04-28-visual-check/`.
+- Found Blue Check's lower body still had a raw `Size Chart - Shirt` heading while the PDP's separate size module was already handling size display.
+- Ran a follow-up Admin API cleanup against the same 21 target products to remove remaining raw size-chart heading/table sections from source `descriptionHtml`.
+- Wrote `ops/reports/product-body-html-trim-2026-04-28-visual-cleanup.json` and `ops/reports/product-body-html-trim-2026-04-28-visual-check/summary.json`.
+
+Verification:
+- Admin API readback after cleanup: 21 target products updated, max source `descriptionHtml` length 2,821 chars, 0 over 8,000 chars.
+- Blue Check Admin/API source body reads 1,957 chars, with no `Size Chart - Shirt` and no raw `<table>`.
+- Storefront `/products/blue-check-family-matching-set.js` also returned the cleaned body.
+- JSON validation and `git diff --check` passed.
+
+Residual risks:
+- The full public PDP HTML still served a stale pre-cleanup copy shortly after the write, even with a cache-busting query string. Admin and product JSON are clean, so this appears to be Shopify storefront HTML cache lag.
+- Blue Check's mobile size-comparison module is dense but contained inside the viewport; this is the existing PDP size module rather than source `body_html`.

@@ -47,6 +47,7 @@
           {%- endif -%}
 
           {%- assign render_count = render_count | plus: 1 -%}
+          {% comment %}theme-check-disable UnusedAssign{% endcomment %}
           {%- liquid
             assign collection_card_lazy_load = true
             if section.index == 1 and render_count <= 2
@@ -62,6 +63,7 @@
               lazy_load: collection_card_lazy_load,
               use_homepage_collection_image_strategy: request.page_type == 'index'
             %}
+            {% comment %}theme-check-enable UnusedAssign{% endcomment %}
           </li>
         {%- endfor -%}
 

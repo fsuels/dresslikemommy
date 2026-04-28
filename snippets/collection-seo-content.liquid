@@ -1,49 +1,5 @@
 {%- liquid
   assign collection_handle = collection.handle | default: ''
-  assign rich_content_prefix = ''
-  assign rich_content_parts = 0
-
-  case collection_handle
-    when 'new-women-outfits'
-      assign rich_content_prefix = 'sections.collection_seo.rich_parts.new_women_outfits.part_'
-      assign rich_content_parts = 9
-    when 'matching-outfits', 'family-matching', 'family-matching-outfits'
-      assign rich_content_prefix = 'sections.collection_seo.rich_parts.family_matching.part_'
-      assign rich_content_parts = 3
-    when 'dresses'
-      assign rich_content_prefix = 'sections.collection_seo.rich_parts.dresses.part_'
-      assign rich_content_parts = 3
-    when 'maxi-dresses'
-      assign rich_content_prefix = 'sections.collection_seo.rich_parts.maxi_dresses.part_'
-      assign rich_content_parts = 3
-    when 'mommy-and-me'
-      assign rich_content_prefix = 'sections.collection_seo.rich_parts.mommy_and_me.part_'
-      assign rich_content_parts = 3
-    when 'family-swimsuits'
-      assign rich_content_prefix = 'sections.collection_seo.rich_parts.family_swimsuits.part_'
-      assign rich_content_parts = 8
-    when 'family-sets', 'matching-family-vacation-outfits'
-      assign rich_content_prefix = 'sections.collection_seo.rich_parts.family_sets.part_'
-      assign rich_content_parts = 3
-    when 'daddy-me'
-      assign rich_content_prefix = 'sections.collection_seo.rich_parts.daddy_me.part_'
-      assign rich_content_parts = 9
-    when 'daddy-me-t-shirts'
-      assign rich_content_prefix = 'sections.collection_seo.rich_parts.daddy_me_tshirts.part_'
-      assign rich_content_parts = 6
-    when 'daddy-me-shirts'
-      assign rich_content_prefix = 'sections.collection_seo.rich_parts.daddy_me_shirts.part_'
-      assign rich_content_parts = 8
-    when 'couples'
-      assign rich_content_prefix = 'sections.collection_seo.rich_parts.couples.part_'
-      assign rich_content_parts = 7
-    when 'matching-couples-t-shirts'
-      assign rich_content_prefix = 'sections.collection_seo.rich_parts.couples_tshirts.part_'
-      assign rich_content_parts = 7
-    when 'mommy-and-me-easter-dresses', 'easter-matching-outfits', 'spring-matching-outfits'
-      assign rich_content_prefix = 'sections.collection_seo.rich_parts.spring_matching.part_'
-      assign rich_content_parts = 8
-  endcase
 
   assign dresses_url = routes.collections_url | append: '/dresses'
   assign family_swimsuits_url = routes.collections_url | append: '/family-swimsuits'

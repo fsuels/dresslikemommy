@@ -114,6 +114,7 @@
               style="--animation-order: {{ animation_order }};"
             {% endif %}
           >
+            {% comment %}theme-check-disable UnusedAssign{% endcomment %}
             {%- assign placeholder_image_index = animation_order | minus: 1 | modulo: 4 | plus: 1 -%}
             {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
             {%- liquid
@@ -130,6 +131,7 @@
               lazy_load: collection_card_lazy_load,
               use_homepage_collection_image_strategy: request.page_type == 'index'
             %}
+            {% comment %}theme-check-enable UnusedAssign{% endcomment %}
           </li>
         {%- endfor -%}
       </ul>
