@@ -6,6 +6,7 @@
 {% endcomment %}
 
 {%- liquid
+  assign internal_link_locale = request.locale.iso_code | default: 'en' | downcase | split: '-' | first
   assign in_matching_hawaiian_outfits = false
   assign in_matching_family_vacation_outfits = false
   assign in_mother_daughter_matching_dresses = false
@@ -49,13 +50,16 @@
       assign in_pajamas = true
     endif
   endif
+
+  assign should_render_internal_links = false
+  if internal_link_locale == 'en'
+    if in_matching_hawaiian_outfits or in_matching_family_vacation_outfits or in_mother_daughter_matching_dresses or in_pajamas
+      assign should_render_internal_links = true
+    endif
+  endif
 -%}
 
-{%- if in_matching_hawaiian_outfits
-  or in_matching_family_vacation_outfits
-  or in_mother_daughter_matching_dresses
-  or in_pajamas
--%}
+{%- if should_render_internal_links -%}
   <div class="product__description rte quick-add-hidden product-copy" data-product-internal-links>
     {%- if in_pajamas -%}
       {%- if collections['pajamas'] != blank -%}
