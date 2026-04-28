@@ -81,7 +81,7 @@ Created local CSVs only; nothing was uploaded:
 - `missing_sku.csv`: 1604 active variant rows.
 - `missing_barcode_gtin.csv`: 5897 active variant rows.
 - `missing_color_size_gender_age_group.csv`: 388 defect rows.
-- `custom_labels.csv`: 7324 rows with custom_label_0 through custom_label_4.
+- `custom_labels.csv`: 7324 rows with custom_label_0 through custom_label_4; custom_label_4 now reflects the economics gate with 5910 `EXCLUDE_PAID` rows and 1414 `FIX_BEFORE_PAID` rows.
 
 ## Residual Risks
 
@@ -89,7 +89,7 @@ Created local CSVs only; nothing was uploaded:
 - Dry-run diffs are intentionally not applied to the theme or Shopify pages.
 - Search recovery text needs localization and final collection/search-term approval.
 - Delivery estimate hiding is safer than inventing times, but may reduce checkout reassurance until approved ranges are supplied.
-- Feed CSVs are generated from the local 2026-04-28 export and should be regenerated before any future writeback.
+- Feed CSVs are generated from the local 2026-04-28 export, with the paid-spend economics gate applied to eligibility/custom labels, and should be regenerated before any future writeback.
 
 ## Next Best Action
 

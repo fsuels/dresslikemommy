@@ -23,7 +23,10 @@
     "max_marketing_spend_pct": "15%",
     "minimum_roas": "6.67",
     "max_cac_formula": "AOV * 0.15",
-    "unknown_cost_policy": "UNKNOWN_MARGIN and not scalable with paid ads"
+    "unknown_cost_policy": "Unknown-cost variants without a reliable cost basis are EXCLUDE_PAID.",
+    "aov_benchmark": "63.25",
+    "low_aov_policy": "Products below the AOV benchmark are excluded from spend unless they are bundled, repriced, or backed by a reliable cost basis.",
+    "reliable_cost_basis_policy": "Reliable cost basis means a variant unitCost or operator-approved marketing.margin_tier is present in the Shopify export."
   },
   "counts": {
     "products_total": 793,
@@ -122,34 +125,34 @@
     }
   ],
   "eligibility_counts": {
-    "FIX_BEFORE_PAID": 7227,
-    "EXCLUDE_PAID": 97
+    "EXCLUDE_PAID": 5910,
+    "FIX_BEFORE_PAID": 1414
   },
   "custom_label_counts": {
     "custom_label_0_margin_tier": {
-      "UNKNOWN_MARGIN": 5928,
+      "GOOD_MARGIN": 52,
       "HIGH_MARGIN": 1332,
       "MID_MARGIN": 12,
-      "GOOD_MARGIN": 52
+      "UNKNOWN_MARGIN": 5928
     },
     "custom_label_1_sales_velocity": {
-      "NO_SALES": 7187,
       "HISTORICAL_ONLY": 132,
       "LOW_90D": 1,
-      "MEDIUM_30D": 4
+      "MEDIUM_30D": 4,
+      "NO_SALES": 7187
     },
     "custom_label_2_inventory_status": {
       "IN_STOCK": 7227,
       "OUT_OF_STOCK": 97
     },
     "custom_label_3_price_bucket": {
-      "UNDER_25": 5660,
       "25_50": 1661,
-      "50_75": 3
+      "50_75": 3,
+      "UNDER_25": 5660
     },
     "custom_label_4_paid_status": {
-      "FIX_BEFORE_PAID": 7227,
-      "EXCLUDE_PAID": 97
+      "EXCLUDE_PAID": 5910,
+      "FIX_BEFORE_PAID": 1414
     }
   },
   "feed_defect_counts": {
@@ -921,7 +924,8 @@
     "Aggregate contribution uses operator hard rule 35% after max marketing before overhead/payment/refund/support/shipping subsidies; variant known-cost contribution uses revenue - known COGS - 15% marketing - refund line amount.",
     "Product image audit used first 50 product images per product and exact mediaCount when available.",
     "Translation English-fragment detection is heuristic and should be manually reviewed before edits.",
-    "Market/product availability by country may require Shopify Markets catalog rule review beyond GraphQL market regions and shipping zones."
+    "Market/product availability by country may require Shopify Markets catalog rule review beyond GraphQL market regions and shipping zones.",
+    "Paid eligibility/custom-label artifacts apply the 2026-04-28 economics gate: unknown-cost variants without reliable cost basis are EXCLUDE_PAID, and low-AOV variants require bundled, repriced, or reliable-cost-basis evidence."
   ],
   "files": {
     "raw_json": "dresslikemommy-growth-2026/01_EXPORTS_RAW/SHOPIFY/2026-04-28_LOCAL_SHOPIFY_EXPORT_raw.json",
@@ -933,5 +937,19 @@
     "feed_defects_csv": "dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_feed_defects.csv",
     "localization_defects_csv": "dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_localization_defects.csv",
     "exclude_paid_csv": "dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_exclude_from_paid.csv"
+  },
+  "economics_gate_counts": {
+    "aov_benchmark": "63.25",
+    "blocked_variant_rows": 5910,
+    "passed_with_exception_variant_rows": 1414,
+    "reliable_cost_basis_variant_rows": 1414,
+    "reason_counts": {
+      "LOW_AOV_NO_BUNDLE_REPRICE_OR_COST_BASIS": 4,
+      "UNKNOWN_COST_NO_RELIABLE_COST_BASIS": 5910
+    },
+    "exception_counts": {
+      "BUNDLED_AOV_BASIS": 7320,
+      "RELIABLE_COST_BASIS": 1414
+    }
   }
 }

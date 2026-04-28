@@ -7,8 +7,8 @@ Mode: read-only Shopify/API/theme/public-site audit. No Shopify writes. No theme
 ## 1. Executive Summary
 
 - Catalog scope: 793 total products, 335 active products, 19661 total variants, 7324 active variants.
-- Paid eligibility result: SCALE_PAID = 0, TEST_PAID = 0, ORGANIC_ONLY = 0, FIX_BEFORE_PAID = 7227, EXCLUDE_PAID = 97.
-- Cost/margin gate: 5928 active variants are UNKNOWN_MARGIN; 1396 active variants have unit cost. Only 64 active variants with 365-day sales also have known cost.
+- Paid eligibility result after the economics gate: SCALE_PAID = 0, TEST_PAID = 0, ORGANIC_ONLY = 0, FIX_BEFORE_PAID = 1414, EXCLUDE_PAID = 5910.
+- Cost/margin gate: 5928 active variants still lack variant unitCost, 1396 active variants have unitCost, and 1414 active variants have a reliable cost basis from variant unitCost or operator-approved product margin tier. Only 64 active variants with 365-day sales also have known variant unitCost.
 - Financial guardrail: minimum paid ROAS is 6.67; max CAC is AOV × 0.15. Last-30-day AOV is $71.91, so max CAC is $10.79.
 - Public validation: `/collections/bottoms` returned 200 with 3 unique product links, so it is not validated as empty. The sampled Spanish PDP returned 1 live translation-missing hit.
 - Main blocker to paid scaling: exact SKU/variant costs and feed readiness. No active variant qualifies for paid scale/test under the hard rules.
@@ -40,20 +40,20 @@ Summary:
 |SCALE_PAID|0|
 |TEST_PAID|0|
 |ORGANIC_ONLY|0|
-|FIX_BEFORE_PAID|7227|
-|EXCLUDE_PAID|97|
+|FIX_BEFORE_PAID|1414|
+|EXCLUDE_PAID|5910|
 
 Sample rows by 365-day revenue:
 
 |handle|variant_id|sku|revenue_365d|units_365d|unit_cost|margin_status|inventory_quantity|paid_status|paid_status_reasons|
 |---|---|---|---|---|---|---|---|---|---|
 |chic-family-matching-sleeveless-dresses-ruffled-hem-mother-daughter-summer-outfit|41493869101153|4939515852335-Color:Sequin;Size:Child 3T;|46.41|2|5.62|HIGH_MARGIN|806|FIX_BEFORE_PAID|PRODUCT_DATA_DEFECTS:image_dimensions/size|
-|men-kids-matching-tropical-leaf-print-cotton-short-sleeve-shirt-cream-green|43731176063073||45.98|2||UNKNOWN_MARGIN|98|FIX_BEFORE_PAID|UNKNOWN_MARGIN;PRODUCT_DATA_DEFECTS:image_dimensions/size;VARIANT_DEFECTS:gtin_barcode_missing/sku_missing/unit_cost_missing|
+|men-kids-matching-tropical-leaf-print-cotton-short-sleeve-shirt-cream-green|43731176063073||45.98|2||UNKNOWN_MARGIN|98|EXCLUDE_PAID|ECONOMICS_GATE:UNKNOWN_COST_NO_RELIABLE_COST_BASIS;UNKNOWN_MARGIN;PRODUCT_DATA_DEFECTS:image_dimensions/size;VARIANT_DEFECTS:gtin_barcode_missing/sku_missing/unit_cost_missing|
 |matching-mother-and-daughter-beach-dresses-elegant-cream-chiffon-maxi-dress-set|41871777693793|4987553113359-01|34.73|1|10.12|HIGH_MARGIN|2520|FIX_BEFORE_PAID|PRODUCT_DATA_DEFECTS:image_dimensions|
 |chic-family-tides-mother-daughter-matching-two-piece-swimsuit-with-skirt-vibrant-versatile-swimwear-collection|41497976799329|5374260266719-Size:Mother S;Color:Pink;|33.98|2|7.31|GOOD_MARGIN|196|FIX_BEFORE_PAID|PRODUCT_DATA_DEFECTS:color/image_dimensions/size|
 |matching-mother-and-daughter-heart-knit-cardigans-cream-and-black-sweaters-for-mommy-me|41871763964001|5260557579041-01|33.61|1|10.97|HIGH_MARGIN|118|FIX_BEFORE_PAID|PRODUCT_DATA_DEFECTS:image_dimensions;VARIANT_DEFECTS:variant_image_missing|
-|mommy-daughter-matching-tie-dye-dress|40321240891489|14:175#1pc;5:361385#Mother L|32.99|1||UNKNOWN_MARGIN|12362|FIX_BEFORE_PAID|UNKNOWN_MARGIN;PRODUCT_DATA_DEFECTS:image_dimensions;VARIANT_DEFECTS:gtin_barcode_missing/unit_cost_missing|
-|mommy-daughter-matching-tie-dye-dress|40321240924257|14:175#1pc;5:100014065#Mother XL|32.99|1||UNKNOWN_MARGIN|12384|FIX_BEFORE_PAID|UNKNOWN_MARGIN;PRODUCT_DATA_DEFECTS:image_dimensions;VARIANT_DEFECTS:gtin_barcode_missing/unit_cost_missing|
+|mommy-daughter-matching-tie-dye-dress|40321240891489|14:175#1pc;5:361385#Mother L|32.99|1||UNKNOWN_MARGIN|12362|EXCLUDE_PAID|ECONOMICS_GATE:UNKNOWN_COST_NO_RELIABLE_COST_BASIS;UNKNOWN_MARGIN;PRODUCT_DATA_DEFECTS:image_dimensions;VARIANT_DEFECTS:gtin_barcode_missing/unit_cost_missing|
+|mommy-daughter-matching-tie-dye-dress|40321240924257|14:175#1pc;5:100014065#Mother XL|32.99|1||UNKNOWN_MARGIN|12384|EXCLUDE_PAID|ECONOMICS_GATE:UNKNOWN_COST_NO_RELIABLE_COST_BASIS;UNKNOWN_MARGIN;PRODUCT_DATA_DEFECTS:image_dimensions;VARIANT_DEFECTS:gtin_barcode_missing/unit_cost_missing|
 |gradient-ombre-family-matching-outfits-pink-blue-t-shirts-with-white-shorts-set|41878478356577|5457112755516-01|32.44|2|2.81|HIGH_MARGIN|9985|FIX_BEFORE_PAID|PRODUCT_DATA_DEFECTS:color/image_dimensions/size|
 |green-tropical-leaf-daddy-and-me-matching-swim-shorts-for-pool-days|43768831311969|5207291341771-Size:XL;Color:Green leaf beach pants;|31.98|2|5.06|HIGH_MARGIN|252|FIX_BEFORE_PAID|PRODUCT_DATA_DEFECTS:color/image_dimensions/size|
 |matching-family-denim-button-up-shirts-casual-unisex-jean-jackets-for-parents-and-kids|41872740155489|4955682869423-01|30.78|1|9.28|HIGH_MARGIN|973|FIX_BEFORE_PAID|PRODUCT_DATA_DEFECTS:image_count/image_dimensions|
@@ -71,7 +71,7 @@ Recommended labels were generated locally only, not written to Shopify or feed f
 |custom_label_1|sales_velocity|{"HISTORICAL_ONLY": 132, "LOW_90D": 1, "MEDIUM_30D": 4, "NO_SALES": 7187}|
 |custom_label_2|inventory_status|{"IN_STOCK": 7227, "OUT_OF_STOCK": 97}|
 |custom_label_3|price_bucket|{"25_50": 1661, "50_75": 3, "UNDER_25": 5660}|
-|custom_label_4|paid_status|{"EXCLUDE_PAID": 97, "FIX_BEFORE_PAID": 7227}|
+|custom_label_4|paid_status|{"EXCLUDE_PAID": 5910, "FIX_BEFORE_PAID": 1414}|
 
 Full table: `../03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_custom_labels.csv`
 
@@ -154,10 +154,10 @@ Public validation table: `../03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_public_s
 
 ## 8. Pages/Products To Exclude From Paid
 
-- Exclude/Fix-before-paid rows: 7324 active variant rows across 335 active product handles.
+- Exclude/Fix-before-paid rows: 7324 active variant rows across 335 active product handles; 5910 are hard `EXCLUDE_PAID` after the economics gate and 1414 remain `FIX_BEFORE_PAID`.
 - `/collections/bottoms`: not excluded as empty from this audit; status 200 with 3 unique product links.
 - Exclude all non-English paid campaigns until product translation defects are fixed or allowlisted by locale; Russian and Swedish have the most severe missing product translation coverage in this export.
-- Exclude all variants with UNKNOWN_MARGIN, missing unit cost, out-of-stock state, missing critical feed fields, or image/readiness defects until corrected.
+- Exclude all variants with unknown cost/no reliable cost basis, out-of-stock state, missing critical feed fields, or image/readiness defects until corrected. Missing unitCost can only pass the economics gate when product-level margin tier provides an operator-approved reliable cost basis.
 
 Full exclude table: `../03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_exclude_from_paid.csv`
 
@@ -319,8 +319,8 @@ Full exclude table: `../03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_exclude_from_
   "active_products": 335,
   "active_variants": 7324,
   "paid_eligibility_counts": {
-    "FIX_BEFORE_PAID": 7227,
-    "EXCLUDE_PAID": 97
+    "EXCLUDE_PAID": 5910,
+    "FIX_BEFORE_PAID": 1414
   },
   "unknown_cost_active_variants": 5928,
   "known_cost_active_variants": 1396,

@@ -4,11 +4,22 @@ This folder contains Merchant-ready logos prepared for Dress Like Mommy.
 
 ## Files to upload
 
-- Rectangular logo (2:1): `ops/brand/dlm-merchant-rectangular-1200x600.png`
+- Rectangular logo (2:1, stricter manual-review version): `ops/brand/dlm-merchant-rectangular-1600x800-google-safe.png`
 - Square logo (1:1): `ops/brand/dlm-merchant-square-1000x1000.png`
 
 ## Validation snapshot
 
+- `dlm-merchant-rectangular-1600x800-google-safe.png`
+  - Format: PNG
+  - Dimensions: `1600x800`
+  - Ratio: `2.0`
+  - Size: `49,734` bytes (`~0.05 MB`)
+  - Notes: conservative wordmark-only logo; full `Dress Like Mommy` text; no heart-as-letter substitution or small decorative icon; checked at `200x100`.
+- `dlm-merchant-rectangular-1600x800.png`
+  - Format: PNG
+  - Dimensions: `1600x800`
+  - Ratio: `2.0`
+  - Size: `486,039` bytes (`~0.46 MB`)
 - `dlm-merchant-rectangular-1200x600.png`
   - Format: PNG
   - Dimensions: `1200x600`
@@ -28,18 +39,19 @@ Both are under 5 MB and match the required aspect ratios.
 2. Go to `Business info` (or `Tools and settings` -> `Business info` depending on UI version).
 3. Open `Branding` / `Logo`.
 4. Upload:
-   - Rectangular slot: `dlm-merchant-rectangular-1200x600.png`
+   - Rectangular slot: `dlm-merchant-rectangular-1600x800-google-safe.png`
    - Square slot: `dlm-merchant-square-1000x1000.png`
 5. Save changes.
 6. Return to `Products` -> `Diagnostics` and recheck after sync/review.
 
 ## If issue persists after upload
 
-Update Shopify brand assets too (Google can read from connected brand data):
+Update Shopify/storefront brand assets too (Google can read from connected brand data and structured data):
 
 1. Shopify Admin -> `Settings` -> `Brand`.
-2. Replace both logo variants with the same two files above.
+2. Replace the rectangular logo with `dlm-merchant-rectangular-1600x800-google-safe.png`.
 3. Save and let the Google & YouTube app re-sync.
+4. Keep the theme Organization JSON-LD pointed at `assets/dlm-merchant-rectangular-1600x800-google-safe.png`.
 
 ## Search Console association path (if needed)
 
@@ -48,4 +60,3 @@ If Merchant Center asks to associate Search Console:
 1. Open Google Search Console for your verified property.
 2. Go to `Settings` -> `Associations`.
 3. Add association for Merchant Center account.
-

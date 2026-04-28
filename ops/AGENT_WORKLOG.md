@@ -22401,6 +22401,56 @@ Residual risks:
 Next best action:
 - Continue the same batch pattern for the next recent products from the earlier audit, and periodically run a visual PDP check once a browser automation path is available.
 
+2026-04-28 — Second four-product PDP translation backfill and browser pass
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-second-four-product-pdp-translation-backfill
+
+Why:
+- User asked to continue the same smaller-batch product translation repair pattern for the next recent handles from the audit, then run a browser PDP pass once visual automation was available.
+
+What changed:
+- Ran the next four-handle Shopify product translation bulk repair across all currently published non-primary locales:
+  - `cable-horse-family-matching-tops`
+  - `blue-apricot-heart-family-matching-tops`
+  - `fresh-blue-plaid-family-matching-set`
+  - `trail-plaid-family-matching-set`
+- Bulk operation completed:
+  - Operation ID: `gid://shopify/BulkOperation/5491484196961`
+  - Resource count: 94
+  - Translation count: 1933
+  - Per-line bulk user errors: 0
+- Re-ran deterministic product-body label cleanup over the same four handles.
+- Fixed `ops/scripts/poll_shopify_product_translations.py` so an existing identical translation is still re-registered when Shopify marks it outdated. This was needed for Trail Plaid Spanish body HTML, which had clean text but an outdated digest.
+- Fixed a rendered PDP UI leak in `assets/product-desktop-ux.js`:
+  - Japanese size-card fit tips now have Japanese copy.
+  - Non-English locales without explicit fit-tip copy no longer fall back to English `Fit tip: compare with your usual...`.
+- Pushed the scoped asset update live to theme `133290917985`.
+
+Verification:
+- `python3 -m py_compile ops/scripts/poll_shopify_product_translations.py` passed.
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check -- assets/product-desktop-ux.js ops/scripts/poll_shopify_product_translations.py` passed.
+- `shopify theme check --path . --output text --fail-level warning` passed with 251 files inspected and no offenses found.
+- Admin GraphQL readback spot-checked Spanish (`es`) and Japanese (`ja`) for all four handles:
+  - Product title translations present/current.
+  - Product `body_html` translations present/current.
+  - Sampled option names and option values present/current.
+  - No target English body labels found from `Fabric`, `Family story`, `Print`, `Design details`, `Care`, `Size range`, `Key Features`, or `Size Chart`.
+- Browser MCP visual/rendered text pass covered the product-info area for Spanish and Japanese PDPs:
+  - Cable Horse: `es`, `ja`
+  - Blue Apricot Heart: `es`, `ja`
+  - Fresh Blue Plaid: `es`, `ja`
+  - Trail Plaid: `es`, `ja`
+  - Product-info scans found no target English body/control leaks.
+  - Japanese Fresh Blue and Trail Plaid size-card fit tips rendered as localized `フィットの目安...` text after deploy.
+
+Residual risks:
+- Browser pass focused on the product-info/PDP purchase and description area, not unrelated footer/blog/newsletter copy.
+- Only Spanish and Japanese were visually checked in browser; translations were written for all published non-primary locales.
+- Future PDP helper strings should be added to a deterministic/copy-map path before relying on machine translation.
+
+Next best action:
+- Continue with the remaining recent audited handles in the same 4-product batch pattern, then spot-check one Latin and one non-Latin locale in both Admin readback and rendered browser text.
+
 2026-04-27 — Red Stripe family tee vendor size repair
 
 Why:
@@ -23255,3 +23305,210 @@ Verification:
 
 Residual risks:
 - The underlying global Online Store meta description still needs an authenticated Shopify Admin UI update from Online Store preferences, or a supported Shopify API endpoint if Shopify exposes one later.
+
+2026-04-28 - Paid eligibility economics gate applied locally
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-paid-eligibility-economics-gate
+
+Why:
+- User asked to use the paid-spend economics gate in paid eligibility/custom labels: exclude unknown-cost and low-AOV products from spend unless bundled, repriced, or backed by reliable cost basis.
+
+What changed:
+- Added `ops/scripts/apply_paid_economics_gate.py` and regression test `ops/tests/test_paid_economics_gate.py`.
+- Regenerated local derived artifacts only; no Shopify, feed, theme, ads, or Merchant Center write was performed.
+- Updated `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_product_eligibility.csv` with gate evidence columns: AOV benchmark, product set type, marketing margin tier, reliable cost basis, gate status, gate reasons, and gate exceptions.
+- Updated `2026-04-28_LOCAL_SHOPIFY_custom_labels.csv`, `2026-04-28_LOCAL_SHOPIFY_exclude_from_paid.csv`, `2026-04-28_LOCAL_SHOPIFY_ANALYSIS_v1.json`, and the audit packet `custom_labels.csv` artifact.
+- Updated packet notes/manifests so the human-facing counts match the refreshed CSVs.
+
+Results:
+- `custom_label_4_paid_status` and `paid_status` now count 5,910 `EXCLUDE_PAID` rows and 1,414 `FIX_BEFORE_PAID` rows.
+- Gate reasons: 5,910 `UNKNOWN_COST_NO_RELIABLE_COST_BASIS`; 4 of those also have `LOW_AOV_NO_BUNDLE_REPRICE_OR_COST_BASIS`.
+- The 1,414 remaining `FIX_BEFORE_PAID` rows have a reliable cost basis from variant unitCost or operator-approved product-level margin tier, but still have feed/data blockers before spend.
+
+Verification:
+- `python3 ops/tests/test_paid_economics_gate.py` passed.
+- `python3 -m py_compile ops/scripts/apply_paid_economics_gate.py ops/tests/test_paid_economics_gate.py` passed.
+- `python3 ops/scripts/apply_paid_economics_gate.py --dry-run` is idempotent after regeneration: before and after both 5,910 `EXCLUDE_PAID` / 1,414 `FIX_BEFORE_PAID`.
+- JSON parse and CSV row-count checks passed for the refreshed analysis/artifact files.
+- `git diff --check` passed for the touched gate script, test, packet docs, and refreshed CSV/JSON artifacts.
+
+Residual risks:
+- The bundle exception uses existing `marketing.product_set_type` evidence from the local Shopify export; it is not proof of a native Shopify bundle.
+- No live feed labels were written. Future writeback still needs operator approval and should regenerate from a fresh export.
+
+2026-04-28 - Fresh Shopify paid-label export and destination approval
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-fresh-paid-label-export-destination
+
+Why:
+- User asked to regenerate from a fresh Shopify export before any real feed/custom-label writeback, then approve the upload destination.
+
+What changed:
+- Added `ops/scripts/refresh_paid_label_export.py` for a read-only Shopify Admin export of active variants, unit costs, inventory, marketing metafields, and current `mm-google-shopping` custom-label metafields.
+- Ran a fresh read against `dresslikemommy-com.myshopify.com` using Admin API `2026-04`; no Shopify, Merchant Center, feed, ad, or theme write was performed.
+- Wrote fresh local artifacts:
+  - `dresslikemommy-growth-2026/01_EXPORTS_RAW/SHOPIFY/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_raw.json`
+  - `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_summary.json`
+  - `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_product_eligibility.csv`
+  - `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_custom_labels.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_ARTIFACTS/merchant_center_supplemental_paid_status_only.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_ARTIFACTS/merchant_center_supplemental_full_custom_labels.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-132500_PAID_LABEL_FRESH_SHOPIFY_ARTIFACTS/upload_destination_approval.md`
+- Recorded the approved destination in `dresslikemommy-growth-2026/00_MASTER/APPROVED_ACTIONS.md`.
+
+Results:
+- Fresh active catalog read: 335 active products, 7,324 active variant rows.
+- Paid-status counts from fresh export: 5,910 `EXCLUDE_PAID`, 1,414 `FIX_BEFORE_PAID`.
+- Gate reason counts: 5,910 `UNKNOWN_COST_NO_RELIABLE_COST_BASIS`, 97 `OUT_OF_STOCK`, 4 `LOW_AOV_NO_BUNDLE_REPRICE_OR_COST_BASIS`.
+- Approved future upload destination: `merchant_center_supplemental_feed_paid_status_only`, keyed by `shopify_US_<product_id>_<variant_id>`.
+- Rejected `shopify_product_metafields_mm-google-shopping` for this gate because those metafields are product-level while the paid gate is variant-level, and live `custom_label_4` currently stores price tier.
+
+Verification:
+- `python3 -m py_compile ops/scripts/refresh_paid_label_export.py ops/scripts/apply_paid_economics_gate.py ops/tests/test_paid_economics_gate.py` passed.
+- `python3 ops/tests/test_paid_economics_gate.py` passed.
+- JSON parse checks passed for the fresh raw export and summary.
+- CSV row-count checks passed for the four fresh derived/preview CSVs, each with 7,324 rows.
+- `git diff --check` passed for the fresh script, approved-action note, destination approval note, summary, and fresh CSV artifacts.
+
+Residual risks:
+- No Merchant Center upload has been executed. The approved destination is local approval only; future upload still needs an explicit execution step.
+- The Merchant Center item ID format assumes the existing Shopify Google feed convention `shopify_US_<product_id>_<variant_id>`, matching prior supplemental feed artifacts in this repo.
+
+2026-04-28 - Style Journal lower-page premium image pass
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-style-journal-lower-page-premium-images
+
+Why:
+- User asked for net-new unique 9:16 lifestyle images for remaining lower-page Style Journal articles that still looked vendor/product-style, with no repeated blog images.
+
+What changed:
+- Generated and selected 11 net-new vertical lifestyle images, converted them to web-friendly JPG theme assets, and mapped them in `snippets/article-featured-image-fallback.liquid`.
+- Replaced the lower-page vendor-style fall, holiday, winter, late-summer, patriotic, Daddy & Me, and Mother's Day brunch fallback images with unique premium lifestyle images.
+- New assets:
+  - `assets/style-journal-premium-043-fall-family-photo-session.jpg`
+  - `assets/style-journal-premium-045-november-family-photo-outfits.jpg`
+  - `assets/style-journal-premium-047-mommy-me-fall-fashion.jpg`
+  - `assets/style-journal-premium-048-transitional-summer-fall-family.jpg`
+  - `assets/style-journal-premium-050-black-friday-family-matching-outfits.jpg`
+  - `assets/style-journal-premium-052-fall-colors-family-matching-looks.jpg`
+  - `assets/style-journal-premium-055-winter-family-photo-outfits.jpg`
+  - `assets/style-journal-premium-059-late-summer-family-matching-ideas.jpg`
+  - `assets/style-journal-premium-061-patriotic-family-matching-looks.jpg`
+  - `assets/style-journal-premium-062-fathers-day-daddy-me.jpg`
+  - `assets/style-journal-premium-063-mothers-day-brunch-family.jpg`
+
+Verification:
+- Local snippet audit: 67 explicit article mappings, 67 unique mapped assets, 0 missing assets, 0 duplicate mapped assets.
+- `git diff --check -- snippets/article-featured-image-fallback.liquid assets/style-journal-premium-*.jpg` passed.
+- `shopify theme check --path . --output json --fail-level crash` passed with no crash-level offenses (`[]`).
+- Scoped live pushes to `dresslikemommy/main` (#133290917985) succeeded for the snippet and new image assets.
+- Live HTML duplicate audit parsed 66 article-card images and found 66 unique primary image assets with 0 duplicate primary image assets.
+- Cache-busted live browser screenshots saved for visual review:
+  - `dlm-style-journal-live-final-page-07-net-new.jpg`
+  - `dlm-style-journal-live-final-page-08-net-new.jpg`
+  - `dlm-style-journal-live-final-page-09-net-new-063.jpg`
+
+Residual risks:
+- Shopify edge cache briefly alternated between old and new HTML for the newest page 9 Mother's Day brunch mapping immediately after deploy. Cache-busted browser render showed the new image, and the theme source is correct; normal edge propagation may need more time before every uncached probe sees the new card.
+
+2026-04-28 - Merchant Center rectangular logo export
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-merchant-center-rectangular-logo
+
+Why:
+- User asked to fix the Google Merchant rectangular logo by preparing an exact 2:1 upload-ready asset for Business info -> Branding.
+
+What changed:
+- Re-exported the existing Merchant rectangular logo as `ops/brand/dlm-merchant-rectangular-1600x800.png`.
+- Updated `ops/brand/GOOGLE_MERCHANT_LOGO_UPLOAD.md` so the new 1600x800 file is the primary rectangular upload target.
+- Opened Merchant Center account `124884876` Business information URL in Chrome for manual continuation.
+
+Verification:
+- `file ops/brand/dlm-merchant-rectangular-1600x800.png` reports PNG image data, `1600 x 800`, RGB, non-interlaced.
+- `sips -g pixelWidth -g pixelHeight -g format ops/brand/dlm-merchant-rectangular-1600x800.png` reports `1600`, `800`, `png`.
+- `ls -lh ops/brand/dlm-merchant-rectangular-1600x800.png` reports about `475K`, under the 5 MB Merchant limit.
+- Visual inspection confirmed the Dress Like Mommy logo remains legible and preserves the existing brand mark.
+
+Residual risks:
+- Google Merchant upload was not completed because Computer Use returned macOS Apple event permission error `-1743`, and the Playwright/Chrome DevTools MCP browser sessions were unavailable due existing locked automation browser profiles.
+- Merchant API docs show businessInfo update supports address/customer service/Korean registration fields, not logo assets, so the logo upload still needs authenticated Merchant Center UI access.
+
+2026-04-28 - Merchant rectangular logo manual-review follow-up
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-merchant-logo-google-safe-storefront-source
+
+Why:
+- User reported Google Merchant Center still shows `Invalid rectangular logo` from a manual check, likely because the earlier file was technically valid but too padded/decorative/fuzzy for small-scale manual review.
+- Another UI pass suggested this Merchant Center Next account may not expose a direct logo upload field, so the durable fix should happen at the Shopify/storefront source Google crawls.
+
+What changed locally:
+- Created a stricter manual-review asset: `ops/brand/dlm-merchant-rectangular-1600x800-google-safe.png`.
+  - Exact `1600x800`, PNG, 2:1, under 5 MB.
+  - Conservative wordmark-only layout with full `Dress Like Mommy` text, stronger contrast, no heart-as-letter substitution, and no small decorative icon.
+  - Saved a small QA preview at `ops/brand/dlm-merchant-rectangular-200x100-google-safe-preview.png`.
+- Copied the same asset into the theme as `assets/dlm-merchant-rectangular-1600x800-google-safe.png`.
+- Updated Organization/publisher JSON-LD logo references to the dedicated 2:1 asset with explicit `width: 1600` and `height: 800`:
+  - `snippets/jsonld-seo.liquid`
+  - `snippets/product-schema-extra.liquid`
+  - `snippets/article-enhanced-schema.liquid`
+- Updated `ops/brand/GOOGLE_MERCHANT_LOGO_UPLOAD.md` to make the google-safe file the primary rectangular logo.
+
+Verification:
+- `sips -g pixelWidth -g pixelHeight -g format assets/dlm-merchant-rectangular-1600x800-google-safe.png` reports `1600`, `800`, `png`.
+- `stat -f '%z bytes' assets/dlm-merchant-rectangular-1600x800-google-safe.png` reports `49734 bytes`.
+- Non-white content bounding box fills about `87.7%` of width and `69.1%` of height.
+- Visual check of the full-size PNG and 200x100 preview showed the text remains readable at thumbnail size.
+- `git diff --check -- assets/dlm-merchant-rectangular-1600x800-google-safe.png snippets/jsonld-seo.liquid snippets/product-schema-extra.liquid snippets/article-enhanced-schema.liquid ops/brand/GOOGLE_MERCHANT_LOGO_UPLOAD.md ops/AGENT_WORKLOG.md` passed.
+- `shopify theme check --path . --output text --fail-level warning` passed with 251 files inspected and no offenses found.
+
+Residual risks:
+- No live Shopify/theme push has been performed for this follow-up yet. Pushing is a public storefront/branding change and should be confirmed at action time.
+- If Google is reading Shopify Admin -> Settings -> Brand rather than theme JSON-LD/header markup, the Shopify Brand rectangular logo should also be updated to the same google-safe file.
+- After the storefront source is live, Merchant Center still needs re-review/re-fetch from the Invalid rectangular logo issue card.
+
+2026-04-28 - Merchant logo storefront source pushed live
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-merchant-logo-storefront-source-live
+
+Why:
+- User confirmed the public storefront/logo structured-data push with "yes".
+
+What changed live:
+- Pushed only the scoped Merchant logo source files to live theme `dresslikemommy/main` (`#133290917985`):
+  - `assets/dlm-merchant-rectangular-1600x800-google-safe.png`
+  - `snippets/jsonld-seo.liquid`
+  - `snippets/product-schema-extra.liquid`
+  - `snippets/article-enhanced-schema.liquid`
+
+Verification:
+- `shopify theme push --store dresslikemommy-com.myshopify.com --theme 133290917985 --path . --nodelete --allow-live --strict --only ...` succeeded.
+- Theme Check ran as part of `--strict` and passed with 251 files inspected and no offenses found.
+- Public homepage readback returned `200 https://www.dresslikemommy.com/`.
+- Public homepage Organization JSON-LD now exposes `logo.url` as `https://www.dresslikemommy.com/cdn/shop/t/100/assets/dlm-merchant-rectangular-1600x800-google-safe.png?...` with `"width": 1600` and `"height": 800`.
+- Downloading the public CDN logo returned `200 image/png`; `sips` verified the downloaded file is `1600x800` PNG.
+- Pulled the same four live theme files into `/tmp/dlm-logo-verify-theme`; the pulled asset matches the local asset byte-for-byte and all three snippets reference the google-safe asset with explicit `1600x800`.
+
+Residual risks:
+- Shopify Admin -> Settings -> Brand was not changed. If Merchant Center ignores storefront JSON-LD and reads Shopify brand data through the Google & YouTube app, update that rectangular brand logo to the same google-safe file.
+- Merchant Center still needs a re-review/re-fetch from the Invalid rectangular logo issue card after Google recrawls the live storefront source.
+
+2026-04-28 - Current main Style Journal restore and deploy prep
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-current-main-style-journal-restore-deploy-prep
+
+Why:
+- User asked to restore the four Style Journal image mappings from commit `960be5a` onto current `main`, wait for the translation poller, intentionally handle generated outputs, rerun checks, and deploy corrected current `main` rather than the older commit.
+
+What changed locally:
+- Restored the four current-main fallback mappings that later Shopify sync commits had reverted:
+  - `family-matching-pajamas-our-top-picks-for-cozy-nights`
+  - `back-to-school-daddy-and-me-photo-outfits`
+  - `fall-festival-matching-outfits-for-the-whole-family`
+  - `best-matching-outfits-for-thanksgiving-dinner`
+- Updated `ops/style-journal-image-manifest.tsv` so the canonical Style Journal audit matches the intentional premium image assets already mapped in the local theme.
+- Left translation poller outputs unstaged and out of the deploy set: live translation cache plus generated JSONL/log files are local/Admin-derived evidence, not theme assets.
+
+Verification:
+- Translation poller PID `20486` finished before deploy prep continued; its run ended with `bulk_complete` for 4 products and 1,632 translations.
+- `python3 ops/scripts/audit_style_journal_images.py` passed with 67 mappings, 67 local files, and 67 unique image hashes.
+- `shopify theme check --path . --output text --fail-level warning` passed with 251 files inspected and no offenses found.
+- `python3 ops/tests/test_paid_economics_gate.py` passed.
+- `python3 -m py_compile ops/scripts/apply_paid_economics_gate.py ops/scripts/poll_shopify_product_translations.py ops/tests/test_paid_economics_gate.py` passed.
+- `git diff --cached --check` passed.
+
+Residual risks:
+- Translation cache/log outputs remain local and intentionally unstaged. Do not commit the JSONL logs without reviewing for bulk-operation signed URLs or other Admin-derived details.
+- Fresh paid-label export scratch files and Style Journal browser screenshots remain untracked local artifacts and were not included in the theme deploy candidate.

@@ -1638,7 +1638,7 @@ def build_translation_payload(
                 row["locale"],
                 product_context=product_context,
             )
-        if row["existing_value"] and clean(translated_value) == row["existing_value"]:
+        if row["existing_value"] and clean(translated_value) == row["existing_value"] and not row.get("outdated"):
             skipped[f"already_matches_generated:{row['locale']}"] += 1
             continue
         payload_by_resource[row["resource_id"]].append(
