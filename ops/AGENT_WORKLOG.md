@@ -24528,3 +24528,209 @@ Rollback:
 Residual:
 - `1,391` uploaded IDs did not match current Merchant Center offers, so only the `5,933` matched rows should be treated as applied by this source update.
 - A sample product-detail UI readback did not expose `custom_label_4` in visible text, so post-upload proof is the source processing report rather than item-detail label display.
+
+2026-04-29 - Pinterest catalog warning fixes executed
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-pinterest-catalog-warning-fixes-executed
+
+Why:
+- User explicitly requested: "fix all these issues!" after a Pinterest diagnostics summary covering Warning 188, Warning 1039, Warning 126, out-of-stock distribution, product groups, and missing paid-spend data.
+
+What changed live:
+- Shopify Admin: cleared invalid `compareAtPrice` values where `compareAtPrice <= price` for active products published to both Online Store and Pinterest.
+  - Applied rows: `3,220` variants across `129` products.
+  - Mutation failures: `0`.
+  - Selling prices were not changed.
+- Shopify Admin: trimmed active Online Store + Pinterest product descriptions and localized product `body_html` translations over Pinterest's 10,000-character warning threshold.
+  - Applied rows: `413` total across `28` products.
+  - Breakdown: `2` source `descriptionHtml` rows and `411` localized translation rows.
+  - Errors: `0`.
+- Shopify Admin: fixed shallow product category for `backless-striped-jumpsuit`.
+  - Before: Shopify category blank; `mc-facebook.google_product_category = 1604`.
+  - After: Shopify category `Apparel & Accessories > Clothing > One-Pieces`; `mc-facebook.google_product_category = Apparel & Accessories > Clothing > One-Pieces > Jumpsuits & Rompers`.
+
+What was reconciled but not changed:
+- Pinterest out-of-stock issue:
+  - Current active Pinterest scope: `7,324` variants.
+  - Zero-or-less inventory rows: `97`.
+  - Shopify-sellable zero/negative rows with `inventoryPolicy=CONTINUE`: `65`.
+  - True unavailable rows with `inventoryPolicy=DENY` and `availableForSale=false`: `32`.
+  - Fully unavailable products: `0`.
+  - Mixed products with unavailable variants: `5`.
+  - No inventory or publication writes were made because forcing stock would risk selling unavailable sizes and product-level Pinterest unpublish would remove sellable variants.
+- Product groups / paid spend:
+  - Pinterest reporting evidence still shows `0` campaigns, `0` ads, and `$0.00` spend across 30/90/365-day captured windows, so there was no campaign/product-group spend to optimize.
+
+Artifacts:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29_PINTEREST_CATALOG_FIX_RESULTS.md`
+- `ops/reports/pinterest-catalog-fix-2026-04-29-clear-invalid-live-summary.json`
+- `ops/reports/pinterest-catalog-fix-2026-04-29-post-price-verification-summary.json`
+- `ops/reports/pinterest-description-html-fix-2026-04-29-live-summary.json`
+- `ops/reports/pinterest-description-html-fix-2026-04-29-post-verification-summary.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-category-fix/summary.json`
+- `ops/reports/pinterest-out-of-stock-reconciliation-2026-04-29-summary.json`
+
+Verification:
+- Post-price Shopify rescan found `0` remaining in-scope invalid compare-at rows.
+- Post-description Shopify rescan found `0` remaining in-scope rows over `10,000` chars.
+- Category Shopify readback confirmed `backless-striped-jumpsuit` category and `mc-facebook.google_product_category` values.
+- `python3 ops/tests/test_fix_pinterest_warning_188.py` passed.
+- `python3 ops/tests/test_fix_pinterest_description_html.py` passed.
+- `python3 -m py_compile ops/scripts/fix_pinterest_warning_188.py ops/scripts/fix_pinterest_description_html.py ops/tests/test_fix_pinterest_warning_188.py ops/tests/test_fix_pinterest_description_html.py` passed.
+
+Residual:
+- Pinterest diagnostics will not show the new catalog status until Pinterest re-ingests the Shopify feed.
+- The description trim run did not capture full old HTML values for rollback; use Shopify product history/backups if exact copy restoration is required.
+- True out-of-stock variants should be restocked or intentionally left excluded; they were not marked in stock without evidence.
+
+2026-04-28 - Merchant Center supplemental source stale-offer cleanup and age_group upload
+AGENT_CONTINUITY_ANCHOR: 2026-04-28-merchant-age-group-stale-offer-cleanup
+
+Why:
+- User reported Merchant Center `supplemental_feed_pilot.txt` source issue: `Offer does not exist`, affecting `1,391` products, and also reported missing Google `age_group` warnings.
+
+What changed live:
+- Replaced Merchant Center account `124884876` source `10626787326` / `supplemental_feed_pilot.txt`.
+- Uploaded a matched-only tab-delimited supplemental file with columns `id`, `custom_label_4`, and `age_group`.
+- Excluded the `1,391` stale offer IDs from the latest Merchant Center processing report.
+- Preserved the current paid-status `custom_label_4` values for matched offers and added valid Google age group values.
+- No Shopify write, Google Ads campaign creation, budget change, recommendation, or campaign enablement was performed.
+
+Files:
+- Upload packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-age-group-fix/`
+- Operator note: `README.md`.
+- Uploaded file: `upload_matched_age_group_with_paid_status.txt`.
+- CSV mirror: `upload_matched_age_group_with_paid_status.csv`.
+- Excluded stale-offer IDs: `excluded_offer_does_not_exist_ids.csv`.
+- Rollback file: `rollback_paid_status_only_custom_label_4.csv`.
+- Post-upload UI proof: `post_upload_source_detail.txt`, `post_upload_source_detail.json`, `post_upload_source_detail.png`.
+- Execution summary: `upload_execution_summary.json`.
+- Builder/test: `ops/scripts/build_merchant_center_age_group_fix.py`, `ops/tests/test_merchant_center_age_group_fix.py`.
+
+Results:
+- Intended source upload rows: `5,933`.
+- Excluded stale offer rows: `1,391`.
+- Merchant Center source last updated: `April 28, 2026 10:05 PM`.
+- Merchant Center reported total updated products: `5,933`.
+- Merchant Center reported matched products: `5,933`.
+- Attribute names: all recognized.
+- Supplemental product data file: no issues found.
+- Uploaded age_group counts for matched rows: `adult=2,607`, `toddler=1,524`, `kids=1,724`, `infant=76`, `newborn=2`.
+- Uploaded paid-status labels for matched rows: `FIX_BEFORE_PAID=5,882`, `EXCLUDE_PAID=51`.
+
+Verification:
+- `python3 -m py_compile ops/scripts/build_merchant_center_age_group_fix.py ops/tests/test_merchant_center_age_group_fix.py` passed.
+- `python3 ops/tests/test_merchant_center_age_group_fix.py` passed.
+- Local validation confirmed `5,933` unique upload IDs, `0` overlap with excluded stale IDs, `0` invalid age_group values, and `0` blank `custom_label_4` values.
+- Post-upload Merchant Center UI proof confirmed `5,933` total updated, `5,933` matched, all attribute names recognized, and no source-file issues.
+
+Rollback:
+- Upload `rollback_paid_status_only_custom_label_4.csv` to return this source to the prior paid-status-only shape without age_group.
+
+Residual:
+- This fixes the supplemental-source processing issue shown in Merchant Center. Product-level diagnostics can still take time to refresh downstream.
+- The `1,391` excluded IDs should not be re-uploaded to this source unless they reappear as current Merchant Center offers.
+
+2026-04-29 - Pinterest Event Quality plan review and official-channel decision
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-pinterest-event-quality-official-channel-plan
+
+Why:
+- User provided another AI's Pinterest Event Quality repair plan and asked to study it carefully, compare it to what already exists, reject obsolete/wrong pieces, and orchestrate subagents before applying an agreed plan.
+
+What happened:
+- Spawned two read-only subagents:
+  - Repo/live storefront tracking mapper.
+  - Shopify Admin/API evidence gatherer.
+- Rechecked the current Pinterest Event Quality page through the authenticated browser session.
+- Rechecked Shopify Admin/Pinterest app evidence with local Admin API credentials without printing secrets.
+- Rechecked live storefront HTML for Shopify Web Pixels Manager configuration.
+- Reviewed official Pinterest and Shopify documentation for Conversions API deduplication, Shopify Web Pixels, app pixels, and consent behavior.
+
+Key findings:
+- The four Pinterest Event Quality gaps are real: AddToCart email, click ID across core web events, AddPaymentInfo product ID, and PageVisit event ID.
+- The store already uses the official Shopify Pinterest channel/app:
+  - App: `Pinterest`, handle `pinterest-4`, app ID `gid://shopify/App/3009811`.
+  - Publication: `gid://shopify/Publication/76582879329`.
+  - Live tag ID: `2620007050621`.
+  - Live Web Pixels Manager entry: Pinterest app pixel, `apiClientId` `3009811`, strict runtime, `dataSharingState` `optimized`.
+- Pinterest Ads tag page showed Automatic Enhanced Match is already `Enabled`.
+- Shopify Pinterest marketing settings showed ad account `549756244483` and said Pinterest Tag plus Conversions API are automatically set up.
+- Theme code has no hand-rolled `pintrk(...)`; `layout/theme.liquid` and `assets/analytics.js` only own storefront dataLayer instrumentation.
+- Hosted checkout/payment events and Pinterest CAPI payload internals are owned by Shopify/Pinterest app infrastructure, not theme Liquid.
+
+What changed:
+- Added evidence-backed plan:
+  - `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-29-pinterest-event-quality-action-plan.md`
+
+Decision:
+- Do not add a duplicate theme-level Pinterest tag or custom client-side CAPI path.
+- Keep the official Shopify Pinterest channel as the source of truth.
+- Run a controlled Pinterest Test Events pass and escalate to Pinterest/Shopify if the official integration still fails to pass click ID, matching event ID, AddPaymentInfo product IDs, or available hashed email.
+- Treat custom backend CAPI as a fallback only after official-channel limitations are confirmed.
+
+Verification:
+- `python3 -m py_compile` was not applicable because only a Markdown plan/worklog entry changed.
+- Read-only Admin GraphQL queries succeeded for shop/theme/publication/app-install evidence, except expected access limitations for fields outside the current app/token scope.
+- Live browser/CDP reads confirmed current Pinterest Ads and Shopify Pinterest app UI state.
+
+Residual:
+- No Pinterest, Shopify, theme, Customer Events, pixel, campaign, budget, or billing settings were changed.
+- Pinterest Event Quality rows can lag 24-72 hours and are calculated over rolling windows.
+- A real Test Events pass still needs a Pinterest click session carrying `epik`/`_epik` to prove click ID behavior.
+
+2026-04-29 - Vetted Shopify Admin fix orchestration plan
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-vetted-admin-fix-orchestration
+
+Why:
+- User provided a Shopify Admin fix plan from another AI and explicitly asked this agent not to assume it was correct.
+- Goal was to compare the plan against current repo/live evidence, identify obsolete or unsupported items, and create exact prompts for browser/local AIs.
+
+What changed locally:
+- Added `dresslikemommy-growth-2026/04_IMPLEMENTATION_PLANS/2026-04-29-vetted-shopify-admin-fix-orchestration.md`.
+- The plan includes accepted/revised/rejected items, execution order, universal STOP rules, and copy-paste prompts for:
+  - Customer Events and runtime pixel audits.
+  - Google & YouTube / Merchant Center health and logo recheck.
+  - Discount disposition and approved deactivation.
+  - Checkout consent/payment read-only audit.
+  - Shipping/markets audit and Ukraine decision.
+  - Return rules, final-sale tag audit, and legal notice workflow.
+  - Pinterest post-ingestion audit.
+  - Microsoft/Bing duplication audit.
+  - Translation app migration planning.
+
+Evidence used:
+- Two subagents performed read-only sidecar reviews:
+  - Tracking/theme explorer found no current theme hardcoded `gtag`, `G-N4EQNK0MMB`, `fbq`, `ttq`, `pintrk`, or `uetq`; current theme pushes local `dataLayer` events and tags appear through Shopify runtime/web pixels/apps.
+  - Business/admin explorer confirmed recent Merchant Center, Pinterest, markets/shipping, translation, and policy evidence from existing packets/worklog.
+- Additional read-only Shopify Admin API checks were run from local credentials:
+  - Discounts: `125` total discount nodes, `94` active, `67` active Loox-style `LX-` codes, `8` active over the 15% cap, and `QP672` active with `90` uses and no minimum.
+  - Apps: confirmed `FeedAPIs For Bing Shopping /MS`, `Translate & Adapt`, `Translation Helper`, and `T Lab - AI Language Translate` are installed, while Microsoft Channel and Pinterest publications exist.
+  - Markets: confirmed six active markets and Ukraine absent from active market regions returned by the API.
+  - Shipping zones: confirmed Ukraine in `Countries Epacket`; API readback returned only `Express Delivery (7 - 11 Days)` at `$12.99` for both `Countries Epacket` and `Rest of world`, which conflicts with current free-shipping storefront/policy claims.
+  - Policies: current refund policy already says `30 days from delivery`, excludes swimwear/intimates, and customer pays return shipping unless damaged/defective; no distinct Legal notice policy was returned.
+
+Important decisions:
+- Do not execute the old plan directly.
+- Treat the old Merchant Center `672,040 total / 223,962 not approved` count as stale/unsupported for execution.
+- Treat Pinterest reconnect as obsolete; current Pinterest evidence shows active catalog/conversion tracking.
+- Treat Pinterest Warning 188 and overlong `description_html` fixes as already applied and post-verified for the scoped active products.
+- Do not remove theme tracking snippets; current duplicate-tag risk must be proven through Customer Events/runtime network evidence, not theme grep.
+- Do not enable estimated delivery dates until the shipping-rate/free-shipping promise conflict is resolved.
+
+Verification:
+- `git diff --check -- dresslikemommy-growth-2026/04_IMPLEMENTATION_PLANS/2026-04-29-vetted-shopify-admin-fix-orchestration.md ops/AGENT_WORKLOG.md` still needs to be run after this entry.
+
+Residual:
+- No Shopify Admin settings, discounts, policies, payments, feeds, Merchant Center, Pinterest, Google Ads, or theme live changes were made by this orchestration task.
+- Several existing generated artifacts are untracked/dirty from prior work; this task did not revert or modify them.
+
+2026-04-29 - Pinterest Event Quality continuity pointer
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-pinterest-event-quality-continuity-pointer
+
+Status:
+- The Pinterest Event Quality review for the user-provided plan is documented in the earlier entry `2026-04-29-pinterest-event-quality-official-channel-plan`.
+- The actionable plan file is `dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-29-pinterest-event-quality-action-plan.md`.
+
+Decision to carry forward:
+- Keep the official Shopify Pinterest channel/app as the source of truth.
+- Do not add duplicate theme-level Pinterest tag code or client-side CAPI code.
+- Next best action is a controlled Pinterest Test Events pass using the existing official integration, then support escalation if the same missing parameters are visible in live test payloads.

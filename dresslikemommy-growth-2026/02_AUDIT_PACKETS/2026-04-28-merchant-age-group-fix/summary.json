@@ -1,0 +1,65 @@
+{
+  "eligibility_rows": 7324,
+  "unique_ids_seen": 7324,
+  "upload_rows": 5933,
+  "manual_review_rows": 0,
+  "excluded_offer_does_not_exist_rows": 1391,
+  "age_group_counts": {
+    "adult": 3311,
+    "infant": 159,
+    "kids": 2004,
+    "newborn": 5,
+    "toddler": 1845
+  },
+  "upload_age_group_counts": {
+    "adult": 2607,
+    "toddler": 1524,
+    "kids": 1724,
+    "infant": 76,
+    "newborn": 2
+  },
+  "status_counts": {
+    "upload": 5933,
+    "manual_review": 0,
+    "excluded_offer_does_not_exist": 1391
+  },
+  "inference_source_counts": {
+    "variant_adult_role_token": 3128,
+    "variant_alpha_size_fallback": 183,
+    "variant_baby_token": 4,
+    "variant_child_role_token": 1,
+    "variant_height_cm": 14,
+    "variant_month_size": 229,
+    "variant_year_size": 3765
+  },
+  "custom_label_4_counts": {
+    "FIX_BEFORE_PAID": 5882,
+    "EXCLUDE_PAID": 51
+  },
+  "generated_at": "2026-04-28T22:07:38",
+  "input_eligibility_csv": "dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-other-ai-clean-subset_PAID_LABEL_FRESH_SHOPIFY_product_eligibility.csv",
+  "input_paid_status_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-paid-status-upload/upload_paid_status_only_custom_label_4.csv",
+  "input_unmatched_report_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-paid-status-upload/post_upload_download_report.csv",
+  "upload_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-age-group-fix/upload_matched_age_group_with_paid_status.csv",
+  "upload_file_tab_delimited": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-age-group-fix/upload_matched_age_group_with_paid_status.txt",
+  "review_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-age-group-fix/age_group_inference_review.csv",
+  "excluded_offer_ids_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-age-group-fix/excluded_offer_does_not_exist_ids.csv",
+  "rollback_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-age-group-fix/rollback_paid_status_only_custom_label_4.csv",
+  "target_merchant_center_account": "124884876",
+  "target_source_id": "10626787326",
+  "target_source_name": "supplemental_feed_pilot.txt",
+  "write_scope": "Merchant Center supplemental source upload; preserve custom_label_4 and add age_group",
+  "supported_age_groups": [
+    "adult",
+    "infant",
+    "kids",
+    "newborn",
+    "toddler"
+  ],
+  "notes": [
+    "Upload file intentionally includes custom_label_4 so the current paid-status override is not removed when the source is replaced.",
+    "Rows reported by Merchant Center as Offer does not exist are excluded from the default upload to clear the supplemental source processing issue.",
+    "Rollback file restores the paid-status-only source shape from the last upload packet.",
+    "No Shopify, Google Ads, budget, or campaign status changes are included."
+  ]
+}

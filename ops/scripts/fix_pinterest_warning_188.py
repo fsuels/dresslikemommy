@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Plan/apply Shopify fixes for Pinterest Warning 188.
+"""Plan/apply Shopify fixes for Pinterest catalog warnings.
 
 Default mode is dry-run only. Live writes require explicit apply flags plus
 --approved so the generated CSV can be reviewed first.
@@ -326,6 +326,7 @@ def plan_price_changes(
     variants: Iterable[VariantRecord],
     *,
     include_archived_products: bool,
+    invalid_compare_at_mode: str = "clear",
 ) -> tuple[list[PriceChange], dict[str, Any]]:
     changes: list[PriceChange] = []
     stats: Counter[str] = Counter()
@@ -342,7 +343,10 @@ def plan_price_changes(
             skipped_product_ids.add(variant.product_id)
             continue
 
-        if cap == variant.price:
+        if invalid_compare_at_mode == "clear":
+            new_cap = ""
+            reason = "clear_invalid_compare_at_price"
+        elif cap == variant.price:
             new_cap = ""
             reason = "clear_equal_compare_at_price"
         elif cap <= Decimal("0.01"):
@@ -374,6 +378,7 @@ def plan_price_changes(
     return changes, {
         **dict(stats),
         "skipped_out_of_scope_product_count": len(skipped_product_ids),
+        "invalid_compare_at_mode": invalid_compare_at_mode,
         "scope": (
             "all products including archived"
             if include_archived_products
@@ -666,7 +671,7 @@ def parse_handles(raw: str) -> set[str]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Dry-run/apply Shopify fixes for Pinterest Warning 188.")
+    parser = argparse.ArgumentParser(description="Dry-run/apply Shopify fixes for Pinterest catalog warnings.")
     parser.add_argument("--store-domain", default="", help="Shopify store domain.")
     parser.add_argument("--access-token", default="", help="Shopify Admin API access token.")
     parser.add_argument("--api-version", default=API_VERSION, help="Shopify Admin API version.")
@@ -680,6 +685,15 @@ def main() -> None:
         "--include-archived-products",
         action="store_true",
         help="Include archived/out-of-channel products in the compare_at_price plan.",
+    )
+    parser.add_argument(
+        "--invalid-compare-at-mode",
+        choices=("clear", "legacy"),
+        default="clear",
+        help=(
+            "How to fix compare_at_price values that are blank-invalid, equal to, or lower than price. "
+            "'clear' removes the invalid compare-at value; 'legacy' preserves the older mixed clear/raise behavior."
+        ),
     )
     parser.add_argument("--body-min-length", type=int, default=10000, help="Minimum live body_html length to plan.")
     parser.add_argument("--body-target-length", type=int, default=8000, help="Target body_html length after trimming.")
@@ -719,6 +733,7 @@ def main() -> None:
                 limit=args.limit_variants,
             ),
             include_archived_products=args.include_archived_products,
+            invalid_compare_at_mode=args.invalid_compare_at_mode,
         )
         price_csv_path, price_json_path = write_price_outputs(price_changes, output_prefix)
         price_reason_counts: dict[str, int] = defaultdict(int)
