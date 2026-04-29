@@ -1,0 +1,80 @@
+{
+  "generated_at_local": "2026-04-28T23:05:25-04:00",
+  "generated_at_utc": "2026-04-29T03:05:27+00:00",
+  "store_domain": "dresslikemommy-com.myshopify.com",
+  "api_version": "2026-04",
+  "base_packet": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-shopify-margin-cac-export-pack",
+  "date_range": {
+    "start_inclusive": "2025-04-28T22:49:02-04:00",
+    "end_exclusive": "2026-04-28T22:49:02-04:00",
+    "days_requested": 365
+  },
+  "write_status": "READ_ONLY_NO_SHOPIFY_FEED_AD_PRODUCT_DISCOUNT_CHANGES",
+  "shopify_payments_account": {
+    "id": "gid://shopify/ShopifyPaymentsAccount/999000067436641",
+    "activated": true,
+    "country": "US",
+    "default_currency": "USD"
+  },
+  "payout_summary": {
+    "rows": 90,
+    "status_counts": {
+      "PAID": 90
+    },
+    "transaction_type_counts": {
+      "DEPOSIT": 75,
+      "WITHDRAWAL": 15
+    },
+    "totals": {
+      "adjustments_fee": "75.00",
+      "adjustments_gross": "-535.72",
+      "advance_fees": "0.00",
+      "advance_gross": "0.00",
+      "charges_fee": "263.49",
+      "charges_gross": "6293.97",
+      "net": "5138.23",
+      "refunds_fee": "0.00",
+      "refunds_gross": "-281.53",
+      "reserved_funds_fee": "0.00",
+      "reserved_funds_gross": "0.00",
+      "retried_payouts_fee": "0.00",
+      "retried_payouts_gross": "0.00",
+      "usdc_rebate_credit_amount": "0.00"
+    }
+  },
+  "balance_transaction_summary": {
+    "rows": 218,
+    "type_counts": {
+      "TRANSFER": 91,
+      "CHARGE": 89,
+      "REFUND": 7,
+      "DISPUTE_WITHDRAWAL": 9,
+      "CHARGEBACK_HOLD_RELEASE": 7,
+      "CHARGEBACK_FEE": 3,
+      "CHARGEBACK_HOLD": 7,
+      "CHARGEBACK_FEE_REFUND": 2,
+      "DISPUTE_REVERSAL": 3
+    },
+    "totals": {
+      "amount": "342.66",
+      "fee": "342.66",
+      "net": "0.00"
+    }
+  },
+  "dispute_rows": 10,
+  "shipping_rows": 83,
+  "shipping_charged_total": "131.16",
+  "ad_spend_status": {
+    "Pinterest Ads": "COLLECTED_ZERO_SPEND_365D",
+    "Google Ads": "PARTIAL_VISIBLE_ZERO_SPEND",
+    "GA4": "PARTIAL_ANALYTICS_IMPORTED",
+    "Meta Ads": "NEEDS_EXPORT"
+  },
+  "remaining_hard_blockers": [
+    "Actual shipping label/carrier costs",
+    "Full Google Ads 30/90/365 exports",
+    "Detailed GA4 ecommerce source/device exports",
+    "Meta Ads export if Meta is used",
+    "Official Shopify Finance report parity export"
+  ]
+}

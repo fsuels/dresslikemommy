@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-04-29T02:39:50.655217+00:00",
+  "store_domain": "dresslikemommy-com.myshopify.com",
+  "api_version": "2026-04",
+  "mode": "READ_ONLY_DISCOUNT_DISPOSITION",
+  "discount_nodes_total": 125,
+  "active_discount_count": 94,
+  "bucket_counts_all": {
+    "CAP_OR_DISABLE": 7,
+    "DISABLE": 77,
+    "REVIEW": 8,
+    "KEEP": 2,
+    "NO_ACTION_INACTIVE": 31
+  },
+  "bucket_counts_active": {
+    "CAP_OR_DISABLE": 7,
+    "DISABLE": 77,
+    "REVIEW": 8,
+    "KEEP": 2
+  },
+  "active_loox_like_count": 67,
+  "active_over_15_percent_count": 8,
+  "qp672": [
+    {
+      "discount_node_id": "gid://shopify/DiscountCodeNode/2626435205",
+      "typename": "DiscountCodeBasic",
+      "title": "QP672",
+      "primary_code": "QP672",
+      "codes": "QP672",
+      "status": "ACTIVE",
+      "value": "10%",
+      "percent_value": 10.0,
+      "amount_value": "",
+      "uses": "90",
+      "starts_at": "2017-04-15T04:00:00Z",
+      "ends_at": "",
+      "usage_limit": "",
+      "minimum": "",
+      "customer_selection": "DiscountCustomerAll",
+      "item_or_destination_scope": "AllDiscountItems",
+      "combines_with": "none",
+      "loox_like": "false",
+      "bucket": "REVIEW",
+      "reason": "Only materially used code found: 90 uses, 10%, no minimum.",
+      "proposed_action": "Keep active only if intended; recommended owner decision on minimum purchase, e.g. $75."
+    }
+  ],
+  "files": {
+    "raw_json": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-discount-disposition/discount_nodes_raw.json",
+    "disposition_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-discount-disposition/discount_disposition.csv",
+    "markdown": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-discount-disposition/discount_disposition.md"
+  },
+  "notes": [
+    "Read-only export only; no discount was deactivated, edited, deleted, or capped.",
+    "DISABLE and CAP_OR_DISABLE are recommendations requiring owner approval before any live action.",
+    "No marketing discount may exceed 15% unless Francisco approves that exact code as an exception."
+  ]
+}

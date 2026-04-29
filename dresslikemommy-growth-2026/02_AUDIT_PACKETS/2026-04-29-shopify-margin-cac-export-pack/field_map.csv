@@ -1,0 +1,11 @@
+metric,status,source,notes
+Orders and order line items,COLLECTED,Shopify Admin GraphQL orders query,"Sanitized; no customer names, emails, addresses, phone numbers, cookies, or tokens exported."
+"Product catalog, active variants, Cost per item",COLLECTED,Shopify Admin GraphQL productVariants and InventoryItem.unitCost,Uses current Cost per item. Current operating rule is unit_cost = variant price x 50%.
+Refund financial impact by line item,COLLECTED,Shopify Admin GraphQL refunds/refundLineItems,Financial refunds are included; operational return status is separate.
+Payment processing fees,COLLECTED_PARTIAL,Shopify Admin GraphQL OrderTransaction.fees,Captured where Shopify exposes transaction fees; third-party or payout-level adjustments still need payout reports.
+Finance reports,PARTIAL_NEEDS_EXPORT,Derived from order totals in Admin GraphQL,"Export official Finance reports to reconcile gross sales, discounts, returns, taxes, shipping, and payments."
+Shipping label cost by order,NEEDS_DATA,Shopify Shipping labels by order report or carrier invoices,"Order shipping charged is collected, but label/carrier cost is not available in this API packet."
+Payout adjustments and chargebacks,NEEDS_DATA,Shopify Payments payout export / payment provider exports,Needed before final ad scale decisions.
+Channel/source/UTM,COLLECTED_PARTIAL,CustomerJourneySummary first/last visit fields,Good for directional source review; Shopify Analytics/GA4 export still needed for full source/device analysis.
+Device type,NEEDS_DATA,Shopify Analytics or GA4,Not exposed in the read-only Admin order export used here.
+"Ad spend, campaign CAC, campaign ROAS",NEEDS_DATA,"Google Ads, Pinterest Ads, Meta Ads exports",No ad changes should be made from this packet alone.

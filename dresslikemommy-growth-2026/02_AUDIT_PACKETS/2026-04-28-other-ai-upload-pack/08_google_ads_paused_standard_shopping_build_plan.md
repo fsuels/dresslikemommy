@@ -14,6 +14,7 @@ Launch decision: `READY_FOR_PAUSED_BUILDOUT`
 - Inventory filter:
   - `custom_label_0 = paid_eligible`
   - `custom_label_4 = us_test_ready`
+- Pre-build prerequisite: those custom labels must already be uploaded and verified in Merchant Center; otherwise use the local review files only
 - Status: Paused
 - Budget: tiny placeholder only, keep paused
 - Bidding: conservative Manual CPC or equivalent low-risk bidding
@@ -43,9 +44,9 @@ Launch decision: `READY_FOR_PAUSED_BUILDOUT`
 
 - Total variants reviewed: 7324
 - Merchant Center products matched with evidence: 7324
-- `paid_eligible = TRUE`: 784
-- `fix_before_paid = TRUE`: 6540
-- excluded/not eligible rows: 6540
+- `paid_eligible = TRUE`: 780
+- `fix_before_paid = TRUE`: 6544
+- excluded/not eligible rows: 6544
 
 ## Gate
 

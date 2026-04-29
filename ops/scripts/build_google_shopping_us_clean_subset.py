@@ -275,6 +275,8 @@ def first_label_group(reasons: list[str]) -> str:
         or "merchant_center" in reason
         or "missing_sku" in reason
         or "missing_gtin" in reason
+        or "duplicate_sku" in reason
+        or "duplicate_gtin" in reason
         or "out_of_stock" in reason
         for reason in reasons
     ):
@@ -457,6 +459,7 @@ def build_rows(
                 storefront_base_url=storefront_base_url,
             )
         )
+    enforce_unique_paid_identifiers(rows)
     rows.sort(
         key=lambda item: (
             item["paid_eligible"] != "TRUE",
@@ -467,6 +470,32 @@ def build_rows(
         )
     )
     return rows
+
+
+def append_exclusion(row: dict[str, str], reason: str) -> None:
+    reasons = [value for value in row["exclusion_reason"].split(";") if value]
+    if reason not in reasons:
+        reasons.append(reason)
+    row["exclusion_reason"] = ";".join(reasons)
+    row["paid_eligible"] = "FALSE"
+    row["fix_before_paid"] = "TRUE"
+    row["custom_label_0"] = first_label_group(reasons)
+    row["custom_label_4"] = "us_fix_before_paid"
+
+
+def enforce_unique_paid_identifiers(rows: list[dict[str, str]]) -> None:
+    paid_rows = [row for row in rows if row["paid_eligible"] == "TRUE"]
+    for field_name, reason in [
+        ("sku", "exclude_duplicate_sku"),
+        ("gtin_or_barcode", "exclude_duplicate_gtin"),
+    ]:
+        counts = Counter(row[field_name] for row in paid_rows if row[field_name])
+        duplicate_values = {value for value, count in counts.items() if count > 1}
+        if not duplicate_values:
+            continue
+        for row in paid_rows:
+            if row[field_name] in duplicate_values:
+                append_exclusion(row, reason)
 
 
 def write_campaign_plan(path: Path, summary: dict[str, object]) -> None:
@@ -491,6 +520,7 @@ def write_campaign_plan(path: Path, summary: dict[str, object]) -> None:
                 "- Inventory filter:",
                 "  - `custom_label_0 = paid_eligible`",
                 "  - `custom_label_4 = us_test_ready`",
+                "- Pre-build prerequisite: those custom labels must already be uploaded and verified in Merchant Center; otherwise use the local review files only",
                 "- Status: Paused",
                 "- Budget: tiny placeholder only, keep paused",
                 "- Bidding: conservative Manual CPC or equivalent low-risk bidding",

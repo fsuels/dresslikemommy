@@ -1,0 +1,62 @@
+{
+  "clean_label_input": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/google_shopping_us_clean_subset_supplemental_labels.csv",
+  "clean_label_rows": 7324,
+  "current_matched_input": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-merchant-age-group-fix/upload_matched_age_group_with_paid_status.csv",
+  "current_matched_rows": 5933,
+  "excluded_stale_or_unmatched_rows": 1391,
+  "files": {
+    "excluded_stale_or_unmatched_ids": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-upload/excluded_stale_or_unmatched_ids.csv",
+    "matched_ids_missing_from_clean_label_plan": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-upload/matched_ids_missing_from_clean_label_plan.csv",
+    "rollback_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-upload/rollback_restore_custom_label_4_age_group.csv",
+    "summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-upload/summary.json",
+    "upload_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-upload/upload_matched_full_clean_labels_with_age_group.csv",
+    "upload_txt": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-upload/upload_matched_full_clean_labels_with_age_group.txt"
+  },
+  "generated_at": "2026-04-28T23:57:02",
+  "matched_ids_missing_from_clean_label_plan": 0,
+  "mode": "MERCHANT_CENTER_MATCHED_FULL_CLEAN_LABEL_UPLOAD_PREPARED",
+  "notes": [
+    "Use the tab-delimited .txt file for Merchant Center manual source upload.",
+    "The upload intentionally excludes known unmatched/stale offers so source processing stays clean.",
+    "Rollback restores the prior matched-only source shape: id, custom_label_4, age_group."
+  ],
+  "rollback_rows": 5933,
+  "target_merchant_center_account": "124884876",
+  "target_source_id": "10626787326",
+  "target_source_name": "supplemental_feed_pilot.txt",
+  "upload_age_group_counts": {
+    "adult": 2607,
+    "infant": 76,
+    "kids": 1724,
+    "newborn": 2,
+    "toddler": 1524
+  },
+  "upload_custom_label_0_counts": {
+    "exclude_feed_issue": 5149,
+    "exclude_low_aov": 4,
+    "paid_eligible": 780
+  },
+  "upload_custom_label_1_counts": {
+    "margin_medium": 5933
+  },
+  "upload_custom_label_2_counts": {
+    "couples": 96,
+    "daddy_me": 1108,
+    "dresses": 6,
+    "family_matching": 2184,
+    "mommy_me": 1104,
+    "other": 121,
+    "pajamas": 241,
+    "swimsuits": 1073
+  },
+  "upload_custom_label_3_counts": {
+    "aov_low": 4,
+    "aov_medium": 5929
+  },
+  "upload_custom_label_4_counts": {
+    "us_fix_before_paid": 5153,
+    "us_test_ready": 780
+  },
+  "upload_rows": 5933,
+  "write_scope": "Replace manual supplemental source with matched-only id, custom_label_0..4, age_group rows."
+}

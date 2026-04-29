@@ -14,6 +14,7 @@ if str(REPO_ROOT) not in sys.path:
 from ops.scripts.build_google_shopping_us_clean_subset import (  # noqa: E402
     Evidence,
     build_master_row,
+    build_rows,
     derive_product_family,
 )
 
@@ -99,6 +100,27 @@ def main() -> None:
     assert clean["fix_before_paid"] == "FALSE"
     assert clean["custom_label_0"] == "paid_eligible"
     assert clean["custom_label_4"] == "us_test_ready"
+
+    duplicate_rows = build_rows(
+        [
+            base_row(product_id="1", variant_id="2", merchant_center_id="shopify_US_1_2"),
+            base_row(product_id="1", variant_id="3", merchant_center_id="shopify_US_1_3"),
+        ],
+        {
+            "shopify_US_1_2": passing_merchant(),
+            "shopify_US_1_3": passing_merchant(),
+        },
+        {
+            "shopify_US_1_2": Evidence({"pdp_status": "PASS"}),
+            "shopify_US_1_3": Evidence({"pdp_status": "PASS"}),
+        },
+        aov=Decimal("63.25"),
+        storefront_base_url="https://www.dresslikemommy.com",
+    )
+    assert all(row["paid_eligible"] == "FALSE" for row in duplicate_rows)
+    assert all(row["fix_before_paid"] == "TRUE" for row in duplicate_rows)
+    assert all("exclude_duplicate_sku" in row["exclusion_reason"] for row in duplicate_rows)
+    assert all("exclude_duplicate_gtin" in row["exclusion_reason"] for row in duplicate_rows)
 
     print("ok")
 

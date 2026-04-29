@@ -38,12 +38,17 @@ Extra local review outputs already generated:
 - `07_google_shopping_fix_before_paid.csv`
 - `08_google_ads_paused_standard_shopping_build_plan.md`
 - `09_merchant_center_browser_rpc_normalized_evidence.csv`
+- `10_paid_eligible_row_review.md`
+- `10_paid_eligible_row_review_summary.json`
+- `11_google_ads_paused_standard_shopping_buildout_manifest_review_only.csv`
 - `clean_subset_summary.json`
 
 Current result from the local generator:
-- `paid_eligible=true`: 784 variant rows across 81 products.
+- `paid_eligible=true`: 780 variant rows across 81 products after row review.
 - Launch decision: `READY_FOR_PAUSED_BUILDOUT`.
-- This means the review-only paid-eligible subset exists for a paused Standard Shopping buildout; it does not approve a live upload, campaign creation, spend, or campaign enablement.
+- This means the review-only paid-eligible subset exists for a local paused Standard Shopping buildout manifest; it does not approve a live label upload, campaign creation, spend, or campaign enablement.
+- Row review demoted 4 otherwise-paid rows because two SKU/GTIN pairs were duplicated across Daddy & Me swim-trunk products.
+- Current Merchant Center browser evidence still does not contain the new `custom_label_0=paid_eligible` / `custom_label_4=us_test_ready` scheme, so do not create the external custom-label-filtered Ads campaign until a label upload or an item-ID listing-group build is explicitly approved.
 - Main remaining exclusions are missing GTIN/SKU, missing PDP verification, limited/not-approved Merchant Center status, no current browser-RPC match, image/feed issues, and weak initial collection filters.
 - PDP evidence is current as of the latest live QA file: 1,335 rows passed PDP checks, 48 rows failed, and 5,941 rows still need PDP verification.
 

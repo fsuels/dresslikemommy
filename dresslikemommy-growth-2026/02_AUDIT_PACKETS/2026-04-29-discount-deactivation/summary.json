@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-04-29T03:00:27.437478+00:00",
+  "started_at": "2026-04-29T03:00:01.893926+00:00",
+  "store_domain": "dresslikemommy-com.myshopify.com",
+  "api_version": "2026-04",
+  "mode": "LIVE_DISCOUNT_CODE_DEACTIVATION_APPROVED_BY_OPERATOR",
+  "approved_buckets": [
+    "CAP_OR_DISABLE",
+    "DISABLE"
+  ],
+  "approved_count": 84,
+  "attempted_count": 84,
+  "success_count": 84,
+  "failure_count": 0,
+  "post_expired_count": 84,
+  "post_still_active_count": 0,
+  "post_other_status_count": 0,
+  "files": {
+    "approved_deactivation_list": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-discount-deactivation/approved_deactivation_list.csv",
+    "rollback_reactivation_list": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-discount-deactivation/rollback_reactivation_list.csv",
+    "deactivation_results": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-discount-deactivation/deactivation_results.csv",
+    "post_deactivation_readback": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-discount-deactivation/post_deactivation_readback.csv",
+    "summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-discount-deactivation/summary.json",
+    "post_active_discount_summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-discount-deactivation/post_active_discount_summary.json"
+  },
+  "notes": [
+    "Only discounts in DISABLE and CAP_OR_DISABLE buckets from the 2026-04-29 read-only disposition were targeted.",
+    "No REVIEW or KEEP discount was targeted; QP672 was not changed.",
+    "Rollback is to reactivate IDs from rollback_reactivation_list.csv using discountCodeActivate if owner requests it."
+  ],
+  "post_total_discount_status_counts": {
+    "EXPIRED": 115,
+    "ACTIVE": 10
+  },
+  "post_active_discount_count": 10
+}

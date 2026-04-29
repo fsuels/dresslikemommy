@@ -1,0 +1,37 @@
+Skip to content
+Conversions
+Dress Like Mommy | Matching Family Outfits
+dresslikemommy.com
+10
+Conversions
+Manage your conversion tracking with the help of our conversions page. Learn More
+Events overview
+Event quality
+,
+Test events
+Pinterest tag
+Tag manager
+Conversions API
+Set up API
+Conversion upload
+Upload file
+Upload history
+Test events
+Test your Pinterest tag or Conversions API in real-time and check if your events are received correctly. Learn more
+You can check your Conversion API payload structure with our Payload Helper tool
+Visit payload helper
+; Opens a new tab
+Test Pinterest tag events
+Test your Pinterest tag in real-time by launching your website and triggering events such as page views and checkouts. Activity from other users will not display, only yours.
+Website
+Launch website
+Test Conversions API events
+To test if your API event payload is constructed correctly, follow these steps:
+1. Add query parameter
+?test=true
+ to the Conversions API endpoint to mark the request as a test request. See example below.
+2. Send a POST request to the API endpoint, including your payload and your own ad account ID.
+3. The test events will appear here if received correctly.
+Conversions API endpoint path with test parameter
+https://api.pinterest.com/v5/ad_accounts/{ad_account_id}/events?test=true
+Note: Avoid sending a large volume of test events from your staging environment. Test events will not be counted as real events in the Event overview.
