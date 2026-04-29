@@ -170,7 +170,7 @@
       },
       "view_full_details": "Lihat detail lengkap",
       "include_taxes": "Termasuk pajak.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Biaya pengiriman</a> dihitung saat checkout.",
+      "shipping_policy_html": "Opsi pengiriman dan biaya ditampilkan saat checkout setelah entri alamat. <a href=\"{{ link }}\">Kebijakan pengiriman</a>",
       "choose_options": "Pilih opsi",
       "choose_product_options": "Pilih opsi untuk {{ product_name }}",
       "value_unavailable": "{{ option_value }} - Tidak tersedia",
@@ -194,9 +194,9 @@
       "size_required_message": "Silakan pilih ukuran sebelum menambahkan ke troli.",
       "matching_set": {
         "heading": "Bangun set pencocokan Anda",
-        "copy": "Pilih setiap ukuran keluarga yang Anda butuhkan dan tambahkan set lengkap yang cocok dari satu halaman produk.",
-        "empty": "Pilih setidaknya satu ukuran keluarga untuk memulai set Anda.",
-        "add": "Tambahkan potongan yang dipilih",
+        "copy": "Opsional: pilih satu ukuran untuk setiap anggota keluarga yang ingin Anda sertakan. Setiap pilihan menambahkan satu bagian terpisah ke troli.",
+        "empty": "Pilih satu ukuran untuk setiap anggota keluarga yang ingin Anda tambahkan.",
+        "add": "Tambahkan potongan yang dipilih ke troli",
         "success": "Set yang cocok ditambahkan ke keranjang.",
         "error": "Tidak dapat menambahkan potongan yang dipilih. Silakan coba lagi."
       },
@@ -230,7 +230,7 @@
         "write_review": "Tulis ulasan",
         "write_review_title": "Tulis Ulasan"
       },
-      "free_shipping_all_orders": "Pengiriman gratis untuk semua pesanan",
+      "free_shipping_all_orders": "Opsi pengiriman ditampilkan saat checkout",
       "selected_size_label": "Ukuran: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Detail",
@@ -278,19 +278,19 @@
     "trust": {
       "secure_checkout": "Pembayaran Aman",
       "ssl_encrypted": "SSL Terenkripsi",
-      "returns": "Pengembalian Mudah",
-      "free_shipping": "Pengiriman Gratis",
+      "returns": "Jendela pengembalian 30 hari",
+      "free_shipping": "Pengiriman ditampilkan saat checkout",
       "trusted_since": "Pencocokan keluarga menjadi mudah",
       "assistance_note": "Butuh bantuan? Kami biasanya membalas dalam satu hari kerja."
     },
     "additional_info": {
       "shipping_title": "Pengiriman & Pengiriman",
-      "free_shipping_label": "GRATIS Pengiriman",
-      "estimated_delivery": "Detail pengiriman saat checkout",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Opsi pengiriman",
+      "estimated_delivery": "Pengiriman ditunjukkan saat checkout:",
+      "standard_delivery_window": "Waktu pengiriman akhir dan biaya pengiriman dikonfirmasi setelah entri alamat.",
+      "premium_delivery_window": "Opsi ekspres ditampilkan saat checkout jika tersedia.",
       "faster_shipping_prefix": "Ingin lebih cepat? Habiskan $100+ dan dapatkan",
-      "free_premium_shipping": "GRATIS Pengiriman Premium",
+      "free_premium_shipping": "Pengiriman ekspres",
       "return_policy_title": "Kebijakan Pengembalian",
       "return_policy_line_1": "Anda memiliki waktu 30 hari sejak pengiriman untuk meminta pengembalian atau penukaran.",
       "return_policy_line_2": "Barang harus belum dipakai, belum dicuci, dalam kondisi asli, dan dalam kemasan aslinya dengan label terpasang.",
@@ -301,7 +301,7 @@
       "safe_payment_description": "Kami menerima semua kartu kredit dan debit utama. Detail kartu Anda aman dan tidak pernah dibagikan kepada mitra kami. Anda dapat dengan mudah mengelola kartu yang disimpan kapan saja. Untuk pertanyaan transaksi apa pun, silakan hubungi penerbit kartu Anda.",
       "secure_logistics_title": "Logistik Aman",
       "secure_logistics_line_1": "Jika paket rusak atau hilang dalam perjalanan, hubungi kami agar kami dapat membantu meninjau pengiriman.",
-      "secure_logistics_line_2": "Gunakan tautan pelacakan pesanan Anda untuk pembaruan operator terkini.",
+      "secure_logistics_line_2": "Gunakan tautan pelacakan pesanan Anda untuk pembaruan operator terkini. Pesanan internasional mungkin dikenakan pajak, bea, atau biaya bea cukai setempat yang dipungut oleh pengangkut atau otoritas setempat.",
       "secure_privacy_title": "Privasi Aman",
       "secure_privacy_description": "Melindungi privasi Anda penting bagi kami! Yakinlah bahwa informasi Anda akan tetap aman dan tanpa kompromi. Kami tidak menjual informasi pribadi Anda demi uang dan hanya akan menggunakan informasi Anda sesuai dengan kebijakan privasi dan cookie kami untuk menyediakan dan meningkatkan layanan kami kepada Anda."
     }
@@ -374,10 +374,10 @@
       "empty": "Keranjang Anda kosong",
       "cart_error": "Terjadi kesalahan saat memperbarui keranjang. Silakan coba lagi.",
       "cart_quantity_error_html": "Hanya dapat menambahkan {{ quantity }} item ini ke keranjang Anda.",
-      "taxes_and_shipping_policy_at_checkout_html": "Pajak, Diskon dan <a href=\"{{ link }}\">biaya pengiriman</a> dihitung saat checkout",
-      "taxes_included_but_shipping_at_checkout": "Pajak yang berlaku dan biaya pengiriman serta diskon dihitung saat checkout",
-      "taxes_included_and_shipping_policy_html": "Termasuk pajak. <a href=\"{{ link }}\">Biaya pengiriman</a> dan diskon dihitung saat checkout.",
-      "taxes_and_shipping_at_checkout": "Pajak, diskon dan biaya pengiriman dihitung saat checkout",
+      "taxes_and_shipping_policy_at_checkout_html": "Pajak, diskon, dan pengiriman dihitung saat checkout. <a href=\"{{ link }}\">Kebijakan pengiriman</a>",
+      "taxes_included_but_shipping_at_checkout": "Termasuk pajak. Diskon dan ongkos kirim dihitung saat checkout.",
+      "taxes_included_and_shipping_policy_html": "Termasuk pajak. Diskon dan ongkos kirim dihitung saat checkout. <a href=\"{{ link }}\">Kebijakan pengiriman</a>",
+      "taxes_and_shipping_at_checkout": "Pajak, diskon, dan pengiriman dihitung saat checkout.",
       "headings": {
         "product": "Produk",
         "price": "Harga",
@@ -402,15 +402,15 @@
       "trust": {
         "secure_checkout": "Pembayaran Aman",
         "ssl_encrypted": "SSL Terenkripsi",
-        "free_shipping": "Pengiriman Gratis",
-        "returns": "Pengembalian Mudah",
+        "free_shipping": "Opsi pengiriman",
+        "returns": "Pengembalian 30 hari",
         "secure": "Aman",
         "encrypted": "Terenkripsi",
-        "free_ship": "Kapal Gratis"
+        "free_ship": "Pengiriman"
       },
       "discount_code_toggle": "Punya kode diskon?",
       "shipping_label": "Pengiriman",
-      "shipping_free": "BEBAS",
+      "shipping_free": "Dihitung saat checkout",
       "popular_with_families": "Populer di kalangan Keluarga",
       "recently_viewed": "Baru Dilihat",
       "savings_html": "Anda menyimpan <strong>{{ amount }}</strong>"
@@ -456,7 +456,7 @@
       "carousel": "Carousel",
       "announcement": "Pengumuman",
       "announcement_bar": "Bilah pengumuman",
-      "default_promo": "GRATIS ONGKOS KIRIM UNTUK SEMUA PESANAN | PENGEMBALIAN MUDAH | CHECKOUT AMAN"
+      "default_promo": "PILIHAN PENGIRIMAN SAAT CHECKOUT | JENDELA PENGEMBALIAN 30 HARI | CHECKOUT AMAN"
     },
     "quick_order_list": {
       "product_total": "Subtotal produk",

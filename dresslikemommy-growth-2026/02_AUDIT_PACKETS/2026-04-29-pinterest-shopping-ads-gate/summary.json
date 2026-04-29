@@ -1,0 +1,88 @@
+{
+  "account_status_context": {
+    "local_evidence_note": "Operator-reported status is promising, but this packet still requires current item-level Pinterest feed, event/CAPI payload, USA targeting, and ROAS gates before any ad launch.",
+    "operator_reported": [
+      "Merchant approved",
+      "Shopify connected",
+      "Event Quality Score = Good setup",
+      "Organic Last 30: 12.4K impressions, 317 engagements, 31 saves"
+    ]
+  },
+  "all_paid_cohort_rows_reviewed": 780,
+  "campaign_creation_allowed": false,
+  "candidate_family_counts": {
+    "family_matching": 103,
+    "mommy_me": 214,
+    "pajamas": 29
+  },
+  "candidate_margin_counts": {
+    "margin_medium": 346
+  },
+  "candidate_offer_rows": 346,
+  "candidate_unique_product_urls": 32,
+  "candidate_unique_shopify_products": 32,
+  "decision": "DO_NOT_CREATE_PINTEREST_ADS_OR_PRODUCT_GROUPS_YET",
+  "event_test_summary": {
+    "controlled_test_artifact": "dresslikemommy-growth-2026/01_EXPORTS_RAW/PINTEREST/2026-04-29_test_events_official_integration/controlled_pass_summary_saved.json",
+    "controlled_test_stop": "Stopped after checkout start; did not submit payment info or place an order.",
+    "event_counts": {
+      "ADD_TO_CART": 2,
+      "INITIALIZED": 5,
+      "PAGE_VISIT": 6,
+      "SEARCH": 1,
+      "VIEW_CATEGORY": 1
+    },
+    "event_ids_present": 10,
+    "rows": 15,
+    "rows_with_visible_issues": 0,
+    "setup_methods": {
+      "Manual": 5,
+      "shopify-web-pixel": 10
+    },
+    "source_artifact": "dresslikemommy-growth-2026/01_EXPORTS_RAW/PINTEREST/2026-04-29_test_events_official_integration/pinterest_test_events_saved_pass_rows.json",
+    "status": "TEST_EVENTS_CAPTURED"
+  },
+  "excluded_paid_cohort_rows": 434,
+  "files": {
+    "candidate_offer_rows": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate/pinterest_paid_ready_candidate_offer_rows.csv",
+    "excluded_offer_rows": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate/pinterest_excluded_paid_cohort_rows.csv",
+    "gate_report": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate/pinterest_shopping_ads_gate_report.md",
+    "product_group_manifest": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate/pinterest_product_group_manifest_review_only.csv",
+    "summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate/summary.json"
+  },
+  "generated_at": "2026-04-29T04:12:09",
+  "hard_gates_before_create_ad": [
+    "Do not click Pinterest Create an ad until the operator explicitly approves that exact action.",
+    "Export or read back exact Pinterest catalog item status for all candidate offer IDs and exclude any warning, not-approved, limited, out-of-stock, or stale landing-page rows.",
+    "Confirm the campaign/ad group country targeting is United States only before saving any draft.",
+    "Confirm event-level health for PageVisit, ViewCategory, Search, AddToCart, InitiateCheckout, AddPaymentInfo, and Checkout/Purchase, including CAPI/tag deduplication where Pinterest exposes it.",
+    "Keep required ROAS at or above 6.67 under the current paid-spend economics model; pause or do not launch if early spend cannot support that guardrail.",
+    "Use only the three review-only product groups in this packet: Mommy & Me, Family Matching, and Pajamas."
+  ],
+  "mode": "PINTEREST_SHOPPING_ADS_GATE_PACKET_REVIEW_ONLY",
+  "post_gate_campaign_structure": {
+    "campaign_name": "DLM_PIN_US_SHOPPING_TEST_PAID_READY",
+    "country_targeting": "United States only",
+    "exclusions": [
+      "All Products",
+      "international targeting",
+      "unknown-cost products",
+      "out-of-stock variants",
+      "unverified landing pages",
+      "rows without clean Pinterest item-level catalog proof"
+    ],
+    "objective": "Shopping/catalog sales only",
+    "product_groups": [
+      "DLM_PIN_US_SHOPPING_MOMMY_AND_ME",
+      "DLM_PIN_US_SHOPPING_FAMILY_MATCHING",
+      "DLM_PIN_US_SHOPPING_PAJAMAS"
+    ],
+    "status_on_creation": "Paused or draft only, never live without explicit operator launch approval"
+  },
+  "source_files": {
+    "paid_cohort": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/google_shopping_us_clean_subset_paid_eligible.csv",
+    "pinterest_event_plan": "dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-29-pinterest-event-quality-action-plan.md",
+    "pinterest_packet": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28_PINTEREST_PACKET_v1.md",
+    "pinterest_post_ingestion": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29_PINTEREST_POST_INGESTION_RECHECK.md"
+  }
+}

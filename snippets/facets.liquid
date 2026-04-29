@@ -137,13 +137,13 @@
                   if filter_label_key == 'color' or filter_label_key == 'colour'
                     assign is_color_filter = true
                   endif
-
-                  comment
-                    Skip the Type / Product type filter — style nav is handled by category tabs
-                  endcomment
+                  assign is_product_type_filter = false
                   if filter.label == 'Type' or filter.label == 'Product type'
-                  continue
-                endif
+                    assign is_product_type_filter = true
+                  endif
+                  if hide_product_type_active_filters and is_product_type_filter
+                    continue
+                  endif
 
                 if presentation == 'image'
                   assign show_more_number = 12
@@ -586,13 +586,17 @@
                     if filter_label_key == 'color' or filter_label_key == 'colour'
                       assign is_color_filter = true
                     endif
+                    assign is_product_type_filter = false
+                    if filter.label == 'Type' or filter.label == 'Product type'
+                      assign is_product_type_filter = true
+                    endif
                     if presentation == 'image'
                       assign visual_layout_class = 'facets-layout facets-layout-grid facets-layout-grid--' | append: presentation
                     else
                       assign visual_layout_class = 'facets-layout facets-layout-list facets-layout-list--' | append: presentation
                     endif
 
-                    if filter.label == 'Type' or filter.label == 'Product type'
+                    if hide_product_type_active_filters and is_product_type_filter
                       continue
                     endif
                   %}

@@ -13,9 +13,11 @@ if str(REPO_ROOT) not in sys.path:
 
 from ops.scripts.build_google_shopping_us_clean_subset import (  # noqa: E402
     Evidence,
+    POST_GATE_ADS_STRUCTURE,
     build_master_row,
     build_rows,
     derive_product_family,
+    render_ads_structure_table,
 )
 
 
@@ -101,6 +103,20 @@ def main() -> None:
     assert clean["custom_label_0"] == "paid_eligible"
     assert clean["custom_label_4"] == "us_test_ready"
 
+    non_us = build_master_row(
+        base_row(merchant_center_id="shopify_CA_1_2"),
+        passing_merchant(),
+        Evidence({"pdp_status": "PASS"}),
+        aov=Decimal("63.25"),
+        storefront_base_url="https://www.dresslikemommy.com",
+    )
+    assert non_us["market"] == "CA"
+    assert non_us["paid_eligible"] == "FALSE"
+    assert non_us["fix_before_paid"] == "FALSE"
+    assert non_us["custom_label_0"] == "international_exclude"
+    assert non_us["custom_label_4"] == "international_exclude"
+    assert "international_exclude_ca" in non_us["exclusion_reason"]
+
     duplicate_rows = build_rows(
         [
             base_row(product_id="1", variant_id="2", merchant_center_id="shopify_US_1_2"),
@@ -121,6 +137,18 @@ def main() -> None:
     assert all(row["fix_before_paid"] == "TRUE" for row in duplicate_rows)
     assert all("exclude_duplicate_sku" in row["exclusion_reason"] for row in duplicate_rows)
     assert all("exclude_duplicate_gtin" in row["exclusion_reason"] for row in duplicate_rows)
+
+    ads_structure = render_ads_structure_table(POST_GATE_ADS_STRUCTURE)
+    ads_structure_text = "\n".join(ads_structure)
+    assert "Brand Search — USA" in ads_structure_text
+    assert "Standard Shopping — USA eligible products" in ads_structure_text
+    assert "PMax — USA eligible products" in ads_structure_text
+    assert "Non-brand Search" in ads_structure_text
+    assert "Remarketing" in ads_structure_text
+    assert "Exclude UNKNOWN_MARGIN, FIX_BEFORE_PAID, limited, and not-approved products." in ads_structure_text
+    assert "URL expansion off unless an approved landing-page map exists." in ads_structure_text
+    assert "Exclude pages not READY_FOR_PAID." in ads_structure_text
+    assert "Do not use current limited ads." in ads_structure_text
 
     print("ok")
 

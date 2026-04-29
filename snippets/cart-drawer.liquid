@@ -306,7 +306,9 @@
                               {%- endfor -%}
                             </dl>
 
-                            <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                            {%- if item.selling_plan_allocation != null -%}
+                              <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                            {%- endif -%}
                           {%- endif -%}
 
                           <ul
@@ -322,13 +324,10 @@
                             {%- endfor -%}
                           </ul>
 
-                          {%- comment -%} Low stock urgency — smart randomized, not real inventory {%- endcomment -%}
-                          {%- assign urgency_hash = item.product.id | times: 31 | plus: item.variant_id | modulo: 100 -%}
-                          {%- if urgency_hash < 65 -%}
-                            {%- assign stock_num = item.product.id | plus: item.variant_id | times: 7 | modulo: 8 | plus: 2 -%}
+                          {%- if item.variant.inventory_management == 'shopify' and item.variant.inventory_quantity > 0 and item.variant.inventory_quantity <= 10 -%}
                             <p class="cart-item__low-stock" role="status" aria-live="polite" aria-atomic="true">
                               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                              Only {{ stock_num }} left!
+                              {{ 'products.product.inventory_low_stock_show_count' | t: quantity: item.variant.inventory_quantity }}
                             </p>
                           {%- endif -%}
                         </td>

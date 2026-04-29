@@ -112,7 +112,7 @@
 
     {%- if section.settings.display_mode == 'grouped' -%}
       {%- if category_block_count > 0 -%}
-        <div class="category-icons__group">
+        <div class="category-icons__group category-icons__group--category">
           {%- if section.settings.category_heading != blank -%}
             <h3 class="category-icons__group-title">
               {%- if section.settings.category_heading_link != blank -%}
@@ -157,10 +157,10 @@
                       echo '"key":'
                       echo custom_image_key | json
                       echo ',"src":'
-                      echo custom_image | image_url: width: 240, height: 300, crop: 'center' | json
+                      echo custom_image | image_url: width: 720, height: 900, crop: 'center' | json
                       echo ',"alt":'
                       echo custom_image_alt | json
-                      echo ',"width":120,"height":150'
+                      echo ',"width":360,"height":450'
                       echo '}'
 
                       assign emitted_candidate_keys = emitted_candidate_keys | append: custom_image_key | append: '|'
@@ -193,7 +193,7 @@
                         echo block.settings.custom_theme_asset | asset_url | json
                         echo ',"alt":'
                         echo custom_theme_asset_alt | json
-                        echo ',"width":120,"height":150'
+                        echo ',"width":360,"height":450'
                         echo '}'
 
                         assign emitted_candidate_keys = emitted_candidate_keys | append: custom_theme_asset_key | append: '|'
@@ -242,10 +242,10 @@
                       echo '"key":'
                       echo candidate_key | json
                       echo ',"src":'
-                      echo candidate_media | image_url: width: 240, height: 300, crop: 'center' | json
+                      echo candidate_media | image_url: width: 720, height: 900, crop: 'center' | json
                       echo ',"alt":'
                       echo candidate_alt | json
-                      echo ',"width":120,"height":150'
+                      echo ',"width":360,"height":450'
                       echo '}'
 
                       assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
@@ -302,11 +302,11 @@
                     <div class="category-icons__image-wrap">
                       {%- if icon_image != blank -%}
                         <img
-                          src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
+                          src="{{ icon_image | image_url: width: 720, height: 900, crop: 'center' }}"
                           alt="{{ icon_image_alt | escape }}"
                           loading="eager"
-                          width="120"
-                          height="150"
+                          width="360"
+                          height="450"
                           data-homepage-collection-image
                           data-homepage-collection-image-key="{{ icon_image_key | escape }}"
                         >
@@ -315,8 +315,8 @@
                           src="{{ icon_theme_asset | asset_url }}"
                           alt="{{ icon_image_alt | escape }}"
                           loading="eager"
-                          width="120"
-                          height="150"
+                          width="360"
+                          height="450"
                           data-homepage-collection-image
                           data-homepage-collection-image-key="{{ icon_image_key | escape }}"
                         >
@@ -339,7 +339,7 @@
       {%- endif -%}
 
       {%- if occasion_block_count > 0 -%}
-        <div class="category-icons__group">
+        <div class="category-icons__group category-icons__group--occasion">
           {%- if section.settings.occasion_heading != blank -%}
             <h3 class="category-icons__group-title">
               {%- if section.settings.occasion_heading_link != blank -%}
@@ -384,10 +384,10 @@
                       echo '"key":'
                       echo custom_image_key | json
                       echo ',"src":'
-                      echo custom_image | image_url: width: 240, height: 300, crop: 'center' | json
+                      echo custom_image | image_url: width: 720, height: 900, crop: 'center' | json
                       echo ',"alt":'
                       echo custom_image_alt | json
-                      echo ',"width":120,"height":150'
+                      echo ',"width":360,"height":450'
                       echo '}'
 
                       assign emitted_candidate_keys = emitted_candidate_keys | append: custom_image_key | append: '|'
@@ -420,7 +420,7 @@
                         echo block.settings.custom_theme_asset | asset_url | json
                         echo ',"alt":'
                         echo custom_theme_asset_alt | json
-                        echo ',"width":120,"height":150'
+                        echo ',"width":360,"height":450'
                         echo '}'
 
                         assign emitted_candidate_keys = emitted_candidate_keys | append: custom_theme_asset_key | append: '|'
@@ -469,10 +469,10 @@
                       echo '"key":'
                       echo candidate_key | json
                       echo ',"src":'
-                      echo candidate_media | image_url: width: 240, height: 300, crop: 'center' | json
+                      echo candidate_media | image_url: width: 720, height: 900, crop: 'center' | json
                       echo ',"alt":'
                       echo candidate_alt | json
-                      echo ',"width":120,"height":150'
+                      echo ',"width":360,"height":450'
                       echo '}'
 
                       assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
@@ -529,11 +529,11 @@
                     <div class="category-icons__image-wrap">
                       {%- if icon_image != blank -%}
                         <img
-                          src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
+                          src="{{ icon_image | image_url: width: 720, height: 900, crop: 'center' }}"
                           alt="{{ icon_image_alt | escape }}"
                           loading="eager"
-                          width="120"
-                          height="150"
+                          width="360"
+                          height="450"
                           data-homepage-collection-image
                           data-homepage-collection-image-key="{{ icon_image_key | escape }}"
                         >
@@ -542,8 +542,8 @@
                           src="{{ icon_theme_asset | asset_url }}"
                           alt="{{ icon_image_alt | escape }}"
                           loading="eager"
-                          width="120"
-                          height="150"
+                          width="360"
+                          height="450"
                           data-homepage-collection-image
                           data-homepage-collection-image-key="{{ icon_image_key | escape }}"
                         >
@@ -598,10 +598,10 @@
                   echo '"key":'
                   echo custom_image_key | json
                   echo ',"src":'
-                  echo custom_image | image_url: width: 240, height: 300, crop: 'center' | json
+                  echo custom_image | image_url: width: 720, height: 900, crop: 'center' | json
                   echo ',"alt":'
                   echo custom_image_alt | json
-                  echo ',"width":120,"height":150'
+                  echo ',"width":360,"height":450'
                   echo '}'
 
                   assign emitted_candidate_keys = emitted_candidate_keys | append: custom_image_key | append: '|'
@@ -634,7 +634,7 @@
                     echo block.settings.custom_theme_asset | asset_url | json
                     echo ',"alt":'
                     echo custom_theme_asset_alt | json
-                    echo ',"width":120,"height":150'
+                    echo ',"width":360,"height":450'
                     echo '}'
 
                     assign emitted_candidate_keys = emitted_candidate_keys | append: custom_theme_asset_key | append: '|'
@@ -683,10 +683,10 @@
                   echo '"key":'
                   echo candidate_key | json
                   echo ',"src":'
-                  echo candidate_media | image_url: width: 240, height: 300, crop: 'center' | json
+                  echo candidate_media | image_url: width: 720, height: 900, crop: 'center' | json
                   echo ',"alt":'
                   echo candidate_alt | json
-                  echo ',"width":120,"height":150'
+                  echo ',"width":360,"height":450'
                   echo '}'
 
                   assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
@@ -743,11 +743,11 @@
                 <div class="category-icons__image-wrap">
                   {%- if icon_image != blank -%}
                     <img
-                      src="{{ icon_image | image_url: width: 240, height: 300, crop: 'center' }}"
+                      src="{{ icon_image | image_url: width: 720, height: 900, crop: 'center' }}"
                       alt="{{ icon_image_alt | escape }}"
                       loading="eager"
-                      width="120"
-                      height="150"
+                      width="360"
+                      height="450"
                       data-homepage-collection-image
                       data-homepage-collection-image-key="{{ icon_image_key | escape }}"
                     >
@@ -756,8 +756,8 @@
                       src="{{ icon_theme_asset | asset_url }}"
                       alt="{{ icon_image_alt | escape }}"
                       loading="eager"
-                      width="120"
-                      height="150"
+                      width="360"
+                      height="450"
                       data-homepage-collection-image
                       data-homepage-collection-image-key="{{ icon_image_key | escape }}"
                     >
@@ -847,7 +847,7 @@
     {
       "type": "text",
       "id": "trust_item_1",
-      "default": "Free shipping on all orders",
+      "default": "Shipping options at checkout",
       "label": "Trust item 1"
     },
     {

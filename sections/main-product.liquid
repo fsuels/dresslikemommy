@@ -866,11 +866,6 @@
                     <span>{{ 'products.product.volume_pricing.note' | t }}</span>
                   </div>
                 {%- endif -%}
-                <!-- Free shipping inline badge -->
-                <div class="free-shipping-badge">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 18H3a1 1 0 01-1-1V7a1 1 0 011-1h10l4 4v7a1 1 0 01-1 1h-2"/><circle cx="7" cy="18" r="2"/><circle cx="15" cy="18" r="2"/><path d="M17 6h4l2 4v5h-2"/></svg>
-                  {{ 'products.product.free_shipping_all_orders' | t }}
-                </div>
                 <div class="product__tax caption rte" style="display:none;">
                   {%- if cart.taxes_included -%}
                     {{ 'products.product.include_taxes' | t }}
@@ -1262,12 +1257,18 @@
 
 <div class="additional-info">
   {%- liquid
-    assign delivery_estimate_copy = 'Estimated delivery:'
-    assign standard_delivery_window = '12-15 business days'
+    assign delivery_estimate_copy = 'products.additional_info.estimated_delivery' | t
+    assign standard_delivery_window = 'products.additional_info.standard_delivery_window' | t
     assign premium_delivery_window = 'products.additional_info.premium_delivery_window' | t
 
-    if premium_delivery_window contains 'translation missing' or premium_delivery_window contains '5-7 business days' or premium_delivery_window == blank
-      assign premium_delivery_window = ''
+    if delivery_estimate_copy == blank or delivery_estimate_copy contains 'translation missing'
+      assign delivery_estimate_copy = 'Delivery shown at checkout:'
+    endif
+    if standard_delivery_window == blank or standard_delivery_window contains 'translation missing'
+      assign standard_delivery_window = 'Final delivery timing and shipping cost are confirmed after address entry.'
+    endif
+    if premium_delivery_window == blank or premium_delivery_window contains 'translation missing'
+      assign premium_delivery_window = 'Express options are shown at checkout where available.'
     endif
 
     assign standard_delivery_copy = delivery_estimate_copy | append: ' ' | append: standard_delivery_window
@@ -1286,8 +1287,8 @@
   <div class="content" id="collapsible-shipping" style="display: block;">
     <div id="delivery-info-content">
       <p style="margin-bottom:0.6em;" data-delivery-estimate-row data-delivery-estimate-tier="standard" data-delivery-fallback-visible><strong>{{ 'products.additional_info.free_shipping_label' | t }}</strong><br><span id="dhl-delivery-date" data-delivery-window="{{ standard_delivery_window | escape }}" data-delivery-fallback="{{ standard_delivery_copy | escape }}">{{ standard_delivery_copy }}</span></p>
-      {%- comment -%} TODO: Move free premium shipping threshold to theme settings {%- endcomment -%}
-      <p style="margin-top:0;padding-top:0.6em;border-top:1px solid #e5e7eb;color:#374151;font-size:0.92em;" data-delivery-estimate-row data-delivery-estimate-tier="premium" hidden>{{ 'products.additional_info.faster_shipping_prefix' | t }} <strong><span id="ups-delivery-date" data-delivery-window="{{ premium_delivery_window | escape }}" data-delivery-fallback="{{ premium_delivery_window | escape }}"></span></strong></p>
+      {%- comment -%} TODO: Move express shipping availability to theme settings. {%- endcomment -%}
+      <p style="margin-top:0;padding-top:0.6em;border-top:1px solid #e5e7eb;color:#374151;font-size:0.92em;" data-delivery-estimate-row data-delivery-estimate-tier="premium" hidden>{{ 'products.additional_info.faster_shipping_prefix' | t }} <strong><span id="ups-delivery-date" data-delivery-window="{{ premium_delivery_window | escape }}" data-delivery-fallback="{{ premium_delivery_window | escape }}">{{ premium_delivery_window }}</span></strong></p>
     </div>
   </div>
   <button class="collapsible" aria-expanded="false" aria-controls="collapsible-returns">
@@ -2298,13 +2299,13 @@
       ['30-Day ' + 'Returns']: copy.returns,
       ['Trusted ' + 'since 2016']: copy.trusted_since,
       'Need help? We typically reply within one business day.': copy.assistance_note,
-      ['Free Shipping ' + 'Worldwide']: copy.shipping_title,
-      'FREE Shipping': copy.free_shipping_label,
+      ['Shipping ' + 'Worldwide']: copy.shipping_title,
+      'Shipping options': copy.free_shipping_label,
       'Est. Delivery': copy.estimated_delivery,
       'Delivery details at checkout': copy.estimated_delivery,
       'Want it faster? Spend $100+ and get': copy.faster_shipping_prefix,
-      'FREE Premium Shipping': copy.free_premium_shipping,
-      'Free shipping on all orders': copy.free_shipping_all_orders,
+      'Express shipping': copy.free_premium_shipping,
+      'Shipping options shown at checkout': copy.free_shipping_all_orders,
       'Return Policy': copy.return_policy_title,
       ['We gladly accept returns within 30 days of ' + 'purchase.']: copy.return_policy_line_1,
       ['Items should be in their original condition and packaging to qualify for a full refund. Please note that buyers are responsible for return shipping costs.']: copy.return_policy_line_2,

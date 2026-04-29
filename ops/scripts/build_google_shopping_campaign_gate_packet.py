@@ -30,7 +30,36 @@ LIVE_LABEL_CAPTURE_REFRESH_CHECK = (
     ROOT
     / "02_AUDIT_PACKETS/2026-04-29-merchant-campaign-build-live-check/merchant_exact_label_readback_refresh_check.json"
 )
+LIVE_LABEL_CAPTURE_GLOB_ROOT = ROOT / "02_AUDIT_PACKETS"
 OUTPUT_DIR = ROOT / "02_AUDIT_PACKETS/2026-04-29-google-shopping-campaign-gate"
+
+POST_GATE_ADS_STRUCTURE = [
+    {
+        "campaign": "Brand Search — USA",
+        "use_only_after": "Purchase conversion tracking records value correctly.",
+        "required_exclusions": "Exclude if tracking is not recording.",
+    },
+    {
+        "campaign": "Standard Shopping — USA eligible products",
+        "use_only_after": "Merchant Center and product-margin gates pass.",
+        "required_exclusions": "Exclude UNKNOWN_MARGIN, FIX_BEFORE_PAID, limited, and not-approved products.",
+    },
+    {
+        "campaign": "PMax — USA eligible products",
+        "use_only_after": "Only after feed, conversion, landing-page, and product-label gates pass.",
+        "required_exclusions": "URL expansion off unless an approved landing-page map exists.",
+    },
+    {
+        "campaign": "Non-brand Search",
+        "use_only_after": "Search Console query/page exports prove commercial opportunity.",
+        "required_exclusions": "Exclude pages not READY_FOR_PAID.",
+    },
+    {
+        "campaign": "Remarketing",
+        "use_only_after": "Policy-limited ads are fixed and tracking is deduped.",
+        "required_exclusions": "Do not use current limited ads.",
+    },
+]
 
 
 def clean(value: object) -> str:
@@ -128,12 +157,14 @@ def missing_fix(reason: str) -> str:
 
 
 def live_label_status() -> dict[str, object]:
-    if LIVE_LABEL_CAPTURE_REFRESH_CHECK.exists():
-        path = LIVE_LABEL_CAPTURE_REFRESH_CHECK
-    elif LIVE_LABEL_CAPTURE_AFTER_SHOPIFY_CLEAR.exists():
-        path = LIVE_LABEL_CAPTURE_AFTER_SHOPIFY_CLEAR
-    else:
-        path = LIVE_LABEL_CAPTURE
+    candidates = [
+        *LIVE_LABEL_CAPTURE_GLOB_ROOT.glob("2026-04-29-*/merchant_exact_label_readback_refresh_check.json"),
+        LIVE_LABEL_CAPTURE_REFRESH_CHECK,
+        LIVE_LABEL_CAPTURE_AFTER_SHOPIFY_CLEAR,
+        LIVE_LABEL_CAPTURE,
+    ]
+    existing = [path for path in candidates if path.exists()]
+    path = max(existing, key=lambda item: item.stat().st_mtime) if existing else LIVE_LABEL_CAPTURE
     if not path.exists():
         return {
             "status": "BLOCKED_NOT_CAPTURED",
@@ -259,10 +290,10 @@ def build() -> dict[str, object]:
                 "related_item_group_ids": ";".join(related),
                 "collection_category": clean(rows[0]["product_type_for_ads"]),
                 "recommended_google_ads_product_group": (
-                    f"custom_label_4=us_test_ready > custom_label_1={rows[0]['custom_label_1']} "
-                    f"> custom_label_2={rows[0]['custom_label_2']} > family_style_id={family_style_id}"
+                    f"custom_label_4=us_test_ready > custom_label_0=paid_eligible > "
+                    f"item_ids_for_{family_style_id}; add custom_label_1..3 subdivisions only after full-label readback passes"
                 ),
-                "paid_eligibility": "ELIGIBLE_LOCAL_ONLY_UNTIL_MERCHANT_LABEL_READBACK_PASSES",
+                "paid_eligibility": "ELIGIBLE_FOR_VERIFIED_FILTERS_ONLY_UNTIL_FULL_LABEL_READBACK_PASSES",
                 "paid_variant_count": len(rows),
             }
         )
@@ -306,6 +337,27 @@ def build() -> dict[str, object]:
         )
 
     live_status = live_label_status()
+    campaign_filters_ready = bool(live_status.get("campaign_creation_allowed"))
+    full_labels_ready = bool(live_status.get("all_expected_labels_visible"))
+    if full_labels_ready:
+        decision = "READY_FOR_PAUSED_CAMPAIGN_BUILD_WITH_LABEL_SUBDIVISIONS"
+        label_status_reason = (
+            "Live Merchant Center readback shows all expected custom_label_0..4 values "
+            "for the sampled paid US offer."
+        )
+    elif campaign_filters_ready:
+        decision = "READY_FOR_PAUSED_CAMPAIGN_FILTER_BUILD__DO_NOT_SUBDIVIDE_BY_LABEL_1_2_3"
+        label_status_reason = (
+            "Live Merchant Center readback shows the two campaign filter labels, "
+            "custom_label_0=paid_eligible and custom_label_4=us_test_ready, but "
+            "custom_label_1..3 still do not match the clean-label source."
+        )
+    else:
+        decision = "DO_NOT_CREATE_GOOGLE_ADS_CAMPAIGN_UNTIL_CLEAN_LABELS_ARE_VISIBLE_IN_MERCHANT_CENTER_OR_ADS_PICKER"
+        label_status_reason = (
+            "Live Merchant Center readback has not shown the required campaign filter labels "
+            "on the sampled paid US offer."
+        )
     summary = {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "mode": "CAMPAIGN_GATE_PACKET_NO_ADS_LAUNCH",
@@ -324,13 +376,20 @@ def build() -> dict[str, object]:
         "paid_role_counts": dict(Counter(row["role"] for row in proof_rows)),
         "paid_family_counts": dict(Counter(row["custom_label_2"] for row in proof_rows)),
         "live_merchant_label_gate": live_status.get("gate_status", live_status.get("status", "UNKNOWN")),
+        "live_merchant_campaign_filter_gate": live_status.get("campaign_filter_gate_status", live_status.get("gate_status", "UNKNOWN")),
+        "live_merchant_full_label_gate": live_status.get("full_label_gate_status", "UNKNOWN"),
+        "campaign_filter_creation_allowed": campaign_filters_ready,
+        "label_1_2_3_subdivision_allowed": full_labels_ready,
         "live_merchant_label_detail": live_status,
-        "decision": "DO_NOT_CREATE_GOOGLE_ADS_CAMPAIGN_UNTIL_CLEAN_LABELS_ARE_VISIBLE_IN_MERCHANT_CENTER_OR_ADS_PICKER",
+        "google_ads_restart_allowed": False,
+        "post_gate_ads_structure_mode": "DRY_RUN_ONLY_DO_NOT_RESTART_GOOGLE_ADS",
+        "post_gate_ads_structure": POST_GATE_ADS_STRUCTURE,
+        "decision": decision,
         "why": [
             "The exact local paid cohort is 780 active/sellable variant offer rows across 81 Shopify product listings.",
             "Most paid listings have mixed eligible and excluded variants, so Shopify product-level custom-label writes would overinclude unsafe variants.",
-            "Variant-level Merchant Center supplemental labels are the correct control surface, but live readback still shows old labels for the sampled paid US offer.",
-            "Creating a campaign from the wizard before label readback passes risks targeting the old product-level labels or all products.",
+            "Variant-level Merchant Center supplemental labels are the correct control surface for paid eligibility.",
+            label_status_reason,
         ],
     }
 
@@ -341,6 +400,7 @@ def build() -> dict[str, object]:
         "family_style_group_plan": OUTPUT_DIR / "family_style_group_plan.csv",
         "image_plan": OUTPUT_DIR / "image_plan.csv",
         "paid_exclusion_table": OUTPUT_DIR / "paid_exclusion_table.csv",
+        "post_gate_google_ads_dry_run_structure": OUTPUT_DIR / "post_gate_google_ads_dry_run_structure.csv",
         "summary": OUTPUT_DIR / "summary.json",
         "campaign_gate_report": OUTPUT_DIR / "campaign_gate_report.md",
     }
@@ -351,14 +411,35 @@ def build() -> dict[str, object]:
     write_csv(files["family_style_group_plan"], list(family_rows[0].keys()), family_rows)
     write_csv(files["image_plan"], list(image_rows[0].keys()), image_rows)
     write_csv(files["paid_exclusion_table"], list(exclusion_rows[0].keys()), exclusion_rows)
+    write_csv(
+        files["post_gate_google_ads_dry_run_structure"],
+        ["campaign", "use_only_after", "required_exclusions"],
+        POST_GATE_ADS_STRUCTURE,
+    )
     summary["files"] = {key: str(path) for key, path in files.items()}
     files["summary"].write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     files["campaign_gate_report"].write_text(render_report(summary), encoding="utf-8")
     return summary
 
 
+def render_ads_structure_table(rows: list[dict[str, str]]) -> list[str]:
+    table = [
+        "| Campaign | Use only after | Required exclusions |",
+        "| --- | --- | --- |",
+    ]
+    for row in rows:
+        table.append(
+            f"| {row['campaign']} | {row['use_only_after']} | {row['required_exclusions']} |"
+        )
+    return table
+
+
 def render_report(summary: dict[str, object]) -> str:
     live_detail = summary["live_merchant_label_detail"]
+    ads_structure = summary.get("post_gate_ads_structure", POST_GATE_ADS_STRUCTURE)
+    observed_rows = live_detail.get("observed_us_en_rows", []) if isinstance(live_detail, dict) else []
+    label_mismatches = live_detail.get("observed_sample_label_mismatches", []) if isinstance(live_detail, dict) else []
+    source_artifact = live_detail.get("source_artifact", "") if isinstance(live_detail, dict) else ""
     return "\n".join(
         [
             "# Google Shopping Campaign Gate Report",
@@ -367,9 +448,9 @@ def render_report(summary: dict[str, object]) -> str:
             "",
             "## Decision",
             "",
-            "`DO NOT CREATE OR ENABLE THE GOOGLE ADS SHOPPING CAMPAIGN YET.`",
+            f"`{summary['decision']}`",
             "",
-            "The local paid cohort is real and verified, but the live Merchant Center/Ads label gate is not passed.",
+            "The local paid cohort is real and verified. Do not enable or restart Google Ads from this packet.",
             "",
             "## Verified Local Cohort",
             "",
@@ -386,15 +467,27 @@ def render_report(summary: dict[str, object]) -> str:
             "## Live Merchant Label Gate",
             "",
             f"- Gate: `{summary['live_merchant_label_gate']}`",
-            f"- Evidence: `{json.dumps(live_detail, sort_keys=True)[:3000]}`",
+            f"- Campaign filter gate: `{summary['live_merchant_campaign_filter_gate']}`",
+            f"- Full label gate: `{summary['live_merchant_full_label_gate']}`",
+            f"- Campaign filter creation allowed: `{summary['campaign_filter_creation_allowed']}`",
+            f"- Label 1-3 subdivision allowed: `{summary['label_1_2_3_subdivision_allowed']}`",
+            f"- Observed US/en sample rows: `{json.dumps(observed_rows, sort_keys=True)}`",
+            f"- Sample label mismatches: `{json.dumps(label_mismatches, sort_keys=True)}`",
+            f"- Evidence artifact: `{source_artifact}`",
             "",
-            "## Correct Campaign Structure After Gate Passes",
+            "## Post-Gate Google Ads Structure",
+            "",
+            "Do not restart Google Ads yet. This is a dry-run structure for use only after the named gates pass.",
+            "",
+            *render_ads_structure_table(ads_structure),
+            "",
+            "## Standard Shopping Build Details",
             "",
             "- Campaign: `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY`",
-            "- Type: Standard Shopping only, USA only, paused on creation.",
-            "- Do not use Performance Max, Search Partners, Display, international, or All Products.",
+            "- Type: Standard Shopping only, USA only, paused on creation if later approved.",
+            "- Do not use All Products, international inventory, unknown-margin products, fix-before-paid products, Limited products, or Not approved products.",
             "- Include only `custom_label_4=us_test_ready` and `custom_label_0=paid_eligible` after Ads picker/readback proves those labels exist.",
-            "- Product groups: `custom_label_4 > custom_label_0 > custom_label_2/product_type > proposed item group/listing/style`; use item IDs for reporting or exact exclusions, not tiny initial bids.",
+            "- Product groups: use `custom_label_4 > custom_label_0` first. Add `custom_label_1..3` subdivisions only after the full-label gate passes; until then use item IDs, product type, or the local item-group plan for reporting/exclusions.",
             "- Keep variant rows in Merchant Center for price, size, availability, and eligibility accuracy.",
             "",
             "## Important Feed Note",
@@ -403,8 +496,7 @@ def render_report(summary: dict[str, object]) -> str:
             "",
             "## Next Action",
             "",
-            "Verify that the supplemental clean-label source is joined to the live `en/US` Shopping source used by target offers, then recheck an exact paid offer until Merchant Center or the Ads picker shows `paid_eligible` and `us_test_ready`. Only then create the paused Standard Shopping campaign.",
-            "",
+            "If building the paused campaign now, restrict it to the two verified filters and avoid `custom_label_1..3` product-group subdivisions. The clean-label source or upstream Shopify label mapping still needs follow-up before those secondary labels are trusted.",
         ]
     ) + "\n"
 

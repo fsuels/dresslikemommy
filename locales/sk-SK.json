@@ -172,7 +172,7 @@
       },
       "view_full_details": "Zobraziť všetky podrobnosti",
       "include_taxes": "Vrátane dane.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Doprava</a> sa vypočíta pri platbe.",
+      "shipping_policy_html": "Možnosti dopravy a náklady sú zobrazené pri pokladni po zadaní adresy. <a href=\"{{ link }}\">Sdodacie podmienky</a>",
       "choose_options": "Vybrať možnosti",
       "choose_product_options": "Vyberte možnosti pre: {{ product_name }}",
       "value_unavailable": "{{ option_value }} – nedostupné",
@@ -193,9 +193,9 @@
       },
       "matching_set": {
         "heading": "Zostavte si zodpovedajúcu súpravu",
-        "copy": "Vyberte si každú veľkosť rodiny, ktorú potrebujete, a pridajte celú zodpovedajúcu sadu z jednej stránky produktu.",
-        "empty": "Na začiatok svojej súpravy vyberte aspoň jednu rodinnú veľkosť.",
-        "add": "Pridajte vybrané kúsky",
+        "copy": "Voliteľné: vyberte jednu veľkosť pre každého člena rodiny, ktorého chcete zahrnúť. Každý výber pridá jeden samostatný kus do košíka.",
+        "empty": "Vyberte jednu veľkosť pre každého člena rodiny, ktorého chcete pridať.",
+        "add": "Pridajte vybrané kusy do košíka",
         "success": "Zodpovedajúca sada bola pridaná do košíka.",
         "error": "Nie je možné pridať vybrané kusy. Skúste to znova."
       },
@@ -229,7 +229,7 @@
         "write_review": "Napíšte recenziu",
         "write_review_title": "Napíšte recenziu"
       },
-      "free_shipping_all_orders": "Doprava zdarma na všetky objednávky",
+      "free_shipping_all_orders": "Možnosti dopravy zobrazené pri pokladni",
       "selected_size_label": "Veľkosť: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Podrobnosti",
@@ -286,19 +286,19 @@
     "trust": {
       "secure_checkout": "Bezpečná pokladňa",
       "ssl_encrypted": "SSL šifrované",
-      "returns": "Ľahké návraty",
-      "free_shipping": "Doprava zdarma",
+      "returns": "30-dňová lehota na vrátenie",
+      "free_shipping": "Poštovné zobrazené pri pokladni",
       "trusted_since": "Rodinné párovanie je jednoduché",
       "assistance_note": "Potrebujete pomoc? Zvyčajne odpovedáme do jedného pracovného dňa."
     },
     "additional_info": {
       "shipping_title": "Doprava a doručenie",
-      "free_shipping_label": "Doprava ZDARMA",
-      "estimated_delivery": "Podrobnosti o doručení pri pokladni",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Možnosti dopravy",
+      "estimated_delivery": "Doručenie zobrazené pri pokladni:",
+      "standard_delivery_window": "Konečné načasovanie doručenia a náklady na dopravu sú potvrdené po zadaní adresy.",
+      "premium_delivery_window": "Expresné možnosti sú zobrazené pri pokladni, ak sú k dispozícii.",
       "faster_shipping_prefix": "Chcete to rýchlejšie? Strávte viac ako 100 $ a získajte",
-      "free_premium_shipping": "Prémiová doprava ZDARMA",
+      "free_premium_shipping": "Expresná doprava",
       "return_policy_title": "Pravidlá vrátenia",
       "return_policy_line_1": "Na vrátenie alebo výmenu máte 30 dní od doručenia.",
       "return_policy_line_2": "Tovar musí byť nenosený, nepraný, v pôvodnom stave a v pôvodnom obale s nalepenými visačkami.",
@@ -309,7 +309,7 @@
       "safe_payment_description": "Akceptujeme všetky hlavné kreditné a debetné karty. Údaje o vašej karte sú v bezpečí a nikdy ich nezdieľame s našimi partnermi. Svoje uložené karty môžete kedykoľvek jednoducho spravovať. V prípade akýchkoľvek otázok týkajúcich sa transakcií sa obráťte na vydavateľa karty.",
       "secure_logistics_title": "Bezpečná logistika",
       "secure_logistics_line_1": "Ak sa balík poškodí alebo stratí pri preprave, kontaktujte nás, aby sme vám mohli pomôcť s kontrolou zásielky.",
-      "secure_logistics_line_2": "Ak chcete získať najnovšie aktualizácie operátora, použite odkaz na sledovanie objednávky.",
+      "secure_logistics_line_2": "Ak chcete získať najnovšie aktualizácie operátora, použite odkaz na sledovanie objednávky. Medzinárodné objednávky môžu podliehať miestnym daniam, clám alebo colným poplatkom, ktoré vyberá dopravca alebo miestny úrad.",
       "secure_privacy_title": "Bezpečné súkromie",
       "secure_privacy_description": "Ochrana vášho súkromia je pre nás dôležitá! Uisťujeme vás, že vaše informácie budú zabezpečené a nekompromitované. Vaše osobné údaje nepredávame za peniaze a vaše údaje použijeme iba v súlade s našimi zásadami ochrany osobných údajov a súborov cookie, aby sme vám mohli poskytovať a zlepšovať naše služby."
     }
@@ -394,10 +394,10 @@
       "empty": "Váš košík je prázdny",
       "cart_error": "Pri aktualizácii košíka sa vyskytla chyba. Skúste to znova.",
       "cart_quantity_error_html": "Do košíka môžete túto položku pridať len v počte {{ quantity }}.",
-      "taxes_and_shipping_policy_at_checkout_html": "Dane, zľavy a <a href=\"{{ link }}\">doprava</a> sa vypočítajú pri platbe",
-      "taxes_included_but_shipping_at_checkout": "Dane sa zahrnú a doprava a zľavy sa vypočítajú pri platbe",
-      "taxes_included_and_shipping_policy_html": "Vrátane dane. <a href=\"{{ link }}\">Doprava</a> a zľavy sa vypočítajú pri platbe.",
-      "taxes_and_shipping_at_checkout": "Dane, zľavy a doprava sa vypočítajú pri platbe",
+      "taxes_and_shipping_policy_at_checkout_html": "Dane, zľavy a doprava vypočítané pri pokladni. <a href=\"{{ link }}\">Sdodacie podmienky</a>",
+      "taxes_included_but_shipping_at_checkout": "Vrátane dane. Zľavy a doprava vypočítané pri pokladni.",
+      "taxes_included_and_shipping_policy_html": "Vrátane dane. Zľavy a doprava vypočítané pri pokladni. <a href=\"{{ link }}\">Sdodacie podmienky</a>",
+      "taxes_and_shipping_at_checkout": "Dane, zľavy a doprava vypočítané pri pokladni.",
       "update": "Aktualizovať",
       "headings": {
         "product": "Produkt",
@@ -422,16 +422,16 @@
       "trust": {
         "secure_checkout": "Bezpečná pokladňa",
         "ssl_encrypted": "SSL šifrované",
-        "free_shipping": "Doprava zdarma",
-        "returns": "Ľahké návraty",
+        "free_shipping": "Možnosti dopravy",
+        "returns": "30-dňové vrátenie tovaru",
         "secure": "Zabezpečte",
         "encrypted": "Zašifrované",
-        "free_ship": "Loď zadarmo"
+        "free_ship": "Doprava"
       },
       "popular_with_families": "Obľúbené medzi rodinami",
       "recently_viewed": "Naposledy zobrazené",
       "discount_code_toggle": "Have a discount code?",
-      "shipping_free": "FREE",
+      "shipping_free": "Vypočítané pri pokladni",
       "shipping_label": "Shipping",
       "savings_html": "Ukladáte <strong>{{ amount }}</strong>"
     },
@@ -476,7 +476,7 @@
       "carousel": "Karusel",
       "announcement": "Oznámenie",
       "announcement_bar": "Panel s oznámeniami",
-      "default_promo": "DOPRAVA ZDARMA NA VŠETKY OBJEDNÁVKY | JEDNODUCHÁ VRÁTENIE | ZABEZPEČENÁ PLATBA"
+      "default_promo": "MOŽNOSTI DOPRAVY PRI POKLADNI | 30-DŇOVÉ OKNO NA NÁVRAT | ZABEZPEČENÁ PLATBA"
     },
     "quick_order_list": {
       "product_total": "Medzisúčet produktov",

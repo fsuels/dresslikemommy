@@ -170,7 +170,7 @@
       },
       "view_full_details": "Visualizza dettagli completi",
       "include_taxes": "Imposte incluse.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Spese di spedizione</a> calcolate al check-out.",
+      "shipping_policy_html": "Le opzioni e i costi di spedizione vengono visualizzati al momento del pagamento dopo l'inserimento dell'indirizzo. <a href=\"{{ link }}\">Politica di spedizione</a>",
       "choose_options": "Scegli opzioni",
       "choose_product_options": "Scegli opzioni per {{ product_name }}",
       "value_unavailable": "{{ option_value }} - Non disponibile",
@@ -195,9 +195,9 @@
       "size_required_message": "Seleziona una taglia prima di aggiungerla al carrello.",
       "matching_set": {
         "heading": "Costruisci il tuo set coordinato",
-        "copy": "Scegli tutte le dimensioni della famiglia di cui hai bisogno e aggiungi il set completo di corrispondenza da una pagina di prodotto.",
-        "empty": "Scegli almeno una dimensione della famiglia per iniziare il tuo set.",
-        "add": "Aggiungi pezzi selezionati",
+        "copy": "Facoltativo: scegli una taglia per ogni membro della famiglia che desideri includere. Ogni selezione aggiunge un pezzo separato al carrello.",
+        "empty": "Seleziona una taglia per ogni membro della famiglia che desideri aggiungere.",
+        "add": "Aggiungi i pezzi selezionati al carrello",
         "success": "Set coordinato aggiunto al carrello.",
         "error": "Impossibile aggiungere i pezzi selezionati. Per favore riprova."
       },
@@ -231,7 +231,7 @@
         "write_review": "Scrivi una recensione",
         "write_review_title": "Scrivi una recensione"
       },
-      "free_shipping_all_orders": "Spedizione gratuita su tutti gli ordini",
+      "free_shipping_all_orders": "Opzioni di spedizione mostrate al momento del pagamento",
       "selected_size_label": "Dimensioni: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Dettagli",
@@ -282,19 +282,19 @@
     "trust": {
       "secure_checkout": "Pagamento sicuro",
       "ssl_encrypted": "SSL crittografato",
-      "returns": "Resi facili",
-      "free_shipping": "Spedizione gratuita",
+      "returns": "Finestra di reso di 30 giorni",
+      "free_shipping": "Spedizione mostrata al momento del pagamento",
       "trusted_since": "L'abbinamento familiare è reso semplice",
       "assistance_note": "Hai bisogno di aiuto? Solitamente rispondiamo entro un giorno lavorativo."
     },
     "additional_info": {
       "shipping_title": "Spedizione e consegna",
-      "free_shipping_label": "Spedizione gratuita",
-      "estimated_delivery": "Dettagli di consegna al momento del pagamento",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Opzioni di spedizione",
+      "estimated_delivery": "Consegna mostrata al momento del pagamento:",
+      "standard_delivery_window": "I tempi di consegna finali e i costi di spedizione vengono confermati dopo l'inserimento dell'indirizzo.",
+      "premium_delivery_window": "Le opzioni Express vengono visualizzate al momento del pagamento, ove disponibili.",
       "faster_shipping_prefix": "Lo vuoi più veloce? Spendi $ 100+ e ottieni",
-      "free_premium_shipping": "Spedizione Premium GRATUITA",
+      "free_premium_shipping": "Spedizione espressa",
       "return_policy_title": "Politica di ritorno",
       "return_policy_line_1": "Hai 30 giorni di tempo dalla consegna per richiedere un reso o un cambio.",
       "return_policy_line_2": "Gli articoli devono essere mai indossati, non lavati, nelle condizioni originali e nella loro confezione originale con etichette attaccate.",
@@ -305,7 +305,7 @@
       "safe_payment_description": "Accettiamo tutte le principali carte di credito e debito. I dati della tua carta sono sicuri e non vengono mai condivisi con i nostri partner. Puoi gestire facilmente le tue carte salvate in qualsiasi momento. Per qualsiasi richiesta di transazione, contatta l'emittente della tua carta.",
       "secure_logistics_title": "Logistica sicura",
       "secure_logistics_line_1": "Se un pacco è danneggiato o smarrito durante il trasporto, contattaci per consentirci di esaminare la spedizione.",
-      "secure_logistics_line_2": "Utilizza il link per il monitoraggio dell'ordine per gli ultimi aggiornamenti del corriere.",
+      "secure_logistics_line_2": "Utilizza il link per il monitoraggio dell'ordine per gli ultimi aggiornamenti del corriere. Gli ordini internazionali possono essere soggetti a tasse locali, dazi o spese doganali riscosse dal corriere o dall'autorità locale.",
       "secure_privacy_title": "Privacy protetta",
       "secure_privacy_description": "Per noi la tutela della tua privacy è importante! Ti assicuriamo che le tue informazioni saranno mantenute sicure e senza compromessi. Non vendiamo le tue informazioni personali a scopo di lucro e utilizzeremo le tue informazioni solo in conformità con la nostra politica sulla privacy e sui cookie per fornirti e migliorare i nostri servizi."
     }
@@ -384,10 +384,10 @@
       "empty": "Il tuo carrello è vuoto",
       "cart_error": "Si è verificato un errore durante l'aggiornamento del carrello. Riprova più tardi.",
       "cart_quantity_error_html": "Puoi aggiungere soltanto {{ quantity }} di questo articolo al tuo carrello.",
-      "taxes_and_shipping_policy_at_checkout_html": "Imposte, sconti e <a href=\"{{ link }}\">spedizione</a> calcolati al check-out",
-      "taxes_included_but_shipping_at_checkout": "Imposte incluse e spedizione e sconti calcolati al check-out",
-      "taxes_included_and_shipping_policy_html": "Imposte incluse. <a href=\"{{ link }}\">Spedizione</a> e sconti calcolati al check-out.",
-      "taxes_and_shipping_at_checkout": "Imposte, sconti e spedizione calcolati al check-out",
+      "taxes_and_shipping_policy_at_checkout_html": "Tasse, sconti e spese di spedizione calcolati al momento del pagamento. <a href=\"{{ link }}\">Politica di spedizione</a>",
+      "taxes_included_but_shipping_at_checkout": "Tasse incluse. Sconti e spese di spedizione calcolati al momento del pagamento.",
+      "taxes_included_and_shipping_policy_html": "Tasse incluse. Sconti e spese di spedizione calcolati al momento del pagamento. <a href=\"{{ link }}\">Politica di spedizione</a>",
+      "taxes_and_shipping_at_checkout": "Tasse, sconti e spese di spedizione calcolati al momento del pagamento.",
       "headings": {
         "product": "Prodotto",
         "price": "Prezzo",
@@ -412,15 +412,15 @@
       "trust": {
         "secure_checkout": "Pagamento sicuro",
         "ssl_encrypted": "SSL crittografato",
-        "free_shipping": "Spedizione gratuita",
-        "returns": "Resi facili",
+        "free_shipping": "Opzioni di spedizione",
+        "returns": "Resi entro 30 giorni",
         "secure": "Sicuro",
         "encrypted": "Crittografato",
-        "free_ship": "Nave libera"
+        "free_ship": "Spedizione"
       },
       "discount_code_toggle": "Hai un codice sconto?",
       "shipping_label": "Spedizione",
-      "shipping_free": "GRATUITO",
+      "shipping_free": "Calcolato al momento del pagamento",
       "popular_with_families": "Popolare tra le famiglie",
       "recently_viewed": "Visti di recente",
       "savings_html": "Stai risparmiando <strong>{{ amount }}</strong>"
@@ -466,7 +466,7 @@
       "carousel": "Carousel",
       "announcement": "Annuncio",
       "announcement_bar": "Barra degli annunci",
-      "default_promo": "SPEDIZIONE GRATUITA SU TUTTI GLI ORDINI | RESI FACILI | PAGAMENTO SICURO"
+      "default_promo": "OPZIONI DI SPEDIZIONE AL MOMENTO DEL PAGAMENTO | FINESTRA DI RESO DI 30 GIORNI | PAGAMENTO SICURO"
     },
     "quick_order_list": {
       "product_total": "Subtotale prodotto",

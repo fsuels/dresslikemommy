@@ -25549,3 +25549,361 @@ Verification:
   - `python3 ops/tests/test_needs_data_economics_reconciliation.py`
   - `python3 ops/tests/test_shopify_margin_cac_export_pack.py`
 - `python3 -m pytest ...` could not run because this shell's system Python does not have `pytest`; the tests are executable script-style tests and were run directly instead.
+
+2026-04-29 02:38 EDT - Homepage category and Most-Loved visual lift
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-homepage-category-curation-lift
+
+Why:
+- User said the homepage area below the hero looked much weaker than the hero, with category/occasion images and text feeling too small on desktop and mobile.
+
+Actions:
+- Enlarged `section-category-icons` into bigger editorial tiles:
+  - desktop category grid is now 3-up with larger 4:5 image cards;
+  - desktop occasion grid is 4-up at wide widths;
+  - mobile now uses large horizontal swipe cards instead of tiny thumbnails;
+  - group headings, card labels, trust strip spacing, shadows, and hover polish were increased.
+- Raised category image requests from 240x300 to 720x900 and updated rotated candidate metadata from 120x150 to 360x450 so enlarged cards stay sharp.
+- Improved `curated-product-grid` / `home-spotlight-card` presentation:
+  - Most-Loved title, intro, support note, cards, product titles, captions, prices, and collection links are larger;
+  - desktop product grid is now 2-up instead of 4-up;
+  - product-card media is forced to a stable 4:5 framed crop so images do not expand by their source aspect ratio.
+- Updated homepage section padding so the category and Most-Loved areas have more breathing room.
+- Fixed visible homepage asset references for `home-promo-hawaiian-family` and `home-cat-photo-days` from missing `.jpg` files to existing `.png` files.
+
+Verification:
+- `git diff --check` passed.
+- `shopify theme check` passed: 251 files inspected, no offenses.
+- Started Shopify development preview at `http://127.0.0.1:9292`.
+- Checked desktop 1440px and mobile 390px layouts with Playwright snapshots/screenshots:
+  - category tiles render as large desktop cards and large mobile swipe cards;
+  - Most-Loved cards render as 2-up desktop cards and full-width mobile cards;
+  - product images load when the Most-Loved section is in view.
+- Remaining local preview console noise is from existing local-preview CORS/Shop iframe behavior and Shopify hot-reload reconnects, not these theme edits.
+
+Next:
+- Review the development preview visually with the cookie banner dismissed in a normal browser before publishing/pushing to the live theme.
+
+2026-04-29 04:12 EDT - Sync all current local changes to main
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-sync-all-current-local-main
+
+Why:
+- User asked to sync all current repository changes to `main`.
+
+Actions:
+- Confirmed the working branch was `main` and fetched `origin/main`.
+- Treated the full current working tree as in scope, including homepage polish, growth audit packets, ops scripts/tests, locale/theme copy updates, cart/product/search theme changes, and new audit artifacts.
+- Included the country checkout/admin validation packet and `ops/scripts/validate_phase5_country_checkout_admin.py` after they appeared during staging.
+- Checked untracked artifact sizes before staging; largest included files were about 5.3 MB. The pre-existing ignored raw Merchant export zip over 95 MB remains ignored and was not staged.
+- Ran credential/session-looking scans over modified and untracked files. Only code references and redacted/historical worklog notes matched; no live token-looking patterns were found.
+
+Verification before staging:
+- `git diff --check` passed.
+- `shopify theme check` passed: 251 files inspected, no offenses.
+- `python3 -m py_compile ops/scripts/build_google_shopping_campaign_gate_packet.py ops/scripts/build_google_shopping_us_clean_subset.py ops/scripts/check_merchant_center_clean_labels_live.py ops/scripts/translation_utils.py ops/scripts/build_phase7_final_launch_gate_packet.py ops/scripts/build_pinterest_shopping_ads_gate_packet.py ops/scripts/build_product_page_copy_map.py ops/scripts/repair_phase5_locale_copy.py` passed.
+- `python3 -m py_compile ops/scripts/validate_phase5_country_checkout_admin.py` passed.
+- Direct script tests passed:
+  - `python3 ops/tests/test_google_shopping_us_clean_subset.py`
+  - `python3 ops/tests/test_translation_utils_html_protection.py`
+  - `python3 ops/tests/test_google_shopping_campaign_gate_packet.py`
+  - `python3 ops/tests/test_phase5_locale_country_allowlist.py`
+  - `python3 ops/tests/test_phase7_final_launch_gate_packet.py`
+  - `python3 ops/tests/test_pinterest_shopping_ads_gate_packet.py`
+
+Next:
+- Stage, commit, push to `origin/main`, then verify local `main` is clean and aligned with remote.
+
+2026-04-29 03:55 EDT - Pinterest Shopping Ads structure gate
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-pinterest-shopping-ads-gate
+
+Why:
+- User asked to check whether the Pinterest Ads structure issue was already fixed and, if not, fix it without clicking `Create an ad` or launching Pinterest Shopping Ads.
+
+Findings:
+- Existing Pinterest evidence already proved the account/channel is active and that no paid Pinterest ads exist yet: 0 campaigns, 0 ads, and $0.00 spend across captured 30/90/365-day windows.
+- Existing docs also already said not to create campaigns/budgets/ads/product groups during Pinterest audits.
+- The missing piece was a durable post-gate Pinterest Shopping Ads structure for USA-only product groups across Mommy & Me, Family Matching, and Pajamas, tied to known margin, clean feed/PDP evidence, in-stock availability, and a fail-closed launch gate.
+
+Actions:
+- Added `ops/scripts/build_pinterest_shopping_ads_gate_packet.py`.
+- Added `ops/tests/test_pinterest_shopping_ads_gate_packet.py`.
+- Generated review-only gate packet under `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate/`.
+- No Pinterest, Shopify, feed, campaign, product group, budget, bid, or tracking live change was made.
+
+Output:
+- Decision: `DO_NOT_CREATE_PINTEREST_ADS_OR_PRODUCT_GROUPS_YET`.
+- Post-gate campaign structure: `DLM_PIN_US_SHOPPING_TEST_PAID_READY`, Shopping/catalog sales only, USA only, paused/draft only until separately approved.
+- Review-only candidate offer rows:
+  - Mommy & Me: 214 offer rows across 28 Shopify products.
+  - Family Matching: 103 offer rows across 7 Shopify products.
+  - Pajamas: 29 offer rows across 1 Shopify product.
+- All 346 candidate rows came from the existing paid-ready clean cohort and passed local gates for known cost, US market, paid labels, Merchant Center approved / Shopping ads eligible status, image/price/availability/shipping/return/PDP pass, and no fix-before-paid flag.
+- The packet still blocks launch until exact Pinterest catalog item status, full event/CAPI/dedup payload health through payment events, USA targeting proof, and ROAS guardrails are verified.
+
+Verification:
+- `python3 ops/scripts/build_pinterest_shopping_ads_gate_packet.py` passed and generated the packet.
+- `python3 ops/tests/test_pinterest_shopping_ads_gate_packet.py` passed.
+- `python3 -m py_compile ops/scripts/build_pinterest_shopping_ads_gate_packet.py ops/tests/test_pinterest_shopping_ads_gate_packet.py` passed.
+
+Next:
+- If/when the operator wants to proceed, perform a read-only Pinterest catalog item readback/export for the exact 346 candidate offer IDs and a no-purchase event health pass through AddPaymentInfo/Checkout proof. Do not click `Create an ad` until those gates pass and the operator explicitly approves that exact action.
+
+2026-04-29 03:55 EDT - Phase 7 final launch gate enforced
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-phase7-final-launch-gate
+
+Why:
+- User asked to check whether the Phase 7 final launch gate issues were already fixed and fix anything missing.
+
+Findings:
+- The exact Phase 7 "all answers must be YES" gate did not exist as one executable/readable packet.
+- Existing evidence proves product economics for the current local paid cohort: 780 target offer rows have unit cost, margin tier, inventory, Merchant Center status/destination, and `us_test_ready` paid status.
+- Launch is still blocked because 7 of 8 gates lack complete proof:
+  - Measurement: no purchase/payment event proof with transaction_id/value/currency and dedupe.
+  - Feed: local Google feed/PDP rows pass, and Google campaign filters are visible, but exact Pinterest item-level catalog readback/country proof remains missing.
+  - Website: no final target landing-page `READY_FOR_PAID` allowlist exists.
+  - Localization: rendered target locale QA has not passed; localization defects remain high.
+  - Country economics: actual shipping/returns cost, full Google/GA4/Meta exports, and country-level paid eligibility remain incomplete.
+  - Paid efficiency: ROAS/CAC cannot be proven from incomplete spend/conversion exports.
+  - Blended spend: total marketing spend across all platforms is incomplete.
+
+Actions:
+- Added `ops/scripts/build_phase7_final_launch_gate_packet.py`.
+- Added `ops/tests/test_phase7_final_launch_gate_packet.py`.
+- Updated `ops/tests/test_google_shopping_campaign_gate_packet.py` so its fixture matches the current Google gate renderer fields.
+- Generated the final launch-gate packet:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-final-launch-gate/summary.json`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-final-launch-gate/phase7_launch_gate_checklist.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-final-launch-gate/phase7_final_launch_gate_report.md`
+
+Result:
+- Final launch decision: `BLOCKED`.
+- Gate counts: 1 `YES`, 7 `NO`.
+- No Shopify, Merchant Center, Google Ads, Pinterest, budget, campaign, feed, tracking, or theme live change was made.
+
+Verification:
+- `python3 ops/scripts/build_phase7_final_launch_gate_packet.py` passed.
+- `python3 -m py_compile ops/scripts/build_phase7_final_launch_gate_packet.py ops/tests/test_phase7_final_launch_gate_packet.py ops/tests/test_google_shopping_campaign_gate_packet.py` passed.
+- `python3 ops/tests/test_phase7_final_launch_gate_packet.py` passed.
+- `python3 ops/tests/test_google_shopping_campaign_gate_packet.py && python3 ops/tests/test_pinterest_shopping_ads_gate_packet.py` passed.
+- `git diff --check` passed.
+
+Next:
+- First unblock Measurement and Feed: capture purchase/payment conversion health with dedupe proof, then export/read back exact Pinterest item-level catalog status for the target offer IDs.
+
+2026-04-29 03:53 EDT - Google Ads post-gate dry-run structure hardening
+
+Why:
+- User asked to check/fix issue 8: Google Ads structure must not restart Ads yet, and must exist only as a post-gate dry-run structure with campaign-specific exclusions.
+
+Finding:
+- Partially fixed before this pass: existing campaign gate already blocked Shopping campaign creation because live Merchant Center labels are not visible.
+- Missing before this pass: the generated artifacts did not encode the full five-campaign post-gate dry-run structure for Brand Search, Standard Shopping, PMax, Non-brand Search, and Remarketing.
+
+Actions:
+- Updated `ops/scripts/build_google_shopping_campaign_gate_packet.py` to emit `post_gate_google_ads_dry_run_structure.csv`, add `google_ads_restart_allowed=false`, and render a report section saying not to create, enable, or restart Google Ads yet.
+- Updated `ops/scripts/build_google_shopping_us_clean_subset.py` so the Standard Shopping build plan also carries the same post-gate dry-run structure and explicit exclusions for `UNKNOWN_MARGIN`, `FIX_BEFORE_PAID`, Merchant Center `Limited`, Merchant Center `Not approved`, and pages not `READY_FOR_PAID`.
+- Added regression coverage in `ops/tests/test_google_shopping_campaign_gate_packet.py` and expanded `ops/tests/test_google_shopping_us_clean_subset.py`.
+- Regenerated the existing review artifacts:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/google_ads_paused_standard_shopping_build_plan.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-google-shopping-campaign-gate/campaign_gate_report.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-google-shopping-campaign-gate/post_gate_google_ads_dry_run_structure.csv`
+
+Verification:
+- `python3 -m py_compile ops/scripts/build_google_shopping_campaign_gate_packet.py ops/scripts/build_google_shopping_us_clean_subset.py ops/tests/test_google_shopping_campaign_gate_packet.py ops/tests/test_google_shopping_us_clean_subset.py` passed.
+- `python3 ops/tests/test_google_shopping_campaign_gate_packet.py` passed.
+- `python3 ops/tests/test_google_shopping_us_clean_subset.py` passed.
+- Regenerated campaign gate still reports `BLOCKED_CLEAN_LABELS_NOT_VISIBLE`; no Shopify, Merchant Center, Google Ads, campaign, budget, or feed write was performed.
+
+Next:
+- Keep Google Ads paused/off. Next paid-search action remains fixing/verifying the Merchant Center label join and conversion-value gate before any dry-run build becomes actionable.
+
+2026-04-29 03:58 EDT - Product/feed implementation plan recheck
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-product-feed-plan-recheck
+
+Why:
+- User asked to check whether the Product / feed implementation plan phases were already fixed, and fix anything still open.
+
+Findings:
+- Phase 2 COGS/unit cost is fixed for active variants: fresh Shopify Admin read-only cost sync check found 7,324 active variants, 0 missing unit costs, and 0 updates needed.
+- Phase 4 campaign filter labels are now visible in live Merchant Center for sampled paid US/en offer `shopify_US_7107978395745_41493652963425`:
+  - `custom_label_0=paid_eligible`
+  - `custom_label_4=us_test_ready`
+- Full label readback is still not fixed: the same live row still shows old `custom_label_1=set`, `custom_label_2=true`, and `custom_label_3=summer` instead of expected `margin_medium`, `mommy_me`, and `aov_medium`.
+- Keyword readback found 0 visible rows for `margin_medium`, `mommy_me`, and `aov_medium`, while old `set` / `summer` rows are still visible.
+- The paid cohort itself remains clean for hard Shopping gates: 780/780 paid rows have PASS for image, price, availability, shipping, and return status, with 0 missing SKU and 0 missing GTIN/barcode.
+- Broad active catalog defects remain outside the paid cohort: 1,604 of 7,324 reviewed active rows still lack SKU and 5,897 still lack GTIN/barcode, so they remain excluded rather than guessed.
+- Pinterest item-level product IDs are not present in local exports; generated map marks the Pinterest column as `NEEDS_PINTEREST_CATALOG_ITEM_EXPORT`.
+
+Actions:
+- Updated `ops/scripts/check_merchant_center_clean_labels_live.py` to compare all five expected labels from the uploaded clean-label source, not only the two campaign filters.
+- Updated `ops/scripts/build_google_shopping_campaign_gate_packet.py` to consume the newest label readback artifact, distinguish campaign-filter readiness from full-label readiness, and prevent `custom_label_1..3` subdivisions until full-label readback passes.
+- Updated `ops/tests/test_google_shopping_campaign_gate_packet.py` so the regression fixture covers the current partial-pass state: campaign filters pass, full custom-label readback does not.
+- Regenerated the campaign gate packet; decision is now `READY_FOR_PAUSED_CAMPAIGN_FILTER_BUILD__DO_NOT_SUBDIVIDE_BY_LABEL_1_2_3`.
+- Generated `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-product-feed-plan-recheck/shopify_merchant_variant_map.csv` with 7,324 active Shopify variant rows and Merchant Center item IDs.
+- Added status report `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-product-feed-plan-recheck/product_feed_plan_status.md`.
+- No Shopify, Merchant Center, Google Ads, Pinterest, feed, campaign, budget, bid, or product publication live write was performed in this pass.
+
+Verification:
+- `python3 ops/scripts/sync_shopify_variant_costs.py --statuses ACTIVE --stamp 2026-04-29-product-feed-plan-active-cost-readonly` passed.
+- `python3 ops/scripts/check_merchant_center_clean_labels_live.py --output-dir dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-product-feed-plan-recheck` passed and wrote the full-label mismatch evidence.
+- `python3 ops/scripts/build_google_shopping_campaign_gate_packet.py` passed and regenerated the campaign gate.
+- `python3 -m py_compile ops/scripts/check_merchant_center_clean_labels_live.py ops/scripts/build_google_shopping_campaign_gate_packet.py` passed.
+- `python3 ops/tests/test_google_shopping_campaign_gate_packet.py`, `python3 ops/tests/test_google_shopping_us_clean_subset.py`, and `python3 ops/tests/test_shopify_variant_cost_sync.py` passed.
+- `git diff --check` passed.
+
+Next:
+- Do not subdivide Google Shopping by `custom_label_1..3` until those labels read back correctly.
+- Fix path for label 1-3 is likely Merchant Center supplemental-source precedence or upstream Shopify/Google & YouTube label mapping; do not restore broad product-level paid labels because 80 of 81 paid listings mix eligible and excluded variants.
+- Run a Pinterest item-level catalog export/readback before claiming the full Shopify -> Merchant Center -> Pinterest product ID map is complete.
+
+2026-04-29 04:02 EDT - Phase 5 localization and paid-country allowlist pass
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-phase5-localization-country-allowlist
+
+Why:
+- User asked to check whether Phase 5 localization/country allowlist issues were already fixed, and fix anything still open:
+  - USA remains primary.
+  - Exclude every non-US country from paid until localization, shipping, returns, country conversion, and margin pass.
+  - Fix locale raw keys, English fragments, malformed markup, and policy translations.
+  - Re-test country by country.
+
+Findings:
+- Partially fixed before this pass:
+  - Existing Google/Pinterest gate artifacts were already review-only and USA-focused.
+  - Existing Merchant Center country-exclusion upload file preserves US and excludes 42 observed non-US countries across 7,063 IDs.
+- Still open before this pass:
+  - `build_google_shopping_us_clean_subset.py` inferred every reviewed row as `market=US` instead of enforcing a US market allowlist from item/country evidence.
+  - `snippets/product-page-copy-map.liquid` still rendered blank product-navigation fallback labels for all locales, so client-side PDP localization could fall back poorly.
+  - Arabic locale file still contained malformed `__DLMTOK...` placeholders, including policy anchor hrefs.
+  - Non-English locale files still carried stale shipping/policy text after the current English source moved away from older free-shipping claims.
+
+Actions:
+- Hardened `ops/scripts/build_google_shopping_us_clean_subset.py`:
+  - derives market from explicit country/market fields or `shopify_XX_product_variant` item IDs;
+  - excludes any non-US/unknown-market row before paid labeling;
+  - marks non-US rows with `custom_label_0=international_exclude` and `custom_label_4=international_exclude`.
+- Added locale repair tooling:
+  - `ops/scripts/repair_phase5_locale_copy.py` refreshes the Phase 5 policy/shipping/cart/trust strings from current `locales/en.default.json` for all non-default locales and repairs older Arabic placeholder-token keys.
+  - `ops/scripts/build_product_page_copy_map.py` regenerates `snippets/product-page-copy-map.liquid` from the actual locale JSON paths, including `sections.product_navigation.*`.
+- Updated `ops/scripts/translation_utils.py` so old malformed `__DLMTOK...` placeholders are treated as bad cached placeholder output.
+- Ran the locale repair across 34 non-default locale files and regenerated `snippets/product-page-copy-map.liquid`.
+- Added regression coverage in:
+  - `ops/tests/test_google_shopping_us_clean_subset.py`
+  - `ops/tests/test_translation_utils_html_protection.py`
+  - `ops/tests/test_phase5_locale_country_allowlist.py`
+
+Verification:
+- Locale audit found 0 `__DLMTOK` / placeholder-token / `translation missing` strings in theme locale JSON files.
+- Policy markup audit found 0 malformed anchor/link errors for target policy HTML keys.
+- Product-page copy map parsed as JSON and now has populated navigation/policy keys for all 35 locales.
+- Country exclusion file re-test passed:
+  - 7,063 upload rows;
+  - 42 excluded non-US countries observed;
+  - 0 `US` exclusions.
+- Direct tests passed:
+  - `python3 ops/tests/test_google_shopping_us_clean_subset.py`
+  - `python3 ops/tests/test_translation_utils_html_protection.py`
+  - `python3 ops/tests/test_phase5_locale_country_allowlist.py`
+- `python3 -m py_compile ops/scripts/build_google_shopping_us_clean_subset.py ops/scripts/translation_utils.py ops/scripts/repair_phase5_locale_copy.py ops/scripts/build_product_page_copy_map.py ops/tests/test_google_shopping_us_clean_subset.py ops/tests/test_translation_utils_html_protection.py ops/tests/test_phase5_locale_country_allowlist.py` passed.
+- `git diff --check` passed.
+- `shopify theme check --path . --output text --fail-level warning` passed: 251 files inspected, no offenses.
+
+Residual:
+- No live Shopify Admin, Merchant Center, Google Ads, Pinterest, budget, campaign, feed, market, shipping, or country-targeting write was performed.
+- This pass validates local theme/feed artifacts and the existing non-US exclusion upload file. Live country-by-country checkout behavior still requires browser/admin checkout testing before allowing non-US paid traffic.
+
+Next:
+- Keep paid traffic US-only.
+- Before any non-US paid launch, run the country-specific localization/shipping/returns/currency-conversion/margin checkout pass and then update the allowlist intentionally.
+
+2026-04-29 04:03 EDT - CRO blocker cleanup for paid-traffic gate
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-cro-blocker-cleanup-paid-gate
+
+Why:
+- User asked to check whether the CRO implementation-plan blockers were already fixed, and fix anything still open before increasing traffic.
+- Website QA had flagged: FAQ size guide off-domain link, shipping/customs/returns contradictions, review/trust inconsistencies, PDP/cart recurring text, delivery estimates, set-builder clarity, collection filters, pricing-card clutter, search recovery, and localization/raw-key issues.
+
+Findings:
+- Already fixed before this pass:
+  - FAQ size guidance uses the on-page Size Details chart; no off-domain size-guide FAQ link was found.
+  - Storewide aggregate review/rating claims were already removed pending owner-provided proof; PDP ratings remain gated by product review metafields/Judge.me blocks.
+- Still open before this pass:
+  - Visible theme copy still claimed free shipping while the current known shipping readback did not support that promise.
+  - PDP/cart code still had hard delivery-date/date-window paths.
+  - Cart line items rendered the selling-plan name path whenever variants/properties existed, even if there was no selling plan.
+  - Cart low-stock urgency was generated from a deterministic hash instead of real inventory.
+  - Collection facets hid Product type filters on all collections, not only the broad family hubs.
+  - Search no-results had no visible recovery path.
+  - Chinese locale files still contained `QZXTToken00000QXZ` raw placeholders.
+
+Actions:
+- Replaced English free-shipping/free-return claims with checkout-confirmed shipping copy and 30-day return-window language.
+- Added customs/duties disclosure to the shipping support copy.
+- Removed the PDP free-shipping price badge and updated homepage/meta/collection/home trust copy to avoid unsupported shipping promises.
+- Disabled PDP/cart delivery date generation; PDP now preserves checkout-confirmed fallback text and cart delivery reassurance stays hidden.
+- Guarded cart selling-plan text behind real `item.selling_plan_allocation` checks in cart drawer and cart page.
+- Replaced fabricated cart low-stock urgency with real Shopify inventory quantity only.
+- Clarified matching-set builder copy: one size per family member, each selection is a separate cart item.
+- Restored Product type filters on normal collections while keeping broad family hub filtering intentionally simpler.
+- Added no-results search recovery links for Pajamas, Mommy & Me, and Family Matching.
+- Repaired Chinese raw placeholder strings and the product related heading raw `t:` setting.
+
+Verification:
+- `python3` JSON parse checks passed for `locales/en.default.json`, `locales/zh-CN.json`, `locales/zh-TW.json`, `templates/index.json`, `templates/product.json`, and the JSON payload in `snippets/product-page-copy-map.liquid`.
+- Targeted `rg` blocker scan found 0 matches for `QZXTToken`, old visible free-shipping phrases, `Shipping is FREE`, stale `12-15` / `8-18 business days`, fabricated `stock_num`, and stale delivery-date globals.
+- `git diff --check` passed.
+- `shopify theme check` passed: 251 files inspected, no offenses.
+
+Residual:
+- No live Shopify Admin, checkout-rate, shipping-zone, policy, feed, paid-media, or publication write was performed.
+- Class/key names containing `free_shipping` or `free-shipping` remain in code/CSS as compatibility identifiers, but the visible English/Chinese copy no longer makes a free-shipping promise.
+- Other non-English locale free-shipping phrasing was previously regenerated during Phase 5 and is outside this narrow CRO pass except where Chinese raw placeholders were fixed here.
+
+Next:
+- Keep paid traffic gated until a live browser checkout/policy pass confirms shipping rates, customs/duties handling, returns copy, and READY_FOR_PAID page status on actual storefront URLs.
+
+2026-04-29 04:08 EDT - Phase 4 website conversion fix recheck
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-phase4-website-conversion-recheck
+
+Why:
+- User asked to recheck Phase 4 website conversion fixes and fix anything still open:
+  - policy truth pack;
+  - FAQ size-guide fix;
+  - rendered PDP/cart recurring-text verification and fix if confirmed;
+  - return/refund/swimwear consistency;
+  - trust/review claim proof or removal;
+  - delivery estimate logic;
+  - product-card pricing cleanup;
+  - collection filter cleanup;
+  - search recovery;
+  - matching-set AOV UX.
+
+Findings:
+- Already fixed before this pass:
+  - FAQ size guide uses on-page Size Details / size chart behavior and footer filtering avoids the old size-guide route.
+  - Storewide aggregate trust/review claims are removed; PDP reviews remain gated by review metafields/Judge.me blocks.
+  - Shipping/returns/customs copy was neutralized in the prior CRO pass.
+  - Delivery-date generation was disabled in PDP/cart code pending approved checkout-rate ranges.
+  - Cart selling-plan text is guarded behind real `item.selling_plan_allocation`.
+  - Collection filter cleanup, search recovery, and matching-set AOV copy were already in local theme source.
+- Still open before this pass:
+  - Product cards and home spotlight cards still opted into compare-at strike-through pricing, adding card-level price clutter even after invalid compare-at cleanup.
+  - The older `policy_truth_table.csv` artifact predates the current storefront copy cleanup and should not be treated as current truth.
+
+Actions:
+- Updated `snippets/price.liquid` so `show_compare_at_price: false` suppresses compare-at strike-through in sale rendering.
+- Updated `snippets/card-product.liquid` and `snippets/home-spotlight-card.liquid` to render clean card/spotlight prices without compare-at clutter.
+- Added current policy truth pack: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-phase4-website-conversion-fixes/policy_truth_pack.md`.
+
+Verification:
+- `node --check assets/cart.js && node --check assets/product-desktop-ux.js` passed.
+- `python3` JSON parse checks passed for `locales/en.default.json`, `locales/zh-CN.json`, `locales/zh-TW.json`, `templates/index.json`, `templates/product.json`, and the JSON payload in `snippets/product-page-copy-map.liquid`.
+- Targeted `rg` blocker scan found 0 matches for `QZXTToken`, old visible free-shipping phrases, `Shipping is FREE`, stale `12-15` / `8-18 business days`, fabricated `stock_num`, stale delivery-date globals, and card-level `show_compare_at_price: true`.
+- `git diff --check` passed.
+- `shopify theme check` passed: 251 files inspected, no offenses.
+
+Residual:
+- This pass verified local theme/source and did not push to live Shopify.
+- It did not perform a live browser/cart render with actual Shopify product data. The code-level recurring-text guard is present, but live PDP/cart screenshots or DOM proof still need to be captured before declaring any URL `READY_FOR_PAID`.
+- No Shopify Admin policy, shipping-rate, checkout, feed, ad, campaign, or publication write was performed.
+
+Next:
+- Run a live storefront browser QA pass on representative PDP/cart/collection/search URLs after deployment, including add-to-cart DOM proof that subscription/recurring text is absent for non-subscription products.

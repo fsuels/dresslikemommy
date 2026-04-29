@@ -170,7 +170,7 @@
       },
       "view_full_details": "Ver todos los detalles",
       "include_taxes": "Impuesto incluido.",
-      "shipping_policy_html": "Los <a href=\"{{ link }}\">gastos de envío</a> se calculan en la pantalla de pago.",
+      "shipping_policy_html": "Las opciones y costos de envío se muestran al finalizar la compra después de ingresar la dirección. <a href=\"{{ link }}\">Política de envío</a>",
       "choose_options": "Elegir opciones",
       "choose_product_options": "Elegir opciones para {{ product_name }}",
       "value_unavailable": "{{ option_value }}: no disponible",
@@ -195,9 +195,9 @@
       "size_required_message": "Por favor selecciona una talla antes de añadir al carrito.",
       "matching_set": {
         "heading": "Arma tu conjunto a juego",
-        "copy": "Elija cada tamaño de familia que necesite y agregue el conjunto completo a juego desde una página de producto.",
-        "empty": "Elija al menos un tamaño de familia para comenzar su conjunto.",
-        "add": "Agregar piezas seleccionadas",
+        "copy": "Opcional: elige una talla para cada miembro de la familia que quieras incluir. Cada selección agrega una pieza separada al carrito.",
+        "empty": "Seleccione una talla para cada miembro de la familia que desee agregar.",
+        "add": "Añadir piezas seleccionadas al carrito",
         "success": "Conjunto a juego agregado al carrito.",
         "error": "No se pueden agregar las piezas seleccionadas. Por favor inténtalo de nuevo."
       },
@@ -231,7 +231,7 @@
         "write_review": "Escribe una reseña",
         "write_review_title": "Escribe una reseña"
       },
-      "free_shipping_all_orders": "Envío gratuito en todos los pedidos",
+      "free_shipping_all_orders": "Opciones de envío que se muestran al finalizar la compra",
       "selected_size_label": "Tamaño: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Detalles",
@@ -282,19 +282,19 @@
     "trust": {
       "secure_checkout": "Pago seguro",
       "ssl_encrypted": "SSL cifrado",
-      "returns": "Devoluciones fáciles",
-      "free_shipping": "Envío gratis",
+      "returns": "Ventana de devolución de 30 días",
+      "free_shipping": "Envío mostrado al finalizar la compra",
       "trusted_since": "Emparejar familias es fácil",
       "assistance_note": "¿Necesitas ayuda? Normalmente respondemos dentro de un día hábil."
     },
     "additional_info": {
       "shipping_title": "Envío y entrega",
-      "free_shipping_label": "Envío GRATIS",
-      "estimated_delivery": "Detalles de entrega al finalizar la compra",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Opciones de envío",
+      "estimated_delivery": "Entrega mostrada al finalizar la compra:",
+      "standard_delivery_window": "El tiempo de entrega final y el costo de envío se confirman después de ingresar la dirección.",
+      "premium_delivery_window": "Las opciones exprés se muestran al finalizar la compra cuando estén disponibles.",
       "faster_shipping_prefix": "¿Lo quieres más rápido? Gasta $100+ y obtén",
-      "free_premium_shipping": "Envío premium GRATIS",
+      "free_premium_shipping": "Envío expreso",
       "return_policy_title": "Política de devoluciones",
       "return_policy_line_1": "Tienes 30 días desde la entrega para solicitar una devolución o cambio.",
       "return_policy_line_2": "Los artículos deben estar sin usar, sin lavar, en su estado original y en su embalaje original con las etiquetas adjuntas.",
@@ -305,7 +305,7 @@
       "safe_payment_description": "Aceptamos las principales tarjetas de crédito y débito. Los datos de tu tarjeta están protegidos y nunca se comparten con nuestros socios. Puedes administrar tus tarjetas guardadas en cualquier momento. Para cualquier consulta sobre transacciones, contacta al emisor de tu tarjeta.",
       "secure_logistics_title": "Logística segura",
       "secure_logistics_line_1": "Si un paquete se daña o se pierde durante el transporte, contáctenos para que podamos ayudarlo a revisar el envío.",
-      "secure_logistics_line_2": "Utilice el enlace de seguimiento de su pedido para obtener las últimas actualizaciones del operador.",
+      "secure_logistics_line_2": "Utilice el enlace de seguimiento de su pedido para obtener las últimas actualizaciones del operador. Los pedidos internacionales pueden estar sujetos a impuestos, aranceles o tasas aduaneras locales cobrados por el transportista o la autoridad local.",
       "secure_privacy_title": "Privacidad segura",
       "secure_privacy_description": "Proteger tu privacidad es importante para nosotros. Ten la seguridad de que tu información se mantendrá protegida e intacta. No vendemos tu información personal y solo la usamos de acuerdo con nuestra política de privacidad y cookies para brindarte y mejorar nuestros servicios."
     }
@@ -384,10 +384,10 @@
       "empty": "Tu carrito esta vacío",
       "cart_error": "Hubo un error al actualizar tu carrito de compra. Inténtalo de nuevo.",
       "cart_quantity_error_html": "Solo puedes agregar {{ quantity }} de este artículo a tu carrito.",
-      "taxes_and_shipping_policy_at_checkout_html": "Impuestos, descuentos y <a href=\"{{ link }}\">envío</a> calculados en la pantalla de pago",
-      "taxes_included_but_shipping_at_checkout": "Impuesto incluido, envío y descuentos calculados en la pantalla de pago",
-      "taxes_included_and_shipping_policy_html": "Impuesto incluido. <a href=\"{{ link }}\">Envío</a> y descuentos calculados en la pantalla de pago.",
-      "taxes_and_shipping_at_checkout": "Impuestos, descuentos y envío calculados en la pantalla de pago",
+      "taxes_and_shipping_policy_at_checkout_html": "Impuestos, descuentos y envío calculados al finalizar la compra. <a href=\"{{ link }}\">Política de envío</a>",
+      "taxes_included_but_shipping_at_checkout": "Impuestos incluidos. Descuentos y envío calculados al finalizar la compra.",
+      "taxes_included_and_shipping_policy_html": "Impuestos incluidos. Descuentos y envío calculados al finalizar la compra. <a href=\"{{ link }}\">Política de envío</a>",
+      "taxes_and_shipping_at_checkout": "Impuestos, descuentos y envío calculados al finalizar la compra.",
       "headings": {
         "product": "Producto",
         "price": "Precio",
@@ -412,15 +412,15 @@
       "trust": {
         "secure_checkout": "Pago seguro",
         "ssl_encrypted": "SSL cifrado",
-        "free_shipping": "Envío gratis",
-        "returns": "Devoluciones fáciles",
+        "free_shipping": "Opciones de envío",
+        "returns": "Devoluciones de 30 días",
         "secure": "Seguro",
         "encrypted": "cifrado",
-        "free_ship": "Envío gratis"
+        "free_ship": "Envío"
       },
       "discount_code_toggle": "¿Tienes un código de descuento?",
       "shipping_label": "Envío",
-      "shipping_free": "GRATIS",
+      "shipping_free": "Calculado al finalizar la compra",
       "popular_with_families": "Popular entre las familias",
       "recently_viewed": "Visto recientemente",
       "savings_html": "Estas guardando <strong>{{ amount }}</strong>"
@@ -466,7 +466,7 @@
       "carousel": "Carrusel",
       "announcement": "Anuncio",
       "announcement_bar": "Barra de anuncios",
-      "default_promo": "ENVÍO GRATIS EN TODOS LOS PEDIDOS | DEVOLUCIONES FÁCILES | PAGO SEGURO"
+      "default_promo": "OPCIONES DE ENVÍO AL PAGAR | VENTANA DE DEVOLUCIÓN DE 30 DÍAS | PAGO SEGURO"
     },
     "quick_order_list": {
       "product_total": "Subtotal de productos",

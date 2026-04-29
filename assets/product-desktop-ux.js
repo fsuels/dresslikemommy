@@ -196,41 +196,10 @@ function formatMoney(cents, currency) {
   }
 }
 
-function addBusinessDays(startDate, businessDays) {
-  var date = new Date(startDate);
-  var added = 0;
-
-  while (added < businessDays) {
-    date.setDate(date.getDate() + 1);
-    var day = date.getDay();
-    if (day !== 0 && day !== 6) added += 1;
-  }
-
-  return date;
-}
-
-function formatShortDate(date) {
-  var shopifyLocale = window.Shopify && window.Shopify.locale ? window.Shopify.locale : '';
-  var documentLocale = document.documentElement ? document.documentElement.lang || document.documentElement.getAttribute('lang') || '' : '';
-  var locale = shopifyLocale || documentLocale || navigator.language || 'en-US';
-  try {
-    return new Intl.DateTimeFormat(locale, { month: 'long', day: 'numeric' }).format(date);
-  } catch (_error) {
-    return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
-  }
-}
-
 function initDeliveryHighlights(wrapper) {
-  var standardEstimate = formatShortDate(addBusinessDays(new Date(), 10));
-  var premiumEstimate = formatShortDate(addBusinessDays(new Date(), 7));
-
   wrapper.querySelectorAll('[data-desktop-estimate]').forEach(function (node) {
-    if (node.getAttribute('data-desktop-estimate') === 'premium') {
-      node.textContent = premiumEstimate;
-      return;
-    }
-
-    node.textContent = standardEstimate;
+    var fallback = node.getAttribute('data-delivery-fallback') || node.textContent || '';
+    node.textContent = fallback;
   });
 }
 

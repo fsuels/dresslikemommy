@@ -97,8 +97,8 @@
       "blog": "مدونة",
       "read_more_title": "اقرأ المزيد: {{ title }}",
       "comments": {
-        "one": "__DLMTOK0___ تعليق",
-        "other": "__DLMTOK0___ التعليقات"
+        "one": "تعليق {{ count }}",
+        "other": "تعليقات {{ count }}"
       },
       "moderated": "يرجى ملاحظة أنه يجب الموافقة على التعليقات قبل نشرها.",
       "comment_form_title": "اترك تعليقا",
@@ -188,15 +188,15 @@
       "xr_button": "عرض في المساحة الخاصة بك",
       "xr_button_label": "عرض في المساحة الخاصة بك، وتحميل العنصر في نافذة الواقع المعزز",
       "include_taxes": "شامل الضريبة.",
-      "shipping_policy_html": "شحن مجاني لجميع الطلبات. <a href=\"{{ link }}\">سياسة الشحن</a>",
+      "shipping_policy_html": "يتم عرض خيارات الشحن والتكاليف عند الخروج بعد إدخال العنوان. <a href=\"{{ link }}\">سياسة الشحن</a>",
       "select_size": "اختر الحجم",
       "select_color": "اختر اللون",
       "size_required_message": "يرجى اختيار المقاس قبل إضافته إلى عربة التسوق.",
       "matching_set": {
         "heading": "قم ببناء مجموعتك المطابقة",
-        "copy": "اختر كل حجم عائلي تحتاجه وأضف المجموعة المطابقة الكاملة من صفحة منتج واحدة.",
-        "empty": "اختر حجمًا عائليًا واحدًا على الأقل لبدء مجموعتك.",
-        "add": "إضافة القطع المختارة",
+        "copy": "اختياري: اختر مقاسًا واحدًا لكل فرد من أفراد العائلة تريد تضمينه. يضيف كل اختيار قطعة واحدة منفصلة إلى سلة التسوق.",
+        "empty": "حدد حجمًا واحدًا لكل فرد من أفراد العائلة تريد إضافته.",
+        "add": "أضف القطع المختارة إلى سلة التسوق",
         "success": "تمت إضافة المجموعة المطابقة إلى سلة التسوق.",
         "error": "غير قادر على إضافة القطع المحددة. يرجى المحاولة مرة أخرى."
       },
@@ -230,7 +230,7 @@
         "write_review": "اكتب مراجعة",
         "write_review_title": "اكتب مراجعة"
       },
-      "free_shipping_all_orders": "شحن مجاني لجميع الطلبات",
+      "free_shipping_all_orders": "خيارات الشحن المعروضة عند الخروج",
       "selected_size_label": "الحجم: {{ size }}",
       "description_sections": {
         "details_eyebrow": "التفاصيل",
@@ -247,19 +247,19 @@
     "trust": {
       "secure_checkout": "الخروج الآمن",
       "ssl_encrypted": "مشفرة بتقنية SSL",
-      "returns": "عوائد سهلة",
-      "free_shipping": "ًالشحن مجانا",
+      "returns": "نافذة العودة لمدة 30 يوما",
+      "free_shipping": "الشحن يظهر عند الخروج",
       "trusted_since": "أصبحت مطابقة العائلة سهلة",
       "assistance_note": "بحاجة الى مساعدة؟ نقوم عادةً بالرد خلال يوم عمل واحد."
     },
     "additional_info": {
       "shipping_title": "الشحن والتسليم",
-      "free_shipping_label": "ًالشحن مجانا",
-      "estimated_delivery": "تفاصيل التسليم عند الخروج",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "خيارات الشحن",
+      "estimated_delivery": "التسليم الموضح عند الخروج:",
+      "standard_delivery_window": "يتم تأكيد توقيت التسليم النهائي وتكلفة الشحن بعد إدخال العنوان.",
+      "premium_delivery_window": "يتم عرض الخيارات السريعة عند الخروج حيثما كان ذلك متاحًا.",
       "faster_shipping_prefix": "تريد ذلك بشكل أسرع؟ أنفق 100+ دولار واحصل على",
-      "free_premium_shipping": "شحن مجاني مميز",
+      "free_premium_shipping": "الشحن السريع",
       "return_policy_title": "سياسة العائدات",
       "return_policy_line_1": "لديك 30 يومًا من التسليم لطلب الإرجاع أو الاستبدال.",
       "return_policy_line_2": "يجب أن تكون العناصر غير ملبوسة وغير مغسولة وفي حالتها الأصلية وفي عبواتها الأصلية مع العلامات المرفقة بها.",
@@ -270,7 +270,7 @@
       "safe_payment_description": "نحن نقبل جميع بطاقات الائتمان والخصم الرئيسية. تفاصيل بطاقتك آمنة ولا يتم مشاركتها أبدًا مع شركائنا. يمكنك بسهولة إدارة بطاقاتك المحفوظة في أي وقت. لأية استفسارات حول المعاملات، يرجى الاتصال بجهة إصدار بطاقتك.",
       "secure_logistics_title": "الخدمات اللوجستية الآمنة",
       "secure_logistics_line_1": "في حالة تلف الطرد أو فقدانه أثناء النقل، اتصل بنا حتى نتمكن من المساعدة في مراجعة الشحنة.",
-      "secure_logistics_line_2": "استخدم رابط تتبع الطلب الخاص بك للحصول على آخر تحديثات شركة النقل.",
+      "secure_logistics_line_2": "استخدم رابط تتبع الطلب الخاص بك للحصول على آخر تحديثات شركة النقل. قد تخضع الطلبات الدولية للضرائب أو الرسوم أو الرسوم الجمركية المحلية التي يتم تحصيلها من قبل شركة النقل أو السلطة المحلية.",
       "secure_privacy_title": "الخصوصية الآمنة",
       "secure_privacy_description": "حماية خصوصيتك أمر مهم بالنسبة لنا! يرجى التأكد من أن معلوماتك سيتم الحفاظ عليها آمنة وغير قابلة للمساس بها. نحن لا نبيع معلوماتك الشخصية مقابل المال ولن نستخدم معلوماتك إلا وفقًا لسياسة الخصوصية وملفات تعريف الارتباط الخاصة بنا لتوفير خدماتنا لك وتحسينها."
     },
@@ -284,13 +284,13 @@
       "filter_by_label": "فلتر:",
       "filter_button": "فلتر",
       "filters_selected": {
-        "one": "__DLMTOK0____ تم التحديد",
-        "other": "__DLMTOK0____ تم التحديد"
+        "one": "تم تحديد {{ count }}",
+        "other": "تم تحديد {{ count }}"
       },
-      "filter_selected_accessibility": "__DLMTOK0____ ({{ count }} تم تحديد عوامل التصفية)",
+      "filter_selected_accessibility": "{{ type }} (تم تحديد مرشحات {{ count }})",
       "show_more": "عرض المزيد",
       "show_less": "عرض أقل",
-      "max_price": "أعلى سعر هو __DLMTOK0___",
+      "max_price": "أعلى سعر هو {{ price }}",
       "product_count": {
         "one": "{{ product_count }}_ من منتج {{ count }}_",
         "other": "{{ product_count }}_ من منتجات {{ count }}_"
@@ -329,7 +329,7 @@
       },
       "results_with_count": {
         "one": "{{ count }} النتيجة",
-        "other": "__DLMTOK0___ النتائج"
+        "other": "نتائج {{ count }}"
       },
       "results_with_count_and_term": {
         "one": "تم العثور على نتيجة {{ count }}_ لـ \"{{ terms }}\"",
@@ -363,7 +363,7 @@
       "carousel": "دائري",
       "announcement": "إعلان",
       "announcement_bar": "شريط اعلان",
-      "default_promo": "شحن مجاني لجميع الطلبات | عوائد سهلة | الخروج الآمن"
+      "default_promo": "خيارات الشحن عند الخروج | فترة إرجاع لمدة 30 يومًا | الخروج الآمن"
     },
     "header": {
       "announcement": "إعلان",
@@ -384,10 +384,10 @@
       "empty": "سلة التسوق الخاصة بك فارغة",
       "cart_error": "حدث خطأ أثناء تحديث سلة التسوق الخاصة بك. يرجى المحاولة مرة أخرى.",
       "cart_quantity_error_html": "يمكنك فقط إضافة {{ quantity }}_ من هذا العنصر إلى سلة التسوق الخاصة بك.",
-      "taxes_and_shipping_policy_at_checkout_html": "الضرائب والخصومات تحسب عند الخروج. <a href=\"__DLMTOK0___\">الشحن</a> مجاني",
-      "taxes_included_but_shipping_at_checkout": "شامل الضريبة. الخصومات تحسب عند الخروج. الشحن مجاني",
-      "taxes_included_and_shipping_policy_html": "شامل الضريبة. الخصومات تحسب عند الخروج. <a href=\"__DLMTOK0___\">الشحن</a> مجاني",
-      "taxes_and_shipping_at_checkout": "الضرائب والخصومات تحسب عند الخروج. الشحن مجاني",
+      "taxes_and_shipping_policy_at_checkout_html": "يتم احتساب الضرائب والخصومات والشحن عند الخروج. <a href=\"{{ link }}\">سياسة الشحن</a>",
+      "taxes_included_but_shipping_at_checkout": "شامل الضريبة. الخصومات والشحن تحسب عند الخروج.",
+      "taxes_included_and_shipping_policy_html": "شامل الضريبة. الخصومات والشحن تحسب عند الخروج. <a href=\"{{ link }}\">سياسة الشحن</a>",
+      "taxes_and_shipping_at_checkout": "يتم احتساب الضرائب والخصومات والشحن عند الخروج.",
       "headings": {
         "product": "منتج",
         "price": "سعر",
@@ -410,15 +410,15 @@
       "trust": {
         "secure_checkout": "الخروج الآمن",
         "ssl_encrypted": "مشفرة بتقنية SSL",
-        "free_shipping": "ًالشحن مجانا",
-        "returns": "عوائد سهلة",
+        "free_shipping": "خيارات الشحن",
+        "returns": "عوائد لمدة 30 يوما",
         "secure": "يؤمن",
         "encrypted": "مشفرة",
-        "free_ship": "سفينة مجانية"
+        "free_ship": "الشحن"
       },
       "discount_code_toggle": "هل لديك رمز الخصم؟",
       "shipping_label": "شحن",
-      "shipping_free": "حر",
+      "shipping_free": "تحسب عند الخروج",
       "popular_with_families": "مشهور لدى العائلات",
       "recently_viewed": "تم عرضها مؤخرًا",
       "savings_html": "أنت تقوم بحفظ <strong>{{ amount }}</strong>"
@@ -433,7 +433,7 @@
     },
     "featured_collection": {
       "view_all": "عرض الكل",
-      "view_all_label": "عرض جميع المنتجات في مجموعة __DLMTOK0____"
+      "view_all_label": "عرض جميع المنتجات في مجموعة {{ collection_name }}"
     },
     "collection_list": {
       "view_all": "عرض الكل"
@@ -441,7 +441,7 @@
     "collection_template": {
       "empty": "لم يتم العثور على منتجات",
       "title": "مجموعة",
-      "use_fewer_filters_html": "استخدم عددًا أقل من المرشحات أو <a class=\"{{ class }}\" href=\"__DLMTOK1___\">أزل الكل</a>"
+      "use_fewer_filters_html": "استخدم عددًا أقل من المرشحات أو <a class=\"{{ class }}\" href=\"{{ link }}\">إزالة الكل</a>"
     },
     "video": {
       "load_video": "تحميل الفيديو: {{ description }}"
@@ -466,8 +466,8 @@
       "variant": "البديل",
       "variant_total": "المجموع البديل",
       "items_added": {
-        "one": "تمت إضافة عنصر __DLMTOK0____",
-        "other": "تمت إضافة عناصر __DLMTOK0____"
+        "one": "تمت إضافة عنصر {{ quantity }}",
+        "other": "تمت إضافة عناصر {{ quantity }}"
       },
       "items_removed": {
         "one": "{{ quantity }}_ تمت إزالة العنصر",
@@ -781,7 +781,7 @@
     "update_country": "تحديث البلد/المنطقة",
     "search": "يبحث",
     "popular_countries_regions": "البلدان/المناطق الشعبية",
-    "country_results_count": "تم العثور على __DLMTOK0____ بلدان/مناطق"
+    "country_results_count": "تم العثور على بلدان/مناطق {{ count }}"
   },
   "customer": {
     "account": {
@@ -840,7 +840,7 @@
     "order": {
       "title": "الطلب {{ name }}",
       "date_html": "تم وضعه على {{ date }}",
-      "cancelled_html": "تم إلغاء الطلب على __DLMTOK0___",
+      "cancelled_html": "تم إلغاء الطلب على {{ date }}",
       "cancelled_reason": "السبب: {{ reason }}",
       "billing_address": "عنوان الفواتير",
       "payment_status": "حالة الدفع",
@@ -855,7 +855,7 @@
       "quantity": "كمية",
       "total": "المجموع",
       "total_refunded": "ردها",
-      "fulfilled_at_html": "تم استيفاءه __DLMTOK0___",
+      "fulfilled_at_html": "تم استيفاء {{ date }}",
       "track_shipment": "تتبع الشحنة",
       "tracking_url": "رابط التتبع",
       "tracking_company": "الناقل",

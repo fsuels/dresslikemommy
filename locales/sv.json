@@ -169,7 +169,7 @@
       },
       "view_full_details": "Visa alla uppgifter",
       "include_taxes": "Skatt ingår.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Frakt</a> beräknas i kassan.",
+      "shipping_policy_html": "Fraktalternativ och kostnader visas i kassan efter adressinmatning. <a href=\"{{ link }}\">Fraktpolicy</a>",
       "choose_options": "Välj alternativ",
       "choose_product_options": "Välj alternativ för {{ product_name }}",
       "value_unavailable": "{{ option_value }} – inte tillgängligt",
@@ -194,9 +194,9 @@
       "size_required_message": "Vänligen välj en storlek innan du lägger i varukorgen.",
       "matching_set": {
         "heading": "Bygg ditt matchande set",
-        "copy": "Välj varje familjestorlek du behöver och lägg till hela matchande set från en produktsida.",
-        "empty": "Välj minst en familjestorlek för att starta ditt set.",
-        "add": "Lägg till valda bitar",
+        "copy": "Valfritt: välj en storlek för varje familjemedlem du vill inkludera. Varje val lägger till en separat del i varukorgen.",
+        "empty": "Välj en storlek för varje familjemedlem du vill lägga till.",
+        "add": "Lägg utvalda bitar i varukorgen",
         "success": "Matchande set lagts till i kundvagnen.",
         "error": "Det gick inte att lägga till de valda bitarna. Försök igen."
       },
@@ -230,7 +230,7 @@
         "write_review": "Skriv en recension",
         "write_review_title": "Skriv en recension"
       },
-      "free_shipping_all_orders": "Fri frakt på alla beställningar",
+      "free_shipping_all_orders": "Fraktalternativ visas i kassan",
       "selected_size_label": "Storlek: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Detaljer",
@@ -278,19 +278,19 @@
     "trust": {
       "secure_checkout": "Säker utcheckning",
       "ssl_encrypted": "SSL-krypterad",
-      "returns": "Enkla returer",
-      "free_shipping": "Fri frakt",
+      "returns": "30 dagars returtid",
+      "free_shipping": "Frakt visas i kassan",
       "trusted_since": "Familjematchning på ett enkelt sätt",
       "assistance_note": "Behöver du hjälp? Vi svarar vanligtvis inom en arbetsdag."
     },
     "additional_info": {
       "shipping_title": "Frakt & leverans",
-      "free_shipping_label": "GRATIS frakt",
-      "estimated_delivery": "Leveransdetaljer i kassan",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Fraktalternativ",
+      "estimated_delivery": "Leverans visas i kassan:",
+      "standard_delivery_window": "Slutlig leveranstid och fraktkostnad bekräftas efter adressinmatning.",
+      "premium_delivery_window": "Expressalternativ visas i kassan där sådana finns.",
       "faster_shipping_prefix": "Vill du ha det snabbare? Spendera $100+ och få",
-      "free_premium_shipping": "GRATIS premiumfrakt",
+      "free_premium_shipping": "Expressfrakt",
       "return_policy_title": "Returpolicy",
       "return_policy_line_1": "Du har 30 dagar på dig från leverans på dig att begära retur eller byte.",
       "return_policy_line_2": "Varorna måste vara oanvända, otvättade, i originalskick och i originalförpackning med etiketter fästa.",
@@ -301,7 +301,7 @@
       "safe_payment_description": "Vi accepterar alla vanliga kredit- och betalkort. Dina kortuppgifter är säkra och delas aldrig med våra partners. Du kan enkelt hantera dina sparade kort när som helst. För eventuella transaktionsförfrågningar, kontakta din kortutgivare.",
       "secure_logistics_title": "Säker logistik",
       "secure_logistics_line_1": "Om ett paket är skadat eller försvunnet under transporten, kontakta oss så att vi kan hjälpa till att granska försändelsen.",
-      "secure_logistics_line_2": "Använd din beställningsspårningslänk för de senaste operatörsuppdateringarna.",
+      "secure_logistics_line_2": "Använd din beställningsspårningslänk för de senaste operatörsuppdateringarna. Internationella beställningar kan vara föremål för lokala skatter, tullar eller tullavgifter som tas ut av transportören eller den lokala myndigheten.",
       "secure_privacy_title": "Säker integritet",
       "secure_privacy_description": "Att skydda din integritet är viktigt för oss! Du kan vara säker på att din information kommer att hållas säker och kompromisslös. Vi säljer inte din personliga information för pengar och kommer endast att använda din information i enlighet med vår integritets- och cookiepolicy för att tillhandahålla och förbättra våra tjänster till dig."
     }
@@ -374,10 +374,10 @@
       "empty": "Din varukorg är tom",
       "cart_error": "Ett fel uppstod när du uppdaterade din varukorg. Försök igen.",
       "cart_quantity_error_html": "Du kan endast lägga till {{ quantity }} av denna artikel i din varukorg.",
-      "taxes_and_shipping_policy_at_checkout_html": "Skatter, rabatter och <a href=\"{{ link }}\">leverans</a> beräknas i kassan",
-      "taxes_included_but_shipping_at_checkout": "Skatt ingår och leverans och rabatter beräknas i kassan",
-      "taxes_included_and_shipping_policy_html": "Skatt ingår. <a href=\"{{ link }}\">Leverans</a> och rabatter beräknas i kassan.",
-      "taxes_and_shipping_at_checkout": "Skatter, rabatter och leverans beräknas i kassan",
+      "taxes_and_shipping_policy_at_checkout_html": "Skatter, rabatter och frakt beräknas i kassan. <a href=\"{{ link }}\">Fraktpolicy</a>",
+      "taxes_included_but_shipping_at_checkout": "Skatt ingår. Rabatter och frakt beräknas i kassan.",
+      "taxes_included_and_shipping_policy_html": "Skatt ingår. Rabatter och frakt beräknas i kassan. <a href=\"{{ link }}\">Fraktpolicy</a>",
+      "taxes_and_shipping_at_checkout": "Skatter, rabatter och frakt beräknas i kassan.",
       "headings": {
         "product": "Produkt",
         "price": "Pris",
@@ -402,15 +402,15 @@
       "trust": {
         "secure_checkout": "Säker utcheckning",
         "ssl_encrypted": "SSL-krypterad",
-        "free_shipping": "Fri frakt",
-        "returns": "Enkla returer",
+        "free_shipping": "Fraktalternativ",
+        "returns": "30 dagars retur",
         "secure": "Säkra",
         "encrypted": "Krypterad",
-        "free_ship": "Gratis frakt"
+        "free_ship": "Frakt"
       },
       "discount_code_toggle": "Har du en rabattkod?",
       "shipping_label": "Frakt",
-      "shipping_free": "GRATIS",
+      "shipping_free": "Beräknat i kassan",
       "popular_with_families": "Populärt bland familjer",
       "recently_viewed": "Nyligen visade",
       "savings_html": "Du sparar <strong>{{ amount }}</strong>"
@@ -456,7 +456,7 @@
       "carousel": "Karusell",
       "announcement": "Meddelande",
       "announcement_bar": "Meddelandefält",
-      "default_promo": "GRATIS FRAKT PÅ ALLA BESTÄLLNINGAR | ENKLA RETURER | SÄKER KASSA"
+      "default_promo": "FRAKTALTERNATIV I KASSAN | 30-DAGARS RETURFÖNSTER | SÄKER KASSA"
     },
     "quick_order_list": {
       "product_total": "Delsumma för produkt",

@@ -32,6 +32,11 @@ DEFAULT_OUTPUT_DIR = Path(
     "dresslikemommy-growth-2026/02_AUDIT_PACKETS/"
     "2026-04-29-merchant-campaign-build-live-check"
 )
+DEFAULT_EXPECTED_LABELS_CSV = Path(
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/"
+    "2026-04-29-merchant-clean-label-upload/"
+    "upload_matched_full_clean_labels_with_age_group.csv"
+)
 
 PRODUCT_FIELDS = [
     "calculated_visibility",
@@ -106,6 +111,22 @@ def timestamp_to_iso(value: object) -> str:
     if not text.isdigit():
         return ""
     return datetime.fromtimestamp(int(text), tz=timezone.utc).isoformat()
+
+
+def read_expected_labels(path: Path, sample_offer_id: str) -> dict[str, str]:
+    if not path.exists():
+        return {}
+    import csv
+
+    with path.open(newline="", encoding="utf-8") as handle:
+        for row in csv.DictReader(handle):
+            if clean(row.get("id")) != sample_offer_id:
+                continue
+            return {
+                f"custom_label_{idx}": clean(row.get(f"custom_label_{idx}"))
+                for idx in range(5)
+            }
+    return {}
 
 
 def get_json(url: str) -> Any:
@@ -216,12 +237,36 @@ def execute_query(
     query: str,
 ) -> dict[str, Any]:
     body = set_search_query(request_template["postData"], query)
-    response = session.post(
-        request_template["url"],
-        headers=safe_headers(request_template["headers"]),
-        data=body,
-        timeout=30,
-    )
+    last_error = ""
+    response = None
+    for attempt in range(1, 4):
+        try:
+            response = session.post(
+                request_template["url"],
+                headers=safe_headers(request_template["headers"]),
+                data=body,
+                timeout=(10, 60),
+            )
+            break
+        except requests.RequestException as exc:
+            last_error = str(exc)
+            if attempt == 3:
+                return {
+                    "query": query,
+                    "status": "REQUEST_FAILED",
+                    "body_length": 0,
+                    "parse_error": last_error,
+                    "row_count": 0,
+                    "contains_paid_eligible": False,
+                    "contains_us_test_ready": False,
+                    "contains_old_custom_label_0_high": False,
+                    "contains_old_custom_label_4_0_25": False,
+                    "rows": [],
+                    "body_excerpt": "",
+                }
+            time.sleep(attempt * 2)
+    if response is None:
+        raise RuntimeError(f"Merchant Center query failed without response: {last_error}")
     text = response.text
     rows: list[dict[str, Any]] = []
     parse_error = ""
@@ -246,7 +291,13 @@ def execute_query(
     }
 
 
-def build_report(account: str, cdp_port: int, sample_offer_id: str, output_dir: Path) -> dict[str, Any]:
+def build_report(
+    account: str,
+    cdp_port: int,
+    sample_offer_id: str,
+    output_dir: Path,
+    expected_labels_csv: Path,
+) -> dict[str, Any]:
     page = find_items_page(cdp_port)
     client = CdpClient(page["webSocketDebuggerUrl"])
     try:
@@ -269,11 +320,32 @@ def build_report(account: str, cdp_port: int, sample_offer_id: str, output_dir: 
         and row["feed_label"] == "US"
         and row["language_code"] == "en"
     ]
-    clean_rows = [
+    expected_labels = read_expected_labels(expected_labels_csv, sample_offer_id)
+    campaign_filter_rows = [
         row
         for row in us_en_rows
         if row["custom_label_0"] == "paid_eligible" and row["custom_label_4"] == "us_test_ready"
     ]
+    full_label_rows = []
+    if expected_labels:
+        full_label_rows = [
+            row
+            for row in us_en_rows
+            if all(row.get(label_key) == expected_value for label_key, expected_value in expected_labels.items())
+        ]
+    observed_mismatches = []
+    if expected_labels and us_en_rows:
+        observed = us_en_rows[0]
+        for label_key, expected_value in expected_labels.items():
+            observed_value = observed.get(label_key, "")
+            if observed_value != expected_value:
+                observed_mismatches.append(
+                    {
+                        "label": label_key,
+                        "expected": expected_value,
+                        "observed": observed_value,
+                    }
+                )
     observed_us_en = [
         {
             "feed_label": row["feed_label"],
@@ -290,7 +362,8 @@ def build_report(account: str, cdp_port: int, sample_offer_id: str, output_dir: 
         for row in us_en_rows
     ]
 
-    gate_passed = bool(clean_rows)
+    campaign_filter_gate_passed = bool(campaign_filter_rows)
+    full_label_gate_passed = bool(full_label_rows) if expected_labels else False
     report = {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "mode": "READ_ONLY_LIVE_MERCHANT_CENTER_CLEAN_LABEL_GATE",
@@ -298,23 +371,63 @@ def build_report(account: str, cdp_port: int, sample_offer_id: str, output_dir: 
         "sample_paid_offer_id": sample_offer_id,
         "source_page_title": page.get("title"),
         "source_page_url": page.get("url"),
+        "expected_labels_csv": str(expected_labels_csv),
+        "expected_sample_labels": expected_labels,
         "expected_custom_label_0": "paid_eligible",
         "expected_custom_label_4": "us_test_ready",
-        "gate_status": "PASS_CLEAN_LABELS_VISIBLE" if gate_passed else "BLOCKED_CLEAN_LABELS_NOT_VISIBLE",
-        "campaign_creation_allowed": gate_passed,
+        "gate_status": (
+            "PASS_CAMPAIGN_FILTER_LABELS_VISIBLE"
+            if campaign_filter_gate_passed
+            else "BLOCKED_CAMPAIGN_FILTER_LABELS_NOT_VISIBLE"
+        ),
+        "campaign_filter_gate_status": (
+            "PASS_CAMPAIGN_FILTER_LABELS_VISIBLE"
+            if campaign_filter_gate_passed
+            else "BLOCKED_CAMPAIGN_FILTER_LABELS_NOT_VISIBLE"
+        ),
+        "full_label_gate_status": (
+            "PASS_ALL_EXPECTED_LABELS_VISIBLE"
+            if full_label_gate_passed
+            else "BLOCKED_FULL_LABEL_MISMATCH"
+            if expected_labels
+            else "BLOCKED_EXPECTED_LABEL_SOURCE_MISSING"
+        ),
+        "campaign_creation_allowed": campaign_filter_gate_passed,
+        "all_expected_labels_visible": full_label_gate_passed,
+        "observed_sample_label_mismatches": observed_mismatches,
         "observed_us_en_rows": observed_us_en,
         "query_results": results,
         "notes": [
             "Read-only browser RPC check; no Merchant Center or Google Ads changes were made.",
             "Cookies and request headers were used only in memory and are not written to disk.",
-            "Campaign creation stays blocked unless the sampled US/en offer shows paid_eligible and us_test_ready.",
+            "Campaign filters depend on custom_label_0=paid_eligible and custom_label_4=us_test_ready.",
+            "Do not rely on custom_label_1..3 for campaign subdivision unless full_label_gate_status passes.",
         ],
     }
 
     output_dir.mkdir(parents=True, exist_ok=True)
     out_path = output_dir / "merchant_exact_label_readback_refresh_check.json"
     out_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print(json.dumps({"output": str(out_path), **{k: report[k] for k in ["gate_status", "campaign_creation_allowed", "observed_us_en_rows"]}}, indent=2))
+    print(
+        json.dumps(
+            {
+                "output": str(out_path),
+                **{
+                    k: report[k]
+                    for k in [
+                        "gate_status",
+                        "campaign_filter_gate_status",
+                        "full_label_gate_status",
+                        "campaign_creation_allowed",
+                        "all_expected_labels_visible",
+                        "observed_sample_label_mismatches",
+                        "observed_us_en_rows",
+                    ]
+                },
+            },
+            indent=2,
+        )
+    )
     return report
 
 
@@ -324,13 +437,20 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--cdp-port", type=int, default=DEFAULT_CDP_PORT)
     parser.add_argument("--sample-offer-id", default=DEFAULT_SAMPLE_OFFER_ID)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
+    parser.add_argument("--expected-labels-csv", type=Path, default=DEFAULT_EXPECTED_LABELS_CSV)
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
     try:
-        build_report(args.account, args.cdp_port, args.sample_offer_id, args.output_dir)
+        build_report(
+            args.account,
+            args.cdp_port,
+            args.sample_offer_id,
+            args.output_dir,
+            args.expected_labels_csv,
+        )
     except Exception as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         raise

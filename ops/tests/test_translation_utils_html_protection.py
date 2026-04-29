@@ -41,6 +41,7 @@ def main() -> None:
         assert "</table>" not in protected
         assert "Mommy and Me" not in protected
         assert restored == '<table id="size-chart"><tr><td>Maman et moi</td></tr></table>'
+        assert backend._contains_placeholder_tokens("__DLMTOK0___") is True  # noqa: SLF001
 
     print("ok")
 

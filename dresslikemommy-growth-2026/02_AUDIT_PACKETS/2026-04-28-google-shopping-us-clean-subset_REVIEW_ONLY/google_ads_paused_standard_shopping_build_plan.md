@@ -1,10 +1,24 @@
 # Google Ads Paused Standard Shopping Build Plan
 
-Status: review-only. Do not create or enable campaigns from this file without explicit owner approval.
+Status: dry-run/review-only. Do not create, enable, or restart Google Ads from this file.
 
 Launch decision: `READY_FOR_PAUSED_BUILDOUT`
 
-## Campaign
+This launch decision is a local file state only. It is not approval to restart Google Ads.
+
+## Post-Gate Google Ads Structure
+
+Do not restart Google Ads yet. Use this structure only after each named gate passes.
+
+| Campaign | Use only after | Required exclusions |
+| --- | --- | --- |
+| Brand Search — USA | Purchase conversion tracking records value correctly. | Exclude if tracking is not recording. |
+| Standard Shopping — USA eligible products | Merchant Center and product-margin gates pass. | Exclude UNKNOWN_MARGIN, FIX_BEFORE_PAID, limited, and not-approved products. |
+| PMax — USA eligible products | Only after feed, conversion, landing-page, and product-label gates pass. | URL expansion off unless an approved landing-page map exists. |
+| Non-brand Search | Search Console query/page exports prove commercial opportunity. | Exclude pages not READY_FOR_PAID. |
+| Remarketing | Policy-limited ads are fixed and tracking is deduped. | Do not use current limited ads. |
+
+## Standard Shopping Dry-Run Campaign
 
 - Campaign name: `US | Standard Shopping | Clean Subset | Paid Eligible | Test`
 - Campaign type: Shopping
@@ -18,7 +32,7 @@ Launch decision: `READY_FOR_PAUSED_BUILDOUT`
 - Status: Paused
 - Budget: tiny placeholder only, keep paused
 - Bidding: conservative Manual CPC or equivalent low-risk bidding
-- Networks: Google Search Network only if appropriate; do not enable Search Partners unless explicitly approved
+- Networks: Shopping inventory only; do not add Search Partners, Display, PMax, non-brand Search, or remarketing without their gates
 
 ## Product Groups
 
@@ -36,9 +50,14 @@ Launch decision: `READY_FOR_PAUSED_BUILDOUT`
 - international campaigns
 - all-products Shopping
 - unknown-margin products
+- `UNKNOWN_MARGIN`
+- `FIX_BEFORE_PAID`
+- Merchant Center `Limited` products
+- Merchant Center `Not approved` products
 - products with feed issues
 - products with PDP issues
 - products not marked `paid_eligible = TRUE`
+- pages not marked `READY_FOR_PAID`
 
 ## Current Review Counts
 

@@ -1,0 +1,114 @@
+{
+  "answer_counts": {
+    "NO": 7,
+    "YES": 1
+  },
+  "files": {
+    "checklist": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-final-launch-gate/phase7_launch_gate_checklist.csv",
+    "report": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-final-launch-gate/phase7_final_launch_gate_report.md",
+    "summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-final-launch-gate/summary.json"
+  },
+  "gate_results": [
+    {
+      "answer": "NO",
+      "blocking_gap": "No captured purchase/payment event proves transaction_id, value, and currency; deduplication proof is also absent.",
+      "current_status": "BLOCKED_PURCHASE_PROOF_MISSING",
+      "evidence": "Pinterest controlled test rows=15 with event counts {'ADD_TO_CART': 2, 'INITIALIZED': 5, 'PAGE_VISIT': 6, 'SEARCH': 1, 'VIEW_CATEGORY': 1}; controlled stop=Stopped after checkout start; did not submit payment info or place an order.. Google Ads purchase value/transaction proof is not present in repo evidence.",
+      "gate": "Measurement >=85",
+      "next_best_action": "Capture Google Ads and Pinterest conversion health through payment/purchase events and prove event/CAPI or tag dedupe before launch.",
+      "required_proof": "Purchase events record transaction_id, value, currency; no duplicates; Google Ads/Pinterest conversion health verified.",
+      "source_artifacts": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate/summary.json; dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-needs-data-economics-reconciliation/summary.json"
+    },
+    {
+      "answer": "NO",
+      "blocking_gap": "Exact live item-level diagnostics and country eligibility are not fully proven for the target Google/Pinterest launch set.",
+      "current_status": "BLOCKED_LIVE_ITEM_READBACK_MISSING",
+      "evidence": "Local clean cohort has 780/780 US rows passing local feed/PDP fields; Merchant clean-label upload prepared 5933 matched rows. Google live label gate is PASS_CAMPAIGN_FILTER_LABELS_VISIBLE; Pinterest item-level catalog readback is still required.",
+      "gate": "Feed >=85",
+      "next_best_action": "Finish Merchant Center label join/readback and export exact Pinterest catalog item status for target offer IDs.",
+      "required_proof": "Item-level diagnostics clean for target products; country eligibility verified.",
+      "source_artifacts": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/google_shopping_us_clean_subset_paid_eligible.csv; dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-google-shopping-campaign-gate/summary.json; dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate/summary.json; dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-upload/summary.json"
+    },
+    {
+      "answer": "NO",
+      "blocking_gap": "Target landing pages are not explicitly approved as READY_FOR_PAID.",
+      "current_status": "BLOCKED_READY_FOR_PAID_ARTIFACT_MISSING",
+      "evidence": "Local clean cohort has 780/780 PDP rows marked PASS, but there is no final target landing-page artifact marking pages READY_FOR_PAID.",
+      "gate": "Website >=80",
+      "next_best_action": "Run rendered landing-page QA for the exact target URLs and write a READY_FOR_PAID allowlist before enabling paid traffic.",
+      "required_proof": "Target landing pages READY_FOR_PAID.",
+      "source_artifacts": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/google_shopping_us_clean_subset_paid_eligible.csv; dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_public_theme_validation.json"
+    },
+    {
+      "answer": "NO",
+      "blocking_gap": "Target country/language rendered QA has not passed; published locale defects remain high.",
+      "current_status": "BLOCKED_RENDERED_LOCALIZATION_QA_MISSING",
+      "evidence": "Localization defect export has severity counts {'HIGH': 20} and prior public validation found live translation-missing text on a Spanish PDP. Rendered QA artifact present=True.",
+      "gate": "Localization >=85",
+      "next_best_action": "Restrict paid launch to locales with rendered QA proof, or fix/verify target locale translations before launch.",
+      "required_proof": "Target country/language passes rendered QA.",
+      "source_artifacts": "dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_localization_defects.csv; dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_public_theme_validation.json"
+    },
+    {
+      "answer": "YES",
+      "blocking_gap": "None for the current local paid cohort. This does not override the feed, measurement, country, or live-label gates.",
+      "current_status": "PASS_LOCAL_PAID_COHORT",
+      "evidence": "780 target offer rows checked; missing counts: unit_cost=0, margin_tier=0, inventory=0, paid_status=0, merchant_center_status=0, merchant_center_destination=0.",
+      "gate": "Product economics",
+      "next_best_action": "Keep using the exact target cohort; rerun this packet after feed or product changes.",
+      "required_proof": "Unit cost, margin tier, inventory, feed status, and paid_status known.",
+      "source_artifacts": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-google-shopping-campaign-gate/paid_cohort_exact_780_rows.csv; dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/google_shopping_us_clean_subset_paid_eligible.csv; dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-shopify-margin-cac-export-pack/summary.json"
+    },
+    {
+      "answer": "NO",
+      "blocking_gap": "Country revenue/conversion, actual shipping/returns cost, localization, and paid eligibility are not all proven together.",
+      "current_status": "BLOCKED_COUNTRY_ECONOMICS_INCOMPLETE",
+      "evidence": "Known remaining hard blockers: ['Actual shipping label/carrier costs', 'Full Google Ads 30/90/365 exports', 'Detailed GA4 ecommerce source/device exports', 'Meta Ads export if Meta is used', 'Official Shopify Finance report parity export']. Ad spend status: {'Pinterest Ads': 'COLLECTED_ZERO_SPEND_365D', 'Google Ads': 'PARTIAL_VISIBLE_ZERO_SPEND', 'GA4': 'PARTIAL_ANALYTICS_IMPORTED', 'Meta Ads': 'NEEDS_EXPORT'}.",
+      "gate": "Country economics",
+      "next_best_action": "Collect full Google Ads/GA4/Meta exports plus actual shipping/returns costs and country-level paid eligibility proof.",
+      "required_proof": "Country revenue, conversion, shipping/returns, localization, and paid eligibility proven.",
+      "source_artifacts": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-needs-data-economics-reconciliation/summary.json; dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-shopify-margin-cac-export-pack/summary.json"
+    },
+    {
+      "answer": "NO",
+      "blocking_gap": "Paid conversion value and spend exports are incomplete, so ROAS/CAC cannot be proven.",
+      "current_status": "BLOCKED_ROAS_CAC_NOT_COMPUTABLE",
+      "evidence": "Target ROAS floor=6.6667; observed AOV=73.93; max CAC=11.09. Ad spend status: {'Pinterest Ads': 'COLLECTED_ZERO_SPEND_365D', 'Google Ads': 'PARTIAL_VISIBLE_ZERO_SPEND', 'GA4': 'PARTIAL_ANALYTICS_IMPORTED', 'Meta Ads': 'NEEDS_EXPORT'}.",
+      "gate": "Paid efficiency",
+      "next_best_action": "Import complete platform spend and conversion-value exports, then compute ROAS and CAC against the 6.67 / AOV x 0.15 guardrails.",
+      "required_proof": "ROAS >= 6.67 and CAC <= AOV x 0.15.",
+      "source_artifacts": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-shopify-margin-cac-export-pack/summary.json; dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-needs-data-economics-reconciliation/summary.json"
+    },
+    {
+      "answer": "NO",
+      "blocking_gap": "Total marketing spend is not fully exported across all platforms.",
+      "current_status": "BLOCKED_TOTAL_MARKETING_SPEND_INCOMPLETE",
+      "evidence": "Observed revenue=6136.20; 15% blended marketing cap=920.43. Spend evidence is incomplete: {'Pinterest Ads': 'COLLECTED_ZERO_SPEND_365D', 'Google Ads': 'PARTIAL_VISIBLE_ZERO_SPEND', 'GA4': 'PARTIAL_ANALYTICS_IMPORTED', 'Meta Ads': 'NEEDS_EXPORT'}.",
+      "gate": "Blended spend",
+      "next_best_action": "Collect all paid platform spend for the same revenue window and verify total spend is at or below 15% of revenue.",
+      "required_proof": "Total marketing spend <= 15% of revenue.",
+      "source_artifacts": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-shopify-margin-cac-export-pack/summary.json; dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-needs-data-economics-reconciliation/summary.json"
+    }
+  ],
+  "gates_no": 7,
+  "gates_required": 8,
+  "gates_yes": 1,
+  "generated_at": "2026-04-29T04:12:09",
+  "launch_allowed": false,
+  "launch_decision": "BLOCKED",
+  "local_clean_feed_pass_rows": 780,
+  "mode": "PHASE7_FINAL_LAUNCH_GATE_READ_ONLY",
+  "rule": "Launch is blocked unless every gate answer is YES.",
+  "source_files": {
+    "google_campaign_gate": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-google-shopping-campaign-gate/summary.json",
+    "localization_defects": "dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_localization_defects.csv",
+    "margin_cac_packet": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-shopify-margin-cac-export-pack/summary.json",
+    "merchant_clean_label_upload": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-upload/summary.json",
+    "needs_data_economics": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-needs-data-economics-reconciliation/summary.json",
+    "paid_cohort_exact": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-google-shopping-campaign-gate/paid_cohort_exact_780_rows.csv",
+    "paid_cohort_local": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/google_shopping_us_clean_subset_paid_eligible.csv",
+    "pinterest_gate": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate/summary.json",
+    "public_theme_validation": "dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28_LOCAL_SHOPIFY_public_theme_validation.json"
+  },
+  "target_offer_rows": 780
+}

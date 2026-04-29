@@ -170,7 +170,7 @@
       },
       "view_full_details": "查看完整详细信息",
       "include_taxes": "含税费。",
-      "shipping_policy_html": "结账时计算的<a href=\"{{ link }}\">运费</a>。",
+      "shipping_policy_html": "输入地址后结账时会显示运送选项和费用。 <a href=\"{{ link }}\">运费政策</a>",
       "choose_options": "选择选项",
       "choose_product_options": "选择用于 {{ product_name }} 的选项",
       "value_unavailable": "{{ option_value }} - 不可用",
@@ -194,9 +194,9 @@
       "size_required_message": "添加到购物车之前请选择尺寸。",
       "matching_set": {
         "heading": "构建您的匹配集",
-        "copy": "选择您需要的每个家庭尺寸，并从一个产品页面添加完整的配套套装。",
-        "empty": "至少选择一种家庭规模来开始您的套装。",
-        "add": "添加选定的作品",
+        "copy": "可选：为您想要加入的每位家庭成员选择一种尺寸。每个选择都会向购物车添加一件单独的商品。",
+        "empty": "为您要添加的每位家庭成员选择一种尺寸。",
+        "add": "将选定的作品添加到购物车",
         "success": "配套套装已添加到购物车。",
         "error": "无法添加选定的片段。请再试一次。"
       },
@@ -230,7 +230,7 @@
         "write_review": "写评论",
         "write_review_title": "写评论"
       },
-      "free_shipping_all_orders": "所有订单免费送货",
+      "free_shipping_all_orders": "结账时显示的运输选项",
       "selected_size_label": "尺寸：{{ size }}",
       "description_sections": {
         "details_eyebrow": "详情",
@@ -278,19 +278,19 @@
     "trust": {
       "secure_checkout": "安全结账",
       "ssl_encrypted": "SSL 加密",
-      "returns": "轻松退货",
-      "free_shipping": "免运费",
+      "returns": "30 天退货期限",
+      "free_shipping": "结账时显示运费",
       "trusted_since": "家庭配对变得简单",
       "assistance_note": "需要帮助吗？我们通常会在一个工作日内回复。"
     },
     "additional_info": {
       "shipping_title": "运输与交付",
-      "free_shipping_label": "免运费",
-      "estimated_delivery": "结帐时的送货详情",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
-      "faster_shipping_prefix": "想要更快吗？花费 100+ 美元即可获得",
-      "free_premium_shipping": "免费优质送货",
+      "free_shipping_label": "运输选项",
+      "estimated_delivery": "结账时显示的交货情况：",
+      "standard_delivery_window": "输入地址后确认最终交货时间和运费。",
+      "premium_delivery_window": "如果有的话，结帐时会显示快捷选项。",
+      "faster_shipping_prefix": "可用的加急配送选项将在结账时显示。",
+      "free_premium_shipping": "快递运输",
       "return_policy_title": "退货政策",
       "return_policy_line_1": "您可以在交货后 30 天内申请退货或换货。",
       "return_policy_line_2": "物品必须未穿过、未清洗、处于原始状态且采用原始包装且附有标签。",
@@ -301,7 +301,7 @@
       "safe_payment_description": "我们接受所有主要信用卡和借记卡。您的银行卡详细信息是安全的，绝不会与我们的合作伙伴共享。您可以随时轻松管理已保存的卡片。如有任何交易查询，请联系您的发卡机构。",
       "secure_logistics_title": "安全物流",
       "secure_logistics_line_1": "如果包裹在运输过程中损坏或丢失，请联系我们，以便我们帮助检查货件。",
-      "secure_logistics_line_2": "使用您的订单跟踪链接获取最新的运营商更新。",
+      "secure_logistics_line_2": "使用您的订单跟踪链接获取最新的运营商更新。国际订单可能需要缴纳承运商或地方当局收取的当地税费、关税或海关费用。",
       "secure_privacy_title": "安全隐私",
       "secure_privacy_description": "保护您的隐私对我们很重要！请放心，您的信息将受到保护且不会泄露。我们不会为了金钱而出售您的个人信息，只会根据我们的隐私和 cookie 政策使用您的信息来为您提供和改进我们的服务。"
     }
@@ -374,10 +374,10 @@
       "empty": "您的购物车为空",
       "cart_error": "更新购物车时出错。请重试。",
       "cart_quantity_error_html": "您只能向购物车添加 {{ quantity }} 件此商品。",
-      "taxes_and_shipping_policy_at_checkout_html": "结账时计算的税费、折扣和<a href=\"{{ link }}\">运费</a>",
-      "taxes_included_but_shipping_at_checkout": "含税费以及结账时计算的运费和折扣",
-      "taxes_included_and_shipping_policy_html": "含税费。结账时计算的<a href=\"{{ link }}\">运费</a>和折扣。",
-      "taxes_and_shipping_at_checkout": "结账时计算的税费、折扣和运费",
+      "taxes_and_shipping_policy_at_checkout_html": "税费、折扣和运费在结账时计算。 <a href=\"{{ link }}\">运费政策</a>",
+      "taxes_included_but_shipping_at_checkout": "含税。折扣和运费在结账时计算。",
+      "taxes_included_and_shipping_policy_html": "含税。折扣和运费在结账时计算。 <a href=\"{{ link }}\">运费政策</a>",
+      "taxes_and_shipping_at_checkout": "税费、折扣和运费在结账时计算。",
       "headings": {
         "product": "产品",
         "price": "价格",
@@ -402,15 +402,15 @@
       "trust": {
         "secure_checkout": "安全结账",
         "ssl_encrypted": "SSL 加密",
-        "free_shipping": "免运费",
-        "returns": "轻松退货",
+        "free_shipping": "运输选项",
+        "returns": "30 天退货",
         "secure": "安全的",
         "encrypted": "加密",
-        "free_ship": "免费送货"
+        "free_ship": "运输"
       },
       "discount_code_toggle": "有折扣码吗？",
       "shipping_label": "船运",
-      "shipping_free": "自由的",
+      "shipping_free": "结账时计算",
       "popular_with_families": "深受家庭欢迎",
       "recently_viewed": "最近浏览过",
       "savings_html": "您正在保存 <strong>{{ amount }}</strong>"
@@ -456,7 +456,7 @@
       "carousel": "轮播",
       "announcement": "公告",
       "announcement_bar": "公告栏",
-      "default_promo": "所有订单免运费|轻松退货 |安全结帐"
+      "default_promo": "结帐时的运送选项 | 30 天退货窗口 |安全结帐"
     },
     "quick_order_list": {
       "product_total": "产品小计",
@@ -597,9 +597,9 @@
         "mommy_and_me": "妈妈和我 服装 |连衣裙，泳装 和配套 套装",
         "family_swimsuits": "配套家庭泳衣 |家庭泳装",
         "family_sets": "配套的家庭度假服装|海滩旅游 套装",
-        "family_matching": "家庭配套服装| QZXTToken00000QXZ",
+        "family_matching": "家庭配套服装 | 妈妈和我",
         "new_women_outfits": "家庭配套服装|连衣裙、泳装和家庭装 套装",
-        "dresses": "妈妈和我 连衣裙 | QZXTToken00000QXZ",
+        "dresses": "妈妈和我 连衣裙 | 母女装",
         "maxi_dresses": "配套长连衣裙 |妈妈和女儿",
         "best_sellers": "畅销妈妈和我服装|连衣裙、泳装 等",
         "daddy_me": "爸爸和我 衬衫、T 恤和配套服装",
@@ -648,8 +648,8 @@
         "faq_answer_3": "我和妈妈的泳衣通常注重母女搭配。配套的家庭泳衣扩展了这一理念，因此您可以在更多家庭成员（包括爸爸和男孩）中打造协调的外观（如果有这些款式）。",
         "faq_question_4": "如果我也想要男孩的作品，我应该从哪里开始？",
         "faq_answer_4": "如果您首先想要最广泛的游泳品种，请从此泳衣页面开始，然后使用相关的家庭泳衣和泳裤系列缩小到全家庭装或爸爸和男孩附加装。",
-        "faq_answer_2_rich_html": "是的。如果您想要完整的家庭外观，请购买 <a href=\"{{ family_swim_url }}\">配套家庭泳衣</a> 集合和 <a href=\"{{ trunks_url }}\">QZXTToken00000QXZ</a> 该系列除了主要的妈妈和我游泳款式外，还为爸爸和男孩添加了协调的单品。",
-        "faq_answer_4_rich_html": "如果您首先想要最广泛的泳衣品种，请从此泳衣页面开始，然后使用 <a href=\"{{ family_swim_url }}\">配套家庭泳衣</a> 和 <a href=\"{{ trunks_url }}\">QZXTToken00000QXZ</a> 系列缩小为全家装或爸爸和男孩装。"
+        "faq_answer_2_rich_html": "是的。如果您想要完整的家庭外观，请购买 <a href=\"{{ family_swim_url }}\">配套家庭泳衣</a> 集合和 <a href=\"{{ trunks_url }}\">泳裤</a> 该系列除了主要的妈妈和我游泳款式外，还为爸爸和男孩添加了协调的单品。",
+        "faq_answer_4_rich_html": "如果您首先想要最广泛的泳衣品种，请从此泳衣页面开始，然后使用 <a href=\"{{ family_swim_url }}\">配套家庭泳衣</a> 和 <a href=\"{{ trunks_url }}\">泳裤</a> 系列缩小为全家装或爸爸和男孩装。"
       },
       "body": {
         "mommy_and_me_html": "<p>购买我们的 {{ title }}，用于生日、家庭照片、假期以及轻松的日常配对，连衣裙、泳衣和配套套装全部集中在一处。</p><p>从适合肖像和特殊场合的连衣裙开始，再换上适合海滩和泳池日的泳衣，并使用更广泛的服装组合来构建适合跨季节而不是仅适用于一种活动的搭配衣柜。</p>",

@@ -169,7 +169,7 @@
       },
       "view_full_details": "Se komplette oplysninger",
       "include_taxes": "Inklusive skat.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Levering</a> beregnes ved betaling.",
+      "shipping_policy_html": "Forsendelsesmuligheder og omkostninger vises ved kassen efter adresseindtastning. <a href=\"{{ link }}\">Forsendelsespolitik</a>",
       "choose_options": "Vælg muligheder",
       "choose_product_options": "Vælg muligheder for {{ product_name }}",
       "value_unavailable": "{{ option_value }} - Ikke tilgængelig",
@@ -194,9 +194,9 @@
       "size_required_message": "Vælg venligst en størrelse, før du lægger i kurven.",
       "matching_set": {
         "heading": "Byg dit matchende sæt",
-        "copy": "Vælg hver familiestørrelse, du har brug for, og tilføj det komplette matchende sæt fra én produktside.",
-        "empty": "Vælg mindst én familiestørrelse for at starte dit sæt.",
-        "add": "Tilføj valgte stykker",
+        "copy": "Valgfrit: Vælg en størrelse for hvert familiemedlem, du vil inkludere. Hvert valg tilføjer et separat stykke til indkøbskurven.",
+        "empty": "Vælg en størrelse for hvert familiemedlem, du vil tilføje.",
+        "add": "Tilføj valgte stykker til indkøbskurven",
         "success": "Matchende sæt tilføjet til indkøbskurven.",
         "error": "Kan ikke tilføje de valgte stykker. Prøv venligst igen."
       },
@@ -230,7 +230,7 @@
         "write_review": "Skriv en anmeldelse",
         "write_review_title": "Skriv en anmeldelse"
       },
-      "free_shipping_all_orders": "Gratis fragt på alle ordrer",
+      "free_shipping_all_orders": "Forsendelsesmuligheder vist ved kassen",
       "selected_size_label": "Størrelse: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Detaljer",
@@ -278,19 +278,19 @@
     "trust": {
       "secure_checkout": "Sikker checkout",
       "ssl_encrypted": "SSL krypteret",
-      "returns": "Nem retur",
-      "free_shipping": "Gratis forsendelse",
+      "returns": "30 dages returperiode",
+      "free_shipping": "Forsendelse vises ved kassen",
       "trusted_since": "Familiematching gjort let",
       "assistance_note": "Har du brug for hjælp? Vi svarer typisk inden for en hverdag."
     },
     "additional_info": {
       "shipping_title": "Forsendelse & Levering",
-      "free_shipping_label": "GRATIS forsendelse",
-      "estimated_delivery": "Leveringsdetaljer ved kassen",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Forsendelsesmuligheder",
+      "estimated_delivery": "Levering vist ved kassen:",
+      "standard_delivery_window": "Endelig leveringstid og forsendelsesomkostninger bekræftes efter adresseindtastning.",
+      "premium_delivery_window": "Express-muligheder vises ved kassen, hvor det er muligt.",
       "faster_shipping_prefix": "Vil du have det hurtigere? Brug $100+ og få",
-      "free_premium_shipping": "GRATIS Premium forsendelse",
+      "free_premium_shipping": "Ekspres forsendelse",
       "return_policy_title": "Returpolitik",
       "return_policy_line_1": "Du har 30 dage fra levering til at anmode om returnering eller ombytning.",
       "return_policy_line_2": "Varerne skal være ubrugte, uvaskede, i original stand og i original emballage med mærker påsat.",
@@ -301,7 +301,7 @@
       "safe_payment_description": "Vi accepterer alle større kredit- og betalingskort. Dine kortoplysninger er sikre og deles aldrig med vores partnere. Du kan nemt administrere dine gemte kort når som helst. For eventuelle transaktionsforespørgsler bedes du kontakte din kortudsteder.",
       "secure_logistics_title": "Sikker logistik",
       "secure_logistics_line_1": "Hvis en pakke er beskadiget eller bortkommet under transporten, så kontakt os, så vi kan hjælpe med at gennemgå forsendelsen.",
-      "secure_logistics_line_2": "Brug dit ordresporingslink for at få de seneste opdateringer fra transportøren.",
+      "secure_logistics_line_2": "Brug dit ordresporingslink for at få de seneste opdateringer fra transportøren. Internationale ordrer kan være underlagt lokale skatter, afgifter eller toldgebyrer, som opkræves af transportøren eller den lokale myndighed.",
       "secure_privacy_title": "Sikkert privatliv",
       "secure_privacy_description": "Beskyttelse af dit privatliv er vigtigt for os! Vær sikker på, at dine oplysninger vil blive opbevaret sikret og kompromisløst. Vi sælger ikke dine personlige oplysninger for penge og vil kun bruge dine oplysninger i overensstemmelse med vores privatlivs- og cookiepolitik til at levere og forbedre vores tjenester til dig."
     }
@@ -374,10 +374,10 @@
       "empty": "Din indkøbskurv er tom",
       "cart_error": "Der opstod en fejl under opdatering af din indkøbskurv. Prøv igen.",
       "cart_quantity_error_html": "Du kan kun lægge {{ quantity }} af denne vare i indkøbskurven.",
-      "taxes_and_shipping_policy_at_checkout_html": "Skatter, rabatter og <a href=\"{{ link }}\">levering</a> beregnes ved betaling",
-      "taxes_included_but_shipping_at_checkout": "Inklusive skat. Levering og rabatter beregnes ved betaling",
-      "taxes_included_and_shipping_policy_html": "Inklusive skat. <a href=\"{{ link }}\">Levering</a> og rabatter beregnes ved betaling.",
-      "taxes_and_shipping_at_checkout": "Skatter, rabatter og levering beregnes ved betaling",
+      "taxes_and_shipping_policy_at_checkout_html": "Skatter, rabatter og forsendelse beregnes ved kassen. <a href=\"{{ link }}\">Forsendelsespolitik</a>",
+      "taxes_included_but_shipping_at_checkout": "Skat inkluderet. Rabatter og fragt beregnes ved kassen.",
+      "taxes_included_and_shipping_policy_html": "Skat inkluderet. Rabatter og fragt beregnes ved kassen. <a href=\"{{ link }}\">Forsendelsespolitik</a>",
+      "taxes_and_shipping_at_checkout": "Skatter, rabatter og forsendelse beregnes ved kassen.",
       "headings": {
         "product": "Produkt",
         "price": "Pris",
@@ -402,15 +402,15 @@
       "trust": {
         "secure_checkout": "Sikker checkout",
         "ssl_encrypted": "SSL krypteret",
-        "free_shipping": "Gratis forsendelse",
-        "returns": "Nem retur",
+        "free_shipping": "Forsendelsesmuligheder",
+        "returns": "30 dages returret",
         "secure": "Sikker",
         "encrypted": "Krypteret",
-        "free_ship": "Gratis forsendelse"
+        "free_ship": "Forsendelse"
       },
       "discount_code_toggle": "Har du en rabatkode?",
       "shipping_label": "Forsendelse",
-      "shipping_free": "GRATIS",
+      "shipping_free": "Beregnes ved kassen",
       "popular_with_families": "Populær blandt familier",
       "recently_viewed": "For nylig set",
       "savings_html": "Du gemmer <strong>{{ amount }}</strong>"
@@ -456,7 +456,7 @@
       "carousel": "Karrusel",
       "announcement": "Meddelelse",
       "announcement_bar": "Meddelelseslinje",
-      "default_promo": "GRATIS FRAGT PÅ ALLE BESTILLINGER | NEMT RETUR | SIKKER KASSE"
+      "default_promo": "FORSENDELSESMULIGHEDER VED KASSEN | 30-DAGES RETURVINDU | SIKKER KASSE"
     },
     "quick_order_list": {
       "product_total": "Subtotal for produkt",

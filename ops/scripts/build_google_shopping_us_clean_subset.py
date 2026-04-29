@@ -31,6 +31,7 @@ DEFAULT_OUTPUT_DIR = Path(
 )
 DEFAULT_STOREFRONT = "https://www.dresslikemommy.com"
 NEEDS_DATA = "NEEDS_DATA"
+US_MARKET = "US"
 PASS_STATUSES = {"pass", "passed", "ok", "valid", "approved", "eligible", "processed", "configured"}
 MC_APPROVED_STATUSES = {"approved"}
 MC_DESTINATION_PASS_WORDS = ("shopping", "eligible")
@@ -80,6 +81,34 @@ SUPPLEMENTAL_LABEL_FIELDNAMES = [
     "custom_label_2",
     "custom_label_3",
     "custom_label_4",
+]
+
+POST_GATE_ADS_STRUCTURE = [
+    {
+        "campaign": "Brand Search — USA",
+        "use_only_after": "Purchase conversion tracking records value correctly.",
+        "required_exclusions": "Exclude if tracking is not recording.",
+    },
+    {
+        "campaign": "Standard Shopping — USA eligible products",
+        "use_only_after": "Merchant Center and product-margin gates pass.",
+        "required_exclusions": "Exclude UNKNOWN_MARGIN, FIX_BEFORE_PAID, limited, and not-approved products.",
+    },
+    {
+        "campaign": "PMax — USA eligible products",
+        "use_only_after": "Only after feed, conversion, landing-page, and product-label gates pass.",
+        "required_exclusions": "URL expansion off unless an approved landing-page map exists.",
+    },
+    {
+        "campaign": "Non-brand Search",
+        "use_only_after": "Search Console query/page exports prove commercial opportunity.",
+        "required_exclusions": "Exclude pages not READY_FOR_PAID.",
+    },
+    {
+        "campaign": "Remarketing",
+        "use_only_after": "Policy-limited ads are fixed and tracking is deduped.",
+        "required_exclusions": "Do not use current limited ads.",
+    },
 ]
 
 
@@ -238,6 +267,38 @@ def aov_tier(price: Decimal | None, aov: Decimal, multi_item: bool) -> str:
     return "aov_low"
 
 
+def normalize_market(value: object) -> str:
+    value = clean(value).upper()
+    if not value or value == NEEDS_DATA:
+        return ""
+    if value in {"US", "USA", "US_ONLY", "UNITED STATES", "UNITED STATES OF AMERICA"}:
+        return US_MARKET
+    return value
+
+
+def market_from_item_id(value: object) -> str:
+    match = re.search(r"\bshopify_([A-Z]{2})_\d+_\d+\b", clean(value))
+    return match.group(1) if match else ""
+
+
+def derive_market(row: dict[str, str]) -> str:
+    for key in (
+        "market",
+        "target_country",
+        "country",
+        "country_code",
+        "feed_label",
+        "content_country",
+        "shopping_country",
+    ):
+        market = normalize_market(row.get(key))
+        if market:
+            return market
+
+    item_market = market_from_item_id(row.get("merchant_center_id") or row.get("merchant_center_item_id"))
+    return normalize_market(item_market)
+
+
 def status_pass(value: str) -> bool:
     return normalize_key(value) in PASS_STATUSES
 
@@ -264,12 +325,12 @@ def issue_count(value: str) -> int | None:
 def first_label_group(reasons: list[str]) -> str:
     if not reasons:
         return "paid_eligible"
+    if any("international" in reason for reason in reasons):
+        return "international_exclude"
     if any("unknown_margin" in reason or "missing_cost" in reason for reason in reasons):
         return "exclude_unknown_margin"
     if any("low_aov" in reason for reason in reasons):
         return "exclude_low_aov"
-    if any("international" in reason for reason in reasons):
-        return "international_exclude"
     if any(
         reason.startswith(("needs_merchant_center", "needs_image", "needs_price", "needs_availability", "needs_shipping", "needs_return"))
         or "merchant_center" in reason
@@ -284,6 +345,12 @@ def first_label_group(reasons: list[str]) -> str:
     if any("pdp" in reason for reason in reasons):
         return "exclude_pdp_issue"
     return "exclude_feed_issue"
+
+
+def market_test_label(reasons: list[str], paid_eligible: bool) -> str:
+    if any("international" in reason for reason in reasons):
+        return "international_exclude"
+    return "us_test_ready" if paid_eligible else "us_fix_before_paid"
 
 
 def build_master_row(
@@ -302,7 +369,7 @@ def build_master_row(
 
     family = derive_product_family(row)
     multi_item = supports_multi_item_order(row, family)
-    market = "US"
+    market = derive_market(row)
 
     merchant = merchant_evidence or Evidence({})
     pdp = pdp_evidence or Evidence({})
@@ -329,6 +396,8 @@ def build_master_row(
     local_reasons: list[str] = []
     evidence_reasons: list[str] = []
 
+    if market != US_MARKET:
+        local_reasons.append(f"international_exclude_{normalize_key(market or 'unknown_market')}")
     if price is None:
         local_reasons.append("exclude_unknown_price")
     if cost is None:
@@ -426,12 +495,12 @@ def build_master_row(
         "shipping_policy_status": shipping_status,
         "return_policy_status": return_status,
         "pdp_status": pdp_status,
-        "market": market,
+        "market": market or NEEDS_DATA,
         "custom_label_0": "paid_eligible" if paid_eligible else first_label_group(reasons),
         "custom_label_1": label_1,
         "custom_label_2": family,
         "custom_label_3": label_3,
-        "custom_label_4": "us_test_ready" if paid_eligible else "us_fix_before_paid",
+        "custom_label_4": market_test_label(reasons, paid_eligible),
         "paid_eligible": "TRUE" if paid_eligible else "FALSE",
         "fix_before_paid": "TRUE" if fix_before_paid else "FALSE",
         "exclusion_reason": ";".join(reasons),
@@ -480,7 +549,7 @@ def append_exclusion(row: dict[str, str], reason: str) -> None:
     row["paid_eligible"] = "FALSE"
     row["fix_before_paid"] = "TRUE"
     row["custom_label_0"] = first_label_group(reasons)
-    row["custom_label_4"] = "us_fix_before_paid"
+    row["custom_label_4"] = market_test_label(reasons, False)
 
 
 def enforce_unique_paid_identifiers(rows: list[dict[str, str]]) -> None:
@@ -498,6 +567,18 @@ def enforce_unique_paid_identifiers(rows: list[dict[str, str]]) -> None:
                 append_exclusion(row, reason)
 
 
+def render_ads_structure_table(rows: list[dict[str, str]]) -> list[str]:
+    table = [
+        "| Campaign | Use only after | Required exclusions |",
+        "| --- | --- | --- |",
+    ]
+    for row in rows:
+        table.append(
+            f"| {row['campaign']} | {row['use_only_after']} | {row['required_exclusions']} |"
+        )
+    return table
+
+
 def write_campaign_plan(path: Path, summary: dict[str, object]) -> None:
     paid_count = summary["paid_eligible_rows"]
     decision = summary["launch_decision"]
@@ -506,11 +587,19 @@ def write_campaign_plan(path: Path, summary: dict[str, object]) -> None:
             [
                 "# Google Ads Paused Standard Shopping Build Plan",
                 "",
-                "Status: review-only. Do not create or enable campaigns from this file without explicit owner approval.",
+                "Status: dry-run/review-only. Do not create, enable, or restart Google Ads from this file.",
                 "",
                 f"Launch decision: `{decision}`",
                 "",
-                "## Campaign",
+                "This launch decision is a local file state only. It is not approval to restart Google Ads.",
+                "",
+                "## Post-Gate Google Ads Structure",
+                "",
+                "Do not restart Google Ads yet. Use this structure only after each named gate passes.",
+                "",
+                *render_ads_structure_table(POST_GATE_ADS_STRUCTURE),
+                "",
+                "## Standard Shopping Dry-Run Campaign",
                 "",
                 "- Campaign name: `US | Standard Shopping | Clean Subset | Paid Eligible | Test`",
                 "- Campaign type: Shopping",
@@ -524,7 +613,7 @@ def write_campaign_plan(path: Path, summary: dict[str, object]) -> None:
                 "- Status: Paused",
                 "- Budget: tiny placeholder only, keep paused",
                 "- Bidding: conservative Manual CPC or equivalent low-risk bidding",
-                "- Networks: Google Search Network only if appropriate; do not enable Search Partners unless explicitly approved",
+                "- Networks: Shopping inventory only; do not add Search Partners, Display, PMax, non-brand Search, or remarketing without their gates",
                 "",
                 "## Product Groups",
                 "",
@@ -542,9 +631,14 @@ def write_campaign_plan(path: Path, summary: dict[str, object]) -> None:
                 "- international campaigns",
                 "- all-products Shopping",
                 "- unknown-margin products",
+                "- `UNKNOWN_MARGIN`",
+                "- `FIX_BEFORE_PAID`",
+                "- Merchant Center `Limited` products",
+                "- Merchant Center `Not approved` products",
                 "- products with feed issues",
                 "- products with PDP issues",
                 "- products not marked `paid_eligible = TRUE`",
+                "- pages not marked `READY_FOR_PAID`",
                 "",
                 "## Current Review Counts",
                 "",

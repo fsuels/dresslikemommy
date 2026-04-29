@@ -170,7 +170,7 @@
       },
       "view_full_details": "Minden részlet megtekintése",
       "include_taxes": "Tartalmazza az adót.",
-      "shipping_policy_html": "A <a href=\"{{ link }}\">szállítási költséget</a> a megrendeléskor számítjuk ki.",
+      "shipping_policy_html": "A szállítási lehetőségek és költségek a pénztárnál a cím megadása után láthatók. <a href=\"{{ link }}\">Szállítási szabályzat</a>",
       "choose_options": "Válassz a lehetőségek közül",
       "choose_product_options": "Termékváltozatok – {{ product_name }}",
       "value_unavailable": "{{ option_value }} – Nincs készleten",
@@ -191,9 +191,9 @@
       },
       "matching_set": {
         "heading": "Készítse el a megfelelő készletet",
-        "copy": "Válassza ki az összes szükséges családméretet, és adja hozzá a teljes, hozzáillő készletet egyetlen termékoldalról.",
-        "empty": "Válasszon legalább egy családi méretet a készlet indításához.",
-        "add": "Adja hozzá a kiválasztott darabokat",
+        "copy": "Választható: válasszon egy méretet minden családtag számára, akit fel szeretne venni. Minden választás egy külön darabot tesz a kosárba.",
+        "empty": "Válasszon egy méretet minden hozzáadni kívánt családtag számára.",
+        "add": "Tedd kosárba a kiválasztott darabokat",
         "success": "A megfelelő készlet a kosárba került.",
         "error": "Nem sikerült hozzáadni a kiválasztott darabokat. Kérjük, próbálja újra."
       },
@@ -227,7 +227,7 @@
         "write_review": "Írjon véleményt",
         "write_review_title": "Írjon véleményt"
       },
-      "free_shipping_all_orders": "Ingyenes szállítás minden rendelésre",
+      "free_shipping_all_orders": "Szállítási lehetőségek a pénztárnál láthatók",
       "selected_size_label": "Méret: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Részletek",
@@ -278,19 +278,19 @@
     "trust": {
       "secure_checkout": "Biztonságos fizetés",
       "ssl_encrypted": "SSL titkosított",
-      "returns": "Könnyű visszatérés",
-      "free_shipping": "Ingyenes szállítás",
+      "returns": "30 napos visszaküldési időszak",
+      "free_shipping": "A kiszállítás a pénztárnál látható",
       "trusted_since": "A családi párosítás egyszerű",
       "assistance_note": "Segítségre van szüksége? Általában egy munkanapon belül válaszolunk."
     },
     "additional_info": {
       "shipping_title": "Szállítás és szállítás",
-      "free_shipping_label": "INGYENES szállítás",
-      "estimated_delivery": "Szállítási részletek a pénztárnál",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Szállítási lehetőségek",
+      "estimated_delivery": "Kiszállítás a pénztárnál látható:",
+      "standard_delivery_window": "A végső szállítási idő és a szállítási költség a cím megadása után kerül megerősítésre.",
+      "premium_delivery_window": "Az expressz opciók megjelennek a pénztárnál, ha elérhetők.",
       "faster_shipping_prefix": "Gyorsabban akarod? Töltsön el több mint 100 dollárt, és kap",
-      "free_premium_shipping": "INGYENES prémium kiszállítás",
+      "free_premium_shipping": "Expressz szállítás",
       "return_policy_title": "Visszaküldési szabályzat",
       "return_policy_line_1": "A kézbesítéstől számítva 30 napja van visszaküldést vagy cserét kérni.",
       "return_policy_line_2": "A tárgyaknak hordatlannak, mosatlannak, eredeti állapotúnak és eredeti csomagolásukban, felragasztott címkékkel kell lenniük.",
@@ -301,7 +301,7 @@
       "safe_payment_description": "Minden főbb hitel- és betéti kártyát elfogadunk. Kártyája adatai biztonságban vannak, és soha nem osztjuk meg partnereinkkel. Bármikor könnyedén kezelheti mentett kártyáit. Bármilyen tranzakcióval kapcsolatos kérdéssel forduljon kártyakibocsátójához.",
       "secure_logistics_title": "Biztonságos logisztika",
       "secure_logistics_line_1": "Ha egy csomag megsérül vagy elveszett szállítás közben, vegye fel velünk a kapcsolatot, hogy segíthessünk a küldemény áttekintésében.",
-      "secure_logistics_line_2": "A legfrissebb szolgáltatói frissítésekért használja a rendeléskövető linket.",
+      "secure_logistics_line_2": "A legfrissebb szolgáltatói frissítésekért használja a rendeléskövető linket. A nemzetközi megrendelésekre a fuvarozó vagy a helyi hatóság által beszedett helyi adók, vámok vagy vámok vonatkozhatnak.",
       "secure_privacy_title": "Biztonságos adatvédelem",
       "secure_privacy_description": "Személyes adatainak védelme fontos számunkra! Biztos lehet benne, hogy adatait biztonságban és kompromisszumok nélkül kezeljük. Személyes adatait nem adjuk el pénzért, és adatait csak adatvédelmi és cookie-kra vonatkozó szabályzatunknak megfelelően használjuk fel szolgáltatásaink biztosítására és fejlesztésére."
     }
@@ -374,10 +374,10 @@
       "empty": "A kosarad üres",
       "cart_error": "Hiba történt a kosár frissítése közben. Próbálkozz újra.",
       "cart_quantity_error_html": "Ebből a termékből legfeljebb {{ quantity }} darabot rakhatsz a kosárba.",
-      "taxes_and_shipping_policy_at_checkout_html": "Az adókat, a kedvezményeket és a <a href=\"{{ link }}\">szállítási költséget</a> a megrendeléskor számítjuk ki",
-      "taxes_included_but_shipping_at_checkout": "Tartalmazza az adót. A szállítási költséget és a kedvezményeket a megrendeléskor számítjuk ki",
-      "taxes_included_and_shipping_policy_html": "Tartalmazza az adót. A <a href=\"{{ link }}\">szállítási költséget</a> és a kedvezményeket a megrendeléskor számítjuk ki.",
-      "taxes_and_shipping_at_checkout": "Az adókat, a kedvezményeket és a szállítási költséget a megrendeléskor számítjuk ki",
+      "taxes_and_shipping_policy_at_checkout_html": "Az adókat, kedvezményeket és szállítási költséget a fizetéskor számítjuk ki. <a href=\"{{ link }}\">Szállítási szabályzat</a>",
+      "taxes_included_but_shipping_at_checkout": "Adót tartalmaz. A kedvezmények és a szállítási költség a pénztárnál számítva.",
+      "taxes_included_and_shipping_policy_html": "Adót tartalmaz. A kedvezmények és a szállítási költség a pénztárnál számítva. <a href=\"{{ link }}\">Szállítási szabályzat</a>",
+      "taxes_and_shipping_at_checkout": "Az adókat, kedvezményeket és szállítási költséget a fizetéskor számítjuk ki.",
       "headings": {
         "product": "Termék",
         "price": "Ár",
@@ -402,16 +402,16 @@
       "trust": {
         "secure_checkout": "Biztonságos fizetés",
         "ssl_encrypted": "SSL titkosított",
-        "free_shipping": "Ingyenes szállítás",
-        "returns": "Könnyű visszatérés",
+        "free_shipping": "Szállítási lehetőségek",
+        "returns": "30 napos visszaküldés",
         "secure": "Biztonságos",
         "encrypted": "Titkosított",
-        "free_ship": "Ingyenes szállítás"
+        "free_ship": "Szállítás"
       },
       "popular_with_families": "Népszerű a családok körében",
       "recently_viewed": "Nemrég megtekintett",
       "discount_code_toggle": "Have a discount code?",
-      "shipping_free": "FREE",
+      "shipping_free": "Pénztárnál számolva",
       "shipping_label": "Shipping",
       "savings_html": "Megtakarítod a következőt: <strong>{{ amount }}</strong>"
     },
@@ -456,7 +456,7 @@
       "carousel": "Forgótár",
       "announcement": "Közlemény",
       "announcement_bar": "Közleménysáv",
-      "default_promo": "INGYENES SZÁLLÍTÁS MINDEN MEGRENDELÉSRE | KÖNNYŰ VISSZATÉRÉS | BIZTONSÁGOS KISZÁMÍTÁS"
+      "default_promo": "SZÁLLÍTÁSI LEHETŐSÉGEK KISZÁMOLÁSKOR | 30 NAPOS VISSZATÉRÍTÉSI ABLAK | BIZTONSÁGOS KISZÁMÍTÁS"
     },
     "quick_order_list": {
       "product_total": "Termék részösszege",

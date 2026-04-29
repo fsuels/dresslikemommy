@@ -23,8 +23,8 @@
     .curated-product-grid__supporting-note {
       margin: 0.75rem 0 0;
       color: rgba(32, 22, 19, 0.74);
-      font-size: 0.95rem;
-      line-height: 1.6;
+      font-size: 1.15rem;
+      line-height: 1.55;
     }
 
     .curated-product-grid__supporting-note p {
@@ -41,7 +41,7 @@
 
     .curated-product-grid__footer-title {
       margin: 0 0 0.55rem;
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       line-height: 1.2;
     }
 
@@ -76,6 +76,14 @@
 
       .curated-product-grid__footer {
         padding: 1.4rem 1.5rem;
+      }
+
+      .curated-product-grid__supporting-note {
+        font-size: 1.25rem;
+      }
+
+      .curated-product-grid__footer-title {
+        font-size: 1.9rem;
       }
     }
   {%- endstyle -%}
@@ -160,7 +168,7 @@
               lazy_load: false,
               spotlight_fetchpriority: spotlight_fetchpriority,
               section_id: section.id,
-              image_sizes: '(min-width: 990px) 22vw, (min-width: 750px) 42vw, 92vw'
+              image_sizes: '(min-width: 990px) 46vw, (min-width: 750px) 42vw, 92vw'
             %}
           </div>
         {%- endfor -%}

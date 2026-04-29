@@ -497,7 +497,7 @@ customElements.define('cart-items', CartItems);
   });
 })();
 
-/* Delivery estimate: render only when approved market/product ranges are provided. */
+/* Delivery estimate: hidden until checkout can confirm address-specific timing. */
 /* Only runs when .js-delivery-date elements exist (cart has items) */
 (function() {
   if (!document.querySelector('.js-delivery-date')) {
@@ -517,27 +517,6 @@ customElements.define('cart-items', CartItems);
   initDeliveryDates();
 
   function initDeliveryDates() {
-  function addBusinessDays(startDate, businessDays) {
-    const date = new Date(startDate);
-    let added = 0;
-    while (added < businessDays) {
-      date.setDate(date.getDate() + 1);
-      const day = date.getDay();
-      if (day !== 0 && day !== 6) added++;
-    }
-    return date;
-  }
-
-  function getStandardDeliveryBusinessDays() {
-    const estimates = window.DLM_DELIVERY_ESTIMATES;
-    if (!estimates || !estimates.standard) return null;
-
-    const businessDays = Number(estimates.standard.maxBusinessDays);
-    if (!Number.isFinite(businessDays) || businessDays < 1) return null;
-
-    return businessDays;
-  }
-
   function setDeliveryContainerVisibility(dateElement, isVisible) {
     if (!dateElement) return;
 
@@ -548,33 +527,9 @@ customElements.define('cart-items', CartItems);
   }
 
   function updateDeliveryDates() {
-    const businessDays = getStandardDeliveryBusinessDays();
-    if (!businessDays) {
-      document.querySelectorAll('.js-delivery-date').forEach(function(el) {
-        el.textContent = '';
-        setDeliveryContainerVisibility(el, false);
-      });
-      return;
-    }
-
-    const today = new Date();
-    const deliveryDate = addBusinessDays(today, businessDays);
-    const options = { month: 'long', day: 'numeric' };
-    const shopifyLocale = window.Shopify && window.Shopify.locale ? window.Shopify.locale : '';
-    const documentLang =
-      document.documentElement && typeof document.documentElement.getAttribute === 'function'
-        ? document.documentElement.getAttribute('lang') || ''
-        : '';
-    const activeLocale = shopifyLocale || documentLang || navigator.language || 'en-US';
-    let formatted;
-    try {
-      formatted = new Intl.DateTimeFormat(activeLocale, options).format(deliveryDate);
-    } catch (error) {
-      formatted = deliveryDate.toLocaleDateString('en-US', options);
-    }
     document.querySelectorAll('.js-delivery-date').forEach(function(el) {
-      el.textContent = formatted;
-      setDeliveryContainerVisibility(el, true);
+      el.textContent = '';
+      setDeliveryContainerVisibility(el, false);
     });
   }
 

@@ -1873,8 +1873,8 @@
         "company_tracking_number": "%{company} sporingsnummer:",
         "estimated_arrival": "Anslått leveringsdato:",
         "estimated_delivery": "Nåværende leveringsestimat:",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+        "standard_delivery_window": "Endelig leveringstidspunkt og fraktkostnad bekreftes etter adresseoppføring.",
+        "premium_delivery_window": "Ekspressalternativer vises i kassen der dette er tilgjengelig.",
         "re-order": "Bestill de samme varene på nytt",
         "confirmed": "Bekreftet",
         "confirmed_items_count": "%{confirmed_count} av %{total_count} varer er bekreftet",
@@ -3270,7 +3270,7 @@
       "carousel": "Karusell",
       "announcement": "Kunngjøring",
       "announcement_bar": "Meldingslinje",
-      "default_promo": "GRATIS FRAKT PÅ ALLE BESTILLINGER | ENKEL RETUR | SIKKER KASSE"
+      "default_promo": "FRAKTALTERNATIVER VED KASSA | 30-DAGERS RETURVINDU | SIKKER KASSE"
     },
     "header": {
       "announcement": "Kunngjøring",
@@ -3291,10 +3291,10 @@
       "empty": "Handlekurven din er tom",
       "cart_error": "Det oppstod en feil under oppdatering av handlekurven din. Vennligst prøv igjen.",
       "cart_quantity_error_html": "Du kan bare legge til {{ quantity }} av denne varen i handlekurven din.",
-      "taxes_and_shipping_policy_at_checkout_html": "Skatter og rabatter beregnes ved utsjekking. <a href=\"{{ link }}\">Frakt</a> er GRATIS",
-      "taxes_included_but_shipping_at_checkout": "Moms inkludert. Rabatter beregnes ved kassen. Frakt er GRATIS",
-      "taxes_included_and_shipping_policy_html": "Moms inkludert. Rabatter beregnes ved utsjekking. <a href=\"{{ link }}\">Frakt</a> er GRATIS",
-      "taxes_and_shipping_at_checkout": "Skatter og rabatter beregnes ved utsjekking. Frakt er GRATIS",
+      "taxes_and_shipping_policy_at_checkout_html": "Skatter, rabatter og frakt beregnes i kassen. <a href=\"{{ link }}\">Forsendelsespolicy</a>",
+      "taxes_included_but_shipping_at_checkout": "Skatt inkludert. Rabatter og frakt beregnes i kassen.",
+      "taxes_included_and_shipping_policy_html": "Skatt inkludert. Rabatter og frakt beregnes i kassen. <a href=\"{{ link }}\">Forsendelsespolicy</a>",
+      "taxes_and_shipping_at_checkout": "Skatter, rabatter og frakt beregnes i kassen.",
       "headings": {
         "product": "Produkt",
         "price": "Pris",
@@ -3317,15 +3317,15 @@
       "trust": {
         "secure_checkout": "Sikker utsjekking",
         "ssl_encrypted": "SSL kryptert",
-        "free_shipping": "Gratis frakt",
-        "returns": "Enkel retur",
+        "free_shipping": "Fraktalternativer",
+        "returns": "30 dagers retur",
         "secure": "Sikker",
         "encrypted": "Kryptert",
-        "free_ship": "Gratis frakt"
+        "free_ship": "Frakt"
       },
       "discount_code_toggle": "Har du en rabattkode?",
       "shipping_label": "Frakt",
-      "shipping_free": "GRATIS",
+      "shipping_free": "Beregnet i kassen",
       "popular_with_families": "Populært blant familier",
       "recently_viewed": "Nylig sett",
       "savings_html": "Du sparer <strong>{{ amount }}</strong>"
@@ -3717,9 +3717,9 @@
     "product": {
       "matching_set": {
         "heading": "Bygg ditt matchende sett",
-        "copy": "Velg alle familiestørrelser du trenger og legg til det komplette matchende settet fra én produktside.",
-        "empty": "Velg minst én familiestørrelse for å starte settet.",
-        "add": "Legg til valgte stykker",
+        "copy": "Valgfritt: velg én størrelse for hvert familiemedlem du vil inkludere. Hvert valg legger til en separat del i handlekurven.",
+        "empty": "Velg én størrelse for hvert familiemedlem du vil legge til.",
+        "add": "Legg valgte stykker i handlekurven",
         "success": "Matchende sett lagt i handlekurven.",
         "error": "Kan ikke legge til de valgte delene. Vennligst prøv igjen."
       },
@@ -3753,7 +3753,7 @@
         "write_review": "Skriv en anmeldelse",
         "write_review_title": "Skriv en anmeldelse"
       },
-      "free_shipping_all_orders": "Gratis frakt på alle bestillinger",
+      "free_shipping_all_orders": "Fraktalternativer vises i kassen",
       "selected_size_label": "Størrelse: {{ size }}",
       "price": {
         "compare_at_price": "Sammenlign på {{ price }}",
@@ -3818,7 +3818,7 @@
       "select_color": "Select color",
       "select_size": "Select size",
       "share": "Share this product",
-      "shipping_policy_html": "FREE shipping on all orders. <a href=\"{{ link }}\">Shipping policy</a>",
+      "shipping_policy_html": "Fraktalternativer og kostnader vises i kassen etter adresseoppføring. <a href=\"{{ link }}\">Forsendelsespolicy</a>",
       "size_required_message": "Please select a size before adding to cart.",
       "sku": "SKU",
       "sold_out": "Sold out",
@@ -3842,18 +3842,18 @@
       "trusted_since": "Familiematching gjort enkelt",
       "assistance_note": "Trenger du hjelp? Vi svarer vanligvis innen én virkedag.",
       "secure_checkout": "Sikker utsjekking",
-      "returns": "Enkel retur",
-      "free_shipping": "Gratis frakt",
+      "returns": "30 dagers returperiode",
+      "free_shipping": "Frakt vises i kassen",
       "ssl_encrypted": "SSL kryptert"
     },
     "additional_info": {
       "shipping_title": "Frakt og levering",
-      "free_shipping_label": "GRATIS frakt",
-        "estimated_delivery": "Leveringsdetaljer i kassen",
-        "standard_delivery_window": "8-18 business days including processing",
-        "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Fraktalternativer",
+      "estimated_delivery": "Levering vist i kassen:",
+      "standard_delivery_window": "Endelig leveringstidspunkt og fraktkostnad bekreftes etter adresseoppføring.",
+      "premium_delivery_window": "Ekspressalternativer vises i kassen der dette er tilgjengelig.",
       "faster_shipping_prefix": "Vil du ha det raskere? Bruk $100+ og få",
-      "free_premium_shipping": "GRATIS premium frakt",
+      "free_premium_shipping": "Ekspressfrakt",
       "return_policy_title": "Returpolicy",
       "return_policy_line_1": "Du har 30 dager fra levering til å be om retur eller bytte.",
       "return_policy_line_2": "Varene må være ubrukte, uvaskede, i original stand og i originalemballasje med merkelapper.",
@@ -3864,7 +3864,7 @@
       "safe_payment_description": "Vi aksepterer alle vanlige kreditt- og debetkort. Kortopplysningene dine er sikre og deles aldri med våre partnere. Du kan enkelt administrere dine lagrede kort når som helst. For eventuelle spørsmål om transaksjoner, vennligst kontakt kortutstederen din.",
       "secure_logistics_title": "Sikker logistikk",
       "secure_logistics_line_1": "Hvis en pakke er skadet eller mistet under transport, kontakt oss slik at vi kan hjelpe deg med å vurdere forsendelsen.",
-      "secure_logistics_line_2": "Bruk koblingen for bestillingssporing for de siste operatøroppdateringene.",
+      "secure_logistics_line_2": "Bruk koblingen for bestillingssporing for de siste operatøroppdateringene. Internasjonale bestillinger kan være underlagt lokale skatter, avgifter eller tollavgifter som kreves inn av transportøren eller lokale myndigheter.",
       "secure_privacy_title": "Sikkert personvern",
       "secure_privacy_description": "Å beskytte personvernet ditt er viktig for oss! Vær sikker på at informasjonen din vil bli holdt sikret og kompromissløs. Vi selger ikke din personlige informasjon for penger og vil kun bruke informasjonen din i samsvar med vår personvern- og informasjonskapselpolicy for å tilby og forbedre tjenestene våre til deg."
     },

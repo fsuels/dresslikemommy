@@ -171,7 +171,7 @@
       },
       "view_full_details": "Vedeți detaliile complete",
       "include_taxes": "Taxe incluse.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Taxele de expediere</a> sunt calculate la finalizarea comenzii.",
+      "shipping_policy_html": "Opțiunile de livrare și costurile sunt afișate la finalizarea comenzii după introducerea adresei. <a href=\"{{ link }}\">Politica de expediere</a>",
       "choose_options": "Alege opțiunile",
       "choose_product_options": "Alege opțiunile pentru {{ product_name }}",
       "value_unavailable": "{{ option_value }} – Indisponibil",
@@ -192,9 +192,9 @@
       },
       "matching_set": {
         "heading": "Construiește-ți setul potrivit",
-        "copy": "Alegeți fiecare dimensiune de familie de care aveți nevoie și adăugați setul complet potrivit dintr-o singură pagină de produs.",
-        "empty": "Alegeți cel puțin o dimensiune de familie pentru a începe setul.",
-        "add": "Adăugați piesele selectate",
+        "copy": "Opțional: alegeți o dimensiune pentru fiecare membru al familiei pe care doriți să-l includeți. Fiecare selecție adaugă o piesă separată la coș.",
+        "empty": "Selectați o dimensiune pentru fiecare membru al familiei pe care doriți să-l adăugați.",
+        "add": "Adăugați piesele selectate în coș",
         "success": "Setul potrivit a fost adăugat în coș.",
         "error": "Nu se pot adăuga piesele selectate. Vă rugăm să încercați din nou."
       },
@@ -228,7 +228,7 @@
         "write_review": "Scrie o recenzie",
         "write_review_title": "Scrie o recenzie"
       },
-      "free_shipping_all_orders": "Transport gratuit la toate comenzile",
+      "free_shipping_all_orders": "Opțiunile de livrare afișate la finalizare",
       "selected_size_label": "Dimensiune: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Detalii",
@@ -282,19 +282,19 @@
     "trust": {
       "secure_checkout": "Checkout securizat",
       "ssl_encrypted": "SSL criptat",
-      "returns": "Retururi ușoare",
-      "free_shipping": "Transport gratuit",
+      "returns": "Fereastră de retur de 30 de zile",
+      "free_shipping": "Livrare afișată la finalizare",
       "trusted_since": "Potrivirea familiei este ușoară",
       "assistance_note": "Ai nevoie de ajutor? De obicei, răspundem în termen de o zi lucrătoare."
     },
     "additional_info": {
       "shipping_title": "Livrare și livrare",
-      "free_shipping_label": "Livrare GRATUITĂ",
-      "estimated_delivery": "Detalii de livrare la checkout",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Opțiuni de livrare",
+      "estimated_delivery": "Livrarea afișată la finalizarea comenzii:",
+      "standard_delivery_window": "Termenul final de livrare și costul de transport sunt confirmate după introducerea adresei.",
+      "premium_delivery_window": "Opțiunile Express sunt afișate la casă, acolo unde sunt disponibile.",
       "faster_shipping_prefix": "Vrei mai repede? Cheltuiește peste 100 USD și primești",
-      "free_premium_shipping": "Transport Premium GRATUIT",
+      "free_premium_shipping": "Livrare expres",
       "return_policy_title": "POLITICA DE RETURNARE",
       "return_policy_line_1": "Aveți la dispoziție 30 de zile de la livrare pentru a solicita retur sau schimb.",
       "return_policy_line_2": "Articolele trebuie să fie nepurtate, nespălate, în stare originală și în ambalajul lor original, cu etichete atașate.",
@@ -305,7 +305,7 @@
       "safe_payment_description": "Acceptăm toate cardurile de credit și de debit majore. Detaliile cardului dvs. sunt securizate și nu sunt niciodată distribuite partenerilor noștri. Puteți gestiona cu ușurință cardurile salvate oricând. Pentru orice întrebări legate de tranzacție, vă rugăm să contactați emitentul cardului.",
       "secure_logistics_title": "Logistica sigură",
       "secure_logistics_line_1": "Dacă un pachet este deteriorat sau pierdut în timpul transportului, contactați-ne pentru a vă ajuta să revizuim expedierea.",
-      "secure_logistics_line_2": "Utilizați linkul de urmărire a comenzii pentru cele mai recente actualizări ale operatorului.",
+      "secure_logistics_line_2": "Utilizați linkul de urmărire a comenzii pentru cele mai recente actualizări ale operatorului. Comenzile internaționale pot fi supuse unor taxe locale, taxe sau taxe vamale colectate de transportator sau de autoritatea locală.",
       "secure_privacy_title": "Confidențialitate sigură",
       "secure_privacy_description": "Protejarea confidențialității este importantă pentru noi! Vă rugăm să fiți sigur că informațiile dumneavoastră vor fi păstrate în siguranță și fără compromisuri. Nu vindem informațiile dumneavoastră personale pentru bani și vom folosi informațiile dumneavoastră numai în conformitate cu politica noastră de confidențialitate și cookie-uri pentru a vă oferi și îmbunătăți serviciile noastre."
     }
@@ -384,10 +384,10 @@
       "empty": "Coșul dvs. este gol",
       "cart_error": "A apărut o eroare în timpul actualizării coșului. Încercați din nou.",
       "cart_quantity_error_html": "Cantitatea maximă pe care o poți adăuga în coș din acest articol: {{ quantity }}.",
-      "taxes_and_shipping_policy_at_checkout_html": "Taxele, reducerile și <a href=\"{{ link }}\">transportul</a> sunt calculate la finalizarea comenzii",
-      "taxes_included_but_shipping_at_checkout": "Taxele sunt incluse, iar transportul și reducerile sunt calculate la finalizarea comenzii",
-      "taxes_included_and_shipping_policy_html": "Taxele sunt incluse. <a href=\"{{ link }}\">Transportul</a> și reducerile sunt calculate la finalizarea comenzii.",
-      "taxes_and_shipping_at_checkout": "Taxele, reducerile și transportul sunt calculate la finalizarea comenzii",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxele, reducerile și transportul sunt calculate la finalizarea comenzii. <a href=\"{{ link }}\">Politica de expediere</a>",
+      "taxes_included_but_shipping_at_checkout": "Taxe incluse. Reducerile si transportul sunt calculate la checkout.",
+      "taxes_included_and_shipping_policy_html": "Taxe incluse. Reducerile si transportul sunt calculate la checkout. <a href=\"{{ link }}\">Politica de expediere</a>",
+      "taxes_and_shipping_at_checkout": "Taxele, reducerile și transportul sunt calculate la finalizarea comenzii.",
       "update": "Actualizați",
       "headings": {
         "product": "Produs",
@@ -412,16 +412,16 @@
       "trust": {
         "secure_checkout": "Checkout securizat",
         "ssl_encrypted": "SSL criptat",
-        "free_shipping": "Transport gratuit",
-        "returns": "Retururi ușoare",
+        "free_shipping": "Opțiuni de livrare",
+        "returns": "Retururi de 30 de zile",
         "secure": "Asigura",
         "encrypted": "Criptat",
-        "free_ship": "Navă gratuită"
+        "free_ship": "Livrare"
       },
       "popular_with_families": "Popular printre familii",
       "recently_viewed": "Vizualizat recent",
       "discount_code_toggle": "Have a discount code?",
-      "shipping_free": "FREE",
+      "shipping_free": "Calculat la casă",
       "shipping_label": "Shipping",
       "savings_html": "Salvați <strong>{{ amount }}</strong>"
     },
@@ -466,7 +466,7 @@
       "carousel": "Carusel",
       "announcement": "Anunț",
       "announcement_bar": "Bară cu anunțuri",
-      "default_promo": "LIVRARE GRATUITA LA TOATE COMENZI | RETURNARE UȘORĂ | CHECKOUT SIGUR"
+      "default_promo": "OPTIUNI DE LIVRARE LA CASA | FEREASTRA DE RETURNARE DE 30 DE ZILE | CHECKOUT SIGUR"
     },
     "quick_order_list": {
       "product_total": "Subtotal produs",

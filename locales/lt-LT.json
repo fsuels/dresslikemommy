@@ -172,7 +172,7 @@
       },
       "view_full_details": "Žiūrėti visą informaciją",
       "include_taxes": "Mokesčiai įtraukti.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Siuntimo išlaidos</a> apskaičiuojamos atsiskaitant.",
+      "shipping_policy_html": "Pristatymo parinktys ir mokesčiai rodomi kasoje po adreso įvedimo. <a href=\"{{ link }}\">Pristatymo politika</a>",
       "choose_options": "Rinktis variantus",
       "choose_product_options": "Rinktis {{ product_name }} variantus",
       "value_unavailable": "{{ option_value }} – neturime",
@@ -193,9 +193,9 @@
       },
       "matching_set": {
         "heading": "Sukurkite tinkamą rinkinį",
-        "copy": "Pasirinkite kiekvieną reikalingą šeimos dydį ir pridėkite visą atitinkantį rinkinį iš vieno produkto puslapio.",
-        "empty": "Norėdami pradėti rinkinį, pasirinkite bent vieną šeimos dydį.",
-        "add": "Pridėkite pasirinktus gabalus",
+        "copy": "Pasirenkama: pasirinkite vieną dydį kiekvienam šeimos nariui, kurį norite įtraukti. Kiekvienas pasirinkimas į krepšelį įdeda po vieną atskirą vienetą.",
+        "empty": "Pasirinkite vieną dydį kiekvienam šeimos nariui, kurį norite pridėti.",
+        "add": "Įdėkite pasirinktas dalis į krepšelį",
         "success": "Atitinkamas rinkinys įdėtas į krepšelį.",
         "error": "Nepavyko pridėti pasirinktų dalių. Bandykite dar kartą."
       },
@@ -229,7 +229,7 @@
         "write_review": "Parašyk atsiliepimą",
         "write_review_title": "Parašykite atsiliepimą"
       },
-      "free_shipping_all_orders": "Nemokamas visų užsakymų pristatymas",
+      "free_shipping_all_orders": "Pristatymo parinktys nurodytos kasoje",
       "selected_size_label": "Dydis: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Detalės",
@@ -286,19 +286,19 @@
     "trust": {
       "secure_checkout": "Saugi patikra",
       "ssl_encrypted": "SSL šifruotas",
-      "returns": "Lengvas grąžinimas",
-      "free_shipping": "Nemokamas pristatymas",
+      "returns": "30 dienų grąžinimo langas",
+      "free_shipping": "Siuntimas parodytas kasoje",
       "trusted_since": "Paprasta suderinti šeimą",
       "assistance_note": "Reikia pagalbos? Paprastai atsakome per vieną darbo dieną."
     },
     "additional_info": {
       "shipping_title": "Siuntimas ir pristatymas",
-      "free_shipping_label": "NEMOKAMAS pristatymas",
-      "estimated_delivery": "Pristatymo detalės kasoje",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Siuntimo parinktys",
+      "estimated_delivery": "Pristatymas rodomas kasoje:",
+      "standard_delivery_window": "Galutinis pristatymo laikas ir pristatymo kaina patvirtinami įvedus adresą.",
+      "premium_delivery_window": "Greitosios parinktys rodomos atsiskaitant, jei jos yra.",
       "faster_shipping_prefix": "Norite greičiau? Išleiskite daugiau nei 100 USD ir gaukite",
-      "free_premium_shipping": "NEMOKAMAS Premium pristatymas",
+      "free_premium_shipping": "Greitas siuntimas",
       "return_policy_title": "Grąžinimo politika",
       "return_policy_line_1": "Jūs turite 30 dienų nuo pristatymo pateikti prašymą grąžinti arba pakeisti.",
       "return_policy_line_2": "Prekės turi būti nedėvėtos, neskalbtos, originalios būklės ir originalioje pakuotėje su pritvirtintomis etiketėmis.",
@@ -309,7 +309,7 @@
       "safe_payment_description": "Priimame visas pagrindines kredito ir debeto korteles. Jūsų kortelės duomenys yra saugūs ir niekada nedalinami su mūsų partneriais. Galite bet kada lengvai tvarkyti išsaugotas korteles. Dėl bet kokių operacijų užklausų susisiekite su kortelės išdavėju.",
       "secure_logistics_title": "Saugi logistika",
       "secure_logistics_line_1": "Jei siunta sugadinta ar pamesta gabenant, susisiekite su mumis, kad galėtume padėti peržiūrėti siuntą.",
-      "secure_logistics_line_2": "Norėdami gauti naujausius operatoriaus naujinius, naudokite užsakymo stebėjimo nuorodą.",
+      "secure_logistics_line_2": "Norėdami gauti naujausius operatoriaus naujinius, naudokite užsakymo stebėjimo nuorodą. Tarptautiniams užsakymams gali būti taikomi vietiniai mokesčiai, muitai arba muito mokesčiai, kuriuos renka vežėjas arba vietos valdžios institucija.",
       "secure_privacy_title": "Saugus privatumas",
       "secure_privacy_description": "Mums svarbu apsaugoti Jūsų privatumą! Būkite tikri, kad jūsų informacija bus saugi ir be kompromisų. Mes neparduodame jūsų asmeninės informacijos už pinigus ir naudosime jūsų informaciją tik vadovaudamiesi savo privatumo ir slapukų politika, siekdami teikti ir tobulinti jums teikiamas paslaugas."
     }
@@ -394,10 +394,10 @@
       "empty": "Jūsų krepšelis tuščias",
       "cart_error": "Atnaujinant krepšelį įvyko klaida. Bandykite dar kartą.",
       "cart_quantity_error_html": "Į krepšelį galite įdėti tik {{ quantity }}šios prekės vnt.",
-      "taxes_and_shipping_policy_at_checkout_html": "Mokesčiai, nuolaidos ir <a href=\"{{ link }}\">siuntimo išlaidos</a> apskaičiuojami atsiskaitant",
-      "taxes_included_but_shipping_at_checkout": "Mokesčiai įtraukti, o siuntimo išlaidos ir nuolaidos apskaičiuojamos atsiskaitant",
-      "taxes_included_and_shipping_policy_html": "Mokesčiai įtraukti. <a href=\"{{ link }}\">Siuntimo išlaidos</a> ir nuolaidos apskaičiuojamos atsiskaitant.",
-      "taxes_and_shipping_at_checkout": "Mokesčiai, nuolaidos ir siuntimo išlaidos apskaičiuojami atsiskaitant",
+      "taxes_and_shipping_policy_at_checkout_html": "Mokesčiai, nuolaidos ir pristatymas apskaičiuojami atsiskaitant. <a href=\"{{ link }}\">Pristatymo politika</a>",
+      "taxes_included_but_shipping_at_checkout": "Mokesčiai įskaičiuoti. Nuolaidos ir siuntimas apskaičiuojamas atsiskaitant.",
+      "taxes_included_and_shipping_policy_html": "Mokesčiai įskaičiuoti. Nuolaidos ir siuntimas apskaičiuojamas atsiskaitant. <a href=\"{{ link }}\">Pristatymo politika</a>",
+      "taxes_and_shipping_at_checkout": "Mokesčiai, nuolaidos ir pristatymas apskaičiuojami atsiskaitant.",
       "update": "Atnaujinti",
       "headings": {
         "product": "Gaminys",
@@ -422,16 +422,16 @@
       "trust": {
         "secure_checkout": "Saugi patikra",
         "ssl_encrypted": "SSL šifruotas",
-        "free_shipping": "Nemokamas pristatymas",
-        "returns": "Lengvas grąžinimas",
+        "free_shipping": "Siuntimo parinktys",
+        "returns": "30 dienų grąžinimas",
         "secure": "Saugus",
         "encrypted": "Šifruota",
-        "free_ship": "Nemokamas siuntimas"
+        "free_ship": "Siuntimas"
       },
       "popular_with_families": "Populiarus tarp šeimų",
       "recently_viewed": "Neseniai žiūrėta",
       "discount_code_toggle": "Have a discount code?",
-      "shipping_free": "FREE",
+      "shipping_free": "Skaičiuojama atsiskaitant",
       "shipping_label": "Shipping",
       "savings_html": "Jūs taupote <strong>{{ amount }}</strong>"
     },
@@ -476,7 +476,7 @@
       "carousel": "Karuselė",
       "announcement": "Skelbimas",
       "announcement_bar": "Skelbimo juosta",
-      "default_promo": "VISŲ UŽSAKYMŲ PRISTATYMAS NEMOKAMAS | LENGVAS GRĄŽINIMAS | SAUGI ATSIKRINIMAS"
+      "default_promo": "PRISTATYMO GALIMYBĖS ATSISKAITYMO metu | 30 DIENŲ GRĄŽINIMO LANGAS | SAUGI ATSIKRINIMAS"
     },
     "quick_order_list": {
       "product_total": "Gaminių tarpinė suma",

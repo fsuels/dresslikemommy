@@ -169,7 +169,7 @@
       },
       "view_full_details": "Näytä kaikki tiedot",
       "include_taxes": "Sisältää veron.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Toimituskulut</a> lasketaan kassalla.",
+      "shipping_policy_html": "Toimitusvaihtoehdot ja -kulut näkyvät kassalla osoitteen syöttämisen jälkeen. <a href=\"{{ link }}\">Toimituspolitiikka</a>",
       "choose_options": "Valitse vaihtoehdot",
       "choose_product_options": "Valitse vaihtoehtoja tuotteelle {{ product_name }}",
       "value_unavailable": "{{ option_value }} – Ei ole käytettävissä",
@@ -194,9 +194,9 @@
       "size_required_message": "Valitse koko ennen kuin lisäät ostoskoriin.",
       "matching_set": {
         "heading": "Rakenna itsellesi sopiva sarja",
-        "copy": "Valitse jokainen tarvitsemasi perhekoko ja lisää koko yhteensopiva sarja yhdeltä tuotesivulta.",
-        "empty": "Aloita sarja valitsemalla vähintään yksi perhekoko.",
-        "add": "Lisää valitut osat",
+        "copy": "Valinnainen: valitse yksi koko jokaiselle perheenjäsenelle, jonka haluat sisällyttää. Jokainen valinta lisää yhden kappaleen ostoskoriin.",
+        "empty": "Valitse yksi koko jokaiselle perheenjäsenelle, jonka haluat lisätä.",
+        "add": "Lisää valitut osat ostoskoriin",
         "success": "Vastaava sarja lisätty ostoskoriin.",
         "error": "Valittuja osia ei voi lisätä. Yritä uudelleen."
       },
@@ -230,7 +230,7 @@
         "write_review": "Kirjoita arvostelu",
         "write_review_title": "Kirjoita arvostelu"
       },
-      "free_shipping_all_orders": "Ilmainen toimitus kaikille tilauksille",
+      "free_shipping_all_orders": "Toimitusvaihtoehdot näkyvät kassalla",
       "selected_size_label": "Koko: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Yksityiskohdat",
@@ -278,19 +278,19 @@
     "trust": {
       "secure_checkout": "Turvallinen kassa",
       "ssl_encrypted": "SSL-salattu",
-      "returns": "Helppo palautus",
-      "free_shipping": "Ilmainen toimitus",
+      "returns": "30 päivän palautusikkuna",
+      "free_shipping": "Toimitus näkyy kassalla",
       "trusted_since": "Perheen yhdistäminen on tehty helpoksi",
       "assistance_note": "Tarvitsetko apua? Vastaamme yleensä yhden arkipäivän kuluessa."
     },
     "additional_info": {
       "shipping_title": "Toimitus ja toimitus",
-      "free_shipping_label": "ILMAINEN toimitus",
-      "estimated_delivery": "Toimitustiedot kassalla",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Toimitusvaihtoehdot",
+      "estimated_delivery": "Toimitus näkyy kassalla:",
+      "standard_delivery_window": "Lopullinen toimitusaika ja toimituskulut vahvistetaan osoitteen syöttämisen jälkeen.",
+      "premium_delivery_window": "Express-vaihtoehdot näkyvät kassalla, jos niitä on saatavilla.",
       "faster_shipping_prefix": "Haluatko nopeammin? Käytä yli 100 dollaria ja saat",
-      "free_premium_shipping": "ILMAINEN Premium-toimitus",
+      "free_premium_shipping": "Pikalähetys",
       "return_policy_title": "Palautuskäytäntö",
       "return_policy_line_1": "Sinulla on 30 päivää toimituksesta pyytää palautusta tai vaihtoa.",
       "return_policy_line_2": "Tavaroiden tulee olla käyttämättömiä, pesemättömiä, alkuperäisessä kunnossa ja alkuperäisessä pakkauksessaan ja etiketeillä.",
@@ -301,7 +301,7 @@
       "safe_payment_description": "Hyväksymme kaikki yleisimmät luotto- ja pankkikortit. Korttitietosi ovat turvassa, eikä niitä koskaan jaeta kumppaneillemme. Voit helposti hallita tallennettuja korttejasi milloin tahansa. Jos sinulla on kysyttävää tapahtumasta, ota yhteyttä korttisi myöntäjään.",
       "secure_logistics_title": "Turvallinen logistiikka",
       "secure_logistics_line_1": "Jos paketti on vaurioitunut tai kadonnut kuljetuksen aikana, ota meihin yhteyttä, jotta voimme auttaa lähetyksen tarkistamisessa.",
-      "secure_logistics_line_2": "Käytä tilauksen seurantalinkkiäsi saadaksesi viimeisimmät operaattoripäivitykset.",
+      "secure_logistics_line_2": "Käytä tilauksen seurantalinkkiäsi saadaksesi viimeisimmät operaattoripäivitykset. Kansainvälisistä tilauksista voidaan periä paikalliset verot, tullit tai tullimaksut, jotka rahdinkuljettaja tai paikallinen viranomainen kerää.",
       "secure_privacy_title": "Turvallinen yksityisyys",
       "secure_privacy_description": "Yksityisyytesi suojaaminen on meille tärkeää! Voit olla varma, että tietosi säilytetään turvassa ja tinkimättöminä. Emme myy henkilötietojasi rahasta ja käytämme tietojasi vain tietosuoja- ja evästekäytäntömme mukaisesti tarjotaksemme ja parantaaksemme palveluitamme sinulle."
     }
@@ -374,10 +374,10 @@
       "empty": "Ostoskorisi on tyhjä",
       "cart_error": "Ostoskorisi päivityksessä tapahtui virhe. Yritä uudelleen.",
       "cart_quantity_error_html": "Voit lisätä ostoskoriisi vain {{ quantity }} kappaletta tätä tuotetta.",
-      "taxes_and_shipping_policy_at_checkout_html": "Verot, alennukset ja <a href=\"{{ link }}\">toimituskulut</a> lasketaan kassalla",
-      "taxes_included_but_shipping_at_checkout": "Sisältää veron; toimituskulut ja alennukset lasketaan kassalla",
-      "taxes_included_and_shipping_policy_html": "Sisältää veron. <a href=\"{{ link }}\">Toimituskulut</a> ja alennukset lasketaan kassalla.",
-      "taxes_and_shipping_at_checkout": "Verot, alennukset ja toimituskulut lasketaan kassalla",
+      "taxes_and_shipping_policy_at_checkout_html": "Verot, alennukset ja toimituskulut lasketaan kassalla. <a href=\"{{ link }}\">Toimituspolitiikka</a>",
+      "taxes_included_but_shipping_at_checkout": "Sisältää verot. Alennukset ja toimituskulut lasketaan kassalla.",
+      "taxes_included_and_shipping_policy_html": "Sisältää verot. Alennukset ja toimituskulut lasketaan kassalla. <a href=\"{{ link }}\">Toimituspolitiikka</a>",
+      "taxes_and_shipping_at_checkout": "Verot, alennukset ja toimituskulut lasketaan kassalla.",
       "headings": {
         "product": "Tuote",
         "price": "Hinta",
@@ -402,15 +402,15 @@
       "trust": {
         "secure_checkout": "Turvallinen kassa",
         "ssl_encrypted": "SSL-salattu",
-        "free_shipping": "Ilmainen toimitus",
-        "returns": "Helppo palautus",
+        "free_shipping": "Toimitusvaihtoehdot",
+        "returns": "30 päivän palautusoikeus",
         "secure": "Turvallinen",
         "encrypted": "Salattu",
-        "free_ship": "Ilmainen toimitus"
+        "free_ship": "Toimitus"
       },
       "discount_code_toggle": "Onko sinulla alennuskoodi?",
       "shipping_label": "Toimitus",
-      "shipping_free": "ILMAINEN",
+      "shipping_free": "Laskettu kassalla",
       "popular_with_families": "Suosittu perheiden keskuudessa",
       "recently_viewed": "Äskettäin katsottu",
       "savings_html": "Säästät <strong>{{ amount }}</strong>"
@@ -456,7 +456,7 @@
       "carousel": "Karuselli",
       "announcement": "Ilmoitus",
       "announcement_bar": "Ilmoituspalkki",
-      "default_promo": "ILMAINEN TOIMITUS KAIKKIIN TILAUKSILLE | HELPPO PALAUTUS | TURVALLINEN KASSA"
+      "default_promo": "TOIMITUSVAIHTOEHDOT KASSALLA | 30 PÄIVÄN PALAUTUSIKKUNA | TURVALLINEN KASSA"
     },
     "quick_order_list": {
       "product_total": "Tuotteen välisumma",

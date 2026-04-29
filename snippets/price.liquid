@@ -22,6 +22,10 @@
   if show_sold_out_badge == false
     assign display_sold_out_badge = false
   endif
+  assign display_compare_at_price = true
+  if show_compare_at_price == false
+    assign display_compare_at_price = false
+  endif
 
   assign compare_at_price = target.compare_at_price
   assign price = target.price | default: 1999
@@ -105,7 +109,8 @@
     </div>
     {%- if is_on_sale -%}
     <div class="price__sale">
-      {%- unless product.price_varies == false and product.compare_at_price_varies %}
+      {%- if display_compare_at_price -%}
+        {%- unless product.price_varies == false and product.compare_at_price_varies %}
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
         <span>
           <s class="price-item price-item--regular">
@@ -116,7 +121,8 @@
             {% endif %}
           </s>
         </span>
-      {%- endunless -%}
+        {%- endunless -%}
+      {%- endif -%}
       <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
       <span class="price-item price-item--sale price-item--last">
         {{ money_price }}

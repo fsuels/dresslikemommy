@@ -280,7 +280,7 @@
               </p>
             {%- endif -%}
 
-            {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+            {% render 'price', product: card_product, price_class: '', show_compare_at_price: false %}
             {%- if card_product.quantity_price_breaks_configured? -%}
               {% if card_product.variants.size == 1 and quick_add == 'bulk' %}
                 {% liquid
@@ -559,7 +559,7 @@
                       </div>
                       <div class="quick-add-modal__content-info--bulk-details large-up-hide">
                         <h3>{{ card_product.title | escape }}</h3>
-                        {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+                        {% render 'price', product: card_product, price_class: '', show_compare_at_price: false %}
                         {%- if card_product.quantity_price_breaks_configured? -%}
                           <div class="card__information-volume-pricing-note">
                             <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
@@ -570,7 +570,7 @@
                     <div>
                       <div class="quick-add-modal__content-info--bulk-details small-hide medium-hide">
                         <h3 class="h2">{{ card_product.title | escape }}</h3>
-                        {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+                        {% render 'price', product: card_product, price_class: '', show_compare_at_price: false %}
                         {%- if card_product.quantity_price_breaks_configured? -%}
                           <div class="card__information-volume-pricing-note">
                             <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
@@ -656,7 +656,7 @@
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
               <div class="caption-with-letter-spacing light">{{ 'products.product.vendor' | t }}</div>
             {%- endif -%}
-            {% render 'price', show_compare_at_price: true %}
+            {% render 'price', show_compare_at_price: false %}
           </div>
         </div>
       </div>

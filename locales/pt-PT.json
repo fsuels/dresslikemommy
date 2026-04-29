@@ -171,7 +171,7 @@
       },
       "view_full_details": "Ver detalhes completos",
       "include_taxes": "Imposto incluído.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Envio</a> calculado na finalização da compra.",
+      "shipping_policy_html": "As opções e custos de envio são mostrados na finalização da compra, após a inserção do endereço. <a href=\"{{ link }}\">Política de envio</a>",
       "choose_options": "Escolher opções",
       "choose_product_options": "Escolha opções para {{ product_name }}",
       "value_unavailable": "{{ option_value }} - Indisponível",
@@ -192,9 +192,9 @@
       },
       "matching_set": {
         "heading": "Construa seu conjunto correspondente",
-        "copy": "Escolha cada tamanho de família que você precisa e adicione o conjunto completo correspondente em uma página de produto.",
-        "empty": "Escolha pelo menos um tamanho de família para iniciar seu conjunto.",
-        "add": "Adicione peças selecionadas",
+        "copy": "Opcional: escolha um tamanho para cada membro da família que deseja incluir. Cada seleção adiciona uma peça separada ao carrinho.",
+        "empty": "Selecione um tamanho para cada membro da família que deseja adicionar.",
+        "add": "Adicione as peças selecionadas ao carrinho",
         "success": "Conjunto correspondente adicionado ao carrinho.",
         "error": "Não foi possível adicionar as peças selecionadas. Por favor, tente novamente."
       },
@@ -228,7 +228,7 @@
         "write_review": "Escreva um comentário",
         "write_review_title": "Escreva um comentário"
       },
-      "free_shipping_all_orders": "Frete grátis em todos os pedidos",
+      "free_shipping_all_orders": "Opções de envio mostradas na finalização da compra",
       "selected_size_label": "Tamanho: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Detalhes",
@@ -282,19 +282,19 @@
     "trust": {
       "secure_checkout": "Check-out seguro",
       "ssl_encrypted": "SSL criptografado",
-      "returns": "Devoluções fáceis",
-      "free_shipping": "Frete grátis",
+      "returns": "Janela de devolução de 30 dias",
+      "free_shipping": "Frete mostrado na finalização da compra",
       "trusted_since": "Combinação familiar facilitada",
       "assistance_note": "Precisar de ajuda? Normalmente respondemos dentro de um dia útil."
     },
     "additional_info": {
       "shipping_title": "Envio e entrega",
-      "free_shipping_label": "Frete grátis",
-      "estimated_delivery": "Detalhes de entrega na finalização da compra",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Opções de envio",
+      "estimated_delivery": "Entrega mostrada na finalização da compra:",
+      "standard_delivery_window": "O prazo final de entrega e o custo de envio são confirmados após a entrada do endereço.",
+      "premium_delivery_window": "As opções expressas são mostradas na finalização da compra, quando disponíveis.",
       "faster_shipping_prefix": "Quer mais rápido? Gaste mais de US$ 100 e ganhe",
-      "free_premium_shipping": "Frete Premium GRATUITO",
+      "free_premium_shipping": "Envio expresso",
       "return_policy_title": "Política de devolução",
       "return_policy_line_1": "Você tem 30 dias a partir da entrega para solicitar devolução ou troca.",
       "return_policy_line_2": "Os itens devem estar sem uso, sem lavagem, em condições originais e em sua embalagem original com etiquetas anexadas.",
@@ -305,7 +305,7 @@
       "safe_payment_description": "Aceitamos todos os principais cartões de crédito e débito. Os dados do seu cartão são seguros e nunca são compartilhados com nossos parceiros. Você pode gerenciar facilmente seus cartões salvos a qualquer momento. Para qualquer dúvida sobre transações, entre em contato com o emissor do seu cartão.",
       "secure_logistics_title": "Logística Segura",
       "secure_logistics_line_1": "Se um pacote for danificado ou perdido durante o transporte, entre em contato conosco para que possamos ajudar a revisar a remessa.",
-      "secure_logistics_line_2": "Use seu link de rastreamento de pedido para obter as atualizações mais recentes da operadora.",
+      "secure_logistics_line_2": "Use seu link de rastreamento de pedido para obter as atualizações mais recentes da operadora. As encomendas internacionais podem estar sujeitas a impostos, taxas ou taxas alfandegárias locais cobradas pela transportadora ou autoridade local.",
       "secure_privacy_title": "Privacidade segura",
       "secure_privacy_description": "Proteger sua privacidade é importante para nós! Tenha certeza de que suas informações serão mantidas seguras e descomprometidas. Não vendemos suas informações pessoais por dinheiro e apenas as usaremos de acordo com nossa política de privacidade e cookies para fornecer e melhorar nossos serviços para você."
     }
@@ -384,10 +384,10 @@
       "empty": "O seu carrinho está vazio",
       "cart_error": "Ocorreu um erro ao atualizar o seu carrinho. Tente novamente.",
       "cart_quantity_error_html": "É possível adicionar apenas {{ quantity }} unidade(s) deste item ao carrinho.",
-      "taxes_and_shipping_policy_at_checkout_html": "Impostos, descontos e <a href=\"{{ link }}\">envio</a> calculados na finalização da compra",
-      "taxes_included_but_shipping_at_checkout": "Imposto incluído, envio e descontos calculados na finalização da compra",
-      "taxes_included_and_shipping_policy_html": "Imposto incluído. <a href=\"{{ link }}\">Envio</a> e descontos calculados na finalização da compra.",
-      "taxes_and_shipping_at_checkout": "Impostos, descontos e envio calculados na finalização da compra",
+      "taxes_and_shipping_policy_at_checkout_html": "Impostos, descontos e frete calculados na finalização da compra. <a href=\"{{ link }}\">Política de envio</a>",
+      "taxes_included_but_shipping_at_checkout": "Imposto incluído. Descontos e frete calculados na finalização da compra.",
+      "taxes_included_and_shipping_policy_html": "Imposto incluído. Descontos e frete calculados na finalização da compra. <a href=\"{{ link }}\">Política de envio</a>",
+      "taxes_and_shipping_at_checkout": "Impostos, descontos e frete calculados na finalização da compra.",
       "headings": {
         "product": "Produto",
         "price": "Preço",
@@ -412,16 +412,16 @@
       "trust": {
         "secure_checkout": "Check-out seguro",
         "ssl_encrypted": "SSL criptografado",
-        "free_shipping": "Frete grátis",
-        "returns": "Devoluções fáceis",
+        "free_shipping": "Opções de envio",
+        "returns": "Devoluções de 30 dias",
         "secure": "Seguro",
         "encrypted": "Criptografado",
-        "free_ship": "Navio Grátis"
+        "free_ship": "Envio"
       },
       "popular_with_families": "Popular entre famílias",
       "recently_viewed": "Vistos recentemente",
       "discount_code_toggle": "Have a discount code?",
-      "shipping_free": "FREE",
+      "shipping_free": "Calculado na finalização da compra",
       "shipping_label": "Shipping",
       "savings_html": "Você está salvando <strong>{{ amount }}</strong>"
     },
@@ -466,7 +466,7 @@
       "carousel": "Carrossel",
       "announcement": "Comunicado",
       "announcement_bar": "Barra de comunicado",
-      "default_promo": "FRETE GRATUITO EM TODOS OS PEDIDOS | RETORNOS FÁCEIS | VERIFICAÇÃO SEGURA"
+      "default_promo": "OPÇÕES DE ENVIO NO CHECKOUT | JANELA DE DEVOLUÇÃO DE 30 DIAS | VERIFICAÇÃO SEGURA"
     },
     "quick_order_list": {
       "product_total": "Subtotal dos produtos",

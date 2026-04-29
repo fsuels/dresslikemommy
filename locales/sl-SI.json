@@ -172,7 +172,7 @@
       },
       "view_full_details": "Prikaži vse podrobnosti",
       "include_taxes": "Vključno z davkom.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Dostava</a> se obračuna ob zaključku nakupa.",
+      "shipping_policy_html": "Možnosti pošiljanja in stroški so prikazani na blagajni po vnosu naslova. <a href=\"{{ link }}\">Politika pošiljanja</a>",
       "choose_options": "Izberite možnosti",
       "choose_product_options": "Izberite možnosti za izdelek {{ product_name }}",
       "value_unavailable": "{{ option_value }} – ni na voljo",
@@ -193,9 +193,9 @@
       },
       "matching_set": {
         "heading": "Zgradite svoj ujemajoči se komplet",
-        "copy": "Izberite vsako velikost družine, ki jo potrebujete, in dodajte celoten ujemajoči se komplet z ene strani izdelka.",
-        "empty": "Za začetek nabora izberite vsaj eno velikost družine.",
-        "add": "Dodajte izbrane kose",
+        "copy": "Izbirno: izberite eno velikost za vsakega družinskega člana, ki ga želite vključiti. Vsak izbor doda en kos v košarico.",
+        "empty": "Izberite eno velikost za vsakega družinskega člana, ki ga želite dodati.",
+        "add": "Dodajte izbrane kose v košarico",
         "success": "Ustrezen komplet je dodan v košarico.",
         "error": "Izbranih delov ni mogoče dodati. prosim poskusite znova"
       },
@@ -229,7 +229,7 @@
         "write_review": "Napišite oceno",
         "write_review_title": "Napišite oceno"
       },
-      "free_shipping_all_orders": "Brezplačna dostava za vsa naročila",
+      "free_shipping_all_orders": "Možnosti pošiljanja so prikazane na blagajni",
       "selected_size_label": "Velikost: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Podrobnosti",
@@ -286,19 +286,19 @@
     "trust": {
       "secure_checkout": "Varna blagajna",
       "ssl_encrypted": "Šifrirano SSL",
-      "returns": "Enostavna vračila",
-      "free_shipping": "Brezplačna dostava",
+      "returns": "30-dnevno obdobje za vračilo",
+      "free_shipping": "Dostava je prikazana na blagajni",
       "trusted_since": "Družinsko ujemanje je preprosto",
       "assistance_note": "Potrebujete pomoč? Običajno odgovorimo v enem delovnem dnevu."
     },
     "additional_info": {
       "shipping_title": "Pošiljanje in dostava",
-      "free_shipping_label": "BREZPLAČNA dostava",
-      "estimated_delivery": "Podrobnosti o dostavi na blagajni",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Možnosti pošiljanja",
+      "estimated_delivery": "Dostava prikazana na blagajni:",
+      "standard_delivery_window": "Končni čas dostave in stroški pošiljanja so potrjeni po vnosu naslova.",
+      "premium_delivery_window": "Ekspresne možnosti so prikazane na blagajni, kjer so na voljo.",
       "faster_shipping_prefix": "Želite hitreje? Porabite 100 $+ in pridobite",
-      "free_premium_shipping": "BREZPLAČNA premium dostava",
+      "free_premium_shipping": "Ekspresna dostava",
       "return_policy_title": "Politika vračila",
       "return_policy_line_1": "Imate 30 dni od dostave, da zahtevate vračilo ali zamenjavo.",
       "return_policy_line_2": "Predmeti morajo biti nenošeni, neoprani, v originalnem stanju in v originalni embalaži s pritrjenimi etiketami.",
@@ -309,7 +309,7 @@
       "safe_payment_description": "Sprejemamo vse glavne kreditne in debetne kartice. Podatki o vaši kartici so varni in jih nikoli ne posredujemo našim partnerjem. Svoje shranjene kartice lahko preprosto upravljate kadar koli. Za kakršna koli vprašanja o transakciji se obrnite na izdajatelja kartice.",
       "secure_logistics_title": "Varna logistika",
       "secure_logistics_line_1": "Če je paket med prevozom poškodovan ali izgubljen, nas kontaktirajte, da vam lahko pomagamo pregledati pošiljko.",
-      "secure_logistics_line_2": "Za najnovejše posodobitve ponudnika uporabite povezavo za sledenje naročilu.",
+      "secure_logistics_line_2": "Za najnovejše posodobitve ponudnika uporabite povezavo za sledenje naročilu. Mednarodna naročila so lahko predmet lokalnih davkov, dajatev ali carin, ki jih pobira prevoznik ali lokalni organ.",
       "secure_privacy_title": "Varna zasebnost",
       "secure_privacy_description": "Varovanje vaše zasebnosti je za nas pomembno! Zagotavljamo vam, da bodo vaši podatki varni in brezkompromitirani. Vaših osebnih podatkov ne prodajamo za denar in bomo vaše podatke uporabili samo v skladu z našo politiko zasebnosti in piškotkov, da vam zagotovimo in izboljšamo naše storitve."
     }
@@ -394,10 +394,10 @@
       "empty": "Vaša košarica je prazna",
       "cart_error": "Pri posodabljanju vaše košarice je prišlo do napake. Poskusite znova.",
       "cart_quantity_error_html": "V košarico lahko dodate največ toliko tovrstnih izdelkov: {{ quantity }}.",
-      "taxes_and_shipping_policy_at_checkout_html": "Davki, popusti in <a href=\"{{ link }}\">strošek dostave</a> se obračunajo ob zaključku nakupa",
-      "taxes_included_but_shipping_at_checkout": "Vključeni davek ter strošek dostave in popusti se obračunajo ob zaključku nakupa",
-      "taxes_included_and_shipping_policy_html": "Davek vključen. <a href=\"{{ link }}\">Strošek dostave</a> in popusti se obračunajo ob zaključku nakupa.",
-      "taxes_and_shipping_at_checkout": "Davki, popusti in strošek dostave se obračunajo ob zaključku nakupa",
+      "taxes_and_shipping_policy_at_checkout_html": "Davki, popusti in poštnina, izračunani na blagajni. <a href=\"{{ link }}\">Politika pošiljanja</a>",
+      "taxes_included_but_shipping_at_checkout": "Davek vključen. Popusti in poštnina se obračunajo na blagajni.",
+      "taxes_included_and_shipping_policy_html": "Davek vključen. Popusti in poštnina se obračunajo na blagajni. <a href=\"{{ link }}\">Politika pošiljanja</a>",
+      "taxes_and_shipping_at_checkout": "Davki, popusti in poštnina, izračunani na blagajni.",
       "update": "Posodobitev",
       "headings": {
         "product": "Izdelek",
@@ -422,16 +422,16 @@
       "trust": {
         "secure_checkout": "Varna blagajna",
         "ssl_encrypted": "Šifrirano SSL",
-        "free_shipping": "Brezplačna dostava",
-        "returns": "Enostavna vračila",
+        "free_shipping": "Možnosti pošiljanja",
+        "returns": "30-dnevna vračila",
         "secure": "Varno",
         "encrypted": "Šifrirano",
-        "free_ship": "Brezplačna ladja"
+        "free_ship": "Pošiljanje"
       },
       "popular_with_families": "Priljubljeno pri družinah",
       "recently_viewed": "Nedavno ogledano",
       "discount_code_toggle": "Have a discount code?",
-      "shipping_free": "FREE",
+      "shipping_free": "Obračunano na blagajni",
       "shipping_label": "Shipping",
       "savings_html": "Privarčujete <strong>{{ amount }}</strong>"
     },
@@ -476,7 +476,7 @@
       "carousel": "Vrtiljak",
       "announcement": "Obvestilo",
       "announcement_bar": "Vrstica za obvestila",
-      "default_promo": "BREZPLAČNA DOSTAVA ZA VSA NAROČILA | ENOSTAVNO VRAČILO | VARNA BLAGAJNA"
+      "default_promo": "MOŽNOSTI POŠILJANJA NA BLAGAJNI | 30-DNEVNO OKNO ZA VRAČILO | VARNA BLAGAJNA"
     },
     "quick_order_list": {
       "product_total": "Vmesna vsota",

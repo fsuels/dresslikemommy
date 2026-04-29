@@ -169,7 +169,7 @@
       },
       "view_full_details": "Tüm ayrıntıları görüntüle",
       "include_taxes": "Vergi dahildir.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Kargo</a>, ödeme sayfasında hesaplanır.",
+      "shipping_policy_html": "Gönderim seçenekleri ve maliyetler, adres girişinden sonra ödeme sırasında gösterilir. <a href=\"{{ link }}\">Gönderim politikası</a>",
       "choose_options": "Seçenekleri belirle",
       "choose_product_options": "{{ product_name }} için seçenekleri belirle",
       "value_unavailable": "{{ option_value }} - Kullanılamıyor",
@@ -194,9 +194,9 @@
       "size_required_message": "Sepete eklemeden önce lütfen beden seçiniz.",
       "matching_set": {
         "heading": "Eşleşen setinizi oluşturun",
-        "copy": "İhtiyacınız olan her aile boyutunu seçin ve tek bir ürün sayfasından eşleşen setin tamamını ekleyin.",
-        "empty": "Setinize başlamak için en az bir aile boyu seçin.",
-        "add": "Seçilen parçaları ekle",
+        "copy": "İsteğe bağlı: dahil etmek istediğiniz her aile üyesi için bir beden seçin. Her seçim sepete ayrı bir parça ekler.",
+        "empty": "Eklemek istediğiniz her aile üyesi için bir beden seçin.",
+        "add": "Seçilen parçaları sepete ekle",
         "success": "Eşleşen set sepete eklendi.",
         "error": "Seçilen parçalar eklenemiyor. Lütfen tekrar deneyin."
       },
@@ -230,7 +230,7 @@
         "write_review": "Bir inceleme yazın",
         "write_review_title": "Yorum Yaz"
       },
-      "free_shipping_all_orders": "Tüm siparişlerde ücretsiz kargo",
+      "free_shipping_all_orders": "Ödeme sırasında gösterilen gönderim seçenekleri",
       "selected_size_label": "Boyut: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Ayrıntılar",
@@ -278,19 +278,19 @@
     "trust": {
       "secure_checkout": "Güvenli Ödeme",
       "ssl_encrypted": "SSL Şifreli",
-      "returns": "Kolay İade",
-      "free_shipping": "Ücretsiz Kargo",
+      "returns": "30 günlük iade penceresi",
+      "free_shipping": "Ödeme sırasında gösterilen kargo",
       "trusted_since": "Aile eşleştirme artık daha kolay",
       "assistance_note": "Yardıma mı ihtiyacınız var? Genellikle bir iş günü içinde yanıt veririz."
     },
     "additional_info": {
       "shipping_title": "Nakliye ve Teslimat",
-      "free_shipping_label": "ÜCRETSİZ Kargo",
-      "estimated_delivery": "Ödeme sırasında teslimat ayrıntıları",
-      "standard_delivery_window": "8-18 business days including processing",
-      "premium_delivery_window": "5-7 business days after processing where available",
+      "free_shipping_label": "Gönderim seçenekleri",
+      "estimated_delivery": "Ödeme sırasında gösterilen teslimat:",
+      "standard_delivery_window": "Adres girişi yapıldıktan sonra son teslimat zamanlaması ve nakliye ücreti onaylanır.",
+      "premium_delivery_window": "Ekspres seçenekler, mevcut olduğu durumlarda ödeme sırasında gösterilir.",
       "faster_shipping_prefix": "Daha hızlı mı istiyorsunuz? 100$+ harcayın ve kazanın",
-      "free_premium_shipping": "ÜCRETSİZ Premium Kargo",
+      "free_premium_shipping": "Ekspres kargo",
       "return_policy_title": "İade politikasi",
       "return_policy_line_1": "İade veya değişim talebinde bulunmak için teslimattan itibaren 30 gününüz var.",
       "return_policy_line_2": "Ürünler giyilmemiş, yıkanmamış, orijinal durumda ve etiketleri iliştirilmiş orijinal ambalajında ​​olmalıdır.",
@@ -301,7 +301,7 @@
       "safe_payment_description": "Tüm önemli kredi ve banka kartlarını kabul ediyoruz. Kart bilgileriniz güvendedir ve asla ortaklarımızla paylaşılmaz. Kayıtlı kartlarınızı istediğiniz zaman kolayca yönetebilirsiniz. İşlemle ilgili sorularınız için lütfen kartınızı veren kuruluşla iletişime geçin.",
       "secure_logistics_title": "Güvenli Lojistik",
       "secure_logistics_line_1": "Bir paket nakliye sırasında hasar görürse veya kaybolursa, gönderinin incelenmesine yardımcı olabilmemiz için bizimle iletişime geçin.",
-      "secure_logistics_line_2": "En son operatör güncellemeleri için sipariş takip bağlantınızı kullanın.",
+      "secure_logistics_line_2": "En son operatör güncellemeleri için sipariş takip bağlantınızı kullanın. Uluslararası siparişler, taşıyıcı veya yerel makam tarafından toplanan yerel vergilere, harçlara veya gümrük ücretlerine tabi olabilir.",
       "secure_privacy_title": "Güvenli Gizlilik",
       "secure_privacy_description": "Gizliliğinizi korumak bizim için önemlidir! Lütfen bilgilerinizin güvende tutulacağından ve taviz verilmeden tutulacağından emin olun. Kişisel bilgilerinizi para karşılığında satmıyoruz ve bilgilerinizi yalnızca gizlilik ve çerez politikamıza uygun olarak size hizmetlerimizi sunmak ve geliştirmek için kullanacağız."
     }
@@ -374,10 +374,10 @@
       "empty": "Sepetiniz boş",
       "cart_error": "Sepetiniz güncellenirken bir hata oluştu. Lütfen tekrar deneyin.",
       "cart_quantity_error_html": "Sepetinize bu üründen yalnızca {{ quantity }} adet ekleyebilirsiniz.",
-      "taxes_and_shipping_policy_at_checkout_html": "Vergiler, indirimler ve <a href=\"{{ link }}\">kargo</a>, ödeme sayfasında hesaplanır",
-      "taxes_included_but_shipping_at_checkout": "Vergi dahildir ve kargo ile indirimler, ödeme sayfasında hesaplanır",
-      "taxes_included_and_shipping_policy_html": "Vergi dahildir. <a href=\"{{ link }}\">Kargo</a> ve indirimler, ödeme sayfasında hesaplanır.",
-      "taxes_and_shipping_at_checkout": "Vergiler, indirimler ve kargo, ödeme sayfasında hesaplanır",
+      "taxes_and_shipping_policy_at_checkout_html": "Ödeme sırasında hesaplanan vergiler, indirimler ve gönderim bedeli. <a href=\"{{ link }}\">Gönderim politikası</a>",
+      "taxes_included_but_shipping_at_checkout": "Vergi dahil. İndirimler ve gönderim bedeli ödeme sırasında hesaplanır.",
+      "taxes_included_and_shipping_policy_html": "Vergi dahil. İndirimler ve gönderim bedeli ödeme sırasında hesaplanır. <a href=\"{{ link }}\">Gönderim politikası</a>",
+      "taxes_and_shipping_at_checkout": "Ödeme sırasında hesaplanan vergiler, indirimler ve gönderim bedeli.",
       "headings": {
         "product": "Ürün",
         "price": "Fiyat",
@@ -402,15 +402,15 @@
       "trust": {
         "secure_checkout": "Güvenli Ödeme",
         "ssl_encrypted": "SSL Şifreli",
-        "free_shipping": "Ücretsiz Kargo",
-        "returns": "Kolay İade",
+        "free_shipping": "Gönderim seçenekleri",
+        "returns": "30 günlük iadeler",
         "secure": "Güvenli",
         "encrypted": "Şifreli",
-        "free_ship": "Ücretsiz Gemi"
+        "free_ship": "Nakliye"
       },
       "discount_code_toggle": "İndirim kodunuz var mı?",
       "shipping_label": "Nakliye",
-      "shipping_free": "ÖZGÜR",
+      "shipping_free": "Ödeme sırasında hesaplanır",
       "popular_with_families": "Aileler arasında popüler",
       "recently_viewed": "Son Görüntülenenler",
       "savings_html": "<strong>{{ amount }}</strong> tasarruf ediyorsunuz"
@@ -456,7 +456,7 @@
       "carousel": "Carousel",
       "announcement": "Duyuru",
       "announcement_bar": "Duyuru çubuğu",
-      "default_promo": "TÜM SİPARİŞLERDE ÜCRETSİZ KARGO | KOLAY İADE | GÜVENLİ ÖDEME"
+      "default_promo": "ÖDEME SIRASINDA GÖNDERİM SEÇENEKLERİ | 30 GÜNLÜK GERİ DÖNÜŞ PENCERESİ | GÜVENLİ ÖDEME"
     },
     "quick_order_list": {
       "product_total": "Ürün alt toplamı",
