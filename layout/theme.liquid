@@ -689,7 +689,85 @@
         firstCollapsible.setAttribute('aria-expanded', 'true');
       }
 
-      // Keep shipping copy policy-safe until checkout can confirm address-specific timing.
+      // Keep a visible shipping fallback, then enhance it with a date window when a range is available.
+      function formatDate(date) {
+        const options = { month: 'long', day: 'numeric' };
+        const shopifyLocale = window.Shopify && window.Shopify.locale ? window.Shopify.locale : '';
+        const documentLocale = document.documentElement ? document.documentElement.lang || document.documentElement.getAttribute('lang') || '' : '';
+        const locale = shopifyLocale || documentLocale || navigator.language || 'en-US';
+        try {
+          return new Intl.DateTimeFormat(locale, options).format(date);
+        } catch (_error) {
+          return date.toLocaleDateString('en-US', options);
+        }
+      }
+
+      function addBusinessDays(startDate, businessDays) {
+        const date = new Date(startDate);
+        let added = 0;
+        while (added < businessDays) {
+          date.setDate(date.getDate() + 1);
+          const day = date.getDay();
+          if (day !== 0 && day !== 6) added++; // skip weekends
+        }
+        return date;
+      }
+
+      function parseBusinessDayWindow(value) {
+        var matches = String(value || '').match(/\d+/g);
+        if (!matches || !matches.length) return null;
+
+        var minBusinessDays = Number(matches[0]);
+        var maxBusinessDays = Number(matches[1] || matches[0]);
+        if (!Number.isFinite(minBusinessDays) || !Number.isFinite(maxBusinessDays)) return null;
+        if (minBusinessDays < 1 || maxBusinessDays < minBusinessDays) return null;
+
+        return {
+          minBusinessDays: minBusinessDays,
+          maxBusinessDays: maxBusinessDays,
+        };
+      }
+
+      function getDeliveryWindow(tier, element) {
+        var estimates = window.DLM_DELIVERY_ESTIMATES;
+        var configuredEstimate = estimates && estimates[tier] ? estimates[tier] : null;
+
+        if (configuredEstimate) {
+          var minBusinessDays = Number(configuredEstimate.minBusinessDays || configuredEstimate.maxBusinessDays);
+          var maxBusinessDays = Number(configuredEstimate.maxBusinessDays || configuredEstimate.minBusinessDays);
+          if (Number.isFinite(minBusinessDays) && Number.isFinite(maxBusinessDays) && minBusinessDays >= 1 && maxBusinessDays >= minBusinessDays) {
+            return {
+              minBusinessDays: minBusinessDays,
+              maxBusinessDays: maxBusinessDays,
+            };
+          }
+        }
+
+        if (!element) return null;
+
+        var row = element.closest('[data-delivery-estimate-row]');
+        if (!row || !row.hasAttribute('data-delivery-fallback-visible')) return null;
+
+        return parseBusinessDayWindow(element.getAttribute('data-delivery-window'));
+      }
+
+      function formatDeliveryWindow(startDate, estimate) {
+        var minDate = addBusinessDays(startDate, estimate.minBusinessDays);
+        var maxDate = addBusinessDays(startDate, estimate.maxBusinessDays);
+        var minText = formatDate(minDate);
+        var maxText = formatDate(maxDate);
+
+        return minText === maxText ? minText : minText + ' - ' + maxText;
+      }
+
+      function updateDeliveryText(element, dateWindow) {
+        if (!element || !dateWindow) return;
+
+        var fallback = element.getAttribute('data-delivery-fallback') || element.textContent || '';
+        var updated = fallback.replace(/\b\d+\s*[-–]\s*\d+\s+business days\b/i, dateWindow);
+        element.textContent = updated === fallback ? 'Estimated delivery: ' + dateWindow : updated;
+      }
+
       function setDeliveryRowVisibility(element, isVisible) {
         if (!element) return;
 
@@ -701,12 +779,25 @@
       }
 
       function calculateDeliveryDates() {
-        document.querySelectorAll('[data-delivery-fallback]').forEach(function (element) {
-          var fallback = element.getAttribute('data-delivery-fallback') || element.textContent || '';
-          var row = element.closest('[data-delivery-estimate-row]');
-          element.textContent = fallback;
-          setDeliveryRowVisibility(element, row ? row.hasAttribute('data-delivery-fallback-visible') : false);
-        });
+        const today = new Date();
+
+        const upsEl = document.getElementById('ups-delivery-date');
+        const upsWindow = getDeliveryWindow('premium', upsEl);
+        if (upsEl && upsWindow) {
+          updateDeliveryText(upsEl, formatDeliveryWindow(today, upsWindow));
+          setDeliveryRowVisibility(upsEl, true);
+        } else {
+          setDeliveryRowVisibility(upsEl, false);
+        }
+
+        const dhlEl = document.getElementById('dhl-delivery-date');
+        const dhlWindow = getDeliveryWindow('standard', dhlEl);
+        if (dhlEl && dhlWindow) {
+          updateDeliveryText(dhlEl, formatDeliveryWindow(today, dhlWindow));
+          setDeliveryRowVisibility(dhlEl, true);
+        } else {
+          setDeliveryRowVisibility(dhlEl, false);
+        }
       }
 
       calculateDeliveryDates();
