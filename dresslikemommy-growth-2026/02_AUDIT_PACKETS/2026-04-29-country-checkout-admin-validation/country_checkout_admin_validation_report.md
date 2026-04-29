@@ -1,6 +1,6 @@
 # Phase 5 Country Checkout/Admin Validation
 
-Generated: 2026-04-29T04:13:48-04:00
+Generated: 2026-04-29T04:32:06-04:00
 
 ## Decision
 
@@ -28,10 +28,10 @@ Generated: 2026-04-29T04:13:48-04:00
 ## Live Checkout Probe
 
 - Method: anonymous storefront cart shipping-rate lookup; no payment step and no order creation.
-- Probe status: BLOCKED
-- Probe blocker: SHOPIFY_STOREFRONT_BOT_PROTECTION_429
-- Countries with live rates in this packet: 0 non-US
-- Countries blocked in this packet: 4 non-US
+- Probe status: COMPLETE
+- Probe blocker: none
+- Countries with live rates in this packet: 3 non-US
+- Countries blocked in this packet: 0 non-US
 
 ## Country Matrix
 

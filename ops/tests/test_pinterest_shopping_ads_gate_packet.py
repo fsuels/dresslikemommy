@@ -26,6 +26,12 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 def test_pinterest_gate_packet_fails_closed_and_scopes_groups():
     module = load_module()
     summary = module.build()
+    readback_exists = module.PINTEREST_ITEM_READBACK.exists()
+    expected_item_gate = (
+        "PASS_EXACT_EN_US_IN_STOCK_READBACK"
+        if readback_exists
+        else "BLOCKED_UNTIL_EXACT_PINTEREST_CATALOG_READBACK"
+    )
 
     assert summary["decision"] == "DO_NOT_CREATE_PINTEREST_ADS_OR_PRODUCT_GROUPS_YET"
     assert summary["campaign_creation_allowed"] is False
@@ -40,15 +46,18 @@ def test_pinterest_gate_packet_fails_closed_and_scopes_groups():
     assert [row["user_facing_group"] for row in manifest] == ["Mommy & Me", "Family Matching", "Pajamas"]
     assert {row["target_country"] for row in manifest} == {"US_ONLY"}
     assert {row["campaign_status"] for row in manifest} == {"DO_NOT_CREATE_OR_LAUNCH_YET"}
-    assert {row["pinterest_item_level_gate"] for row in manifest} == {
-        "BLOCKED_UNTIL_EXACT_PINTEREST_CATALOG_READBACK"
-    }
+    assert {row["pinterest_item_level_gate"] for row in manifest} == {expected_item_gate}
+    if readback_exists:
+        assert summary["pinterest_item_readback_summary"]["status_counts"] == {"FOUND_EN_US_IN_STOCK": 346}
+        assert {row["pinterest_item_readback_fail_rows"] for row in manifest} == {"0"}
 
 
 def test_pinterest_candidate_rows_all_pass_clean_local_gate():
     module = load_module()
     summary = module.build()
     candidates = read_csv(ROOT / summary["files"]["candidate_offer_rows"])
+    readback_exists = module.PINTEREST_ITEM_READBACK.exists()
+    expected_item_status = "FOUND_EN_US_IN_STOCK" if readback_exists else "NEEDS_PINTEREST_EXPORT_OR_UI_READBACK"
 
     assert len(candidates) == 346
     for row in candidates:
@@ -60,7 +69,12 @@ def test_pinterest_candidate_rows_all_pass_clean_local_gate():
         assert row["merchant_center_destination"] == "Shopping ads eligible"
         assert row["pdp_status"] == "PASS"
         assert row["availability_status"] == "PASS"
-        assert row["pinterest_item_level_status"] == "NEEDS_PINTEREST_EXPORT_OR_UI_READBACK"
+        assert row["pinterest_item_level_status"] == expected_item_status
+        if readback_exists:
+            assert row["pinterest_en_us_pin_id"]
+            assert row["pinterest_en_us_feed_profile_id"]
+            assert row["pinterest_en_us_locale"] == "en-US"
+            assert row["pinterest_en_us_availability"] == "IN_STOCK"
         assert row["review_only_launch_status"] == "CANDIDATE_ONLY_NOT_LAUNCH_APPROVED"
 
 

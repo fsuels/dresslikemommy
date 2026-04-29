@@ -1,0 +1,34 @@
+{
+  "api_attempt_errors": [
+    {
+      "api": "Merchant API products.list",
+      "api_status": "PERMISSION_DENIED",
+      "endpoint": "https://merchantapi.googleapis.com/products/v1/accounts/124884876/products?pageSize=250",
+      "http_status": 403,
+      "message": "Request had insufficient authentication scopes."
+    },
+    {
+      "api": "Content API productstatuses.list",
+      "api_status": "PERMISSION_DENIED",
+      "endpoint": "https://shoppingcontent.googleapis.com/content/v2.1/124884876/productstatuses?maxResults=250",
+      "http_status": 403,
+      "message": "Request had insufficient authentication scopes."
+    }
+  ],
+  "api_raw_rows": 0,
+  "api_source": "",
+  "current_variant_rows_scanned": 7324,
+  "generated_at": "2026-04-29T04:17:17",
+  "input_eligibility": "dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-variant-cost-50pct-post-sync_PAID_LABEL_FRESH_SHOPIFY_product_eligibility.csv",
+  "issue_rows": 0,
+  "merchant_evidence_rows": 0,
+  "merchant_id": "124884876",
+  "mode": "READ_ONLY_GOOGLE_API_DIAGNOSTICS",
+  "outputs": {
+    "evidence": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-api-smoke-recheck/merchant_center_api_diagnostics_evidence.csv",
+    "raw_jsonl": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-api-smoke-recheck/merchant_center_api_diagnostics_raw.jsonl",
+    "summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-api-smoke-recheck/merchant_center_api_diagnostics_summary.json"
+  },
+  "status_counts": {},
+  "token_source": "gcloud auth print-access-token"
+}

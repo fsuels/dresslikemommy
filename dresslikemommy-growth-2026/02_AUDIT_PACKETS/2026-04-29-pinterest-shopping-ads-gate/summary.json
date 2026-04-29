@@ -1,6 +1,6 @@
 {
   "account_status_context": {
-    "local_evidence_note": "Operator-reported status is promising, but this packet still requires current item-level Pinterest feed, event/CAPI payload, USA targeting, and ROAS gates before any ad launch.",
+    "local_evidence_note": "Operator-reported status is promising and item-level Pinterest readback is current for this packet, but event/CAPI payload, USA targeting, and ROAS gates still need proof before any ad launch.",
     "operator_reported": [
       "Merchant approved",
       "Shopify connected",
@@ -50,16 +50,40 @@
     "product_group_manifest": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate/pinterest_product_group_manifest_review_only.csv",
     "summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate/summary.json"
   },
-  "generated_at": "2026-04-29T04:12:09",
+  "generated_at": "2026-04-29T05:34:56",
   "hard_gates_before_create_ad": [
     "Do not click Pinterest Create an ad until the operator explicitly approves that exact action.",
-    "Export or read back exact Pinterest catalog item status for all candidate offer IDs and exclude any warning, not-approved, limited, out-of-stock, or stale landing-page rows.",
+    "Use only exact candidate offer IDs with current Pinterest EN-US in-stock item-level readback; exclude any future warning, not-approved, limited, out-of-stock, missing, or stale landing-page rows.",
     "Confirm the campaign/ad group country targeting is United States only before saving any draft.",
     "Confirm event-level health for PageVisit, ViewCategory, Search, AddToCart, InitiateCheckout, AddPaymentInfo, and Checkout/Purchase, including CAPI/tag deduplication where Pinterest exposes it.",
     "Keep required ROAS at or above 6.67 under the current paid-spend economics model; pause or do not launch if early spend cannot support that guardrail.",
     "Use only the three review-only product groups in this packet: Mommy & Me, Family Matching, and Pajamas."
   ],
   "mode": "PINTEREST_SHOPPING_ADS_GATE_PACKET_REVIEW_ONLY",
+  "pinterest_item_readback_summary": {
+    "catalog_id": "3041764155561548387",
+    "english_feed_profile_id": "3041760867124595727",
+    "family_status_counts": {
+      "family_matching": {
+        "FOUND_EN_US_IN_STOCK": 103
+      },
+      "mommy_me": {
+        "FOUND_EN_US_IN_STOCK": 214
+      },
+      "pajamas": {
+        "FOUND_EN_US_IN_STOCK": 29
+      }
+    },
+    "metadata_rows_sanitized": 6225,
+    "rows": 346,
+    "source_artifact": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-item-readback/pinterest_item_level_readback.csv",
+    "status": "CAPTURED",
+    "status_counts": {
+      "FOUND_EN_US_IN_STOCK": 346
+    },
+    "summary_artifact": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-item-readback/pinterest_item_level_readback_summary.json",
+    "unique_shopify_variant_ids": 346
+  },
   "post_gate_campaign_structure": {
     "campaign_name": "DLM_PIN_US_SHOPPING_TEST_PAID_READY",
     "country_targeting": "United States only",
@@ -82,6 +106,7 @@
   "source_files": {
     "paid_cohort": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28-google-shopping-us-clean-subset_REVIEW_ONLY/google_shopping_us_clean_subset_paid_eligible.csv",
     "pinterest_event_plan": "dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-29-pinterest-event-quality-action-plan.md",
+    "pinterest_item_readback": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-item-readback/pinterest_item_level_readback.csv",
     "pinterest_packet": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-28_PINTEREST_PACKET_v1.md",
     "pinterest_post_ingestion": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29_PINTEREST_POST_INGESTION_RECHECK.md"
   }

@@ -157,7 +157,7 @@
                       echo '"key":'
                       echo custom_image_key | json
                       echo ',"src":'
-                      echo custom_image | image_url: width: 720, height: 900, crop: 'center' | json
+                      echo custom_image | image_url: width: 900 | json
                       echo ',"alt":'
                       echo custom_image_alt | json
                       echo ',"width":360,"height":450'
@@ -242,7 +242,7 @@
                       echo '"key":'
                       echo candidate_key | json
                       echo ',"src":'
-                      echo candidate_media | image_url: width: 720, height: 900, crop: 'center' | json
+                      echo candidate_media | image_url: width: 900 | json
                       echo ',"alt":'
                       echo candidate_alt | json
                       echo ',"width":360,"height":450'
@@ -297,12 +297,16 @@
                     endif
                   endif
                 -%}
+                {%- capture icon_caption -%}
+                  {%- render 'home-category-card-caption', icon_label: icon_label -%}
+                {%- endcapture -%}
+                {%- assign icon_caption = icon_caption | strip -%}
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
                   <a href="{{ block.settings.collection.url }}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
                       {%- if icon_image != blank -%}
                         <img
-                          src="{{ icon_image | image_url: width: 720, height: 900, crop: 'center' }}"
+                          src="{{ icon_image | image_url: width: 900 }}"
                           alt="{{ icon_image_alt | escape }}"
                           loading="eager"
                           width="360"
@@ -324,7 +328,12 @@
                         {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                       {%- endif -%}
                     </div>
-                    <span class="category-icons__label">{{ icon_label }}</span>
+                    <span class="category-icons__text">
+                      <span class="category-icons__label">{{ icon_label }}</span>
+                      {%- if icon_caption != blank -%}
+                        <span class="category-icons__caption">{{ icon_caption }}</span>
+                      {%- endif -%}
+                    </span>
                   </a>
                   {%- if homepage_collection_image_candidate_count > 1 -%}
                     <script type="application/json" class="homepage-collection-card__image-candidates">
@@ -384,7 +393,7 @@
                       echo '"key":'
                       echo custom_image_key | json
                       echo ',"src":'
-                      echo custom_image | image_url: width: 720, height: 900, crop: 'center' | json
+                      echo custom_image | image_url: width: 900 | json
                       echo ',"alt":'
                       echo custom_image_alt | json
                       echo ',"width":360,"height":450'
@@ -469,7 +478,7 @@
                       echo '"key":'
                       echo candidate_key | json
                       echo ',"src":'
-                      echo candidate_media | image_url: width: 720, height: 900, crop: 'center' | json
+                      echo candidate_media | image_url: width: 900 | json
                       echo ',"alt":'
                       echo candidate_alt | json
                       echo ',"width":360,"height":450'
@@ -524,12 +533,16 @@
                     endif
                   endif
                 -%}
+                {%- capture icon_caption -%}
+                  {%- render 'home-category-card-caption', icon_label: icon_label -%}
+                {%- endcapture -%}
+                {%- assign icon_caption = icon_caption | strip -%}
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
                   <a href="{{ block.settings.collection.url }}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
                       {%- if icon_image != blank -%}
                         <img
-                          src="{{ icon_image | image_url: width: 720, height: 900, crop: 'center' }}"
+                          src="{{ icon_image | image_url: width: 900 }}"
                           alt="{{ icon_image_alt | escape }}"
                           loading="eager"
                           width="360"
@@ -551,7 +564,12 @@
                         {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                       {%- endif -%}
                     </div>
-                    <span class="category-icons__label">{{ icon_label }}</span>
+                    <span class="category-icons__text">
+                      <span class="category-icons__label">{{ icon_label }}</span>
+                      {%- if icon_caption != blank -%}
+                        <span class="category-icons__caption">{{ icon_caption }}</span>
+                      {%- endif -%}
+                    </span>
                   </a>
                   {%- if homepage_collection_image_candidate_count > 1 -%}
                     <script type="application/json" class="homepage-collection-card__image-candidates">
@@ -598,7 +616,7 @@
                   echo '"key":'
                   echo custom_image_key | json
                   echo ',"src":'
-                  echo custom_image | image_url: width: 720, height: 900, crop: 'center' | json
+                  echo custom_image | image_url: width: 900 | json
                   echo ',"alt":'
                   echo custom_image_alt | json
                   echo ',"width":360,"height":450'
@@ -683,7 +701,7 @@
                   echo '"key":'
                   echo candidate_key | json
                   echo ',"src":'
-                  echo candidate_media | image_url: width: 720, height: 900, crop: 'center' | json
+                  echo candidate_media | image_url: width: 900 | json
                   echo ',"alt":'
                   echo candidate_alt | json
                   echo ',"width":360,"height":450'
@@ -738,12 +756,16 @@
                 endif
               endif
             -%}
+            {%- capture icon_caption -%}
+              {%- render 'home-category-card-caption', icon_label: icon_label -%}
+            {%- endcapture -%}
+            {%- assign icon_caption = icon_caption | strip -%}
             <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
               <a href="{{ block.settings.collection.url }}" class="category-icons__link">
                 <div class="category-icons__image-wrap">
                   {%- if icon_image != blank -%}
                     <img
-                      src="{{ icon_image | image_url: width: 720, height: 900, crop: 'center' }}"
+                      src="{{ icon_image | image_url: width: 900 }}"
                       alt="{{ icon_image_alt | escape }}"
                       loading="eager"
                       width="360"
@@ -765,7 +787,12 @@
                     {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                   {%- endif -%}
                 </div>
-                <span class="category-icons__label">{{ icon_label }}</span>
+                <span class="category-icons__text">
+                  <span class="category-icons__label">{{ icon_label }}</span>
+                  {%- if icon_caption != blank -%}
+                    <span class="category-icons__caption">{{ icon_caption }}</span>
+                  {%- endif -%}
+                </span>
               </a>
               {%- if homepage_collection_image_candidate_count > 1 -%}
                 <script type="application/json" class="homepage-collection-card__image-candidates">

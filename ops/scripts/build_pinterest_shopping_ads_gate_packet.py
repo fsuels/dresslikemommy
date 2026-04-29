@@ -35,6 +35,16 @@ PINTEREST_TEST_SUMMARY = (
     / "01_EXPORTS_RAW/PINTEREST/2026-04-29_test_events_official_integration/"
     / "controlled_pass_summary_saved.json"
 )
+PINTEREST_ITEM_READBACK = (
+    ROOT
+    / "02_AUDIT_PACKETS/2026-04-29-pinterest-item-readback/"
+    / "pinterest_item_level_readback.csv"
+)
+PINTEREST_ITEM_READBACK_SUMMARY = (
+    ROOT
+    / "02_AUDIT_PACKETS/2026-04-29-pinterest-item-readback/"
+    / "pinterest_item_level_readback_summary.json"
+)
 OUTPUT_DIR = ROOT / "02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate"
 
 
@@ -131,9 +141,49 @@ def summarize_test_events() -> dict[str, object]:
     return summary
 
 
+def read_pinterest_item_readback() -> tuple[dict[str, dict[str, str]], dict[str, object]]:
+    if not PINTEREST_ITEM_READBACK.exists():
+        return {}, {
+            "status": "NOT_CAPTURED",
+            "source_artifact": str(PINTEREST_ITEM_READBACK),
+        }
+
+    rows = read_csv(PINTEREST_ITEM_READBACK)
+    by_variant = {
+        clean(row.get("shopify_variant_id")): row
+        for row in rows
+        if clean(row.get("shopify_variant_id"))
+    }
+    status_counts = Counter(row.get("pinterest_item_level_status") for row in rows)
+    family_status_counts: dict[str, Counter[str]] = {}
+    for row in rows:
+        family = row.get("custom_label_2") or "unknown"
+        family_status_counts.setdefault(family, Counter())[row.get("pinterest_item_level_status")] += 1
+
+    summary: dict[str, object] = {
+        "status": "CAPTURED",
+        "source_artifact": str(PINTEREST_ITEM_READBACK),
+        "rows": len(rows),
+        "unique_shopify_variant_ids": len(by_variant),
+        "status_counts": dict(status_counts),
+        "family_status_counts": {
+            family: dict(counter)
+            for family, counter in sorted(family_status_counts.items())
+        },
+    }
+    if PINTEREST_ITEM_READBACK_SUMMARY.exists():
+        payload = json.loads(PINTEREST_ITEM_READBACK_SUMMARY.read_text(encoding="utf-8"))
+        summary["summary_artifact"] = str(PINTEREST_ITEM_READBACK_SUMMARY)
+        summary["metadata_rows_sanitized"] = payload.get("metadata_rows_sanitized")
+        summary["english_feed_profile_id"] = payload.get("english_feed_profile_id")
+        summary["catalog_id"] = payload.get("catalog_id")
+    return by_variant, summary
+
+
 def build() -> dict[str, object]:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     all_paid_rows = read_csv(PAID_COHORT)
+    pinterest_readback, pinterest_readback_summary = read_pinterest_item_readback()
 
     candidate_rows: list[dict[str, object]] = []
     excluded_rows: list[dict[str, object]] = []
@@ -141,6 +191,8 @@ def build() -> dict[str, object]:
     for row in all_paid_rows:
         in_target_group = row.get("custom_label_2") in TARGET_GROUPS
         clean_candidate = row_is_clean_for_candidate_pool(row)
+        readback = pinterest_readback.get(clean(row.get("shopify_variant_id")), {})
+        pinterest_item_status = readback.get("pinterest_item_level_status") or "NEEDS_PINTEREST_EXPORT_OR_UI_READBACK"
         base = {
             "pinterest_product_group": TARGET_GROUPS.get(row.get("custom_label_2"), {}).get("name", ""),
             "pinterest_group_label": TARGET_GROUPS.get(row.get("custom_label_2"), {}).get("label", ""),
@@ -169,7 +221,13 @@ def build() -> dict[str, object]:
             "shipping_policy_status": row.get("shipping_policy_status"),
             "return_policy_status": row.get("return_policy_status"),
             "pdp_status": row.get("pdp_status"),
-            "pinterest_item_level_status": "NEEDS_PINTEREST_EXPORT_OR_UI_READBACK",
+            "pinterest_item_level_status": pinterest_item_status,
+            "pinterest_en_us_pin_id": readback.get("pinterest_en_us_pin_id", ""),
+            "pinterest_en_us_feed_profile_id": readback.get("pinterest_en_us_feed_profile_id", ""),
+            "pinterest_en_us_locale": readback.get("pinterest_en_us_locale", ""),
+            "pinterest_en_us_availability": readback.get("pinterest_en_us_availability", ""),
+            "pinterest_en_us_link": readback.get("pinterest_en_us_link", ""),
+            "pinterest_en_us_price": readback.get("pinterest_en_us_price", ""),
             "review_only_launch_status": "CANDIDATE_ONLY_NOT_LAUNCH_APPROVED",
         }
         if in_target_group and clean_candidate:
@@ -185,6 +243,12 @@ def build() -> dict[str, object]:
     group_rows: list[dict[str, object]] = []
     for family_key, meta in TARGET_GROUPS.items():
         rows = [row for row in candidate_rows if row["custom_label_2"] == family_key]
+        pinterest_pass_rows = sum(1 for row in rows if row["pinterest_item_level_status"] == "FOUND_EN_US_IN_STOCK")
+        pinterest_item_gate = (
+            "PASS_EXACT_EN_US_IN_STOCK_READBACK"
+            if rows and pinterest_pass_rows == len(rows)
+            else "BLOCKED_UNTIL_EXACT_PINTEREST_CATALOG_READBACK"
+        )
         group_rows.append(
             {
                 "pinterest_product_group": meta["name"],
@@ -206,7 +270,9 @@ def build() -> dict[str, object]:
                     and row["merchant_center_destination"] == "Shopping ads eligible"
                     and all(row[field] == "PASS" for field in REQUIRED_PASS_FIELDS)
                 ),
-                "pinterest_item_level_gate": "BLOCKED_UNTIL_EXACT_PINTEREST_CATALOG_READBACK",
+                "pinterest_item_readback_pass_rows": pinterest_pass_rows,
+                "pinterest_item_readback_fail_rows": len(rows) - pinterest_pass_rows,
+                "pinterest_item_level_gate": pinterest_item_gate,
                 "notes": "Use exact included offer IDs or an equivalent Pinterest catalog filter; never All Products.",
             }
         )
@@ -227,13 +293,14 @@ def build() -> dict[str, object]:
                 "Event Quality Score = Good setup",
                 "Organic Last 30: 12.4K impressions, 317 engagements, 31 saves",
             ],
-            "local_evidence_note": "Operator-reported status is promising, but this packet still requires current item-level Pinterest feed, event/CAPI payload, USA targeting, and ROAS gates before any ad launch.",
+            "local_evidence_note": "Operator-reported status is promising and item-level Pinterest readback is current for this packet, but event/CAPI payload, USA targeting, and ROAS gates still need proof before any ad launch.",
         },
         "source_files": {
             "paid_cohort": str(PAID_COHORT),
             "pinterest_packet": str(PINTEREST_PACKET),
             "pinterest_post_ingestion": str(PINTEREST_POST_INGESTION),
             "pinterest_event_plan": str(PINTEREST_EVENT_PLAN),
+            "pinterest_item_readback": str(PINTEREST_ITEM_READBACK),
         },
         "all_paid_cohort_rows_reviewed": len(all_paid_rows),
         "candidate_offer_rows": len(candidate_rows),
@@ -243,9 +310,10 @@ def build() -> dict[str, object]:
         "candidate_margin_counts": dict(margin_counts),
         "excluded_paid_cohort_rows": len(excluded_rows),
         "event_test_summary": event_summary,
+        "pinterest_item_readback_summary": pinterest_readback_summary,
         "hard_gates_before_create_ad": [
             "Do not click Pinterest Create an ad until the operator explicitly approves that exact action.",
-            "Export or read back exact Pinterest catalog item status for all candidate offer IDs and exclude any warning, not-approved, limited, out-of-stock, or stale landing-page rows.",
+            "Use only exact candidate offer IDs with current Pinterest EN-US in-stock item-level readback; exclude any future warning, not-approved, limited, out-of-stock, missing, or stale landing-page rows.",
             "Confirm the campaign/ad group country targeting is United States only before saving any draft.",
             "Confirm event-level health for PageVisit, ViewCategory, Search, AddToCart, InitiateCheckout, AddPaymentInfo, and Checkout/Purchase, including CAPI/tag deduplication where Pinterest exposes it.",
             "Keep required ROAS at or above 6.67 under the current paid-spend economics model; pause or do not launch if early spend cannot support that guardrail.",
@@ -305,6 +373,12 @@ def build() -> dict[str, object]:
         "return_policy_status",
         "pdp_status",
         "pinterest_item_level_status",
+        "pinterest_en_us_pin_id",
+        "pinterest_en_us_feed_profile_id",
+        "pinterest_en_us_locale",
+        "pinterest_en_us_availability",
+        "pinterest_en_us_link",
+        "pinterest_en_us_price",
         "review_only_launch_status",
     ]
     write_csv(files["candidate_offer_rows"], candidate_fields, candidate_rows)
@@ -317,6 +391,9 @@ def build() -> dict[str, object]:
 
 
 def render_report(summary: dict[str, object], group_rows: list[dict[str, object]]) -> str:
+    item_readback = summary.get("pinterest_item_readback_summary") or {}
+    item_status_counts = item_readback.get("status_counts") or {}
+    item_rows = item_readback.get("rows", 0)
     lines = [
         "# Pinterest Shopping Ads Gate Report",
         "",
@@ -326,27 +403,29 @@ def render_report(summary: dict[str, object], group_rows: list[dict[str, object]
         "",
         "`DO NOT CLICK CREATE AN AD, CREATE PRODUCT GROUPS, OR LAUNCH PINTEREST SHOPPING ADS YET.`",
         "",
-        "Pinterest status is promising, but the launch gate is still closed because paid campaign data, exact item-level Pinterest catalog status, full event/CAPI/deduplication proof, USA-only targeting proof, and ROAS evidence are not complete.",
+        "Pinterest status is promising and the exact item-level EN-US catalog readback passed for the current candidate rows, but the launch gate is still closed because full event/CAPI/deduplication proof, USA-only targeting proof, ROAS evidence, and explicit operator launch approval are not complete.",
         "",
         "## Current Evidence",
         "",
         "- Existing authenticated capture showed Pinterest catalog and conversion tracking active, 0 campaigns, 0 ads, and $0.00 spend across captured 30/90/365-day windows.",
         "- Post-ingestion recheck showed English Warning 188 cleared and Shopify-side active Pinterest scope clean for compare-at, long description, and the shallow category fix, while non-English feed rechecks still needed another completion window.",
+        f"- Item-level Pinterest catalog readback covered {item_rows} candidate offer rows with statuses: `{json.dumps(item_status_counts, sort_keys=True)}`.",
         "- Controlled Test Events captured PageVisit, ViewCategory, Search, and AddToCart rows with visible event IDs and no visible issue text; the pass stopped at checkout start and did not trigger AddPaymentInfo or Checkout/Purchase.",
         "- Operator-reported current context: merchant approved, Shopify connected, Event Quality Score = Good setup, and organic Last 30 activity of 12.4K impressions, 317 engagements, and 31 saves.",
         "",
         "## Review-Only Product Groups",
         "",
-        "| Product group | Candidate offer rows | Shopify products | Feed/PDP pass rows | Pinterest item gate |",
-        "|---|---:|---:|---:|---|",
+        "| Product group | Candidate offer rows | Shopify products | Feed/PDP pass rows | Pinterest readback pass rows | Pinterest item gate |",
+        "|---|---:|---:|---:|---:|---|",
     ]
     for row in group_rows:
         lines.append(
-            "| {group} | {rows} | {products} | {feed_rows} | {gate} |".format(
+            "| {group} | {rows} | {products} | {feed_rows} | {pin_pass_rows} | {gate} |".format(
                 group=row["user_facing_group"],
                 rows=row["candidate_offer_rows"],
                 products=row["unique_shopify_products"],
                 feed_rows=row["feed_pass_rows"],
+                pin_pass_rows=row["pinterest_item_readback_pass_rows"],
                 gate=row["pinterest_item_level_gate"],
             )
         )
@@ -365,7 +444,7 @@ def render_report(summary: dict[str, object], group_rows: list[dict[str, object]
             "",
             "## Gates Still Required",
             "",
-            "1. Export or read back exact Pinterest catalog item status for the candidate offer IDs.",
+            "1. Keep the candidate set limited to rows with current `FOUND_EN_US_IN_STOCK` readback; rerun item readback if the catalog refreshes or the row set changes.",
             "2. Verify event-level health through AddPaymentInfo and Checkout/Purchase without creating a real paid order, and confirm CAPI/tag deduplication if Pinterest exposes it.",
             "3. Confirm the ad setup UI can target USA only before any draft is saved.",
             "4. Keep required ROAS at or above `6.67`; there is no Pinterest paid ROAS yet because spend is `$0.00`.",

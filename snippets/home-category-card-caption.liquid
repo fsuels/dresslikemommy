@@ -1,0 +1,26 @@
+{%- liquid
+  assign normalized_label = icon_label | default: '' | strip | handleize
+
+  case normalized_label
+    when 'mommy-me'
+      echo 'Mother-daughter favorites'
+    when 'family-matching'
+      echo 'Coordinated looks for everyone'
+    when 'pajamas'
+      echo 'Soft sets for cozy nights'
+    when 'matching-dresses'
+      echo 'Picture-ready dresses'
+    when 'swimsuits'
+      echo 'Beach-day swim looks'
+    when 'daddy-me'
+      echo 'Father-son matching moments'
+    when 'vacation'
+      echo 'Resort looks for the whole trip'
+    when 'photo-days'
+      echo 'Made for family portraits'
+    when 'birthdays'
+      echo 'Sweet celebration outfits'
+    when 'beach-days'
+      echo 'Sun-ready matching styles'
+  endcase
+-%}

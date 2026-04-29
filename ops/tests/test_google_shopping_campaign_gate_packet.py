@@ -33,7 +33,27 @@ def main() -> None:
         "live_merchant_full_label_gate": "BLOCKED_FULL_LABEL_MISMATCH",
         "campaign_filter_creation_allowed": True,
         "label_1_2_3_subdivision_allowed": False,
-        "decision": "READY_FOR_PAUSED_CAMPAIGN_FILTER_BUILD__DO_NOT_SUBDIVIDE_BY_LABEL_1_2_3",
+        "merchant_supplemental_label_join_gate": "BLOCKED_FULL_LABEL_MISMATCH",
+        "merchant_supplemental_label_join_allowed": False,
+        "purchase_conversion_value_gate": "BLOCKED_PURCHASE_CONVERSION_VALUE_NOT_RECORDING_RECENTLY",
+        "purchase_conversion_value_gate_passed": False,
+        "purchase_conversion_value_detail": {
+            "gate": {
+                "purchase_conversion_value_gate_status": "BLOCKED_PURCHASE_CONVERSION_VALUE_NOT_RECORDING_RECENTLY",
+                "purchase_goal_active": True,
+                "purchase_goal_results": 0.0,
+                "target_conversion_action": "Google Shopping App Purchase",
+                "target_is_primary_account_level_purchase_action": True,
+                "target_last_conversion_date_raw": "20260128",
+            },
+            "source_artifact": "conversion-test-artifact.json",
+        },
+        "ads_dry_run_actionable_allowed": False,
+        "ads_dry_run_actionable_blockers": [
+            "Merchant Center supplemental label join is not fully visible for custom_label_1..3.",
+            "Visible Purchase results are 0 for the current Google Ads date range.",
+        ],
+        "decision": "DRY_RUN_STRUCTURE_ONLY_NOT_ACTIONABLE__MERCHANT_LABEL_JOIN_OR_PURCHASE_VALUE_BLOCKED",
         "live_merchant_label_detail": {
             "gate_status": "PASS_CAMPAIGN_FILTER_LABELS_VISIBLE",
             "observed_us_en_rows": [],
@@ -44,10 +64,14 @@ def main() -> None:
     }
 
     report = render_report(summary)
-    assert "READY_FOR_PAUSED_CAMPAIGN_FILTER_BUILD__DO_NOT_SUBDIVIDE_BY_LABEL_1_2_3" in report
+    assert "DRY_RUN_STRUCTURE_ONLY_NOT_ACTIONABLE__MERCHANT_LABEL_JOIN_OR_PURCHASE_VALUE_BLOCKED" in report
     assert "Campaign filter gate: `PASS_CAMPAIGN_FILTER_LABELS_VISIBLE`" in report
     assert "Full label gate: `BLOCKED_FULL_LABEL_MISMATCH`" in report
     assert "Label 1-3 subdivision allowed: `False`" in report
+    assert "Ads dry-run actionable allowed: `False`" in report
+    assert "Purchase results in captured range: `0.0`" in report
+    assert "Visible Purchase results are 0" in report
+    assert "It is not actionable while `ads_dry_run_actionable_allowed` is false." in report
     assert "Do not restart Google Ads yet. This is a dry-run structure" in report
     assert "Brand Search — USA" in report
     assert "Standard Shopping — USA eligible products" in report

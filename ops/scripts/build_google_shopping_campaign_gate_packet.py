@@ -31,6 +31,12 @@ LIVE_LABEL_CAPTURE_REFRESH_CHECK = (
     / "02_AUDIT_PACKETS/2026-04-29-merchant-campaign-build-live-check/merchant_exact_label_readback_refresh_check.json"
 )
 LIVE_LABEL_CAPTURE_GLOB_ROOT = ROOT / "02_AUDIT_PACKETS"
+PURCHASE_CONVERSION_VALUE_GATE = (
+    ROOT
+    / "02_AUDIT_PACKETS/2026-04-29-google-ads-conversion-value-gate/"
+    "google_ads_conversion_value_gate_summary.json"
+)
+PURCHASE_CONVERSION_VALUE_GATE_GLOB_ROOT = ROOT / "02_AUDIT_PACKETS"
 OUTPUT_DIR = ROOT / "02_AUDIT_PACKETS/2026-04-29-google-shopping-campaign-gate"
 
 POST_GATE_ADS_STRUCTURE = [
@@ -169,6 +175,28 @@ def live_label_status() -> dict[str, object]:
         return {
             "status": "BLOCKED_NOT_CAPTURED",
             "detail": "Live Merchant Center exact-label readback artifact is missing.",
+        }
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    payload["source_artifact"] = str(path)
+    return payload
+
+
+def purchase_conversion_value_status() -> dict[str, object]:
+    candidates = [
+        *PURCHASE_CONVERSION_VALUE_GATE_GLOB_ROOT.glob("2026-04-29-*/google_ads_conversion_value_gate_summary.json"),
+        PURCHASE_CONVERSION_VALUE_GATE,
+    ]
+    existing = [path for path in candidates if path.exists()]
+    path = max(existing, key=lambda item: item.stat().st_mtime) if existing else PURCHASE_CONVERSION_VALUE_GATE
+    if not path.exists():
+        return {
+            "mode": "READ_ONLY_GOOGLE_ADS_PURCHASE_CONVERSION_VALUE_GATE",
+            "gate": {
+                "purchase_conversion_value_gate_status": "BLOCKED_NOT_CAPTURED",
+                "purchase_conversion_value_gate_passed": False,
+                "blockers": ["Google Ads purchase conversion-value gate artifact is missing."],
+            },
+            "source_artifact": str(path),
         }
     payload = json.loads(path.read_text(encoding="utf-8"))
     payload["source_artifact"] = str(path)
@@ -339,21 +367,43 @@ def build() -> dict[str, object]:
     live_status = live_label_status()
     campaign_filters_ready = bool(live_status.get("campaign_creation_allowed"))
     full_labels_ready = bool(live_status.get("all_expected_labels_visible"))
-    if full_labels_ready:
-        decision = "READY_FOR_PAUSED_CAMPAIGN_BUILD_WITH_LABEL_SUBDIVISIONS"
+    conversion_status = purchase_conversion_value_status()
+    conversion_gate = conversion_status.get("gate", {}) if isinstance(conversion_status, dict) else {}
+    purchase_conversion_value_ready = bool(conversion_gate.get("purchase_conversion_value_gate_passed"))
+    ads_dry_run_actionable_allowed = bool(campaign_filters_ready and full_labels_ready and purchase_conversion_value_ready)
+    actionability_blockers: list[str] = []
+    if not campaign_filters_ready:
+        actionability_blockers.append("Merchant Center campaign filter labels are not visible.")
+    if not full_labels_ready:
+        actionability_blockers.append("Merchant Center supplemental label join is not fully visible for custom_label_1..3.")
+    if not purchase_conversion_value_ready:
+        actionability_blockers.extend(
+            clean(blocker)
+            for blocker in conversion_gate.get("blockers", ["Purchase conversion-value gate did not pass."])
+        )
+
+    if ads_dry_run_actionable_allowed:
+        decision = "READY_FOR_PAUSED_ADS_DRY_RUN_BUILD_WITH_FULL_LABEL_JOIN_AND_PURCHASE_VALUE_PROOF"
         label_status_reason = (
             "Live Merchant Center readback shows all expected custom_label_0..4 values "
             "for the sampled paid US offer."
         )
+    elif full_labels_ready and not purchase_conversion_value_ready:
+        decision = "DRY_RUN_STRUCTURE_ONLY_NOT_ACTIONABLE__PURCHASE_VALUE_BLOCKED"
+        label_status_reason = (
+            "Live Merchant Center readback shows all expected custom_label_0..4 values "
+            "for the sampled paid US offer, but purchase conversion-value proof is still blocked."
+        )
     elif campaign_filters_ready:
-        decision = "READY_FOR_PAUSED_CAMPAIGN_FILTER_BUILD__DO_NOT_SUBDIVIDE_BY_LABEL_1_2_3"
+        decision = "DRY_RUN_STRUCTURE_ONLY_NOT_ACTIONABLE__MERCHANT_LABEL_JOIN_OR_PURCHASE_VALUE_BLOCKED"
         label_status_reason = (
             "Live Merchant Center readback shows the two campaign filter labels, "
             "custom_label_0=paid_eligible and custom_label_4=us_test_ready, but "
-            "custom_label_1..3 still do not match the clean-label source."
+            "custom_label_1..3 still do not match the clean-label source. Purchase conversion-value proof must "
+            "also pass before any Ads dry-run build becomes actionable."
         )
     else:
-        decision = "DO_NOT_CREATE_GOOGLE_ADS_CAMPAIGN_UNTIL_CLEAN_LABELS_ARE_VISIBLE_IN_MERCHANT_CENTER_OR_ADS_PICKER"
+        decision = "DRY_RUN_STRUCTURE_ONLY_NOT_ACTIONABLE__MERCHANT_FILTER_LABELS_NOT_VISIBLE"
         label_status_reason = (
             "Live Merchant Center readback has not shown the required campaign filter labels "
             "on the sampled paid US offer."
@@ -380,7 +430,14 @@ def build() -> dict[str, object]:
         "live_merchant_full_label_gate": live_status.get("full_label_gate_status", "UNKNOWN"),
         "campaign_filter_creation_allowed": campaign_filters_ready,
         "label_1_2_3_subdivision_allowed": full_labels_ready,
+        "merchant_supplemental_label_join_gate": live_status.get("full_label_gate_status", "UNKNOWN"),
+        "merchant_supplemental_label_join_allowed": full_labels_ready,
         "live_merchant_label_detail": live_status,
+        "purchase_conversion_value_gate": conversion_gate.get("purchase_conversion_value_gate_status", "UNKNOWN"),
+        "purchase_conversion_value_gate_passed": purchase_conversion_value_ready,
+        "purchase_conversion_value_detail": conversion_status,
+        "ads_dry_run_actionable_allowed": ads_dry_run_actionable_allowed,
+        "ads_dry_run_actionable_blockers": actionability_blockers,
         "google_ads_restart_allowed": False,
         "post_gate_ads_structure_mode": "DRY_RUN_ONLY_DO_NOT_RESTART_GOOGLE_ADS",
         "post_gate_ads_structure": POST_GATE_ADS_STRUCTURE,
@@ -436,10 +493,24 @@ def render_ads_structure_table(rows: list[dict[str, str]]) -> list[str]:
 
 def render_report(summary: dict[str, object]) -> str:
     live_detail = summary["live_merchant_label_detail"]
+    conversion_detail = summary.get("purchase_conversion_value_detail", {})
+    conversion_gate = conversion_detail.get("gate", {}) if isinstance(conversion_detail, dict) else {}
     ads_structure = summary.get("post_gate_ads_structure", POST_GATE_ADS_STRUCTURE)
     observed_rows = live_detail.get("observed_us_en_rows", []) if isinstance(live_detail, dict) else []
     label_mismatches = live_detail.get("observed_sample_label_mismatches", []) if isinstance(live_detail, dict) else []
     source_artifact = live_detail.get("source_artifact", "") if isinstance(live_detail, dict) else ""
+    conversion_artifact = conversion_detail.get("source_artifact", "") if isinstance(conversion_detail, dict) else ""
+    actionability_blockers = summary.get("ads_dry_run_actionable_blockers", [])
+    if summary.get("merchant_supplemental_label_join_allowed"):
+        next_action = (
+            "Do not build or restart Ads from this packet. Produce current purchase conversion-value proof "
+            "with non-zero purchase results/value before the dry-run structure becomes actionable."
+        )
+    else:
+        next_action = (
+            "Do not build or restart Ads from this packet. First fix the full Merchant Center supplemental label "
+            "join and produce current purchase conversion-value proof with non-zero purchase results/value."
+        )
     return "\n".join(
         [
             "# Google Shopping Campaign Gate Report",
@@ -451,6 +522,7 @@ def render_report(summary: dict[str, object]) -> str:
             f"`{summary['decision']}`",
             "",
             "The local paid cohort is real and verified. Do not enable or restart Google Ads from this packet.",
+            f"Ads dry-run actionable allowed: `{summary.get('ads_dry_run_actionable_allowed')}`",
             "",
             "## Verified Local Cohort",
             "",
@@ -471,13 +543,30 @@ def render_report(summary: dict[str, object]) -> str:
             f"- Full label gate: `{summary['live_merchant_full_label_gate']}`",
             f"- Campaign filter creation allowed: `{summary['campaign_filter_creation_allowed']}`",
             f"- Label 1-3 subdivision allowed: `{summary['label_1_2_3_subdivision_allowed']}`",
+            f"- Supplemental label join allowed: `{summary.get('merchant_supplemental_label_join_allowed')}`",
             f"- Observed US/en sample rows: `{json.dumps(observed_rows, sort_keys=True)}`",
             f"- Sample label mismatches: `{json.dumps(label_mismatches, sort_keys=True)}`",
             f"- Evidence artifact: `{source_artifact}`",
             "",
+            "## Purchase Conversion-Value Gate",
+            "",
+            f"- Gate: `{summary.get('purchase_conversion_value_gate')}`",
+            f"- Gate passed: `{summary.get('purchase_conversion_value_gate_passed')}`",
+            f"- Purchase goal active: `{conversion_gate.get('purchase_goal_active', '')}`",
+            f"- Purchase results in captured range: `{conversion_gate.get('purchase_goal_results', '')}`",
+            f"- Target action: `{conversion_gate.get('target_conversion_action', '')}`",
+            f"- Target primary/account-level: `{conversion_gate.get('target_is_primary_account_level_purchase_action', '')}`",
+            f"- Target raw last conversion date: `{conversion_gate.get('target_last_conversion_date_raw', '')}`",
+            f"- Evidence artifact: `{conversion_artifact}`",
+            "",
+            "## Ads Dry-Run Actionability",
+            "",
+            f"- Actionable allowed: `{summary.get('ads_dry_run_actionable_allowed')}`",
+            f"- Blockers: `{json.dumps(actionability_blockers, sort_keys=True)}`",
+            "",
             "## Post-Gate Google Ads Structure",
             "",
-            "Do not restart Google Ads yet. This is a dry-run structure for use only after the named gates pass.",
+            "Do not restart Google Ads yet. This is a dry-run structure for use only after the named gates pass. It is not actionable while `ads_dry_run_actionable_allowed` is false.",
             "",
             *render_ads_structure_table(ads_structure),
             "",
@@ -487,7 +576,7 @@ def render_report(summary: dict[str, object]) -> str:
             "- Type: Standard Shopping only, USA only, paused on creation if later approved.",
             "- Do not use All Products, international inventory, unknown-margin products, fix-before-paid products, Limited products, or Not approved products.",
             "- Include only `custom_label_4=us_test_ready` and `custom_label_0=paid_eligible` after Ads picker/readback proves those labels exist.",
-            "- Product groups: use `custom_label_4 > custom_label_0` first. Add `custom_label_1..3` subdivisions only after the full-label gate passes; until then use item IDs, product type, or the local item-group plan for reporting/exclusions.",
+            "- Product groups: use `custom_label_4 > custom_label_0` first. Add `custom_label_1..3` subdivisions only after the full-label gate passes and Ads dry-run actionability is true; until then use item IDs, product type, or the local item-group plan for reporting/exclusions.",
             "- Keep variant rows in Merchant Center for price, size, availability, and eligibility accuracy.",
             "",
             "## Important Feed Note",
@@ -496,7 +585,7 @@ def render_report(summary: dict[str, object]) -> str:
             "",
             "## Next Action",
             "",
-            "If building the paused campaign now, restrict it to the two verified filters and avoid `custom_label_1..3` product-group subdivisions. The clean-label source or upstream Shopify label mapping still needs follow-up before those secondary labels are trusted.",
+            next_action,
         ]
     ) + "\n"
 

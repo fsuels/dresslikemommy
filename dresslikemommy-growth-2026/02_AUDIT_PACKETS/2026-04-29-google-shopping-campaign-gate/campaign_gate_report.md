@@ -1,12 +1,13 @@
 # Google Shopping Campaign Gate Report
 
-Generated: 2026-04-29T03:58:51
+Generated: 2026-04-29T05:32:48
 
 ## Decision
 
-`READY_FOR_PAUSED_CAMPAIGN_FILTER_BUILD__DO_NOT_SUBDIVIDE_BY_LABEL_1_2_3`
+`DRY_RUN_STRUCTURE_ONLY_NOT_ACTIONABLE__PURCHASE_VALUE_BLOCKED`
 
 The local paid cohort is real and verified. Do not enable or restart Google Ads from this packet.
+Ads dry-run actionable allowed: `False`
 
 ## Verified Local Cohort
 
@@ -24,16 +25,33 @@ The local paid cohort is real and verified. Do not enable or restart Google Ads 
 
 - Gate: `PASS_CAMPAIGN_FILTER_LABELS_VISIBLE`
 - Campaign filter gate: `PASS_CAMPAIGN_FILTER_LABELS_VISIBLE`
-- Full label gate: `BLOCKED_FULL_LABEL_MISMATCH`
+- Full label gate: `PASS_ALL_EXPECTED_LABELS_VISIBLE`
 - Campaign filter creation allowed: `True`
-- Label 1-3 subdivision allowed: `False`
-- Observed US/en sample rows: `[{"custom_label_0": "paid_eligible", "custom_label_1": "set", "custom_label_2": "true", "custom_label_3": "summer", "custom_label_4": "us_test_ready", "feed_label": "US", "language_code": "en", "last_updated_utc": "2026-04-29T04:04:27+00:00", "source_id": "10627623003", "source_name": "Shopify App API"}]`
-- Sample label mismatches: `[{"expected": "margin_medium", "label": "custom_label_1", "observed": "set"}, {"expected": "mommy_me", "label": "custom_label_2", "observed": "true"}, {"expected": "aov_medium", "label": "custom_label_3", "observed": "summer"}]`
-- Evidence artifact: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-product-feed-plan-recheck/merchant_exact_label_readback_refresh_check.json`
+- Label 1-3 subdivision allowed: `True`
+- Supplemental label join allowed: `True`
+- Observed US/en sample rows: `[{"custom_label_0": "paid_eligible", "custom_label_1": "margin_medium", "custom_label_2": "mommy_me", "custom_label_3": "aov_medium", "custom_label_4": "us_test_ready", "feed_label": "US", "language_code": "en", "last_updated_utc": "2026-04-29T08:25:05+00:00", "source_id": "10627623003", "source_name": "Shopify App API"}]`
+- Sample label mismatches: `[]`
+- Evidence artifact: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-emergency-recheck/merchant_exact_label_readback_refresh_check.json`
+
+## Purchase Conversion-Value Gate
+
+- Gate: `BLOCKED_PURCHASE_CONVERSION_VALUE_NOT_RECORDING_RECENTLY`
+- Gate passed: `False`
+- Purchase goal active: `True`
+- Purchase results in captured range: `0.0`
+- Target action: `Google Shopping App Purchase`
+- Target primary/account-level: `True`
+- Target raw last conversion date: `20260128`
+- Evidence artifact: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-google-ads-conversion-value-gate/google_ads_conversion_value_gate_summary.json`
+
+## Ads Dry-Run Actionability
+
+- Actionable allowed: `False`
+- Blockers: `["Visible Purchase results are 0 for the current Google Ads date range."]`
 
 ## Post-Gate Google Ads Structure
 
-Do not restart Google Ads yet. This is a dry-run structure for use only after the named gates pass.
+Do not restart Google Ads yet. This is a dry-run structure for use only after the named gates pass. It is not actionable while `ads_dry_run_actionable_allowed` is false.
 
 | Campaign | Use only after | Required exclusions |
 | --- | --- | --- |
@@ -49,7 +67,7 @@ Do not restart Google Ads yet. This is a dry-run structure for use only after th
 - Type: Standard Shopping only, USA only, paused on creation if later approved.
 - Do not use All Products, international inventory, unknown-margin products, fix-before-paid products, Limited products, or Not approved products.
 - Include only `custom_label_4=us_test_ready` and `custom_label_0=paid_eligible` after Ads picker/readback proves those labels exist.
-- Product groups: use `custom_label_4 > custom_label_0` first. Add `custom_label_1..3` subdivisions only after the full-label gate passes; until then use item IDs, product type, or the local item-group plan for reporting/exclusions.
+- Product groups: use `custom_label_4 > custom_label_0` first. Add `custom_label_1..3` subdivisions only after the full-label gate passes and Ads dry-run actionability is true; until then use item IDs, product type, or the local item-group plan for reporting/exclusions.
 - Keep variant rows in Merchant Center for price, size, availability, and eligibility accuracy.
 
 ## Important Feed Note
@@ -58,4 +76,4 @@ Do not solve this by writing one Shopify product-level paid label onto every pro
 
 ## Next Action
 
-If building the paused campaign now, restrict it to the two verified filters and avoid `custom_label_1..3` product-group subdivisions. The clean-label source or upstream Shopify label mapping still needs follow-up before those secondary labels are trusted.
+Do not build or restart Ads from this packet. Produce current purchase conversion-value proof with non-zero purchase results/value before the dry-run structure becomes actionable.

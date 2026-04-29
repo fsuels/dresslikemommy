@@ -25907,3 +25907,317 @@ Residual:
 
 Next:
 - Run a live storefront browser QA pass on representative PDP/cart/collection/search URLs after deployment, including add-to-cart DOM proof that subscription/recurring text is absent for non-subscription products.
+
+2026-04-29 04:32 EDT - Merchant label join and Google Ads purchase-value gate
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-merchant-label-join-google-ads-purchase-value-gate
+
+Why:
+- User asked to fix/verify the Merchant Center supplemental label join and purchase conversion-value gate before any Ads dry-run build becomes actionable.
+
+Actions:
+- Re-ran the read-only Merchant Center exact-label readback after adding retry/backoff handling to `ops/scripts/check_merchant_center_clean_labels_live.py` so transient Merchant RPC timeouts produce usable gate artifacts instead of crashing.
+- Added `ops/scripts/build_google_ads_conversion_value_gate_packet.py`, which captures sanitized read-only Google Ads conversion evidence through the logged-in Chrome CDP session and writes a purchase conversion-value gate packet without storing cookies, headers, tokens, or request payload secrets.
+- Added `ops/tests/test_google_ads_conversion_value_gate_packet.py`.
+- Updated `ops/scripts/build_google_shopping_campaign_gate_packet.py` so Ads dry-run actionability now requires both the Merchant supplemental label join and the Google Ads purchase conversion-value gate to pass.
+- Updated `ops/tests/test_google_shopping_campaign_gate_packet.py` for the new actionability gate.
+- Regenerated `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-google-ads-conversion-value-gate/` and `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-google-shopping-campaign-gate/`.
+
+Findings:
+- Latest Merchant Center readback artifact: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-label-join-final-verification/merchant_exact_label_readback_refresh_check.json`.
+- Merchant Center sample offer `shopify_US_7107978395745_41493652963425` now passes the full US/en label join: `custom_label_0=paid_eligible`, `custom_label_1=margin_medium`, `custom_label_2=mommy_me`, `custom_label_3=aov_medium`, `custom_label_4=us_test_ready`.
+- Google Ads purchase goal is active and has exactly one primary account-level purchase action, `Google Shopping App Purchase`, but the captured Purchase result is `0.0`; the target action has historical raw value evidence only, with raw last conversion date `20260128`.
+- Campaign gate decision is now `DRY_RUN_STRUCTURE_ONLY_NOT_ACTIONABLE__PURCHASE_VALUE_BLOCKED`; `ads_dry_run_actionable_allowed` remains `false`.
+
+Verification:
+- `python3 ops/scripts/check_merchant_center_clean_labels_live.py --output-dir dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-label-join-recheck` completed after retry-hardening and wrote a fail-safe readback artifact.
+- `python3 ops/scripts/check_merchant_center_clean_labels_live.py --output-dir dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-label-join-final-verification` passed the full label join and became the campaign packet source artifact.
+- `python3 ops/scripts/build_google_ads_conversion_value_gate_packet.py` completed read-only CDP capture and regenerated the conversion-value packet.
+- `python3 ops/scripts/build_google_ads_conversion_value_gate_packet.py --input-capture dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-google-ads-conversion-value-gate/sanitized_google_ads_conversion_capture.json` regenerated the packet from sanitized evidence.
+- `python3 ops/scripts/build_google_shopping_campaign_gate_packet.py` regenerated the campaign gate packet.
+- `python3 ops/tests/test_google_ads_conversion_value_gate_packet.py` passed.
+- `python3 ops/tests/test_google_shopping_campaign_gate_packet.py` passed.
+- `python3 -m py_compile ops/scripts/build_google_ads_conversion_value_gate_packet.py ops/scripts/build_google_shopping_campaign_gate_packet.py ops/scripts/check_merchant_center_clean_labels_live.py` passed.
+
+Residual:
+- No Google Ads, Merchant Center, Shopify, or feed write was performed in this pass.
+- The Ads detail page settings table loaded blank values during the final CDP capture, so the packet treats target value-setting details conservatively; raw historical target value exists, but current purchase results/value are still not recording.
+- Ads dry-run structure may remain as a non-actionable planning artifact only; do not build, enable, or restart Ads until current purchase conversion-value proof passes.
+
+Next:
+- Generate or capture current Google Ads proof that the primary purchase action records non-zero purchase count and value, with transaction/value/currency/dedupe evidence, then rerun the conversion-value and campaign gate packets.
+
+2026-04-29 04:18 EDT - Phase 5 country/admin checkout validation packet
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-phase5-country-checkout-admin-validation
+
+Why:
+- User instructed: keep paid traffic US-only, then run live checkout/admin validation for each non-US country before intentionally expanding the paid allowlist.
+
+Actions:
+- Added read-only validation script: `ops/scripts/validate_phase5_country_checkout_admin.py`.
+- Built validation packet under `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-country-checkout-admin-validation/`.
+- Read Shopify Admin markets, delivery profiles/shipping zones, published locales, and policies.
+- Built `country_validation_matrix.csv` for 118 country/region rows; every non-US row is explicitly `EXCLUDE_FROM_PAID_UNTIL_ALL_PHASE5_GATES_PASS`.
+- Rechecked paid scope from the local paid cohort and country exclusion upload: 780 paid-cohort rows are US, 0 non-US paid rows, 7,063 country-exclusion rows, 42 excluded countries, 0 US exclusion rows.
+- Attempted live storefront no-payment shipping-rate validation with an anonymous cart. A preflight reached live US/GB rates once, then Shopify storefront protection started returning HTTP 429 `Verifying your connection`; the official packet records the checkout probe as blocked rather than treating it as a pass.
+
+Findings:
+- Active Admin markets read back as Australia, Canada, Eurozone, International, United Kingdom, and United States.
+- Published Admin locales read back as ar, cs, da, de, el, en, es, fi, fr, he, hi, it, ja, ko, nl, no, pl, pt-BR, ro, ru, sv.
+- Delivery profile `General profile` has admin shipping configured for the matrix countries through `Countries Epacket` with Standard Delivery (10 - 14 Days) and Express Delivery (7 - 11 Days).
+- Ukraine is configured for admin shipping but is not an active market.
+- Market overlap flags to inspect before any expansion: AU appears in Australia + International, CA appears in Canada + International, and GB appears in Eurozone + United Kingdom.
+
+Verification:
+- `python3 -m py_compile ops/scripts/validate_phase5_country_checkout_admin.py` passed.
+- `python3 ops/tests/test_phase5_locale_country_allowlist.py` passed.
+- `python3 ops/scripts/validate_phase5_country_checkout_admin.py` generated the packet and returned `paid_gate_status: PASS_US_ONLY`.
+- Admin validation packet summary: 118 matrix rows, 117 non-US rows, 116 non-US active-market rows, 0 non-US live checkout rate passes in the official packet because checkout probing was blocked by `SHOPIFY_STOREFRONT_BOT_PROTECTION_429`.
+
+Residual:
+- No paid allowlist expansion was performed.
+- No Shopify Admin, market, shipping, policy, product, feed, ad, campaign, or publication write was performed.
+- Full live browser checkout validation remains blocked until the storefront protection challenge/rate-limit clears or the operator validates through a real browser session. Do not expand any non-US paid country until this is complete country by country.
+
+2026-04-29 04:32 EDT - Phase 5 checkout validation rerun after storefront protection aged out
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-phase5-checkout-validation-rerun
+
+Why:
+- User instructed to clear/age out storefront protection in a real browser session, then rerun `python3 ops/scripts/validate_phase5_country_checkout_admin.py` before allowing any non-US paid expansion.
+
+Actions:
+- Opened the live storefront cart URL in Google Chrome and let the session sit before rerunning the validation script.
+- Reran `python3 ops/scripts/validate_phase5_country_checkout_admin.py`.
+- The script overwrote the Phase 5 packet with the successful rerun timestamp `2026-04-29T04:32:06-04:00`.
+
+Results:
+- Paid gate remains `PASS_US_ONLY`: 780 paid-cohort rows, all US; 0 non-US paid rows.
+- Country matrix remains 118 rows with all 117 non-US rows set to `EXCLUDE_FROM_PAID_UNTIL_ALL_PHASE5_GATES_PASS`.
+- Live no-payment shipping-rate probe completed with no storefront blocker.
+- US, GB, CA, and AU returned Standard Delivery (10 - 14 Days) at $0.00 USD and Express Delivery (7 - 11 Days) at $12.99 USD.
+- UA returned no live rates and remains not an active market, though Admin shipping is configured.
+
+Residual:
+- No paid allowlist expansion was performed.
+- No Shopify Admin, market, shipping, policy, product, feed, ad, campaign, or publication write was performed.
+- Non-US paid expansion remains blocked until each intended country passes live checkout, localization, returns, country conversion/currency, and margin proof. Current live-checkout evidence only covers GB, CA, AU, and UA plus US baseline.
+
+2026-04-29 04:33 EDT - Ads gate bottom checkpoint
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-ads-gate-bottom-checkpoint
+
+Current Ads gate state:
+- See the detailed entry above: `2026-04-29-merchant-label-join-google-ads-purchase-value-gate`.
+- Latest regenerated campaign gate decision is `DRY_RUN_STRUCTURE_ONLY_NOT_ACTIONABLE__PURCHASE_VALUE_BLOCKED`.
+- Merchant Center full US/en label join is currently verified as passing for sample offer `shopify_US_7107978395745_41493652963425`.
+- Google Ads purchase conversion-value gate is still blocked because captured Purchase results are `0.0`; `ads_dry_run_actionable_allowed` remains `false`.
+- No Ads, Merchant Center, Shopify, feed, campaign, or publication write was performed.
+
+2026-04-29 04:42 EDT - Homepage editorial category mosaic
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-homepage-editorial-category-mosaic
+
+Why:
+- User wanted the homepage section immediately after the hero to feel closer to the hero quality, with larger images, stronger text, and a more beautiful desktop/mobile presentation.
+
+Actions:
+- Converted the grouped homepage category/occasion cards into an editorial mosaic on desktop: one large hero category card, four supporting cards, and a wide Daddy & Me feature card.
+- Kept mobile as a swipeable visual row but enlarged the first category card so the section opens with a stronger product image.
+- Added short editorial captions under the category labels through a small Liquid snippet so existing collection labels stay intact.
+
+Verification:
+- Ran `git diff --check -- assets/section-category-icons.css sections/category-icons.liquid snippets/home-category-card-caption.liquid`.
+- Ran `shopify theme check`; result was 252 files inspected with no offenses.
+- Checked the local preview at `http://127.0.0.1:9292/` in Playwright at 1440x900 and 390x900. Desktop and mobile card boxes rendered without text overlap; cookie consent was dismissed only in the local preview session for visual QA.
+
+Residual:
+- Homepage mosaic changes are local only at this checkpoint.
+- Existing unrelated growth/audit worktree changes were left untouched.
+
+2026-04-29 05:14 EDT - Homepage mosaic image-fit refinement
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-homepage-mosaic-image-fit-refinement
+
+Why:
+- User liked the improved Daddy & Me tile but wanted the homepage mosaic images to fit more professionally with less visible crop while preserving the existing homepage image refresh/rotation behavior.
+
+Actions:
+- Kept the existing `data-homepage-collection-card` markup and `homepage-collection-card__image-candidates` JSON used by `assets/homepage-collection-card-images.js`.
+- Changed homepage category candidate URLs from pre-cropped `720x900 crop center` image URLs to uncropped `width=900` image URLs, so the existing refresh script rotates better source images.
+- Made desktop mosaic cards closer to square/portrait using responsive row sizing, reduced hover zoom, and biased desktop category crop upward to protect faces.
+
+Verification:
+- Confirmed in Playwright that desktop category cards now render near 1:1 instead of the earlier shallow strip/card crop, with Daddy & Me as a large feature tile.
+- Confirmed in Playwright that mobile remains portrait-friendly, with the lead card at a 0.8 aspect ratio and uncropped `width=900` rotating image URLs.
+- Ran `git diff --check -- assets/section-category-icons.css sections/category-icons.liquid snippets/home-category-card-caption.liquid ops/AGENT_WORKLOG.md`.
+- Ran `shopify theme check`; result was 252 files inspected with no offenses.
+
+Residual:
+- Some rotating source photos can still be imperfect if the photo itself is tightly framed, but the theme no longer adds the previous pre-crop plus wide-card double crop.
+- Existing unrelated growth/audit worktree changes were left untouched.
+
+2026-04-29 05:29 EDT - Main sync checkpoint for full dirty worktree
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-main-sync-full-dirty-worktree
+
+Why:
+- User explicitly requested syncing all 75 pending changes to `main`.
+
+Actions:
+- Treated the full dirty worktree as in scope, including homepage mosaic refinements, product/theme copy updates, locale updates, growth/audit packet artifacts, and ops gate scripts/tests.
+- Checked GitHub CLI/auth and confirmed the repo was on `main` tracking `origin/main`.
+- Ran a filename/count secret-pattern scan and a higher-signal token-pattern scan over pending paths before staging.
+
+Verification:
+- Ran `git diff --check`.
+- Ran `shopify theme check`; result was 252 files inspected with no offenses.
+- Ran `uv run --with websocket-client python ops/tests/test_google_ads_conversion_value_gate_packet.py`; result `ok`.
+- Ran `python3 ops/tests/test_google_shopping_campaign_gate_packet.py`; result `ok`.
+
+Residual:
+- This checkpoint records pre-commit verification; final commit/push details should be read from Git history after the sync completes.
+
+2026-04-29 05:18 EDT - Homepage category image dedupe and occasion card shape
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-homepage-category-image-dedupe-occasion-shape
+
+Why:
+- User reported duplicate homepage imagery and said each image should appear only once.
+- User also said Shop by Occasion cards were too wide/short to show clothing well.
+- User corrected the trust copy: shipping should say free shipping worldwide.
+
+Actions:
+- Updated `templates/index.json` so homepage category/occasion slots no longer reuse the same configured image assets.
+- Replaced the duplicated occasion assets with unique images:
+  - Vacation: `family-mega-menu-vacation-outfits.jpg`
+  - Birthdays: `style-journal-025-easter-sunday-family-matching-outfits.jpg`
+  - Beach Days: `style-journal-049-best-matching-outfits-for-family-beach-trips.jpg`
+- Changed the visible category trust strip line to `Free shipping worldwide`.
+- Updated the category-icons section default trust text to `Free shipping worldwide`.
+- Changed desktop Shop by Occasion cards from a wide `16 / 10` crop to a taller `4 / 5` crop with a slightly higher clothing-friendly object position.
+
+Verification:
+- Parsed `templates/index.json` and confirmed there are 0 duplicate configured homepage image assets.
+- Fetched the local preview HTML at `http://127.0.0.1:9292/` and confirmed the rendered `data-homepage-collection-image-key` values have 0 duplicates.
+- Confirmed local preview HTML contains `Free shipping worldwide` and the three new unique occasion asset filenames.
+- Ran `git diff --check -- templates/index.json assets/section-category-icons.css sections/category-icons.liquid snippets/home-category-card-caption.liquid`; passed.
+- Ran focused `shopify theme check --path . --fail-level warning --output json` filtered to `templates/index.json`, `assets/section-category-icons.css`, and `sections/category-icons.liquid`; no issues.
+
+Residual:
+- MCP/Chrome screenshot tools were unavailable or hung with the local Shopify preview, so verification used local HTML/rendered key checks plus theme checks instead of a saved visual screenshot.
+
+2026-04-29 05:21 EDT - Homepage trust shipping copy correction
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-homepage-trust-shipping-copy-correction
+
+Why:
+- User clarified the top/homepage trust copy should say `Shipping options at checkout`, not `Free shipping worldwide`.
+
+Actions:
+- Restored the visible homepage category trust strip shipping line to `Shipping options at checkout`.
+- Restored the `category-icons` section default trust text to `Shipping options at checkout`.
+
+Verification:
+- Confirmed `templates/index.json` and `sections/category-icons.liquid` contain `Shipping options at checkout`.
+- Ran `git diff --check -- templates/index.json sections/category-icons.liquid ops/AGENT_WORKLOG.md`; passed.
+- Parsed `templates/index.json` after stripping the Shopify auto-generated comment header; passed.
+- Ran `shopify theme check --path . --fail-level warning --output json`; passed with `[]`.
+
+Residual:
+- The announcement bar already uses the localized `SHIPPING OPTIONS AT CHECKOUT | 30-DAY RETURN WINDOW | SECURE CHECKOUT` default and was not changed.
+
+2026-04-29 05:22 EDT - PDP shipping date estimate restore
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-pdp-shipping-date-estimate-restore
+
+Why:
+- User reported the product page was showing `Shipping options` plus checkout-only delivery copy, but wanted the previous visible estimated delivery date behavior restored.
+
+Actions:
+- Restored the PDP shipping accordion standard row to show `FREE Shipping` with the `Estimated delivery: 12-15 business days` fallback.
+- Restored the product-page delivery-date JavaScript in `layout/theme.liquid` so the business-day window is converted into a calendar date range on the storefront.
+- Updated the product FAQ JSON-LD shipping answer to contain a real estimated shipping window instead of checkout-only timing language.
+- Pushed only `layout/theme.liquid`, `sections/main-product.liquid`, and `snippets/product-faq-schema.liquid` to live theme `dresslikemommy/main` (#133290917985).
+
+Verification:
+- `git diff --check -- layout/theme.liquid sections/main-product.liquid snippets/product-faq-schema.liquid` passed.
+- `python3 ops/tests/test_google_shopping_pdp_readiness.py` passed.
+- `python3 ops/tests/test_phase5_locale_country_allowlist.py` passed.
+- `shopify theme check` passed with 252 files inspected and no offenses.
+- Live Playwright smoke check on `https://www.dresslikemommy.com/products/bamboo-garden-panda-mommy-and-me-pajamas` rendered `FREE Shipping Estimated delivery: May 15 - May 20`.
+
+Residual:
+- Locale JSON/product-page fallback copy map entries still contain the broader checkout-only shipping wording for non-visible fallback translation data; the visible PDP shipping row now uses the restored explicit estimate.
+
+2026-04-29 05:28 EDT - Localized PDP shipping estimate restore
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-localized-pdp-shipping-estimate-restore
+
+Why:
+- Follow-up review found the German PDP had the restored date behavior but still showed English shipping labels: `FREE Shipping Estimated delivery: 15. Mai - 20. Mai`.
+
+Actions:
+- Updated all 35 storefront locale JSON files so `products.additional_info.free_shipping_label`, `estimated_delivery`, and `standard_delivery_window` use localized free-shipping and 12-15 business-day estimate copy instead of checkout-only copy.
+- Regenerated `snippets/product-page-copy-map.liquid` from the locale files.
+- Updated the PDP shipping row to source its visible label/prefix/window from locale translations, with English fallbacks.
+- Updated the delivery-date JavaScript so translated business-day fallback text still becomes a localized date range using the localized prefix.
+- Updated product FAQ JSON-LD shipping answer to use the same localized shipping estimate copy.
+- Pushed the touched Liquid/snippet files and non-schema locale JSON files to live theme `dresslikemommy/main` (#133290917985).
+
+Verification:
+- JSON parse checks passed for all non-schema locale files and the regenerated product-page copy map.
+- Focused localized shipping-copy assertion passed for all 35 locale files.
+- `git diff --check -- layout/theme.liquid sections/main-product.liquid snippets/product-faq-schema.liquid snippets/product-page-copy-map.liquid locales/*.json ops/AGENT_WORKLOG.md` passed.
+- `python3 ops/tests/test_google_shopping_pdp_readiness.py` passed.
+- `python3 ops/tests/test_phase5_locale_country_allowlist.py` passed.
+- `shopify theme check` passed with 252 files inspected and no offenses.
+- Live Playwright smoke checks:
+  - German PDP rendered `Kostenloser Versand Voraussichtliche Lieferung: 15. Mai - 20. Mai`.
+  - Spanish PDP rendered `Envío gratis Entrega estimada: 15 de mayo - 20 de mayo`.
+  - English PDP rendered `FREE Shipping Estimated delivery: May 15 - May 20`.
+
+Residual:
+- This restored the PDP-visible free-shipping/date estimate and aligned the product FAQ schema. Broader cart/policy checkout-specific shipping copy was not changed.
+
+2026-04-29 05:27 EDT - Merchant label 1-3 source fix and Pinterest item readback
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-merchant-labels-pinterest-item-readback
+
+Why:
+- User asked to fix Merchant Center supplemental-source precedence or the Shopify/Google & YouTube mapping for custom labels 1..3, then run Pinterest item-level catalog export/readback.
+
+Actions:
+- Created a new Merchant Center supplemental source upload for variant-level `custom_label_1`, `custom_label_2`, and `custom_label_3`, joined to the Shopify App API primary source with feed label `US` and language `English`.
+- Confirmed Merchant Center processed the new source with 5,933 matched/updated products and no file issues.
+- Ran live Merchant Center label readback and confirmed the sampled US/en Shopify App API row exposes `custom_label_0=paid_eligible`, `custom_label_1=margin_medium`, `custom_label_2=mommy_me`, `custom_label_3=aov_medium`, and `custom_label_4=us_test_ready`.
+- Regenerated the Google Shopping campaign gate packet; label 1..3 subdivision is now allowed, while Google Ads restart remains disabled/dry-run.
+- Ran authenticated Pinterest item-level readback for the 346 Pinterest candidate offer rows using Shopify variant IDs as Pinterest Item IDs.
+- Updated `ops/scripts/build_pinterest_shopping_ads_gate_packet.py` so the Pinterest gate consumes the readback file instead of hardcoding `NEEDS_PINTEREST_EXPORT_OR_UI_READBACK`.
+- Updated `ops/tests/test_pinterest_shopping_ads_gate_packet.py` for readback-aware pass/fail behavior.
+
+Verification:
+- Merchant source artifact: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-label-1-3-source-upload/18_source_detail_wait_60s.json`.
+- Merchant label readback artifact: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-label-1-3-post-new-source-readback/merchant_exact_label_readback_refresh_check.json`.
+- Pinterest readback artifact: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-item-readback/pinterest_item_level_readback.csv`.
+- Pinterest readback summary: 346 candidate rows, all `FOUND_EN_US_IN_STOCK`; Mommy & Me 214, Family Matching 103, Pajamas 29.
+- Regenerated Pinterest gate summary now shows `PASS_EXACT_EN_US_IN_STOCK_READBACK` for all three review-only product groups.
+- Ran `python3 -m py_compile ops/scripts/build_pinterest_shopping_ads_gate_packet.py ops/tests/test_pinterest_shopping_ads_gate_packet.py`.
+- Ran `python3 ops/tests/test_pinterest_shopping_ads_gate_packet.py`.
+
+Residual:
+- No Pinterest ads, product groups, budgets, or campaigns were created.
+- Pinterest metadata fetch retried/fell back on some non-English locale pins; the English US item-level rows needed by the launch gate were present and in stock for all 346 candidates.
+- Pinterest launch remains blocked pending explicit operator approval, USA-only setup proof, fuller event/CAPI/deduplication proof, and paid ROAS evidence.
+
+2026-04-29 05:33 EDT - Merchant clean label emergency recheck
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-merchant-clean-label-emergency-recheck
+
+Why:
+- User reported that local `supplemental-feed-pilot.csv` was not the clean label file and lacked `custom_label_0`, `custom_label_4`, `paid_eligible`, and `us_test_ready`.
+
+Actions:
+- Confirmed tracked root `supplemental-feed-pilot.csv` and `supplemental-feed.tsv` are legacy apparel-attribute files only: `id,age_group,gender,color,size`, 5,162 data rows, no custom labels.
+- Confirmed the real clean Merchant upload file is `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-upload/upload_matched_full_clean_labels_with_age_group.txt` / `.csv`.
+- Verified the clean upload has 5,933 matched rows with `custom_label_0..4,age_group`, including 780 rows where `custom_label_0=paid_eligible` and 780 rows where `custom_label_4=us_test_ready`.
+- Ran a fresh read-only live Merchant Center browser RPC check against account `124884876`; the sampled US/en Shopify App API row shows `custom_label_0=paid_eligible`, `custom_label_1=margin_medium`, `custom_label_2=mommy_me`, `custom_label_3=aov_medium`, `custom_label_4=us_test_ready`.
+- Refreshed the Google Shopping campaign gate packet so its evidence artifact points to the new emergency recheck.
+
+Verification:
+- Live evidence artifact: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-emergency-recheck/merchant_exact_label_readback_refresh_check.json`.
+- Live Merchant gates: `PASS_CAMPAIGN_FILTER_LABELS_VISIBLE` and `PASS_ALL_EXPECTED_LABELS_VISIBLE`; no sample label mismatches.
+- Local file validation confirmed the root legacy file is not a proof file and the April 29 clean upload file is the valid label file.
+- `python3 ops/tests/test_google_shopping_campaign_gate_packet.py` passed.
+
+Residual:
+- Do not upload the tracked root `supplemental-feed-pilot.csv` or `supplemental-feed.tsv` for the current paid-label gate; they are historical files.
+- Google Ads remains paused: Merchant label gates now pass, but the refreshed campaign gate still has `google_ads_restart_allowed=false` because visible Purchase results are 0 for the captured Google Ads date range.
