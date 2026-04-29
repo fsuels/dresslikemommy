@@ -26221,3 +26221,53 @@ Verification:
 Residual:
 - Do not upload the tracked root `supplemental-feed-pilot.csv` or `supplemental-feed.tsv` for the current paid-label gate; they are historical files.
 - Google Ads remains paused: Merchant label gates now pass, but the refreshed campaign gate still has `google_ads_restart_allowed=false` because visible Purchase results are 0 for the captured Google Ads date range.
+
+2026-04-29 05:56 EDT - Homepage active-product image source guard
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-homepage-active-product-image-source-guard
+
+Why:
+- User reported the homepage Birthday card was showing a blue gingham cake image that did not appear to be an active product and clarified that homepage category imagery must only use active products and the product's best main image.
+
+Actions:
+- Traced the Birthday image to the hard-coded `style-journal-025-easter-sunday-family-matching-outfits.jpg` theme asset in `templates/index.json`.
+- Removed static/custom image settings from the homepage category icon configuration and schema.
+- Updated homepage category cards, collection cards, and curated spotlight cards to build their rotation candidates from storefront-visible product `featured_image` values instead of custom assets, collection images, or alternate featured media previews.
+- Preserved the homepage rotation behavior for revisits/new listings by keeping multiple product-image candidates per card, now restricted to product main images.
+
+Verification:
+- `git diff --check` passed before the worklog entry.
+- `shopify theme check` passed with 252 files inspected and no offenses.
+- Local browser check at `http://127.0.0.1:9292/` confirmed the Birthday card now renders a product CDN image, not the old theme asset.
+- Browser DOM audit found 10 homepage collection cards and 4 spotlight cards with zero static asset, collection-image, `/assets/`, or `style-journal-025` candidates.
+- Desktop and mobile Playwright screenshots were reviewed for the Birthday/occasion area after the change.
+
+Residual:
+- Liquid can only use storefront-visible collection products; direct Admin `active` status was not queried in this pass. In storefront Liquid, draft/unpublished products are not available to these rendered collection product loops.
+
+2026-04-29 05:58 EDT - Google Ads purchase conversion value tracking gate fix
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-google-ads-purchase-conversion-value-tracking-gate-fix
+
+Why:
+- User asked to fix/verify Google Ads purchase conversion value tracking before enabling any campaign.
+- The prior gate over-blocked on visible Google Ads Purchase results of `0.0`, which is an attributed-results view and can stay zero while campaigns are paused.
+
+Actions:
+- Updated `ops/scripts/build_google_ads_conversion_value_gate_packet.py` to distinguish tracking health from ad-attributed results.
+- Added decoded Google Ads received-request timestamps, recent-request age, tracking ID evidence, dynamic value-setting evidence, and explicit `campaign_enable_allowed=false` output.
+- Fixed the Purchase goal parser so it accepts the live campaign count (`6 of 6`) instead of hardcoding the older `73 of 73` string.
+- Updated the Google Shopping campaign gate report wording so a passed tracking gate can allow a paused dry-run review while still blocking enable/restart.
+- Refreshed the read-only Google Ads conversion packet and Google Shopping campaign gate packet.
+
+Verification:
+- Google Ads conversion gate now reports `PASS_PURCHASE_CONVERSION_VALUE_TRACKING_VERIFIED__NO_CURRENT_AD_ATTRIBUTION`.
+- Live evidence shows `Google Shopping App Purchase` is the single primary account-level purchase action, has value setting `Use different values. If there's no value, use 0.`, has raw historical conversions/value `5.0` / `193.9`, and last received request `2026-04-25T23:55:54.592430+00:00`.
+- The conversion packet still records `campaign_enable_allowed=false`; no Google Ads settings, campaigns, budgets, or billing settings were changed.
+- Refreshed Shopping campaign gate now reports `READY_FOR_PAUSED_ADS_DRY_RUN_BUILD_WITH_FULL_LABEL_JOIN_AND_PURCHASE_VALUE_PROOF`, `ads_dry_run_actionable_allowed=true`, and `google_ads_restart_allowed=false`.
+- Ran `python3 -m py_compile ops/scripts/build_google_ads_conversion_value_gate_packet.py ops/scripts/build_google_shopping_campaign_gate_packet.py ops/tests/test_google_ads_conversion_value_gate_packet.py ops/tests/test_google_shopping_campaign_gate_packet.py`.
+- Ran `python3 ops/tests/test_google_ads_conversion_value_gate_packet.py`.
+- Ran `python3 ops/tests/test_google_shopping_campaign_gate_packet.py`.
+
+Residual:
+- Visible Purchase results remain `0.0` for the captured Google Ads date range; this is now documented as no current ad attribution, not a tracking-health failure.
+- Google Ads default manual snippets still show placeholder `value: 0.0` and blank `transaction_id`; do not paste those snippets into the theme. Runtime Google purchase tracking should remain with the Shopify Google & YouTube app.
+- No campaign should be enabled or restarted without explicit operator approval. The next allowed step is paused-only Ads build/readback review, not launch.

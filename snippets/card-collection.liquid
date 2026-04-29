@@ -71,7 +71,7 @@
     assign fresh_collection_products = card_collection.products | sort: 'published_at' | reverse
 
     for candidate_product in fresh_collection_products
-      assign candidate_media = candidate_product.featured_media.preview_image | default: candidate_product.featured_image
+      assign candidate_media = candidate_product.featured_image
       if candidate_media == blank
         continue
       endif
@@ -96,7 +96,7 @@
           break
         endif
 
-        assign candidate_media = candidate_product.featured_media.preview_image | default: candidate_product.featured_image
+        assign candidate_media = candidate_product.featured_image
         if candidate_media == blank
           continue
         endif
@@ -182,93 +182,12 @@
         assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
       endfor
 
-      if homepage_collection_image_candidate_count < 8 and card_collection.featured_image != blank
-        assign fallback_media = card_collection.featured_image
-        assign fallback_media_id = fallback_media.id | default: card_collection.id
-        capture fallback_key
-          echo 'collection-'
-          echo card_collection.id
-          echo '-image-'
-          echo fallback_media_id
-        endcapture
-        assign fallback_key = fallback_key | strip
-
-        capture fallback_key_token
-          echo '|'
-          echo fallback_key
-          echo '|'
-        endcapture
-
-        unless emitted_candidate_keys contains fallback_key_token
-          capture fallback_src
-            echo fallback_media | image_url: width: 750
-          endcapture
-          capture fallback_srcset
-            if fallback_media.width >= 165
-              echo fallback_media | image_url: width: 165
-              echo ' 165w,'
-            endif
-            if fallback_media.width >= 330
-              echo fallback_media | image_url: width: 330
-              echo ' 330w,'
-            endif
-            if fallback_media.width >= 535
-              echo fallback_media | image_url: width: 535
-              echo ' 535w,'
-            endif
-            if fallback_media.width >= 750
-              echo fallback_media | image_url: width: 750
-              echo ' 750w,'
-            endif
-            if fallback_media.width >= 1000
-              echo fallback_media | image_url: width: 1000
-              echo ' 1000w,'
-            endif
-            if fallback_media.width >= 1500
-              echo fallback_media | image_url: width: 1500
-              echo ' 1500w,'
-            endif
-            if fallback_media.width >= 3000
-              echo fallback_media | image_url: width: 3000
-              echo ' 3000w,'
-            endif
-            echo fallback_media | image_url
-            echo ' '
-            echo fallback_media.width
-            echo 'w'
-          endcapture
-
-          if homepage_collection_image_candidate_count > 0
-            echo ','
-          endif
-          echo '{'
-          echo '"key":'
-          echo fallback_key | json
-          echo ',"src":'
-          echo fallback_src | strip | json
-          echo ',"srcset":'
-          echo fallback_srcset | strip | json
-          echo ',"alt":'
-          capture fallback_alt
-            render 'product-image-alt', media: fallback_media, collection: card_collection, fallback_title: card_collection_display_title
-          endcapture
-          echo fallback_alt | strip | json
-          echo ',"width":'
-          echo fallback_media.width | json
-          echo ',"height":'
-          echo fallback_media.height | json
-          echo '}'
-
-          assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
-        endunless
-      endif
-
       echo ']'
     endcapture
     assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
   endif
 
-  if card_collection_media == blank and card_collection.featured_image != blank
+  if card_collection_media == blank and card_collection.featured_image != blank and homepage_collection_image_strategy_enabled == false
     assign card_collection_media = card_collection.featured_image
     capture card_collection_media_alt
       render 'product-image-alt', media: card_collection.featured_image, collection: card_collection, fallback_title: card_collection_display_title

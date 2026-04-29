@@ -147,12 +147,8 @@
               assign spotlight_fetchpriority = 'high'
             endif
 
-            assign spotlight_static_theme_asset = block.settings.custom_theme_asset | strip
-            assign spotlight_static_theme_asset_alt = block.settings.custom_theme_asset_alt | strip
-            if request.page_type == 'index' and block.settings.secondary_collection != blank
-              assign spotlight_static_theme_asset = blank
-              assign spotlight_static_theme_asset_alt = blank
-            endif
+            assign spotlight_static_theme_asset = blank
+            assign spotlight_static_theme_asset_alt = blank
           -%}
           <div {{ block.shopify_attributes }}>
             {% render 'home-spotlight-card',
@@ -328,17 +324,6 @@
           "id": "button_label",
           "default": "Shop This Look",
           "label": "Button label"
-        },
-        {
-          "type": "text",
-          "id": "custom_theme_asset",
-          "label": "Theme asset filename",
-          "info": "Optional asset from /assets, for example home-promo-mommy-me.jpg"
-        },
-        {
-          "type": "text",
-          "id": "custom_theme_asset_alt",
-          "label": "Theme asset alt text"
         },
         {
           "type": "collection",

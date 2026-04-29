@@ -10,7 +10,7 @@
 
   assign spotlight_collection = spotlight_collection | default: spotlight_product.collections.first
   assign spotlight_rotation_collection = spotlight_rotation_collection | default: spotlight_collection
-  assign spotlight_image = spotlight_product.featured_media.preview_image | default: spotlight_product.featured_image
+  assign spotlight_image = spotlight_product.featured_image
   assign spotlight_image_alt = spotlight_image.alt | default: spotlight_product.title
   assign spotlight_image_sizes = image_sizes | default: '(min-width: 990px) 22vw, (min-width: 750px) 36vw, 78vw'
   assign spotlight_image_key = blank
@@ -33,7 +33,7 @@
   assign spotlight_pattern = spotlight_product.metafields.custom.pattern | default: '' | strip
 
   if spotlight_image != blank
-    assign spotlight_image_id = spotlight_image.id | default: spotlight_product.featured_media.id | default: spotlight_product.id
+    assign spotlight_image_id = spotlight_image.id | default: spotlight_product.id
     assign spotlight_image_key = 'image-' | append: spotlight_image_id
   endif
 
@@ -57,8 +57,8 @@
         assign spotlight_candidate_products = spotlight_rotation_collection.products | sort: 'published_at' | reverse
         for candidate_product in spotlight_candidate_products limit: homepage_spotlight_product_candidate_limit
           assign candidate_variant = candidate_product.selected_or_first_available_variant
-          assign candidate_image = candidate_product.featured_media.preview_image | default: candidate_product.featured_image
-          assign candidate_image_id = candidate_image.id | default: candidate_product.featured_media.id | default: candidate_product.id
+          assign candidate_image = candidate_product.featured_image
+          assign candidate_image_id = candidate_image.id | default: candidate_product.id
           assign candidate_caption = candidate_product.description | strip_html | replace: '&nbsp;', ' ' | strip | truncatewords: 18
           assign candidate_category1 = candidate_product.metafields.custom.category1 | default: '' | strip
           assign candidate_subcategory = candidate_product.metafields.custom.subcategory | default: '' | strip

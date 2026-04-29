@@ -104,10 +104,10 @@
 
     {%- comment -%}
       Rotating category images:
-      - Each page load picks a different product image from the collection
+      - Each page load picks a different active storefront product main image from the collection
       - Uses current minute as rotation seed so images change over time
       - Tracks used image IDs across all categories to guarantee no duplicates
-      - Custom image override via theme editor always takes priority
+      - Custom/static image overrides are intentionally ignored for homepage cards
     {%- endcomment -%}
 
     {%- if section.settings.display_mode == 'grouped' -%}
@@ -130,7 +130,6 @@
                 {%- liquid
                   assign icon_label = block.settings.custom_label | default: block.settings.collection.title
                   assign icon_image = blank
-                  assign icon_theme_asset = blank
                   assign icon_image_alt = icon_label
                   assign icon_image_key = blank
                   assign products = block.settings.collection.products
@@ -147,76 +146,13 @@
                     echo '['
                     assign emitted_candidate_keys = '|'
 
-                    if block.settings.custom_image != blank
-                      assign custom_image = block.settings.custom_image
-                      assign custom_image_key = 'image-' | append: custom_image.id
-                      assign custom_image_alt = custom_image.alt | default: icon_label | strip
-                      assign custom_image_key_token = '|' | append: custom_image_key | append: '|'
-
-                      echo '{'
-                      echo '"key":'
-                      echo custom_image_key | json
-                      echo ',"src":'
-                      echo custom_image | image_url: width: 900 | json
-                      echo ',"alt":'
-                      echo custom_image_alt | json
-                      echo ',"width":360,"height":450'
-                      echo '}'
-
-                      assign emitted_candidate_keys = emitted_candidate_keys | append: custom_image_key | append: '|'
-                      assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
-
-                      if icon_image == blank and icon_theme_asset == blank
-                        unless used_collection_image_keys contains custom_image_key_token
-                          assign icon_image = custom_image
-                          assign icon_image_key = custom_image_key
-                          assign icon_image_alt = custom_image_alt
-                          assign used_collection_image_keys = used_collection_image_keys | append: custom_image_key | append: '|'
-                        endunless
-                      endif
-                    endif
-
-                    if block.settings.custom_theme_asset != blank
-                      assign custom_theme_asset_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
-                      assign custom_theme_asset_alt = block.settings.custom_theme_asset_alt | default: icon_label | strip
-                      assign custom_theme_asset_key_token = '|' | append: custom_theme_asset_key | append: '|'
-
-                      unless emitted_candidate_keys contains custom_theme_asset_key_token
-                        if homepage_collection_image_candidate_count > 0
-                          echo ','
-                        endif
-
-                        echo '{'
-                        echo '"key":'
-                        echo custom_theme_asset_key | json
-                        echo ',"src":'
-                        echo block.settings.custom_theme_asset | asset_url | json
-                        echo ',"alt":'
-                        echo custom_theme_asset_alt | json
-                        echo ',"width":360,"height":450'
-                        echo '}'
-
-                        assign emitted_candidate_keys = emitted_candidate_keys | append: custom_theme_asset_key | append: '|'
-                        assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
-                      endunless
-
-                      if icon_image == blank and icon_theme_asset == blank
-                        unless used_collection_image_keys contains custom_theme_asset_key_token
-                          assign icon_theme_asset = block.settings.custom_theme_asset
-                          assign icon_image_key = custom_theme_asset_key
-                          assign icon_image_alt = custom_theme_asset_alt
-                          assign used_collection_image_keys = used_collection_image_keys | append: custom_theme_asset_key | append: '|'
-                        endunless
-                      endif
-                    endif
-
                     assign fresh_collection_products = products | sort: 'published_at' | reverse
                     for candidate_product in fresh_collection_products
                       if homepage_collection_image_candidate_count >= homepage_collection_candidate_limit
                         break
                       endif
 
-                      assign candidate_media = candidate_product.featured_media.preview_image | default: candidate_product.featured_image
+                      assign candidate_media = candidate_product.featured_image
                       if candidate_media == blank
                         continue
                       endif
@@ -251,7 +187,7 @@
                       assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
                       assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
 
-                      if icon_image == blank and icon_theme_asset == blank
+                      if icon_image == blank
                         unless used_collection_image_keys contains candidate_key_token
                           assign icon_image = candidate_media
                           assign icon_image_key = candidate_key
@@ -265,36 +201,26 @@
                   endcapture
                   assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
 
-                  if icon_image == blank and icon_theme_asset == blank
-                    if block.settings.custom_image != blank
-                      assign icon_image = block.settings.custom_image
-                      assign icon_image_key = 'image-' | append: block.settings.custom_image.id
-                      assign icon_image_alt = block.settings.custom_image.alt | default: icon_label | strip
-                    elsif block.settings.custom_theme_asset != blank
-                      assign icon_theme_asset = block.settings.custom_theme_asset
-                      assign icon_image_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
-                      assign icon_image_alt = block.settings.custom_theme_asset_alt | default: icon_label | strip
-                    elsif product_count > 0
-                      assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
-                      assign fallback_icon_found = false
+                  if icon_image == blank and product_count > 0
+                    assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
+                    assign fallback_icon_found = false
 
-                      for i in (0..product_count)
-                        unless fallback_icon_found
-                          assign try_index = start_index | plus: i | modulo: product_count
-                          assign try_product = products[try_index]
+                    for i in (0..product_count)
+                      unless fallback_icon_found
+                        assign try_index = start_index | plus: i | modulo: product_count
+                        assign try_product = products[try_index]
 
-                          if try_product != blank and try_product.featured_media != blank
-                            assign icon_image = try_product.featured_media.preview_image
-                            assign icon_image_key = 'image-' | append: icon_image.id
-                            capture icon_image_alt
-                              render 'product-image-alt', product: try_product, media: icon_image, collection: block.settings.collection, fallback_title: icon_label
-                            endcapture
-                            assign icon_image_alt = icon_image_alt | strip
-                            assign fallback_icon_found = true
-                          endif
-                        endunless
-                      endfor
-                    endif
+                        if try_product != blank and try_product.featured_image != blank
+                          assign icon_image = try_product.featured_image
+                          assign icon_image_key = 'image-' | append: icon_image.id
+                          capture icon_image_alt
+                            render 'product-image-alt', product: try_product, media: icon_image, collection: block.settings.collection, fallback_title: icon_label
+                          endcapture
+                          assign icon_image_alt = icon_image_alt | strip
+                          assign fallback_icon_found = true
+                        endif
+                      endunless
+                    endfor
                   endif
                 -%}
                 {%- capture icon_caption -%}
@@ -307,16 +233,6 @@
                       {%- if icon_image != blank -%}
                         <img
                           src="{{ icon_image | image_url: width: 900 }}"
-                          alt="{{ icon_image_alt | escape }}"
-                          loading="eager"
-                          width="360"
-                          height="450"
-                          data-homepage-collection-image
-                          data-homepage-collection-image-key="{{ icon_image_key | escape }}"
-                        >
-                      {%- elsif icon_theme_asset != blank -%}
-                        <img
-                          src="{{ icon_theme_asset | asset_url }}"
                           alt="{{ icon_image_alt | escape }}"
                           loading="eager"
                           width="360"
@@ -366,7 +282,6 @@
                 {%- liquid
                   assign icon_label = block.settings.custom_label | default: block.settings.collection.title
                   assign icon_image = blank
-                  assign icon_theme_asset = blank
                   assign icon_image_alt = icon_label
                   assign icon_image_key = blank
                   assign products = block.settings.collection.products
@@ -383,76 +298,13 @@
                     echo '['
                     assign emitted_candidate_keys = '|'
 
-                    if block.settings.custom_image != blank
-                      assign custom_image = block.settings.custom_image
-                      assign custom_image_key = 'image-' | append: custom_image.id
-                      assign custom_image_alt = custom_image.alt | default: icon_label | strip
-                      assign custom_image_key_token = '|' | append: custom_image_key | append: '|'
-
-                      echo '{'
-                      echo '"key":'
-                      echo custom_image_key | json
-                      echo ',"src":'
-                      echo custom_image | image_url: width: 900 | json
-                      echo ',"alt":'
-                      echo custom_image_alt | json
-                      echo ',"width":360,"height":450'
-                      echo '}'
-
-                      assign emitted_candidate_keys = emitted_candidate_keys | append: custom_image_key | append: '|'
-                      assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
-
-                      if icon_image == blank and icon_theme_asset == blank
-                        unless used_collection_image_keys contains custom_image_key_token
-                          assign icon_image = custom_image
-                          assign icon_image_key = custom_image_key
-                          assign icon_image_alt = custom_image_alt
-                          assign used_collection_image_keys = used_collection_image_keys | append: custom_image_key | append: '|'
-                        endunless
-                      endif
-                    endif
-
-                    if block.settings.custom_theme_asset != blank
-                      assign custom_theme_asset_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
-                      assign custom_theme_asset_alt = block.settings.custom_theme_asset_alt | default: icon_label | strip
-                      assign custom_theme_asset_key_token = '|' | append: custom_theme_asset_key | append: '|'
-
-                      unless emitted_candidate_keys contains custom_theme_asset_key_token
-                        if homepage_collection_image_candidate_count > 0
-                          echo ','
-                        endif
-
-                        echo '{'
-                        echo '"key":'
-                        echo custom_theme_asset_key | json
-                        echo ',"src":'
-                        echo block.settings.custom_theme_asset | asset_url | json
-                        echo ',"alt":'
-                        echo custom_theme_asset_alt | json
-                        echo ',"width":360,"height":450'
-                        echo '}'
-
-                        assign emitted_candidate_keys = emitted_candidate_keys | append: custom_theme_asset_key | append: '|'
-                        assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
-                      endunless
-
-                      if icon_image == blank and icon_theme_asset == blank
-                        unless used_collection_image_keys contains custom_theme_asset_key_token
-                          assign icon_theme_asset = block.settings.custom_theme_asset
-                          assign icon_image_key = custom_theme_asset_key
-                          assign icon_image_alt = custom_theme_asset_alt
-                          assign used_collection_image_keys = used_collection_image_keys | append: custom_theme_asset_key | append: '|'
-                        endunless
-                      endif
-                    endif
-
                     assign fresh_collection_products = products | sort: 'published_at' | reverse
                     for candidate_product in fresh_collection_products
                       if homepage_collection_image_candidate_count >= homepage_collection_candidate_limit
                         break
                       endif
 
-                      assign candidate_media = candidate_product.featured_media.preview_image | default: candidate_product.featured_image
+                      assign candidate_media = candidate_product.featured_image
                       if candidate_media == blank
                         continue
                       endif
@@ -487,7 +339,7 @@
                       assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
                       assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
 
-                      if icon_image == blank and icon_theme_asset == blank
+                      if icon_image == blank
                         unless used_collection_image_keys contains candidate_key_token
                           assign icon_image = candidate_media
                           assign icon_image_key = candidate_key
@@ -501,36 +353,26 @@
                   endcapture
                   assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
 
-                  if icon_image == blank and icon_theme_asset == blank
-                    if block.settings.custom_image != blank
-                      assign icon_image = block.settings.custom_image
-                      assign icon_image_key = 'image-' | append: block.settings.custom_image.id
-                      assign icon_image_alt = block.settings.custom_image.alt | default: icon_label | strip
-                    elsif block.settings.custom_theme_asset != blank
-                      assign icon_theme_asset = block.settings.custom_theme_asset
-                      assign icon_image_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
-                      assign icon_image_alt = block.settings.custom_theme_asset_alt | default: icon_label | strip
-                    elsif product_count > 0
-                      assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
-                      assign fallback_icon_found = false
+                  if icon_image == blank and product_count > 0
+                    assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
+                    assign fallback_icon_found = false
 
-                      for i in (0..product_count)
-                        unless fallback_icon_found
-                          assign try_index = start_index | plus: i | modulo: product_count
-                          assign try_product = products[try_index]
+                    for i in (0..product_count)
+                      unless fallback_icon_found
+                        assign try_index = start_index | plus: i | modulo: product_count
+                        assign try_product = products[try_index]
 
-                          if try_product != blank and try_product.featured_media != blank
-                            assign icon_image = try_product.featured_media.preview_image
-                            assign icon_image_key = 'image-' | append: icon_image.id
-                            capture icon_image_alt
-                              render 'product-image-alt', product: try_product, media: icon_image, collection: block.settings.collection, fallback_title: icon_label
-                            endcapture
-                            assign icon_image_alt = icon_image_alt | strip
-                            assign fallback_icon_found = true
-                          endif
-                        endunless
-                      endfor
-                    endif
+                        if try_product != blank and try_product.featured_image != blank
+                          assign icon_image = try_product.featured_image
+                          assign icon_image_key = 'image-' | append: icon_image.id
+                          capture icon_image_alt
+                            render 'product-image-alt', product: try_product, media: icon_image, collection: block.settings.collection, fallback_title: icon_label
+                          endcapture
+                          assign icon_image_alt = icon_image_alt | strip
+                          assign fallback_icon_found = true
+                        endif
+                      endunless
+                    endfor
                   endif
                 -%}
                 {%- capture icon_caption -%}
@@ -543,16 +385,6 @@
                       {%- if icon_image != blank -%}
                         <img
                           src="{{ icon_image | image_url: width: 900 }}"
-                          alt="{{ icon_image_alt | escape }}"
-                          loading="eager"
-                          width="360"
-                          height="450"
-                          data-homepage-collection-image
-                          data-homepage-collection-image-key="{{ icon_image_key | escape }}"
-                        >
-                      {%- elsif icon_theme_asset != blank -%}
-                        <img
-                          src="{{ icon_theme_asset | asset_url }}"
                           alt="{{ icon_image_alt | escape }}"
                           loading="eager"
                           width="360"
@@ -589,7 +421,6 @@
             {%- liquid
               assign icon_label = block.settings.custom_label | default: block.settings.collection.title
               assign icon_image = blank
-              assign icon_theme_asset = blank
               assign icon_image_alt = icon_label
               assign icon_image_key = blank
               assign products = block.settings.collection.products
@@ -606,76 +437,13 @@
                 echo '['
                 assign emitted_candidate_keys = '|'
 
-                if block.settings.custom_image != blank
-                  assign custom_image = block.settings.custom_image
-                  assign custom_image_key = 'image-' | append: custom_image.id
-                  assign custom_image_alt = custom_image.alt | default: icon_label | strip
-                  assign custom_image_key_token = '|' | append: custom_image_key | append: '|'
-
-                  echo '{'
-                  echo '"key":'
-                  echo custom_image_key | json
-                  echo ',"src":'
-                  echo custom_image | image_url: width: 900 | json
-                  echo ',"alt":'
-                  echo custom_image_alt | json
-                  echo ',"width":360,"height":450'
-                  echo '}'
-
-                  assign emitted_candidate_keys = emitted_candidate_keys | append: custom_image_key | append: '|'
-                  assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
-
-                  if icon_image == blank and icon_theme_asset == blank
-                    unless used_collection_image_keys contains custom_image_key_token
-                      assign icon_image = custom_image
-                      assign icon_image_key = custom_image_key
-                      assign icon_image_alt = custom_image_alt
-                      assign used_collection_image_keys = used_collection_image_keys | append: custom_image_key | append: '|'
-                    endunless
-                  endif
-                endif
-
-                if block.settings.custom_theme_asset != blank
-                  assign custom_theme_asset_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
-                  assign custom_theme_asset_alt = block.settings.custom_theme_asset_alt | default: icon_label | strip
-                  assign custom_theme_asset_key_token = '|' | append: custom_theme_asset_key | append: '|'
-
-                  unless emitted_candidate_keys contains custom_theme_asset_key_token
-                    if homepage_collection_image_candidate_count > 0
-                      echo ','
-                    endif
-
-                    echo '{'
-                    echo '"key":'
-                    echo custom_theme_asset_key | json
-                    echo ',"src":'
-                    echo block.settings.custom_theme_asset | asset_url | json
-                    echo ',"alt":'
-                    echo custom_theme_asset_alt | json
-                    echo ',"width":360,"height":450'
-                    echo '}'
-
-                    assign emitted_candidate_keys = emitted_candidate_keys | append: custom_theme_asset_key | append: '|'
-                    assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
-                  endunless
-
-                  if icon_image == blank and icon_theme_asset == blank
-                    unless used_collection_image_keys contains custom_theme_asset_key_token
-                      assign icon_theme_asset = block.settings.custom_theme_asset
-                      assign icon_image_key = custom_theme_asset_key
-                      assign icon_image_alt = custom_theme_asset_alt
-                      assign used_collection_image_keys = used_collection_image_keys | append: custom_theme_asset_key | append: '|'
-                    endunless
-                  endif
-                endif
-
                 assign fresh_collection_products = products | sort: 'published_at' | reverse
                 for candidate_product in fresh_collection_products
                   if homepage_collection_image_candidate_count >= homepage_collection_candidate_limit
                     break
                   endif
 
-                  assign candidate_media = candidate_product.featured_media.preview_image | default: candidate_product.featured_image
+                  assign candidate_media = candidate_product.featured_image
                   if candidate_media == blank
                     continue
                   endif
@@ -710,7 +478,7 @@
                   assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
                   assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
 
-                  if icon_image == blank and icon_theme_asset == blank
+                  if icon_image == blank
                     unless used_collection_image_keys contains candidate_key_token
                       assign icon_image = candidate_media
                       assign icon_image_key = candidate_key
@@ -724,36 +492,26 @@
               endcapture
               assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
 
-              if icon_image == blank and icon_theme_asset == blank
-                if block.settings.custom_image != blank
-                  assign icon_image = block.settings.custom_image
-                  assign icon_image_key = 'image-' | append: block.settings.custom_image.id
-                  assign icon_image_alt = block.settings.custom_image.alt | default: icon_label | strip
-                elsif block.settings.custom_theme_asset != blank
-                  assign icon_theme_asset = block.settings.custom_theme_asset
-                  assign icon_image_key = 'asset-' | append: block.settings.custom_theme_asset | handleize
-                  assign icon_image_alt = block.settings.custom_theme_asset_alt | default: icon_label | strip
-                elsif product_count > 0
-                  assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
-                  assign fallback_icon_found = false
+              if icon_image == blank and product_count > 0
+                assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
+                assign fallback_icon_found = false
 
-                  for i in (0..product_count)
-                    unless fallback_icon_found
-                      assign try_index = start_index | plus: i | modulo: product_count
-                      assign try_product = products[try_index]
+                for i in (0..product_count)
+                  unless fallback_icon_found
+                    assign try_index = start_index | plus: i | modulo: product_count
+                    assign try_product = products[try_index]
 
-                      if try_product != blank and try_product.featured_media != blank
-                        assign icon_image = try_product.featured_media.preview_image
-                        assign icon_image_key = 'image-' | append: icon_image.id
-                        capture icon_image_alt
-                          render 'product-image-alt', product: try_product, media: icon_image, collection: block.settings.collection, fallback_title: icon_label
-                        endcapture
-                        assign icon_image_alt = icon_image_alt | strip
-                        assign fallback_icon_found = true
-                      endif
-                    endunless
-                  endfor
-                endif
+                    if try_product != blank and try_product.featured_image != blank
+                      assign icon_image = try_product.featured_image
+                      assign icon_image_key = 'image-' | append: icon_image.id
+                      capture icon_image_alt
+                        render 'product-image-alt', product: try_product, media: icon_image, collection: block.settings.collection, fallback_title: icon_label
+                      endcapture
+                      assign icon_image_alt = icon_image_alt | strip
+                      assign fallback_icon_found = true
+                    endif
+                  endunless
+                endfor
               endif
             -%}
             {%- capture icon_caption -%}
@@ -766,16 +524,6 @@
                   {%- if icon_image != blank -%}
                     <img
                       src="{{ icon_image | image_url: width: 900 }}"
-                      alt="{{ icon_image_alt | escape }}"
-                      loading="eager"
-                      width="360"
-                      height="450"
-                      data-homepage-collection-image
-                      data-homepage-collection-image-key="{{ icon_image_key | escape }}"
-                    >
-                  {%- elsif icon_theme_asset != blank -%}
-                    <img
-                      src="{{ icon_theme_asset | asset_url }}"
                       alt="{{ icon_image_alt | escape }}"
                       loading="eager"
                       width="360"
@@ -941,23 +689,6 @@
           "id": "custom_label",
           "label": "Custom label",
           "info": "Overrides collection title"
-        },
-        {
-          "type": "image_picker",
-          "id": "custom_image",
-          "label": "Custom image",
-          "info": "Overrides collection image"
-        },
-        {
-          "type": "text",
-          "id": "custom_theme_asset",
-          "label": "Theme asset filename",
-          "info": "Optional asset from /assets, for example home-cat-mommy-and-me.jpg"
-        },
-        {
-          "type": "text",
-          "id": "custom_theme_asset_alt",
-          "label": "Theme asset alt text"
         },
         {
           "type": "select",
