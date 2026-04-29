@@ -501,15 +501,30 @@ def render_report(summary: dict[str, object]) -> str:
     source_artifact = live_detail.get("source_artifact", "") if isinstance(live_detail, dict) else ""
     conversion_artifact = conversion_detail.get("source_artifact", "") if isinstance(conversion_detail, dict) else ""
     actionability_blockers = summary.get("ads_dry_run_actionable_blockers", [])
-    if summary.get("merchant_supplemental_label_join_allowed"):
+    if summary.get("ads_dry_run_actionable_allowed"):
+        ads_structure_note = (
+            "Do not restart Google Ads yet. This structure is actionable only for paused build/readback "
+            "review after explicit operator approval; it is not campaign launch approval."
+        )
+    else:
+        ads_structure_note = (
+            "Do not restart Google Ads yet. This is a dry-run structure for use only after the named gates "
+            "pass. It is not actionable while `ads_dry_run_actionable_allowed` is false."
+        )
+    if summary.get("ads_dry_run_actionable_allowed"):
+        next_action = (
+            "Do not enable or restart Ads from this packet. The next allowable step, only after explicit "
+            "operator approval, is a paused-only Google Ads build/readback review with campaigns left off."
+        )
+    elif summary.get("merchant_supplemental_label_join_allowed"):
         next_action = (
             "Do not build or restart Ads from this packet. Produce current purchase conversion-value proof "
-            "with non-zero purchase results/value before the dry-run structure becomes actionable."
+            "with recent request/value evidence before the dry-run structure becomes actionable."
         )
     else:
         next_action = (
             "Do not build or restart Ads from this packet. First fix the full Merchant Center supplemental label "
-            "join and produce current purchase conversion-value proof with non-zero purchase results/value."
+            "join and produce current purchase conversion-value proof with recent request/value evidence."
         )
     return "\n".join(
         [
@@ -557,6 +572,10 @@ def render_report(summary: dict[str, object]) -> str:
             f"- Target action: `{conversion_gate.get('target_conversion_action', '')}`",
             f"- Target primary/account-level: `{conversion_gate.get('target_is_primary_account_level_purchase_action', '')}`",
             f"- Target raw last conversion date: `{conversion_gate.get('target_last_conversion_date_raw', '')}`",
+            f"- Target last received request: `{conversion_gate.get('target_last_received_request_time_iso', '')}`",
+            f"- Target recent request present: `{conversion_gate.get('target_recent_request_present', '')}`",
+            f"- Campaign enable allowed by conversion packet: `{conversion_gate.get('campaign_enable_allowed', '')}`",
+            f"- Advisories: `{json.dumps(conversion_gate.get('advisories', []), sort_keys=True)}`",
             f"- Evidence artifact: `{conversion_artifact}`",
             "",
             "## Ads Dry-Run Actionability",
@@ -566,7 +585,7 @@ def render_report(summary: dict[str, object]) -> str:
             "",
             "## Post-Gate Google Ads Structure",
             "",
-            "Do not restart Google Ads yet. This is a dry-run structure for use only after the named gates pass. It is not actionable while `ads_dry_run_actionable_allowed` is false.",
+            ads_structure_note,
             "",
             *render_ads_structure_table(ads_structure),
             "",

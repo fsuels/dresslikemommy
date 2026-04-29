@@ -26271,3 +26271,89 @@ Residual:
 - Visible Purchase results remain `0.0` for the captured Google Ads date range; this is now documented as no current ad attribution, not a tracking-health failure.
 - Google Ads default manual snippets still show placeholder `value: 0.0` and blank `transaction_id`; do not paste those snippets into the theme. Runtime Google purchase tracking should remain with the Shopify Google & YouTube app.
 - No campaign should be enabled or restarted without explicit operator approval. The next allowed step is paused-only Ads build/readback review, not launch.
+
+2026-04-29 06:11 EDT - Google Shopping/Ads clean subset launch-instruction refresh
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-google-shopping-ads-clean-subset-launch-instruction-refresh
+
+Why:
+- User asked to verify the supplemental feed confusion, answer the browser AI budget/bid prompt, and make the Google Shopping/Google Ads setup instructions current and ROI-focused.
+
+Actions:
+- Re-ran live read-only Merchant Center clean-label check through the authenticated Chrome DevTools session.
+- Re-ran the Google Ads purchase conversion-value gate packet.
+- Regenerated the Google Shopping campaign gate packet from the fresh Merchant and conversion evidence.
+- Rewrote `Google-Ads-Campaign-Setup-Guide.md` so it no longer instructs an all-products Shopping launch or unsupported free-shipping/free-return ad claims.
+- Added the exact browser AI answer for the current Shopping draft: `Maximize clicks, budget $25/day`, with the campaign still paused and a `$0.25` max CPC cap when the UI exposes it.
+- Documented the current Brand Search setup: `Search - Brand`, USA/English/Search-only, `$10/day`, brand exact/phrase ad groups, safe RSA copy, shared assets, and negative list use.
+
+Verification:
+- Fresh Merchant readback artifact: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-final-live-refresh/merchant_exact_label_readback_refresh_check.json`.
+- Merchant readback result: `PASS_CAMPAIGN_FILTER_LABELS_VISIBLE` and `PASS_ALL_EXPECTED_LABELS_VISIBLE`; observed US/en sample row has `custom_label_0=paid_eligible`, `custom_label_1=margin_medium`, `custom_label_2=mommy_me`, `custom_label_3=aov_medium`, and `custom_label_4=us_test_ready`.
+- Google Ads conversion gate result: `PASS_PURCHASE_CONVERSION_VALUE_TRACKING_VERIFIED__NO_CURRENT_AD_ATTRIBUTION`; `campaign_enable_allowed=false` remains by design.
+- Google Shopping gate result: `READY_FOR_PAUSED_ADS_DRY_RUN_BUILD_WITH_FULL_LABEL_JOIN_AND_PURCHASE_VALUE_PROOF`; `ads_dry_run_actionable_allowed=true`, `google_ads_restart_allowed=false`.
+- Phase 7 final launch gate test re-ran and still reports `BLOCKED` with 1 YES / 7 NO, so this work does not authorize live spend.
+
+Residual:
+- Live spend is not enabled. Enabling/restarting campaigns still requires explicit operator approval of the exact campaign(s), daily budget(s), and launch action.
+- Root `supplemental-feed-pilot.csv` and `supplemental-feed.tsv` are legacy apparel-attribute files, not the current clean-label proof/upload files.
+- Phase 7 final launch gate remains blocked for true live launch because purchase/payment event proof, country/spend economics exports, and final paid-efficiency evidence are still incomplete.
+
+2026-04-29 06:10 EDT - Announcement bar free-shipping promo restore
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-announcement-bar-free-shipping-promo-restore
+
+Why:
+- User clarified the announcement bar should not say `SHIPPING OPTIONS AT CHECKOUT` because the store offers free shipping worldwide and wanted the prior announcement wording restored.
+
+Actions:
+- Restored the announcement fallback and storefront locale `sections.announcements.default_promo` values from the pre-change commit before `cf09eff6`.
+- Current English announcement promo is now `FREE SHIPPING ON ALL ORDERS | EASY RETURNS | SECURE CHECKOUT`.
+- Pushed only `sections/announcement-bar.liquid` and the touched locale promo files to live theme `dresslikemommy/main` (`133290917985`) with `--nodelete`, `--allow-live`, and scoped `--only` flags.
+
+Verification:
+- Parsed all 56 locale JSON files after stripping Shopify auto-generated comment headers.
+- `git diff --check -- sections/announcement-bar.liquid locales/*.json` passed.
+- `shopify theme check --path . --fail-level warning --output json` returned `[]`.
+- Live homepage readback rendered the announcement as `FREE SHIPPING ON ALL ORDERS | EASY RETURNS | SECURE CHECKOUT`.
+
+Residual:
+- Homepage/category trust copy elsewhere can still say `Shipping options at checkout`; this change was intentionally scoped to the announcement bar.
+- Existing unrelated Google Ads/growth audit worktree changes were not touched.
+
+2026-04-29 06:26 EDT - Homepage conversion trust copy refresh
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-homepage-conversion-trust-copy-refresh
+
+Why:
+- User disliked `Easy returns` in the top announcement/navigation area and disliked the below-hero `Shipping options...` copy, noting the adjacent trust items already say `Matching looks for family moments` and `Easy outfits for photos, trips, and celebrations`.
+
+Actions:
+- Changed the English top announcement promo to `FREE SHIPPING ON ALL ORDERS | FAMILY MATCHING MADE EASY | SECURE CHECKOUT`.
+- Updated localized announcement promo values across storefront locale JSON files to remove easy-returns wording from the announcement bar.
+- Changed the homepage below-hero trust item from `Shipping options at checkout` to `Free shipping on all orders`.
+- Updated related homepage supporting copy and collection callout copy from shipping-options wording to free-shipping wording.
+- Updated `products.product.free_shipping_all_orders` locale copy and regenerated `snippets/product-page-copy-map.liquid`.
+- Pushed only the touched theme files to live theme `dresslikemommy/main` (`133290917985`) with scoped `--only` flags, `--nodelete`, and `--allow-live`.
+
+Verification:
+- Parsed all storefront locale JSON files and `templates/index.json` after stripping optional Shopify comment headers.
+- Parsed the JSON payload in `snippets/product-page-copy-map.liquid`; it still contains 35 locales and English `free_shipping_all_orders` is now `Free shipping on all orders`.
+- `git diff --check -- sections/announcement-bar.liquid sections/category-icons.liquid snippets/collection-merchandising-callout.liquid snippets/product-page-copy-map.liquid templates/index.json locales/*.json` passed.
+- `shopify theme check --path . --fail-level warning --output json` returned `[]`.
+- Local Shopify dev preview at `http://127.0.0.1:9293/` was checked in browser at 1440x1000 and 390x844.
+- Desktop browser metrics showed the announcement and all three below-hero trust pills fit without overflow.
+- Mobile browser metrics showed the announcement rotates through short messages (`Free shipping`, `Family matching made easy`, `Secure checkout`) and the three trust pills stack without overflow.
+- Live HTML readback from `https://www.dresslikemommy.com/?_qa=announcement-copy-verify-2` showed the new announcement and below-hero free-shipping copy.
+- Pulled the live theme files to `/tmp/dlm-live-theme-check` and confirmed the remote live files contain the new copy.
+
+Residual:
+- The Liquid/SEO compatibility code still contains legacy strings such as `EASY RETURNS` and `Shipping options shown at checkout` only as replacement/source keys; the live rendered homepage readback no longer shows those old customer-facing lines.
+- Existing unrelated Google Ads/growth audit worktree changes were not touched.
+
+2026-04-29 06:51 EDT - Homepage announcement copy baseline decision
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-homepage-announcement-copy-baseline-decision
+
+Decision:
+- Operator wants the new announcement copy to run as the baseline:
+  - `FREE SHIPPING ON ALL ORDERS | FAMILY MATCHING MADE EASY | SECURE CHECKOUT`
+- Do not replace the middle phrase immediately.
+- Later conversion test candidate, when the operator asks for a test:
+  - `NEW FAMILY STYLES WEEKLY`

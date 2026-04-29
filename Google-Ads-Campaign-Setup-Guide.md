@@ -1,273 +1,251 @@
-# DressLikeMommy.com — Google Ads Campaign Setup Guide
-## Account: 399-097-6848 | March 28, 2026
+# DressLikeMommy.com - Google Ads Current Setup Guide
 
----
+Updated: April 29, 2026
+Google Ads account: `399-097-6848`
+Merchant Center account: `124884876`
 
-## IMPORTANT: Before You Start
+## Current Answer For The Shopping Draft
 
-1. **Disable your ad blocker** for ads.google.com — it breaks the campaign creation wizard
-2. **Complete identity verification** if prompted (Google security check)
-3. All campaigns should be created **PAUSED** — do not enable until the full pre-launch checklist passes
+Use this exact answer for the browser AI prompt:
 
----
+```text
+Maximize clicks, budget $25/day
+```
 
-## CAMPAIGN 1: Search - Brand
-**Purpose:** Protect your brand name from competitors bidding on it. Cheapest, highest-ROAS campaign.
+Then keep the campaign `PAUSED`. If Google Ads exposes a max CPC bid limit for Maximize clicks, set the first cap to `$0.25`. Raise to `$0.35` only if the campaign has too little eligible traffic after 72 hours. Do not enable spend until the operator explicitly says to enable.
 
-### Campaign Settings
+## Do Not Use The Old All-Products Plan
+
+The current clean Shopping cohort is not all products.
+
+- Verified paid cohort: `780` offer rows across `81` Shopify product listings.
+- Required product filters: `custom_label_4 = us_test_ready` and `custom_label_0 = paid_eligible`.
+- Exclude all international rows, all unknown-margin rows, all fix-before-paid rows, and anything Limited, Not approved, out of stock, or not in the exact clean cohort.
+- Root files `supplemental-feed-pilot.csv` and `supplemental-feed.tsv` are legacy apparel-attribute files only. Do not upload them for paid labels.
+- Actual clean-label upload proof: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-upload/upload_matched_full_clean_labels_with_age_group.txt`.
+
+Live Merchant Center readback on April 29, 2026 confirmed the sampled US/en paid offer has:
+
+```text
+custom_label_0 = paid_eligible
+custom_label_1 = margin_medium
+custom_label_2 = mommy_me
+custom_label_3 = aov_medium
+custom_label_4 = us_test_ready
+```
+
+## Launch Rules
+
+- Build new campaigns paused first.
+- Do not enable, restart, or change live spend without explicit operator approval.
+- Use Google Search only for Search campaigns. Uncheck Search Partners and Display.
+- Use United States and English only for the first paid test.
+- Use the Shopify Google & YouTube app purchase action only: `Google Shopping App Purchase`.
+- Do not paste Google Ads manual conversion snippets into the theme.
+- Do not claim free shipping or free returns in ad copy unless a current policy/checkout proof packet explicitly supports that claim.
+
+## Campaign 1: Search - Brand
+
+Purpose: defend brand demand and capture the highest-intent traffic at the lowest risk.
+
+### Settings
+
 | Setting | Value |
-|---------|-------|
-| Campaign name | Search - Brand |
+| --- | --- |
+| Campaign name | `Search - Brand` |
 | Objective | Sales |
 | Campaign type | Search |
-| Networks | Google Search ONLY (uncheck Search Partners AND Display Network) |
+| Networks | Google Search only; no Search Partners; no Display |
 | Location | United States |
 | Language | English |
-| Budget | $10.00/day |
-| Bidding | Maximize conversion value (no target ROAS) |
-| Status | PAUSED |
+| Budget | `$10/day` |
+| Bidding | Maximize conversion value, no target ROAS |
+| Fallback bidding | Maximize clicks with `$0.50` max CPC if Google blocks value bidding for low data |
+| Status | Paused |
 
-### Ad Group: "Brand - Exact & Phrase"
-**Keywords (enter all 8):**
-```
+### Ad Group 1: Brand - Exact
+
+```text
 [dress like mommy]
 [dresslikemommy]
 [dresslikemommy.com]
 [dress like mommy store]
 [dress like mommy shop]
 [dlm dresses]
+[dress like mommy outfits]
+[dress like mommy matching]
+```
+
+### Ad Group 2: Brand - Phrase
+
+```text
 "dress like mommy"
 "dresslikemommy"
+"dress like mommy store"
+"dress like mommy shop"
 ```
 
-### RSA Ad
-**Final URL:** https://www.dresslikemommy.com
-**Display path:** dresslikemommy.com/matching/outfits
+### Responsive Search Ad
 
-**Headlines (15):**
-1. Dress Like Mommy® Official ← PIN to Position 1
-2. Matching Mother Daughter Dresses
-3. Mommy and Me Outfits
-4. Free Shipping on Every Order
-5. Family Matching Outfits
-6. Shop New Arrivals Today
-7. Matching Family Dresses & Sets
-8. Cute Mommy & Me Dresses
-9. Shop the Full Collection
-10. Quality Family Matching Wear
-11. Free Returns on All Orders
-12. Matching Swimsuits for Family
-13. New Styles Added Weekly
-14. Mother Daughter Dress Sets
-15. Matching for Every Occasion
+Final URL: `https://www.dresslikemommy.com`
+Display path: `matching/outfits`
 
-**Descriptions (4):**
-1. Shop our collection of matching mommy and me dresses, family outfits & swimsuits. Free shipping on every order!
-2. Quality matching outfits for mothers and daughters. New arrivals weekly. Free shipping & easy returns.
-3. Dress Like Mommy — where families match in style. Dresses, swimsuits & matching sets. Shop now!
-4. Find the perfect matching outfit for you and your little one. Adorable designs, quality fabrics. Order today.
+Pin headline position 1:
 
----
+```text
+Dress Like Mommy Official
+```
 
-## CAMPAIGN 2: Search - Non-Brand
-**Purpose:** Capture people searching for your product category who don't know your brand yet.
+Other headlines:
 
-### Campaign Settings
+```text
+Mommy and Me Outfits
+Mother Daughter Dresses
+Family Matching Outfits
+Matching Dresses and Sets
+Shop New Matching Styles
+Matching Family Clothes
+Cute Mommy and Me Looks
+Shop Dress Like Mommy
+Matching Outfits for Kids
+30-Day Return Window
+Secure Checkout
+Mom and Daughter Dresses
+Matching Swimwear
+New Styles Added Weekly
+```
+
+Descriptions:
+
+```text
+Shop mommy and me dresses, family outfits, pajamas and swimwear for matching moments.
+Find matching looks for moms, daughters, dads and kids. New styles added weekly.
+Dress Like Mommy helps families match for photos, vacations, birthdays and everyday memories.
+Browse curated matching outfits with secure checkout and a 30-day return window.
+```
+
+## Campaign 2: Standard Shopping Clean Subset
+
+Purpose: test only the feed rows that passed margin, inventory, PDP, Merchant Center, and custom-label gates.
+
+### Settings
+
 | Setting | Value |
-|---------|-------|
-| Campaign name | Search - Non-Brand |
-| Objective | Sales |
-| Campaign type | Search |
-| Networks | Google Search ONLY (uncheck Search Partners AND Display Network) |
-| Location | United States |
-| Language | English |
-| Budget | $25.00/day |
-| Bidding | Maximize conversions (no target CPA) |
-| Status | PAUSED |
-
-### Ad Group 1: "Mommy and Me Dresses"
-**Final URL:** https://www.dresslikemommy.com/collections/all
-**Keywords:**
-```
-[mommy and me dresses]
-"mommy and me dresses"
-[mother daughter matching dresses]
-"mother daughter matching dresses"
-[matching mom and daughter outfits]
-"matching mom and daughter outfits"
-[mommy and me matching dresses]
-"mommy and me matching dresses"
-[mom and daughter dresses]
-"mom and daughter dresses"
-```
-
-**RSA Headlines (10):**
-1. Mommy and Me Dresses ← PIN to Position 1
-2. Matching Mother Daughter Dresses
-3. Free Shipping on All Orders
-4. Adorable Matching Outfits
-5. Shop New Arrivals Now
-6. Quality Matching Dresses
-7. 200+ Matching Styles Available
-8. Mom & Daughter Dress Sets
-9. Perfect for Family Photos
-10. Matching Dresses from $19.99
-
-**RSA Descriptions (4):**
-1. Shop adorable mommy and me dresses for every occasion. 200+ matching styles. Free shipping on all orders!
-2. Find the perfect matching mother daughter dresses. New arrivals every week. Quality fabrics, fast delivery.
-3. Matching dresses for mom and daughter. Perfect for family photos, vacations & special occasions. Shop now!
-4. Beautiful matching outfits that make memories. Browse our full collection of mommy and me dresses today.
-
-### Ad Group 2: "Family Matching Outfits"
-**Final URL:** https://www.dresslikemommy.com/collections/all
-**Keywords:**
-```
-[family matching outfits]
-"family matching outfits"
-[matching family clothes]
-"matching family clothes"
-[matching family dresses]
-"matching family dresses"
-[family matching sets]
-"family matching sets"
-```
-
-**RSA Headlines (10):**
-1. Family Matching Outfits ← PIN to Position 1
-2. Matching Sets for the Whole Family
-3. Free Shipping on Every Order
-4. Mom Dad & Kids Match
-5. Shop 200+ Matching Styles
-6. New Matching Sets Weekly
-7. Quality Family Matching Wear
-8. Perfect for Family Photos
-9. Dresses, Swimsuits & More
-10. Match in Style as a Family
-
-**RSA Descriptions (4):**
-1. Complete family matching outfits — mom, dad, and kids. Dresses, swimsuits & matching sets. Free shipping!
-2. Make memories in matching family outfits. 200+ styles for the whole family. New arrivals every week.
-3. Quality matching clothes for the entire family. Perfect for vacations, holidays & family photos. Shop now!
-4. Find matching outfits for your whole family. From dresses to swimsuits, we've got you covered. Order today.
-
-### Ad Group 3: "Matching Swimsuits"
-**Final URL:** https://www.dresslikemommy.com/collections/swimsuits
-**Keywords:**
-```
-[mommy and me swimsuits]
-"mommy and me swimsuits"
-[matching mother daughter swimsuits]
-"matching mother daughter swimsuits"
-[matching family swimwear]
-"matching family swimwear"
-[mommy and me bathing suits]
-"mommy and me bathing suits"
-```
-
-**RSA Headlines (10):**
-1. Matching Family Swimsuits ← PIN to Position 1
-2. Mommy and Me Swimwear
-3. Free Shipping on All Orders
-4. Family Matching Bikinis & Sets
-5. Shop Summer Collection Now
-6. Mother Daughter Swimsuits
-7. Matching Swimwear for All Ages
-8. New Swim Styles for 2026
-9. Quality Family Swimwear
-10. Perfect for Beach Vacations
-
-**RSA Descriptions (4):**
-1. Matching swimsuits for the whole family! Mommy and me bikinis, one-pieces & swim sets. Free shipping!
-2. Hit the beach in style with matching family swimwear. Mom, dad & kids matching swim sets available now.
-3. Adorable mommy and me swimsuits for your next vacation. Quality swimwear, fast shipping. Shop our collection!
-4. Family matching swimsuits in 50+ styles. Perfect for summer, pool parties & beach trips. Order today.
-
----
-
-## CAMPAIGN 3: Shopping - All Products
-**Purpose:** Show your products with images and prices directly in Google search results.
-
-### Campaign Settings
-| Setting | Value |
-|---------|-------|
-| Campaign name | Shopping - All Products |
+| --- | --- |
+| Campaign name | `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` |
 | Campaign type | Shopping |
-| Merchant Center | 124884876 |
-| Networks | Google Search ONLY (uncheck Search Partners) |
-| Location | United States |
-| Budget | $25.00/day |
-| Bidding | Maximize clicks with max CPC bid limit of $0.50 |
-| Products | All products |
+| Subtype | Standard Shopping |
+| Merchant Center | `124884876` |
+| Country | United States |
+| Budget | `$25/day` |
+| Bidding | Maximize clicks |
+| Max CPC cap | `$0.25` if available |
 | Campaign priority | Medium |
-| Status | PAUSED |
+| Status | Paused |
 
-**Note:** After 30+ conversions, switch bidding to Target ROAS.
+### Inventory Filter
 
----
+Use both filters together:
 
-## EXTENSIONS (Apply to ALL 3 campaigns)
+```text
+custom_label_4 = us_test_ready
+custom_label_0 = paid_eligible
+```
+
+### Product Group Order
+
+1. `custom_label_4 = us_test_ready`
+2. `custom_label_0 = paid_eligible`
+3. `custom_label_2` product family
+4. `custom_label_1` margin tier
+5. `custom_label_3` AOV tier
+
+Exclude everything outside the included subdivision.
+
+Current expected family counts:
+
+| Family | Offer rows |
+| --- | ---: |
+| `swimsuits` | 345 |
+| `mommy_me` | 214 |
+| `family_matching` | 103 |
+| `daddy_me` | 89 |
+| `pajamas` | 29 |
+
+## Campaigns To Hold
+
+Do not launch these yet:
+
+- Non-brand Search: hold until Search Console query/page exports prove commercial opportunity.
+- Performance Max: hold until Standard Shopping has stable conversion volume and feed/landing-page proof.
+- Remarketing: hold until policy-limited products and dedupe evidence are fully clean.
+- Display, Dynamic Search Ads, broad Search, or international campaigns: excluded from this first test.
+
+## Shared Assets
 
 ### Sitelinks
-| Sitelink text | Final URL |
-|---------------|-----------|
-| New Arrivals | https://www.dresslikemommy.com/collections/all |
-| Best Sellers | https://www.dresslikemommy.com/collections/all |
-| Matching Swimsuits | https://www.dresslikemommy.com/collections/swimsuits |
-| Matching Dresses | https://www.dresslikemommy.com/collections/all |
-| Family Sets | https://www.dresslikemommy.com/collections/all |
+
+| Sitelink | URL |
+| --- | --- |
+| Mommy & Me | `https://www.dresslikemommy.com/collections/mommy-and-me` |
+| Family Matching | `https://www.dresslikemommy.com/collections/family-sets` |
+| Swimsuits | `https://www.dresslikemommy.com/collections/swimsuits` |
+| Pajamas | `https://www.dresslikemommy.com/collections/pajamas` |
+| New Arrivals | `https://www.dresslikemommy.com/collections/new-matching-outfits` |
 
 ### Callouts
-- Free Shipping
-- Free Returns
-- New Styles Weekly
-- Family Matching
-- Quality Fabrics
-- 200+ Styles
 
-### Structured Snippets
-- **Types:** Dresses, Swimsuits, T-Shirts, Pajamas, Sweaters, Sets
+```text
+Matching Family Styles
+New Styles Weekly
+30-Day Return Window
+Secure Checkout
+Mommy and Me Looks
+Family Photo Ready
+```
 
----
+### Structured Snippet
 
-## NEGATIVE KEYWORDS
+Header: `Types`
 
-### How to Apply:
-1. Go to Google Ads → Tools → Shared library → Negative keyword lists
-2. Create list: **"Master Negatives - DLM"**
-3. Import from the file: `negative-keywords-import.txt` (256 keywords)
-4. Apply to ALL three campaigns
+```text
+Dresses, Swimsuits, Pajamas, Shirts, Sets, Family Outfits
+```
 
----
+### Negative Keyword List
 
-## PRE-LAUNCH CHECKLIST
-Before enabling any campaign, verify ALL of these:
+Create or verify shared list: `Master Negatives - DLM`
 
-- [ ] Networks: Google Search only on all campaigns (no Display)
-- [ ] Location: United States only on all campaigns
-- [ ] Language: English on all campaigns
-- [ ] Negative keyword list "Master Negatives - DLM" applied to all 3 campaigns
-- [ ] Ad strength: "Good" or "Excellent" on all RSAs
-- [ ] Sitelinks + Callouts created and applied
-- [ ] Conversion tracking: "Google Shopping App Purchase" is Primary and status is active
-- [ ] Auto-tagging: ON (verified ✅)
-- [ ] Supplemental feed uploaded to Merchant Center
-- [ ] Budgets: $10 (Brand) + $25 (Non-Brand) + $25 (Shopping) = $60/day total
-- [ ] Old campaigns: ALL still removed/paused (do not touch them)
+Import: `negative-keywords-import.txt`
 
-### Once all items checked: Enable all 3 campaigns
+Apply to:
 
-**Total daily budget at launch: $60/day (~$1,800/month)**
+- `Search - Brand`
+- `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY`
+- Any future Search campaign before it is enabled
 
----
+## Pre-Enable Checklist
 
-## WEEKLY MAINTENANCE (Every Wednesday)
+Before enabling spend, every item must be true:
 
-1. **Search Terms Review:** Google Ads → Insights → Search terms → Last 7 days
-   - Add irrelevant terms to "Master Negatives - DLM"
-   - Note new keyword opportunities
-2. **MC Health Check:** Merchant Center → Diagnostics → check for new issues
-3. **Budget Check:** Are you hitting daily caps? Increase if ROAS > 3x
+- Brand Search and Shopping campaigns are paused and reviewed.
+- Search networks are Google Search only.
+- Location is United States only.
+- Language is English.
+- Shopping campaign includes only `custom_label_4=us_test_ready` and `custom_label_0=paid_eligible`.
+- `Master Negatives - DLM` is applied.
+- Brand RSA has no unsupported shipping/free-return claims.
+- `Google Shopping App Purchase` is the single primary purchase conversion action.
+- Purchase value setting is `Use different values. If there's no value, use 0.`
+- Merchant Center live readback still shows `paid_eligible` and `us_test_ready`.
+- No old paused/removed campaigns are restarted.
+- Operator has explicitly approved the final live budget and enable action.
 
-## TRANSITION TO PERFORMANCE MAX (After 50+ conversions on Shopping)
-Wait until Standard Shopping has 50+ conversions before creating a PMax campaign. Instructions in master plan Phase 6.5.
+## First 7 Days After Enable
+
+- Review search terms every day for the first 3 days, then twice weekly.
+- Add irrelevant terms to `Master Negatives - DLM`.
+- If Shopping spends with no add-to-cart signal after 100 clicks, lower CPC cap or pause weak product groups.
+- If ROAS is below `6.67` after meaningful spend, pause the weak family/product group.
+- If spend is capped and ROAS is above `6.67`, raise Shopping budget by 20 percent increments only.
+- Do not switch to Target ROAS until Shopping has stable conversion volume.

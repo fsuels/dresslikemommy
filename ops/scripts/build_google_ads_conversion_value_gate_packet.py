@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Build a read-only Google Ads purchase conversion-value gate packet.
 
-The packet is intentionally conservative. It records only sanitized browser
-evidence from the logged-in Google Ads conversion screens and blocks Ads work
-unless the account has current proof that purchase conversions are recording
-with non-zero value.
+The packet records sanitized browser evidence from the logged-in Google Ads
+conversion screens. It separates tracking health from ad-attributed results:
+paused campaigns can show zero visible Purchases even when the purchase action
+is receiving tag requests and has recorded non-zero value.
 """
 
 from __future__ import annotations
@@ -16,7 +16,7 @@ import re
 import time
 import urllib.parse
 import urllib.request
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -28,6 +28,7 @@ DEFAULT_OUTPUT_DIR = ROOT / "02_AUDIT_PACKETS/2026-04-29-google-ads-conversion-v
 DEFAULT_CDP_PORT = 9222
 DEFAULT_CUSTOMER_ID = "220823493"
 DEFAULT_TARGET_CONVERSION_NAME = "Google Shopping App Purchase"
+DEFAULT_RECENT_REQUEST_MAX_AGE_DAYS = 7
 
 PURCHASE_CATEGORY_ID = 1
 SOURCE_NAMES = {
@@ -70,6 +71,33 @@ def decimal_value(value: object) -> float:
         return float(text)
     except ValueError:
         return 0.0
+
+
+def google_timestamp_to_datetime(value: object) -> datetime | None:
+    text = clean(value)
+    if not text or text in {"0", "--"}:
+        return None
+    try:
+        raw = int(text)
+    except ValueError:
+        return None
+    if raw <= 0:
+        return None
+    if raw > 10**14:
+        seconds = raw / 1_000_000
+    elif raw > 10**11:
+        seconds = raw / 1_000
+    else:
+        seconds = raw
+    try:
+        return datetime.fromtimestamp(seconds, tz=timezone.utc)
+    except (OverflowError, OSError, ValueError):
+        return None
+
+
+def google_timestamp_to_iso(value: object) -> str:
+    parsed = google_timestamp_to_datetime(value)
+    return parsed.isoformat() if parsed else ""
 
 
 def get_json(url: str) -> Any:
@@ -116,7 +144,10 @@ def capture_page(client: CdpClient) -> dict[str, Any]:
     title: document.title,
     text: document.body ? document.body.innerText : "",
     allEnabledConversions: parseJson(window.conversions_data && window.conversions_data.ALL_ENABLED_CONVERSIONS),
-    automaticConversionGoal: parseJson(window.conversions_data && window.conversions_data.AUTOMATIC_CONVERSION_GOAL)
+    sharedAllEnabledConversions: parseJson(window.conversions_data && window.conversions_data.SHARED_ALL_ENABLED_CONVERSIONS),
+    automaticConversionGoal: parseJson(window.conversions_data && window.conversions_data.AUTOMATIC_CONVERSION_GOAL),
+    ctCustomer: parseJson(window.conversions_data && window.conversions_data.CT_CUSTOMER),
+    allCustomerAppData: parseJson(window.conversions_data && window.conversions_data.ALL_CUSTOMER_APP_DATA)
   };
 })()
 """
@@ -177,17 +208,15 @@ def parse_purchase_goal(text: str) -> dict[str, object]:
     match = re.search(r"Group 3 goals Results ([0-9,.]+) Purchases ([0-9,.]+)", normalized)
     if match:
         purchase_results = decimal_value(match.group(2))
-    active = bool(
-        re.search(
-            r"Account-default\s+.*?Purchase\s+Campaigns\s+73 of 73\s+"
-            r"Primary conversion actions\s+1\s+Status\s+.*?Active",
-            normalized,
-        )
+    goal_match = re.search(
+        r"Account-default\s+.*?Purchase\s+Campaigns\s+([0-9]+\s+of\s+[0-9]+)\s+"
+        r"Primary conversion actions\s+([0-9]+)\s+Status\s+.*?Active",
+        normalized,
     )
     return {
-        "purchase_goal_active": active,
-        "purchase_goal_campaigns": "73 of 73" if "Campaigns 73 of 73" in normalized else "",
-        "purchase_goal_primary_conversion_actions": 1 if "Primary conversion actions 1" in normalized else None,
+        "purchase_goal_active": bool(goal_match),
+        "purchase_goal_campaigns": clean(goal_match.group(1)) if goal_match else "",
+        "purchase_goal_primary_conversion_actions": int(goal_match.group(2)) if goal_match else None,
         "purchase_goal_results": purchase_results,
     }
 
@@ -202,6 +231,19 @@ def stats_from_row(row: dict[str, Any]) -> dict[str, object]:
         "all_conversions_raw": decimal_value(raw_values[1]) if len(raw_values) > 1 else 0.0,
         "all_conversion_value_raw": decimal_value(raw_values[2]) if len(raw_values) > 2 else 0.0,
         "last_received_request_time_raw": clean(raw_values[3]) if len(raw_values) > 3 else "",
+    }
+
+
+def shared_stats_from_row(row: dict[str, Any]) -> dict[str, object]:
+    raw_values = []
+    stats = row.get("200")
+    if isinstance(stats, dict):
+        raw_values = stats.get("1") or []
+    return {
+        "shared_last_conversion_date_raw": clean(raw_values[0]) if len(raw_values) > 0 else "",
+        "shared_last_received_request_time_raw": clean(raw_values[1]) if len(raw_values) > 1 else "",
+        "shared_all_conversion_value_raw": decimal_value(raw_values[2]) if len(raw_values) > 2 else 0.0,
+        "shared_all_conversions_raw": decimal_value(raw_values[3]) if len(raw_values) > 3 else 0.0,
     }
 
 
@@ -220,6 +262,19 @@ def normalize_conversion_row(row: dict[str, Any]) -> dict[str, object]:
     }
 
 
+def normalize_shared_conversion_row(row: dict[str, Any]) -> dict[str, object]:
+    source_id = row.get("11")
+    return {
+        "conversion_action_id": clean(row.get("1")),
+        "conversion_action": clean(row.get("3")),
+        "conversion_source": SOURCE_NAMES.get(source_id, f"raw_source_{source_id}"),
+        "action_optimization": "Primary" if row.get("9") is True else "Secondary",
+        "included_in_account_level_goals": bool(row.get("77")),
+        "category_id": row.get("10"),
+        **shared_stats_from_row(row),
+    }
+
+
 def purchase_rows(payload: dict[str, Any]) -> list[dict[str, object]]:
     rows = payload.get("1", []) if isinstance(payload, dict) else []
     out = [
@@ -228,6 +283,54 @@ def purchase_rows(payload: dict[str, Any]) -> list[dict[str, object]]:
         if isinstance(row, dict) and row.get("10") == PURCHASE_CATEGORY_ID
     ]
     return sorted(out, key=lambda row: clean(row["conversion_action"]))
+
+
+def shared_purchase_rows(payload: dict[str, Any]) -> list[dict[str, object]]:
+    rows = payload.get("1", []) if isinstance(payload, dict) else []
+    out = [
+        normalize_shared_conversion_row(row)
+        for row in rows
+        if isinstance(row, dict) and row.get("10") == PURCHASE_CATEGORY_ID
+    ]
+    return sorted(out, key=lambda row: clean(row["conversion_action"]))
+
+
+def tracking_ids_from_payloads(*payloads: Any) -> dict[str, list[str]]:
+    text = json.dumps(payloads, sort_keys=True)
+    ads_ids = sorted(set(re.findall(r"\bAW-\d+\b", text)))
+    send_to_ids = sorted(set(re.findall(r"\bAW-\d+/[A-Za-z0-9_-]+\b", text)))
+    ga4_ids = sorted(set(re.findall(r"\bG-[A-Z0-9]+\b", text)))
+    return {
+        "google_ads_tag_ids": ads_ids,
+        "conversion_send_to_ids": send_to_ids,
+        "ga4_measurement_ids": ga4_ids,
+    }
+
+
+def target_snippet_evidence(shared_payload: dict[str, Any], target_conversion_name: str) -> dict[str, object]:
+    rows = shared_payload.get("1", []) if isinstance(shared_payload, dict) else []
+    snippets: list[str] = []
+    for row in rows:
+        if not isinstance(row, dict) or row.get("3") != target_conversion_name:
+            continue
+        for snippet in row.get("64", []) or []:
+            if isinstance(snippet, dict):
+                snippets.extend(clean(snippet.get(key)) for key in ("3", "4") if snippet.get(key))
+    snippet_text = "\n".join(snippets)
+    default_value_zero = bool(re.search(r"['\"]value['\"]\s*:\s*0(?:\.0)?", snippet_text))
+    blank_transaction_id = bool(re.search(r"['\"]transaction_id['\"]\s*:\s*['\"]\s*['\"]", snippet_text))
+    return {
+        "manual_snippet_present": bool(snippets),
+        "manual_snippet_conversion_send_to_ids": sorted(set(re.findall(r"\bAW-\d+/[A-Za-z0-9_-]+\b", snippet_text))),
+        "manual_snippet_default_value_zero": default_value_zero,
+        "manual_snippet_blank_transaction_id": blank_transaction_id,
+        "manual_snippet_note": (
+            "Google Ads default manual snippets show placeholder value/transaction_id fields. "
+            "They are captured as diagnostics only; the Shopify Google & YouTube app owns runtime purchase values."
+            if snippets
+            else ""
+        ),
+    }
 
 
 def parse_setting(lines: list[str], label: str) -> str:
@@ -290,6 +393,7 @@ def capture_from_cdp(cdp_port: int, customer_id: str, target_conversion_name: st
             timeout_seconds=60,
         )
         rows = purchase_rows(list_capture.get("allEnabledConversions") or {})
+        shared_rows = shared_purchase_rows(list_capture.get("sharedAllEnabledConversions") or {})
         target_rows = [row for row in rows if row["conversion_action"] == target_conversion_name]
         target_id = clean(target_rows[0]["conversion_action_id"]) if target_rows else ""
         detail_capture: dict[str, Any] = {}
@@ -321,12 +425,30 @@ def capture_from_cdp(cdp_port: int, customer_id: str, target_conversion_name: st
                 "sanitized_visible_text_excerpt": sanitize_text_excerpt(detail_capture.get("text", "")),
             },
             "purchase_conversion_actions": rows,
+            "shared_purchase_conversion_actions": shared_rows,
+            "tracking_implementation_evidence": {
+                **tracking_ids_from_payloads(
+                    list_capture.get("sharedAllEnabledConversions"),
+                    list_capture.get("ctCustomer"),
+                    list_capture.get("allCustomerAppData"),
+                ),
+                **target_snippet_evidence(
+                    list_capture.get("sharedAllEnabledConversions") or {},
+                    target_conversion_name,
+                ),
+            },
         }
     finally:
         client.close()
 
 
-def evaluate_gate(capture: dict[str, Any], target_conversion_name: str) -> dict[str, object]:
+def evaluate_gate(
+    capture: dict[str, Any],
+    target_conversion_name: str,
+    *,
+    now: datetime | None = None,
+    recent_request_max_age_days: int = DEFAULT_RECENT_REQUEST_MAX_AGE_DAYS,
+) -> dict[str, object]:
     purchase_goal = capture.get("list_page", {}).get("purchase_goal", {})
     rows = capture.get("purchase_conversion_actions", [])
     target_rows = [
@@ -349,6 +471,18 @@ def evaluate_gate(capture: dict[str, Any], target_conversion_name: str) -> dict[
     value_setting = clean(settings.get("value_setting"))
     variable_value_setting = "Use different values" in value_setting
     target_value_evidence_present = variable_value_setting or historical_value_present
+    last_request_raw = target.get("last_received_request_time_raw", "") if target else ""
+    last_request_dt = google_timestamp_to_datetime(last_request_raw)
+    reference_dt = now or datetime.now(timezone.utc)
+    if reference_dt.tzinfo is None:
+        reference_dt = reference_dt.replace(tzinfo=timezone.utc)
+    last_request_age_days = None
+    if last_request_dt:
+        last_request_age_days = (reference_dt - last_request_dt).total_seconds() / 86400
+    target_recent_request_present = (
+        last_request_age_days is not None
+        and 0 <= last_request_age_days <= recent_request_max_age_days
+    )
 
     gate_passed = bool(
         purchase_goal.get("purchase_goal_active")
@@ -357,9 +491,10 @@ def evaluate_gate(capture: dict[str, Any], target_conversion_name: str) -> dict[
         and target.get("action_optimization") == "Primary"
         and target.get("included_in_account_level_goals") is True
         and target_value_evidence_present
-        and current_purchase_results_passed
+        and target_recent_request_present
     )
     blockers: list[str] = []
+    advisories: list[str] = []
     if not purchase_goal.get("purchase_goal_active"):
         blockers.append("Purchase goal is not proven Active in the visible Google Ads summary.")
     if len(primary_account_level_purchase_rows) != 1:
@@ -370,16 +505,36 @@ def evaluate_gate(capture: dict[str, Any], target_conversion_name: str) -> dict[
         blockers.append(f"Target purchase action `{target_conversion_name}` is not the primary account-level action.")
     if not target_value_evidence_present:
         blockers.append("No target purchase action value setting or historical value evidence is proven.")
+    if not target_recent_request_present:
+        blockers.append(
+            f"Target purchase action has no received request within the last {recent_request_max_age_days} days."
+        )
     if not current_purchase_results_passed:
-        blockers.append("Visible Purchase results are 0 for the current Google Ads date range.")
+        advisories.append(
+            "Visible Purchase results are 0 for the captured Google Ads date range. "
+            "That is attributed Ads activity, not tag-fire proof, and can be expected while campaigns are paused."
+        )
+    implementation_evidence = capture.get("tracking_implementation_evidence", {})
+    if implementation_evidence.get("manual_snippet_default_value_zero"):
+        advisories.append(
+            "Google Ads default manual snippets show value 0.0 and blank transaction_id placeholders; "
+            "do not paste those snippets into the theme. Runtime purchase tracking should stay with Shopify Google & YouTube."
+        )
+    if gate_passed and current_purchase_results_passed:
+        status = "PASS_PURCHASE_CONVERSION_VALUE_RECORDING_WITH_CURRENT_AD_ATTRIBUTION"
+    elif gate_passed:
+        status = "PASS_PURCHASE_CONVERSION_VALUE_TRACKING_VERIFIED__NO_CURRENT_AD_ATTRIBUTION"
+    else:
+        status = "BLOCKED_PURCHASE_CONVERSION_VALUE_TRACKING_NOT_VERIFIED"
 
     return {
-        "purchase_conversion_value_gate_status": (
-            "PASS_PURCHASE_CONVERSION_VALUE_RECORDING"
-            if gate_passed
-            else "BLOCKED_PURCHASE_CONVERSION_VALUE_NOT_RECORDING_RECENTLY"
-        ),
+        "purchase_conversion_value_gate_status": status,
         "purchase_conversion_value_gate_passed": gate_passed,
+        "campaign_enable_allowed": False,
+        "campaign_enable_blockers": [
+            "No campaign was enabled or restarted by this packet.",
+            "Explicit operator approval is still required before enabling any campaign.",
+        ],
         "target_conversion_action": target_conversion_name,
         "purchase_goal_active": bool(purchase_goal.get("purchase_goal_active")),
         "purchase_goal_results": purchase_results,
@@ -393,10 +548,19 @@ def evaluate_gate(capture: dict[str, Any], target_conversion_name: str) -> dict[
         "target_value_evidence_present": target_value_evidence_present,
         "target_historical_value_present_in_raw_stats": historical_value_present,
         "target_last_conversion_date_raw": target.get("last_conversion_date_raw", ""),
+        "target_last_received_request_time_raw": last_request_raw,
+        "target_last_received_request_time_iso": google_timestamp_to_iso(last_request_raw),
+        "target_last_received_request_age_days": (
+            round(last_request_age_days, 3) if last_request_age_days is not None else None
+        ),
+        "target_recent_request_present": target_recent_request_present,
+        "recent_request_max_age_days": recent_request_max_age_days,
         "target_all_conversions_raw": target_conversions_raw,
         "target_all_conversion_value_raw": target_value_raw,
         "current_purchase_results_passed": current_purchase_results_passed,
+        "tracking_implementation_evidence": implementation_evidence,
         "blockers": blockers,
+        "advisories": advisories,
     }
 
 
@@ -439,6 +603,9 @@ def render_report(summary: dict[str, Any]) -> str:
         f"- Target value evidence present: `{gate['target_value_evidence_present']}`",
         f"- Target raw historical conversions/value present: `{gate['target_historical_value_present_in_raw_stats']}`",
         f"- Target raw last conversion date: `{gate['target_last_conversion_date_raw']}`",
+        f"- Target last received request: `{gate['target_last_received_request_time_iso']}`",
+        f"- Target recent request present: `{gate['target_recent_request_present']}`",
+        f"- Campaign enable allowed by this packet: `{gate['campaign_enable_allowed']}`",
         "",
         "## Target Action Settings",
         "",
@@ -448,6 +615,13 @@ def render_report(summary: dict[str, Any]) -> str:
         f"- Source: `{detail_settings.get('source', '')}`",
         f"- Count: `{detail_settings.get('count', '')}`",
         f"- Click-through window: `{detail_settings.get('click_through_conversion_window', '')}`",
+        "",
+        "## Tracking Implementation Evidence",
+        "",
+        f"- Google Ads tag IDs: `{json.dumps(gate.get('tracking_implementation_evidence', {}).get('google_ads_tag_ids', []))}`",
+        f"- Conversion send_to IDs: `{json.dumps(gate.get('tracking_implementation_evidence', {}).get('conversion_send_to_ids', []))}`",
+        f"- GA4 measurement IDs: `{json.dumps(gate.get('tracking_implementation_evidence', {}).get('ga4_measurement_ids', []))}`",
+        f"- Manual snippet default value zero: `{gate.get('tracking_implementation_evidence', {}).get('manual_snippet_default_value_zero', '')}`",
         "",
         "## Purchase Conversion Actions",
         "",
@@ -472,9 +646,13 @@ def render_report(summary: dict[str, Any]) -> str:
             "",
             *(f"- {blocker}" for blocker in gate.get("blockers", [])),
             "",
+            "## Advisories",
+            "",
+            *(f"- {advisory}" for advisory in gate.get("advisories", [])),
+            "",
             "## Gate Rule",
             "",
-            "The gate passes only when the Purchase goal is active, exactly one primary account-level purchase action is present, the target purchase action uses transaction-specific values, and current Google Ads evidence shows non-zero purchase results/value. Historical raw value is useful context but is not enough to restart or build actionable Ads work.",
+            "The tracking gate passes when the Purchase goal is active, exactly one primary account-level purchase action is present, the target action has value evidence, and the target action has a recent received request. Visible Purchase results are treated as attributed Ads results, not the sole tracking-health signal. This packet never enables campaigns.",
             "",
         ]
     )

@@ -1,13 +1,13 @@
 # Google Shopping Campaign Gate Report
 
-Generated: 2026-04-29T05:32:48
+Generated: 2026-04-29T06:08:50
 
 ## Decision
 
-`DRY_RUN_STRUCTURE_ONLY_NOT_ACTIONABLE__PURCHASE_VALUE_BLOCKED`
+`READY_FOR_PAUSED_ADS_DRY_RUN_BUILD_WITH_FULL_LABEL_JOIN_AND_PURCHASE_VALUE_PROOF`
 
 The local paid cohort is real and verified. Do not enable or restart Google Ads from this packet.
-Ads dry-run actionable allowed: `False`
+Ads dry-run actionable allowed: `True`
 
 ## Verified Local Cohort
 
@@ -31,27 +31,31 @@ Ads dry-run actionable allowed: `False`
 - Supplemental label join allowed: `True`
 - Observed US/en sample rows: `[{"custom_label_0": "paid_eligible", "custom_label_1": "margin_medium", "custom_label_2": "mommy_me", "custom_label_3": "aov_medium", "custom_label_4": "us_test_ready", "feed_label": "US", "language_code": "en", "last_updated_utc": "2026-04-29T08:25:05+00:00", "source_id": "10627623003", "source_name": "Shopify App API"}]`
 - Sample label mismatches: `[]`
-- Evidence artifact: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-emergency-recheck/merchant_exact_label_readback_refresh_check.json`
+- Evidence artifact: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-final-live-refresh/merchant_exact_label_readback_refresh_check.json`
 
 ## Purchase Conversion-Value Gate
 
-- Gate: `BLOCKED_PURCHASE_CONVERSION_VALUE_NOT_RECORDING_RECENTLY`
-- Gate passed: `False`
+- Gate: `PASS_PURCHASE_CONVERSION_VALUE_TRACKING_VERIFIED__NO_CURRENT_AD_ATTRIBUTION`
+- Gate passed: `True`
 - Purchase goal active: `True`
 - Purchase results in captured range: `0.0`
 - Target action: `Google Shopping App Purchase`
 - Target primary/account-level: `True`
 - Target raw last conversion date: `20260128`
+- Target last received request: `2026-04-25T23:55:54.592430+00:00`
+- Target recent request present: `True`
+- Campaign enable allowed by conversion packet: `False`
+- Advisories: `["Visible Purchase results are 0 for the captured Google Ads date range. That is attributed Ads activity, not tag-fire proof, and can be expected while campaigns are paused.", "Google Ads default manual snippets show value 0.0 and blank transaction_id placeholders; do not paste those snippets into the theme. Runtime purchase tracking should stay with Shopify Google & YouTube."]`
 - Evidence artifact: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-google-ads-conversion-value-gate/google_ads_conversion_value_gate_summary.json`
 
 ## Ads Dry-Run Actionability
 
-- Actionable allowed: `False`
-- Blockers: `["Visible Purchase results are 0 for the current Google Ads date range."]`
+- Actionable allowed: `True`
+- Blockers: `[]`
 
 ## Post-Gate Google Ads Structure
 
-Do not restart Google Ads yet. This is a dry-run structure for use only after the named gates pass. It is not actionable while `ads_dry_run_actionable_allowed` is false.
+Do not restart Google Ads yet. This structure is actionable only for paused build/readback review after explicit operator approval; it is not campaign launch approval.
 
 | Campaign | Use only after | Required exclusions |
 | --- | --- | --- |
@@ -76,4 +80,4 @@ Do not solve this by writing one Shopify product-level paid label onto every pro
 
 ## Next Action
 
-Do not build or restart Ads from this packet. Produce current purchase conversion-value proof with non-zero purchase results/value before the dry-run structure becomes actionable.
+Do not enable or restart Ads from this packet. The next allowable step, only after explicit operator approval, is a paused-only Google Ads build/readback review with campaigns left off.
