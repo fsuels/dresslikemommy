@@ -764,8 +764,9 @@
         if (!element || !dateWindow) return;
 
         var fallback = element.getAttribute('data-delivery-fallback') || element.textContent || '';
+        var prefix = element.getAttribute('data-delivery-prefix') || 'Estimated delivery:';
         var updated = fallback.replace(/\b\d+\s*[-–]\s*\d+\s+business days\b/i, dateWindow);
-        element.textContent = updated === fallback ? 'Estimated delivery: ' + dateWindow : updated;
+        element.textContent = updated === fallback ? prefix + ' ' + dateWindow : updated;
       }
 
       function setDeliveryRowVisibility(element, isVisible) {

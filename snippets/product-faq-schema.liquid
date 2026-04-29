@@ -28,8 +28,25 @@
       assign faq_delimiter = ','
     endif
 
+    assign shipping_label = 'products.additional_info.free_shipping_label' | t
+    assign shipping_intro = 'products.additional_info.estimated_delivery' | t
+    assign shipping_window = 'products.additional_info.standard_delivery_window' | t
+    if shipping_label == blank or shipping_label contains 'translation missing'
+      assign shipping_label = 'FREE Shipping'
+    endif
+    if shipping_intro == blank or shipping_intro contains 'translation missing'
+      assign shipping_intro = 'Estimated delivery:'
+    endif
+    if shipping_window == blank or shipping_window contains 'translation missing'
+      assign shipping_window = '12-15 business days'
+    endif
+
     capture shipping_answer
-      echo 'FREE Shipping. Estimated delivery: 12-15 business days.'
+      echo shipping_label
+      echo '. '
+      echo shipping_intro
+      echo ' '
+      echo shipping_window
     endcapture
     assign shipping_answer = shipping_answer | strip | strip_newlines | replace: '  ', ' '
 
