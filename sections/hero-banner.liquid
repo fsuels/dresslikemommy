@@ -88,31 +88,33 @@
   .hero-banner__cta {
     position: relative;
     z-index: 4;
-    display: inline-flex;
+    display: inline-block !important;
     align-items: center;
     justify-content: center;
     min-height: 48px;
     color: {{ section.settings.button_text_color }};
-    padding: 12px 24px;
-    font-size: 15px;
+    padding: 16px 40px !important;
+    font-size: 12px !important;
     font-weight: 700;
     text-decoration: none;
-    border-radius: 999px;
+    border-radius: 50px !important;
     transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
-    letter-spacing: 0.04em;
+    letter-spacing: 2.5px !important;
+    text-transform: uppercase !important;
     white-space: nowrap;
   }
   .hero-banner__cta--primary {
-    background: {{ section.settings.button_color }};
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
   }
   .hero-banner__cta--secondary {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.35);
   }
   .hero-banner__cta:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px) !important;
     opacity: 0.94;
+    box-shadow: 0 8px 25px rgba(232, 93, 58, 0.3) !important;
   }
   .hero-banner__trust {
     display: flex;
@@ -856,7 +858,32 @@
         reducedMotion.addEventListener('change', queueAutoplay);
       }
 
-      queueAutoplay();
+      function queueInitialAutoplay() {
+        const startAutoplay = () => {
+          if (userPaused) return;
+          queueAutoplay();
+        };
+
+        const startWhenIdle = () => {
+          window.setTimeout(() => {
+            if ('requestIdleCallback' in window) {
+              window.requestIdleCallback(startAutoplay, { timeout: 3000 });
+              return;
+            }
+
+            startAutoplay();
+          }, 2500);
+        };
+
+        if (document.readyState === 'complete') {
+          startWhenIdle();
+          return;
+        }
+
+        window.addEventListener('load', startWhenIdle, { once: true });
+      }
+
+      queueInitialAutoplay();
     })();
   </script>
 {%- endif -%}

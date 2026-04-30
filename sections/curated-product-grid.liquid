@@ -143,9 +143,6 @@
           {%- endif -%}
           {%- liquid
             assign spotlight_fetchpriority = 'low'
-            if forloop.first
-              assign spotlight_fetchpriority = 'high'
-            endif
 
             assign spotlight_static_theme_asset = blank
             assign spotlight_static_theme_asset_alt = blank
@@ -161,7 +158,7 @@
               spotlight_collection: block.settings.secondary_collection,
               spotlight_rotation_collection: block.settings.secondary_collection,
               spotlight_collection_link_label: block.settings.collection_link_label,
-              lazy_load: false,
+              lazy_load: true,
               spotlight_fetchpriority: spotlight_fetchpriority,
               section_id: section.id,
               image_sizes: '(min-width: 990px) 46vw, (min-width: 750px) 42vw, 92vw'

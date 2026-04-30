@@ -213,7 +213,9 @@
 
 <!-- CSS Stylesheets -->
 {{ 'base.css' | asset_url | stylesheet_tag }}
-{{ 'customer.css' | asset_url | stylesheet_tag }}
+{%- if request.page_type contains 'customers' or template.directory == 'customers' -%}
+  {{ 'customer.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 
 <!-- Remove Critical CSS Files -->
 <!--
@@ -319,6 +321,25 @@
   {%- endif -%}
 
   <style>
+    html.dlm-shopify-privacy-banner-visible #shopify-pc__banner,
+    html.dlm-shopify-privacy-banner-visible .shopify-pc__banner__wrapper {
+      box-sizing: border-box;
+      min-height: 256px !important;
+    }
+
+    html.dlm-shopify-privacy-banner-visible #shopify-pc__banner {
+      max-height: calc(100vh - 2rem);
+      overflow: auto;
+    }
+
+    @media screen and (max-width: 749px) {
+      html.dlm-shopify-privacy-banner-visible #shopify-pc__banner,
+      html.dlm-shopify-privacy-banner-visible .shopify-pc__banner__wrapper {
+        min-height: 390px !important;
+      }
+    }
+
+    html:not(.dlm-shopify-privacy-banner-visible) #shopify-pc__banner,
     html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__banner__wrapper,
     html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__prefs,
     html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__prefs__overlay,
@@ -333,6 +354,7 @@
       var root = document.documentElement;
       var visibilityClass = 'dlm-shopify-privacy-banner-visible';
       var bannerSelectors = [
+        '#shopify-pc__banner',
         '.shopify-pc__banner__wrapper',
         '.shopify-pc__prefs',
         '.shopify-pc__prefs__overlay',
@@ -623,9 +645,13 @@
 
     {%- liquid
       assign body_font_preload_url = blank
+      assign body_font_bold_preload_url = blank
       assign header_font_preload_url = blank
       unless settings.type_body_font.system?
         assign body_font_preload_url = settings.type_body_font | font_url
+      endunless
+      unless body_font_bold.system?
+        assign body_font_bold_preload_url = body_font_bold | font_url
       endunless
       unless settings.type_header_font.system?
         assign header_font_preload_url = settings.type_header_font | font_url
@@ -635,6 +661,11 @@
     {%- if body_font_preload_url != blank -%}
       {% comment %}theme-check-disable AssetPreload, RemoteAsset{% endcomment %}
       <link rel="preload" as="font" href="{{ body_font_preload_url }}" type="font/woff2" crossorigin>
+      {% comment %}theme-check-enable AssetPreload, RemoteAsset{% endcomment %}
+    {%- endif -%}
+    {%- if body_font_bold_preload_url != blank and body_font_bold_preload_url != body_font_preload_url and body_font_bold_preload_url != header_font_preload_url -%}
+      {% comment %}theme-check-disable AssetPreload, RemoteAsset{% endcomment %}
+      <link rel="preload" as="font" href="{{ body_font_bold_preload_url }}" type="font/woff2" crossorigin>
       {% comment %}theme-check-enable AssetPreload, RemoteAsset{% endcomment %}
     {%- endif -%}
     {%- if header_font_preload_url != blank and header_font_preload_url != body_font_preload_url -%}
@@ -970,33 +1001,60 @@
     
     
 
-    <link rel="stylesheet" href="{{ 'theme-inline-body-static-01.css' | asset_url }}">
+    {%- liquid
+      assign is_product_template = false
+      assign is_collection_template = false
+      assign is_search_template = false
+
+      if request.page_type == 'product' or template.name == 'product'
+        assign is_product_template = true
+      endif
+      if request.page_type == 'collection' or template.name == 'collection'
+        assign is_collection_template = true
+      endif
+      if request.page_type == 'search' or template.name == 'search'
+        assign is_search_template = true
+      endif
+    -%}
+
+    {%- if is_collection_template or is_search_template -%}
+      <link rel="stylesheet" href="{{ 'theme-inline-body-static-01.css' | asset_url }}">
+    {%- endif -%}
 
 {% if template.name == 'product' %}
   <script>window.__dlmI18n = window.__dlmI18n || {}; window.__dlmI18n.selectSize = {{ 'products.product.select_size' | t | json }};</script>
   <script defer src="{{ 'size-conversion.js' | asset_url }}"></script>
-  <script defer src="{{ 'product-description.js' | asset_url }}"></script>
 {% endif %}
 
-<link rel="stylesheet" href="{{ 'theme-inline-body-static-02.css' | asset_url }}">
+{%- if is_product_template -%}
+  <link rel="stylesheet" href="{{ 'theme-inline-body-static-02.css' | asset_url }}">
+{%- endif -%}
 
-    <link rel="stylesheet" href="{{ 'theme-inline-body-static-03.css' | asset_url }}">
+    {%- if is_product_template or is_collection_template -%}
+      <link rel="stylesheet" href="{{ 'theme-inline-body-static-03.css' | asset_url }}">
+    {%- endif -%}
 
 
   
-    <link rel="stylesheet" href="{{ 'theme-inline-body-static-04.css' | asset_url }}">
+    {%- if is_product_template -%}
+      <link rel="stylesheet" href="{{ 'theme-inline-body-static-04.css' | asset_url }}">
+    {%- endif -%}
 
     <link rel="stylesheet" href="{{ 'theme-inline-body-static-05.css' | asset_url }}">
 
  <link rel="stylesheet" href="{{ 'theme-inline-body-static-06.css' | asset_url }}">
 
-  <link rel="stylesheet" href="{{ 'theme-inline-body-static-07.css' | asset_url }}">
+  {%- if is_collection_template -%}
+    <link rel="stylesheet" href="{{ 'theme-inline-body-static-07.css' | asset_url }}">
+  {%- endif -%}
 
 <link rel="stylesheet" href="{{ 'theme-inline-body-static-08.css' | asset_url }}">
 
 
 
-  <link rel="stylesheet" href="{{ 'theme-inline-body-static-09.css' | asset_url }}">
+  {%- if is_product_template -%}
+    <link rel="stylesheet" href="{{ 'theme-inline-body-static-09.css' | asset_url }}">
+  {%- endif -%}
 
 <style>
 @media screen and (max-width: 767px) {
@@ -1256,7 +1314,6 @@
   }
 }
 </style>
-{{ 'component-product-description.css' | asset_url | stylesheet_tag }}
 {% endif %}
 <style>
 @media only screen and (max-width: 749px) {

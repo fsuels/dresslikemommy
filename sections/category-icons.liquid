@@ -179,6 +179,18 @@
                       echo candidate_key | json
                       echo ',"src":'
                       echo candidate_media | image_url: width: 900 | json
+                      echo ',"srcset":'
+                      capture candidate_srcset
+                        echo candidate_media | image_url: width: 320
+                        echo ' 320w, '
+                        echo candidate_media | image_url: width: 480
+                        echo ' 480w, '
+                        echo candidate_media | image_url: width: 640
+                        echo ' 640w, '
+                        echo candidate_media | image_url: width: 900
+                        echo ' 900w'
+                      endcapture
+                      echo candidate_srcset | strip | json
                       echo ',"alt":'
                       echo candidate_alt | json
                       echo ',"width":360,"height":450'
@@ -233,8 +245,12 @@
                       {%- if icon_image != blank -%}
                         <img
                           src="{{ icon_image | image_url: width: 900 }}"
+                          srcset="{{ icon_image | image_url: width: 320 }} 320w, {{ icon_image | image_url: width: 480 }} 480w, {{ icon_image | image_url: width: 640 }} 640w, {{ icon_image | image_url: width: 900 }} 900w"
+                          sizes="(min-width: 990px) 46vw, (min-width: 750px) 36vw, 86vw"
                           alt="{{ icon_image_alt | escape }}"
-                          loading="eager"
+                          loading="lazy"
+                          fetchpriority="low"
+                          decoding="async"
                           width="360"
                           height="450"
                           data-homepage-collection-image
@@ -331,6 +347,18 @@
                       echo candidate_key | json
                       echo ',"src":'
                       echo candidate_media | image_url: width: 900 | json
+                      echo ',"srcset":'
+                      capture candidate_srcset
+                        echo candidate_media | image_url: width: 320
+                        echo ' 320w, '
+                        echo candidate_media | image_url: width: 480
+                        echo ' 480w, '
+                        echo candidate_media | image_url: width: 640
+                        echo ' 640w, '
+                        echo candidate_media | image_url: width: 900
+                        echo ' 900w'
+                      endcapture
+                      echo candidate_srcset | strip | json
                       echo ',"alt":'
                       echo candidate_alt | json
                       echo ',"width":360,"height":450'
@@ -385,8 +413,12 @@
                       {%- if icon_image != blank -%}
                         <img
                           src="{{ icon_image | image_url: width: 900 }}"
+                          srcset="{{ icon_image | image_url: width: 320 }} 320w, {{ icon_image | image_url: width: 480 }} 480w, {{ icon_image | image_url: width: 640 }} 640w, {{ icon_image | image_url: width: 900 }} 900w"
+                          sizes="(min-width: 990px) 46vw, (min-width: 750px) 36vw, 86vw"
                           alt="{{ icon_image_alt | escape }}"
-                          loading="eager"
+                          loading="lazy"
+                          fetchpriority="low"
+                          decoding="async"
                           width="360"
                           height="450"
                           data-homepage-collection-image
@@ -470,6 +502,18 @@
                   echo candidate_key | json
                   echo ',"src":'
                   echo candidate_media | image_url: width: 900 | json
+                  echo ',"srcset":'
+                  capture candidate_srcset
+                    echo candidate_media | image_url: width: 320
+                    echo ' 320w, '
+                    echo candidate_media | image_url: width: 480
+                    echo ' 480w, '
+                    echo candidate_media | image_url: width: 640
+                    echo ' 640w, '
+                    echo candidate_media | image_url: width: 900
+                    echo ' 900w'
+                  endcapture
+                  echo candidate_srcset | strip | json
                   echo ',"alt":'
                   echo candidate_alt | json
                   echo ',"width":360,"height":450'
@@ -524,8 +568,12 @@
                   {%- if icon_image != blank -%}
                     <img
                       src="{{ icon_image | image_url: width: 900 }}"
+                      srcset="{{ icon_image | image_url: width: 320 }} 320w, {{ icon_image | image_url: width: 480 }} 480w, {{ icon_image | image_url: width: 640 }} 640w, {{ icon_image | image_url: width: 900 }} 900w"
+                      sizes="(min-width: 990px) 46vw, (min-width: 750px) 36vw, 86vw"
                       alt="{{ icon_image_alt | escape }}"
-                      loading="eager"
+                      loading="lazy"
+                      fetchpriority="low"
+                      decoding="async"
                       width="360"
                       height="450"
                       data-homepage-collection-image

@@ -260,6 +260,12 @@
         {%- assign render_size_help = true -%}
       {%- endif -%}
       {%- if render_size_help -%}
+        {%- liquid
+          assign has_size_guide_source = false
+          if product.description contains '<table' or product.description contains 'size-chart'
+            assign has_size_guide_source = true
+          endif
+        -%}
         <div
           id="size-conversion-message"
           class="product-form__size-conversion-message"
@@ -268,8 +274,16 @@
           aria-atomic="true"
           hidden
         ></div>
-        <div class="matching-size-guide__snapshot" data-matching-size-guide-snapshot hidden></div>
-        <details class="matching-size-guide" data-matching-size-guide hidden>
+        <div
+          class="matching-size-guide__snapshot{% if has_size_guide_source %} matching-size-guide__snapshot--reserved{% endif %}"
+          data-matching-size-guide-snapshot
+          {% unless has_size_guide_source %}hidden{% endunless %}
+        ></div>
+        <details
+          class="matching-size-guide"
+          data-matching-size-guide
+          {% unless has_size_guide_source %}hidden{% endunless %}
+        >
           <summary>{{ size_guide_summary_label }}</summary>
           <div class="matching-size-guide__content" data-matching-size-guide-content></div>
         </details>

@@ -26447,3 +26447,181 @@ Residual:
 - No live spend was enabled; Brand Search and Standard Shopping remain paused.
 - The final launch gate remains blocked until real purchase/payment event proof, spend/economics exports, and explicit operator enable approval are complete.
 - The unused Google Ads web Brand draft can be ignored; do not publish it.
+
+2026-04-30 10:26 EDT - PageSpeed Phase 1 baseline inventory and before-captures
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-pagespeed-phase-1-baseline-before-captures
+
+Why:
+- User asked to start Phase 1 of the PageSpeed/UX remediation plan: generate the full live URL inventory and run before-baseline PSI/browser capture before any code changes.
+
+Actions:
+- Created baseline artifact directory: `ops/reports/pagespeed-baseline-2026-04-30T093756-0400/`.
+- Fetched public Shopify sitemaps from `https://www.dresslikemommy.com/sitemap.xml` and all 84 child sitemaps with no fetch errors.
+- Generated full localized URL inventory:
+  - `8,784` public localized routes total.
+  - `424` unique canonical/default paths.
+  - Counts: `6,027` product, `945` collection, `1,407` article, `357` page, `21` homepage, `21` blog index, plus manual utility routes for collections index, cart, search, customer login/register, and 404.
+- Attempted scalable PageSpeed Insights API capture for default canonical routes, mobile and desktop. Google returned `429 RESOURCE_EXHAUSTED` with default daily quota `0` for this environment, so full PSI API JSON capture is blocked until a valid PSI API key/quota is available.
+- Captured official `pagespeed.web.dev` UI evidence for representative theme surfaces: homepage, two collection pages, PDP, blog index, article, contact page, collections index, cart, and search. Excluded hosted customer login and intentional 404 from PSI UI scoring because they are not normal theme-controlled success pages.
+- Ran local Lighthouse mobile/desktop JSON+HTML reports for the same representative route set plus customer login and 404 attempts.
+- Ran browser before-captures at `390x844` mobile and `1440x1000` desktop for homepage, collections, PDP, blog index, article, contact page, collections index, cart, search, customer login redirect, and 404:
+  - Above-the-fold screenshots for all routes/viewports.
+  - Full-page screenshots for homepage, collections, PDP, blog index, article, and search.
+  - Console warning/error JSON, network issue JSON, broken visible image checks, and horizontal overflow checks.
+- Wrote summary report: `ops/reports/pagespeed-baseline-2026-04-30T093756-0400/PHASE-1-BASELINE-REPORT.md`.
+
+Key baseline findings:
+- Theme-controlled representative pages rendered with `0` broken visible images and no horizontal overflow in both mobile and desktop browser captures.
+- Customer login redirects to `account.dresslikemommy.com` and is not theme-controlled; headless capture returned hosted-account `403` auth behavior.
+- 404 route returned HTTP `404` as expected while still rendering the storefront shell.
+- Official PSI UI highlights:
+  - Homepage: mobile performance `53`, desktop `38`.
+  - Product representative: mobile performance `23` with CLS `0.231`; desktop score extraction did not complete in the automation window, but screenshot/text evidence was saved.
+  - Contact page: mobile performance `77`, desktop `94`.
+- Local Lighthouse lab highlights:
+  - PDP is the biggest layout-risk target: mobile performance `52` with CLS `0.889`, desktop performance `33` with CLS `0.385`.
+  - Homepage desktop lab run showed performance `37` with very high LCP in that run.
+  - Search mobile showed performance `54` with CLS `0.364`.
+  - Contact page was the clean control page: mobile performance `100`, desktop `83`.
+- Common browser baseline noise:
+  - `shop.app/pay/hop` frame blocked by CSP / 403, likely Shop Pay accelerated checkout frame behavior.
+  - Aborted analytics/network requests from TikTok, Bing, Google Analytics/Ads, Merchant Center analytics, Shopify monorail, and collect endpoints.
+
+Verification/artifacts:
+- `url-inventory.csv` / `url-inventory.json`: full route inventory.
+- `psi/ui/`: official pagespeed.web.dev screenshots/text and representative score CSV/JSON.
+- `psi/psi-api-blocked.md`: PSI API quota blocker note.
+- `lighthouse/raw/`: local Lighthouse JSON/HTML reports.
+- `browser/screenshots/`: before-change browser screenshots.
+- `browser/console/` and `browser/network/`: console/network evidence.
+- `browser/browser-baseline-summary.json`: machine-readable browser QA summary.
+
+Residual:
+- No theme/code files were intentionally changed during Phase 1.
+- Full automated PSI JSON for all 424 canonical routes remains blocked until a valid PageSpeed Insights API key/quota is available. The official pagespeed.web.dev UI was captured for the representative set instead.
+- Some pagespeed.web.dev UI runs produced blank automated score extraction for one form factor even though screenshots/text were saved; rerun those individual UI captures if exact PSI UI score values are required before remediation.
+
+Next best action:
+- Start remediation from the highest-risk shared surfaces, in this order: PDP CLS/media behavior, homepage/image delivery and LCP, search/collection CLS, render-blocking/global resource loading, then third-party/app payload. After each fix, rerun the exact Phase 1 representative browser/PSI/Lighthouse capture set and compare before/after artifacts.
+
+2026-04-30 10:51 EDT - PageSpeed Insights API quota unblock and probe
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-pagespeed-api-quota-unblock
+
+Why:
+- User asked to resolve the Phase 1 limitation where full automated PSI JSON for all `424` canonical routes was blocked by `429 RESOURCE_EXHAUSTED` / default daily quota `0`.
+
+Actions:
+- Added a dependency-free resumable PSI API runner: `ops/scripts/run_pagespeed_api_batch.py`.
+- Created dedicated Google Cloud project `dlm-pagespeed-20260430` rather than borrowing an unrelated existing project.
+- Enabled `pagespeedonline.googleapis.com` and `apikeys.googleapis.com` on that project.
+- Created a PageSpeed-Insights-only API key and stored it outside the repo at `~/.config/dresslikemommy/pagespeed.env`.
+- Rotated/deleted the first key immediately because `gcloud` printed it during the first create operation; the active stored key is the replacement key, restricted to `pagespeedonline.googleapis.com`.
+- Ran a two-request PSI API probe for the homepage (`mobile` + `desktop`) and saved artifacts under `ops/reports/pagespeed-api-probe-2026-04-30T1048-0400/`.
+
+Verification:
+- `python3 -m py_compile ops/scripts/run_pagespeed_api_batch.py`
+- `python3 ops/scripts/run_pagespeed_api_batch.py --help`
+- `python3 ops/scripts/run_pagespeed_api_batch.py --limit 1 --strategies mobile desktop --delay 1 --output-dir ops/reports/pagespeed-api-probe-2026-04-30T1048-0400`
+- Probe results:
+  - planned requests: `2`
+  - completed requests: `2`
+  - successful PSI API responses: `2`
+  - blocked: `false`
+  - homepage mobile PSI API performance: `52`
+  - homepage desktop PSI API performance: `35`
+- `gcloud services api-keys list --project=dlm-pagespeed-20260430` showed one active key restricted to `pagespeedonline.googleapis.com`.
+
+Residual:
+- The full `424 x 2 = 848` PSI API batch was not started in this step because the probe showed each API request can take roughly a minute or more; the new runner can execute it resumably without the old quota limitation.
+- Full run command from the repo root: `python3 ops/scripts/run_pagespeed_api_batch.py`
+- To force a specific artifact directory: `python3 ops/scripts/run_pagespeed_api_batch.py --output-dir ops/reports/pagespeed-api-full-YYYYMMDD`
+
+2026-04-30 11:12 EDT - PageSpeed Phase 2 remediation pass
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-pagespeed-phase-2-remediation
+
+Why:
+- User asked to start remediation in this exact order: PDP CLS/media behavior, homepage image/LCP work, search/collection CLS, then global render-blocking resources.
+
+Actions:
+- PDP:
+  - Updated `sections/main-product.liquid`.
+  - Computes `mobile_gallery_ratio` from the tallest product media and emits critical scoped gallery CSS before the PDP carousel paints.
+  - Reserves the mobile gallery/carousel aspect ratio up front and keeps product media images `object-fit: contain` / top aligned so image quality and crop behavior are preserved.
+- Homepage:
+  - Updated `sections/hero-banner.liquid` to delay the first hero autoplay queue until after `load` + idle, preventing slide 2 from becoming the initial desktop LCP candidate.
+  - Updated `sections/category-icons.liquid` to make category-card images `loading="lazy"`, `fetchpriority="low"`, `decoding="async"`, and responsive via `srcset`/`sizes`; also added responsive candidate `srcset` JSON so the homepage image rotation script does not strip `srcset`.
+  - Updated `sections/curated-product-grid.liquid` so below-fold spotlight cards are lazy and low priority instead of forcing the first spotlight image high priority.
+- Search/collection:
+  - Updated `templates/collection.json` default collection card ratio from `adapt` to `portrait`.
+  - Removed the conflicting desktop `.collection .grid__item img { height: 850px; width: auto; }` rule from `assets/template-collection.css`.
+  - Removed the global `.predictive-search { position: relative; z-index: 1000; }` override from `assets/theme-inline-body-static-04.css`.
+  - Added critical search-page predictive-search positioning in `sections/main-search.liquid` so the hidden loading panel cannot enter normal layout before component CSS loads.
+- Global:
+  - Updated `layout/theme.liquid` to load `customer.css` only when `request.page_type` contains `customers` or `template.directory == 'customers'`.
+- Wrote remediation report: `ops/reports/pagespeed-remediation-2026-04-30T103901-0400/PHASE-2-REMEDIATION-REPORT.md`.
+
+Verification:
+- `shopify theme check --path .` passed repeatedly; final run: `252 files inspected with no offenses found`.
+- Local Shopify preview ran at `http://127.0.0.1:9292`.
+- Browser captures and metrics saved under `ops/reports/pagespeed-remediation-2026-04-30T103901-0400/browser/`.
+- Lighthouse JSON/HTML reports saved under `ops/reports/pagespeed-remediation-2026-04-30T103901-0400/lighthouse/raw/`.
+- PDP after:
+  - Mobile Lighthouse CLS `0.003`, performance `55`.
+  - Desktop Lighthouse CLS `0.083`, performance `70`.
+  - Mobile browser CLS `0.0006`, no horizontal overflow.
+- Homepage after:
+  - Browser LCP stayed on first hero image; mobile observer LCP about `1.9s`, desktop about `1.4s`.
+  - Browser CLS mobile about `0.0003`, desktop about `0.039`.
+  - Scroll-through check confirmed below-fold curated-grid lazy images load with `0` broken visible images when reached.
+- Search/collection after:
+  - Search browser CLS after critical predictive CSS: mobile about `0.0003`; desktop about `0.054` residual header/cookie movement.
+  - Collection browser CLS: mobile about `0.0002`; desktop about `0.038`.
+  - Predictive search interaction check: no main-content shift after opening/typing; panel remained absolute.
+- Customer CSS gate:
+  - Homepage no longer includes `customer.css`.
+  - Local `/account/login` redirects to Shopify hosted account flow before rendering the theme customer template, so direct local customer-template CSS inclusion could not be fully observed in the preview shell; condition now covers both `request.page_type contains 'customers'` and `template.directory == 'customers'`.
+
+Residual:
+- Desktop residual CLS is now mostly header/logo/font/cookie-banner movement plus small product/card timing. This should be the next stabilization pass.
+- `theme-inline-body-static-01.css` through `09.css` still load as normal global stylesheets. They need a dependency audit before deferring/scoping to avoid FOUC or new CLS.
+- Official live PSI API/UI reruns were not performed in this pass; local preview/browser/Lighthouse artifacts were captured after code changes. Run the resumable PSI runner when ready for a long live batch.
+
+2026-04-30 12:18 EDT - PageSpeed PSI preview batch and stabilization pass
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-pagespeed-header-cookie-static-css-stabilization
+
+Why:
+- User asked to run the live PSI API batch on the branch/preview, then stabilize header/logo/font/cookie-banner CLS and audit the global static CSS bundles.
+
+Actions:
+- Generated the full preview URL inventory at `ops/reports/pagespeed-api-preview-2026-04-30T111322-0400/psi-targets-preview-theme-134593970273.csv` with `424` live preview URLs for preview theme `134593970273`; raw PSI payloads confirmed preview assets from `/cdn/shop/t/111/`.
+- Ran PSI API preview probe, a representative/critical after batch, a final desktop CLS mini-batch, and a targeted final PDP desktop PSI retry.
+- Hardened `ops/scripts/run_pagespeed_api_batch.py` so socket/read timeouts and URL errors are written as `REQUEST_FAILED` rows instead of crashing the batch.
+- Updated `sections/header.liquid` and `sections/announcement-bar.liquid` to reserve logo, nav, icon, and announcement dimensions before late CSS/font swaps.
+- Updated `layout/theme.liquid` to preload distinct body bold font, reserve/remove Shopify privacy banner safely, and gate body static CSS bundles by template instead of loading every bundle globally.
+- Updated `sections/hero-banner.liquid` to emit final CTA styling early and avoid late CTA restyle CLS.
+- Updated PDP stabilization in `sections/main-product.liquid`, `snippets/product-variant-picker.liquid`, and `assets/product-description.js`:
+  - Product description CSS now loads in the PDP section flow.
+  - Product description normalizer can initialize immediately if description markup exists.
+  - Matching-size guide snapshot/details reserve final space in initial markup when a size-table source exists.
+  - Hidden share controls are hidden in critical PDP CSS.
+  - Above-fold PDP reveal animation is neutralized for stable first paint.
+- Wrote stabilization report: `ops/reports/pagespeed-stabilization-2026-04-30T1122-0400/STABILIZATION-PASS-REPORT.md`.
+
+Verification:
+- `shopify theme check --path .` passed: `252 files inspected with no offenses found`.
+- `node --check assets/product-description.js` passed.
+- `python3 -m py_compile ops/scripts/run_pagespeed_api_batch.py` passed.
+- `git diff --check` passed.
+- Direct browser observer after final PDP reserve: product CLS about `0.005`.
+- Local Lighthouse after final PDP reserve: product desktop performance `75`, CLS `0.026`, LCP `2434ms`, TBT `0ms`.
+- Final live PSI desktop mini-batch:
+  - Homepage desktop CLS `0.008`, performance `74`.
+  - Search desktop CLS `0.001`, performance `72`.
+  - Product desktop final retry CLS `0.034`, performance `63`.
+- Critical live PSI after-stabilization batch also captured homepage, collection, product, and search rows; some PSI mobile/product/search requests returned Lighthouse service `500` or request timeout rows, now recorded cleanly.
+
+Residual:
+- Full `424 x 2` PSI run remains too long for an interactive pass; inventory is ready and the runner is resumable for off-hours execution.
+- PSI preview URLs include Shopify preview/debug behavior and can differ from the published theme.
+- Product CLS is now good but not literally zero in Lighthouse/PSI; remaining local culprit is the color-image fieldset near the viewport edge.
+- `theme-inline-head-static-02.css` and global body statics `05`, `06`, and `08` remain audit candidates, but were left global to avoid cart/header/footer regressions.

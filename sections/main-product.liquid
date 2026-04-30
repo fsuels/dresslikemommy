@@ -9,6 +9,13 @@
     assign product_subcategory_handle = product_subcategory | handleize
     assign product_title_downcase = product.title | downcase
     assign product_tags_downcase = product.tags | join: '|' | downcase
+    assign mobile_gallery_ratio = product.featured_media.preview_image.aspect_ratio | default: product.featured_media.aspect_ratio | default: 1.0
+    for product_media in product.media
+      assign product_media_ratio = product_media.preview_image.aspect_ratio | default: product_media.aspect_ratio | default: blank
+      if product_media_ratio != blank and product_media_ratio < mobile_gallery_ratio
+        assign mobile_gallery_ratio = product_media_ratio
+      endif
+    endfor
     assign has_family_sets_context = false
     if product_collection_handles contains 'family-sets' or product_subcategory_handle == 'family-sets'
       assign has_family_sets_context = true
@@ -31,6 +38,7 @@
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
   {{ 'component-product-desktop-ux.css' | asset_url | stylesheet_tag }}
+  {{ 'component-product-description.css' | asset_url | stylesheet_tag }}
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
     {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
@@ -50,6 +58,71 @@
       .section-{{ section.id }}-padding {
         padding-top: {{ section.settings.padding_top }}px;
         padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+
+    /* Reserve PDP gallery height before deferred product CSS finishes loading. */
+    #MainProduct-{{ section.id }} {
+      --dlm-mobile-gallery-ratio: {{ mobile_gallery_ratio }};
+    }
+
+    #MainProduct-{{ section.id }} .product-media-container {
+      aspect-ratio: var(--preview-ratio, 1);
+    }
+
+    #MainProduct-{{ section.id }} .product-media-container .media {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: var(--preview-ratio, 1);
+      padding-top: 0 !important;
+    }
+
+    #MainProduct-{{ section.id }} .product-media-container .media > img {
+      display: block;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      object-position: center top;
+    }
+
+    #MainProduct-{{ section.id }} .scroll-trigger.animate--slide-in,
+    #MainProduct-{{ section.id }} .scroll-trigger.animate--fade-in {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .share-button {
+      display: none !important;
+      margin: 0 !important;
+    }
+
+    #MainProduct-{{ section.id }} .matching-size-guide__snapshot--reserved:empty {
+      display: block !important;
+      min-height: 24.3rem;
+      visibility: hidden;
+    }
+
+    @media screen and (max-width: 749px) {
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item,
+      #MainProduct-{{ section.id }} .product-media-container,
+      #MainProduct-{{ section.id }} .product-media-container .product__modal-opener,
+      #MainProduct-{{ section.id }} .product-media-container .media {
+        aspect-ratio: var(--dlm-mobile-gallery-ratio, var(--preview-ratio, 1));
+      }
+
+      #MainProduct-{{ section.id }} .product__media-list .product__media-item,
+      #MainProduct-{{ section.id }} .product-media-container,
+      #MainProduct-{{ section.id }} .product-media-container .product__modal-opener {
+        height: auto;
+      }
+
+      #MainProduct-{{ section.id }} .product-media-container .media {
+        height: 100%;
       }
     }
 
@@ -150,6 +223,14 @@
       font-size: 1.15rem !important;
       line-height: 1.45 !important;
       color: #7a8088 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product__description img:not([width]):not([height]) {
+      aspect-ratio: 5 / 7;
+      display: block;
+      height: auto;
+      object-fit: contain;
+      width: 100%;
     }
 
     #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects {
@@ -260,6 +341,58 @@
     #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image .color-image-option__tile:hover,
     #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image .color-image-option__media {
       background: #ffffff !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image {
+      --color-image-option-width: 7.36rem;
+      align-items: flex-start;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image .form__label {
+      margin: 0 0 0.4rem 0 !important;
+      width: 100%;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image input[type='radio'] + .color-image-option__tile {
+      border-radius: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      min-height: calc(var(--color-image-option-width) + 4.1rem);
+      overflow: hidden;
+      text-decoration: none;
+      width: var(--color-image-option-width);
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image .color-image-option__media {
+      aspect-ratio: 1 / 1;
+      display: block;
+      width: 100%;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image .color-image-option__image,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image .color-image-option__swatch-fallback {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image .color-image-option__image {
+      object-fit: cover;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image .color-image-option__name {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 500;
+      line-height: 1.15;
+      min-height: 2.7rem;
+      padding: 0.65rem 0.45rem 0.7rem;
+      text-align: center;
+      word-break: break-word;
     }
 
     #MainProduct-{{ section.id }} .dlm-reference-ui variant-selects .product-form__input .icon-caret {
@@ -1548,6 +1681,7 @@
             {% render 'icon-arrow' %}
           </a>
         </product-info>
+        <script src="{{ 'product-description.js' | asset_url }}" defer="defer"></script>
       </div>
     </div>
 

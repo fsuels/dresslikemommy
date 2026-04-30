@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
+(function () {
+  const initProductDescriptions = function () {
   const descriptions = document.querySelectorAll("[data-product-description]");
 
   if (!descriptions.length) return;
@@ -434,4 +435,12 @@ document.addEventListener("DOMContentLoaded", function () {
     flushPendingFeatureParagraphs();
     description.dataset.productDescriptionReady = "true";
   });
-});
+  };
+
+  if (document.readyState === "loading" && !document.querySelector("[data-product-description]")) {
+    document.addEventListener("DOMContentLoaded", initProductDescriptions, { once: true });
+    return;
+  }
+
+  initProductDescriptions();
+})();
