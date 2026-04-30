@@ -214,14 +214,45 @@ def write_json(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def query_text(item: Any) -> str:
+def clean_query_terms(parts: list[Any]) -> str:
+    seen: set[str] = set()
+    terms: list[str] = []
+    for part in parts:
+        if isinstance(part, list):
+            values = part
+        elif isinstance(part, tuple):
+            values = list(part)
+        else:
+            values = [part]
+        for value in values:
+            text = str(value or "").strip()
+            if not text:
+                continue
+            for term in text.split():
+                if term and term not in seen:
+                    seen.add(term)
+                    terms.append(term)
+    return " ".join(terms)
+
+
+def query_text(item: Any, defaults: dict[str, Any] | None = None) -> str:
+    defaults = defaults if isinstance(defaults, dict) else {}
     if isinstance(item, dict):
-        return str(item.get("text") or "").strip()
+        return clean_query_terms(
+            [
+                item.get("text"),
+                item.get("launch_year") or defaults.get("launch_year"),
+                item.get("launch_season") or item.get("season") or defaults.get("launch_season"),
+                item.get("freshness") or defaults.get("freshness"),
+                item.get("modifiers") or defaults.get("modifiers"),
+                item.get("fulfillment") or defaults.get("fulfillment"),
+            ]
+        )
     return str(item or "").strip()
 
 
-def normalize_queries(raw_queries: list[Any]) -> list[str]:
-    return [query for query in (query_text(item) for item in raw_queries) if query]
+def normalize_queries(raw_queries: list[Any], defaults: dict[str, Any] | None = None) -> list[str]:
+    return [query for query in (query_text(item, defaults) for item in raw_queries) if query]
 
 
 def load_search_history() -> dict[str, Any]:
@@ -486,7 +517,7 @@ def collect_category(
     if category_id not in categories:
         raise SystemExit(f"Unknown category: {category_id}")
     category = categories[category_id]
-    queries = normalize_queries(category.get("queries", []))
+    queries = normalize_queries(category.get("queries", []), category.get("search_defaults", {}))
     if not queries:
         raise SystemExit(f"No queries configured for category: {category_id}")
     selected_queries = rotated_queries(category_id, queries) if query_index < 0 or target_reviewable > 0 else [queries[min(query_index, len(queries) - 1)]]

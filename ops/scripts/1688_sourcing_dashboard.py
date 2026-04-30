@@ -492,16 +492,51 @@ def gbk_quote(query: str) -> str:
     return quote_from_bytes(query.encode("gbk", errors="ignore"))
 
 
+def clean_query_terms(parts: list[Any]) -> str:
+    seen: set[str] = set()
+    terms: list[str] = []
+    for part in parts:
+        if isinstance(part, list):
+            values = part
+        elif isinstance(part, tuple):
+            values = list(part)
+        else:
+            values = [part]
+        for value in values:
+            text = clean(value)
+            if not text:
+                continue
+            for term in text.split():
+                if term and term not in seen:
+                    seen.add(term)
+                    terms.append(term)
+    return " ".join(terms)
+
+
+def configured_query_text(item: Any, defaults: dict[str, Any] | None = None) -> str:
+    defaults = defaults if isinstance(defaults, dict) else {}
+    if isinstance(item, dict):
+        return clean_query_terms(
+            [
+                item.get("text"),
+                item.get("launch_year") or defaults.get("launch_year"),
+                item.get("launch_season") or item.get("season") or defaults.get("launch_season"),
+                item.get("freshness") or defaults.get("freshness"),
+                item.get("modifiers") or defaults.get("modifiers"),
+                item.get("fulfillment") or defaults.get("fulfillment"),
+            ]
+        )
+    return clean(item)
+
+
 def configured_queries(category_id: str) -> list[str]:
     categories = category_lookup()
     category = categories.get(category_id) or categories.get("family-matching") or {}
     raw_queries = category.get("queries") or ["亲子装 连衣裙 衬衫 一件代发"]
+    defaults = category.get("search_defaults", {})
     queries: list[str] = []
     for item in raw_queries:
-        if isinstance(item, dict):
-            query = clean(item.get("text"))
-        else:
-            query = clean(item)
+        query = configured_query_text(item, defaults)
         if query:
             queries.append(query)
     return queries or ["亲子装 连衣裙 衬衫 一件代发"]
@@ -787,7 +822,7 @@ def start_collect_job(
             "target_reviewable": target_reviewable,
             "max_pages_per_query": max_pages_per_query,
             "created_at": now_iso(),
-            "message": f"Starting 1688 search. I will rotate the configured keywords and aim for up to {target_reviewable} reviewable leads.",
+            "message": f"Starting 1688 search. I will rotate the configured occasion keywords and aim for up to {target_reviewable} reviewable leads.",
         }
     thread = threading.Thread(
         target=run_collect_job,
@@ -1855,7 +1890,7 @@ def dashboard_html() -> str:
           <button id="open-1688">Open 1688 Login/Search</button>
         </div>
         <div id="search-plan" class="search-plan"></div>
-        <div id="collector-status" class="status-box">Choose a category above, then click Find 20 Leads. The app rotates keyword searches, checks up to two pages per query, and skips offers already saved locally. If 1688 asks for login or CAPTCHA, use Open 1688 Login/Search once, complete the browser check, then click Find again.</div>
+        <div id="collector-status" class="status-box">Choose a category above, then click Find 20 Leads. The app rotates occasion keyword searches with configured launch-year and season terms, checks up to two pages per query, and skips offers already saved locally. If 1688 asks for login or CAPTCHA, use Open 1688 Login/Search once, complete the browser check, then click Find again.</div>
       </div>
     </section>
     <section class="memory-panel" aria-labelledby="memory-title">
@@ -2076,13 +2111,46 @@ def dashboard_html() -> str:
       return data.categories.find(category => category.id === activeCategory) || null;
     }
 
+    function queryTerms(parts) {
+      const seen = new Set();
+      const terms = [];
+      for (const part of parts) {
+        const values = Array.isArray(part) ? part : [part];
+        for (const value of values) {
+          const text = String(value || '').trim();
+          if (!text) continue;
+          for (const term of text.split(/\s+/)) {
+            if (!term || seen.has(term)) continue;
+            seen.add(term);
+            terms.push(term);
+          }
+        }
+      }
+      return terms.join(' ');
+    }
+
+    function queryDisplayText(query, category) {
+      if (typeof query === 'string') return query;
+      const defaults = category?.search_defaults || {};
+      return queryTerms([
+        query?.text,
+        query?.launch_year || defaults.launch_year,
+        query?.launch_season || query?.season || defaults.launch_season,
+        query?.freshness || defaults.freshness,
+        query?.modifiers || defaults.modifiers,
+        query?.fulfillment || defaults.fulfillment,
+      ]);
+    }
+
     function renderSearchPlan() {
       const category = activeCategoryConfig();
-      const queries = category?.queries || data.categories.flatMap(item => item.queries || []).slice(0, 8);
-      const queryItems = queries.slice(0, 8).map(query => `<li>${escapeHtml(query)}</li>`).join('');
+      const queries = category
+        ? (category.queries || []).map(query => queryDisplayText(query, category))
+        : data.categories.flatMap(item => (item.queries || []).map(query => queryDisplayText(query, item))).slice(0, 8);
+      const queryItems = queries.slice(0, 10).map(query => `<li>${escapeHtml(query)}</li>`).join('');
       const label = category ? category.label : 'All Categories';
       searchPlan.innerHTML = `
-        <div><strong>What the button searches:</strong> ${escapeHtml(label)} keyword searches on normal 1688 search pages. It now rotates the starting query and skips offers already saved locally.</div>
+        <div><strong>What the button searches:</strong> ${escapeHtml(label)} keyword searches on normal 1688 search pages. It rotates the starting query, uses configured launch year/season terms, and skips offers already saved locally.</div>
         <ul class="query-list">${queryItems}</ul>
         <div><strong>What becomes Buyer Shortlist:</strong> correct category, usable product image, low MOQ, newer 1688 offer ID or visible 2025/2026/new-style wording, and a useful signal such as repeat rate, sales, stock, dispatch, or dropship wording.</div>
         <div><strong>What gets hidden:</strong> previous reject, old 1688 offer ID, old year signal such as 2020-2024, wrong category, no product URL/image, high MOQ, no-dropship/no-size-chart evidence, brand/IP risk, or no useful demand/fulfillment signal.</div>
@@ -2160,7 +2228,7 @@ def dashboard_html() -> str:
           flash(button, 'Try again');
           return;
         }
-        setCollectorStatus(`${job.message || 'Searching 1688...'} Trying rotated keyword searches and skipping already-seen offers; this can take 1-3 minutes.`);
+        setCollectorStatus(`${job.message || 'Searching 1688...'} Trying rotated occasion searches and skipping already-seen offers; this can take 1-3 minutes.`);
         await new Promise(resolve => setTimeout(resolve, 2000));
       }
       setCollectorStatus('The search is still running. Refresh the view in a minute.', 'bad');
@@ -2179,7 +2247,7 @@ def dashboard_html() -> str:
           flash(button, 'Blocked');
           return;
         }
-        setCollectorStatus(`Searching 1688 for ${category === 'all' ? 'all categories' : category}. I am aiming for 20 reviewable leads, rotating keywords, checking extra pages, skipping already-seen offers, and hiding weak matches before they reach your shortlist.`);
+        setCollectorStatus(`Searching 1688 for ${category === 'all' ? 'all categories' : category}. I am aiming for 20 reviewable leads, rotating occasion keywords with launch-year and season terms, checking extra pages, skipping already-seen offers, and hiding weak matches before they reach your shortlist.`);
         const job = await api('/api/collect', {
           method: 'POST',
           body: JSON.stringify({ category_id: category, limit: 200, query_index: -1, target_reviewable: 20, max_pages_per_query: 2 }),

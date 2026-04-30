@@ -44,6 +44,48 @@ custom_label_4 = us_test_ready
 - Do not paste Google Ads manual conversion snippets into the theme.
 - Do not claim free shipping or free returns in ad copy unless a current policy/checkout proof packet explicitly supports that claim.
 
+## Actual Live Build Status - April 29, 2026
+
+### Standard Shopping
+
+- Live Google Ads campaign: `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY`
+- Campaign ID: `23802638621`
+- Status: `Paused`
+- Budget: `$25.00/day`
+- Bidding: `Maximize clicks`
+- Priority: `Medium`
+- Merchant Center: `124884876`
+- Feed: `US`
+- Location: `United States`
+- Inventory filter: enabled
+- Campaign-level negatives: `253` posted from `Master Negatives - DLM` via Google Ads Editor while campaign remained paused
+- Expanded inventory-filter readback showed:
+  - `Custom label 4` value `us_test_ready`
+  - `Custom label 0` value `paid_eligible`
+  - product count `780`
+
+The collapsed Google Ads Shopping settings also show `Google Search Network, Search partners`. That is the current Shopping network readback. The no-Search-Partners rule above applies to Search campaigns.
+
+### Brand Search
+
+- Existing campaign `23701874399` named `Search - Brand` is `Removed`; do not restore it. Its old ads still contain unsupported copy such as free-shipping/free-return claims and the registered-mark symbol.
+- New paused Brand Search campaign posted through Google Ads Editor:
+  - Campaign name: `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429`
+  - Status: `Paused`
+  - Budget: `$10.00/day`
+  - Bidding: `Maximize conversion value`
+  - Network: Google Search only; Search Partners disabled; Display disabled
+  - Location/language: United States, English
+  - EU political ads: `No, does not have EU political ads`
+  - Ad groups: `2` (`Brand - Exact`, `Brand - Phrase`), both paused
+  - Keywords: `12`, all paused
+  - Responsive search ads: `2`, both paused, headline 1 pinned to `Dress Like Mommy Official`
+  - Campaign-level negatives: `253` posted from `Master Negatives - DLM` via Google Ads Editor bulk campaign-negative flow
+
+Google Ads Editor check/post result on April 29, 2026: campaigns `1/1`, ad groups `2/2`, keywords `12/12`, negative keywords `253/253`, locations `1/1`, responsive search ads `2/2`. No live spend was enabled.
+
+The old replacement web draft `281498678403555` / draft `10187851217` was not used because the Google Ads web review screen did not expose a paused-safe publish control. Use the posted Editor campaign above as the current Brand Search build.
+
 ## Campaign 1: Search - Brand
 
 Purpose: defend brand demand and capture the highest-intent traffic at the lowest risk.
@@ -52,7 +94,7 @@ Purpose: defend brand demand and capture the highest-intent traffic at the lowes
 
 | Setting | Value |
 | --- | --- |
-| Campaign name | `Search - Brand` |
+| Campaign name | `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429` |
 | Objective | Sales |
 | Campaign type | Search |
 | Networks | Google Search only; no Search Partners; no Display |
@@ -100,28 +142,28 @@ Other headlines:
 
 ```text
 Mommy and Me Outfits
+Matching Family Outfits
 Mother Daughter Dresses
-Family Matching Outfits
-Matching Dresses and Sets
-Shop New Matching Styles
-Matching Family Clothes
-Cute Mommy and Me Looks
-Shop Dress Like Mommy
-Matching Outfits for Kids
-30-Day Return Window
-Secure Checkout
-Mom and Daughter Dresses
+Family Matching Styles
+Shop Matching Outfits
+Dress Like Mommy Store
+Matching Dresses
 Matching Swimwear
-New Styles Added Weekly
+Family Pajamas
+New Styles Weekly
+Mom And Daughter Looks
+Daddy And Me Outfits
+Secure Checkout
+Official Online Store
 ```
 
 Descriptions:
 
 ```text
-Shop mommy and me dresses, family outfits, pajamas and swimwear for matching moments.
-Find matching looks for moms, daughters, dads and kids. New styles added weekly.
-Dress Like Mommy helps families match for photos, vacations, birthdays and everyday memories.
-Browse curated matching outfits with secure checkout and a 30-day return window.
+Official Dress Like Mommy shop for coordinated family outfits, dresses, and swim styles.
+Shop mommy and me, daddy and me, and family matching looks in one place.
+Find matching styles for photos, vacations, birthdays, and everyday family moments.
+Browse curated matching outfits by family role, size, and occasion.
 ```
 
 ## Campaign 2: Standard Shopping Clean Subset
@@ -198,10 +240,10 @@ Do not launch these yet:
 ```text
 Matching Family Styles
 New Styles Weekly
-30-Day Return Window
 Secure Checkout
 Mommy and Me Looks
 Family Photo Ready
+Curated Matching Looks
 ```
 
 ### Structured Snippet
@@ -214,13 +256,17 @@ Dresses, Swimsuits, Pajamas, Shirts, Sets, Family Outfits
 
 ### Negative Keyword List
 
-Create or verify shared list: `Master Negatives - DLM`
+Source: `negative-keywords-import.txt`
 
-Import: `negative-keywords-import.txt`
+Brand Search posted result:
+
+- `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429` has `253` campaign-level negatives applied through Google Ads Editor.
+- `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` also has the same `253` campaign-level negatives applied through Google Ads Editor while remaining paused.
+- The source file had `256` rows; Google Ads Editor-safe cleanup removed `2` exact duplicate rows and `1` redundant exact duplicate already covered by a phrase negative.
 
 Apply to:
 
-- `Search - Brand`
+- `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429`
 - `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY`
 - Any future Search campaign before it is enabled
 

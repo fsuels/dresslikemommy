@@ -26356,4 +26356,94 @@ Decision:
   - `FREE SHIPPING ON ALL ORDERS | FAMILY MATCHING MADE EASY | SECURE CHECKOUT`
 - Do not replace the middle phrase immediately.
 - Later conversion test candidate, when the operator asks for a test:
-  - `NEW FAMILY STYLES WEEKLY`
+ - `NEW FAMILY STYLES WEEKLY`
+
+2026-04-29 07:31 EDT - 1688 sourcing search query expansion
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-1688-sourcing-search-query-expansion
+
+Why:
+- User found better products manually on 1688 by combining Chinese occasion keywords with launch year/season filtering and asked the sourcing app to use better search across categories.
+
+Actions:
+- Expanded `ops/sourcing/sourcing-categories.json` from narrow string keywords into structured query objects with `launch_year`, `launch_season`, freshness, fulfillment, modifiers, and intent metadata.
+- Mommy & Me now includes 29 searches covering general, formal, wedding, birthday, casual, beach/vacation, traditional, photoshoot, and holiday mother-daughter terms.
+- Daddy & Me, Family Matching, Couples, and Maternity now use the same structured logic with category-specific Chinese search banks.
+- Updated the CDP collector and dashboard to compose structured query objects into normal 1688 keyword search strings like `母女晚礼服 2026 春夏 新款 高端 气质 一件代发`.
+- Updated the dashboard search-plan UI and status text so it displays composed launch-year/season searches instead of raw query objects.
+- Added `ops/tests/test_1688_sourcing_search_queries.py` to protect the expanded query banks and composed GBK search URLs.
+- Restarted the local sourcing dashboard on `http://127.0.0.1:8766/` so the new search UI is live.
+
+Verification:
+- `python3 -m json.tool ops/sourcing/sourcing-categories.json`
+- `python3 -m py_compile ops/scripts/1688_sourcing_cdp_collect.py ops/scripts/1688_sourcing_dashboard.py ops/scripts/1688_sourcing_score.py ops/tests/test_1688_sourcing_search_queries.py ops/tests/test_1688_sourcing_score_detail_gate.py`
+- `python3 ops/tests/test_1688_sourcing_search_queries.py`
+- `python3 ops/tests/test_1688_sourcing_score_detail_gate.py`
+- Live local API readback from `http://127.0.0.1:8766/api/data` shows query counts: Mommy & Me 29, Daddy & Me 24, Family Matching 21, Couples 22, Maternity 24.
+- Live local HTML readback confirms the dashboard is serving the updated launch-year/season search-plan JavaScript.
+
+Residual:
+- The app still uses normal logged-in 1688 keyword search pages; it does not bypass login/CAPTCHA or rely on private 1688 APIs.
+- The structured year/season terms are encoded into the keywords. If the exact 1688 facet URL parameters for launch year/season are later captured from the browser, they can be added as a separate enhancement.
+
+2026-04-29 07:51 EDT - Google Shopping paused build completion and Brand Search draft verification
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-google-shopping-paused-build-brand-draft-verification
+
+Why:
+- User asked whether the Google Shopping / Google Ads setup was actually completed and challenged the prior supplemental-feed answer because the root `supplemental-feed-pilot.csv` did not contain `custom_label_0=paid_eligible` or `custom_label_4=us_test_ready`.
+
+Actions:
+- Verified the current paid-label upload source is `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-merchant-clean-label-upload/upload_matched_full_clean_labels_with_age_group.csv` / `.txt`, not root `supplemental-feed-pilot.csv`.
+- Regenerated the Google Ads conversion-value gate and Google Shopping campaign gate packets.
+- Completed a live Google Ads readback of Standard Shopping campaign `23802638621` / `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY`.
+- Confirmed the campaign is paused with `$25.00/day`, `Maximize clicks`, `Medium` priority, Merchant Center `124884876`, feed label `US`, United States location, and an active inventory filter.
+- Expanded the Shopping inventory filter in Google Ads and read back the actual filter inputs:
+  - `Custom label 4` = `us_test_ready`
+  - `Custom label 0` = `paid_eligible`
+  - product count = `780`
+- Verified old Brand Search campaign `23701874399` is `Removed` and still contains old unsupported ad copy, including free-shipping/free-return claims and the registered-mark symbol; do not restore it.
+- Verified replacement Brand Search new-campaign draft `281498678403555` / draft `10187851217` is ready to publish with Sales/Purchases, Search, `Maximize conversion value`, Google Search Network only, United States, English, AI Max text customization and final URL expansion off, `12` keywords, `1` ad, and `$10.00/day`.
+- Did not click `Publish campaign` on the Brand Search draft because Google Ads did not expose a paused-safe publish control in the review screen and current repo gates still block enabling/restarting live ad spend.
+- Updated `Google-Ads-Campaign-Setup-Guide.md` with the exact live Shopping status and Brand Search draft/removal status.
+
+Verification:
+- `python3 ops/scripts/build_google_shopping_campaign_gate_packet.py`
+- `python3 ops/scripts/build_google_ads_conversion_value_gate_packet.py --cdp-port 9222`
+- `python3 ops/tests/test_google_shopping_campaign_gate_packet.py`
+- `python3 ops/tests/test_google_ads_conversion_value_gate_packet.py`
+- `python3 ops/tests/test_phase7_final_launch_gate_packet.py`
+- Live CDP Google Ads readback for Shopping campaign `23802638621` showed the paused campaign settings and expanded inventory-filter values above.
+- Live CDP Google Ads readback for old Brand campaign `23701874399` showed status `Removed`.
+- Live CDP Google Ads readback for Brand draft `281498678403555` / `10187851217` showed the review page ready to publish, with no paused state exposed.
+
+Residual:
+- No live spend was enabled.
+- `google_ads_restart_allowed=false`, `campaign_enable_allowed=false`, and the final launch gate remains `BLOCKED`.
+- `Master Negatives - DLM` still needs live application/readback on the new Brand campaign after a paused-safe creation path exists; the new Brand campaign is only a construction draft until then.
+- The live Shopping settings show Search partners in the Shopping network readback; the Search-only/no-Search-Partners rule is enforced for Search campaigns.
+
+2026-04-29 17:02 EDT - Google Ads Editor paused Brand Search post and Shopping negatives
+AGENT_CONTINUITY_ANCHOR: 2026-04-29-google-ads-editor-paused-brand-search-post-shopping-negatives
+
+Why:
+- User had Google Ads Editor open/logged in and asked to add the file there so Search would be completed, with Shopping used as the paused build baseline and Brand created paused before applying Master Negatives.
+
+Actions:
+- Built the paused-only Google Ads Editor packet for Brand Search under `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-google-ads-brand-paused-editor-import/`.
+- Imported and posted new Brand Search campaign `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429` through Google Ads Editor.
+- Kept the new Brand campaign paused with `$10/day`, `Maximize conversion value`, Google Search only, Search Partners disabled, Display disabled, United States, English, and EU political ads set to `No, does not have EU political ads`.
+- Posted `2` paused ad groups, `12` paused brand keywords, `2` paused responsive search ads, and `253` campaign-level Master Negative terms to the Brand campaign.
+- Verified the old `Search - Brand` campaign remains removed and was not restored.
+- Applied the same `253` campaign-level Master Negative terms to paused Shopping campaign `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` through Google Ads Editor.
+- Updated `Google-Ads-Campaign-Setup-Guide.md` to make the posted Editor campaign the current Brand Search build and to remove unsupported return/shipping ad-copy claims from the Brand spec.
+
+Verification:
+- Google Ads Editor check before Brand post: campaigns `1/1`, ad groups `2/2`, keywords `12/12`, negative keywords `253/253`, locations `1/1`, responsive search ads `2/2`.
+- Google Ads Editor Brand post result: campaigns `1/1`, ad groups `2/2`, keywords `12/12`, negative keywords `253/253`, locations `1/1`, responsive search ads `2/2`.
+- Google Ads Editor Shopping negative check result: negative keywords `253/253`.
+- Google Ads Editor Shopping negative post result: negative keywords `253/253`.
+- `python3 ops/scripts/build_google_ads_brand_paused_editor_import.py`
+
+Residual:
+- No live spend was enabled; Brand Search and Standard Shopping remain paused.
+- The final launch gate remains blocked until real purchase/payment event proof, spend/economics exports, and explicit operator enable approval are complete.
+- The unused Google Ads web Brand draft can be ignored; do not publish it.

@@ -6,19 +6,186 @@
       "label": "Mommy & Me",
       "listing_mode": "Mommy and Me",
       "primary_focus": "Mother and daughter matching outfits.",
+      "search_defaults": {
+        "launch_year": "2026",
+        "freshness": "新款",
+        "fulfillment": "一件代发"
+      },
       "queries": [
-        "母女装 连衣裙 一件代发",
-        "亲子装 母女 夏季 连衣裙 一件代发",
-        "母女亲子装 度假 裙子 一件代发",
-        "母女装 新款 连衣裙 一件代发",
-        "亲子装 母女 花裙 连衣裙 一件代发",
-        "母女装 2026 夏季 连衣裙 一件代发",
-        "母女装 法式 碎花 连衣裙 一件代发",
-        "母女亲子装 海边 度假 连衣裙 一件代发",
-        "妈妈女儿 同款 裙子 一件代发",
-        "亲子装 母女 现货 一件代发",
-        "亲子母女装 小众 设计 连衣裙 一件代发",
-        "母女装 夏季 套装 一件代发"
+        {
+          "text": "母女连衣裙",
+          "intent": "general mother-daughter dresses",
+          "launch_season": "夏季",
+          "modifiers": ["同款"]
+        },
+        {
+          "text": "母女装",
+          "intent": "general mother-daughter outfits",
+          "launch_season": "夏季",
+          "modifiers": ["连衣裙", "同款"]
+        },
+        {
+          "text": "亲子装 母女",
+          "intent": "parent-child mother-daughter dresses",
+          "launch_season": "夏季",
+          "modifiers": ["连衣裙", "同款"]
+        },
+        {
+          "text": "母女款",
+          "intent": "mother-daughter same-style sets",
+          "launch_season": "夏季",
+          "modifiers": ["裙子", "同款"]
+        },
+        {
+          "text": "母女晚礼服",
+          "intent": "formal and evening occasions",
+          "launch_season": "春夏",
+          "modifiers": ["高端", "气质"]
+        },
+        {
+          "text": "母女礼服裙",
+          "intent": "formal dresses",
+          "launch_season": "春夏",
+          "modifiers": ["蕾丝", "雪纺"]
+        },
+        {
+          "text": "母女宴会礼服",
+          "intent": "banquet gowns",
+          "launch_season": "春夏",
+          "modifiers": ["高端", "长款"]
+        },
+        {
+          "text": "母女主持礼服",
+          "intent": "host and emcee gowns",
+          "launch_season": "春夏",
+          "modifiers": ["高端", "气质"]
+        },
+        {
+          "text": "母女婚礼礼服",
+          "intent": "wedding guest or ceremony dresses",
+          "launch_season": "春夏",
+          "modifiers": ["高端", "蕾丝"]
+        },
+        {
+          "text": "母女伴娘服",
+          "intent": "bridesmaid dresses",
+          "launch_season": "春夏",
+          "modifiers": ["雪纺", "长款"]
+        },
+        {
+          "text": "母女敬酒服",
+          "intent": "wedding toast and reception dresses",
+          "launch_season": "春夏",
+          "modifiers": ["中式", "礼服"]
+        },
+        {
+          "text": "母女生日礼服",
+          "intent": "birthday party dresses",
+          "launch_season": "春夏",
+          "modifiers": ["公主裙"]
+        },
+        {
+          "text": "母女公主裙",
+          "intent": "princess dresses",
+          "launch_season": "春夏",
+          "modifiers": ["蓬蓬裙"]
+        },
+        {
+          "text": "母女蓬蓬裙",
+          "intent": "puffy tutu dresses",
+          "launch_season": "春夏",
+          "modifiers": ["礼服"]
+        },
+        {
+          "text": "母女休闲连衣裙",
+          "intent": "casual everyday dresses",
+          "launch_season": "夏季",
+          "modifiers": ["棉麻"]
+        },
+        {
+          "text": "母女夏季裙子",
+          "intent": "summer dresses",
+          "launch_season": "夏季",
+          "modifiers": ["短款"]
+        },
+        {
+          "text": "母女棉麻连衣裙",
+          "intent": "cotton-linen dresses",
+          "launch_season": "夏季",
+          "modifiers": ["休闲"]
+        },
+        {
+          "text": "母女沙滩裙",
+          "intent": "beach dresses",
+          "launch_season": "夏季",
+          "modifiers": ["度假"]
+        },
+        {
+          "text": "母女度假风连衣裙",
+          "intent": "vacation-style dresses",
+          "launch_season": "夏季",
+          "modifiers": ["长款"]
+        },
+        {
+          "text": "母女波西米亚长裙",
+          "intent": "bohemian maxi dresses",
+          "launch_season": "夏季",
+          "modifiers": ["沙滩"]
+        },
+        {
+          "text": "母女旗袍",
+          "intent": "qipao and cheongsam",
+          "launch_season": "春夏",
+          "modifiers": ["中式礼服"]
+        },
+        {
+          "text": "母女汉服",
+          "intent": "Hanfu",
+          "launch_season": "春夏",
+          "modifiers": ["写真服"]
+        },
+        {
+          "text": "母女唐装",
+          "intent": "Tang-style outfits",
+          "launch_season": "冬季",
+          "modifiers": ["新年装"]
+        },
+        {
+          "text": "母女中式礼服",
+          "intent": "Chinese-style formal wear",
+          "launch_season": "春夏",
+          "modifiers": ["高端"]
+        },
+        {
+          "text": "母女写真服",
+          "intent": "photoshoot outfits",
+          "launch_season": "春夏",
+          "modifiers": ["摄影礼服"]
+        },
+        {
+          "text": "母女摄影礼服",
+          "intent": "photography gowns",
+          "launch_season": "春夏",
+          "modifiers": ["高端"]
+        },
+        {
+          "text": "母女新年装",
+          "intent": "Chinese New Year outfits",
+          "launch_season": "冬季",
+          "modifiers": ["唐装"]
+        },
+        {
+          "text": "母女圣诞裙",
+          "intent": "Christmas dresses",
+          "launch_season": "冬季",
+          "modifiers": ["节日礼服"]
+        },
+        {
+          "text": "母女节日礼服",
+          "intent": "holiday dresses",
+          "launch_season": "冬季",
+          "modifiers": ["公主裙"]
+        }
       ]
     },
     {
@@ -26,18 +193,156 @@
       "label": "Daddy & Me",
       "listing_mode": "Daddy and Me",
       "primary_focus": "Father and child matching shirts, tops, pajamas, and vacation outfits.",
+      "search_defaults": {
+        "launch_year": "2026",
+        "freshness": "新款",
+        "fulfillment": "一件代发"
+      },
       "queries": [
-        "父子装 夏季 衬衫 一件代发",
-        "父女装 亲子装 T恤 一件代发",
-        "亲子装 爸爸 儿子 夏季 一件代发",
-        "父子装 新款 度假 花衬衫 一件代发",
-        "父子装 2026 夏季 衬衫 一件代发",
-        "父子装 海边 度假 花衬衫 一件代发",
-        "爸爸儿子 同款 T恤 一件代发",
-        "父女装 亲子装 夏季 一件代发",
-        "亲子装 爸爸 宝宝 T恤 一件代发",
-        "父子亲子装 现货 一件代发",
-        "爸爸女儿 同款 衬衫 一件代发"
+        {
+          "text": "父子装",
+          "intent": "father-son outfits",
+          "launch_season": "夏季",
+          "modifiers": ["同款"]
+        },
+        {
+          "text": "父女装",
+          "intent": "father-daughter outfits",
+          "launch_season": "夏季",
+          "modifiers": ["同款"]
+        },
+        {
+          "text": "父子亲子装",
+          "intent": "father-son parent-child sets",
+          "launch_season": "夏季",
+          "modifiers": ["T恤"]
+        },
+        {
+          "text": "爸爸儿子同款",
+          "intent": "dad and son same-style tops",
+          "launch_season": "夏季",
+          "modifiers": ["T恤"]
+        },
+        {
+          "text": "爸爸女儿同款",
+          "intent": "dad and daughter same-style tops",
+          "launch_season": "夏季",
+          "modifiers": ["衬衫"]
+        },
+        {
+          "text": "亲子装 爸爸 儿子",
+          "intent": "dad and son parent-child outfits",
+          "launch_season": "夏季",
+          "modifiers": ["短袖"]
+        },
+        {
+          "text": "亲子装 爸爸 女儿",
+          "intent": "dad and daughter parent-child outfits",
+          "launch_season": "夏季",
+          "modifiers": ["T恤"]
+        },
+        {
+          "text": "父子衬衫",
+          "intent": "father-son shirts",
+          "launch_season": "夏季",
+          "modifiers": ["短袖"]
+        },
+        {
+          "text": "父子T恤",
+          "intent": "father-son t-shirts",
+          "launch_season": "夏季",
+          "modifiers": ["休闲"]
+        },
+        {
+          "text": "父子Polo衫",
+          "intent": "father-son polos",
+          "launch_season": "夏季",
+          "modifiers": ["同款"]
+        },
+        {
+          "text": "父子夏季套装",
+          "intent": "father-son summer sets",
+          "launch_season": "夏季",
+          "modifiers": ["短袖"]
+        },
+        {
+          "text": "父子花衬衫",
+          "intent": "father-son floral shirts",
+          "launch_season": "夏季",
+          "modifiers": ["度假"]
+        },
+        {
+          "text": "父子沙滩装",
+          "intent": "father-son beach outfits",
+          "launch_season": "夏季",
+          "modifiers": ["海边"]
+        },
+        {
+          "text": "父子度假风衬衫",
+          "intent": "father-son resort shirts",
+          "launch_season": "夏季",
+          "modifiers": ["花衬衫"]
+        },
+        {
+          "text": "父子泳装",
+          "intent": "father-son swim and resort looks",
+          "launch_season": "夏季",
+          "modifiers": ["沙滩"]
+        },
+        {
+          "text": "父子睡衣",
+          "intent": "father-son pajamas",
+          "launch_season": "春夏",
+          "modifiers": ["家居服"]
+        },
+        {
+          "text": "父女睡衣",
+          "intent": "father-daughter pajamas",
+          "launch_season": "春夏",
+          "modifiers": ["家居服"]
+        },
+        {
+          "text": "父子西装",
+          "intent": "father-son suits",
+          "launch_season": "春夏",
+          "modifiers": ["礼服"]
+        },
+        {
+          "text": "父子礼服",
+          "intent": "father-son formal outfits",
+          "launch_season": "春夏",
+          "modifiers": ["婚礼"]
+        },
+        {
+          "text": "父子摄影服",
+          "intent": "father-son photoshoot outfits",
+          "launch_season": "春夏",
+          "modifiers": ["写真"]
+        },
+        {
+          "text": "父女摄影服",
+          "intent": "father-daughter photoshoot outfits",
+          "launch_season": "春夏",
+          "modifiers": ["写真"]
+        },
+        {
+          "text": "父子新年装",
+          "intent": "father-son New Year outfits",
+          "launch_season": "冬季",
+          "modifiers": ["唐装"]
+        },
+        {
+          "text": "父女新年装",
+          "intent": "father-daughter New Year outfits",
+          "launch_season": "冬季",
+          "modifiers": ["唐装"]
+        },
+        {
+          "text": "父子圣诞装",
+          "intent": "father-son Christmas outfits",
+          "launch_season": "冬季",
+          "modifiers": ["节日"]
+        }
       ]
     },
     {
@@ -45,18 +350,138 @@
       "label": "Family Matching",
       "listing_mode": "Family Matching",
       "primary_focus": "Mother, father, daughter, son, and baby coordinated family sets.",
+      "search_defaults": {
+        "launch_year": "2026",
+        "freshness": "新款",
+        "fulfillment": "一件代发"
+      },
       "queries": [
-        "亲子装 连衣裙 衬衫 一件代发",
-        "全家装 度假 亲子装 一件代发",
-        "家庭装 夏季 花衬衫 连衣裙 一件代发",
-        "一家三口 新款 亲子装 连衣裙 衬衫 一件代发",
-        "全家装 2026 夏季 亲子装 一件代发",
-        "一家三口 度假 亲子装 一件代发",
-        "一家四口 亲子装 连衣裙 衬衫 一件代发",
-        "亲子装 全家 花衬衫 连衣裙 一件代发",
-        "家庭装 海边 度假 一件代发",
-        "全家亲子装 现货 一件代发",
-        "亲子装 母女 父子 套装 一件代发"
+        {
+          "text": "全家装",
+          "intent": "full-family matching outfits",
+          "launch_season": "夏季",
+          "modifiers": ["亲子装"]
+        },
+        {
+          "text": "家庭装",
+          "intent": "family matching outfits",
+          "launch_season": "夏季",
+          "modifiers": ["亲子装"]
+        },
+        {
+          "text": "亲子装 全家",
+          "intent": "parent-child full-family outfits",
+          "launch_season": "夏季",
+          "modifiers": ["套装"]
+        },
+        {
+          "text": "一家三口亲子装",
+          "intent": "family of three matching outfits",
+          "launch_season": "夏季",
+          "modifiers": ["连衣裙", "衬衫"]
+        },
+        {
+          "text": "一家四口亲子装",
+          "intent": "family of four matching outfits",
+          "launch_season": "夏季",
+          "modifiers": ["连衣裙", "衬衫"]
+        },
+        {
+          "text": "母女父子亲子装",
+          "intent": "mother-daughter plus father-son sets",
+          "launch_season": "夏季",
+          "modifiers": ["套装"]
+        },
+        {
+          "text": "亲子装 母女 父子",
+          "intent": "mother-daughter and father-son coordinated outfits",
+          "launch_season": "夏季",
+          "modifiers": ["套装"]
+        },
+        {
+          "text": "亲子装 连衣裙 衬衫",
+          "intent": "family dress and shirt sets",
+          "launch_season": "夏季",
+          "modifiers": ["同款"]
+        },
+        {
+          "text": "家庭装 夏季套装",
+          "intent": "family summer sets",
+          "launch_season": "夏季",
+          "modifiers": ["短袖"]
+        },
+        {
+          "text": "全家度假装",
+          "intent": "family vacation outfits",
+          "launch_season": "夏季",
+          "modifiers": ["海边"]
+        },
+        {
+          "text": "家庭沙滩装",
+          "intent": "family beach outfits",
+          "launch_season": "夏季",
+          "modifiers": ["度假"]
+        },
+        {
+          "text": "全家花衬衫 连衣裙",
+          "intent": "family floral shirt and dress sets",
+          "launch_season": "夏季",
+          "modifiers": ["度假"]
+        },
+        {
+          "text": "全家旅行亲子装",
+          "intent": "family travel outfits",
+          "launch_season": "夏季",
+          "modifiers": ["拍照"]
+        },
+        {
+          "text": "家庭拍照服",
+          "intent": "family photo outfits",
+          "launch_season": "春夏",
+          "modifiers": ["亲子装"]
+        },
+        {
+          "text": "全家写真服",
+          "intent": "family photoshoot outfits",
+          "launch_season": "春夏",
+          "modifiers": ["摄影服"]
+        },
+        {
+          "text": "一家三口礼服",
+          "intent": "family of three formal looks",
+          "launch_season": "春夏",
+          "modifiers": ["连衣裙", "衬衫"]
+        },
+        {
+          "text": "全家亲子睡衣",
+          "intent": "family matching pajamas",
+          "launch_season": "春夏",
+          "modifiers": ["家居服"]
+        },
+        {
+          "text": "家庭运动套装",
+          "intent": "family active matching sets",
+          "launch_season": "春夏",
+          "modifiers": ["亲子装"]
+        },
+        {
+          "text": "全家新年装",
+          "intent": "family New Year outfits",
+          "launch_season": "冬季",
+          "modifiers": ["唐装"]
+        },
+        {
+          "text": "家庭圣诞装",
+          "intent": "family Christmas outfits",
+          "launch_season": "冬季",
+          "modifiers": ["节日"]
+        },
+        {
+          "text": "全家节日礼服",
+          "intent": "family holiday formal outfits",
+          "launch_season": "冬季",
+          "modifiers": ["亲子装"]
+        }
       ]
     },
     {
@@ -64,18 +489,144 @@
       "label": "Couples",
       "listing_mode": "Couples",
       "primary_focus": "Adult couple matching or coordinated outfits.",
+      "search_defaults": {
+        "launch_year": "2026",
+        "freshness": "新款",
+        "fulfillment": "一件代发"
+      },
       "queries": [
-        "情侣装 夏季 一件代发",
-        "情侣装 度假 衬衫 连衣裙 一件代发",
-        "情侣装 新款 海边 度假 一件代发",
-        "情侣装 2026 夏季 一件代发",
-        "情侣装 海边 度假 衬衫 连衣裙 一件代发",
-        "情侣装 小众 设计 一件代发",
-        "情侣装 现货 一件代发",
-        "情侣衬衫 连衣裙 一件代发",
-        "情侣装 度假 花衬衫 一件代发",
-        "男女同款 情侣装 一件代发",
-        "情侣装 春夏 新款 一件代发"
+        {
+          "text": "情侣装",
+          "intent": "adult couple matching outfits",
+          "launch_season": "夏季",
+          "modifiers": ["同款"]
+        },
+        {
+          "text": "情侣款",
+          "intent": "couple same-style outfits",
+          "launch_season": "夏季",
+          "modifiers": ["同款"]
+        },
+        {
+          "text": "情侣同款",
+          "intent": "matching couple styles",
+          "launch_season": "夏季",
+          "modifiers": ["套装"]
+        },
+        {
+          "text": "男女同款 情侣装",
+          "intent": "men and women same-style couple outfits",
+          "launch_season": "夏季",
+          "modifiers": ["休闲"]
+        },
+        {
+          "text": "情侣T恤",
+          "intent": "couple t-shirts",
+          "launch_season": "夏季",
+          "modifiers": ["休闲"]
+        },
+        {
+          "text": "情侣衬衫",
+          "intent": "couple shirts",
+          "launch_season": "夏季",
+          "modifiers": ["短袖"]
+        },
+        {
+          "text": "情侣夏季套装",
+          "intent": "couple summer sets",
+          "launch_season": "夏季",
+          "modifiers": ["短袖"]
+        },
+        {
+          "text": "情侣休闲装",
+          "intent": "casual couple outfits",
+          "launch_season": "夏季",
+          "modifiers": ["小众设计"]
+        },
+        {
+          "text": "情侣沙滩装",
+          "intent": "couple beach outfits",
+          "launch_season": "夏季",
+          "modifiers": ["度假"]
+        },
+        {
+          "text": "情侣度假风",
+          "intent": "couple vacation outfits",
+          "launch_season": "夏季",
+          "modifiers": ["海边"]
+        },
+        {
+          "text": "情侣海边度假",
+          "intent": "couple resort looks",
+          "launch_season": "夏季",
+          "modifiers": ["衬衫", "连衣裙"]
+        },
+        {
+          "text": "情侣花衬衫",
+          "intent": "couple floral shirts",
+          "launch_season": "夏季",
+          "modifiers": ["度假"]
+        },
+        {
+          "text": "情侣衬衫 连衣裙",
+          "intent": "couple shirt and dress sets",
+          "launch_season": "夏季",
+          "modifiers": ["同款"]
+        },
+        {
+          "text": "情侣礼服",
+          "intent": "couple formal outfits",
+          "launch_season": "春夏",
+          "modifiers": ["高端"]
+        },
+        {
+          "text": "情侣晚礼服",
+          "intent": "couple evening outfits",
+          "launch_season": "春夏",
+          "modifiers": ["气质"]
+        },
+        {
+          "text": "情侣婚礼礼服",
+          "intent": "couple wedding guest outfits",
+          "launch_season": "春夏",
+          "modifiers": ["高端"]
+        },
+        {
+          "text": "情侣写真服",
+          "intent": "couple photoshoot outfits",
+          "launch_season": "春夏",
+          "modifiers": ["摄影服"]
+        },
+        {
+          "text": "情侣摄影服",
+          "intent": "couple photography outfits",
+          "launch_season": "春夏",
+          "modifiers": ["小众设计"]
+        },
+        {
+          "text": "情侣睡衣",
+          "intent": "couple pajamas",
+          "launch_season": "春夏",
+          "modifiers": ["家居服"]
+        },
+        {
+          "text": "情侣运动套装",
+          "intent": "couple active matching sets",
+          "launch_season": "春夏",
+          "modifiers": ["休闲"]
+        },
+        {
+          "text": "情侣新年装",
+          "intent": "couple New Year outfits",
+          "launch_season": "冬季",
+          "modifiers": ["唐装"]
+        },
+        {
+          "text": "情侣圣诞装",
+          "intent": "couple Christmas outfits",
+          "launch_season": "冬季",
+          "modifiers": ["节日"]
+        }
       ]
     },
     {
@@ -83,18 +634,156 @@
       "label": "Maternity",
       "listing_mode": "Maternity",
       "primary_focus": "Pregnancy, maternity, bump-friendly, and mommy-and-baby styles.",
+      "search_defaults": {
+        "launch_year": "2026",
+        "freshness": "新款",
+        "fulfillment": "一件代发"
+      },
       "queries": [
-        "孕妇装 连衣裙 一件代发",
-        "孕妇裙 亲子装 一件代发",
-        "孕妇装 新款 母女装 连衣裙 一件代发",
-        "孕妇装 2026 夏季 连衣裙 一件代发",
-        "孕妇裙 新款 宽松 连衣裙 一件代发",
-        "孕妇装 拍照 连衣裙 一件代发",
-        "孕妇装 度假 连衣裙 一件代发",
-        "孕妇亲子装 母女 连衣裙 一件代发",
-        "孕妇裙 现货 一件代发",
-        "哺乳 连衣裙 孕妇 一件代发",
-        "孕妈 连衣裙 新款 一件代发"
+        {
+          "text": "孕妇装",
+          "intent": "maternity outfits",
+          "launch_season": "夏季",
+          "modifiers": ["连衣裙"]
+        },
+        {
+          "text": "孕妇连衣裙",
+          "intent": "maternity dresses",
+          "launch_season": "夏季",
+          "modifiers": ["宽松"]
+        },
+        {
+          "text": "孕妇裙",
+          "intent": "maternity skirts and dresses",
+          "launch_season": "夏季",
+          "modifiers": ["连衣裙"]
+        },
+        {
+          "text": "孕妈连衣裙",
+          "intent": "mom-to-be dresses",
+          "launch_season": "夏季",
+          "modifiers": ["气质"]
+        },
+        {
+          "text": "孕妇夏季连衣裙",
+          "intent": "summer maternity dresses",
+          "launch_season": "夏季",
+          "modifiers": ["短袖"]
+        },
+        {
+          "text": "孕妇宽松连衣裙",
+          "intent": "bump-friendly loose dresses",
+          "launch_season": "夏季",
+          "modifiers": ["休闲"]
+        },
+        {
+          "text": "孕妇棉麻连衣裙",
+          "intent": "cotton-linen maternity dresses",
+          "launch_season": "夏季",
+          "modifiers": ["休闲"]
+        },
+        {
+          "text": "孕妇沙滩裙",
+          "intent": "maternity beach dresses",
+          "launch_season": "夏季",
+          "modifiers": ["度假"]
+        },
+        {
+          "text": "孕妇度假连衣裙",
+          "intent": "maternity vacation dresses",
+          "launch_season": "夏季",
+          "modifiers": ["长款"]
+        },
+        {
+          "text": "孕妇礼服",
+          "intent": "maternity formal dresses",
+          "launch_season": "春夏",
+          "modifiers": ["高端"]
+        },
+        {
+          "text": "孕妇晚礼服",
+          "intent": "maternity evening gowns",
+          "launch_season": "春夏",
+          "modifiers": ["气质"]
+        },
+        {
+          "text": "孕妇婚礼礼服",
+          "intent": "maternity wedding guest dresses",
+          "launch_season": "春夏",
+          "modifiers": ["蕾丝"]
+        },
+        {
+          "text": "孕妇生日礼服",
+          "intent": "maternity birthday dresses",
+          "launch_season": "春夏",
+          "modifiers": ["公主裙"]
+        },
+        {
+          "text": "孕妇派对礼服",
+          "intent": "maternity party dresses",
+          "launch_season": "春夏",
+          "modifiers": ["雪纺"]
+        },
+        {
+          "text": "孕妇写真服",
+          "intent": "maternity photoshoot outfits",
+          "launch_season": "春夏",
+          "modifiers": ["摄影服"]
+        },
+        {
+          "text": "孕妇摄影服",
+          "intent": "maternity photography gowns",
+          "launch_season": "春夏",
+          "modifiers": ["长款"]
+        },
+        {
+          "text": "孕妇拍照裙",
+          "intent": "maternity photo dresses",
+          "launch_season": "春夏",
+          "modifiers": ["写真"]
+        },
+        {
+          "text": "孕妇亲子装",
+          "intent": "maternity parent-child outfits",
+          "launch_season": "夏季",
+          "modifiers": ["母女装"]
+        },
+        {
+          "text": "孕妇母女装",
+          "intent": "maternity mother-daughter outfits",
+          "launch_season": "夏季",
+          "modifiers": ["连衣裙"]
+        },
+        {
+          "text": "孕妈宝宝亲子装",
+          "intent": "mom-to-be and baby coordinated outfits",
+          "launch_season": "夏季",
+          "modifiers": ["连衣裙"]
+        },
+        {
+          "text": "哺乳连衣裙",
+          "intent": "nursing dresses",
+          "launch_season": "夏季",
+          "modifiers": ["孕妇"]
+        },
+        {
+          "text": "产后哺乳裙",
+          "intent": "postpartum nursing dresses",
+          "launch_season": "夏季",
+          "modifiers": ["宽松"]
+        },
+        {
+          "text": "孕妇新年装",
+          "intent": "maternity New Year outfits",
+          "launch_season": "冬季",
+          "modifiers": ["唐装"]
+        },
+        {
+          "text": "孕妇圣诞裙",
+          "intent": "maternity Christmas dresses",
+          "launch_season": "冬季",
+          "modifiers": ["节日"]
+        }
       ]
     }
   ]
