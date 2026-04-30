@@ -1,0 +1,85 @@
+# Analytics event definitions around ecommerce surface
+108-    }
+109-  }
+110-
+111:  function pushEcommerceEvent(eventName, ecommerce, additionalPayload) {
+112-    pushToDataLayer({ ecommerce: null });
+113-
+114-    var payload = Object.assign({ event: eventName }, additionalPayload || {});
+--
+556-
+557-    if (!listContext || !items.length) return;
+558-
+559:    pushEcommerceEvent('view_item_list', {
+560-      item_list_id: listContext.item_list_id,
+561-      item_list_name: listContext.item_list_name,
+562-      items: items,
+--
+670-      var item = buildCardItem(card, listContext);
+671-      if (!item) return;
+672-
+673:      pushEcommerceEvent('select_item', {
+674-        item_list_id: listContext.item_list_id,
+675-        item_list_name: listContext.item_list_name,
+676-        items: [item],
+--
+878-      var removedItem = Object.assign({}, previousEntry.item, { quantity: removedQty });
+879-      var ecommerce = buildEcommercePayload([removedItem]);
+880-
+881:      pushEcommerceEvent('remove_from_cart', ecommerce);
+882-    });
+883-  }
+884-
+--
+893-    if (signature === state.lastViewCartSignature) return;
+894-    state.lastViewCartSignature = signature;
+895-
+896:    pushEcommerceEvent('view_cart', buildEcommerceFromSnapshot(snapshot), {
+897-      cart_context: context,
+898-    });
+899-  }
+--
+912-      ? buildEcommerceFromSnapshot(snapshot)
+913-      : buildEcommercePayload([]);
+914-
+915:    pushEcommerceEvent('begin_checkout', ecommerce, {
+916:      checkout_source: normalizeText(source),
+917-    });
+918-  }
+919-
+--
+925-    if (!item || !item.item_name) return;
+926-
+927-    state.viewItemPushed = true;
+928:    pushEcommerceEvent('view_item', buildEcommercePayload([item]));
+929-  }
+930-
+931-  function pushAddToCartEvent(variantId, quantity) {
+--
+933-    var item = buildEcommerceItem(productData, variantId || getSelectedVariantId());
+934-
+935-    if (!item) {
+936:      pushToDataLayer({ event: 'add_to_cart' });
+937-      return;
+938-    }
+939-
+940-    item.quantity = parsePositiveInteger(quantity, 1);
+941-
+942:    pushEcommerceEvent('add_to_cart', buildEcommercePayload([item]));
+943-  }
+944-
+945-  function initProductAddToCartTracking() {
+--
+1196-      var target = event.target;
+1197-      if (!target || !target.closest) return;
+1198-
+1199:      var checkoutTarget = target.closest('[name="checkout"]');
+1200:      if (!checkoutTarget) return;
+1201-
+1202-      var source =
+1203:        normalizeText(checkoutTarget.id) ||
+1204:        normalizeText(checkoutTarget.getAttribute('form')) ||
+1205:        normalizeText(checkoutTarget.className);
+1206-
+1207-      pushBeginCheckoutEvent(source);
+1208-    });

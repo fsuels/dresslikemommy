@@ -1,0 +1,105 @@
+{
+  "data": {
+    "orders": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Order/6575644803169",
+          "legacyResourceId": "6575644803169",
+          "name": "#9476",
+          "confirmationNumber": "5QU2KJ7DN",
+          "displayFinancialStatus": "PAID",
+          "displayFulfillmentStatus": "UNFULFILLED",
+          "createdAt": "2026-04-30T21:10:08Z",
+          "currentTotalPriceSet": {
+            "shopMoney": {
+              "amount": "19.99",
+              "currencyCode": "USD"
+            }
+          },
+          "currentSubtotalPriceSet": {
+            "shopMoney": {
+              "amount": "19.99",
+              "currencyCode": "USD"
+            }
+          },
+          "currentShippingPriceSet": {
+            "shopMoney": {
+              "amount": "0.0",
+              "currencyCode": "USD"
+            }
+          },
+          "transactions": [
+            {
+              "id": "gid://shopify/OrderTransaction/8454949994593",
+              "kind": "AUTHORIZATION",
+              "status": "SUCCESS",
+              "gateway": "shopify_payments",
+              "amountSet": {
+                "shopMoney": {
+                  "amount": "19.99",
+                  "currencyCode": "USD"
+                }
+              },
+              "createdAt": "2026-04-30T21:10:05Z"
+            },
+            {
+              "id": "gid://shopify/OrderTransaction/8454950682721",
+              "kind": "CAPTURE",
+              "status": "SUCCESS",
+              "gateway": "shopify_payments",
+              "amountSet": {
+                "shopMoney": {
+                  "amount": "19.99",
+                  "currencyCode": "USD"
+                }
+              },
+              "createdAt": "2026-04-30T21:10:08Z"
+            }
+          ],
+          "lineItems": {
+            "nodes": [
+              {
+                "name": "Tropical One-Shoulder Ruffle Swimsuit for Women and... | DLM - Mother XL / Multi-Color",
+                "quantity": 1,
+                "variantTitle": "Mother XL / Multi-Color",
+                "discountedTotalSet": {
+                  "shopMoney": {
+                    "amount": "19.99",
+                    "currencyCode": "USD"
+                  }
+                },
+                "originalTotalSet": {
+                  "shopMoney": {
+                    "amount": "19.99",
+                    "currencyCode": "USD"
+                  }
+                },
+                "variant": {
+                  "id": "gid://shopify/ProductVariant/41496666767457",
+                  "legacyResourceId": "41496666767457",
+                  "sku": "5344330503830-Size:Mother XL;Color:Multi-Color;"
+                },
+                "product": {
+                  "id": "gid://shopify/Product/7108998987873",
+                  "title": "Tropical One-Shoulder Ruffle Swimsuit for Women and... | DLM",
+                  "handle": "tropical-one-shoulder-ruffle-swimsuit-for-women-and-girls-vibrant-floral-print-asymmetrical-design-family-matching-swimwear"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "cost": {
+      "requestedQueryCost": 50,
+      "actualQueryCost": 5,
+      "throttleStatus": {
+        "maximumAvailable": 2000.0,
+        "currentlyAvailable": 1995,
+        "restoreRate": 100.0
+      }
+    }
+  }
+}

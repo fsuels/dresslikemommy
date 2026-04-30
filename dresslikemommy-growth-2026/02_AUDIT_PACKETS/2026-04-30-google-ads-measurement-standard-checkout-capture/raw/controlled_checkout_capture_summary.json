@@ -1,0 +1,169 @@
+{
+  "generated_at": "2026-04-30T20:18:43.734743+00:00",
+  "decision": "BLOCK_NON_BUDGET_CAMPAIGN_EDITS__PURCHASE_RUNTIME_PROOF_BLOCKED_BY_CHECKOUT_CAPTCHA",
+  "launch_status": "LAUNCH_BLOCKED",
+  "non_budget_campaign_edits_allowed": false,
+  "launch_work_allowed": false,
+  "external_campaign_changes_made": false,
+  "shopify_settings_changed": false,
+  "order_completed": false,
+  "captcha_blocker": true,
+  "controlled_checkout": {
+    "product": "Fruit Green Family Matching Set - Polo Dresses & Shirts - Dress / Child 1-2 Years",
+    "variant_id": 44088052973665,
+    "cart_total_cents": 2999,
+    "cart_currency": "USD",
+    "shipping": "FREE observed after test address",
+    "test_card_entered": true,
+    "payment_submission_result": "CAPTCHA_REQUIRED_BEFORE_PURCHASE_COMPLETION"
+  },
+  "measurement_events_observed_before_blocker": {
+    "page_view": 12,
+    "add_to_cart": 4,
+    "user_engagement": 1,
+    "begin_checkout": 4,
+    "form_start": 4,
+    "add_payment_info": 5
+  },
+  "runtime_purchase_event_count": 0,
+  "purchase_value_proven": false,
+  "purchase_currency_proven": false,
+  "purchase_transaction_id_proven": false,
+  "deduplication_proven": false,
+  "partial_evidence": {
+    "add_to_cart_value_currency_observed": true,
+    "begin_checkout_value_currency_observed": true,
+    "add_payment_info_currency_observed": true,
+    "purchase_event_absent": true
+  },
+  "event_examples": {
+    "add_to_cart": [
+      {
+        "event": "add_to_cart",
+        "host": "www.googleadservices.com",
+        "path": "/pagead/conversion/853411529/",
+        "value": "29.99",
+        "currency": "USD",
+        "transaction_id": "",
+        "tid": ""
+      },
+      {
+        "event": "add_to_cart",
+        "host": "analytics.google.com",
+        "path": "/g/collect",
+        "value": "29.99",
+        "currency": "",
+        "transaction_id": "",
+        "tid": "G-N4EQNK0MMB"
+      },
+      {
+        "event": "add_to_cart",
+        "host": "googleads.g.doubleclick.net",
+        "path": "/pagead/viewthroughconversion/853411529/",
+        "value": "29.99",
+        "currency": "USD",
+        "transaction_id": "",
+        "tid": ""
+      },
+      {
+        "event": "add_to_cart",
+        "host": "www.google.com",
+        "path": "/pagead/1p-conversion/853411529/",
+        "value": "29.99",
+        "currency": "USD",
+        "transaction_id": "",
+        "tid": ""
+      }
+    ],
+    "begin_checkout": [
+      {
+        "event": "begin_checkout",
+        "host": "analytics.google.com",
+        "path": "/g/collect",
+        "value": "29.99",
+        "currency": "",
+        "transaction_id": "",
+        "tid": "G-N4EQNK0MMB"
+      },
+      {
+        "event": "begin_checkout",
+        "host": "www.googleadservices.com",
+        "path": "/pagead/conversion/853411529/",
+        "value": "29.99",
+        "currency": "USD",
+        "transaction_id": "",
+        "tid": ""
+      },
+      {
+        "event": "begin_checkout",
+        "host": "googleads.g.doubleclick.net",
+        "path": "/pagead/viewthroughconversion/853411529/",
+        "value": "29.99",
+        "currency": "USD",
+        "transaction_id": "",
+        "tid": ""
+      },
+      {
+        "event": "begin_checkout",
+        "host": "www.google.com",
+        "path": "/pagead/1p-conversion/853411529/",
+        "value": "29.99",
+        "currency": "USD",
+        "transaction_id": "",
+        "tid": ""
+      }
+    ],
+    "add_payment_info": [
+      {
+        "event": "add_payment_info",
+        "host": "www.googleadservices.com",
+        "path": "/pagead/conversion/853411529/",
+        "value": "",
+        "currency": "USD",
+        "transaction_id": "",
+        "tid": ""
+      },
+      {
+        "event": "add_payment_info",
+        "host": "www.googleadservices.com",
+        "path": "/ccm/conversion/853411529/",
+        "value": "",
+        "currency": "USD",
+        "transaction_id": "",
+        "tid": ""
+      },
+      {
+        "event": "add_payment_info",
+        "host": "analytics.google.com",
+        "path": "/g/collect",
+        "value": "",
+        "currency": "",
+        "transaction_id": "",
+        "tid": "G-N4EQNK0MMB"
+      },
+      {
+        "event": "add_payment_info",
+        "host": "googleads.g.doubleclick.net",
+        "path": "/pagead/viewthroughconversion/853411529/",
+        "value": "",
+        "currency": "USD",
+        "transaction_id": "",
+        "tid": ""
+      },
+      {
+        "event": "add_payment_info",
+        "host": "www.google.com",
+        "path": "/pagead/1p-conversion/853411529/",
+        "value": "",
+        "currency": "USD",
+        "transaction_id": "",
+        "tid": ""
+      }
+    ]
+  },
+  "evidence_folders": [
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-playwright-capture",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-standard-checkout-capture"
+  ],
+  "required_next_action": "User must solve the checkout CAPTCHA / complete the test order manually while a capture is running, or provide an equivalent Tag Assistant purchase recording. Agent cannot solve CAPTCHA."
+}

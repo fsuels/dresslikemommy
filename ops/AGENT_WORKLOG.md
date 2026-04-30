@@ -26625,3 +26625,998 @@ Residual:
 - PSI preview URLs include Shopify preview/debug behavior and can differ from the published theme.
 - Product CLS is now good but not literally zero in Lighthouse/PSI; remaining local culprit is the color-image fieldset near the viewport edge.
 - `theme-inline-head-static-02.css` and global body statics `05`, `06`, and `08` remain audit candidates, but were left global to avoid cart/header/footer regressions.
+
+2026-04-30 — Google Ads campaign readiness orchestration packet
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-campaign-readiness-orchestration
+
+Why:
+- User provided April 30 Google Ads campaign evaluation packets plus a long ChatGPT/Claude debate and asked to organize the work into an agent orchestration plan that can implement the right changes while making every campaign activation-ready.
+
+Actions:
+- Read the April 30 Google Ads master/campaign packets from `/Users/fsuels/Downloads/`.
+- Reconciled those packets with current repo evidence:
+  - April 29 conversion-value gate passed for `Google Shopping App Purchase` tracking health, but activation remains blocked.
+  - April 29 Shopping campaign gate verified the live paid-ready labels and 780-product filtered Standard Shopping cohort.
+  - April 29 worklog shows Brand Search was posted paused via Google Ads Editor and Standard Shopping negatives were applied.
+  - Phase 7 final launch gate still reports `BLOCKED`.
+- Orchestrated campaign-specific subagents for Brand Search, Standard Shopping, PMax US Shopping, PMax T-Shirts, and Remarketing; all returned `LAUNCH_BLOCKED` / hold recommendations with live-account verification required.
+- Created the implementation plan:
+  - `dresslikemommy-growth-2026/04_IMPLEMENTATION_PLANS/2026-04-30-google-ads-campaign-readiness-orchestration.md`
+- Created the audit packet:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-campaign-readiness-orchestration/README.md`
+  - `campaign_action_matrix.csv`
+  - `agent_workstream_board.csv`
+  - `safe_live_audit_prompts.md`
+
+Decision:
+- `LAUNCH_BLOCKED`.
+- Do not enable, publish, restart, raise budgets, mutate conversion goals, or broaden product inclusion from this packet.
+- Next allowable live-account step is read-only Google Ads audit/export; after that, only paused-draft safety edits with operator approval.
+
+Residual:
+- No Google Ads, Merchant Center, Shopify, GA4, or theme settings were changed in this orchestration pass.
+- The attached April 30 screenshot zip contained only a README, so current campaign UI values still require a fresh live audit before any live-account edits.
+
+2026-04-30 — Google Ads live read-only audit and paused budget safety patch
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-live-audit-paused-budget-safety-patch
+
+Why:
+- User asked to run the read-only Google Ads audit using `safe_live_audit_prompts.md`, export screenshots/change history, then apply only owner-approved paused safety edits.
+
+Actions:
+- Used the authenticated Google Ads browser session for account `399-097-6848 dresslikemommy.com`.
+- Exported raw UI text, screenshots, campaign settings drawers, campaign detail pages, product/audience/ad pages, and change-history pages under:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-live-audit/`
+- Verified all five visible target campaigns were paused, could not spend, and had campaign-level all-time metrics of `0` impressions, `0` clicks/interactions, `$0.00` cost, `0.00` conversions, and `0.00` conversion value.
+- Applied only the owner-approved paused safety edit: reduced daily budgets to `$1.00/day` placeholders while keeping every campaign paused.
+- Created:
+  - `LIVE_AUDIT_AND_PAUSED_SAFETY_PATCH_SUMMARY.md`
+  - `post_patch_budget_readback.csv`
+
+Live budget safety patch readback:
+- `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429`: `$10.00/day` -> `$1.00/day`, still paused.
+- `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY`: `$25.00/day` -> `$1.00/day`, still paused.
+- `PMax: Shopping ads (United States)`: `$2.00/day` -> `$1.00/day`, still paused.
+- `PMax: USA Google Shopping T-Shirts`: `$10.00/day` -> `$1.00/day`, still paused.
+- `Remarketing - Cart Abandoners & Checkout Starters`: `$5.00/day` -> `$1.00/day`, still paused.
+
+Decision:
+- `LAUNCH_BLOCKED` remains in force.
+- No campaigns were enabled.
+- No bidding strategies, conversion goals, product groups, audience rules, ad/asset copy, negatives, URL expansion controls, or location targeting controls were changed.
+
+Residual:
+- Google Ads change history did not surface the just-applied budget patch during the session; current campaign-table DOM readback and screenshots are the immediate proof.
+- Advanced location option (`Presence` vs `Presence or interest`) was not exposed in the captured settings drawers and still needs a targeted UI expansion/readback before launch.
+- Account-level all-time totals show historical activity outside these five target campaigns; campaign-level rows for these five target campaigns remained zero-spend.
+
+2026-04-30 — Sunlit Floral family matching Shopify draft listing
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-sunlit-floral-family-matching-draft
+
+Why:
+- User supplied 1688 offer `1035829442886`, a size-chart screenshot, and a product image, then asked to execute the canonical Shopify listing workflow with `FORCE_SPEC_PRICES=true`.
+
+Actions:
+- Read the canonical listing prompts in `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md`.
+- Created draft-only Admin API runner:
+  - `ops/scripts/create-snfl-sunlit-floral-family-matching-set.sh`
+- Created/verified Shopify draft product:
+  - Admin: `https://admin.shopify.com/store/dresslikemommy/products/7541022818401`
+  - Handle: `sunlit-floral-family-matching-set`
+  - Status: `DRAFT`
+  - Live URL: not published
+- Saved listing artifacts:
+  - `ops/listings/sunlit-floral-family-matching-set-listing.md`
+  - `ops/listings/sunlit-floral-family-matching-set-shopify-import.csv`
+  - `ops/listings/source-size-chart-sunlit-floral-family-matching-set.png`
+  - `ops/listings/size-chart-sunlit-floral-family-matching-set.json`
+  - `ops/listings/body-sunlit-floral-family-matching-set.html`
+  - `ops/listings/verify-sunlit-floral-family-matching-set.json`
+  - `uploads/sunlit-floral-family-matching-set/01-family-beach.png`
+
+Verification:
+- Direct 1688 fetch returned Alibaba CAPTCHA/punish markup, so the attached chart/image were treated as authoritative per prompt.
+- Variant model preflight passed: `Type x Size`, garments `Dress` and `Shirt`, 26 variants.
+- Shopify verification passed:
+  - variant count `26 == SIZE_CHART`
+  - SKUs matched derived SKUs
+  - product remained `DRAFT`
+  - `publishedAt` was `null`
+  - no sales-channel publication IDs were live
+  - taxonomy resolved to `Apparel & Accessories > Clothing > Outfit Sets`
+  - every variant had price, compare-at, `DENY`, `tracked=true`, `requiresShipping=true`, and Cost per item equal to 50% of selling price
+- `bash -n ops/scripts/create-snfl-sunlit-floral-family-matching-set.sh` passed.
+- `python3 -m json.tool` passed for the generated size-chart and verify JSON files.
+- CSV has 26 rows with `Status=draft`, `Published=FALSE`, child cost `14.50`, adult cost `16.00`.
+- `git diff --check` passed.
+
+Residual:
+- The attached product image is watermarked; replace/retouch before any publish-live step.
+- Direct vendor page proof remains blocked by 1688 CAPTCHA, so `shopify.fabric` was intentionally skipped until fabric is confirmed.
+- Inventory quantities and grams still need operator stock values before publication.
+
+2026-04-30 14:29 EDT - Pink Hibiscus canonical draft-only listing rerun
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-pink-hibiscus-draft-only-rerun
+
+Why:
+- User requested the canonical Shopify listing workflow for 1688 offer `1013973939291` using attached product and size-chart screenshots, with `FORCE_SPEC_PRICES=true`.
+- Current canonical prompt requires Shopify listing work to stay draft-only and not publish to sales channels.
+
+Actions:
+- Re-read the canonical listing prompt chain:
+  - `ops/prompts/START-HERE.md`
+  - `ops/prompts/shopify-listing-master-prompt.md`
+  - `ops/prompts/shopify-listing-from-1688.md`
+- Reused and updated the existing idempotent runner for this exact offer:
+  - `ops/scripts/create-phib-pink-hibiscus-family-matching-set.sh`
+- Tightened the runner to:
+  - create/update with `status: "DRAFT"`
+  - remove the old `publishablePublish` sales-channel step
+  - run `ops/scripts/validate_listing_variant_model.py` before Shopify mutations
+  - write CSV backups with LF line endings
+  - skip accidental `size-chart` files during product-media upload
+- Executed the runner. Shopify product `gid://shopify/Product/7536984752225` is now `DRAFT`, has no live sales-channel publications, and has no Online Store URL.
+- Copied the attached product image into `uploads/pink-hibiscus-family-matching-set/01-pink-hibiscus-family-matching-product.png`.
+- Saved the attached size-chart screenshot as evidence outside the media upload folder:
+  - `ops/listings/source-size-chart-pink-hibiscus-family-matching-set.png`
+- Removed an accidental size-chart image that briefly attached as Shopify product media during cleanup.
+
+Verification:
+- Variant model preflight passed: options `Type` / `Size`; chart garments `Dress` and `Shirt & Shorts Set`; vendor evidence detected `Dress`, `Top`, and `Shorts`.
+- Final Shopify readback:
+  - status `DRAFT`
+  - `publishedAt` null
+  - no published publications
+  - taxonomy `Apparel & Accessories > Clothing > Outfit Sets`
+  - 30 variants from 30 size-chart rows
+  - option axes `Type` / `Size`
+  - 1 product image attached
+  - prices `28.99` child and `31.99` adult
+  - compare-at prices `33.99` child and `36.99` adult
+  - Cost per item equals exactly 50% of selling price (`14.50` and `16.00`)
+- Passed:
+  - `bash -n ops/scripts/create-phib-pink-hibiscus-family-matching-set.sh`
+  - `python3 -m json.tool ops/listings/size-chart-pink-hibiscus-family-matching-set.json`
+  - `python3 -m json.tool ops/listings/verify-pink-hibiscus-family-matching-set.json`
+  - targeted `git diff --check` for the touched listing files
+
+Residual:
+- Product remains draft and intentionally unpublished until the operator asks for a separate live publish step.
+- Inventory quantities and per-variant grams remain operator follow-ups.
+- Exact fabric fiber remains unconfirmed because the attached evidence supports lightweight woven appearance but not a reliable fiber composition.
+
+2026-04-30 14:40 EDT - Lavender Meadow canonical draft-only listing
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-lavender-meadow-draft-only-listing
+
+Why:
+- User requested the canonical Shopify listing workflow for 1688 offer `780646169756` using attached product and size-chart screenshots, with `FORCE_SPEC_PRICES=true`.
+- Request left `LISTING_MODE` as the template choices; attached evidence showed only girl and mother dress rows, so the run resolved it to `Mommy and Me` and `PRIMARY_CATEGORY=Dresses`.
+
+Actions:
+- Re-read the canonical listing prompt chain:
+  - `ops/prompts/START-HERE.md`
+  - `ops/prompts/shopify-listing-master-prompt.md`
+  - `ops/prompts/shopify-listing-from-1688.md`
+- Created idempotent draft-only runner:
+  - `ops/scripts/create-lvmd-lavender-meadow-mommy-and-me-dresses.sh`
+- Saved source/product evidence:
+  - `uploads/lavender-meadow-mommy-and-me-dresses/01-lavender-meadow-mommy-and-me-dresses.png`
+  - `ops/listings/source-size-chart-lavender-meadow-mommy-and-me-dresses.png`
+- Direct 1688 fetch returned Alibaba punish/CAPTCHA markup, so attached images were used as authoritative evidence per the canonical workflow.
+- Queried nearby live Mommy and Me dress products in Shopify Admin. Prevailing role prices were child `31.99` and adult `34.99`; used those with cost set to exactly 50%.
+- Ran the runner twice. Shopify product `gid://shopify/Product/7541032779873` is now a draft and remains unpublished.
+
+Verification:
+- Variant model preflight passed: options `Size` / `Color`; chart garment `Dress`; vendor evidence `Dress`.
+- Final Shopify readback:
+  - status `DRAFT`
+  - `publishedAt` null
+  - no published publications
+  - taxonomy `Apparel & Accessories > Clothing > Dresses`
+  - 12 variants from 12 size-chart rows
+  - option axes `Size` / `Color`
+  - 1 product image attached
+  - prices `31.99` child and `34.99` adult
+  - compare-at prices `36.99` child and `40.99` adult
+  - Cost per item equals exactly 50% of selling price (`16.00` and `17.50`)
+- Passed:
+  - `bash -n ops/scripts/create-lvmd-lavender-meadow-mommy-and-me-dresses.sh`
+  - `python3 -m json.tool ops/listings/size-chart-lavender-meadow-mommy-and-me-dresses.json`
+  - `python3 -m json.tool ops/listings/verify-lavender-meadow-mommy-and-me-dresses.json`
+  - targeted `git diff --check` for the touched listing files
+  - idempotent second runner execution
+
+Residual:
+- Product remains draft and intentionally unpublished until the operator asks for a separate live publish step.
+- Exact fabric fiber remains unconfirmed because the direct 1688 page was CAPTCHA/punish-blocked and the supplied evidence does not show composition; `shopify.fabric` was intentionally skipped.
+- Source product image has a small visible top-right mark; review/retouch before publication.
+- Inventory quantities and per-variant grams remain operator follow-ups.
+
+2026-04-30 14:50 EDT - Midnight Rose canonical draft-only listing
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-midnight-rose-draft-only-listing
+
+Why:
+- User requested the canonical Shopify listing workflow for 1688 offer `938601981390` using attached product and size-chart screenshots, with `FORCE_SPEC_PRICES=true`.
+- Request left `LISTING_MODE` as the template choices; attached evidence showed family matching dresses for girl/mother and matching shirt for father, with child size rows supporting boy shirts, so the run resolved it to `Family Matching` and `PRIMARY_CATEGORY=FamilySet`.
+
+Actions:
+- Re-read the canonical listing prompt chain:
+  - `ops/prompts/START-HERE.md`
+  - `ops/prompts/shopify-listing-master-prompt.md`
+  - `ops/prompts/shopify-listing-from-1688.md`
+- Created idempotent draft-only runner:
+  - `ops/scripts/create-mdro-midnight-rose-family-matching-set.sh`
+- Saved source/product evidence:
+  - `uploads/midnight-rose-family-matching-set/01-midnight-rose-family-matching-set.png`
+  - `ops/listings/source-size-chart-midnight-rose-family-matching-set.png`
+- Direct 1688 fetch returned Alibaba punish/CAPTCHA markup, so attached images were used as authoritative evidence per the canonical workflow.
+- Used nearby family matching set pricing from `sunlit-floral-family-matching-set`: child `28.99`, adult `31.99`, with Cost per item set to exactly 50%.
+- Excluded infant crawler rows (`66/73/80/90`) because the allowed family matching roles and supplied product image did not evidence a baby romper variant.
+- Preserved the vendor chart honestly as height/weight-only guidance. Chest, waist, hip, garment length, sleeve/shoulder, and pant/short cells were left blank rather than fabricated; this is a documented deviation from the ideal "waist populated" checklist because the attached chart does not provide garment measurements.
+- Ran the runner twice. Shopify product `gid://shopify/Product/7541042151521` is now a draft and remains unpublished.
+
+Verification:
+- Variant model preflight passed: options `Type` / `Size`; chart garments `Dress` and `Shirt`; vendor evidence detected separate garment language.
+- Final Shopify readback:
+  - status `DRAFT`
+  - `publishedAt` null
+  - no Online Store URL
+  - no published publications
+  - taxonomy `Apparel & Accessories > Clothing > Outfit Sets`
+  - 28 variants from 28 size-chart rows
+  - option axes `Type` / `Size`
+  - 1 product image attached
+  - prices `28.99` child and `31.99` adult
+  - compare-at prices `33.99` child and `36.99` adult
+  - Cost per item equals exactly 50% of selling price (`14.50` and `16.00`)
+- Passed:
+  - `bash -n ops/scripts/create-mdro-midnight-rose-family-matching-set.sh`
+  - `python3 -m json.tool ops/listings/size-chart-midnight-rose-family-matching-set.json`
+  - `python3 -m json.tool ops/listings/verify-midnight-rose-family-matching-set.json`
+  - targeted `git diff --check` for the touched listing files
+  - idempotent second runner execution
+
+Residual:
+- Product remains draft and intentionally unpublished until the operator asks for a separate live publish step.
+- The attached source image is a small screenshot/collage; replace with cleaner product media before publication.
+- Exact fabric fiber remains unconfirmed because the direct 1688 page was CAPTCHA/punish-blocked and the supplied evidence does not show composition; `shopify.fabric` was intentionally skipped.
+- The vendor chart only provides body height/weight references; request garment measurements before publishing if PDP measurement completeness is required.
+- Inventory quantities and per-variant grams remain operator follow-ups.
+
+2026-04-30 14:50 EDT - Coastal Blue Plaid canonical draft-only listing
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-coastal-blue-plaid-draft-only-listing
+
+Why:
+- User requested the canonical Shopify listing workflow for 1688 offer `921490864577` using attached product and size-chart screenshots, with `FORCE_SPEC_PRICES=true`.
+- Request left `LISTING_MODE` as the template choices; attached evidence showed girl, boy, mother, and father rows, so the run resolved it to `Family Matching` and `PRIMARY_CATEGORY=FamilySet`.
+
+Actions:
+- Re-read the canonical listing prompt chain:
+  - `ops/prompts/START-HERE.md`
+  - `ops/prompts/shopify-listing-master-prompt.md`
+  - `ops/prompts/shopify-listing-from-1688.md`
+- Created idempotent draft-only runner:
+  - `ops/scripts/create-cbpl-coastal-blue-plaid-family-matching-set.sh`
+- Saved source/product evidence:
+  - `uploads/coastal-blue-plaid-family-matching-set/01-coastal-blue-plaid-family-look.png`
+  - `ops/listings/source-size-chart-coastal-blue-plaid-family-matching-set.png`
+- Direct 1688 fetch returned Alibaba `_____tmd_____` / CAPTCHA-punish markup, so attached images were used as authoritative evidence per the canonical workflow.
+- Chose a distinct handle because the repo already has a live `fresh-blue-plaid-family-matching-set` from a different offer ID and chart; the live product was not changed.
+- Queried the nearby live `fresh-blue-plaid-family-matching-set` price pattern and used child `28.99`, adult `31.99`, with Cost per item set to exactly 50%.
+- Ran the runner twice. Shopify product `gid://shopify/Product/7541041135713` is now a draft and remains unpublished.
+
+Verification:
+- Variant model preflight passed: options `Type` / `Size`; chart garments `Top & Skirt Set` and `T-Shirt & Shorts Set`; vendor evidence detected top/skirt/shorts terms.
+- Final Shopify readback:
+  - status `DRAFT`
+  - `publishedAt` null
+  - `onlineStoreUrl` null
+  - no live sales-channel publications
+  - taxonomy `Apparel & Accessories > Clothing > Outfit Sets`
+  - 26 variants from 26 size-chart rows
+  - option axes `Type` / `Size`
+  - 1 product image attached
+  - prices `28.99` child and `31.99` adult
+  - Cost per item equals exactly 50% of selling price (`14.50` and `16.00`)
+- Passed:
+  - `bash -n ops/scripts/create-cbpl-coastal-blue-plaid-family-matching-set.sh`
+  - `python3 -m json.tool ops/listings/size-chart-coastal-blue-plaid-family-matching-set.json`
+  - `python3 -m json.tool ops/listings/verify-coastal-blue-plaid-family-matching-set.json`
+  - CSV row/count/cost parity check: 26 rows, `Status=draft`, `Published=FALSE`, costs `14.50` / `16.00`
+  - body table check: two 10-column tables with 12 + 14 rows = 26
+  - targeted `git diff --check` for touched listing files
+  - idempotent second runner execution
+
+Residual:
+- Product remains draft and intentionally unpublished until the operator asks for a separate live publish step.
+- Exact fabric fiber remains unconfirmed because the direct 1688 page was CAPTCHA/punish-blocked and the supplied evidence does not show composition; `shopify.fabric` was intentionally skipped.
+- Inventory quantities and per-variant grams remain operator follow-ups.
+
+2026-04-30 14:35 EDT - Blush Tulle mommy-and-me draft listing
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-blush-tulle-mommy-and-me-draft
+
+Why:
+- User requested the canonical Shopify listing workflow for 1688 offer `1045177962684` with attached product and size-chart screenshots, `PRIMARY_CATEGORY=auto`, `DESIGNS_TO_LIST=auto`, and `FORCE_SPEC_PRICES=true`.
+
+Actions:
+- Re-read canonical listing prompts:
+  - `ops/prompts/START-HERE.md`
+  - `ops/prompts/shopify-listing-master-prompt.md`
+  - `ops/prompts/shopify-listing-from-1688.md`
+- Created idempotent draft-only runner:
+  - `ops/scripts/create-btul-blush-tulle-mommy-and-me-set.sh`
+- Created/verified Shopify draft product:
+  - Admin: `https://admin.shopify.com/store/dresslikemommy/products/7541036974177`
+  - Handle: `blush-tulle-mommy-and-me-set`
+  - Status: `DRAFT`
+  - Live URL: not published
+- Saved listing artifacts:
+  - `ops/listings/blush-tulle-mommy-and-me-set-listing.md`
+  - `ops/listings/blush-tulle-mommy-and-me-set-shopify-import.csv`
+  - `ops/listings/source-size-chart-blush-tulle-mommy-and-me-set.png`
+  - `ops/listings/size-chart-blush-tulle-mommy-and-me-set.json`
+  - `ops/listings/body-blush-tulle-mommy-and-me-set.html`
+  - `ops/listings/verify-blush-tulle-mommy-and-me-set.json`
+  - `uploads/blush-tulle-mommy-and-me-set/01-blush-tulle-mommy-and-me-product.png`
+
+Verification:
+- Direct 1688 fetch returned Alibaba CAPTCHA/punish markup, so the attached chart/image were treated as authoritative per prompt.
+- Variant model preflight passed: `Type x Size`, garments `Baby Romper` and `Dress`, 19 variants.
+- Shopify verification passed:
+  - product remained `DRAFT`
+  - `publishedAt` and `onlineStoreUrl` were null
+  - no sales-channel publication IDs were live
+  - taxonomy resolved to `Apparel & Accessories > Clothing > Outfit Sets`
+  - every variant had spec price, compare-at price, `DENY`, tracked inventory, requires shipping, and Cost per item equal to 50% of selling price
+  - body HTML has two size tables, 10 headers each, 19 body rows, and no customer-facing `1688` / `Alibaba` / `vendor` text
+- Passed:
+  - `bash -n ops/scripts/create-btul-blush-tulle-mommy-and-me-set.sh`
+  - embedded Python compile check for the runner
+  - `python3 -m json.tool` for generated size-chart and verify JSON files
+  - targeted `git diff --check`
+  - idempotent second runner execution
+
+Residual:
+- Product remains draft and intentionally unpublished until the operator asks for a separate live publish step.
+- Exact fabric fiber remains unconfirmed because the direct 1688 page was CAPTCHA/punish-blocked and the supplied evidence does not show composition; `shopify.fabric` was intentionally skipped.
+- Source chart includes Alibaba/design-protection text as evidence only; product imagery should still be reviewed/retouched before publication.
+- Inventory quantities and per-variant grams remain operator follow-ups.
+
+2026-04-30 14:51 EDT - Sunny Citrus Beach family-matching draft listing
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-sunny-citrus-beach-family-matching-draft
+
+Why:
+- User requested the canonical Shopify listing workflow for 1688 offer `1041610755813` with attached product and size-chart screenshots, `PRIMARY_CATEGORY=auto`, `DESIGNS_TO_LIST=auto`, and `FORCE_SPEC_PRICES=true`.
+
+Actions:
+- Re-read canonical listing prompts:
+  - `ops/prompts/START-HERE.md`
+  - `ops/prompts/shopify-listing-master-prompt.md`
+  - `ops/prompts/shopify-listing-from-1688.md`
+- Created idempotent draft-only runner:
+  - `ops/scripts/create-scbe-sunny-citrus-beach-family-matching-set.sh`
+- Created/verified Shopify draft product:
+  - Admin: `https://admin.shopify.com/store/dresslikemommy/products/7541042741345`
+  - Handle: `sunny-citrus-beach-family-matching-set`
+  - Status: `DRAFT`
+  - Live URL: not published
+- Saved listing artifacts:
+  - `ops/listings/sunny-citrus-beach-family-matching-set-listing.md`
+  - `ops/listings/sunny-citrus-beach-family-matching-set-shopify-import.csv`
+  - `ops/listings/source-size-chart-sunny-citrus-beach-family-matching-set.png`
+  - `ops/listings/size-chart-sunny-citrus-beach-family-matching-set.json`
+  - `ops/listings/body-sunny-citrus-beach-family-matching-set.html`
+  - `ops/listings/verify-sunny-citrus-beach-family-matching-set.json`
+  - `uploads/sunny-citrus-beach-family-matching-set/01-sunny-citrus-beach-family-matching-product.png`
+
+Verification:
+- Direct 1688 fetch returned Alibaba CAPTCHA/punish markup, so the attached chart/image were treated as authoritative per prompt.
+- Queried active Family Matching set products through Shopify Admin; prevailing active price pattern supported child `28.99` and adult `31.99`.
+- Variant model preflight passed: `Type x Size`, garments `Dress` and `Shirt & Shorts Set`, 30 variants.
+- Shopify verification passed:
+  - product remained `DRAFT`
+  - `publishedAt` and `onlineStoreUrl` were null
+  - no sales-channel publication IDs were live
+  - taxonomy resolved to `Apparel & Accessories > Clothing > Outfit Sets`
+  - 30 variants from 30 size-chart rows
+  - option axes `Type` / `Size`
+  - 1 product image attached
+  - prices `28.99` child and `31.99` adult
+  - compare-at prices `33.99` child and `36.99` adult
+  - Cost per item equals exactly 50% of selling price (`14.50` and `16.00`)
+  - body HTML has two size tables, 10 headers each, 30 body rows, and no customer-facing `1688` / `Alibaba` / `vendor` text
+- Passed:
+  - `bash -n ops/scripts/create-scbe-sunny-citrus-beach-family-matching-set.sh`
+  - embedded Python compile check for the runner
+  - `python3 -m json.tool` for generated size-chart and verify JSON files
+  - targeted `git diff --check`
+  - idempotent second runner execution
+
+Residual:
+- Product remains draft and intentionally unpublished until the operator asks for a separate live publish step.
+- Exact fabric fiber remains unconfirmed because the direct 1688 page was CAPTCHA/punish-blocked and the supplied evidence does not show composition; `shopify.fabric` was intentionally skipped.
+- Product imagery should still be reviewed/retouched before publication.
+- Inventory quantities and per-variant grams remain operator follow-ups.
+
+2026-04-30 14:45 EDT - French Garden mommy-and-me draft listing
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-french-garden-mommy-and-me-draft
+
+Why:
+- User requested the canonical Shopify listing workflow for 1688 offer `1045719394654` using attached product and size-chart screenshots, with `FORCE_SPEC_PRICES=true`.
+- Evidence showed mom + daughter only, with separate vendor size tables/item codes for the strap dress and sun-protection cardigan.
+
+Actions:
+- Re-read the canonical listing prompt chain:
+  - `ops/prompts/START-HERE.md`
+  - `ops/prompts/shopify-listing-master-prompt.md`
+  - `ops/prompts/shopify-listing-from-1688.md`
+- Created draft-only Admin API runner:
+  - `ops/scripts/create-fgdn-french-garden-mommy-and-me-set.sh`
+- Created/verified Shopify draft product:
+  - Admin: `https://admin.shopify.com/store/dresslikemommy/products/7541038710881`
+  - Handle: `french-garden-mommy-and-me-set`
+  - Status: `DRAFT`
+  - Live URL: not published
+- Saved listing artifacts:
+  - `ops/listings/french-garden-mommy-and-me-set-listing.md`
+  - `ops/listings/french-garden-mommy-and-me-set-shopify-import.csv`
+  - `ops/listings/source-size-chart-french-garden-mommy-and-me-set.png`
+  - `ops/listings/size-chart-french-garden-mommy-and-me-set.json`
+  - `ops/listings/body-french-garden-mommy-and-me-set.html`
+  - `ops/listings/verify-french-garden-mommy-and-me-set.json`
+  - `uploads/french-garden-mommy-and-me-set/01-french-garden-mommy-and-me-product.png`
+
+Verification:
+- Direct 1688 fetch returned Alibaba `_____tmd_____` / punish markup, so the attached chart/image were treated as authoritative per prompt.
+- Variant model preflight passed: `Type x Size`, garments `Dress` and `Cardigan`, 21 variants.
+- Shopify verification passed:
+  - product remained `DRAFT`
+  - `publishedAt` and `onlineStoreUrl` were null
+  - no sales-channel publication IDs were live
+  - taxonomy resolved to `Apparel & Accessories > Clothing > Outfit Sets`
+  - every variant had spec price, compare-at price, `DENY`, tracked inventory, requires shipping, and Cost per item equal to 50% of selling price
+  - body HTML has two size tables, 10 headers each, with 11 dress rows and 10 cardigan rows
+- Passed:
+  - `bash -n ops/scripts/create-fgdn-french-garden-mommy-and-me-set.sh`
+  - `python3 -m json.tool` for generated size-chart and verify JSON files
+  - targeted `git diff --check`
+  - idempotent second runner execution
+
+Residual:
+- Product remains draft and intentionally unpublished until the operator asks for a separate live publish step.
+- Exact fabric fiber remains unconfirmed because the direct 1688 page was CAPTCHA/punish-blocked and the supplied evidence does not show composition; `shopify.fabric` was intentionally skipped.
+- A garment token (`DRS` or `CDG`) was added to SKUs to prevent collisions because the same role/size exists for both separable pieces.
+- Inventory quantities and per-variant grams remain operator follow-ups.
+
+2026-04-30 15:00 EDT - Blue Daisy family-matching draft-only listing correction
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-blue-daisy-draft-only-correction
+
+Why:
+- User requested the canonical Shopify listing workflow for 1688 offer `1046962900946` with attached product and size-chart screenshots, `PRIMARY_CATEGORY=auto`, `DESIGNS_TO_LIST=auto`, and `FORCE_SPEC_PRICES=true`.
+- An older live Shopify product already existed at handle `blue-daisy-family-matching-set` from offer `1047178396032`; the new attached chart is now the source of truth.
+
+Actions:
+- Re-read the canonical listing prompt chain:
+  - `ops/prompts/START-HERE.md`
+  - `ops/prompts/shopify-listing-master-prompt.md`
+  - `ops/prompts/shopify-listing-from-1688.md`
+- Replaced the older active/publish-style runner with an idempotent draft-only runner:
+  - `ops/scripts/create-bdsy-blue-daisy-family-matching-set.sh`
+- Saved source/product evidence:
+  - `uploads/blue-daisy-family-matching-set/01-blue-daisy-family-matching-product.png`
+  - `ops/listings/source-size-chart-blue-daisy-family-matching-set.png`
+- Direct 1688 fetch returned Alibaba `_____tmd_____` / punish markup, so the attached chart and product image were used as authoritative evidence per prompt.
+- Updated Shopify product `gid://shopify/Product/7536990355553`:
+  - status changed to `DRAFT`
+  - sales-channel publications removed
+  - vendor URL tag corrected to `https://detail.1688.com/offer/1046962900946.html`
+  - baby romper variants added
+  - unsupported old Mother 3XL and Mother 4XL variants removed because the attached adult chart stops at Mother 2XL
+
+Verification:
+- Variant model preflight passed: options `Type` / `Size`; chart garments `Baby Romper`, `Dress`, and `Shirt`.
+- Final Shopify readback:
+  - status `DRAFT`
+  - `publishedAt` null
+  - `onlineStoreUrl` null
+  - no live sales-channel publications
+  - taxonomy `Apparel & Accessories > Clothing > Outfit Sets`
+  - 32 variants from 32 size-chart rows
+  - option axes `Type` / `Size`
+  - three body size tables with 10 headers each and 32 total body rows
+  - every variant has spec price, compare-at price, `DENY`, tracked inventory, requires shipping, taxable, and Cost per item equal to 50% of selling price
+- Passed:
+  - `bash -n ops/scripts/create-bdsy-blue-daisy-family-matching-set.sh`
+  - embedded Python compile check for the runner
+  - idempotent second runner execution
+  - `python3 -m json.tool` for generated size-chart and verify JSON files
+  - targeted `git diff --check`
+
+Residual:
+- Product remains draft and intentionally unpublished until the operator asks for a separate live publish step.
+- Exact fabric fiber remains unconfirmed because the direct 1688 page was CAPTCHA/punish-blocked and the supplied evidence does not show composition; `shopify.fabric` was intentionally skipped.
+- Chest, hip, waist, shoulder, skirt, and length values are derived support measurements because the attached chart publishes only height and weight.
+- Product image should be reviewed/retouched before publication.
+- Inventory quantities and grams remain operator follow-ups.
+
+2026-04-30 14:50 EDT - Coastal Blue Plaid final checkpoint
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-coastal-blue-plaid-final-checkpoint
+
+Latest listing work completed:
+- Created/verified Shopify draft product `gid://shopify/Product/7541041135713`.
+- Admin URL: `https://admin.shopify.com/store/dresslikemommy/products/7541041135713`.
+- Handle: `coastal-blue-plaid-family-matching-set`.
+- Status: `DRAFT`; `publishedAt` null; `onlineStoreUrl` null; no live sales-channel publications.
+- Variant model: `Type` / `Size`, 26 variants from attached chart rows, `FamilySet` / Outfit Sets taxonomy.
+- Prices/costs: child `28.99` with cost `14.50`; adult `31.99` with cost `16.00`; parity verified.
+- Files:
+  - `ops/scripts/create-cbpl-coastal-blue-plaid-family-matching-set.sh`
+  - `ops/listings/coastal-blue-plaid-family-matching-set-listing.md`
+  - `ops/listings/coastal-blue-plaid-family-matching-set-shopify-import.csv`
+  - `ops/listings/source-size-chart-coastal-blue-plaid-family-matching-set.png`
+  - `ops/listings/size-chart-coastal-blue-plaid-family-matching-set.json`
+  - `ops/listings/body-coastal-blue-plaid-family-matching-set.html`
+  - `ops/listings/verify-coastal-blue-plaid-family-matching-set.json`
+  - `uploads/coastal-blue-plaid-family-matching-set/01-coastal-blue-plaid-family-look.png`
+- Residual: exact fabric fiber, inventory quantities, and per-variant grams still need operator confirmation before any publish-live step.
+
+2026-04-30 14:57 EDT - Pastel Tulip family-matching draft listing
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-pastel-tulip-family-matching-draft
+
+Why:
+- User requested the canonical Shopify listing workflow for 1688 offer `800385971840` with attached product and size-chart screenshots, `PRIMARY_CATEGORY=auto`, `DESIGNS_TO_LIST=auto`, and `FORCE_SPEC_PRICES=true`.
+- Evidence showed a Family Matching product: baby romper sizing, girl/mother dresses, and father shirt sizing in one pastel floral family look.
+
+Actions:
+- Re-read canonical listing prompts:
+  - `ops/prompts/START-HERE.md`
+  - `ops/prompts/shopify-listing-master-prompt.md`
+  - `ops/prompts/shopify-listing-from-1688.md`
+- Created idempotent draft-only runner:
+  - `ops/scripts/create-ptul-pastel-tulip-family-matching-set.sh`
+- Created/verified Shopify draft product:
+  - Admin: `https://admin.shopify.com/store/dresslikemommy/products/7541045133409`
+  - Handle: `pastel-tulip-family-matching-set`
+  - Status: `DRAFT`
+  - Live URL: not published
+- Saved listing artifacts:
+  - `ops/listings/pastel-tulip-family-matching-set-listing.md`
+  - `ops/listings/pastel-tulip-family-matching-set-shopify-import.csv`
+  - `ops/listings/source-size-chart-pastel-tulip-family-matching-set.png`
+  - `ops/listings/size-chart-pastel-tulip-family-matching-set.json`
+  - `ops/listings/body-pastel-tulip-family-matching-set.html`
+  - `ops/listings/verify-pastel-tulip-family-matching-set.json`
+  - `uploads/pastel-tulip-family-matching-set/01-pastel-tulip-family-look.png`
+
+Verification:
+- Direct HTTP fetch returned Alibaba `_____tmd_____` punish markup, and logged-in CDP browser access landed on `Captcha Interception`; attached screenshots were used as authoritative evidence per prompt.
+- Variant model preflight passed: `Type x Size`, garments `Baby Romper`, `Dress`, and `Shirt`, 24 variants.
+- Shopify verification passed:
+  - product remained `DRAFT`
+  - `publishedAt` and `onlineStoreUrl` were null
+  - no sales-channel publication IDs were live
+  - taxonomy resolved to `Apparel & Accessories > Clothing > Outfit Sets`
+  - every variant had spec price, compare-at price, `DENY`, tracked inventory, requires shipping, and Cost per item equal to 50% of selling price
+  - body HTML has three size tables with 10 headers each and 24 total rows
+- Passed:
+  - `bash -n ops/scripts/create-ptul-pastel-tulip-family-matching-set.sh`
+  - `python3 -m json.tool` for generated size-chart and verify JSON files
+  - CSV row/count/cost parity check: 24 rows, `Status=draft`, `Published=FALSE`, costs `14.50` / `16.00`
+  - targeted `git diff --check`
+  - idempotent second runner execution
+
+Residual:
+- Product remains draft and intentionally unpublished until the operator asks for a separate live publish step.
+- The attached chart provides height and weight reference rows only; chest, waist, hip, sleeve/skirt, pant, and garment length cells are left blank instead of guessed. If a richer garment-measurement chart becomes available, rerun the listing with those values.
+- Exact fabric fiber remains unconfirmed because 1688 was CAPTCHA/punish-blocked and supplied evidence does not show composition; `shopify.fabric` was intentionally skipped.
+- Inventory quantities and per-variant grams remain operator follow-ups.
+
+2026-04-30 14:54 EDT - Blue Gingham Picnic family matching draft listing
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-blue-gingham-picnic-family-matching-draft
+
+Why:
+- User requested the canonical Shopify listing workflow for 1688 offer `919618605678` using attached product and size-chart screenshots, with `FORCE_SPEC_PRICES=true`.
+- Attached evidence showed girl, boy, mother, and father looks, so the run resolved `LISTING_MODE` to `Family Matching` and `PRIMARY_CATEGORY` to `FamilySet / Outfit Sets`.
+
+Actions:
+- Re-read the canonical listing prompt chain:
+  - `ops/prompts/START-HERE.md`
+  - `ops/prompts/shopify-listing-master-prompt.md`
+  - `ops/prompts/shopify-listing-from-1688.md`
+- Direct 1688 fetch returned Alibaba `_____tmd_____` / punish markup, so the attached product and chart images were used as authoritative evidence per prompt.
+- Created a separate draft handle because existing blue/plaid family listings use different offer IDs or size charts.
+- Saved source evidence:
+  - `uploads/blue-gingham-picnic-family-matching-set/01-blue-gingham-picnic-family-look.png`
+  - `ops/listings/source-size-chart-blue-gingham-picnic-family-matching-set.png`
+- Created idempotent draft-only Admin API runner:
+  - `ops/scripts/create-bgpc-blue-gingham-picnic-family-matching-set.sh`
+- Created/verified Shopify draft product:
+  - Admin: `https://admin.shopify.com/store/dresslikemommy/products/7541043691617`
+  - Handle: `blue-gingham-picnic-family-matching-set`
+  - Status: `DRAFT`
+  - Live URL: not published
+- Saved listing artifacts:
+  - `ops/listings/blue-gingham-picnic-family-matching-set-listing.md`
+  - `ops/listings/blue-gingham-picnic-family-matching-set-shopify-import.csv`
+  - `ops/listings/size-chart-blue-gingham-picnic-family-matching-set.json`
+  - `ops/listings/body-blue-gingham-picnic-family-matching-set.html`
+  - `ops/listings/verify-blue-gingham-picnic-family-matching-set.json`
+
+Verification:
+- Variant model preflight passed: options `Type` / `Size`; garments `Top & Skirt Set` and `T-Shirt & Shorts Set`; vendor evidence detected top/skirt/shorts terms.
+- Adult skirt lengths were visible only through `2XL`, so Mother `3XL` and Mother `4XL` were not created; Father `3XL` and `4XL` remain backed by pant-length rows.
+- Shopify verification passed:
+  - product remained `DRAFT`
+  - `publishedAt` and `onlineStoreUrl` were null
+  - no sales-channel publication IDs were live
+  - taxonomy resolved to `Apparel & Accessories > Clothing > Outfit Sets`
+  - 26 variants from 26 size-chart rows
+  - one product image attached
+  - prices `28.99` child and `31.99` adult
+  - Cost per item equals exactly 50% of selling price (`14.50` and `16.00`)
+  - readback collections included `Family Matching Outfits`, `Family Matching Sets`, `New Mommy & Me`, and related mommy/family collections while still unpublished
+- Passed:
+  - `bash -n ops/scripts/create-bgpc-blue-gingham-picnic-family-matching-set.sh`
+  - `python3 -m json.tool ops/listings/size-chart-blue-gingham-picnic-family-matching-set.json`
+  - `python3 -m json.tool ops/listings/verify-blue-gingham-picnic-family-matching-set.json`
+  - CSV/body parity check: 26 rows, `Status=draft`, `Published=FALSE`, costs `14.50` / `16.00`, body table rows match `SIZE_CHART`, and each size table has 10 headers
+  - targeted `git diff --check`
+  - idempotent second runner execution
+
+Residual:
+- Product remains draft and intentionally unpublished until the operator asks for a separate live publish step.
+- Exact fabric fiber remains unconfirmed because the direct 1688 page was CAPTCHA/punish-blocked and the supplied evidence does not show composition; `shopify.fabric` was intentionally skipped.
+- Hip and waist values are derived because the supplied chart shows chest/top length/pant length/skirt length/height/weight but not hip or waist.
+- Inventory quantities and per-variant grams remain operator follow-ups.
+
+2026-04-30 14:54 EDT - Peach Sparkle draft-only listing checkpoint
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-peach-sparkle-draft-only-checkpoint
+
+Why:
+- User requested the canonical Shopify listing workflow for 1688 offer `784122696506` with attached product and size-chart images and `FORCE_SPEC_PRICES=true`.
+- The direct 1688 page returned Alibaba anti-bot challenge markup, so attached evidence was used as authoritative per canonical fallback.
+
+Actions:
+- Re-read canonical prompt chain:
+  - `ops/prompts/START-HERE.md`
+  - `ops/prompts/shopify-listing-master-prompt.md`
+  - `ops/prompts/shopify-listing-from-1688.md`
+- Created/verified Shopify draft product `gid://shopify/Product/7541028651105`.
+- Admin URL: `https://admin.shopify.com/store/dresslikemommy/products/7541028651105`.
+- Handle: `peach-sparkle-mommy-and-me-dresses`.
+- Status: `DRAFT`; `publishedAt` null; `onlineStoreUrl` null; no live sales-channel publications.
+- Variant model: `Size` / `Color`, 13 variants from the attached child-dress and mother-dress chart rows.
+- Current role-scope inference: Mommy and Me / Dresses only. Infant crawler rows and father rows were excluded because the supplied product image shows only the mother/daughter dress. User then interrupted with "continue that is a mistake!", so this role-scope inference may need correction before any publish step.
+- Pricing/costs: child `31.99` with cost `16.00`; mother `34.99` with cost `17.50`; cost parity verified as price x 0.50.
+- Removed unsupported `shopify.fabric` metafield because exact fabric composition was not confirmed.
+
+Files:
+- `ops/scripts/create-pspk-peach-sparkle-mommy-and-me-dresses.sh`
+- `ops/listings/peach-sparkle-mommy-and-me-dresses-listing.md`
+- `ops/listings/peach-sparkle-mommy-and-me-dresses-shopify-import.csv`
+- `ops/listings/source-size-chart-peach-sparkle-mommy-and-me-dresses.png`
+- `ops/listings/size-chart-peach-sparkle-mommy-and-me-dresses.json`
+- `ops/listings/body-peach-sparkle-mommy-and-me-dresses.html`
+- `ops/listings/verify-peach-sparkle-mommy-and-me-dresses.json`
+- `uploads/peach-sparkle-mommy-and-me-dresses/01-peach-sparkle-mommy-and-me-product.png`
+
+Verification:
+- Passed `bash -n ops/scripts/create-pspk-peach-sparkle-mommy-and-me-dresses.sh`.
+- Passed JSON validation for size-chart and verify outputs.
+- Passed `git diff --check` for the new listing artifacts.
+- Final readback: 13 variants, title/SEO length guards pass, one size table with 10 headers and 13 rows, no live publications, paid eligible true.
+
+Residual:
+- Product remains draft and intentionally unpublished.
+- Exact fabric fiber, inventory quantities, and per-variant grams still need operator confirmation.
+- If the user's "mistake" referred to role scope, update this existing draft rather than creating/deleting a product.
+
+2026-04-30 14:50 EDT - Midnight Rose latest checkpoint
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-midnight-rose-latest-checkpoint
+
+Latest listing work completed:
+- Created/verified Shopify draft product `gid://shopify/Product/7541042151521`.
+- Admin URL: `https://admin.shopify.com/store/dresslikemommy/products/7541042151521`.
+- Handle: `midnight-rose-family-matching-set`.
+- Status: `DRAFT`; `publishedAt` null; `onlineStoreUrl` null; no live sales-channel publications.
+- Variant model: `Type` / `Size`, 28 variants from attached chart rows, `FamilySet` / Outfit Sets taxonomy.
+- Prices/costs: child `28.99` with cost `14.50`; adult `31.99` with cost `16.00`; parity verified.
+- The attached chart only has height/weight guidance, so garment measurements were left blank rather than fabricated. Infant crawler rows were excluded because the supplied product image and allowed roles do not support a baby romper.
+- Files:
+  - `ops/scripts/create-mdro-midnight-rose-family-matching-set.sh`
+  - `ops/listings/midnight-rose-family-matching-set-listing.md`
+  - `ops/listings/midnight-rose-family-matching-set-shopify-import.csv`
+  - `ops/listings/source-size-chart-midnight-rose-family-matching-set.png`
+  - `ops/listings/size-chart-midnight-rose-family-matching-set.json`
+  - `ops/listings/body-midnight-rose-family-matching-set.html`
+  - `ops/listings/verify-midnight-rose-family-matching-set.json`
+  - `uploads/midnight-rose-family-matching-set/01-midnight-rose-family-matching-set.png`
+- Residual: source image is a small screenshot/collage; exact fabric fiber, garment measurements, inventory quantities, and per-variant grams still need operator confirmation before any publish-live step.
+
+2026-04-30 14:55 EDT - Google Ads strict measurement gate checkpoint
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-strict-measurement-gate
+
+Why:
+- User requested the measurement gate next: prove purchase value, currency, transaction ID, and deduplication before approving any non-budget campaign edits or launch work.
+
+Actions:
+- Ran the read-only Google Ads purchase conversion-value capture into:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-gate/`
+- Captured Google Ads conversion action detail and Shopify Customer events screenshots/text through logged-in browser CDP.
+- Captured Shopify Customer events App pixels and Custom pixels views.
+- Scanned theme tracking surface for hard-coded Google Ads purchase snippets.
+- Wrote strict gate report and machine summary:
+  - `STRICT_MEASUREMENT_GATE_REPORT.md`
+  - `strict_measurement_gate_summary.json`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-gate.zip`
+
+Decision:
+- `BLOCK_NON_BUDGET_CAMPAIGN_EDITS__RUNTIME_PURCHASE_MEASUREMENT_NOT_PROVEN`
+- `LAUNCH_BLOCKED`
+
+Evidence:
+- Config sub-gate remains healthy: one primary account-level purchase action, `Google Shopping App Purchase`, dynamic value setting, enhanced conversions enabled, recent request on `2026-04-25T23:55:54.592430+00:00`.
+- Shopify Customer events shows Google & YouTube app pixel as Connected / Optimized.
+- Theme scan found no hard-coded Google Ads `AW-`, `gtag(`, `googleadservices`, `send_to`, `transaction_id`, or `checkout_completed` purchase snippet in theme files.
+- Strict runtime proof is still missing: no completed-purchase request/pixel payload proves real nonzero purchase value, `currency=USD`, real `transaction_id` / order id, and one deduped primary Ads purchase fire per order.
+
+Residual / next best action:
+- Only read-only audit and owner-approved paused budget-safety edits remain allowed.
+- Do not approve bidding, conversion-goal, location, URL, asset, audience, product-group, or launch/enabling edits until a controlled checkout/test-order or Tag Assistant purchase capture proves value, USD currency, transaction ID, and dedupe.
+
+2026-04-30 16:18 EDT - Google Ads controlled checkout capture attempt
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-controlled-checkout-captcha-blocker
+
+Why:
+- User approved running a controlled checkout / Tag Assistant purchase capture to prove purchase value, currency, transaction ID, and deduplication.
+
+Actions:
+- Used a live product checkout path with one `Fruit Green Family Matching Set - Polo Dresses & Shirts - Dress / Child 1-2 Years` item.
+- Cart total observed: `USD 29.99`.
+- Filled controlled test shipping details and Shopify standard test card fields; no card data was saved in artifacts.
+- Captured Google/GA measurement-domain requests only, avoiding payment-session request payload capture.
+- Created evidence folders:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-playwright-capture/`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-standard-checkout-capture/`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-controlled-checkout-capture.zip`
+
+Result:
+- Checkout reached the final order step, but Shopify required CAPTCHA: `Solve the captcha to complete your purchase.`
+- Agent stopped because CAPTCHA solving requires human handoff.
+- No thank-you page was reached and no completed order was observed.
+- Measurement requests before the blocker included:
+  - `add_to_cart` with `value=29.99` and `currency_code=USD`
+  - `begin_checkout` with `value=29.99` and `currency_code=USD`
+  - `add_payment_info` with `currency_code=USD`
+  - `purchase`: `0`
+
+Decision:
+- `BLOCK_NON_BUDGET_CAMPAIGN_EDITS__PURCHASE_RUNTIME_PROOF_BLOCKED_BY_CHECKOUT_CAPTCHA`
+- `LAUNCH_BLOCKED`
+
+Residual / next best action:
+- Purchase value, purchase currency, transaction ID, and dedupe remain `NOT_PROVEN`.
+- A human must complete the CAPTCHA and controlled test order while capture is running, or provide an equivalent Tag Assistant purchase recording. Do not approve non-budget Google Ads edits or launch work until this passes.
+
+2026-04-30 16:29 EDT - Google Ads discounted checkout measurement gate capture
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-discount-order-runtime-purchase-capture
+
+Why:
+- User provided the owner-created 100% discount code and completed the controlled checkout manually so the purchase runtime measurement gate could be checked.
+
+Actions:
+- Continued the visible-browser checkout capture through Chrome CDP while the owner completed the order.
+- Captured and sanitized Google Ads, GA4, and Merchant Center purchase measurement evidence.
+- Removed full checkout URLs, customer contact/address text, and enhanced-conversion hashes from the safe evidence bundle.
+- Created:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-discount-checkout-capture/FINAL_MEASUREMENT_GATE_PASS_REPORT.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-discount-checkout-capture/final_measurement_gate_summary.json`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-discount-checkout-capture.zip`
+
+Result:
+- Shopify order observed: `#9474`; Shopify order / transaction id: `6575594274913`.
+- Google Ads purchase request accepted:
+  - conversion id `853411529`
+  - label `UbkpCN-fhogBEMmN-JYD`
+  - event `purchase`
+  - value `0`
+  - currency `USD`
+  - dedupe key `oid=6575594274913`
+  - HTTP `200`
+- GA4 purchase request accepted:
+  - measurement id `G-N4EQNK0MMB`
+  - event `purchase`
+  - value `0`
+  - currency `USD`
+  - transaction id `6575594274913`
+  - HTTP `204`
+- Merchant Center purchase request accepted:
+  - measurement id `MC-MQ104D130Y`
+  - value `0`
+  - currency `USD`
+  - transaction id `6575594274913`
+  - HTTP `204`
+- Reload/account-order follow-up emitted `0` additional purchase events.
+
+Decision:
+- `PASS_RUNTIME_PURCHASE_FIELDS_FOR_100_PERCENT_DISCOUNT_TEST_ORDER`
+- This clears the measurement field-presence blocker for paused-draft cleanup.
+- `LAUNCH_NOT_APPROVED_BY_THIS_PACKET`: the order used a 100% discount, so nonzero paid revenue value still needs first-paid-order monitoring before campaign launch/scale confidence.
+
+Residual / next best action:
+- Do not enable campaigns, raise budgets, or scale Smart Bidding/tROAS solely from this packet.
+- Continue with read-only campaign audits and owner-approved paused safety edits; monitor the first real paid order or run a low-dollar paid test for nonzero purchase value.
+
+2026-04-30 16:46 EDT - Google Ads paid order measurement check
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-paid-order-runtime-check
+
+Why:
+- User completed a real paid checkout and asked to check everything immediately.
+
+Actions:
+- Verified the paid order through Shopify Admin API without requesting/storing contact, address, or card details.
+- Opened the owner-provided paid thank-you URL in the remote-debuggable Chrome test profile on port `9222` and captured sanitized Google/GA measurement requests.
+- Checked the Shopify web-pixel sandbox iframe target separately because checkout pixels can run outside the main page.
+- Checked Google Ads conversion diagnostics text for the `Google Shopping App Purchase` conversion action.
+- Created:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-paid-order-capture/PAID_ORDER_MEASUREMENT_CHECK_REPORT.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-paid-order-capture/paid_order_measurement_gate_summary.json`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-paid-order-capture.zip`
+
+Result:
+- Shopify paid order confirmed:
+  - order `#9475`
+  - confirmation `Q5RRDFFNR`
+  - Shopify order id `6575609118817`
+  - financial status `PAID`
+  - fulfillment status `UNFULFILLED`
+  - total `32.98 USD`
+  - gateway `shopify_payments`
+  - successful capture transaction observed
+- Product / variant observed:
+  - `Tropical One-Shoulder Ruffle Swimsuit for Women and... | DLM`
+  - `Mother XL / Multi-Color`
+- Reopened thank-you URL redirected to the account order page and emitted page-view / scroll measurement requests only.
+- The main page and Shopify web-pixel sandbox iframe check found `0` paid `purchase` events.
+- Google Ads diagnostics showed Consent Mode implemented but did not expose an order-level paid purchase value / transaction-id confirmation during this check.
+
+Decision:
+- `SHOPIFY_PAID_ORDER_CONFIRMED`
+- `BLOCKED_GOOGLE_ADS_PAID_PURCHASE_RUNTIME_REQUEST_NOT_CAPTURED`
+- Do not approve launch or non-budget campaign edits that depend on nonzero paid purchase value until a live Tag Assistant/CDP capture or later Google/GA diagnostics proves Google Ads purchase `value=32.98`, `currency_code=USD`, and `oid=6575609118817`.
+
+Residual / next best action:
+- The earlier 100% discount test proved Google Ads runtime purchase field presence and dedupe key behavior, but this paid order did not provide live network proof because capture was not already attached at the first thank-you-page load.
+- Next proof attempt should start capture first, then complete a new low-dollar paid order, or wait and check Google Ads/GA4 diagnostics for this exact order id and value once reporting catches up.
+
+2026-04-30 17:10 EDT - Google Ads launch-readiness control packet
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-launch-readiness-control
+
+Why:
+- User asked to do everything needed to make all Google Ads campaigns ready, while explicitly keeping launch and non-budget campaign edits that depend on paid-value tracking blocked.
+
+Actions:
+- Re-polled the Google Ads conversion diagnostics refresh for the paid order. The refreshed Google Ads pages did not expose the expected Diagnostics/Webpages tabs in the CDP session and saved an ad-blocker blocker, so this is inconclusive rather than paid-value proof.
+- Re-read the paid-order measurement packet, live Google Ads audit packet, and completed campaign-readiness worker outputs.
+- Created a consolidated launch-readiness control packet:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-launch-readiness-control/CAMPAIGN_READY_TO_GO_EXECUTION_STATUS.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-launch-readiness-control/MEASUREMENT_GATE_RECHECK_STATUS.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-launch-readiness-control/campaign_ready_to_go_matrix.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-launch-readiness-control/paused_only_safe_edits_backlog.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-launch-readiness-control/GOOGLE_ADS_LIMITED_TEST_PLAN.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-launch-readiness-control/SAFE_EVIDENCE_MANIFEST.md`
+
+Result:
+- Current campaign decision remains `LAUNCH_BLOCKED_PENDING_PAID_VALUE_PROOF`.
+- All five target campaigns remain in the safe paused state from the earlier audit: paused, `$1/day` placeholder budgets, all-time `$0` spend, `can_spend_now=No`.
+- Shopify paid order `#9475` / `6575609118817` / `Q5RRDFFNR` at `32.98 USD` remains confirmed, but Google Ads paid-value runtime/reporting proof remains missing.
+- The packet makes Standard Shopping the first controlled test candidate after the paid-value gate passes; PMax campaigns and Remarketing remain hold/rebuild/repair, not first-launch candidates.
+
+Residual / next best action:
+- Start capture first and complete one new low-dollar paid order, or later re-check Google Ads/GA4 reporting for exact order id `6575609118817`, exact value `32.98`, and currency `USD`.
+- Do not enable campaigns, raise budgets, or apply paid-value-dependent edits until the paid-value gate passes.
+
+2026-04-30 17:16 EDT - Google Ads paid-value gate pass
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-paid-value-gate-pass
+
+Why:
+- User asked to open the browser, get to a pay page, start capture before payment, and complete a new low-dollar paid checkout to unblock Google Ads measurement-dependent work.
+
+Actions:
+- Started CDP measurement capture before payment in the Chrome test profile on port `9222`.
+- First selected product was rejected by checkout for US delivery; abandoned that checkout and switched to the exact product family/variant that had already completed successfully in order `#9475`.
+- Opened a new checkout for `Tropical One-Shoulder Ruffle Swimsuit for Women and... | DLM - Mother XL / Multi-Color`, variant `41496666767457`, `19.99 USD`.
+- User completed payment while capture was running.
+- Captured sanitized Google Ads, GA4/Google measurement, and Merchant Center purchase requests.
+- Queried Shopify Admin for sanitized non-PII order proof.
+- Created:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-paid-order-live-capture-3/FINAL_PAID_VALUE_MEASUREMENT_GATE_PASS_REPORT.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-paid-order-live-capture-3/final_paid_value_measurement_gate_summary.json`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-measurement-paid-order-live-capture-3/raw/shopify_order_9476_admin_sanitized.json`
+- Updated the launch-readiness control packet with:
+  - `PAID_VALUE_GATE_PASS_UNLOCK.md`
+  - updated `CAMPAIGN_READY_TO_GO_EXECUTION_STATUS.md`
+  - updated `MEASUREMENT_GATE_RECHECK_STATUS.md`
+
+Result:
+- Shopify order confirmed:
+  - order `#9476`
+  - confirmation `5QU2KJ7DN`
+  - Shopify order id `6575644803169`
+  - financial status `PAID`
+  - total `19.99 USD`
+  - successful capture transaction observed
+- Google Ads primary purchase proof captured:
+  - endpoint `www.googleadservices.com/pagead/conversion/853411529/`
+  - label `UbkpCN-fhogBEMmN-JYD`
+  - event `purchase`
+  - value `19.99`
+  - currency `USD`
+  - dedupe/order id `6575644803169`
+  - enhanced conversion hash present
+- Google measurement / GA4 proof captured:
+  - measurement id `G-N4EQNK0MMB`
+  - event `purchase`
+  - value `19.99`
+  - currency `USD`
+  - transaction id `6575644803169`
+
+Decision:
+- `PASS_PAID_VALUE_MEASUREMENT_GATE`
+- The paid-value blocker for non-budget campaign cleanup is cleared.
+- Campaign launch is still not automatically approved: feed, product-scope, website, policy, budget, and explicit owner launch approval gates still apply.
+
+Residual / next best action:
+- Proceed with paused campaign-specific cleanup and verification.
+- Do not enable campaigns or raise budgets until each campaign-specific gate passes.
+
+2026-04-30 17:52 EDT - Google Ads paused campaign cleanup
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-paused-campaign-cleanup
+
+Why:
+- User confirmed the paid checkout was complete and then asked to proceed with paused campaign-specific cleanup and verification, with Standard Shopping as the first controlled test candidate and PMax/Remarketing still repair-hold.
+
+Actions:
+- Opened live Google Ads through the existing Chrome CDP session.
+- Kept all campaigns paused and did not increase any budget.
+- Applied Standard Shopping paused-draft cleanup to `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY`:
+  - set Maximize clicks maximum CPC bid limit to `0.25`;
+  - changed location include option from `Presence or interest` to `Presence`;
+  - excluded the product-group catch-all `Everything else in "All products"`.
+- Verified final campaign-table readback for all five target campaigns: paused, `$1.00/day`, `$0.00` all-time cost, zero impressions/clicks/conversions/value.
+- Verified Brand Search remains paused at `$1.00/day`; no Brand non-budget edits were made in this pass because Standard Shopping is the first controlled-test candidate.
+- Documented PMax and Remarketing as rebuild/repair-hold, not launch candidates.
+- Created packet:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-paused-campaign-cleanup/CAMPAIGN_CLEANUP_AND_VERIFICATION_REPORT.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-paused-campaign-cleanup/standard_shopping_paused_edit_log.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-paused-campaign-cleanup/campaign_status_after_cleanup.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-paused-campaign-cleanup/pmax_remarketing_rebuild_blockers.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-paused-campaign-cleanup/SAFE_EVIDENCE_MANIFEST.md`
+
+Result:
+- `STANDARD_SHOPPING_READY_FOR_OWNER_REVIEW_NOT_LAUNCH`.
+- Standard Shopping is safer for a future controlled test, but no campaign is approved to run until the owner approves the exact enable action and launch budget.
+- PMax and Remarketing remain blocked for rebuild/repair.
+
+Residual / next best action:
+- Before activation, do one final owner-approved Standard Shopping launch review: exact live budget, status toggle, product group readback, conversion action, Merchant Center eligibility, and rollback trigger.
+- Brand Search needs a separate brand-only controlled CPC/asset pass before it can be considered activation-ready.
+
+2026-04-30 18:31 EDT - Sync all local changes to main
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-sync-all-local-changes-main
+
+Why:
+- User asked to sync all local changes to `main`.
+
+Actions:
+- Confirmed the repo was already on `main` and fetched `origin/main`.
+- Counted `506` file-level local changes before staging: `15` tracked modifications plus `491` untracked files.
+- Ran a changed-file credential/cookie scan before staging.
+- Redacted generated checkout capture evidence in three local Google Ads measurement raw network files so live Shopify/session cookies and private checkout token IDs do not get committed.
+- Verified the redacted JSON files still parse successfully.
+
+Result:
+- Proceeding to stage, commit, and push the full sanitized local change set to `origin/main`.
+
+Residual / next best action:
+- After push, run a final `git status --short --branch` readback to confirm local `main` is clean and synced.

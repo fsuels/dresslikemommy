@@ -629,6 +629,20 @@ DERIVED_SKUS_SORTED="$(jq -r '.derived_skus_sorted[]' "${WORK}/derived.json")"
 TAGS_JSON="$(jq -c '.tags' "${WORK}/derived.json")"
 SHOPIFY_SIZE_REFS_JSON="$(jq -c '.shopify_size_refs' "${WORK}/derived.json")"
 
+cat > "${WORK}/vendor-evidence.json" <<'JSON'
+{
+  "title": "Pink hibiscus family matching dress, shirt, and shorts set",
+  "notes": "Attached product image shows girls and mothers in pink floral dresses, and boys and fathers in white graphic shirts with pink floral shorts. Attached size chart publishes separate dress rows and shirt/shorts rows."
+}
+JSON
+
+python3 "${ROOT}/ops/scripts/validate_listing_variant_model.py" \
+  --size-chart "${WORK}/size_chart.json" \
+  --derived "${WORK}/derived.json" \
+  --vendor-evidence "${WORK}/vendor-evidence.json" \
+  --primary-category "$CATEGORY" \
+  --tags "$(jq -r '.tags | join(",")' "${WORK}/derived.json")"
+
 AGE_GROUP_GIDS_JSON='["gid://shopify/Metaobject/128116523105","gid://shopify/Metaobject/128116490337"]'
 COLOR_PATTERN_GIDS_JSON='["gid://shopify/Metaobject/69963645025","gid://shopify/Metaobject/69639733345","gid://shopify/Metaobject/129971519585"]'
 TARGET_GENDER_GIDS_JSON='["gid://shopify/Metaobject/129971617889","gid://shopify/Metaobject/130231107681"]'
@@ -638,6 +652,9 @@ EXISTING_QUERY='query ExistingProduct($handle: String!) {
   productByHandle(handle: $handle) {
     id
     handle
+    status
+    publishedAt
+    onlineStoreUrl
     options {
       id
       name
@@ -688,6 +705,18 @@ CREATE_NEW_PRODUCT="0"
 
 if [[ -z "$PRODUCT_ID" ]]; then
   CREATE_NEW_PRODUCT="1"
+else
+  EXISTING_STATUS="$(echo "$EXISTING_RESPONSE" | jq -r '.data.productByHandle.status // empty')"
+  if [[ "$EXISTING_STATUS" != "DRAFT" ]]; then
+    echo "SAFETY HALT: existing product ${HANDLE} is ${EXISTING_STATUS:-unknown}, not DRAFT." >&2
+    echo "Current canonical workflow is draft-only; refusing to update or change publish state without an explicit operator request." >&2
+    echo "Admin: https://admin.shopify.com/store/dresslikemommy/products/${PRODUCT_ID##*/}" >&2
+    echo "Live: $(echo "$EXISTING_RESPONSE" | jq -r '.data.productByHandle.onlineStoreUrl // empty')" >&2
+    exit 2
+  fi
+fi
+
+if [[ "$CREATE_NEW_PRODUCT" == "1" ]]; then
   PRODUCT_CREATE_MUTATION='mutation ProductCreate($input: ProductInput!) {
     productCreate(input: $input) {
       product { id handle title }
@@ -714,7 +743,7 @@ if [[ -z "$PRODUCT_ID" ]]; then
         vendor: $vendor,
         productType: $product_type,
         tags: $tags,
-        status: "ACTIVE",
+        status: "DRAFT",
         category: $category,
         seo: {title: $seo_title, description: $seo_description},
         productOptions: $product_options
@@ -763,7 +792,7 @@ PRODUCT_UPDATE_VARS="$(jq -nc \
       vendor: $vendor,
       productType: $product_type,
       tags: $tags,
-      status: "ACTIVE",
+      status: "DRAFT",
       category: $category,
       seo: {title: $seo_title, description: $seo_description}
     }
@@ -1016,24 +1045,7 @@ if [[ "$STALE_SHOPIFY_METAFIELDS_TO_DELETE_JSON" != "[]" ]]; then
   check_user_errors "$METAFIELDS_DELETE_RESPONSE" '.data.metafieldsDelete.userErrors' "metafieldsDelete"
 fi
 
-PUBLICATIONS_JSON='[
-  {"publicationId":"gid://shopify/Publication/55169925"},
-  {"publicationId":"gid://shopify/Publication/21969633377"},
-  {"publicationId":"gid://shopify/Publication/29172400225"},
-  {"publicationId":"gid://shopify/Publication/76582879329"},
-  {"publicationId":"gid://shopify/Publication/76604768353"}
-]'
-
-PUBLISH_MUTATION='mutation PublishablePublish($id: ID!, $input: [PublicationInput!]!) {
-  publishablePublish(id: $id, input: $input) {
-    publishable { availablePublicationsCount { count } }
-    userErrors { field message }
-  }
-}'
-
-PUBLISH_RESPONSE="$(gql "$PUBLISH_MUTATION" "$(jq -nc --arg id "$PRODUCT_ID" --argjson input "$PUBLICATIONS_JSON" '{id:$id, input:$input}')")"
-check_graphql_errors "$PUBLISH_RESPONSE" "publishablePublish"
-check_user_errors "$PUBLISH_RESPONSE" '.data.publishablePublish.userErrors' "publishablePublish"
+# Draft-only safety default: do not publish this listing to any sales channel here.
 
 MEDIA_QUERY='query ProductMedia($id: ID!) {
   product(id: $id) {
@@ -1062,6 +1074,9 @@ if ((${#MEDIA_FILES[@]})); then
 for image_path in "${MEDIA_FILES[@]}"; do
   image_name="$(basename "$image_path")"
   case "$image_name" in
+    *size-chart*|*size_chart*)
+      continue
+      ;;
     01-*)
       alt_text="Family in pink hibiscus matching dresses and short-sleeve tee with shorts sets."
       ;;
@@ -1289,13 +1304,6 @@ for variant in variants:
     option_map = {opt["name"]: opt["value"] for opt in variant["selectedOptions"]}
     live_option_pairs.add(tuple(option_map.get(name) for name in option_names))
 
-expected_publications = {
-    "gid://shopify/Publication/55169925",
-    "gid://shopify/Publication/21969633377",
-    "gid://shopify/Publication/29172400225",
-    "gid://shopify/Publication/76582879329",
-    "gid://shopify/Publication/76604768353",
-}
 published_ids = {node["publication"]["id"] for node in publications if node["isPublished"]}
 metafield_keys = {(node["namespace"], node["key"]) for node in metafields}
 
@@ -1312,13 +1320,12 @@ checks = [
     ("Size tables expose metric + imperial units", "kg/lbs" in html_body and "cm/in" in html_body and bool(re.search(r"\b(?:lbs|in)\b", html_body)), "kg/lbs + cm/in"),
     ("Each size table has 10 headers", table_header_counts and all(count == 10 for count in table_header_counts), str(table_header_counts)),
     ("Table row count matches SIZE_CHART", len(tbody_rows) == len(chart), str(len(tbody_rows))),
-    ("publishedAt is populated", bool(product["publishedAt"]), product["publishedAt"] or ""),
-    ("onlineStoreUrl is populated", bool(product["onlineStoreUrl"]), product["onlineStoreUrl"] or ""),
+    ("Product remains DRAFT", product["status"] == "DRAFT", product["status"]),
+    ("publishedAt is empty for draft", not bool(product["publishedAt"]), product["publishedAt"] or ""),
+    ("No sales-channel publications are live", not published_ids, str(sorted(published_ids))),
     ("Taxonomy category is set", product["category"]["id"] == "gid://shopify/TaxonomyCategory/aa-1-11", product["category"]["id"]),
     ("Taxonomy category full name matches expected leaf", product["category"]["fullName"] == expected_taxonomy_full_name, product["category"]["fullName"]),
     ("Family-set merchandising tag is present", merch_collection_tag in product["tags"], ", ".join(product["tags"])),
-    ("Family-set smart collection is attached", "family-sets" in collection_handles, str(sorted(collection_handles))),
-    ("Required publications are live", expected_publications.issubset(published_ids), str(sorted(published_ids))),
 ]
 
 price_rows = []
@@ -1387,7 +1394,7 @@ for node in metafields:
 
 links = {
     "admin": f"https://admin.shopify.com/store/dresslikemommy/products/{product_gid.split('/')[-1]}",
-    "live": product["onlineStoreUrl"],
+    "live": product["onlineStoreUrl"] or "(none; product is draft)",
 }
 
 csv_rows = []
@@ -1404,7 +1411,7 @@ for recap in derived["recap"]:
     put("Product Category", "Apparel & Accessories > Clothing > Outfit Sets")
     put("Type", "Matching Family Sets")
     put("Tags", ", ".join(product["tags"]))
-    put("Published", "TRUE")
+    put("Published", "FALSE")
     put("Option1 Name", option_names[0])
     put("Option1 Value", recap["option1_value"])
     put("Option2 Name", option_names[1])
@@ -1440,14 +1447,14 @@ for recap in derived["recap"]:
     put("Color (product.metafields.shopify.color-pattern)", "Pink, White, Floral")
     put("Size (product.metafields.shopify.size)", ", ".join(x["name"] for x in derived["size_values"]))
     put("Target Gender (product.metafields.shopify.target-gender)", "Female, Male")
-    put("Status", "active")
+    put("Status", "draft")
     csv_rows.append(row)
 
 with csv_header_source.open(newline="") as fh:
     header = next(csv.reader(fh))
 
 with csv_out_path.open("w", newline="") as fh:
-    writer = csv.DictWriter(fh, fieldnames=header)
+    writer = csv.DictWriter(fh, fieldnames=header, lineterminator="\n")
     writer.writeheader()
     for row in csv_rows:
         writer.writerow(row)
@@ -1470,7 +1477,7 @@ lines.append("| SIZE_CHART_SOURCE | attached image |")
 lines.append("| LISTING_MODE | Family Matching |")
 lines.append("| PRIMARY_CATEGORY | Set → FamilySet (Shopify taxonomy kept as Outfit Sets) |")
 lines.append("| DESIGNS_TO_LIST | Dress, Shirt & Shorts Set |")
-lines.append("| EXCLUDE_ITEMS | none; male shirt-and-shorts rows included because the request asked for shorts |")
+lines.append("| EXCLUDE_ITEMS | none; male shirt-and-shorts rows included because the attached product image and size chart support them |")
 lines.append("| SHORTCODE | auto → `PHIB` |")
 lines.append("| COLOR_TOKEN | auto → `PINK` |")
 lines.append("| FORCE_SPEC_PRICES | true |")
@@ -1559,11 +1566,7 @@ lines.append(f"## Tags written ({len(product['tags'])})")
 lines.append("`" + ", ".join(product["tags"]) + "`")
 lines.append("")
 lines.append("## Publication")
-lines.append("- Online Store")
-lines.append("- Google & YouTube")
-lines.append("- Facebook & Instagram")
-lines.append("- Pinterest")
-lines.append("- TikTok")
+lines.append("- Draft only; no sales-channel publication was requested or performed.")
 lines.append("")
 lines.append("## Smart collections")
 if collections:
@@ -1602,6 +1605,6 @@ if failed:
 PY
 
 echo "Admin URL: https://admin.shopify.com/store/dresslikemommy/products/${PRODUCT_ID##*/}"
-echo "Live URL: https://www.dresslikemommy.com/products/${HANDLE}"
+echo "Live URL: (none; product is draft)"
 echo "Listing log: ${LISTING_MD}"
 echo "CSV backup: ${CSV_OUT}"

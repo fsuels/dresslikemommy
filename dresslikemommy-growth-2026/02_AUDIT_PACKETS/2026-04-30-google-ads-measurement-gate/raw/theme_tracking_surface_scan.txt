@@ -1,0 +1,7 @@
+# Theme tracking surface scan
+# Scope: assets layout snippets sections templates config
+# Command: rg -n "AW-|gtag\(|googletagmanager|googleadservices|analytics\.subscribe|checkout_completed|transaction_id|send_to|purchase|dataLayer\.push" assets layout snippets sections templates config -S
+layout/theme.liquid:281:    window.dataLayer.push({ site_language: window.dlmAnalyticsContext.site_language });
+sections/curated-product-grid.liquid:316:          "default": "Use this slot for the products shoppers engage with most before purchase.",
+sections/main-product.liquid:2448:      ['We gladly accept returns within 30 days of ' + 'purchase.']: copy.return_policy_line_1,
+assets/analytics.js:103:      window.dataLayer.push(

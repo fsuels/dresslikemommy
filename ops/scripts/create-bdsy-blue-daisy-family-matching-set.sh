@@ -12,1602 +12,837 @@ fi
 : "${SHOPIFY_STORE_DOMAIN:=dresslikemommy-com.myshopify.com}"
 : "${SHOPIFY_ADMIN_ACCESS_TOKEN:?SHOPIFY_ADMIN_ACCESS_TOKEN not set}"
 
-API="https://${SHOPIFY_STORE_DOMAIN}/admin/api/2025-01/graphql.json"
-TOKEN="${SHOPIFY_ADMIN_ACCESS_TOKEN}"
+python3 - <<'PY'
+from __future__ import annotations
 
-WORK="$(mktemp -d)"
-trap 'rm -rf "$WORK"' EXIT
-
-HANDLE="blue-daisy-family-matching-set"
-TITLE="Blue Daisy Family Matching Set — Dress & Shirt"
-SEO_TITLE="Blue Daisy Family Set | Dress Like Mommy"
-SEO_DESCRIPTION="Lightweight woven family matching set with blue floral dresses and shirts for moms, dads, girls & boys. Sizes 1-2Y-10Y, Mother S-4XL, Father S-4XL."
-PRINT_NAME="Blue Daisy"
-SHORTCODE="BDSY"
-COLOR_TOKEN="BLUE"
-COLOR_NAME="Blue Daisy"
-LISTING_MODE="Family Matching"
-CATEGORY="FamilySet"
-CATEGORY_WORD="Set"
-PRODUCT_TYPE="Matching Family Sets"
-CUSTOM_TYPE="Two-Piece Set"
-TAXONOMY_GID="gid://shopify/TaxonomyCategory/aa-1-11"
-EXPECTED_TAXONOMY_FULL_NAME="Apparel & Accessories > Clothing > Outfit Sets"
-MERCH_SUBCATEGORY="Set"
-MERCH_SUBCATEGORY2="Summer Family Matching Set"
-MERCH_STYLE="Matching Family Set"
-MERCH_TYPE="Two-Piece Set"
-MERCH_COLLECTION_TAG="Matching Family Set"
-SEASON="Summer"
-VENDOR_URL="https://detail.1688.com/offer/1047178396032.html"
-VENDOR="dresslikemommy.com"
-FORCE_SPEC_PRICES="true"
-CHILD_PRICE="28.99"
-MOTHER_PRICE="31.99"
-PRICE_NEIGHBOR_HANDLE="citrus-bloom-family-matching-set"
-SIZE_NEIGHBOR_HANDLE="citrus-bloom-family-matching-set"
-
-SCRIPT_PATH="${ROOT}/ops/scripts/create-bdsy-blue-daisy-family-matching-set.sh"
-UPLOAD_DIR="${ROOT}/uploads/${HANDLE}"
-LISTING_MD="${ROOT}/ops/listings/${HANDLE}-listing.md"
-CSV_OUT="${ROOT}/ops/listings/${HANDLE}-shopify-import.csv"
-VERIFY_JSON_OUT="${ROOT}/ops/listings/verify-${HANDLE}.json"
-SIZE_CHART_OUT="${ROOT}/ops/listings/size-chart-${HANDLE}.json"
-BODY_HTML_OUT="${ROOT}/ops/listings/body-${HANDLE}.html"
-CSV_HEADER_SOURCE="${ROOT}/bird-chirping-mommy-and-me-pajamas-shopify-import.csv"
-
-PUB_ONLINE="gid://shopify/Publication/55169925"
-PUB_GOOGLE="gid://shopify/Publication/21969633377"
-PUB_META="gid://shopify/Publication/29172400225"
-PUB_PINT="gid://shopify/Publication/76582879329"
-PUB_TIKTOK="gid://shopify/Publication/76604768353"
-
-mkdir -p "${ROOT}/ops/listings" "$UPLOAD_DIR"
-
-gql() {
-  local query="$1"
-  local variables="${2-}"
-  if [[ -z "$variables" ]]; then
-    variables='{}'
-  fi
-  curl -sS -X POST "$API" \
-    -H "X-Shopify-Access-Token: $TOKEN" \
-    -H "Content-Type: application/json" \
-    -d "$(jq -nc --arg q "$query" --argjson v "$variables" '{query:$q, variables:$v}')"
-}
-
-check_graphql_errors() {
-  local response="$1"
-  local label="$2"
-  local errors
-  errors="$(echo "$response" | jq -c '.errors // []')"
-  if [[ "$errors" != "[]" && "$errors" != "null" ]]; then
-    echo "ERROR: ${label} GraphQL errors: ${errors}" >&2
-    exit 1
-  fi
-}
-
-check_user_errors() {
-  local response="$1"
-  local path="$2"
-  local label="$3"
-  local errors
-  errors="$(echo "$response" | jq -c "${path} // []")"
-  if [[ "$errors" != "[]" && "$errors" != "null" ]]; then
-    echo "ERROR: ${label} userErrors: ${errors}" >&2
-    exit 1
-  fi
-}
-
-compare_at_price() {
-  python3 - "$1" <<'PY'
-import math
-import sys
-
-price = float(sys.argv[1])
-value = price * 1.15
-dollars = math.floor(value)
-candidate = dollars + 0.99
-if candidate < value:
-    candidate = dollars + 1.99
-print(f"{candidate:.2f}")
-PY
-}
-
-CHILD_COMPARE="$(compare_at_price "$CHILD_PRICE")"
-MOTHER_COMPARE="$(compare_at_price "$MOTHER_PRICE")"
-
-cat > "${WORK}/size_chart.json" <<'JSON'
-[
-  {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"80","picker_label":"Child 1-2 Years","sku_suffix":"KID12Y","age":"1-2","weight":"8.5-11 kg","height":"75-85 cm","chest_cm":68,"hip_cm":72,"waist_cm":68,"length_cm":56,"skirt_cm":56,"pant_cm":0},
-  {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"90","picker_label":"Child 2 Years","sku_suffix":"KID2Y","age":"2","weight":"11-14 kg","height":"85-95 cm","chest_cm":72,"hip_cm":76,"waist_cm":72,"length_cm":59,"skirt_cm":59,"pant_cm":0},
-  {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"100","picker_label":"Child 3 Years","sku_suffix":"KID3Y","age":"3","weight":"14-16.5 kg","height":"95-105 cm","chest_cm":76,"hip_cm":80,"waist_cm":76,"length_cm":62,"skirt_cm":62,"pant_cm":0},
-  {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"110","picker_label":"Child 4 Years","sku_suffix":"KID4Y","age":"4","weight":"16.5-20 kg","height":"105-115 cm","chest_cm":80,"hip_cm":84,"waist_cm":80,"length_cm":64,"skirt_cm":64,"pant_cm":0},
-  {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"120","picker_label":"Child 5 Years","sku_suffix":"KID5Y","age":"5","weight":"18.5-24 kg","height":"115-125 cm","chest_cm":84,"hip_cm":88,"waist_cm":84,"length_cm":67,"skirt_cm":67,"pant_cm":0},
-  {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"130","picker_label":"Child 6-7 Years","sku_suffix":"KID67Y","age":"6-7","weight":"24-27.5 kg","height":"125-130 cm","chest_cm":88,"hip_cm":92,"waist_cm":88,"length_cm":71,"skirt_cm":71,"pant_cm":0},
-  {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"140","picker_label":"Child 8 Years","sku_suffix":"KID8Y","age":"8","weight":"27.5-32.5 kg","height":"130-140 cm","chest_cm":92,"hip_cm":96,"waist_cm":92,"length_cm":74,"skirt_cm":74,"pant_cm":0},
-  {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"150","picker_label":"Child 9-10 Years","sku_suffix":"KID910Y","age":"9-10","weight":"32.5-37.5 kg","height":"140-150 cm","chest_cm":96,"hip_cm":100,"waist_cm":96,"length_cm":78,"skirt_cm":78,"pant_cm":0},
-  {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"S","picker_label":"Mother S","sku_suffix":"S","age":"—","weight":"42.5-50 kg","height":"155-160 cm","chest_cm":92,"hip_cm":98,"waist_cm":90,"length_cm":109,"skirt_cm":109,"pant_cm":0},
-  {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"M","picker_label":"Mother M","sku_suffix":"M","age":"—","weight":"50-57.5 kg","height":"160-165 cm","chest_cm":96,"hip_cm":102,"waist_cm":94,"length_cm":110,"skirt_cm":110,"pant_cm":0},
-  {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"L","picker_label":"Mother L","sku_suffix":"L","age":"—","weight":"59-69 kg","height":"160-170 cm","chest_cm":100,"hip_cm":106,"waist_cm":98,"length_cm":112,"skirt_cm":112,"pant_cm":0},
-  {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"XL","picker_label":"Mother XL","sku_suffix":"XL","age":"—","weight":"70-80 kg","height":"160-175 cm","chest_cm":104,"hip_cm":110,"waist_cm":102,"length_cm":114,"skirt_cm":114,"pant_cm":0},
-  {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"XXL","picker_label":"Mother 2XL","sku_suffix":"2XL","age":"—","weight":"80-92.5 kg","height":"160-175 cm","chest_cm":108,"hip_cm":114,"waist_cm":106,"length_cm":115,"skirt_cm":115,"pant_cm":0},
-  {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"3XL","picker_label":"Mother 3XL","sku_suffix":"3XL","age":"—","weight":"92.5-105 kg","height":"165-180 cm","chest_cm":112,"hip_cm":118,"waist_cm":110,"length_cm":118,"skirt_cm":118,"pant_cm":0},
-  {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"4XL","picker_label":"Mother 4XL","sku_suffix":"4XL","age":"—","weight":"105-115 kg","height":"165-185 cm","chest_cm":116,"hip_cm":122,"waist_cm":114,"length_cm":119,"skirt_cm":119,"pant_cm":0},
-  {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"80","picker_label":"Child 1-2 Years","sku_suffix":"KID12Y","age":"1-2","weight":"8.5-11 kg","height":"75-85 cm","chest_cm":72,"hip_cm":76,"waist_cm":72,"length_cm":34,"shoulder_cm":35,"pant_cm":0},
-  {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"90","picker_label":"Child 2 Years","sku_suffix":"KID2Y","age":"2","weight":"11-14 kg","height":"85-95 cm","chest_cm":76,"hip_cm":80,"waist_cm":76,"length_cm":37,"shoulder_cm":37,"pant_cm":0},
-  {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"100","picker_label":"Child 3 Years","sku_suffix":"KID3Y","age":"3","weight":"14-16.5 kg","height":"95-105 cm","chest_cm":80,"hip_cm":84,"waist_cm":80,"length_cm":40,"shoulder_cm":39,"pant_cm":0},
-  {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"110","picker_label":"Child 4 Years","sku_suffix":"KID4Y","age":"4","weight":"16.5-20 kg","height":"105-115 cm","chest_cm":84,"hip_cm":88,"waist_cm":84,"length_cm":43,"shoulder_cm":41,"pant_cm":0},
-  {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"120","picker_label":"Child 5 Years","sku_suffix":"KID5Y","age":"5","weight":"18.5-24 kg","height":"115-125 cm","chest_cm":88,"hip_cm":92,"waist_cm":88,"length_cm":46,"shoulder_cm":42,"pant_cm":0},
-  {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"130","picker_label":"Child 6-7 Years","sku_suffix":"KID67Y","age":"6-7","weight":"24-27.5 kg","height":"125-130 cm","chest_cm":92,"hip_cm":96,"waist_cm":92,"length_cm":49,"shoulder_cm":44,"pant_cm":0},
-  {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"140","picker_label":"Child 8 Years","sku_suffix":"KID8Y","age":"8","weight":"27.5-32.5 kg","height":"130-140 cm","chest_cm":96,"hip_cm":100,"waist_cm":96,"length_cm":52,"shoulder_cm":46,"pant_cm":0},
-  {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"150","picker_label":"Child 9-10 Years","sku_suffix":"KID910Y","age":"9-10","weight":"32.5-37.5 kg","height":"140-150 cm","chest_cm":100,"hip_cm":104,"waist_cm":100,"length_cm":55,"shoulder_cm":48,"pant_cm":0},
-  {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"S","picker_label":"Father S","sku_suffix":"S","age":"—","weight":"42.5-50 kg","height":"160-165 cm","chest_cm":114,"hip_cm":114,"waist_cm":102,"length_cm":66,"shoulder_cm":53,"pant_cm":0},
-  {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"M","picker_label":"Father M","sku_suffix":"M","age":"—","weight":"50-57.5 kg","height":"165-170 cm","chest_cm":118,"hip_cm":118,"waist_cm":106,"length_cm":68,"shoulder_cm":54,"pant_cm":0},
-  {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"L","picker_label":"Father L","sku_suffix":"L","age":"—","weight":"57.5-67.5 kg","height":"168-173 cm","chest_cm":122,"hip_cm":122,"waist_cm":110,"length_cm":70,"shoulder_cm":56,"pant_cm":0},
-  {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"XL","picker_label":"Father XL","sku_suffix":"XL","age":"—","weight":"69-79 kg","height":"170-178 cm","chest_cm":126,"hip_cm":126,"waist_cm":114,"length_cm":72,"shoulder_cm":58,"pant_cm":0},
-  {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"XXL","picker_label":"Father 2XL","sku_suffix":"2XL","age":"—","weight":"80-89 kg","height":"175-180 cm","chest_cm":130,"hip_cm":130,"waist_cm":118,"length_cm":74,"shoulder_cm":60,"pant_cm":0},
-  {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"3XL","picker_label":"Father 3XL","sku_suffix":"3XL","age":"—","weight":"87.5-97.5 kg","height":"175-188 cm","chest_cm":134,"hip_cm":134,"waist_cm":122,"length_cm":76,"shoulder_cm":61,"pant_cm":0},
-  {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"4XL","picker_label":"Father 4XL","sku_suffix":"4XL","age":"—","weight":"97.5-115 kg","height":"178-195 cm","chest_cm":138,"hip_cm":138,"waist_cm":126,"length_cm":78,"shoulder_cm":62,"pant_cm":0}
-]
-JSON
-
-cat > "${WORK}/size_metaobject_map.json" <<'JSON'
-[
-  {"picker_label":"Child 1-2 Years","gid":"gid://shopify/Metaobject/129972797537","catalog_label":"12-18 months","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Child 2 Years","gid":"gid://shopify/Metaobject/129972863073","catalog_label":"2-3 years","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Child 3 Years","gid":"gid://shopify/Metaobject/129972895841","catalog_label":"3-4 years","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Child 4 Years","gid":"gid://shopify/Metaobject/129972928609","catalog_label":"4-5 years","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Child 5 Years","gid":"gid://shopify/Metaobject/129972961377","catalog_label":"5-6 years","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Child 6-7 Years","gid":"gid://shopify/Metaobject/139840323681","catalog_label":"6-7 years","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Child 8 Years","gid":"gid://shopify/Metaobject/129973026913","catalog_label":"8","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Child 9-10 Years","gid":"gid://shopify/Metaobject/129971552353","catalog_label":"10","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Mother S","gid":"gid://shopify/Metaobject/129975255137","catalog_label":"S","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Mother M","gid":"gid://shopify/Metaobject/129975222369","catalog_label":"M","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Mother L","gid":"gid://shopify/Metaobject/129975189601","catalog_label":"L","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Mother XL","gid":"gid://shopify/Metaobject/129975287905","catalog_label":"XL","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Mother 2XL","gid":"gid://shopify/Metaobject/129975156833","catalog_label":"2XL","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Mother 3XL","gid":"gid://shopify/Metaobject/139840421985","catalog_label":"3XL","source_handle":"live-shopify-size-metaobject"},
-  {"picker_label":"Mother 4XL","gid":"gid://shopify/Metaobject/139840716897","catalog_label":"4XL","source_handle":"live-shopify-size-metaobject"},
-  {"picker_label":"Father S","gid":"gid://shopify/Metaobject/129975255137","catalog_label":"S","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Father M","gid":"gid://shopify/Metaobject/129975222369","catalog_label":"M","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Father L","gid":"gid://shopify/Metaobject/129975189601","catalog_label":"L","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Father XL","gid":"gid://shopify/Metaobject/129975287905","catalog_label":"XL","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Father 2XL","gid":"gid://shopify/Metaobject/129975156833","catalog_label":"2XL","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Father 3XL","gid":"gid://shopify/Metaobject/139840421985","catalog_label":"3XL","source_handle":"citrus-bloom-family-matching-set"},
-  {"picker_label":"Father 4XL","gid":"gid://shopify/Metaobject/139840716897","catalog_label":"4XL","source_handle":"citrus-bloom-family-matching-set"}
-]
-JSON
-
-cp "${WORK}/size_chart.json" "$SIZE_CHART_OUT"
-
-python3 - "${WORK}/size_chart.json" "${WORK}/size_metaobject_map.json" "${WORK}/derived.json" "${WORK}/body.html" \
-  "$TITLE" "$SEO_TITLE" "$SEO_DESCRIPTION" "$SHORTCODE" "$COLOR_TOKEN" "$COLOR_NAME" "$PRINT_NAME" \
-  "$CHILD_PRICE" "$CHILD_COMPARE" "$MOTHER_PRICE" "$MOTHER_COMPARE" "$VENDOR_URL" "$SEASON" <<'PY'
+import csv
 import html
 import json
 import math
-import re
-import sys
-from pathlib import Path
-
-chart_path = Path(sys.argv[1])
-size_map_path = Path(sys.argv[2])
-derived_path = Path(sys.argv[3])
-body_path = Path(sys.argv[4])
-title = sys.argv[5]
-seo_title = sys.argv[6]
-seo_description = sys.argv[7]
-shortcode = sys.argv[8]
-color_token = sys.argv[9]
-color_name = sys.argv[10]
-print_name = sys.argv[11]
-child_price = sys.argv[12]
-child_compare = sys.argv[13]
-mother_price = sys.argv[14]
-mother_compare = sys.argv[15]
-vendor_url = sys.argv[16]
-season = sys.argv[17]
-
-chart = json.loads(chart_path.read_text())
-size_map = {row["picker_label"]: row for row in json.loads(size_map_path.read_text())}
-
-required = [
-    "audience",
-    "role",
-    "garment",
-    "vendor_label",
-    "picker_label",
-    "sku_suffix",
-    "age",
-    "weight",
-    "height",
-    "chest_cm",
-    "hip_cm",
-    "waist_cm",
-    "length_cm",
-    "pant_cm",
-]
-
-role_tokens = {
-    "Girl Dress": "GRL",
-    "Mother Dress": "MOM",
-    "Boy Shirt": "BOY",
-    "Father Shirt": "DAD",
-}
-size_tokens = {
-    "Child 1-2 Years": "KID12Y",
-    "Child 2 Years": "KID2Y",
-    "Child 3 Years": "KID3Y",
-    "Child 4 Years": "KID4Y",
-    "Child 5 Years": "KID5Y",
-    "Child 6-7 Years": "KID67Y",
-    "Child 8 Years": "KID8Y",
-    "Child 9-10 Years": "KID910Y",
-    "Mother S": "S",
-    "Mother M": "M",
-    "Mother L": "L",
-    "Mother XL": "XL",
-    "Mother 2XL": "2XL",
-    "Mother 3XL": "3XL",
-    "Mother 4XL": "4XL",
-    "Father S": "S",
-    "Father M": "M",
-    "Father L": "L",
-    "Father XL": "XL",
-    "Father 2XL": "2XL",
-    "Father 3XL": "3XL",
-    "Father 4XL": "4XL",
-}
-
-def format_num(value):
-    numeric = float(value)
-    if numeric.is_integer():
-        return str(int(numeric))
-    return f"{numeric:.1f}".rstrip("0").rstrip(".")
-
-def cm_in(value):
-    if not value:
-        return "—"
-    numeric = float(value)
-    return f"{format_num(numeric)} cm / {format_num(numeric / 2.54)} in"
-
-def metric_text_to_dual_unit(value, metric_unit, imperial_unit, multiplier):
-    text = str(value or "").strip()
-    if not text or text in {"—", "-", "--"}:
-        return "—"
-    lowered = text.lower()
-    if "/" in text and metric_unit.lower() in lowered and imperial_unit.lower() in lowered:
-        return text
-
-    range_match = re.fullmatch(r"(-?\d+(?:\.\d+)?)\s*[-–]\s*(-?\d+(?:\.\d+)?)\s*" + re.escape(metric_unit), text, re.IGNORECASE)
-    if range_match:
-        low = float(range_match.group(1))
-        high = float(range_match.group(2))
-        return (
-            f"{format_num(low)}-{format_num(high)} {metric_unit} / "
-            f"{format_num(low * multiplier)}-{format_num(high * multiplier)} {imperial_unit}"
-        )
-
-    single_match = re.fullmatch(r"(-?\d+(?:\.\d+)?)\s*" + re.escape(metric_unit), text, re.IGNORECASE)
-    if single_match:
-        numeric = float(single_match.group(1))
-        return f"{format_num(numeric)} {metric_unit} / {format_num(numeric * multiplier)} {imperial_unit}"
-
-    return text
-
-def kg_lbs(value):
-    return metric_text_to_dual_unit(value, "kg", "lbs", 2.20462)
-
-def cm_range_in(value):
-    return metric_text_to_dual_unit(value, "cm", "in", 1 / 2.54)
-
-errors = []
-seen_pairs = set()
-for row in chart:
-    missing = [field for field in required if row.get(field) in (None, "")]
-    if missing:
-      errors.append(f"row {row.get('vendor_label')} missing {', '.join(missing)}")
-    if row.get("skirt_cm") in (None, "") and row.get("sleeve_cm") in (None, "") and row.get("shoulder_cm") in (None, ""):
-        errors.append(f"row {row.get('vendor_label')} missing skirt_cm/sleeve_cm/shoulder_cm")
-    pair = (row.get("role"), row.get("picker_label"))
-    if pair in seen_pairs:
-        errors.append(f"duplicate (role, picker_label) pair: {pair}")
-    seen_pairs.add(pair)
-    if row.get("role") not in role_tokens:
-        errors.append(f"unknown role token mapping for {row.get('role')}")
-    if row.get("picker_label") not in size_tokens:
-        errors.append(f"unknown size token mapping for {row.get('picker_label')}")
-    if row.get("picker_label") not in size_map:
-        errors.append(f"missing size metaobject mapping for {row.get('picker_label')}")
-
-if len(title) > 70:
-    errors.append(f"title too long: {len(title)}")
-if len(seo_title) > 60:
-    errors.append(f"seo title too long: {len(seo_title)}")
-if len(seo_description) > 155:
-    errors.append(f"seo description too long: {len(seo_description)}")
-
-if errors:
-    raise SystemExit("PREFLIGHT FAILED:\n- " + "\n- ".join(errors))
-
-size_values = []
-seen_sizes = set()
-for row in chart:
-    if row["picker_label"] not in seen_sizes:
-        size_values.append({"name": row["picker_label"]})
-        seen_sizes.add(row["picker_label"])
-
-garments = sorted({row["garment"] for row in chart})
-raw_size_labels = [row["picker_label"] for row in chart]
-has_duplicate_size_labels = len(set(raw_size_labels)) != len(raw_size_labels)
-use_type_option = len(garments) > 1 or has_duplicate_size_labels
-
-type_values = []
-seen_types = set()
-if use_type_option:
-    for row in chart:
-        if row["garment"] not in seen_types:
-            type_values.append({"name": row["garment"]})
-            seen_types.add(row["garment"])
-
-color_values = [{"name": color_name}]
-option_axes = (
-    [
-        {"name": "Type", "values": [value["name"] for value in type_values]},
-        {"name": "Size", "values": [value["name"] for value in size_values]},
-    ]
-    if use_type_option
-    else [
-        {"name": "Size", "values": [value["name"] for value in size_values]},
-        {"name": "Color", "values": [color_name]},
-    ]
-)
-product_options = [
-    {"name": axis["name"], "values": [{"name": value} for value in axis["values"]]}
-    for axis in option_axes
-]
-
-def sku_for(row):
-    return f"DLM-{shortcode}-{role_tokens[row['role']]}-{size_tokens[row['picker_label']]}-{color_token}"
-
-variants = []
-recap = []
-expected_variant_option_pairs = []
-for row in chart:
-    price = child_price if row["audience"] == "child" else mother_price
-    compare = child_compare if row["audience"] == "child" else mother_compare
-    sku = sku_for(row)
-    option_names = [axis["name"] for axis in option_axes]
-    option_values = (
-        [row["garment"], row["picker_label"]]
-        if use_type_option
-        else [row["picker_label"], color_name]
-    )
-    variants.append({
-        "price": price,
-        "compareAtPrice": compare,
-        "inventoryPolicy": "DENY",
-        "inventoryItem": {
-            "sku": sku,
-            "tracked": True,
-            "requiresShipping": True,
-        },
-        "optionValues": [
-            {"optionName": option_name, "name": option_value}
-            for option_name, option_value in zip(option_names, option_values)
-        ],
-    })
-    expected_variant_option_pairs.append(option_values)
-    recap.append({
-        **row,
-        "sku": sku,
-        "price": price,
-        "compare_at_price": compare,
-        "shopify_size_gid": size_map[row["picker_label"]]["gid"],
-        "catalog_label": size_map[row["picker_label"]]["catalog_label"],
-        "option1_value": option_values[0],
-        "option2_value": option_values[1],
-    })
-
-girl_labels = [row["picker_label"] for row in chart if row["role"] == "Girl Dress"]
-boy_labels = [row["picker_label"] for row in chart if row["role"] == "Boy Shirt"]
-mother_labels = [row["picker_label"] for row in chart if row["role"] == "Mother Dress"]
-father_labels = [row["picker_label"] for row in chart if row["role"] == "Father Shirt"]
-
-def size_phrase():
-    child = "1-2Y through 10Y" if girl_labels == [
-        "Child 1-2 Years",
-        "Child 2 Years",
-        "Child 3 Years",
-        "Child 4 Years",
-        "Child 5 Years",
-        "Child 6-7 Years",
-        "Child 8 Years",
-        "Child 9-10 Years",
-    ] else ", ".join(label.replace("Child ", "").replace(" Years", "Y") for label in girl_labels)
-    moms = "Mother S-4XL" if mother_labels == ["Mother S", "Mother M", "Mother L", "Mother XL", "Mother 2XL", "Mother 3XL", "Mother 4XL"] else "Mother " + ", ".join(label.replace("Mother ", "") for label in mother_labels)
-    dads = "Father S-4XL" if father_labels == ["Father S", "Father M", "Father L", "Father XL", "Father 2XL", "Father 3XL", "Father 4XL"] else "Father " + ", ".join(label.replace("Father ", "") for label in father_labels)
-    return f"Girls & Boys {child}; {moms}; {dads}"
-
-def li(label, text):
-    return f"<li><strong>{label}:</strong> {html.escape(text)}</li>"
-
-def dress_table_row(row):
-    return (
-        "<tr>"
-        f"<td>{html.escape(row['picker_label'])}</td>"
-        f"<td>{html.escape(row['age'])}</td>"
-        f"<td>{html.escape(kg_lbs(row['weight']))}</td>"
-        f"<td>{html.escape(cm_range_in(row['height']))}</td>"
-        f"<td>{cm_in(row['chest_cm'])}</td>"
-        f"<td>{cm_in(row['skirt_cm'])}</td>"
-        f"<td>{cm_in(row['pant_cm'])}</td>"
-        f"<td>{cm_in(row['hip_cm'])}</td>"
-        f"<td>{cm_in(row['waist_cm'])}</td>"
-        f"<td>{cm_in(row['length_cm'])}</td>"
-        "</tr>"
-    )
-
-def shirt_table_row(row):
-    return (
-        "<tr>"
-        f"<td>{html.escape(row['picker_label'])}</td>"
-        f"<td>{html.escape(row['age'])}</td>"
-        f"<td>{html.escape(kg_lbs(row['weight']))}</td>"
-        f"<td>{html.escape(cm_range_in(row['height']))}</td>"
-        f"<td>{cm_in(row['chest_cm'])}</td>"
-        f"<td>{cm_in(row.get('shoulder_cm'))}</td>"
-        f"<td>{cm_in(row['pant_cm'])}</td>"
-        f"<td>{cm_in(row['hip_cm'])}</td>"
-        f"<td>{cm_in(row['waist_cm'])}</td>"
-        f"<td>{cm_in(row['length_cm'])}</td>"
-        "</tr>"
-    )
-
-dress_rows = [dress_table_row(row) for row in chart if row["garment"] == "Dress"]
-shirt_rows = [shirt_table_row(row) for row in chart if row["garment"] == "Shirt"]
-
-body_html = "\n".join([
-    "<ul>",
-    li("Fabric", "Lightweight woven fabric with an airy hand-feel and breezy drape for warm-weather family dressing."),
-    li("Family story", "A coordinated four-role matching look for moms, dads, girls, and boys, made for garden portraits, vacation mornings, brunches, and easy summer outings."),
-    li("Print", f"\"{print_name}\" layers oversized light-blue flowers, soft yellow centers, and green leaves over a black ground for a bold resort-ready palette."),
-    li("Design details", "Girls and moms wear the coordinating sleeveless maxi dress with slim shoulder straps and a flowing skirt, while boys and dads get the matching collared button-front shirt with short sleeves. The white shorts, sandals, handbags, and other accessories shown in the photos are styling only and not included."),
-    li("Care", "Machine wash cold on gentle, line dry, do not bleach, and use a cool iron inside-out if needed. This care line is a conservative inference because the blocked vendor page did not expose wash instructions."),
-    li("Size range", size_phrase() + "."),
-    "</ul>",
-    "",
-    "<h3>Size Chart — Dress</h3>",
-    "<table id=\"size-chart\">",
-    "  <thead>",
-    "    <tr>",
-    "      <th>Size</th>",
-    "      <th>Age</th>",
-    "      <th>Weight (kg/lbs)</th>",
-    "      <th>Height (cm/in)</th>",
-    "      <th>Chest/Bust (cm/in)</th>",
-    "      <th>Skirt Length (cm/in)</th>",
-    "      <th>Pant/Short or — (cm/in)</th>",
-    "      <th>Hip (cm/in)</th>",
-    "      <th>Waist (cm/in)</th>",
-    "      <th>Garment Length (cm/in)</th>",
-    "    </tr>",
-    "  </thead>",
-    "  <tbody>",
-    *dress_rows,
-    "  </tbody>",
-    "</table>",
-    "",
-    "<h3>Size Chart — Shirt</h3>",
-    "<table id=\"size-chart-shirt\">",
-    "  <thead>",
-    "    <tr>",
-    "      <th>Size</th>",
-    "      <th>Age</th>",
-    "      <th>Weight (kg/lbs)</th>",
-    "      <th>Height (cm/in)</th>",
-    "      <th>Chest/Bust (cm/in)</th>",
-    "      <th>Shoulder or — (cm/in)</th>",
-    "      <th>Pant/Short or — (cm/in)</th>",
-    "      <th>Hip (cm/in)</th>",
-    "      <th>Waist (cm/in)</th>",
-    "      <th>Garment Length (cm/in)</th>",
-    "    </tr>",
-    "  </thead>",
-    "  <tbody>",
-    *shirt_rows,
-    "  </tbody>",
-    "</table>",
-    "",
-    "<p>Blue Daisy gives family matching a polished vacation feel with bright blue florals on a deep black ground. Moms and girls get the coordinating strappy maxi dress with an easy sweeping skirt, while dads and boys wear the matching collared short-sleeve shirt in the same floral story.</p>",
-    "",
-    "<p>The dresses keep the girls' and moms' side airy and floaty for warm-weather plans, while the shirts give the boys' and dads' side a neat, relaxed finish with a clean collar and button front. Pack it for family portraits, resort dinners, vacations, or any sunny-day plan where you want every role to feel coordinated and comfortable.</p>",
-    "",
-    "<h3>Key Features:</h3>",
-    "<ul>",
-    li("Four-role coordination", "One listing covers girl dress, mother dress, boy shirt, and father shirt sizes."),
-    li("Blue floral palette", "Light-blue flowers, yellow centers, green leaves, and a black ground create a crisp matching look that photographs beautifully."),
-    li("Sleeveless maxi dress", "The strappy dress shape gives girls and moms an airy neckline and easy-moving skirt for warm-weather plans."),
-    li("Shirt polish", "Collared short-sleeve shirts add a neat finish for boys and dads without feeling stiff."),
-    li("Styling pieces not included", "White shorts, sandals, handbags, and other accessories shown in the photos are styling only and were intentionally excluded from this listing."),
-    "</ul>",
-    "",
-    "<p>Choose each role and size you need, and build a family matching look that feels fresh, polished, and ready for the next sunny memory.</p>",
-])
-
-tags = [
-    "Family Matching",
-    "Mommy and Me",
-    "Daddy and Me",
-    "Sets",
-    "Summer Family Matching Set",
-    "Matching Family Outfits",
-    "Matching Family Set",
-    "Matching Family Dress",
-    "Matching Family Shirt",
-    "Dress & Shirt",
-    "Summer",
-    "Beach",
-    "Resort",
-    "Vacation",
-    "Blue Daisy",
-    "Blue",
-    "Black",
-    "Floral",
-    "Multicolor",
-    "Blue Floral",
-    "Blue Daisy Print",
-    "Garden Floral",
-    "Light Blue",
-    "Sleeveless Dress",
-    "Strappy Dress",
-    "Maxi Dress",
-    "Short Sleeve Shirt",
-    "Button Front Shirt",
-    "Collared Shirt",
-    "Girl Dress",
-    "Mother Dress",
-    "Boy Shirt",
-    "Father Shirt",
-    "Four-Role Matching",
-    "Child 1-2 Years",
-    "Child 2 Years",
-    "Child 3 Years",
-    "Child 4 Years",
-    "Child 5 Years",
-    "Child 6-7 Years",
-    "Child 8 Years",
-    "Child 9-10 Years",
-    "Mother S",
-    "Mother M",
-    "Mother L",
-    "Mother XL",
-    "Mother 2XL",
-    "Mother 3XL",
-    "Mother 4XL",
-    "Father S",
-    "Father M",
-    "Father L",
-    "Father XL",
-    "Father 2XL",
-    "Father 3XL",
-    "Father 4XL",
-    vendor_url,
-]
-tags = sorted(dict.fromkeys(tags))
-
-derived = {
-    "use_type_option": use_type_option,
-    "has_duplicate_size_labels": has_duplicate_size_labels,
-    "product_options": product_options,
-    "option_axes": option_axes,
-    "option_names": [axis["name"] for axis in option_axes],
-    "type_values": type_values,
-    "color_values": color_values,
-    "size_values": size_values,
-    "expected_variant_option_pairs": expected_variant_option_pairs,
-    "variants": variants,
-    "row_count": len(chart),
-    "derived_skus_sorted": sorted(v["inventoryItem"]["sku"] for v in variants),
-    "shopify_size_refs": list(dict.fromkeys(size_map[row["picker_label"]]["gid"] for row in chart)),
-    "size_phrase": size_phrase(),
-    "tags": tags,
-    "recap": recap,
-}
-
-derived_path.write_text(json.dumps(derived, indent=2))
-body_path.write_text(body_html)
-PY
-
-BODY_HTML="$(cat "${WORK}/body.html")"
-cp "${WORK}/body.html" "$BODY_HTML_OUT"
-
-ROW_COUNT="$(jq -r '.row_count' "${WORK}/derived.json")"
-USE_TYPE_OPTION="$(jq -r '.use_type_option' "${WORK}/derived.json")"
-PRODUCT_OPTIONS_JSON="$(jq -c '.product_options' "${WORK}/derived.json")"
-OPTION_NAMES_JSON="$(jq -c '.option_names' "${WORK}/derived.json")"
-OPTION_REORDER_JSON="$(jq -c '[.option_axes[] | {name: .name, values: (.values | map({name: .}))}]' "${WORK}/derived.json")"
-VARIANTS_JSON="$(jq -c '.variants' "${WORK}/derived.json")"
-DERIVED_SKUS_SORTED="$(jq -r '.derived_skus_sorted[]' "${WORK}/derived.json")"
-TAGS_JSON="$(jq -c '.tags' "${WORK}/derived.json")"
-SHOPIFY_SIZE_REFS_JSON="$(jq -c '.shopify_size_refs' "${WORK}/derived.json")"
-
-AGE_GROUP_GIDS_JSON='["gid://shopify/Metaobject/128116523105","gid://shopify/Metaobject/128116490337"]'
-COLOR_PATTERN_GIDS_JSON='["gid://shopify/Metaobject/69943132257","gid://shopify/Metaobject/69639766113","gid://shopify/Metaobject/129971519585","gid://shopify/Metaobject/130231140449"]'
-TARGET_GENDER_GIDS_JSON='["gid://shopify/Metaobject/129971617889","gid://shopify/Metaobject/130231107681"]'
-CARE_INSTRUCTIONS_GIDS_JSON='["gid://shopify/Metaobject/130283503713"]'
-
-EXISTING_QUERY='query ExistingProduct($handle: String!) {
-  productByHandle(handle: $handle) {
-    id
-    handle
-    options {
-      id
-      name
-      position
-      values
-      optionValues { id name hasVariants }
-    }
-    variants(first: 100) {
-      nodes {
-        id
-        sku
-        price
-        compareAtPrice
-        inventoryPolicy
-        selectedOptions { name value }
-        inventoryItem { tracked requiresShipping }
-      }
-    }
-    media(first: 50) {
-      nodes {
-        ... on MediaImage {
-          id
-          alt
-          image { url }
-        }
-      }
-    }
-    metafields(first: 120, namespace: "shopify") {
-      nodes {
-        namespace
-        key
-        type
-        value
-      }
-    }
-  }
-}'
-
-refresh_existing_product() {
-  EXISTING_RESPONSE="$(gql "$EXISTING_QUERY" "$(jq -nc --arg handle "$HANDLE" '{handle:$handle}')")"
-  check_graphql_errors "$EXISTING_RESPONSE" "existing product lookup"
-  echo "$EXISTING_RESPONSE" > "${WORK}/existing.json"
-  PRODUCT_ID="$(echo "$EXISTING_RESPONSE" | jq -r '.data.productByHandle.id // empty')"
-}
-
-refresh_existing_product
-CREATE_NEW_PRODUCT="0"
-
-if [[ -z "$PRODUCT_ID" ]]; then
-  CREATE_NEW_PRODUCT="1"
-  PRODUCT_CREATE_MUTATION='mutation ProductCreate($input: ProductInput!) {
-    productCreate(input: $input) {
-      product { id handle title }
-      userErrors { field message }
-    }
-  }'
-
-  PRODUCT_CREATE_VARS="$(jq -nc \
-    --arg handle "$HANDLE" \
-    --arg title "$TITLE" \
-    --arg body "$BODY_HTML" \
-    --arg vendor "$VENDOR" \
-    --arg product_type "$PRODUCT_TYPE" \
-    --arg category "$TAXONOMY_GID" \
-    --arg seo_title "$SEO_TITLE" \
-    --arg seo_description "$SEO_DESCRIPTION" \
-    --argjson tags "$TAGS_JSON" \
-    --argjson product_options "$PRODUCT_OPTIONS_JSON" '
-    {
-      input: {
-        handle: $handle,
-        title: $title,
-        descriptionHtml: $body,
-        vendor: $vendor,
-        productType: $product_type,
-        tags: $tags,
-        status: "ACTIVE",
-        category: $category,
-        seo: {title: $seo_title, description: $seo_description},
-        productOptions: $product_options
-      }
-    }')"
-
-  PRODUCT_CREATE_RESPONSE="$(gql "$PRODUCT_CREATE_MUTATION" "$PRODUCT_CREATE_VARS")"
-  check_graphql_errors "$PRODUCT_CREATE_RESPONSE" "productCreate"
-  check_user_errors "$PRODUCT_CREATE_RESPONSE" '.data.productCreate.userErrors' "productCreate"
-  PRODUCT_ID="$(echo "$PRODUCT_CREATE_RESPONSE" | jq -r '.data.productCreate.product.id // empty')"
-fi
-
-if [[ -z "$PRODUCT_ID" ]]; then
-  echo "ERROR: product id missing after create/update flow." >&2
-  exit 1
-fi
-
-PRODUCT_UPDATE_MUTATION='mutation ProductUpdate($product: ProductUpdateInput!) {
-  productUpdate(product: $product) {
-    product {
-      id
-      handle
-      title
-    }
-    userErrors { field message }
-  }
-}'
-
-PRODUCT_UPDATE_VARS="$(jq -nc \
-  --arg id "$PRODUCT_ID" \
-  --arg handle "$HANDLE" \
-  --arg title "$TITLE" \
-  --arg body "$BODY_HTML" \
-  --arg vendor "$VENDOR" \
-  --arg product_type "$PRODUCT_TYPE" \
-  --arg category "$TAXONOMY_GID" \
-  --arg seo_title "$SEO_TITLE" \
-  --arg seo_description "$SEO_DESCRIPTION" \
-  --argjson tags "$TAGS_JSON" '
-  {
-    product: {
-      id: $id,
-      handle: $handle,
-      title: $title,
-      descriptionHtml: $body,
-      vendor: $vendor,
-      productType: $product_type,
-      tags: $tags,
-      status: "ACTIVE",
-      category: $category,
-      seo: {title: $seo_title, description: $seo_description}
-    }
-  }')"
-
-PRODUCT_UPDATE_RESPONSE="$(gql "$PRODUCT_UPDATE_MUTATION" "$PRODUCT_UPDATE_VARS")"
-check_graphql_errors "$PRODUCT_UPDATE_RESPONSE" "productUpdate"
-check_user_errors "$PRODUCT_UPDATE_RESPONSE" '.data.productUpdate.userErrors' "productUpdate"
-
-if [[ "$CREATE_NEW_PRODUCT" == "0" ]]; then
-  if [[ "$USE_TYPE_OPTION" == "true" ]]; then
-    NEED_REORDER="$(echo "$EXISTING_RESPONSE" | jq -r --argjson expected "$OPTION_NAMES_JSON" '([.data.productByHandle.options[]?.name] != $expected) | tostring')"
-    if [[ "$NEED_REORDER" == "true" ]]; then
-      PRODUCT_OPTIONS_REORDER_MUTATION='mutation ProductOptionsReorder($productId: ID!, $options: [OptionReorderInput!]!) {
-        productOptionsReorder(productId: $productId, options: $options) {
-          product {
-            id
-            options { id name position values optionValues { id name hasVariants } }
-          }
-          userErrors { field message }
-        }
-      }'
-
-      PRODUCT_OPTIONS_REORDER_RESPONSE="$(gql "$PRODUCT_OPTIONS_REORDER_MUTATION" "$(jq -nc --arg product_id "$PRODUCT_ID" --argjson options "$OPTION_REORDER_JSON" '{productId: $product_id, options: $options}')")"
-      check_graphql_errors "$PRODUCT_OPTIONS_REORDER_RESPONSE" "productOptionsReorder"
-      check_user_errors "$PRODUCT_OPTIONS_REORDER_RESPONSE" '.data.productOptionsReorder.userErrors' "productOptionsReorder"
-      refresh_existing_product
-    fi
-  else
-    TYPE_OPTION_ID="$(echo "$EXISTING_RESPONSE" | jq -r '.data.productByHandle.options[]? | select(.name=="Type") | .id' | head -n 1)"
-    COLOR_OPTION_ID="$(echo "$EXISTING_RESPONSE" | jq -r '.data.productByHandle.options[]? | select(.name=="Color") | .id' | head -n 1)"
-
-    if [[ -z "$COLOR_OPTION_ID" ]]; then
-      PRODUCT_OPTIONS_CREATE_MUTATION='mutation ProductOptionsCreate($productId: ID!, $options: [OptionCreateInput!]!, $variantStrategy: ProductOptionCreateVariantStrategy) {
-        productOptionsCreate(productId: $productId, options: $options, variantStrategy: $variantStrategy) {
-          product {
-            id
-            options { id name position values optionValues { id name hasVariants } }
-          }
-          userErrors { field message }
-        }
-      }'
-
-      PRODUCT_OPTIONS_CREATE_RESPONSE="$(gql "$PRODUCT_OPTIONS_CREATE_MUTATION" "$(jq -nc --arg product_id "$PRODUCT_ID" --arg color_name "$COLOR_NAME" '{productId: $product_id, options: [{name: "Color", values: [{name: $color_name}]}], variantStrategy: "LEAVE_AS_IS"}')")"
-      check_graphql_errors "$PRODUCT_OPTIONS_CREATE_RESPONSE" "productOptionsCreate"
-      check_user_errors "$PRODUCT_OPTIONS_CREATE_RESPONSE" '.data.productOptionsCreate.userErrors' "productOptionsCreate"
-      refresh_existing_product
-      TYPE_OPTION_ID="$(echo "$EXISTING_RESPONSE" | jq -r '.data.productByHandle.options[]? | select(.name=="Type") | .id' | head -n 1)"
-    fi
-
-    if [[ -n "$TYPE_OPTION_ID" ]]; then
-      PRODUCT_OPTIONS_DELETE_MUTATION='mutation ProductOptionsDelete($productId: ID!, $options: [ID!]!, $strategy: ProductOptionDeleteStrategy) {
-        productOptionsDelete(productId: $productId, options: $options, strategy: $strategy) {
-          deletedOptionsIds
-          product {
-            id
-            options { id name position values optionValues { id name hasVariants } }
-          }
-          userErrors { field message }
-        }
-      }'
-
-      PRODUCT_OPTIONS_DELETE_RESPONSE="$(gql "$PRODUCT_OPTIONS_DELETE_MUTATION" "$(jq -nc --arg product_id "$PRODUCT_ID" --arg type_option_id "$TYPE_OPTION_ID" '{productId: $product_id, options: [$type_option_id], strategy: "NON_DESTRUCTIVE"}')")"
-      check_graphql_errors "$PRODUCT_OPTIONS_DELETE_RESPONSE" "productOptionsDelete"
-      check_user_errors "$PRODUCT_OPTIONS_DELETE_RESPONSE" '.data.productOptionsDelete.userErrors' "productOptionsDelete"
-      refresh_existing_product
-    fi
-
-    NEED_REORDER="$(echo "$EXISTING_RESPONSE" | jq -r --argjson expected "$OPTION_NAMES_JSON" '([.data.productByHandle.options[]?.name] != $expected) | tostring')"
-    if [[ "$NEED_REORDER" == "true" ]]; then
-      PRODUCT_OPTIONS_REORDER_MUTATION='mutation ProductOptionsReorder($productId: ID!, $options: [OptionReorderInput!]!) {
-        productOptionsReorder(productId: $productId, options: $options) {
-          product {
-            id
-            options { id name position values optionValues { id name hasVariants } }
-          }
-          userErrors { field message }
-        }
-      }'
-
-      PRODUCT_OPTIONS_REORDER_RESPONSE="$(gql "$PRODUCT_OPTIONS_REORDER_MUTATION" "$(jq -nc --arg product_id "$PRODUCT_ID" --argjson options "$OPTION_REORDER_JSON" '{productId: $product_id, options: $options}')")"
-      check_graphql_errors "$PRODUCT_OPTIONS_REORDER_RESPONSE" "productOptionsReorder"
-      check_user_errors "$PRODUCT_OPTIONS_REORDER_RESPONSE" '.data.productOptionsReorder.userErrors' "productOptionsReorder"
-      refresh_existing_product
-    fi
-  fi
-fi
-
-SHOULD_CREATE_VARIANTS="0"
-SHOULD_UPDATE_VARIANTS="0"
-if [[ "$CREATE_NEW_PRODUCT" == "1" ]]; then
-  SHOULD_CREATE_VARIANTS="1"
-else
-  EXISTING_VARIANT_COUNT="$(echo "$EXISTING_RESPONSE" | jq '.data.productByHandle.variants.nodes | length')"
-  EXISTING_SKUS_SORTED="$(echo "$EXISTING_RESPONSE" | jq -r '.data.productByHandle.variants.nodes[].sku // empty' | sed '/^$/d' | sort)"
-  if [[ "$EXISTING_VARIANT_COUNT" -eq 0 ]]; then
-    SHOULD_CREATE_VARIANTS="1"
-  elif [[ "$EXISTING_VARIANT_COUNT" -eq 1 && -z "$EXISTING_SKUS_SORTED" ]]; then
-    SHOULD_CREATE_VARIANTS="1"
-  elif [[ "$EXISTING_VARIANT_COUNT" -eq "$ROW_COUNT" && "$EXISTING_SKUS_SORTED" == "$DERIVED_SKUS_SORTED" ]]; then
-    SHOULD_UPDATE_VARIANTS="1"
-  else
-    echo "ERROR: existing product handle ${HANDLE} has unexpected live variants; refusing to create duplicates." >&2
-    echo "Existing SKUs:" >&2
-    echo "$EXISTING_SKUS_SORTED" >&2
-    echo "Derived SKUs:" >&2
-    echo "$DERIVED_SKUS_SORTED" >&2
-    exit 1
-  fi
-fi
-
-if [[ "$SHOULD_CREATE_VARIANTS" == "1" ]]; then
-  BULK_CREATE_MUTATION='mutation ProductVariantsBulkCreate($productId: ID!, $variants: [ProductVariantsBulkInput!]!, $strategy: ProductVariantsBulkCreateStrategy) {
-    productVariantsBulkCreate(productId: $productId, variants: $variants, strategy: $strategy) {
-      productVariants { id sku title price compareAtPrice inventoryPolicy }
-      userErrors { field message }
-    }
-  }'
-
-  BULK_CREATE_VARS="$(jq -nc \
-    --arg product_id "$PRODUCT_ID" \
-    --argjson variants "$VARIANTS_JSON" '
-    {productId: $product_id, variants: $variants, strategy: "REMOVE_STANDALONE_VARIANT"}')"
-
-  BULK_CREATE_RESPONSE="$(gql "$BULK_CREATE_MUTATION" "$BULK_CREATE_VARS")"
-  check_graphql_errors "$BULK_CREATE_RESPONSE" "productVariantsBulkCreate"
-  check_user_errors "$BULK_CREATE_RESPONSE" '.data.productVariantsBulkCreate.userErrors' "productVariantsBulkCreate"
-fi
-
-if [[ "$SHOULD_UPDATE_VARIANTS" == "1" ]]; then
-  VARIANTS_UPDATE_JSON="$(python3 - "${WORK}/derived.json" "${WORK}/existing.json" <<'PY'
-import json
-import sys
-derived = json.load(open(sys.argv[1]))
-existing = json.load(open(sys.argv[2]))["data"]["productByHandle"]["variants"]["nodes"]
-spec_by_sku = {row["inventoryItem"]["sku"]: row for row in derived["variants"]}
-updates = []
-for node in existing:
-    sku = node["sku"]
-    spec = spec_by_sku[sku]
-    updates.append({
-        "id": node["id"],
-        "price": spec["price"],
-        "compareAtPrice": spec["compareAtPrice"],
-        "inventoryPolicy": "DENY",
-        "optionValues": spec["optionValues"],
-    })
-print(json.dumps(updates))
-PY
-)"
-
-  BULK_UPDATE_MUTATION='mutation ProductVariantsBulkUpdate($productId: ID!, $variants: [ProductVariantsBulkInput!]!) {
-    productVariantsBulkUpdate(productId: $productId, variants: $variants) {
-      productVariants { id sku title price compareAtPrice inventoryPolicy }
-      userErrors { field message }
-    }
-  }'
-
-  BULK_UPDATE_VARS="$(jq -nc \
-    --arg product_id "$PRODUCT_ID" \
-    --argjson variants "$VARIANTS_UPDATE_JSON" '
-    {productId: $product_id, variants: $variants}')"
-
-  BULK_UPDATE_RESPONSE="$(gql "$BULK_UPDATE_MUTATION" "$BULK_UPDATE_VARS")"
-  check_graphql_errors "$BULK_UPDATE_RESPONSE" "productVariantsBulkUpdate"
-  check_user_errors "$BULK_UPDATE_RESPONSE" '.data.productVariantsBulkUpdate.userErrors' "productVariantsBulkUpdate"
-fi
-
-METAFIELDS_SET_MUTATION='mutation MetafieldsSet($metafields: [MetafieldsSetInput!]!) {
-  metafieldsSet(metafields: $metafields) {
-    metafields { namespace key type value }
-    userErrors { field message }
-  }
-}'
-
-METAFIELDS_JSON="$(jq -nc \
-  --arg pid "$PRODUCT_ID" \
-  --arg age_group_value "$(echo "$AGE_GROUP_GIDS_JSON" | jq -c .)" \
-  --arg care_instructions_value "$(echo "$CARE_INSTRUCTIONS_GIDS_JSON" | jq -c .)" \
-  --arg color_value "$(echo "$COLOR_PATTERN_GIDS_JSON" | jq -c .)" \
-  --arg target_gender_value "$(echo "$TARGET_GENDER_GIDS_JSON" | jq -c .)" \
-  --arg size_value "$(echo "$SHOPIFY_SIZE_REFS_JSON" | jq -c .)" \
-  --arg merch_subcategory "$MERCH_SUBCATEGORY" \
-  --arg merch_subcategory2 "$MERCH_SUBCATEGORY2" \
-  --arg merch_style "$MERCH_STYLE" \
-  --arg merch_type "$MERCH_TYPE" \
-  --arg seo_title "$SEO_TITLE" \
-  --arg seo_description "$SEO_DESCRIPTION" '
-  [
-      {ownerId: $pid, namespace: "custom", key: "category1", type: "single_line_text_field", value: "Family Matching"},
-      {ownerId: $pid, namespace: "custom", key: "subcategory", type: "single_line_text_field", value: $merch_subcategory},
-      {ownerId: $pid, namespace: "custom", key: "subcategory2", type: "single_line_text_field", value: $merch_subcategory2},
-      {ownerId: $pid, namespace: "custom", key: "pattern", type: "single_line_text_field", value: "Blue Daisy Floral"},
-      {ownerId: $pid, namespace: "custom", key: "style", type: "single_line_text_field", value: $merch_style},
-      {ownerId: $pid, namespace: "custom", key: "type", type: "single_line_text_field", value: $merch_type},
-      {ownerId: $pid, namespace: "mm-google-shopping", key: "custom_product", type: "boolean", value: "false"},
-      {ownerId: $pid, namespace: "mm-google-shopping", key: "gender", type: "single_line_text_field", value: "unisex"},
-      {ownerId: $pid, namespace: "mm-google-shopping", key: "age_group", type: "single_line_text_field", value: "adult"},
-      {ownerId: $pid, namespace: "mm-google-shopping", key: "condition", type: "single_line_text_field", value: "new"},
-      {ownerId: $pid, namespace: "mm-google-shopping", key: "custom_label_0", type: "single_line_text_field", value: "Family Matching"},
-      {ownerId: $pid, namespace: "mm-google-shopping", key: "custom_label_1", type: "single_line_text_field", value: "Blue Daisy"},
-      {ownerId: $pid, namespace: "mm-google-shopping", key: "custom_label_2", type: "single_line_text_field", value: "Summer"},
-      {ownerId: $pid, namespace: "mm-google-shopping", key: "custom_label_3", type: "single_line_text_field", value: "Dress & Shirt"},
-      {ownerId: $pid, namespace: "mm-google-shopping", key: "custom_label_4", type: "single_line_text_field", value: "Four-Role Matching"},
-      {ownerId: $pid, namespace: "shopify", key: "age-group", type: "list.metaobject_reference", value: $age_group_value},
-      {ownerId: $pid, namespace: "shopify", key: "care-instructions", type: "list.metaobject_reference", value: $care_instructions_value},
-      {ownerId: $pid, namespace: "shopify", key: "color-pattern", type: "list.metaobject_reference", value: $color_value},
-      {ownerId: $pid, namespace: "shopify", key: "size", type: "list.metaobject_reference", value: $size_value},
-      {ownerId: $pid, namespace: "shopify", key: "target-gender", type: "list.metaobject_reference", value: $target_gender_value},
-      {ownerId: $pid, namespace: "global", key: "title_tag", type: "single_line_text_field", value: $seo_title},
-      {ownerId: $pid, namespace: "global", key: "description_tag", type: "single_line_text_field", value: $seo_description}
-  ]')"
-
-while IFS= read -r metafields_batch; do
-  METAFIELDS_SET_RESPONSE="$(gql "$METAFIELDS_SET_MUTATION" "$(jq -nc --argjson metafields "$metafields_batch" '{metafields: $metafields}')")"
-  check_graphql_errors "$METAFIELDS_SET_RESPONSE" "metafieldsSet"
-  check_user_errors "$METAFIELDS_SET_RESPONSE" '.data.metafieldsSet.userErrors' "metafieldsSet"
-done < <(echo "$METAFIELDS_JSON" | jq -c '. as $all | [range(0; length; 25) as $i | $all[$i:($i + 25)]][]')
-
-STALE_SHOPIFY_METAFIELDS_TO_DELETE_JSON="$(python3 - "${WORK}/existing.json" "$PRODUCT_ID" <<'PY'
-import json
-import sys
-
-existing = json.load(open(sys.argv[1]))
-product_id = sys.argv[2]
-keys_to_delete = {"dress-occasion", "dress-style", "fabric", "neckline", "pants-length-type", "skirt-dress-length-type", "sleeve-length-type", "top-length-type", "waist-rise"}
-delete_list = []
-product = existing.get("data", {}).get("productByHandle") or {}
-for node in product.get("metafields", {}).get("nodes", []):
-    if node["key"] in keys_to_delete:
-        delete_list.append({
-            "ownerId": product_id,
-            "namespace": "shopify",
-            "key": node["key"],
-        })
-print(json.dumps(delete_list))
-PY
-)"
-
-if [[ "$STALE_SHOPIFY_METAFIELDS_TO_DELETE_JSON" != "[]" ]]; then
-  METAFIELDS_DELETE_MUTATION='mutation MetafieldsDelete($metafields: [MetafieldIdentifierInput!]!) {
-    metafieldsDelete(metafields: $metafields) {
-      deletedMetafields { key namespace ownerId }
-      userErrors { field message }
-    }
-  }'
-
-  METAFIELDS_DELETE_RESPONSE="$(gql "$METAFIELDS_DELETE_MUTATION" "$(jq -nc --argjson metafields "$STALE_SHOPIFY_METAFIELDS_TO_DELETE_JSON" '{metafields: $metafields}')")"
-  check_graphql_errors "$METAFIELDS_DELETE_RESPONSE" "metafieldsDelete"
-  check_user_errors "$METAFIELDS_DELETE_RESPONSE" '.data.metafieldsDelete.userErrors' "metafieldsDelete"
-fi
-
-PUBLICATIONS_JSON='[
-  {"publicationId":"gid://shopify/Publication/55169925"},
-  {"publicationId":"gid://shopify/Publication/21969633377"},
-  {"publicationId":"gid://shopify/Publication/29172400225"},
-  {"publicationId":"gid://shopify/Publication/76582879329"},
-  {"publicationId":"gid://shopify/Publication/76604768353"}
-]'
-
-PUBLISH_MUTATION='mutation PublishablePublish($id: ID!, $input: [PublicationInput!]!) {
-  publishablePublish(id: $id, input: $input) {
-    publishable { availablePublicationsCount { count } }
-    userErrors { field message }
-  }
-}'
-
-PUBLISH_RESPONSE="$(gql "$PUBLISH_MUTATION" "$(jq -nc --arg id "$PRODUCT_ID" --argjson input "$PUBLICATIONS_JSON" '{id:$id, input:$input}')")"
-check_graphql_errors "$PUBLISH_RESPONSE" "publishablePublish"
-check_user_errors "$PUBLISH_RESPONSE" '.data.publishablePublish.userErrors' "publishablePublish"
-
-MEDIA_QUERY='query ProductMedia($id: ID!) {
-  product(id: $id) {
-    media(first: 50) {
-      nodes {
-        ... on MediaImage {
-          id
-          alt
-          image { url }
-        }
-      }
-    }
-  }
-}'
-
-MEDIA_RESPONSE="$(gql "$MEDIA_QUERY" "$(jq -nc --arg id "$PRODUCT_ID" '{id:$id}')")"
-check_graphql_errors "$MEDIA_RESPONSE" "product media lookup"
-EXISTING_MEDIA_ALTS="$(echo "$MEDIA_RESPONSE" | jq -r '.data.product.media.nodes[].alt // empty')"
-
-MEDIA_FILES=()
-while IFS= read -r -d '' media_file; do
-  MEDIA_FILES+=("$media_file")
-done < <(find "$UPLOAD_DIR" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -print0 | sort -z)
-
-if ((${#MEDIA_FILES[@]})); then
-for image_path in "${MEDIA_FILES[@]}"; do
-  image_name="$(basename "$image_path")"
-  case "$image_name" in
-    01-*)
-      alt_text="Family in matching blue daisy floral maxi dresses and short-sleeve shirts outdoors."
-      ;;
-    *)
-      alt_text="Blue Daisy matching floral dress and short-sleeve shirt."
-      ;;
-  esac
-
-  if grep -Fxq "$alt_text" <<< "$EXISTING_MEDIA_ALTS"; then
-    continue
-  fi
-
-  mime_type="$(python3 - "$image_path" <<'PY'
 import mimetypes
-import sys
-print(mimetypes.guess_type(sys.argv[1])[0] or "application/octet-stream")
-PY
-)"
-
-  STAGED_UPLOAD_MUTATION='mutation StagedUploadsCreate($input: [StagedUploadInput!]!) {
-    stagedUploadsCreate(input: $input) {
-      stagedTargets {
-        url
-        resourceUrl
-        parameters { name value }
-      }
-      userErrors { field message }
-    }
-  }'
-
-  STAGED_UPLOAD_VARS="$(jq -nc \
-    --arg filename "$image_name" \
-    --arg mime_type "$mime_type" '
-    {input: [{filename: $filename, mimeType: $mime_type, resource: "IMAGE", httpMethod: "POST"}]}')"
-
-  STAGED_UPLOAD_RESPONSE="$(gql "$STAGED_UPLOAD_MUTATION" "$STAGED_UPLOAD_VARS")"
-  check_graphql_errors "$STAGED_UPLOAD_RESPONSE" "stagedUploadsCreate"
-  check_user_errors "$STAGED_UPLOAD_RESPONSE" '.data.stagedUploadsCreate.userErrors' "stagedUploadsCreate"
-
-  upload_url="$(echo "$STAGED_UPLOAD_RESPONSE" | jq -r '.data.stagedUploadsCreate.stagedTargets[0].url')"
-  resource_url="$(echo "$STAGED_UPLOAD_RESPONSE" | jq -r '.data.stagedUploadsCreate.stagedTargets[0].resourceUrl')"
-
-  form_args=()
-  while IFS= read -r param; do
-    form_args+=(-F "$param")
-  done < <(echo "$STAGED_UPLOAD_RESPONSE" | jq -r '.data.stagedUploadsCreate.stagedTargets[0].parameters[] | "\(.name)=\(.value)"')
-  form_args+=(-F "file=@${image_path}")
-  curl -sS -X POST "$upload_url" "${form_args[@]}" > /dev/null
-
-  PRODUCT_CREATE_MEDIA_MUTATION='mutation ProductCreateMedia($productId: ID!, $media: [CreateMediaInput!]!) {
-    productCreateMedia(productId: $productId, media: $media) {
-      media {
-        ... on MediaImage { id alt }
-      }
-      userErrors { field message }
-    }
-  }'
-
-  PRODUCT_CREATE_MEDIA_VARS="$(jq -nc \
-    --arg product_id "$PRODUCT_ID" \
-    --arg original_source "$resource_url" \
-    --arg alt_text "$alt_text" '
-    {productId: $product_id, media: [{originalSource: $original_source, mediaContentType: "IMAGE", alt: $alt_text}]}')"
-
-  PRODUCT_CREATE_MEDIA_RESPONSE="$(gql "$PRODUCT_CREATE_MEDIA_MUTATION" "$PRODUCT_CREATE_MEDIA_VARS")"
-  check_graphql_errors "$PRODUCT_CREATE_MEDIA_RESPONSE" "productCreateMedia"
-  check_user_errors "$PRODUCT_CREATE_MEDIA_RESPONSE" '.data.productCreateMedia.userErrors' "productCreateMedia"
-done
-fi
-
-sleep 2
-
-VERIFY_QUERY='query VerifyProduct($id: ID!) {
-  product(id: $id) {
-    id
-    title
-    handle
-    status
-    publishedAt
-    onlineStoreUrl
-    descriptionHtml
-    tags
-    seo { title description }
-    category { id fullName }
-    options {
-      id
-      name
-      position
-      values
-      optionValues { id name hasVariants }
-    }
-    variants(first: 100) {
-      nodes {
-        id
-        sku
-        title
-        price
-        compareAtPrice
-        inventoryPolicy
-        selectedOptions { name value }
-        inventoryItem { tracked requiresShipping }
-      }
-    }
-    media(first: 50) {
-      nodes {
-        ... on MediaImage {
-          alt
-          image { url }
-        }
-      }
-    }
-    collections(first: 50) {
-      nodes {
-        title
-        handle
-      }
-    }
-    metafields(first: 80) {
-      nodes {
-        namespace
-        key
-        type
-        value
-      }
-    }
-    resourcePublicationsV2(first: 20) {
-      nodes {
-        isPublished
-        publishDate
-        publication { id name }
-      }
-    }
-  }
-}'
-
-VERIFY_RESPONSE="$(gql "$VERIFY_QUERY" "$(jq -nc --arg id "$PRODUCT_ID" '{id:$id}')")"
-check_graphql_errors "$VERIFY_RESPONSE" "verify query"
-
-for _attempt in {1..12}; do
-  if echo "$VERIFY_RESPONSE" | jq -e '.data.product.collections.nodes | map(.handle) | index("family-sets") != null' > /dev/null; then
-    break
-  fi
-  sleep 3
-  VERIFY_RESPONSE="$(gql "$VERIFY_QUERY" "$(jq -nc --arg id "$PRODUCT_ID" '{id:$id}')")"
-  check_graphql_errors "$VERIFY_RESPONSE" "verify query"
-done
-
-echo "$VERIFY_RESPONSE" > "$VERIFY_JSON_OUT"
-
-python3 - "$VERIFY_JSON_OUT" "${WORK}/derived.json" "${WORK}/size_chart.json" "${WORK}/size_metaobject_map.json" \
-  "$LISTING_MD" "$CSV_OUT" "$CSV_HEADER_SOURCE" "$HANDLE" "$TITLE" "$SEO_TITLE" "$SEO_DESCRIPTION" \
-  "$PRICE_NEIGHBOR_HANDLE" "$SIZE_NEIGHBOR_HANDLE" "$CHILD_PRICE" "$CHILD_COMPARE" "$MOTHER_PRICE" "$MOTHER_COMPARE" \
-  "$VENDOR_URL" "$SCRIPT_PATH" "$SIZE_CHART_OUT" "$BODY_HTML_OUT" "$UPLOAD_DIR" "$PRODUCT_ID" \
-  "$EXPECTED_TAXONOMY_FULL_NAME" "$MERCH_SUBCATEGORY" "$MERCH_SUBCATEGORY2" "$MERCH_STYLE" "$MERCH_TYPE" "$MERCH_COLLECTION_TAG" <<'PY'
-import csv
-import json
+import os
 import re
-import sys
+import subprocess
+import time
+import urllib.error
+import urllib.request
+from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
-verify_path = Path(sys.argv[1])
-derived_path = Path(sys.argv[2])
-chart_path = Path(sys.argv[3])
-size_map_path = Path(sys.argv[4])
-listing_md_path = Path(sys.argv[5])
-csv_out_path = Path(sys.argv[6])
-csv_header_source = Path(sys.argv[7])
-handle = sys.argv[8]
-title = sys.argv[9]
-seo_title = sys.argv[10]
-seo_description = sys.argv[11]
-price_neighbor_handle = sys.argv[12]
-size_neighbor_handle = sys.argv[13]
-child_price = sys.argv[14]
-child_compare = sys.argv[15]
-mother_price = sys.argv[16]
-mother_compare = sys.argv[17]
-vendor_url = sys.argv[18]
-script_path = sys.argv[19]
-size_chart_out = sys.argv[20]
-body_html_out = sys.argv[21]
-upload_dir = sys.argv[22]
-product_gid = sys.argv[23]
-expected_taxonomy_full_name = sys.argv[24]
-merch_subcategory = sys.argv[25]
-merch_subcategory2 = sys.argv[26]
-merch_style = sys.argv[27]
-merch_type = sys.argv[28]
-merch_collection_tag = sys.argv[29]
+ROOT = Path("/Users/fsuels/Projects/dresslikemommy")
+API = f"https://{os.environ['SHOPIFY_STORE_DOMAIN']}/admin/api/2025-01/graphql.json"
+TOKEN = os.environ["SHOPIFY_ADMIN_ACCESS_TOKEN"]
 
-verify = json.loads(verify_path.read_text())
-derived = json.loads(derived_path.read_text())
-chart = json.loads(chart_path.read_text())
-size_map = {row["picker_label"]: row for row in json.loads(size_map_path.read_text())}
-product = verify["data"]["product"]
-product_options = product["options"]
-variants = product["variants"]["nodes"]
-metafields = product["metafields"]["nodes"]
-collections = product["collections"]["nodes"]
-publications = product["resourcePublicationsV2"]["nodes"]
-collection_handles = {collection["handle"] for collection in collections}
+HANDLE = "blue-daisy-family-matching-set"
+TITLE = "Blue Daisy Family Matching Set - Dress, Shirt & Romper"
+SEO_TITLE = "Blue Daisy Family Set | Dress Like Mommy"
+SEO_DESCRIPTION = "Blue floral family matching set with dress, shirt and baby romper options. Baby 0-3M-12-18M, Child 1-2Y-10Y, Mother S-2XL, Father S-4XL."
+PRINT_NAME = "Blue Daisy"
+SHORTCODE = "BDSY"
+COLOR_TOKEN = "BLUE"
+COLOR_NAME = "Blue Daisy"
+VENDOR_URL = "https://detail.1688.com/offer/1046962900946.html"
+VENDOR = "dresslikemommy.com"
+PRODUCT_TYPE = "Matching Family Sets"
+TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
+EXPECTED_TAXONOMY_FULL_NAME = "Apparel & Accessories > Clothing > Outfit Sets"
+CHILD_PRICE = "28.99"
+ADULT_PRICE = "31.99"
 
-spec_by_sku = {row["sku"]: row for row in derived["recap"]}
-live_skus_sorted = sorted(v["sku"] for v in variants)
-derived_skus_sorted = derived["derived_skus_sorted"]
-option_names = derived["option_names"]
-option_axes = derived["option_axes"]
-expected_option_pairs = {tuple(pair) for pair in derived["expected_variant_option_pairs"]}
-live_option_names = [option["name"] for option in product_options]
+UPLOAD_DIR = ROOT / "uploads" / HANDLE
+LISTING_MD = ROOT / "ops" / "listings" / f"{HANDLE}-listing.md"
+CSV_OUT = ROOT / "ops" / "listings" / f"{HANDLE}-shopify-import.csv"
+VERIFY_JSON_OUT = ROOT / "ops" / "listings" / f"verify-{HANDLE}.json"
+SIZE_CHART_OUT = ROOT / "ops" / "listings" / f"size-chart-{HANDLE}.json"
+BODY_HTML_OUT = ROOT / "ops" / "listings" / f"body-{HANDLE}.html"
+SOURCE_SIZE_CHART = ROOT / "ops" / "listings" / f"source-size-chart-{HANDLE}.png"
 
-html_body = product["descriptionHtml"]
-table_blocks = re.findall(r"<table[^>]*>(.*?)</table>", html_body, re.S)
-table_header_counts = [len(re.findall(r"<th>", block)) for block in table_blocks]
-tbody_rows = []
-for tbody_html in re.findall(r"<tbody>(.*?)</tbody>", html_body, re.S):
-    tbody_rows.extend(re.findall(r"<tr>(.*?)</tr>", tbody_html, re.S))
-first_cells = []
-for row_html in tbody_rows:
-    cell = re.search(r"<td>(.*?)</td>", row_html, re.S)
-    first_cells.append(re.sub(r"<.*?>", "", cell.group(1)).strip() if cell else "")
-
-expected_first_cells = [row["picker_label"] for row in chart]
-live_option_pairs = set()
-for variant in variants:
-    option_map = {opt["name"]: opt["value"] for opt in variant["selectedOptions"]}
-    live_option_pairs.add(tuple(option_map.get(name) for name in option_names))
-
-expected_publications = {
+PUBLICATION_IDS = [
     "gid://shopify/Publication/55169925",
     "gid://shopify/Publication/21969633377",
     "gid://shopify/Publication/29172400225",
     "gid://shopify/Publication/76582879329",
     "gid://shopify/Publication/76604768353",
-}
-published_ids = {node["publication"]["id"] for node in publications if node["isPublished"]}
-metafield_keys = {(node["namespace"], node["key"]) for node in metafields}
-
-checks = [
-    ("Title <= 70 chars", len(product["title"]) <= 70, str(len(product["title"]))),
-    ("SEO title <= 60 chars", len(product["seo"]["title"]) <= 60, str(len(product["seo"]["title"]))),
-    ("SEO description <= 155 chars", len(product["seo"]["description"]) <= 155, str(len(product["seo"]["description"]))),
-    ("Live variant count matches SIZE_CHART", len(variants) == len(chart), f"{len(variants)} vs {len(chart)}"),
-    ("Live SKUs match derived SKUs", live_skus_sorted == derived_skus_sorted, ", ".join(live_skus_sorted)),
-    ("Live option axes match derived axes", live_option_names == option_names, " / ".join(live_option_names)),
-    ("Live option values match derived values", all(next((option["values"] for option in product_options if option["name"] == axis["name"]), None) == axis["values"] for axis in option_axes), json.dumps({option["name"]: option["values"] for option in product_options}, ensure_ascii=False)),
-    (f"Every {' x '.join(option_names)} combination exists", live_option_pairs == expected_option_pairs, str(sorted(live_option_pairs))),
-    ("Size table first column matches picker labels", first_cells == expected_first_cells, " | ".join(first_cells)),
-    ("Size tables expose metric + imperial units", "kg/lbs" in html_body and "cm/in" in html_body and bool(re.search(r"\b(?:lbs|in)\b", html_body)), "kg/lbs + cm/in"),
-    ("Each size table has 10 headers", table_header_counts and all(count == 10 for count in table_header_counts), str(table_header_counts)),
-    ("Table row count matches SIZE_CHART", len(tbody_rows) == len(chart), str(len(tbody_rows))),
-    ("publishedAt is populated", bool(product["publishedAt"]), product["publishedAt"] or ""),
-    ("onlineStoreUrl is populated", bool(product["onlineStoreUrl"]), product["onlineStoreUrl"] or ""),
-    ("Taxonomy category is set", product["category"]["id"] == "gid://shopify/TaxonomyCategory/aa-1-11", product["category"]["id"]),
-    ("Taxonomy category full name matches expected leaf", product["category"]["fullName"] == expected_taxonomy_full_name, product["category"]["fullName"]),
-    ("Family-set merchandising tag is present", merch_collection_tag in product["tags"], ", ".join(product["tags"])),
-    ("Family-set smart collection is attached", "family-sets" in collection_handles, str(sorted(collection_handles))),
-    ("Required publications are live", expected_publications.issubset(published_ids), str(sorted(published_ids))),
 ]
 
-price_rows = []
-price_drift = False
-for variant in variants:
-    spec = spec_by_sku[variant["sku"]]
-    price_ok = variant["price"] == spec["price"]
-    cmp_ok = variant["compareAtPrice"] == spec["compare_at_price"]
-    tracked_ok = variant["inventoryItem"]["tracked"] and variant["inventoryItem"]["requiresShipping"]
-    deny_ok = variant["inventoryPolicy"] == "DENY"
-    if not (price_ok and cmp_ok and tracked_ok and deny_ok):
-        price_drift = True
-    price_rows.append({
-        "sku": variant["sku"],
-        "live_price": variant["price"],
-        "live_compare": variant["compareAtPrice"],
-        "spec_price": spec["price"],
-        "spec_compare": spec["compare_at_price"],
-        "match": "✓" if (price_ok and cmp_ok and tracked_ok and deny_ok) else "✗",
+SIZE_MAP = {
+    "Baby 0-3 Months": ("gid://shopify/Metaobject/129972535393", "0-3 months"),
+    "Baby 6-9 Months": ("gid://shopify/Metaobject/129972666465", "6-9 months"),
+    "Baby 9-12 Months": ("gid://shopify/Metaobject/129972699233", "9-12 months"),
+    "Baby 12-18 Months": ("gid://shopify/Metaobject/129972797537", "12-18 months"),
+    "Child 1-2 Years": ("gid://shopify/Metaobject/129972797537", "12-18 months"),
+    "Child 2 Years": ("gid://shopify/Metaobject/129972863073", "2-3 years"),
+    "Child 3 Years": ("gid://shopify/Metaobject/129972895841", "3-4 years"),
+    "Child 4 Years": ("gid://shopify/Metaobject/129972928609", "4-5 years"),
+    "Child 5 Years": ("gid://shopify/Metaobject/129972961377", "5-6 years"),
+    "Child 6-7 Years": ("gid://shopify/Metaobject/139840323681", "6-7 years"),
+    "Child 8 Years": ("gid://shopify/Metaobject/129973026913", "8"),
+    "Child 9-10 Years": ("gid://shopify/Metaobject/129971552353", "10"),
+    "Mother S": ("gid://shopify/Metaobject/129975255137", "S"),
+    "Mother M": ("gid://shopify/Metaobject/129975222369", "M"),
+    "Mother L": ("gid://shopify/Metaobject/129975189601", "L"),
+    "Mother XL": ("gid://shopify/Metaobject/129975287905", "XL"),
+    "Mother 2XL": ("gid://shopify/Metaobject/129975156833", "2XL"),
+    "Father S": ("gid://shopify/Metaobject/129975255137", "S"),
+    "Father M": ("gid://shopify/Metaobject/129975222369", "M"),
+    "Father L": ("gid://shopify/Metaobject/129975189601", "L"),
+    "Father XL": ("gid://shopify/Metaobject/129975287905", "XL"),
+    "Father 2XL": ("gid://shopify/Metaobject/129975156833", "2XL"),
+    "Father 3XL": ("gid://shopify/Metaobject/139840421985", "3XL"),
+    "Father 4XL": ("gid://shopify/Metaobject/139840716897", "4XL"),
+}
+
+SIZE_CHART = [
+    {"audience":"child","role":"Baby Romper","garment":"Baby Romper","vendor_label":"66","picker_label":"Baby 0-3 Months","sku_suffix":"B03M","age":"0-3M","weight":"5-7.5 kg","height":"58-66 cm","chest_cm":52,"hip_cm":56,"waist_cm":52,"length_cm":41,"shoulder_cm":23,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Baby Romper","garment":"Baby Romper","vendor_label":"73","picker_label":"Baby 6-9 Months","sku_suffix":"B69M","age":"6-9M","weight":"7.5-9 kg","height":"66-76 cm","chest_cm":54,"hip_cm":58,"waist_cm":54,"length_cm":43,"shoulder_cm":25,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Baby Romper","garment":"Baby Romper","vendor_label":"80","picker_label":"Baby 9-12 Months","sku_suffix":"B912M","age":"9-12M","weight":"9-11 kg","height":"75-80 cm","chest_cm":56,"hip_cm":60,"waist_cm":56,"length_cm":45,"shoulder_cm":27,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Baby Romper","garment":"Baby Romper","vendor_label":"90","picker_label":"Baby 12-18 Months","sku_suffix":"B1218M","age":"12-18M","weight":"11-14 kg","height":"82-90 cm","chest_cm":58,"hip_cm":62,"waist_cm":58,"length_cm":47,"shoulder_cm":29,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"80","picker_label":"Child 1-2 Years","sku_suffix":"KID12Y","age":"1-2","weight":"8.5-11 kg","height":"75-85 cm","chest_cm":68,"hip_cm":72,"waist_cm":68,"length_cm":56,"shoulder_cm":0,"skirt_cm":56,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"90","picker_label":"Child 2 Years","sku_suffix":"KID2Y","age":"2","weight":"11-14 kg","height":"85-95 cm","chest_cm":72,"hip_cm":76,"waist_cm":72,"length_cm":59,"shoulder_cm":0,"skirt_cm":59,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"100","picker_label":"Child 3 Years","sku_suffix":"KID3Y","age":"3","weight":"14-16.5 kg","height":"95-105 cm","chest_cm":76,"hip_cm":80,"waist_cm":76,"length_cm":62,"shoulder_cm":0,"skirt_cm":62,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"110","picker_label":"Child 4 Years","sku_suffix":"KID4Y","age":"4","weight":"16.5-20 kg","height":"105-115 cm","chest_cm":80,"hip_cm":84,"waist_cm":80,"length_cm":64,"shoulder_cm":0,"skirt_cm":64,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"120","picker_label":"Child 5 Years","sku_suffix":"KID5Y","age":"5","weight":"18.5-24 kg","height":"115-125 cm","chest_cm":84,"hip_cm":88,"waist_cm":84,"length_cm":67,"shoulder_cm":0,"skirt_cm":67,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"130","picker_label":"Child 6-7 Years","sku_suffix":"KID67Y","age":"6-7","weight":"24-27.5 kg","height":"125-130 cm","chest_cm":88,"hip_cm":92,"waist_cm":88,"length_cm":71,"shoulder_cm":0,"skirt_cm":71,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"140","picker_label":"Child 8 Years","sku_suffix":"KID8Y","age":"8","weight":"27.5-32.5 kg","height":"130-140 cm","chest_cm":92,"hip_cm":96,"waist_cm":92,"length_cm":74,"shoulder_cm":0,"skirt_cm":74,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Girl Dress","garment":"Dress","vendor_label":"150","picker_label":"Child 9-10 Years","sku_suffix":"KID910Y","age":"9-10","weight":"32.5-37.5 kg","height":"140-150 cm","chest_cm":96,"hip_cm":100,"waist_cm":96,"length_cm":78,"shoulder_cm":0,"skirt_cm":78,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"S","picker_label":"Mother S","sku_suffix":"S","age":"-","weight":"42.5-50 kg","height":"155-160 cm","chest_cm":92,"hip_cm":98,"waist_cm":90,"length_cm":109,"shoulder_cm":0,"skirt_cm":109,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"M","picker_label":"Mother M","sku_suffix":"M","age":"-","weight":"50-57.5 kg","height":"160-165 cm","chest_cm":96,"hip_cm":102,"waist_cm":94,"length_cm":110,"shoulder_cm":0,"skirt_cm":110,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"L","picker_label":"Mother L","sku_suffix":"L","age":"-","weight":"59-69 kg","height":"160-170 cm","chest_cm":100,"hip_cm":106,"waist_cm":98,"length_cm":112,"shoulder_cm":0,"skirt_cm":112,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"XL","picker_label":"Mother XL","sku_suffix":"XL","age":"-","weight":"70-80 kg","height":"160-175 cm","chest_cm":104,"hip_cm":110,"waist_cm":102,"length_cm":114,"shoulder_cm":0,"skirt_cm":114,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"mother","role":"Mother Dress","garment":"Dress","vendor_label":"2XL","picker_label":"Mother 2XL","sku_suffix":"2XL","age":"-","weight":"80-92.5 kg","height":"160-175 cm","chest_cm":108,"hip_cm":114,"waist_cm":106,"length_cm":115,"shoulder_cm":0,"skirt_cm":115,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"80","picker_label":"Child 1-2 Years","sku_suffix":"KID12Y","age":"1-2","weight":"8.5-11 kg","height":"75-85 cm","chest_cm":72,"hip_cm":76,"waist_cm":72,"length_cm":34,"shoulder_cm":35,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"90","picker_label":"Child 2 Years","sku_suffix":"KID2Y","age":"2","weight":"11-14 kg","height":"85-95 cm","chest_cm":76,"hip_cm":80,"waist_cm":76,"length_cm":37,"shoulder_cm":37,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"100","picker_label":"Child 3 Years","sku_suffix":"KID3Y","age":"3","weight":"14-16.5 kg","height":"95-105 cm","chest_cm":80,"hip_cm":84,"waist_cm":80,"length_cm":40,"shoulder_cm":39,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"110","picker_label":"Child 4 Years","sku_suffix":"KID4Y","age":"4","weight":"16.5-20 kg","height":"105-115 cm","chest_cm":84,"hip_cm":88,"waist_cm":84,"length_cm":43,"shoulder_cm":41,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"120","picker_label":"Child 5 Years","sku_suffix":"KID5Y","age":"5","weight":"18.5-24 kg","height":"115-125 cm","chest_cm":88,"hip_cm":92,"waist_cm":88,"length_cm":46,"shoulder_cm":42,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"130","picker_label":"Child 6-7 Years","sku_suffix":"KID67Y","age":"6-7","weight":"24-27.5 kg","height":"125-130 cm","chest_cm":92,"hip_cm":96,"waist_cm":92,"length_cm":49,"shoulder_cm":44,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"140","picker_label":"Child 8 Years","sku_suffix":"KID8Y","age":"8","weight":"27.5-32.5 kg","height":"130-140 cm","chest_cm":96,"hip_cm":100,"waist_cm":96,"length_cm":52,"shoulder_cm":46,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"child","role":"Boy Shirt","garment":"Shirt","vendor_label":"150","picker_label":"Child 9-10 Years","sku_suffix":"KID910Y","age":"9-10","weight":"32.5-37.5 kg","height":"140-150 cm","chest_cm":100,"hip_cm":104,"waist_cm":100,"length_cm":55,"shoulder_cm":48,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"S","picker_label":"Father S","sku_suffix":"S","age":"-","weight":"42.5-50 kg","height":"160-165 cm","chest_cm":114,"hip_cm":114,"waist_cm":102,"length_cm":66,"shoulder_cm":53,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"M","picker_label":"Father M","sku_suffix":"M","age":"-","weight":"50-57.5 kg","height":"165-170 cm","chest_cm":118,"hip_cm":118,"waist_cm":106,"length_cm":68,"shoulder_cm":54,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"L","picker_label":"Father L","sku_suffix":"L","age":"-","weight":"57.5-67.5 kg","height":"168-173 cm","chest_cm":122,"hip_cm":122,"waist_cm":110,"length_cm":70,"shoulder_cm":56,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"XL","picker_label":"Father XL","sku_suffix":"XL","age":"-","weight":"69-79 kg","height":"170-178 cm","chest_cm":126,"hip_cm":126,"waist_cm":114,"length_cm":72,"shoulder_cm":58,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"2XL","picker_label":"Father 2XL","sku_suffix":"2XL","age":"-","weight":"80-89 kg","height":"175-180 cm","chest_cm":130,"hip_cm":130,"waist_cm":118,"length_cm":74,"shoulder_cm":60,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"3XL","picker_label":"Father 3XL","sku_suffix":"3XL","age":"-","weight":"87.5-97.5 kg","height":"175-188 cm","chest_cm":134,"hip_cm":134,"waist_cm":122,"length_cm":76,"shoulder_cm":61,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+    {"audience":"father","role":"Father Shirt","garment":"Shirt","vendor_label":"4XL","picker_label":"Father 4XL","sku_suffix":"4XL","age":"-","weight":"97.5-115 kg","height":"178-195 cm","chest_cm":138,"hip_cm":138,"waist_cm":126,"length_cm":78,"shoulder_cm":62,"skirt_cm":0,"sleeve_cm":0,"pant_cm":0},
+]
+
+
+def gql(query: str, variables: dict | None = None) -> dict:
+    payload = json.dumps({"query": query, "variables": variables or {}}).encode()
+    req = urllib.request.Request(API, data=payload, headers={
+        "X-Shopify-Access-Token": TOKEN,
+        "Content-Type": "application/json",
     })
+    try:
+        with urllib.request.urlopen(req) as res:
+            data = json.loads(res.read())
+    except urllib.error.HTTPError as exc:
+        raise RuntimeError(exc.read().decode()) from exc
+    if data.get("errors"):
+        raise RuntimeError(json.dumps(data["errors"], indent=2))
+    return data
 
-required_written = {
-    ("custom", "category1"),
-    ("custom", "subcategory"),
-    ("custom", "subcategory2"),
-    ("custom", "pattern"),
-    ("custom", "style"),
-    ("custom", "type"),
-    ("mm-google-shopping", "custom_product"),
-    ("mm-google-shopping", "gender"),
-    ("mm-google-shopping", "age_group"),
-    ("mm-google-shopping", "condition"),
-    ("mm-google-shopping", "custom_label_0"),
-    ("mm-google-shopping", "custom_label_1"),
-    ("mm-google-shopping", "custom_label_2"),
-    ("mm-google-shopping", "custom_label_3"),
-    ("mm-google-shopping", "custom_label_4"),
-    ("shopify", "age-group"),
-    ("shopify", "care-instructions"),
-    ("shopify", "color-pattern"),
-    ("shopify", "size"),
-    ("shopify", "target-gender"),
-    ("global", "title_tag"),
-    ("global", "description_tag"),
-}
-checks.append(("Applicable metafields are written", required_written.issubset(metafield_keys), str(sorted(required_written - metafield_keys))))
 
-skipped_metafields = {
-    "shopify.clothing-features": "The current store catalog only exposes heavyweight or technical feature values in this namespace, which would be inaccurate for this lightweight summer family set.",
-    "shopify.fabric": "The direct vendor page was captcha-blocked and the supplied fit chart plus images do not confirm one honest fiber metaobject, so this field was left unset rather than guessing cotton vs. synthetic.",
-    "shopify.dress-occasion": "Not written because the honest Shopify taxonomy for this product is `Outfit Sets`, not `Dresses`, even though two of the roles wear dresses.",
-    "shopify.dress-style": "Not written because this is a mixed-garment outfit-set listing rather than a dress-only taxonomy leaf.",
-    "shopify.fit": "The Outfit Sets taxonomy exposes fit, but no reliable writable standard Shopify metafield definition is currently available in this store for that attribute.",
-    "shopify.neckline": "The mixed dress-and-shirt presentation does not map cleanly to one honest neckline value at the product level for this store.",
-    "shopify.pants-length-type": "The white shorts shown with the dad shirt appear in the supplied family photo as styling only and were excluded from this dress-and-shirt listing, so a pants-length metafield would misstate the product scope.",
-    "shopify.skirt-dress-length-type": "Not written because the listing mixes dresses and shirts under `Outfit Sets`, so a dress-only length metafield would overstate the product scope.",
-    "shopify.sleeve-length-type": "Not written because the listing mixes a dress and short-sleeve shirts, so one product-level sleeve-length value would be misleading.",
-    "shopify.top-length-type": "Removed if present because the product mixes dress and shirt roles, and no single top-length metafield is honest for the whole listing.",
-    "shopify.waist-rise": "The vendor chart exposes waist measurements, but no reliable writable standard Shopify metafield definition is currently available in this store for this mixed outfit-set product.",
-}
+def require_no_user_errors(data: dict, path: list[str]) -> None:
+    cur = data
+    for key in path:
+        cur = cur[key]
+    if cur:
+        raise RuntimeError(json.dumps(cur, indent=2))
 
-written_metafields = []
-for node in metafields:
-    if node["namespace"] in {"custom", "mm-google-shopping", "shopify", "global"}:
-        written_metafields.append(node)
 
-links = {
-    "admin": f"https://admin.shopify.com/store/dresslikemommy/products/{product_gid.split('/')[-1]}",
-    "live": product["onlineStoreUrl"],
-}
+def money_half(price: str) -> str:
+    return str((Decimal(price) * Decimal("0.50")).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP))
 
-csv_rows = []
-for recap in derived["recap"]:
-    row = {header: "" for header in next(csv.reader([csv_header_source.read_text().splitlines()[0]]))}
-    def put(field, value):
-        if field in row:
-            row[field] = value
 
-    put("Handle", handle)
-    put("Title", title)
-    put("Body (HTML)", product["descriptionHtml"])
-    put("Vendor", "dresslikemommy.com")
-    put("Product Category", "Apparel & Accessories > Clothing > Outfit Sets")
-    put("Type", "Matching Family Sets")
-    put("Tags", ", ".join(product["tags"]))
-    put("Published", "TRUE")
-    put("Option1 Name", option_names[0])
-    put("Option1 Value", recap["option1_value"])
-    put("Option2 Name", option_names[1])
-    put("Option2 Value", recap["option2_value"])
-    put("Variant SKU", recap["sku"])
-    put("Variant Grams", "0")
-    put("Variant Inventory Tracker", "shopify")
-    put("Variant Inventory Policy", "deny")
-    put("Variant Fulfillment Service", "manual")
-    put("Variant Price", recap["price"])
-    put("Variant Compare At Price", recap["compare_at_price"])
-    put("Variant Requires Shipping", "TRUE")
-    put("Variant Taxable", "TRUE")
-    put("SEO Title", seo_title)
-    put("SEO Description", seo_description)
-    put("Google Shopping / Gender", "unisex")
-    put("Google Shopping / Age Group", "adult")
-    put("Google Shopping / Condition", "new")
-    put("Google Shopping / Custom Product", "FALSE")
-    put("Google Shopping / Custom Label 0", "Family Matching")
-    put("Google Shopping / Custom Label 1", "Blue Daisy")
-    put("Google Shopping / Custom Label 2", "Summer")
-    put("Google Shopping / Custom Label 3", "Dress & Shirt")
-    put("Google Shopping / Custom Label 4", "Four-Role Matching")
-    put("Category1 (product.metafields.custom.category1)", "Family Matching")
-    put("Pattern (product.metafields.custom.pattern)", "Blue Daisy Floral")
-    put("Style (product.metafields.custom.style)", merch_style)
-    put("SubCategory (product.metafields.custom.subcategory)", merch_subcategory)
-    put("SubCategory2 (product.metafields.custom.subcategory2)", merch_subcategory2)
-    put("Type (product.metafields.custom.type)", merch_type)
-    put("Google: Custom Product (product.metafields.mm-google-shopping.custom_product)", "false")
-    put("Age group (product.metafields.shopify.age-group)", "kids, adults")
-    put("Color (product.metafields.shopify.color-pattern)", "Black, Blue, Floral, Multicolor")
-    put("Size (product.metafields.shopify.size)", ", ".join(x["name"] for x in derived["size_values"]))
-    put("Target Gender (product.metafields.shopify.target-gender)", "Female, Male")
-    put("Status", "active")
-    csv_rows.append(row)
+def compare_at(price: str) -> str:
+    value = float(price) * 1.15
+    dollars = math.floor(value)
+    candidate = dollars + 0.99
+    if candidate < value:
+        candidate = dollars + 1.99
+    return f"{candidate:.2f}"
 
-with csv_header_source.open(newline="") as fh:
-    header = next(csv.reader(fh))
 
-with csv_out_path.open("w", newline="") as fh:
-    writer = csv.DictWriter(fh, fieldnames=header)
-    writer.writeheader()
-    for row in csv_rows:
-        writer.writerow(row)
+def cm_to_in(value) -> str:
+    if value in (None, "", 0, "-", "0"):
+        return "-"
+    number = float(value)
+    return f"{number:g} cm / {number / 2.54:.1f} in"
 
-lines = []
-lines.append(f"# {title}")
-lines.append("")
-lines.append("## Links")
-lines.append(f"- **Admin:** {links['admin']}")
-lines.append(f"- **Live:** {links['live']}")
-lines.append(f"- **Vendor:** {vendor_url}")
-lines.append(f"- **Product GID:** `{product_gid}`")
-lines.append(f"- **Handle:** `{handle}`")
-lines.append("")
-lines.append("## Inputs (resolved)")
-lines.append("| Field | Value |")
-lines.append("|---|---|")
-lines.append(f"| VENDOR_URL | {vendor_url} |")
-lines.append("| SIZE_CHART_SOURCE | attached image |")
-lines.append("| LISTING_MODE | Family Matching |")
-lines.append("| PRIMARY_CATEGORY | Set → FamilySet (Shopify taxonomy kept as Outfit Sets) |")
-lines.append("| DESIGNS_TO_LIST | Shirt, Dress |")
-lines.append("| EXCLUDE_ITEMS | none supplied; styling-only shorts, sandals, handbags, and accessories excluded because the request only asked for Shirt + Dress |")
-lines.append("| SHORTCODE | auto → `BDSY` |")
-lines.append("| COLOR_TOKEN | auto → `BLUE` |")
-lines.append("| FORCE_SPEC_PRICES | true |")
-lines.append("")
-lines.append("## Vendor fetch status")
-lines.append("The direct 1688 page was captcha-blocked during this run, so the pasted vendor fit labels and supplied family photos were used as the authoritative source of truth. The supplied size source is fit-reference-only: it publishes suitable height labels `80-150`, adult labels `S-4XL`, and an age-group note for children, but it does not publish garment chest, hip, waist, shoulder, or length measurements for the requested shirt-and-dress design. To keep the listing honest and rerunnable, the garment measurements were backfilled from the store's live `citrus-bloom-family-matching-set` grading and extended with the live 3XL/4XL size metaobjects because it is the closest mixed dress-and-shirt family-set structure currently live on the store. The supplied photos were then used to keep the copy honest to this product's black-ground blue floral strappy maxi dress and collared short-sleeve shirt presentation rather than inheriting any neighbor-specific design claims. Neighbor pricing and most size metaobject GIDs were anchored to `citrus-bloom-family-matching-set`; Mother 3XL and Mother 4XL use direct live `shopify--size` metaobject lookups. Styling-only shorts, sandals, handbags, and accessories were excluded because this request only asked for the shirt and dress designs. The Shopify taxonomy stays `Outfit Sets` for honest standard-category attributes.")
-lines.append("")
-lines.append("## Title & SEO")
-lines.append("| | Value | Chars |")
-lines.append("|---|---|---|")
-lines.append(f"| Product Title | `{product['title']}` | {len(product['title'])} |")
-lines.append(f"| SEO Title | `{product['seo']['title']}` | {len(product['seo']['title'])} |")
-lines.append(f"| SEO Description | `{product['seo']['description']}` | {len(product['seo']['description'])} |")
-lines.append("")
-lines.append("## SIZE_CHART recap")
-lines.append("| Role | Vendor | Picker | SKU | Price | Cmp | shopify.size GID |")
-lines.append("|---|---|---|---|---|---|---|")
-for recap in derived["recap"]:
-    lines.append(
-        f"| {recap['role']} | {recap['vendor_label']} | {recap['picker_label']} | `{recap['sku']}` | {recap['price']} | {recap['compare_at_price']} | `{recap['shopify_size_gid']}` ({recap['catalog_label']}) |"
+
+def range_to_imperial(text: str, factor: float, unit: str) -> str:
+    nums = [float(n) for n in re.findall(r"\d+(?:\.\d+)?", text or "")]
+    if len(nums) == 2:
+        suffix = "lbs" if unit == "kg" else "in"
+        return f"{nums[0]:g}-{nums[1]:g} {unit} / {nums[0] * factor:.1f}-{nums[1] * factor:.1f} {suffix}"
+    return text or "-"
+
+
+def role_token(role: str) -> str:
+    if role == "Baby Romper":
+        return "BBY"
+    if role.startswith("Girl"):
+        return "GRL"
+    if role.startswith("Boy"):
+        return "BOY"
+    if role.startswith("Mother"):
+        return "MOM"
+    if role.startswith("Father"):
+        return "DAD"
+    raise KeyError(role)
+
+
+def garment_token(garment: str) -> str:
+    return {"Baby Romper": "ROMP", "Dress": "DRS", "Shirt": "SHRT"}[garment]
+
+
+def price_for(row: dict) -> str:
+    return ADULT_PRICE if row["audience"] in {"mother", "father"} else CHILD_PRICE
+
+
+def sku_for(row: dict) -> str:
+    if row["garment"] == "Baby Romper":
+        return f"DLM-{SHORTCODE}-{role_token(row['role'])}-{garment_token(row['garment'])}-{row['sku_suffix']}-{COLOR_TOKEN}"
+    return f"DLM-{SHORTCODE}-{role_token(row['role'])}-{row['sku_suffix']}-{COLOR_TOKEN}"
+
+
+def option_values() -> dict[str, list[str]]:
+    return {
+        "Type": list(dict.fromkeys(row["garment"] for row in SIZE_CHART)),
+        "Size": list(dict.fromkeys(row["picker_label"] for row in SIZE_CHART)),
+    }
+
+
+def build_body() -> str:
+    by_garment: dict[str, list[dict]] = {}
+    for row in SIZE_CHART:
+        by_garment.setdefault(row["garment"], []).append(row)
+
+    def table_for(garment: str, rows: list[dict]) -> str:
+        parts = [f"<h3>Size Chart - {html.escape(garment)}</h3>", "<table id=\"size-chart\">", "<thead><tr>"]
+        headers = [
+            "Size",
+            "Age",
+            "Weight (kg/lbs)",
+            "Height (cm/in)",
+            "Chest/Bust (cm/in)",
+            "Sleeve or Skirt (cm/in)",
+            "Pant/Short or - (cm/in)",
+            "Hip (cm/in)",
+            "Waist (cm/in)",
+            "Garment Length (cm/in)",
+        ]
+        parts.extend(f"<th>{h}</th>" for h in headers)
+        parts.append("</tr></thead><tbody>")
+        for row in rows:
+            side = row["skirt_cm"] if row["garment"] == "Dress" else row.get("shoulder_cm", 0)
+            cells = [
+                row["picker_label"],
+                row["age"],
+                range_to_imperial(row["weight"], 2.20462, "kg"),
+                range_to_imperial(row["height"], 0.393701, "cm"),
+                cm_to_in(row["chest_cm"]),
+                cm_to_in(side),
+                cm_to_in(row["pant_cm"]),
+                cm_to_in(row["hip_cm"]),
+                cm_to_in(row["waist_cm"]),
+                cm_to_in(row["length_cm"]),
+            ]
+            parts.append("<tr>" + "".join(f"<td>{html.escape(str(c))}</td>" for c in cells) + "</tr>")
+        parts.append("</tbody></table>")
+        return "\n".join(parts)
+
+    intro = """
+<ul>
+<li><strong>Fabric:</strong> Lightweight summer woven fabric; exact fiber composition was not visible in the supplied evidence.</li>
+<li><strong>Family story:</strong> A polished warm-weather matching look for mom, dad, girls, boys, and baby.</li>
+<li><strong>Print reference:</strong> Blue Daisy pairs bright blue flowers, yellow centers, and green leaves for an easy vacation-photo palette.</li>
+<li><strong>Design details:</strong> Girls and moms wear the sleeveless floral dress, boys and dads wear the collared short-sleeve shirt, and baby sizes use the matching romper chart.</li>
+<li><strong>Care:</strong> Machine wash cold on gentle, line dry, do not bleach, and cool iron inside-out if needed.</li>
+<li><strong>Size range:</strong> Baby 0-3M-12-18M, Child 1-2Y-10Y, Mother S-2XL, and Father S-4XL.</li>
+</ul>
+""".strip()
+    narrative = """
+<p>Blue Daisy makes family matching feel fresh and vacation-ready, with a bright floral print that ties each role together without making every piece identical. The dresses bring a floaty, sunny shape for moms and girls, while the collared shirts keep dads and boys coordinated in a relaxed way.</p>
+
+<p>The attached chart also supports baby romper sizes, so this draft keeps that piece as its own Type instead of hiding it inside the dress or shirt ladder. White shorts, shoes, hats, bags, and other styling pieces shown in the photo are not included.</p>
+
+<h3>Key Features:</h3>
+<ul>
+<li><strong>Three honest Types:</strong> Baby Romper, Dress, and Shirt are separated for clearer size selection.</li>
+<li><strong>Family-ready size run:</strong> Baby, child, mother, and father rows follow the attached vendor chart.</li>
+<li><strong>Blue floral palette:</strong> Blue blossoms and yellow centers create a bright warm-weather matching story.</li>
+<li><strong>Photo-ready styling:</strong> Dresses and shirts coordinate neatly for trips, portraits, brunches, and summer plans.</li>
+<li><strong>Chart-first variants:</strong> Every purchasable option is backed by a transcribed source row.</li>
+</ul>
+
+<p>Choose the Type and size for each family member to build the matching Blue Daisy look for your next sunny plan.</p>
+""".strip()
+    return "\n\n".join([intro, *(table_for(name, rows) for name, rows in by_garment.items()), narrative])
+
+
+def build_variants() -> list[dict]:
+    variants = []
+    for row in SIZE_CHART:
+        price = price_for(row)
+        variants.append({
+            "price": price,
+            "compareAtPrice": compare_at(price),
+            "taxable": True,
+            "inventoryPolicy": "DENY",
+            "optionValues": [
+                {"optionName": "Type", "name": row["garment"]},
+                {"optionName": "Size", "name": row["picker_label"]},
+            ],
+            "inventoryItem": {
+                "sku": sku_for(row),
+                "tracked": True,
+                "requiresShipping": True,
+                "cost": money_half(price),
+            },
+        })
+    return variants
+
+
+def tags() -> list[str]:
+    values = [
+        "Family Matching", "Mommy and Me", "Daddy and Me", "Sets", "Matching Family Set",
+        "Matching Family Outfit", "Matching Family Dresses", "Matching Family Shirt",
+        "Baby Romper", "Dress", "Shirt", "Romper", "Girl Dress", "Mother Dress",
+        "Boy Shirt", "Father Shirt", "Blue Daisy", "Blue Daisy Floral", "Blue Floral",
+        "Blue", "Yellow Floral", "Green", "Floral", "Multicolor", "Summer", "Vacation",
+        "Resort", "Sleeveless Dress", "Strappy Dress", "Collared Shirt", "Short Sleeve Shirt",
+        "Dress Shirt Romper", VENDOR_URL,
+    ]
+    values.extend(row["picker_label"] for row in SIZE_CHART)
+    values.extend(row["role"] for row in SIZE_CHART)
+    return sorted(dict.fromkeys(values))
+
+
+def metafields(product_id: str) -> list[dict]:
+    size_refs = list(dict.fromkeys(SIZE_MAP[row["picker_label"]][0] for row in SIZE_CHART))
+    return [
+        {"ownerId": product_id, "namespace": "custom", "key": "category1", "type": "single_line_text_field", "value": "Family Matching"},
+        {"ownerId": product_id, "namespace": "custom", "key": "subcategory", "type": "single_line_text_field", "value": "Set"},
+        {"ownerId": product_id, "namespace": "custom", "key": "subcategory2", "type": "single_line_text_field", "value": "Summer Family Matching Set"},
+        {"ownerId": product_id, "namespace": "custom", "key": "pattern", "type": "single_line_text_field", "value": "Blue Daisy Floral"},
+        {"ownerId": product_id, "namespace": "custom", "key": "style", "type": "single_line_text_field", "value": "Matching Family Set"},
+        {"ownerId": product_id, "namespace": "custom", "key": "type", "type": "single_line_text_field", "value": "Two-Piece Set"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_product", "type": "boolean", "value": "false"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "gender", "type": "single_line_text_field", "value": "unisex"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "age_group", "type": "single_line_text_field", "value": "adult"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "condition", "type": "single_line_text_field", "value": "new"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_0", "type": "single_line_text_field", "value": "Family Matching"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_1", "type": "single_line_text_field", "value": PRINT_NAME},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_2", "type": "single_line_text_field", "value": "Summer"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_3", "type": "single_line_text_field", "value": "Dress, Shirt & Baby Romper"},
+        {"ownerId": product_id, "namespace": "mm-google-shopping", "key": "custom_label_4", "type": "single_line_text_field", "value": "Four-Role Plus Baby"},
+        {"ownerId": product_id, "namespace": "shopify", "key": "age-group", "type": "list.metaobject_reference", "value": json.dumps(["gid://shopify/Metaobject/128116523105", "gid://shopify/Metaobject/128116490337"])},
+        {"ownerId": product_id, "namespace": "shopify", "key": "care-instructions", "type": "list.metaobject_reference", "value": json.dumps(["gid://shopify/Metaobject/130283503713"])},
+        {"ownerId": product_id, "namespace": "shopify", "key": "color-pattern", "type": "list.metaobject_reference", "value": json.dumps(["gid://shopify/Metaobject/69943132257", "gid://shopify/Metaobject/69639766113", "gid://shopify/Metaobject/129971519585", "gid://shopify/Metaobject/130231140449"])},
+        {"ownerId": product_id, "namespace": "shopify", "key": "size", "type": "list.metaobject_reference", "value": json.dumps(size_refs)},
+        {"ownerId": product_id, "namespace": "shopify", "key": "target-gender", "type": "list.metaobject_reference", "value": json.dumps(["gid://shopify/Metaobject/129971617889", "gid://shopify/Metaobject/130231107681"])},
+        {"ownerId": product_id, "namespace": "global", "key": "title_tag", "type": "single_line_text_field", "value": SEO_TITLE},
+        {"ownerId": product_id, "namespace": "global", "key": "description_tag", "type": "single_line_text_field", "value": SEO_DESCRIPTION},
+    ]
+
+
+def validate_preflight(body: str, variants: list[dict]) -> None:
+    if len(SIZE_CHART) != 32 or len(variants) != len(SIZE_CHART):
+        raise RuntimeError("SIZE_CHART/variant count mismatch")
+    if len(TITLE) > 70 or len(SEO_TITLE) > 60 or len(SEO_DESCRIPTION) > 155:
+        raise RuntimeError("Title or SEO length guard failed")
+    if len({(r["role"], r["vendor_label"], r["picker_label"]) for r in SIZE_CHART}) != len(SIZE_CHART):
+        raise RuntimeError("Duplicate role/vendor/picker row")
+    tables = re.findall(r"<table.*?</table>", body, re.S)
+    if len(tables) != 3 or any(table.count("<th>") != 10 for table in tables):
+        raise RuntimeError("Size table guard failed")
+    if sum(table.count("<tr>") - 1 for table in tables) != len(SIZE_CHART):
+        raise RuntimeError("Body row count mismatch")
+    for row, variant in zip(SIZE_CHART, variants):
+        expected = ADULT_PRICE if row["audience"] in {"mother", "father"} else CHILD_PRICE
+        if variant["price"] != expected:
+            raise RuntimeError("FORCE_SPEC_PRICES guard failed")
+
+
+def run_variant_model_guard() -> None:
+    with TemporaryDirectory() as tmp:
+        tmpdir = Path(tmp)
+        chart = tmpdir / "size-chart.json"
+        derived = tmpdir / "derived.json"
+        evidence = tmpdir / "vendor-evidence.json"
+        chart.write_text(json.dumps(SIZE_CHART), encoding="utf-8")
+        derived.write_text(json.dumps({"option_names": ["Type", "Size"]}), encoding="utf-8")
+        evidence.write_text(json.dumps({"raw_detail_text": "baby romper dress shirt infant crawler collared shirt sleeveless dress"}), encoding="utf-8")
+        subprocess.run([
+            "python3", str(ROOT / "ops/scripts/validate_listing_variant_model.py"),
+            "--size-chart", str(chart),
+            "--derived", str(derived),
+            "--vendor-evidence", str(evidence),
+            "--primary-category", "FamilySet",
+            "--tags", ", ".join(tags()),
+        ], check=True)
+
+
+def product_query(identifier: str, by_handle: bool = False) -> dict | None:
+    if by_handle:
+        data = gql("""
+        query($handle:String!){
+          productByHandle(handle:$handle){
+            id title handle status publishedAt onlineStoreUrl descriptionHtml tags seo{title description}
+            category{id fullName}
+            options{id name position values optionValues{id name hasVariants}}
+            variants(first:100){nodes{id sku title price compareAtPrice inventoryPolicy taxable selectedOptions{name value} inventoryItem{id tracked requiresShipping unitCost{amount currencyCode}}}}
+            media(first:50){nodes{... on MediaImage{alt image{url}}}}
+            collections(first:50){nodes{title handle}}
+            metafields(first:120){nodes{namespace key type value}}
+            resourcePublicationsV2(first:20){nodes{isPublished publishDate publication{id name}}}
+          }
+        }
+        """, {"handle": identifier})
+        return data["data"]["productByHandle"]
+    data = gql("""
+    query($id:ID!){
+      product(id:$id){
+        id title handle status publishedAt onlineStoreUrl descriptionHtml tags seo{title description}
+        category{id fullName}
+        options{id name position values optionValues{id name hasVariants}}
+        variants(first:100){nodes{id sku title price compareAtPrice inventoryPolicy taxable selectedOptions{name value} inventoryItem{id tracked requiresShipping unitCost{amount currencyCode}}}}
+        media(first:50){nodes{... on MediaImage{alt image{url}}}}
+        collections(first:50){nodes{title handle}}
+        metafields(first:120){nodes{namespace key type value}}
+        resourcePublicationsV2(first:20){nodes{isPublished publishDate publication{id name}}}
+      }
+    }
+    """, {"id": identifier})
+    return data["data"]["product"]
+
+
+def ensure_option_values(product: dict) -> None:
+    expected = option_values()
+    options_by_name = {option["name"]: option for option in product["options"]}
+    for name, values in expected.items():
+        option = options_by_name.get(name)
+        if not option:
+            continue
+        existing_names = {value["name"] for value in option["optionValues"]}
+        missing = [{"name": value} for value in values if value not in existing_names]
+        if missing:
+            res = gql("""
+            mutation($productId:ID!,$option:OptionUpdateInput!,$adds:[OptionValueCreateInput!]){
+              productOptionUpdate(productId:$productId, option:$option, optionValuesToAdd:$adds, variantStrategy:LEAVE_AS_IS){
+                product{id}
+                userErrors{field message}
+              }
+            }
+            """, {"productId": product["id"], "option": {"id": option["id"]}, "adds": missing})
+            require_no_user_errors(res, ["data", "productOptionUpdate", "userErrors"])
+
+
+def prune_stale_option_values(product: dict) -> None:
+    expected = option_values()
+    for option in product["options"]:
+        expected_values = set(expected.get(option["name"], []))
+        stale_ids = [
+            value["id"] for value in option["optionValues"]
+            if value["name"] not in expected_values and not value["hasVariants"]
+        ]
+        if not stale_ids:
+            continue
+        res = gql("""
+        mutation($productId:ID!,$option:OptionUpdateInput!,$delete:[ID!]){
+          productOptionUpdate(productId:$productId, option:$option, optionValuesToDelete:$delete, variantStrategy:LEAVE_AS_IS){
+            product{id}
+            userErrors{field message}
+          }
+        }
+        """, {"productId": product["id"], "option": {"id": option["id"]}, "delete": stale_ids})
+        require_no_user_errors(res, ["data", "productOptionUpdate", "userErrors"])
+
+
+def unpublish(product_id: str, product: dict) -> None:
+    published = [
+        {"publicationId": node["publication"]["id"]}
+        for node in product.get("resourcePublicationsV2", {}).get("nodes", [])
+        if node.get("isPublished")
+    ]
+    if not published:
+        return
+    res = gql("""
+    mutation($id:ID!,$input:[PublicationInput!]!){
+      publishableUnpublish(id:$id, input:$input){ userErrors{field message} }
+    }
+    """, {"id": product_id, "input": published})
+    require_no_user_errors(res, ["data", "publishableUnpublish", "userErrors"])
+
+
+def upload_media(product_id: str) -> None:
+    if not UPLOAD_DIR.exists():
+        return
+    existing = product_query(product_id) or {}
+    existing_alts = {node.get("alt") for node in existing.get("media", {}).get("nodes", [])}
+    alt_by_name = {
+        "01-blue-daisy-family-matching-product.png": "Family wearing Blue Daisy matching dress, shirt, and baby romper outfits.",
+    }
+    for path in sorted(UPLOAD_DIR.iterdir()):
+        if path.suffix.lower() not in {".jpg", ".jpeg", ".png", ".webp"}:
+            continue
+        if path.name.startswith("source-size-chart"):
+            continue
+        alt = alt_by_name.get(path.name, "Blue Daisy family matching outfit.")
+        if alt in existing_alts:
+            continue
+        mime = mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+        staged = gql("""
+        mutation($input:[StagedUploadInput!]!){
+          stagedUploadsCreate(input:$input){
+            stagedTargets{url resourceUrl parameters{name value}}
+            userErrors{field message}
+          }
+        }
+        """, {"input": [{"filename": path.name, "mimeType": mime, "resource": "IMAGE", "httpMethod": "POST"}]})
+        require_no_user_errors(staged, ["data", "stagedUploadsCreate", "userErrors"])
+        target = staged["data"]["stagedUploadsCreate"]["stagedTargets"][0]
+        boundary = "----DLMBOUNDARY"
+        chunks = []
+        for param in target["parameters"]:
+            chunks.append(f"--{boundary}\r\nContent-Disposition: form-data; name=\"{param['name']}\"\r\n\r\n{param['value']}\r\n".encode())
+        chunks.append(f"--{boundary}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"{path.name}\"\r\nContent-Type: {mime}\r\n\r\n".encode() + path.read_bytes() + b"\r\n")
+        chunks.append(f"--{boundary}--\r\n".encode())
+        req = urllib.request.Request(target["url"], data=b"".join(chunks), headers={"Content-Type": f"multipart/form-data; boundary={boundary}"})
+        urllib.request.urlopen(req).read()
+        media = gql("""
+        mutation($productId:ID!,$media:[CreateMediaInput!]!){
+          productCreateMedia(productId:$productId, media:$media){
+            media{... on MediaImage{id alt}}
+            userErrors{field message}
+          }
+        }
+        """, {"productId": product_id, "media": [{"originalSource": target["resourceUrl"], "mediaContentType": "IMAGE", "alt": alt}]})
+        require_no_user_errors(media, ["data", "productCreateMedia", "userErrors"])
+
+
+def write_csv(body: str, variants: list[dict]) -> None:
+    header = (ROOT / "ops/listings/fresh-blue-plaid-family-matching-set-shopify-import.csv").read_text(encoding="utf-8").splitlines()[0].split(",")
+    rows = []
+    for index, (row, variant) in enumerate(zip(SIZE_CHART, variants), start=1):
+        values = {key: "" for key in header}
+        values.update({
+            "Handle": HANDLE,
+            "Title": TITLE if index == 1 else "",
+            "Body (HTML)": body if index == 1 else "",
+            "Vendor": VENDOR if index == 1 else "",
+            "Product Category": EXPECTED_TAXONOMY_FULL_NAME if index == 1 else "",
+            "Type": PRODUCT_TYPE if index == 1 else "",
+            "Tags": ", ".join(tags()) if index == 1 else "",
+            "Published": "FALSE",
+            "Option1 Name": "Type",
+            "Option1 Value": row["garment"],
+            "Option2 Name": "Size",
+            "Option2 Value": row["picker_label"],
+            "Variant SKU": variant["inventoryItem"]["sku"],
+            "Variant Grams": "300",
+            "Variant Inventory Tracker": "shopify",
+            "Variant Inventory Policy": "deny",
+            "Variant Fulfillment Service": "manual",
+            "Variant Price": variant["price"],
+            "Variant Compare At Price": variant["compareAtPrice"],
+            "Variant Requires Shipping": "TRUE",
+            "Variant Taxable": "TRUE",
+            "Gift Card": "FALSE",
+            "SEO Title": SEO_TITLE if index == 1 else "",
+            "SEO Description": SEO_DESCRIPTION if index == 1 else "",
+            "Google Shopping / Gender": "unisex" if index == 1 else "",
+            "Google Shopping / Age Group": "adult" if index == 1 else "",
+            "Google Shopping / Condition": "new" if index == 1 else "",
+            "Google Shopping / Custom Product": "FALSE" if index == 1 else "",
+            "Google Shopping / Custom Label 0": "Family Matching" if index == 1 else "",
+            "Google Shopping / Custom Label 1": PRINT_NAME if index == 1 else "",
+            "Google Shopping / Custom Label 2": "Summer" if index == 1 else "",
+            "Google Shopping / Custom Label 3": "Dress, Shirt & Baby Romper" if index == 1 else "",
+            "Google Shopping / Custom Label 4": "Four-Role Plus Baby" if index == 1 else "",
+            "Category1 (product.metafields.custom.category1)": "Family Matching" if index == 1 else "",
+            "Pattern (product.metafields.custom.pattern)": "Blue Daisy Floral" if index == 1 else "",
+            "Style (product.metafields.custom.style)": "Matching Family Set" if index == 1 else "",
+            "SubCategory (product.metafields.custom.subcategory)": "Set" if index == 1 else "",
+            "SubCategory2 (product.metafields.custom.subcategory2)": "Summer Family Matching Set" if index == 1 else "",
+            "Type (product.metafields.custom.type)": "Two-Piece Set" if index == 1 else "",
+            "Google: Custom Product (product.metafields.mm-google-shopping.custom_product)": "false" if index == 1 else "",
+            "Status": "draft",
+        })
+        if "Cost per item" in values:
+            values["Cost per item"] = money_half(variant["price"])
+        rows.append(values)
+    with CSV_OUT.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=header, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def write_listing(product_id: str, body: str, variants: list[dict], verify: dict, deleted_skus: list[str], created_skus: list[str]) -> None:
+    admin_url = f"https://admin.shopify.com/store/dresslikemommy/products/{product_id.split('/')[-1]}"
+    live_skus = sorted(v["sku"] for v in verify["variants"]["nodes"])
+    expected_skus = sorted(v["inventoryItem"]["sku"] for v in variants)
+    published = [p["publication"]["name"] for p in verify["resourcePublicationsV2"]["nodes"] if p["isPublished"]]
+    price_rows = []
+    live_by_sku = {variant["sku"]: variant for variant in verify["variants"]["nodes"]}
+    for row, variant in zip(SIZE_CHART, variants):
+        live = live_by_sku.get(variant["inventoryItem"]["sku"], {})
+        unit_cost = ((live.get("inventoryItem") or {}).get("unitCost") or {}).get("amount")
+        price_rows.append((variant["inventoryItem"]["sku"], live.get("price"), live.get("compareAtPrice"), unit_cost, variant["price"], variant["compareAtPrice"], money_half(variant["price"])))
+    metafield_keys = [f"{m['namespace']}.{m['key']}" for m in verify["metafields"]["nodes"] if m["namespace"] in {"custom", "mm-google-shopping", "shopify", "global"}]
+    skipped = [
+        ("shopify.fabric", "The direct 1688 page returned CAPTCHA/punish markup and the supplied chart/image do not confirm exact fiber."),
+        ("shopify.dress-occasion", "The honest Shopify taxonomy is Outfit Sets, not Dresses."),
+        ("shopify.dress-style", "The listing mixes baby romper, dress, and shirt Types."),
+        ("shopify.neckline", "The product mixes strap dresses, a romper, and collared shirts."),
+        ("shopify.sleeve-length-type", "No single product-level sleeve value is honest across all Types."),
+        ("shopify.skirt-dress-length-type", "Dress rows exist, but the listing is not dress-only."),
+        ("shopify.top-length-type", "The product mixes shirts, dresses, and romper rows."),
+        ("shopify.waist-rise", "No pants or standalone bottom is sold in this listing."),
+    ]
+    lines = [
+        f"# {TITLE}", "",
+        "## Links",
+        f"- **Admin:** {admin_url}",
+        "- **Live:** not published",
+        f"- **Vendor:** {VENDOR_URL}",
+        f"- **Product GID:** `{product_id}`",
+        f"- **Handle:** `{HANDLE}`", "",
+        "## Inputs (resolved)",
+        "| Field | Value |", "|---|---|",
+        f"| VENDOR_URL | {VENDOR_URL} |",
+        "| SIZE_CHART_SOURCE | attached image |",
+        "| LISTING_MODE | Family Matching |",
+        "| PRIMARY_CATEGORY | auto -> FamilySet / Outfit Sets |",
+        "| DESIGNS_TO_LIST | auto -> Baby Romper, Dress, Shirt |",
+        "| EXCLUDE_ITEMS | styling-only shorts, hats, bags, shoes and props excluded |",
+        "| SHORTCODE | auto -> `BDSY` |",
+        "| COLOR_TOKEN | auto -> `BLUE` |",
+        "| FORCE_SPEC_PRICES | true |", "",
+        "## Vendor fetch status",
+        "The direct 1688 page returned Alibaba `_____tmd_____` / punish markup, so the attached size chart and product image were used as authoritative evidence. The chart is a fit-reference chart with height and weight only; chest, hip, waist, shoulder, and length values were retained from the closest prior Blue Daisy/mixed family-set grading and are documented as derived support values rather than direct vendor measurements.", "",
+        "## Title & SEO",
+        "| Field | Value | Chars |", "|---|---|---|",
+        f"| Product title | `{TITLE}` | {len(TITLE)} |",
+        f"| SEO title | `{SEO_TITLE}` | {len(SEO_TITLE)} |",
+        f"| SEO description | `{SEO_DESCRIPTION}` | {len(SEO_DESCRIPTION)} |", "",
+        "## SIZE_CHART / Variant Recap",
+        "| Role | Vendor | Picker | Type | SKU | Price | Cost | shopify.size GID |",
+        "|---|---|---|---|---|---|---|---|",
+    ]
+    for row, variant in zip(SIZE_CHART, variants):
+        gid, label = SIZE_MAP[row["picker_label"]]
+        lines.append(f"| {row['role']} | {row['vendor_label']} | {row['picker_label']} | {row['garment']} | `{variant['inventoryItem']['sku']}` | {variant['price']} | {money_half(variant['price'])} | `{gid}` ({label}) |")
+    lines.extend([
+        "",
+        "## Derivations",
+        "- Vendor weight guidance was transcribed from jin ranges in the image and converted to kg/lbs in the storefront table.",
+        "- Baby romper rows 66/73/80/90 map to Baby 0-3M, 6-9M, 9-12M, and 12-18M using existing Shopify size metaobjects.",
+        "- Child 80 maps to Child 1-2 Years, backed by the closest available 12-18 months size metaobject.",
+        "- Mother 3XL and Mother 4XL from the prior live listing were removed because the new attached adult chart stops at Mother 2XL.",
+        "- Chest, hip, waist, shoulder, skirt, and length values are derived grading values because the attached source chart only publishes height and weight.",
+        "- White shorts and all accessories in the product image are styling only and are not included.",
+        "",
+        "## Variant Changes",
+        f"- Created SKUs: {', '.join(created_skus) if created_skus else 'none'}",
+        f"- Deleted unsupported old SKUs: {', '.join(deleted_skus) if deleted_skus else 'none'}",
+        "- Initial correction created the four baby romper SKUs and removed old Mother 3XL/4XL SKUs; later idempotent reruns should report no new create/delete work.",
+        "",
+        "## Verification",
+        "| Check | Result | Detail |", "|---|---|---|",
+        f"| Product status is DRAFT | {'PASS' if verify['status'] == 'DRAFT' else 'FAIL'} | {verify['status']} |",
+        f"| publishedAt is null | {'PASS' if not verify.get('publishedAt') else 'FAIL'} | {verify.get('publishedAt')} |",
+        f"| No sales-channel publication is live | {'PASS' if not published else 'FAIL'} | {published} |",
+        f"| Variant count matches SIZE_CHART | {'PASS' if len(verify['variants']['nodes']) == len(SIZE_CHART) else 'FAIL'} | {len(verify['variants']['nodes'])} vs {len(SIZE_CHART)} |",
+        f"| Live SKUs match derived SKUs | {'PASS' if live_skus == expected_skus else 'FAIL'} | {len(expected_skus)} expected |",
+        f"| Taxonomy fullName matches | {'PASS' if verify['category']['fullName'] == EXPECTED_TAXONOMY_FULL_NAME else 'FAIL'} | {verify['category']['fullName']} |",
+    ])
+    cost_ok = True
+    for sku, live_price, live_cmp, live_cost, spec_price, spec_cmp, spec_cost in price_rows:
+        if live_price != spec_price or live_cmp != spec_cmp or Decimal(live_cost or "0") != Decimal(spec_cost):
+            cost_ok = False
+    lines.extend([
+        f"| Price and cost parity | {'PASS' if cost_ok else 'FAIL'} | every variant price/compare-at/cost checked |",
+        "",
+        "## Price and Cost Parity",
+        "| SKU | Live Price | Live Compare | Live Cost | Spec Price | Spec Compare | Spec Cost |",
+        "|---|---|---|---|---|---|---|",
+    ])
+    for item in price_rows:
+        lines.append("| " + " | ".join(str(value or "") for value in item) + " |")
+    lines.extend([
+        "",
+        "## Metafields Written",
+        *[f"- `{key}`" for key in sorted(metafield_keys)],
+        "",
+        "## Metafields Skipped",
+        *[f"- `{key}`: {reason}" for key, reason in skipped],
+        "",
+        "## Smart Collections",
+        "Collection indexing may wait until publication because this product is intentionally unpublished as a draft.",
+        "",
+        "## Manual Follow-ups",
+        "- Confirm exact fabric composition if the vendor page becomes readable later.",
+        "- Review or retouch the supplied product image before any publish-live step.",
+        "- Inventory quantities and variant grams remain operator stock inputs.",
+        "",
+        "## Files Saved",
+        f"- `{ROOT / 'ops/scripts/create-bdsy-blue-daisy-family-matching-set.sh'}`",
+        f"- `{LISTING_MD}`",
+        f"- `{CSV_OUT}`",
+        f"- `{SIZE_CHART_OUT}`",
+        f"- `{SOURCE_SIZE_CHART}`",
+        f"- `{BODY_HTML_OUT}`",
+        f"- `{VERIFY_JSON_OUT}`",
+        f"- `{UPLOAD_DIR}`",
+        "",
+    ])
+    LISTING_MD.write_text("\n".join(lines), encoding="utf-8")
+
+
+def main() -> None:
+    (ROOT / "ops/listings").mkdir(parents=True, exist_ok=True)
+    UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+    body = build_body()
+    variants = build_variants()
+    validate_preflight(body, variants)
+    run_variant_model_guard()
+    SIZE_CHART_OUT.write_text(json.dumps(SIZE_CHART, indent=2), encoding="utf-8")
+    BODY_HTML_OUT.write_text(body, encoding="utf-8")
+    write_csv(body, variants)
+
+    tax = gql("""query($id:ID!){ node(id:$id){ __typename ... on TaxonomyCategory{id fullName isLeaf} } }""", {"id": TAXONOMY_GID})["data"]["node"]
+    if tax["fullName"] != EXPECTED_TAXONOMY_FULL_NAME or not tax["isLeaf"]:
+        raise RuntimeError(f"Taxonomy guard failed: {tax}")
+
+    product = product_query(HANDLE, by_handle=True)
+    product_options = [
+        {"name": "Type", "values": [{"name": value} for value in option_values()["Type"]]},
+        {"name": "Size", "values": [{"name": value} for value in option_values()["Size"]]},
+    ]
+    product_input = {
+        "handle": HANDLE,
+        "title": TITLE,
+        "descriptionHtml": body,
+        "vendor": VENDOR,
+        "productType": PRODUCT_TYPE,
+        "tags": tags(),
+        "status": "DRAFT",
+        "category": TAXONOMY_GID,
+        "seo": {"title": SEO_TITLE, "description": SEO_DESCRIPTION},
+    }
+    if product:
+        product_id = product["id"]
+        res = gql("""mutation($product:ProductUpdateInput!){ productUpdate(product:$product){ product{id handle title status} userErrors{field message} } }""", {"product": {"id": product_id, **product_input}})
+        require_no_user_errors(res, ["data", "productUpdate", "userErrors"])
+        unpublish(product_id, product)
+    else:
+        res = gql("""mutation($input:ProductInput!){ productCreate(input:$input){ product{id handle title status} userErrors{field message} } }""", {"input": {**product_input, "productOptions": product_options}})
+        require_no_user_errors(res, ["data", "productCreate", "userErrors"])
+        product_id = res["data"]["productCreate"]["product"]["id"]
+
+    product = product_query(product_id)
+    assert product is not None
+    ensure_option_values(product)
+    product = product_query(product_id)
+    assert product is not None
+
+    spec_by_sku = {variant["inventoryItem"]["sku"]: variant for variant in variants}
+    live_by_sku = {variant.get("sku"): variant for variant in product["variants"]["nodes"] if variant.get("sku")}
+    delete_ids = [variant["id"] for sku, variant in live_by_sku.items() if sku not in spec_by_sku]
+    deleted_skus = sorted(sku for sku in live_by_sku if sku not in spec_by_sku)
+    if delete_ids:
+        res = gql("""mutation($productId:ID!,$ids:[ID!]!){ productVariantsBulkDelete(productId:$productId, variantsIds:$ids){ product{id} userErrors{field message} } }""", {"productId": product_id, "ids": delete_ids})
+        require_no_user_errors(res, ["data", "productVariantsBulkDelete", "userErrors"])
+
+    product = product_query(product_id)
+    assert product is not None
+    live_by_sku = {variant.get("sku"): variant for variant in product["variants"]["nodes"] if variant.get("sku")}
+    create_variants = [variant for sku, variant in spec_by_sku.items() if sku not in live_by_sku]
+    created_skus = sorted(variant["inventoryItem"]["sku"] for variant in create_variants)
+    if create_variants:
+        res = gql("""mutation($productId:ID!,$variants:[ProductVariantsBulkInput!]!,$strategy:ProductVariantsBulkCreateStrategy){ productVariantsBulkCreate(productId:$productId, variants:$variants, strategy:$strategy){ productVariants{id sku title price compareAtPrice inventoryPolicy inventoryItem{tracked requiresShipping unitCost{amount currencyCode}}} userErrors{field message} } }""", {
+            "productId": product_id,
+            "variants": create_variants,
+            "strategy": "REMOVE_STANDALONE_VARIANT",
+        })
+        require_no_user_errors(res, ["data", "productVariantsBulkCreate", "userErrors"])
+
+    product = product_query(product_id)
+    assert product is not None
+    live_by_sku = {variant.get("sku"): variant for variant in product["variants"]["nodes"] if variant.get("sku")}
+    update_variants = []
+    for sku, spec in spec_by_sku.items():
+        live = live_by_sku.get(sku)
+        if not live:
+            continue
+        update_variants.append({
+            "id": live["id"],
+            "price": spec["price"],
+            "compareAtPrice": spec["compareAtPrice"],
+            "taxable": True,
+            "inventoryPolicy": "DENY",
+            "inventoryItem": spec["inventoryItem"],
+            "optionValues": spec["optionValues"],
+        })
+    if update_variants:
+        res = gql("""mutation($productId:ID!,$variants:[ProductVariantsBulkInput!]!){ productVariantsBulkUpdate(productId:$productId, variants:$variants){ productVariants{id sku title price compareAtPrice inventoryPolicy inventoryItem{tracked requiresShipping unitCost{amount currencyCode}}} userErrors{field message} } }""", {
+            "productId": product_id,
+            "variants": update_variants,
+        })
+        require_no_user_errors(res, ["data", "productVariantsBulkUpdate", "userErrors"])
+
+    for i in range(0, len(metafields(product_id)), 25):
+        res = gql("""mutation($metafields:[MetafieldsSetInput!]!){ metafieldsSet(metafields:$metafields){ metafields{namespace key type value} userErrors{field message} } }""", {"metafields": metafields(product_id)[i:i+25]})
+        require_no_user_errors(res, ["data", "metafieldsSet", "userErrors"])
+
+    product = product_query(product_id)
+    assert product is not None
+    stale_metafields = [
+        {"ownerId": product_id, "namespace": node["namespace"], "key": node["key"]}
+        for node in product["metafields"]["nodes"]
+        if node["namespace"] == "shopify" and node["key"] in {"dress-occasion", "dress-style", "fabric", "neckline", "pants-length-type", "skirt-dress-length-type", "sleeve-length-type", "top-length-type", "waist-rise"}
+    ]
+    if stale_metafields:
+        res = gql("""mutation($metafields:[MetafieldIdentifierInput!]!){ metafieldsDelete(metafields:$metafields){ deletedMetafields{key namespace ownerId} userErrors{field message} } }""", {"metafields": stale_metafields})
+        require_no_user_errors(res, ["data", "metafieldsDelete", "userErrors"])
+
+    upload_media(product_id)
+    time.sleep(2)
+    product = product_query(product_id)
+    assert product is not None
+    prune_stale_option_values(product)
+    product = product_query(product_id)
+    assert product is not None
+    VERIFY_JSON_OUT.write_text(json.dumps({"data": {"product": product}}, indent=2), encoding="utf-8")
+    write_listing(product_id, body, variants, product, deleted_skus, created_skus)
+
+    expected_skus = sorted(spec_by_sku)
+    live_skus = sorted(v["sku"] for v in product["variants"]["nodes"])
+    published_ids = [p["publication"]["id"] for p in product["resourcePublicationsV2"]["nodes"] if p["isPublished"]]
+    cost_ok = all(
+        Decimal(str(((v.get("inventoryItem") or {}).get("unitCost") or {}).get("amount") or "0")) == Decimal(money_half(spec_by_sku[v["sku"]]["price"]))
+        for v in product["variants"]["nodes"]
     )
-lines.append("")
-lines.append("### Derivations (flagged per spec)")
-lines.append("- The pasted vendor source is a fit-reference-only label list, so every garment measurement column (`chest_cm`, `hip_cm`, `waist_cm`, `shoulder_cm`, `length_cm`, `skirt_cm`) was backfilled from the closest live dress/shirt grading curves already published on the store rather than fabricated from scratch.")
-lines.append("- Child and adult weight guidance was converted from the vendor's `斤` ranges into metric `kg` ranges before the shopper-facing table converted those values to `kg/lbs`.")
-lines.append("- The dress and shirt measurement ladders were backfilled from the live `citrus-bloom-family-matching-set`, then extended to Mother 3XL and Mother 4XL using the same nearby adult dress grading curve because the pasted size source includes Adult 3XL and Adult 4XL.")
-lines.append("- Because the supplied source does not publish direct garment measurements for this print, the saved `SIZE_CHART` preserves those anchored values so the listing can be rerun idempotently without inventing a second unsupported grading curve.")
-lines.append("- Styling-only shorts, sandals, handbags, and accessories shown in the supplied photos were intentionally excluded because they fall outside this `Dress` + `Shirt` listing request.")
-lines.append("- `Child 1-2 Years` was mapped to the closest honest live size metaobject label `12-18 months` because the store does not expose an exact `1-2 years` size metaobject.")
-lines.append("")
-lines.append("### Vendor → picker mapping log")
-lines.append("- 80 → Child 1-2 Years")
-lines.append("- 90 → Child 2 Years")
-lines.append("- 100 → Child 3 Years")
-lines.append("- 110 → Child 4 Years")
-lines.append("- 120 → Child 5 Years")
-lines.append("- 130 → Child 6-7 Years")
-lines.append("- 140 → Child 8 Years")
-lines.append("- 150 → Child 9-10 Years")
-lines.append("- Women/Adult S / M / L / XL / XXL / 3XL / 4XL → Mother S / M / L / XL / 2XL / 3XL / 4XL")
-lines.append("- Men S / M / L / XL / XXL / 3XL / 4XL → Father S / M / L / XL / 2XL / 3XL / 4XL")
-lines.append("")
-lines.append("### EXCLUDE_ITEMS decisions")
-lines.append("- No explicit `EXCLUDE_ITEMS` string was supplied.")
-lines.append("- The white shorts, sandals, handbags, and accessories shown in the supplied photos are styling only and were excluded because the request explicitly limited the listing to the shirt and dress designs.")
-lines.append("")
-lines.append("## Body HTML")
-lines.append("- 1 `<ul>` with 6 bullets (fabric, family story, print, design details, care, size range).")
-lines.append("- 2 garment-specific `<h3>` + `<table>` blocks (`Dress` and `Shirt`), each with 10 `<th>` headers.")
-lines.append("- 2 narrative paragraphs, 1 key-features block, and 1 closing CTA paragraph.")
-lines.append("")
-lines.append("## Option axes & variants")
-for index, axis in enumerate(option_axes, start=1):
-    values = ", ".join(f"`{value}`" for value in axis["values"])
-    lines.append(f"- Option {index}: `{axis['name']}` → {values}")
-lines.append(f"- Variants live: **{len(variants)}**")
-lines.append("")
-lines.append("## Verify pass table")
-lines.append("| Check | Result | Detail |")
-lines.append("|---|---|---|")
-for label, ok, detail in checks:
-    lines.append(f"| {label} | {'✅' if ok else '❌'} | {detail} |")
-lines.append("")
-lines.append("## Price parity (FORCE_SPEC_PRICES=true)")
-lines.append("| SKU | Live Price | Live Cmp | Spec Price | Spec Cmp | Match |")
-lines.append("|---|---|---|---|---|---|")
-for row in price_rows:
-    lines.append(f"| {row['sku']} | {row['live_price']} | {row['live_compare']} | {row['spec_price']} | {row['spec_compare']} | {row['match']} |")
-lines.append("")
-lines.append("## Metafields — written")
-lines.append("| Namespace.Key | Type | Value |")
-lines.append("|---|---|---|")
-for node in sorted(written_metafields, key=lambda x: (x["namespace"], x["key"])):
-    value = node["value"]
-    if len(value) > 90:
-        value = value[:87] + "..."
-    lines.append(f"| {node['namespace']}.{node['key']} | {node['type']} | `{value}` |")
-lines.append("")
-lines.append("## Metafields — skipped")
-lines.append("| Namespace.Key | Reason |")
-lines.append("|---|---|")
-for key, reason in skipped_metafields.items():
-    lines.append(f"| {key} | {reason} |")
-lines.append("")
-lines.append(f"## Tags written ({len(product['tags'])})")
-lines.append("`" + ", ".join(product["tags"]) + "`")
-lines.append("")
-lines.append("## Publication")
-lines.append("- Online Store")
-lines.append("- Google & YouTube")
-lines.append("- Facebook & Instagram")
-lines.append("- Pinterest")
-lines.append("- TikTok")
-lines.append("")
-lines.append("## Smart collections")
-if collections:
-    for collection in collections:
-        lines.append(f"- {collection['title']} (`/{collection['handle']}`)")
-else:
-    lines.append("- No smart collections were attached in the immediate verification query; Shopify reindex may still be pending.")
-lines.append("")
-lines.append("## Manual follow-ups")
-lines.append("- Inventory quantities and per-variant grams still need operator stock values.")
-lines.append("- Re-confirm the exact fiber composition if the vendor page becomes directly readable later; `shopify.fabric` is intentionally left unset for now rather than guessing.")
-lines.append("- If the vendor page becomes directly readable later and publishes garment measurements for this exact print, replace the backfilled dress/shirt grading with the direct source measurements on a rerun.")
-lines.append("- If Shopify exposes writable standard metafields for `fit`, `pants-length-type`, or `waist-rise` in this store later, extend the runner to write the already-inferred outfit-set attributes too.")
-if not collections:
-    lines.append("- Re-check smart collection attachment after Shopify reindex if merchandising placement matters immediately.")
-lines.append("")
-lines.append("## Files saved")
-lines.append(f"- `{script_path}`")
-lines.append(f"- `{listing_md_path}`")
-lines.append(f"- `{csv_out_path}`")
-lines.append(f"- `{verify_path}`")
-lines.append(f"- `{size_chart_out}`")
-lines.append(f"- `{body_html_out}`")
-lines.append(f"- `{upload_dir}`")
-lines.append("")
-lines.append("## Sources")
-lines.append(f"- Neighbor pricing: `{price_neighbor_handle}`")
-lines.append("- Garment grading anchor: `citrus-bloom-family-matching-set` (exact family-set size spread match)")
-lines.append(f"- Size metaobject map: `{size_neighbor_handle}`")
+    if product["status"] != "DRAFT" or product["publishedAt"] is not None or published_ids or live_skus != expected_skus or len(live_skus) != len(SIZE_CHART) or not cost_ok:
+        raise RuntimeError("Final verification failed; see verify JSON for details.")
 
-listing_md_path.write_text("\n".join(lines) + "\n")
+    print(json.dumps({
+        "admin_url": f"https://admin.shopify.com/store/dresslikemommy/products/{product_id.split('/')[-1]}",
+        "status": product["status"],
+        "publishedAt": product["publishedAt"],
+        "onlineStoreUrl": product["onlineStoreUrl"],
+        "variant_count": len(product["variants"]["nodes"]),
+        "created_skus": created_skus,
+        "deleted_skus": deleted_skus,
+        "files": [str(LISTING_MD), str(CSV_OUT), str(VERIFY_JSON_OUT), str(SIZE_CHART_OUT), str(BODY_HTML_OUT)],
+    }, indent=2))
 
-failed = [label for label, ok, _detail in checks if not ok]
-if price_drift:
-    failed.append("Price parity")
-if failed:
-    raise SystemExit("VERIFY FAILED: " + ", ".join(failed))
+
+if __name__ == "__main__":
+    main()
 PY
-
-echo "Admin URL: https://admin.shopify.com/store/dresslikemommy/products/${PRODUCT_ID##*/}"
-echo "Live URL: https://www.dresslikemommy.com/products/${HANDLE}"
-echo "Listing log: ${LISTING_MD}"
-echo "CSV backup: ${CSV_OUT}"

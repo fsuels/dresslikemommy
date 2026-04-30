@@ -2,7 +2,7 @@
 
 ## Links
 - **Admin:** https://admin.shopify.com/store/dresslikemommy/products/7536984752225
-- **Live:** https://www.dresslikemommy.com/products/pink-hibiscus-family-matching-set
+- **Live:** (none; product is draft)
 - **Vendor:** https://detail.1688.com/offer/1013973939291.html
 - **Product GID:** `gid://shopify/Product/7536984752225`
 - **Handle:** `pink-hibiscus-family-matching-set`
@@ -15,7 +15,7 @@
 | LISTING_MODE | Family Matching |
 | PRIMARY_CATEGORY | Set → FamilySet (Shopify taxonomy kept as Outfit Sets) |
 | DESIGNS_TO_LIST | Dress, Shirt & Shorts Set |
-| EXCLUDE_ITEMS | none; male shirt-and-shorts rows included because the request asked for shorts |
+| EXCLUDE_ITEMS | none; male shirt-and-shorts rows included because the attached product image and size chart support them |
 | SHORTCODE | auto → `PHIB` |
 | COLOR_TOKEN | auto → `PINK` |
 | FORCE_SPEC_PRICES | true |
@@ -113,13 +113,12 @@ The direct 1688 page was captcha-blocked during this run, so the attached size-c
 | Size tables expose metric + imperial units | ✅ | kg/lbs + cm/in |
 | Each size table has 10 headers | ✅ | [10, 10] |
 | Table row count matches SIZE_CHART | ✅ | 30 |
-| publishedAt is populated | ✅ | 2026-04-24T13:53:32Z |
-| onlineStoreUrl is populated | ✅ | https://www.dresslikemommy.com/products/pink-hibiscus-family-matching-set |
+| Product remains DRAFT | ✅ | DRAFT |
+| publishedAt is empty for draft | ✅ |  |
+| No sales-channel publications are live | ✅ | [] |
 | Taxonomy category is set | ✅ | gid://shopify/TaxonomyCategory/aa-1-11 |
 | Taxonomy category full name matches expected leaf | ✅ | Apparel & Accessories > Clothing > Outfit Sets |
 | Family-set merchandising tag is present | ✅ | Beach, Boy Shirt & Shorts Set, Child 12 Years, Child 2 Years, Child 3 Years, Child 4 Years, Child 5 Years, Child 6-7 Years, Child 8 Years, Child 9-10 Years, Daddy and Me, Dress & Shorts, Family Matching, Father 2XL, Father 3XL, Father 4XL, Father L, Father M, Father S, Father Shirt & Shorts Set, Father XL, Floral, Floral Shorts, Four-Role Matching, Girl Dress, Graphic Tee & Shorts, Hot Pink, https://detail.1688.com/offer/1013973939291.html, Matching Family Dress, Matching Family Outfits, Matching Family Set, Matching Family Shorts Set, Mommy and Me, Mother 2XL, Mother 3XL, Mother 4XL, Mother Dress, Mother L, Mother M, Mother S, Mother XL, Pink Floral, Pink Hibiscus, Resort, Sets, Short Sleeve Tee & Shorts, Sleeveless Dress, Summer, Summer Family Matching Set, V-Neck Dress, Vacation, White, White Floral |
-| Family-set smart collection is attached | ✅ | ['family-sets', 'matching-family-vacation-outfits', 'mommy-and-me', 'new-matching-outfits', 'new-women-outfits', 'popular-family-matching', 'popular-mommy-me-1'] |
-| Required publications are live | ✅ | ['gid://shopify/Publication/21969633377', 'gid://shopify/Publication/29172400225', 'gid://shopify/Publication/55169925', 'gid://shopify/Publication/76582879329', 'gid://shopify/Publication/76604768353'] |
 | Applicable metafields are written | ✅ | [] |
 
 ## Price parity (FORCE_SPEC_PRICES=true)
@@ -201,11 +200,7 @@ The direct 1688 page was captcha-blocked during this run, so the attached size-c
 `Beach, Boy Shirt & Shorts Set, Child 12 Years, Child 2 Years, Child 3 Years, Child 4 Years, Child 5 Years, Child 6-7 Years, Child 8 Years, Child 9-10 Years, Daddy and Me, Dress & Shorts, Family Matching, Father 2XL, Father 3XL, Father 4XL, Father L, Father M, Father S, Father Shirt & Shorts Set, Father XL, Floral, Floral Shorts, Four-Role Matching, Girl Dress, Graphic Tee & Shorts, Hot Pink, https://detail.1688.com/offer/1013973939291.html, Matching Family Dress, Matching Family Outfits, Matching Family Set, Matching Family Shorts Set, Mommy and Me, Mother 2XL, Mother 3XL, Mother 4XL, Mother Dress, Mother L, Mother M, Mother S, Mother XL, Pink Floral, Pink Hibiscus, Resort, Sets, Short Sleeve Tee & Shorts, Sleeveless Dress, Summer, Summer Family Matching Set, V-Neck Dress, Vacation, White, White Floral`
 
 ## Publication
-- Online Store
-- Google & YouTube
-- Facebook & Instagram
-- Pinterest
-- TikTok
+- Draft only; no sales-channel publication was requested or performed.
 
 ## Smart collections
 - New Mommy & Me (`/new-matching-outfits`)

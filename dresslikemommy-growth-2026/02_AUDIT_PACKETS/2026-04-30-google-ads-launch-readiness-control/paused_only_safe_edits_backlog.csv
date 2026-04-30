@@ -1,0 +1,16 @@
+priority,campaign,edit,status,reason,verification_required,budget_or_launch_dependency
+P0,All campaigns,Keep paused and $1/day placeholder budgets,DONE,"Owner-approved safety patch prevents accidental spend",Post-patch campaign-table readback,No launch allowed
+P0,All campaigns,Do not enable any campaign,BLOCKED_BY_GATE,"Nonzero paid Google Ads purchase value is not proven",Paid purchase request with value/currency/dedupe,Launch dependency
+P1,Brand Search,Change to controlled CPC / low max CPC while paused,READY_AFTER_MEASUREMENT_GATE,"Brand Search should not launch on blind value bidding",Settings readback before/after,Depends on paid-value gate before launch
+P1,Brand Search,Confirm Search Network only and no broad/category terms,READY_AFTER_MEASUREMENT_GATE,"Brand protection must remain brand-only",Keywords/networks export,Depends on paid-value gate before launch
+P1,Brand Search,Set location option to Presence-only if not already set,READY_AFTER_MEASUREMENT_GATE,"US-only ecommerce should avoid interest-in-location leakage",Location settings screenshot/readback,Depends on paid-value gate before launch
+P1,Standard Shopping,Ensure product groups only include paid_eligible + us_test_ready and exclude everything else,READY_AFTER_MEASUREMENT_GATE,"Prevents accidental catalog-wide spend",Product group export/screenshots,Depends on paid-value gate before launch
+P1,Standard Shopping,Switch away from uncapped Maximize clicks before launch,READY_AFTER_MEASUREMENT_GATE,"Uncapped clicks optimizes traffic not profit",Bid strategy settings readback,Depends on paid-value gate before launch
+P1,Standard Shopping,Confirm Search Partners disabled and Presence-only,READY_AFTER_MEASUREMENT_GATE,"Traffic-quality controls improve first test quality",Network/location screenshots,Depends on paid-value gate before launch
+P2,PMax US Shopping,Fix Merchant Center/domain/no-products issue,HOLD,"Campaign cannot run properly if linked to wrong Merchant Center or no eligible products",Merchant Center and product eligibility readback,Launch dependency
+P2,PMax US Shopping,Turn off or strictly constrain final URL expansion,HOLD,"Prevents spend on non-product/non-ready URLs",PMax asset optimization settings screenshot,Depends on landing-page gate
+P2,PMax US Shopping,Add brand exclusions and non-overlap product filters,HOLD,"Prevents brand cannibalization and PMax overlap",Brand exclusion/product listing export,Depends on Brand Search readiness
+P2,PMax T-Shirts,Reject mixed product scope or rebuild T-shirt-only,HOLD,"The campaign name and product scope must match",Listing group and feed-label proof,Depends on economics/feed gate
+P2,PMax T-Shirts,Build complete T-shirt-specific assets and audience signals,HOLD,"Poor assets/no signals are not launch-ready",Asset group/ad strength/audience screenshots,Depends on product/landing-page gate
+P2,Remarketing,Rewrite policy-limited responsive display ads,HOLD,"Ads limited by policy cannot serve profitably",Policy status screenshot after review,May be done while paused after copy approval
+P2,Remarketing,Verify audience eligibility/duration/consent and exclude purchasers,HOLD,"Avoids non-serving audiences and waste to converters",Audience manager and exclusions screenshots,Depends on consent/audience proof

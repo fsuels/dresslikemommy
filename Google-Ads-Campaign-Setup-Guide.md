@@ -1,18 +1,35 @@
 # DressLikeMommy.com - Google Ads Current Setup Guide
 
-Updated: April 29, 2026
+Updated: April 30, 2026
 Google Ads account: `399-097-6848`
 Merchant Center account: `124884876`
 
-## Current Answer For The Shopping Draft
+## Current Launch Posture
 
-Use this exact answer for the browser AI prompt:
+Decision: `LAUNCH_BLOCKED`
+
+The April 29 paused build/readback work made Brand Search and Standard Shopping more organized, but it did not authorize live spend. The April 30 orchestration packet is now the controlling plan:
+
+- `dresslikemommy-growth-2026/04_IMPLEMENTATION_PLANS/2026-04-30-google-ads-campaign-readiness-orchestration.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-campaign-readiness-orchestration/`
+
+Do not enable, restart, publish, or raise budgets on any campaign until the final launch gate passes and the operator approves an exact activation.
+
+## Current Readback For The Shopping Draft
+
+If a browser AI asks what the current paused Shopping draft readback is, answer:
 
 ```text
 Maximize clicks, budget $25/day
 ```
 
-Then keep the campaign `PAUSED`. If Google Ads exposes a max CPC bid limit for Maximize clicks, set the first cap to `$0.25`. Raise to `$0.35` only if the campaign has too little eligible traffic after 72 hours. Do not enable spend until the operator explicitly says to enable.
+This is current state, not a launch recommendation. Keep the campaign `PAUSED`.
+
+April 30 safety recommendation:
+
+- If the operator approves a paused safety patch, reduce draft campaign budgets to `$1/day` placeholders while paused.
+- If Google Ads exposes a max CPC bid limit for Maximize clicks, document the current value first. A `$0.25` cap is the conservative launch candidate, but it should not be treated as activation approval.
+- Do not run the `$25/day` Shopping draft as-is.
 
 ## Do Not Use The Old All-Products Plan
 
@@ -43,6 +60,7 @@ custom_label_4 = us_test_ready
 - Use the Shopify Google & YouTube app purchase action only: `Google Shopping App Purchase`.
 - Do not paste Google Ads manual conversion snippets into the theme.
 - Do not claim free shipping or free returns in ad copy unless a current policy/checkout proof packet explicitly supports that claim.
+- PMax campaigns are hold/reject for launch until Standard Shopping, feed, measurement, URL allowlists, product economics, and brand cannibalization gates pass.
 
 ## Actual Live Build Status - April 29, 2026
 
@@ -100,9 +118,10 @@ Purpose: defend brand demand and capture the highest-intent traffic at the lowes
 | Networks | Google Search only; no Search Partners; no Display |
 | Location | United States |
 | Language | English |
-| Budget | `$10/day` |
-| Bidding | Maximize conversion value, no target ROAS |
-| Fallback bidding | Maximize clicks with `$0.50` max CPC if Google blocks value bidding for low data |
+| Current budget | `$10/day` |
+| Recommended paused placeholder | `$1/day` only after audit and owner approval |
+| Current bidding | Maximize conversion value, no target ROAS |
+| Launch-candidate bidding | Manual CPC or Maximize clicks with a strict CPC cap after gates pass |
 | Status | Paused |
 
 ### Ad Group 1: Brand - Exact
@@ -179,9 +198,10 @@ Purpose: test only the feed rows that passed margin, inventory, PDP, Merchant Ce
 | Subtype | Standard Shopping |
 | Merchant Center | `124884876` |
 | Country | United States |
-| Budget | `$25/day` |
-| Bidding | Maximize clicks |
-| Max CPC cap | `$0.25` if available |
+| Current budget | `$25/day` |
+| Recommended paused placeholder | `$1/day` only after audit and owner approval |
+| Current bidding | Maximize clicks |
+| Launch-candidate max CPC cap | `$0.25` if available, after gates pass |
 | Campaign priority | Medium |
 | Status | Paused |
 
@@ -219,8 +239,9 @@ Current expected family counts:
 Do not launch these yet:
 
 - Non-brand Search: hold until Search Console query/page exports prove commercial opportunity.
-- Performance Max: hold until Standard Shopping has stable conversion volume and feed/landing-page proof.
-- Remarketing: hold until policy-limited products and dedupe evidence are fully clean.
+- PMax Shopping ads (United States): hold until Standard Shopping, feed, measurement, product-label, brand-exclusion, and landing-page gates pass.
+- PMax USA Google Shopping T-Shirts: reject from launch plan unless T-shirt AOV/margin and landing pages independently satisfy ROAS >= 6.67 and CAC <= AOV x 0.15.
+- Remarketing: hold until policy-limited ads are fixed, audiences are eligible/consent-safe, recent purchasers are excluded, and purchase-value/dedupe evidence is clean.
 - Display, Dynamic Search Ads, broad Search, or international campaigns: excluded from this first test.
 
 ## Shared Assets

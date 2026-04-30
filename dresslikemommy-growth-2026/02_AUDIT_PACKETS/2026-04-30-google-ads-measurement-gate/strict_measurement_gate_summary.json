@@ -1,0 +1,162 @@
+{
+  "generated_at": "2026-04-30T18:55:12.602628+00:00",
+  "mode": "STRICT_GOOGLE_ADS_MEASUREMENT_GATE_READ_ONLY",
+  "decision": "BLOCK_NON_BUDGET_CAMPAIGN_EDITS__RUNTIME_PURCHASE_MEASUREMENT_NOT_PROVEN",
+  "launch_status": "LAUNCH_BLOCKED",
+  "non_budget_campaign_edits_allowed": false,
+  "launch_work_allowed": false,
+  "budget_safety_edits_allowed_if_owner_approved": true,
+  "external_system_changes_made": false,
+  "orders_or_test_purchases_created": false,
+  "google_ads_configuration_subgate": {
+    "status": "PASS_PURCHASE_CONVERSION_VALUE_TRACKING_VERIFIED__NO_CURRENT_AD_ATTRIBUTION",
+    "passed": true,
+    "target_action": "Google Shopping App Purchase",
+    "primary_account_level_purchase_action_count": 1,
+    "target_is_primary_account_level_purchase_action": true,
+    "target_variable_value_setting_proven": true,
+    "target_historical_value_present_in_raw_stats": true,
+    "target_last_received_request_time_iso": "2026-04-25T23:55:54.592430+00:00",
+    "target_last_received_request_age_days": 4.789,
+    "campaign_enable_allowed_by_config_packet": false
+  },
+  "target_purchase_action_row": {
+    "conversion_action_id": "285315039",
+    "conversion_action": "Google Shopping App Purchase",
+    "conversion_source": "Website",
+    "action_optimization": "Primary",
+    "count": "Every",
+    "included_in_account_level_goals": "True",
+    "category_id": "1",
+    "currency": "XXX",
+    "last_conversion_date_raw": "20260128",
+    "all_conversions_raw": "5.0",
+    "all_conversion_value_raw": "193.9",
+    "last_received_request_time_raw": "1777161354592430"
+  },
+  "secondary_purchase_actions": [
+    {
+      "conversion_action_id": "283526600",
+      "conversion_action": "Purchases from google Adwords",
+      "conversion_source": "Website",
+      "action_optimization": "Secondary",
+      "count": "Every",
+      "included_in_account_level_goals": "False",
+      "category_id": "1",
+      "currency": "USD",
+      "last_conversion_date_raw": "20260128",
+      "all_conversions_raw": "1284.0",
+      "all_conversion_value_raw": "100091.33",
+      "last_received_request_time_raw": "1774477077701497"
+    },
+    {
+      "conversion_action_id": "285118723",
+      "conversion_action": "Purchases from google analytics data",
+      "conversion_source": "Website (Google Analytics (UA))",
+      "action_optimization": "Secondary",
+      "count": "Every",
+      "included_in_account_level_goals": "False",
+      "category_id": "1",
+      "currency": "USD",
+      "last_conversion_date_raw": "--",
+      "all_conversions_raw": "494.0",
+      "all_conversion_value_raw": "26863.31",
+      "last_received_request_time_raw": "0"
+    },
+    {
+      "conversion_action_id": "996917005",
+      "conversion_action": "dresslikemommy.com - GA4 (web) purchase",
+      "conversion_source": "Website (Google Analytics (GA4))",
+      "action_optimization": "Secondary",
+      "count": "Every",
+      "included_in_account_level_goals": "False",
+      "category_id": "1",
+      "currency": "USD",
+      "last_conversion_date_raw": "20260128",
+      "all_conversions_raw": "16.541798",
+      "all_conversion_value_raw": "1300.122373636",
+      "last_received_request_time_raw": "0"
+    }
+  ],
+  "strict_runtime_requirements": [
+    {
+      "requirement": "purchase_value_runtime_value",
+      "status": "NOT_PROVEN",
+      "evidence": [
+        "Google Ads target setting says: Use different values. If there is no value, use 0.",
+        "Target historical all-conversion value is 193.9; this proves historical value evidence, not a current runtime order hit.",
+        "No completed-purchase network request or tag payload was captured in this gate."
+      ],
+      "approval_effect": "Blocks non-budget campaign edits and launch work."
+    },
+    {
+      "requirement": "purchase_currency_runtime_currency",
+      "status": "NOT_PROVEN",
+      "evidence": [
+        "Target Google Ads row currency is XXX, not a captured runtime USD parameter.",
+        "Secondary purchase rows show USD in Google Ads history, but those are not the primary optimization action.",
+        "No completed-purchase payload with currency=USD was captured."
+      ],
+      "approval_effect": "Blocks value bidding, campaign-goal edits, and launch work."
+    },
+    {
+      "requirement": "purchase_transaction_id_runtime_order_id",
+      "status": "NOT_PROVEN",
+      "evidence": [
+        "Google Ads manual snippet diagnostic still contains a blank transaction_id placeholder.",
+        "Runtime tracking is expected to be owned by Shopify Google & YouTube, but no completed-purchase request was captured.",
+        "No order id / transaction id / event id was proven in an Ads purchase hit."
+      ],
+      "approval_effect": "Blocks launch work because duplicate order attribution cannot be ruled out."
+    },
+    {
+      "requirement": "deduplication_one_purchase_per_order",
+      "status": "PARTIAL_CONFIG_ONLY__RUNTIME_NOT_PROVEN",
+      "evidence": [
+        "Positive config evidence: exactly one primary account-level Google Ads purchase action is present.",
+        "Positive theme evidence: theme scan found no AW-/gtag/googleadservices/send_to/transaction_id/checkout_completed purchase snippet in theme files.",
+        "Positive Shopify evidence: Google & YouTube app pixel is Connected / Optimized in Shopify Customer events.",
+        "Residual risk: 4 purchase conversion actions still exist in Google Ads, including secondary actions with historical value; no order-level dedupe capture proves only one primary Ads purchase fire per order."
+      ],
+      "approval_effect": "Allows read-only audit and budget safety only; blocks non-budget changes until runtime capture passes."
+    }
+  ],
+  "shopify_customer_events_evidence": {
+    "google_youtube_connected_optimized_visible": true,
+    "app_pixels_visible": [
+      "Facebook & Instagram",
+      "Google & YouTube",
+      "Judge.me Reviews",
+      "Microsoft Channel",
+      "Pinterest",
+      "TikTok"
+    ],
+    "custom_pixels_tab_selected": true,
+    "custom_pixels_selected_view_no_table_rows_visible_in_text_capture": true
+  },
+  "theme_tracking_surface_evidence": {
+    "scan_file": "raw/theme_tracking_surface_scan.txt",
+    "no_google_ads_snippet_in_theme_scan": true,
+    "theme_data_layer_only": true,
+    "analytics_purchase_event_absent": true
+  },
+  "evidence_files": {
+    "config_gate_report": "google_ads_conversion_value_gate_report.md",
+    "config_gate_summary": "google_ads_conversion_value_gate_summary.json",
+    "purchase_actions_csv": "purchase_conversion_actions.csv",
+    "google_ads_detail_screenshot": "screenshots/google_ads_conversion_detail.png",
+    "shopify_customer_events_screenshot": "screenshots/shopify_customer_events.png",
+    "shopify_custom_pixels_screenshot": "screenshots/shopify_customer_events_custom_pixels_after_coordinate_click.png",
+    "google_ads_detail_text": "raw/google_ads_conversion_detail_body_text.txt",
+    "shopify_customer_events_text": "raw/shopify_customer_events_body_text.txt",
+    "shopify_custom_pixels_text": "raw/shopify_customer_events_custom_pixels_after_coordinate_click.txt",
+    "theme_tracking_surface_scan": "raw/theme_tracking_surface_scan.txt",
+    "assets_analytics_event_surface": "raw/assets_analytics_event_surface.txt"
+  },
+  "next_proof_required": [
+    "Run an owner-approved controlled checkout/test order or Tag Assistant purchase capture.",
+    "Capture the Google Ads purchase request/pixel payload for the primary action.",
+    "Verify nonzero purchase value, currency=USD, a real transaction_id/order id, and one primary purchase conversion fire for the order.",
+    "Verify repeated thank-you/order-status views do not create a second primary Google Ads purchase for the same transaction_id."
+  ]
+}
