@@ -37,7 +37,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: var(--hero-slide-mobile-position, center center);
+    /* Force center focal point so subjects (mommy + child) aren't trimmed
+       on narrower viewports where the container ratio shifts. */
+    object-position: center center;
   }
   .hero-banner__overlay {
     position: absolute;
@@ -241,7 +243,9 @@
   /* Desktop: text on left side over empty scenery */
   @media screen and (min-width: 750px) {
     .hero-banner__image {
-      object-position: var(--hero-slide-desktop-position, center center);
+      /* Keep center focal point on desktop too; the per-slide
+         offsets (58%/64% etc.) were trimming subjects on the left edge. */
+      object-position: center center;
     }
     .hero-banner__content {
       text-align: left;

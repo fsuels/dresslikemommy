@@ -289,9 +289,25 @@
 
 .card__media .media img {
   height: 100%;
+  /* Use `cover` so cards line up evenly. The container ratio is forced
+     to portrait below so the full outfit (mommy + child) shows without
+     cropping legs or heads. */
   object-fit: cover;
   object-position: center center;
   width: 100%;
+}
+
+/* Force product-card containers to a tall portrait ratio that matches
+   the source product photos (~352x627, ratio ≈ 0.56). The card-product
+   snippet sets `--ratio-percent` inline (e.g., 125%) based on the
+   section's media_aspect_ratio setting; we override it here with
+   !important so `object-fit: cover` no longer crops legs/feet.
+   175% ≈ 7/4 portrait — tall enough that full outfits show edge-to-edge
+   while still keeping every card the same height for a clean grid. */
+.card-wrapper .card-wrapper,
+.card-wrapper .card__inner.ratio,
+.card-wrapper .card.ratio {
+  --ratio-percent: 175% !important;
 }
 
 .card__inner:not(.ratio) > .card__content {
