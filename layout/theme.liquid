@@ -321,21 +321,68 @@
   {%- endif -%}
 
   <style>
+    /* Compact bottom-corner cookie banner — only shown to visitors in regions
+       that legally require consent (configured in Shopify admin → Customer
+       privacy). When it does appear, keep it small and unobtrusive so it
+       doesn't dominate the viewport. */
     html.dlm-shopify-privacy-banner-visible #shopify-pc__banner,
     html.dlm-shopify-privacy-banner-visible .shopify-pc__banner__wrapper {
       box-sizing: border-box;
-      min-height: 256px !important;
+      /* Tight max-width pill at bottom-left, NOT a full-width modal */
+      max-width: 420px !important;
+      width: calc(100% - 2rem) !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      left: 1rem !important;
+      right: auto !important;
+      bottom: 1rem !important;
+      top: auto !important;
+      transform: none !important;
+      margin: 0 !important;
+      padding: 14px 16px !important;
+      border-radius: 12px !important;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18) !important;
+      font-size: 12.5px !important;
+      line-height: 1.45 !important;
+      z-index: 9999 !important;
     }
 
-    html.dlm-shopify-privacy-banner-visible #shopify-pc__banner {
-      max-height: calc(100vh - 2rem);
-      overflow: auto;
+    html.dlm-shopify-privacy-banner-visible #shopify-pc__banner * {
+      font-size: inherit !important;
+      line-height: inherit !important;
+    }
+
+    /* Slim down the heading & body text inside the banner */
+    html.dlm-shopify-privacy-banner-visible #shopify-pc__banner h2,
+    html.dlm-shopify-privacy-banner-visible #shopify-pc__banner [class*="heading"],
+    html.dlm-shopify-privacy-banner-visible #shopify-pc__banner [class*="title"] {
+      font-size: 13px !important;
+      margin: 0 0 4px !important;
+    }
+
+    html.dlm-shopify-privacy-banner-visible #shopify-pc__banner p {
+      margin: 0 0 8px !important;
+    }
+
+    /* Compact action buttons */
+    html.dlm-shopify-privacy-banner-visible #shopify-pc__banner button,
+    html.dlm-shopify-privacy-banner-visible #shopify-pc__banner [role="button"] {
+      padding: 6px 12px !important;
+      font-size: 12px !important;
+      min-height: 0 !important;
+      border-radius: 999px !important;
     }
 
     @media screen and (max-width: 749px) {
       html.dlm-shopify-privacy-banner-visible #shopify-pc__banner,
       html.dlm-shopify-privacy-banner-visible .shopify-pc__banner__wrapper {
-        min-height: 390px !important;
+        max-width: none !important;
+        width: calc(100% - 1.5rem) !important;
+        left: 0.75rem !important;
+        right: 0.75rem !important;
+        bottom: 0.75rem !important;
+        padding: 12px 14px !important;
+        font-size: 12px !important;
       }
     }
 
