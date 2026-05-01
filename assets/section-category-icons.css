@@ -432,7 +432,9 @@
 
 @media screen and (min-width: 1200px) {
   .section-category-icons .category-icons__group--category .category-icons__scroll {
-    --category-mosaic-row: clamp(30rem, 22vw, 34rem);
+    /* Tall portrait rows on desktop — matches source photo ratio (~0.56)
+       so heads/feet aren't cropped by `object-fit: cover`. */
+    --category-mosaic-row: clamp(38rem, 30vw, 50rem);
   }
 
   .section-category-icons .category-icons__group--occasion .category-icons__scroll {
