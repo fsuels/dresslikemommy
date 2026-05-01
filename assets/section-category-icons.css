@@ -309,8 +309,13 @@
   }
 
   .section-category-icons .category-icons__group--category .category-icons__scroll {
-    --category-mosaic-row: clamp(26rem, 22vw, 34rem);
-    --category-mosaic-feature-height: calc(var(--category-mosaic-row) + var(--category-mosaic-row) + 2.4rem);
+    /* Tile geometry:
+       - Small tiles (1 col × 1 row) ≈ 322×550px → ratio 0.59 ≈ portrait photo ratio (0.56)
+       - Feature tiles (2 col × 2 rows) ≈ 668×1130px → ratio 0.59 ≈ portrait photo ratio
+       Both tile sizes now closely match the source 0.56 product photos so
+       `object-fit: cover` shows full outfits with minimal cropping. */
+    --category-mosaic-row: clamp(34rem, 30vw, 46rem);
+    --category-mosaic-feature-height: calc(var(--category-mosaic-row) * 2 + 2.4rem);
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-rows: repeat(3, var(--category-mosaic-row));
   }
@@ -329,7 +334,8 @@
   }
 
   .section-category-icons .category-icons__group--category .category-icons__image-wrap img {
-    /* Center focal point — old `center 38%` cropped the bottom of outfits. */
+    /* Container ratio (≈0.59) now matches the photos (≈0.56), so center
+       the focal point — only a tiny sliver gets cropped off either side. */
     object-position: center center;
   }
 
