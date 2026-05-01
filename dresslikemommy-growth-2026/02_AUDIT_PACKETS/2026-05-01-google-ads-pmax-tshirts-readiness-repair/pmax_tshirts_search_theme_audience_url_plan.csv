@@ -1,0 +1,13 @@
+type,value,notes
+search_theme,family matching t-shirts,Core category intent.
+search_theme,matching family tees,Core category intent.
+search_theme,parent child matching shirts,Adjacent but still shirt-led.
+search_theme,adult and child matching t-shirts,Matches available adult/child variants.
+search_theme,heart print family shirts,Product-specific.
+search_theme,matching t-shirts for family photos,Use-case signal; no unsupported claims.
+audience_signal,Website visitors - product viewers,Use only if existing eligible first-party audience is present; do not upload Customer Match/PII.
+audience_signal,Family matching collection/product visitors,Observation/signal only; avoid broad targeting changes.
+audience_signal,Cart abandoners / Checkout starters,Signal only if eligible; do not rely on tiny lists as sole targeting.
+brand_exclusion,Exclude Dress Like Mommy branded search intent from PMax where the account supports brand exclusions,Prevents Brand Search cannibalization; requires just-in-time UI support/readback.
+url_control,Final URL expansion off or allowlist only the approved product URL,Current old readback had URL expansion on; this must be corrected before launch.
+language_control,English-only assets and English/US product rows,Old live product readback showed Spanish rows; final gate must confirm no non-English product rows in scope.

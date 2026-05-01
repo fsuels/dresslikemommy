@@ -27602,6 +27602,35 @@ Residual / next best action:
 - Before activation, do one final owner-approved Standard Shopping launch review: exact live budget, status toggle, product group readback, conversion action, Merchant Center eligibility, and rollback trigger.
 - Brand Search needs a separate brand-only controlled CPC/asset pass before it can be considered activation-ready.
 
+2026-04-30 18:38 EDT - Standard Shopping activation gate
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-standard-shopping-activation-gate
+
+Why:
+- User asked to run the final owner-approved Standard Shopping activation gate: exact live budget, conversion action, Merchant Center eligibility, product-group readback, rollback trigger, then explicit enable approval.
+
+Actions:
+- Re-read live Google Ads through the Chrome CDP session without enabling anything and without changing budget.
+- Captured live Standard Shopping campaign settings, product groups, inventory filter, bid cap, purchase conversion action, and Merchant Center context.
+- Ran the read-only Merchant Center clean-label live RPC check for account `124884876`.
+- Created activation-gate packet:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-standard-shopping-activation-gate/STANDARD_SHOPPING_ACTIVATION_GATE_REPORT.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-standard-shopping-activation-gate/standard_shopping_activation_gate_readback.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-standard-shopping-activation-gate/ROLLBACK_TRIGGER.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-standard-shopping-activation-gate/SAFE_EVIDENCE_MANIFEST.md`
+
+Result:
+- Decision: `STANDARD_SHOPPING_ACTIVATION_GATE_PASSED_AWAITING_EXPLICIT_ENABLE_APPROVAL`.
+- Exact live activation candidate remains `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` (`23802638621`), paused, `$1.00/day`.
+- Live inventory filter shows `custom_label_4=us_test_ready` AND `custom_label_0=paid_eligible`, with `780` products.
+- Live product groups show `us_test_ready` active/automatic and `Everything else in "All products"` excluded.
+- Live conversion action readback shows `Google Shopping App Purchase` as `Purchases, Primary action`, dynamic value setting, and enhanced conversions enabled.
+- Merchant live label gate passed: `PASS_ALL_EXPECTED_LABELS_VISIBLE`; observed US/en sample had `paid_eligible` and `us_test_ready`.
+- No campaign was enabled and no budget was changed.
+
+Residual / next best action:
+- If the owner wants activation, require the exact action-time approval phrase: `APPROVE ENABLE STANDARD SHOPPING AT $1.00/DAY NOW`.
+- That approval authorizes only enabling Standard Shopping at `$1.00/day`; it does not authorize a budget increase, PMax launch, Remarketing launch, or additional non-budget edits.
+
 2026-04-30 18:31 EDT - Sync all local changes to main
 AGENT_CONTINUITY_ANCHOR: 2026-04-30-sync-all-local-changes-main
 
@@ -27620,3 +27649,1118 @@ Result:
 
 Residual / next best action:
 - After push, run a final `git status --short --branch` readback to confirm local `main` is clean and synced.
+
+2026-04-30 18:41 EDT - Latest checkpoint: Standard Shopping activation gate complete
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-standard-shopping-activation-gate
+
+Result:
+- The latest completed task is the Standard Shopping activation gate, not the older sync note above.
+- Packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-standard-shopping-activation-gate/`.
+- Decision: `STANDARD_SHOPPING_ACTIVATION_GATE_PASSED_AWAITING_EXPLICIT_ENABLE_APPROVAL`.
+- No campaign was enabled and no budget was changed.
+- Exact owner approval phrase required before enabling: `APPROVE ENABLE STANDARD SHOPPING AT $1.00/DAY NOW`.
+
+2026-04-30 18:51 EDT - Standard Shopping enabled after exact owner approval
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-standard-shopping-enabled
+
+Why:
+- Owner replied exactly: `APPROVE ENABLE STANDARD SHOPPING AT $1.00/DAY NOW`.
+
+Actions:
+- Enabled only `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` (`23802638621`).
+- Left budget unchanged at `$1.00/day`.
+- Re-read live campaign table, campaign settings, location options, ad group, product groups, bid guardrail, and change history.
+- Added execution artifacts:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-standard-shopping-activation-gate/STANDARD_SHOPPING_ACTIVATION_EXECUTION_REPORT.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-standard-shopping-activation-gate/standard_shopping_activation_execution_readback.csv`
+
+Result:
+- Decision: `STANDARD_SHOPPING_ENABLED_CONTROLLED_TEST_ACTIVE_AT_1_USD_PER_DAY`.
+- Campaign table readback: Standard Shopping is `Eligible`, `$1.00/day`, `$0.00` cost, `0` impressions, `0` clicks, `0.00` conversions.
+- Ad group `Ad group 1` is `Eligible`.
+- Product groups remain scoped: `us_test_ready` automatic and `Everything else in "All products"` excluded.
+- Location targeting is still `United States`; location option is still `Presence: People in or regularly in your included locations`.
+- Bid guardrail still reads back as maximum CPC `0.25`.
+- Brand Search, both PMax campaigns, and Remarketing remain paused.
+
+Residual / next best action:
+- Monitor first spend and pause immediately under `ROLLBACK_TRIGGER.md` if product scope, location, Merchant status, or purchase measurement deviates.
+
+2026-04-30 19:09 EDT - Standard Shopping budget raised to $20/day for 48-hour test
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-standard-shopping-20usd-48h-budget-test
+
+Why:
+- Owner asked whether `$1/day` was too small and then approved exactly: `APPROVE RAISE STANDARD SHOPPING TO $20/DAY FOR 48 HOURS`.
+
+Actions:
+- Changed only `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` (`23802638621`) from `$1.00/day` to `$20.00/day`.
+- Left status enabled/eligible, bid strategy unchanged, max CPC cap unchanged, location unchanged, and product scope unchanged.
+- Re-read live campaign table, hydrated settings, product groups, location options, bidding guardrail, and change history.
+- Created packet:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-standard-shopping-20usd-budget-test/STANDARD_SHOPPING_20USD_48H_BUDGET_TEST_REPORT.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-standard-shopping-20usd-budget-test/ROLLBACK_AND_MONITORING_48H.md`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-standard-shopping-20usd-budget-test/standard_shopping_20usd_budget_readback.csv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-standard-shopping-20usd-budget-test/SAFE_EVIDENCE_MANIFEST.md`
+
+Result:
+- Decision: `STANDARD_SHOPPING_20_USD_PER_DAY_48H_CONTROLLED_TEST_ACTIVE`.
+- Campaign table readback: Standard Shopping is `Eligible`, `$20.00/day`, `$0.00` cost, `0` impressions, `0` clicks, `0.00` conversions.
+- Other target campaigns remain paused at `$1.00/day`.
+- Product groups remain scoped: `us_test_ready` automatic and `Everything else in "All products"` excluded.
+- Location targeting remains `United States`; location option remains `Presence: People in or regularly in your included locations`.
+- Bid guardrail remains max CPC `0.25`.
+
+Residual / next best action:
+- Review/rollback due by 2026-05-02 19:09 EDT.
+- Do not let the `$20/day` budget continue after 48 hours without a new owner decision.
+
+2026-04-30 19:17 EDT - Google Ads continuity memory added for future sessions
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-continuity-memory
+
+Why:
+- Owner clarified that future sessions only reliably receive `AGENTS.md` and asked for durable memory plus a reusable prompt so Google Ads work can resume without losing context.
+
+Actions:
+- Added a Google Ads continuity pointer directly to `AGENTS.md`.
+- Created `ops/GOOGLE_ADS_CONTINUITY.md` as the durable paid-media handoff.
+- Created `ops/prompts/google-ads-continuation-prompt.md` as the copy/paste prompt for new sessions.
+
+Result:
+- New sessions reading `AGENTS.md` are now instructed to read `ops/GOOGLE_ADS_CONTINUITY.md` before any Google Ads, Merchant Center, GA4, or paid-launch work.
+- The continuity file records the paid-value measurement pass, Standard Shopping setup, `$20/day` 48-hour test window, rollback deadline, paused status of all other campaigns, evidence packet paths, and campaign safety rules.
+- The reusable prompt tells future sessions to inspect the deadline first and either monitor within guardrails or run the rollback/review procedure.
+
+Residual / next best action:
+- Future Google Ads sessions should start from `ops/prompts/google-ads-continuation-prompt.md` and the latest worklog anchors, then update `ops/AGENT_WORKLOG.md` after any monitoring, rollback, or campaign edit.
+
+2026-04-30 19:23 EDT - Clarified non-Standard campaigns are not fixed or active
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-other-campaigns-not-ready
+
+Why:
+- Owner asked whether the other campaigns were fixed and whether all Claude/ChatGPT recommendations had been applied.
+
+Answer / status:
+- No. Only Standard Shopping has been cleaned up, activation-gated, enabled, and raised to the approved `$20/day` 48-hour controlled test.
+- Claude/ChatGPT recommendations for Brand Search, both PMax campaigns, and Remarketing were evaluated and folded into the plan, but they were not fully implemented and those campaigns are not active.
+
+Current blockers:
+- Brand Search still needs a paused brand-only cleanup pass before activation: controlled CPC bidding, location/readback, brand-list guardrail if available, negative-keyword audit, ads/assets, and launch gate.
+- `PMax: Shopping ads (United States)` remains blocked by prior `No products for any locations` / Merchant mismatch risk and needs feed, product-scope, final URL, brand-exclusion, creative, and audience-signal rebuild.
+- `PMax: USA Google Shopping T-Shirts` remains blocked by paused asset groups, non-clean product scope, and weak/misaligned creative; it needs a separate T-shirt-only rebuild before launch.
+- `Remarketing - Cart Abandoners & Checkout Starters` remains blocked by policy/audience issues and needs compliant creative, audience eligibility, converter exclusions, frequency/content controls, dynamic remarketing/feed setup, and purchase-only verification.
+
+Result:
+- Updated `ops/GOOGLE_ADS_CONTINUITY.md` and `ops/prompts/google-ads-continuation-prompt.md` so future sessions do not assume all AI recommendations were applied.
+
+Next best action:
+- Keep monitoring the active Standard Shopping test first. After that, run a paused cleanup/gate for Brand Search as the next safest campaign candidate. PMax and Remarketing should remain rebuild-hold until their structural blockers are repaired.
+
+2026-04-30 19:51 EDT - Brand Search paused cleanup and separate activation gate complete
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-brand-search-paused-cleanup-gate
+
+Why:
+- Owner requested Brand Search paused cleanup next, with a separate activation gate, while keeping PMax and Remarketing blocked.
+
+Actions:
+- Edited only `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429` (`23805046526`) while it remained paused.
+- Changed bid strategy from `Maximize conversion value` to `Maximize clicks`.
+- Enabled maximum CPC bid limit and set it to `0.20`.
+- Changed location include option from `Presence or interest` to `Presence: People in or regularly in your included locations`.
+- Captured settings, bidding, location, ads, keywords, and change-history evidence.
+- Updated `ops/GOOGLE_ADS_CONTINUITY.md` and `ops/prompts/google-ads-continuation-prompt.md`.
+
+Result:
+- Decision: `BRAND_SEARCH_ACTIVATION_GATE_PASSED_AWAITING_EXPLICIT_OWNER_ENABLE_APPROVAL_AT_1_USD_PER_DAY`.
+- Exact enable approval phrase required: `APPROVE ENABLE BRAND SEARCH AT $1.00/DAY NOW`.
+- Campaign remains `Paused` at `$1.00/day`.
+- PMax and Remarketing remain paused/blocked. No PMax or Remarketing edits were made.
+- Evidence packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-brand-search-paused-cleanup/`.
+
+Residual / next best action:
+- Do not enable Brand Search without the exact approval phrase above.
+- Continue monitoring Standard Shopping `$20/day` 48-hour test; review/rollback due 2026-05-02 19:09 EDT.
+- Next blocked campaign work is structural repair, not launch: PMax feed/scope/creative/audience controls and Remarketing policy/audience/dynamic-feed repair.
+
+2026-04-30 20:24 EDT - Brand Search paused quality cleanup completed
+AGENT_CONTINUITY_ANCHOR: 2026-04-30-google-ads-brand-search-quality-cleanup
+
+Why:
+- Owner objected that Brand Search still lacked brand-list enforcement, extra RSAs/assets, URL suffix, negative pruning, and ad-quality work.
+
+Actions:
+- Edited only `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429` (`23805046526`) while it remained paused at `$1.00/day`.
+- Added one new RSA to `Brand - Exact`.
+- Added one new RSA to `Brand - Phrase`.
+- Added campaign URL suffix:
+  `utm_source=google&utm_medium=cpc&utm_campaign={campaignid}&utm_content={adgroupid}&utm_term={keyword}&utm_matchtype={matchtype}`.
+- Added four campaign-level callouts: `Official Store`, `Family Matching`, `Mommy And Me`, `Daddy And Me`.
+- Verified assets readback now shows `18` visible assets in scope.
+- Opened the Brand settings panel and verified Google Ads requires turning on AI Max to use brand inclusions/exclusions; no brand list was applied because AI Max remains intentionally off.
+- Audited the `253` campaign negatives from the Brand import source: `190` phrase, `63` exact, `0` broad, `0` evidence-supported prune candidates. No negatives were deleted.
+- Attempted one extra campaign structured snippet, but the UI header selector would not commit a valid header; cancelled the form without saving a broken asset.
+- Captured final ads, assets, settings, URL suffix, brand-list blocker, negative audit, and change-history evidence.
+- Updated `ops/GOOGLE_ADS_CONTINUITY.md` and `ops/prompts/google-ads-continuation-prompt.md`.
+
+Result:
+- Decision: `BRAND_SEARCH_QUALITY_CLEANUP_COMPLETE_STILL_PAUSED_AWAITING_EXPLICIT_ENABLE_APPROVAL`.
+- Campaign remains `Paused`; no launch happened.
+- Brand Search now reads back `4` responsive search ads.
+- New Exact RSA preview: `Dress Like Mommy Official | Official DressLikeMommy | Dress Like Mommy Store +12 more`.
+- New Phrase RSA preview: `Dress Like Mommy Official | Shop Dress Like Mommy | Mommy And Me Dresses +12 more`.
+- Final URL suffix readback confirms Google URL tracking options are active with the UTM suffix above.
+- Change history shows four campaign assets created at Apr 30, 2026 5:19:22 PM Google Ads account time, one Phrase RSA created at 5:10:31 PM, and campaign asset/RSA work at 5:08:32 PM.
+- Evidence packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-brand-search-quality-cleanup/`.
+
+Residual / next best action:
+- Do not enable Brand Search without the exact approval phrase: `APPROVE ENABLE BRAND SEARCH AT $1.00/DAY NOW`.
+- Brand-list enforcement should remain blocked unless the owner explicitly accepts AI Max risk or Google exposes brand inclusions without AI Max.
+- Continue monitoring active Standard Shopping `$20/day` 48-hour test; review/rollback due 2026-05-02 19:09 EDT.
+- PMax and Remarketing remain blocked pending structural repair.
+
+2026-05-01 - Shopify vendor URL leak cleanup after owner paused Standard Shopping
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-shopify-vendor-url-leak-cleanup-standard-shopping-hold
+
+Why:
+- Owner reported a serious paid-launch error: `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` had exposed or risked exposing a `1688.com` URL, so the owner paused the campaign.
+- Supplier/source URLs must never appear in Dress Like Mommy paid surfaces or Shopify customer/feed-visible product data. Only `dresslikemommy.com` / Dress Like Mommy should appear.
+
+Deadline status:
+- The Standard Shopping 48-hour review deadline has not passed. The test started 2026-04-30 19:09 EDT and is due 2026-05-02 19:09 EDT.
+- Because the owner already paused the campaign for a URL safety issue, this was treated as an immediate safety-hold/root-cause cleanup rather than a normal review.
+
+Root cause found:
+- `ops/prompts/shopify-listing-master-prompt.md` incorrectly instructed agents to put `VENDOR_URL` in Shopify tags.
+- Live Shopify confirmed the leakage was in tags, not title/body/SEO/metafields.
+
+Actions:
+- Updated `ops/prompts/shopify-listing-master-prompt.md` to forbid vendor/source URLs in Shopify tags, title, SEO, body copy, product type, channel metafields, or any customer/feed-visible field.
+- Added `ops/scripts/audit_and_remove_vendor_url_leaks.py` to scan live Shopify products and remove exact supplier URL tags.
+- Added `ops/tests/test_vendor_url_leak_guard.py`.
+- Ran live Shopify dry-run audit: `803` products scanned, `263` products had supplier URL tags, `0` title/body/SEO/metafield leaks.
+- Ran live Shopify cleanup: removed exact vendor/source URL tags from `263` products.
+- Ran final live Shopify re-scan: `803` products scanned, `0` vendor URL leaks.
+- Rechecked existing paid/feed artifacts for supplier URLs:
+  - `paid_cohort_exact_780_rows.csv`: `0` vendor URL rows
+  - `google_shopping_us_clean_subset_master.csv`: `0` vendor URL rows
+  - `upload_matched_full_clean_labels_with_age_group.csv`: `0` vendor URL rows
+- Updated `AGENTS.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and `ops/prompts/google-ads-continuation-prompt.md` to record the owner-reported pause, source URL cleanup, and re-enable hold.
+
+Evidence packet:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-203731-shopify-vendor-url-leak-cleanup/`
+- Note: packet path uses the local shell timestamp from the cleanup run.
+
+Verification:
+- `python3 -m py_compile ops/scripts/audit_and_remove_vendor_url_leaks.py ops/tests/test_vendor_url_leak_guard.py` passed.
+- `python3 ops/tests/test_vendor_url_leak_guard.py` passed.
+- `git diff --check -- ops/prompts/shopify-listing-master-prompt.md ops/scripts/audit_and_remove_vendor_url_leaks.py ops/tests/test_vendor_url_leak_guard.py` passed.
+
+Result:
+- Decision: `STANDARD_SHOPPING_OWNER_PAUSED_PENDING_VENDOR_URL_LEAK_READBACK`.
+- Live Shopify products are clean of `1688.com` / Alibaba / AliExpress URL leaks in tags, title, body, SEO, and scanned product metafields.
+- Existing local paid cohort/feed artifacts are clean of supplier URL rows.
+- No Google Ads campaign was re-enabled; PMax, Remarketing, and Brand Search remain blocked/paused.
+
+Residual / next best action:
+- Do not re-enable Standard Shopping until Merchant Center / Google Ads live readback confirms no supplier/source URL exposure after feed refresh and the owner gives fresh explicit approval.
+- If Merchant Center still shows stale supplier tags before refresh, wait/force refresh rather than re-enable paid traffic.
+
+2026-05-01 - Owner reaffirmed Standard Shopping pause / re-enable gate
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-standard-shopping-owner-pause-reenable-gate
+
+Owner directive:
+- Keep `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` paused until Merchant Center and Google Ads live readbacks confirm no supplier/source URL exposure after refresh.
+- Require fresh explicit owner approval before any re-enable.
+
+Result:
+- No campaign was re-enabled.
+- Existing safety-hold state remains: `STANDARD_SHOPPING_OWNER_PAUSED_PENDING_VENDOR_URL_LEAK_READBACK`.
+
+Next best action:
+- First verify live Google Ads campaign status remains paused/on hold.
+- Then verify Merchant Center and Google Ads product/destination surfaces are clean after refresh.
+- Only after clean readbacks, ask for fresh explicit owner approval before re-enabling.
+
+2026-05-01 - Brand Search asset-quality pass completed
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-brand-search-asset-quality-pass
+
+Why:
+- Owner pushed that Brand Search assets/ad quality needed to be checked at an expert level, not merely confirmed as present.
+
+Scope:
+- Edited only `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429` (`23805046526`) while it remained paused at `$1.00/day`.
+- Did not enable Brand Search.
+- Did not change Standard Shopping, PMax, Remarketing, conversion goals, product scope, or budgets.
+
+Actions:
+- Verified live collection/page URLs before using them as sitelink destinations.
+- Added four additional campaign-level callouts:
+  - `Matching Outfits`
+  - `Matching Dresses`
+  - `Matching Swimwear`
+  - `Shop Family Sets`
+- Added six campaign-level sitelinks with descriptions and verified collection URLs:
+  - `Mommy & Me`
+  - `Family Matching`
+  - `Matching Dresses`
+  - `Matching Swimwear`
+  - `New Arrivals`
+  - `Family Sets`
+- Paused six older lower-quality/redundant campaign sitelinks with no descriptions:
+  - `Dresses`
+  - `Matching Couples T-Shirts`
+  - `Mommy and Me Matching`
+  - `Mommy & Me`
+  - `Maxi Dresses`
+  - `New Mommy & Me`
+- Added campaign-level business name asset `Dress Like Mommy`.
+- Prepared a square 1200x1200 logo from the storefront logo and uploaded it into Google Ads Asset Library, but did not associate it to the campaign because the business-logo picker would not attach it cleanly.
+- Captured asset readback, change-history readback, screenshots, and the prepared logo files.
+- Updated `ops/GOOGLE_ADS_CONTINUITY.md` and `ops/prompts/google-ads-continuation-prompt.md`.
+
+Readback:
+- Brand Search remained `Paused`.
+- New campaign sitelinks read back as `Eligible`.
+- Old campaign sitelinks read back as `Paused`.
+- Campaign callouts read back as `Eligible`.
+- Business name `Dress Like Mommy` read back as `Pending / Under review`.
+- Change history showed campaign asset creation/changes on Apr 30, 2026 in Google Ads account time.
+
+Residual:
+- Account-level assets still include older claims such as `Quality Fabrics`, `200+ Styles`, and `Top-rated matching family styles`. They were not paused in this Brand pass because account-level assets can affect the live Standard Shopping safety-hold/review path and future campaigns.
+- Business logo is not live/associated yet; do not report it as active until Google Ads readback shows it attached.
+
+Result:
+- Decision: `BRAND_SEARCH_ASSET_QUALITY_PASS_COMPLETE_STILL_PAUSED`.
+- Do not enable Brand Search without exact approval phrase: `APPROVE ENABLE BRAND SEARCH AT $1.00/DAY NOW`.
+- Evidence packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-brand-search-asset-quality-pass/`.
+
+2026-05-01 - Standard Shopping reactivation readback blocked by Merchant Center stale supplier matches
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-standard-shopping-reactivation-readback-blocked
+
+Why:
+- Owner asked to actively verify whether `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` can be activated again, rather than only recording the hold.
+
+Actions:
+- Opened Merchant Center All products in the existing logged-in Chrome CDP session on port `9222`.
+- Re-ran live Shopify vendor URL leak scan.
+- Re-ran Merchant Center clean paid-label readback.
+- Ran live Merchant Center supplier-domain searches for `1688.com`, `detail.1688.com`, `alibaba.com`, and `aliexpress.com`.
+- Sampled `12` Merchant Center paid-cohort offer IDs from products that previously had supplier URL tags.
+- Opened a fresh Google Ads campaign table page for `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` and captured read-only text evidence.
+- Created packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reactivation-readback/`.
+
+Results:
+- Shopify live scan: `803` products scanned, `0` vendor URL tags/title/body/SEO/scanned-metafield leaks.
+- Merchant Center clean paid-label readback: `PASS_CAMPAIGN_FILTER_LABELS_VISIBLE` and `PASS_ALL_EXPECTED_LABELS_VISIBLE`.
+- Merchant Center supplier-domain readback: `BLOCKED_SUPPLIER_URL_STILL_VISIBLE`.
+  - `1688.com` search returned `50` rows.
+  - `detail.1688.com` search returned `50` rows.
+  - `alibaba.com` and `aliexpress.com` returned `0` rows.
+  - The exact paid-cohort sample offers had `0` supplier-domain hits, but broader Merchant Center still has supplier-source search matches.
+  - Returned supplier-match rows show non-paid/non-US feed labels and old labels such as `custom_label_4=0-25`, suggesting stale Merchant Center product data remains after Shopify cleanup.
+- Google Ads campaign table readback: campaign name visible, `Paused` visible, no supplier-domain hits in visible campaign-table text.
+
+Decision:
+- `DO_NOT_REACTIVATE_MERCHANT_CENTER_STILL_SHOWS_SUPPLIER_URL_MATCHES`.
+- No campaign was re-enabled.
+
+Next best action:
+- Wait for Merchant Center / Google product data refresh, then rerun the supplier-domain readback.
+- Do not ask for owner re-enable approval until Merchant Center supplier searches return `0` rows and Google Ads readbacks remain clean.
+
+2026-05-01 - Merchant supplier-domain readback rerun still blocked
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-merchant-supplier-domain-rerun-still-blocked
+
+Why:
+- Owner asked to rerun the Merchant Center supplier-domain readback after refresh and only move the campaign to approval review when Merchant Center returns `0` supplier-domain rows and Google Ads remains clean.
+
+Actions:
+- Reused the live Merchant Center All products tab in the logged-in Chrome CDP session on port `9222`.
+- Re-ran read-only Merchant Center browser RPC supplier-domain searches:
+  - `1688.com`
+  - `detail.1688.com`
+  - `alibaba.com`
+  - `aliexpress.com`
+- Re-ran read-only Google Ads campaign table text capture for `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY`.
+
+Results:
+- Merchant Center supplier-domain gate: `BLOCKED_SUPPLIER_DOMAIN_SEARCH_ROWS_STILL_VISIBLE`.
+  - `1688.com`: `50` rows.
+  - `detail.1688.com`: `50` rows.
+  - `alibaba.com`: `0` rows.
+  - `aliexpress.com`: `0` rows.
+- Sample returned Merchant rows still show old non-paid/international-style labels such as `feed_label=EGP_544866401`, `language_code=ar`, `custom_label_4=0-25`, and `custom_label_0` blank.
+- Google Ads campaign table still shows the campaign name and `Paused`; no supplier-domain hits in visible Google Ads campaign table text.
+
+Decision:
+- `DO_NOT_REACTIVATE_MERCHANT_CENTER_STILL_SHOWS_SUPPLIER_URL_MATCHES`.
+- The campaign cannot move to owner approval review yet.
+- No campaign was re-enabled.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reactivation-readback/merchant-vendor-url-rerun/merchant_supplier_domain_rerun.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reactivation-readback/google-ads-rerun/google_ads_campaigns_table_rerun.json`
+
+Next best action:
+- Wait for another Merchant Center product-data refresh and rerun the supplier-domain readback.
+- Approval review is allowed only after Merchant Center returns `0` rows for all supplier-domain searches and Google Ads remains clean/paused.
+
+2026-05-01 - Google Ads account-level asset cleanup before Brand enable
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-account-level-asset-cleanup
+
+Why:
+- Owner requested a separate account-level asset cleanup pass before any Brand Search enablement, after pushing that only the highest-quality assets should remain.
+
+Actions:
+- Worked in the live Google Ads UI through the existing Chrome CDP session on port `9222`.
+- Did not enable any campaign.
+- Did not change budgets, bid strategies, conversion goals, product scope, or campaign status.
+- Added conservative account-level callouts:
+  - `Official Store`
+  - `Matching Outfits`
+  - `Family Matching`
+  - `Mommy And Me`
+- Paused unsupported/stale account-level assets:
+  - `Quality Fabrics` callout
+  - `200+ Styles` callout
+  - `New Arrivals` sitelink with unsupported weekly-new-styles claim
+  - `Best Sellers` sitelink with unsupported top-rated claim
+  - `Matching Dresses` sitelink with unsupported `200+ styles for every occasion` claim
+- Left account-level `Matching Swimsuits`, `Family Sets`, and the `Types` structured snippet in place.
+- Did not create duplicate account-level sitelinks because Brand Search already has campaign-level, brand-specific sitelinks; duplicating them account-wide would spill into other campaigns and add unnecessary risk.
+
+Verification:
+- Google Ads table readback showed `Quality Fabrics`, `200+ Styles`, `New Arrivals`, and `Best Sellers` as `Paused` at Apr 30, 2026 9:15 PM account time.
+- Final `Matching Dresses` pause showed Google Ads snackbar `1 asset paused`.
+- Final asset-page capture found `bodyHasUnsupportedMatchingDresses200Plus=false` and `htmlHasUnsupportedMatchingDresses200Plus=false`.
+- Change-history screenshots/raw capture were saved, but subsequent direct reloads of some Google Ads URLs showed the Google Ads ad-blocker warning instead of a populated table. Treat the saved asset-page readback JSON/screenshot as the reliable evidence for this pass.
+
+Decision:
+- `ACCOUNT_LEVEL_ASSET_CLEANUP_COMPLETE_NO_ENABLE`.
+- Brand Search remains paused at `$1.00/day`.
+- Exact enable approval phrase still required: `APPROVE ENABLE BRAND SEARCH AT $1.00/DAY NOW`.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-30-google-ads-account-level-asset-cleanup/`.
+
+Next best action:
+- If owner gives the exact Brand Search enable phrase, do a final live readback of Brand Search status/budget/bid strategy/conversion goal/assets, then enable only Brand Search at `$1.00/day`.
+- Keep Standard Shopping paused/on hold until Merchant Center supplier-domain searches return `0` rows and fresh owner approval is given.
+- Keep both PMax campaigns and Remarketing blocked until their structural rebuilds are separately completed.
+
+2026-05-01 - Brand Search final live readback complete, not enabled
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-brand-search-final-readback
+
+Why:
+- Owner asked to run the final Brand Search live readback, then enable only after the exact phrase `APPROVE ENABLE BRAND SEARCH AT $1.00/DAY NOW`.
+
+Actions:
+- Used the live Google Ads UI through the Chrome CDP session on port `9222`.
+- Captured fresh readbacks for:
+  - campaign table,
+  - campaign settings,
+  - scrolled settings / other settings,
+  - ads,
+  - assets,
+  - keywords,
+  - locations.
+- Did not enable the campaign.
+- Did not change budgets, bid strategies, conversion goals, ads, keywords, assets, product scope, or campaign status.
+- Created packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-brand-search-final-readback/`.
+
+Live readback results:
+- Campaign `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429` (`23805046526`) is still `Paused`.
+- Budget is `$1.00/day`.
+- Campaign type is `Search`.
+- Cost/clicks/impressions/conversions remain `0`.
+- Bid strategy type reads `Maximize clicks`.
+- Settings readback shows:
+  - `Google Search Network`,
+  - `Account-default: Purchases`,
+  - `United States`,
+  - `English`,
+  - `Text customization and Final URL expansion turned off`,
+  - `Automatically created assets` off,
+  - `Broad match keywords` off,
+  - `Campaign URL options` using URL tracking options,
+  - `Limiting to: 0 brand lists` and `Excluding: 0 brand lists`.
+- Asset readback confirms weak account-level assets are paused, including `Quality Fabrics`, `200+ Styles`, weak `New Arrivals`, weak `Best Sellers`, and weak `Matching Dresses` with `200+ styles for every occasion`.
+- Ads readback shows `4` RSAs. Three show `Pending`; one Phrase RSA reads `Poor` ad strength.
+- Keyword readback shows brand exact/phrase terms only in the visible table; two visible exact rows remain low-search-volume (`[dress like mommy shop]`, `[dlm dresses]`).
+
+Decision:
+- `BRAND_SEARCH_FINAL_READBACK_COMPLETE_NOT_ENABLED`.
+- Exact owner enable phrase was not provided in this turn.
+- Because one RSA reads `Poor`, do not call the gate 100% perfect. Recommended next step is a paused Phrase RSA quality repair pass before enablement, unless owner explicitly accepts the residual ad-strength risk.
+
+Next best action:
+- Repair or pause/replace the Poor Phrase RSA while the campaign remains paused.
+- Then rerun the final Brand Search readback.
+- Only enable Brand Search after the exact phrase: `APPROVE ENABLE BRAND SEARCH AT $1.00/DAY NOW`.
+
+2026-05-01 - Brand Search RSA repair, exact-keyword repair, and $1/day enable
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-brand-search-rsa-repair-enabled
+
+Why:
+- Owner requested: repair or pause/replace the Poor Phrase RSA while Brand Search stayed paused, rerun the final readback, then enable only after `APPROVE ENABLE BRAND SEARCH AT $1.00/DAY NOW`.
+- The request included the exact enable phrase, so enablement was allowed only after the paused repair/readback gate passed.
+
+Actions:
+- Used the live Google Ads UI through the existing Chrome CDP session on port `9222`.
+- Paused the enabled `Brand - Phrase` RSA that read `Poor` ad strength.
+- Enabled the clean/pending `Brand - Phrase` RSA so the Phrase ad group has an enabled non-Poor RSA.
+- During final readback, found the core exact-match brand keywords were paused while the campaign was paused.
+- Enabled six core exact-match brand keywords:
+  - `[dress like mommy]`
+  - `[dresslikemommy]`
+  - `[dresslikemommy.com]`
+  - `[dress like mommy store]`
+  - `[dress like mommy outfits]`
+  - `[dress like mommy matching]`
+- Left two low-search-volume exact keywords paused: `[dress like mommy shop]` and `[dlm dresses]`.
+- Enabled only `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429` at the approved `$1.00/day`.
+- Did not change budget, bid strategy, conversion goals, location, network, product scope, PMax, Remarketing, or Standard Shopping.
+
+Verification:
+- Pre-enable campaign table readback showed Brand Search `Paused`, `$1.00/day`, `$0.00` cost, `0` clicks, `0` impressions, `0.00` conversions, and `Maximize clicks`.
+- Pre-enable settings readback showed `Google Search Network`, `Budget $1.00/day`, `Account-default: Purchases`, and `Maximize clicks`.
+- Pre-enable ad readback showed the Poor Phrase RSA as `Paused / Poor`, the clean Phrase RSA as enabled/pending, and the clean Exact RSA as enabled/pending.
+- Pre-enable ad-group readback showed both `Brand - Exact` and `Brand - Phrase` enabled but blocked only by campaign pause.
+- Post-enable campaign table readback showed Brand Search `Eligible`, `$1.00/day`, `$0.00` cost, `0` clicks, `0` impressions, `0.00` conversions, and `Maximize clicks`.
+- Post-enable ad readback showed:
+  - clean Phrase RSA `Eligible / Pending`,
+  - clean Exact RSA `Eligible / Pending`,
+  - Poor Phrase RSA `Paused / Poor`,
+  - older Exact RSA `Paused / Pending`.
+- Post-enable keyword readback showed six core exact keywords and two phrase keywords `Eligible`, with two low-search-volume exact keywords still paused.
+
+Decision:
+- `BRAND_SEARCH_ENABLED_AT_1_USD_PER_DAY_AFTER_RSA_REPAIR`.
+- Brand Search is now a live controlled `$1/day` brand-protection test.
+- Standard Shopping remains owner-paused/on hold pending Merchant Center supplier-domain cleanup/readback.
+- Both PMax campaigns and Remarketing remain blocked pending structural repair.
+
+Residual risks:
+- The campaign name still contains `PAUSED_20260429` even though the status now reads `Eligible`.
+- Enabled RSAs still read `Pending`, so actual serving may wait for Google review.
+- Brand-list enforcement remains unavailable without AI Max; AI Max remains off by design.
+- Google Ads still showed stale/global warning banners while the campaign row itself read `Eligible`; rely on the campaign/ad/keyword row readbacks saved in the packet.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-brand-search-rsa-repair-enable/`
+
+Next best action:
+- Monitor Brand Search at `$1/day` for first impressions, clicks, search terms, cost, and review status.
+- Do not raise Brand Search budget or change conversion goals without fresh explicit approval.
+- Keep Standard Shopping paused/on hold until Merchant Center supplier-domain searches return `0` rows and the owner gives fresh explicit approval.
+- Keep PMax and Remarketing blocked until their separate rebuild/repair gates pass.
+
+2026-05-01 - Brand Search owner-set $5/day readback and expert-readiness assessment
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-brand-search-5usd-readback
+
+Why:
+- Owner said they changed Brand Search from `$1/day` to `$5/day` and asked whether that budget is reasonable and whether the campaign is truly expert-level / 100% checked.
+
+Actions:
+- Performed read-only live Google Ads readbacks through the existing Chrome CDP session on port `9222`.
+- Captured campaign table, settings, ads, and keyword readbacks.
+- Did not edit Google Ads.
+- Did not change budgets, conversion goals, bid strategy, assets, keywords, PMax, Remarketing, Standard Shopping, or Merchant Center.
+
+Live readback:
+- Brand Search `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429` reads `Eligible`.
+- Budget reads `$5.00/day`.
+- Cost remains `$0.00`, clicks `0`, impressions `0`, conversions `0.00`.
+- Bid strategy remains `Maximize clicks`.
+- Settings readback shows `Google Search Network`, `Account-default: Purchases`, and budget `$5.00/day`.
+- Ads readback shows two visible enabled RSAs:
+  - `Brand - Phrase`: `Eligible / Pending`.
+  - `Brand - Exact`: `Eligible / Pending`.
+- Keyword readback shows core exact/phrase keywords eligible.
+
+Assessment:
+- `$5/day` is more reasonable than `$1/day` for a controlled Brand Search test while still keeping risk low.
+- The campaign is expert-safe for a controlled launch, but not "100% performance-proven" yet because the enabled RSAs are still `Pending`, no impressions/clicks/search terms exist, and Google has not produced final ad-strength/review outcomes.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-brand-search-5usd-readback/`
+
+Next best action:
+- Monitor Brand Search at `$5/day` for first impressions, clicks, cost, search terms, ad review status, Quality Score, and Search Impression Share.
+- Do not raise the Brand budget again or change conversion goals without fresh explicit approval.
+
+2026-05-01 - Google Ads fresh-session memory updated after Brand $5/day readback
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-memory-files-refreshed-brand-5usd
+
+Why:
+- Owner asked to make sure the memory file used by new sessions reflects everything done so future agents continue from the current state.
+
+Actions:
+- Updated `AGENTS.md` Google Ads continuity section to point at the latest Brand Search `$5/day` readback anchor instead of the stale Shopify vendor URL cleanup anchor.
+- Updated `AGENTS.md` to state Brand Search is live/eligible at `$5.00/day`, Standard Shopping remains on supplier-domain safety hold, and PMax/Remarketing remain paused/blocked.
+- Updated `AGENTS.md` safety rule: do not enable PMax, Remarketing, or Standard Shopping; do not raise Brand Search above `$5/day`; do not change budgets/product scope/conversion goals without fresh explicit owner approval.
+- Updated `ops/prompts/google-ads-continuation-prompt.md` to point at `2026-05-01-google-ads-memory-files-refreshed-brand-5usd`.
+- Updated `ops/GOOGLE_ADS_CONTINUITY.md` key packets and worklog anchors to include the Brand Search `$5/day` readback packet and anchor.
+
+Result:
+- Fresh sessions that only read `AGENTS.md` are now directed to the current Google Ads state and the correct durable handoff files.
+
+Next best action:
+- In the next session, read `AGENTS.md`, then `ops/GOOGLE_ADS_CONTINUITY.md`, then search the worklog for `AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-memory-files-refreshed-brand-5usd`.
+
+2026-05-01 - Agent coordination guardrail added for parallel Google Ads work
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-agent-coordination-standard-shopping-lock
+
+Why:
+- Owner reported stopping work on `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` because a problem was discovered and another agent is working on fixing it.
+- Owner asked for a system so multiple agents can work in coordination without affecting each other's progress.
+
+Actions:
+- Created `ops/AGENT_COORDINATION.md` as the active workstream / lock registry.
+- Added coordination rules:
+  - one writer per campaign/feed/product cohort/theme area,
+  - read-only audits may run in parallel,
+  - writes require a narrow active claim,
+  - agents must not clear another agent's lock without explicit owner transfer/clearance.
+- Added a hard active lock for Standard Shopping:
+  - workstream: Standard Shopping supplier/source-url repair,
+  - surface: `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` / campaign `23802638621` plus related Google Ads, Merchant Center, and feed surfaces,
+  - status: `LOCKED_BY_OTHER_AGENT`.
+- Added read-only/shared monitoring row for Brand Search at `$5/day`.
+- Added blocked/unclaimed rows for PMax rebuild planning and Remarketing rebuild planning.
+- Updated `AGENTS.md` so new sessions must read `ops/AGENT_COORDINATION.md` before touching external systems or shared workstreams.
+- Updated `ops/GOOGLE_ADS_CONTINUITY.md` and `ops/prompts/google-ads-continuation-prompt.md` to point to the coordination registry and Standard Shopping lock.
+
+Result:
+- Future agents that only start from `AGENTS.md` will see that Standard Shopping is locked by another agent and must not be changed unless the owner clears/transfers the lock.
+- Brand Search can be monitored read-only at `$5/day`; edits or budget changes still require fresh explicit approval.
+- PMax and Remarketing remain blocked/unclaimed unless a future agent claims a narrow workstream.
+
+Next best action:
+- Any new agent should read `ops/AGENT_COORDINATION.md` immediately after `AGENTS.md`, claim a narrow workstream before writing, and update the registry/worklog on handoff.
+
+2026-05-01 - Google Ads automatic bootstrap and stale-prompt guard hardened
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-auto-bootstrap-coordination-hardening
+
+Why:
+- Owner said new sessions currently only get `AGENTS.md` automatically and should not need a manually pasted stale prompt to continue Google Ads work.
+- Owner also pasted the old `2026-04-30-google-ads-continuity-memory` prompt, which no longer reflected Brand Search at `$5/day` or the Standard Shopping lock held by another agent.
+
+Actions:
+- Updated `AGENTS.md` so it explicitly treats itself as the automatic bootstrap memory and instructs agents to reconcile any older pasted prompt against `AGENTS.md`, `ops/AGENT_COORDINATION.md`, and `ops/GOOGLE_ADS_CONTINUITY.md`.
+- Marked the old Google Ads prompt/anchor `2026-04-30-google-ads-continuity-memory` as stale/superseded.
+- Updated the latest Google Ads continuity anchor to `2026-05-01-google-ads-auto-bootstrap-coordination-hardening`.
+- Updated `ops/prompts/google-ads-continuation-prompt.md` so it is only a convenience copy and no longer instructs a future agent to edit/rollback Standard Shopping while the lock is active.
+- Updated `ops/GOOGLE_ADS_CONTINUITY.md` 48-hour review procedure so a locked Standard Shopping review remains read-only unless the owner explicitly clears or transfers the lock.
+
+Result:
+- New sessions that only read `AGENTS.md` should automatically load the current paid-media state, honor the Standard Shopping lock, and avoid acting on the stale April 30 prompt.
+- No Google Ads, Merchant Center, Shopify Admin, GA4/GTM, Pinterest, feed, or campaign settings were changed in this pass.
+
+Next best action:
+- For any new Google Ads session, start from `AGENTS.md`; then read `ops/AGENT_COORDINATION.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and this latest worklog anchor before touching external systems.
+
+2026-05-01 - PMax and Remarketing repair pass, no live launch edits
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-pmax-remarketing-repair-pass
+
+Why:
+- Owner asked to work on fixing the other campaigns so they can eventually become active too.
+- Standard Shopping remains locked by another agent, so only PMax and Remarketing were in scope.
+
+Actions:
+- Claimed the PMax and Remarketing repair lanes in `ops/AGENT_COORDINATION.md`.
+- Performed live readbacks via the existing Chrome DevTools Google Ads session.
+- Created repair packet:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-pmax-remarketing-repair-pass/`
+- Added:
+  - `PMAX_REMARKETING_REPAIR_PASS_REPORT.md`
+  - `pmax_tshirts_asset_copy_draft.csv`
+  - `remarketing_policy_safe_rda_copy_draft.csv`
+  - `activation_gate_checklist.md`
+  - `paused_repair_action_matrix.csv`
+- Updated `AGENTS.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and `ops/prompts/google-ads-continuation-prompt.md` with the new anchor and campaign posture.
+- Updated `ops/AGENT_COORDINATION.md` to hand off PMax as blocked/not-ready and Remarketing as awaiting action-time owner confirmation before ad upload.
+
+Live readback:
+- `PMax: Shopping ads (United States)` / `18154132278`: paused, `$1.00/day`, `$0.00` cost, `0` impressions/clicks/conversions, `Maximize conversion value`, status `No products for any locations`; asset group says products from `truehairwigs`.
+- `PMax: USA Google Shopping T-Shirts` / `18154132284`: paused, `$1.00/day`, `$0.00` cost, `0` impressions/clicks/conversions, `Maximize conversion value`, all asset groups paused, asset strength `Poor`, no audience signals/search themes, generic copy and mixed/non-T-shirt product evidence.
+- `Remarketing - Cart Abandoners & Checkout Starters` / `23609373008`: paused, `$1.00/day`, `$0.00` cost, `0` impressions/clicks/conversions, `Maximize conversions`, all five responsive display ads not eligible due `Policy (Clickbait), Campaign is paused`; Cart abandoners and Checkout starters audiences not eligible.
+
+Result:
+- No Google Ads, Merchant Center, Shopify Admin, GA4/GTM, Pinterest, feed, budget, conversion-goal, audience, product-group, or activation changes were made.
+- `PMax: Shopping ads (United States)` should not be repaired in place for launch because of wrong Merchant/no-products risk.
+- `PMax: USA Google Shopping T-Shirts` remains draft-only until a T-shirt-only product cohort and economics are proven.
+- Remarketing now has policy-safe RDA copy drafts ready, but upload/editing requires owner action-time confirmation because those ads can later be shown to shoppers.
+
+Next best action:
+- For the next live repair edit, owner can approve exactly:
+  `APPROVE UPLOAD PAUSED REMARKETING POLICY-SAFE ADS AND KEEP CAMPAIGN PAUSED`
+- That approval should not enable the campaign, raise budget, change conversion goals, upload customer lists, or touch locked Standard Shopping.
+
+2026-05-01 - Brand Search external-review expert pass, no additional live edits
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-brand-search-expert-pass-no-live-edits
+
+Why:
+- Owner pasted an external AI review of live Brand Search campaign `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429` and asked whether to agree and implement all expert-level fixes that are actually safe and ROI-positive.
+- This session first read `AGENTS.md`, `ops/AGENT_COORDINATION.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and the latest worklog anchors, including `2026-05-01-google-ads-auto-bootstrap-coordination-hardening`.
+
+Coordination:
+- Confirmed Standard Shopping `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` / `23802638621` remains `LOCKED_BY_OTHER_AGENT`; no Standard Shopping, Merchant Center, feed, product group, budget, conversion-goal, or activation-gate edits were made.
+- Confirmed the Standard Shopping 48-hour deadline is 2026-05-02 19:09 EDT; it had not passed during this 2026-05-01 pass.
+- Claimed a narrow Brand Search expert optimization lane, then closed it as `DONE_NO_LIVE_EDITS`.
+
+Actions:
+- Ran fresh read-only live Google Ads readbacks through the existing Chrome DevTools session on port `9222`.
+- Created packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-brand-search-expert-pass/`.
+- Ran read-only conversion-value gate into `conversion-readback/`.
+- Captured fresh Brand Search campaign/settings/ads/keywords/assets/audiences/locations/ad-group readbacks into `live-readback/`.
+- Wrote `BRAND_SEARCH_EXPERT_PASS_REPORT.md`.
+- Updated `AGENTS.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, `ops/prompts/google-ads-continuation-prompt.md`, and `ops/AGENT_COORDINATION.md` with the new anchor and decision.
+
+Findings:
+- Brand Search is live / enabled at `$5.00/day`.
+- Fresh ads readback showed two enabled serving RSAs:
+  - `Brand - Phrase`: `Eligible / Pending`.
+  - `Brand - Exact`: `Eligible / Pending`.
+- The external review's Poor RSA fix was already handled; the Poor Phrase RSA is not one of the enabled serving ads in the fresh readback.
+- Fresh keyword readback confirmed `[dress like mommy shop]` and `[dlm dresses]` are already paused for low search volume.
+- Conversion readback passed the purchase-value gate with exactly one primary account-level purchase action: `Google Shopping App Purchase`. `Purchases from google Adwords` remains secondary with historical all-conversion/value totals, but conversion-primary changes are account-level measurement work and remain blocked without separate explicit approval.
+- Negative pruning was not applied. Prior audit found `0` evidence-supported prune candidates, and exact negatives like `[free]` do not block longer brand queries such as `dress like mommy free shipping`.
+- Unsupported promo/review/social-proof claims such as `WELCOME20`, `100K+ moms`, `Rated 4.8`, or weekly drops were not used.
+
+Result:
+- No live Google Ads, Merchant Center, Shopify Admin, GA4/GTM, Pinterest, paid-feed, product data, budget, bid-strategy, conversion-goal, keyword, negative, audience, asset, PMax, Remarketing, or Standard Shopping edits were applied.
+- Decision: `BRAND_SEARCH_EXPERT_PASS_NO_ADDITIONAL_LIVE_EDITS`.
+
+Residual risks:
+- Enabled RSAs still read `Pending`, so final ad review/ad-strength outcome is not proven.
+- Brand Search still has image/business-logo/promotion/price asset gaps, but these need a separate policy-safe asset pass and proof-backed promo/price data.
+- Audience Observation additions may be useful later, but only after eligible existing audiences are verified; do not upload Customer Match lists or change audience targeting without explicit approval.
+
+Next best action:
+- Continue Brand Search monitoring at `$5/day` for first impressions, clicks, cost, search terms, Quality Score, Search Impression Share, and final ad review.
+- If the owner wants the conversion-primary issue addressed, open a separate conversion source-of-truth audit/repair workstream with explicit approval to change account-level conversion actions if evidence supports it.
+
+2026-05-01 - Remarketing policy-safe RDA upload and old clickbait ad pause
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-remarketing-policy-safe-rda-upload
+
+Why:
+- Owner asked whether every aspect of `Remarketing - Cart Abandoners & Checkout Starters` was checked at expert quality and approved the exact paused ad-upload scope:
+  `APPROVE UPLOAD PAUSED REMARKETING POLICY-SAFE ADS AND KEEP CAMPAIGN PAUSED`.
+- Scope was limited to policy-safe ad upload/repair while keeping the campaign paused. No launch, budget, conversion-goal, audience, feed, or targeting-control edits were approved.
+
+Coordination:
+- Honored `ops/AGENT_COORDINATION.md`.
+- Standard Shopping `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` / `23802638621` stayed `LOCKED_BY_OTHER_AGENT`; no Standard Shopping, Merchant Center, feed, product-group, budget, conversion-goal, or activation-gate edits were made.
+- Brand Search and PMax were not edited.
+
+Actions:
+- Rechecked live Google Ads surfaces for the Remarketing campaign:
+  - campaign table/settings,
+  - ad groups,
+  - ads,
+  - audiences,
+  - locations,
+  - content,
+  - ad schedule,
+  - assets,
+  - change history.
+- Created a dedicated evidence packet:
+  `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-remarketing-expert-repair-audit/`
+- Uploaded one new policy-safe responsive display ad in `Ad group 1` using existing Google Ads / website asset-library images.
+- New RDA copy:
+  - Final URL: `https://www.dresslikemommy.com/`
+  - Business name: `Dress Like Mommy`
+  - Headlines: `Your Dress Like Mommy Cart`; `Matching Family Looks`; `Mommy & Me Styles`; `Family Outfits Are Ready`; `Return To Your Cart`
+  - Long headline: `Your Dress Like Mommy Cart Is Ready When You Are`
+  - Descriptions: `Review the matching outfits you selected and continue when ready.`; `Return to review sizes, colors, and styles before checkout.`; `Find mommy and me, daddy and me, and family matching outfits.`; `Shop coordinated outfits for your next family moment.`; `Pick up where you left off with Dress Like Mommy.`
+- Paused the five old responsive display ads that carried `Policy (Clickbait), Campaign is paused`.
+- Wrote `REMARKETING_POLICY_SAFE_RDA_REPAIR_REPORT.md` into the evidence packet.
+- Updated `AGENTS.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, `ops/prompts/google-ads-continuation-prompt.md`, and `ops/AGENT_COORDINATION.md` with this anchor/status.
+
+Live readback:
+- Campaign remained paused at `$1.00/day`.
+- Campaign metrics remained `$0.00` cost, `0` impressions, `0` clicks, and `0.00` conversions.
+- New RDA editor read `Ad strength: Excellent` before save.
+- Final Ads table readback:
+  - New RDA: `Not eligible - Under review, Campaign is paused`.
+  - Old five RDAs: `Paused`, with historical `Policy (Clickbait), Campaign is paused` notes.
+- Audience readback still showed `Cart abandoners` and `Checkout starters` as `Not eligible` with `Campaign is paused, Audience not eligible`.
+
+Result:
+- Decision: `REMARKETING_POLICY_SAFE_RDA_UPLOADED_CAMPAIGN_STILL_LAUNCH_BLOCKED`.
+- The ad-policy/copy-quality blocker was repaired as far as the owner-approved paused-ad-upload scope allowed.
+- The campaign was not enabled and no spend-cap/budget/bid/conversion/audience/feed/targeting controls were changed.
+
+Residual risks:
+- Google review has not passed yet; the new RDA is still under review.
+- Audiences are still not eligible in the live readback.
+- Converter/recent purchaser exclusions were not verified/applied in this scope.
+- Dynamic remarketing / Merchant Center feed setup was not configured or verified.
+- Frequency caps, content exclusions, placement controls, and location-option readback still need a separate approved repair pass.
+- Conversion-goal cleanup remains blocked without explicit approval because it affects optimization/account measurement.
+
+Next best action:
+- Keep Remarketing paused.
+- After the new RDA clears Google review, run a separate owner-approved Remarketing launch-control repair pass for audience eligibility, converter exclusions, dynamic remarketing/feed decision, frequency/content/location controls, purchase-only goal verification, rollback trigger, and final enable gate.
+- Do not enable Remarketing without fresh exact owner approval that includes budget, duration, and rollback conditions.
+
+2026-05-01 - Brand Search fresh premium image/logo/price asset pass
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-brand-search-fresh-premium-assets
+
+Why:
+- Owner clarified that Brand Search image/logo/promotion/price asset gaps should be solved with new best-in-class creative, not reused old site/product/theme assets.
+- Goal was ROI-focused asset quality while preserving current campaign guardrails.
+
+Coordination:
+- Checked `ops/AGENT_COORDINATION.md` before the pass and claimed/closed the Brand Search asset-enrichment lane.
+- Did not touch Standard Shopping, Merchant Center, Shopify Admin, GA4/GTM, Pinterest, feeds, live product data, PMax, Remarketing, budgets, bid strategy, conversion goals, audiences, keywords, negatives, or campaign status.
+- Updated coordination row to `HANDOFF_UPLOAD_READY_OWNER_APPROVAL_REQUIRED`.
+
+Actions:
+- Created a fresh premium asset packet:
+  `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-brand-search-fresh-premium-assets/`
+- Generated five new original lifestyle image assets from scratch:
+  - mommy-and-me beach boardwalk square,
+  - mommy-and-me beach boardwalk landscape,
+  - family garden square,
+  - family garden landscape,
+  - family coastal landscape.
+- Exported a fresh Google Ads-ready square business logo from the official Dress Like Mommy logo source. Did not invent a replacement logo because storefront/logo consistency is the ROI-safe choice.
+- Built `fresh_premium_asset_upload_manifest.csv` and `fresh-premium-assets-contact-sheet.jpg`.
+- Copied the proof-backed price rows and product-price evidence into the fresh packet.
+- Preserved the promotion deferral: no current storefront-visible promo code or percent/amount-off offer was verified.
+- Marked the prior reused-image recommendation packet as superseded with `SUPERSEDED_BY_FRESH_PREMIUM_ASSETS.md`.
+- Updated `AGENTS.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and `ops/prompts/google-ads-continuation-prompt.md`.
+
+Result:
+- Decision: `FRESH_PREMIUM_ASSETS_UPLOAD_READY_PENDING_OWNER_APPROVAL`.
+- No live Google Ads upload/association was made.
+- Live upload is blocked until owner reviews the new creative and gives action-time approval because uploading Google Ads assets creates live ad creative that can be shown to shoppers.
+
+Exact upload approval phrase if owner wants the next agent to upload:
+- `APPROVE UPLOAD BRAND SEARCH FRESH IMAGE LOGO AND PRICE ASSETS ONLY; KEEP BUDGET AT $5/DAY; NO PROMOTION ASSET`
+
+Residual risks:
+- New images are AI-generated category-representative creative, not exact-SKU photography; owner should approve representation before live upload.
+- Google Ads image/logo review can still reject assets or crop them differently after upload.
+- Promotion asset remains deferred until a real, current, storefront-visible offer/code exists.
+
+Next best action:
+- Owner reviews `fresh-premium-assets-contact-sheet.jpg`.
+- If approved, upload/associate only the listed image/logo/price assets to Brand Search, keep budget at `$5/day`, and do not add a promotion asset.
+
+2026-05-01 - Standard Shopping supplier-domain cleanup/readback clean, campaign still paused
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-standard-shopping-supplier-domain-clean-readback
+
+Why:
+- Owner asked to continue the `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` repair, fix the supplier/source URL exposure, ensure ads only point to Dress Like Mommy, and keep the campaign paused until Merchant Center and Google Ads live readbacks are clean.
+- The original 48-hour Standard Shopping review/rollback deadline is 2026-05-02 19:09 EDT. As of this 2026-05-01 work, that deadline has not passed. No deadline rollback was required, and the campaign stayed paused/on hold.
+
+Actions:
+- Kept `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` paused. Did not re-enable it, change its budget, product groups, conversion goals, or product scope.
+- Added reusable Merchant Center readback script: `ops/scripts/check_merchant_supplier_domain_gate_live.py`.
+- Continued guarded Merchant stale-offer cleanup after batch 14:
+  - batch 15: `5,000` success / `0` fail
+  - batch 16: `5,000` success / `0` fail
+  - batch 17: `5,000` success / `0` fail
+- Switched to product-ID sweeps for affected products that had already been safety-unpublished from Google or were archived, because Merchant was exposing many localized/currency duplicates behind each product.
+- Product-ID sweeps 1-10 removed `9,503` rows with `0` failures.
+- Total additional Merchant rows deleted in this continuation: `24,503` success / `0` fail.
+- Audited newly surfaced product IDs in Shopify before deleting their Merchant rows.
+- Found product `6724261019745` was `ACTIVE`, Online Store published, and still Google-published while Merchant showed supplier-domain rows. Safety-unpublished that product from Google & YouTube before deleting its stale Merchant rows.
+- Confirmed newly surfaced archived products were not Online Store / Google / market published before stale Merchant row deletion.
+- Ran fresh Shopify catalog publication audit: `803` total products, `334` active, `457` archived, `0` active catalog-only products not on Online Store, no archived products needing Google/market unpublish actions.
+- Ran final Shopify vendor/source URL leak scan: `803` products scanned, `0` bad vendor URL tags, `0` title/body/SEO/metafield vendor URL leaks.
+- Ran final Merchant Center supplier-domain gate:
+  - `1688.com`: `0` rows
+  - `detail.1688.com`: `0` rows
+  - `alibaba.com`: `0` rows
+  - `aliexpress.com`: `0` rows
+- Ran final Google Ads readback for Standard Shopping: campaign name visible, `Paused` visible, no supplier-domain text visible, and no enabled/eligible status text visible in the captured campaign-table body.
+- Updated continuity memory: `AGENTS.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, `ops/prompts/google-ads-continuation-prompt.md`, and `ops/AGENT_COORDINATION.md`.
+
+Evidence:
+- Main packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reactivation-readback/`
+- Final Merchant gate: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reactivation-readback/merchant-supplier-domain-gate-after-product-id-sweep-10/merchant_supplier_domain_gate_after_product_id_sweep_10.json`
+- Final Google Ads readback: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reactivation-readback/google-ads-standard-shopping-readback-after-merchant-clean/google_ads_standard_shopping_readback_after_merchant_clean.json`
+- Final Shopify vendor URL rescan: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reactivation-readback/shopify-vendor-url-final-rescan/dry_run_summary.json`
+- Shopify catalog audit: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reactivation-readback/shopify-catalog-audit-after-new-supplier-products/`
+- Google unpublish for newly surfaced active product: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reactivation-readback/google-unpublish-new-supplier-match-product-6724261019745/unpublish_google_product_6724261019745.json`
+
+Verification:
+- `python3 ops/tests/test_vendor_url_leak_guard.py` -> `ok`
+- `python3 -m py_compile ops/scripts/check_merchant_supplier_domain_gate_live.py ops/scripts/delete_merchant_supplier_domain_matches_live.py ops/scripts/audit_and_remove_vendor_url_leaks.py` -> pass
+- `python3 ops/scripts/audit_and_remove_vendor_url_leaks.py --output-dir .../shopify-vendor-url-final-rescan` -> `0` leaks after scan
+- `python3 ops/scripts/check_merchant_supplier_domain_gate_live.py --output-dir .../merchant-supplier-domain-gate-after-product-id-sweep-10 --output-name merchant_supplier_domain_gate_after_product_id_sweep_10.json` -> `PASS_ZERO_SUPPLIER_DOMAIN_ROWS`
+
+Decision:
+- `STANDARD_SHOPPING_SUPPLIER_DOMAIN_GATE_CLEAN_STILL_PAUSED_AWAITING_EXPLICIT_OWNER_REENABLE_APPROVAL`.
+- The campaign can move to owner approval review, but it must not be re-enabled without fresh explicit owner approval in the current session.
+
+Residual risks:
+- Merchant Center data was deeply stale across many currency feed labels/languages; final supplier-domain readback is clean, but a later Shopify/Google channel refresh should still be monitored.
+- Several active products were safety-unpublished from Google & YouTube to remove supplier-domain exposure; those products remain active on the Online Store but are not currently Google-published.
+- Brand Search remains live at the owner-set `$5/day`; PMax and Remarketing remain paused/blocked.
+
+Next best action:
+- Ask the owner for an explicit Standard Shopping re-enable decision only after they review the clean readbacks.
+- If the owner approves re-enable, first do one more just-in-time Merchant supplier-domain readback and Google Ads paused/clean readback, then re-enable only the Standard Shopping campaign without changing budget/product scope/conversion goals.
+
+2026-05-01 - Standard Shopping approved re-enable after clean readbacks
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-standard-shopping-approved-reenabled
+
+Why:
+- Owner gave the exact approval phrase:
+  `APPROVE RE-ENABLE DLM_US_STANDARD_SHOPPING_TEST_PAID_READY NOW WITH NO BUDGET, PRODUCT SCOPE, OR CONVERSION GOAL CHANGES`.
+- Scope was limited to re-enabling only Google Ads campaign `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` / campaign ID `23802638621` after clean just-in-time readbacks.
+- The 48-hour review/rollback deadline remains 2026-05-02 19:09 EDT; as of this work on 2026-05-01, the deadline had not passed.
+
+Actions:
+- Reran the Merchant Center supplier-domain gate before enable:
+  - `1688.com`: `0` rows
+  - `detail.1688.com`: `0` rows
+  - `alibaba.com`: `0` rows
+  - `aliexpress.com`: `0` rows
+- Reran Google Ads pre-enable readback: campaign name visible, `Paused` visible, `$20.00/day` visible, and no supplier-domain text.
+- Re-enabled only `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY`.
+- Did not change budget, product groups, feed labels, feeds, product scope, conversion goals, PMax, Remarketing, Brand Search, or any other campaign.
+- Reran post-enable Merchant Center supplier-domain gate; all four supplier-domain searches still returned `0` rows.
+- Ran Shopify active paid-cohort readback against the exact `780` paid rows:
+  - `81` unique paid products
+  - `780` unique paid variants
+  - `0` missing products
+  - `0` non-active products
+  - `0` unpublished/no-online-url products
+  - `0` missing variants
+  - `0` unavailable paid variants
+- Ran Google Ads post-enable row readback: Standard Shopping row status icon `Enabled`, budget `$20.00/day`, campaign ID `23802638621`, and no supplier-domain text.
+- Updated continuity memory: `AGENTS.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, `ops/prompts/google-ads-continuation-prompt.md`, and `ops/AGENT_COORDINATION.md`.
+
+Evidence:
+- Main packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reenable-approved/`
+- Pre-enable Merchant gate: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reenable-approved/merchant-supplier-domain-pre-enable/merchant_supplier_domain_pre_enable.json`
+- Pre-enable Google Ads readback: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reenable-approved/google-ads-pre-enable-readback/google_ads_pre_enable_campaign_table_readback.json`
+- Post-enable Merchant gate: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reenable-approved/merchant-supplier-domain-post-enable/merchant_supplier_domain_post_enable.json`
+- Post-enable Google Ads row readback: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reenable-approved/google-ads-post-enable-readback-final/google_ads_standard_shopping_post_enable_row_readback.json`
+- Post-enable Google Ads screenshot: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reenable-approved/google-ads-post-enable-readback-final/google_ads_standard_shopping_enabled_row_screenshot.png`
+- Shopify active paid-cohort readback: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reenable-approved/shopify-active-paid-cohort-readback/shopify_active_paid_cohort_readback.json`
+
+Verification:
+- `python3 ops/scripts/check_merchant_supplier_domain_gate_live.py --output-dir dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reenable-approved/merchant-supplier-domain-pre-enable --output-name merchant_supplier_domain_pre_enable.json` -> `PASS_ZERO_SUPPLIER_DOMAIN_ROWS`
+- `python3 ops/scripts/check_merchant_supplier_domain_gate_live.py --output-dir dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reenable-approved/merchant-supplier-domain-post-enable --output-name merchant_supplier_domain_post_enable.json` -> `PASS_ZERO_SUPPLIER_DOMAIN_ROWS`
+- Inline Google Ads CDP readback -> status icon `Enabled`, `$20.00/day`, no supplier-domain text.
+- Inline Shopify Admin GraphQL paid-cohort readback -> `PASS_ACTIVE_SHOPIFY_PAID_COHORT`.
+
+Decision:
+- `STANDARD_SHOPPING_REENABLED_AFTER_OWNER_APPROVAL_AND_CLEAN_SUPPLIER_ACTIVE_COHORT_READBACKS`.
+- The campaign is enabled again at the previously approved `$20.00/day` controlled-test budget.
+- No budget, product-scope, feed-label, product-group, or conversion-goal changes were made.
+
+Residual risks:
+- Google Ads reporting is not real-time; continue monitoring spend, clicks, search terms, product-group spend, product approvals, and conversion value.
+- Merchant Center had stale supplier-domain rows earlier, so rerun the supplier-domain gate if any new item refresh or product-channel change occurs.
+- Google Ads can overdeliver against average daily budgets; do not let the `$20/day` test continue past the 2026-05-02 19:09 EDT review deadline without a new owner decision.
+
+Next best action:
+- At or before 2026-05-02 19:09 EDT, run the Standard Shopping 48-hour review/rollback procedure from `ops/GOOGLE_ADS_CONTINUITY.md`.
+- Keep PMax and Remarketing paused/blocked.
+- Do not increase budgets, expand product scope, change conversion goals, or make any further Standard Shopping status changes without fresh explicit owner approval.
+
+2026-05-01 - Remarketing warm launch-control repair completed, campaign still paused
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-remarketing-warm-launch-control-ready
+
+Why:
+- Owner demanded that the remaining Remarketing blockers be fixed to the highest practical launch-ready standard.
+- Prior readbacks showed the pure cart/checkout Display audiences were too small to serve by themselves: `Cart abandoners` Display size `8`, `Checkout starters` Display size `0`.
+- To make the campaign capable of serving without broad optimized targeting, the safest campaign-side fix was to add an eligible first-party warm audience bridge and make the creative generic enough for product viewers, cart abandoners, and checkout starters.
+
+Coordination:
+- Honored `ops/AGENT_COORDINATION.md`.
+- Worked only on `Remarketing - Cart Abandoners & Checkout Starters` / campaign `23609373008`.
+- Did not enable the campaign, raise budget, upload Customer Match/PII, touch Standard Shopping, touch Merchant Center feed data, touch Brand Search/PMax, change conversion goals, or clear another agent's lock.
+- Closed the coordination row as `DONE_PAUSED_WARM_REMARKETING_READY_FOR_ENABLE_GATE`.
+
+Live changes:
+- Kept campaign paused at `$1.00/day`.
+- Added `Product viewers (Retail) (AdWords)` as an additional targeted warm audience in `Ad group 1`.
+- Kept `Cart abandoners` and `Checkout starters` targeted.
+- Kept `All Converters` excluded at ad-group level.
+- Kept optimized targeting `Off`.
+- Kept dynamic ads connected to Merchant feed `Dresslikemommy | ID: 124884876`.
+- Kept dynamic-feed product filter limited to `Labels is us_test_ready` AND `Labels is paid_eligible`.
+- Rewrote the active responsive display ad from cart-only copy to generic warm-remarketing copy:
+  - Headlines: `Dress Like Mommy Styles`; `Matching Family Outfits`; `Mommy And Me Looks`; `Family Matching Sets`; `Shop Coordinated Outfits`
+  - Long headline: `Matching Family Styles From Dress Like Mommy`
+  - Descriptions: `Shop matching looks for moms, dads, kids, and families.`; `Review coordinated styles, sizes, and colors at Dress Like Mommy.`; `Pick up where you left off with Dress Like Mommy.`; `Find mommy and me, daddy and me, and family matching outfits.`; `Browse family outfits for everyday moments and special photos.`
+- Old five clickbait-limited responsive display ads remain paused.
+
+Evidence:
+- Main packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-remarketing-launch-control-repair/`
+- Report: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-remarketing-launch-control-repair/REMARKETING_LAUNCH_CONTROL_REPAIR_REPORT.md`
+- Final audiences readback: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-remarketing-launch-control-repair/raw/audiences_final_after_product_viewers.txt`
+- Final ads readback: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-remarketing-launch-control-repair/raw/ads_final_after_generic_copy.txt`
+- Final targeting readback: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-remarketing-launch-control-repair/raw/adgroup_targeting_final_after_product_viewers.txt`
+- Final settings readback: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-remarketing-launch-control-repair/raw/settings_final_after_launch_control.txt`
+- Final change-history readback: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-remarketing-launch-control-repair/raw/change_history_final_after_launch_control.txt`
+
+Final live readback:
+- Campaign: `Paused`, Display, `$1.00/day`, `Maximize conversions`, `$0.00` cost, `0` clicks, `0` impressions, `0.00` conversions, `0.00` conversion value.
+- `Product viewers (Retail) (AdWords)`: `Not eligible - Campaign is paused`, without the `Audience not eligible` blocker.
+- `Cart abandoners`: `Not eligible - Campaign is paused, Audience not eligible`.
+- `Checkout starters`: `Not eligible - Campaign is paused, Audience not eligible`.
+- Ad-group targeting collapsed readback showed targeted `Cart abandoners + 2 more`, excluded `All Converters`, optimized targeting `Off`.
+- Active RDA final table row showed `Dress Like Mommy Styles`, long headline `Matching Family Styles From Dress Like Mommy`, first description `Shop matching looks for moms, dads, kids, and families.`, status `Not eligible - Campaign is paused`.
+- RDA editor showed `Ad strength: Excellent` before save after generic copy update.
+
+Decision:
+- `REMARKETING_WARM_REMARKETING_REPAIRED_PAUSED_AWAITING_EXPLICIT_ENABLE_APPROVAL`.
+- The campaign is no longer a pure cart/checkout-only campaign; it is a warm remarketing campaign using Product viewers as the serving bridge because the exact cart/checkout lists are too small.
+- Do not enable without fresh exact owner approval.
+
+Residual risks:
+- Google Ads reporting and policy review are not fully real-time; final visible status is still `Campaign is paused`.
+- The exact cart/checkout audiences remain too small by themselves, so removing Product viewers would re-block serving.
+- Conversion-goal configuration was not changed in this pass; current readback remains `Account-default`, previously reviewed as Purchases-oriented.
+
+Next best action:
+- If the owner wants to launch this repaired warm remarketing test, run one final just-in-time readback and require an exact enable phrase such as: `APPROVE ENABLE REMARKETING WARM TEST AT $1.00/DAY NOW; KEEP OPTIMIZED TARGETING OFF; KEEP ALL CONVERTERS EXCLUDED`.
+- Keep PMax paused/blocked until separate structural repair is completed.
+
+2026-05-01 - Combined paid-media memory refresh for next AI
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-paid-media-combined-memory-refresh
+
+Why:
+- Owner asked to update memory so any other AI can continue where this session left off.
+- This entry adds no live Google Ads, Merchant Center, Shopify Admin, feed, budget, bid, product-scope, product-group, or conversion-goal edits.
+
+Current combined state:
+- Standard Shopping `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` / `23802638621` is enabled again at `$20.00/day` after exact owner approval and clean just-in-time readbacks.
+- Standard Shopping re-enable approval phrase was: `APPROVE RE-ENABLE DLM_US_STANDARD_SHOPPING_TEST_PAID_READY NOW WITH NO BUDGET, PRODUCT SCOPE, OR CONVERSION GOAL CHANGES`.
+- Standard Shopping readbacks:
+  - Merchant Center supplier-domain gates before and after enable: `0` rows for `1688.com`, `detail.1688.com`, `alibaba.com`, and `aliexpress.com`.
+  - Google Ads final row: status icon `Enabled`, `$20.00/day`, campaign ID `23802638621`, no supplier-domain text.
+  - Shopify active paid cohort: `780` paid rows across `81` active Online Store products and `780` available variants; `0` missing, inactive, unpublished/no-online-url, or unavailable rows.
+- Standard Shopping evidence packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reenable-approved/`.
+- Standard Shopping 48-hour review/rollback deadline remains 2026-05-02 19:09 EDT. Do not let `$20/day` continue past that deadline without a new owner decision.
+- Brand Search `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429` remains enabled/eligible at owner-set `$5.00/day`; do not raise above `$5/day` or change conversion goals without fresh explicit approval.
+- Brand Search fresh premium assets are upload-ready but not live. Packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-brand-search-fresh-premium-assets/`. Upload/association requires owner action-time approval.
+- PMax campaigns remain paused/blocked. `PMax: Shopping ads (United States)` should not be repaired in place for launch because of wrong Merchant/no-products risk. `PMax: USA Google Shopping T-Shirts` needs verified T-shirt-only cohort/economics before asset upload or activation.
+- Remarketing `Remarketing - Cart Abandoners & Checkout Starters` remains paused at `$1.00/day`. Warm launch-control repair is complete, but enable still requires fresh exact owner approval.
+- Remarketing warm repair details: `Product viewers (Retail) (AdWords)` is the eligible warm serving bridge; `Cart abandoners` and `Checkout starters` remain targeted; `All Converters` remains excluded; optimized targeting remains off; location remains United States presence-only; frequency cap remains `3/day/user`; dynamic ads remain connected to Merchant feed `Dresslikemommy | ID: 124884876`; feed product filter remains `Labels is us_test_ready` AND `Labels is paid_eligible`; active RDA was rewritten to generic warm policy-safe copy and read `Excellent` before save.
+- Remarketing evidence packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-remarketing-launch-control-repair/`.
+- Shopify/vendor URL guard remains critical: never write vendor/source URLs into Shopify tags, title, SEO, body copy, product type, customer-visible metafields, feed-visible metafields, or sales-channel-visible product data.
+
+Memory files refreshed:
+- `AGENTS.md`
+- `ops/GOOGLE_ADS_CONTINUITY.md`
+- `ops/prompts/google-ads-continuation-prompt.md`
+- `ops/AGENT_WORKLOG.md`
+
+Next best action for the next AI:
+- First read `AGENTS.md`, `ops/AGENT_COORDINATION.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and the bottom of this worklog.
+- Then run the Standard Shopping 48-hour review/rollback check at or before 2026-05-02 19:09 EDT.
+- Keep PMax and Remarketing paused unless the owner gives fresh exact enable approval.
+- Do not change budgets, product scope, product groups, feed labels, conversion goals, or campaign status without fresh explicit owner approval.
+
+2026-05-01 - PMax T-Shirts local readiness repair, no live edits
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-pmax-tshirts-local-readiness-repair
+
+Why:
+- Owner asked to continue Google Ads/paid-launch work and fix all issues with `PMax: USA Google Shopping T-Shirts`.
+- Session first read `AGENTS.md`, `ops/AGENT_COORDINATION.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and the latest worklog entries, including `AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-auto-bootstrap-coordination-hardening`.
+- Source-of-truth guardrails still block live PMax enable/upload, budget increases, product-scope expansion, Merchant/feed edits, Shopify live product edits, conversion-goal edits, and Standard Shopping changes without fresh owner approval.
+
+Coordination:
+- Confirmed Standard Shopping `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` / `23802638621` remains off-limits for edits; no Standard Shopping, Merchant Center, feed, product-group, budget, conversion-goal, or activation-gate edits were made.
+- The Standard Shopping 48-hour review deadline is 2026-05-02 19:09 EDT; as of this 2026-05-01 pass, it had not passed.
+- Confirmed Brand Search is live as a controlled `$5/day` test; no Brand Search edits were made.
+- Claimed and closed a narrow local-only PMax T-Shirts readiness lane in `ops/AGENT_COORDINATION.md`.
+
+Actions:
+- Created local evidence packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-pmax-tshirts-readiness-repair/`.
+- Read prior live PMax T-Shirts evidence from `2026-04-30-google-ads-live-audit`: paused campaign, all asset groups paused, weak/mixed copy, no audience signals/search themes, final URL expansion on, no brand exclusions, and product rows showing mixed/non-English/excluded items.
+- Built strict T-shirt-only product proof from the existing paid-ready cohort file `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-google-shopping-campaign-gate/paid_cohort_exact_780_rows.csv`.
+- Found only one strict clean paid-ready T-shirt product suitable for a micro-test: Shopify product `7229259874401`, `42` variants, price `$17.99-$21.99`, unit cost `$9.00-$11.00`, all rows `paid_eligible` + `us_test_ready`, Online Store + Google/YouTube published, in stock, and cost present.
+- Rejected six shirt/T-shirt-like products from the PMax T-shirts scope because they were mixed with dresses, shorts, overalls, button-up shirts, or other non-T-shirt evidence.
+- Checked the old draft URL `https://www.dresslikemommy.com/collections/matching-t-shirts`; it returned HTTP `404`, so it is superseded.
+- Checked the repaired product URL `https://www.dresslikemommy.com/products/family-matching-t-shirt-set-with-colorful-heart-brushstroke-design`; it returned HTTP `200` and the sampled public HTML had `0` counts for `1688.com`, `detail.1688.com`, `alibaba.com`, and `aliexpress.com`.
+- Generated claim-safe final copy, search-theme/audience/URL-control plan, activation checklist, clean cohort CSV, rejected mixed-scope CSV, product summary CSV, and machine-readable summary JSON.
+- Added a supersession note to the older PMax/Remarketing repair packet so future agents do not reuse the broken URL or old mixed scope.
+- Updated `AGENTS.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, `ops/prompts/google-ads-continuation-prompt.md`, and `ops/AGENT_COORDINATION.md`.
+
+Evidence:
+- Main report: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-pmax-tshirts-readiness-repair/PMAX_TSHIRTS_READINESS_REPAIR_REPORT.md`
+- Clean cohort: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-pmax-tshirts-readiness-repair/pmax_tshirts_clean_cohort_review_only.csv`
+- Rejected mixed-scope products: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-pmax-tshirts-readiness-repair/pmax_tshirts_rejected_mixed_scope_products.csv`
+- Claim-safe copy: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-pmax-tshirts-readiness-repair/pmax_tshirts_asset_copy_final_review_only.csv`
+- Activation checklist: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-pmax-tshirts-readiness-repair/pmax_tshirts_activation_gate_checklist.md`
+- Summary JSON: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-pmax-tshirts-readiness-repair/pmax_tshirts_clean_cohort_summary.json`
+
+Decision:
+- `PMAX_TSHIRTS_LOCAL_REPAIR_PACKET_READY_LIVE_CHANGES_BLOCKED_PENDING_OWNER_APPROVAL`.
+- The PMax T-Shirts issues are fixed locally as far as current guardrails allow: broken URL replaced, mixed product scope rejected, clean micro-cohort proven, claim-safe copy drafted, audience/search-theme/URL controls documented, and activation gate written.
+- The live campaign remains paused/blocked. No live Google Ads, Merchant Center, Shopify Admin, paid-feed, budget, product-scope, asset, audience, conversion-goal, campaign-status, or Standard Shopping edits were made.
+
+Residual risks:
+- The clean cohort is a micro-test only: one product / `42` variants, which may be too narrow for PMax learning.
+- The clean T-shirt item IDs may overlap active Standard Shopping paid-ready scope; avoid overlapping spend unless the owner explicitly accepts it after the Standard Shopping review.
+- Final URL expansion, brand exclusions, asset strength, budget, product scope, Merchant Center status, and campaign status still require live just-in-time readback before any upload or launch.
+
+Next best action:
+- Keep PMax paused.
+- If owner wants to proceed, require a fresh exact approval phrase for upload-prep only, then run just-in-time Google Ads/Merchant/Shopify readbacks before any live upload.
+- A separate enable approval would still be required after upload/ad review/readback.
+
+2026-05-01 - PMax Shopping replacement readiness packet, no live edits
+AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-pmax-shopping-replacement-readiness
+
+Why:
+- Owner asked to continue paid-launch work, summarize current locks/state, and fix all issues with `PMax: Shopping ads (United States)` so it can be activated.
+- Current source-of-truth files say the existing `PMax: Shopping ads (United States)` campaign should not be repaired in place because of wrong Merchant/no-products risk.
+
+Bootstrap state read:
+- Read `AGENTS.md`, `ops/AGENT_COORDINATION.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and latest `ops/AGENT_WORKLOG.md` entries.
+- Confirmed requested anchor `AGENT_CONTINUITY_ANCHOR: 2026-05-01-google-ads-auto-bootstrap-coordination-hardening` exists, but newer state is superseded by `AGENT_CONTINUITY_ANCHOR: 2026-05-01-paid-media-combined-memory-refresh`.
+- Standard Shopping `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` / `23802638621` is enabled at `$20/day` after exact owner approval and clean readbacks. Review/rollback deadline remains 2026-05-02 19:09 EDT, which had not passed at local check time 2026-05-01 00:52 EDT.
+- Brand Search remains live/eligible at `$5/day`; monitor only unless fresh approval is given.
+- Remarketing remains paused at `$1/day`; warm launch-control repair is complete but enable requires fresh exact approval.
+- PMax campaigns remain paused/blocked. `PMax: Shopping ads (United States)` must be replaced/not repaired in place; `PMax: USA Google Shopping T-Shirts` remains a separate active local-readiness workstream and was not touched in this pass.
+
+Coordination:
+- Checked `ops/AGENT_COORDINATION.md` before paid-media work.
+- Claimed only a local-file PMax Shopping replacement-readiness lane.
+- Closed the lane as `DONE_LOCAL_BLUEPRINT_OWNER_APPROVAL_REQUIRED`.
+- Did not touch live Google Ads, Merchant Center, Shopify Admin, GA4/GTM, Pinterest, feeds, live product data, product groups, budgets, conversion goals, Standard Shopping, Brand Search, Remarketing, or PMax campaign status.
+
+Actions:
+- Created local packet:
+  `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-google-ads-pmax-shopping-replacement-readiness/`
+- Added `PMAX_SHOPPING_REPLACEMENT_READINESS_REPORT.md`.
+- Added `pmax_shopping_issue_resolution_matrix.csv`.
+- Added `pmax_shopping_replacement_build_spec.csv`.
+- Added `pmax_shopping_activation_gate.md`.
+- Added `owner_approval_phrases.md`.
+- Updated `AGENTS.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and `ops/prompts/google-ads-continuation-prompt.md` to point at the new PMax Shopping replacement-readiness packet.
+- Updated `ops/AGENT_COORDINATION.md` with the completed local-only handoff.
+
+Findings:
+- Existing live campaign `PMax: Shopping ads (United States)` / `18154132278` remains a do-not-repair activation risk because prior readbacks showed `No products for any locations`, asset group text for `truehairwigs`, and Merchant Center `513542500 - truehairwigs`.
+- Safe resolution is replacement, not in-place repair.
+- Replacement must use Merchant Center `124884876 - Dresslikemommy`, only Dress Like Mommy paid-ready products, locked/allowlisted URLs, documented brand posture, fresh supplier-domain readbacks, purchase-value readback, and owner-approved budget.
+- Local paid-cohort evidence remains `780` rows across `81` products, all `paid_eligible`, `us_test_ready`, `margin_medium`, `aov_medium`, and `in_stock`. Category split in the local cohort: `345` swimsuits, `214` mommy_me, `103` family_matching, `89` daddy_me, `29` pajamas.
+- PMax activation is still blocked while Standard Shopping is actively testing the same paid-ready cohort unless the owner approves overlap, pauses/changes Standard Shopping after its review, or creates a separately verified non-overlapping cohort.
+
+Verification:
+- Parsed both new CSVs with Python `csv.DictReader`: issue matrix has `10` rows; build spec has `18` rows.
+- Confirmed new packet files exist.
+- Confirmed continuity references exist in `AGENTS.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, `ops/prompts/google-ads-continuation-prompt.md`, and the new packet.
+
+Decision:
+- `PMAX_SHOPPING_REPLACEMENT_BLUEPRINT_READY__LIVE_ACTIVATION_BLOCKED`.
+- No live fix was applied because the approved guardrails and coordination file do not allow PMax enable, campaign creation, archive/rename, budget/product-scope/conversion-goal changes, asset upload, or Merchant/feed edits in this pass.
+
+Next best action:
+- Owner can approve a paused replacement draft only with:
+  `APPROVE CREATE PAUSED PMAX SHOPPING REPLACEMENT DRAFT ONLY; USE MERCHANT 124884876; KEEP ALL PMAX CAMPAIGNS PAUSED; DO NOT CHANGE STANDARD SHOPPING, BUDGETS, PRODUCT SCOPE, OR CONVERSION GOALS`
+- Do not enable PMax until the replacement shell exists paused, fresh readbacks pass, the Standard Shopping overlap decision is documented, and the owner gives a separate exact enable phrase.

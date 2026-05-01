@@ -1,0 +1,21 @@
+gate_item,status,current_value,evidence
+campaign,pass,DLM_US_STANDARD_SHOPPING_TEST_PAID_READY,raw/standard_shopping_settings_live_activation_gate_expanded.txt
+campaign_id,pass,23802638621,raw/standard_shopping_settings_live_activation_gate_expanded.txt
+live_status,pass,Paused,raw/standard_shopping_settings_live_activation_gate_expanded.txt
+exact_live_budget,pass,$1.00/day,raw/standard_shopping_settings_live_activation_gate_expanded.txt
+campaign_type,pass,Shopping,raw/standard_shopping_settings_live_activation_gate_expanded.txt
+merchant_center_css,pass,124884876 - Dresslikemommy / CSS: Google Shopping,raw/standard_shopping_settings_live_activation_gate_expanded.txt
+feed_label,pass,US,raw/standard_shopping_settings_live_activation_gate_expanded.txt
+network,pass,Google Search Network,raw/standard_shopping_settings_live_activation_gate_expanded.txt
+campaign_conversion_goal,pass_with_note,Account-default,raw/standard_shopping_settings_live_activation_gate_expanded.txt
+primary_purchase_action,pass,Google Shopping App Purchase / Purchases Primary action / value enabled / enhanced conversions enabled,raw/google_ads_purchase_conversion_action_live_activation_gate.txt
+paid_value_measurement_gate,pass,order 6575644803169 sent value 19.99 currency USD and transaction id,../2026-04-30-google-ads-measurement-paid-order-live-capture-3/FINAL_PAID_VALUE_MEASUREMENT_GATE_PASS_REPORT.md
+merchant_label_gate,pass,PASS_ALL_EXPECTED_LABELS_VISIBLE,raw/merchant_exact_label_readback_refresh_check.json
+merchant_paid_cohort,pass,780 rows / 81 products / 780 available variants / 0 product issues / 0 variant issues,../2026-04-29-merchant-clean-label-upload/paid_label_active_status_live_shopify_check.json
+inventory_filter,pass,custom_label_4=us_test_ready AND custom_label_0=paid_eligible / products 780,raw/standard_shopping_inventory_filter_visible_controls.json
+product_group_us_test_ready,pass,Automatic,raw/standard_shopping_product_groups_live_activation_gate.txt
+product_group_everything_else,pass,Excluded,raw/standard_shopping_product_groups_live_activation_gate.txt
+bid_guardrail,pass,Maximize clicks with max CPC 0.25,raw/standard_shopping_bidding_live_activation_gate_expanded.txt
+spend_history,pass,0 impressions / 0 clicks / $0.00 cost / 0.00 conversions / 0.00 value,raw/google_ads_all_campaigns_live_activation_readback.txt
+rollback_trigger,pass,Pause immediately on trigger and keep budget at $1.00/day,ROLLBACK_TRIGGER.md
+enable_approval,blocked_until_owner_reply,APPROVE ENABLE STANDARD SHOPPING AT $1.00/DAY NOW,STANDARD_SHOPPING_ACTIVATION_GATE_REPORT.md

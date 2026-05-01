@@ -1,0 +1,19 @@
+field,value,notes
+replacement_campaign_name,DLM_US_PMAX_PAID_READY_REPLACEMENT_DRAFT,Use a new paused shell; do not mutate wrong-Merchant campaign for launch
+initial_status,Paused,No PMax activation without fresh exact owner approval
+merchant_center,124884876 - Dresslikemommy,Correct store Merchant Center
+bad_existing_campaign,PMax: Shopping ads (United States) / 18154132278,Keep paused; archive/rename only with owner approval
+initial_budget,$1.00/day,Safe draft budget only; activation budget separately approved
+country,United States,Presence-only where available
+language,English,Match current controlled US test posture
+product_filter,custom_label_0=paid_eligible AND custom_label_4=us_test_ready,Only after fresh Merchant/readback gate
+local_paid_rows,780,From paid_cohort_exact_780_rows.csv
+local_paid_products,81,From latest Standard Shopping readback and local paid cohort
+category_split,"swimsuits 345; mommy_me 214; family_matching 103; daddy_me 89; pajamas 29",All rows are margin_medium and aov_medium locally
+standard_shopping_overlap_rule,Blocked until owner decision,Do not launch PMax against same product scope while Standard Shopping test continues without approval
+final_url_expansion,Off or allowlisted only,Allowlist Dress Like Mommy product and collection URLs only
+brand_posture,Document exclusion or intentional overlap,Protect Brand Search at $5/day from quiet cannibalization
+conversion_goal,Account-default Purchases after readback,Do not change conversion goals in this workstream
+audience_signals,Use warm first-party and relevant category signals only,No Customer Match/PII upload without separate approval
+assets,Claim-safe Dress Like Mommy creative only,No unsupported quality/volume/free-delivery claims
+enable_gate,Owner approval after live readbacks,Must pass pmax_shopping_activation_gate.md

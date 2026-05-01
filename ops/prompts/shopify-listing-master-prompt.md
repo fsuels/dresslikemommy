@@ -306,12 +306,13 @@ Re-query the product and halt on mismatch:
 
 - Shopify vendor field: `dresslikemommy.com`
 - Never mention `1688`, `Alibaba`, or the vendor customer-facing
+- Never put `VENDOR_URL`, `1688`, `Alibaba`, supplier domains, or vendor/source URLs into Shopify tags, title, SEO, body copy, product type, channel metafields, or any customer/feed-visible field.
+- Keep vendor/source URLs only in local operator evidence files such as `listing.md`, draft package notes, or the worklog. They must not be written to Shopify product data.
 - Voice: warm, family-first, photo-ready
 - Use the vendor source unit in the shopper-facing size table.
 - If the vendor chart is metric, render the size table in metric only: `cm` and `kg`.
 - Never combine `cm/in` or `kg/lbs` inside the same size-table cell.
 - No prices, sale badges, shipping promises, or discount claims in title, SEO, or body copy
-- Put `VENDOR_URL` in tags only
 - Inventory defaults:
   - `tracked: true`
   - `requiresShipping: true`
@@ -566,7 +567,14 @@ Always include:
 - color words
 - child age buckets actually covered
 - adult size tags only for sizes that actually exist
+
+Never include:
+
 - `VENDOR_URL`
+- `1688`
+- `Alibaba`
+- supplier names or supplier domains
+- any source/vendor URL
 
 ## Backup CSV and Notes
 
@@ -605,7 +613,8 @@ Do not finish until all of these pass:
 - taxonomy category is set and resolves to the expected leaf full name
 - applicable metafields are written
 - every skipped metafield is explicitly documented
-- tag set matches the derived audience, sizes, and source URL
+- tag set matches the derived audience and sizes, and contains no vendor/source URL or supplier reference
+- local operator notes preserve source evidence without writing vendor/source URLs to Shopify customer/feed-visible fields
 
 Final report must include:
 
