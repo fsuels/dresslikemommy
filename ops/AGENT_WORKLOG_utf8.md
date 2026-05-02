@@ -1,5 +1,56 @@
 AGENT_CONTINUITY_ANCHOR
 
+Session: PDP sticky image column fix
+Date: 2026-05-02
+
+Problem
+- Reported: image column "loses sticky" on some product pages while scrolling on
+  desktop, leaving empty space on the left while the right info column keeps
+  going. Cited as broken: /products/seaside-blue-plaid-family-matching-set.
+  Cited as working: /products/willow-wildflower-family-matching-set.
+
+Diagnosis (live DOM, scrollY samples)
+- Both pages run the same JS-driven "desktop media flow" effect in
+  assets/product-desktop-ux.js:19-124. It does NOT use position: sticky; instead
+  it sets `--desktop-media-flow-offset` and translates `.product__media-wrapper`
+  by Y on scroll.
+- Cap logic at line 84: `maxOffset = max(0, infoHeight - mediaHeight - 24)` is
+  reduced further at line 41-58 (anchored to product description / accordion).
+  Once scroll exceeds this cap, the translate stops growing while the page keeps
+  scrolling, so the image leaves the viewport â€” exactly the "empty space on the
+  left" the user described. Both pages reach this state; only the scroll
+  position at which it visually fails differs because the right column heights
+  differ (willow ~3690px, seaside ~3932px).
+
+Fix (assets/section-main-product.css, end of file)
+- Added a real `position: sticky` rule on `.product__media-wrapper` for the PDP
+  on >=990px viewports, with `top: 3rem` and `align-self: flex-start` (the
+  parent grid uses flex with align-items: flex-start, which is what sticky in a
+  flex item needs).
+- Neutralized the legacy `transform: translateY(var(--desktop-media-flow-offset))`
+  on both `.product__media-wrapper` and `.page-width--product-breadcrumbs` with
+  `transform: none !important;` so the JS-driven media-flow effect can't fight
+  the new sticky.
+- Verified: ancestors are overflow:visible up to BODY (which is overflow:clip
+  visible). Sticky resolves against `document.scrollingElement` (HTML), so this
+  is fine.
+
+Files touched
+- assets/section-main-product.css:2314-2352 (new sticky block; legacy translate
+  override).
+
+Follow-ups
+- assets/product-desktop-ux.js still mutates `--desktop-media-flow-offset` on
+  scroll. The CSS override makes that a no-op, but a future cleanup pass can
+  remove `initDesktopProductMediaFlow` entirely (lines 2-8 and 19-124) since
+  sticky now does the job.
+- QA on more PDPs across breakpoints (>=990px) to confirm no regressions where
+  short-info products previously hid the sticky behavior.
+
+==========
+PRIOR SESSIONS BELOW
+==========
+
 Session: Quick Wins + Continuity Setup
 Date: 2025-11-12
 
@@ -201,7 +252,7 @@ Session: Hero visual polish
 Date: 2025-11-13
 
 Changes applied (evidence-first)
-- sections/hero-family-fit.liquid: Elevated desktop styling—larger typography, badge grid, refined shipping pill, video shadow/aspect ratio, and higher padding defaults—so the hero reads like a premium landing section (sections/hero-family-fit.liquid:1-220).
+- sections/hero-family-fit.liquid: Elevated desktop stylingï¿½larger typography, badge grid, refined shipping pill, video shadow/aspect ratio, and higher padding defaultsï¿½so the hero reads like a premium landing section (sections/hero-family-fit.liquid:1-220).
 
 Open TODOs (next session)
 1) Confirm hero spacing on mobile after these desktop-focused tweaks and adjust responsive rules if needed.
@@ -306,13 +357,13 @@ Open TODOs (next session)
 1) Upload curated imagery for each outfit story and refine the lookbook page links.
 2) In Shopify admin, style the Judge.me carousel to match the trust row.
 - templates/index.json: Wired outfit story blocks to live collection/product URLs (dresses, heart sweaters, swim sets) so CTAs stop pointing to placeholders; imagery still needs uploading via theme editor.
-- assets/analytics.js / section markup already tracking outfit CTA clicks—no extra code needed after URL updates.
-- templates/index.json: Dropped in a branded rich-text block (“Why families choose Dress Like Mommy”) using the existing rich-text section so the homepage has editorial copy + About link beneath the outfit stories.
+- assets/analytics.js / section markup already tracking outfit CTA clicksï¿½no extra code needed after URL updates.
+- templates/index.json: Dropped in a branded rich-text block (ï¿½Why families choose Dress Like Mommyï¿½) using the existing rich-text section so the homepage has editorial copy + About link beneath the outfit stories.
 Session: Mobile sticky CTA
 Date: 2025-11-13
 
 Changes applied (evidence-first)
-- snippets/mobile-sticky-cta.liquid + layout/theme.liquid: Added a mobile-only floating CTA (“Need matching looks fast? Shop sets”) that links to family sets and emits mobile_cta analytics events.
+- snippets/mobile-sticky-cta.liquid + layout/theme.liquid: Added a mobile-only floating CTA (ï¿½Need matching looks fast? Shop setsï¿½) that links to family sets and emits mobile_cta analytics events.
 Session: New arrivals carousel
 Date: 2025-11-13
 
@@ -321,14 +372,14 @@ Changes applied (evidence-first)
 - templates/index.json: Inserted the new arrivals section after the outfit stories with copy + collection defaults.
 
 Open TODOs (next session)
-1) Populate the “new-arrivals” collection with actual fresh SKUs or point the section to a curated collection.
+1) Populate the ï¿½new-arrivalsï¿½ collection with actual fresh SKUs or point the section to a curated collection.
 2) Consider tying the carousel to analytics (homepage_cta_click already fires) for reporting in GA4.
 Session: Collection grid consolidation
 Date: 2025-11-13
 
 Changes applied (evidence-first)
 - sections/home-gift-bundles.liquid & home-occasion-grid.liquid (new): Replaced two repetitive collection-list rows with curated Gift Bundles + Match by Occasion modules, each with CTA tracking.
-- templates/index.json: Removed collection_list_EiNf6T / collection_list_BHDW3K entries, inserted the new sections, and updated the hero secondary CTA to “Shop family sets.”
+- templates/index.json: Removed collection_list_EiNf6T / collection_list_BHDW3K entries, inserted the new sections, and updated the hero secondary CTA to ï¿½Shop family sets.ï¿½
 
 Open TODOs (next session)
 1) Upload imagery for bundle/occasion cards and link to final curated collections.
@@ -359,7 +410,7 @@ Date: 2025-11-13
 
 Changes applied (evidence-first)
 - sections/main-collection-banner.liquid:15-76, 94-119 - Added optional override_title_handle/override_title settings so we can output a custom H1 when a specific collection handle is detected.
-- templates/collection.json:1 - Configured the banner override to emit “Mommy & Me Dresses” when the handle is mommy-and-me-dresses, aligning the H1 with the new SEO intro block.
+- templates/collection.json:1 - Configured the banner override to emit ï¿½Mommy & Me Dressesï¿½ when the handle is mommy-and-me-dresses, aligning the H1 with the new SEO intro block.
 
 Open TODOs (next session)
 1) Preview the Mommy & Me collection locally to confirm the new H1 renders and adjust the string if brand wants different copy.
@@ -428,7 +479,7 @@ Session: Banner block limit
 Date: 2025-11-13
 
 Changes applied (evidence-first)
-- templates/collection.json:1 - Trimmed banner title_override blocks to eight (Dresses, Pajamas, Swim, Family Sets, Mens, Couples, Maternity, Daddy & Me) to stay under Shopify’s 10 block limit; other collections rely on default collection titles for now.
+- templates/collection.json:1 - Trimmed banner title_override blocks to eight (Dresses, Pajamas, Swim, Family Sets, Mens, Couples, Maternity, Daddy & Me) to stay under Shopifyï¿½s 10 block limit; other collections rely on default collection titles for now.
 
 Open TODOs (next session)
 1) If additional custom H1s are needed, consider splitting them into different templates or adding/deleting blocks via Theme Editor rather than exceeding the limit.
@@ -436,7 +487,7 @@ Session: Intro split for block limits
 Date: 2025-11-13
 
 Changes applied (evidence-first)
-- templates/collection.json:1 - Split the intro copy into two sections (intro-links-primary for Dresses/Pajamas/Swim/Tops/Sweaters and intro-links-secondary for Family Sets/Mens/Couples/Maternity/Daddy & Me) to stay under Shopify’s 40-block cap while keeping all requested handles covered.
+- templates/collection.json:1 - Split the intro copy into two sections (intro-links-primary for Dresses/Pajamas/Swim/Tops/Sweaters and intro-links-secondary for Family Sets/Mens/Couples/Maternity/Daddy & Me) to stay under Shopifyï¿½s 40-block cap while keeping all requested handles covered.
 
 Open TODOs (next session)
 1) If more handles need dedicated intros later, add them to intro-links-secondary (or create a third section) rather than exceeding the block limit.
