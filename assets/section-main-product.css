@@ -2311,6 +2311,46 @@ a.product__text {
   .product__media-wrapper { display: block; }
 }
 
+/* ---------------------------------------------------------------------------
+   Desktop sticky product media column
+   --------------------------------------------------------------------------
+   Pin the product image column so it stays in view while the shopper scrolls
+   through the (typically taller) right-hand info column. This replaces the
+   previous JS-driven `translateY` "media flow" effect, which capped at
+   `maxOffset = infoHeight - mediaHeight - 24` and let the image scroll out of
+   view on long product pages (the broken behavior reported on
+   /products/seaside-blue-plaid-family-matching-set vs. the working
+   /products/willow-wildflower-family-matching-set).
+
+   We use real `position: sticky` so the image column tracks the viewport for
+   the entire scroll length of the product info column on every product page.
+   The legacy translateY rule is neutralized below so it doesn't fight sticky.
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 990px) {
+  .page-width--product-main .product:not(.product--no-media) .product__media-wrapper {
+    position: sticky;
+    top: 3rem;
+    align-self: flex-start;
+    z-index: 1;
+  }
+
+  /* Neutralize the legacy JS media-flow translate so it doesn't displace the
+     now-sticky image column. The .product-section--desktop-media-flow class is
+     still added by assets/product-desktop-ux.js, but we no longer want the
+     transform applied to the media wrapper. */
+  .product-section--desktop-media-flow .page-width--product-main .product__media-wrapper {
+    transform: none !important;
+    will-change: auto;
+  }
+
+  /* The breadcrumbs translate is also part of the legacy effect; keep it
+     stationary so it doesn't drift while the media column is sticky. */
+  .product-section--desktop-media-flow .page-width--product-breadcrumbs {
+    transform: none;
+    will-change: auto;
+  }
+}
+
 /* Orange underline effect on hover for main and subcategories (PDP scope only) */
 .template-product .page-width--product-main ul li a:hover,
 .template-product .page-width--product-main ul li .subcategory a:hover {
