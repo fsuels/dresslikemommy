@@ -28831,3 +28831,24 @@ Verification:
 
 Decision:
 - `REPO_SYNC_ONLY__NO_EXTERNAL_SYSTEM_WRITES`.
+
+2026-05-06 - Follow-up Merchant Center audit artifacts included in main sync
+AGENT_CONTINUITY_ANCHOR: 2026-05-06-sync-followup-merchant-center-audit-files
+
+Why:
+- After commit `597fea3` was pushed, a fresh `git status` surfaced four additional untracked local Merchant Center audit files at repo root.
+
+Actions:
+- Inspected and included:
+  - `merchant_center_audit.md`
+  - `merchant_center_audit_per_product.csv`
+  - `merchant_center_audit_per_product.json`
+  - `merchant_center_audit_summary.json`
+- No live Merchant Center, Shopify Admin, feed upload, campaign, budget, conversion-goal, product-scope, or theme publish action was performed.
+
+Verification:
+- Parsed both Merchant Center audit JSON files successfully.
+- High-confidence token scan over the four audit files returned no matches.
+
+Decision:
+- `FOLLOWUP_REPO_SYNC_ONLY__NO_EXTERNAL_SYSTEM_WRITES`.
