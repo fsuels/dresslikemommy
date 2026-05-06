@@ -1,0 +1,20 @@
+{
+  "name": "validate-feed",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Nightly validator for the Shopify product export that feeds Google Merchant Center. Fails fast on missing required attrs or unreachable image_link/link URLs.",
+  "bin": {
+    "validate-feed": "./validateFeed.js"
+  },
+  "scripts": {
+    "start": "node validateFeed.js",
+    "smoke": "node validateFeed.js --input ../../tmp_products.json --out ./reports"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "undici": "^6.19.8"
+  }
+}

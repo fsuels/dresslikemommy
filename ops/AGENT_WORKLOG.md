@@ -28764,3 +28764,70 @@ Next best action:
 - Owner can approve a paused replacement draft only with:
   `APPROVE CREATE PAUSED PMAX SHOPPING REPLACEMENT DRAFT ONLY; USE MERCHANT 124884876; KEEP ALL PMAX CAMPAIGNS PAUSED; DO NOT CHANGE STANDARD SHOPPING, BUDGETS, PRODUCT SCOPE, OR CONVERSION GOALS`
 - Do not enable PMax until the replacement shell exists paused, fresh readbacks pass, the Standard Shopping overlap decision is documented, and the owner gives a separate exact enable phrase.
+
+2026-05-03 - Browser-AI read-only review handoff prompt drafted (Day 3 of paid activity)
+AGENT_CONTINUITY_ANCHOR: 2026-05-03-google-ads-day3-browser-ai-readonly-review-handoff
+
+Why:
+- Owner asked what to tell an external browser AI that has live Google Ads UI access so it can help after roughly 3 days of active paid traffic.
+- Standard Shopping `$20/day` 48-hour test started 2026-04-30 19:09 EDT and the documented review/rollback deadline 2026-05-02 19:09 EDT has now passed (current local time 2026-05-03 13:12 EDT, ~18 hours past the deadline).
+- No newer owner decision is documented; per `ops/GOOGLE_ADS_CONTINUITY.md` 48-hour review procedure, while the Standard Shopping lock remains active, the review must remain read-only and a needed-decision note must be recorded for the owner.
+
+Bootstrap state read:
+- Read `AGENTS.md`, `ops/AGENT_COORDINATION.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and the latest worklog entries.
+- Reconciled the user's pasted prompt anchor `2026-05-01-google-ads-auto-bootstrap-coordination-hardening` against current source-of-truth files; that anchor is older than `2026-05-01-paid-media-combined-memory-refresh` and `2026-05-01-google-ads-pmax-shopping-replacement-readiness`. Source-of-truth files win, as the prompt itself instructs.
+
+Coordination check:
+- `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` / `23802638621` is locked (`DONE_REENABLED_NO_SCOPE_CHANGE` by other-session writer; cannot pause/disable/re-enable, change budget, edit product groups/feed labels, upload feeds, edit Merchant Center products, or change conversion goals without fresh explicit owner approval).
+- Brand Search `DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429` / `23805046526` remains live at owner-set `$5/day`; monitor only, do not raise above `$5/day`.
+- Both PMax campaigns remain paused/blocked; no enable, asset upload, archive/rename, or budget/product-scope changes without fresh exact owner approval.
+- Remarketing `23609373008` remains paused at `$1/day`; warm launch-control repair is complete but enable requires fresh exact owner approval.
+- No theme, Merchant, feed, Shopify Admin, GA4/GTM, or Pinterest writes were performed in this pass.
+
+Actions:
+- Drafted a read-only browser-AI prompt for the owner to paste into a separate session that has live Google Ads UI access, so it can monitor the 3-day-active paid surfaces and report decision-quality data without performing any live edits.
+- Did not paste, upload, send, or run the prompt anywhere; it is only added as a chat reply to the owner.
+- Did not touch live Google Ads, Merchant Center, Shopify Admin, GA4/GTM, Pinterest, feeds, live product data, product groups, budgets, conversion goals, or campaign status.
+
+Findings:
+- 48-hour Standard Shopping deadline has passed without a newer owner decision; per the continuity file the safe posture is read-only review while the lock holds, plus a documented note that the owner must choose: continue `$20/day`, reduce to `$1/day`, pause, or set a different budget. This decision is the gating event for any further Standard Shopping write.
+- Brand Search has been live at `$5/day` for several days; suitable read-only review focuses on impressions, clicks, CTR, top search terms (brand-only confirmation), Quality Score on the six enabled exact and two phrase keywords, ad strength on the Eligible/Pending RSAs, and any ad-policy or budget-limited flags. No keyword/negative/asset/budget edits without fresh approval.
+- PMax repair/replacement and Remarketing enable both remain blocked pending separate exact owner approval phrases already documented in the coordination file and the relevant packets.
+
+Verification:
+- Re-read all three source-of-truth files end-to-end before drafting.
+- Confirmed deadline math: 2026-04-30 19:09 EDT + 48h = 2026-05-02 19:09 EDT; current 2026-05-03 13:12 EDT is past the deadline.
+- Confirmed the coordination file still lists the Standard Shopping row as not transferred or cleared.
+
+Decision:
+- `DAY3_READONLY_REVIEW_HANDOFF_PROMPT_DRAFTED__NO_LIVE_EDITS__OWNER_DECISION_REQUIRED_ON_STANDARD_SHOPPING_BUDGET`.
+
+Next best action (owner-side):
+- Have the browser AI run the read-only review prompt (delivered in chat).
+- After reviewing browser-AI output, owner gives one of these exact phrases for any write to happen here:
+  - `APPROVE KEEP DLM_US_STANDARD_SHOPPING_TEST_PAID_READY AT $20/DAY FOR ANOTHER <N> DAYS WITH NO PRODUCT SCOPE OR CONVERSION GOAL CHANGES`
+  - `APPROVE REDUCE DLM_US_STANDARD_SHOPPING_TEST_PAID_READY TO $1/DAY WITH NO PRODUCT SCOPE OR CONVERSION GOAL CHANGES`
+  - `APPROVE PAUSE DLM_US_STANDARD_SHOPPING_TEST_PAID_READY WITH NO PRODUCT SCOPE OR CONVERSION GOAL CHANGES`
+  - Or a different exact phrase explicitly clearing/transferring the lock.
+- Brand Search, PMax, and Remarketing remain in their current documented states unless owner gives a separate fresh approval phrase.
+
+2026-05-06 - Pending repo changes synced to main
+AGENT_CONTINUITY_ANCHOR: 2026-05-06-sync-567-local-changes-to-main
+
+Why:
+- Owner asked to sync all `567` pending local changes to `main`.
+
+Actions:
+- Read current coordination/worklog state before touching git.
+- Fetched `origin/main` and confirmed the working branch was `main`.
+- Reviewed the pending change mix: generated Shopify cost-sync audit packets, 1688 sourcing run artifacts/state, feed-validation workflow/tooling, privacy-policy drafts, and existing ops cache/state updates.
+- Ran a broad secret scan and a narrower high-confidence token scan over modified/untracked files before staging.
+- No live Google Ads, Merchant Center, Shopify Admin, GA4/GTM, Pinterest, feed upload, campaign, budget, conversion-goal, product-scope, or theme publish action was performed.
+
+Verification:
+- `git fetch origin main`
+- `git status --porcelain=v1 -uall | wc -l` returned `567`.
+- High-confidence token scan returned no matches.
+
+Decision:
+- `REPO_SYNC_ONLY__NO_EXTERNAL_SYSTEM_WRITES`.
