@@ -1,0 +1,98 @@
+{
+  "lane": "ads_parked_gate_currency_presentment",
+  "scope": "local_artifact_revalidation_only",
+  "status": "PARKED_NOT_APPROVED_CURRENCY_GATE_BLOCKED",
+  "live_google_ads_access": false,
+  "live_actions_taken": false,
+  "import_or_create_authorized": false,
+  "source_packet": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-07-paid-growth-parallel-infra-sprint/google-ads-intl-search/",
+  "referenced_validation_summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-07-paid-growth-ai-army-cache-recheck/lanes/ads-intl/GOOGLE_ADS_INTL_PACKET_RECHECK_SUMMARY.json",
+  "manifest_status": "Local draft only; paused-only if approved for import",
+  "manifest_requires_owner_approval_before_import": true,
+  "summary_result": "pass",
+  "summary_approval_status": "not_approved_in_this_lane",
+  "summary_google_ads_browser_or_api_used": false,
+  "summary_import_or_create_authorized": false,
+  "countries": [
+    "GB",
+    "CA",
+    "AU",
+    "CH",
+    "DK",
+    "DE",
+    "NL",
+    "SE",
+    "FR",
+    "BE",
+    "ES",
+    "IT",
+    "PL",
+    "CZ",
+    "RO",
+    "GR",
+    "PT"
+  ],
+  "counts": {
+    "campaigns_non_us": 17,
+    "ad_groups": 204,
+    "keywords": 612,
+    "negative_keywords": 629,
+    "rsas": 204,
+    "web_bulk_rows": 1666,
+    "ad_groups_per_campaign": 12,
+    "keywords_per_campaign": 36,
+    "negative_keywords_per_campaign": 37,
+    "rsas_per_campaign": 12
+  },
+  "status_checks": {
+    "campaigns_paused": 17,
+    "ad_groups_paused": 204,
+    "keywords_paused": 612,
+    "negative_keyword_import_rows_paused": 629,
+    "rsas_paused": 204,
+    "non_paused_importable_entities_found": 0,
+    "distinct_status_values_in_bulk": [
+      "Paused"
+    ]
+  },
+  "keyword_structure": {
+    "exact_match": 306,
+    "phrase_match": 306,
+    "broad_match": 0,
+    "non_exact_or_phrase_positive_keywords_found": 0
+  },
+  "cpc_checks": {
+    "max_cpc_found": 0.15,
+    "cap_required_at_or_below": 0.2,
+    "cpc_values_over_0_20": 0
+  },
+  "separation_checks": {
+    "new_us_campaigns_found": 0,
+    "pmax_or_performance_max_import_rows_found": 0,
+    "standard_shopping_import_rows_found": 0,
+    "standard_shopping_campaign_id_23802638621_rows_found": 0,
+    "product_scope_import_rows_found": 0,
+    "product_group_import_rows_found": 0,
+    "feed_label_import_rows_found": 0,
+    "conversion_goal_edit_import_rows_found": 0
+  },
+  "approval_gate_checks": {
+    "approval_gate_file_present": true,
+    "contains_exact_approval_phrase_prefix": true,
+    "blocks_import_create_enable_upload_edit_without_approval": true,
+    "mentions_no_enable": true,
+    "mentions_no_pmax": true,
+    "mentions_no_standard_shopping_changes": true,
+    "mentions_no_product_scope_expansion": true,
+    "mentions_no_feed_label_changes": true,
+    "mentions_no_product_group_changes": true,
+    "mentions_no_conversion_goal_changes": true
+  },
+  "currency_presentment_blocker": {
+    "status": "blocked",
+    "prior_checkout_scope": "ES/IT/RO/PT",
+    "prior_routes_and_outbound_rates": "passed_no_payment",
+    "remaining_issue": "product currency meta / Shopify currency signal and cart shipping-rate currency still read USD where EUR was expected"
+  },
+  "next_safe_action": "Keep Ads import parked; continue read-only currency/presentment, Merchant, and Pinterest gates. If exact approval later arrives, run just-in-time readbacks and preview-only bulk upload before any paused import apply."
+}

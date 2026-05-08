@@ -1,0 +1,185 @@
+- generic [active] [ref=e1] [box=0,0,1425,2014]:
+  - link "Skip to content" [ref=e2] [cursor=pointer] [box=-1,-1,122,47]:
+    - /url: "#MainContent"
+  - region "Announcement" [ref=e6] [box=-7,0,1440,38]:
+    - paragraph [ref=e7] [box=-7,0,1440,38]:
+      - generic [ref=e8] [box=-7,10,1440,13]: FREE SHIPPING ON ALL ORDERS | FAMILY MATCHING MADE EASY | SECURE CHECKOUT
+  - generic [ref=e9] [box=0,38,1425,131]:
+    - search [ref=e11] [box=20,67,400,47]:
+      - generic [ref=e12] [box=20,67,400,47]:
+        - combobox "Search for products" [ref=e13] [box=21,68,398,45]
+        - generic [box=41,78,159,24]: Search for products
+        - button "Search for products" [ref=e14] [cursor=pointer] [box=375,68,44,44]:
+          - img [ref=e15] [box=388,81,18,18]
+      - status [ref=e16] [box=19,113,400,1]
+    - banner [ref=e18] [box=0,43,1425,125]:
+      - link "Dress Like Mommy" [ref=e19] [cursor=pointer] [box=645,51,135,64]:
+        - /url: /
+        - img "Dress Like Mommy" [ref=e21] [box=653,59,120,49]
+      - navigation [ref=e22] [box=361,125,703,35]:
+        - list [ref=e23] [box=361,125,703,35]:
+          - listitem [ref=e24] [box=361,125,68,35]:
+            - link "Shop" [ref=e25] [cursor=pointer] [box=361,125,68,35]:
+              - /url: https://www.dresslikemommy.com/
+          - listitem [ref=e27] [box=429,125,137,35]:
+            - link "NEW ARRIVALS" [ref=e28] [cursor=pointer] [box=429,125,137,35]:
+              - /url: /collections/new-arrivals
+          - listitem [ref=e30] [box=566,125,123,35]:
+            - link "MOMMY & ME" [ref=e31] [cursor=pointer] [box=566,125,123,35]:
+              - /url: /collections/mommy-and-me
+          - listitem [ref=e33] [box=689,125,119,35]:
+            - link "DADDY & ME" [ref=e34] [cursor=pointer] [box=689,125,119,35]:
+              - /url: /collections/daddy-me
+          - listitem [ref=e36] [box=808,125,96,35]:
+            - link "COUPLES" [ref=e37] [cursor=pointer] [box=808,125,96,35]:
+              - /url: /collections/couples
+          - listitem [ref=e39] [box=904,125,160,35]:
+            - link "Family Matching" [ref=e40] [cursor=pointer] [box=904,125,160,35]:
+              - /url: /collections/new-women-outfits
+      - generic [ref=e42] [box=1077,61,324,44]:
+        - generic [ref=e43] [box=1077,64,228,38]:
+          - generic [ref=e46] [box=1077,64,153,38]:
+            - heading "Country/region" [level=2] [ref=e47] [box=1076,63,1,1]
+            - button "United States | USD $" [ref=e49] [cursor=pointer] [box=1077,64,153,38]
+          - generic [ref=e54] [box=1229,64,76,38]:
+            - heading "Language" [level=2] [ref=e55] [box=1228,63,1,1]
+            - button "English" [ref=e57] [cursor=pointer] [box=1229,64,76,38]
+        - link "Log in" [ref=e60] [cursor=pointer] [box=1305,61,44,44]:
+          - /url: https://www.dresslikemommy.com/customer_authentication/redirect?locale=en&region_country=US
+          - generic [ref=e61] [box=1316,70,22,25]:
+            - img [box=1316,73,22,22]
+          - generic [ref=e62] [box=1327,20,1,125]: Log in
+        - button "Cart 0 items" [ref=e63] [cursor=pointer] [box=1349,61,44,44]:
+          - img [box=1349,61,44,44]
+          - generic [ref=e64] [box=1371,61,1,44]: Cart
+          - generic [ref=e65] [box=1371,79,18,18]:
+            - generic [ref=e66] [box=1377,79,6,18]: "0"
+            - generic [ref=e67] [box=1380,79,1,18]: 0 items
+  - main [ref=e68] [box=0,169,1425,1017]:
+    - generic [ref=e72] [box=50,169,1325,142]:
+      - heading "Mommy and Me Dresses" [level=1] [ref=e73] [box=578,187,269,36]
+      - paragraph [ref=e75] [box=363,242,700,54]: Browse Mommy and Me Dresses for family photos, celebrations, and polished everyday moments.
+    - generic [ref=e76] [box=0,315,1425,372]:
+      - generic [ref=e77] [box=0,315,1425,198]:
+        - navigation "breadcrumbs" [ref=e78] [box=50,315,1325,22]:
+          - link "Home" [ref=e79] [cursor=pointer] [box=100,315,34,22]:
+            - /url: /
+          - text: ›
+          - link "Mommy and Me" [ref=e80] [cursor=pointer] [box=155,315,93,22]:
+            - /url: /collections/mommy-and-me
+          - text: › Dresses
+        - navigation "Collection categories" [ref=e81] [box=50,337,1325,176]:
+          - generic [ref=e82] [box=50,337,1325,88]:
+            - text: Main collections
+            - list [ref=e84] [box=50,366,1325,59]
+          - generic [ref=e93] [box=50,425,1325,88]:
+            - text: Within Mommy & Me
+            - list [ref=e95] [box=50,454,1325,59]
+      - generic [ref=e111] [box=0,513,1425,175]:
+        - complementary "Filter:" [ref=e112] [box=0,513,1425,81]:
+          - generic [ref=e115] [box=50,523,1325,53]:
+            - generic [ref=e116] [box=50,523,947,45]
+            - generic [ref=e136] [box=1062,523,200,21]
+            - status [ref=e140] [box=1297,523,78,21]
+        - navigation "Pagination" [ref=e145] [box=50,644,1325,44]:
+          - list [ref=e146] [box=50,644,1325,44]:
+            - listitem [ref=e147] [box=633,644,44,44]
+            - listitem [ref=e149] [box=691,644,44,44]
+            - listitem [ref=e151] [box=749,644,44,44]
+    - generic [ref=e156] [box=350,712,726,427]:
+      - generic [ref=e157] [box=383,745,660,116]:
+        - paragraph [ref=e158] [box=383,745,660,30]: Collection Note
+        - heading "Dress-led styles for photos, celebrations, and everyday twinning" [level=2] [ref=e159] [box=383,783,660,78]
+      - generic [ref=e160] [box=383,878,660,164]:
+        - paragraph [ref=e161] [box=383,878,660,91]: This edit is built for the moments when the dress sets the tone. The focus is on silhouettes that feel polished on camera, comfortable to wear, and easy to reach for again after the event.
+        - paragraph [ref=e162] [box=383,982,660,61]: Start here when you already know you want a dress-led look, then branch into broader family collections if you need to coordinate beyond mom and daughter.
+      - generic "Related dress collections" [ref=e163] [box=383,1065,660,41]:
+        - link "Browse the Family Matching hub" [ref=e164] [cursor=pointer] [box=383,1065,275,41]:
+          - /url: /collections/matching-outfits
+        - link "See all Mommy and Me outfits" [ref=e165] [cursor=pointer] [box=667,1065,255,41]:
+          - /url: /collections/mommy-and-me
+  - contentinfo [ref=e167] [box=0,1186,1425,827]:
+    - generic [ref=e168] [box=0,1247,1425,423]:
+      - generic [ref=e169] [box=50,1247,1325,181]:
+        - generic [ref=e170] [box=50,1247,420,181]:
+          - heading "Company info" [level=2] [ref=e171] [box=50,1247,420,14]
+          - list [ref=e172] [box=50,1277,420,90]:
+            - listitem [ref=e173] [box=50,1277,420,29]
+            - listitem [ref=e175] [box=50,1308,420,29]
+            - listitem [ref=e177] [box=50,1339,420,29]
+        - generic [ref=e179] [box=502,1247,420,181]:
+          - heading "Help & support" [level=2] [ref=e180] [box=502,1247,420,14]
+          - list [ref=e181] [box=502,1277,420,152]:
+            - listitem [ref=e182] [box=502,1277,420,29]
+            - listitem [ref=e184] [box=502,1308,420,29]
+            - listitem [ref=e186] [box=502,1339,420,29]
+            - listitem [ref=e188] [box=502,1369,420,29]
+            - listitem [ref=e190] [box=502,1400,420,29]
+        - generic [ref=e192] [box=955,1247,420,181]:
+          - heading "Customer care" [level=2] [ref=e193] [box=955,1247,420,14]
+          - list [ref=e194] [box=955,1277,420,29]:
+            - listitem [ref=e195] [box=955,1277,420,29]
+      - generic [ref=e197] [box=50,1429,1325,103]:
+        - heading "Style Journal" [level=2] [ref=e198] [box=50,1429,1325,14]
+        - generic [ref=e199] [box=50,1458,1325,74]:
+          - paragraph [ref=e200] [box=50,1458,1325,29]: Family fashion tips, matching outfit ideas, and seasonal style guides.
+          - link "Read the Style Journal →" [ref=e201] [cursor=pointer] [box=50,1505,163,26]:
+            - /url: /blogs/news
+      - generic [ref=e203] [box=50,1562,1325,77]:
+        - heading "Get 10% off your first order" [level=2] [ref=e204] [box=50,1562,1325,14]
+        - generic [ref=e207] [box=533,1592,360,47]:
+          - textbox "Email" [ref=e208] [box=534,1593,358,45]
+          - generic [box=554,1603,45,24]: Email
+          - button "Subscribe" [ref=e209] [cursor=pointer] [box=848,1592,44,47]:
+            - img [ref=e210] [box=862,1603,15,25]
+    - generic [ref=e211] [box=0,1711,1425,263]:
+      - generic [ref=e212] [box=0,1732,1425,121]:
+        - generic [ref=e216] [box=50,1742,82,101]:
+          - heading "Language" [level=2] [ref=e217] [box=50,1750,82,15]
+          - button "English" [ref=e219] [cursor=pointer] [box=50,1791,82,42]:
+            - generic [ref=e220] [box=61,1806,42,12]: English
+            - img [ref=e221] [box=111,1809,10,6]
+        - generic [ref=e223] [box=781,1776,594,32]:
+          - generic [ref=e224] [box=780,1775,1,1]: Payment methods
+          - list [ref=e225] [box=781,1776,594,32]:
+            - listitem [ref=e226] [box=781,1776,44,32]
+            - listitem [ref=e232] [box=831,1776,44,32]
+            - listitem [ref=e242] [box=881,1776,44,32]
+            - listitem [ref=e254] [box=931,1776,44,32]
+            - listitem [ref=e262] [box=981,1776,44,32]
+            - listitem [ref=e267] [box=1031,1776,44,32]
+            - listitem [ref=e277] [box=1081,1776,44,32]
+            - listitem [ref=e286] [box=1131,1776,44,32]
+            - listitem [ref=e293] [box=1181,1776,44,32]
+            - listitem [ref=e300] [box=1231,1776,44,32]
+            - listitem [ref=e305] [box=1281,1776,44,32]
+            - listitem [ref=e313] [box=1331,1776,44,32]
+      - generic [ref=e319] [box=50,1893,1325,81]:
+        - generic [ref=e320] [box=631,1923,163,10]:
+          - text: © 2026,
+          - link "Dress Like Mommy" [ref=e321] [cursor=pointer] [box=671,1914,122,26]:
+            - /url: /
+        - list [ref=e322] [box=50,1948,1325,26]:
+          - listitem [ref=e323] [box=337,1948,88,26]:
+            - link "Refund policy" [ref=e325] [cursor=pointer] [box=337,1948,88,26]:
+              - /url: /policies/refund-policy
+          - listitem [ref=e326] [box=436,1948,109,26]:
+            - text: ·
+            - link "Privacy policy" [ref=e328] [cursor=pointer] [box=457,1948,89,26]:
+              - /url: /policies/privacy-policy
+          - listitem [ref=e329] [box=558,1948,126,26]:
+            - text: ·
+            - link "Terms of service" [ref=e331] [cursor=pointer] [box=578,1948,106,26]:
+              - /url: /policies/terms-of-service
+          - listitem [ref=e332] [box=696,1948,118,26]:
+            - text: ·
+            - link "Shipping policy" [ref=e334] [cursor=pointer] [box=716,1948,98,26]:
+              - /url: /policies/shipping-policy
+          - listitem [ref=e335] [box=826,1948,146,26]:
+            - text: ·
+            - link "Contact information" [ref=e337] [cursor=pointer] [box=846,1948,126,26]:
+              - /url: /policies/contact-information
+          - listitem [ref=e338] [box=984,1948,104,26]:
+            - text: ·
+            - link "Style Journal" [ref=e340] [cursor=pointer] [box=1004,1948,84,26]:
+              - /url: /blogs/news

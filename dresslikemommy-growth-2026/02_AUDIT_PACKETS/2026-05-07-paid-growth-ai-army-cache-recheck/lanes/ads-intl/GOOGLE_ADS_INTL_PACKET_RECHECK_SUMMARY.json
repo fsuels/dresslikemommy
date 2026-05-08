@@ -1,0 +1,98 @@
+{
+  "lane": "google_ads_paused_international_search_infrastructure",
+  "scope": "local_packet_validation_only",
+  "source_packet": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-07-paid-growth-parallel-infra-sprint/google-ads-intl-search/",
+  "result": "pass",
+  "approval_status": "not_approved_in_this_lane",
+  "live_actions_taken": false,
+  "google_ads_browser_or_api_used": false,
+  "import_or_create_authorized": false,
+  "counts": {
+    "campaigns_non_us": 17,
+    "ad_groups": 204,
+    "keywords": 612,
+    "negative_keywords": 629,
+    "rsas": 204,
+    "web_bulk_rows": 1666,
+    "ad_groups_per_campaign": 12,
+    "keywords_per_campaign": 36,
+    "negative_keywords_per_campaign": 37,
+    "rsas_per_campaign": 12
+  },
+  "countries": [
+    "GB",
+    "CA",
+    "AU",
+    "CH",
+    "DK",
+    "DE",
+    "NL",
+    "SE",
+    "FR",
+    "BE",
+    "ES",
+    "IT",
+    "PL",
+    "CZ",
+    "RO",
+    "GR",
+    "PT"
+  ],
+  "status_checks": {
+    "campaigns_paused": 17,
+    "ad_groups_paused": 204,
+    "keywords_paused": 612,
+    "negative_keyword_import_rows_paused": 629,
+    "rsas_paused": 204,
+    "non_paused_importable_entities_found": 0
+  },
+  "keyword_structure": {
+    "exact_match": 306,
+    "phrase_match": 306,
+    "broad_match": 0,
+    "non_exact_or_phrase_positive_keywords_found": 0
+  },
+  "cpc_checks": {
+    "max_cpc_found": 0.15,
+    "cap_required_at_or_below": 0.2,
+    "cpc_values_over_0_20": 0
+  },
+  "separation_checks": {
+    "new_us_campaigns_found": 0,
+    "pmax_or_performance_max_import_rows_found": 0,
+    "standard_shopping_import_rows_found": 0,
+    "standard_shopping_campaign_id_23802638621_rows_found": 0,
+    "product_scope_import_rows_found": 0,
+    "product_group_import_rows_found": 0,
+    "feed_label_import_rows_found": 0,
+    "conversion_goal_edit_import_rows_found": 0
+  },
+  "approval_gate_checks": {
+    "approval_gate_file_present": true,
+    "contains_exact_approval_phrase_prefix": true,
+    "blocks_import_create_enable_upload_edit_without_approval": true,
+    "mentions_no_enable": true,
+    "mentions_no_pmax": true,
+    "mentions_no_standard_shopping_changes": true,
+    "mentions_no_product_scope_expansion": true,
+    "mentions_no_feed_label_changes": true,
+    "mentions_no_product_group_changes": true,
+    "mentions_no_conversion_goal_changes": true
+  },
+  "copy_claim_checks": {
+    "headline_or_description_unsupported_claim_terms_found": 0,
+    "headlines_over_30_chars": 0,
+    "descriptions_over_90_chars": 0
+  },
+  "residual_risks": [
+    "presence_only_location_targeting_requires_action_time_readback",
+    "future_bulk_upload_must_preview_with_zero_errors_before_apply",
+    "english_only_shells_are_not_local_language_launch_readiness",
+    "international_spend_still_blocked_by_policy_page_route_checkout_catalog_tracking_and_economics_gates",
+    "no_live_google_ads_account_state_was_refreshed_in_this_lane"
+  ],
+  "files_written": [
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-07-paid-growth-ai-army-cache-recheck/lanes/ads-intl/GOOGLE_ADS_INTL_PACKET_RECHECK.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-07-paid-growth-ai-army-cache-recheck/lanes/ads-intl/GOOGLE_ADS_INTL_PACKET_RECHECK_SUMMARY.json"
+  ]
+}

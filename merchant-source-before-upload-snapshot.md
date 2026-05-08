@@ -1,0 +1,78 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - button "Skip to main content" [ref=e7]:
+        - generic [ref=e10]: Skip to main content
+      - generic [ref=e11]:
+        - button "Navigation menu" [expanded] [ref=e12] [cursor=pointer]:
+          - img [ref=e16]: menu
+        - link "Merchant Center home" [ref=e17] [cursor=pointer]:
+          - /url: /mc/overview?a=124884876
+          - img "Merchant Center home" [ref=e18]
+        - dialog "Search" [ref=e20]:
+          - generic [ref=e24]:
+            - img [ref=e27]: search
+            - textbox "Search Merchant Center" [ref=e29]
+        - button "Help" [ref=e32] [cursor=pointer]:
+          - img [ref=e35]: help_outline
+        - 'button "Merchant Center account: Dresslikemommy, 124884876" [ref=e41] [cursor=pointer]':
+          - generic [ref=e42]:
+            - generic [ref=e43]: Dresslikemommy
+            - generic [ref=e44]: "124884876"
+          - img [ref=e46]: arrow_drop_down
+        - generic [ref=e52]:
+          - button "Google apps" [ref=e56] [cursor=pointer]:
+            - img [ref=e57]
+          - 'button "Google Account: test user (testhqfinds@gmail.com)" [ref=e62] [cursor=pointer]':
+            - img [ref=e64]
+    - generic [ref=e71]:
+      - navigation [ref=e72]:
+        - tree "Navigation" [ref=e75]:
+          - treeitem "Overview" [level=1] [ref=e76] [cursor=pointer]:
+            - img [ref=e79]: dashboard
+            - generic [ref=e81]: Overview
+          - treeitem "Notifications" [level=1] [ref=e82] [cursor=pointer]:
+            - img [ref=e85]: notifications
+            - generic [ref=e87]: Notifications
+          - treeitem "Products & store" [expanded] [level=1] [ref=e89] [cursor=pointer]:
+            - img [ref=e92]: inventory_2
+            - generic [ref=e93]
+            - group [ref=e99]
+          - treeitem "Creative content" [level=1] [ref=e117] [cursor=pointer]:
+            - img [ref=e120]: brush_spark
+            - generic [ref=e121]
+            - group [ref=e127]
+          - treeitem "Marketing" [expanded] [level=1] [ref=e134] [cursor=pointer]:
+            - img [ref=e137]: campaign
+            - generic [ref=e138]
+            - group [ref=e144]
+          - treeitem "Analytics" [expanded] [level=1] [ref=e162] [cursor=pointer]:
+            - img [ref=e165]: timeline
+            - generic [ref=e166]
+            - group [ref=e172]
+          - treeitem "Settings" [expanded] [level=1] [ref=e195] [cursor=pointer]:
+            - img [ref=e198]: settings
+            - generic [ref=e199]
+            - group [ref=e205]
+      - generic [ref=e229]:
+        - generic [ref=e233]:
+          - button "Back" [ref=e234] [cursor=pointer]:
+            - img [ref=e238]: arrow_back
+          - heading "supplemental_feed_pilot.txt details" [level=1] [ref=e244]
+        - generic [ref=e252]:
+          - generic [ref=e254]:
+            - generic [ref=e255]
+            - generic [ref=e273]
+          - generic [ref=e291]:
+            - tablist [ref=e296]
+            - main [ref=e307]
+          - contentinfo [ref=e359]:
+            - link "Privacy Policy" [ref=e360] [cursor=pointer]:
+              - /url: http://www.google.com/policies/privacy/
+            - generic [ref=e361]: ·
+            - link "Terms of Service" [ref=e362] [cursor=pointer]:
+              - /url: https://support.google.com/merchants/answer/160173?hl=en-US
+            - generic [ref=e363]: ·
+            - link "Program Policies" [ref=e364] [cursor=pointer]:
+              - /url: https://support.google.com/merchants/topic/7286989?hl=en-US
+  - generic: info

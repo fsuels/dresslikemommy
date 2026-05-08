@@ -1,0 +1,38 @@
+{
+  "lane": "creative",
+  "date": "2026-05-08",
+  "decision": "CREATIVE_CONTROLLED_COPY_LOCAL_READY_NO_UPLOAD_NO_DRAFTS",
+  "scope": "local_only_copy_pack",
+  "files": [
+    "CREATIVE_CONTROLLED_COPY_REFRESH.md",
+    "google_rsa_copy_refresh.csv",
+    "pinterest_copy_refresh.csv",
+    "localized_copy_notes.csv",
+    "summary.json"
+  ],
+  "google_rsa_rows": 13,
+  "pinterest_rows": 12,
+  "localized_note_rows": 10,
+  "market_posture": {
+    "us": "english_local_proposal_only",
+    "gb_ca_au": "english_first_paused_only",
+    "es_it_ro_pt": "localized_draft_notes_allowed_with_country_qualified_url_evidence",
+    "other_international": "english_hold_or_localization_hold"
+  },
+  "url_rule": "Use localized product path plus country query parameter; do not use bare language-only final URLs.",
+  "validated": {
+    "csv_parse": true,
+    "google_headline_max_30": true,
+    "google_description_max_90": true,
+    "pinterest_title_description_lengths": true,
+    "forbidden_customer_facing_claim_scan": true,
+    "git_diff_check": true
+  },
+  "external_writes": false,
+  "residual_risks": [
+    "Local copy does not prove Google ad policy approval.",
+    "Pinterest Event Quality and item proof remain gating risks.",
+    "Merchant paid-cohort age_group issue remains unresolved in latest exact evidence.",
+    "Localized copy should still receive native review before any live use."
+  ]
+}

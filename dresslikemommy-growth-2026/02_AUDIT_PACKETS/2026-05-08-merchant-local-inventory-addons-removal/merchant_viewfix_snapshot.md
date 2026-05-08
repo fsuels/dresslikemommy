@@ -1,0 +1,216 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - button "Skip to main content" [ref=e7]:
+        - generic [ref=e10]: Skip to main content
+      - generic [ref=e11]:
+        - button "Navigation menu" [expanded] [ref=e12] [cursor=pointer]:
+          - img [ref=e16]: menu
+        - link "Merchant Center home" [ref=e17] [cursor=pointer]:
+          - /url: /mc/overview?a=124884876
+          - img "Merchant Center home" [ref=e18]
+        - dialog "Search" [ref=e20]:
+          - generic [ref=e24]:
+            - img [ref=e27]: search
+            - textbox "Search Merchant Center" [ref=e29]
+        - button "Help" [ref=e32] [cursor=pointer]:
+          - img [ref=e35]: help_outline
+        - 'button "Merchant Center account: Dresslikemommy, 124884876" [ref=e41] [cursor=pointer]':
+          - generic [ref=e42]:
+            - generic [ref=e43]: Dresslikemommy
+            - generic [ref=e44]: "124884876"
+          - img [ref=e46]: arrow_drop_down
+        - generic [ref=e52]:
+          - button "Google apps" [ref=e56] [cursor=pointer]:
+            - img [ref=e57]
+          - 'button "Google Account: test user (testhqfinds@gmail.com)" [ref=e62] [cursor=pointer]':
+            - img [ref=e64]
+    - generic [ref=e71]:
+      - navigation [ref=e72]:
+        - tree "Navigation" [ref=e75]:
+          - treeitem "Overview" [level=1] [ref=e76] [cursor=pointer]:
+            - img [ref=e79]: dashboard
+            - generic [ref=e81]: Overview
+          - treeitem "Notifications 2" [level=1] [ref=e628] [cursor=pointer]:
+            - img [ref=e85]: notifications
+            - generic [ref=e86]:
+              - generic [ref=e87]: Notifications
+              - generic [ref=e629]: "2"
+          - treeitem "Products & store" [expanded] [level=1] [ref=e89] [cursor=pointer]:
+            - img [ref=e92]: inventory_2
+            - generic [ref=e93]:
+              - generic [ref=e94]: Products & store
+              - img [ref=e97]: arrow_drop_down
+            - group [ref=e99]:
+              - treeitem "Products" [level=2] [ref=e100]:
+                - generic [ref=e103]: Products
+              - treeitem "Shipping and returns" [level=2] [ref=e104]:
+                - generic [ref=e107]: Shipping and returns
+              - treeitem "Store quality" [level=2] [ref=e108]:
+                - generic [ref=e111]: Store quality
+              - treeitem "Reviews" [level=2] [ref=e112]:
+                - generic [ref=e115]: Reviews
+          - treeitem "Creative content" [level=1] [ref=e117] [cursor=pointer]:
+            - img [ref=e120]: brush_spark
+            - generic [ref=e121]:
+              - generic [ref=e122]: Creative content
+              - img [ref=e125]: arrow_drop_down
+            - group [ref=e127]:
+              - treeitem [disabled] [level=2] [ref=e128]:
+                - generic [ref=e130]: Product Studio
+              - treeitem [disabled] [level=2] [ref=e131]:
+                - generic [ref=e133]: Video assets
+          - treeitem "Marketing" [expanded] [level=1] [ref=e134] [cursor=pointer]:
+            - img [ref=e137]: campaign
+            - generic [ref=e138]:
+              - generic [ref=e139]: Marketing
+              - img [ref=e142]: arrow_drop_down
+            - group [ref=e144]:
+              - treeitem "Ad campaigns" [level=2] [ref=e145]:
+                - generic [ref=e148]: Ad campaigns
+              - treeitem "Promotions" [level=2] [ref=e149]:
+                - generic [ref=e152]: Promotions
+              - treeitem "Automated discounts" [level=2] [ref=e153]:
+                - generic [ref=e156]: Automated discounts
+              - treeitem "Marketing methods" [level=2] [ref=e157]:
+                - generic [ref=e160]: Marketing methods
+          - treeitem "Analytics" [expanded] [level=1] [ref=e162] [cursor=pointer]:
+            - img [ref=e165]: timeline
+            - generic [ref=e166]:
+              - generic [ref=e167]: Analytics
+              - img [ref=e170]: arrow_drop_down
+            - group [ref=e172]:
+              - treeitem "Summary" [level=2] [ref=e173]:
+                - generic [ref=e176]: Summary
+              - treeitem "Products" [level=2] [ref=e177]:
+                - generic [ref=e180]: Products
+              - treeitem "Pricing" [level=2] [ref=e181]:
+                - generic [ref=e184]: Pricing
+              - treeitem "Online store" [level=2] [ref=e185]:
+                - generic [ref=e188]: Online store
+              - treeitem "Custom reports" [level=2] [ref=e189]:
+                - generic [ref=e192]: Custom reports
+          - treeitem "Settings" [level=1] [ref=e195] [cursor=pointer]:
+            - img [ref=e198]: settings
+            - generic [ref=e199]:
+              - generic [ref=e200]: Settings
+              - img [ref=e203]: arrow_drop_down
+            - group [ref=e205]:
+              - treeitem [disabled] [level=2] [ref=e206]:
+                - generic [ref=e208]: General
+              - treeitem [disabled] [level=2] [ref=e209]:
+                - generic [ref=e211]: Business info
+              - treeitem [disabled] [level=2] [ref=e212]:
+                - generic [ref=e214]: Data sources
+              - treeitem [disabled] [level=2] [ref=e215]:
+                - generic [ref=e217]: Add-ons
+              - treeitem [disabled] [level=2] [ref=e218]:
+                - generic [ref=e220]: Access and services
+      - generic [ref=e223]:
+        - generic [ref=e225]:
+          - heading "Products" [level=1] [ref=e228]
+          - tablist [ref=e233]:
+            - tab "All products" [ref=e234] [cursor=pointer]:
+              - generic [ref=e237]: All products
+            - tab "Sales channels" [ref=e239] [cursor=pointer]:
+              - generic [ref=e242]: Sales channels
+            - tab "Needs attention" [selected] [ref=e244] [cursor=pointer]:
+              - generic [ref=e247]: Needs attention
+            - tab "Automations" [ref=e249] [cursor=pointer]:
+              - generic [ref=e252]: Automations
+        - generic [ref=e275]:
+          - generic [ref=e276]:
+            - generic [ref=e278]:
+              - button "Prioritized fixes" [pressed] [ref=e280] [cursor=pointer]:
+                - img [ref=e283]: check
+                - generic [ref=e284]: Prioritized fixes
+              - button "More information" [ref=e286] [cursor=pointer]:
+                - img "More information" [ref=e287]: help_outline
+              - group "All products that need attention filter bar" [ref=e289]:
+                - generic [ref=e290]
+            - main [ref=e310]:
+              - generic [ref=e311]:
+                - generic [ref=e312]
+                - article [ref=e320]
+              - generic [ref=e351]:
+                - heading "All products that need attention" [level=2] [ref=e353]
+                - generic [ref=e358]
+          - contentinfo [ref=e618]:
+            - link "Privacy Policy" [ref=e619] [cursor=pointer]:
+              - /url: http://www.google.com/policies/privacy/
+            - generic [ref=e620]: ·
+            - link "Terms of Service" [ref=e621] [cursor=pointer]:
+              - /url: https://support.google.com/merchants/answer/160173?hl=en-US
+            - generic [ref=e622]: ·
+            - link "Program Policies" [ref=e623] [cursor=pointer]:
+              - /url: https://support.google.com/merchants/topic/7286989?hl=en-US
+  - dialog "Ready to download" [ref=e258]:
+    - status [ref=e259]:
+      - generic [ref=e260]:
+        - generic [ref=e261]:
+          - generic [ref=e262]: Ready to download Press F6 to access notification buttons.
+          - generic [ref=e263]: Ready to download
+        - button "Download" [ref=e264] [cursor=pointer]
+        - button "Close" [ref=e265] [cursor=pointer]:
+          - img [ref=e268]: close
+  - dialog "Missing local inventory data" [ref=e637]:
+    - generic [ref=e638]:
+      - generic [active] [ref=e640]:
+        - img "Disapproval" [ref=e644]: error_outline
+        - heading "Missing local inventory data" [level=1] [ref=e645]
+      - button "Close" [ref=e646] [cursor=pointer]:
+        - img [ref=e650]: close
+    - generic [ref=e654]:
+      - generic [ref=e655]:
+        - generic [ref=e658]:
+          - heading "Details" [level=2] [ref=e663]
+          - generic [ref=e665]:
+            - generic [ref=e666]:
+              - paragraph [ref=e670]: You're missing inventory data for products in your physical stores. If you don't have a physical store, remove Free local listings and Local inventory ads add-ons from your Merchant Center account
+              - generic [ref=e673]:
+                - paragraph [ref=e674]
+                - list [ref=e678]
+              - 'link "How to fix: Missing local inventory data" [ref=e718] [cursor=pointer]':
+                - /url: https://support.google.com/merchants/answer/14980864?hl=en-US
+                - text: "How to fix: Missing local inventory data"
+                - img [ref=e720]: launch
+            - button "View samples of impacted products" [ref=e725] [cursor=pointer]:
+              - paragraph [ref=e727]: View samples of impacted products
+              - img [ref=e728]: expand_less
+        - generic [ref=e733]:
+          - generic [ref=e734]: Is this helpful?
+          - generic [ref=e735]:
+            - button "Like this issue details content" [ref=e736] [cursor=pointer]:
+              - img [ref=e740]: thumb_up
+            - button "Dislike this issue details content" [ref=e741] [cursor=pointer]:
+              - img [ref=e745]: thumb_down
+      - generic [ref=e749]:
+        - heading "Impact" [level=2] [ref=e754]
+        - generic [ref=e756]:
+          - generic [ref=e759]:
+            - generic "Click potential +95 High impact" [ref=e761]:
+              - generic [ref=e762]:
+                - generic [ref=e765]: Click potential
+                - note [ref=e768]: "+95"
+                - generic "High impact - change ratio of Click potential from a value of +95" [ref=e770]
+            - generic "Products 11K 5.7%" [ref=e772]:
+              - generic [ref=e773]:
+                - generic [ref=e776]: Products
+                - note [ref=e779]: 11K
+                - generic "5.7% - change ratio of Products from a value of 11K" [ref=e781]
+          - generic [ref=e784]:
+            - generic [ref=e785]: Prevents products from showing in United States
+            - button "Show details" [ref=e786] [cursor=pointer]
+          - generic [ref=e789]:
+            - generic [ref=e790]:
+              - text: Impacted products
+              - button "Last 28 days" [ref=e791]:
+                - generic [ref=e794]: Last 28 days
+                - img [ref=e797]: arrow_drop_down
+            - button "All for physical stores" [ref=e798]:
+              - generic [ref=e801]: All for physical stores
+              - img [ref=e804]: arrow_drop_down
+            - generic [ref=e813]:
+              - table [ref=e815]:
+                - rowgroup [ref=e816]
+              - generic [ref=e822]: Stacked area chart. Use the arrow keys to navigate inside the chart.

@@ -1363,7 +1363,8 @@
                   product: product,
                   product_form_id: product_form_id,
                   section_id: section.id,
-                  show_pickup_availability: true
+                  show_pickup_availability: true,
+                  has_matching_set_context: has_matching_set_context
                 -%}
                 {% render 'product-desktop-ux', product: product, section: section %}
 
@@ -1396,7 +1397,7 @@
     assign premium_delivery_window = 'products.additional_info.premium_delivery_window' | t
 
     if shipping_label_copy == blank or shipping_label_copy contains 'translation missing'
-      assign shipping_label_copy = 'FREE Shipping'
+      assign shipping_label_copy = 'Shipping Options'
     endif
     if delivery_estimate_copy == blank or delivery_estimate_copy contains 'translation missing'
       assign delivery_estimate_copy = 'Estimated delivery:'

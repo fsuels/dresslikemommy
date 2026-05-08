@@ -1,0 +1,80 @@
+- generic [active] [ref=e1] [box=0,0,1425,6386]:
+  - link "Skip to content" [ref=e2] [cursor=pointer] [box=-1,-1,122,47]:
+    - /url: "#MainContent"
+  - region "Announcement" [ref=e6] [box=-7,0,1440,38]:
+    - paragraph [ref=e7] [box=-7,0,1440,38]:
+      - generic [ref=e8] [box=-7,10,1440,13]: FREE SHIPPING ON ALL ORDERS | FAMILY MATCHING MADE EASY | SECURE CHECKOUT
+  - generic [ref=e9] [box=0,38,1425,131]:
+    - search [ref=e11] [box=20,67,400,47]:
+      - generic [ref=e12] [box=20,67,400,47]:
+        - combobox "Search for products" [ref=e13] [box=21,68,398,45]
+        - generic [box=41,78,159,24]: Search for products
+        - button "Search for products" [ref=e14] [cursor=pointer] [box=375,68,44,44]
+      - status [ref=e16] [box=19,113,400,1]
+    - banner [ref=e18] [box=0,43,1425,125]:
+      - heading "Dress Like Mommy" [level=1] [ref=e19] [box=645,51,135,64]:
+        - link "Dress Like Mommy" [ref=e20] [cursor=pointer] [box=645,51,135,64]:
+          - /url: /
+      - navigation [ref=e23] [box=361,125,703,35]:
+        - list [ref=e24] [box=361,125,703,35]
+      - generic [ref=e43] [box=1077,61,324,44]:
+        - generic [ref=e44] [box=1077,64,228,38]
+        - link "Log in" [ref=e61] [cursor=pointer] [box=1305,61,44,44]:
+          - /url: https://www.dresslikemommy.com/customer_authentication/redirect?locale=en&region_country=US
+        - button "Cart 0 items" [ref=e64] [cursor=pointer] [box=1349,61,44,44]
+  - main [ref=e69] [box=0,169,1425,5389]:
+    - region "Matching looks for the moments families remember most" [ref=e71] [box=0,169,1425,685]:
+      - group "Hero image 1 of 2" [ref=e73] [box=0,169,1425,685]:
+        - img "Family in matching tropical outfits walking on a beach boardwalk at golden hour" [ref=e75] [box=0,169,1425,685]
+      - generic [box=71,169,460,685]:
+        - heading "Matching looks for the moments families remember most" [level=1] [box=91,209,420,230]
+        - paragraph [box=91,452,420,97]: Find coordinated outfits for vacations, family photos, birthdays, beach days, and cozy pajama moments.
+        - generic [ref=e76] [box=91,573,420,185]
+        - generic "Shipping options shown at checkout, secure checkout, and helpful sizing support." [ref=e80] [box=91,776,420,39]
+      - generic "Hero image controls" [ref=e82] [box=20,793,1385,40]:
+        - button "Previous hero image" [ref=e83] [cursor=pointer] [box=628,793,40,40]
+        - group "Choose hero image" [ref=e85] [box=678,798,69,29]
+        - button "Next hero image" [ref=e88] [cursor=pointer] [box=757,793,40,40]
+    - generic [ref=e92] [box=0,855,1425,2136]:
+      - generic "Store trust highlights" [ref=e93] [box=50,879,1325,55]:
+        - generic [ref=e96] [box=100,898,230,16]: Shipping options shown at checkout
+        - generic [ref=e99] [box=438,898,221,16]: Matching looks for family moments
+        - generic [ref=e102] [box=738,891,289,31]: Easy outfits for photos, trips, and celebrations
+        - generic [ref=e105] [box=1147,898,139,16]: Helpful sizing support
+      - generic [ref=e106] [box=50,959,1325,1385]:
+        - heading "Shop by Category" [level=3] [ref=e107] [box=50,959,1325,23]
+        - list "Shop by Category" [ref=e109] [box=50,1000,1325,1344]
+      - generic [ref=e152] [box=50,2384,1325,563]:
+        - heading "Shop by Occasion" [level=3] [ref=e153] [box=50,2384,1325,23]
+        - list "Shop by Occasion" [ref=e155] [box=50,2425,1325,522]
+    - generic [ref=e186] [box=0,2995,1425,2564]:
+      - generic [ref=e187] [box=50,3031,1325,111]:
+        - generic [ref=e188] [box=50,3031,760,111]
+        - link "See all family sets" [ref=e195] [cursor=pointer] [box=1151,3063,224,47]:
+          - /url: /collections/family-sets
+      - generic [ref=e196] [box=50,3165,1325,2148]:
+        - article [ref=e198] [box=50,3165,651,1062]
+        - article [ref=e219] [box=725,3165,651,1062]
+        - article [ref=e240] [box=50,4252,651,1062]
+      - generic [ref=e260] [box=50,5329,1325,182]:
+        - heading "Need the right match for the moment?" [level=3] [ref=e261] [box=66,5344,1293,23]
+        - generic [ref=e262] [box=66,5372,1293,124]
+  - contentinfo [ref=e272] [box=0,5559,1425,827]:
+    - generic [ref=e273] [box=0,5620,1425,423]:
+      - generic [ref=e274] [box=50,5620,1325,181]:
+        - generic [ref=e275] [box=50,5620,420,181]
+        - generic [ref=e284] [box=502,5620,420,181]
+        - generic [ref=e297] [box=955,5620,420,181]
+      - generic [ref=e302] [box=50,5801,1325,103]:
+        - heading "Style Journal" [level=2] [ref=e303] [box=50,5801,1325,14]
+        - generic [ref=e304] [box=50,5831,1325,74]
+      - generic [ref=e308] [box=50,5934,1325,77]:
+        - heading "Get 10% off your first order" [level=2] [ref=e309] [box=50,5934,1325,14]
+        - generic [ref=e312] [box=533,5964,360,47]
+    - generic [ref=e316] [box=0,6083,1425,263]:
+      - generic [ref=e317] [box=0,6104,1425,121]:
+        - generic [ref=e321] [box=50,6114,82,101]
+        - generic [ref=e328] [box=781,6148,594,32]
+      - generic [ref=e424] [box=50,6265,1325,81]:
+        - generic [ref=e425] [box=631,6295,163,10]
+        - list [ref=e427] [box=50,6320,1325,26]

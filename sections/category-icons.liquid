@@ -64,6 +64,36 @@
     endfor
   endif
 -%}
+{%- assign category_heading_key = section.settings.category_heading | handleize -%}
+{%- assign occasion_heading_key = section.settings.occasion_heading | handleize -%}
+{%- assign trust_item_1_key = section.settings.trust_item_1 | handleize -%}
+{%- assign trust_item_2_key = section.settings.trust_item_2 | handleize -%}
+{%- assign trust_item_3_key = section.settings.trust_item_3 | handleize -%}
+{%- assign trust_item_4_key = section.settings.trust_item_4 | handleize -%}
+{%- capture category_heading_text -%}
+  {%- render 'home-category-localized-copy', copy_key: category_heading_key, fallback: section.settings.category_heading -%}
+{%- endcapture -%}
+{%- capture occasion_heading_text -%}
+  {%- render 'home-category-localized-copy', copy_key: occasion_heading_key, fallback: section.settings.occasion_heading -%}
+{%- endcapture -%}
+{%- capture trust_item_1_text -%}
+  {%- render 'home-category-localized-copy', copy_key: trust_item_1_key, fallback: section.settings.trust_item_1 -%}
+{%- endcapture -%}
+{%- capture trust_item_2_text -%}
+  {%- render 'home-category-localized-copy', copy_key: trust_item_2_key, fallback: section.settings.trust_item_2 -%}
+{%- endcapture -%}
+{%- capture trust_item_3_text -%}
+  {%- render 'home-category-localized-copy', copy_key: trust_item_3_key, fallback: section.settings.trust_item_3 -%}
+{%- endcapture -%}
+{%- capture trust_item_4_text -%}
+  {%- render 'home-category-localized-copy', copy_key: trust_item_4_key, fallback: section.settings.trust_item_4 -%}
+{%- endcapture -%}
+{%- assign category_heading_text = category_heading_text | strip -%}
+{%- assign occasion_heading_text = occasion_heading_text | strip -%}
+{%- assign trust_item_1_text = trust_item_1_text | strip -%}
+{%- assign trust_item_2_text = trust_item_2_text | strip -%}
+{%- assign trust_item_3_text = trust_item_3_text | strip -%}
+{%- assign trust_item_4_text = trust_item_4_text | strip -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width section-{{ section.id }}-padding">
@@ -78,25 +108,25 @@
         {%- if section.settings.trust_item_1 != blank -%}
           <span class="category-icons__trust-item">
             <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
-            <span>{{ section.settings.trust_item_1 | escape }}</span>
+            <span>{{ trust_item_1_text | escape }}</span>
           </span>
         {%- endif -%}
         {%- if section.settings.trust_item_2 != blank -%}
           <span class="category-icons__trust-item">
             <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
-            <span>{{ section.settings.trust_item_2 | escape }}</span>
+            <span>{{ trust_item_2_text | escape }}</span>
           </span>
         {%- endif -%}
         {%- if section.settings.trust_item_3 != blank -%}
           <span class="category-icons__trust-item">
             <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
-            <span>{{ section.settings.trust_item_3 | escape }}</span>
+            <span>{{ trust_item_3_text | escape }}</span>
           </span>
         {%- endif -%}
         {%- if section.settings.trust_item_4 != blank -%}
           <span class="category-icons__trust-item">
             <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
-            <span>{{ section.settings.trust_item_4 | escape }}</span>
+            <span>{{ trust_item_4_text | escape }}</span>
           </span>
         {%- endif -%}
       </div>
@@ -117,14 +147,14 @@
             <h3 class="category-icons__group-title">
               {%- if section.settings.category_heading_link != blank -%}
                 <a href="{{ section.settings.category_heading_link }}" class="category-icons__group-title-link">
-                  {{ section.settings.category_heading }}
+                  {{ category_heading_text }}
                 </a>
               {%- else -%}
-                {{ section.settings.category_heading }}
+                {{ category_heading_text }}
               {%- endif -%}
             </h3>
           {%- endif -%}
-          <ul class="category-icons__scroll" role="list" aria-label="{{ section.settings.category_heading | default: 'Shop by category' | escape }}">
+          <ul class="category-icons__scroll" role="list" aria-label="{{ category_heading_text | default: 'Shop by category' | escape }}">
             {%- for block in section.blocks -%}
               {%- if block.settings.collection != blank and block.settings.browse_path != 'occasion' -%}
                 {%- liquid
@@ -235,8 +265,14 @@
                     endfor
                   endif
                 -%}
+                {%- assign icon_label_source = icon_label -%}
+                {%- assign icon_label_key = icon_label_source | handleize -%}
+                {%- capture icon_label_localized -%}
+                  {%- render 'home-category-localized-copy', copy_key: icon_label_key, fallback: icon_label_source -%}
+                {%- endcapture -%}
+                {%- assign icon_label = icon_label_localized | strip -%}
                 {%- capture icon_caption -%}
-                  {%- render 'home-category-card-caption', icon_label: icon_label -%}
+                  {%- render 'home-category-card-caption', icon_label: icon_label_source -%}
                 {%- endcapture -%}
                 {%- assign icon_caption = icon_caption | strip -%}
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
@@ -285,14 +321,14 @@
             <h3 class="category-icons__group-title">
               {%- if section.settings.occasion_heading_link != blank -%}
                 <a href="{{ section.settings.occasion_heading_link }}" class="category-icons__group-title-link">
-                  {{ section.settings.occasion_heading }}
+                  {{ occasion_heading_text }}
                 </a>
               {%- else -%}
-                {{ section.settings.occasion_heading }}
+                {{ occasion_heading_text }}
               {%- endif -%}
             </h3>
           {%- endif -%}
-          <ul class="category-icons__scroll" role="list" aria-label="{{ section.settings.occasion_heading | default: 'Shop by occasion' | escape }}">
+          <ul class="category-icons__scroll" role="list" aria-label="{{ occasion_heading_text | default: 'Shop by occasion' | escape }}">
             {%- for block in section.blocks -%}
               {%- if block.settings.collection != blank and block.settings.browse_path == 'occasion' -%}
                 {%- liquid
@@ -403,8 +439,14 @@
                     endfor
                   endif
                 -%}
+                {%- assign icon_label_source = icon_label -%}
+                {%- assign icon_label_key = icon_label_source | handleize -%}
+                {%- capture icon_label_localized -%}
+                  {%- render 'home-category-localized-copy', copy_key: icon_label_key, fallback: icon_label_source -%}
+                {%- endcapture -%}
+                {%- assign icon_label = icon_label_localized | strip -%}
                 {%- capture icon_caption -%}
-                  {%- render 'home-category-card-caption', icon_label: icon_label -%}
+                  {%- render 'home-category-card-caption', icon_label: icon_label_source -%}
                 {%- endcapture -%}
                 {%- assign icon_caption = icon_caption | strip -%}
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
@@ -556,10 +598,16 @@
                     endif
                   endunless
                 endfor
-              endif
-            -%}
+            endif
+          -%}
+            {%- assign icon_label_source = icon_label -%}
+            {%- assign icon_label_key = icon_label_source | handleize -%}
+            {%- capture icon_label_localized -%}
+              {%- render 'home-category-localized-copy', copy_key: icon_label_key, fallback: icon_label_source -%}
+            {%- endcapture -%}
+            {%- assign icon_label = icon_label_localized | strip -%}
             {%- capture icon_caption -%}
-              {%- render 'home-category-card-caption', icon_label: icon_label -%}
+              {%- render 'home-category-card-caption', icon_label: icon_label_source -%}
             {%- endcapture -%}
             {%- assign icon_caption = icon_caption | strip -%}
             <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
@@ -670,7 +718,7 @@
     {
       "type": "text",
       "id": "trust_item_1",
-      "default": "Free shipping on all orders",
+      "default": "Shipping options shown at checkout",
       "label": "Trust item 1"
     },
     {

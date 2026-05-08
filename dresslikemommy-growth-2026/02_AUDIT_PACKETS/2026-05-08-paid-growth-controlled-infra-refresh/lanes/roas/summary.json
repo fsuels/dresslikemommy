@@ -1,0 +1,69 @@
+{
+  "lane": "roas",
+  "date": "2026-05-08",
+  "mode": "local_only_no_external_writes",
+  "target_roas": 6.5,
+  "target_roas_percent": 650,
+  "aov_scenarios_usd": [
+    {
+      "aov": 63.25,
+      "max_cpa": 9.73,
+      "all_in_non_marketing_cost_at_50pct": 31.63,
+      "contribution_after_target_cpa_before_returns": 21.9,
+      "note": "Older benchmark AOV; prior conservative 15% CAC cap was $9.49."
+    },
+    {
+      "aov": 70.0,
+      "max_cpa": 10.77,
+      "all_in_non_marketing_cost_at_50pct": 35.0,
+      "contribution_after_target_cpa_before_returns": 24.23,
+      "note": "Current sprint planning AOV."
+    }
+  ],
+  "margin_assumption": "Prior packets model all-in non-marketing cost as 50% of selling price; returns, chargebacks, reships, support, and duties friction remain after that.",
+  "cpc_values_modeled_usd": [0.04, 0.1, 0.15, 0.2, 0.25],
+  "key_thresholds_at_70_aov": {
+    "cpc_0_04_required_cvr_pct": 0.37,
+    "cpc_0_10_required_cvr_pct": 0.93,
+    "cpc_0_15_required_cvr_pct": 1.39,
+    "cpc_0_20_required_cvr_pct": 1.86,
+    "cpc_0_25_required_cvr_pct": 2.32
+  },
+  "surface_guardrails": {
+    "paused_search_tests": {
+      "starting_budget": "US nonbrand $2/day if approved; most country tests $1-$2/day if approved.",
+      "cpc_cap": "Normally <= $0.15; lower-cpc discovery prefers $0.05-$0.12; $0.20 is upper-edge only after proof.",
+      "kill_rules": [
+        "Spend about $5 with weak terms or no qualified engagement: pause or narrow.",
+        "Spend $9.49-$10.77 with 0 purchases: force pause/narrow/owner decision.",
+        "Spend $16 with 0 purchases: hard pause.",
+        "After 2 purchases, hold or reduce if CPA is above target or ROAS is below 650%."
+      ]
+    },
+    "standard_shopping": {
+      "current_state": "Live/eligible, $20/day, paid cohort only, included child product-group base bids lowered to $0.04 in prior approved pass.",
+      "lane_action": "monitoring rules only; no live edits",
+      "kill_rules": [
+        "Post-bid-change spend of one target-CPA window with 0 purchases requires owner decision.",
+        "Post-bid-change spend $16-$20 with 0 purchases recommends hard rollback decision."
+      ]
+    },
+    "pinterest_us": {
+      "current_state": "0 campaigns, $0 spend, Event Quality Fair, EN source usable with warnings, later unblock packet has 342 clean EN-US rows and 4 exclusions.",
+      "draft_readiness": "parked until fresh Event Quality/catalog/item proof and exact approval",
+      "starting_budget_if_approved": "$1/day USA-only"
+    }
+  },
+  "currency_caveats": {
+    "RO": "Romania presents in RON, not EUR. Use local RON revenue or FX-normalized value before comparing CPA/ROAS to USD planning thresholds."
+  },
+  "business_model_guardrail": "Do not imply physical store, warehouse, stocked inventory, local inventory, or guaranteed on-hand stock. Catalog availability means channel salability only.",
+  "files_written": [
+    "ROAS_CONTROLLED_GUARDRAILS.md",
+    "cpc_cvr_guardrails.csv",
+    "country_budget_guardrails.csv",
+    "summary.json"
+  ],
+  "external_writes": false,
+  "next_best_action": "Parent should integrate this lane with Ads, Merchant, Pinterest, measurement, and localization gates; no spend or draft creation until exact approval and just-in-time readbacks clear."
+}

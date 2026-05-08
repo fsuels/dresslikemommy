@@ -14,13 +14,11 @@
   endif
   assign announcement_locale = request.locale.iso_code | downcase
   assign announcement_default_promo = 'sections.announcements.default_promo' | t
-  assign announcement_default_promo_fallback_en = 'FREE SHIPPING ON ALL ORDERS | FAMILY MATCHING MADE EASY | SECURE CHECKOUT'
-  assign announcement_legacy_shipping_claim = 'FREE' | append: ' SHIPPING' | append: ' ON ALL ORDERS'
-  assign announcement_legacy_returns_claim = 'EASY RETURNS'
+  assign announcement_default_promo_fallback_en = 'SHIPPING OPTIONS AT CHECKOUT | FAMILY MATCHING MADE EASY | SECURE CHECKOUT'
   if announcement_locale contains 'es' and announcement_default_promo == announcement_default_promo_fallback_en
-    assign announcement_default_promo = 'ENVÍO GRATIS EN TODOS LOS PEDIDOS | COMBINAR EN FAMILIA ES FÁCIL | PAGO SEGURO'
+    assign announcement_default_promo = 'OPCIONES DE ENVÍO AL PAGAR | COMBINAR EN FAMILIA ES FÁCIL | PAGO SEGURO'
   elsif announcement_locale contains 'fr' and announcement_default_promo == announcement_default_promo_fallback_en
-    assign announcement_default_promo = 'LIVRAISON GRATUITE SUR TOUTES LES COMMANDES | LOOKS ASSORTIS EN FAMILLE FACILES | PAIEMENT SÉCURISÉ'
+    assign announcement_default_promo = 'OPTIONS DE LIVRAISON AU PAIEMENT | LOOKS ASSORTIS EN FAMILLE FACILES | PAIEMENT SÉCURISÉ'
   endif
 -%}
 
@@ -119,7 +117,11 @@
         {{ section.blocks.first.shopify_attributes }}
       >
         {%- assign single_announcement_text = section.blocks.first.settings.text | strip -%}
-        {%- assign single_announcement_text_upcase = single_announcement_text | upcase -%}
+        {%- assign single_announcement_rendered_text = single_announcement_text -%}
+        {%- if single_announcement_text contains 't:' -%}
+          {%- assign single_announcement_rendered_text = single_announcement_text | remove_first: 't:' | t -%}
+        {%- endif -%}
+        {%- assign single_announcement_text_upcase = single_announcement_rendered_text | upcase -%}
         {%- if single_announcement_text != blank -%}
           {%- if section.blocks.first.settings.link != blank -%}
             <a
@@ -129,15 +131,12 @@
           {%- endif -%}
           <p class="announcement-bar__message h5">
             <span>
-              {%- if single_announcement_text contains 't:' -%}
-                {{ single_announcement_text | remove_first: 't:' | t }}
-              {%- elsif single_announcement_text_upcase contains announcement_legacy_shipping_claim
-                and single_announcement_text_upcase contains announcement_legacy_returns_claim
+              {%- if single_announcement_text_upcase contains 'FREE SHIPPING ON ALL ORDERS'
                 and single_announcement_text_upcase contains 'SECURE CHECKOUT'
               -%}
                 {{ announcement_default_promo }}
               {%- else -%}
-                {{ single_announcement_text | escape }}
+                {{ single_announcement_rendered_text | escape }}
               {%- endif -%}
             </span>
             {%- if section.blocks.first.settings.link != blank -%}
@@ -191,7 +190,11 @@
                   {{ block.shopify_attributes }}
                 >
                   {%- assign announcement_text = block.settings.text | strip -%}
-                  {%- assign announcement_text_upcase = announcement_text | upcase -%}
+                  {%- assign announcement_rendered_text = announcement_text -%}
+                  {%- if announcement_text contains 't:' -%}
+                    {%- assign announcement_rendered_text = announcement_text | remove_first: 't:' | t -%}
+                  {%- endif -%}
+                  {%- assign announcement_text_upcase = announcement_rendered_text | upcase -%}
                   {%- if announcement_text != blank -%}
                     {%- if block.settings.link != blank -%}
                       <a
@@ -201,15 +204,12 @@
                     {%- endif -%}
                     <p class="announcement-bar__message h5">
                       <span>
-                        {%- if announcement_text contains 't:' -%}
-                          {{ announcement_text | remove_first: 't:' | t }}
-                        {%- elsif announcement_text_upcase contains announcement_legacy_shipping_claim
-                          and announcement_text_upcase contains announcement_legacy_returns_claim
+                        {%- if announcement_text_upcase contains 'FREE SHIPPING ON ALL ORDERS'
                           and announcement_text_upcase contains 'SECURE CHECKOUT'
                         -%}
                           {{ announcement_default_promo }}
                         {%- else -%}
-                          {{ announcement_text | escape }}
+                          {{ announcement_rendered_text | escape }}
                         {%- endif -%}
                       </span>
                       {%- if block.settings.link != blank -%}

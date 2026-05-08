@@ -1,0 +1,47 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - button "Skip to main content" [ref=e7]:
+        - generic [ref=e10]: Skip to main content
+      - generic [ref=e11]:
+        - button "Navigation menu" [expanded] [ref=e12] [cursor=pointer]:
+          - img [ref=e16]: menu
+        - link "Merchant Center home" [ref=e17] [cursor=pointer]:
+          - /url: /mc/overview?a=124884876
+          - img "Merchant Center home" [ref=e18]
+        - dialog "Search" [ref=e20]:
+          - generic [ref=e24]
+        - button "Help" [ref=e32] [cursor=pointer]:
+          - img [ref=e35]: help_outline
+        - 'button "Merchant Center account: Dresslikemommy, 124884876" [ref=e41] [cursor=pointer]':
+          - generic [ref=e42]
+          - img [ref=e46]: arrow_drop_down
+        - generic [ref=e52]:
+          - button "Google apps" [ref=e56] [cursor=pointer]
+          - 'button "Google Account: test user (testhqfinds@gmail.com)" [ref=e62] [cursor=pointer]'
+    - generic [ref=e71]:
+      - navigation [ref=e72]:
+        - tree "Navigation" [ref=e75]:
+          - treeitem "Overview" [level=1] [ref=e76] [cursor=pointer]
+          - treeitem "Notifications 2" [level=1] [ref=e708] [cursor=pointer]
+          - treeitem "Products & store" [expanded] [level=1] [ref=e89] [cursor=pointer]
+          - treeitem "Creative content" [level=1] [ref=e117] [cursor=pointer]
+          - treeitem "Marketing" [expanded] [level=1] [ref=e134] [cursor=pointer]
+          - treeitem "Analytics" [expanded] [level=1] [ref=e162] [cursor=pointer]
+          - treeitem "Settings" [expanded] [level=1] [ref=e195] [cursor=pointer]
+      - generic [ref=e223]:
+        - generic [ref=e459]:
+          - heading "Add-ons" [level=1] [ref=e710]
+          - tablist [ref=e467]
+        - generic [ref=e727]:
+          - main [ref=e728]
+          - contentinfo [ref=e899]
+  - dialog "Ready to download" [ref=e256]:
+    - status [ref=e257]:
+      - generic [ref=e258]:
+        - generic [ref=e259]:
+          - generic [ref=e260]: Ready to download Press F6 to access notification buttons.
+          - generic [ref=e261]: Ready to download
+        - button "Download" [ref=e262] [cursor=pointer]
+        - button "Close" [ref=e263] [cursor=pointer]:
+          - img [ref=e266]: close

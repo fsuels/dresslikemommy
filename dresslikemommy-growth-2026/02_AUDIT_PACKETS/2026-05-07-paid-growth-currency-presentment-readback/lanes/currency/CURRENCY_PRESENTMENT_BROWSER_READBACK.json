@@ -1,0 +1,160 @@
+{
+  "generated_at": "2026-05-08T00:25:00-04:00",
+  "mode": "READ_ONLY_BROWSER_WALKTHROUGH_TO_SHIPPING_STEP_ONLY",
+  "guardrails": {
+    "no_payment_submitted": true,
+    "no_order_created": true,
+    "no_shopify_admin_or_market_changes": true,
+    "no_shipping_rate_changes": true,
+    "no_ads_or_pinterest_writes": true
+  },
+  "product": {
+    "url_path": "/products/matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set",
+    "variant_id": "41871520661601"
+  },
+  "method_notes": [
+    "Parent used browser walkthroughs, not Admin writes.",
+    "For each market, a fresh direct localized route was checked first, then the storefront localization form was used to set country/locale where possible.",
+    "Checkout tokens are intentionally omitted/redacted from reports.",
+    "Payment details were never entered and Pay now was never clicked."
+  ],
+  "results": [
+    {
+      "country_code": "ES",
+      "country": "Spain",
+      "fresh_direct_route": {
+        "observed_url_behavior": "Direct /es product route in a fresh context first landed on base English product URL.",
+        "language": "en",
+        "country_selector": "United States",
+        "currency": "USD"
+      },
+      "after_storefront_localization": {
+        "country_selector": "Spain",
+        "locale": "es",
+        "product_language": "es",
+        "product_currency": "EUR",
+        "cart_currency": "EUR",
+        "checkout_language": "en-ES",
+        "checkout_country": "Spain",
+        "checkout_region_selected": "Madrid Province",
+        "standard_delivery": "FREE",
+        "express_delivery": "EUR 11.95",
+        "checkout_total_currency": "EUR",
+        "status": "SHIPPING_STEP_REACHED_NO_PAYMENT"
+      },
+      "screenshots": [
+        "es_02_product_after_localization.png",
+        "es_03_cart_after_add.png",
+        "es_04_checkout_shipping_step.png"
+      ]
+    },
+    {
+      "country_code": "IT",
+      "country": "Italy",
+      "fresh_direct_route": {
+        "observed_url_behavior": "Direct /it product route in a fresh context first landed on base English product URL.",
+        "language": "en",
+        "country_selector": "United States",
+        "currency": "USD"
+      },
+      "after_storefront_localization": {
+        "country_selector": "Italy",
+        "locale": "it",
+        "product_language": "it",
+        "product_currency": "EUR",
+        "cart_currency": "EUR",
+        "checkout_language": "en-IT",
+        "checkout_country": "Italy",
+        "checkout_region_selected": "Rome",
+        "standard_delivery": "FREE",
+        "express_delivery": "EUR 11.95",
+        "checkout_total_currency": "EUR",
+        "status": "SHIPPING_STEP_REACHED_NO_PAYMENT"
+      },
+      "screenshots": [
+        "it_02_product_after_localization.png",
+        "it_03_cart_after_add.png",
+        "it_04_checkout_shipping_step.png"
+      ],
+      "snapshot": "it_04_checkout_shipping_step_snapshot.txt"
+    },
+    {
+      "country_code": "RO",
+      "country": "Romania",
+      "fresh_direct_route": {
+        "observed_url_behavior": "Direct /ro product route in a fresh context first landed on base English product URL.",
+        "language": "en",
+        "country_selector": "United States",
+        "currency": "USD"
+      },
+      "after_storefront_localization": {
+        "country_selector": "Romania",
+        "locale": "ro",
+        "product_language": "ro",
+        "product_currency": "RON",
+        "cart_currency": "RON",
+        "checkout_language": "en-RO",
+        "checkout_country": "Romania",
+        "checkout_region_selected": "Bucharest",
+        "standard_delivery": "FREE",
+        "express_delivery": "60.00 lei",
+        "checkout_total_currency": "RON",
+        "status": "SHIPPING_STEP_REACHED_NO_PAYMENT"
+      },
+      "screenshots": [
+        "ro_02_product_after_localization.png",
+        "ro_03_cart_after_add.png",
+        "ro_04_checkout_shipping_step.png"
+      ],
+      "snapshot": "ro_04_checkout_shipping_step_snapshot.txt"
+    },
+    {
+      "country_code": "PT",
+      "country": "Portugal",
+      "fresh_direct_route": {
+        "observed_url_behavior": "Direct /pt product route in a fresh context first landed on base English product URL.",
+        "language": "en",
+        "country_selector": "United States",
+        "currency": "USD"
+      },
+      "after_storefront_localization": {
+        "country_selector": "Portugal",
+        "locale": "pt-BR",
+        "product_language": "pt-BR",
+        "product_currency": "EUR",
+        "cart_currency": "NOT_REACHED_IN_THIS_BROWSER_PASS",
+        "checkout_language": "NOT_REACHED_IN_THIS_BROWSER_PASS",
+        "checkout_country": "NOT_REACHED_IN_THIS_BROWSER_PASS",
+        "checkout_region_selected": "Lisboa required but not reached",
+        "standard_delivery": "NOT_REACHED_IN_THIS_BROWSER_PASS",
+        "express_delivery": "NOT_REACHED_IN_THIS_BROWSER_PASS",
+        "checkout_total_currency": "NOT_REACHED_IN_THIS_BROWSER_PASS",
+        "status": "BLOCKED_BY_STOREFRONT_CART_429_BEFORE_CHECKOUT"
+      },
+      "blocker": {
+        "first_cart_add": "POST /cart/add.js returned HTTP 429",
+        "single_ui_retry": "POST /pt/cart/add returned HTTP 429",
+        "action_taken": "Stopped after one slow retry; no CAPTCHA bypass and no further hammering."
+      },
+      "screenshots": [
+        "pt_02_product_after_localization.png",
+        "pt_429_product_after_add_attempt.png"
+      ]
+    }
+  ],
+  "parent_findings": [
+    "Language route alone is not enough for reliable market presentment from a fresh browser context; the direct localized URL can start as United States / English / USD.",
+    "After storefront localization is set, Spain and Italy present EUR on product, cart, and checkout shipping step.",
+    "After storefront localization is set, Romania presents RON on product, cart, and checkout shipping step, despite the Admin market readback naming the containing market Eurozone with EUR base currency.",
+    "Portugal presents EUR on the localized product page, but this pass could not reach cart/checkout because storefront cart add returned HTTP 429.",
+    "Checkout page text remains mostly English for ES, IT, and RO even when product and cart pages are localized.",
+    "No payment was submitted and no order was created."
+  ],
+  "decision": {
+    "es": "PRESENTMENT_WORKS_AFTER_LOCALIZATION_BUT_DIRECT_ROUTE_AND_CHECKOUT_LANGUAGE_NEED_CAUTION",
+    "it": "PRESENTMENT_WORKS_AFTER_LOCALIZATION_BUT_DIRECT_ROUTE_AND_CHECKOUT_LANGUAGE_NEED_CAUTION",
+    "ro": "PRESENTMENT_WORKS_AFTER_LOCALIZATION_IN_RON_NOT_EUR_NEEDS_STRATEGY_CONFIRMATION",
+    "pt": "PRODUCT_PRESENTMENT_EUR_OK_AFTER_LOCALIZATION_BUT_BROWSER_CHECKOUT_NOT_CLEARED_DUE_429",
+    "international_paid_readiness": "NOT_READY_FOR_LIVE_PAID_TRAFFIC"
+  }
+}

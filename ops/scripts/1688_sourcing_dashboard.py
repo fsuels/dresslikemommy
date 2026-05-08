@@ -22,7 +22,7 @@ from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
-from urllib.parse import parse_qs, quote_from_bytes, urlparse
+from urllib.parse import parse_qs, quote, quote_from_bytes, urlparse
 import urllib.request
 
 
@@ -44,6 +44,7 @@ COLLECTION_JOBS: dict[str, dict[str, Any]] = {}
 COLLECTION_LOCK = threading.Lock()
 DETAIL_JOBS: dict[str, dict[str, Any]] = {}
 DETAIL_LOCK = threading.Lock()
+DEFAULT_MARKET_TARGET = "balanced"
 
 
 def clean(value: Any) -> str:
@@ -360,8 +361,55 @@ def load_categories() -> list[dict[str, Any]]:
     return payload.get("categories", [])
 
 
+def load_market_profiles() -> list[dict[str, Any]]:
+    payload = read_json(CATEGORIES_PATH, {"market_profiles": []})
+    profiles = [item for item in payload.get("market_profiles", []) if isinstance(item, dict) and clean(item.get("id"))]
+    if not any(clean(item.get("id")) == DEFAULT_MARKET_TARGET for item in profiles):
+        profiles.insert(
+            0,
+            {
+                "id": DEFAULT_MARKET_TARGET,
+                "label": "Balanced",
+                "short_label": "Balanced",
+                "description": "Use the base category searches.",
+                "query_modifiers": [],
+            },
+        )
+    return profiles
+
+
 def category_lookup() -> dict[str, dict[str, Any]]:
     return {category["id"]: category for category in load_categories()}
+
+
+def market_profile_lookup() -> dict[str, dict[str, Any]]:
+    return {clean(profile.get("id")): profile for profile in load_market_profiles()}
+
+
+def normalize_market_target(market_target: str) -> str:
+    key = clean(market_target).lower().replace("-", "_")
+    aliases = {
+        "": DEFAULT_MARKET_TARGET,
+        "usa": "us",
+        "american": "us",
+        "american_market": "us",
+        "europe": "eu",
+        "european": "eu",
+        "european_market": "eu",
+    }
+    key = aliases.get(key, key)
+    return key if key in market_profile_lookup() else DEFAULT_MARKET_TARGET
+
+
+def market_profile(market_target: str) -> dict[str, Any]:
+    profiles = market_profile_lookup()
+    target = normalize_market_target(market_target)
+    return profiles.get(target, profiles[DEFAULT_MARKET_TARGET])
+
+
+def search_history_key(category_id: str, market_target: str = DEFAULT_MARKET_TARGET) -> str:
+    target = normalize_market_target(market_target)
+    return category_id if target == DEFAULT_MARKET_TARGET else f"{category_id}:{target}"
 
 
 def load_search_history() -> dict[str, Any]:
@@ -377,16 +425,19 @@ def save_search_history(payload: dict[str, Any]) -> None:
     write_json(SEARCH_HISTORY_PATH, payload)
 
 
-def advance_query_index(category_id: str, used_index: int) -> None:
-    queries = configured_queries(category_id)
+def advance_query_index(category_id: str, used_index: int, market_target: str = DEFAULT_MARKET_TARGET) -> None:
+    queries = configured_queries(category_id, market_target)
     if not queries:
         return
     history = load_search_history()
     categories = history.setdefault("categories", {})
-    state = categories.setdefault(category_id, {})
+    state_key = search_history_key(category_id, market_target)
+    state = categories.setdefault(state_key, {})
     if not isinstance(state, dict):
         state = {}
-        categories[category_id] = state
+        categories[state_key] = state
+    state["category_id"] = category_id
+    state["market_target"] = normalize_market_target(market_target)
     state["next_query_index"] = (used_index + 1) % len(queries)
     state["last_opened_at"] = now_iso()
     save_search_history(history)
@@ -513,8 +564,13 @@ def clean_query_terms(parts: list[Any]) -> str:
     return " ".join(terms)
 
 
-def configured_query_text(item: Any, defaults: dict[str, Any] | None = None) -> str:
+def configured_query_text(
+    item: Any,
+    defaults: dict[str, Any] | None = None,
+    market: dict[str, Any] | None = None,
+) -> str:
     defaults = defaults if isinstance(defaults, dict) else {}
+    market_modifiers = market.get("query_modifiers", []) if isinstance(market, dict) else []
     if isinstance(item, dict):
         return clean_query_terms(
             [
@@ -523,36 +579,42 @@ def configured_query_text(item: Any, defaults: dict[str, Any] | None = None) -> 
                 item.get("launch_season") or item.get("season") or defaults.get("launch_season"),
                 item.get("freshness") or defaults.get("freshness"),
                 item.get("modifiers") or defaults.get("modifiers"),
+                market_modifiers,
                 item.get("fulfillment") or defaults.get("fulfillment"),
             ]
         )
     return clean(item)
 
 
-def configured_queries(category_id: str) -> list[str]:
+def configured_queries(category_id: str, market_target: str = DEFAULT_MARKET_TARGET) -> list[str]:
     categories = category_lookup()
     category = categories.get(category_id) or categories.get("family-matching") or {}
     raw_queries = category.get("queries") or ["亲子装 连衣裙 衬衫 一件代发"]
     defaults = category.get("search_defaults", {})
+    market = market_profile(market_target)
     queries: list[str] = []
     for item in raw_queries:
-        query = configured_query_text(item, defaults)
+        query = configured_query_text(item, defaults, market)
         if query:
             queries.append(query)
     return queries or ["亲子装 连衣裙 衬衫 一件代发"]
 
 
-def next_query_index(category_id: str) -> int:
-    queries = configured_queries(category_id)
+def next_query_index(category_id: str, market_target: str = DEFAULT_MARKET_TARGET) -> int:
+    queries = configured_queries(category_id, market_target)
     history = load_search_history()
-    state = history.get("categories", {}).get(category_id, {})
+    state = history.get("categories", {}).get(search_history_key(category_id, market_target), {})
     if not isinstance(state, dict):
         return 0
     return int(state.get("next_query_index") or 0) % len(queries)
 
 
-def category_search_url(category_id: str, query_index: int = 0) -> str:
-    queries = configured_queries(category_id)
+def category_search_url(
+    category_id: str,
+    query_index: int = 0,
+    market_target: str = DEFAULT_MARKET_TARGET,
+) -> str:
+    queries = configured_queries(category_id, market_target)
     query = queries[min(max(query_index, 0), len(queries) - 1)]
     return f"https://s.1688.com/selloffer/offer_search.htm?keywords={gbk_quote(query)}"
 
@@ -598,6 +660,23 @@ def navigate_existing_cdp_tab(page: dict[str, Any], url: str) -> bool:
         return False
 
 
+def create_cdp_tab(url: str) -> dict[str, Any] | None:
+    encoded = quote(url or "about:blank", safe="")
+    endpoint = f"http://127.0.0.1:{CDP_PORT}/json/new?{encoded}"
+    request = urllib.request.Request(endpoint, method="PUT")
+    try:
+        with urllib.request.urlopen(request, timeout=4) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        return payload if isinstance(payload, dict) else None
+    except Exception:
+        try:
+            with urllib.request.urlopen(endpoint, timeout=4) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            return payload if isinstance(payload, dict) else None
+        except Exception:
+            return None
+
+
 def close_duplicate_1688_search_tabs(keep_id: str) -> None:
     try:
         pages = cdp_pages()
@@ -616,19 +695,30 @@ def close_duplicate_1688_search_tabs(keep_id: str) -> None:
             pass
 
 
-def open_1688_helper_browser(category_id: str, query_index: int = 0) -> str:
+def open_1688_helper_browser(
+    category_id: str,
+    query_index: int = 0,
+    market_target: str = DEFAULT_MARKET_TARGET,
+) -> str:
     category = category_id if category_id != "all" else "family-matching"
+    market_target = normalize_market_target(market_target)
     if query_index < 0:
-        query_index = next_query_index(category)
-    url = category_search_url(category, query_index)
+        query_index = next_query_index(category, market_target)
+    url = category_search_url(category, query_index, market_target)
     try:
         page = reusable_1688_page(cdp_pages())
     except Exception:
         page = None
     if page and navigate_existing_cdp_tab(page, url):
         close_duplicate_1688_search_tabs(clean(page.get("id")))
-        advance_query_index(category, query_index)
+        advance_query_index(category, query_index, market_target)
         return url
+    if page is None:
+        created = create_cdp_tab(url)
+        if created:
+            close_duplicate_1688_search_tabs(clean(created.get("id")))
+            advance_query_index(category, query_index, market_target)
+            return url
     subprocess.Popen(
         [
             "open",
@@ -644,7 +734,7 @@ def open_1688_helper_browser(category_id: str, query_index: int = 0) -> str:
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
-    advance_query_index(category, query_index)
+    advance_query_index(category, query_index, market_target)
     return url
 
 
@@ -715,7 +805,9 @@ def run_collect_job(
     query_index: int,
     target_reviewable: int,
     max_pages_per_query: int,
+    market_target: str,
 ) -> None:
+    market_target = normalize_market_target(market_target)
     command = [
         "python3",
         str(COLLECTOR_PATH),
@@ -731,6 +823,8 @@ def run_collect_job(
         str(target_reviewable),
         "--max-pages-per-query",
         str(max_pages_per_query),
+        "--market-target",
+        market_target,
     ]
     update_collect_job(job_id, status="running", command=" ".join(command), started_at=now_iso())
     try:
@@ -777,6 +871,16 @@ def run_collect_job(
                 "No new products found in this pass. The app skipped already-seen offers "
                 "and rotated the configured searches; try another category or tune the query bank."
             )
+        elif "did not finish loading the requested search page" in combined:
+            message = (
+                "1688 did not finish loading the requested category/market search, so no mismatched products were saved. "
+                "Open the helper browser, confirm the intended search page loads, then try Find 20 Leads again."
+            )
+        elif "browser connection ended" in combined:
+            message = (
+                "The 1688 helper browser connection ended before new product cards were saved. "
+                "Open the helper browser again, confirm it is connected, then try Find 20 Leads."
+            )
         elif "CAPTCHA" in combined or "interception" in combined or "_____tmd_____" in combined:
             message = (
                 "1688 blocked the search with login/CAPTCHA/interception. Open the helper browser, "
@@ -804,29 +908,36 @@ def start_collect_job(
     query_index: int,
     target_reviewable: int = 20,
     max_pages_per_query: int = 2,
+    market_target: str = DEFAULT_MARKET_TARGET,
 ) -> dict[str, Any]:
     allowed_categories = set(category_lookup()) | {"all"}
     if category_id not in allowed_categories:
         category_id = "family-matching"
+    market_target = normalize_market_target(market_target)
     limit = max(1, min(limit, 240))
     target_reviewable = max(0, min(target_reviewable, 25))
     max_pages_per_query = max(1, min(max_pages_per_query, 3))
-    job_id = hashlib.sha1(f"{now_iso()}-{category_id}-{limit}".encode("utf-8")).hexdigest()[:12]
+    job_id = hashlib.sha1(f"{now_iso()}-{category_id}-{market_target}-{limit}".encode("utf-8")).hexdigest()[:12]
     with COLLECTION_LOCK:
         COLLECTION_JOBS[job_id] = {
             "id": job_id,
             "status": "queued",
             "category_id": category_id,
+            "market_target": market_target,
             "limit": limit,
             "query_index": query_index,
             "target_reviewable": target_reviewable,
             "max_pages_per_query": max_pages_per_query,
             "created_at": now_iso(),
-            "message": f"Starting 1688 search. I will rotate the configured occasion keywords and aim for up to {target_reviewable} reviewable leads.",
+            "message": (
+                "Starting 1688 search. I will rotate the configured occasion keywords, "
+                f"use the {market_profile(market_target).get('label', market_target)} market focus, "
+                f"and aim for up to {target_reviewable} reviewable leads."
+            ),
         }
     thread = threading.Thread(
         target=run_collect_job,
-        args=(job_id, category_id, limit, query_index, target_reviewable, max_pages_per_query),
+        args=(job_id, category_id, limit, query_index, target_reviewable, max_pages_per_query, market_target),
         daemon=True,
     )
     thread.start()
@@ -943,6 +1054,8 @@ def candidate_search_text(candidate: dict[str, Any]) -> str:
         candidate.get("raw_card_text"),
         candidate.get("search_query"),
         candidate.get("sales_context"),
+        candidate.get("market_label"),
+        candidate.get("market_target"),
     ]
     return clean(" ".join(clean(part) for part in parts)).lower()
 
@@ -950,6 +1063,7 @@ def candidate_search_text(candidate: dict[str, Any]) -> str:
 def load_candidates() -> list[dict[str, Any]]:
     decisions = load_decisions().get("items", {})
     categories = category_lookup()
+    markets = market_profile_lookup()
     candidates: list[dict[str, Any]] = []
     for scored_path in sorted(SOURCING_ROOT.glob("**/scored-candidates.json")):
         run_dir = scored_path.parent
@@ -967,6 +1081,8 @@ def load_candidates() -> list[dict[str, Any]]:
             key = offer_key(item.get("product_url", ""))
             decision = decisions.get(key, {})
             evidence = decision.get("evidence", {}) if isinstance(decision, dict) else {}
+            market_target = normalize_market_target(item.get("market_target") or run_metadata.get("market_target"))
+            market = markets.get(market_target, markets.get(DEFAULT_MARKET_TARGET, {}))
             candidate = dict(item)
             candidate["key"] = key
             candidate["run_id"] = run_metadata.get("run_id") or run_dir.name
@@ -975,6 +1091,8 @@ def load_candidates() -> list[dict[str, Any]]:
             candidate["category_id"] = category_id
             candidate["category_label"] = category.get("label", category_id)
             candidate["listing_mode"] = category.get("listing_mode", "Family Matching")
+            candidate["market_target"] = market_target
+            candidate["market_label"] = market.get("short_label") or market.get("label") or market_target
             candidate["decision"] = decision.get("action", "")
             candidate["decision_updated_at"] = decision.get("updated_at", "")
             candidate["evidence"] = evidence if isinstance(evidence, dict) else {}
@@ -1064,6 +1182,7 @@ def build_listing_prompt(candidate: dict[str, Any]) -> str:
         image_note = f" Vendor image evidence path: {vendor_images}."
     notes = (
         f"Sourcing category: {candidate.get('category_label')}; "
+        f"market focus: {candidate.get('market_label', 'Balanced')}; "
         f"score {candidate.get('score')}; verdict {candidate.get('verdict')}. "
         f"Product title: {title}. Confirm size chart, images, dropship support, "
         f"dispatch speed, and supplier evidence before draft creation or any later publishing.{image_note}"
@@ -1400,6 +1519,19 @@ def dashboard_html() -> str:
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+    }
+    .market-control {
+      display: grid;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .market-control select {
+      width: 100%;
+      min-height: 38px;
+      color: var(--ink);
+      font-weight: 500;
     }
     .status-box {
       min-height: 46px;
@@ -1885,6 +2017,10 @@ def dashboard_html() -> str:
       </div>
       <div class="guide-panel search-panel">
         <h3>Find new products</h3>
+        <label class="market-control">
+          <span>Market focus</span>
+          <select id="market-focus"></select>
+        </label>
         <div class="row">
           <button id="find-products" class="primary">Find 20 Leads</button>
           <button id="open-1688">Open 1688 Login/Search</button>
@@ -1920,9 +2056,10 @@ def dashboard_html() -> str:
     <div id="grid" class="grid"></div>
   </main>
   <script>
-    let data = { categories: [], candidates: [], counts: {} };
+    let data = { categories: [], market_profiles: [], candidates: [], counts: {} };
     let activeCategory = 'all';
     let activeFilter = 'active';
+    let activeMarket = 'balanced';
     let searchTerm = '';
 
     const grid = document.querySelector('#grid');
@@ -1930,6 +2067,7 @@ def dashboard_html() -> str:
     const categoriesEl = document.querySelector('#categories');
     const search = document.querySelector('#search');
     const sort = document.querySelector('#sort');
+    const marketFocus = document.querySelector('#market-focus');
     const collectorStatus = document.querySelector('#collector-status');
     const searchPlan = document.querySelector('#search-plan');
     const memoryStatus = document.querySelector('#memory-status');
@@ -2111,6 +2249,12 @@ def dashboard_html() -> str:
       return data.categories.find(category => category.id === activeCategory) || null;
     }
 
+    function activeMarketProfile() {
+      return (data.market_profiles || []).find(profile => profile.id === activeMarket)
+        || (data.market_profiles || []).find(profile => profile.id === 'balanced')
+        || { id: 'balanced', label: 'Balanced', short_label: 'Balanced', description: '', query_modifiers: [] };
+    }
+
     function queryTerms(parts) {
       const seen = new Set();
       const terms = [];
@@ -2129,7 +2273,7 @@ def dashboard_html() -> str:
       return terms.join(' ');
     }
 
-    function queryDisplayText(query, category) {
+    function queryDisplayText(query, category, marketProfile = activeMarketProfile()) {
       if (typeof query === 'string') return query;
       const defaults = category?.search_defaults || {};
       return queryTerms([
@@ -2138,21 +2282,24 @@ def dashboard_html() -> str:
         query?.launch_season || query?.season || defaults.launch_season,
         query?.freshness || defaults.freshness,
         query?.modifiers || defaults.modifiers,
+        marketProfile?.query_modifiers || [],
         query?.fulfillment || defaults.fulfillment,
       ]);
     }
 
     function renderSearchPlan() {
       const category = activeCategoryConfig();
+      const marketProfile = activeMarketProfile();
       const queries = category
-        ? (category.queries || []).map(query => queryDisplayText(query, category))
-        : data.categories.flatMap(item => (item.queries || []).map(query => queryDisplayText(query, item))).slice(0, 8);
+        ? (category.queries || []).map(query => queryDisplayText(query, category, marketProfile))
+        : data.categories.flatMap(item => (item.queries || []).map(query => queryDisplayText(query, item, marketProfile))).slice(0, 8);
       const queryItems = queries.slice(0, 10).map(query => `<li>${escapeHtml(query)}</li>`).join('');
       const label = category ? category.label : 'All Categories';
       searchPlan.innerHTML = `
-        <div><strong>What the button searches:</strong> ${escapeHtml(label)} keyword searches on normal 1688 search pages. It rotates the starting query, uses configured launch year/season terms, and skips offers already saved locally.</div>
+        <div><strong>What the button searches:</strong> ${escapeHtml(label)} keyword searches on normal 1688 search pages with ${escapeHtml(marketProfile.label || activeMarket)} focus. It rotates the starting query, uses configured launch year/season terms, and skips offers already saved locally.</div>
         <ul class="query-list">${queryItems}</ul>
-        <div><strong>What becomes Buyer Shortlist:</strong> correct category, usable product image, low MOQ, newer 1688 offer ID or visible 2025/2026/new-style wording, and a useful signal such as repeat rate, sales, stock, dispatch, or dropship wording.</div>
+        <div><strong>Market rule:</strong> ${escapeHtml(marketProfile.description || 'Use the base category searches.')}</div>
+        <div><strong>What becomes Buyer Shortlist:</strong> correct category, usable product image, low MOQ, newer 1688 offer ID or visible 2025/2026/new-style wording, and a useful signal such as repeat rate, sales, stock, dispatch, or dropship wording. US/Europe focus requires stronger fresh-listing and reputable-vendor proof.</div>
         <div><strong>What gets hidden:</strong> previous reject, old 1688 offer ID, old year signal such as 2020-2024, wrong category, no product URL/image, high MOQ, no-dropship/no-size-chart evidence, brand/IP risk, or no useful demand/fulfillment signal.</div>
         <div><strong>Sales:</strong> the number visible on the 1688 search card. If 1688 does not show a time window, treat it as a popularity clue and confirm on the detail page.</div>
       `;
@@ -2211,6 +2358,21 @@ def dashboard_html() -> str:
       }
     }
 
+    function renderMarketOptions() {
+      const profiles = data.market_profiles?.length
+        ? data.market_profiles
+        : [{ id: 'balanced', label: 'Balanced', short_label: 'Balanced' }];
+      const prior = activeMarket;
+      marketFocus.replaceChildren(...profiles.map(profile => {
+        const option = document.createElement('option');
+        option.value = profile.id;
+        option.textContent = profile.label || profile.id;
+        return option;
+      }));
+      activeMarket = profiles.some(profile => profile.id === prior) ? prior : 'balanced';
+      marketFocus.value = activeMarket;
+    }
+
     async function pollCollection(jobId, button) {
       const started = Date.now();
       while (Date.now() - started < 20 * 60 * 1000) {
@@ -2236,6 +2398,7 @@ def dashboard_html() -> str:
 
     async function findFreshProducts(button) {
       const category = activeCategory === 'all' ? 'all' : activeCategory;
+      const marketProfile = activeMarketProfile();
       button.disabled = true;
       const old = button.textContent;
       button.textContent = 'Searching...';
@@ -2247,10 +2410,10 @@ def dashboard_html() -> str:
           flash(button, 'Blocked');
           return;
         }
-        setCollectorStatus(`Searching 1688 for ${category === 'all' ? 'all categories' : category}. I am aiming for 20 reviewable leads, rotating occasion keywords with launch-year and season terms, checking extra pages, skipping already-seen offers, and hiding weak matches before they reach your shortlist.`);
+        setCollectorStatus(`Searching 1688 for ${category === 'all' ? 'all categories' : category} with ${marketProfile.label || activeMarket} focus. I am aiming for 20 reviewable leads, rotating fresh-listing keywords, checking extra pages, skipping already-seen offers, and hiding weak supplier matches before they reach your shortlist.`);
         const job = await api('/api/collect', {
           method: 'POST',
-          body: JSON.stringify({ category_id: category, limit: 200, query_index: -1, target_reviewable: 20, max_pages_per_query: 2 }),
+          body: JSON.stringify({ category_id: category, market_target: activeMarket, limit: 200, query_index: -1, target_reviewable: 20, max_pages_per_query: 2 }),
         });
         await pollCollection(job.id, button);
       } catch (error) {
@@ -2266,9 +2429,9 @@ def dashboard_html() -> str:
       try {
         const payload = await api('/api/open-1688-browser', {
           method: 'POST',
-          body: JSON.stringify({ category_id: category, query_index: -1 }),
+          body: JSON.stringify({ category_id: category, market_target: activeMarket, query_index: -1 }),
         });
-        setCollectorStatus(`Reused the 1688 helper tab. Login or clear CAPTCHA once if asked, then click Find 20 Leads. Search page: ${payload.url}`, 'good');
+        setCollectorStatus(`Reused the 1688 helper tab with ${activeMarketProfile().label || activeMarket} focus. Login or clear CAPTCHA once if asked, then click Find 20 Leads. Search page: ${payload.url}`, 'good');
         flash(button, 'Opened');
       } catch (error) {
         setCollectorStatus(`Could not open Chrome helper: ${error.message}`, 'bad');
@@ -2415,6 +2578,7 @@ def dashboard_html() -> str:
           <div class="meta">
             <div>
               <div class="small">${escapeHtml(candidate.category_label)} - ${escapeHtml(candidate.run_id)}</div>
+              <div class="small">Market: ${escapeHtml(candidate.market_label || candidate.market_target || 'Balanced')}</div>
               <div class="small">${escapeHtml(searchQuery)}</div>
               <h2>${escapeHtml(candidate.title || candidate.product_url)}</h2>
             </div>
@@ -2477,6 +2641,7 @@ def dashboard_html() -> str:
     }
 
     function render() {
+      renderMarketOptions();
       renderCategories();
       renderSearchPlan();
       updateStats();
@@ -2499,6 +2664,7 @@ def dashboard_html() -> str:
     });
     search.addEventListener('input', () => { searchTerm = search.value; renderCards(); });
     sort.addEventListener('change', renderCards);
+    marketFocus.addEventListener('change', () => { activeMarket = marketFocus.value || 'balanced'; renderSearchPlan(); });
     document.querySelector('#refresh').addEventListener('click', async event => {
       const button = event.currentTarget;
       await loadData();
@@ -2582,6 +2748,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
             self.send_json(
                 {
                     "categories": load_categories(),
+                    "market_profiles": load_market_profiles(),
                     "candidates": candidates,
                     "counts": category_counts(candidates),
                     "decisions_path": str(DECISIONS_PATH.relative_to(REPO_ROOT)),
@@ -2668,8 +2835,9 @@ class DashboardHandler(BaseHTTPRequestHandler):
             payload = self.read_body_json()
             category_id = clean(payload.get("category_id")) or "family-matching"
             query_index = int(payload.get("query_index") or 0)
+            market_target = normalize_market_target(payload.get("market_target"))
             try:
-                url = open_1688_helper_browser(category_id, query_index)
+                url = open_1688_helper_browser(category_id, query_index, market_target)
             except Exception as exc:
                 self.send_json({"error": str(exc)}, HTTPStatus.INTERNAL_SERVER_ERROR)
                 return
@@ -2677,6 +2845,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 {
                     "ok": True,
                     "url": url,
+                    "market_target": market_target,
                     "message": "Opened 1688 helper browser. Log in or clear CAPTCHA if asked, then run Find 20 Leads.",
                 }
             )
@@ -2688,7 +2857,8 @@ class DashboardHandler(BaseHTTPRequestHandler):
             query_index = int(payload.get("query_index") or 0)
             target_reviewable = int(payload.get("target_reviewable") or 20)
             max_pages_per_query = int(payload.get("max_pages_per_query") or 2)
-            job = start_collect_job(category_id, limit, query_index, target_reviewable, max_pages_per_query)
+            market_target = normalize_market_target(payload.get("market_target"))
+            job = start_collect_job(category_id, limit, query_index, target_reviewable, max_pages_per_query, market_target)
             self.send_json(job)
             return
         if parsed.path == "/api/detail-enrich":

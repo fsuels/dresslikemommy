@@ -1,0 +1,35 @@
+{
+  "anchor": "AGENT_CONTINUITY_ANCHOR: 2026-05-08-paid-growth-orchestrated-safe-advance",
+  "mode": "parent_orchestrated_parallel_subagents_readonly_local",
+  "external_writes": false,
+  "live_spend_or_enablement": false,
+  "protected_surfaces_unchanged": [
+    "Standard Shopping",
+    "PMax",
+    "Remarketing",
+    "campaign budgets",
+    "campaign bids",
+    "campaign statuses",
+    "product scope",
+    "feed labels",
+    "product groups",
+    "conversion goals",
+    "Merchant uploads/syncs",
+    "Shopify live product data",
+    "Pinterest account objects"
+  ],
+  "lanes": {
+    "merchant": "No current exact post-refresh CSV found; next read-only browser export/source processing report path documented.",
+    "ads_intl": "17 non-US paused Search campaigns validated; approval gate corrected to non-US only and separated from Pinterest.",
+    "pinterest": "Older 337/9 scope superseded by 342 clean EN-US rows and 4 exclusions; Event Quality Fair remains live-spend gate.",
+    "localization": "Country-qualified product URLs pass product-page country/currency checks; non-cleared markets still need no-payment checkout QA.",
+    "roas": "650% ROAS guardrails refreshed; CPC caps aligned to current Ads packet; RO/RON caveat preserved.",
+    "creative": "No customer-facing unsafe copy rows found; old PMax T-shirt collection URL remains superseded."
+  },
+  "active_problems_touched": [
+    "PROB-2026-05-08-MERCHANT-AGE-GROUP-EXACT-EXPORT",
+    "PROB-2026-05-08-PINTEREST-EVENT-QUALITY"
+  ],
+  "next_best_action": "Run fresh read-only Merchant exact product-issues export; then seek exact owner approval for either non-US paused Search build or Pinterest paused US draft."
+}
+

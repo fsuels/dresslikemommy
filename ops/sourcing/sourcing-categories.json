@@ -1,5 +1,28 @@
 {
   "version": 1,
+  "market_profiles": [
+    {
+      "id": "balanced",
+      "label": "Balanced",
+      "short_label": "Balanced",
+      "description": "Use the base category searches and the standard freshness/reputation gates.",
+      "query_modifiers": []
+    },
+    {
+      "id": "us",
+      "label": "American Market",
+      "short_label": "US",
+      "description": "Bias searches toward US/cross-border styles and require stronger freshness plus vendor-quality proof before a card reaches Buyer Shortlist.",
+      "query_modifiers": ["欧美", "美国站", "跨境", "外贸"]
+    },
+    {
+      "id": "eu",
+      "label": "European Market",
+      "short_label": "Europe",
+      "description": "Bias searches toward European/cross-border styles and require stronger freshness plus vendor-quality proof before a card reaches Buyer Shortlist.",
+      "query_modifiers": ["欧洲站", "欧美", "跨境", "外贸"]
+    }
+  ],
   "categories": [
     {
       "id": "mommy-and-me",
@@ -633,7 +656,7 @@
       "id": "maternity",
       "label": "Maternity",
       "listing_mode": "Maternity",
-      "primary_focus": "Pregnancy, maternity, bump-friendly, and mommy-and-baby styles.",
+      "primary_focus": "Maternity photoshoot gowns, studio portrait dresses, and special baby-bump occasion looks.",
       "search_defaults": {
         "launch_year": "2026",
         "freshness": "新款",
@@ -641,88 +664,178 @@
       },
       "queries": [
         {
-          "text": "孕妇装",
-          "intent": "maternity outfits",
-          "launch_season": "夏季",
-          "modifiers": ["连衣裙"]
+          "text": "孕妇写真裙",
+          "intent": "maternity photoshoot dresses",
+          "launch_season": "春夏",
+          "modifiers": ["唯美", "仙女"]
         },
         {
-          "text": "孕妇连衣裙",
-          "intent": "maternity dresses",
-          "launch_season": "夏季",
-          "modifiers": ["宽松"]
+          "text": "孕妇照礼服",
+          "intent": "maternity photo gowns and formal dresses",
+          "launch_season": "春夏",
+          "modifiers": ["影楼", "高定"]
         },
         {
-          "text": "孕妇裙",
-          "intent": "maternity skirts and dresses",
-          "launch_season": "夏季",
-          "modifiers": ["连衣裙"]
+          "text": "孕妇拍照服装",
+          "intent": "maternity photo clothing",
+          "launch_season": "春夏",
+          "modifiers": ["影楼", "新款"]
         },
         {
-          "text": "孕妈连衣裙",
-          "intent": "mom-to-be dresses",
-          "launch_season": "夏季",
-          "modifiers": ["气质"]
+          "text": "孕妇摄影服",
+          "intent": "maternity photography outfits",
+          "launch_season": "春夏",
+          "modifiers": ["唯美", "长款"]
         },
         {
-          "text": "孕妇夏季连衣裙",
-          "intent": "summer maternity dresses",
-          "launch_season": "夏季",
-          "modifiers": ["短袖"]
+          "text": "孕妈写真服",
+          "intent": "mom-to-be photoshoot outfits",
+          "launch_season": "春夏",
+          "modifiers": ["仙气", "礼服"]
         },
         {
-          "text": "孕妇宽松连衣裙",
-          "intent": "bump-friendly loose dresses",
-          "launch_season": "夏季",
-          "modifiers": ["休闲"]
+          "text": "大肚照礼服",
+          "intent": "baby-bump photo gowns",
+          "launch_season": "春夏",
+          "modifiers": ["唯美", "高定"]
         },
         {
-          "text": "孕妇棉麻连衣裙",
-          "intent": "cotton-linen maternity dresses",
-          "launch_season": "夏季",
-          "modifiers": ["休闲"]
+          "text": "大肚写真裙",
+          "intent": "baby-bump photoshoot dresses",
+          "launch_season": "春夏",
+          "modifiers": ["飘纱", "海边"]
         },
         {
-          "text": "孕妇沙滩裙",
-          "intent": "maternity beach dresses",
-          "launch_season": "夏季",
-          "modifiers": ["度假"]
+          "text": "孕肚照服装",
+          "intent": "baby-bump photo outfits",
+          "launch_season": "春夏",
+          "modifiers": ["室内写真", "唯美"]
         },
         {
-          "text": "孕妇度假连衣裙",
-          "intent": "maternity vacation dresses",
+          "text": "影楼孕妇装",
+          "intent": "studio maternity wear",
+          "launch_season": "春夏",
+          "modifiers": ["礼服", "写真"]
+        },
+        {
+          "text": "孕妇写真礼服",
+          "intent": "dreamy fairy-style maternity photoshoot gowns",
+          "launch_season": "春夏",
+          "modifiers": ["唯美", "仙女"]
+        },
+        {
+          "text": "孕妇照服装",
+          "intent": "new studio maternity photo outfits",
+          "launch_season": "春夏",
+          "modifiers": ["影楼", "新款"]
+        },
+        {
+          "text": "新中式 孕妇照",
+          "intent": "new Chinese style maternity photo outfits",
+          "launch_season": "春夏",
+          "modifiers": ["旗袍", "改良旗袍"]
+        },
+        {
+          "text": "孕妈摄影服",
+          "intent": "French lace mom-to-be photography outfits",
+          "launch_season": "春夏",
+          "modifiers": ["法式", "蕾丝"]
+        },
+        {
+          "text": "孕妇写真裙",
+          "intent": "forest and ethereal maternity photoshoot dresses",
+          "launch_season": "春夏",
+          "modifiers": ["森系", "仙气"]
+        },
+        {
+          "text": "孕妇照礼服",
+          "intent": "oil-painting and light-luxury maternity photo gowns",
+          "launch_season": "春夏",
+          "modifiers": ["油画风", "轻奢"]
+        },
+        {
+          "text": "孕妇写真礼服",
+          "intent": "strapless long maternity photoshoot gowns",
+          "launch_season": "春夏",
+          "modifiers": ["抹胸长裙"]
+        },
+        {
+          "text": "孕妇照礼服",
+          "intent": "mermaid maternity photo gowns",
+          "launch_season": "春夏",
+          "modifiers": ["鱼尾裙"]
+        },
+        {
+          "text": "孕妇写真裙",
+          "intent": "white tulle maternity photoshoot dresses",
+          "launch_season": "春夏",
+          "modifiers": ["白纱裙", "薄纱裙"]
+        },
+        {
+          "text": "大肚写真裙",
+          "intent": "flowing tulle baby-bump photoshoot gowns",
+          "launch_season": "春夏",
+          "modifiers": ["飘纱裙"]
+        },
+        {
+          "text": "孕妇照服装",
+          "intent": "off-shoulder and lace maternity photo outfits",
+          "launch_season": "春夏",
+          "modifiers": ["露肩裙", "蕾丝连衣裙"]
+        },
+        {
+          "text": "孕妇摄影服",
+          "intent": "slip and floral maternity photography dresses",
+          "launch_season": "春夏",
+          "modifiers": ["吊带裙", "碎花连衣裙"]
+        },
+        {
+          "text": "孕妇写真服",
+          "intent": "cozy indoor maternity photoshoot outfits",
+          "launch_season": "秋冬",
+          "modifiers": ["针织深V", "室内写真"]
+        },
+        {
+          "text": "孕妇照礼服",
+          "intent": "velvet maternity photo gowns",
+          "launch_season": "秋冬",
+          "modifiers": ["丝绒礼服"]
+        },
+        {
+          "text": "海边孕妇照",
+          "intent": "beach maternity photoshoot gowns",
           "launch_season": "夏季",
-          "modifiers": ["长款"]
+          "modifiers": ["飘纱", "白纱裙"]
+        },
+        {
+          "text": "情侣孕妇照",
+          "intent": "couples maternity photoshoot outfits",
+          "launch_season": "春夏",
+          "modifiers": ["礼服", "写真"]
+        },
+        {
+          "text": "孕妇写真礼服",
+          "intent": "maternity photoshoot gowns styled with veils",
+          "launch_season": "春夏",
+          "modifiers": ["头纱"]
         },
         {
           "text": "孕妇礼服",
-          "intent": "maternity formal dresses",
+          "intent": "maternity formal photoshoot gowns",
           "launch_season": "春夏",
-          "modifiers": ["高端"]
+          "modifiers": ["写真", "高定"]
         },
         {
           "text": "孕妇晚礼服",
-          "intent": "maternity evening gowns",
+          "intent": "maternity evening photoshoot gowns",
           "launch_season": "春夏",
-          "modifiers": ["气质"]
+          "modifiers": ["影楼", "长款"]
         },
         {
-          "text": "孕妇婚礼礼服",
-          "intent": "maternity wedding guest dresses",
+          "text": "孕妇照婚纱礼服",
+          "intent": "maternity wedding-style studio gowns",
           "launch_season": "春夏",
-          "modifiers": ["蕾丝"]
-        },
-        {
-          "text": "孕妇生日礼服",
-          "intent": "maternity birthday dresses",
-          "launch_season": "春夏",
-          "modifiers": ["公主裙"]
-        },
-        {
-          "text": "孕妇派对礼服",
-          "intent": "maternity party dresses",
-          "launch_season": "春夏",
-          "modifiers": ["雪纺"]
+          "modifiers": ["影楼", "高定"]
         },
         {
           "text": "孕妇写真服",
@@ -740,49 +853,13 @@
           "text": "孕妇拍照裙",
           "intent": "maternity photo dresses",
           "launch_season": "春夏",
-          "modifiers": ["写真"]
+          "modifiers": ["影楼", "礼服"]
         },
         {
-          "text": "孕妇亲子装",
-          "intent": "maternity parent-child outfits",
-          "launch_season": "夏季",
-          "modifiers": ["母女装"]
-        },
-        {
-          "text": "孕妇母女装",
-          "intent": "maternity mother-daughter outfits",
-          "launch_season": "夏季",
-          "modifiers": ["连衣裙"]
-        },
-        {
-          "text": "孕妈宝宝亲子装",
-          "intent": "mom-to-be and baby coordinated outfits",
-          "launch_season": "夏季",
-          "modifiers": ["连衣裙"]
-        },
-        {
-          "text": "哺乳连衣裙",
-          "intent": "nursing dresses",
-          "launch_season": "夏季",
-          "modifiers": ["孕妇"]
-        },
-        {
-          "text": "产后哺乳裙",
-          "intent": "postpartum nursing dresses",
-          "launch_season": "夏季",
-          "modifiers": ["宽松"]
-        },
-        {
-          "text": "孕妇新年装",
-          "intent": "maternity New Year outfits",
+          "text": "冬季孕妇照礼服",
+          "intent": "winter maternity photoshoot gowns",
           "launch_season": "冬季",
-          "modifiers": ["唐装"]
-        },
-        {
-          "text": "孕妇圣诞裙",
-          "intent": "maternity Christmas dresses",
-          "launch_season": "冬季",
-          "modifiers": ["节日"]
+          "modifiers": ["雪景", "丝绒"]
         }
       ]
     }

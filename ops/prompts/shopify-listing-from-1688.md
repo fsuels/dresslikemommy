@@ -146,10 +146,12 @@ FORCE_SPEC_PRICES: true
 
 Cost rule for every generated or updated Shopify variant:
 
-- Cost per item is automatic and equals 50% of the Shopify selling price.
-- In Admin API variant payloads, set `inventoryItem.cost` to `price * 0.50`, rounded to cents.
-- In Shopify CSV backups, populate `Cost per item` with the same value.
-- If any variant is missing Cost per item after verification, set/report `paid_eligible=false` and keep the listing in `DRAFT` until the cost is fixed.
+- Cost per item is automatic and equals 50% of the current final Shopify variant price.
+- The operator may manually set final prices in Shopify. Treat those manual prices as the source of truth.
+- On create, use the generated/override price as the final price and set `inventoryItem.cost` to `price * 0.50`, rounded to cents.
+- On update, rerun, or verification, first read the current live/draft variant price. Preserve that price unless the current request explicitly changes prices, then set Cost per item to `current price * 0.50`.
+- In Shopify CSV backups, populate `Cost per item` from the row's final `Variant Price`.
+- If any variant is missing stale Cost per item after verification, fix cost to 50% of the current price; do not reset the operator's manual price just to match an earlier generated spec.
 
 Expected option model for Example 4:
 

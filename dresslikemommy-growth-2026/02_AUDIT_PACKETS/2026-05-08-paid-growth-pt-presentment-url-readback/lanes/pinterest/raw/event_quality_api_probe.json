@@ -1,0 +1,1614 @@
+{
+  "status": "READ_ONLY_EVENT_QUALITY_API_PROBE_COMPLETE",
+  "generated_at": "2026-05-08T05:00:03.657Z",
+  "advertiser_id": "549756244483",
+  "target_id": "8E2ABE443D766024261F3F5507E96552",
+  "page": {},
+  "responses": [
+    {
+      "status": 200,
+      "mimeType": "application/json",
+      "sanitizedUrl": "https://api.pinterest.com/ads/v4/advertisers/549756244483/conversions/alerts",
+      "bodyLength": 111,
+      "base64Encoded": false,
+      "parseError": "",
+      "json": {
+        "status": "success",
+        "code": 0,
+        "message": "ok",
+        "endpoint_name": "get_conversion_events_alerts_handler",
+        "data": null
+      }
+    },
+    {
+      "status": 200,
+      "mimeType": "application/json",
+      "sanitizedUrl": "https://api.pinterest.com/ads/v4/advertisers/549756244483/conversions/acq_overall_status?lookback_period",
+      "bodyLength": 238,
+      "base64Encoded": false,
+      "parseError": "",
+      "json": {
+        "status": "success",
+        "code": 0,
+        "message": "ok",
+        "endpoint_name": "get_acq_overall_status_handler",
+        "data": {
+          "sourcePlatforms": {
+            "WEB": {
+              "ingestionSources": {
+                "TAG": {
+                  "status": "FAIR"
+                },
+                "CONVERSIONS_API": {
+                  "status": "FAIR"
+                }
+              }
+            }
+          },
+          "updatedDate": "2026-05-06"
+        }
+      }
+    },
+    {
+      "status": 200,
+      "mimeType": "application/json",
+      "sanitizedUrl": "https://api.pinterest.com/ads/v4/advertisers/549756244483/conversions/latest",
+      "bodyLength": 165,
+      "base64Encoded": false,
+      "parseError": "",
+      "json": {
+        "status": "success",
+        "code": 0,
+        "message": "ok",
+        "endpoint_name": "get_conversion_latest_handler",
+        "data": {
+          "TAG": 1778216316074551000,
+          "CONVERSIONS_API": 1778216328640874200
+        }
+      }
+    },
+    {
+      "status": 200,
+      "mimeType": "application/json",
+      "sanitizedUrl": "https://api.pinterest.com/ads/v4/conversions/advertiser_metadata?advertiser_id_list&query_type",
+      "bodyLength": 253,
+      "base64Encoded": false,
+      "parseError": "",
+      "json": {
+        "status": "success",
+        "code": 0,
+        "message": "ok",
+        "endpoint_name": "get_conversion_advertiser_metadata_handler",
+        "data": {
+          "api_status": {
+            "status_code": 0,
+            "status_msg": "Success!"
+          },
+          "data": {
+            "549756244483": {
+              "leader_advertiser_data": [],
+              "integrated_platform_data": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "status": 200,
+      "mimeType": "application/json",
+      "sanitizedUrl": "https://api.pinterest.com/ads/v4/advertisers/549756244483/conversions/health?criteria_group_key&lookback_period",
+      "bodyLength": 1128,
+      "base64Encoded": false,
+      "parseError": "",
+      "json": {
+        "status": "success",
+        "code": 0,
+        "message": "ok",
+        "endpoint_name": "get_conversion_health_criteria_group_handler",
+        "data": {
+          "key": "Verified Merchant Program",
+          "status": "PASS",
+          "updatedDate": "2026-05-06",
+          "items": [
+            {
+              "key": "checkout_w_currency_exists",
+              "status": "PASS",
+              "operator": "GTE",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "conversion_type": "CHECKOUT",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "1.0"
+            },
+            {
+              "key": "checkout_exists",
+              "status": "PASS",
+              "operator": "GTE",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "conversion_type": "CHECKOUT",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "1.0"
+            },
+            {
+              "key": "page_visit_exists",
+              "status": "PASS",
+              "operator": "GTE",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "conversion_type": "PAGE_VISIT",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "1.0"
+            },
+            {
+              "key": "add_to_cart_exists",
+              "status": "PASS",
+              "operator": "GTE",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "conversion_type": "ADD_TO_CART",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "1.0"
+            }
+          ],
+          "redirectPath": "/advertiser/549756244483/conversions/health?groupKey=Verified+Merchant+Program"
+        }
+      }
+    },
+    {
+      "status": 200,
+      "mimeType": "application/json",
+      "sanitizedUrl": "https://api.pinterest.com/ads/v4/advertisers/549756244483/conversions/health?criteria_group_key&lookback_period",
+      "bodyLength": 2415,
+      "base64Encoded": false,
+      "parseError": "",
+      "json": {
+        "status": "success",
+        "code": 0,
+        "message": "ok",
+        "endpoint_name": "get_conversion_health_criteria_group_handler",
+        "data": {
+          "key": "Enhanced Match",
+          "status": "ERROR",
+          "updatedDate": "2026-05-06",
+          "items": [
+            {
+              "key": "checkout_has_em",
+              "status": "PASS",
+              "operator": "GT",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "conversion_type": "CHECKOUT",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "1.0"
+            },
+            {
+              "key": "add_to_cart_has_em",
+              "status": "PASS",
+              "operator": "GT",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "conversion_type": "ADD_TO_CART",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "1.0"
+            },
+            {
+              "key": "signup_has_em",
+              "status": "MISSING",
+              "operator": "GT",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "level": "ERROR",
+                "conversion_type": "SIGNUP",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "-1.0"
+            },
+            {
+              "key": "search_has_em",
+              "status": "FAIL",
+              "operator": "GT",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "level": "ERROR",
+                "conversion_type": "SEARCH",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "0.0"
+            },
+            {
+              "key": "page_visit_has_em",
+              "status": "PASS",
+              "operator": "GT",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "conversion_type": "PAGE_VISIT",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "1.0"
+            },
+            {
+              "key": "lead_has_em",
+              "status": "MISSING",
+              "operator": "GT",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "level": "ERROR",
+                "conversion_type": "LEAD",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "-1.0"
+            },
+            {
+              "key": "watch_video_has_em",
+              "status": "MISSING",
+              "operator": "GT",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "level": "ERROR",
+                "conversion_type": "WATCH_VIDEO",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "-1.0"
+            },
+            {
+              "key": "init_has_em",
+              "status": "PASS",
+              "operator": "GT",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "conversion_type": "INITIALIZED",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "1.0"
+            },
+            {
+              "key": "view_category_has_em",
+              "status": "FAIL",
+              "operator": "GT",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "level": "ERROR",
+                "conversion_type": "VIEW_CATEGORY",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "0.0"
+            },
+            {
+              "key": "app_install_has_em",
+              "status": "MISSING",
+              "operator": "GT",
+              "dataType": "count",
+              "threshold": 1,
+              "auxData": {
+                "level": "ERROR",
+                "conversion_type": "APP_INSTALL",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table"
+              },
+              "value": "-1.0"
+            }
+          ],
+          "redirectPath": "/advertiser/549756244483/conversions/health?groupKey=Enhanced+Match"
+        }
+      }
+    },
+    {
+      "status": 200,
+      "mimeType": "application/json",
+      "sanitizedUrl": "https://api.pinterest.com/ads/v4/advertisers/549756244483/conversions/latest",
+      "bodyLength": 165,
+      "base64Encoded": false,
+      "parseError": "",
+      "json": {
+        "status": "success",
+        "code": 0,
+        "message": "ok",
+        "endpoint_name": "get_conversion_latest_handler",
+        "data": {
+          "TAG": 1778216316074551000,
+          "CONVERSIONS_API": 1778216328640874200
+        }
+      }
+    },
+    {
+      "status": 200,
+      "mimeType": "application/json",
+      "sanitizedUrl": "https://api.pinterest.com/ads/v4/advertisers/549756244483/conversions/health?criteria_group_key&lookback_period",
+      "bodyLength": 521,
+      "base64Encoded": false,
+      "parseError": "",
+      "json": {
+        "status": "success",
+        "code": 0,
+        "message": "ok",
+        "endpoint_name": "get_conversion_health_criteria_group_handler",
+        "data": {
+          "key": "Automatic Enhanced Match",
+          "status": "PASS",
+          "updatedDate": "2026-05-06",
+          "items": [
+            {
+              "key": "aem_enabled",
+              "status": "PASS",
+              "operator": "GT",
+              "dataType": "rate",
+              "threshold": 0,
+              "auxData": {
+                "conversion_type": "",
+                "updated_date": "2026-05-06",
+                "data_source": "prod_table",
+                "denominator": "7",
+                "numerator": "7"
+              },
+              "value": "100.0"
+            }
+          ],
+          "redirectPath": "/advertiser/549756244483/conversions/health?groupKey=Automatic+Enhanced+Match"
+        }
+      }
+    },
+    {
+      "status": 200,
+      "mimeType": "application/json",
+      "sanitizedUrl": "https://api.pinterest.com/ads/v4/advertisers/549756244483/conversions/acq_scores?ingestion_source&lookback_period&source_platform",
+      "bodyLength": 18634,
+      "base64Encoded": false,
+      "parseError": "",
+      "json": {
+        "status": "success",
+        "code": 0,
+        "message": "ok",
+        "endpoint_name": "get_acq_scores_handler",
+        "data": {
+          "qualityComponents": {
+            "click_id_epik": {
+              "events": {
+                "ADD_TO_CART": {
+                  "status": "NEEDS_IMPROVEMENT",
+                  "qualityChecks": {
+                    "click_id_epik_match_rate": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_coverage": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "click_id_epik__ADD_TO_CART",
+                  "isTopActionItem": false
+                },
+                "PAGE_VISIT": {
+                  "status": "NEEDS_IMPROVEMENT",
+                  "qualityChecks": {
+                    "click_id_epik_match_rate": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_coverage": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "click_id_epik__PAGE_VISIT",
+                  "isTopActionItem": false
+                },
+                "ADD_PAYMENT_INFO": {
+                  "status": "NEEDS_IMPROVEMENT",
+                  "qualityChecks": {
+                    "click_id_epik_match_rate": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_coverage": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "click_id_epik__ADD_PAYMENT_INFO",
+                  "isTopActionItem": false
+                },
+                "SEARCH": {
+                  "status": "NEEDS_IMPROVEMENT",
+                  "qualityChecks": {
+                    "click_id_epik_match_rate": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_coverage": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "click_id_epik__SEARCH",
+                  "isTopActionItem": false
+                },
+                "INITIATE_CHECKOUT": {
+                  "status": "NEEDS_IMPROVEMENT",
+                  "qualityChecks": {
+                    "click_id_epik_match_rate": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_coverage": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "click_id_epik__INITIATE_CHECKOUT",
+                  "isTopActionItem": false
+                },
+                "VIEW_CATEGORY": {
+                  "status": "NEEDS_IMPROVEMENT",
+                  "qualityChecks": {
+                    "click_id_epik_match_rate": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_coverage": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "click_id_epik__VIEW_CATEGORY",
+                  "isTopActionItem": false
+                },
+                "CHECKOUT": {
+                  "status": "NEEDS_IMPROVEMENT",
+                  "qualityChecks": {
+                    "click_id_epik_match_rate": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_coverage": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "click_id_epik_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "click_id_epik__CHECKOUT",
+                  "isTopActionItem": true
+                }
+              }
+            },
+            "advertiser_external_id": {
+              "events": {
+                "ADD_TO_CART": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "advertiser_external_id_match_rate": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "advertiser_external_id__ADD_TO_CART",
+                  "isTopActionItem": false
+                },
+                "ADD_PAYMENT_INFO": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "advertiser_external_id_match_rate": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "advertiser_external_id__ADD_PAYMENT_INFO",
+                  "isTopActionItem": false
+                },
+                "PAGE_VISIT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "advertiser_external_id_match_rate": {
+                      "value": "16.886674880981445",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_static": {
+                      "value": "12.619343757629395",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "advertiser_external_id__PAGE_VISIT",
+                  "isTopActionItem": false
+                },
+                "SEARCH": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "advertiser_external_id_match_rate": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "advertiser_external_id__SEARCH",
+                  "isTopActionItem": false
+                },
+                "INITIATE_CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "advertiser_external_id_match_rate": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "advertiser_external_id__INITIATE_CHECKOUT",
+                  "isTopActionItem": false
+                },
+                "VIEW_CATEGORY": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "advertiser_external_id_match_rate": {
+                      "value": "21.4966983795166",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_static": {
+                      "value": "18.415260314941406",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "advertiser_external_id__VIEW_CATEGORY",
+                  "isTopActionItem": false
+                },
+                "CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "advertiser_external_id_match_rate": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "advertiser_external_id_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "advertiser_external_id__CHECKOUT",
+                  "isTopActionItem": false
+                }
+              }
+            },
+            "product_id": {
+              "events": {
+                "ADD_TO_CART": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "product_id_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "product_id_catalog_match": {
+                      "value": "51.643192291259766",
+                      "status": "PASS"
+                    },
+                    "product_id_static_by_user": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "product_id_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "product_id__ADD_TO_CART",
+                  "isTopActionItem": false
+                },
+                "ADD_PAYMENT_INFO": {
+                  "status": "NEEDS_IMPROVEMENT",
+                  "qualityChecks": {
+                    "product_id_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "product_id_catalog_match": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    },
+                    "product_id_static_by_user": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "product_id_coverage": {
+                      "value": "0.0",
+                      "status": "FAIL"
+                    }
+                  },
+                  "actionItemId": "product_id__ADD_PAYMENT_INFO",
+                  "isTopActionItem": true
+                },
+                "PAGE_VISIT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "product_id_static": {
+                      "value": "3.049095630645752",
+                      "status": "PASS"
+                    },
+                    "product_id_catalog_match": {
+                      "value": "53.43669128417969",
+                      "status": "PASS"
+                    },
+                    "product_id_static_by_user": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "product_id_coverage": {
+                      "value": "32.129512786865234",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "product_id__PAGE_VISIT",
+                  "isTopActionItem": false
+                },
+                "INITIATE_CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "product_id_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "product_id_catalog_match": {
+                      "value": "73.58490753173828",
+                      "status": "PASS"
+                    },
+                    "product_id_static_by_user": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "product_id_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "product_id__INITIATE_CHECKOUT",
+                  "isTopActionItem": false
+                },
+                "CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "product_id_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "product_id_catalog_match": {
+                      "value": "86.66666412353516",
+                      "status": "PASS"
+                    },
+                    "product_id_static_by_user": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "product_id_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "product_id__CHECKOUT",
+                  "isTopActionItem": false
+                }
+              }
+            },
+            "hashed_email": {
+              "events": {
+                "ADD_TO_CART": {
+                  "status": "NEEDS_IMPROVEMENT",
+                  "qualityChecks": {
+                    "hashed_email_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "hashed_email_match_rate": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "hashed_email_coverage": {
+                      "value": "4.2253522872924805",
+                      "status": "FAIL"
+                    }
+                  },
+                  "actionItemId": "hashed_email__ADD_TO_CART",
+                  "isTopActionItem": true
+                },
+                "ADD_PAYMENT_INFO": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "hashed_email_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "hashed_email_match_rate": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "hashed_email_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "hashed_email__ADD_PAYMENT_INFO",
+                  "isTopActionItem": false
+                },
+                "INITIATE_CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "hashed_email_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "hashed_email_match_rate": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "hashed_email_coverage": {
+                      "value": "43.39622497558594",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "hashed_email__INITIATE_CHECKOUT",
+                  "isTopActionItem": false
+                },
+                "CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "hashed_email_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "hashed_email_match_rate": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "hashed_email_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "hashed_email__CHECKOUT",
+                  "isTopActionItem": false
+                }
+              }
+            },
+            "ip_address": {
+              "events": {
+                "ADD_TO_CART": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "ip_address_valid": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_match_rate_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "ip_address__ADD_TO_CART",
+                  "isTopActionItem": false
+                },
+                "ADD_PAYMENT_INFO": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "ip_address_valid": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_match_rate_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "ip_address__ADD_PAYMENT_INFO",
+                  "isTopActionItem": false
+                },
+                "PAGE_VISIT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "ip_address_valid": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_static": {
+                      "value": "27.679534912109375",
+                      "status": "PASS"
+                    },
+                    "ip_address_match_rate_capi": {
+                      "value": "45.529266357421875",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "ip_address__PAGE_VISIT",
+                  "isTopActionItem": false
+                },
+                "SEARCH": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "ip_address_valid": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_match_rate_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "ip_address__SEARCH",
+                  "isTopActionItem": false
+                },
+                "INITIATE_CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "ip_address_valid": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_match_rate_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "ip_address__INITIATE_CHECKOUT",
+                  "isTopActionItem": false
+                },
+                "VIEW_CATEGORY": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "ip_address_valid": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_static": {
+                      "value": "36.31694793701172",
+                      "status": "PASS"
+                    },
+                    "ip_address_match_rate_capi": {
+                      "value": "51.283931732177734",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "ip_address__VIEW_CATEGORY",
+                  "isTopActionItem": false
+                },
+                "CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "ip_address_valid": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "ip_address_match_rate_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "ip_address__CHECKOUT",
+                  "isTopActionItem": false
+                }
+              }
+            },
+            "order_id": {
+              "events": {
+                "CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "order_id_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_id_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "order_id__CHECKOUT",
+                  "isTopActionItem": false
+                }
+              }
+            },
+            "user_agent": {
+              "events": {
+                "ADD_TO_CART": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "user_agent_bot": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_match_rate_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_valid_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "user_agent__ADD_TO_CART",
+                  "isTopActionItem": false
+                },
+                "PAGE_VISIT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "user_agent_bot": {
+                      "value": "81.09589385986328",
+                      "status": "PASS"
+                    },
+                    "user_agent_match_rate_capi": {
+                      "value": "45.529266357421875",
+                      "status": "PASS"
+                    },
+                    "user_agent_static": {
+                      "value": "27.01535987854004",
+                      "status": "PASS"
+                    },
+                    "user_agent_valid_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "user_agent__PAGE_VISIT",
+                  "isTopActionItem": false
+                },
+                "ADD_PAYMENT_INFO": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "user_agent_bot": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_match_rate_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_valid_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "user_agent__ADD_PAYMENT_INFO",
+                  "isTopActionItem": false
+                },
+                "SEARCH": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "user_agent_bot": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_match_rate_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_valid_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "user_agent__SEARCH",
+                  "isTopActionItem": false
+                },
+                "INITIATE_CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "user_agent_bot": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_match_rate_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_valid_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "user_agent__INITIATE_CHECKOUT",
+                  "isTopActionItem": false
+                },
+                "VIEW_CATEGORY": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "user_agent_bot": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_match_rate_capi": {
+                      "value": "51.283931732177734",
+                      "status": "PASS"
+                    },
+                    "user_agent_static": {
+                      "value": "36.28026580810547",
+                      "status": "PASS"
+                    },
+                    "user_agent_valid_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "user_agent__VIEW_CATEGORY",
+                  "isTopActionItem": false
+                },
+                "CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "user_agent_bot": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_match_rate_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_valid_capi": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "user_agent_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "user_agent__CHECKOUT",
+                  "isTopActionItem": false
+                }
+              }
+            },
+            "source_url": {
+              "events": {
+                "ADD_TO_CART": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "source_url_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "source_url_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "source_url_valid": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "source_url__ADD_TO_CART",
+                  "isTopActionItem": false
+                },
+                "ADD_PAYMENT_INFO": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "source_url_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "source_url_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "source_url_valid": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "source_url__ADD_PAYMENT_INFO",
+                  "isTopActionItem": false
+                },
+                "PAGE_VISIT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "source_url_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "source_url_static": {
+                      "value": "3.395599842071533",
+                      "status": "PASS"
+                    },
+                    "source_url_valid": {
+                      "value": "99.48526000976562",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "source_url__PAGE_VISIT",
+                  "isTopActionItem": false
+                },
+                "SEARCH": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "source_url_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "source_url_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "source_url_valid": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "source_url__SEARCH",
+                  "isTopActionItem": false
+                },
+                "INITIATE_CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "source_url_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "source_url_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "source_url_valid": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "source_url__INITIATE_CHECKOUT",
+                  "isTopActionItem": false
+                },
+                "VIEW_CATEGORY": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "source_url_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "source_url_static": {
+                      "value": "15.077035903930664",
+                      "status": "PASS"
+                    },
+                    "source_url_valid": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "source_url__VIEW_CATEGORY",
+                  "isTopActionItem": false
+                },
+                "CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "source_url_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "source_url_valid": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "source_url__CHECKOUT",
+                  "isTopActionItem": false
+                }
+              }
+            },
+            "order_value": {
+              "events": {
+                "ADD_TO_CART": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "order_value_eq_zero": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_gt_50K": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_currency_code": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "order_value_lt_zero": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "order_value__ADD_TO_CART",
+                  "isTopActionItem": false
+                },
+                "ADD_PAYMENT_INFO": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "order_value_eq_zero": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_gt_50K": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_currency_code": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "order_value_lt_zero": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_coverage": {
+                      "value": "93.75",
+                      "status": "FAIL"
+                    }
+                  },
+                  "actionItemId": "order_value__ADD_PAYMENT_INFO",
+                  "isTopActionItem": false
+                },
+                "INITIATE_CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "order_value_eq_zero": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_gt_50K": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_currency_code": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "order_value_lt_zero": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "order_value__INITIATE_CHECKOUT",
+                  "isTopActionItem": false
+                },
+                "CHECKOUT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "order_value_eq_zero": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_gt_50K": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_currency_code": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "order_value_lt_zero": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_static": {
+                      "value": "0.0",
+                      "status": "PASS"
+                    },
+                    "order_value_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "order_value__CHECKOUT",
+                  "isTopActionItem": false
+                }
+              }
+            },
+            "external_event_id": {
+              "events": {
+                "PAGE_VISIT": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "external_event_id_capi_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "external_event_id_overlap": {
+                      "value": "94.50971984863281",
+                      "status": "PASS"
+                    },
+                    "external_event_id_tag_static": {
+                      "value": "0.021633315831422806",
+                      "status": "PASS"
+                    },
+                    "external_event_id_capi_static": {
+                      "value": "0.01660439930856228",
+                      "status": "PASS"
+                    },
+                    "external_event_id_tag_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "external_event_id__PAGE_VISIT",
+                  "isTopActionItem": false
+                },
+                "VIEW_CATEGORY": {
+                  "status": "GOOD",
+                  "qualityChecks": {
+                    "external_event_id_capi_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    },
+                    "external_event_id_overlap": {
+                      "value": "97.0873794555664",
+                      "status": "PASS"
+                    },
+                    "external_event_id_tag_static": {
+                      "value": "0.09685230255126953",
+                      "status": "PASS"
+                    },
+                    "external_event_id_capi_static": {
+                      "value": "0.07336757332086563",
+                      "status": "PASS"
+                    },
+                    "external_event_id_tag_coverage": {
+                      "value": "100.0",
+                      "status": "PASS"
+                    }
+                  },
+                  "actionItemId": "external_event_id__VIEW_CATEGORY",
+                  "isTopActionItem": false
+                }
+              }
+            }
+          },
+          "topActionItems": [
+            {
+              "rank": 1,
+              "actionItemId": "product_id__ADD_PAYMENT_INFO",
+              "currentStatus": "NEEDS_IMPROVEMENT",
+              "improvementPotential": 2.059025394646534,
+              "detailsAvailable": true
+            },
+            {
+              "rank": 2,
+              "actionItemId": "hashed_email__ADD_TO_CART",
+              "currentStatus": "NEEDS_IMPROVEMENT",
+              "improvementPotential": 1.368595843523232,
+              "detailsAvailable": true
+            },
+            {
+              "rank": 3,
+              "actionItemId": "click_id_epik__CHECKOUT",
+              "currentStatus": "NEEDS_IMPROVEMENT",
+              "improvementPotential": 1.2650221378874131,
+              "detailsAvailable": true
+            }
+          ],
+          "updatedDate": "2026-05-06"
+        }
+      }
+    },
+    {
+      "status": 404,
+      "mimeType": "application/json",
+      "sanitizedUrl": "https://api.pinterest.com/ads/v4/advertisers/549756244483/conversions/health/selection",
+      "bodyLength": 167,
+      "base64Encoded": false,
+      "parseError": "",
+      "json": {
+        "status": "failure",
+        "code": 4383,
+        "message": "Key not found in KVStore.",
+        "endpoint_name": "get_conversion_health_selection_handler",
+        "data": null,
+        "error": {
+          "message": "None"
+        }
+      }
+    }
+  ],
+  "writes_made": "No Pinterest writes; captured only Event Quality page text/screenshot and conversions API response bodies; no headers or cookies stored."
+}

@@ -1,0 +1,179 @@
+- main [ref=e310]:
+  - generic [ref=e311]:
+    - generic [ref=e312]:
+      - heading "Make these fixes to show products on Google" [level=2] [ref=e314]
+      - generic [ref=e315]:
+        - link "View setup and policy issues (1)" [ref=e316] [cursor=pointer]:
+          - /url: /mc/products/diagnostics/accountissues?a=124884876
+        - link "View history" [ref=e317] [cursor=pointer]:
+          - /url: /mc/products/diagnostics/history?a=124884876&marketingMethod=1
+    - article [ref=e320]:
+      - generic [ref=e323]:
+        - generic [ref=e324]:
+          - img [ref=e329]: error_outline
+          - generic [ref=e330]:
+            - heading "Missing local inventory data" [level=3] [ref=e331]
+            - paragraph [ref=e332]:
+              - text: Missing inventory data for products in your physical stores
+              - link "Learn more about the Missing local inventory data issue in Help Center. Opens in a new tab., Opens in a new tab" [ref=e334] [cursor=pointer]:
+                - /url: https://support.google.com/merchants/answer/14980864?hl=en-US
+                - text: Learn more
+                - generic [ref=e335]:
+                  - text: ⁠
+                  - img [ref=e337]: open_in_new
+                  - text: ‎
+        - generic [ref=e338]:
+          - link "High impact (+95 clicks)" [ref=e340]
+          - paragraph [ref=e341]: 11K products (5.7%)
+          - generic [ref=e342]:
+            - button "View fix" [ref=e343]:
+              - generic [ref=e346]: View fix
+            - button "View products" [ref=e347]:
+              - generic [ref=e350]: View products
+  - generic [ref=e351]:
+    - heading "All products that need attention" [level=2] [ref=e353]
+    - generic [ref=e358]:
+      - generic [ref=e361]:
+        - generic [ref=e362]:
+          - button "Manage product sources" [ref=e367]:
+            - generic [ref=e370]: Manage product sources
+          - generic [ref=e376]: Last updated at 2:02 AM May 8, 2026
+        - generic [ref=e377]:
+          - button "Show filtering options" [ref=e382] [cursor=pointer]:
+            - img [ref=e386]: filter_alt
+          - button "Download a file containing all the currently filtered product issues" [ref=e391] [cursor=pointer]:
+            - img [ref=e395]: file_download
+      - generic [ref=e396]:
+        - grid "All products that need attention" [ref=e399]:
+          - row "Product Click potential Status What needs attention" [ref=e400]:
+            - columnheader "Product" [ref=e401]
+            - columnheader "Click potential" [ref=e402] [cursor=pointer]:
+              - text: Click potential
+              - img [ref=e404]: help_outline
+            - columnheader "Status" [ref=e405]: Status
+            - columnheader "What needs attention" [ref=e406]:
+              - button [ref=e408]:
+                - img [ref=e409]: expand_more
+              - text: What needs attention
+              - img [ref=e411]: help_outline
+          - 'row "Thumbnail image for: Mommy and Me Maxi Dresses - Yellow | Dress Like Mommy Child 2 Years / Yellow Mommy and Me Maxi Dresses - Yellow | Dress Like Mommy Child 2 Years / Yellow, opens in a new tab High Limited Product status details What needs attention" [ref=e412]':
+            - 'gridcell "Thumbnail image for: Mommy and Me Maxi Dresses - Yellow | Dress Like Mommy Child 2 Years / Yellow" [ref=e413]':
+              - 'img "Thumbnail image for: Mommy and Me Maxi Dresses - Yellow | Dress Like Mommy Child 2 Years / Yellow" [ref=e415]'
+            - gridcell "Mommy and Me Maxi Dresses - Yellow | Dress Like Mommy Child 2 Years / Yellow, opens in a new tab" [ref=e416]:
+              - link "Mommy and Me Maxi Dresses - Yellow | Dress Like Mommy Child 2 Years / Yellow, opens in a new tab" [ref=e419] [cursor=pointer]:
+                - /url: /mc/items/details?a=124884876&offerId=shopify_US_7227254276193_41871113158753&language=en&channel=0&feedLabel=US
+                - text: Mommy and Me Maxi Dresses - Yellow | Dress Like Mommy Child 2 Years / Yellow
+            - gridcell "High" [ref=e420]:
+              - generic [ref=e426]: High
+            - gridcell "Limited Product status details" [ref=e427]:
+              - generic [ref=e428]:
+                - generic [ref=e429]: Limited
+                - button "Product status details" [ref=e431] [cursor=pointer]:
+                  - img "Product status details" [ref=e432]: help_outline
+            - gridcell "What needs attention" [ref=e433]:
+              - grid "What needs attention" [ref=e434]:
+                - row "Missing local inventory data" [ref=e435]:
+                  - gridcell "Missing local inventory data" [ref=e436] [cursor=pointer]:
+                    - button "Missing local inventory data" [ref=e438]
+                    - generic [ref=e440]
+          - 'row "Thumbnail image for: Mommy and Me Maxi Dresses - Floral Print | Dress Like Mommy Mother 2XL / Multi Color Mommy and Me Maxi Dresses - Floral Print | Dress Like Mommy Mother 2XL / Multi Color, opens in a new tab High Limited Product status details What needs attention" [ref=e447]':
+            - 'gridcell "Thumbnail image for: Mommy and Me Maxi Dresses - Floral Print | Dress Like Mommy Mother 2XL / Multi Color" [ref=e448]':
+              - 'img "Thumbnail image for: Mommy and Me Maxi Dresses - Floral Print | Dress Like Mommy Mother 2XL / Multi Color" [ref=e450]'
+            - gridcell "Mommy and Me Maxi Dresses - Floral Print | Dress Like Mommy Mother 2XL / Multi Color, opens in a new tab" [ref=e451]:
+              - link "Mommy and Me Maxi Dresses - Floral Print | Dress Like Mommy Mother 2XL / Multi Color, opens in a new tab" [ref=e454] [cursor=pointer]:
+                - /url: /mc/items/details?a=124884876&offerId=shopify_US_7229026304097_41878208643169&language=en&channel=0&feedLabel=US
+                - text: Mommy and Me Maxi Dresses - Floral Print | Dress Like Mommy Mother 2XL / Multi Color
+            - gridcell "High" [ref=e455]:
+              - generic [ref=e461]: High
+            - gridcell "Limited Product status details" [ref=e462]:
+              - generic [ref=e463]:
+                - generic [ref=e464]: Limited
+                - button "Product status details" [ref=e466] [cursor=pointer]:
+                  - img "Product status details" [ref=e467]: help_outline
+            - gridcell "What needs attention" [ref=e468]:
+              - grid "What needs attention" [ref=e469]:
+                - row "Missing local inventory data" [ref=e470]:
+                  - gridcell "Missing local inventory data" [ref=e471] [cursor=pointer]:
+                    - button "Missing local inventory data" [ref=e473]
+                    - generic [ref=e475]
+          - 'row "Thumbnail image for: Family Matching Sets - Yellow Tropical Print | Dress Like Mommy Boy 4-5 Years / yellow Family Matching Sets - Yellow Tropical Print | Dress Like Mommy Boy 4-5 Years / yellow, opens in a new tab High Limited Product status details What needs attention" [ref=e482]':
+            - 'gridcell "Thumbnail image for: Family Matching Sets - Yellow Tropical Print | Dress Like Mommy Boy 4-5 Years / yellow" [ref=e483]':
+              - 'img "Thumbnail image for: Family Matching Sets - Yellow Tropical Print | Dress Like Mommy Boy 4-5 Years / yellow" [ref=e485]'
+            - gridcell "Family Matching Sets - Yellow Tropical Print | Dress Like Mommy Boy 4-5 Years / yellow, opens in a new tab" [ref=e486]:
+              - link "Family Matching Sets - Yellow Tropical Print | Dress Like Mommy Boy 4-5 Years / yellow, opens in a new tab" [ref=e489] [cursor=pointer]:
+                - /url: /mc/items/details?a=124884876&offerId=shopify_US_7227375714401_41871506964577&language=en&channel=0&feedLabel=US
+                - text: Family Matching Sets - Yellow Tropical Print | Dress Like Mommy Boy 4-5 Years / yellow
+            - gridcell "High" [ref=e490]:
+              - generic [ref=e496]: High
+            - gridcell "Limited Product status details" [ref=e497]:
+              - generic [ref=e498]:
+                - generic [ref=e499]: Limited
+                - button "Product status details" [ref=e501] [cursor=pointer]:
+                  - img "Product status details" [ref=e502]: help_outline
+            - gridcell "What needs attention" [ref=e503]:
+              - grid "What needs attention" [ref=e504]:
+                - row "Missing local inventory data" [ref=e505]:
+                  - gridcell "Missing local inventory data" [ref=e506] [cursor=pointer]:
+                    - button "Missing local inventory data" [ref=e508]
+                    - generic [ref=e510]
+          - 'row "Thumbnail image for: Mommy and Me Midi Dresses - Silver | Dress Like Mommy Child 5-6 Years / Gray Mommy and Me Midi Dresses - Silver | Dress Like Mommy Child 5-6 Years / Gray, opens in a new tab Medium Limited Product status details What needs attention" [ref=e517]':
+            - 'gridcell "Thumbnail image for: Mommy and Me Midi Dresses - Silver | Dress Like Mommy Child 5-6 Years / Gray" [ref=e518]':
+              - 'img "Thumbnail image for: Mommy and Me Midi Dresses - Silver | Dress Like Mommy Child 5-6 Years / Gray" [ref=e520]'
+            - gridcell "Mommy and Me Midi Dresses - Silver | Dress Like Mommy Child 5-6 Years / Gray, opens in a new tab" [ref=e521]:
+              - link "Mommy and Me Midi Dresses - Silver | Dress Like Mommy Child 5-6 Years / Gray, opens in a new tab" [ref=e524] [cursor=pointer]:
+                - /url: /mc/items/details?a=124884876&offerId=shopify_US_7108045897825_41493759950945&language=en&channel=0&feedLabel=US
+                - text: Mommy and Me Midi Dresses - Silver | Dress Like Mommy Child 5-6 Years / Gray
+            - gridcell "Medium" [ref=e525]:
+              - generic [ref=e531]: Medium
+            - gridcell "Limited Product status details" [ref=e532]:
+              - generic [ref=e533]:
+                - generic [ref=e534]: Limited
+                - button "Product status details" [ref=e536] [cursor=pointer]:
+                  - img "Product status details" [ref=e537]: help_outline
+            - gridcell "What needs attention" [ref=e538]:
+              - grid "What needs attention" [ref=e539]:
+                - row "Missing local inventory data" [ref=e540]:
+                  - gridcell "Missing local inventory data" [ref=e541] [cursor=pointer]:
+                    - button "Missing local inventory data" [ref=e543]
+                    - generic [ref=e545]
+          - 'row "Thumbnail image for: Family Matching Sets - Blue | Dress Like Mommy Boy 7-8 Years / blue Family Matching Sets - Blue | Dress Like Mommy Boy 7-8 Years / blue, opens in a new tab Medium Limited Product status details What needs attention" [ref=e552]':
+            - 'gridcell "Thumbnail image for: Family Matching Sets - Blue | Dress Like Mommy Boy 7-8 Years / blue" [ref=e553]':
+              - 'img "Thumbnail image for: Family Matching Sets - Blue | Dress Like Mommy Boy 7-8 Years / blue" [ref=e555]'
+            - gridcell "Family Matching Sets - Blue | Dress Like Mommy Boy 7-8 Years / blue, opens in a new tab" [ref=e556]:
+              - link "Family Matching Sets - Blue | Dress Like Mommy Boy 7-8 Years / blue, opens in a new tab" [ref=e559] [cursor=pointer]:
+                - /url: /mc/items/details?a=124884876&offerId=shopify_US_7227379023969_41871522168929&language=en&channel=0&feedLabel=US
+                - text: Family Matching Sets - Blue | Dress Like Mommy Boy 7-8 Years / blue
+            - gridcell "Medium" [ref=e560]:
+              - generic [ref=e566]: Medium
+            - gridcell "Limited Product status details" [ref=e567]:
+              - generic [ref=e568]:
+                - generic [ref=e569]: Limited
+                - button "Product status details" [ref=e571] [cursor=pointer]:
+                  - img "Product status details" [ref=e572]: help_outline
+            - gridcell "What needs attention" [ref=e573]:
+              - grid "What needs attention" [ref=e574]:
+                - row "Missing local inventory data" [ref=e575]:
+                  - gridcell "Missing local inventory data" [ref=e576] [cursor=pointer]:
+                    - button "Missing local inventory data" [ref=e578]
+                    - generic [ref=e580]
+        - generic [ref=e592]:
+          - generic [ref=e593]:
+            - generic [ref=e594]: "Show rows:"
+            - 'button "Show rows: 5 selected." [ref=e597] [cursor=pointer]':
+              - generic [ref=e598]: "5"
+              - img [ref=e600]: arrow_drop_down
+          - generic [ref=e601]:
+            - generic [ref=e603]: 1 - 5 of 11,019
+            - generic [ref=e604]:
+              - button "Go to the first page" [disabled] [ref=e605]:
+                - generic:
+                  - generic:
+                    - img: first_page
+              - button "Go to the previous page" [disabled] [ref=e606]:
+                - generic:
+                  - generic:
+                    - img: chevron_left
+              - button "Go to the next page" [ref=e607] [cursor=pointer]:
+                - img [ref=e610]: chevron_right
+              - button "Go to the last page" [ref=e612] [cursor=pointer]:
+                - img [ref=e615]: last_page

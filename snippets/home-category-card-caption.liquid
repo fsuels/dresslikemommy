@@ -1,26 +1,30 @@
 {%- liquid
   assign normalized_label = icon_label | default: '' | strip | handleize
+  assign caption_key = blank
 
   case normalized_label
     when 'mommy-me'
-      echo 'Mother-daughter favorites'
+      assign caption_key = 'caption-mommy-me'
     when 'family-matching'
-      echo 'Coordinated looks for everyone'
+      assign caption_key = 'caption-family-matching'
     when 'pajamas'
-      echo 'Soft sets for cozy nights'
+      assign caption_key = 'caption-pajamas'
     when 'matching-dresses'
-      echo 'Picture-ready dresses'
+      assign caption_key = 'caption-matching-dresses'
     when 'swimsuits'
-      echo 'Beach-day swim looks'
+      assign caption_key = 'caption-swimsuits'
     when 'daddy-me'
-      echo 'Father-son matching moments'
+      assign caption_key = 'caption-daddy-me'
     when 'vacation'
-      echo 'Resort looks for the whole trip'
+      assign caption_key = 'caption-vacation'
     when 'photo-days'
-      echo 'Made for family portraits'
+      assign caption_key = 'caption-photo-days'
     when 'birthdays'
-      echo 'Sweet celebration outfits'
+      assign caption_key = 'caption-birthdays'
     when 'beach-days'
-      echo 'Sun-ready matching styles'
+      assign caption_key = 'caption-beach-days'
   endcase
 -%}
+{%- if caption_key != blank -%}
+  {%- render 'home-category-localized-copy', copy_key: caption_key, fallback: '' -%}
+{%- endif -%}

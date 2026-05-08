@@ -1,0 +1,1539 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1688 Sourcing Shortlist</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23c45d45'/%3E%3Cpath d='M17 36h30M22 25h20M26 47h12' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #f5f7f6;
+      --ink: #1f2523;
+      --muted: #68716b;
+      --line: #d8ded9;
+      --panel: #ffffff;
+      --gold: #b98513;
+      --gold-bg: #fff3ce;
+      --test: #287d7d;
+      --test-bg: #dff4f1;
+      --reject: #a6423b;
+      --reject-bg: #ffe3df;
+      --accent: #c45d45;
+      --selected: #2f6f5e;
+      --selected-bg: #e3f3ec;
+      --hidden-bg: #edf0ef;
+      --shadow: 0 18px 45px rgba(31, 37, 35, .10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    header {
+      padding: 28px clamp(18px, 4vw, 46px) 18px;
+      background: linear-gradient(180deg, #fbfdfb 0%, #f5f7f6 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    .topline {
+      display: flex;
+      gap: 18px;
+      align-items: end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 3vw, 42px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 920px;
+      line-height: 1.45;
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(110px, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .summary-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .summary-card span, .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.2;
+    }
+    .summary-card strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 24px;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .status-chip strong {
+      margin-right: 5px;
+      color: var(--ink);
+    }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 14px clamp(18px, 4vw, 46px);
+      background: rgba(245, 247, 246, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    input, select, button, .button {
+      min-height: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      font: inherit;
+    }
+    input {
+      flex: 1 1 300px;
+      min-width: 220px;
+      padding: 0 12px;
+      background: #fff;
+      color: var(--ink);
+    }
+    select {
+      padding: 0 12px;
+      background: #fff;
+      color: var(--ink);
+    }
+    .filter {
+      padding: 0 13px;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .filter.active {
+      border-color: var(--accent);
+      color: #7b301f;
+      background: #fff1ec;
+    }
+    .toolbar-action {
+      padding: 0 13px;
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+      cursor: pointer;
+      font-weight: 750;
+    }
+    .toolbar-action.secondary {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    main {
+      padding: 24px clamp(18px, 4vw, 46px) 52px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+    .card {
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    .card.selected {
+      border-color: var(--selected);
+      box-shadow: 0 0 0 3px rgba(47, 111, 94, .16), var(--shadow);
+    }
+    .card.user-hidden {
+      opacity: .58;
+      background: var(--hidden-bg);
+    }
+    .image-wrap {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background: #e7ece9;
+      overflow: hidden;
+    }
+    .image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .image-missing {
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .verdict {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+      border: 1px solid rgba(255,255,255,.7);
+    }
+    .verdict-gold { background: var(--gold-bg); color: #6f4d07; }
+    .verdict-test { background: var(--test-bg); color: #135b5a; }
+    .verdict-reject { background: var(--reject-bg); color: #7a211b; }
+    .card-body { padding: 16px; }
+    .decision-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .decision {
+      min-height: 36px;
+      padding: 0 12px;
+      cursor: pointer;
+      font-weight: 800;
+      background: #fff;
+    }
+    .decision.keep {
+      color: var(--selected);
+      border-color: #a9ccb9;
+    }
+    .card.selected .decision.keep {
+      background: var(--selected-bg);
+      border-color: var(--selected);
+    }
+    .decision.hide-card {
+      color: #7a211b;
+      border-color: #e5b8b1;
+    }
+    .card.user-hidden .decision.hide-card {
+      background: var(--reject-bg);
+      border-color: var(--reject);
+    }
+    .score-row {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: start;
+    }
+    .candidate-id {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+    .score {
+      min-width: 54px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: 850;
+      line-height: 1;
+      color: var(--accent);
+    }
+    .score-bar {
+      height: 8px;
+      margin: 13px 0 10px;
+      background: #e4e9e6;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .score-bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--test));
+    }
+    .vendor-line {
+      color: var(--muted);
+      font-size: 13px;
+      min-height: 20px;
+    }
+    .status-note {
+      margin: 0 0 10px;
+      color: #39413d;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .metrics, .breakdown {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 13px;
+    }
+    .breakdown { grid-template-columns: repeat(4, 1fr); }
+    .metric {
+      padding: 9px;
+      background: #f7faf8;
+      border: 1px solid #e2e8e4;
+      border-radius: 8px;
+      min-width: 0;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 3px;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      max-width: 100%;
+      min-height: 26px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #edf5ef;
+      color: #2d6040;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .pill-muted { background: #e9eeeb; color: var(--muted); }
+    .why {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    h3 {
+      margin: 0 0 7px;
+      font-size: 13px;
+      letter-spacing: 0;
+    }
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .next {
+      margin: 14px 0 0;
+      color: #39413d;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      border-color: var(--ink);
+      font-weight: 750;
+    }
+    .button.secondary {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    details {
+      margin-top: 12px;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    summary { cursor: pointer; color: var(--ink); font-weight: 700; }
+    details p { overflow-wrap: anywhere; line-height: 1.45; }
+    .hidden { display: none !important; }
+    @media (max-width: 760px) {
+      .summary { grid-template-columns: repeat(2, 1fr); }
+      .grid { grid-template-columns: 1fr; }
+      .why { grid-template-columns: 1fr; }
+      .breakdown { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topline">
+      <div>
+        <h1>1688 Sourcing Shortlist</h1>
+        <p class="subtitle">Browser-assisted candidate review for Dress Like Mommy. This report shows product images, source URLs, supplier evidence, score reasons, and the next action before anything enters Shopify.</p>
+      </div>
+      <div class="candidate-id">Generated 2026-05-08 02:00<br>Source: ops/sourcing/2026-05-08-015246-maternity-1688-auto/candidates.json</div>
+    </div>
+    <div class="summary">
+      <div class="summary-card"><span>Total</span><strong>13</strong></div>
+      <div class="summary-card"><span>Gold</span><strong>0</strong></div>
+      <div class="summary-card"><span>Test</span><strong>2</strong></div>
+      <div class="summary-card"><span>Reject</span><strong>11</strong></div>
+      <div class="summary-card"><span>Kept</span><strong id="selected-count">0</strong></div>
+      <div class="summary-card"><span>Hidden</span><strong id="hidden-count">0</strong></div>
+      <div class="summary-card"><span>Avg Score</span><strong>48.8</strong></div>
+    </div>
+    <div class="legend" aria-label="Verdict meaning">
+      <div class="status-chip"><strong>Gold</strong> verified enough for listing intake</div>
+      <div class="status-chip"><strong>Test</strong> promising, needs detail-page proof</div>
+      <div class="status-chip"><strong>Reject</strong> skip unless evidence changes</div>
+    </div>
+  </header>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search title, supplier, badge, service flag">
+    <button class="filter active" data-filter="All">All</button>
+    <button class="filter" data-filter="Selected">Kept</button>
+    <button class="filter" data-filter="Hidden">Hidden</button>
+    <button class="filter" data-filter="Gold">Gold</button>
+    <button class="filter" data-filter="Test">Test</button>
+    <button class="filter" data-filter="Reject">Reject</button>
+    <select id="sort">
+      <option value="default">Sort by verdict</option>
+      <option value="score-desc">Score high to low</option>
+      <option value="score-asc">Score low to high</option>
+    </select>
+    <button id="copy-selected" class="toolbar-action" type="button">Copy kept URLs</button>
+    <button id="download-selected" class="toolbar-action secondary" type="button">Download kept JSON</button>
+    <button id="reset-choices" class="toolbar-action secondary" type="button">Reset choices</button>
+  </div>
+  <main>
+    <div class="grid" id="grid">
+
+    <article class="card" data-id="C001-cd861ee4" data-verdict="Test" data-score="51" data-search="yellow new chinese-style maternity photo shoot outfit for pregnant mothers, 2026 year of the horse theme, ancient style ¥158.0 moq 1 repurchase rate 59% hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01BZioQM1PgyAJARq9x_!!2220897091871-0-cib.jpg_460x460q100.jpg_.webp" alt="Yellow New Chinese-Style Maternity Photo Shoot Outfit for Pregnant Mothers, 2026 Year of the Horse Theme, Ancient Style ¥158.0 MOQ 1 Repurchase Rate 59% Hot selling">
+        <div class="verdict verdict-test">Test</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C001-cd861ee4</div>
+            <h2>Yellow New Chinese-Style Maternity Photo Shoot Outfit for Pregnant Mothers, 2026 Year of the Horse Theme, Ancient Style ¥158.0 MOQ 1 Repurchase Rate 59% Hot selling</h2>
+          </div>
+          <div class="score">51</div>
+        </div>
+        <div class="score-bar" aria-label="Score 51 out of 100"><span style="width:51%"></span></div>
+        <p class="status-note">Promising lead. Open 1688 and verify the missing proof before listing.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>158.0</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>59%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>17.8</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>14.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>maternity photoshoot/studio gown signal</li><li>strong repeat-buyer signal (59%)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>fresh year signal (2026)</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li><li>buyer/quality protection signal missing</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Open the product detail page, confirm size chart, one-piece shipping, dispatch speed, and supplier proof before listing.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/1029636520515.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1029636520515.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Test; score 51. Confirmed from sourcing report: Yellow New Chinese-Style Maternity Photo Shoot Outfit for Pregnant Mothers, 2026 Year of the Horse Theme, Ancient Style ¥158.0 MOQ 1 Repurchase Rate 59% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>Yellow New Chinese-Style Maternity Photo Shoot Outfit for Pregnant Mothers, 2026 Year of the Horse Theme, Ancient Style ¥158.0 MOQ 1 Repurchase Rate 59% Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C007-8165a82f" data-verdict="Test" data-score="49" data-search="new style maternity photo shoot clothing for photo studios, french retro aesthetic style suspender dress for pregnant moms ¥175.0 moq 1 repurchase rate 47% hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01pzYtYT1ULVgMTK94X_!!4050112501-0-cib.jpg_460x460q100.jpg_.webp" alt="New Style Maternity Photo Shoot Clothing for Photo Studios, French Retro Aesthetic Style Suspender Dress for Pregnant Moms ¥175.0 MOQ 1 Repurchase Rate 47% Hot selling">
+        <div class="verdict verdict-test">Test</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C007-8165a82f</div>
+            <h2>New Style Maternity Photo Shoot Clothing for Photo Studios, French Retro Aesthetic Style Suspender Dress for Pregnant Moms ¥175.0 MOQ 1 Repurchase Rate 47% Hot selling</h2>
+          </div>
+          <div class="score">49</div>
+        </div>
+        <div class="score-bar" aria-label="Score 49 out of 100"><span style="width:49%"></span></div>
+        <p class="status-note">Promising lead. Open 1688 and verify the missing proof before listing.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>175.0</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>47%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>17.8</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>12.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>maternity photoshoot/studio gown signal</li><li>strong repeat-buyer signal (47%)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li><li>listing freshness not proven; prefer 2025-2026 products</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Open the product detail page, confirm size chart, one-piece shipping, dispatch speed, and supplier proof before listing.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/1020816552899.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1020816552899.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Test; score 49. Confirmed from sourcing report: New Style Maternity Photo Shoot Clothing for Photo Studios, French Retro Aesthetic Style Suspender Dress for Pregnant Moms ¥175.0 MOQ 1 Repurchase Rate 47% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>New Style Maternity Photo Shoot Clothing for Photo Studios, French Retro Aesthetic Style Suspender Dress for Pregnant Moms ¥175.0 MOQ 1 Repurchase Rate 47% Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C003-7284e681" data-verdict="Reject" data-score="55" data-search="real photos in stock: maternity spring/summer 2026 new style slimming knit three-piece set ¥36.00 moq 1 repurchase rate 51% hot selling  in stock in stock">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01wFOU9X21Obgk6JIXV_!!2208249336975-0-cib.jpg_460x460q100.jpg_.webp" alt="Real Photos in Stock: Maternity Spring/Summer 2026 New Style Slimming Knit Three-Piece Set ¥36.00 MOQ 1 Repurchase Rate 51% Hot selling">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C003-7284e681</div>
+            <h2>Real Photos in Stock: Maternity Spring/Summer 2026 New Style Slimming Knit Three-Piece Set ¥36.00 MOQ 1 Repurchase Rate 51% Hot selling</h2>
+          </div>
+          <div class="score">55</div>
+        </div>
+        <div class="score-bar" aria-label="Score 55 out of 100"><span style="width:55%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>36.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>51%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill">in stock</span><span class="pill">in stock</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>14.6</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>14.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>17.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (51%)</li><li>detail-page dispatch/stock signal</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>fresh year signal (2026)</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>ordinary maternity item; missing photoshoot/studio/gown signal</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>one-piece/dropship support unknown</li><li>buyer/quality protection signal missing</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/1034490323868.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1034490323868.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 55. Confirmed from sourcing report: Real Photos in Stock: Maternity Spring/Summer 2026 New Style Slimming Knit Three-Piece Set ¥36.00 MOQ 1 Repurchase Rate 51% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>Real Photos in Stock: Maternity Spring/Summer 2026 New Style Slimming Knit Three-Piece Set ¥36.00 MOQ 1 Repurchase Rate 51% Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C009-eecaebab" data-verdict="Reject" data-score="48" data-search="2026 maternity wear spring and summer new style sun protection shirt loose hooded printed top plus size t-shirt flared pants set ¥37.00 moq 1 repurchase rate 55% hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01SNVY7D1oYbKM4n9RZ_!!2216779665237-0-cib.jpg_460x460q100.jpg_.webp" alt="2026 Maternity Wear Spring and Summer New Style Sun Protection Shirt Loose Hooded Printed Top Plus Size T-Shirt Flared Pants Set ¥37.00 MOQ 1 Repurchase Rate 55% Hot selling">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C009-eecaebab</div>
+            <h2>2026 Maternity Wear Spring and Summer New Style Sun Protection Shirt Loose Hooded Printed Top Plus Size T-Shirt Flared Pants Set ¥37.00 MOQ 1 Repurchase Rate 55% Hot selling</h2>
+          </div>
+          <div class="score">48</div>
+        </div>
+        <div class="score-bar" aria-label="Score 48 out of 100"><span style="width:48%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>37.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>55%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>14.6</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>14.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (55%)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>fresh year signal (2026)</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>ordinary maternity item; missing photoshoot/studio/gown signal</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/1038169661912.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1038169661912.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: 2026 Maternity Wear Spring and Summer New Style Sun Protection Shirt Loose Hooded Printed Top Plus Size T-Shirt Flared Pants Set ¥37.00 MOQ 1 Repurchase Rate 55% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>2026 Maternity Wear Spring and Summer New Style Sun Protection Shirt Loose Hooded Printed Top Plus Size T-Shirt Flared Pants Set ¥37.00 MOQ 1 Repurchase Rate 55% Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C002-70d3b360" data-verdict="Reject" data-score="48" data-search="2026 new spring and summer rhinestone maternity denim overalls + short-sleeve base shirt maternity set ¥32.00 moq 1 repurchase rate 59% 5 hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01eF70Bl1x7QMsXNtC3_!!2215451736396-0-cib.jpg_460x460q100.jpg_.webp" alt="2026 New Spring and Summer Rhinestone Maternity Denim Overalls + Short-Sleeve Base Shirt Maternity Set ¥32.00 MOQ 1 Repurchase Rate 59% 5 Hot selling">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C002-70d3b360</div>
+            <h2>2026 New Spring and Summer Rhinestone Maternity Denim Overalls + Short-Sleeve Base Shirt Maternity Set ¥32.00 MOQ 1 Repurchase Rate 59% 5 Hot selling</h2>
+          </div>
+          <div class="score">48</div>
+        </div>
+        <div class="score-bar" aria-label="Score 48 out of 100"><span style="width:48%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>32.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>59%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>14.6</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>14.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (59%)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>fresh year signal (2026)</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>ordinary maternity item; missing photoshoot/studio/gown signal</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/1037238011552.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1037238011552.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: 2026 New Spring and Summer Rhinestone Maternity Denim Overalls + Short-Sleeve Base Shirt Maternity Set ¥32.00 MOQ 1 Repurchase Rate 59% 5 Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>2026 New Spring and Summer Rhinestone Maternity Denim Overalls + Short-Sleeve Base Shirt Maternity Set ¥32.00 MOQ 1 Repurchase Rate 59% 5 Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C013-b784fae8" data-verdict="Reject" data-score="48" data-search="2026 new summer maternity wear floral sweet style suspender skirt t-shirt summer clothes dress two-piece set ¥60.00 moq 1 repurchase rate 58% hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01uDGDHI26RQCXzazSG_!!3844637658-0-cib.jpg_460x460q100.jpg_.webp" alt="2026 New Summer Maternity Wear Floral Sweet Style Suspender Skirt T-Shirt Summer Clothes Dress Two-Piece Set ¥60.00 MOQ 1 Repurchase Rate 58% Hot selling">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C013-b784fae8</div>
+            <h2>2026 New Summer Maternity Wear Floral Sweet Style Suspender Skirt T-Shirt Summer Clothes Dress Two-Piece Set ¥60.00 MOQ 1 Repurchase Rate 58% Hot selling</h2>
+          </div>
+          <div class="score">48</div>
+        </div>
+        <div class="score-bar" aria-label="Score 48 out of 100"><span style="width:48%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>60.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>58%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>14.6</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>14.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (58%)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>fresh year signal (2026)</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>ordinary maternity item; missing photoshoot/studio/gown signal</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/1036754056428.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1036754056428.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: 2026 New Summer Maternity Wear Floral Sweet Style Suspender Skirt T-Shirt Summer Clothes Dress Two-Piece Set ¥60.00 MOQ 1 Repurchase Rate 58% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>2026 New Summer Maternity Wear Floral Sweet Style Suspender Skirt T-Shirt Summer Clothes Dress Two-Piece Set ¥60.00 MOQ 1 Repurchase Rate 58% Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C010-18bdcd43" data-verdict="Reject" data-score="48" data-search="2026 spring and summer new knit top + casual overalls bloomers maternity lazy style two-piece set ¥121.0 moq 1 repurchase rate 51% hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01evfNyV1iP5P9naJDU_!!2521344404-0-cib.jpg_460x460q100.jpg_.webp" alt="2026 Spring and Summer New Knit Top + Casual Overalls Bloomers Maternity Lazy Style Two-Piece Set ¥121.0 MOQ 1 Repurchase Rate 51% Hot selling">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C010-18bdcd43</div>
+            <h2>2026 Spring and Summer New Knit Top + Casual Overalls Bloomers Maternity Lazy Style Two-Piece Set ¥121.0 MOQ 1 Repurchase Rate 51% Hot selling</h2>
+          </div>
+          <div class="score">48</div>
+        </div>
+        <div class="score-bar" aria-label="Score 48 out of 100"><span style="width:48%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>121.0</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>51%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>14.6</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>14.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (51%)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>fresh year signal (2026)</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>ordinary maternity item; missing photoshoot/studio/gown signal</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/1037934282707.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1037934282707.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: 2026 Spring and Summer New Knit Top + Casual Overalls Bloomers Maternity Lazy Style Two-Piece Set ¥121.0 MOQ 1 Repurchase Rate 51% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>2026 Spring and Summer New Knit Top + Casual Overalls Bloomers Maternity Lazy Style Two-Piece Set ¥121.0 MOQ 1 Repurchase Rate 51% Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C006-42f342d2" data-verdict="Reject" data-score="48" data-search="maternity wear 2026 spring and summer new korean style polka dot age-reducing holiday style suspender skirt + sun protection cardigan two-piece set ¥41.00 moq 1 repurchase rate 59% hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01o5kDOL1siuhuY99iH_!!2213199385801-0-cib.jpg_460x460q100.jpg_.webp" alt="Maternity Wear 2026 Spring and Summer New Korean Style Polka Dot Age-Reducing Holiday Style Suspender Skirt + Sun Protection Cardigan Two-Piece Set ¥41.00 MOQ 1 Repurchase Rate 59% Hot selling">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C006-42f342d2</div>
+            <h2>Maternity Wear 2026 Spring and Summer New Korean Style Polka Dot Age-Reducing Holiday Style Suspender Skirt + Sun Protection Cardigan Two-Piece Set ¥41.00 MOQ 1 Repurchase Rate 59% Hot selling</h2>
+          </div>
+          <div class="score">48</div>
+        </div>
+        <div class="score-bar" aria-label="Score 48 out of 100"><span style="width:48%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>41.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>59%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>14.6</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>14.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (59%)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>fresh year signal (2026)</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>ordinary maternity item; missing photoshoot/studio/gown signal</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/1036266421854.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1036266421854.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: Maternity Wear 2026 Spring and Summer New Korean Style Polka Dot Age-Reducing Holiday Style Suspender Skirt + Sun Protection Cardigan Two-Piece Set ¥41.00 MOQ 1 Repurchase Rate 59% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>Maternity Wear 2026 Spring and Summer New Korean Style Polka Dot Age-Reducing Holiday Style Suspender Skirt + Sun Protection Cardigan Two-Piece Set ¥41.00 MOQ 1 Repurchase Rate 59% Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C011-ab8c162d" data-verdict="Reject" data-score="48" data-search="maternity wear 2026 spring and summer new style high-end simple fresh holiday style suspender polka dot skirt cardigan two-piece set ¥43.00 moq 1 repurchase rate 59% hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01Z2RnPx1siui7BOK7s_!!2213199385801-0-cib.jpg_460x460q100.jpg_.webp" alt="Maternity Wear 2026 Spring and Summer New Style High-End Simple Fresh Holiday Style Suspender Polka Dot Skirt Cardigan Two-Piece Set ¥43.00 MOQ 1 Repurchase Rate 59% Hot selling">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C011-ab8c162d</div>
+            <h2>Maternity Wear 2026 Spring and Summer New Style High-End Simple Fresh Holiday Style Suspender Polka Dot Skirt Cardigan Two-Piece Set ¥43.00 MOQ 1 Repurchase Rate 59% Hot selling</h2>
+          </div>
+          <div class="score">48</div>
+        </div>
+        <div class="score-bar" aria-label="Score 48 out of 100"><span style="width:48%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>43.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>59%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>14.6</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>14.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (59%)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>fresh year signal (2026)</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>ordinary maternity item; missing photoshoot/studio/gown signal</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/1041543741204.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1041543741204.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: Maternity Wear 2026 Spring and Summer New Style High-End Simple Fresh Holiday Style Suspender Polka Dot Skirt Cardigan Two-Piece Set ¥43.00 MOQ 1 Repurchase Rate 59% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>Maternity Wear 2026 Spring and Summer New Style High-End Simple Fresh Holiday Style Suspender Polka Dot Skirt Cardigan Two-Piece Set ¥43.00 MOQ 1 Repurchase Rate 59% Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C005-4d2ef5a4" data-verdict="Reject" data-score="48" data-search="maternity wear summer dress 2026 new gradient tie-dye dress spring and summer suspender short-sleeved two-piece suit mid-length skirt ¥41.00 moq 1 repurchase rate 51% hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01q98RbV2FIZ5iMXEoV_!!2210983018857-0-cib.jpg_460x460q100.jpg_.webp" alt="Maternity Wear Summer Dress 2026 New Gradient Tie-Dye Dress Spring and Summer Suspender Short-Sleeved Two-Piece Suit Mid-Length Skirt ¥41.00 MOQ 1 Repurchase Rate 51% Hot selling">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C005-4d2ef5a4</div>
+            <h2>Maternity Wear Summer Dress 2026 New Gradient Tie-Dye Dress Spring and Summer Suspender Short-Sleeved Two-Piece Suit Mid-Length Skirt ¥41.00 MOQ 1 Repurchase Rate 51% Hot selling</h2>
+          </div>
+          <div class="score">48</div>
+        </div>
+        <div class="score-bar" aria-label="Score 48 out of 100"><span style="width:48%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>41.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>51%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>14.6</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>14.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (51%)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>fresh year signal (2026)</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>ordinary maternity item; missing photoshoot/studio/gown signal</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/1046363998810.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1046363998810.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: Maternity Wear Summer Dress 2026 New Gradient Tie-Dye Dress Spring and Summer Suspender Short-Sleeved Two-Piece Suit Mid-Length Skirt ¥41.00 MOQ 1 Repurchase Rate 51% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>Maternity Wear Summer Dress 2026 New Gradient Tie-Dye Dress Spring and Summer Suspender Short-Sleeved Two-Piece Suit Mid-Length Skirt ¥41.00 MOQ 1 Repurchase Rate 51% Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C004-dd43aa38" data-verdict="Reject" data-score="48" data-search="real shot of 2026 spring/summer maternity korean style flutter sleeve colorful polka dot sweet babydoll top + belly support shorts ¥44.00 moq 1 repurchase rate 56% hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01Is58B11vR041XdMET_!!2833596168-0-cib.jpg_460x460q100.jpg_.webp" alt="Real Shot of 2026 Spring/Summer Maternity Korean Style Flutter Sleeve Colorful Polka Dot Sweet Babydoll Top + Belly Support Shorts ¥44.00 MOQ 1 Repurchase Rate 56% Hot selling">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C004-dd43aa38</div>
+            <h2>Real Shot of 2026 Spring/Summer Maternity Korean Style Flutter Sleeve Colorful Polka Dot Sweet Babydoll Top + Belly Support Shorts ¥44.00 MOQ 1 Repurchase Rate 56% Hot selling</h2>
+          </div>
+          <div class="score">48</div>
+        </div>
+        <div class="score-bar" aria-label="Score 48 out of 100"><span style="width:48%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>44.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>56%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>14.6</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>14.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (56%)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>fresh year signal (2026)</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>ordinary maternity item; missing photoshoot/studio/gown signal</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/1036852217640.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1036852217640.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: Real Shot of 2026 Spring/Summer Maternity Korean Style Flutter Sleeve Colorful Polka Dot Sweet Babydoll Top + Belly Support Shorts ¥44.00 MOQ 1 Repurchase Rate 56% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>Real Shot of 2026 Spring/Summer Maternity Korean Style Flutter Sleeve Colorful Polka Dot Sweet Babydoll Top + Belly Support Shorts ¥44.00 MOQ 1 Repurchase Rate 56% Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C012-114fc1b5" data-verdict="Reject" data-score="48" data-search="real shot of pregnant women&#x27;s 2026 spring/summer maternity outfit, chanel-style summer wear, loose chiffon top, pink pantskirt set ¥37.00 moq 1 repurchase rate 61% hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01JWDDW01ErXXN9rcRg_!!1913210405-0-cib.jpg_460x460q100.jpg_.webp" alt="Real Shot of Pregnant Women&#x27;s 2026 Spring/Summer Maternity Outfit, Chanel-Style Summer Wear, Loose Chiffon Top, Pink Pantskirt Set ¥37.00 MOQ 1 Repurchase Rate 61% Hot selling">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C012-114fc1b5</div>
+            <h2>Real Shot of Pregnant Women&#x27;s 2026 Spring/Summer Maternity Outfit, Chanel-Style Summer Wear, Loose Chiffon Top, Pink Pantskirt Set ¥37.00 MOQ 1 Repurchase Rate 61% Hot selling</h2>
+          </div>
+          <div class="score">48</div>
+        </div>
+        <div class="score-bar" aria-label="Score 48 out of 100"><span style="width:48%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>37.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>61%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>14.6</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>14.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (61%)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>fresh year signal (2026)</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>ordinary maternity item; missing photoshoot/studio/gown signal</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/1038710288312.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1038710288312.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: Real Shot of Pregnant Women&#x27;s 2026 Spring/Summer Maternity Outfit, Chanel-Style Summer Wear, Loose Chiffon Top, Pink Pantskirt Set ¥37.00 MOQ 1 Repurchase Rate 61% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>Real Shot of Pregnant Women&#x27;s 2026 Spring/Summer Maternity Outfit, Chanel-Style Summer Wear, Loose Chiffon Top, Pink Pantskirt Set ¥37.00 MOQ 1 Repurchase Rate 61% Hot selling</p></details>
+      </div>
+    </article>
+
+
+    <article class="card" data-id="C008-45f57fc1" data-verdict="Reject" data-score="48" data-search="孕妇装2026春夏新款御姐吊带连衣裙梨形身材防嗮披肩搭配法式套装 ¥88.00 moq 1 repurchase rate 59% hot selling   ">
+      <div class="image-wrap">
+        <img loading="lazy" src="https://cbu01.alicdn.com/img/ibank/O1CN01KIi3ZT1siuiFXK34w_!!2213199385801-0-cib.jpg_460x460q100.jpg_.webp" alt="孕妇装2026春夏新款御姐吊带连衣裙梨形身材防嗮披肩搭配法式套装 ¥88.00 MOQ 1 Repurchase Rate 59% Hot selling">
+        <div class="verdict verdict-reject">Reject</div>
+      </div>
+      <div class="card-body">
+        <div class="decision-row">
+          <button class="decision keep" type="button" title="Select this product for detail review">Keep</button>
+          <button class="decision hide-card" type="button" title="Hide this product from the active shortlist">Hide</button>
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="candidate-id">C008-45f57fc1</div>
+            <h2>孕妇装2026春夏新款御姐吊带连衣裙梨形身材防嗮披肩搭配法式套装 ¥88.00 MOQ 1 Repurchase Rate 59% Hot selling</h2>
+          </div>
+          <div class="score">48</div>
+        </div>
+        <div class="score-bar" aria-label="Score 48 out of 100"><span style="width:48%"></span></div>
+        <p class="status-note">Skip unless new evidence fixes the concern.</p>
+        <div class="vendor-line">Supplier not captured</div>
+        <div class="metrics">
+          <div class="metric"><span>Price CNY</span><strong>88.00</strong></div>
+          <div class="metric"><span>MOQ</span><strong>1</strong></div>
+          <div class="metric"><span>Sales</span><strong>—</strong></div>
+          <div class="metric"><span>Repeat</span><strong>59%</strong></div>
+          <div class="metric"><span>Rating</span><strong>—</strong></div>
+          <div class="metric"><span>Years</span><strong>—</strong></div>
+        </div>
+        <div class="pill-row"><span class="pill pill-muted">No badge text captured</span></div>
+        <div class="breakdown">
+          <div class="metric"><span>Fit</span><strong>14.6</strong></div>
+          <div class="metric"><span>Supplier</span><strong>9.0</strong></div>
+          <div class="metric"><span>Fulfillment</span><strong>10.0</strong></div>
+          <div class="metric"><span>Risk</span><strong>14.0</strong></div>
+        </div>
+        <div class="why">
+          <section>
+            <h3>Signals</h3>
+            <ul><li>strong repeat-buyer signal (59%)</li><li>MOQ 1</li><li>no obvious IP-risk terms</li><li>fresh/new-style keyword signal</li><li>newer 1688 offer-id signal</li></ul>
+          </section>
+          <section>
+            <h3>Concerns</h3>
+            <ul><li>ordinary maternity item; missing photoshoot/studio/gown signal</li><li>size chart still needs confirmation</li><li>supplier operating years missing</li><li>shop/service rating missing</li><li>recent sales/order volume missing</li><li>fast dispatch signal missing</li><li>one-piece/dropship support unknown</li></ul>
+          </section>
+        </div>
+        <p class="next"><strong>Next:</strong> Do not list from this candidate unless the reject reason changes with better evidence.</p>
+        <div class="actions">
+          <a class="button" href="https://detail.1688.com/offer/1046204232460.html" target="_blank" rel="noreferrer" title="Open the 1688 product detail page">Open 1688</a>
+
+          <button class="button secondary copy" type="button" data-copy="LISTING REQUEST
+
+VENDOR_URL: https://detail.1688.com/offer/1046204232460.html
+SIZE_CHART_SOURCE: attached image
+LISTING_MODE: Family Matching
+PRIMARY_CATEGORY: auto
+DESIGNS_TO_LIST: auto
+EXCLUDE_ITEMS:
+NOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: 孕妇装2026春夏新款御姐吊带连衣裙梨形身材防嗮披肩搭配法式套装 ¥88.00 MOQ 1 Repurchase Rate 59% Hot selling
+PRICE_OVERRIDES:
+SHORTCODE_OVERRIDE:
+COLOR_TOKEN_OVERRIDE:
+FORCE_SPEC_PRICES: true" title="Copy the canonical prompt block for the listing agent">Copy request</button>
+        </div>
+        <details><summary>Raw captured text</summary><p>孕妇装2026春夏新款御姐吊带连衣裙梨形身材防嗮披肩搭配法式套装 ¥88.00 MOQ 1 Repurchase Rate 59% Hot selling</p></details>
+      </div>
+    </article>
+
+    </div>
+  </main>
+  <script id="candidate-data" type="application/json">[{"candidate_id": "C001-cd861ee4", "review_stage": "search", "verdict": "Test", "score": 51, "breakdown": {"product_fit": 17.8, "vendor_reliability": 9.0, "fulfillment": 10.0, "risk_readiness": 14.0}, "product_url": "https://detail.1688.com/offer/1029636520515.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01BZioQM1PgyAJARq9x_!!2220897091871-0-cib.jpg_460x460q100.jpg_.webp", "title": "Yellow New Chinese-Style Maternity Photo Shoot Outfit for Pregnant Mothers, 2026 Year of the Horse Theme, Ancient Style ¥158.0 MOQ 1 Repurchase Rate 59% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "158.0", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "59%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "5", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["maternity photoshoot/studio gown signal", "strong repeat-buyer signal (59%)", "MOQ 1", "no obvious IP-risk terms", "fresh year signal (2026)", "newer 1688 offer-id signal"], "concerns": ["size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Open the product detail page, confirm size chart, one-piece shipping, dispatch speed, and supplier proof before listing.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/1029636520515.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Test; score 51. Confirmed from sourcing report: Yellow New Chinese-Style Maternity Photo Shoot Outfit for Pregnant Mothers, 2026 Year of the Horse Theme, Ancient Style ¥158.0 MOQ 1 Repurchase Rate 59% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "Yellow New Chinese-Style Maternity Photo Shoot Outfit for Pregnant Mothers, 2026 Year of the Horse Theme, Ancient Style ¥158.0 MOQ 1 Repurchase Rate 59% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "maternity"}, {"candidate_id": "C007-8165a82f", "review_stage": "search", "verdict": "Test", "score": 49, "breakdown": {"product_fit": 17.8, "vendor_reliability": 9.0, "fulfillment": 10.0, "risk_readiness": 12.0}, "product_url": "https://detail.1688.com/offer/1020816552899.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01pzYtYT1ULVgMTK94X_!!4050112501-0-cib.jpg_460x460q100.jpg_.webp", "title": "New Style Maternity Photo Shoot Clothing for Photo Studios, French Retro Aesthetic Style Suspender Dress for Pregnant Moms ¥175.0 MOQ 1 Repurchase Rate 47% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "175.0", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "47%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "5", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["maternity photoshoot/studio gown signal", "strong repeat-buyer signal (47%)", "MOQ 1", "no obvious IP-risk terms", "newer 1688 offer-id signal"], "concerns": ["size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "listing freshness not proven; prefer 2025-2026 products", "buyer/quality protection signal missing", "candidate data is thin", "freshness not visible on search card; detail page must prove current availability", "size chart not confirmed"], "next_action": "Open the product detail page, confirm size chart, one-piece shipping, dispatch speed, and supplier proof before listing.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/1020816552899.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Test; score 49. Confirmed from sourcing report: New Style Maternity Photo Shoot Clothing for Photo Studios, French Retro Aesthetic Style Suspender Dress for Pregnant Moms ¥175.0 MOQ 1 Repurchase Rate 47% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "New Style Maternity Photo Shoot Clothing for Photo Studios, French Retro Aesthetic Style Suspender Dress for Pregnant Moms ¥175.0 MOQ 1 Repurchase Rate 47% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "maternity"}, {"candidate_id": "C003-7284e681", "review_stage": "search", "verdict": "Reject", "score": 55, "breakdown": {"product_fit": 14.6, "vendor_reliability": 9.0, "fulfillment": 14.0, "risk_readiness": 17.0}, "product_url": "https://detail.1688.com/offer/1034490323868.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01wFOU9X21Obgk6JIXV_!!2208249336975-0-cib.jpg_460x460q100.jpg_.webp", "title": "Real Photos in Stock: Maternity Spring/Summer 2026 New Style Slimming Knit Three-Piece Set ¥36.00 MOQ 1 Repurchase Rate 51% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "36.00", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "51%", "rating": "", "years_on_1688": "", "badges": "in stock", "service_flags": "in stock", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "3", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (51%)", "detail-page dispatch/stock signal", "MOQ 1", "no obvious IP-risk terms", "fresh year signal (2026)", "newer 1688 offer-id signal"], "concerns": ["ordinary maternity item; missing photoshoot/studio/gown signal", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "one-piece/dropship support unknown", "buyer/quality protection signal missing", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/1034490323868.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 55. Confirmed from sourcing report: Real Photos in Stock: Maternity Spring/Summer 2026 New Style Slimming Knit Three-Piece Set ¥36.00 MOQ 1 Repurchase Rate 51% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "Real Photos in Stock: Maternity Spring/Summer 2026 New Style Slimming Knit Three-Piece Set ¥36.00 MOQ 1 Repurchase Rate 51% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "maternity"}, {"candidate_id": "C009-eecaebab", "review_stage": "search", "verdict": "Reject", "score": 48, "breakdown": {"product_fit": 14.6, "vendor_reliability": 9.0, "fulfillment": 10.0, "risk_readiness": 14.0}, "product_url": "https://detail.1688.com/offer/1038169661912.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01SNVY7D1oYbKM4n9RZ_!!2216779665237-0-cib.jpg_460x460q100.jpg_.webp", "title": "2026 Maternity Wear Spring and Summer New Style Sun Protection Shirt Loose Hooded Printed Top Plus Size T-Shirt Flared Pants Set ¥37.00 MOQ 1 Repurchase Rate 55% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "37.00", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "55%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "3", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (55%)", "MOQ 1", "no obvious IP-risk terms", "fresh year signal (2026)", "newer 1688 offer-id signal"], "concerns": ["ordinary maternity item; missing photoshoot/studio/gown signal", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/1038169661912.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: 2026 Maternity Wear Spring and Summer New Style Sun Protection Shirt Loose Hooded Printed Top Plus Size T-Shirt Flared Pants Set ¥37.00 MOQ 1 Repurchase Rate 55% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "2026 Maternity Wear Spring and Summer New Style Sun Protection Shirt Loose Hooded Printed Top Plus Size T-Shirt Flared Pants Set ¥37.00 MOQ 1 Repurchase Rate 55% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "maternity"}, {"candidate_id": "C002-70d3b360", "review_stage": "search", "verdict": "Reject", "score": 48, "breakdown": {"product_fit": 14.6, "vendor_reliability": 9.0, "fulfillment": 10.0, "risk_readiness": 14.0}, "product_url": "https://detail.1688.com/offer/1037238011552.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01eF70Bl1x7QMsXNtC3_!!2215451736396-0-cib.jpg_460x460q100.jpg_.webp", "title": "2026 New Spring and Summer Rhinestone Maternity Denim Overalls + Short-Sleeve Base Shirt Maternity Set ¥32.00 MOQ 1 Repurchase Rate 59% 5 Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "32.00", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "59%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "3", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (59%)", "MOQ 1", "no obvious IP-risk terms", "fresh year signal (2026)", "newer 1688 offer-id signal"], "concerns": ["ordinary maternity item; missing photoshoot/studio/gown signal", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/1037238011552.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: 2026 New Spring and Summer Rhinestone Maternity Denim Overalls + Short-Sleeve Base Shirt Maternity Set ¥32.00 MOQ 1 Repurchase Rate 59% 5 Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "2026 New Spring and Summer Rhinestone Maternity Denim Overalls + Short-Sleeve Base Shirt Maternity Set ¥32.00 MOQ 1 Repurchase Rate 59% 5 Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "maternity"}, {"candidate_id": "C013-b784fae8", "review_stage": "search", "verdict": "Reject", "score": 48, "breakdown": {"product_fit": 14.6, "vendor_reliability": 9.0, "fulfillment": 10.0, "risk_readiness": 14.0}, "product_url": "https://detail.1688.com/offer/1036754056428.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01uDGDHI26RQCXzazSG_!!3844637658-0-cib.jpg_460x460q100.jpg_.webp", "title": "2026 New Summer Maternity Wear Floral Sweet Style Suspender Skirt T-Shirt Summer Clothes Dress Two-Piece Set ¥60.00 MOQ 1 Repurchase Rate 58% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "60.00", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "58%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "3", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (58%)", "MOQ 1", "no obvious IP-risk terms", "fresh year signal (2026)", "newer 1688 offer-id signal"], "concerns": ["ordinary maternity item; missing photoshoot/studio/gown signal", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/1036754056428.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: 2026 New Summer Maternity Wear Floral Sweet Style Suspender Skirt T-Shirt Summer Clothes Dress Two-Piece Set ¥60.00 MOQ 1 Repurchase Rate 58% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "2026 New Summer Maternity Wear Floral Sweet Style Suspender Skirt T-Shirt Summer Clothes Dress Two-Piece Set ¥60.00 MOQ 1 Repurchase Rate 58% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "maternity"}, {"candidate_id": "C010-18bdcd43", "review_stage": "search", "verdict": "Reject", "score": 48, "breakdown": {"product_fit": 14.6, "vendor_reliability": 9.0, "fulfillment": 10.0, "risk_readiness": 14.0}, "product_url": "https://detail.1688.com/offer/1037934282707.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01evfNyV1iP5P9naJDU_!!2521344404-0-cib.jpg_460x460q100.jpg_.webp", "title": "2026 Spring and Summer New Knit Top + Casual Overalls Bloomers Maternity Lazy Style Two-Piece Set ¥121.0 MOQ 1 Repurchase Rate 51% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "121.0", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "51%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "3", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (51%)", "MOQ 1", "no obvious IP-risk terms", "fresh year signal (2026)", "newer 1688 offer-id signal"], "concerns": ["ordinary maternity item; missing photoshoot/studio/gown signal", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/1037934282707.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: 2026 Spring and Summer New Knit Top + Casual Overalls Bloomers Maternity Lazy Style Two-Piece Set ¥121.0 MOQ 1 Repurchase Rate 51% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "2026 Spring and Summer New Knit Top + Casual Overalls Bloomers Maternity Lazy Style Two-Piece Set ¥121.0 MOQ 1 Repurchase Rate 51% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "maternity"}, {"candidate_id": "C006-42f342d2", "review_stage": "search", "verdict": "Reject", "score": 48, "breakdown": {"product_fit": 14.6, "vendor_reliability": 9.0, "fulfillment": 10.0, "risk_readiness": 14.0}, "product_url": "https://detail.1688.com/offer/1036266421854.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01o5kDOL1siuhuY99iH_!!2213199385801-0-cib.jpg_460x460q100.jpg_.webp", "title": "Maternity Wear 2026 Spring and Summer New Korean Style Polka Dot Age-Reducing Holiday Style Suspender Skirt + Sun Protection Cardigan Two-Piece Set ¥41.00 MOQ 1 Repurchase Rate 59% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "41.00", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "59%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "3", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (59%)", "MOQ 1", "no obvious IP-risk terms", "fresh year signal (2026)", "newer 1688 offer-id signal"], "concerns": ["ordinary maternity item; missing photoshoot/studio/gown signal", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/1036266421854.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: Maternity Wear 2026 Spring and Summer New Korean Style Polka Dot Age-Reducing Holiday Style Suspender Skirt + Sun Protection Cardigan Two-Piece Set ¥41.00 MOQ 1 Repurchase Rate 59% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "Maternity Wear 2026 Spring and Summer New Korean Style Polka Dot Age-Reducing Holiday Style Suspender Skirt + Sun Protection Cardigan Two-Piece Set ¥41.00 MOQ 1 Repurchase Rate 59% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "maternity"}, {"candidate_id": "C011-ab8c162d", "review_stage": "search", "verdict": "Reject", "score": 48, "breakdown": {"product_fit": 14.6, "vendor_reliability": 9.0, "fulfillment": 10.0, "risk_readiness": 14.0}, "product_url": "https://detail.1688.com/offer/1041543741204.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01Z2RnPx1siui7BOK7s_!!2213199385801-0-cib.jpg_460x460q100.jpg_.webp", "title": "Maternity Wear 2026 Spring and Summer New Style High-End Simple Fresh Holiday Style Suspender Polka Dot Skirt Cardigan Two-Piece Set ¥43.00 MOQ 1 Repurchase Rate 59% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "43.00", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "59%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "3", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (59%)", "MOQ 1", "no obvious IP-risk terms", "fresh year signal (2026)", "newer 1688 offer-id signal"], "concerns": ["ordinary maternity item; missing photoshoot/studio/gown signal", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/1041543741204.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: Maternity Wear 2026 Spring and Summer New Style High-End Simple Fresh Holiday Style Suspender Polka Dot Skirt Cardigan Two-Piece Set ¥43.00 MOQ 1 Repurchase Rate 59% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "Maternity Wear 2026 Spring and Summer New Style High-End Simple Fresh Holiday Style Suspender Polka Dot Skirt Cardigan Two-Piece Set ¥43.00 MOQ 1 Repurchase Rate 59% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "maternity"}, {"candidate_id": "C005-4d2ef5a4", "review_stage": "search", "verdict": "Reject", "score": 48, "breakdown": {"product_fit": 14.6, "vendor_reliability": 9.0, "fulfillment": 10.0, "risk_readiness": 14.0}, "product_url": "https://detail.1688.com/offer/1046363998810.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01q98RbV2FIZ5iMXEoV_!!2210983018857-0-cib.jpg_460x460q100.jpg_.webp", "title": "Maternity Wear Summer Dress 2026 New Gradient Tie-Dye Dress Spring and Summer Suspender Short-Sleeved Two-Piece Suit Mid-Length Skirt ¥41.00 MOQ 1 Repurchase Rate 51% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "41.00", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "51%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "3", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (51%)", "MOQ 1", "no obvious IP-risk terms", "fresh year signal (2026)", "newer 1688 offer-id signal"], "concerns": ["ordinary maternity item; missing photoshoot/studio/gown signal", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/1046363998810.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: Maternity Wear Summer Dress 2026 New Gradient Tie-Dye Dress Spring and Summer Suspender Short-Sleeved Two-Piece Suit Mid-Length Skirt ¥41.00 MOQ 1 Repurchase Rate 51% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "Maternity Wear Summer Dress 2026 New Gradient Tie-Dye Dress Spring and Summer Suspender Short-Sleeved Two-Piece Suit Mid-Length Skirt ¥41.00 MOQ 1 Repurchase Rate 51% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "maternity"}, {"candidate_id": "C004-dd43aa38", "review_stage": "search", "verdict": "Reject", "score": 48, "breakdown": {"product_fit": 14.6, "vendor_reliability": 9.0, "fulfillment": 10.0, "risk_readiness": 14.0}, "product_url": "https://detail.1688.com/offer/1036852217640.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01Is58B11vR041XdMET_!!2833596168-0-cib.jpg_460x460q100.jpg_.webp", "title": "Real Shot of 2026 Spring/Summer Maternity Korean Style Flutter Sleeve Colorful Polka Dot Sweet Babydoll Top + Belly Support Shorts ¥44.00 MOQ 1 Repurchase Rate 56% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "44.00", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "56%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "3", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (56%)", "MOQ 1", "no obvious IP-risk terms", "fresh year signal (2026)", "newer 1688 offer-id signal"], "concerns": ["ordinary maternity item; missing photoshoot/studio/gown signal", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/1036852217640.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: Real Shot of 2026 Spring/Summer Maternity Korean Style Flutter Sleeve Colorful Polka Dot Sweet Babydoll Top + Belly Support Shorts ¥44.00 MOQ 1 Repurchase Rate 56% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "Real Shot of 2026 Spring/Summer Maternity Korean Style Flutter Sleeve Colorful Polka Dot Sweet Babydoll Top + Belly Support Shorts ¥44.00 MOQ 1 Repurchase Rate 56% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "maternity"}, {"candidate_id": "C012-114fc1b5", "review_stage": "search", "verdict": "Reject", "score": 48, "breakdown": {"product_fit": 14.6, "vendor_reliability": 9.0, "fulfillment": 10.0, "risk_readiness": 14.0}, "product_url": "https://detail.1688.com/offer/1038710288312.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01JWDDW01ErXXN9rcRg_!!1913210405-0-cib.jpg_460x460q100.jpg_.webp", "title": "Real Shot of Pregnant Women's 2026 Spring/Summer Maternity Outfit, Chanel-Style Summer Wear, Loose Chiffon Top, Pink Pantskirt Set ¥37.00 MOQ 1 Repurchase Rate 61% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "37.00", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "61%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "3", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (61%)", "MOQ 1", "no obvious IP-risk terms", "fresh year signal (2026)", "newer 1688 offer-id signal"], "concerns": ["ordinary maternity item; missing photoshoot/studio/gown signal", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/1038710288312.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: Real Shot of Pregnant Women's 2026 Spring/Summer Maternity Outfit, Chanel-Style Summer Wear, Loose Chiffon Top, Pink Pantskirt Set ¥37.00 MOQ 1 Repurchase Rate 61% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "Real Shot of Pregnant Women's 2026 Spring/Summer Maternity Outfit, Chanel-Style Summer Wear, Loose Chiffon Top, Pink Pantskirt Set ¥37.00 MOQ 1 Repurchase Rate 61% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "maternity"}, {"candidate_id": "C008-45f57fc1", "review_stage": "search", "verdict": "Reject", "score": 48, "breakdown": {"product_fit": 14.6, "vendor_reliability": 9.0, "fulfillment": 10.0, "risk_readiness": 14.0}, "product_url": "https://detail.1688.com/offer/1046204232460.html", "image_url": "https://cbu01.alicdn.com/img/ibank/O1CN01KIi3ZT1siuiFXK34w_!!2213199385801-0-cib.jpg_460x460q100.jpg_.webp", "title": "孕妇装2026春夏新款御姐吊带连衣裙梨形身材防嗮披肩搭配法式套装 ¥88.00 MOQ 1 Repurchase Rate 59% Hot selling", "vendor_name": "", "vendor_url": "", "vendor_location": "", "price_cny": "88.00", "moq": "1", "monthly_sales": "", "repurchase_rate_pct": "59%", "rating": "", "years_on_1688": "", "badges": "", "service_flags": "", "dropship_supported": "", "size_chart": "", "vendor_image_urls": "", "vendor_images_path": "", "availability": "", "detail_evidence_path": "", "category_match": "3", "style_fit": "4", "image_quality": "3", "ip_risk_flags": "", "positive_signals": ["strong repeat-buyer signal (59%)", "MOQ 1", "no obvious IP-risk terms", "fresh/new-style keyword signal", "newer 1688 offer-id signal"], "concerns": ["ordinary maternity item; missing photoshoot/studio/gown signal", "size chart still needs confirmation", "supplier operating years missing", "shop/service rating missing", "recent sales/order volume missing", "fast dispatch signal missing", "one-piece/dropship support unknown", "buyer/quality protection signal missing", "candidate data is thin", "size chart not confirmed"], "next_action": "Do not list from this candidate unless the reject reason changes with better evidence.", "listing_request": "LISTING REQUEST\n\nVENDOR_URL: https://detail.1688.com/offer/1046204232460.html\nSIZE_CHART_SOURCE: attached image\nLISTING_MODE: Family Matching\nPRIMARY_CATEGORY: auto\nDESIGNS_TO_LIST: auto\nEXCLUDE_ITEMS:\nNOTES: Sourcing verdict Reject; score 48. Confirmed from sourcing report: 孕妇装2026春夏新款御姐吊带连衣裙梨形身材防嗮披肩搭配法式套装 ¥88.00 MOQ 1 Repurchase Rate 59% Hot selling\nPRICE_OVERRIDES:\nSHORTCODE_OVERRIDE:\nCOLOR_TOKEN_OVERRIDE:\nFORCE_SPEC_PRICES: true", "raw_card_text": "孕妇装2026春夏新款御姐吊带连衣裙梨形身材防嗮披肩搭配法式套装 ¥88.00 MOQ 1 Repurchase Rate 59% Hot selling", "notes": "Collected from logged-in 1688 search: https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发", "search_url": "https://s.1688.com/selloffer/offer_search.htm?keywords=%D4%D0%B8%BE%C9%E3%D3%B0%B7%FE%202026%20%B4%BA%CF%C4%20%D0%C2%BF%EE%20%CE%A8%C3%C0%20%B3%A4%BF%EE%20%D2%BB%BC%FE%B4%FA%B7%A2\u0026beginPage=2", "sales_context": "", "category_id": "maternity"}]</script>
+  <script>
+    const grid = document.querySelector('#grid');
+    const cards = Array.from(document.querySelectorAll('.card'));
+    const search = document.querySelector('#search');
+    const sort = document.querySelector('#sort');
+    const selectedCount = document.querySelector('#selected-count');
+    const hiddenCount = document.querySelector('#hidden-count');
+    const copySelected = document.querySelector('#copy-selected');
+    const downloadSelected = document.querySelector('#download-selected');
+    const resetChoices = document.querySelector('#reset-choices');
+    const candidateData = JSON.parse(document.querySelector('#candidate-data').textContent);
+    const candidateById = new Map(candidateData.map(item => [item.candidate_id, item]));
+    const storageKey = `dlm-1688-shortlist:${location.pathname}`;
+    let activeFilter = 'All';
+    let choices = loadChoices();
+
+    function loadChoices() {
+      try {
+        return JSON.parse(localStorage.getItem(storageKey)) || {};
+      } catch {
+        return {};
+      }
+    }
+
+    function saveChoices() {
+      localStorage.setItem(storageKey, JSON.stringify(choices));
+    }
+
+    function cardChoice(card) {
+      return choices[card.dataset.id] || {};
+    }
+
+    function setCardChoice(card, patch) {
+      const current = cardChoice(card);
+      choices[card.dataset.id] = { ...current, ...patch };
+      if (!choices[card.dataset.id].selected && !choices[card.dataset.id].hidden) {
+        delete choices[card.dataset.id];
+      }
+      saveChoices();
+      syncChoiceUi();
+      applyFilters();
+    }
+
+    function selectedCards() {
+      return cards.filter(card => {
+        const choice = cardChoice(card);
+        return choice.selected && !choice.hidden;
+      });
+    }
+
+    function hiddenCards() {
+      return cards.filter(card => cardChoice(card).hidden);
+    }
+
+    function syncChoiceUi() {
+      cards.forEach(card => {
+        const choice = cardChoice(card);
+        const keep = card.querySelector('.keep');
+        const hide = card.querySelector('.hide-card');
+        card.classList.toggle('selected', Boolean(choice.selected));
+        card.classList.toggle('user-hidden', Boolean(choice.hidden));
+        keep.textContent = choice.selected ? 'Kept' : 'Keep';
+        hide.textContent = choice.hidden ? 'Restore' : 'Hide';
+      });
+      selectedCount.textContent = String(selectedCards().length);
+      hiddenCount.textContent = String(hiddenCards().length);
+    }
+
+    function applyFilters() {
+      const term = search.value.trim().toLowerCase();
+      cards.forEach(card => {
+        const choice = cardChoice(card);
+        let verdictMatch = false;
+        if (activeFilter === 'All') {
+          verdictMatch = !choice.hidden;
+        } else if (activeFilter === 'Selected') {
+          verdictMatch = choice.selected && !choice.hidden;
+        } else if (activeFilter === 'Hidden') {
+          verdictMatch = choice.hidden;
+        } else {
+          verdictMatch = card.dataset.verdict === activeFilter && !choice.hidden;
+        }
+        const searchMatch = !term || card.dataset.search.includes(term);
+        card.classList.toggle('hidden', !(verdictMatch && searchMatch));
+      });
+    }
+
+    function applySort() {
+      const mode = sort.value;
+      const order = { Gold: 0, Test: 1, Reject: 2 };
+      const sorted = [...cards].sort((a, b) => {
+        if (mode === 'score-desc') return Number(b.dataset.score) - Number(a.dataset.score);
+        if (mode === 'score-asc') return Number(a.dataset.score) - Number(b.dataset.score);
+        return order[a.dataset.verdict] - order[b.dataset.verdict] || Number(b.dataset.score) - Number(a.dataset.score);
+      });
+      sorted.forEach(card => grid.appendChild(card));
+    }
+
+    function downloadJson(filename, items) {
+      const blob = new Blob([JSON.stringify(items, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function flash(button, text) {
+      const old = button.textContent;
+      button.textContent = text;
+      setTimeout(() => button.textContent = old, 1200);
+    }
+
+    document.querySelectorAll('.filter').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.filter').forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        activeFilter = button.dataset.filter;
+        applyFilters();
+      });
+    });
+    search.addEventListener('input', applyFilters);
+    sort.addEventListener('change', () => { applySort(); applyFilters(); });
+
+    async function copyText(text) {
+      if (navigator.clipboard?.writeText && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return;
+        } catch {
+        }
+      }
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.left = '-9999px';
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand('copy');
+      area.remove();
+    }
+
+    document.querySelectorAll('.copy').forEach(button => {
+      button.addEventListener('click', async () => {
+        try {
+          await copyText(button.dataset.copy);
+          flash(button, 'Copied');
+        } catch {
+          flash(button, 'Copy failed');
+        }
+      });
+    });
+
+    document.querySelectorAll('.keep').forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.card');
+        const choice = cardChoice(card);
+        setCardChoice(card, { selected: !choice.selected, hidden: false });
+      });
+    });
+
+    document.querySelectorAll('.hide-card').forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.card');
+        const choice = cardChoice(card);
+        setCardChoice(card, { hidden: !choice.hidden, selected: choice.hidden ? choice.selected : false });
+      });
+    });
+
+    copySelected.addEventListener('click', async () => {
+      const urls = selectedCards()
+        .map(card => candidateById.get(card.dataset.id)?.product_url)
+        .filter(Boolean);
+      if (!urls.length) {
+        flash(copySelected, 'Keep products first');
+        return;
+      }
+      try {
+        await copyText(urls.join('\n'));
+        flash(copySelected, 'Copied URLs');
+      } catch {
+        flash(copySelected, 'Copy failed');
+      }
+    });
+
+    downloadSelected.addEventListener('click', () => {
+      const items = selectedCards()
+        .map(card => candidateById.get(card.dataset.id))
+        .filter(Boolean);
+      if (!items.length) {
+        flash(downloadSelected, 'Keep products first');
+        return;
+      }
+      downloadJson('1688-kept-candidates.json', items);
+      flash(downloadSelected, 'Downloaded');
+    });
+
+    resetChoices.addEventListener('click', () => {
+      choices = {};
+      saveChoices();
+      syncChoiceUi();
+      applyFilters();
+      flash(resetChoices, 'Reset');
+    });
+
+    syncChoiceUi();
+    applySort();
+    applyFilters();
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+{
+  "generated_at": "2026-05-07T14:12:31-04:00",
+  "subagent_scope": "read-only/local Pinterest catalog/tag/event-quality gate synthesis and paused draft readiness",
+  "decision": "PINTEREST_US_CATALOG_RETARGETING_NOT_READY_FOR_DRAFT_CREATION_WITHOUT_FRESH_READBACK_AND_EXPLICIT_APPROVAL",
+  "external_systems_opened": false,
+  "writes_made": [
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-07-paid-growth-parallel-infra-sprint/pinterest-gate/PINTEREST_CATALOG_TAG_EVENT_GATE.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-07-paid-growth-parallel-infra-sprint/pinterest-gate/summary.json"
+  ],
+  "passed_gates": {
+    "last_known_advertiser_readback": {
+      "status": "PASS_AS_OF_2026_05_06",
+      "advertiser_id": "549756244483",
+      "site": "dresslikemommy.com"
+    },
+    "campaign_spend_baseline": {
+      "status": "PASS_AS_OF_2026_05_06",
+      "campaigns": 0,
+      "currently_serving": 0,
+      "spend": "$0.00"
+    },
+    "catalog_health": {
+      "status": "PASS_WITH_MONITORING_AS_OF_2026_05_06",
+      "merchant_status": "Approved",
+      "shopify_source": "3041760849210539103",
+      "successful_uploads": "5.66k",
+      "successful_upload_percent": "99.86%",
+      "failed_uploads": 8,
+      "warning_rows": 152,
+      "product_groups_visible": 32,
+      "caveat": "VMP under review was still visible"
+    },
+    "official_pinterest_app_pixel": {
+      "status": "PASS_AFTER_2026_05_06_FIX",
+      "shopify_customer_events_row": "Pinterest / Connected / Always on",
+      "pixel_id": "22577249",
+      "app_id": "3009811",
+      "tag_id": "2620007050621",
+      "checkout_started": "SUCCESS",
+      "blocked_event_count": 0,
+      "data_sharing_controls": ["share_all_events"]
+    },
+    "theme_duplicate_tag_scan": {
+      "status": "PASS",
+      "finding": "No local theme-level pintrk/ct.pinterest/custom Pinterest tag implementation found; only social/schema Pinterest references"
+    }
+  },
+  "pending_gates": [
+    "Fresh Pinterest Event Quality score/readback after the 2026-05-06 official app pixel fix",
+    "Fresh Checkout/AddPaymentInfo last-received timestamps and action items",
+    "Real Pinterest click-ID coverage remains unproven while no Pinterest campaigns are serving",
+    "Fresh catalog source/ingestion/warning/failure readback before draft creation",
+    "Fresh exact item-level US in-stock proof for any included product rows before creating product groups/drafts",
+    "Confirm whether visible VMP under review note is launch-blocking or informational"
+  ],
+  "safe_draft_structure_if_approved_later": {
+    "campaign_name": "DLM_PIN_US_SHOPPING_TEST_PAID_READY",
+    "objective": "Shopping/catalog sales",
+    "targeting": "United States only",
+    "status": "Paused or draft only",
+    "product_groups": [
+      "DLM_PIN_US_SHOPPING_MOMMY_AND_ME",
+      "DLM_PIN_US_SHOPPING_FAMILY_MATCHING",
+      "DLM_PIN_US_SHOPPING_PAJAMAS"
+    ],
+    "exclude": [
+      "All Products",
+      "unknown-cost rows",
+      "out-of-stock rows",
+      "unverified landing pages",
+      "international targeting",
+      "stale catalog rows",
+      "rows without exact item-level proof"
+    ]
+  },
+  "approval_gate_for_paused_draft_build": "APPROVE PAUSED PINTEREST US CATALOG RETARGETING DRAFT BUILD: READ BACK PINTEREST ADVERTISER 549756244483, DOMAIN DRESSLIKEMOMMY.COM, CATALOG SOURCE, MERCHANT STATUS, EVENT QUALITY, AND EXACT US ITEM-LEVEL CATALOG ROWS FIRST; CREATE ONLY PAUSED/DRAFT US-ONLY PINTEREST CATALOG/RETARGETING STRUCTURE IF GATES PASS; NO LIVE SPEND, NO CAMPAIGN ENABLEMENT, NO PRODUCT GROUP LAUNCH, NO PIXEL/TAG/CAPI CHANGES, NO SHOPIFY PRODUCT OR FEED CHANGES, NO MERCHANT UPLOADS, NO GOOGLE ADS CHANGES, NO STANDARD SHOPPING/PMAX/CONVERSION-GOAL CHANGES.",
+  "source_packets": [
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-06-remarketing-policy-cleanup-pinterest-gate/REMARKETING_POLICY_CLEANUP_PINTEREST_GATE.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-06-pinterest-event-quality-fix/PINTEREST_EVENT_QUALITY_FIX_RECHECK.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate/pinterest_shopping_ads_gate_report.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-shopping-ads-gate/summary.json",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-pinterest-item-readback/pinterest_item_level_readback_summary.json"
+  ],
+  "handoff_status": "DONE_LOCAL_SYNTHESIS__FRESH_PINTEREST_READBACK_AND_APPROVAL_REQUIRED_FOR_DRAFTS"
+}

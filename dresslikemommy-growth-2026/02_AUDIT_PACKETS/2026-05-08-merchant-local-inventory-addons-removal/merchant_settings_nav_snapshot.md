@@ -1,0 +1,11 @@
+- group [ref=e205] [box=0,832,243,220]:
+  - treeitem "General" [level=2] [ref=e447] [cursor=pointer] [box=0,832,243,44]:
+    - generic [ref=e208] [box=60,844,172,20]: General
+  - treeitem "Business info" [level=2] [ref=e449] [cursor=pointer] [box=0,876,243,44]:
+    - generic [ref=e211] [box=60,888,172,20]: Business info
+  - treeitem "Data sources" [level=2] [ref=e451] [cursor=pointer] [box=0,920,243,44]:
+    - generic [ref=e214] [box=60,932,172,20]: Data sources
+  - treeitem "Add-ons" [level=2] [ref=e453] [cursor=pointer] [box=0,964,243,44]:
+    - generic [ref=e217] [box=60,976,172,20]: Add-ons
+  - treeitem "Access and services" [level=2] [ref=e455] [cursor=pointer] [box=0,1008,243,44]:
+    - generic [ref=e220] [box=60,1020,172,20]: Access and services

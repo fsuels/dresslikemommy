@@ -1,0 +1,81 @@
+{
+  "account": {
+    "merchant_center_account_id": "124884876",
+    "merchant_center_account_name": "Dresslikemommy"
+  },
+  "api_status": {
+    "content_api_productstatuses_list": "BLOCKED_403_PERMISSION_DENIED_INSUFFICIENT_AUTHENTICATION_SCOPES",
+    "merchant_api_products_list": "BLOCKED_403_PERMISSION_DENIED_INSUFFICIENT_AUTHENTICATION_SCOPES"
+  },
+  "blockers": [
+    "No fresh exact Merchant CSV materialized during the 2026-05-08 read-only attempt.",
+    "Sample US/en Shopify App API source timestamp remains older than the Shopify age_group repair.",
+    "Local Google API token lacks Merchant/Content API scopes for product/status diagnostics.",
+    "Non-read-only source refresh/sync, Google & YouTube toggle, feed upload, product edits, and local-inventory actions require fresh exact owner approval."
+  ],
+  "commands_used": [
+    "sed -n '1,260p' AGENTS.md",
+    "sed -n '1,220p' ops/AGENT_COORDINATION.md",
+    "sed -n '1,220p' ops/BROWSER_SUBAGENT_COORDINATION.md",
+    "sed -n '1,260p' ops/GOOGLE_ADS_CONTINUITY.md",
+    "tail -n 240 ops/AGENT_WORKLOG.md",
+    "rg -n Merchant/Missing age group/source terms across prior packets",
+    "find prior merchant lane files",
+    "jq '.' selected prior JSON summaries",
+    "python3 local CSV re-parse of the latest completed browser export",
+    "mkdir -p lane folder"
+  ],
+  "current_known_status": "NOT_CLEARED_NO_NEW_EXACT_IMPROVEMENT",
+  "dropshipping_local_inventory_note": "Missing local inventory data is not a product-data fix target for Dress Like Mommy because the business is dropshipping with no physical store and no owned physical inventory.",
+  "evidence_improved": false,
+  "evidence_movement": {
+    "latest_completed_exact_count": 623,
+    "latest_exact_count_delta_vs_prior_623": 0,
+    "older_count_before_improvement": 754,
+    "older_to_latest_completed_delta": -131
+  },
+  "generated_at": "2026-05-08T01:39:55-0400",
+  "guardrails_observed": [
+    "No Shopify product data edits.",
+    "No Google & YouTube sync/refresh click.",
+    "No repeated product publication toggle.",
+    "No Merchant feed upload.",
+    "No Ads/campaign/budget/bid/status/product scope/feed label/conversion goal changes.",
+    "No local inventory feeds or claims.",
+    "Writes limited to this merchant lane folder."
+  ],
+  "latest_completed_exact_export": {
+    "csv_rows": 34716,
+    "export_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-07-paid-growth-currency-presentment-readback/lanes/merchant/product-issues-browser-export/product_issues_2026-05-07_23-57-24.csv",
+    "paid_cohort_size": 780,
+    "paid_us_en_missing_age_group_rows": 1246,
+    "paid_us_en_missing_age_group_unique_item_ids": 623,
+    "paid_us_en_missing_local_inventory_rows": 771,
+    "paid_us_en_missing_local_inventory_unique_item_ids": 771,
+    "sample_in_paid_us_en_missing_age_group": true,
+    "sample_in_paid_us_en_missing_local_inventory": true
+  },
+  "latest_visible_diagnostics": {
+    "source_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-pt-presentment-url-readback/lanes/merchant/diagnostics-visible-summary.json",
+    "visible_last_updated": "1:02 AM May 8, 2026",
+    "visible_missing_age_group_present": true,
+    "visible_missing_local_inventory_data_present": true,
+    "visible_table_range_total": "10,985"
+  },
+  "mode": "READ_ONLY_LOCAL_EVIDENCE_SYNTHESIS",
+  "next_safe_action": "Retry a read-only Merchant product-issues export and sample source timestamp readback later in DLM-MERCHANT-US-SourceRefresh; stop on login/CAPTCHA/modal/permission/unsaved changes and do not click source refresh/sync, upload, Fix/View fix, Save/Apply, or any Google & YouTube publication toggle.",
+  "sample_item": {
+    "custom_label_0": "paid_eligible",
+    "custom_label_4": "us_test_ready",
+    "feed_label": "US",
+    "item_id": "shopify_US_7227254276193_41871113158753",
+    "language_code": "en",
+    "last_updated_utc": "2026-05-07T14:14:02+00:00",
+    "source_id": "10627623003",
+    "source_name": "Shopify App API"
+  },
+  "writes": [
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-controlled-infra-refresh/lanes/merchant/MERCHANT_CONTROLLED_INFRA_REFRESH.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-controlled-infra-refresh/lanes/merchant/summary.json"
+  ]
+}

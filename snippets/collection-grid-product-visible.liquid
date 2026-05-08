@@ -20,8 +20,8 @@
   assign has_daddy_and_me_tag = false
   assign has_couples_tag = false
   assign has_maternity_tag = false
-  assign mommy_branch_handles = ',mommy-and-me,new-matching-outfits,popular-mommy-me-1,pajamas,dresses,swimsuits,tops,sweaters,bottoms,leggings,pants,formal-dresses,maxi-dresses,midi-dresses,mini-dresses,sundresses,jumpsuits,rompers,skirts,mommy-and-me-easter-dresses,easter-matching-outfits,spring-matching-outfits,'
-  assign family_branch_handles = ',matching-outfits,family-matching-outfits,new-women-outfits,popular-family-matching,family-pajamas,mother-daughter-matching-dresses,family-swimsuits,family-sets,matching-family-vacation-outfits,matching-hawaiian-outfits,family-tops,family-sweaters,'
+  assign mommy_branch_handles = ',mommy-and-me,new-matching-outfits,popular-mommy-me-1,pajamas,dresses,mother-daughter-matching-dresses,swimsuits,tops,sweaters,bottoms,leggings,pants,formal-dresses,maxi-dresses,midi-dresses,mini-dresses,sundresses,jumpsuits,rompers,skirts,mommy-and-me-easter-dresses,easter-matching-outfits,spring-matching-outfits,'
+  assign family_branch_handles = ',matching-outfits,family-matching-outfits,new-women-outfits,popular-family-matching,family-pajamas,family-swimsuits,family-sets,matching-family-vacation-outfits,matching-hawaiian-outfits,family-tops,family-sweaters,'
   assign daddy_branch_handles = ',daddy-and-me,daddy-me,daddy-me-t-shirts,daddy-me-shirts,trunks,'
   assign couples_branch_handles = ',couples,couple-matching,matching-couples-t-shirts,'
   assign maternity_branch_handles = ',maternity,'
@@ -49,7 +49,9 @@
     endif
   endfor
 
-  if expected_category1 == blank
+  if current_collection_handle == 'mother-daughter-matching-dresses'
+    assign expected_category1 = 'Mommy and Me'
+  elsif expected_category1 == blank
     if mommy_branch_handles contains current_handle_token
       assign expected_category1 = 'Mommy and Me'
     elsif family_branch_handles contains current_handle_token

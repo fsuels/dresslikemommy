@@ -60,6 +60,7 @@ CSV_FIELDNAMES = [
     "search_query",
     "search_url",
     "sales_context",
+    "market_target",
     "category_id",
 ]
 
@@ -93,6 +94,7 @@ ALIASES = {
     "search_query": ("search_query", "query", "keyword", "keywords"),
     "search_url": ("search_url", "page_url", "source_url", "source_search_url"),
     "sales_context": ("sales_context", "sales_label", "sales_text", "sales_raw"),
+    "market_target": ("market_target", "market", "target_market", "market_focus"),
     "category_id": ("category_id", "category", "category_slug"),
 }
 
@@ -170,6 +172,130 @@ IP_RISK_TERMS = (
 CURRENT_YEAR = dt.date.today().year
 MIN_FRESH_YEAR = CURRENT_YEAR - 1
 MIN_FRESH_OFFER_ID = 850_000_000_000
+DEFAULT_MARKET_TARGET = "balanced"
+
+MATERNITY_IDENTITY_TERMS = (
+    "maternity",
+    "pregnant",
+    "pregnancy",
+    "mom-to-be",
+    "baby bump",
+    "bump",
+    "孕妇",
+    "孕妈",
+    "孕肚",
+    "大肚",
+    "大肚子",
+)
+
+MATERNITY_PHOTOSHOOT_TERMS = (
+    "photo shoot",
+    "photoshoot",
+    "photography",
+    "portrait",
+    "studio",
+    "gown",
+    "formal",
+    "evening",
+    "wedding",
+    "bridal",
+    "bride",
+    "tulle",
+    "veil",
+    "strapless",
+    "off-shoulder",
+    "mermaid",
+    "cheongsam",
+    "fairy",
+    "ethereal",
+    "ceremony",
+    "写真",
+    "拍照",
+    "摄影",
+    "影楼",
+    "礼服",
+    "婚纱",
+    "高定",
+    "唯美",
+    "仙女",
+    "仙气",
+    "飘纱",
+    "白纱",
+    "薄纱",
+    "头纱",
+    "抹胸",
+    "鱼尾",
+    "油画",
+    "森系",
+    "私房",
+    "晚礼服",
+    "婚礼",
+)
+
+US_MARKET_TERMS = (
+    "欧美",
+    "美国",
+    "美国站",
+    "美式",
+    "外贸",
+    "跨境",
+    "亚马逊",
+    "独立站",
+    "ins",
+    "tiktok",
+    "amazon",
+    "american",
+    "usa",
+    "us market",
+    "resort",
+    "vacation",
+    "holiday",
+    "christmas",
+    "thanksgiving",
+    "family photo",
+    "beach",
+)
+
+EU_MARKET_TERMS = (
+    "欧洲",
+    "欧洲站",
+    "欧美",
+    "欧式",
+    "法式",
+    "英伦",
+    "北欧",
+    "外贸",
+    "跨境",
+    "亚马逊",
+    "独立站",
+    "ins",
+    "amazon",
+    "europe",
+    "european",
+    "french",
+    "british",
+    "minimal",
+    "resort",
+    "vacation",
+    "holiday",
+    "wedding",
+)
+
+MARKET_TARGET_LABELS = {
+    "balanced": "Balanced",
+    "us": "American market",
+    "eu": "European market",
+}
+
+REPUTABLE_MARKET_SIGNALS = {
+    "实力商家",
+    "超级工厂",
+    "深度验厂",
+    "真实工厂",
+    "买家保障",
+    "品质保障",
+    "官方物流",
+}
 
 
 @dataclass
@@ -204,6 +330,7 @@ class Candidate:
     search_query: str = ""
     search_url: str = ""
     sales_context: str = ""
+    market_target: str = DEFAULT_MARKET_TARGET
     category_id: str = ""
     score: int = 0
     verdict: str = "Test"
@@ -219,6 +346,82 @@ def clean(value: Any) -> str:
     if value is None:
         return ""
     return re.sub(r"\s+", " ", str(value)).strip()
+
+
+def has_any_term(text: str, terms: tuple[str, ...]) -> bool:
+    return any(term in text for term in terms)
+
+
+def maternity_product_haystack(candidate: Candidate) -> str:
+    return " ".join([candidate.title, candidate.raw_card_text, candidate.badges, candidate.service_flags]).lower()
+
+
+def maternity_has_photoshoot_signal(candidate: Candidate) -> bool:
+    haystack = maternity_product_haystack(candidate)
+    return has_any_term(haystack, MATERNITY_IDENTITY_TERMS) and has_any_term(haystack, MATERNITY_PHOTOSHOOT_TERMS)
+
+
+def normalize_market_target(value: str) -> str:
+    key = re.sub(r"[^a-z0-9]+", "_", clean(value).lower()).strip("_")
+    aliases = {
+        "": DEFAULT_MARKET_TARGET,
+        "balanced": DEFAULT_MARKET_TARGET,
+        "usa": "us",
+        "american": "us",
+        "american_market": "us",
+        "europe": "eu",
+        "european": "eu",
+        "european_market": "eu",
+    }
+    key = aliases.get(key, key)
+    return key if key in MARKET_TARGET_LABELS else DEFAULT_MARKET_TARGET
+
+
+def market_terms(market_target: str) -> tuple[str, ...]:
+    target = normalize_market_target(market_target)
+    if target == "us":
+        return US_MARKET_TERMS
+    if target == "eu":
+        return EU_MARKET_TERMS
+    return ()
+
+
+def market_signal(candidate: Candidate, market_target: str) -> tuple[bool, bool]:
+    terms = market_terms(market_target)
+    if not terms:
+        return False, False
+    product_text = " ".join([candidate.title, candidate.raw_card_text, candidate.badges, candidate.service_flags]).lower()
+    query_text = clean(candidate.search_query).lower()
+    return has_any_term(product_text, terms), has_any_term(query_text, terms)
+
+
+def has_current_year_freshness(candidate: Candidate, years: list[int], offer_id: int | None) -> bool:
+    if years and max(years) >= CURRENT_YEAR:
+        return True
+    text = " ".join([candidate.title, candidate.raw_card_text]).lower()
+    if str(CURRENT_YEAR) in text:
+        return True
+    new_style_terms = ("新款", "新品", "上新", "new style", "new arrival")
+    return offer_id is not None and offer_id >= MIN_FRESH_OFFER_ID and any(term in text for term in new_style_terms)
+
+
+def has_reputable_market_signal(
+    *,
+    signals: set[str],
+    repurchase: float | None,
+    monthly_sales: float | None,
+    years: float | None,
+    rating: float | None,
+) -> bool:
+    if REPUTABLE_MARKET_SIGNALS & signals:
+        return True
+    if repurchase is not None and repurchase >= 25:
+        return True
+    if monthly_sales is not None and monthly_sales >= 50:
+        return True
+    if years is not None and years >= 3:
+        return True
+    return rating is not None and rating >= 4.6
 
 
 def normalize_key(key: str) -> str:
@@ -244,10 +447,15 @@ def load_rows(path: Path) -> list[dict[str, Any]]:
             if isinstance(payload.get("candidates"), list):
                 rows = payload["candidates"]
                 category_id = clean(payload.get("category_id"))
+                market_target = clean(payload.get("market_target"))
                 if category_id:
                     for row in rows:
                         if isinstance(row, dict):
                             row.setdefault("category_id", category_id)
+                if market_target:
+                    for row in rows:
+                        if isinstance(row, dict):
+                            row.setdefault("market_target", market_target)
                 return rows
             if isinstance(payload.get("items"), list):
                 return payload["items"]
@@ -371,6 +579,12 @@ def inferred_category_fit(candidate: Candidate) -> float | None:
     if not category_id:
         return None
     product_haystack = " ".join([candidate.title, candidate.raw_card_text, candidate.badges, candidate.service_flags]).lower()
+    if category_id == "maternity":
+        if maternity_has_photoshoot_signal(candidate):
+            return 5.0
+        if has_any_term(product_haystack, MATERNITY_IDENTITY_TERMS):
+            return 3.0
+        return 2.0
     terms = {
         "mommy-and-me": (
             "mother",
@@ -409,7 +623,6 @@ def inferred_category_fit(candidate: Candidate) -> float | None:
             "parent-child",
         ),
         "couples": ("couple", "couples", "情侣", "情侣装", "情侣款", "sweetheart", "his and hers"),
-        "maternity": ("maternity", "pregnant", "pregnancy", "孕妇", "孕妈", "哺乳"),
     }
     strong_terms = terms.get(category_id, ())
     if any(term in product_haystack for term in strong_terms):
@@ -508,12 +721,18 @@ def is_search_stage_promising(
     moq: float | None,
     repurchase: float | None,
     monthly_sales: float | None,
+    market_target: str = DEFAULT_MARKET_TARGET,
+    reputable_signal: bool = False,
 ) -> bool:
     """Search pages rarely expose full supplier evidence; keep good leads alive."""
     if total < 52:
         if total < 45:
             return False
+    if normalize_market_target(market_target) != DEFAULT_MARKET_TARGET and not reputable_signal:
+        return False
     if category_fit < 3.5:
+        return False
+    if clean(candidate.category_id) == "maternity" and category_fit < 4.5:
         return False
     if not candidate.image_url:
         return False
@@ -575,6 +794,10 @@ def score_candidate(
     inferred_fit = inferred_category_fit(candidate)
     category_fit = inferred_fit if inferred_fit is not None else score_0_to_5(candidate.category_match, 3.0)
     candidate.category_match = f"{category_fit:g}"
+    category_id = clean(candidate.category_id)
+    market_target = normalize_market_target(candidate.market_target)
+    candidate.market_target = market_target
+    market_focus = market_target != DEFAULT_MARKET_TARGET
     style_fit = score_0_to_5(candidate.style_fit, 3.0)
     image_quality = score_0_to_5(candidate.image_quality, 3.0 if candidate.image_url else 1.0)
     listing_years = detected_listing_years(candidate)
@@ -584,6 +807,14 @@ def score_candidate(
     supplier_confirmed = has_supplier_proof(candidate)
     image_count = vendor_image_count(candidate)
     usable_vendor_images = has_usable_vendor_images(candidate, image_quality)
+    market_product_signal, market_query_signal = market_signal(candidate, market_target)
+    reputable_market_signal = has_reputable_market_signal(
+        signals=signals,
+        repurchase=repurchase,
+        monthly_sales=monthly_sales,
+        years=years,
+        rating=rating,
+    )
 
     if offer_key(candidate.product_url) in rejected_keys:
         hard_reject_reasons.append("previously rejected by operator")
@@ -593,8 +824,25 @@ def score_candidate(
         hard_reject_reasons.append("detail page suggests the product is unavailable or removed")
     if category_fit <= 1:
         hard_reject_reasons.append("poor fit for Dress Like Mommy categories")
+    elif review_stage == "search" and category_id == "maternity" and category_fit < 4.5:
+        hard_reject_reasons.append("ordinary maternity item; missing photoshoot/studio/gown signal")
     elif review_stage == "search" and category_fit < 3.5:
         hard_reject_reasons.append("weak visible match for selected store category")
+    if category_id == "maternity" and category_fit >= 4.5:
+        positive.append("maternity photoshoot/studio gown signal")
+    if market_focus:
+        market_label = MARKET_TARGET_LABELS[market_target]
+        positive.append(f"{market_label} search focus")
+        if market_product_signal:
+            positive.append(f"{market_label} style/cross-border signal on product card")
+        elif market_query_signal:
+            concerns.append(f"{market_label} fit comes from the search terms; confirm product style on detail page")
+        if review_stage == "search" and not has_current_year_freshness(candidate, listing_years, offer_id):
+            hard_reject_reasons.append(
+                f"{market_label} focus requires a {CURRENT_YEAR}/new-listing freshness signal or newer 1688 offer ID"
+            )
+        if review_stage == "search" and not reputable_market_signal:
+            hard_reject_reasons.append(f"{market_label} focus requires reputable-vendor or demand proof on the search card")
     if size_chart is False:
         hard_reject_reasons.append("no vendor size chart evidence")
     if moq is not None and moq > 10:
@@ -797,6 +1045,12 @@ def score_candidate(
         readiness_score += 1
         positive.append("newer 1688 offer-id signal")
 
+    if market_focus:
+        if market_product_signal:
+            readiness_score += 2
+        elif market_query_signal:
+            readiness_score += 0.75
+
     if "买家保障" in signals or "品质保障" in signals:
         readiness_score += 4
     elif "包换" in signals:
@@ -855,6 +1109,8 @@ def score_candidate(
         moq=moq,
         repurchase=repurchase,
         monthly_sales=monthly_sales,
+        market_target=market_target,
+        reputable_signal=reputable_market_signal,
     )
 
     if hard_reject_reasons:
@@ -913,6 +1169,7 @@ def dedupe(values: list[str]) -> list[str]:
 
 
 def build_listing_request(candidate: Candidate) -> str:
+    market_label = MARKET_TARGET_LABELS.get(normalize_market_target(candidate.market_target), "Balanced")
     return "\n".join(
         [
             "LISTING REQUEST",
@@ -923,7 +1180,7 @@ def build_listing_request(candidate: Candidate) -> str:
             "PRIMARY_CATEGORY: auto",
             "DESIGNS_TO_LIST: auto",
             "EXCLUDE_ITEMS:",
-            f"NOTES: Sourcing verdict {candidate.verdict}; score {candidate.score}. Confirmed from sourcing report: {candidate.title}",
+            f"NOTES: Sourcing verdict {candidate.verdict}; score {candidate.score}; market focus {market_label}. Confirmed from sourcing report: {candidate.title}",
             "PRICE_OVERRIDES:",
             "SHORTCODE_OVERRIDE:",
             "COLOR_TOKEN_OVERRIDE:",
@@ -964,6 +1221,7 @@ def candidate_from_row(row: dict[str, Any], index: int) -> Candidate:
         search_query=first_value(row, "search_query"),
         search_url=first_value(row, "search_url"),
         sales_context=first_value(row, "sales_context"),
+        market_target=first_value(row, "market_target") or DEFAULT_MARKET_TARGET,
         category_id=first_value(row, "category_id"),
     )
 
@@ -1025,6 +1283,7 @@ def write_csv(path: Path, candidates: list[Candidate]) -> None:
                     "search_query": candidate.search_query,
                     "search_url": candidate.search_url,
                     "sales_context": candidate.sales_context,
+                    "market_target": candidate.market_target,
                     "category_id": candidate.category_id,
                 }
             )
@@ -1070,6 +1329,7 @@ def candidate_to_dict(candidate: Candidate) -> dict[str, Any]:
         "search_query": candidate.search_query,
         "search_url": candidate.search_url,
         "sales_context": candidate.sales_context,
+        "market_target": candidate.market_target,
         "category_id": candidate.category_id,
     }
 

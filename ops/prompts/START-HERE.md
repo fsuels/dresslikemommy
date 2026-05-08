@@ -20,7 +20,7 @@ For new listing work, prefer the `ops/prompts/` workflow over older prompt files
 
 Shopify safety default: new Admin API listing work creates or updates Shopify products as drafts only. Do not set products `ACTIVE`, call `publishablePublish`, or publish to sales channels unless the operator explicitly asks for a separate live publish step.
 
-Cost default: every variant's Shopify Cost per item is `selling price x 0.50`, rounded to cents. If Cost per item is missing after verification, report `paid_eligible=false` and keep the product in draft until fixed.
+Cost default: every variant's Shopify Cost per item is always `current final Shopify variant price x 0.50`, rounded to cents. The operator may manually set final prices in Shopify; those manual prices are the source of truth. On any create, update, rerun, or verification pass, preserve the current/final variant price unless the current request explicitly changes prices, then set Cost per item from that final price. If Cost per item is missing or stale after verification, fix cost to 50% of the current price; do not reset the operator's manual price just to match an earlier generated spec.
 
 Family-matching sanity check: if `Size` labels already encode the shopper role (`Mother S`, `Father M`, `Child 2 Years`), keep `Type` generic to the garment (`Dress`, `Shirt`) instead of repeating the role in the option value.
 

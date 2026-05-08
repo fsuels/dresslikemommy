@@ -1,0 +1,33 @@
+{
+  "age_group_counts": {
+    "adult": 347,
+    "infant": 2,
+    "kids": 267,
+    "toddler": 164
+  },
+  "blocked_rows": 0,
+  "blocked_samples": [],
+  "columns": [
+    "id",
+    "age_group"
+  ],
+  "expected_effective_product_attribute": "n:age_group",
+  "files": {
+    "review_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-dedicated-supplemental-repair/age_group_only_upload_review.csv",
+    "upload_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-dedicated-supplemental-repair/upload_paid_cohort_age_group_only.csv",
+    "upload_txt": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-dedicated-supplemental-repair/upload_paid_cohort_age_group_only.txt"
+  },
+  "guardrails": [
+    "Only id and age_group are present in upload file.",
+    "No custom_label_0..4 columns, so paid targeting labels are not overwritten.",
+    "No Shopify product data, Google Ads, product groups, budgets, feed labels, product scope, conversion goals, local inventory, or existing supplemental source deletion/change is included."
+  ],
+  "intended_source_type": "new dedicated supplemental file source, US/en, paid cohort only",
+  "merchant_account": "124884876",
+  "mode": "MERCHANT_DEDICATED_SUPPLEMENTAL_AGE_GROUP_REPAIR_PACKET",
+  "review_rows": 780,
+  "rollback_note": "If the new source is created and causes unexpected behavior, delete only the newly created dedicated supplemental source; existing supplemental_feed_pilot.txt remains untouched.",
+  "source_input": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-06-live-visual-qa-merchant-age-group-gate/paid_cohort_age_group_after_patch_rows.csv",
+  "target_primary_source": "Shopify App API (US, English)",
+  "upload_rows": 780
+}

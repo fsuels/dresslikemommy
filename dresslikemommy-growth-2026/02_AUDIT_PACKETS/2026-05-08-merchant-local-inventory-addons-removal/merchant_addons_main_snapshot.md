@@ -1,0 +1,124 @@
+- main [ref=e728]:
+  - generic [ref=e730]:
+    - generic [ref=e731]:
+      - generic [ref=e735]:
+        - heading "API diagnostics" [level=2] [ref=e740]
+        - generic [ref=e743]:
+          - text: Monitor API call usage and understand errors across different API versions. You can access API diagnostics in Settings & tools
+          - link "Learn more about the API diagnostics, Opens in a new tab" [ref=e745] [cursor=pointer]:
+            - /url: https://support.google.com/merchants/?p=help_14173602&hl=en-US
+            - text: Learn more about the API diagnostics
+            - generic [ref=e746]:
+              - text: ⁠
+              - img [ref=e748]: open_in_new
+              - text: ‎
+        - button "Add API diagnostics" [ref=e750]:
+          - generic [ref=e753]: Add
+      - generic [ref=e757]:
+        - heading "Loyalty programs" [level=2] [ref=e762]
+        - generic [ref=e764]:
+          - generic [ref=e765]:
+            - text: Loyalty programs help engage new customers and retain existing customers. Share yours on Google in a few simple steps. Don't worry, we'll show you how.
+            - link "Learn more about loyalty programs, Opens in a new tab" [ref=e767] [cursor=pointer]:
+              - /url: https://support.google.com/merchants/topic/12822139?hl=en-US
+              - text: Learn more about loyalty programs
+              - generic [ref=e768]:
+                - text: ⁠
+                - img [ref=e770]: open_in_new
+                - text: ‎
+          - generic [ref=e772]:
+            - text: Not available in 50 countries you target.
+            - link "See supported countries, Opens in a new tab" [ref=e774] [cursor=pointer]:
+              - /url: https://support.google.com/merchants/topic/12822139?hl=en-US
+              - text: See supported countries
+              - generic [ref=e775]:
+                - text: ⁠
+                - img [ref=e777]: open_in_new
+                - text: ‎
+        - button "Add Loyalty programs" [ref=e779]:
+          - generic [ref=e782]: Add
+      - generic [ref=e786]:
+        - heading "Regions" [level=2] [ref=e791]
+        - generic [ref=e794]:
+          - text: Control how your products are shown to customers in specific regions. Start to set up different regions to show customers specific product availability, pricing, or shipping details.
+          - link "Learn more about regions, Opens in a new tab" [ref=e796] [cursor=pointer]:
+            - /url: https://support.google.com/merchants/answer/14644124?hl=en-US
+            - text: Learn more about regions
+            - generic [ref=e797]:
+              - text: ⁠
+              - img [ref=e799]: open_in_new
+              - text: ‎
+        - button "Add Regions" [ref=e801]:
+          - generic [ref=e804]: Add
+    - generic [ref=e805]:
+      - generic [ref=e809]:
+        - heading "Free local listings" [level=2] [ref=e814]
+        - generic [ref=e816]:
+          - generic [ref=e817]:
+            - text: Show your in-store products on Google with free local listings. No ad campaigns required.
+            - link "Learn more about free local listings, Opens in a new tab" [ref=e819] [cursor=pointer]:
+              - /url: https://support.google.com/merchants/answer/14615117?hl=en-US
+              - text: Learn more about free local listings
+              - generic [ref=e820]:
+                - text: ⁠
+                - img [ref=e822]: open_in_new
+                - text: ‎
+          - generic [ref=e824]:
+            - text: Not available in 17 countries you target.
+            - link "See supported countries, Opens in a new tab" [ref=e826] [cursor=pointer]:
+              - /url: https://support.google.com/merchants/answer/14615117?hl=en-US
+              - text: See supported countries
+              - generic [ref=e827]:
+                - text: ⁠
+                - img [ref=e829]: open_in_new
+                - text: ‎
+        - button "Add Free local listings" [ref=e831]:
+          - generic [ref=e834]: Add
+      - generic [ref=e838]:
+        - heading "Product ratings" [level=2] [ref=e843]
+        - generic [ref=e845]:
+          - generic [ref=e846]:
+            - text: Add a 5-star rating and review system to your Shopping ads. Displaying product ratings on your ads helps shoppers feel more confident and may help increase clickthrough rates on your ads.
+            - link "Learn more about product ratings, Opens in a new tab" [ref=e848] [cursor=pointer]:
+              - /url: https://support.google.com/merchants/?p=help_14620705&hl=en-US
+              - text: Learn more about product ratings
+              - generic [ref=e849]:
+                - text: ⁠
+                - img [ref=e851]: open_in_new
+                - text: ‎
+          - generic [ref=e852]:
+            - generic [ref=e853]: needed before adding
+            - generic [ref=e856]:
+              - img [ref=e858]: arrow_circle_right
+              - link "Submit Product Ratings interest form, Opens in a new tab" [ref=e860] [cursor=pointer]:
+                - /url: https://support.google.com/merchants/troubleshooter/10994881?hl=en-US
+                - text: Submit Product Ratings interest form
+                - generic [ref=e861]:
+                  - text: ⁠
+                  - img [ref=e863]: open_in_new
+                  - text: ‎
+        - button "Add Product ratings" [disabled] [ref=e865]:
+          - generic [ref=e868]: Add
+      - generic [ref=e872]:
+        - heading "Vehicle ads" [level=2] [ref=e877]
+        - generic [ref=e879]:
+          - generic [ref=e880]:
+            - text: If your business sells or lists new or used vehicles, you can show your inventory in vehicle ads. When someone clicks on your ad, they'll go to a page with details about the vehicle.
+            - link "Learn more about vehicle ads, Opens in a new tab" [ref=e882] [cursor=pointer]:
+              - /url: https://support.google.com/merchants/answer/11189169?hl=en-US
+              - text: Learn more about vehicle ads
+              - generic [ref=e883]:
+                - text: ⁠
+                - img [ref=e885]: open_in_new
+                - text: ‎
+          - generic [ref=e887]:
+            - text: Not available in 53 countries you target.
+            - link "See supported countries, Opens in a new tab" [ref=e889] [cursor=pointer]:
+              - /url: https://support.google.com/merchants/answer/11189169?hl=en-US
+              - text: See supported countries
+              - generic [ref=e890]:
+                - text: ⁠
+                - img [ref=e892]: open_in_new
+                - text: ‎
+        - button "Add in United States - Vehicle ads" [ref=e894]:
+          - generic [ref=e897]: Add in United States

@@ -6,7 +6,6 @@
   - product_form_id: {String} product form id.
   - section_id: {String} id of section to which this snippet belongs.
   - show_pickup_availability: {Boolean} for the pickup availability. If true the pickup availability is rendered, false - not rendered (optional).
-
   Usage:
   {% render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true %}
 {% endcomment %}
@@ -199,6 +198,10 @@
     <span class="trust-strip__item">
       {%- render 'icon-checkmark' -%}
       <span class="trust-strip__label">{{ 'products.trust.returns' | t }}</span>
+    </span>
+    <span class="trust-strip__item">
+      {%- render 'icon-checkmark' -%}
+      <span class="trust-strip__label">{{ 'products.trust.free_shipping' | t }}</span>
     </span>
     <span class="trust-strip__item">
       {%- render 'icon-tick' -%}

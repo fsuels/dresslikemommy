@@ -26,6 +26,7 @@ CATEGORIES_PATH = SOURCING_ROOT / "sourcing-categories.json"
 DECISIONS_PATH = SOURCING_ROOT / "state" / "decisions.json"
 SEARCH_HISTORY_PATH = SOURCING_ROOT / "state" / "search-history.json"
 SCORER_PATH = REPO_ROOT / "ops" / "scripts" / "1688_sourcing_score.py"
+DEFAULT_MARKET_TARGET = "balanced"
 
 
 COLLECT_JS = r"""
@@ -145,21 +146,44 @@ COLLECT_JS = r"""
 
 
 class CdpClient:
-    def __init__(self, port: int) -> None:
+    def __init__(self, port: int, initial_url: str = "about:blank") -> None:
         try:
             import websocket  # type: ignore
         except ImportError as exc:
             raise SystemExit("Missing Python package websocket-client. Install it or use the browser console collector.") from exc
         self.websocket = websocket
-        pages = json.load(urllib.request.urlopen(f"http://127.0.0.1:{port}/json/list", timeout=8))
+        self.port = port
+        self.page_id = ""
+        self.created_page = False
+        page = self.create_page(initial_url)
+        if page:
+            self.created_page = True
+        else:
+            page = self.find_existing_page()
+        if not page:
+            raise SystemExit(f"No Chrome page found on CDP port {port}.")
+        self.page_id = str(page.get("id") or "")
+        self.ws = websocket.create_connection(page["webSocketDebuggerUrl"], timeout=20, suppress_origin=True)
+        self.ids = itertools.count(1)
+
+    def create_page(self, initial_url: str) -> dict[str, Any] | None:
+        encoded = urllib.parse.quote(initial_url or "about:blank", safe="")
+        endpoint = f"http://127.0.0.1:{self.port}/json/new?{encoded}"
+        request = urllib.request.Request(endpoint, method="PUT")
+        try:
+            return json.load(urllib.request.urlopen(request, timeout=8))
+        except Exception:
+            try:
+                return json.load(urllib.request.urlopen(endpoint, timeout=8))
+            except Exception:
+                return None
+
+    def find_existing_page(self) -> dict[str, Any] | None:
+        pages = json.load(urllib.request.urlopen(f"http://127.0.0.1:{self.port}/json/list", timeout=8))
         normal_pages = [item for item in pages if item.get("type") == "page"]
         page = next((item for item in normal_pages if "1688.com" in str(item.get("url", ""))), None)
         page = page or next((item for item in normal_pages if str(item.get("url", "")).startswith(("http://", "https://"))), None)
-        page = page or (normal_pages[0] if normal_pages else None)
-        if not page:
-            raise SystemExit(f"No Chrome page found on CDP port {port}.")
-        self.ws = websocket.create_connection(page["webSocketDebuggerUrl"], timeout=20, suppress_origin=True)
-        self.ids = itertools.count(1)
+        return page or (normal_pages[0] if normal_pages else None)
 
     def call(self, method: str, params: dict[str, Any] | None = None, timeout: int = 20) -> dict[str, Any]:
         message_id = next(self.ids)
@@ -183,8 +207,16 @@ class CdpClient:
         value = response.get("result", {}).get("result", {}).get("value", "{}")
         return json.loads(value)
 
-    def close(self) -> None:
-        self.ws.close()
+    def close(self, keep_page_open: bool = False) -> None:
+        try:
+            self.ws.close()
+        except Exception:
+            pass
+        if self.created_page and self.page_id and not keep_page_open:
+            try:
+                urllib.request.urlopen(f"http://127.0.0.1:{self.port}/json/close/{self.page_id}", timeout=2).read()
+            except Exception:
+                pass
 
 
 def gbk_quote(query: str) -> str:
@@ -198,9 +230,80 @@ def search_url(query: str, page: int = 1) -> str:
     return url
 
 
-def load_categories() -> dict[str, dict[str, Any]]:
+def decoded_search_keywords(url: str) -> str:
+    try:
+        parsed = urllib.parse.urlsplit(str(url or ""))
+        if "keywords=" not in parsed.query:
+            return ""
+        raw_keywords = parsed.query.split("keywords=", 1)[1].split("&", 1)[0]
+        raw_keywords = raw_keywords.replace("+", "%20")
+        return urllib.parse.unquote_to_bytes(raw_keywords).decode("gbk", errors="ignore")
+    except Exception:
+        return ""
+
+
+def normalized_search_keywords(url: str) -> str:
+    return clean_query_terms([decoded_search_keywords(url)]).lower()
+
+
+def search_page_matches(expected_url: str, actual_url: str) -> bool:
+    expected = normalized_search_keywords(expected_url)
+    actual = normalized_search_keywords(actual_url)
+    return bool(expected and actual and expected == actual)
+
+
+def load_sourcing_config() -> dict[str, Any]:
     payload = json.loads(CATEGORIES_PATH.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else {}
+
+
+def load_categories() -> dict[str, dict[str, Any]]:
+    payload = load_sourcing_config()
     return {item["id"]: item for item in payload.get("categories", [])}
+
+
+def load_market_profiles() -> dict[str, dict[str, Any]]:
+    payload = load_sourcing_config()
+    profiles = {
+        str(item.get("id")): item
+        for item in payload.get("market_profiles", [])
+        if isinstance(item, dict) and item.get("id")
+    }
+    profiles.setdefault(
+        DEFAULT_MARKET_TARGET,
+        {
+            "id": DEFAULT_MARKET_TARGET,
+            "label": "Balanced",
+            "short_label": "Balanced",
+            "description": "Use the base category searches.",
+            "query_modifiers": [],
+        },
+    )
+    return profiles
+
+
+def normalize_market_target(market_target: str) -> str:
+    key = str(market_target or DEFAULT_MARKET_TARGET).strip().lower().replace("-", "_")
+    aliases = {
+        "usa": "us",
+        "american": "us",
+        "american_market": "us",
+        "europe": "eu",
+        "european": "eu",
+        "european_market": "eu",
+    }
+    key = aliases.get(key, key)
+    return key if key in load_market_profiles() else DEFAULT_MARKET_TARGET
+
+
+def market_profile(market_target: str) -> dict[str, Any]:
+    target = normalize_market_target(market_target)
+    return load_market_profiles().get(target, load_market_profiles()[DEFAULT_MARKET_TARGET])
+
+
+def search_history_key(category_id: str, market_target: str = DEFAULT_MARKET_TARGET) -> str:
+    target = normalize_market_target(market_target)
+    return category_id if target == DEFAULT_MARKET_TARGET else f"{category_id}:{target}"
 
 
 def read_json(path: Path, default: Any) -> Any:
@@ -235,8 +338,13 @@ def clean_query_terms(parts: list[Any]) -> str:
     return " ".join(terms)
 
 
-def query_text(item: Any, defaults: dict[str, Any] | None = None) -> str:
+def query_text(
+    item: Any,
+    defaults: dict[str, Any] | None = None,
+    market: dict[str, Any] | None = None,
+) -> str:
     defaults = defaults if isinstance(defaults, dict) else {}
+    market_modifiers = market.get("query_modifiers", []) if isinstance(market, dict) else []
     if isinstance(item, dict):
         return clean_query_terms(
             [
@@ -245,14 +353,19 @@ def query_text(item: Any, defaults: dict[str, Any] | None = None) -> str:
                 item.get("launch_season") or item.get("season") or defaults.get("launch_season"),
                 item.get("freshness") or defaults.get("freshness"),
                 item.get("modifiers") or defaults.get("modifiers"),
+                market_modifiers,
                 item.get("fulfillment") or defaults.get("fulfillment"),
             ]
         )
     return str(item or "").strip()
 
 
-def normalize_queries(raw_queries: list[Any], defaults: dict[str, Any] | None = None) -> list[str]:
-    return [query for query in (query_text(item, defaults) for item in raw_queries) if query]
+def normalize_queries(
+    raw_queries: list[Any],
+    defaults: dict[str, Any] | None = None,
+    market: dict[str, Any] | None = None,
+) -> list[str]:
+    return [query for query in (query_text(item, defaults, market) for item in raw_queries) if query]
 
 
 def load_search_history() -> dict[str, Any]:
@@ -268,11 +381,15 @@ def save_search_history(payload: dict[str, Any]) -> None:
     write_json(SEARCH_HISTORY_PATH, payload)
 
 
-def rotated_queries(category_id: str, queries: list[str]) -> list[str]:
+def rotated_queries(
+    category_id: str,
+    queries: list[str],
+    market_target: str = DEFAULT_MARKET_TARGET,
+) -> list[str]:
     if not queries:
         return []
     history = load_search_history()
-    state = history.get("categories", {}).get(category_id, {})
+    state = history.get("categories", {}).get(search_history_key(category_id, market_target), {})
     start = int(state.get("next_query_index") or 0) % len(queries) if isinstance(state, dict) else 0
     return queries[start:] + queries[:start]
 
@@ -300,9 +417,11 @@ def existing_offer_ids(category_id: str) -> set[str]:
             if offer_id:
                 ids.add(offer_id)
     history = load_search_history()
-    state = history.get("categories", {}).get(category_id, {})
-    if isinstance(state, dict):
-        ids.update(str(item) for item in state.get("offer_ids_seen", []) if item)
+    for state_key, state in history.get("categories", {}).items():
+        if state_key != category_id and not str(state_key).startswith(f"{category_id}:"):
+            continue
+        if isinstance(state, dict):
+            ids.update(str(item) for item in state.get("offer_ids_seen", []) if item)
     decisions = read_json(DECISIONS_PATH, {})
     for key in (decisions.get("items", {}) if isinstance(decisions, dict) else {}):
         if key:
@@ -318,11 +437,13 @@ def update_search_history(
     collected_pages: list[dict[str, Any]],
     rows: list[dict[str, Any]],
     blocked: bool = False,
+    market_target: str = DEFAULT_MARKET_TARGET,
 ) -> None:
     history = load_search_history()
     categories = history.setdefault("categories", {})
+    state_key = search_history_key(category_id, market_target)
     state = categories.setdefault(
-        category_id,
+        state_key,
         {
             "last_run_at": "",
             "next_query_index": 0,
@@ -334,7 +455,9 @@ def update_search_history(
     )
     if not isinstance(state, dict):
         state = {}
-        categories[category_id] = state
+        categories[state_key] = state
+    state["category_id"] = category_id
+    state["market_target"] = normalize_market_target(market_target)
     seen = set(str(item) for item in state.get("offer_ids_seen", []) if item)
     run_offer_ids = []
     for row in rows:
@@ -395,12 +518,73 @@ def category_match_score(row: dict[str, Any], category_id: str) -> str:
         str(row.get(field, "")).lower()
         for field in ("title", "raw_card_text", "badges", "service_flags")
     )
+    if category_id == "maternity":
+        identity_terms = (
+            "maternity",
+            "pregnant",
+            "pregnancy",
+            "mom-to-be",
+            "baby bump",
+            "bump",
+            "孕妇",
+            "孕妈",
+            "孕肚",
+            "大肚",
+            "大肚子",
+        )
+        photoshoot_terms = (
+            "photo shoot",
+            "photoshoot",
+            "photography",
+            "portrait",
+            "studio",
+            "gown",
+            "formal",
+            "evening",
+            "wedding",
+            "bridal",
+            "bride",
+            "tulle",
+            "veil",
+            "strapless",
+            "off-shoulder",
+            "mermaid",
+            "cheongsam",
+            "fairy",
+            "ethereal",
+            "ceremony",
+            "写真",
+            "拍照",
+            "摄影",
+            "影楼",
+            "礼服",
+            "婚纱",
+            "高定",
+            "唯美",
+            "仙女",
+            "仙气",
+            "飘纱",
+            "白纱",
+            "薄纱",
+            "头纱",
+            "抹胸",
+            "鱼尾",
+            "油画",
+            "森系",
+            "私房",
+            "晚礼服",
+            "婚礼",
+        )
+        if any(term in haystack for term in identity_terms) and any(term in haystack for term in photoshoot_terms):
+            return "5"
+        if any(term in haystack for term in identity_terms):
+            return "3"
+        return "2"
     terms = {
         "mommy-and-me": ("mother", "daughter", "mom", "mommy", "母女", "亲子", "parent-child"),
         "daddy-and-me": ("father", "son", "dad", "daddy", "父子", "父女", "亲子", "parent-child"),
         "family-matching": ("family", "mother", "father", "daughter", "son", "家庭", "全家", "亲子", "parent-child"),
         "couples": ("couple", "men", "women", "情侣", "男", "女"),
-        "maternity": ("maternity", "pregnant", "pregnancy", "孕妇", "孕妈", "哺乳"),
     }
     strong_terms = terms.get(category_id, ())
     if any(term in haystack for term in strong_terms):
@@ -458,13 +642,58 @@ def safe_blocked_url(url: str) -> str:
     return text.split("?", 1)[0]
 
 
+PAGE_SNAPSHOT_JS = r"""
+(() => JSON.stringify({
+  page_url: location.href,
+  page_title: document.title
+}))()
+"""
+
+
+def browser_snapshot(client: CdpClient) -> dict[str, Any]:
+    return client.evaluate_json(PAGE_SNAPSHOT_JS)
+
+
+def wait_for_requested_search(client: CdpClient, expected_url: str, timeout_seconds: float = 18.0) -> dict[str, Any]:
+    deadline = time.time() + timeout_seconds
+    last_snapshot: dict[str, Any] = {}
+    while time.time() < deadline:
+        try:
+            last_snapshot = browser_snapshot(client)
+        except Exception:
+            time.sleep(0.75)
+            continue
+        if is_blocked_page(last_snapshot) or search_page_matches(expected_url, str(last_snapshot.get("page_url") or "")):
+            return last_snapshot
+        time.sleep(0.75)
+    return last_snapshot
+
+
 def collect_from_page(client: CdpClient, url: str) -> dict[str, Any]:
     client.navigate(url)
-    time.sleep(5)
+    snapshot = wait_for_requested_search(client, url)
+    if is_blocked_page(snapshot):
+        return snapshot
+    if not search_page_matches(url, str(snapshot.get("page_url") or "")):
+        return {
+            "collected_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+            "page_url": snapshot.get("page_url") or "",
+            "page_title": snapshot.get("page_title") or "",
+            "expected_url": url,
+            "navigation_mismatch": True,
+            "candidates": [],
+        }
     for y in (1200, 2600, 5200, 9000, 13000):
         client.call("Runtime.evaluate", {"expression": f"window.scrollTo(0, Math.min(document.body.scrollHeight, {y}))"})
         time.sleep(1.1)
-    return client.evaluate_json(COLLECT_JS)
+    payload = client.evaluate_json(COLLECT_JS)
+    if is_blocked_page(payload):
+        return payload
+    if not search_page_matches(url, str(payload.get("page_url") or "")):
+        payload["expected_url"] = url
+        payload["navigation_mismatch"] = True
+        payload["candidates"] = []
+    return payload
 
 
 def write_run_files(
@@ -476,6 +705,7 @@ def write_run_files(
     selected_queries: list[str],
     collected_pages: list[dict[str, Any]],
     target_reviewable: int,
+    market_target: str,
 ) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     candidate_payload = {
@@ -483,6 +713,7 @@ def write_run_files(
         "page_url": collected_pages[-1]["page_url"] if collected_pages else "",
         "page_title": collected_pages[-1]["page_title"] if collected_pages else "",
         "category_id": category_id,
+        "market_target": normalize_market_target(market_target),
         "query": selected_queries[0],
         "queries": selected_queries,
         "collected_pages": collected_pages,
@@ -493,6 +724,7 @@ def write_run_files(
     run_metadata = {
         "run_id": output_dir.name,
         "category_id": category_id,
+        "market_target": normalize_market_target(market_target),
         "source": "1688 logged-in CDP search",
         "query": selected_queries[0],
         "queries": selected_queries,
@@ -512,31 +744,81 @@ def collect_category(
     query_index: int,
     target_reviewable: int = 0,
     max_pages_per_query: int = 1,
+    market_target: str = DEFAULT_MARKET_TARGET,
 ) -> Path:
     categories = load_categories()
     if category_id not in categories:
         raise SystemExit(f"Unknown category: {category_id}")
+    market_target = normalize_market_target(market_target)
     category = categories[category_id]
-    queries = normalize_queries(category.get("queries", []), category.get("search_defaults", {}))
+    queries = normalize_queries(category.get("queries", []), category.get("search_defaults", {}), market_profile(market_target))
     if not queries:
         raise SystemExit(f"No queries configured for category: {category_id}")
-    selected_queries = rotated_queries(category_id, queries) if query_index < 0 or target_reviewable > 0 else [queries[min(query_index, len(queries) - 1)]]
+    selected_queries = (
+        rotated_queries(category_id, queries, market_target)
+        if query_index < 0 or target_reviewable > 0
+        else [queries[min(query_index, len(queries) - 1)]]
+    )
     stamp = dt.datetime.now().strftime("%Y-%m-%d-%H%M%S")
-    output_dir = SOURCING_ROOT / f"{stamp}-{category_id}-1688-auto"
+    market_slug = "" if market_target == DEFAULT_MARKET_TARGET else f"-{market_target}"
+    output_dir = SOURCING_ROOT / f"{stamp}-{category_id}{market_slug}-1688-auto"
     candidate_path = output_dir / "candidates.json"
+    base_limit = max(1, int(limit or 1))
+    candidate_cap = base_limit
+    if target_reviewable > 0:
+        candidate_cap = max(base_limit, min(base_limit * 3, 600))
 
-    client = CdpClient(port)
+    client = CdpClient(port, initial_url=search_url(selected_queries[0]))
     all_rows: list[dict[str, Any]] = []
     collected_pages: list[dict[str, Any]] = []
     attempted_queries: list[str] = []
     known_offer_ids = existing_offer_ids(category_id)
     blocked = False
+    navigation_mismatches = 0
+    browser_errors = 0
+    rows: list[dict[str, Any]] = []
     try:
         for query in selected_queries:
             attempted_queries.append(query)
             for page_number in range(1, max(1, max_pages_per_query) + 1):
                 url = search_url(query, page_number)
-                payload = collect_from_page(client, url)
+                try:
+                    payload = collect_from_page(client, url)
+                except Exception as exc:
+                    browser_errors += 1
+                    collected_pages.append(
+                        {
+                            "query": query,
+                            "page": page_number,
+                            "search_url": url,
+                            "page_url": "",
+                            "page_title": "",
+                            "count": 0,
+                            "new_count": 0,
+                            "skipped_seen": 0,
+                            "blocked": False,
+                            "browser_error": f"{type(exc).__name__}: {exc}",
+                        }
+                    )
+                    break
+                if payload.get("navigation_mismatch"):
+                    navigation_mismatches += 1
+                    collected_pages.append(
+                        {
+                            "query": query,
+                            "page": page_number,
+                            "search_url": url,
+                            "page_url": payload.get("page_url"),
+                            "page_title": payload.get("page_title"),
+                            "expected_url": payload.get("expected_url") or url,
+                            "count": 0,
+                            "new_count": 0,
+                            "skipped_seen": 0,
+                            "blocked": False,
+                            "navigation_mismatch": True,
+                        }
+                    )
+                    break
                 if is_blocked_page(payload):
                     page_title = payload.get("page_title") or "Captcha/verification page"
                     page_url = safe_blocked_url(payload.get("page_url") or url)
@@ -562,6 +844,7 @@ def collect_category(
                             collected_pages=collected_pages,
                             rows=[],
                             blocked=True,
+                            market_target=market_target,
                         )
                         raise SystemExit(
                             "1688 CAPTCHA/interception page is open. Use Open 1688 Login/Search, "
@@ -581,6 +864,7 @@ def collect_category(
                     row["search_query"] = query
                     row["search_url"] = payload.get("page_url") or url
                     row["search_page"] = page_number
+                    row["market_target"] = market_target
                     new_page_rows.append(row)
                 all_rows.extend(new_page_rows)
                 collected_pages.append(
@@ -596,7 +880,7 @@ def collect_category(
                         "blocked": False,
                     }
                 )
-                rows = dedupe_candidates(all_rows)[:limit]
+                rows = dedupe_candidates(all_rows)[:candidate_cap]
                 for row in rows:
                     row["category_match"] = category_match_score(row, category_id)
                 if rows:
@@ -608,6 +892,7 @@ def collect_category(
                         selected_queries=attempted_queries.copy(),
                         collected_pages=collected_pages,
                         target_reviewable=target_reviewable,
+                        market_target=market_target,
                     )
                 if target_reviewable and rows and reviewable_count(output_dir) >= target_reviewable:
                     break
@@ -617,10 +902,12 @@ def collect_category(
                 break
             if blocked:
                 break
+            if browser_errors:
+                break
     finally:
-        client.close()
+        client.close(keep_page_open=blocked)
 
-    rows = dedupe_candidates(all_rows)[:limit]
+    rows = dedupe_candidates(all_rows)[:candidate_cap]
     for row in rows:
         row["category_match"] = category_match_score(row, category_id)
     if not rows:
@@ -631,7 +918,19 @@ def collect_category(
             collected_pages=collected_pages,
             rows=[],
             blocked=blocked,
+            market_target=market_target,
         )
+        if navigation_mismatches:
+            raise SystemExit(
+                "1688 did not finish loading the requested search page, so no mismatched products were saved. "
+                "Click Open 1688 Login/Search, confirm the helper tab loads the intended category/market search, "
+                "then run Find 20 Leads again."
+            )
+        if browser_errors:
+            raise SystemExit(
+                "The 1688 browser connection ended before any new product cards were saved. "
+                "Use Open 1688 Login/Search, confirm the helper browser is still connected, then run again."
+            )
         raise SystemExit(
             "No new 1688 product cards were collected. The app skipped already-seen offers; "
             "try another category/query after clearing any browser checks."
@@ -644,6 +943,7 @@ def collect_category(
         selected_queries=attempted_queries or selected_queries,
         collected_pages=collected_pages,
         target_reviewable=target_reviewable,
+        market_target=market_target,
     )
     update_search_history(
         category_id=category_id,
@@ -652,12 +952,14 @@ def collect_category(
         collected_pages=collected_pages,
         rows=rows,
         blocked=blocked,
+        market_target=market_target,
     )
     skipped = sum(int(page.get("skipped_seen") or 0) for page in collected_pages)
     reviewable = reviewable_count(output_dir)
     print(
         f"reviewable={reviewable} total={len(rows)} "
-        f"queries={len(attempted_queries or selected_queries)} pages={len(collected_pages)} skipped_seen={skipped}"
+        f"queries={len(attempted_queries or selected_queries)} pages={len(collected_pages)} "
+        f"skipped_seen={skipped} navigation_mismatches={navigation_mismatches} browser_errors={browser_errors}"
     )
     if blocked:
         raise SystemExit(
@@ -670,11 +972,17 @@ def collect_category(
 def main() -> None:
     parser = argparse.ArgumentParser(description="Collect 1688 candidates through an already logged-in Chrome CDP session.")
     parser.add_argument("--category", default="family-matching", help="Category id from ops/sourcing/sourcing-categories.json, or 'all'.")
-    parser.add_argument("--limit", type=int, default=24, help="Maximum candidates to save per category.")
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=24,
+        help="Base candidate save limit per category; target-reviewable mode may expand this up to 600 raw cards.",
+    )
     parser.add_argument("--port", type=int, default=9333, help="Local Chrome DevTools Protocol port.")
     parser.add_argument("--query-index", type=int, default=0, help="Which configured query to use for the category. Use -1 to try all configured queries.")
     parser.add_argument("--target-reviewable", type=int, default=0, help="Try all configured queries and aim for this many Gold/Test candidates.")
     parser.add_argument("--max-pages-per-query", type=int, default=1, help="Search result pages to visit for each query.")
+    parser.add_argument("--market-target", default=DEFAULT_MARKET_TARGET, help="Market profile id: balanced, us, or eu.")
     args = parser.parse_args()
 
     categories = load_categories()
@@ -687,6 +995,7 @@ def main() -> None:
             args.query_index,
             args.target_reviewable,
             args.max_pages_per_query,
+            args.market_target,
         )
         print(output_dir.relative_to(REPO_ROOT))
 

@@ -1,0 +1,10 @@
+Check,Required result,Why
+Approval gate,Exact owner paused international build approval before Ads UI/API import,Even paused campaign creation is a Google Ads write.
+US duplication,Do not create another US nonbrand campaign; use existing 23827590655,"US paused rebuild already exists and should be governed/read back, not duplicated."
+Campaign status,"Every proposed import row creates paused campaigns, ad groups, keywords, and RSAs",No live spend until final readback and enable approval.
+Bidding,Manual CPC with all default max CPC caps at or below $0.20,Protects the 650% ROAS learning posture.
+Locations,One country per campaign; presence-only setting confirmed after import,Country-level ROAS and loser/winner decisions need clean segmentation.
+Languages,English-only initial shells; local-language variants only after page QA passes,Language availability is not launch readiness.
+Networks,"Google Search only; no Display, Search Partners, broad match, AI Max, or PMax",Keeps tests controlled and query-readable.
+Conversion goals,No conversion-goal edits; read back account-default Purchases before import and before enable,Conversion-goal changes are explicitly blocked.
+Activation,"Separate explicit enable approval after policy, location, landing, Merchant/catalog, and economics gates",Paused shell creation is not launch approval.

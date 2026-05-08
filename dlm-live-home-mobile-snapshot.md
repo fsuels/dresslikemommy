@@ -1,0 +1,81 @@
+- generic [active] [ref=e1] [box=0,0,375,6038]:
+  - link "Skip to content" [ref=e2] [cursor=pointer] [box=-1,-1,122,47]:
+    - /url: "#MainContent"
+  - region "Announcement" [ref=e6] [box=-7,0,390,22]:
+    - paragraph [ref=e7] [box=-7,0,390,22]:
+      - generic [ref=e8] [box=-7,5,390,12]: ✨ FAMILY MATCHING MADE EASY
+  - banner [ref=e11] [box=0,22,375,62]:
+    - group [ref=e13] [box=24,31,44,44]:
+      - button "Menu" [ref=e14] [cursor=pointer] [box=24,31,44,44]:
+        - img [ref=e15] [box=36,43,20,20]
+    - group [ref=e18] [box=68,34,38,38]:
+      - button "Search for products" [ref=e19] [cursor=pointer] [box=68,34,38,38]:
+        - img [ref=e20] [box=77,43,20,20]
+    - heading "Dress Like Mommy" [level=1] [ref=e21] [box=158,33,95,40]:
+      - link "Dress Like Mommy" [ref=e22] [cursor=pointer] [box=158,33,95,40]:
+        - /url: /
+        - img "Dress Like Mommy" [ref=e24] [box=166,37,78,32]
+    - button "Cart 0 items" [ref=e26] [cursor=pointer] [box=305,30,46,46]:
+      - img [box=309,34,39,39]
+      - generic [ref=e27] [box=328,30,1,46]: Cart
+      - generic [ref=e28] [box=327,31,18,18]:
+        - generic [ref=e29] [box=333,32,5,16]: "0"
+        - generic [ref=e30] [box=336,32,1,16]: 0 items
+  - main [ref=e31] [box=0,85,375,4708]:
+    - region "Matching looks for the moments families remember most" [ref=e33] [box=0,85,375,421]:
+      - group "Hero image 1 of 2" [ref=e35] [box=0,85,375,421]:
+        - img "Family in matching tropical outfits walking on a beach boardwalk at golden hour" [ref=e37] [box=0,85,375,421]
+      - generic [ref=e38] [box=28,503,320,61]:
+        - link "Shop Mommy & Me" [ref=e39] [cursor=pointer] [box=36,511,96,44]:
+          - /url: /collections/mommy-and-me
+        - link "Shop Family Matching" [ref=e40] [cursor=pointer] [box=137,511,98,44]:
+          - /url: /collections/new-women-outfits
+        - link "Shop Daddy & Me" [ref=e41] [cursor=pointer] [box=241,511,98,44]:
+          - /url: /collections/daddy-me
+      - generic "Hero image controls" [ref=e42] [box=20,426,335,34]:
+        - button "Previous hero image" [ref=e43] [cursor=pointer] [box=114,426,34,34]
+        - group "Choose hero image" [ref=e45] [box=156,431,64,25]
+        - button "Next hero image" [ref=e48] [cursor=pointer] [box=228,426,34,34]
+    - generic [ref=e52] [box=0,576,375,1407]:
+      - generic "Store trust highlights" [ref=e53] [box=15,594,345,186]:
+        - generic [ref=e54] [box=15,594,345,42]
+        - generic [ref=e59] [box=15,642,345,42]
+        - generic [ref=e64] [box=15,690,345,42]
+        - generic [ref=e69] [box=15,738,345,42]
+      - generic [ref=e74] [box=15,797,345,595]:
+        - heading "Shop by Category" [level=3] [ref=e75] [box=15,797,345,18]
+        - list "Shop by Category" [ref=e77] [box=15,826,345,566]
+      - generic [ref=e120] [box=15,1420,345,530]:
+        - heading "Shop by Occasion" [level=3] [ref=e121] [box=15,1420,345,18]
+        - list "Shop by Occasion" [ref=e123] [box=15,1449,345,501]
+    - generic [ref=e154] [box=0,1987,375,2806]:
+      - generic [ref=e155] [box=15,2014,345,219]:
+        - generic [ref=e156] [box=15,2014,345,158]
+        - link "See all family sets" [ref=e163] [cursor=pointer] [box=15,2186,345,47]:
+          - /url: /collections/family-sets
+      - generic [ref=e164] [box=15,2249,345,2138]:
+        - article [ref=e166] [box=15,2249,345,703]
+        - article [ref=e187] [box=15,2966,345,703]
+        - article [ref=e208] [box=15,3683,345,703]
+      - generic [ref=e228] [box=15,4402,345,355]:
+        - heading "Need the right match for the moment?" [level=3] [ref=e229] [box=28,4414,319,19]
+        - generic [ref=e230] [box=28,4439,319,306]
+  - contentinfo [ref=e240] [box=0,4793,375,1245]:
+    - generic [ref=e241] [box=0,4854,375,704]:
+      - generic [ref=e242] [box=30,4854,315,214]:
+        - button "Company info +" [ref=e244] [cursor=pointer] [box=30,4854,315,44]
+        - button "Help & support +" [ref=e246] [cursor=pointer] [box=30,4931,315,44]
+        - button "Customer care +" [ref=e248] [cursor=pointer] [box=30,5008,315,44]
+      - generic [ref=e249] [box=30,5068,315,158]:
+        - heading "Style Journal -" [level=2] [ref=e250] [cursor=pointer] [box=30,5068,315,44]
+        - generic [ref=e251] [box=30,5128,315,97]
+      - generic [ref=e255] [box=30,5250,315,280]:
+        - heading "Get 10% off your first order -" [level=2] [ref=e256] [cursor=pointer] [box=30,5250,315,44]
+        - generic [ref=e259] [box=30,5310,315,47]
+    - generic [ref=e263] [box=0,5598,375,400]:
+      - generic [ref=e264] [box=0,5619,375,198]:
+        - generic [ref=e268] [box=137,5629,102,96]
+        - generic [ref=e275] [box=15,5747,345,70]
+      - generic [ref=e371] [box=15,5857,345,141]:
+        - generic [ref=e372] [box=106,5887,163,10]
+        - list [ref=e374] [box=15,5912,345,86]

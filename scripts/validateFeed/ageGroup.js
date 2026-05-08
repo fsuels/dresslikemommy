@@ -19,14 +19,20 @@
 // "confidence: high" items are safe to push to the supplemental feed.
 // "medium"/"low" should be reviewed before upload.
 
-const MONTH_RE = /\b(\d+)\s*(?:month|mo|m)\b/i;
+const MONTH_RANGE_RE = /\b(\d+)\s*[-–]\s*(\d+)\s*(?:months?|mos?|m)\b/i;
+const MONTH_RE = /\b(\d+)\s*(?:months?|mos?|m)\b/i;
 const YEAR_RE = /\b(\d+(?:\s*-\s*\d+)?)\s*(?:year|yr|y)s?\b/i;
+const TODDLER_SIZE_RE = /\b(\d+(?:\s*[-–]\s*\d+)?)\s*T\b/i;
 const NEWBORN_RE = /\b(?:newborn|nb|preemie|0[\s-]?3\s*m)\b/i;
 const ADULT_LITERAL_RE = /\b(?:adult|mother|mom|mommy|father|dad|daddy|men|women|man|woman)\b/i;
 const KIDS_LITERAL_RE = /\b(?:kid|kids|child|children|youth|junior|girl|boy|teen)\b/i;
 const TODDLER_LITERAL_RE = /\b(?:toddler)\b/i;
 const INFANT_LITERAL_RE = /\b(?:infant|baby)\b/i;
 const ADULT_LETTER_SIZE_RE = /\b(?:XX?S|XS|S|M|L|XL|2XL|3XL|4XL|5XL)\b/;
+
+function lowerNumber(rangeText) {
+  return Number(String(rangeText).split(/\s*[-–]\s*/)[0]);
+}
 
 /**
  * Classify a single string (size value, title, etc.).
@@ -41,6 +47,21 @@ function classifyOne(s) {
   // Newborn first — most specific.
   if (NEWBORN_RE.test(str)) return { value: 'newborn', confidence: 'high', reason: `matched newborn keyword in "${str}"` };
 
+  // Explicit "Baby N-N Months" → newborn/infant/toddler by size range.
+  // If a baby range crosses newborn into infant (for example 0-6 Months),
+  // use the upper bound so it does not get under-classified as newborn.
+  const mr = str.match(MONTH_RANGE_RE);
+  if (mr) {
+    const lower = Number(mr[1]);
+    const upper = Number(mr[2]);
+    if (upper <= 3) return { value: 'newborn', confidence: 'high', reason: `${lower}-${upper}mo ≤ 3mo` };
+    if (upper <= 12) return { value: 'infant', confidence: 'high', reason: `${lower}-${upper}mo in infant range` };
+    if (lower < 12) return { value: 'infant', confidence: 'high', reason: `${lower}-${upper}mo starts in infant range` };
+    if (lower < 60) return { value: 'toddler', confidence: 'high', reason: `${lower}-${upper}mo starts in toddler range` };
+    if (lower < 156) return { value: 'kids', confidence: 'high', reason: `${lower}-${upper}mo starts in kids range` };
+    return { value: 'adult', confidence: 'high', reason: `${lower}-${upper}mo starts at 13yr+` };
+  }
+
   // Explicit "Baby N Months" → infant or newborn.
   const m = str.match(MONTH_RE);
   if (m) {
@@ -50,10 +71,19 @@ function classifyOne(s) {
     // 13mo+ falls through to year handling
   }
 
+  // "Child 4T" / "Child 5-6T" → toddler/kids by lower bound.
+  const t = str.match(TODDLER_SIZE_RE);
+  if (t) {
+    const lower = lowerNumber(t[1]);
+    if (lower < 5) return { value: 'toddler', confidence: 'high', reason: `${t[1]}T in toddler range` };
+    if (lower < 13) return { value: 'kids', confidence: 'high', reason: `${t[1]}T in kids range` };
+    return { value: 'adult', confidence: 'high', reason: `${t[1]}T starts at 13T+` };
+  }
+
   // "Child N Years" / "Child N-N Years" → toddler/kids/adult by lower bound.
   const y = str.match(YEAR_RE);
   if (y) {
-    const lower = Number(y[1].split(/\s*-\s*/)[0]);
+    const lower = lowerNumber(y[1]);
     if (lower < 1) return { value: 'infant', confidence: 'high', reason: `<1yr` };
     if (lower < 5) return { value: 'toddler', confidence: 'high', reason: `${lower}yr in [1,5)` };
     if (lower < 13) return { value: 'kids', confidence: 'high', reason: `${lower}yr in [5,13)` };

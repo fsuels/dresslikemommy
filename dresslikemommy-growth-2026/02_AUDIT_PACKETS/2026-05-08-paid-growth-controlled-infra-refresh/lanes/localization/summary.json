@@ -1,0 +1,87 @@
+{
+  "date": "2026-05-08",
+  "lane": "LOCALIZATION",
+  "mode": "local_readonly_synthesis",
+  "decision": "PAUSED_INFRASTRUCTURE_CAN_BE_REFINED_LOCALLY__LIVE_INTERNATIONAL_SPEND_STILL_BLOCKED",
+  "guardrails_preserved": [
+    "no_shopify_admin_write",
+    "no_theme_publish",
+    "no_shipping_or_markets_change",
+    "no_product_data_change",
+    "no_merchant_or_feed_write",
+    "no_pinterest_write_or_spend",
+    "no_google_ads_import_create_enable_pause_or_budget_change",
+    "no_checkout_payment",
+    "no_order_created"
+  ],
+  "latest_anchor_used": "AGENT_CONTINUITY_ANCHOR: 2026-05-08-paid-growth-pt-presentment-url-readback",
+  "source_evidence": [
+    "ops/AGENT_COORDINATION.md",
+    "ops/AGENT_WORKLOG.md",
+    "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-pt-presentment-url-readback/lanes/url-behavior/MARKET_LOCALIZED_AD_URL_BROWSER_READBACK.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-pt-presentment-url-readback/lanes/pt-checkout/PT_CHECKOUT_TO_SHIPPING_READBACK.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-07-paid-growth-currency-presentment-readback/lanes/currency/CURRENCY_PRESENTMENT_BROWSER_READBACK.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-07-paid-growth-ai-army-cache-recheck/lanes/localization/LOCALIZATION_PUBLIC_RECHECK.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-07-paid-growth-parallel-infra-sprint/google-ads-intl-search/country_tier_plan.csv",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-controlled-infra-refresh/lanes/measurement/MEASUREMENT_CONTROLLED_READBACK.md"
+  ],
+  "market_counts": {
+    "total_markets": 18,
+    "existing_us_template": 1,
+    "english_first_paused_infra_candidates": 3,
+    "localized_country_qualified_url_candidates": 4,
+    "paused_shell_only_needs_local_qa": 10,
+    "live_spend_ready_international_markets": 0
+  },
+  "country_qualified_url_rule": {
+    "applies_to": ["ES", "IT", "RO", "PT"],
+    "bare_language_paths_safe": false,
+    "template_without_variant": "https://www.dresslikemommy.com/<locale>/products/<handle>?country=<ISO_COUNTRY>",
+    "template_with_variant": "https://www.dresslikemommy.com/<locale>/products/<handle>?variant=<VARIANT_ID>&country=<ISO_COUNTRY>",
+    "observed_mappings": {
+      "ES": {
+        "locale_path": "/es",
+        "country_parameter": "country=ES",
+        "observed_language": "Spanish",
+        "observed_currency": "EUR"
+      },
+      "IT": {
+        "locale_path": "/it",
+        "country_parameter": "country=IT",
+        "observed_language": "Italian",
+        "observed_currency": "EUR"
+      },
+      "RO": {
+        "locale_path": "/ro",
+        "country_parameter": "country=RO",
+        "observed_language": "Romanian",
+        "observed_currency": "RON"
+      },
+      "PT": {
+        "locale_path": "/pt",
+        "country_parameter": "country=PT",
+        "observed_language": "pt-BR",
+        "observed_currency": "EUR"
+      }
+    }
+  },
+  "notable_findings": [
+    "GB_CA_AU_remain_safe_for_paused_english_first_infrastructure_only",
+    "ES_IT_RO_PT_country_qualified_product_urls_passed_latest_product_landing_readback",
+    "PT_checkout_to_shipping_passed_on_2026_05_08_with_EUR_and_no_payment_or_order",
+    "RO_presents_RON_not_EUR_and_needs_RON_economics",
+    "localized_public_shipping_policy_copy_gate_cleared_for_previously_stale_ES_IT_PT_pages",
+    "international_live_spend_remains_blocked_by_merchant_pinterest_tracking_economics_and_exact_approval_gates"
+  ],
+  "files_written": [
+    "LOCALIZATION_CONTROLLED_INFRA_READINESS.md",
+    "country_readiness.csv",
+    "summary.json"
+  ],
+  "next_safe_actions": [
+    "Ads lane should update and validate local paused ES_IT_RO_PT final URLs to include country parameters before any approved import",
+    "Run fresh country-level storefront readbacks for GB_CA_AU before any enablement discussion",
+    "Keep international spend blocked until Merchant_Pinterest_catalog_health_tracking_economics_and_owner_approval_clear"
+  ]
+}

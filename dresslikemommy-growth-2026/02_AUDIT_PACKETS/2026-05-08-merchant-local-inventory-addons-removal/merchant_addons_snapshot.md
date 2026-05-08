@@ -1,0 +1,145 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - button "Skip to main content" [ref=e7]:
+        - generic [ref=e10]: Skip to main content
+      - generic [ref=e11]:
+        - button "Navigation menu" [expanded] [ref=e12] [cursor=pointer]:
+          - img [ref=e16]: menu
+        - link "Merchant Center home" [ref=e17] [cursor=pointer]:
+          - /url: /mc/overview?a=124884876
+          - img "Merchant Center home" [ref=e18]
+        - dialog "Search" [ref=e20]:
+          - generic [ref=e24]:
+            - img [ref=e27]: search
+            - textbox "Search Merchant Center" [ref=e29]
+        - button "Help" [ref=e32] [cursor=pointer]:
+          - img [ref=e35]: help_outline
+        - 'button "Merchant Center account: Dresslikemommy, 124884876" [ref=e41] [cursor=pointer]':
+          - generic [ref=e42]:
+            - generic [ref=e43]: Dresslikemommy
+            - generic [ref=e44]: "124884876"
+          - img [ref=e46]: arrow_drop_down
+        - generic [ref=e52]:
+          - button "Google apps" [ref=e56] [cursor=pointer]:
+            - img [ref=e57]
+          - 'button "Google Account: test user (testhqfinds@gmail.com)" [ref=e62] [cursor=pointer]':
+            - img [ref=e64]
+    - generic [ref=e71]:
+      - navigation [ref=e72]:
+        - tree "Navigation" [ref=e75]:
+          - treeitem "Overview" [level=1] [ref=e76] [cursor=pointer]:
+            - img [ref=e79]: dashboard
+            - generic [ref=e81]: Overview
+          - treeitem "Notifications 2" [level=1] [ref=e708] [cursor=pointer]:
+            - img [ref=e85]: notifications
+            - generic [ref=e86]:
+              - generic [ref=e87]: Notifications
+              - generic [ref=e709]: "2"
+          - treeitem "Products & store" [expanded] [level=1] [ref=e89] [cursor=pointer]:
+            - img [ref=e92]: inventory_2
+            - generic [ref=e93]:
+              - generic [ref=e94]: Products & store
+              - img [ref=e97]: arrow_drop_down
+            - group [ref=e99]:
+              - treeitem "Products" [level=2] [ref=e100]:
+                - generic [ref=e103]: Products
+              - treeitem "Shipping and returns" [level=2] [ref=e104]:
+                - generic [ref=e107]: Shipping and returns
+              - treeitem "Store quality" [level=2] [ref=e108]:
+                - generic [ref=e111]: Store quality
+              - treeitem "Reviews" [level=2] [ref=e112]:
+                - generic [ref=e115]: Reviews
+          - treeitem "Creative content" [level=1] [ref=e117] [cursor=pointer]:
+            - img [ref=e120]: brush_spark
+            - generic [ref=e121]:
+              - generic [ref=e122]: Creative content
+              - img [ref=e125]: arrow_drop_down
+            - group [ref=e127]:
+              - treeitem [disabled] [level=2] [ref=e128]:
+                - generic [ref=e130]: Product Studio
+              - treeitem [disabled] [level=2] [ref=e131]:
+                - generic [ref=e133]: Video assets
+          - treeitem "Marketing" [expanded] [level=1] [ref=e134] [cursor=pointer]:
+            - img [ref=e137]: campaign
+            - generic [ref=e138]:
+              - generic [ref=e139]: Marketing
+              - img [ref=e142]: arrow_drop_down
+            - group [ref=e144]:
+              - treeitem "Ad campaigns" [level=2] [ref=e145]:
+                - generic [ref=e148]: Ad campaigns
+              - treeitem "Promotions" [level=2] [ref=e149]:
+                - generic [ref=e152]: Promotions
+              - treeitem "Automated discounts" [level=2] [ref=e153]:
+                - generic [ref=e156]: Automated discounts
+              - treeitem "Marketing methods" [level=2] [ref=e157]:
+                - generic [ref=e160]: Marketing methods
+          - treeitem "Analytics" [expanded] [level=1] [ref=e162] [cursor=pointer]:
+            - img [ref=e165]: timeline
+            - generic [ref=e166]:
+              - generic [ref=e167]: Analytics
+              - img [ref=e170]: arrow_drop_down
+            - group [ref=e172]:
+              - treeitem "Summary" [level=2] [ref=e173]:
+                - generic [ref=e176]: Summary
+              - treeitem "Products" [level=2] [ref=e177]:
+                - generic [ref=e180]: Products
+              - treeitem "Pricing" [level=2] [ref=e181]:
+                - generic [ref=e184]: Pricing
+              - treeitem "Online store" [level=2] [ref=e185]:
+                - generic [ref=e188]: Online store
+              - treeitem "Custom reports" [level=2] [ref=e189]:
+                - generic [ref=e192]: Custom reports
+          - treeitem "Settings" [expanded] [level=1] [ref=e195] [cursor=pointer]:
+            - img [ref=e198]: settings
+            - generic [ref=e199]:
+              - generic [ref=e200]: Settings
+              - img [ref=e203]: arrow_drop_down
+            - group [ref=e205]:
+              - treeitem "General" [level=2] [ref=e447]:
+                - generic [ref=e208]: General
+              - treeitem "Business info" [level=2] [ref=e449]:
+                - generic [ref=e211]: Business info
+              - treeitem "Data sources" [level=2] [ref=e451]:
+                - generic [ref=e214]: Data sources
+              - treeitem "Add-ons" [active] [level=2] [ref=e453]:
+                - generic [ref=e217]: Add-ons
+              - treeitem "Access and services" [level=2] [ref=e455]:
+                - generic [ref=e220]: Access and services
+      - generic [ref=e223]:
+        - generic [ref=e459]:
+          - heading "Add-ons" [level=1] [ref=e710]
+          - tablist [ref=e467]:
+            - tab "Discover" [selected] [ref=e711] [cursor=pointer]:
+              - generic [ref=e714]: Discover
+            - tab "Your add-ons" [ref=e716] [cursor=pointer]:
+              - generic [ref=e719]: Your add-ons
+        - generic [ref=e727]:
+          - main [ref=e728]:
+            - generic [ref=e730]:
+              - generic [ref=e731]:
+                - generic [ref=e735]
+                - generic [ref=e757]
+                - generic [ref=e786]
+              - generic [ref=e805]:
+                - generic [ref=e809]
+                - generic [ref=e838]
+                - generic [ref=e872]
+          - contentinfo [ref=e899]:
+            - link "Privacy Policy" [ref=e900] [cursor=pointer]:
+              - /url: http://www.google.com/policies/privacy/
+            - generic [ref=e901]: ·
+            - link "Terms of Service" [ref=e902] [cursor=pointer]:
+              - /url: https://support.google.com/merchants/answer/160173?hl=en-US
+            - generic [ref=e903]: ·
+            - link "Program Policies" [ref=e904] [cursor=pointer]:
+              - /url: https://support.google.com/merchants/topic/7286989?hl=en-US
+  - dialog "Ready to download" [ref=e256]:
+    - status [ref=e257]:
+      - generic [ref=e258]:
+        - generic [ref=e259]:
+          - generic [ref=e260]: Ready to download Press F6 to access notification buttons.
+          - generic [ref=e261]: Ready to download
+        - button "Download" [ref=e262] [cursor=pointer]
+        - button "Close" [ref=e263] [cursor=pointer]:
+          - img [ref=e266]: close

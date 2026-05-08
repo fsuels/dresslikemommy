@@ -91,6 +91,83 @@ def main() -> None:
     assert "no visible 2025/2026 freshness signal on search card" not in new_offer_without_year.concerns
     assert "freshness not visible on search card; detail page must prove current availability" in new_offer_without_year.concerns
 
+    american_market_good = scorer.score_candidate(
+        Candidate(
+            **{
+                **base_candidate_fields(),
+                "candidate_id": "american-market-good",
+                "product_url": "https://detail.1688.com/offer/917144772334.html",
+                "title": "2026 US market mommy and me resort matching dress",
+                "raw_card_text": "母女 亲子 欧美 美国站 外贸 跨境 2026新款 MOQ 1 月销 120 实力商家 买家保障 一件代发 24小时发货",
+                "search_query": "母女沙滩裙 2026 夏季 新款 度假 欧美 美国站 跨境 外贸 一件代发",
+                "market_target": "us",
+                "vendor_name": "",
+                "size_chart": "",
+                "dropship_supported": "",
+                "vendor_image_urls": "",
+                "availability": "",
+            }
+        ),
+        review_stage="search",
+    )
+
+    assert american_market_good.verdict == "Test"
+    assert american_market_good.market_target == "us"
+    assert "American market search focus" in american_market_good.positive_signals
+    assert "American market style/cross-border signal on product card" in american_market_good.positive_signals
+
+    american_market_weak_vendor = scorer.score_candidate(
+        Candidate(
+            **{
+                **base_candidate_fields(),
+                "candidate_id": "american-market-weak-vendor",
+                "product_url": "https://detail.1688.com/offer/917144772335.html",
+                "title": "2026 US market mommy and me resort matching dress",
+                "raw_card_text": "母女 亲子 欧美 美国站 外贸 跨境 2026新款 MOQ 1 一件代发",
+                "search_query": "母女沙滩裙 2026 夏季 新款 度假 欧美 美国站 跨境 外贸 一件代发",
+                "market_target": "us",
+                "monthly_sales": "",
+                "repurchase_rate_pct": "",
+                "rating": "",
+                "years_on_1688": "",
+                "badges": "",
+                "service_flags": "一件代发",
+                "vendor_name": "",
+                "size_chart": "",
+                "dropship_supported": "",
+                "vendor_image_urls": "",
+                "availability": "",
+            }
+        ),
+        review_stage="search",
+    )
+
+    assert american_market_weak_vendor.verdict == "Reject"
+    assert "American market focus requires reputable-vendor or demand proof on the search card" in american_market_weak_vendor.concerns
+
+    european_market_old_offer = scorer.score_candidate(
+        Candidate(
+            **{
+                **base_candidate_fields(),
+                "candidate_id": "european-market-old-offer",
+                "product_url": "https://detail.1688.com/offer/810000000001.html",
+                "title": "2026 European mother daughter formal dress",
+                "raw_card_text": "母女 亲子 欧洲站 欧美 法式 外贸 跨境 2026新款 MOQ 1 月销 120 实力商家 买家保障 一件代发",
+                "search_query": "母女礼服裙 2026 春夏 新款 蕾丝 欧洲站 欧美 跨境 外贸 一件代发",
+                "market_target": "eu",
+                "vendor_name": "",
+                "size_chart": "",
+                "dropship_supported": "",
+                "vendor_image_urls": "",
+                "availability": "",
+            }
+        ),
+        review_stage="search",
+    )
+
+    assert european_market_old_offer.verdict == "Reject"
+    assert any("older 1688 offer ID" in concern for concern in european_market_old_offer.concerns)
+
     query_category_fit = scorer.score_candidate(
         Candidate(
             **{
@@ -114,6 +191,56 @@ def main() -> None:
 
     assert query_category_fit.verdict == "Test"
     assert query_category_fit.category_match == "4"
+
+    ordinary_maternity = scorer.score_candidate(
+        Candidate(
+            **{
+                **base_candidate_fields(),
+                "candidate_id": "ordinary-maternity",
+                "product_url": "https://detail.1688.com/offer/917144772332.html",
+                "title": "2026 summer maternity nursing dress loose casual Korean maternity wear",
+                "raw_card_text": "孕妇 夏季 连衣裙 宽松 2026新款 MOQ 1 回头率 55% 一件代发",
+                "search_query": "孕妇拍照服装 2026 春夏 新款 影楼 一件代发",
+                "category_id": "maternity",
+                "category_match": "",
+                "vendor_name": "",
+                "size_chart": "",
+                "dropship_supported": "",
+                "vendor_image_urls": "",
+                "availability": "",
+            }
+        ),
+        review_stage="search",
+    )
+
+    assert ordinary_maternity.verdict == "Reject"
+    assert ordinary_maternity.category_match == "3"
+    assert "ordinary maternity item; missing photoshoot/studio/gown signal" in ordinary_maternity.concerns
+
+    photoshoot_maternity = scorer.score_candidate(
+        Candidate(
+            **{
+                **base_candidate_fields(),
+                "candidate_id": "photoshoot-maternity",
+                "product_url": "https://detail.1688.com/offer/917144772333.html",
+                "title": "Studio photo shoot ultra-fairy white maternity gown for pregnant moms",
+                "raw_card_text": "孕妇写真 影楼 礼服 白纱裙 2026新款 MOQ 1 回头率 55% 一件代发",
+                "search_query": "孕妇写真裙 2026 春夏 新款 唯美 仙女 一件代发",
+                "category_id": "maternity",
+                "category_match": "",
+                "vendor_name": "",
+                "size_chart": "",
+                "dropship_supported": "",
+                "vendor_image_urls": "",
+                "availability": "",
+            }
+        ),
+        review_stage="search",
+    )
+
+    assert photoshoot_maternity.verdict == "Test"
+    assert photoshoot_maternity.category_match == "5"
+    assert "maternity photoshoot/studio gown signal" in photoshoot_maternity.positive_signals
 
     detail_missing_proof = scorer.score_candidate(
         Candidate(

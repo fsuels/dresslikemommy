@@ -32,7 +32,7 @@
     assign shipping_intro = 'products.additional_info.estimated_delivery' | t
     assign shipping_window = 'products.additional_info.standard_delivery_window' | t
     if shipping_label == blank or shipping_label contains 'translation missing'
-      assign shipping_label = 'FREE Shipping'
+      assign shipping_label = 'Shipping Options'
     endif
     if shipping_intro == blank or shipping_intro contains 'translation missing'
       assign shipping_intro = 'Estimated delivery:'

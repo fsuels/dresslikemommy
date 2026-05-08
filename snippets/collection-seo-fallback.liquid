@@ -19,7 +19,7 @@
     when 'mommy-and-me'
       assign effective_display_title = 'Mommy and Me Outfits'
       assign effective_display_title_key = 'sections.collection_seo.display_titles.mommy_and_me'
-    when 'dresses'
+    when 'dresses', 'mother-daughter-matching-dresses'
       assign effective_display_title = 'Mommy and Me Dresses'
       assign effective_display_title_key = 'sections.collection_seo.display_titles.dresses'
     when 'family-swimsuits'
@@ -34,7 +34,7 @@
     when 'matching-outfits', 'family-matching', 'family-matching-outfits'
       assign effective_display_title = 'Family Matching Outfits'
       assign effective_display_title_key = 'sections.collection_seo.display_titles.family_matching'
-    when 'daddy-me'
+    when 'daddy-me', 'daddy-and-me'
       assign effective_display_title = 'Daddy and Me Outfits'
       assign effective_display_title_key = 'sections.collection_seo.display_titles.daddy_me'
     when 'daddy-me-t-shirts'
@@ -55,7 +55,7 @@
     when 'tops'
       assign effective_display_title = 'Matching Tops and Tees'
       assign effective_display_title_key = 'sections.collection_seo.display_titles.tops'
-    when 'pajamas'
+    when 'pajamas', 'family-pajamas'
       assign effective_display_title = 'Matching Family Pajamas'
       assign effective_display_title_key = 'sections.collection_seo.display_titles.pajamas'
     when 'sweaters'
@@ -161,7 +161,7 @@
   elsif collection_handle == 'new-women-outfits'
     assign effective_meta_title = 'Family Matching Outfits | Dresses, Swimwear and Family Sets'
     assign effective_meta_title_key = 'sections.collection_seo.meta_titles.new_women_outfits'
-  elsif collection_handle == 'dresses'
+  elsif collection_handle == 'dresses' or collection_handle == 'mother-daughter-matching-dresses'
     assign effective_meta_title = 'Mommy and Me Dresses | Mother Daughter'
     assign effective_meta_title_key = 'sections.collection_seo.meta_titles.dresses'
   elsif collection_handle == 'maxi-dresses'
@@ -170,7 +170,7 @@
   elsif collection_handle == 'best-sellers'
     assign effective_meta_title = 'Best-Selling Mommy and Me Outfits | Dresses, Swimsuits and More'
     assign effective_meta_title_key = 'sections.collection_seo.meta_titles.best_sellers'
-  elsif collection_handle == 'daddy-me'
+  elsif collection_handle == 'daddy-me' or collection_handle == 'daddy-and-me'
     assign effective_meta_title = 'Daddy and Me Shirts, Tees and Matching Outfits'
     assign effective_meta_title_key = 'sections.collection_seo.meta_titles.daddy_me'
   elsif collection_handle == 'daddy-me-t-shirts'
@@ -194,7 +194,7 @@
     assign effective_meta_title = effective_meta_title_key | t
   endif
 
-  if collection_handle == 'mommy-and-me' or collection_handle == 'swimsuits' or collection_handle == 'family-swimsuits' or collection_handle == 'family-sets' or collection_handle == 'matching-family-vacation-outfits' or collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits' or collection_handle == 'new-women-outfits' or collection_handle == 'dresses' or collection_handle == 'maxi-dresses' or collection_handle == 'daddy-me-t-shirts' or collection_handle == 'matching-couples-t-shirts'
+  if collection_handle == 'mommy-and-me' or collection_handle == 'swimsuits' or collection_handle == 'family-swimsuits' or collection_handle == 'family-sets' or collection_handle == 'matching-family-vacation-outfits' or collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits' or collection_handle == 'new-women-outfits' or collection_handle == 'dresses' or collection_handle == 'mother-daughter-matching-dresses' or collection_handle == 'maxi-dresses' or collection_handle == 'daddy-me' or collection_handle == 'daddy-and-me' or collection_handle == 'daddy-me-t-shirts' or collection_handle == 'matching-couples-t-shirts' or collection_handle == 'family-pajamas'
     assign force_theme_seo = true
   endif
 
@@ -227,7 +227,7 @@
   elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
     assign audience_long = 'the whole family, from babies and toddlers to parents'
     assign product_examples_short = 'coordinated dresses, tops, swimwear, sets, and seasonal matching looks'
-  elsif collection_handle == 'daddy-me'
+  elsif collection_handle == 'daddy-me' or collection_handle == 'daddy-and-me'
     assign audience_long = 'dads and kids shopping matching tees, shirts, and coordinated outfits'
     assign product_examples_short = 'graphic tees, button-down shirts, Hawaiian shirts, swim trunks, and easy matching sets'
   elsif collection_handle == 'daddy-me-t-shirts'
@@ -278,7 +278,7 @@
     assign occasion_label = 'cool-weather outings, family photos, holiday events, and cozy weekends'
   elsif collection_handle == 'mommy-and-me'
     assign occasion_label = 'family photos, birthdays, vacations, and everyday matching moments'
-  elsif collection_handle == 'daddy-me'
+  elsif collection_handle == 'daddy-me' or collection_handle == 'daddy-and-me'
     assign occasion_label = "family photos, Father's Day, vacations, birthdays, and everyday matching moments"
   elsif collection_handle == 'daddy-me-t-shirts'
     assign occasion_label = "Father's Day gifts, casual outings, birthdays, vacations, and easy everyday wear"
@@ -333,7 +333,7 @@
     when 'mommy-and-me-easter-dresses', 'easter-matching-outfits', 'spring-matching-outfits'
       assign meta_description_key = 'sections.collection_seo.meta_descriptions.spring_matching'
       assign body_description_key = 'sections.collection_seo.body.spring_matching_html'
-    when 'dresses'
+    when 'dresses', 'mother-daughter-matching-dresses'
       assign meta_description_key = 'sections.collection_seo.meta_descriptions.dresses'
       assign body_description_key = 'sections.collection_seo.body.dresses_html'
     when 'maxi-dresses'
@@ -354,7 +354,7 @@
     when 'matching-outfits', 'family-matching', 'family-matching-outfits'
       assign meta_description_key = 'sections.collection_seo.meta_descriptions.family_matching'
       assign body_description_key = 'sections.collection_seo.body.family_matching_html'
-    when 'daddy-me'
+    when 'daddy-me', 'daddy-and-me'
       assign meta_description_key = 'sections.collection_seo.meta_descriptions.daddy_me'
       assign body_description_key = 'sections.collection_seo.body.daddy_me_html'
     when 'daddy-me-t-shirts'
@@ -380,7 +380,7 @@
       echo 'Shop mommy and me outfits, dresses, swimsuits, and matching sets for birthdays, family photos, vacations, and everyday twinning moments.'
     elsif collection_handle == 'mommy-and-me-easter-dresses' or collection_handle == 'easter-matching-outfits' or collection_handle == 'spring-matching-outfits'
       echo 'Shop mommy and me Easter dresses and spring matching outfits for church, brunch, egg hunts, family photos, and other seasonal celebrations.'
-    elsif collection_handle == 'dresses'
+    elsif collection_handle == 'dresses' or collection_handle == 'mother-daughter-matching-dresses'
       echo 'Shop mommy and me dresses and mother daughter matching dresses for photos, parties, vacations, and polished everyday wear.'
     elsif collection_handle == 'maxi-dresses'
       echo 'Shop mommy and me maxi dresses and matching maxi dresses for photos, travel, celebrations, and easy polished everyday wear.'
@@ -394,7 +394,7 @@
       echo 'Shop Family Matching Outfits for dresses, swimwear, mommy and me looks, and travel-ready sets in one place, then narrow into the collection that fits your trip, season, or occasion.'
     elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
       echo 'Shop matching family outfits and mommy and me outfits for photos, vacations, holidays, and easy coordinated looks for every season.'
-    elsif collection_handle == 'daddy-me'
+    elsif collection_handle == 'daddy-me' or collection_handle == 'daddy-and-me'
       echo "Shop daddy and me shirts, t-shirts, tees, and matching outfits for family photos, Father's Day, vacations, and easy everyday coordination."
     elsif collection_handle == 'daddy-me-t-shirts'
       echo "Shop daddy and me shirts and matching tees for Father's Day, vacations, birthdays, photos, and easy everyday outfits for dads and kids."
@@ -461,7 +461,7 @@
       echo '<p>Browse '
       echo effective_display_title | escape
       echo ' for family photos, travel, birthdays, holidays, and easy everyday twinning. It is the best place to start when you want to compare coordinated looks across the family before narrowing into dresses, swimwear, or vacation sets.</p>'
-    elsif collection_handle == 'daddy-me'
+    elsif collection_handle == 'daddy-me' or collection_handle == 'daddy-and-me'
       echo '<p>Explore '
       echo effective_display_title | escape
       echo " for family photos, vacations, Father's Day gifts, and everyday coordination. This landing page is built around the strongest daddy-and-kid search intent, with matching tees, casual tops, and dressier shirt options all in one place.</p>"

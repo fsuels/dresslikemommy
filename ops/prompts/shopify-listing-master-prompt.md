@@ -130,6 +130,14 @@ Storefront merchandising override:
 
 ### 4. Price strategy
 
+Final-price source of truth:
+
+- The operator may manually set final Shopify variant prices after a draft is created.
+- The current final Shopify variant price always wins over earlier generated fallback/spec prices unless the current request explicitly provides a price change or `PRICE_OVERRIDES`.
+- Cost per item is not an independent estimate. It is always `current final variant price * 0.50`, rounded to cents.
+- On create, the generated/override price is the final price for that run, so write Cost per item from that price.
+- On update, rerun, or verification of an existing product, read the current variant price first, preserve it unless this request explicitly changes prices, and correct Cost per item to 50% of that current price.
+
 Determine prices in this order:
 
 1. Use `PRICE_OVERRIDES` when provided.
@@ -290,7 +298,8 @@ Halt before any Admin API call if any check fails:
 - SEO title <= 60
 - SEO description <= 155
 - Every `role` exists in the derived role-garment map
-- If `FORCE_SPEC_PRICES=true`, every derived variant price matches the role price exactly
+- If `FORCE_SPEC_PRICES=true` on a new create, every derived variant price matches the role price exactly
+- If updating or verifying an existing product where the operator has manually changed prices, preserve the current live/draft variant prices and use them as the final price source for Cost per item
 
 ### Post-create verification
 
@@ -300,7 +309,8 @@ Re-query the product and halt on mismatch:
 - live SKUs sorted == derived SKUs sorted
 - total `<tr>` rows across size tables == `SIZE_CHART.length`
 - each size table has exactly 10 `<th>` columns
-- every live variant price matches the derived price when `FORCE_SPEC_PRICES=true`
+- every live variant price matches the derived price when `FORCE_SPEC_PRICES=true` and this run is explicitly creating/enforcing prices
+- when current live/draft prices differ because the operator changed them manually, every Cost per item matches 50% of those current prices
 
 ## Store Rules
 
@@ -463,7 +473,7 @@ Runner requirements:
 - derive from it:
   - product options
   - variants payload
-  - inventory-item cost: every variant must set `inventoryItem.cost` to exactly 50% of its Shopify selling price, rounded to cents
+  - inventory-item cost: every variant must set `inventoryItem.cost` to exactly 50% of its current final Shopify variant price, rounded to cents
   - body size tables
   - tags
   - SEO size phrase
@@ -478,13 +488,14 @@ If a product with the derived handle already exists:
 - create missing variants
 - update changed variants
 - only delete missing live variants if that delete is clearly supported and documented in `listing.md`
-- when `FORCE_SPEC_PRICES=true`, reset drifted prices back to spec and log each reset
-- when any variant price is created or changed, set the matching Shopify Cost per item to `price * 0.50`; if the cost cannot be written, mark `paid_eligible=false`, keep the product in `DRAFT`, and document the blocker
+- when `FORCE_SPEC_PRICES=true` and the current request explicitly creates/enforces prices, reset drifted prices back to spec and log each reset
+- when the operator has manually changed prices and the current request does not explicitly ask to change prices, preserve the current live/draft prices and do not reset them to the earlier generated spec
+- on every create/update/rerun/verification, set the matching Shopify Cost per item to `current final price * 0.50`; if the cost cannot be written, mark `paid_eligible=false`, preserve existing publication state unless the current request explicitly allows changing it, and document the blocker
 
 ### Required create/update steps
 
 1. `productCreate` or update equivalent
-2. `productVariantsBulkCreate` / `productVariantsBulkUpdate` with `inventoryItem.cost = price * 0.50` on every variant
+2. `productVariantsBulkCreate` / `productVariantsBulkUpdate` with `inventoryItem.cost = current final price * 0.50` on every variant
 3. `metafieldsSet`
 4. media upload + attachment if assets exist under `uploads/<slug>/`
 5. verification re-query
@@ -588,7 +599,7 @@ CSV rules:
 
 - use the standard Shopify export header
 - exactly one variant row per derived Shopify variant
-- populate Shopify CSV `Cost per item` as exactly 50% of the row price, rounded to cents
+- populate Shopify CSV `Cost per item` as exactly 50% of the row's final `Variant Price`, rounded to cents
 - for multi-color listings, CSV rows must cover every intended `Size x Color` combination while the body size table still has one row per `SIZE_CHART` row
 - regenerate the CSV whenever `SIZE_CHART` or prices change
 
@@ -605,11 +616,10 @@ Do not finish until all of these pass:
 - every size table first column matches the picker labels exactly
 - each size table has 10 headers
 - waist populated for every row
-- every variant has SKU, price, compare-at, `DENY`, `tracked=true`, and Cost per item equal to `price * 0.50`
-- no variant is missing Cost per item; if any cost is missing, `paid_eligible=false` and the final report must call it out
-- product `status` is `DRAFT`
-- `publishedAt` is null
-- no required sales-channel publication is marked live
+- every variant has SKU, price, compare-at, `DENY`, `tracked=true`, and Cost per item equal to the current final price * `0.50`
+- no variant is missing or stale Cost per item; if any cost is missing or stale, fix it to 50% of the current price, or report `paid_eligible=false` and call it out if the fix is blocked
+- for new draft products, product `status` is `DRAFT`, `publishedAt` is null, and no required sales-channel publication is marked live
+- for an existing product that was already active before a corrective update, publication state is preserved unless the current request explicitly asks to change it
 - taxonomy category is set and resolves to the expected leaf full name
 - applicable metafields are written
 - every skipped metafield is explicitly documented

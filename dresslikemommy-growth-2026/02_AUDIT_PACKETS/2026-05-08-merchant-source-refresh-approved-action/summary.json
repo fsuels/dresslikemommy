@@ -1,0 +1,48 @@
+{
+  "anchor": "AGENT_CONTINUITY_ANCHOR: 2026-05-08-merchant-source-refresh-approved-action",
+  "decision": "MERCHANT_AGE_GROUP_SOURCE_PROPAGATION_MOVED_VISIBLE_SAMPLE_CLEARED",
+  "guardrails_preserved": [
+    "No additional Merchant upload.",
+    "No source refresh/sync/update click.",
+    "No Google & YouTube publication toggle.",
+    "No Shopify product edits.",
+    "No local inventory feeds or physical-store inventory claims.",
+    "No Google Ads, Pinterest, GA4, campaign, budget, bid, status, product-scope, product-group, feed-label, or conversion-goal changes."
+  ],
+  "merchant_account": "124884876",
+  "new_or_existing_age_group_source_readback": {
+    "affected_unmatched_products": 9,
+    "attribute_names_status": "All recognized",
+    "feed_label": "US",
+    "file_issue": "Offer does not exist",
+    "last_updated_visible": "May 8, 2026 1:55 AM",
+    "matched_products": 771,
+    "source_id": "10651516446",
+    "source_name": "upload_paid_cohort_age_group_only.txt",
+    "source_type": "File (manual)",
+    "total_updated_products": 780
+  },
+  "sample_readback": {
+    "custom_label_0": "paid_eligible",
+    "custom_label_4": "us_test_ready",
+    "fresh_source_timestamp_utc": "2026-05-08T05:55:06+00:00",
+    "item_id": "shopify_US_7227254276193_41871113158753",
+    "prior_stale_source_timestamp_utc": "2026-05-07T14:14:02+00:00",
+    "source_id": "10627623003",
+    "source_name": "Shopify App API"
+  },
+  "visible_diagnostics": {
+    "diagnostics_last_updated_visible": [
+      "1:58 AM May 8, 2026",
+      "2:04 AM May 8, 2026"
+    ],
+    "sample_row_missing_age_group_visible": false,
+    "sample_row_remaining_issue": "Missing local inventory data",
+    "visible_prioritized_table_missing_age_group": false
+  },
+  "residual_risks": [
+    "Exact paid-cohort product-issues CSV did not download in this run.",
+    "Account-level TopItemIssueService still returned a Missing age group bucket, so a later exact export/API readback should verify the full paid-cohort count.",
+    "Nine source rows did not match an offer and should be the next narrow investigation if any paid-cohort age_group rows remain."
+  ]
+}

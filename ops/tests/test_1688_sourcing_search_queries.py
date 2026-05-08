@@ -86,16 +86,24 @@ def main() -> None:
             ],
         },
         "maternity": {
-            "minimum": 24,
-            "identity_terms": ("孕", "哺乳", "产后"),
+            "minimum": 33,
+            "identity_terms": ("孕", "大肚"),
             "phrases": [
-                "孕妇连衣裙",
-                "孕妇沙滩裙",
+                "孕妇写真裙",
+                "孕妇照礼服",
+                "孕妇拍照服装",
+                "孕妈写真服",
+                "大肚照礼服",
+                "大肚写真裙",
+                "孕肚照服装",
+                "影楼孕妇装",
+                "新中式 孕妇照",
+                "海边孕妇照",
+                "情侣孕妇照",
                 "孕妇晚礼服",
+                "孕妇照婚纱礼服",
                 "孕妇写真服",
-                "孕妇母女装",
-                "哺乳连衣裙",
-                "孕妇圣诞裙",
+                "冬季孕妇照礼服",
             ],
         },
     }
@@ -111,13 +119,35 @@ def main() -> None:
         assert all("一件代发" in query for query in queries)
         assert all(any(term in query for term in expected["identity_terms"]) for query in queries)
         assert dashboard.configured_queries(category_id) == queries
+        us_queries = collector.normalize_queries(
+            category["queries"],
+            category.get("search_defaults", {}),
+            collector.market_profile("us"),
+        )
+        eu_queries = collector.normalize_queries(
+            category["queries"],
+            category.get("search_defaults", {}),
+            collector.market_profile("eu"),
+        )
+        assert dashboard.configured_queries(category_id, "us") == us_queries
+        assert dashboard.configured_queries(category_id, "eu") == eu_queries
+        assert all("美国站" in query and "跨境" in query and "外贸" in query for query in us_queries)
+        assert all("欧洲站" in query and "跨境" in query and "外贸" in query for query in eu_queries)
         for phrase in expected["phrases"]:
             assert any(phrase in query for query in queries), f"missing {category_id} search phrase: {phrase}"
 
     sample = "母女晚礼服 2026 春夏 新款 高端 气质 一件代发"
     url = collector.search_url(sample, page=2)
     assert decoded_keywords(url) == sample
+    assert collector.decoded_search_keywords(url) == sample
+    assert collector.search_page_matches(url, url)
+    plus_url = url.replace("%20", "+")
+    assert collector.search_page_matches(url, plus_url)
+    mismatch_url = collector.search_url("孕妇写真裙 2026 春夏 新款 影楼 一件代发")
+    assert not collector.search_page_matches(url, mismatch_url)
     assert "beginPage=2" in url
+    assert collector.search_history_key("mommy-and-me", "us") == "mommy-and-me:us"
+    assert collector.search_history_key("mommy-and-me", "balanced") == "mommy-and-me"
 
     print("ok")
 

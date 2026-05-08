@@ -262,6 +262,21 @@
     assign homepage_spotlight_product_candidates_json = homepage_spotlight_product_candidates_json | strip
   endif
 -%}
+{%- assign spotlight_badge_key = spotlight_badge | handleize -%}
+{%- assign spotlight_button_label_key = spotlight_button_label | handleize -%}
+{%- assign spotlight_collection_link_label_key = spotlight_collection_link_label | handleize -%}
+{%- capture spotlight_badge_localized -%}
+  {%- render 'home-category-localized-copy', copy_key: spotlight_badge_key, fallback: spotlight_badge -%}
+{%- endcapture -%}
+{%- capture spotlight_button_label_localized -%}
+  {%- render 'home-category-localized-copy', copy_key: spotlight_button_label_key, fallback: spotlight_button_label -%}
+{%- endcapture -%}
+{%- capture spotlight_collection_link_label_localized -%}
+  {%- render 'home-category-localized-copy', copy_key: spotlight_collection_link_label_key, fallback: spotlight_collection_link_label -%}
+{%- endcapture -%}
+{%- assign spotlight_badge = spotlight_badge_localized | strip -%}
+{%- assign spotlight_button_label = spotlight_button_label_localized | strip -%}
+{%- assign spotlight_collection_link_label = spotlight_collection_link_label_localized | strip -%}
 
 {%- if spotlight_product != blank and spotlight_variant != blank -%}
   <article
