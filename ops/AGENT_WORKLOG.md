@@ -33248,3 +33248,36 @@ Status:
 - The localized Shipping Info link repair is closed as `SOLVED_READBACK_PASSED`.
 - Coordination row `Localized Shipping Info link repair` is now `DONE_LIVE_THEME_PUSH_READBACK_PASSED`; ignore the earlier same-session Ads note that described this lane as active at the time that Ads handoff was written.
 - Evidence/report: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-localized-shipping-info-link-repair/LOCALIZED_SHIPPING_INFO_LINK_REPAIR_REPORT.md`.
+
+2026-05-10 - Google Ads non-US Search paused build IT recheck / remaining absent
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-google-ads-non-us-search-paused-build-it-still-in-progress-remaining-absent
+
+Why:
+- Continued the owner-approved paid-growth sprint as parent/orchestrator using the canonical paid-growth AI-army prompt.
+- The Ads lane had to be worked as a blocker, not passively documented: `IT` was parked in-progress after the prior ES resume, and the remaining country state needed a fresh readback before the next handoff.
+
+What changed:
+- Spawned local/read-only sidecars for stale-reference cleanup, Ads safest-order/stop-criteria review, and non-Ads gated-lane synthesis.
+- Rechecked the Google Ads upload page through the existing logged-in browser/CDP context. `IT_intl_search_paused_draft_web_bulk.csv` still showed preview in progress at `0` changes / `0` success / `0` errors; no apply was clicked.
+- Ran fresh read-only campaign RPC absent checks for all unresolved countries: `FR`, `BE`, `IT`, `PL`, `CZ`, `RO`, `PT`, and `GR`; all remain absent/uncreated.
+- Updated stale ES-era handoff references in `AGENTS.md`, `ops/prompts/paid-growth-ai-army-continuation-prompt.md`, `ops/PROBLEM_TRACKER.md`, `ops/AGENT_COORDINATION.md`, the Google Ads packet README/report/NEXT prompt, and the split manifest approval note.
+
+Evidence:
+- IT page recheck: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-google-ads-non-us-search-paused-test-build-approved/raw/preview/IT_preview_resume_check_body.txt` and `.png`.
+- Remaining absent recheck: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-google-ads-non-us-search-paused-test-build-approved/raw/after-readbacks/remaining_absent_recheck_2026-05-10_0205/remaining_absent_recheck.txt`.
+- Current summary: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-google-ads-non-us-search-paused-test-build-approved/working/final_campaign_readback_summary_2026-05-10_it_still_in_progress.json`.
+
+Current state:
+- Completed/read back paused Search campaigns remain `GB` `23838895360` `$2/day`, `CA` `23834423669` `$2/day`, `AU` `23834424182` `$2/day`, `CH` `23834425358` `$1/day`, `DK` `23838969244` `$1/day`, `DE` `23834427575` `$1/day`, `NL` `23829110118` `$1/day`, `SE` `23838970036` `$1/day`, and `ES` `23829133584` `$1/day`.
+- All 9 are paused/Search/presence-only/content off/YouTube off; no live spend or enablement was started.
+- Remaining absent/uncreated: `FR`, `BE`, `IT`, `PL`, `CZ`, `RO`, `PT`, and `GR`.
+- `IT` remains the immediate upload/preview blocker because its Google Ads preview is still in-progress at `0/0/0`.
+
+Guardrails:
+- No live spend, campaign enablement, US campaign `23827590655`, PMax, Standard Shopping, Merchant upload/source edit, Shopify product-data change, Pinterest write, theme edit, product-scope, feed-label, product-group, conversion-goal, checkout/order, budget/bid/status-enable, or product/feed/conversion write was made.
+
+Next:
+- Do not request the same TEST BUILD approval again and do not duplicate completed countries.
+- Do not start more Ads uploads while the IT preview remains in-progress.
+- After the upload/preview lane is clean, safest remaining order is clean unattempted files first: `PL`, `CZ`, `RO`, `PT`, `GR`; then `IT` after stale preview clears; then `FR` with a fresh completed preview; then `BE` last after upload-throttle cooldown.
+- Every remaining country needs absent readback, preview/download/validate `88/88 # OK`, apply/download/validate `88/88 # OK`, and campaign RPC readback.

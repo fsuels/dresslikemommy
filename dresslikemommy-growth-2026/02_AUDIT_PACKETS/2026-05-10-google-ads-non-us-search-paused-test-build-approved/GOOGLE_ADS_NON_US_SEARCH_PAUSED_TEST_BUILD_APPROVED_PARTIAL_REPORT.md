@@ -1,6 +1,6 @@
 # Google Ads Non-US Search Paused Test Build - Approved Partial
 
-Status: `PARTIAL_9_COUNTRIES_APPLIED_REMAINING_BLOCKED_NO_LIVE_SPEND`
+Status: `PARTIAL_9_APPLIED_REMAINING_BLOCKED_BY_FR_STALE_PREVIEW_BE_THROTTLE_IT_STILL_IN_PROGRESS_PREVIEW_NO_LIVE_SPEND`
 
 Created: 2026-05-10 00:33 EDT
 
@@ -31,13 +31,15 @@ Owner gave the exact canonical paused non-US Google Search TEST BUILD approval i
   - Downloaded apply result: `88` rows, all `# OK`.
   - Result file rows remained paused: `1` Campaign, `10` Ad groups, `30` positive Keywords, `37` Negative keywords, `10` Ads; Campaign/Ad group/Keyword/Ad status fields all `Paused`.
 
-## Live Account Writes Made
+## Initial Canary Live Account Writes Made
+
+This section documents only the first `GB` canary stage. The cumulative current state is superseded by the continuation and recheck addenda below.
 
 Only this paused Google Search campaign build was applied:
 
 - `DLM_GB_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507`
 
-No other split files were selected, previewed, or applied after `GB`.
+At this first stage, no other split files were selected, previewed, or applied after `GB`.
 
 No live spend was enabled. No campaign/ad group/ad/keyword enablement was applied. No US campaign `23827590655`, PMax, Standard Shopping, Merchant, Shopify product data, Pinterest, theme, product-scope, feed-label, product-group, conversion-goal, or existing budget/bid/status changes were made by this session.
 
@@ -67,7 +69,9 @@ Fallback attempt:
 - Automation/helper state: `working/google_ads_split_bulk_apply_state.json`
 - Helper script: `working/google_ads_split_bulk_apply.py`
 
-## Required Next Action
+## Historical Required Next Action - Superseded
+
+This first-stage next action was superseded by the 2026-05-10 continuation and ES resume addenda. Current next action is in the final section below.
 
 1. First read back the newly created `GB` campaign directly in Google Ads:
    - Campaign/ad groups/ads/keywords paused.
@@ -134,12 +138,14 @@ Additional evidence:
 - FR blocked apply/no-change evidence: `raw/after-readbacks/FR_apply_body.txt`
 - BE upload throttle evidence: `raw/preview/BE_upload_rate_limit_body.txt` and `raw/preview/BE_upload_rate_limit.png`
 
-## Updated Required Next Action
+## Historical Updated Required Next Action - Superseded By ES Resume
+
+This 8-country next action was superseded after `ES` was applied and read back. Current unresolved countries are `FR`, `BE`, `IT`, `PL`, `CZ`, `RO`, `PT`, and `GR`.
 
 1. Do not request the same non-US Search `TEST BUILD` approval again.
-2. Do not re-upload or duplicate `GB`, `CA`, `AU`, `CH`, `DK`, `DE`, `NL`, or `SE`.
-3. Resume only after Google Ads upload cooldown/tooling is clean, starting with the unresolved countries only: `FR`, `BE`, `ES`, `IT`, `PL`, `CZ`, `RO`, `PT`, and `GR`.
-4. For `FR`, first clear/ignore the stale failed upload row and get a fresh preview that completes with `88/88 # OK`; do not apply from a `0`-change/in-progress preview.
+2. Do not re-upload or duplicate `GB`, `CA`, `AU`, `CH`, `DK`, `DE`, `NL`, `SE`, or `ES`.
+3. Resume only after Google Ads upload/preview tooling is clean, starting with unresolved countries only: `FR`, `BE`, `IT`, `PL`, `CZ`, `RO`, `PT`, and `GR`.
+4. For `FR` and `IT`, get a fresh preview that completes with `88/88 # OK`; do not apply from a stale, failed, no-change, or `0`-change/in-progress preview.
 5. For every remaining country, use one-country controls: absent readback, preview/download/validate, apply/download/validate, then campaign RPC readback for paused/Search/presence-only/approved budget.
 
 ## 2026-05-10 Resume Addendum - ES Applied, IT Parked
@@ -204,3 +210,36 @@ Additional evidence:
 3. Resume only unresolved countries after the Ads upload/preview lane is clean: `FR`, `BE`, `IT`, `PL`, `CZ`, `RO`, `PT`, and `GR`.
 4. Apply no country from an in-progress, stale, `0`-change, or no-change preview. Require a fresh downloaded preview result with `88/88 # OK`, then an apply download with `88/88 # OK`, then campaign RPC readback.
 5. If the IT preview remains in-progress or BE throttles again, stop Ads uploads and move independent local/read-only lanes forward.
+
+## 2026-05-10 Recheck Addendum - IT Still In Progress, Remaining Countries Absent
+
+Parent performed a bounded recheck instead of applying from the stale IT upload state.
+
+Fresh recheck result:
+
+- Browser/CDP readback of the Google Ads upload page still showed `IT_intl_search_paused_draft_web_bulk.csv` preview in progress.
+- The IT preview was still at `0` changes / `0` success / `0` errors.
+- No IT apply was clicked.
+- Fresh campaign RPC absent readback confirmed all unresolved countries remain absent: `FR`, `BE`, `IT`, `PL`, `CZ`, `RO`, `PT`, and `GR`.
+
+Sidecar findings:
+
+- Local-only Ads gate review confirmed completed countries must not be re-uploaded: `GB`, `CA`, `AU`, `CH`, `DK`, `DE`, `NL`, `SE`, and `ES`.
+- Safest order after the upload/preview lane is clean is clean unattempted files first (`PL`, `CZ`, `RO`, `PT`, `GR`), then `IT` only after the stale preview clears, then `FR` only with a fresh completed preview, then `BE` last because it hit upload throttling.
+- Non-Ads lanes remain approval-gated but locally prepared: Merchant `US/es` age_group, Pinterest Event Quality/paused drafts, beach/Vacation Family SEO metadata, and native-language copy review.
+
+Updated evidence:
+
+- IT recheck body: `raw/preview/IT_preview_resume_check_body.txt`
+- IT recheck screenshot: `raw/preview/IT_preview_resume_check.png`
+- Remaining-country absent recheck: `raw/after-readbacks/remaining_absent_recheck_2026-05-10_0205/remaining_absent_recheck.txt`
+- Current final summary: `working/final_campaign_readback_summary_2026-05-10_it_still_in_progress.json`
+
+Updated required next action:
+
+1. Do not request the same non-US Search TEST BUILD approval again.
+2. Do not re-upload or duplicate `GB`, `CA`, `AU`, `CH`, `DK`, `DE`, `NL`, `SE`, or `ES`.
+3. Do not start more Ads uploads while the IT preview remains in-progress at `0` changes.
+4. Once the Ads upload/preview lane is clean, resume only unresolved countries one at a time: `FR`, `BE`, `IT`, `PL`, `CZ`, `RO`, `PT`, and `GR`.
+5. Require a fresh downloaded preview result with `88/88 # OK`, then an apply download with `88/88 # OK`, then campaign RPC readback for paused/Search/presence-only/approved budget.
+6. Stop on any in-progress/stale/no-change preview, upload throttle, enabled row, budget/bid/status mismatch, US `23827590655`, PMax, Standard Shopping, Merchant, Shopify, Pinterest, theme, product/feed/conversion surface, or unclear readback.

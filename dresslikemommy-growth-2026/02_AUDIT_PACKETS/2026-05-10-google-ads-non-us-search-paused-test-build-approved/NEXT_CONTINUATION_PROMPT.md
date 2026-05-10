@@ -6,7 +6,7 @@ Use the canonical paid-growth prompt:
 
 Newest anchor:
 
-`AGENT_CONTINUITY_ANCHOR: 2026-05-10-google-ads-non-us-search-paused-build-9-applied-it-preview-parked`
+`AGENT_CONTINUITY_ANCHOR: 2026-05-10-google-ads-non-us-search-paused-build-it-still-in-progress-remaining-absent`
 
 Critical carry-forward:
 
@@ -16,11 +16,11 @@ Critical carry-forward:
 - `FR`, `BE`, `IT`, `PL`, `CZ`, `RO`, `PT`, and `GR` remain absent/uncreated.
 - `FR` is parked: preview once validated `88/88 # OK`, but a stale/in-progress apply recovery produced `completed with errors` / `no changes`; no FR campaign exists. Require a fresh completed `88/88 # OK` preview before any FR apply.
 - `BE` is parked by Google Ads upload throttling: too many simultaneous/recent uploads. Wait for cooldown/tooling before retry.
-- `IT` is parked: a fresh resume preview remained in progress at `0` changes, `0` success, and `0` errors after the helper's 120-second guard plus a 60-second follow-up. No IT apply was clicked, and IT remains absent. Wait for that preview to clear or start a fresh preview that completes `88/88 # OK`.
+- `IT` is parked: a fresh resume preview remained in progress at `0` changes, `0` success, and `0` errors after the helper's 120-second guard plus a 60-second follow-up, and a later 2026-05-10 02:05 EDT browser/CDP recheck still showed the IT preview in progress at `0/0/0`. No IT apply was clicked, and IT remains absent. Do not start more uploads while this preview remains in-progress; wait for it to clear or start a fresh preview that completes `88/88 # OK`.
 
 Next best action:
 
 1. Read `ops/prompts/paid-growth-ai-army-continuation-prompt.md`, `ops/PROBLEM_TRACKER.md`, `ops/AGENT_COORDINATION.md`, and this packet report.
-2. Resume only unresolved split files one country at a time from `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-localized-copy-pinterest-manifest-safe-advance/lanes/google-ads-split-manifest/split_csvs/`.
+2. Resume only unresolved split files one country at a time from `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-localized-copy-pinterest-manifest-safe-advance/lanes/google-ads-split-manifest/split_csvs/`, after the IT in-progress preview clears and the upload/preview lane is clean.
 3. Required controls: absent readback, preview/download/validate, apply/download/validate, campaign RPC readback for paused/Search/presence-only/approved budget.
-4. Stop on stale/in-progress preview, `0` changes, upload throttle, non-`# OK`, enabled rows, budget/bid mismatch, US/PMax/Standard Shopping/Merchant/Shopify/Pinterest/theme/product/feed/conversion surfaces, or unclear readback.
+4. Stop on stale/in-progress preview, `0` changes, upload throttle, non-`# OK`, enabled rows, budget/bid mismatch, US/PMax/Standard Shopping/Merchant/Shopify/Pinterest/theme/product/feed/conversion surfaces, or unclear readback. Safest next order after the lane is clean is `PL`, `CZ`, `RO`, `PT`, `GR`, then `IT`, then `FR`, then `BE`.
