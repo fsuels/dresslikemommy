@@ -1776,6 +1776,8 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     var selectedGarmentKey = getGarmentKey(selectedTypeValue);
     var contextGarmentKey = getGarmentKey(context);
 
+    if (selectedGarmentKey && contextContainsGarmentKey(context, selectedGarmentKey)) return true;
+
     if (selectedGarmentKey) {
       if (selectedGarmentKey === 'dress') {
         return contextGarmentKey === 'dress' || (!contextGarmentKey && normalizeText(table.id) === 'size chart');
@@ -1797,7 +1799,59 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
       })
       .some(function (token) {
         return context.indexOf(token) !== -1;
-      });
+    });
+  }
+
+  function contextContainsGarmentKey(context, garmentKey) {
+    var text = normalizeText(context);
+    if (!text || !garmentKey) return false;
+    if (garmentKey === 'dress') return /(dress|skirt|robe|vestido|vestito|kleid|jurk|kjole|sukienka|rochie|плать|فستان|שמלה|ワンピース|드레스|连衣裙|連衣裙|洋裝)/i.test(text);
+    if (garmentKey === 'shirt') return /(shirt|tee|t-shirt|camisa|chemise|hemd|skjorte|koszula|cămașă|camicie|рубаш|قميص|חולצה|シャツ|셔츠|衬衫|襯衫)/i.test(text);
+    if (garmentKey === 'shorts') return /(short|shorts|trunk|bermuda|шорт|شورت|מכנסיים קצרים|ショーツ|반바지|短裤|短褲)/i.test(text);
+    if (garmentKey === 'shirtShortsSet') return contextContainsGarmentKey(text, 'shirt') && contextContainsGarmentKey(text, 'shorts');
+    if (garmentKey === 'romper') return /(romper|pelele|barboteuse|strampler|pagliaccetto|rampers|אוברול|ロンパース|롬퍼|连体衣|連身衣|baby|bebé|bebe|bébé|الرضيع|بيبي)/i.test(text);
+    if (garmentKey === 'pants') return /(pant|pants|trouser|pantal|hose|broek|bukse|spodnie|брюк|بنطال|מכנסיים|パンツ|바지|长裤|長褲)/i.test(text);
+    if (garmentKey === 'top') return /(top|haut|topp|yläosa|上衣|トップス|상의|טופ|توب)/i.test(text);
+    return false;
+  }
+
+  function getSelectedRoleKeyForTableSelection(select, selectedTypeValue) {
+    var currentVariant = getCurrentVariant();
+    var sizeOptionIndex = productData && Array.isArray(productData.options) ? findSizeOptionIndex(productData.options) : -1;
+    if (currentVariant && sizeOptionIndex > -1) {
+      var variantRole = getRoleInfoForVariant(currentVariant, productData.options, sizeOptionIndex);
+      if (variantRole && variantRole.key) return variantRole.key;
+    }
+
+    var rawValue = select ? String(select.value || '').trim() : '';
+    var rawText = select && select.selectedOptions && select.selectedOptions[0]
+      ? String(select.selectedOptions[0].textContent || '').trim()
+      : rawValue;
+    var parsedRole = parseRoleFromSizeLabel(rawValue) || parseRoleFromSizeLabel(rawText);
+    var baseRoleKey = parsedRole && parsedRole.key ? parsedRole.key : '';
+    var typeRoleKey = inferRoleKeyFromType(selectedTypeValue, baseRoleKey);
+    return typeRoleKey || baseRoleKey;
+  }
+
+  function tableHasCompatibleSelectedRole(table, selectedRoleKey) {
+    if (!table || !selectedRoleKey) return false;
+
+    var firstCells = Array.from(table.querySelectorAll('tr')).map(function (row) {
+      var firstCell = row.querySelector('th, td');
+      return firstCell ? cellText(firstCell) : '';
+    });
+
+    if (firstCells.some(function (value) {
+      var parsedRole = parseRoleFromSizeLabel(value);
+      return parsedRole && areSizeGuideRolesCompatible(selectedRoleKey, parsedRole.key);
+    })) {
+      return true;
+    }
+
+    return Array.from(table.querySelectorAll('tr:first-child th, tr:first-child td')).some(function (cell) {
+      var roleHeader = parseRoleFromHeader(cellText(cell));
+      return roleHeader && areSizeGuideRolesCompatible(selectedRoleKey, roleHeader.key);
+    });
   }
 
   function getSizeGuideTable(root, select, selectedTypeValue) {
@@ -1809,10 +1863,15 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     var imagePresetGuide = descriptionRoot ? getImageBasedSizeGuidePreset(descriptionRoot) : null;
 
     if (existingTables.length > 1) {
+      var selectedRoleKey = getSelectedRoleKeyForTableSelection(select, selectedTypeValue);
       return (
         existingTables.find(function (table) {
           return tableMatchesSelectedType(table, selectedTypeValue);
-        }) || existingTables[0]
+        }) ||
+        existingTables.find(function (table) {
+          return tableHasCompatibleSelectedRole(table, selectedRoleKey);
+        }) ||
+        existingTables[0]
       );
     }
 
@@ -3001,7 +3060,13 @@ function parseRoleFromHeader(header) {
     for (var aliasIndex = 0; aliasIndex < aliasCandidates.length; aliasIndex += 1) {
       var alias = aliasCandidates[aliasIndex];
       var normalizedAlias = normalizeText(alias);
-      if (!normalizedAlias || normalizedAlias.length < 3 || normalizedHeader.indexOf(normalizedAlias) === -1) continue;
+      if (!normalizedAlias || normalizedAlias.length < 3) continue;
+      if (/^[a-z0-9]+$/.test(normalizedAlias)) {
+        var aliasPattern = new RegExp('(^|[^a-z0-9])' + escapeRegExp(normalizedAlias) + '([^a-z0-9]|$)', 'i');
+        if (!aliasPattern.test(normalizedHeader)) continue;
+      } else if (normalizedHeader.indexOf(normalizedAlias) === -1) {
+        continue;
+      }
 
       return {
         key: roleDefinition.key,

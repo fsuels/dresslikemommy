@@ -2,7 +2,7 @@
 
 Created: 2026-05-10 00:10 EDT
 
-Current result: `PARTIAL_8_COUNTRIES_APPLIED_FR_BE_BLOCKED_NO_LIVE_SPEND`
+Current result: `PARTIAL_9_APPLIED_REMAINING_BLOCKED_BY_FR_STALE_PREVIEW_BE_THROTTLE_IT_STILL_IN_PROGRESS_PREVIEW_NO_LIVE_SPEND`
 
 Scope: exact owner-approved paused Google Search TEST BUILD for `GB`, `CA`, `AU`, `CH`, `DK`, `DE`, `NL`, `SE`, `FR`, `BE`, `ES`, `IT`, `PL`, `CZ`, `RO`, `PT`, and `GR`.
 
@@ -38,9 +38,10 @@ Session report:
 
 2026-05-10 continuation:
 
-- Applied and read back paused Search campaigns for `GB`, `CA`, `AU`, `CH`, `DK`, `DE`, `NL`, and `SE`.
-- All 8 final readbacks are paused, Search, presence-only, content/YouTube off, and on approved split budgets.
+- Applied and read back paused Search campaigns for `GB`, `CA`, `AU`, `CH`, `DK`, `DE`, `NL`, `SE`, and `ES`.
+- All 9 final readbacks are paused, Search, presence-only, content/YouTube off, and on approved split budgets.
 - `FR` is not created: preview validated once, but a stale apply attempt produced `completed with errors` / `no changes`; later fresh FR preview stuck at `0` changes.
 - `BE` is not created: upload preview blocked by Google Ads upload throttling.
-- `ES`, `IT`, `PL`, `CZ`, `RO`, `PT`, and `GR` remain absent and untouched.
-- Next unresolved countries: `FR`, `BE`, `ES`, `IT`, `PL`, `CZ`, `RO`, `PT`, `GR`.
+- `IT` is not created: preview stayed in progress at `0` changes / `0` success / `0` errors after bounded waits and still showed in-progress on the 02:05 EDT recheck; no apply was clicked.
+- `PL`, `CZ`, `RO`, `PT`, and `GR` remain absent and untouched.
+- Next unresolved countries: `FR`, `BE`, `IT`, `PL`, `CZ`, `RO`, `PT`, `GR`.

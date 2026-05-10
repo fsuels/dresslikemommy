@@ -410,6 +410,50 @@ def table_context(table: Any) -> str:
 
 
 def select_table(tables: list[Any], type_value: str) -> Any | None:
+    return select_table_for_role(tables, type_value, "")
+
+
+def context_has_garment(context: str, selected: str) -> bool:
+    text = norm(context)
+    if not text or not selected:
+        return False
+    if selected == "dress":
+        return bool(re.search(r"dress|skirt|vestido|vestito|kleid|robe|jurk|rochie|sukienka|kjole|плать|فستان", text))
+    if selected == "shirt":
+        return bool(re.search(r"shirt|tee|t-shirt|camisa|chemise|hemd|skjorte|koszula|cămașă|camicie|рубаш|قميص", text))
+    if selected == "shorts":
+        return bool(re.search(r"short|shorts|trunk|bermuda|шорт|شورت", text))
+    if selected == "shirtShortsSet":
+        return context_has_garment(text, "shirt") and context_has_garment(text, "shorts")
+    if selected == "romper":
+        return bool(re.search(r"romper|pelele|barboteuse|strampler|pagliaccetto|rampers|baby|bebé|bebe|bébé|الرضيع|بيبي", text))
+    if selected == "pants":
+        return bool(re.search(r"pant|pants|trouser|pantal|hose|broek|bukse|spodnie", text))
+    if selected == "top":
+        return bool(re.search(r"top|haut|topp", text))
+    return False
+
+
+def table_has_compatible_role(table: Any, expected_role: str) -> bool:
+    if not expected_role:
+        return False
+    rows = table_matrix(table)
+    if not rows:
+        return False
+    for row in rows:
+        if not row:
+            continue
+        row_role, _ = parse_role_size(row[0])
+        if row_role and roles_compatible(expected_role, row_role):
+            return True
+    for header in rows[0]:
+        header_role, _ = parse_role_from_header(header)
+        if header_role and roles_compatible(expected_role, header_role):
+            return True
+    return False
+
+
+def select_table_for_role(tables: list[Any], type_value: str, expected_role: str) -> Any | None:
     if not tables:
         return None
     if len(tables) == 1:
@@ -419,10 +463,16 @@ def select_table(tables: list[Any], type_value: str) -> Any | None:
         context = table_context(table)
         context_garment = garment_key(context)
         table_id = norm(table.get("id") or "")
+        if selected and context_has_garment(context, selected):
+            return table
         if selected == "dress" and (context_garment == "dress" or (not context_garment and table_id == "size-chart")):
             return table
         if selected in {"shirt", "shorts", "shirtShortsSet"} and context_garment in {"shirt", "shorts", "shirtShortsSet"}:
             return table
+    if expected_role:
+        for table in tables:
+            if table_has_compatible_role(table, expected_role):
+                return table
     return tables[0]
 
 
@@ -460,7 +510,12 @@ def parse_role_from_header(header: str) -> tuple[str, str]:
     for role_key in ["mother", "father", "girl", "boy", "child", "baby", "adult"]:
         for alias in role_candidates(role_key):
             normalized_alias = norm(alias)
-            if len(normalized_alias) >= 3 and normalized_alias in normalized_label:
+            if len(normalized_alias) < 3:
+                continue
+            if re.fullmatch(r"[a-z0-9]+", normalized_alias):
+                if re.search(rf"(^|[^a-z0-9]){re.escape(normalized_alias)}([^a-z0-9]|$)", normalized_label):
+                    return role_key, label
+            elif normalized_alias in normalized_label:
                 return role_key, label
     return "", ""
 
@@ -521,7 +576,7 @@ def variant_matches_table(variant: dict[str, Any], size_name: str, type_name: st
     type_value = option_value(variant, type_name)
     expected_role = variant_expected_role(variant, size_value, type_value)
     selected_tokens = comparable_size_tokens(size_value)
-    table = select_table(tables, type_value)
+    table = select_table_for_role(tables, type_value, expected_role)
     if not table:
         return False, "no_selected_table"
     for row in table_rows(table):
