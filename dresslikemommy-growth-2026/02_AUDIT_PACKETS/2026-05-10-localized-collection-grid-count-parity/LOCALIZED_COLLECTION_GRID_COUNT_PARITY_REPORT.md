@@ -49,6 +49,8 @@ After the first live fix, the owner asked to monitor other localized collections
 
 Sampling the missing Spanish products confirmed a translated taxonomy-label issue. The same products were English `Family Matching / Family Tops`, but Spanish PDP data exposed `Papá y yo / Camisetas de papá y yo`. The final theme guard now lets the stable branch tag override contradictory localized `category1` values for the current branch, instead of trusting the translated metafield label blindly.
 
+Follow-up Spanish translation cleanup was completed after this theme fix. Active family-top products now use `Emparejamiento familiar` / `Tops familiares` for the affected Spanish taxonomy translations, and the public Spanish Type facet no longer contains `Camisetas de papá y yo`.
+
 ## Verification
 
 - `shopify theme check --path . --fail-level error` passed: 264 files inspected, no offenses.
@@ -88,8 +90,8 @@ Raw local Python requests to the public storefront remained temporarily blocked 
 
 ## Status
 
-Solved by scoped live theme patch, broader localized collection monitoring, live snippet pullback, and public Spanish readbacks.
+Solved by scoped live theme patch, broader localized collection monitoring, live snippet pullback, public Spanish readbacks, and follow-up active-product Spanish taxonomy translation cleanup.
 
 ## Next
 
-If future collection/product taxonomy translations are added, keep the collection grid filter comparing canonical internal keys or stable tags, not translated customer-facing labels. The underlying Spanish product taxonomy translation for some family tops still labels the Type facet as `Camisetas de papá y yo`; product visibility is fixed, but a later Shopify Admin translation cleanup could polish that customer-facing filter label.
+If future collection/product taxonomy translations are added, keep the collection grid filter comparing canonical internal keys or stable tags, not translated customer-facing labels. If archived family-top products are republished, recheck their Spanish taxonomy translations before activation; the active product cleanup is documented in `../2026-05-10-spanish-family-tops-taxonomy-cleanup/SPANISH_FAMILY_TOPS_TAXONOMY_CLEANUP_REPORT.md`.

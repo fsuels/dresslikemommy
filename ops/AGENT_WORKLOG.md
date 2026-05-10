@@ -33282,6 +33282,25 @@ Next:
 - After the upload/preview lane is clean, safest remaining order is clean unattempted files first: `PL`, `CZ`, `RO`, `PT`, `GR`; then `IT` after stale preview clears; then `FR` with a fresh completed preview; then `BE` last after upload-throttle cooldown.
 - Every remaining country needs absent readback, preview/download/validate `88/88 # OK`, apply/download/validate `88/88 # OK`, and campaign RPC readback.
 
+2026-05-10 - Localized size-chart browser hard-refresh recheck
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-localized-size-chart-hard-refresh-recheck
+
+Why:
+- Owner asked to try the reported product page again and hard-refresh once because the live theme was serving the fixed JS.
+
+What changed:
+- No new theme code, Shopify Admin data, product data, market, checkout, feed, ad, campaign, conversion, payment, or order changes were made.
+- Documentation was updated only to record the browser-cache readback.
+
+Readback:
+- Chrome DevTools hard-refresh of the already-open stale tab initially kept an old `product-desktop-ux.js` URL and still showed the mixed `Comparar todos los tamaños` fallback.
+- Fresh storefront HTML requests returned the updated `product-desktop-ux.js` asset URL.
+- After navigating the tab with a one-time cache-buster and reloading with cache ignored, the Spanish owner URL rendered selected `Niño 6T/130`, summary `Comparar tamaños de familia`, no mixed fallback, and no console errors.
+
+Evidence:
+- Updated `ops/PROBLEM_TRACKER.md` under `PROB-2026-05-10-LOCALIZED-SIZE-CHARTS`.
+- Updated `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-localized-product-size-chart-variant-row-repair/FAMILY_DRESS_TSHIRT_SIZE_GUIDE_REPAIR_REPORT.md`.
+
 2026-05-10 - Spanish family-tops taxonomy translation cleanup
 AGENT_CONTINUITY_ANCHOR: 2026-05-10-spanish-family-tops-taxonomy-cleanup
 

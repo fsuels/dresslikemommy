@@ -50,8 +50,8 @@ No Shopify Admin product data, product status, handle, variants, prices, invento
   - grouped role cards present, including `Niño`
   - one-big `Comparar todos` fallback absent
   - no `Product desktop UX init failed`, `ReferenceError`, or `TypeError`
+- Owner-requested browser hard-refresh follow-up: Chrome DevTools first showed the stale tab still loading an old `product-desktop-ux.js` asset and rendering `Comparar todos los tamaños`. Fresh storefront HTML then returned the updated asset URL; after a cache-busted navigation plus cache-ignored reload, the Spanish owner URL rendered selected `Niño 6T/130`, summary `Comparar tamaños de familia`, no mixed fallback, and no console errors.
 
 ## Residual Risk
 
 The exact English route worked before the patch and the Spanish route passed after the patch. Other published locales are covered by Admin/API row-mapping audit, but only Spanish was browser-rendered publicly in this follow-up to avoid excessive public probing and Shopify rate limiting.
-
