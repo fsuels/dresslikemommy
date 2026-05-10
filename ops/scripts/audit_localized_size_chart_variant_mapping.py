@@ -316,7 +316,7 @@ def comparable_size_tokens(value: str) -> set[str]:
         tokens.add(f"age-max:{toddler_value}")
         tokens.add(f"age-range:{max(1, toddler_value - 1)}-{toddler_value}")
     age_range = re.search(
-        r"(?:^|[^0-9])(\d{1,2})\s*-\s*(\d{1,2})\s*(?:t|y|yr|yrs|year|years|ano|anos|año|años|an|ans|jahr|jahre|anni|anno|jaar|år|lat|lata|ani|лет|года|год|سنة|سنوات)?(?:\b|$)",
+        r"(?:^|[^0-9])(\d{1,2})\s*-\s*(\d{1,2})\s*(?:t|y|yr|yrs|year|years|ano|anos|año|años|an|ans|jahr|jahre|anni|anno|jaar|år|lat|lata|ani|лет|года|год|سنة|سنوات|歳|才|岁|歲|세|년)?(?:\b|$)",
         text,
         flags=re.I,
     )
@@ -329,7 +329,7 @@ def comparable_size_tokens(value: str) -> set[str]:
             tokens.add(f"age-range:{age_min}-{age_max}")
             tokens.add(f"toddler:{age_max}t")
     single_age = re.search(
-        r"(?:^|[^0-9])(\d{1,2})\s*(?:t|y|yr|yrs|year|years|ano|anos|año|años|an|ans|jahr|jahre|anni|anno|jaar|år|lat|lata|ani|лет|года|год|سنة|سنوات)(?:\b|$)",
+        r"(?:^|[^0-9])(\d{1,2})\s*(?:t|y|yr|yrs|year|years|ano|anos|año|años|an|ans|jahr|jahre|anni|anno|jaar|år|lat|lata|ani|лет|года|год|سنة|سنوات|歳|才|岁|歲|세|년)(?:\b|$)",
         text,
         flags=re.I,
     )
@@ -346,6 +346,11 @@ def comparable_size_tokens(value: str) -> set[str]:
     if nums:
         tokens.add("n:" + "-".join(num.replace(",", ".").rstrip("0").rstrip(".") for num in nums))
     return tokens
+
+
+def adult_size_rank(token: str) -> int | None:
+    ranks = {"xs": 1, "s": 2, "m": 3, "l": 4, "xl": 5, "2xl": 6, "3xl": 7, "4xl": 8}
+    return ranks.get(token)
 
 
 def numeric_token_values(tokens: set[str], prefix: str) -> list[float]:
@@ -367,7 +372,13 @@ def size_tokens_compatible(selected_tokens: set[str], row_tokens: set[str]) -> b
     selected_adults = {token for token in selected_tokens if token.startswith("adult:")}
     row_adults = {token for token in row_tokens if token.startswith("adult:")}
     if selected_adults or row_adults:
-        return bool(selected_adults & row_adults)
+        if selected_adults & row_adults:
+            return True
+        selected_ranks = [adult_size_rank(token.split(":", 1)[1]) for token in selected_adults]
+        row_ranks = [adult_size_rank(token.split(":", 1)[1]) for token in row_adults]
+        selected_ranks = [rank for rank in selected_ranks if rank is not None]
+        row_ranks = [rank for rank in row_ranks if rank is not None]
+        return bool(selected_ranks and row_ranks and min(abs(selected - row) for selected in selected_ranks for row in row_ranks) <= 2)
 
     selected_ages = numeric_token_values(selected_tokens, "age-max:") + numeric_token_values(selected_tokens, "toddler:")
     row_ages = numeric_token_values(row_tokens, "age-max:") + numeric_token_values(row_tokens, "toddler:")

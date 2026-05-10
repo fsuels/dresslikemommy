@@ -33281,3 +33281,31 @@ Next:
 - Do not start more Ads uploads while the IT preview remains in-progress.
 - After the upload/preview lane is clean, safest remaining order is clean unattempted files first: `PL`, `CZ`, `RO`, `PT`, `GR`; then `IT` after stale preview clears; then `FR` with a fresh completed preview; then `BE` last after upload-throttle cooldown.
 - Every remaining country needs absent readback, preview/download/validate `88/88 # OK`, apply/download/validate `88/88 # OK`, and campaign RPC readback.
+
+2026-05-10 - Spanish family-tops taxonomy translation cleanup
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-spanish-family-tops-taxonomy-cleanup
+
+Why:
+- Owner requested cleanup of the underlying Spanish taxonomy translations for the family-top products after the localized collection count fix, so the Spanish facets match the category cleanly instead of showing Daddy & Me-style labels.
+
+What changed:
+- Opened and closed a narrow Shopify Admin translation lane in `ops/AGENT_COORDINATION.md`.
+- Registered `30` Spanish native translation rows for `15` active products in the Shopify `family-tops` collection:
+  - `custom.category1`: `Family Matching` -> `Emparejamiento familiar`
+  - `custom.subcategory`: `Family Tops` -> `Tops familiares`
+- Created report `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-spanish-family-tops-taxonomy-cleanup/SPANISH_FAMILY_TOPS_TAXONOMY_CLEANUP_REPORT.md` and raw write/readback evidence `spanish_family_tops_taxonomy_translation_cleanup.json`.
+- Updated `PROB-2026-05-10-LOCALIZED-COLLECTION-GRID-COUNT` with the follow-up translation cleanup.
+
+Verification:
+- Shopify Admin translation mutation registered `30` rows and readback passed `30/30`.
+- Admin post-write active collection scan found `26` active family-tops products and `0` active `Papá y yo` / `Camisetas de papá y yo` bad translation rows.
+- Public Spanish `/es/collections/family-tops?page=1&sort_by=created-descending&cache_bust=taxonomy-cleanup-20260510` returned HTTP `200`, `26` product cards, and a Type facet region with `Tops (8)` plus `Tops familiares (18)`; `Camisetas de papá y yo` count was `0`.
+- Public Spanish PDP taxonomy JSON for `eternal-love-family-matching-t-shirts-colorful-heart-design` read `category1=Emparejamiento familiar` and `subcategory=Tops familiares`.
+- The only remaining `Papá y yo` occurrences on the sampled PDP were the normal Spanish navigation links to `/es/collections/daddy-me`, not product taxonomy.
+- `git diff --check` passed for the touched ops/evidence files.
+
+Guardrails:
+- No Shopify product source/status/publication/price/variant/inventory/handle/image/tag/SEO, collection membership, Shopify theme, Merchant, Google Ads, Pinterest, GA4/GTM, feed, budget, bid, product-scope, product-group, conversion, checkout payment, or order changes.
+
+Next:
+- Closed for active family-tops products. If archived family-top products are republished later, recheck their Spanish taxonomy translations before activation because archived rows were intentionally left untouched.
