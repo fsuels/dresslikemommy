@@ -191,6 +191,21 @@
           </div>
         {%- endif -%}
 
+        {%- if localization.available_countries.size > 0 -%}
+          <div class="footer__shipping-checker{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            <div class="footer__shipping-checker-copy">
+              <p class="footer__shipping-checker-eyebrow">{{ 'products.shipping_country.eyebrow' | t }}</p>
+              <p class="footer__shipping-checker-heading">
+                {{ 'products.shipping_country.checker_footer_heading' | t }}
+              </p>
+              <p class="footer__shipping-checker-text">
+                {{ 'products.shipping_country.checker_footer_text' | t }}
+              </p>
+            </div>
+            {% render 'shipping-country-checker-trigger', context: 'footer' %}
+          </div>
+        {%- endif -%}
+
         {%- if journal_blog != blank and section.settings.show_journal_link -%}
           <div class="footer-block grid__item footer-block--journal{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
             <h2 class="footer-block__heading inline-richtext">{{ section.settings.journal_link_label | default: 'Style Journal' }}</h2>

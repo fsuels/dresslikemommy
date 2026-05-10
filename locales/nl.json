@@ -169,7 +169,7 @@
       },
       "view_full_details": "Alle details bekijken",
       "include_taxes": "Inclusief btw.",
-      "shipping_policy_html": "Verzendopties en kosten worden weergegeven bij het afrekenen na het invoeren van het adres. <a href=\"{{ link }}\">Verzendbeleid</a>",
+      "shipping_policy_html": "Standaard verzending is inbegrepen in de productprijzen voor ondersteunde landen. Exacte methoden, leveringsschattingen en eventuele express-upgrades worden na adresinvoer bij het afrekenen getoond. <a href=\"{{ link }}\">Verzendbeleid</a>",
       "choose_options": "Opties kiezen",
       "choose_product_options": "Opties kiezen voor {{ product_name }}",
       "value_unavailable": "{{ option_value }} - Niet beschikbaar",
@@ -230,7 +230,7 @@
         "write_review": "Schrijf een recensie",
         "write_review_title": "Schrijf een recensie"
       },
-      "free_shipping_all_orders": "Verzendopties getoond bij het afrekenen",
+      "free_shipping_all_orders": "Standaard verzending inbegrepen",
       "selected_size_label": "Maat: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Details",
@@ -279,17 +279,17 @@
       "secure_checkout": "Veilig afrekenen",
       "ssl_encrypted": "SSL-gecodeerd",
       "returns": "Retourperiode van 30 dagen",
-      "free_shipping": "Verzending getoond bij het afrekenen",
+      "free_shipping": "Standaard verzending inbegrepen",
       "trusted_since": "Familiematching eenvoudig gemaakt",
       "assistance_note": "Hulp nodig? Wij antwoorden doorgaans binnen één werkdag."
     },
     "additional_info": {
       "shipping_title": "Verzending en levering",
-      "free_shipping_label": "Verzendopties",
+      "free_shipping_label": "Standaard verzending inbegrepen",
       "estimated_delivery": "Geschatte levering:",
       "standard_delivery_window": "12-15 werkdagen",
       "premium_delivery_window": "Express-opties worden weergegeven bij het afrekenen, indien beschikbaar.",
-      "faster_shipping_prefix": "Express-opties kunnen bij het afrekenen beschikbaar zijn waar ondersteund.",
+      "faster_shipping_prefix": "Expressopties kunnen bij het afrekenen beschikbaar zijn waar ondersteund.",
       "free_premium_shipping": "Express verzending",
       "return_policy_title": "Retourbeleid",
       "return_policy_line_1": "Vanaf de levering heeft u 30 dagen de tijd om een ​​retour of omruiling aan te vragen.",
@@ -304,6 +304,37 @@
       "secure_logistics_line_2": "Gebruik de trackinglink voor uw bestelling voor de laatste updates van de vervoerder. Internationale bestellingen kunnen onderworpen zijn aan lokale belastingen, heffingen of douanekosten die door de vervoerder of lokale overheid worden geïnd.",
       "secure_privacy_title": "Veilige privacy",
       "secure_privacy_description": "Het beschermen van uw privacy is belangrijk voor ons! U kunt er zeker van zijn dat uw gegevens veilig en ongecompromitteerd worden bewaard. Wij verkopen uw persoonlijke gegevens niet voor geld en zullen uw gegevens alleen gebruiken in overeenstemming met ons privacy- en cookiebeleid om onze diensten aan u te leveren en te verbeteren."
+    },
+    "shipping_country": {
+      "product_country": "Verzending naar {{ country }}",
+      "product_country_with_currency": "Verzending naar {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "Verzendland bevestigd bij het afrekenen",
+      "product_note_html": "Standaard verzending is inbegrepen in de productprijzen waar een standaardmethode beschikbaar is. Bij het afrekenen zie je de exacte methode, leveringsschatting en eventuele express-upgrade vóór betaling. <a href=\"{{ link }}\">Bekijk alle huidige verzendlanden</a>.",
+      "eyebrow": "Controle verzendland",
+      "page_title_country": "Ja, we verzenden momenteel naar {{ country }}",
+      "page_title_default": "Huidige verzendlanden",
+      "page_summary": "Standaard verzending is inbegrepen in de productprijzen voor landen en regio’s die beschikbaar zijn in onze landenkeuze bij het afrekenen. Vul je volledige adres in om de exacte methode, leveringsschatting en eventuele express-upgrade vóór betaling te bevestigen.",
+      "page_note_html": "Als je land hier niet staat, of als het afrekenen geen verzendmethode toont voor je exacte adres, mail dan vóór het bestellen naar <a href=\"mailto:{{ email }}\">{{ email }}</a>.",
+      "schema_standard_shipping": "Standaard verzending inbegrepen",
+      "country_list_heading": "Landen waarnaar we momenteel verzenden ({{ count }})",
+      "country_list_highlight": "Elk land in deze lijst is ingeschakeld bij het afrekenen. Je geselecteerde land wordt gemarkeerd wanneer Shopify het kan detecteren.",
+      "checker_trigger": "Verzenden we naar mijn land?",
+      "checker_trigger_meta": "{{ count }} landen actief",
+      "checker_trigger_meta_country": "{{ country }} geselecteerd / {{ count }} landen",
+      "checker_footer_heading": "Controleer verzending voordat je bestelt",
+      "checker_footer_text": "Zoek in de actuele checkout-landenlijst en bevestig je bestemming in enkele seconden.",
+      "checker_title": "Verzenden we naar mijn land?",
+      "checker_summary": "Ja, als je land hieronder staat. Deze {{ count }} landen en regio’s zijn nu actief in checkout.",
+      "checker_current_country": "Je huidige landselectie is {{ country }}.",
+      "checker_search_label": "Land of regio zoeken",
+      "checker_search_placeholder": "Typ land, code of valuta",
+      "checker_result_label": "landen weergegeven",
+      "checker_selected_badge": "Geselecteerd",
+      "checker_available_badge": "We verzenden hier",
+      "checker_no_results": "Geen overeenkomend land gevonden in de huidige checkout-lijst. Probeer een andere spelling of mail ons voordat je bestelt.",
+      "checker_note_html": "Standaardverzending is inbegrepen in de productprijzen wanneer een standaardmethode beschikbaar is. Checkout bevestigt de exacte methode, leveringsschatting en eventuele expressoptie vóór betaling. <a href=\"{{ link }}\">Verzenddetails</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Landchecker sluiten",
+      "checker_result_single_label": "land weergegeven"
     }
   },
   "templates": {
@@ -374,10 +405,10 @@
       "empty": "Je winkelwagen is leeg",
       "cart_error": "Er is een fout opgetreden bij het bijwerken van je winkelwagen. Probeer het opnieuw.",
       "cart_quantity_error_html": "Je kunt maar {{ quantity }} van dit artikel toevoegen aan je winkelwagen.",
-      "taxes_and_shipping_policy_at_checkout_html": "Belastingen, kortingen en verzendkosten worden berekend bij het afrekenen. <a href=\"{{ link }}\">Verzendbeleid</a>",
-      "taxes_included_but_shipping_at_checkout": "Belasting inbegrepen. Kortingen en verzendkosten berekend bij het afrekenen.",
-      "taxes_included_and_shipping_policy_html": "Belasting inbegrepen. Kortingen en verzendkosten berekend bij het afrekenen. <a href=\"{{ link }}\">Verzendbeleid</a>",
-      "taxes_and_shipping_at_checkout": "Belastingen, kortingen en verzendkosten worden berekend bij het afrekenen.",
+      "taxes_and_shipping_policy_at_checkout_html": "Belastingen en kortingen worden bij het afrekenen berekend. Standaard verzending is inbegrepen waar een standaardmethode beschikbaar is; express-upgrades worden bij het afrekenen getoond. <a href=\"{{ link }}\">Verzendbeleid</a>",
+      "taxes_included_but_shipping_at_checkout": "Belasting inbegrepen. Kortingen worden bij het afrekenen berekend. Standaard verzending is inbegrepen waar een standaardmethode beschikbaar is; express-upgrades worden bij het afrekenen getoond.",
+      "taxes_included_and_shipping_policy_html": "Belasting inbegrepen. Kortingen worden bij het afrekenen berekend. Standaard verzending is inbegrepen waar een standaardmethode beschikbaar is; express-upgrades worden bij het afrekenen getoond. <a href=\"{{ link }}\">Verzendbeleid</a>",
+      "taxes_and_shipping_at_checkout": "Belastingen en kortingen worden bij het afrekenen berekend. Standaard verzending is inbegrepen waar een standaardmethode beschikbaar is; express-upgrades worden bij het afrekenen getoond.",
       "headings": {
         "product": "Product",
         "price": "Prijs",
@@ -402,18 +433,19 @@
       "trust": {
         "secure_checkout": "Veilig afrekenen",
         "ssl_encrypted": "SSL-gecodeerd",
-        "free_shipping": "Verzendopties",
+        "free_shipping": "Verzending inbegrepen",
         "returns": "30 dagen retour",
         "secure": "Zeker",
         "encrypted": "Gecodeerd",
-        "free_ship": "Verzending"
+        "free_ship": "Verzending inbegrepen"
       },
       "discount_code_toggle": "Heb je een kortingscode?",
       "shipping_label": "Verzending",
-      "shipping_free": "Berekend bij het afrekenen",
+      "shipping_free": "Standaard inbegrepen",
       "popular_with_families": "Populair bij gezinnen",
       "recently_viewed": "Recent bekeken",
-      "savings_html": "Je bespaart <strong>{{ amount }}</strong>"
+      "savings_html": "Je bespaart <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Verzending naar {{ country }}. Standaard verzending is inbegrepen; de exacte leveringsschatting en eventuele express-upgrade verschijnen vóór betaling."
     },
     "footer": {
       "payment": "Betaalmethoden"
@@ -456,7 +488,8 @@
       "carousel": "Carrousel",
       "announcement": "Aankondiging",
       "announcement_bar": "Aankondigingsbalk",
-      "default_promo": "GRATIS VERZENDING VOOR ALLE BESTELLINGEN | FAMILIELOOKS MAKKELIJK GEMAAKT | VEILIG AFREKENEN"
+      "default_promo": "STANDAARD VERZENDING INBEGREPEN | EXPRESSOPTIES BIJ AFREKENEN | VEILIG AFREKENEN",
+      "shipping_country_promo": "STANDAARD VERZENDING NAAR {{ country }} INBEGREPEN | EXPRESSOPTIES BIJ AFREKENEN | VEILIG AFREKENEN"
     },
     "quick_order_list": {
       "product_total": "Productsubtotaal",

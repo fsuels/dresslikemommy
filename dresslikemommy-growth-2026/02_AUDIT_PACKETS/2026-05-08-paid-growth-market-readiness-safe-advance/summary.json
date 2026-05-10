@@ -1,0 +1,129 @@
+{
+  "anchor": "AGENT_CONTINUITY_ANCHOR: 2026-05-08-paid-growth-market-readiness-safe-advance",
+  "decision": "NO_LIVE_SPEND_READY__HELD_ADS_CSV_READY_FOR_APPROVED_PAUSED_PREVIEW__MARKET_QA_AND_SPEND_GATES_SHARPENED",
+  "guardrails_preserved": [
+    "no external account writes",
+    "no live spend",
+    "no campaign import/create/enablement",
+    "no campaign budget/bid/status changes",
+    "no PMax enable",
+    "no Standard Shopping changes",
+    "no product-scope/feed-label/product-group changes",
+    "no conversion-goal changes",
+    "no Merchant uploads/source syncs/source edits",
+    "no Shopify live product-data changes",
+    "no Pinterest draft/campaign/tag/CAPI/product-group/audience/budget/bid writes",
+    "no checkout payment or order",
+    "no theme publish",
+    "no credential changes",
+    "no CAPTCHA bypass"
+  ],
+  "subagents": {
+    "ads_held_csv": "completed_pass",
+    "market_readiness": "completed_checkout_pending",
+    "merchant_pinterest_gates": "completed_waiting_on_exact_approval",
+    "economics_reporting_creative": "completed_local_ready"
+  },
+  "held_ads_csv": {
+    "status": "PASS",
+    "rows": 1496,
+    "campaigns": 17,
+    "countries": 17,
+    "ad_groups": 170,
+    "keywords": 510,
+    "negative_keywords": 629,
+    "ads": 170,
+    "all_importable_entities_paused": true,
+    "max_cpc": 0.15,
+    "cpc_values": [
+      0.1,
+      0.12,
+      0.15
+    ],
+    "us_campaign_23827590655_hits": 0,
+    "vacation_family_hits": 0,
+    "bad_beach_handle_hits": 0,
+    "pmax_standard_shopping_product_feed_conversion_hits": 0,
+    "evidence": "lanes/ads-held-csv/HELD_ADS_CSV_VALIDATION.md"
+  },
+  "market_readiness": {
+    "live_spend_ready_non_us_markets": 0,
+    "approval_gated_with_checkout_or_rate_evidence": [
+      "GB",
+      "CA",
+      "AU",
+      "ES",
+      "IT",
+      "RO",
+      "PT"
+    ],
+    "checkout_pending": [
+      "CH",
+      "DK",
+      "DE",
+      "NL",
+      "SE",
+      "FR",
+      "BE",
+      "PL",
+      "CZ",
+      "GR"
+    ],
+    "ch_product_detector_status": "FALSE_POSITIVE_OR_WRONG_SURFACE_FOR_PRODUCT_LANDING__CHECKOUT_PENDING",
+    "evidence": [
+      "lanes/market-readiness/INTERNATIONAL_MARKET_READINESS_SCORECARD.md",
+      "lanes/market-readiness/CH_VISUAL_READBACK_PARENT_NOTE.md"
+    ]
+  },
+  "merchant": {
+    "us_en_age_group": "SOLVED_DO_NOT_REDO",
+    "us_es_age_group": "OWNER_APPROVAL_REQUIRED_FOR_LIVE_FIX",
+    "source_id": "10627981690",
+    "affected_paid_item_ids": 625,
+    "affected_issue_rows": 1250,
+    "preferred_next_path": "Path A age_group-only supplemental source joined to source 10627981690 after exact preview",
+    "evidence": "lanes/merchant-pinterest-gates/MERCHANT_PINTEREST_APPROVAL_GATES.md"
+  },
+  "pinterest": {
+    "event_quality": "Fair",
+    "paused_us_draft_status": "OWNER_APPROVAL_REQUIRED",
+    "clean_scope_rows": 342,
+    "excluded_variant_rows": 4,
+    "live_spend_ready": false,
+    "evidence": "lanes/merchant-pinterest-gates/MERCHANT_PINTEREST_APPROVAL_GATES.md"
+  },
+  "standard_shopping": {
+    "fresh_live_metrics_readback": "CREDENTIALS_REQUIRED",
+    "campaign_id": "23802638621",
+    "last_usable_evidence": "2026-05-06 standard shopping cost-control review",
+    "new_problem_id": "PROB-2026-05-08-STANDARD-SHOPPING-LIVE-METRICS-READBACK",
+    "evidence": "lanes/raw/STANDARD_SHOPPING_LIVE_READBACK_GATE.md"
+  },
+  "economics": {
+    "aov_usd": 70.0,
+    "target_roas": 6.5,
+    "max_cpa_usd": 10.77,
+    "current_held_search_cpc_usd": 0.15,
+    "required_purchase_cvr_at_0_15_cpc": 0.0139,
+    "zero_purchase_hard_pause_usd": 16.0,
+    "evidence": "lanes/economics-reporting/ECONOMICS_REPORTING_NEXT_CONTROL.md"
+  },
+  "creative": {
+    "remaining_safe_themes": [
+      "Mommy & Me Dresses",
+      "Family Matching",
+      "Matching Pajamas",
+      "Matching Swimwear",
+      "Daddy & Me"
+    ],
+    "excluded_theme": "Vacation Family",
+    "evidence": "lanes/creative-copy/CLAIM_SAFE_CREATIVE_REFRESH.md"
+  },
+  "next_best_actions": [
+    "Request exact paused non-US Google Search TEST BUILD approval and use the held 1496-row CSV if building before Shopify metadata repair",
+    "Request exact narrow Shopify SEO/social metadata repair approval for product 7227378892897 if restoring Vacation Family",
+    "Get logged-in Google Ads access or read-only export for fresh Standard Shopping metrics",
+    "Run isolated-browser no-payment CH checkout-to-shipping QA after cooldown, then DK if CH is clean",
+    "Request exact Merchant US/es Path A approval or paused Pinterest US draft approval only as separate gates"
+  ]
+}

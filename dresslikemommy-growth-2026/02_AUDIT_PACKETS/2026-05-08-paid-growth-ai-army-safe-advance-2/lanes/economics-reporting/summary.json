@@ -1,0 +1,99 @@
+{
+  "decision": "LOCAL_READY_NO_EXTERNAL_WRITES",
+  "lane": "economics-reporting",
+  "packet": "2026-05-08-paid-growth-ai-army-safe-advance-2",
+  "target_roas": 6.5,
+  "planning_aov_usd": 70.0,
+  "planning_max_cpa_usd": 10.77,
+  "conservative_aov_usd": 63.25,
+  "conservative_max_cpa_usd": 9.73,
+  "non_marketing_cost_pct": 50,
+  "first_72_hour_core_rules": {
+    "soft_review_spend_usd": 5.0,
+    "target_cpa_decision_band_usd": "9.49-10.77",
+    "hard_pause_zero_purchase_spend_usd": 16.0,
+    "standard_shopping_zero_purchase_rollback_band_usd": "16-20",
+    "minimum_purchase_count_before_scale": 3,
+    "borderline_scale_range": "10%-20%",
+    "clean_winner_scale_range": "20%-30%",
+    "minimum_days_between_scale": "3-7"
+  },
+  "cpc_required_cvr_at_70_aov": {
+    "0.04": 0.37,
+    "0.08": 0.74,
+    "0.10": 0.93,
+    "0.12": 1.11,
+    "0.15": 1.39,
+    "0.20": 1.86,
+    "0.25": 2.32
+  },
+  "creative_guardrails": {
+    "safe_google_themes": [
+      "family matching",
+      "mommy and me",
+      "daddy and me",
+      "vacation family",
+      "pajamas",
+      "swimwear",
+      "choose sizes separately"
+    ],
+    "safe_pinterest_themes": [
+      "visual planning ideas",
+      "family photos",
+      "vacations",
+      "birthdays",
+      "holidays",
+      "beach and pool",
+      "warm revisit without urgency"
+    ],
+    "blocked_claim_families": [
+      "shipping speed",
+      "physical inventory",
+      "popularity or social proof",
+      "reviews or ratings",
+      "promotions or discounts",
+      "availability guarantees",
+      "fit or return guarantees",
+      "catalog size claims",
+      "free shipping without market proof",
+      "cart urgency"
+    ]
+  },
+  "inputs_read": [
+    "AGENTS.md",
+    "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+    "ops/GROWTH_NORTH_STAR.md",
+    "ops/GOOGLE_ADS_CONTINUITY.md",
+    "ops/AGENT_COORDINATION.md",
+    "ops/PROBLEM_TRACKER.md",
+    "2026-05-08 ROAS, creative, and measurement packets"
+  ],
+  "files": [
+    "ECONOMICS_REPORTING_OPERATOR_PACK.md",
+    "cpa_cpc_cvr_guardrails.csv",
+    "first_72_hour_rules.csv",
+    "weekly_reporting_columns.csv",
+    "claim_safe_creative_themes.csv",
+    "unsupported_claims_blacklist.csv",
+    "summary.json"
+  ],
+  "guardrails_preserved": {
+    "external_account_writes": false,
+    "live_spend_or_enablement": false,
+    "campaign_budget_bid_status_changes": false,
+    "pmax_or_standard_shopping_changes": false,
+    "product_scope_feed_label_product_group_changes": false,
+    "conversion_goal_changes": false,
+    "merchant_uploads_or_source_edits": false,
+    "shopify_live_product_data_changes": false,
+    "pinterest_writes": false,
+    "checkout_payment_or_order": false,
+    "theme_publish": false
+  },
+  "residual_risks": [
+    "Local controls do not prove live Google or Pinterest policy approval.",
+    "Live activation still needs exact owner approval and just-in-time readbacks.",
+    "Merchant US/es age_group and Pinterest Event Quality remain separate approval-gated lanes.",
+    "Country-level ROAS needs currency normalization for non-USD markets, especially RO/RON."
+  ]
+}

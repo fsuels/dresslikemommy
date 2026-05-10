@@ -1,0 +1,73 @@
+{
+  "date": "2026-05-08",
+  "lane": "economics-reporting",
+  "decision": "LOCAL_READY_NO_EXTERNAL_WRITES",
+  "scope_guardrails": [
+    "local artifact only",
+    "no external account writes",
+    "no Ads import or preview",
+    "no live spend",
+    "no Shopify, Merchant, Pinterest, theme, feed, product-data, budget, bid, status, product-scope, feed-label, product-group, or conversion-goal changes"
+  ],
+  "planning_math": {
+    "aov_usd": 70.0,
+    "target_roas": 6.5,
+    "target_roas_percent": 650,
+    "max_cpa_usd": 10.77,
+    "non_marketing_cost_model_percent": 50,
+    "gross_profit_before_ads_usd": 35.0,
+    "contribution_after_target_cpa_before_returns_usd": 24.23,
+    "conservative_decision_band_usd": [9.49, 9.73],
+    "zero_purchase_hard_pause_usd": 16.0
+  },
+  "cvr_to_max_cpc": [
+    {"purchase_cvr": 0.005, "max_cpc_usd": 0.05, "operator_read": "ultra-low CPC discovery only"},
+    {"purchase_cvr": 0.0075, "max_cpc_usd": 0.08, "operator_read": "lower-CPC discovery ceiling after readiness gates"},
+    {"purchase_cvr": 0.01, "max_cpc_usd": 0.11, "operator_read": "tight exact/phrase tests"},
+    {"purchase_cvr": 0.0125, "max_cpc_usd": 0.13, "operator_read": "watchlist and broader EU tests"},
+    {"purchase_cvr": 0.0139, "max_cpc_usd": 0.15, "operator_read": "current held Search packet cap"},
+    {"purchase_cvr": 0.015, "max_cpc_usd": 0.16, "operator_read": "clean exact/phrase threshold"},
+    {"purchase_cvr": 0.02, "max_cpc_usd": 0.22, "operator_read": "upper band only after proof"},
+    {"purchase_cvr": 0.025, "max_cpc_usd": 0.27, "operator_read": "strong buyer intent; scale gradually"}
+  ],
+  "cpc_to_required_cvr": [
+    {"cpc_usd": 0.04, "required_cvr": 0.0037, "clicks_per_target_cpa": 269},
+    {"cpc_usd": 0.08, "required_cvr": 0.0074, "clicks_per_target_cpa": 135},
+    {"cpc_usd": 0.10, "required_cvr": 0.0093, "clicks_per_target_cpa": 108},
+    {"cpc_usd": 0.12, "required_cvr": 0.0111, "clicks_per_target_cpa": 90},
+    {"cpc_usd": 0.15, "required_cvr": 0.0139, "clicks_per_target_cpa": 72},
+    {"cpc_usd": 0.20, "required_cvr": 0.0186, "clicks_per_target_cpa": 54},
+    {"cpc_usd": 0.25, "required_cvr": 0.0232, "clicks_per_target_cpa": 43}
+  ],
+  "zero_purchase_rules": [
+    {"trigger": "about_5_usd_spend", "condition": "weak terms, irrelevant products, or no qualified engagement", "action": "pause_or_narrow_smallest_unit"},
+    {"trigger": "9.49_to_9.73_usd_spend", "condition": "0 purchases in weaker international or uncertain evidence lane", "action": "pause_narrow_or_owner_decision"},
+    {"trigger": "10.77_usd_spend", "condition": "0 purchases in clean evidence lane", "action": "pause_narrow_or_owner_decision"},
+    {"trigger": "16_usd_spend", "condition": "0 purchases", "action": "hard_pause_smallest_unit"},
+    {"trigger": "2_purchases", "condition": "CPA above 10.77 or ROAS below 650 percent", "action": "hold_reduce_or_narrow_no_scale"},
+    {"trigger": "3_plus_purchases", "condition": "CPA at or below 10.77, clean primary purchase value, clean terms", "action": "eligible_for_cautious_scale_review"}
+  ],
+  "first_72_hour_cadence": [
+    {"window": "preflight", "review": ["approval", "final_urls", "country_parameter", "purchase_conversion_value", "catalog_status", "checkout_currency", "blocked_themes"], "decision": "keep_paused_if_any_required_readback_is_stale_or_missing"},
+    {"window": "0-12_hours", "review": ["spend", "cpc", "impressions", "early_search_terms", "country_currency", "policy_status"], "decision": "stop_obvious_wrong_country_wrong_theme_or_policy_destination_failures"},
+    {"window": "12-24_hours", "review": ["terms", "products", "qualified_engagement"], "decision": "around_5_usd_with_weak_terms_or_no_engagement_pause_or_narrow"},
+    {"window": "24-48_hours", "review": ["purchases", "cpa", "roas", "aov", "search_terms", "checkout_evidence", "catalog_status"], "decision": "9.49_to_10.77_usd_with_zero_purchases_pause_narrow_or_owner_decision"},
+    {"window": "48-72_hours", "review": ["purchase_value", "cpa", "roas", "country_split", "product_theme_split", "return_risk"], "decision": "16_usd_with_zero_purchases_hard_pause; scale_only_with_3_plus_clean_purchases"}
+  ],
+  "market_sequence": [
+    {"sequence": "governed_baseline", "markets": ["US"], "posture": "do_not_duplicate_us_or_change_standard_shopping"},
+    {"sequence": "first_paused_non_us_build_candidates", "markets": ["GB", "CA", "AU"], "posture": "paused_infra_candidate; no_live_spend_ready"},
+    {"sequence": "localized_paused_candidates", "markets": ["ES", "IT", "RO", "PT"], "posture": "country_qualified_localized_urls_only; RO_requires_RON_normalization"},
+    {"sequence": "high_value_watchlist", "markets": ["CH", "DK"], "posture": "paused_english_shell_only_until_checkout_language_catalog_tracking_pass"},
+    {"sequence": "broader_ecommerce_qa", "markets": ["DE", "NL", "SE", "FR", "BE"], "posture": "paused_english_shell_only_until_native_language_qa"},
+    {"sequence": "lower_cpc_discovery_qa", "markets": ["PL", "CZ", "GR"], "posture": "paused_discovery_shell_only; live_spend_blocked"},
+    {"sequence": "hold_extra_qa", "markets": ["Arabic", "Hebrew", "Japanese", "Korean", "mixed_language_markets"], "posture": "hold"}
+  ],
+  "held_packet": {
+    "use_if_build_approved_before_metadata_repair": true,
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-url-hold-checkout-safe-advance/lanes/google-ads-url-hold/web_bulk_upload/00_intl_search_paused_draft_web_bulk_vacation_family_hold.csv",
+    "row_count": 1496,
+    "excluded_theme": "Vacation Family",
+    "blocked_problem_id": "PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH"
+  }
+}

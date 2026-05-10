@@ -170,7 +170,7 @@
       },
       "view_full_details": "查看完整資訊",
       "include_taxes": "內含稅金。",
-      "shipping_policy_html": "輸入地址後結帳時會顯示運送選項和費用。 <a href=\"{{ link }}\">運費政策</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
       "choose_options": "選擇選項",
       "choose_product_options": "選擇 {{ product_name }} 的選項",
       "value_unavailable": "{{ option_value }} (無法供貨)",
@@ -230,7 +230,7 @@
         "write_review": "寫評論",
         "write_review_title": "寫評論"
       },
-      "free_shipping_all_orders": "所有訂單免運費",
+      "free_shipping_all_orders": "標準配送已包含",
       "selected_size_label": "尺寸：{{ size }}",
       "description_sections": {
         "details_eyebrow": "詳情",
@@ -279,17 +279,17 @@
       "secure_checkout": "安全結帳",
       "ssl_encrypted": "SSL 加密",
       "returns": "30 天退貨期限",
-      "free_shipping": "結帳時顯示運費",
+      "free_shipping": "標準配送已包含",
       "trusted_since": "家庭配對變簡單",
       "assistance_note": "需要幫助嗎？我們通常會在一個工作天內回覆。"
     },
     "additional_info": {
       "shipping_title": "運輸與交付",
-      "free_shipping_label": "免運費",
+      "free_shipping_label": "標準配送已包含",
       "estimated_delivery": "預計送達：",
       "standard_delivery_window": "12-15 個工作天",
       "premium_delivery_window": "如果有的話，結帳時會顯示快速選項。",
-      "faster_shipping_prefix": "可用的加急配送選項將在結帳時顯示。",
+      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
       "free_premium_shipping": "快遞運輸",
       "return_policy_title": "退貨政策",
       "return_policy_line_1": "您可以在交貨後 30 天內申請退貨或換貨。",
@@ -304,6 +304,37 @@
       "secure_logistics_line_2": "使用您的訂單追蹤連結以獲取最新的運營商更新。國際訂單可能需要繳納承運商或地方當局收取的當地稅費、關稅或海關費用。",
       "secure_privacy_title": "安全隱私",
       "secure_privacy_description": "保護您的隱私對我們很重要！請放心，您的資訊將受到保護且不會洩露。我們不會為了金錢而出售您的個人信息，只會根據我們的隱私和 cookie 政策使用您的資訊來為您提供和改進我們的服務。"
+    },
+    "shipping_country": {
+      "product_country": "配送至 {{ country }}",
+      "product_country_with_currency": "配送至 {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "配送國家/地區將在結帳時確認",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "eyebrow": "配送國家/地區檢查",
+      "page_title_country": "是的，我們目前配送至 {{ country }}",
+      "page_title_default": "目前配送國家/地區",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
+      "schema_standard_shipping": "標準配送已包含",
+      "country_list_heading": "我們目前配送的國家/地區（{{ count }}）",
+      "country_list_highlight": "此清單中的每個國家/地區都已在結帳中啟用。當 Shopify 能夠偵測時，您選擇的國家/地區會醒目顯示。",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -374,10 +405,10 @@
       "empty": "您的購物車是空的",
       "cart_error": "更新購物車時發生錯誤。請再試一次。",
       "cart_quantity_error_html": "您只能將 {{ quantity }} 項商品加入您的購物車。",
-      "taxes_and_shipping_policy_at_checkout_html": "稅金、折扣和運費在結帳時計算。 <a href=\"{{ link }}\">運費政策</a>",
-      "taxes_included_but_shipping_at_checkout": "含稅。折扣和運費在結帳時計算。",
-      "taxes_included_and_shipping_policy_html": "含稅。折扣和運費在結帳時計算。 <a href=\"{{ link }}\">運費政策</a>",
-      "taxes_and_shipping_at_checkout": "稅金、折扣和運費在結帳時計算。",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
       "headings": {
         "product": "產品",
         "price": "價格",
@@ -402,18 +433,19 @@
       "trust": {
         "secure_checkout": "安全結帳",
         "ssl_encrypted": "SSL 加密",
-        "free_shipping": "運送選項",
+        "free_shipping": "配送已包含",
         "returns": "30 天退貨",
         "secure": "安全的",
         "encrypted": "加密",
-        "free_ship": "運輸"
+        "free_ship": "配送已包含"
       },
       "discount_code_toggle": "有折扣碼嗎？",
       "shipping_label": "船運",
-      "shipping_free": "結帳時計算",
+      "shipping_free": "標準已包含",
       "popular_with_families": "深受家庭歡迎",
       "recently_viewed": "最近瀏覽過",
-      "savings_html": "您正在儲存 <strong>{{ amount }}</strong>"
+      "savings_html": "您正在儲存 <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
     },
     "footer": {
       "payment": "付款方式"
@@ -456,7 +488,8 @@
       "carousel": "輪播",
       "announcement": "公告",
       "announcement_bar": "公告列",
-      "default_promo": "所有訂單免運費 | 親子家庭配搭更輕鬆 | 安全結帳"
+      "default_promo": "已含標準配送 | 結帳時顯示快速選項 | 安全結帳",
+      "shipping_country_promo": "已含寄往 {{ country }} 的標準配送 | 結帳時顯示快速選項 | 安全結帳"
     },
     "quick_order_list": {
       "product_total": "商品小計",

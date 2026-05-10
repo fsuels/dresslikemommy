@@ -1,0 +1,113 @@
+{
+  "generated_at": "2026-05-09",
+  "mode": "local_read_only_existing_evidence_only",
+  "external_account_access": {
+    "merchant_center_opened": false,
+    "pinterest_opened": false,
+    "shopify_admin_opened": false,
+    "google_ads_opened": false
+  },
+  "external_writes": {
+    "merchant_upload_sync_or_source_edit": false,
+    "shopify_product_data_edit": false,
+    "pinterest_campaign_draft_product_group_or_tracking_write": false,
+    "tag_capi_pixel_change": false,
+    "budget_bid_status_or_live_spend_change": false,
+    "feed_label_product_scope_product_group_or_conversion_goal_change": false
+  },
+  "tracker_reconciliation": {
+    "merchant_us_es": {
+      "problem_id": "PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP",
+      "active_summary_status": "OWNER_APPROVAL_REQUIRED_FOR_LIVE_FIX",
+      "detailed_record_status": "PARTIALLY_MITIGATED_LOCAL_ADS_HOLD__OWNER_APPROVAL_REQUIRED_FOR_SHOPIFY_FIX",
+      "drift_found": true,
+      "lane_interpretation": "Active Summary is cleaner/current; detailed status appears stale because the blocker is Merchant source 10627981690 US/es age_group, not a Shopify SEO/title fix or Ads-hold mitigation."
+    },
+    "pinterest_event_quality": {
+      "problem_id": "PROB-2026-05-08-PINTEREST-EVENT-QUALITY",
+      "active_summary_status": "OWNER_APPROVAL_REQUIRED",
+      "detailed_record_status": "OWNER_APPROVAL_REQUIRED",
+      "drift_found": false,
+      "lane_interpretation": "Consistent; Event Quality Fair gates live spend while paused drafts still require exact owner approval."
+    },
+    "tracker_edited": false
+  },
+  "merchant_us_es_gate": {
+    "problem_id": "PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP",
+    "status": "OWNER_APPROVAL_REQUIRED_FOR_LIVE_FIX",
+    "merchant_account": "124884876",
+    "source_id": "10627981690",
+    "source_name": "Shopify App API",
+    "feed_label": "US",
+    "language": "es",
+    "country": "United States",
+    "issue": "Missing age group",
+    "affected_unique_paid_item_ids": 625,
+    "affected_issue_rows": 1250,
+    "shopping_ads_rows": 625,
+    "free_listings_rows": 625,
+    "preferred_path": "Path A: age_group-only supplemental source joined to source 10627981690 after exact preview.",
+    "fallback_path": "Path B: source-specific official refresh only if UI proves it is narrow to source 10627981690 / US / es.",
+    "approval_wording": "APPROVE MERCHANT US/ES AGE_GROUP PATH A ONLY: CREATE OR UPDATE ONE AGE_GROUP-ONLY MERCHANT SUPPLEMENTAL SOURCE JOINED TO SOURCE 10627981690 / SHOPIFY APP API FOR FEED LABEL US, LANGUAGE ES, COUNTRY UNITED STATES, USING ONLY EXACT PREVIEWED PAID-COHORT ITEM IDS CURRENTLY FAILING MISSING AGE_GROUP AND ONLY COLUMNS ID AND AGE_GROUP; NO GOOGLE ADS, PINTEREST, SHOPIFY PRODUCT-DATA, PRODUCT-SCOPE, FEED-LABEL, PRODUCT-GROUP, CONVERSION-GOAL, BUDGET, BID, STATUS, PMAX, STANDARD SHOPPING, OR LIVE-SPEND CHANGES; NO PRIMARY SOURCE EDIT, BROAD SOURCE REFRESH, OR NON-AGE_GROUP PRODUCT-DATA CHANGE; PREVIEW ROW SCOPE FIRST, APPLY ONLY IF PREVIEW MATCHES, AND READ BACK SOURCE PROCESSING, PRODUCT DETAILS, EXACT EXPORT, AND LABEL/SCOPE INTEGRITY AFTER.",
+    "already_solved_do_not_redo": [
+      "US/en paid-cohort Missing age group count is 0, down from prior exact 623.",
+      "Shopify ProductVariant mm-google-shopping.age_group is already fixed for the current paid cohort.",
+      "Merchant local inventory was solved by removing the physical-store Local inventory ads add-on; do not create local inventory feeds or physical-stock claims."
+    ],
+    "fixed_criteria": [
+      "Fresh exact export shows 0 paid-cohort US/es/United States Missing age group rows.",
+      "At least two formerly affected US/es product details show effective n:age_group and no Missing age group.",
+      "Paid-cohort US/en/United States remains 0.",
+      "Paid-scope labels and Standard Shopping scope/settings remain unchanged.",
+      "No unauthorized Merchant, Shopify, Google Ads, Pinterest, feed, conversion, budget, bid, status, or live-spend changes occurred."
+    ]
+  },
+  "pinterest_gate": {
+    "problem_id": "PROB-2026-05-08-PINTEREST-EVENT-QUALITY",
+    "status": "OWNER_APPROVAL_REQUIRED",
+    "advertiser_id": "549756244483",
+    "clean_scope_rows": 342,
+    "locale": "en-US",
+    "availability": "IN_STOCK",
+    "paid_labels": {
+      "custom_label_0": "paid_eligible",
+      "custom_label_4": "us_test_ready"
+    },
+    "product_split": {
+      "mommy_me": 210,
+      "family_matching": 103,
+      "pajamas": 29
+    },
+    "excluded_variant_ids": [
+      "41878208249953",
+      "41878208479329",
+      "41878208577633",
+      "41878208610401"
+    ],
+    "clean_exclusion_overlap": 0,
+    "old_337_346_blocker_status": "SUPERSEDED_BY_SAFER_PATH",
+    "event_quality": {
+      "overall": "Fair",
+      "updated_date": "2026-05-06",
+      "tag_status": "Fair",
+      "capi_status": "Fair",
+      "tag_latest_stored_activity": "2026-05-08T05:50:56.502Z",
+      "capi_latest_stored_activity": "2026-05-08T05:51:13.760Z",
+      "verified_merchant_program": "PASS",
+      "automatic_enhanced_match": "PASS",
+      "enhanced_match": "ERROR",
+      "top_gaps": [
+        "product_id__ADD_PAYMENT_INFO",
+        "hashed_email__ADD_TO_CART",
+        "click_id_epik__CHECKOUT"
+      ]
+    },
+    "paused_draft_approval_wording": "APPROVE PAUSED PINTEREST US CATALOG/RETARGETING DRAFT BUILD ONLY: USE THE 2026-05-08 CLEAN 342-ROW EN-US IN-STOCK SCOPE AND EXCLUDE THE 4 UNRESOLVED VARIANTS; KEEP ALL CAMPAIGNS, AD GROUPS, ADS, AND PRODUCT GROUPS PAUSED; NO LIVE SPEND; NO BUDGET OR BID ACTIVATION; NO CATALOG SOURCE, TAG, CAPI, AUDIENCE, SHOPIFY PRODUCT, MERCHANT, GOOGLE ADS, OR FEED CHANGES; READ BACK BEFORE AND AFTER.",
+    "event_quality_repair_approval_wording": "APPROVE NARROW PINTEREST EVENT QUALITY REPAIR ONLY: INVESTIGATE OFFICIAL SHOPIFY/PINTEREST APP AND CUSTOMER EVENTS CONFIGURATION FOR PRODUCT ID, EMAIL, AND CLICK ID GAPS; NO CAMPAIGN, DRAFT, PRODUCT GROUP, CATALOG SOURCE, AUDIENCE, BUDGET, BID, STATUS, OR SPEND CHANGES; NO DUPLICATE THEME TAG; NO CUSTOM CAPI DEPLOYMENT OR CUSTOMER-DATA CHANGE WITHOUT A SEPARATE READBACK AND APPROVAL; READ BACK BEFORE AND AFTER.",
+    "live_spend_ready": false
+  },
+  "files_written": [
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-checkout-expansion-safe-advance/lanes/merchant-pinterest-gates-refresh/MERCHANT_PINTEREST_GATES_REFRESH.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-checkout-expansion-safe-advance/lanes/merchant-pinterest-gates-refresh/merchant_pinterest_gates_refresh_summary.json"
+  ]
+}

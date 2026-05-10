@@ -43,6 +43,9 @@
               <a href="{{ routes.all_products_collection_url }}" class="button">
                 {{ 'general.continue_shopping' | t }}
               </a>
+              <div class="cart-drawer__country-checker cart-drawer__country-checker--empty">
+                {% render 'shipping-country-checker-trigger', context: 'cart-empty' %}
+              </div>
 
               {%- comment -%} Popular with Families — bestsellers for empty cart {%- endcomment -%}
               <div class="cart-drawer__empty-bestsellers">
@@ -643,6 +646,14 @@
           <div class="cart-drawer__shipping-line">
             <span>{{ 'sections.cart.shipping_label' | t }}</span>
             <span class="cart-drawer__shipping-free">{{ 'sections.cart.shipping_free' | t }}</span>
+          </div>
+          {%- if localization.country.name != blank -%}
+            <p class="cart-drawer__shipping-note">
+              {{ 'sections.cart.shipping_country_reassurance' | t: country: localization.country.name }}
+            </p>
+          {%- endif -%}
+          <div class="cart-drawer__country-checker">
+            {% render 'shipping-country-checker-trigger', context: 'cart' %}
           </div>
 
           <div class="totals" role="status">

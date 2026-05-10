@@ -1,0 +1,232 @@
+{
+  "generated_at": "2026-05-08T23:59:35.904411-04:00",
+  "lane": "market-readiness",
+  "packet": "2026-05-08-paid-growth-market-readiness-safe-advance",
+  "decision": "NO_NON_US_MARKET_LIVE_SPEND_READY__GB_CA_AU_ES_IT_RO_PT_APPROVAL_GATED__CH_DK_DE_NL_SE_FR_BE_PL_CZ_GR_CHECKOUT_PENDING",
+  "guardrails_preserved": [
+    "public/read-only storefront checks only",
+    "no checkout payment",
+    "no order",
+    "no Shopify Admin changes",
+    "no Ads, Merchant, or Pinterest writes",
+    "fresh probing stopped after CH verification/CAPTCHA text detector fired",
+    "writes limited to market-readiness lane"
+  ],
+  "fresh_checks": {
+    "generated_at": "2026-05-08T23:58:37.800072-04:00",
+    "mode": "low-volume public storefront product/cart/shipping-rate endpoints; no checkout UI entry, no payment, no order, no external account writes",
+    "fresh_checks_requested_max": 2,
+    "fresh_checks_attempted": 1,
+    "stopped_due_to_429_or_captcha": true,
+    "product_handle": "matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set",
+    "variant": "41871520661601",
+    "results": [
+      {
+        "country": "CH",
+        "country_name": "Switzerland",
+        "expected_currency": "CHF",
+        "expected_lang": "en",
+        "product_url": "https://www.dresslikemommy.com/products/matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set?variant=41871520661601&country=CH",
+        "steps": {
+          "product": {
+            "status": 200,
+            "final_url_retained_country": true,
+            "captcha_or_verification_text": true,
+            "currency_meta_found": true,
+            "html_lang_expected_hint_found": true,
+            "title": "Family Matching Sets - Christmas Print | Dress Like Mommy"
+          }
+        },
+        "blocked": true,
+        "block_reason": "product_landing_429_or_verification"
+      }
+    ]
+  },
+  "market_tiers": [
+    {
+      "country_code": "GB",
+      "market": "United Kingdom",
+      "known_currency": "GBP",
+      "landing_status": "200 / en / GBP / country=GB retained",
+      "checkout_status": "PASS checkout UI: en-GB, Standard FREE, Express GBP 10.00",
+      "blockers": "Known tested beach URL SEO/social title hold; Merchant/Pinterest/tracking/economics and exact owner approval still required.",
+      "next_safe_qa": "Rerun just-in-time checkout UI and use a repaired/swapped final URL before enablement.",
+      "paid_status": "approval-gated"
+    },
+    {
+      "country_code": "CA",
+      "market": "Canada",
+      "known_currency": "CAD",
+      "landing_status": "200 / en / CAD / country=CA retained",
+      "checkout_status": "PASS checkout UI: en-CA, Standard FREE, Express CAD 19.00",
+      "blockers": "French Canada posture unresolved; tested beach URL SEO/social title hold; Merchant/Pinterest/tracking/economics and exact owner approval still required.",
+      "next_safe_qa": "Rerun just-in-time checkout UI, decide French Canada handling, and use a repaired/swapped final URL before enablement.",
+      "paid_status": "approval-gated"
+    },
+    {
+      "country_code": "AU",
+      "market": "Australia",
+      "known_currency": "AUD",
+      "landing_status": "200 / en / AUD / country=AU retained",
+      "checkout_status": "PASS isolated checkout/UI: en-AU, Standard FREE, Express AUD approx 18.24 API / AUD display in UI",
+      "blockers": "Prior 429 solved by isolated browser, but retest action-time; tested beach URL SEO/social title hold; parent gates and approval remain.",
+      "next_safe_qa": "Rerun just-in-time isolated checkout, then parent tracking/catalog/economics gates.",
+      "paid_status": "approval-gated"
+    },
+    {
+      "country_code": "ES",
+      "market": "Spain",
+      "known_currency": "EUR",
+      "landing_status": "200 / es / EUR / country=ES retained",
+      "checkout_status": "PASS prior checkout to shipping after localization: Standard free, Express EUR 11.95",
+      "blockers": "Checkout mostly English in prior run; localized final URL works only when country-qualified; Merchant/Pinterest/tracking/economics and approval remain.",
+      "next_safe_qa": "Rerun country-qualified localized UI and tracking/catalog readbacks before spend.",
+      "paid_status": "approval-gated"
+    },
+    {
+      "country_code": "IT",
+      "market": "Italy",
+      "known_currency": "EUR",
+      "landing_status": "200 / it / EUR / country=IT retained",
+      "checkout_status": "PASS prior checkout to shipping after localization: Standard free, Express EUR 11.95",
+      "blockers": "Checkout mostly English in prior run; Merchant/Pinterest/tracking/economics and approval remain.",
+      "next_safe_qa": "Rerun country-qualified localized UI and tracking/catalog readbacks before spend.",
+      "paid_status": "approval-gated"
+    },
+    {
+      "country_code": "RO",
+      "market": "Romania",
+      "known_currency": "RON",
+      "landing_status": "200 / ro / RON / country=RO retained",
+      "checkout_status": "PASS prior checkout to shipping after localization: Standard free, Express RON 60.00",
+      "blockers": "RON economics required; checkout mostly English in prior run; Merchant/Pinterest/tracking/economics and approval remain.",
+      "next_safe_qa": "Rerun country-qualified localized UI; model in RON with FX-normalized reporting.",
+      "paid_status": "approval-gated"
+    },
+    {
+      "country_code": "PT",
+      "market": "Portugal",
+      "known_currency": "EUR",
+      "landing_status": "200 / pt-BR / EUR / country=PT retained",
+      "checkout_status": "PASS checkout to shipping after cooldown: Standard free, Express EUR 11.95, total EUR 24.95 on test item",
+      "blockers": "Uses pt-BR storefront copy for Portugal; Merchant/Pinterest/tracking/economics and approval remain.",
+      "next_safe_qa": "Decide pt-BR acceptability; rerun just-in-time checkout and parent gates before spend.",
+      "paid_status": "approval-gated"
+    },
+    {
+      "country_code": "CH",
+      "market": "Switzerland",
+      "known_currency": "CHF",
+      "landing_status": "Prior: 200 / en / CHF / country=CH retained. Fresh: HTTP 200 and CHF found, then stopped before cart due verification/CAPTCHA text detector.",
+      "checkout_status": "NO checkout/rate evidence. Fresh run did not add to cart.",
+      "blockers": "Fresh broad detector saw verification/CAPTCHA text on product HTML, so guardrail stopped. Possible ordinary Shopify script false positive, but no cart/rate conclusion. Duties/language split also unresolved.",
+      "next_safe_qa": "Cooldown, then one isolated browser no-payment checkout-to-shipping run for CH only; stop on visible 429/CAPTCHA.",
+      "paid_status": "checkout-pending"
+    },
+    {
+      "country_code": "DK",
+      "market": "Denmark",
+      "known_currency": "DKK",
+      "landing_status": "Prior: 200 / en / DKK / country=DK retained. Fresh DK not attempted because CH guardrail stopped probing.",
+      "checkout_status": "NO checkout/rate evidence.",
+      "blockers": "No fresh cart/rate proof; Danish language quality and DKK reporting unresolved.",
+      "next_safe_qa": "After cooldown, one low-volume DK browser or endpoint checkout/shipping run; stop on 429/CAPTCHA.",
+      "paid_status": "checkout-pending"
+    },
+    {
+      "country_code": "DE",
+      "market": "Germany",
+      "known_currency": "EUR",
+      "landing_status": "Prior: 200 / en / EUR / country=DE retained",
+      "checkout_status": "NO checkout/rate evidence.",
+      "blockers": "German language/policy quality, checkout, catalog, tracking, economics unresolved.",
+      "next_safe_qa": "Run one no-payment checkout/shipping QA and German landing/policy review.",
+      "paid_status": "checkout-pending"
+    },
+    {
+      "country_code": "NL",
+      "market": "Netherlands",
+      "known_currency": "EUR",
+      "landing_status": "Prior: 200 / en / EUR / country=NL retained",
+      "checkout_status": "Earlier no-payment rate evidence mentioned in prior packets, not refreshed here.",
+      "blockers": "Dutch language quality and fresh checkout proof unresolved; parent gates remain.",
+      "next_safe_qa": "Refresh country-qualified checkout/rate proof and Dutch landing quality.",
+      "paid_status": "checkout-pending"
+    },
+    {
+      "country_code": "SE",
+      "market": "Sweden",
+      "known_currency": "SEK",
+      "landing_status": "Prior: 200 / en / SEK / country=SE retained",
+      "checkout_status": "NO checkout/rate evidence.",
+      "blockers": "Swedish language quality, SEK reporting, checkout, catalog, tracking, economics unresolved.",
+      "next_safe_qa": "Run one no-payment checkout/shipping QA and Swedish landing/policy review.",
+      "paid_status": "checkout-pending"
+    },
+    {
+      "country_code": "FR",
+      "market": "France",
+      "known_currency": "EUR",
+      "landing_status": "Prior: 200 / en / EUR / country=FR retained",
+      "checkout_status": "NO checkout/rate evidence.",
+      "blockers": "French language/policy quality, checkout, catalog, tracking, economics unresolved.",
+      "next_safe_qa": "Run one no-payment checkout/shipping QA and French landing/policy review.",
+      "paid_status": "checkout-pending"
+    },
+    {
+      "country_code": "BE",
+      "market": "Belgium",
+      "known_currency": "EUR",
+      "landing_status": "Prior: 200 / en / EUR / country=BE retained",
+      "checkout_status": "NO checkout/rate evidence.",
+      "blockers": "French/Dutch split, checkout, catalog, tracking, economics unresolved.",
+      "next_safe_qa": "Run one no-payment checkout/shipping QA and decide FR/NL language split.",
+      "paid_status": "checkout-pending"
+    },
+    {
+      "country_code": "PL",
+      "market": "Poland",
+      "known_currency": "PLN",
+      "landing_status": "Prior: 200 / en / PLN / country=PL retained",
+      "checkout_status": "NO checkout/rate evidence.",
+      "blockers": "Polish language quality, PLN reporting, checkout, catalog, tracking, economics unresolved.",
+      "next_safe_qa": "Run one no-payment checkout/shipping QA and Polish landing/policy review.",
+      "paid_status": "checkout-pending"
+    },
+    {
+      "country_code": "CZ",
+      "market": "Czechia",
+      "known_currency": "CZK",
+      "landing_status": "Prior: 200 / en / CZK / country=CZ retained",
+      "checkout_status": "NO checkout/rate evidence.",
+      "blockers": "Czech language quality, CZK reporting, checkout, catalog, tracking, economics unresolved.",
+      "next_safe_qa": "Run one no-payment checkout/shipping QA and Czech landing/policy review.",
+      "paid_status": "checkout-pending"
+    },
+    {
+      "country_code": "GR",
+      "market": "Greece",
+      "known_currency": "EUR",
+      "landing_status": "Prior: 200 / en / EUR / country=GR retained",
+      "checkout_status": "NO checkout/rate evidence.",
+      "blockers": "Greek language quality, checkout, catalog, tracking, economics unresolved.",
+      "next_safe_qa": "Run one no-payment checkout/shipping QA and Greek landing/policy review.",
+      "paid_status": "checkout-pending"
+    }
+  ],
+  "counts": {
+    "markets_total": 17,
+    "approval_gated_with_checkout_or_rate_evidence": 7,
+    "checkout_pending": 10,
+    "live_spend_ready": 0,
+    "fresh_country_checks_attempted_this_lane": 1
+  },
+  "source_evidence": [
+    "2026-05-08 paid-growth AI-army localization checkout readiness report and JSON",
+    "2026-05-08 GB/CA visual checkout UI readback",
+    "2026-05-08 AU isolated checkout-to-shipping readback",
+    "2026-05-08 PT checkout-to-shipping readback",
+    "2026-05-07 ES/IT/RO currency presentment browser readback",
+    "fresh CH low-volume public product check in this lane"
+  ]
+}

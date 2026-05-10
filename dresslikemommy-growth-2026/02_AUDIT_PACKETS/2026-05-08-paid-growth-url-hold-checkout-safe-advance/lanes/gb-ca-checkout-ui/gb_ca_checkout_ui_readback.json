@@ -1,0 +1,166 @@
+{
+  "generated_at": "2026-05-08 23:10:05 EDT",
+  "lane": "gb-ca-checkout-ui",
+  "mode": "public storefront browser automation only",
+  "guardrails": {
+    "shopify_admin_used": false,
+    "external_ad_accounts_used": false,
+    "payment_data_entered": false,
+    "pay_now_or_place_order_clicked": false,
+    "order_created": false,
+    "shipping_settings_changed": false,
+    "theme_or_product_data_changed": false
+  },
+  "product_under_test": {
+    "handle": "matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set",
+    "variant_id": "41871520661601",
+    "variant": "Father XL / blue",
+    "known_url_quality_hold": "PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH"
+  },
+  "summary": {
+    "GB": "PASS_CHECKOUT_UI_FOR_PAUSED_INFRA_ONLY",
+    "CA": "PASS_CHECKOUT_UI_FOR_PAUSED_INFRA_ONLY",
+    "live_spend_ready": false,
+    "next_spend_gate": "Do not enable live spend from this checkout evidence alone. Repair or swap the tested beach product URL because of the known stale Christmas SEO/social title hold, then complete parent gates for Merchant/Pinterest/tracking/economics and exact owner approval."
+  },
+  "countries": {
+    "GB": {
+      "country_name": "United Kingdom",
+      "landing_url": "https://www.dresslikemommy.com/products/matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set?variant=41871520661601&country=GB",
+      "landing": {
+        "http_reached": true,
+        "final_country_parameter_retained": true,
+        "html_lang": "en",
+        "country_region_text": "United Kingdom | GBP £",
+        "currency_meta": "GBP",
+        "visible_price": "£21.00",
+        "h1": "Beach Outfits Holiday Palm Tree Print Summer Dresse...",
+        "title": "Family Matching Sets - Christmas Print | Dress Like Mommy",
+        "captcha_or_429": false
+      },
+      "cart": {
+        "clear_status": 200,
+        "add_status": 200,
+        "cart_status": 200,
+        "currency": "GBP",
+        "item_count": 1,
+        "subtotal_minor_units": 2100,
+        "subtotal_display": "£21.00",
+        "captcha_or_429": false
+      },
+      "checkout_ui": {
+        "checkout_lang": "en-GB",
+        "country_region_selected": "GB",
+        "province_or_region_value": "ENG",
+        "test_address": "10 Downing Street, London SW1A 2AA, United Kingdom",
+        "visible_shipping_rates": [
+          {
+            "name": "Standard Delivery (10 - 14 Days)",
+            "price": "FREE"
+          },
+          {
+            "name": "Express Delivery (7 - 11 Days)",
+            "price": "£10.00"
+          }
+        ],
+        "order_summary": {
+          "subtotal": "£21.00",
+          "shipping": "FREE",
+          "total": "GBP £21.00"
+        },
+        "payment_ui_present": true,
+        "payment_methods_visible": [
+          "Credit card",
+          "Shop Pay",
+          "PayPal",
+          "Crypto: USDC"
+        ],
+        "pay_button_visible": true,
+        "pay_button_text": "Pay now",
+        "payment_data_entered": false,
+        "pay_button_clicked": false,
+        "captcha_or_429": false
+      },
+      "screenshots": {
+        "product_landing": "screenshots/gb-product-landing.png",
+        "checkout_shipping_payment_ui": "screenshots/gb-checkout-shipping-payment-ui.png"
+      },
+      "status": "PASS",
+      "notes": [
+        "Visual checkout UI reached without 429, CAPTCHA, or verification.",
+        "Standard shipping appears as free in checkout UI.",
+        "Express shipping appears as £10.00 in checkout UI; prior public shipping-rate endpoint evidence showed 9.71 GBP, so treat the visual checkout display as the customer-facing value and reconcile if exact Express economics matter before spend.",
+        "The tested product URL remains under the known SEO/social title hold and should not receive live paid traffic until repaired or swapped/excluded."
+      ]
+    },
+    "CA": {
+      "country_name": "Canada",
+      "landing_url": "https://www.dresslikemommy.com/products/matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set?variant=41871520661601&country=CA",
+      "landing": {
+        "http_reached": true,
+        "final_country_parameter_retained": true,
+        "html_lang": "en",
+        "country_region_text": "Canada | CAD $",
+        "currency_meta": "CAD",
+        "visible_price": "$39.00",
+        "h1": "Beach Outfits Holiday Palm Tree Print Summer Dresse...",
+        "title": "Family Matching Sets - Christmas Print | Dress Like Mommy",
+        "captcha_or_429": false
+      },
+      "cart": {
+        "clear_status": 200,
+        "add_status": 200,
+        "cart_status": 200,
+        "currency": "CAD",
+        "item_count": 1,
+        "subtotal_minor_units": 3900,
+        "subtotal_display": "$39.00",
+        "captcha_or_429": false
+      },
+      "checkout_ui": {
+        "checkout_lang": "en-CA",
+        "country_region_selected": "CA",
+        "province_or_region_value": "ON",
+        "test_address": "290 Bremner Blvd, Toronto ON M5V 3L9, Canada",
+        "visible_shipping_rates": [
+          {
+            "name": "Standard Delivery (10 - 14 Days)",
+            "price": "FREE"
+          },
+          {
+            "name": "Express Delivery (7 - 11 Days)",
+            "price": "$19.00"
+          }
+        ],
+        "order_summary": {
+          "subtotal": "$39.00",
+          "shipping": "FREE",
+          "total": "CAD $39.00"
+        },
+        "payment_ui_present": true,
+        "payment_methods_visible": [
+          "Credit card",
+          "Shop Pay",
+          "PayPal",
+          "Crypto: USDC"
+        ],
+        "pay_button_visible": true,
+        "pay_button_text": "Pay now",
+        "payment_data_entered": false,
+        "pay_button_clicked": false,
+        "captcha_or_429": false
+      },
+      "screenshots": {
+        "product_landing": "screenshots/ca-product-landing.png",
+        "checkout_shipping_payment_ui": "screenshots/ca-checkout-shipping-payment-ui.png"
+      },
+      "status": "PASS",
+      "notes": [
+        "Visual checkout UI reached without 429, CAPTCHA, or verification.",
+        "Standard shipping appears as free in checkout UI.",
+        "Express shipping appears as $19.00 in checkout UI; prior public shipping-rate endpoint evidence showed 18.00 CAD, so treat the visual checkout display as the customer-facing value and reconcile if exact Express economics matter before spend.",
+        "The tested product URL remains under the known SEO/social title hold and should not receive live paid traffic until repaired or swapped/excluded."
+      ]
+    }
+  }
+}

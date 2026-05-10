@@ -15,6 +15,8 @@
   assign current_handle_token = ',' | append: current_collection_handle | append: ','
   assign expected_category1 = current_collection.metafields.custom.category1 | default: '' | strip
   assign product_category1 = product.metafields.custom.category1 | default: '' | strip
+  assign expected_category1_key = ''
+  assign product_category1_key = ''
   assign has_mommy_and_me_tag = false
   assign has_family_matching_tag = false
   assign has_daddy_and_me_tag = false
@@ -65,13 +67,77 @@
     endif
   endif
 
+  assign normalized_expected_category1 = expected_category1 | downcase | strip
+  assign normalized_product_category1 = product_category1 | downcase | strip
+
+  if normalized_expected_category1 contains 'mommy' or normalized_expected_category1 contains 'mother'
+    assign expected_category1_key = 'mommy'
+  elsif normalized_expected_category1 contains 'family' or normalized_expected_category1 contains 'famil'
+    assign expected_category1_key = 'family'
+  elsif normalized_expected_category1 contains 'daddy' or normalized_expected_category1 contains 'father'
+    assign expected_category1_key = 'daddy'
+  elsif normalized_expected_category1 contains 'couple'
+    assign expected_category1_key = 'couples'
+  elsif normalized_expected_category1 contains 'maternity'
+    assign expected_category1_key = 'maternity'
+  endif
+
+  if normalized_product_category1 contains 'mommy' or normalized_product_category1 contains 'mami' or normalized_product_category1 contains 'mother' or normalized_product_category1 contains 'daughter'
+    assign product_category1_key = 'mommy'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'mam'
+    assign product_category1_key = 'mommy'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'family'
+    assign product_category1_key = 'family'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'famil'
+    assign product_category1_key = 'family'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'rodzin'
+    assign product_category1_key = 'family'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'daddy'
+    assign product_category1_key = 'daddy'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'pap'
+    assign product_category1_key = 'daddy'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'father'
+    assign product_category1_key = 'daddy'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'tata'
+    assign product_category1_key = 'daddy'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'couple'
+    assign product_category1_key = 'couples'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'pareja'
+    assign product_category1_key = 'couples'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'coppia'
+    assign product_category1_key = 'couples'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'cuplu'
+    assign product_category1_key = 'couples'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'casal'
+    assign product_category1_key = 'couples'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'maternity'
+    assign product_category1_key = 'maternity'
+  endif
+  if product_category1_key == blank and normalized_product_category1 contains 'matern'
+    assign product_category1_key = 'maternity'
+  endif
+
   assign normalized_product_title = product.title | default: '' | downcase
   assign normalized_product_handle = product.handle | default: '' | downcase
 
-  case expected_category1
-    when 'Mommy and Me'
-      if product_category1 != blank
-        if product_category1 != expected_category1
+  case expected_category1_key
+    when 'mommy'
+      if product_category1_key != blank
+        if product_category1_key != expected_category1_key and has_mommy_and_me_tag == false
           assign product_visible = false
         endif
       elsif has_mommy_and_me_tag == false
@@ -82,33 +148,33 @@
           assign product_visible = false
         endif
       endif
-    when 'Family Matching'
-      if product_category1 != blank
-        if product_category1 != expected_category1
+    when 'family'
+      if product_category1_key != blank
+        if product_category1_key != expected_category1_key and has_family_matching_tag == false
           assign product_visible = false
         endif
       elsif has_family_matching_tag == false
         assign product_visible = false
       endif
-    when 'Daddy and Me'
-      if product_category1 != blank
-        if product_category1 != expected_category1
+    when 'daddy'
+      if product_category1_key != blank
+        if product_category1_key != expected_category1_key and has_daddy_and_me_tag == false
           assign product_visible = false
         endif
       elsif has_daddy_and_me_tag == false
         assign product_visible = false
       endif
-    when 'Couples'
-      if product_category1 != blank
-        if product_category1 != expected_category1
+    when 'couples'
+      if product_category1_key != blank
+        if product_category1_key != expected_category1_key and has_couples_tag == false
           assign product_visible = false
         endif
       elsif has_couples_tag == false
         assign product_visible = false
       endif
-    when 'Maternity'
-      if product_category1 != blank
-        if product_category1 != expected_category1
+    when 'maternity'
+      if product_category1_key != blank
+        if product_category1_key != expected_category1_key and has_maternity_tag == false
           assign product_visible = false
         endif
       elsif has_maternity_tag == false

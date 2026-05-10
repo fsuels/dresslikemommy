@@ -169,7 +169,7 @@
       },
       "view_full_details": "Tüm ayrıntıları görüntüle",
       "include_taxes": "Vergi dahildir.",
-      "shipping_policy_html": "Gönderim seçenekleri ve maliyetler, adres girişinden sonra ödeme sırasında gösterilir. <a href=\"{{ link }}\">Gönderim politikası</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
       "choose_options": "Seçenekleri belirle",
       "choose_product_options": "{{ product_name }} için seçenekleri belirle",
       "value_unavailable": "{{ option_value }} - Kullanılamıyor",
@@ -230,7 +230,7 @@
         "write_review": "Bir inceleme yazın",
         "write_review_title": "Yorum Yaz"
       },
-      "free_shipping_all_orders": "Tüm siparişlerde ücretsiz kargo",
+      "free_shipping_all_orders": "Standart kargo dahil",
       "selected_size_label": "Boyut: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Ayrıntılar",
@@ -279,17 +279,17 @@
       "secure_checkout": "Güvenli Ödeme",
       "ssl_encrypted": "SSL Şifreli",
       "returns": "30 günlük iade penceresi",
-      "free_shipping": "Ödeme sırasında gösterilen kargo",
+      "free_shipping": "Standart kargo dahil",
       "trusted_since": "Aile eşleştirme artık daha kolay",
       "assistance_note": "Yardıma mı ihtiyacınız var? Genellikle bir iş günü içinde yanıt veririz."
     },
     "additional_info": {
       "shipping_title": "Nakliye ve Teslimat",
-      "free_shipping_label": "Ücretsiz kargo",
+      "free_shipping_label": "Standart kargo dahil",
       "estimated_delivery": "Tahmini teslimat:",
       "standard_delivery_window": "12-15 iş günü",
       "premium_delivery_window": "Ekspres seçenekler, mevcut olduğu durumlarda ödeme sırasında gösterilir.",
-      "faster_shipping_prefix": "Daha hızlı mı istiyorsunuz? 100$+ harcayın ve kazanın",
+      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
       "free_premium_shipping": "Ekspres kargo",
       "return_policy_title": "İade politikasi",
       "return_policy_line_1": "İade veya değişim talebinde bulunmak için teslimattan itibaren 30 gününüz var.",
@@ -304,6 +304,37 @@
       "secure_logistics_line_2": "En son operatör güncellemeleri için sipariş takip bağlantınızı kullanın. Uluslararası siparişler, taşıyıcı veya yerel makam tarafından toplanan yerel vergilere, harçlara veya gümrük ücretlerine tabi olabilir.",
       "secure_privacy_title": "Güvenli Gizlilik",
       "secure_privacy_description": "Gizliliğinizi korumak bizim için önemlidir! Lütfen bilgilerinizin güvende tutulacağından ve taviz verilmeden tutulacağından emin olun. Kişisel bilgilerinizi para karşılığında satmıyoruz ve bilgilerinizi yalnızca gizlilik ve çerez politikamıza uygun olarak size hizmetlerimizi sunmak ve geliştirmek için kullanacağız."
+    },
+    "shipping_country": {
+      "product_country": "{{ country }} için kargo",
+      "product_country_with_currency": "{{ country }} için kargo / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "Kargo ülkesi ödeme sırasında onaylanır",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "eyebrow": "Kargo ülkesi kontrolü",
+      "page_title_country": "Evet, şu anda {{ country }} ülkesine gönderiyoruz",
+      "page_title_default": "Güncel kargo ülkeleri",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
+      "schema_standard_shipping": "Standart kargo dahil",
+      "country_list_heading": "Şu anda gönderim yaptığımız ülkeler ({{ count }})",
+      "country_list_highlight": "Bu listedeki her ülke ödeme adımında etkindir. Shopify algılayabildiğinde seçili ülkeniz vurgulanır.",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -374,10 +405,10 @@
       "empty": "Sepetiniz boş",
       "cart_error": "Sepetiniz güncellenirken bir hata oluştu. Lütfen tekrar deneyin.",
       "cart_quantity_error_html": "Sepetinize bu üründen yalnızca {{ quantity }} adet ekleyebilirsiniz.",
-      "taxes_and_shipping_policy_at_checkout_html": "Ödeme sırasında hesaplanan vergiler, indirimler ve gönderim bedeli. <a href=\"{{ link }}\">Gönderim politikası</a>",
-      "taxes_included_but_shipping_at_checkout": "Vergi dahil. İndirimler ve gönderim bedeli ödeme sırasında hesaplanır.",
-      "taxes_included_and_shipping_policy_html": "Vergi dahil. İndirimler ve gönderim bedeli ödeme sırasında hesaplanır. <a href=\"{{ link }}\">Gönderim politikası</a>",
-      "taxes_and_shipping_at_checkout": "Ödeme sırasında hesaplanan vergiler, indirimler ve gönderim bedeli.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
       "headings": {
         "product": "Ürün",
         "price": "Fiyat",
@@ -402,18 +433,19 @@
       "trust": {
         "secure_checkout": "Güvenli Ödeme",
         "ssl_encrypted": "SSL Şifreli",
-        "free_shipping": "Gönderim seçenekleri",
+        "free_shipping": "Kargo dahil",
         "returns": "30 günlük iadeler",
         "secure": "Güvenli",
         "encrypted": "Şifreli",
-        "free_ship": "Nakliye"
+        "free_ship": "Kargo dahil"
       },
       "discount_code_toggle": "İndirim kodunuz var mı?",
       "shipping_label": "Nakliye",
-      "shipping_free": "Ödeme sırasında hesaplanır",
+      "shipping_free": "Standart dahil",
       "popular_with_families": "Aileler arasında popüler",
       "recently_viewed": "Son Görüntülenenler",
-      "savings_html": "<strong>{{ amount }}</strong> tasarruf ediyorsunuz"
+      "savings_html": "<strong>{{ amount }}</strong> tasarruf ediyorsunuz",
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
     },
     "footer": {
       "payment": "Ödeme yöntemleri"
@@ -456,7 +488,8 @@
       "carousel": "Carousel",
       "announcement": "Duyuru",
       "announcement_bar": "Duyuru çubuğu",
-      "default_promo": "TÜM SİPARİŞLERDE ÜCRETSİZ KARGO | AİLE KOMBİNLERİ ARTIK KOLAY | GÜVENLİ ÖDEME"
+      "default_promo": "STANDART KARGO DAHİL | ÖDEMEDE EKSPRES SEÇENEKLER | GÜVENLİ ÖDEME",
+      "shipping_country_promo": "{{ country }} İÇİN STANDART KARGO DAHİL | ÖDEMEDE EKSPRES SEÇENEKLER | GÜVENLİ ÖDEME"
     },
     "quick_order_list": {
       "product_total": "Ürün alt toplamı",

@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-05-09",
+  "worker": "Worker B",
+  "mode": "local_read_only_gate_synthesis",
+  "external_account_access": {
+    "merchant_center_opened": false,
+    "pinterest_opened": false,
+    "shopify_admin_opened": false,
+    "google_ads_opened": false
+  },
+  "external_writes": {
+    "merchant_upload_sync_or_source_edit": false,
+    "shopify_product_data_edit": false,
+    "pinterest_campaign_draft_product_group_or_tracking_write": false,
+    "google_ads_preview_import_or_campaign_write": false,
+    "budget_bid_status_or_live_spend_change": false,
+    "product_scope_feed_label_product_group_or_conversion_goal_change": false
+  },
+  "gates": {
+    "merchant_us_es_age_group": {
+      "problem_id": "PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP",
+      "status": "OWNER_APPROVAL_REQUIRED_FOR_LIVE_FIX",
+      "merchant_account": "124884876",
+      "source_id": "10627981690",
+      "source_name": "Shopify App API",
+      "feed_label": "US",
+      "language": "es",
+      "country": "United States",
+      "issue": "Missing age group",
+      "affected_unique_paid_item_ids": 625,
+      "affected_issue_rows": 1250,
+      "shopping_ads_rows": 625,
+      "free_listings_rows": 625,
+      "preferred_next_action": "Get exact owner approval for Path A: one age_group-only supplemental source joined to source 10627981690 after exact preview.",
+      "fallback_next_action": "Path B only if a source-specific official refresh control proves it applies narrowly to source 10627981690 / US / es.",
+      "fixed_criteria": [
+        "Fresh exact export shows 0 paid-cohort US/es/United States Missing age group rows.",
+        "At least two formerly affected US/es product details show effective n:age_group and no Missing age group.",
+        "Paid-cohort US/en/United States remains 0.",
+        "Paid labels and Standard Shopping scope/settings remain unchanged.",
+        "No unauthorized Merchant, Shopify, Google Ads, Pinterest, feed, conversion, budget, bid, status, or live-spend changes occurred."
+      ],
+      "approval_phrase_path_a": "APPROVE MERCHANT US/ES AGE_GROUP PATH A ONLY: CREATE OR UPDATE ONE AGE_GROUP-ONLY MERCHANT SUPPLEMENTAL SOURCE JOINED TO SOURCE 10627981690 / SHOPIFY APP API FOR FEED LABEL US, LANGUAGE ES, COUNTRY UNITED STATES, USING ONLY EXACT PREVIEWED PAID-COHORT ITEM IDS CURRENTLY FAILING MISSING AGE_GROUP AND ONLY COLUMNS ID AND AGE_GROUP; NO GOOGLE ADS, PINTEREST, SHOPIFY PRODUCT-DATA, PRODUCT-SCOPE, FEED-LABEL, PRODUCT-GROUP, CONVERSION-GOAL, BUDGET, BID, STATUS, PMAX, STANDARD SHOPPING, OR LIVE-SPEND CHANGES; NO PRIMARY SOURCE EDIT, BROAD SOURCE REFRESH, OR NON-AGE_GROUP PRODUCT-DATA CHANGE; PREVIEW ROW SCOPE FIRST, APPLY ONLY IF PREVIEW MATCHES, AND READ BACK SOURCE PROCESSING, PRODUCT DETAILS, EXACT EXPORT, AND LABEL/SCOPE INTEGRITY AFTER."
+    },
+    "pinterest_event_quality": {
+      "problem_id": "PROB-2026-05-08-PINTEREST-EVENT-QUALITY",
+      "status": "OWNER_APPROVAL_REQUIRED",
+      "advertiser_id": "549756244483",
+      "clean_scope_rows": 342,
+      "locale": "en-US",
+      "availability": "IN_STOCK",
+      "excluded_variant_ids": [
+        "41878208249953",
+        "41878208479329",
+        "41878208577633",
+        "41878208610401"
+      ],
+      "event_quality": {
+        "overall": "Fair",
+        "updated_date": "2026-05-06",
+        "tag_status": "Fair",
+        "capi_status": "Fair",
+        "verified_merchant_program": "PASS",
+        "automatic_enhanced_match": "PASS",
+        "enhanced_match": "ERROR",
+        "top_gaps": [
+          "product_id__ADD_PAYMENT_INFO",
+          "hashed_email__ADD_TO_CART",
+          "click_id_epik__CHECKOUT"
+        ]
+      },
+      "preferred_next_action": "Get exact owner approval for paused US catalog/retargeting draft build from the clean 342-row scope, or separate approval for narrow Event Quality repair.",
+      "live_spend_ready": false,
+      "approval_phrase_paused_draft": "APPROVE PAUSED PINTEREST US CATALOG/RETARGETING DRAFT BUILD ONLY: USE THE 2026-05-08 CLEAN 342-ROW EN-US IN-STOCK SCOPE AND EXCLUDE THE 4 UNRESOLVED VARIANTS; KEEP ALL CAMPAIGNS, AD GROUPS, ADS, AND PRODUCT GROUPS PAUSED; NO LIVE SPEND; NO BUDGET OR BID ACTIVATION; NO CATALOG SOURCE, TAG, CAPI, AUDIENCE, SHOPIFY PRODUCT, MERCHANT, GOOGLE ADS, OR FEED CHANGES; READ BACK BEFORE AND AFTER.",
+      "approval_phrase_event_quality_repair": "APPROVE NARROW PINTEREST EVENT QUALITY REPAIR ONLY: INVESTIGATE OFFICIAL SHOPIFY/PINTEREST APP AND CUSTOMER EVENTS CONFIGURATION FOR PRODUCT ID, EMAIL, AND CLICK ID GAPS; NO CAMPAIGN, DRAFT, PRODUCT GROUP, CATALOG SOURCE, AUDIENCE, BUDGET, BID, STATUS, OR SPEND CHANGES; NO DUPLICATE THEME TAG; NO CUSTOM CAPI DEPLOYMENT OR CUSTOMER-DATA CHANGE WITHOUT A SEPARATE READBACK AND APPROVAL; READ BACK BEFORE AND AFTER."
+    },
+    "beach_vacation_family_metadata": {
+      "problem_id": "PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH",
+      "status": "PARTIALLY_MITIGATED_LOCAL_ADS_HOLD__OWNER_APPROVAL_REQUIRED_FOR_SHOPIFY_FIX",
+      "product_id": "7227378892897",
+      "handle": "matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set",
+      "ads_theme": "Vacation Family",
+      "current_mitigation": {
+        "held_csv_rows": 1496,
+        "source_csv_rows": 1666,
+        "removed_rows": 170,
+        "bad_handle_hits": 0,
+        "bad_product_hits": 0,
+        "vacation_family_hits": 0
+      },
+      "preferred_next_action": "Use the held 1496-row Ads CSV until exact owner approval repairs Shopify SEO/social metadata and public readback passes.",
+      "fixed_criteria": [
+        "Public English product URL shows beach/vacation-specific title, og:title, and twitter:title with no stale Christmas wording.",
+        "Sampled ES, IT, RO, and PT public routes show localized or at least non-Christmas title/OG/Twitter behavior.",
+        "No product status, handle, price, variants, tags, publications, Merchant, feed, Ads, Pinterest, theme, budget, bid, status, conversion, or live-spend changes occurred outside approval."
+      ],
+      "approval_phrase_shopify_metadata": "APPROVE NARROW SHOPIFY PRODUCT SEO TITLE REPAIR ONLY FOR PRODUCT 7227378892897 / HANDLE matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set: READ BACK CURRENT TITLE, SEO TITLE, META DESCRIPTION, OG/TWITTER TITLE SOURCE, AND TRANSLATIONS FIRST; THEN CHANGE ONLY THE STALE CHRISTMAS SEO/SOCIAL TITLE METADATA TO BEACH/VACATION FAMILY OUTFIT WORDING; DO NOT CHANGE PRODUCT STATUS, HANDLE, PRICE, VARIANTS, INVENTORY, TAGS, VENDOR/SOURCE URL FIELDS, PUBLICATIONS, MERCHANT, GOOGLE ADS, PINTEREST, FEED LABELS, PRODUCT SCOPE, PRODUCT GROUPS, CONVERSION GOALS, BUDGETS, BIDS, CAMPAIGN STATUS, THEME, OR LIVE SPEND; READ BACK PUBLIC TITLE/OG/TWITTER TITLE AFTER."
+    }
+  },
+  "tracker_parent_notes": [
+    "Merchant detailed problem status drift was observed in existing tracker evidence; parent should reconcile it to OWNER_APPROVAL_REQUIRED_FOR_LIVE_FIX.",
+    "Beach detailed problem status should preserve the partially mitigated local Ads hold plus owner approval requirement for Shopify metadata repair.",
+    "Worker B did not edit ops files by instruction."
+  ],
+  "files_written": [
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-approval-ready-safe-buildout/lanes/merchant-pinterest-beach-gates/MERCHANT_PINTEREST_BEACH_APPROVAL_GATES.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-approval-ready-safe-buildout/lanes/merchant-pinterest-beach-gates/approval_gates_summary.json"
+  ]
+}

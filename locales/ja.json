@@ -170,7 +170,7 @@
       },
       "view_full_details": "詳細を表示する",
       "include_taxes": "税込",
-      "shipping_policy_html": "配送オプションと費用は、住所入力後のチェックアウト時に表示されます。 <a href=\"{{ link }}\">配送ポリシー</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
       "choose_options": "オプションを選択",
       "choose_product_options": "{{ product_name }}のオプションを選択する",
       "value_unavailable": "{{ option_value }}は利用できません",
@@ -230,7 +230,7 @@
         "write_review": "レビューを書く",
         "write_review_title": "レビューを書く"
       },
-      "free_shipping_all_orders": "すべてのご注文で送料無料",
+      "free_shipping_all_orders": "標準配送込み",
       "selected_size_label": "サイズ: {{ size }}",
       "description_sections": {
         "details_eyebrow": "詳細",
@@ -279,17 +279,17 @@
       "secure_checkout": "安全なチェックアウト",
       "ssl_encrypted": "SSL暗号化",
       "returns": "30日間の返品期間",
-      "free_shipping": "チェックアウト時に送料が表示される",
+      "free_shipping": "標準配送込み",
       "trusted_since": "家族マッチングが簡単に",
       "assistance_note": "お困りですか？通常、1営業日以内に返信します。"
     },
     "additional_info": {
       "shipping_title": "配送と配達",
-      "free_shipping_label": "送料無料",
+      "free_shipping_label": "標準配送込み",
       "estimated_delivery": "お届け予定日:",
       "standard_delivery_window": "12-15営業日",
       "premium_delivery_window": "エクスプレス オプションは、利用可能な場合はチェックアウト時に表示されます。",
-      "faster_shipping_prefix": "もっと早く受け取りたいですか？$100以上のご注文で",
+      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
       "free_premium_shipping": "特急配送",
       "return_policy_title": "返品ポリシー",
       "return_policy_line_1": "返品または交換をリクエストするには、配達から 30 日以内に限ります。",
@@ -304,6 +304,37 @@
       "secure_logistics_line_2": "配送業者の最新情報については、注文追跡リンクを使用してください。国際注文には、配送業者または地方自治体によって徴収される地方税、関税、通関手数料が課される場合があります。",
       "secure_privacy_title": "プライバシー保護",
       "secure_privacy_description": "お客様のプライバシー保護は私たちにとって大切です。情報は安全に保管され、不正に利用されることはありません。お客様の個人情報を販売することはなく、プライバシーとCookieポリシーに基づいて、サービスの提供と改善のためにのみ利用します。"
+    },
+    "shipping_country": {
+      "product_country": "{{ country }} への配送",
+      "product_country_with_currency": "{{ country }} への配送 / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "配送先国はチェックアウトで確認されます",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "eyebrow": "配送先国の確認",
+      "page_title_country": "はい、現在 {{ country }} へ配送しています",
+      "page_title_default": "現在の配送対象国",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
+      "schema_standard_shipping": "標準配送込み",
+      "country_list_heading": "現在配送している国 ({{ count }})",
+      "country_list_highlight": "このリストの国はすべてチェックアウトで有効です。Shopify が検出できる場合、選択された国が強調表示されます。",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -374,10 +405,10 @@
       "empty": "カートは空です",
       "cart_error": "カートをアップデートするときにエラーが発生しました。もう一度お試しください。",
       "cart_quantity_error_html": "このアイテムは{{ quantity }}個しかカートに追加することができません。",
-      "taxes_and_shipping_policy_at_checkout_html": "税金、割引、送料はチェックアウト時に計算されます。 <a href=\"{{ link }}\">配送ポリシー</a>",
-      "taxes_included_but_shipping_at_checkout": "税込み。割引と送料はチェックアウト時に計算されます。",
-      "taxes_included_and_shipping_policy_html": "税込み。割引と送料はチェックアウト時に計算されます。 <a href=\"{{ link }}\">配送ポリシー</a>",
-      "taxes_and_shipping_at_checkout": "税金、割引、送料はチェックアウト時に計算されます。",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
       "headings": {
         "product": "商品",
         "price": "価格",
@@ -402,18 +433,19 @@
       "trust": {
         "secure_checkout": "安全なチェックアウト",
         "ssl_encrypted": "SSL暗号化",
-        "free_shipping": "配送オプション",
+        "free_shipping": "配送込み",
         "returns": "30日間返品可能",
         "secure": "安全な",
         "encrypted": "暗号化された",
-        "free_ship": "送料"
+        "free_ship": "配送込み"
       },
       "discount_code_toggle": "割引コードをお持ちですか?",
       "shipping_label": "配送",
-      "shipping_free": "チェックアウト時に計算されます",
+      "shipping_free": "標準込み",
       "popular_with_families": "家族連れに人気",
       "recently_viewed": "最近見たもの",
-      "savings_html": "<strong>{{ amount }}</strong> を節約しています"
+      "savings_html": "<strong>{{ amount }}</strong> を節約しています",
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
     },
     "footer": {
       "payment": "決済方法"
@@ -456,7 +488,8 @@
       "carousel": "カルーセル",
       "announcement": "お知らせ",
       "announcement_bar": "お知らせバー",
-      "default_promo": "すべてのご注文で送料無料 | 家族のおそろいコーデが簡単 | 安全なチェックアウト"
+      "default_promo": "標準配送込み | チェックアウトで速達オプション | 安全な決済",
+      "shipping_country_promo": "{{ country }} への標準配送込み | チェックアウトで速達オプション | 安全な決済"
     },
     "quick_order_list": {
       "product_total": "商品の小計",

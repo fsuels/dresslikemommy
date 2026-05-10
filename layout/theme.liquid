@@ -185,7 +185,33 @@
     endif
 
     if resolved_page_description != blank
-      assign resolved_page_description = resolved_page_description | replace: '30-day easy returns', 'easy returns' | replace: '30-Day Easy Returns', 'Easy Returns' | replace: '30-DAY EASY RETURNS', 'EASY RETURNS'
+      assign resolved_page_description = resolved_page_description | replace: 'Free shipping + returns', 'Standard shipping included + easy returns'
+      assign resolved_page_description = resolved_page_description | replace: 'Free Shipping + Returns', 'Standard Shipping Included + Easy Returns'
+      assign resolved_page_description = resolved_page_description | replace: 'FREE SHIPPING + RETURNS', 'STANDARD SHIPPING INCLUDED + EASY RETURNS'
+      assign resolved_page_description = resolved_page_description | replace: 'Free shipping on all orders', 'Standard shipping included'
+      assign resolved_page_description = resolved_page_description | replace: 'FREE SHIPPING ON ALL ORDERS', 'STANDARD SHIPPING INCLUDED'
+      assign resolved_page_description = resolved_page_description | replace: 'Free shipping', 'Standard shipping included'
+      assign resolved_page_description = resolved_page_description | replace: 'Free Shipping', 'Standard Shipping Included'
+      assign resolved_page_description = resolved_page_description | replace: 'FREE SHIPPING', 'STANDARD SHIPPING INCLUDED'
+      assign resolved_page_description = resolved_page_description | replace: 'Standard shipping included + returns', 'Standard shipping included + easy returns'
+      assign resolved_page_description = resolved_page_description | replace: 'Standard Shipping Included + Returns', 'Standard Shipping Included + Easy Returns'
+      assign resolved_page_description = resolved_page_description | replace: 'STANDARD SHIPPING INCLUDED + RETURNS', 'STANDARD SHIPPING INCLUDED + EASY RETURNS'
+      assign resolved_page_description = resolved_page_description | replace: '+ returns', '+ easy returns'
+      assign resolved_page_description = resolved_page_description | replace: '+ Returns', '+ Easy Returns'
+      assign resolved_page_description = resolved_page_description | replace: '+ RETURNS', '+ EASY RETURNS'
+      assign resolved_page_description = resolved_page_description | replace: '30-day easy returns', 'easy returns'
+      assign resolved_page_description = resolved_page_description | replace: '30-Day Easy Returns', 'Easy Returns'
+      assign resolved_page_description = resolved_page_description | replace: '30-DAY EASY RETURNS', 'EASY RETURNS'
+      if resolved_page_description contains 'Standard shipping included' and resolved_page_description contains 'returns'
+        assign resolved_page_description_prefix = resolved_page_description | split: 'Standard shipping included' | first
+        assign resolved_page_description = resolved_page_description_prefix | append: 'Standard shipping included + easy returns.'
+      elsif resolved_page_description contains 'Standard Shipping Included' and resolved_page_description contains 'Returns'
+        assign resolved_page_description_prefix = resolved_page_description | split: 'Standard Shipping Included' | first
+        assign resolved_page_description = resolved_page_description_prefix | append: 'Standard Shipping Included + Easy Returns.'
+      elsif resolved_page_description contains 'STANDARD SHIPPING INCLUDED' and resolved_page_description contains 'RETURNS'
+        assign resolved_page_description_prefix = resolved_page_description | split: 'STANDARD SHIPPING INCLUDED' | first
+        assign resolved_page_description = resolved_page_description_prefix | append: 'STANDARD SHIPPING INCLUDED + EASY RETURNS.'
+      endif
     endif
   -%}
 
@@ -213,6 +239,7 @@
 
 <!-- CSS Stylesheets -->
 {{ 'base.css' | asset_url | stylesheet_tag }}
+{{ 'component-shipping-countries-v2.css' | asset_url | stylesheet_tag }}
 {%- if request.page_type contains 'customers' or template.directory == 'customers' -%}
   {{ 'customer.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
@@ -985,11 +1012,101 @@
 
     {% sections 'header-group' %}
 
+    {%- liquid
+      assign normalized_request_path = request.path | default: request.url | default: '' | downcase
+      assign show_shipping_country_confirmation = false
+      assign sanitize_shipping_policy_copy = false
+
+      if normalized_request_path contains '/policies/shipping-policy' or normalized_request_path contains '/pages/shipping-info' or normalized_request_path contains '/pages/shipping-and-delivery'
+        assign show_shipping_country_confirmation = true
+      endif
+
+      if show_shipping_country_confirmation or normalized_request_path contains '/policies/terms-of-service'
+        assign sanitize_shipping_policy_copy = true
+      endif
+    -%}
+
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {%- if show_shipping_country_confirmation -%}
+        {% render 'shipping-country-confirmation' %}
+      {%- endif -%}
       {{ content_for_layout }}
     </main>
 
+    {%- if sanitize_shipping_policy_copy -%}
+      <script>
+        (function () {
+          var replacements = [
+            ['Free And Paid Shipping Options', 'Standard And Express Shipping Options'],
+            [
+              'Available shipping methods and rates are shown at checkout before payment. Standard shipping is free when a free standard method is shown for your destination. Express or paid options may be available for some addresses and will display before you place the order.',
+              'Standard shipping is included in product prices for countries and regions where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment.'
+            ],
+            [
+              'Available shipping methods and rates are shown at checkout before payment. Standard shipping is free when a free standard method is shown for your destination. Express or paid options may be available for some addresses.',
+              'Standard shipping is included in product prices for countries and regions where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment.'
+            ],
+            [
+              'Standard shipping is free when a free standard method is shown for your destination.',
+              'Standard shipping is included in product prices for countries and regions where a standard method is available.'
+            ],
+            ['Opciones de envío gratis y de pago', 'Opciones de envío estándar y express'],
+            [
+              'Los métodos y tarifas de envío disponibles se muestran en el checkout antes del pago. El envío estándar es gratis cuando se muestra un método estándar gratuito para tu destino. Puede haber opciones express o de pago para algunas direcciones, y se mostrarán antes de realizar el pedido.',
+              'El envío estándar está incluido en los precios de los productos para países y regiones donde haya un método estándar disponible. El checkout muestra el método exacto, la estimación de entrega y cualquier mejora express antes del pago.'
+            ],
+            [
+              'Los métodos y tarifas de envío disponibles se muestran en el checkout antes del pago. El envío estándar es gratis cuando se muestra un método estándar gratuito para tu destino. Puede haber opciones express o de pago para algunas direcciones.',
+              'El envío estándar está incluido en los precios de los productos para países y regiones donde haya un método estándar disponible. El checkout muestra el método exacto, la estimación de entrega y cualquier mejora express antes del pago.'
+            ],
+            ['Opzioni di spedizione gratuite e a pagamento', 'Opzioni di spedizione standard ed express'],
+            [
+              "I metodi e tariffe di spedizione disponibili sono mostrati al checkout prima del pagamento. La spedizione standard è gratuita quando per la tua destinazione viene mostrato un metodo standard gratuito. Opzioni express o a pagamento possono essere disponibili per alcuni indirizzi e saranno mostrate prima dell'ordine.",
+              'La spedizione standard è inclusa nei prezzi dei prodotti per paesi e regioni in cui è disponibile un metodo standard. Il checkout mostra il metodo esatto, la stima di consegna ed eventuali upgrade express prima del pagamento.'
+            ],
+            ['Opțiuni de livrare gratuite și plătite', 'Opțiuni de livrare standard și express'],
+            [
+              'Metodele și tarifele de livrare disponibile sunt afișate la checkout înainte de plată. Livrarea standard este gratuită atunci când pentru destinația ta este afișată o metodă standard gratuită. Opțiuni express sau plătite pot fi disponibile pentru unele adrese și vor fi afișate înainte de plasarea comenzii.',
+              'Livrarea standard este inclusă în prețurile produselor pentru țările și regiunile unde este disponibilă o metodă standard. Checkout-ul afișează metoda exactă, estimarea de livrare și orice upgrade express înainte de plată.'
+            ],
+            [
+              'Metodele și tarifele de livrare disponibile sunt afișate la checkout înainte de plată. Livrarea standard este gratuită atunci când pentru destinația ta este afișată o metodă standard gratuită. Opțiuni express sau plătite pot fi disponibile pentru unele adrese.',
+              'Livrarea standard este inclusă în prețurile produselor pentru țările și regiunile unde este disponibilă o metodă standard. Checkout-ul afișează metoda exactă, estimarea de livrare și orice upgrade express înainte de plată.'
+            ],
+            ['Opções de envio grátis e pagas', 'Opções de envio padrão e expresso'],
+            [
+              'Os métodos e tarifas de envio disponíveis aparecem no checkout antes do pagamento. O envio padrão é grátis quando um método padrão grátis é exibido para o seu destino. Opções expressas ou pagas podem estar disponíveis para alguns endereços e serão exibidas antes de você fazer o pedido.',
+              'O envio padrão está incluído nos preços dos produtos para países e regiões onde um método padrão está disponível. O checkout mostra o método exato, a estimativa de entrega e qualquer upgrade expresso antes do pagamento.'
+            ],
+            [
+              'Os métodos e tarifas de envio disponíveis aparecem no checkout antes do pagamento. O envio padrão é grátis quando um método padrão grátis é exibido para o seu destino. Opções expressas ou pagas podem estar disponíveis para alguns endereços.',
+              'O envio padrão está incluído nos preços dos produtos para países e regiões onde um método padrão está disponível. O checkout mostra o método exato, a estimativa de entrega e qualquer upgrade expresso antes do pagamento.'
+            ]
+          ];
+
+          function replaceText(value) {
+            var nextValue = value;
+            replacements.forEach(function (pair) {
+              nextValue = nextValue.split(pair[0]).join(pair[1]);
+            });
+            return nextValue;
+          }
+
+          var root = document.getElementById('MainContent');
+          if (!root || !document.createTreeWalker) return;
+          var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+          var node;
+          while ((node = walker.nextNode())) {
+            var updated = replaceText(node.nodeValue || '');
+            if (updated !== node.nodeValue) node.nodeValue = updated;
+          }
+        })();
+      </script>
+    {%- endif -%}
+
     {% sections 'footer-group' %}
+
+    {% render 'shipping-country-checker-modal' %}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>

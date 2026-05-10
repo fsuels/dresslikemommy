@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-05-09T01:26:34-04:00",
+  "lane": "DE/NL public no-payment checkout-to-shipping QA",
+  "mode": "PUBLIC_STOREFRONT_ISOLATED_CHROME_NO_PAYMENT_NO_ORDER",
+  "problem_id": "PROB-2026-05-09-DE-NL-CHECKOUT-QA",
+  "markets": {
+    "DE": {
+      "decision": "DE_CHECKOUT_TO_SHIPPING_PASSED_READONLY_NO_PAYMENT_NO_ORDER",
+      "product_presentment": "EUR",
+      "cart_add_status": 200,
+      "cart_read_status": 200,
+      "cart_currency": "EUR",
+      "cart_item_count": 1,
+      "shipping_rates_status": 200,
+      "shipping_rates": [
+        {
+          "name": "Standard Delivery (10 - 14 Days)",
+          "price": "0.00",
+          "currency": "EUR"
+        },
+        {
+          "name": "Express Delivery (7 - 11 Days)",
+          "price": "11.19",
+          "currency": "EUR"
+        }
+      ],
+      "checkout_html_lang": "en-DE",
+      "checkout_ui_standard_visible": true,
+      "checkout_ui_express_visible": true,
+      "checkout_ui_currency_visible": true,
+      "blocked_by_429_or_verification": false,
+      "payment_or_order_created": false
+    },
+    "NL": {
+      "decision": "NL_CHECKOUT_STILL_BLOCKED_OR_RATES_NOT_VISIBLE",
+      "product_presentment": "EUR",
+      "initial_attempt": {
+        "time": "2026-05-09T01:24:16-04:00",
+        "cart_add_status": 429,
+        "cart_read_status": 429,
+        "shipping_rates_status": 429,
+        "verification_text": "Verifying your connection..."
+      },
+      "cooldown_retry": {
+        "time": "2026-05-09T01:26:34-04:00",
+        "cart_add_status": 429,
+        "cart_read_status": 429,
+        "shipping_rates_status": 429,
+        "verification_text": "Verifying your connection..."
+      },
+      "checkout_reached": false,
+      "blocked_by_429_or_verification": true,
+      "payment_or_order_created": false
+    }
+  },
+  "guardrails_preserved": [
+    "no payment data entered",
+    "no Pay Now / Place order click",
+    "no order creation",
+    "no Shopify Admin, theme, product data, Merchant, Google Ads, Pinterest, campaign, budget, bid, status, product-scope, feed-label, product-group, or conversion-goal writes",
+    "no CAPTCHA or verification bypass"
+  ],
+  "next_safe_action": "Keep DE as paused-infrastructure approval-gated with checkout evidence; keep NL checkout-pending / verification-rate-limited until a later isolated low-volume retry window or approved owner/browser path."
+}

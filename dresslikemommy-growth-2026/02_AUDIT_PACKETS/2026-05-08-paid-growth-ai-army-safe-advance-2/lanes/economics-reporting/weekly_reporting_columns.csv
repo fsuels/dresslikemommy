@@ -1,0 +1,36 @@
+column_name,definition,source_surface,calculation_or_readback,decision_use,frequency
+week_start,First day of reporting week,operator_report,Calendar date,Group performance into consistent weeks,weekly
+week_end,Last day of reporting week,operator_report,Calendar date,Close the optimization window,weekly
+platform,Google Ads or Pinterest,ad_platform,Readback field,Separate channel economics,weekly
+surface_type,Search Shopping Pinterest Catalog Pinterest Retargeting,ad_platform,Campaign type or operator label,Avoid blended channel averages,weekly
+campaign_name,Campaign name,ad_platform,Readback field,Primary optimization grouping,weekly
+campaign_id,Campaign ID,ad_platform,Readback field,Stable join key for history,weekly
+ad_group_or_product_group,Ad group product group or Pinterest ad group,ad_platform,Readback field,Smallest useful kill or scale unit,weekly
+country,Target country or market,ad_platform_and_final_url,Location targeting and URL country parameter,Segment winners and losers by market,weekly
+language,Ad or landing language,ad_platform_and_storefront,Ad copy language and landing page route,Spot mixed-language risk,weekly
+currency,Reported purchase currency,ad_platform_ga4_shopify,Purchase value currency,Prevent raw RON GBP CAD AUD comparison to USD,weekly
+fx_normalized_revenue_usd,Purchase value normalized to USD when needed,operator_report,Documented FX conversion when native currency differs,Compare against USD CPA targets,weekly
+status,Campaign and ad status,ad_platform,Readback field,Confirm paused/live state and avoid accidental spend,weekly
+daily_budget,Daily budget,ad_platform,Readback field,Control spend risk,weekly
+bid_strategy,Bid strategy,ad_platform,Readback field,Confirm Manual CPC or expected strategy,weekly
+max_cpc_or_bid_cap,Max CPC or effective CPC cap,ad_platform,Readback field,Validate CPC guardrail,weekly
+impressions,Ad impressions,ad_platform,Readback field,Diagnose volume and eligibility,weekly
+clicks,Ad clicks,ad_platform,Readback field,Compute CTR CPC CVR,weekly
+spend,Cost in account currency,ad_platform,Readback field,Trigger kill windows,weekly
+avg_cpc,Average CPC,ad_platform,spend / clicks,Compare to guardrail cap,weekly
+ctr,Click-through rate,ad_platform,clicks / impressions,Creative and query diagnostic only,weekly
+primary_purchases,Primary purchase conversions,google_ads_or_pinterest,Primary purchase action only,Main outcome for kill scale decisions,weekly
+conversion_value,Primary purchase conversion value,google_ads_or_pinterest,Readback field,Compute ROAS,weekly
+roas,Conversion value divided by cost,operator_report,conversion_value / spend,Primary profit control metric,weekly
+cpa,Cost per primary purchase,operator_report,spend / primary_purchases,Compare to $10.77 target and $9.49-$9.73 conservative band,weekly
+aov,Average order value from paid purchases,operator_report,conversion_value / primary_purchases,Validate planning AOV,weekly
+purchase_cvr,Purchase conversion rate,operator_report,primary_purchases / clicks,Compare to required CVR by CPC,weekly
+search_term_or_theme,Search term product theme or Pinterest creative theme,ad_platform,Search terms report or operator tag,Find waste and winners,weekly
+merchant_issue_status,Merchant paid-cohort issue state,merchant_center,Issue count sample IDs source timestamps labels,Block spend if catalog health regresses,weekly_before_actions
+pinterest_event_quality,Pinterest Event Quality and freshness,pinterest,Event Quality label Tag CAPI timestamps,Block live Pinterest spend if stale or unaccepted,weekly_before_actions
+final_url_country_param,Whether final URL includes expected country parameter,storefront_and_ads,URL readback,Prevent bare language URL traffic,weekly_before_actions
+checkout_readback_age_days,Age of no-payment checkout evidence,storefront,Packet timestamp difference,Refresh before activation or scale,weekly_before_actions
+action_taken,Pause hold narrow scale or no action,operator_report,Manual operator entry,Decision audit trail,weekly
+action_reason,Why the action was taken,operator_report,Manual operator entry,Tie actions to guardrails,weekly
+owner_approval_reference,Exact approval phrase or none,operator_report,Manual operator entry,Protect live write boundaries,weekly
+next_review_date,Next planned check,operator_report,Manual operator entry,Prevent neglected spend,weekly

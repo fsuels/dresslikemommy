@@ -83,6 +83,10 @@ BLOCKER_PHRASES = [
     "warehouse inventory",
     "local inventory",
     "in-store pickup",
+    "método estándar gratuito",
+    "metodo standard gratuito",
+    "metodă standard gratuită",
+    "método padrão grátis",
     "inventario local",
     "tienda f\u00edsica",
     "inventario fisico",
@@ -340,7 +344,7 @@ def policy_copy(locale: str) -> str:
 <p>Si tu destino no aparece en el checkout, o si no se muestra ningún método de envío para tu dirección, escríbenos a <a href="mailto:info@dresslikemommy.com">info@dresslikemommy.com</a> antes de hacer el pedido.</p>
 
 <h2>Tarifas de envío</h2>
-<p>Los métodos y tarifas de envío disponibles se muestran en el checkout antes del pago. El envío estándar es gratis cuando se muestra un método estándar gratuito para tu destino. Puede haber opciones express o de pago para algunas direcciones, y se mostrarán antes de realizar el pedido.</p>
+<p>El envío estándar está incluido en los precios de los productos para países y regiones donde haya un método estándar disponible. El checkout muestra el método exacto, la estimación de entrega y cualquier mejora express antes del pago.</p>
 
 <h2>Tiempo de procesamiento</h2>
 <p>Los pedidos se procesan en 1-3 días laborables después de la confirmación del pago. Durante festivos, promociones o periodos de mucho volumen, el procesamiento puede tardar 1-2 días laborables adicionales.</p>
@@ -385,7 +389,7 @@ def policy_copy(locale: str) -> str:
 <p>Se la tua destinazione non appare al checkout, o se non viene mostrato alcun metodo di spedizione per il tuo indirizzo, contattaci a <a href="mailto:info@dresslikemommy.com">info@dresslikemommy.com</a> prima di ordinare.</p>
 
 <h2>Tariffe di spedizione</h2>
-<p>I metodi e tariffe di spedizione disponibili sono mostrati al checkout prima del pagamento. La spedizione standard è gratuita quando per la tua destinazione viene mostrato un metodo standard gratuito. Opzioni express o a pagamento possono essere disponibili per alcuni indirizzi e saranno mostrate prima dell'ordine.</p>
+<p>La spedizione standard è inclusa nei prezzi dei prodotti per paesi e regioni in cui è disponibile un metodo standard. Il checkout mostra il metodo esatto, la stima di consegna ed eventuali upgrade express prima del pagamento.</p>
 
 <h2>Tempo di elaborazione</h2>
 <p>Gli ordini vengono elaborati entro 1-3 giorni lavorativi dalla conferma del pagamento. Durante festività, promozioni o periodi di alto volume, l'elaborazione può richiedere 1-2 giorni lavorativi aggiuntivi.</p>
@@ -430,7 +434,7 @@ def policy_copy(locale: str) -> str:
 <p>Dacă destinația ta nu apare la checkout sau nu se afișează nicio metodă de livrare pentru adresa ta, contactează-ne la <a href="mailto:info@dresslikemommy.com">info@dresslikemommy.com</a> înainte de comandă.</p>
 
 <h2>Tarife de livrare</h2>
-<p>Metodele și tarifele de livrare disponibile sunt afișate la checkout înainte de plată. Livrarea standard este gratuită atunci când pentru destinația ta este afișată o metodă standard gratuită. Opțiuni express sau plătite pot fi disponibile pentru unele adrese și vor fi afișate înainte de plasarea comenzii.</p>
+<p>Livrarea standard este inclusă în prețurile produselor pentru țările și regiunile unde este disponibilă o metodă standard. Checkout-ul afișează metoda exactă, estimarea de livrare și orice upgrade express înainte de plată.</p>
 
 <h2>Timp de procesare</h2>
 <p>Comenzile sunt procesate în 1-3 zile lucrătoare după confirmarea plății. În perioade de sărbători, promoții sau volum ridicat, procesarea poate dura încă 1-2 zile lucrătoare.</p>
@@ -475,7 +479,7 @@ def policy_copy(locale: str) -> str:
 <p>Se o seu destino não aparecer no checkout, ou se nenhum método de envio for exibido para o seu endereço, entre em contato pelo e-mail <a href="mailto:info@dresslikemommy.com">info@dresslikemommy.com</a> antes de fazer o pedido.</p>
 
 <h2>Tarifas de envio</h2>
-<p>Os métodos e tarifas de envio disponíveis aparecem no checkout antes do pagamento. O envio padrão é grátis quando um método padrão grátis é exibido para o seu destino. Opções expressas ou pagas podem estar disponíveis para alguns endereços e serão exibidas antes de você fazer o pedido.</p>
+<p>O envio padrão está incluído nos preços dos produtos para países e regiões onde um método padrão está disponível. O checkout mostra o método exato, a estimativa de entrega e qualquer upgrade expresso antes do pagamento.</p>
 
 <h2>Tempo de processamento</h2>
 <p>Os pedidos são processados em 1-3 dias úteis após a confirmação do pagamento. Durante feriados, promoções ou períodos de alto volume, o processamento pode levar mais 1-2 dias úteis.</p>
@@ -520,8 +524,8 @@ def page_copy(locale: str) -> str:
         "es": """<h2>Información de envío</h2>
 <p>En <strong>Dress Like Mommy</strong>, somos una tienda online que envía conjuntos familiares a juego a los destinos disponibles en el checkout mediante nuestros socios de envío y preparación de pedidos. Así puedes confirmar el envío, los tiempos de entrega y el seguimiento antes de comprar.</p>
 
-<h3>Opciones de envío gratis y de pago</h3>
-<p>Los métodos y tarifas de envío disponibles se muestran en el checkout antes del pago. El envío estándar es gratis cuando se muestra un método estándar gratuito para tu destino. Puede haber opciones express o de pago para algunas direcciones.</p>
+<h3>Opciones de envío estándar y express</h3>
+<p>El envío estándar está incluido en los precios de los productos para países y regiones donde haya un método estándar disponible. El checkout muestra el método exacto, la estimación de entrega y cualquier mejora express antes del pago.</p>
 
 <h3>Dónde enviamos</h3>
 <p>La disponibilidad de envío se basa en el país/región y la dirección introducidos en el checkout. Si el checkout muestra un método de envío para tu dirección, podemos enviar allí bajo el método y la tarifa mostrados.</p>
@@ -542,8 +546,8 @@ def page_copy(locale: str) -> str:
         "it": """<h2>Informazioni sulla spedizione</h2>
 <p>Da <strong>Dress Like Mommy</strong>, siamo un negozio online che spedisce outfit coordinati per la famiglia verso le destinazioni disponibili al checkout tramite i nostri partner di spedizione e preparazione ordini. Ecco come confermare spedizione, tempi di consegna e tracciamento prima di ordinare.</p>
 
-<h3>Opzioni di spedizione gratuite e a pagamento</h3>
-<p>I metodi e tariffe di spedizione disponibili sono mostrati al checkout prima del pagamento. La spedizione standard è gratuita quando per la tua destinazione viene mostrato un metodo standard gratuito. Opzioni express o a pagamento possono essere disponibili per alcuni indirizzi.</p>
+<h3>Opzioni di spedizione standard ed express</h3>
+<p>La spedizione standard è inclusa nei prezzi dei prodotti per paesi e regioni in cui è disponibile un metodo standard. Il checkout mostra il metodo esatto, la stima di consegna ed eventuali upgrade express prima del pagamento.</p>
 
 <h3>Dove spediamo</h3>
 <p>La disponibilità della spedizione dipende dal paese/regione e dall'indirizzo inseriti al checkout. Se il checkout mostra un metodo di spedizione per il tuo indirizzo, possiamo spedire lì con il metodo e la tariffa indicati.</p>
@@ -564,8 +568,8 @@ def page_copy(locale: str) -> str:
         "ro": """<h2>Informații despre livrare</h2>
 <p>La <strong>Dress Like Mommy</strong>, suntem un magazin online care livrează ținute asortate pentru familie către destinațiile disponibile la checkout prin partenerii noștri de livrare și pregătire a comenzilor. Iată cum poți confirma livrarea, timpul estimat și urmărirea înainte de comandă.</p>
 
-<h3>Opțiuni de livrare gratuite și plătite</h3>
-<p>Metodele și tarifele de livrare disponibile sunt afișate la checkout înainte de plată. Livrarea standard este gratuită atunci când pentru destinația ta este afișată o metodă standard gratuită. Opțiuni express sau plătite pot fi disponibile pentru unele adrese.</p>
+<h3>Opțiuni de livrare standard și express</h3>
+<p>Livrarea standard este inclusă în prețurile produselor pentru țările și regiunile unde este disponibilă o metodă standard. Checkout-ul afișează metoda exactă, estimarea de livrare și orice upgrade express înainte de plată.</p>
 
 <h3>Unde livrăm</h3>
 <p>Disponibilitatea livrării se bazează pe țara/regiunea și adresa introduse la checkout. Dacă checkout-ul afișează o metodă de livrare pentru adresa ta, putem livra acolo folosind metoda și tariful afișate.</p>
@@ -586,8 +590,8 @@ def page_copy(locale: str) -> str:
         "pt-BR": """<h2>Informações de envio</h2>
 <p>Na <strong>Dress Like Mommy</strong>, somos uma loja online que envia looks combinando para família aos destinos disponíveis no checkout por meio de nossos parceiros de envio e preparação de pedidos. Veja como confirmar envio, prazo de entrega e rastreamento antes de comprar.</p>
 
-<h3>Opções de envio grátis e pagas</h3>
-<p>Os métodos e tarifas de envio disponíveis aparecem no checkout antes do pagamento. O envio padrão é grátis quando um método padrão grátis é exibido para o seu destino. Opções expressas ou pagas podem estar disponíveis para alguns endereços.</p>
+<h3>Opções de envio padrão e expresso</h3>
+<p>O envio padrão está incluído nos preços dos produtos para países e regiões onde um método padrão está disponível. O checkout mostra o método exato, a estimativa de entrega e qualquer upgrade expresso antes do pagamento.</p>
 
 <h3>Para onde enviamos</h3>
 <p>A disponibilidade de envio depende do país/região e do endereço informados no checkout. Se o checkout mostrar um método de envio para o seu endereço, podemos enviar para lá pelo método e tarifa exibidos.</p>

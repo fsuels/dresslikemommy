@@ -8,7 +8,7 @@ import json
 import re
 import sys
 import time
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -328,6 +328,7 @@ SIZE_CHART_TABLE_RE = re.compile(
     r"(<table\b(?=[^>]*(?:id=[\"'][^\"']*size-chart|class=[\"'][^\"']*size-chart))[^>]*>)(.*?)(</table>)",
     flags=re.I | re.S,
 )
+HEADING_RE = re.compile(r"<h[1-6]\b[^>]*>.*?</h[1-6]>", flags=re.I | re.S)
 TABLE_ROW_RE = re.compile(r"(<tr\b[^>]*>)(.*?)(</tr>)", flags=re.I | re.S)
 TABLE_CELL_RE = re.compile(r"(<td\b[^>]*>)(.*?)(</td>)", flags=re.I | re.S)
 TAG_RE = re.compile(r"<[^>]+>")
@@ -1434,12 +1435,165 @@ def repair_product_html_size_labels(
     return repaired
 
 
-def repair_product_html_translation(
+def has_size_chart_table(html: str) -> bool:
+    return bool(SIZE_CHART_TABLE_RE.search(html or ""))
+
+
+TABLE_ID_ATTR_RE = re.compile(r"\bid=[\"']([^\"']+)[\"']", flags=re.I)
+
+
+def size_chart_table_key(table_html: str, fallback_index: int) -> str:
+    open_tag = (table_html or "").split(">", 1)[0]
+    id_match = TABLE_ID_ATTR_RE.search(open_tag)
+    if id_match and "size-chart" in id_match.group(1).lower():
+        return f"id:{id_match.group(1).strip().lower()}"
+    return f"index:{fallback_index}"
+
+
+def size_chart_table_key_counts(html: str) -> Counter[str]:
+    counts: Counter[str] = Counter()
+    for index, table_match in enumerate(SIZE_CHART_TABLE_RE.finditer(html or "")):
+        counts[size_chart_table_key(table_match.group(0), index)] += 1
+    return counts
+
+
+def has_complete_size_chart_table_coverage(source_html: str, translated_html: str) -> bool:
+    source_counts = size_chart_table_key_counts(source_html)
+    if not source_counts:
+        return False
+
+    translated_counts = size_chart_table_key_counts(translated_html)
+    return all(translated_counts[key] >= count for key, count in source_counts.items())
+
+
+def extract_source_size_chart_fragment(source_html: str) -> str:
+    if not source_html:
+        return ""
+
+    blocks: list[str] = []
+    previous_table_end = 0
+    for table_match in SIZE_CHART_TABLE_RE.finditer(source_html):
+        prefix = source_html[previous_table_end : table_match.start()]
+        heading_html = ""
+        for heading_match in HEADING_RE.finditer(prefix):
+            heading_text = strip_markup(heading_match.group(0)).lower()
+            if "size" in heading_text or "chart" in heading_text:
+                heading_html = heading_match.group(0)
+
+        blocks.append(f"{heading_html}\n{table_match.group(0)}".strip())
+        previous_table_end = table_match.end()
+
+    return "\n".join(block for block in blocks if block)
+
+
+def extract_missing_source_size_chart_fragment(source_html: str, translated_html: str) -> str:
+    if not source_html:
+        return ""
+
+    translated_counts = size_chart_table_key_counts(translated_html)
+    blocks: list[str] = []
+    previous_table_end = 0
+    for index, table_match in enumerate(SIZE_CHART_TABLE_RE.finditer(source_html)):
+        table_key = size_chart_table_key(table_match.group(0), index)
+        if translated_counts[table_key] > 0:
+            translated_counts[table_key] -= 1
+            previous_table_end = table_match.end()
+            continue
+
+        prefix = source_html[previous_table_end : table_match.start()]
+        heading_html = ""
+        for heading_match in HEADING_RE.finditer(prefix):
+            heading_text = strip_markup(heading_match.group(0)).lower()
+            if "size" in heading_text or "chart" in heading_text:
+                heading_html = heading_match.group(0)
+
+        blocks.append(f"{heading_html}\n{table_match.group(0)}".strip())
+        previous_table_end = table_match.end()
+
+    return "\n".join(block for block in blocks if block)
+
+
+def rebuild_product_html_size_chart_tables_from_source(
     source_html: str,
     translated_html: str,
     locale: str,
     product_context: dict[str, Any] | None = None,
 ) -> str:
+    if not source_html or not translated_html or not has_size_chart_table(source_html):
+        return translated_html
+
+    localized_source_html = repair_product_html_translation(
+        source_html,
+        source_html,
+        locale,
+        product_context=product_context,
+        ensure_size_chart=False,
+    )
+    localized_fragment = extract_source_size_chart_fragment(localized_source_html) or extract_source_size_chart_fragment(source_html)
+    if not localized_fragment:
+        return translated_html
+
+    body_without_chart_tables = SIZE_CHART_TABLE_RE.sub("", translated_html).rstrip()
+    return (
+        f"{body_without_chart_tables}\n"
+        "<!-- DLM localized size-chart rebuilt from source -->\n"
+        f"{localized_fragment}"
+    ).strip()
+
+
+def ensure_product_html_size_chart_coverage(
+    source_html: str,
+    translated_html: str,
+    locale: str,
+    product_context: dict[str, Any] | None = None,
+) -> str:
+    if not source_html or not translated_html or not has_size_chart_table(source_html):
+        return translated_html
+
+    repaired = repair_product_html_translation(
+        source_html,
+        translated_html,
+        locale,
+        product_context=product_context,
+        ensure_size_chart=False,
+    )
+    if has_complete_size_chart_table_coverage(source_html, repaired):
+        return repaired
+
+    source_fragment = extract_missing_source_size_chart_fragment(source_html, repaired) or extract_source_size_chart_fragment(source_html)
+    if not source_fragment:
+        return repaired
+
+    localized_fragment = repair_product_html_translation(
+        source_fragment,
+        source_fragment,
+        locale,
+        product_context=product_context,
+        ensure_size_chart=False,
+    )
+    if not has_size_chart_table(localized_fragment):
+        localized_fragment = source_fragment
+
+    combined = f"{repaired.rstrip()}\n<!-- DLM localized size-chart fallback from source -->\n{localized_fragment}".strip()
+    return combined
+
+
+def repair_product_html_translation(
+    source_html: str,
+    translated_html: str,
+    locale: str,
+    product_context: dict[str, Any] | None = None,
+    *,
+    ensure_size_chart: bool = True,
+) -> str:
+    if ensure_size_chart:
+        return ensure_product_html_size_chart_coverage(
+            source_html,
+            translated_html,
+            locale,
+            product_context=product_context,
+        )
+
     repaired = repair_product_html_size_labels(
         source_html,
         translated_html,

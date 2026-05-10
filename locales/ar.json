@@ -188,7 +188,7 @@
       "xr_button": "عرض في المساحة الخاصة بك",
       "xr_button_label": "عرض في المساحة الخاصة بك، وتحميل العنصر في نافذة الواقع المعزز",
       "include_taxes": "شامل الضريبة.",
-      "shipping_policy_html": "يتم عرض خيارات الشحن والتكاليف عند الخروج بعد إدخال العنوان. <a href=\"{{ link }}\">سياسة الشحن</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
       "select_size": "اختر الحجم",
       "select_color": "اختر اللون",
       "size_required_message": "يرجى اختيار المقاس قبل إضافته إلى عربة التسوق.",
@@ -230,7 +230,7 @@
         "write_review": "اكتب مراجعة",
         "write_review_title": "اكتب مراجعة"
       },
-      "free_shipping_all_orders": "شحن مجاني لجميع الطلبات",
+      "free_shipping_all_orders": "الشحن القياسي مشمول",
       "selected_size_label": "الحجم: {{ size }}",
       "description_sections": {
         "details_eyebrow": "التفاصيل",
@@ -248,17 +248,17 @@
       "secure_checkout": "الخروج الآمن",
       "ssl_encrypted": "مشفرة بتقنية SSL",
       "returns": "نافذة العودة لمدة 30 يوما",
-      "free_shipping": "الشحن يظهر عند الخروج",
+      "free_shipping": "الشحن القياسي مشمول",
       "trusted_since": "أصبحت مطابقة العائلة سهلة",
       "assistance_note": "بحاجة الى مساعدة؟ نقوم عادةً بالرد خلال يوم عمل واحد."
     },
     "additional_info": {
       "shipping_title": "الشحن والتسليم",
-      "free_shipping_label": "شحن مجاني",
+      "free_shipping_label": "الشحن القياسي مشمول",
       "estimated_delivery": "التسليم المتوقع:",
       "standard_delivery_window": "12-15 يوم عمل",
       "premium_delivery_window": "يتم عرض الخيارات السريعة عند الخروج حيثما كان ذلك متاحًا.",
-      "faster_shipping_prefix": "تريد ذلك بشكل أسرع؟ أنفق 100+ دولار واحصل على",
+      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
       "free_premium_shipping": "الشحن السريع",
       "return_policy_title": "سياسة العائدات",
       "return_policy_line_1": "لديك 30 يومًا من التسليم لطلب الإرجاع أو الاستبدال.",
@@ -304,6 +304,37 @@
       "sort_by_label": "الترتيب حسب:",
       "to": "ل",
       "clear_filter": "قم بإزالة الفلتر"
+    },
+    "shipping_country": {
+      "product_country": "الشحن إلى {{ country }}",
+      "product_country_with_currency": "الشحن إلى {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "يتم تأكيد بلد الشحن عند الدفع",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "eyebrow": "التحقق من بلد الشحن",
+      "page_title_country": "نعم، نشحن حاليًا إلى {{ country }}",
+      "page_title_default": "بلدان الشحن الحالية",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
+      "schema_standard_shipping": "الشحن القياسي مشمول",
+      "country_list_heading": "البلدان التي نشحن إليها حاليًا ({{ count }})",
+      "country_list_highlight": "كل بلد في هذه القائمة مفعّل في صفحة الدفع. يتم تمييز بلدك المحدد عندما تتمكن Shopify من اكتشافه.",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -363,7 +394,8 @@
       "carousel": "دائري",
       "announcement": "إعلان",
       "announcement_bar": "شريط اعلان",
-      "default_promo": "شحن مجاني لجميع الطلبات | تنسيق عائلي بسهولة | الخروج الآمن"
+      "default_promo": "الشحن القياسي مشمول | خيارات سريعة عند الدفع | دفع آمن",
+      "shipping_country_promo": "الشحن القياسي إلى {{ country }} مشمول | خيارات سريعة عند الدفع | دفع آمن"
     },
     "header": {
       "announcement": "إعلان",
@@ -384,10 +416,10 @@
       "empty": "سلة التسوق الخاصة بك فارغة",
       "cart_error": "حدث خطأ أثناء تحديث سلة التسوق الخاصة بك. يرجى المحاولة مرة أخرى.",
       "cart_quantity_error_html": "يمكنك فقط إضافة {{ quantity }}_ من هذا العنصر إلى سلة التسوق الخاصة بك.",
-      "taxes_and_shipping_policy_at_checkout_html": "يتم احتساب الضرائب والخصومات والشحن عند الخروج. <a href=\"{{ link }}\">سياسة الشحن</a>",
-      "taxes_included_but_shipping_at_checkout": "شامل الضريبة. الخصومات والشحن تحسب عند الخروج.",
-      "taxes_included_and_shipping_policy_html": "شامل الضريبة. الخصومات والشحن تحسب عند الخروج. <a href=\"{{ link }}\">سياسة الشحن</a>",
-      "taxes_and_shipping_at_checkout": "يتم احتساب الضرائب والخصومات والشحن عند الخروج.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
       "headings": {
         "product": "منتج",
         "price": "سعر",
@@ -410,18 +442,19 @@
       "trust": {
         "secure_checkout": "الخروج الآمن",
         "ssl_encrypted": "مشفرة بتقنية SSL",
-        "free_shipping": "خيارات الشحن",
+        "free_shipping": "الشحن مشمول",
         "returns": "عوائد لمدة 30 يوما",
         "secure": "يؤمن",
         "encrypted": "مشفرة",
-        "free_ship": "الشحن"
+        "free_ship": "الشحن مشمول"
       },
       "discount_code_toggle": "هل لديك رمز الخصم؟",
       "shipping_label": "شحن",
-      "shipping_free": "تحسب عند الخروج",
+      "shipping_free": "القياسي مشمول",
       "popular_with_families": "مشهور لدى العائلات",
       "recently_viewed": "تم عرضها مؤخرًا",
-      "savings_html": "أنت تقوم بحفظ <strong>{{ amount }}</strong>"
+      "savings_html": "أنت تقوم بحفظ <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
     },
     "footer": {
       "payment": "طرق الدفع"

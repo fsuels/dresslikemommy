@@ -1,0 +1,52 @@
+{
+  "anchor": "AGENT_CONTINUITY_ANCHOR: 2026-05-09-paid-growth-localized-copy-pinterest-manifest-safe-advance",
+  "generated_at": "2026-05-09T12:05:19-04:00",
+  "decision": "LOCAL_ARTIFACTS_READY_NO_LIVE_WRITES_OWNER_APPROVAL_REQUIRED_FOR_ANY_PLATFORM_BUILD",
+  "live_writes": 0,
+  "google_ads_preview_import_or_account_write": false,
+  "merchant_upload_or_source_write": false,
+  "shopify_live_product_data_write": false,
+  "pinterest_account_write": false,
+  "lanes": {
+    "google_ads_split_manifest": {
+      "status": "PASS_LOCAL_ONLY_APPROVAL_GATED",
+      "source_rows": 1496,
+      "split_files": 17,
+      "rows_per_country": 88,
+      "max_cpc": 0.15,
+      "forbidden_hits": 0,
+      "evidence": "lanes/google-ads-split-manifest/GOOGLE_ADS_SPLIT_IMPORT_CONTROL_REPORT.md"
+    },
+    "native_language_copy_options": {
+      "status": "LOCAL_NATIVE_LANGUAGE_OPTIONS_READY_FOR_NATIVE_REVIEW_NO_ADS_WRITES",
+      "locale_variants": 14,
+      "forbidden_claim_hits": 0,
+      "max_headline_length": 24,
+      "max_description_length": 73,
+      "evidence": "lanes/native-language-copy-options/NATIVE_LANGUAGE_COPY_OPTIONS_REPORT.md"
+    },
+    "market_activation_priority": {
+      "status": "LOCAL_APPROVAL_GATED_SCORECARD_ONLY",
+      "markets_ranked": 17,
+      "live_spend_ready_markets": 0,
+      "top_sequence": ["GB", "CA", "AU", "ES", "IT", "RO", "PT"],
+      "smallest_future_spend_unit_after_separate_approval": "GB / Mommy & Me Dresses - Exact only",
+      "evidence": "lanes/market-activation-priority/MARKET_ACTIVATION_PRIORITY_SCORECARD.md"
+    },
+    "pinterest_paused_draft_structure": {
+      "status": "LOCAL_TEMPLATES_READY_OWNER_APPROVAL_REQUIRED",
+      "clean_scope_rows": 342,
+      "unique_products": 32,
+      "explicit_exclusions": 4,
+      "event_quality": "Fair",
+      "evidence": "lanes/pinterest-paused-draft-structure/PINTEREST_PAUSED_US_DRAFT_STRUCTURE.md"
+    }
+  },
+  "active_problem_updates": [
+    "PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE",
+    "PROB-2026-05-09-NON-US-SEARCH-NATIVE-LANGUAGE-COPY-GATE",
+    "PROB-2026-05-08-PINTEREST-EVENT-QUALITY",
+    "PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH"
+  ],
+  "next_best_action": "Request exact paused non-US Google Search TEST BUILD approval, then preview/read back with all entities paused and presence-only targeting; keep spend, Pinterest, Merchant US/es, beach metadata, Standard Shopping, and PMax as separate approval gates."
+}

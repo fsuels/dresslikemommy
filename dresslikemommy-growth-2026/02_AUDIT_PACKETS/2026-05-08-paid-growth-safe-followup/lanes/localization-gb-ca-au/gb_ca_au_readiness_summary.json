@@ -1,0 +1,173 @@
+{
+  "generated_at": "2026-05-08T03:06:11-04:00",
+  "lane": "GB/CA/AU storefront checkout readiness QA",
+  "mode": "public_read_only_no_payment_no_order",
+  "write_scope": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-safe-followup/lanes/localization-gb-ca-au/",
+  "guardrails_preserved": [
+    "no live spend",
+    "no Ads, Merchant, Pinterest, Shopify Admin, product-data, theme, checkout-setting, campaign, budget, bid, status, product-scope, feed-label, product-group, or conversion-goal writes",
+    "no checkout payment",
+    "no order creation"
+  ],
+  "test_product": {
+    "variant_id": "41871520661601",
+    "handle": "matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set",
+    "cart_add_title": "Beach Outfits Holiday Palm Tree Print Summer Dresse... | DLM - Father XL / blue"
+  },
+  "tools_and_commands_used": [
+    "Read prior paid-growth prompt and localization/checkout artifacts with sed/find/rg.",
+    "Ran inline python3 public storefront probe using urllib CookieJar, product country URLs, /cart/clear.js, /cart/add.js, /cart.js, and /cart/shipping_rates.json.",
+    "Attempted MCP Playwright new tab for AU cart permalink; blocked because browser profile was already in use.",
+    "Attempted MCP Chrome DevTools isolated new_page for AU cart permalink; blocked because browser profile was already in use.",
+    "Ran AU-only slow retry after 65 second cooldown with fresh CookieJar and Shopify cart permalink; storefront returned HTTP 429 verification page at product landing.",
+    "Attempted public policy page curl readback after AU blocker; /pages/shipping-info, /policies/shipping-policy, and /policies/refund-policy returned HTTP 429 verification pages."
+  ],
+  "overall_decision": "GB_CA_SUPPORT_PAUSED_ENGLISH_FIRST_INFRA_AFTER_PARENT_INTEGRATION__AU_CHECKOUT_REMAINS_BLOCKED_BY_STOREFRONT_429__NO_INTERNATIONAL_LIVE_SPEND_READY",
+  "countries": {
+    "GB": {
+      "country": "United Kingdom",
+      "status": "PASS_WITH_CHECKOUT_UI_RESIDUAL_RISK",
+      "landing": {
+        "url": "https://www.dresslikemommy.com/products/matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set?variant=41871520661601&country=GB",
+        "http_status": 200,
+        "html_lang": "en",
+        "currency_meta": "GBP",
+        "final_url_retained_country_param": true
+      },
+      "cart": {
+        "clear_http_status": 200,
+        "add_http_status": 200,
+        "cart_http_status": 200,
+        "cart_currency": "GBP",
+        "item_count": 1,
+        "total_price_minor_units": 2100
+      },
+      "shipping_rate_probe": {
+        "address": {
+          "country": "United Kingdom",
+          "city": "London",
+          "zip": "SW1A 1AA",
+          "province": "England"
+        },
+        "http_status": 200,
+        "rates": [
+          {
+            "name": "Standard Delivery (10 - 14 Days)",
+            "price": "0.00",
+            "currency": "GBP"
+          },
+          {
+            "name": "Express Delivery (7 - 11 Days)",
+            "price": "9.71",
+            "currency": "GBP"
+          }
+        ]
+      },
+      "checkout_shipping_step_reachability": "not_browser_verified_this_run_because_mcp_browser_profiles_were_locked; public cart shipping-rate API returned rates in GBP"
+    },
+    "CA": {
+      "country": "Canada",
+      "status": "PASS_WITH_CHECKOUT_UI_RESIDUAL_RISK",
+      "landing": {
+        "url": "https://www.dresslikemommy.com/products/matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set?variant=41871520661601&country=CA",
+        "http_status": 200,
+        "html_lang": "en",
+        "currency_meta": "CAD",
+        "final_url_retained_country_param": true
+      },
+      "cart": {
+        "clear_http_status": 200,
+        "add_http_status": 200,
+        "cart_http_status": 200,
+        "cart_currency": "CAD",
+        "item_count": 1,
+        "total_price_minor_units": 3900
+      },
+      "shipping_rate_probe": {
+        "address": {
+          "country": "Canada",
+          "city": "Toronto",
+          "zip": "M5V 2T6",
+          "province": "Ontario"
+        },
+        "http_status": 200,
+        "rates": [
+          {
+            "name": "Standard Delivery (10 - 14 Days)",
+            "price": "0.00",
+            "currency": "CAD"
+          },
+          {
+            "name": "Express Delivery (7 - 11 Days)",
+            "price": "18.00",
+            "currency": "CAD"
+          }
+        ]
+      },
+      "checkout_shipping_step_reachability": "not_browser_verified_this_run_because_mcp_browser_profiles_were_locked; public cart shipping-rate API returned rates in CAD"
+    },
+    "AU": {
+      "country": "Australia",
+      "status": "BLOCKED_BY_STOREFRONT_BOT_PROTECTION_OR_429",
+      "landing_initial": {
+        "url": "https://www.dresslikemommy.com/products/matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set?variant=41871520661601&country=AU",
+        "http_status": 200,
+        "html_lang": "en",
+        "currency_meta": "AUD",
+        "final_url_retained_country_param": true
+      },
+      "cart_initial": {
+        "clear_http_status": 200,
+        "add_http_status": 429,
+        "cart_http_status": 429,
+        "cart_currency": null,
+        "item_count": null
+      },
+      "shipping_rate_probe_initial": {
+        "address": {
+          "country": "Australia",
+          "city": "Sydney",
+          "zip": "2000",
+          "province": "New South Wales"
+        },
+        "http_status": 429,
+        "rates": null,
+        "blocker": "Verifying your connection..."
+      },
+      "recovery_attempts": [
+        {
+          "attempt": "MCP Playwright browser tab",
+          "result": "blocked",
+          "evidence": "Browser is already in use for the Playwright MCP profile; tool requested --isolated instance but this subagent cannot restart it."
+        },
+        {
+          "attempt": "MCP Chrome DevTools isolated context",
+          "result": "blocked",
+          "evidence": "Chrome DevTools MCP profile already running; tool requested different userDataDir or stopping the running browser."
+        },
+        {
+          "attempt": "65 second cooldown plus fresh CookieJar and cart permalink",
+          "result": "blocked",
+          "evidence": "Product landing returned HTTP 429 with title/text 'Verifying your connection...'."
+        }
+      ],
+      "checkout_shipping_step_reachability": "not_verified; blocked before cart/add and shipping-rate readback after storefront 429"
+    }
+  },
+  "policy_page_current_session": {
+    "urls_attempted": [
+      "https://www.dresslikemommy.com/pages/shipping-info",
+      "https://www.dresslikemommy.com/policies/shipping-policy",
+      "https://www.dresslikemommy.com/policies/refund-policy"
+    ],
+    "result": "blocked_by_http_429_verifying_your_connection_after_checkout_probe_rate_limit",
+    "fallback_evidence": "Prior paid-growth continuity says English public Shipping Policy and Shipping Info were clean after cooldown; this subagent could not refresh policy pages after the AU 429."
+  },
+  "residual_risks": [
+    "GB and CA have public product/cart/rate evidence but were not driven through the Shopify one-page checkout UI in this run because MCP browser profiles were locked.",
+    "AU product presentment initially showed AUD, but cart carry-through and shipping rates are unverified because Shopify storefront bot protection/HTTP 429 intervened.",
+    "Public policy page freshness for GB/CA/AU could not be rechecked in this session after rate limiting; rely on prior clean English policy evidence until a cooldown browser recheck is run.",
+    "No country is cleared for live spend by this lane; Merchant/Pinterest/tracking/economics/approval gates still apply."
+  ],
+  "next_action": "After cooldown, parent should run an isolated human/browser checkout walkthrough for GB, CA, and especially AU, one country per fresh profile/session, stopping at shipping rates and entering no payment. Use the same country-qualified product URLs and confirm order-summary currency, country, standard/express rates, and no payment/order."
+}

@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-05-08T03:31:00-04:00",
+  "anchor": "AGENT_CONTINUITY_ANCHOR: 2026-05-08-paid-growth-readonly-us-es-au-followup",
+  "packet": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-readonly-us-es-au-followup/",
+  "guardrails_preserved": [
+    "no live spend",
+    "no campaign enablement",
+    "no campaign, budget, bid, or status changes",
+    "no PMax enable",
+    "no Standard Shopping changes",
+    "no product-scope, feed-label, or product-group changes",
+    "no conversion-goal changes",
+    "no Merchant uploads, source syncs, or source edits",
+    "no Shopify live product-data changes",
+    "no Pinterest draft, campaign, tag, CAPI, product-group, audience, budget, or bid writes",
+    "no checkout payment or order",
+    "no theme publish",
+    "no credential changes"
+  ],
+  "merchant_us_es": {
+    "problem_id": "PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP",
+    "status": "OWNER_APPROVAL_REQUIRED_FOR_LIVE_FIX",
+    "source_id": "10627981690",
+    "result": "Two affected US/es product-detail RPC readbacks on source 10627981690 still show Missing age group and lack effective n:age_group; one control sample has n:age_group and no Missing age group.",
+    "evidence": "lanes/merchant-us-es-readonly/MERCHANT_US_ES_SOURCE_DETAIL_READBACK.md"
+  },
+  "au_checkout": {
+    "problem_id": "PROB-2026-05-08-AU-CHECKOUT-429",
+    "status": "SOLVED_READBACK_PASSED",
+    "result": "Fresh isolated Chrome profile reached AU product/cart/checkout shipping rates in AUD without 429, CAPTCHA, verification page, payment, or order.",
+    "rates": {
+      "standard": "0.00 AUD",
+      "express_api": "18.24 AUD",
+      "express_checkout_ui": "19.00 AUD"
+    },
+    "evidence": "lanes/au-checkout-readonly/AU_ISOLATED_CHECKOUT_TO_SHIPPING.md"
+  },
+  "pinterest": {
+    "problem_id": "PROB-2026-05-08-PINTEREST-EVENT-QUALITY",
+    "status": "OWNER_APPROVAL_REQUIRED",
+    "result": "Not run in this pass; separate exact approval required for paused US drafts or narrow Event Quality repair."
+  }
+}

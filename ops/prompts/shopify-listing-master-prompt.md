@@ -311,6 +311,12 @@ Re-query the product and halt on mismatch:
 - each size table has exactly 10 `<th>` columns
 - every live variant price matches the derived price when `FORCE_SPEC_PRICES=true` and this run is explicitly creating/enforcing prices
 - when current live/draft prices differ because the operator changed them manually, every Cost per item matches 50% of those current prices
+- for every product whose body contains a size-chart table, published-locale `body_html` translations must preserve size-chart coverage:
+  - run `python3 ops/scripts/poll_shopify_product_translations.py --handles <handle> --execute --force-refresh` after the product create/update unless this session already registered fresh translations for that handle
+  - run `python3 ops/scripts/repair_localized_product_size_charts.py --handles <handle> --execute`
+  - rerun `python3 ops/scripts/repair_localized_product_size_charts.py --handles <handle> --fail-on-missing` as the readback and require `planned_translation_count=0`, `products_with_missing_locale_size_chart=0`, and `error_count=0`
+  - run `python3 ops/scripts/audit_localized_size_chart_variant_mapping.py --handles <handle> --fail-on-unmatched` and require `unmatched_variant_locale_count=0`
+  - if any published locale is still missing a size chart or any available variant cannot map to a localized size-chart row/card, keep the product draft/unpublished, document the failing locale(s)/variant(s), and do not mark the listing complete
 
 ## Store Rules
 
@@ -615,6 +621,7 @@ Do not finish until all of these pass:
 - every Size x Color combination exists when a Color option is present
 - every size table first column matches the picker labels exactly
 - each size table has 10 headers
+- every published non-primary locale has PDP size-chart coverage for this product; the readback from `ops/scripts/repair_localized_product_size_charts.py --handles <handle> --fail-on-missing` must pass with `0` missing locale size charts, and `ops/scripts/audit_localized_size_chart_variant_mapping.py --handles <handle> --fail-on-unmatched` must pass with `unmatched_variant_locale_count=0`
 - waist populated for every row
 - every variant has SKU, price, compare-at, `DENY`, `tracked=true`, and Cost per item equal to the current final price * `0.50`
 - no variant is missing or stale Cost per item; if any cost is missing or stale, fix it to 50% of the current price, or report `paid_eligible=false` and call it out if the fix is blocked

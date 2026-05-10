@@ -1,0 +1,200 @@
+{
+  "generated_at_local": "2026-05-09",
+  "lane": "economics-market-priority",
+  "packet": "2026-05-09-paid-growth-checkout-expansion-safe-advance",
+  "mode": "LOCAL_READ_ONLY_ONLY",
+  "decision": "LOCAL_READY__NO_LIVE_SPEND_READY__NEXT_QA_ORDER_DEFINED",
+  "parent_integration_note": "Sibling checkout lane later passed CH and DK no-payment checkout-to-shipping QA. CH and DK are now checkout/rate-evidence approval-gated for paused infrastructure only. Live-spend-ready remains 0. Remaining checkout-pending markets are DE, NL, FR, BE, SE, PL, CZ, and GR.",
+  "write_scope_honored": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-checkout-expansion-safe-advance/lanes/economics-market-priority/",
+  "external_writes_made": false,
+  "checkout_actions_made": false,
+  "live_spend_ready_markets": {
+    "count": 0,
+    "markets": [],
+    "meaning": "No non-US market has all readiness, tracking/catalog, landing URL, economics, and exact approval gates cleared."
+  },
+  "market_tiers": {
+    "checkout_rate_evidence_approval_gated": [
+      "GB",
+      "CA",
+      "AU",
+      "ES",
+      "IT",
+      "RO",
+      "PT"
+    ],
+    "checkout_pending": [
+      "CH",
+      "DK",
+      "DE",
+      "NL",
+      "SE",
+      "FR",
+      "BE",
+      "PL",
+      "CZ",
+      "GR"
+    ]
+  },
+  "next_market_qa_order": [
+    {
+      "order": 1,
+      "country_code": "CH",
+      "market": "Switzerland",
+      "required_next_readback": "One isolated-browser no-payment checkout-to-shipping run; stop on visible 429/CAPTCHA."
+    },
+    {
+      "order": 2,
+      "country_code": "DK",
+      "market": "Denmark",
+      "required_next_readback": "One low-volume no-payment checkout/shipping run with DKK presentment."
+    },
+    {
+      "order": 3,
+      "country_code": "DE",
+      "market": "Germany",
+      "required_next_readback": "Checkout/rate proof, EUR presentment, German landing/policy review."
+    },
+    {
+      "order": 4,
+      "country_code": "NL",
+      "market": "Netherlands",
+      "required_next_readback": "Fresh checkout/rate proof, EUR presentment, Dutch language-quality decision."
+    },
+    {
+      "order": 5,
+      "country_code": "FR",
+      "market": "France",
+      "required_next_readback": "Checkout/rate proof, EUR presentment, French landing/policy review."
+    },
+    {
+      "order": 6,
+      "country_code": "BE",
+      "market": "Belgium",
+      "required_next_readback": "Checkout/rate proof, EUR presentment, French/Dutch language split decision."
+    },
+    {
+      "order": 7,
+      "country_code": "SE",
+      "market": "Sweden",
+      "required_next_readback": "Checkout/rate proof, SEK presentment, Swedish language/reporting review."
+    },
+    {
+      "order": 8,
+      "country_code": "PL",
+      "market": "Poland",
+      "required_next_readback": "Checkout/rate proof, PLN presentment, Polish landing/policy review."
+    },
+    {
+      "order": 9,
+      "country_code": "CZ",
+      "market": "Czechia",
+      "required_next_readback": "Checkout/rate proof, CZK presentment, Czech landing/policy review."
+    },
+    {
+      "order": 10,
+      "country_code": "GR",
+      "market": "Greece",
+      "required_next_readback": "Checkout/rate proof, EUR presentment, Greek landing/policy review."
+    }
+  ],
+  "economics": {
+    "aov_usd": 70.0,
+    "target_roas_percent": 650,
+    "target_roas_multiple": 6.5,
+    "max_cpa_usd": 10.7692,
+    "cpc_assumptions": [
+      {
+        "cpc_usd": 0.1,
+        "required_purchase_cvr_percent": 0.93,
+        "clicks_per_target_cpa": 108,
+        "clicks_at_5_spend": 50,
+        "clicks_at_10_77_spend": 108,
+        "clicks_at_16_spend": 160
+      },
+      {
+        "cpc_usd": 0.12,
+        "required_purchase_cvr_percent": 1.11,
+        "clicks_per_target_cpa": 90,
+        "clicks_at_5_spend": 42,
+        "clicks_at_10_77_spend": 90,
+        "clicks_at_16_spend": 133
+      },
+      {
+        "cpc_usd": 0.15,
+        "required_purchase_cvr_percent": 1.39,
+        "clicks_per_target_cpa": 72,
+        "clicks_at_5_spend": 33,
+        "clicks_at_10_77_spend": 72,
+        "clicks_at_16_spend": 107
+      },
+      {
+        "cpc_usd": 0.2,
+        "required_purchase_cvr_percent": 1.86,
+        "clicks_per_target_cpa": 54,
+        "clicks_at_5_spend": 25,
+        "clicks_at_10_77_spend": 54,
+        "clicks_at_16_spend": 80
+      }
+    ],
+    "kill_guardrails": [
+      {
+        "threshold": "about $5 spend with weak terms/products or no qualified engagement",
+        "control": "Pause or narrow the smallest approved unit."
+      },
+      {
+        "threshold": "$9.49-$10.77 spend with 0 purchases in weaker or mixed-evidence markets",
+        "control": "Pause, narrow, or require owner decision."
+      },
+      {
+        "threshold": "$10.77 spend with 0 purchases in a clean evidence lane",
+        "control": "Pause, narrow, or require owner decision."
+      },
+      {
+        "threshold": "$16.00 spend with 0 purchases",
+        "control": "Hard pause the smallest visible unit."
+      },
+      {
+        "threshold": "3+ purchases at or below $10.77 CPA with clean value and evidence",
+        "control": "Eligible for cautious scale review only."
+      }
+    ]
+  },
+  "future_paused_import_reporting_checklist": [
+    "Confirm exact owner approval text and intended surface.",
+    "Use held 1496-row Vacation Family-excluded CSV while the beach metadata blocker is open.",
+    "Verify all rows are Add and all campaign/ad group/keyword/ad statuses are Paused.",
+    "Verify no US campaign 23827590655 rows.",
+    "Verify no PMax, Standard Shopping, product-scope, feed-label, product-group, conversion-goal, Merchant, Pinterest, Shopify product-data, theme, budget-increase, bid-increase, or enablement rows.",
+    "Verify CPC values are at or below the approved cap.",
+    "Verify final URLs retain country parameters and ES/IT/RO/PT are country-qualified localized URLs.",
+    "Verify Vacation Family/product 7227378892897/stale beach handle remains excluded unless repaired and publicly read back.",
+    "After preview/build, count campaigns, ad groups, keywords, negatives, ads, budgets, CPCs, and statuses.",
+    "Verify every importable entity remains paused and no external surface outside approval changed.",
+    "Save dated readback evidence and summary JSON."
+  ],
+  "claim_safe_constraints": [
+    "Do not imply physical store, warehouse, local pickup, local stock, stocked inventory, owned inventory, or guaranteed on-hand availability.",
+    "Do not claim fast shipping, guaranteed delivery timing, bestseller status, review counts, ratings, promotions, discounts, free gifts, guaranteed fit, guaranteed availability, or risk-free returns without separate current proof.",
+    "Do not call outbound shipping rates returns."
+  ],
+  "source_evidence": [
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-market-readiness-safe-advance/PAID_GROWTH_MARKET_READINESS_SAFE_ADVANCE_REPORT.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-market-readiness-safe-advance/lanes/market-readiness/INTERNATIONAL_MARKET_READINESS_SCORECARD.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-market-readiness-safe-advance/lanes/market-readiness/market_readiness.json",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-market-readiness-safe-advance/lanes/ads-held-csv/held_ads_validation.json",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-market-readiness-safe-advance/lanes/economics-reporting/ECONOMICS_REPORTING_NEXT_CONTROL.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-url-hold-checkout-safe-advance/lanes/gb-ca-checkout-ui/GB_CA_CHECKOUT_UI_READBACK.md"
+  ],
+  "files_created": [
+    "ECONOMICS_MARKET_PRIORITY_CONTROLS.md",
+    "summary.json"
+  ],
+  "blockers": [
+    "Live-spend-ready markets remain 0.",
+    "CH and DK still need no-payment checkout-to-shipping QA before spend discussion.",
+    "DE, NL, SE, FR, BE, PL, CZ, and GR remain checkout-pending after CH/DK.",
+    "Vacation Family / product 7227378892897 remains excluded for paid traffic while stale beach metadata blocker is open.",
+    "Any paused import/build, live spend, external account write, product data repair, or campaign change still requires exact owner approval."
+  ]
+}

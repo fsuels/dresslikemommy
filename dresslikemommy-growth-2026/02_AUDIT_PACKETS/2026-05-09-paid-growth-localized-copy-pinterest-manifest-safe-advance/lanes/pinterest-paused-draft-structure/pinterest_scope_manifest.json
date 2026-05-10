@@ -1,0 +1,95 @@
+{
+  "status": "LOCAL_PAUSED_DRAFT_TEMPLATES_READY_NO_PINTEREST_WRITES",
+  "generated_at": "2026-05-09",
+  "worker": "Worker D",
+  "advertiser_id": "549756244483",
+  "account_domain": "dresslikemommy.com",
+  "catalog": {
+    "name": "Catalog_Retail",
+    "catalog_id": "3041764155561548387",
+    "allowed_feed_profile_id": "3041760867124595727",
+    "blocked_feed_profile_ids": [
+      "3041760916127467912"
+    ],
+    "allowed_locale": "en-US"
+  },
+  "clean_scope": {
+    "source_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/pinterest_us_clean_launch_scope_resolved_342.csv",
+    "rows": 342,
+    "unique_shopify_variant_ids": 342,
+    "unique_shopify_product_ids": 32,
+    "platform_availability_diagnostic": "IN_STOCK",
+    "item_level_status": "FOUND_EN_US_IN_STOCK",
+    "paid_label": "paid_eligible",
+    "readiness_label": "us_test_ready",
+    "review_status": "CANDIDATE_ONLY_NOT_LAUNCH_APPROVED",
+    "groups": {
+      "mommy_me": {
+        "product_group": "DLM_PIN_US_SHOPPING_MOMMY_AND_ME",
+        "label": "Mommy & Me",
+        "rows": 210,
+        "unique_products": 28,
+        "price_min_usd": 14.99,
+        "price_max_usd": 33.99,
+        "max_cac_min_usd": 2.25,
+        "max_cac_max_usd": 5.1
+      },
+      "family_matching": {
+        "product_group": "DLM_PIN_US_SHOPPING_FAMILY_MATCHING",
+        "label": "Family Matching",
+        "rows": 103,
+        "unique_products": 7,
+        "price_min_usd": 14.99,
+        "price_max_usd": 34.99,
+        "max_cac_min_usd": 2.25,
+        "max_cac_max_usd": 5.25
+      },
+      "pajamas": {
+        "product_group": "DLM_PIN_US_SHOPPING_PAJAMAS",
+        "label": "Pajamas",
+        "rows": 29,
+        "unique_products": 1,
+        "price_min_usd": 24.99,
+        "price_max_usd": 27.99,
+        "max_cac_min_usd": 3.75,
+        "max_cac_max_usd": 4.2
+      }
+    }
+  },
+  "exclusions": {
+    "source_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/pinterest_us_unresolved_exclusions_4.csv",
+    "rows": 4,
+    "variant_ids": [
+      "41878208249953",
+      "41878208479329",
+      "41878208577633",
+      "41878208610401"
+    ],
+    "reason": "No current EN-US Pinterest in-stock item metadata by stale pin ID or fresh Shopify variant ID re-resolution.",
+    "clean_scope_overlap": 0
+  },
+  "event_quality_gate": {
+    "overall_web_status": "Fair",
+    "pinterest_tag_status": "Fair",
+    "conversions_api_status": "Fair",
+    "verified_merchant_program": "PASS",
+    "automatic_enhanced_match": "PASS",
+    "enhanced_match": "ERROR",
+    "live_spend_ready": false,
+    "top_gaps": [
+      "product_id__ADD_PAYMENT_INFO",
+      "hashed_email__ADD_TO_CART",
+      "click_id_epik__CHECKOUT"
+    ]
+  },
+  "account_baseline_from_stored_evidence": {
+    "campaigns": 0,
+    "currently_serving": 0,
+    "spend_usd": 0.0
+  },
+  "guardrails": [
+    "No Pinterest account write was made.",
+    "No live spend, campaign enablement, budget activation, bid activation, status change, product group activation, catalog source edit, tag change, CAPI change, audience change, Shopify product edit, Merchant write, Google Ads write, or feed change is authorized by this artifact.",
+    "Any future live-account paused draft build requires exact owner approval and before/after readbacks."
+  ]
+}

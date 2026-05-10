@@ -1,0 +1,80 @@
+- generic [active] [ref=e1] [box=0,0,375,4982]:
+  - link "Skip to content" [ref=e2] [cursor=pointer] [box=-1,-1,122,47]:
+    - /url: "#MainContent"
+  - region "Announcement" [ref=e6] [box=-7,0,390,22]:
+    - paragraph [ref=e7] [box=-7,0,390,22]:
+      - generic [ref=e8] [box=-7,5,390,12]: 🚚 SHIPPING OPTIONS AT CHECKOUT
+  - banner [ref=e11] [box=0,22,375,62]:
+    - group [ref=e13] [box=24,31,44,44]:
+      - button "Menu" [ref=e14] [cursor=pointer] [box=24,31,44,44]:
+        - img [ref=e15] [box=36,43,20,20]
+    - group [ref=e18] [box=68,34,38,38]:
+      - button "Search for products" [ref=e19] [cursor=pointer] [box=68,34,38,38]:
+        - img [ref=e20] [box=77,43,20,20]
+    - link "Dress Like Mommy" [ref=e21] [cursor=pointer] [box=158,33,95,40]:
+      - /url: /
+      - img "Dress Like Mommy" [ref=e23] [box=166,37,78,32]
+    - button "Cart 0 items" [ref=e25] [cursor=pointer] [box=305,30,46,46]:
+      - img [box=309,34,39,39]
+      - generic [ref=e26] [box=328,30,1,46]: Cart
+      - generic [ref=e27] [box=327,31,18,18]:
+        - generic [ref=e28] [box=333,32,5,16]: "0"
+        - generic [ref=e29] [box=336,32,1,16]: 0 items
+  - main [ref=e30] [box=0,85,375,3652]:
+    - region "Yes, we currently ship to Denmark" [ref=e31] [box=0,85,375,743]:
+      - generic [ref=e32] [box=0,85,375,742]:
+        - paragraph [ref=e33] [box=15,105,345,22]: Shipping country check
+        - heading "Yes, we currently ship to Denmark" [level=2] [ref=e34] [box=15,133,345,25]
+        - paragraph [ref=e35] [box=15,166,345,140]: These are the countries and regions currently available in our checkout country selector. Enter your full address at checkout to see the exact shipping method, rate, delivery estimate, and any destination-specific requirements before payment.
+        - paragraph [ref=e36] [box=15,315,345,47]: Denmark is currently included in this checkout country list.
+        - list [ref=e37] [box=15,378,345,320]
+        - paragraph [ref=e389] [box=15,714,345,93]
+    - generic [ref=e391] [box=0,848,375,2889]:
+      - heading "Shipping policy" [level=1] [ref=e393] [box=20,848,335,39]
+      - generic [ref=e395] [box=20,907,335,2830]:
+        - heading "Shipping Policy" [level=1] [ref=e396] [box=20,907,335,39]
+        - paragraph [ref=e397] [box=20,966,335,27]
+        - paragraph [ref=e399] [box=20,1008,335,135]
+        - heading "Where We Ship" [level=2] [ref=e401] [box=20,1160,335,26]
+        - paragraph [ref=e402] [box=20,1202,335,216]: Shipping is available to the countries and regions shown at checkout. Availability depends on the destination, product, and shipping methods shown during checkout. Use the country/region selector or the checkout shipping step to confirm whether we can ship to your address before placing an order.
+        - paragraph [ref=e403] [box=20,1433,335,108]
+        - heading "Shipping Rates" [level=2] [ref=e405] [box=20,1558,335,26]
+        - paragraph [ref=e406] [box=20,1601,335,162]: Available shipping methods and rates are shown at checkout before payment. Standard shipping is free when a free standard method is shown for your destination. Express or paid options may be available for some addresses and will display before you place the order.
+        - heading "Processing Time" [level=2] [ref=e407] [box=20,1779,335,26]
+        - paragraph [ref=e408] [box=20,1822,335,135]: Orders are processed within 1-3 business days after payment confirmation. During holidays, promotions, or high-volume periods, processing may take an additional 1-2 business days.
+        - paragraph [ref=e409] [box=20,1972,335,54]: You will receive an email with tracking information once your order ships.
+        - heading "Delivery Times" [level=2] [ref=e410] [box=20,2042,335,26]
+        - paragraph [ref=e411] [box=20,2085,335,135]: Orders are processed within 1-3 business days after payment confirmation. Delivery estimates vary by destination, carrier, customs processing, and the shipping method shown at checkout.
+        - list [ref=e412] [box=20,2235,335,135]
+        - paragraph [ref=e417] [box=20,2385,335,108]: These are estimates. Actual delivery times may vary because of customs processing, carrier delays, weather, holidays, or local conditions.
+        - heading "How Our Shipping Works" [level=2] [ref=e418] [box=20,2510,335,26]
+        - list [ref=e419] [box=20,2552,335,270]
+        - heading "Order Tracking" [level=2] [ref=e430] [box=20,2839,335,26]
+        - paragraph [ref=e431] [box=20,2881,335,108]: Every order includes a tracking number when the carrier provides one. Tracking may take 24-48 hours to update after the number is issued.
+        - paragraph [ref=e432] [box=20,3004,335,54]
+        - heading "Customs, Duties, And Import Taxes" [level=2] [ref=e434] [box=20,3075,335,26]
+        - paragraph [ref=e435] [box=20,3117,335,162]: For orders shipped outside the United States, your destination country or carrier may collect import duties, taxes, brokerage fees, or customs charges. These charges are the customer's responsibility unless checkout explicitly says they are included.
+        - paragraph [ref=e436] [box=20,3294,335,108]: We cannot predict these charges, mark orders as gifts, or lower the declared value of an order. Contact your local customs office for destination-specific guidance before ordering.
+        - heading "Shipping Problems" [level=2] [ref=e437] [box=20,3419,335,26]
+        - paragraph [ref=e438] [box=20,3462,335,162]
+        - heading "Contact Us" [level=2] [ref=e440] [box=20,3640,335,26]
+        - paragraph [ref=e441] [box=20,3683,335,54]
+  - contentinfo [ref=e444] [box=0,3737,375,1245]:
+    - generic [ref=e445] [box=0,3798,375,704]:
+      - generic [ref=e446] [box=30,3798,315,214]:
+        - button "Company info +" [ref=e448] [cursor=pointer] [box=30,3798,315,44]
+        - button "Help & support +" [ref=e450] [cursor=pointer] [box=30,3875,315,44]
+        - button "Customer care +" [ref=e452] [cursor=pointer] [box=30,3952,315,44]
+      - generic [ref=e453] [box=30,4012,315,158]:
+        - heading "Style Journal -" [level=2] [ref=e454] [cursor=pointer] [box=30,4012,315,44]
+        - generic [ref=e455] [box=30,4072,315,97]
+      - generic [ref=e459] [box=30,4194,315,280]:
+        - heading "Get 10% off your first order -" [level=2] [ref=e460] [cursor=pointer] [box=30,4194,315,44]
+        - generic [ref=e463] [box=30,4254,315,47]
+    - generic [ref=e467] [box=0,4542,375,400]:
+      - generic [ref=e468] [box=0,4563,375,198]:
+        - generic [ref=e472] [box=137,4573,102,96]
+        - generic [ref=e479] [box=15,4691,345,70]
+      - generic [ref=e575] [box=15,4801,345,141]:
+        - generic [ref=e576] [box=106,4831,163,10]
+        - list [ref=e578] [box=15,4856,345,86]

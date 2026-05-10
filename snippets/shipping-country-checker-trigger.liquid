@@ -1,0 +1,27 @@
+{%- liquid
+  assign checker_context = context | default: 'inline'
+  assign available_countries = localization.available_countries
+  assign country_count = available_countries.size
+  assign current_country = localization.country.name | default: ''
+-%}
+
+{%- if country_count > 0 -%}
+  <button
+    type="button"
+    class="shipping-country-checker-trigger shipping-country-checker-trigger--{{ checker_context }}"
+    data-shipping-country-trigger
+    data-shipping-country-trigger-context="{{ checker_context | escape }}"
+    aria-haspopup="dialog"
+  >
+    <span class="shipping-country-checker-trigger__label">
+      {{ 'products.shipping_country.checker_trigger' | t }}
+    </span>
+    <span class="shipping-country-checker-trigger__meta">
+      {%- if current_country != blank -%}
+        {{ 'products.shipping_country.checker_trigger_meta_country' | t: country: current_country, count: country_count }}
+      {%- else -%}
+        {{ 'products.shipping_country.checker_trigger_meta' | t: count: country_count }}
+      {%- endif -%}
+    </span>
+  </button>
+{%- endif -%}

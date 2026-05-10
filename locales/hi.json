@@ -188,7 +188,7 @@
       "xr_button": "अपने स्थान में देखें",
       "xr_button_label": "अपने स्थान में देखें, आइटम को संवर्धित वास्तविकता विंडो में लोड करता है",
       "include_taxes": "टैक्स शामिल।",
-      "shipping_policy_html": "शिपिंग विकल्प और लागत पता प्रविष्टि के बाद चेकआउट पर दिखाए जाते हैं। <a href=\"{{ link }}\">शिपिंग नीति</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
       "select_size": "आकार चुना",
       "select_color": "रंग चुनो",
       "size_required_message": "कृपया कार्ट में जोड़ने से पहले एक आकार चुनें।",
@@ -230,7 +230,7 @@
         "write_review": "एक समीक्षा लिखे",
         "write_review_title": "एक समीक्षा लिखे"
       },
-      "free_shipping_all_orders": "सभी ऑर्डर पर मुफ़्त शिपिंग",
+      "free_shipping_all_orders": "मानक शिपिंग शामिल है",
       "selected_size_label": "आकार: {{ size }}",
       "description_sections": {
         "details_eyebrow": "विवरण",
@@ -248,17 +248,17 @@
       "secure_checkout": "सुरक्षित चेकआउट",
       "ssl_encrypted": "एसएसएल एन्क्रिप्टेड",
       "returns": "30 दिन की रिटर्न विंडो",
-      "free_shipping": "शिपिंग चेकआउट पर दिखाई गई",
+      "free_shipping": "मानक शिपिंग शामिल है",
       "trusted_since": "पारिवारिक मिलान आसान हो गया",
       "assistance_note": "मदद की ज़रूरत है? हम आम तौर पर एक कार्यदिवस के भीतर उत्तर देते हैं।"
     },
     "additional_info": {
       "shipping_title": "शिपिंग एवं डिलिवरी",
-      "free_shipping_label": "मुफ़्त शिपिंग",
+      "free_shipping_label": "मानक शिपिंग शामिल है",
       "estimated_delivery": "अनुमानित डिलीवरी:",
       "standard_delivery_window": "12-15 कार्य दिवस",
       "premium_delivery_window": "जहां उपलब्ध हो वहां चेकआउट पर एक्सप्रेस विकल्प दिखाए जाते हैं।",
-      "faster_shipping_prefix": "क्या आप इसे और तेज़ चाहते हैं? $100+ खर्च करें और प्राप्त करें",
+      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
       "free_premium_shipping": "एक्सप्रेस शिपिंग",
       "return_policy_title": "वापसी नीति",
       "return_policy_line_1": "रिटर्न या एक्सचेंज का अनुरोध करने के लिए आपके पास डिलीवरी से 30 दिन हैं।",
@@ -304,6 +304,37 @@
       "sort_by_label": "इसके अनुसार क्रमबद्ध करें:",
       "to": "को",
       "clear_filter": "फ़िल्टर हटाएँ"
+    },
+    "shipping_country": {
+      "product_country": "{{ country }} के लिए शिपिंग",
+      "product_country_with_currency": "{{ country }} के लिए शिपिंग / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "शिपिंग देश चेकआउट पर पुष्टि होता है",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "eyebrow": "शिपिंग देश जाँच",
+      "page_title_country": "हाँ, हम अभी {{ country }} भेजते हैं",
+      "page_title_default": "वर्तमान शिपिंग देश",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
+      "schema_standard_shipping": "मानक शिपिंग शामिल",
+      "country_list_heading": "वे देश जहाँ हम अभी शिप करते हैं ({{ count }})",
+      "country_list_highlight": "इस सूची का हर देश चेकआउट में सक्षम है। Shopify इसे पहचान सके तो आपका चुना हुआ देश हाइलाइट होता है।",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -363,7 +394,8 @@
       "carousel": "हिंडोला",
       "announcement": "घोषणा",
       "announcement_bar": "घोषणा पट्टी",
-      "default_promo": "सभी ऑर्डर पर मुफ़्त शिपिंग | परिवार के मैचिंग लुक आसान | सुरक्षित चेकआउट"
+      "default_promo": "मानक शिपिंग शामिल | चेकआउट पर एक्सप्रेस विकल्प | सुरक्षित चेकआउट",
+      "shipping_country_promo": "{{ country }} के लिए मानक शिपिंग शामिल | चेकआउट पर एक्सप्रेस विकल्प | सुरक्षित चेकआउट"
     },
     "header": {
       "announcement": "घोषणा",
@@ -384,10 +416,10 @@
       "empty": "आपकी गाड़ी खाली है",
       "cart_error": "आपके कार्ट को अपडेट करते समय एक त्रुटि हुई. कृपया पुन: प्रयास करें।",
       "cart_quantity_error_html": "आप इस आइटम का केवल {{ quantity }} अपने कार्ट में जोड़ सकते हैं।",
-      "taxes_and_shipping_policy_at_checkout_html": "चेकआउट पर कर, छूट और शिपिंग की गणना की जाती है। <a href=\"{{ link }}\">शिपिंग नीति</a>",
-      "taxes_included_but_shipping_at_checkout": "कर शामिल है. चेकआउट के समय छूट और शिपिंग की गणना की जाती है।",
-      "taxes_included_and_shipping_policy_html": "कर शामिल है. चेकआउट के समय छूट और शिपिंग की गणना की जाती है। <a href=\"{{ link }}\">शिपिंग नीति</a>",
-      "taxes_and_shipping_at_checkout": "चेकआउट पर कर, छूट और शिपिंग की गणना की जाती है।",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
       "headings": {
         "product": "उत्पाद",
         "price": "कीमत",
@@ -410,18 +442,19 @@
       "trust": {
         "secure_checkout": "सुरक्षित चेकआउट",
         "ssl_encrypted": "एसएसएल एन्क्रिप्टेड",
-        "free_shipping": "शिपिंग विकल्प",
+        "free_shipping": "शिपिंग शामिल",
         "returns": "30 दिन का रिटर्न",
         "secure": "सुरक्षित",
         "encrypted": "कूट रूप दिया गया",
-        "free_ship": "शिपिंग"
+        "free_ship": "शिपिंग शामिल"
       },
       "discount_code_toggle": "क्या आपके पास डिस्काउंट कोड है?",
       "shipping_label": "शिपिंग",
-      "shipping_free": "चेकआउट पर गणना की गई",
+      "shipping_free": "मानक शामिल",
       "popular_with_families": "परिवारों में लोकप्रिय",
       "recently_viewed": "हाल में देखा गया",
-      "savings_html": "आप <strong>{{ amount }}</strong> सहेज रहे हैं"
+      "savings_html": "आप <strong>{{ amount }}</strong> सहेज रहे हैं",
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
     },
     "footer": {
       "payment": "भुगतान के तरीके"

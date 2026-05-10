@@ -1,0 +1,43 @@
+{
+  "lane": "de-nl-landing-policy",
+  "worker": "Worker B / Codex",
+  "timestamp": "2026-05-09 01:24 EDT",
+  "status": "PASS_PUBLIC_LANDING_POLICY_ONLY",
+  "scope": "public GET/browser landing and policy sanity checks only; no cart or checkout",
+  "markets": {
+    "DE": {
+      "product_get": 200,
+      "localized_product_get": 200,
+      "policy_get": 200,
+      "shipping_info_get": 200,
+      "currency": "EUR",
+      "base_language": "en",
+      "localized_language": "de",
+      "guardrail_visible": true,
+      "guardrail_country_text": "Yes, we currently ship to Germany",
+      "product_country_note": "Shipping country: Germany / EUR €",
+      "supplier_domain_leak_found": false,
+      "stale_blocker_found": false
+    },
+    "NL": {
+      "product_get": 200,
+      "localized_product_get": 200,
+      "policy_get": 200,
+      "shipping_info_get": 200,
+      "currency": "EUR",
+      "base_language": "en",
+      "localized_language": "nl",
+      "guardrail_visible": true,
+      "guardrail_country_text": "Yes, we currently ship to Netherlands",
+      "product_country_note": "Shipping country: Netherlands / EUR €",
+      "supplier_domain_leak_found": false,
+      "stale_blocker_found": false
+    }
+  },
+  "problem_tracker_update_needed": false,
+  "notes": [
+    "Checkout-to-shipping was intentionally not tested in this lane.",
+    "Shopify first-party source_url analytics and hCaptcha bootstrap scripts were treated as noisy non-blockers.",
+    "Selected product pages include related Christmas product references downstream, but the checked product title/meta/H1 were not stale Christmas metadata."
+  ]
+}

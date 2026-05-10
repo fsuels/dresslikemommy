@@ -82,7 +82,33 @@
   endif
 
   if og_description != blank
-    assign og_description = og_description | replace: '30-day easy returns', 'easy returns' | replace: '30-Day Easy Returns', 'Easy Returns' | replace: '30-DAY EASY RETURNS', 'EASY RETURNS'
+    assign og_description = og_description | replace: 'Free shipping + returns', 'Standard shipping included + easy returns'
+    assign og_description = og_description | replace: 'Free Shipping + Returns', 'Standard Shipping Included + Easy Returns'
+    assign og_description = og_description | replace: 'FREE SHIPPING + RETURNS', 'STANDARD SHIPPING INCLUDED + EASY RETURNS'
+    assign og_description = og_description | replace: 'Free shipping on all orders', 'Standard shipping included'
+    assign og_description = og_description | replace: 'FREE SHIPPING ON ALL ORDERS', 'STANDARD SHIPPING INCLUDED'
+    assign og_description = og_description | replace: 'Free shipping', 'Standard shipping included'
+    assign og_description = og_description | replace: 'Free Shipping', 'Standard Shipping Included'
+    assign og_description = og_description | replace: 'FREE SHIPPING', 'STANDARD SHIPPING INCLUDED'
+    assign og_description = og_description | replace: 'Standard shipping included + returns', 'Standard shipping included + easy returns'
+    assign og_description = og_description | replace: 'Standard Shipping Included + Returns', 'Standard Shipping Included + Easy Returns'
+    assign og_description = og_description | replace: 'STANDARD SHIPPING INCLUDED + RETURNS', 'STANDARD SHIPPING INCLUDED + EASY RETURNS'
+    assign og_description = og_description | replace: '+ returns', '+ easy returns'
+    assign og_description = og_description | replace: '+ Returns', '+ Easy Returns'
+    assign og_description = og_description | replace: '+ RETURNS', '+ EASY RETURNS'
+    assign og_description = og_description | replace: '30-day easy returns', 'easy returns'
+    assign og_description = og_description | replace: '30-Day Easy Returns', 'Easy Returns'
+    assign og_description = og_description | replace: '30-DAY EASY RETURNS', 'EASY RETURNS'
+    if og_description contains 'Standard shipping included' and og_description contains 'returns'
+      assign og_description_prefix = og_description | split: 'Standard shipping included' | first
+      assign og_description = og_description_prefix | append: 'Standard shipping included + easy returns.'
+    elsif og_description contains 'Standard Shipping Included' and og_description contains 'Returns'
+      assign og_description_prefix = og_description | split: 'Standard Shipping Included' | first
+      assign og_description = og_description_prefix | append: 'Standard Shipping Included + Easy Returns.'
+    elsif og_description contains 'STANDARD SHIPPING INCLUDED' and og_description contains 'RETURNS'
+      assign og_description_prefix = og_description | split: 'STANDARD SHIPPING INCLUDED' | first
+      assign og_description = og_description_prefix | append: 'STANDARD SHIPPING INCLUDED + EASY RETURNS.'
+    endif
   endif
 
   if request.page_type == 'search' or request.page_type == 'cart' or request.page_type == '404' or request.page_type == 'password'

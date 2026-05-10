@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-05-08 23:25 EDT",
+  "anchor": "AGENT_CONTINUITY_ANCHOR: 2026-05-08-paid-growth-url-hold-checkout-safe-advance",
+  "mode": "local_readonly_public_storefront_only",
+  "guardrails": {
+    "external_account_writes": false,
+    "live_spend": false,
+    "campaign_enablement": false,
+    "budget_bid_status_changes": false,
+    "pmax_enable": false,
+    "standard_shopping_changes": false,
+    "product_scope_feed_label_product_group_changes": false,
+    "conversion_goal_changes": false,
+    "merchant_uploads": false,
+    "shopify_live_product_data_changes": false,
+    "pinterest_writes": false,
+    "payment_or_order": false
+  },
+  "google_ads_url_hold": {
+    "source_rows": 1666,
+    "filtered_rows": 1496,
+    "removed_rows": 170,
+    "removed_by_type": {
+      "Ad group": 34,
+      "Keyword": 102,
+      "Ad": 34
+    },
+    "filtered_by_type": {
+      "Campaign": 17,
+      "Ad group": 170,
+      "Keyword": 510,
+      "Negative keyword": 629,
+      "Ad": 170
+    },
+    "held_theme": "Vacation Family",
+    "bad_handle_hits_in_filtered_candidate": 0,
+    "forbidden_hits": 0,
+    "max_cpc": 0.15,
+    "validation": "PASS"
+  },
+  "landing_metadata_quality": {
+    "checked_urls": 31,
+    "http_200": 31,
+    "http_404": 0,
+    "http_429_or_verification": 0,
+    "safe_sampled_urls": 25,
+    "needs_owner_approved_shopify_metadata_repair": 6,
+    "all_mapping_rows_safe_to_use": 85,
+    "all_mapping_rows_hold_or_repair": 17,
+    "expanded_localized_issue": [
+      "English/base route",
+      "ES",
+      "IT",
+      "RO",
+      "PT"
+    ]
+  },
+  "gb_ca_checkout_ui": {
+    "GB": "PASS_CHECKOUT_UI_FOR_PAUSED_INFRA_ONLY",
+    "CA": "PASS_CHECKOUT_UI_FOR_PAUSED_INFRA_ONLY",
+    "payment_submitted": false,
+    "order_created": false,
+    "captcha_or_429": false,
+    "live_spend_ready": false
+  },
+  "problem_tracker": {
+    "PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH": "PARTIALLY_MITIGATED_LOCAL_ADS_HOLD__OWNER_APPROVAL_REQUIRED_FOR_SHOPIFY_FIX",
+    "PROB-2026-05-08-GB-CA-CHECKOUT-UI-VISUAL": "SOLVED_READBACK_PASSED"
+  },
+  "next_best_action": "Repair Shopify SEO/social metadata with exact owner approval, or use the held 1496-row Google Ads packet for any future approved paused non-US Search preview/import while keeping live spend blocked."
+}

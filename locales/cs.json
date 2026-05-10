@@ -188,7 +188,7 @@
       "xr_button": "Zobrazit ve vašem prostoru",
       "xr_button_label": "Zobrazte ve svém prostoru, načítá položku v okně rozšířené reality",
       "include_taxes": "Daň zahrnuta.",
-      "shipping_policy_html": "Možnosti dopravy a ceny jsou uvedeny v pokladně po zadání adresy. <a href=\"{{ link }}\">přepravní podmínky</a>",
+      "shipping_policy_html": "Standardní doprava je u podporovaných zemí zahrnuta v cenách produktů. Přesné metody, odhady doručení a případná expresní rozšíření se zobrazí u pokladny po zadání adresy. <a href=\"{{ link }}\">Přepravní podmínky</a>",
       "select_size": "Vyberte velikost",
       "select_color": "Vyberte barvu",
       "size_required_message": "Prosím, vyberte velikost před přidáním do košíku.",
@@ -230,7 +230,7 @@
         "write_review": "Napište recenzi",
         "write_review_title": "Napsat recenzi"
       },
-      "free_shipping_all_orders": "Možnosti dopravy se zobrazí u pokladny",
+      "free_shipping_all_orders": "Standardní doprava v ceně",
       "selected_size_label": "Velikost: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Podrobnosti",
@@ -248,17 +248,17 @@
       "secure_checkout": "Bezpečná pokladna",
       "ssl_encrypted": "SSL šifrováno",
       "returns": "30denní lhůta pro vrácení",
-      "free_shipping": "Doprava zobrazena na pokladně",
+      "free_shipping": "Standardní doprava v ceně",
       "trusted_since": "Rodinné párování je snadné",
       "assistance_note": "Potřebujete pomoc? Obvykle odpovídáme do jednoho pracovního dne."
     },
     "additional_info": {
       "shipping_title": "Doprava a doručení",
-      "free_shipping_label": "Možnosti dopravy",
+      "free_shipping_label": "Standardní doprava v ceně",
       "estimated_delivery": "Odhadované doručení:",
       "standard_delivery_window": "12-15 pracovních dnů",
       "premium_delivery_window": "Expresní možnosti jsou zobrazeny u pokladny, pokud jsou k dispozici.",
-      "faster_shipping_prefix": "Expresní možnosti se mohou zobrazit u pokladny tam, kde jsou podporovány.",
+      "faster_shipping_prefix": "Expresní možnosti se mohou zobrazit u pokladny, pokud jsou podporovány.",
       "free_premium_shipping": "Expresní doprava",
       "return_policy_title": "Reklamační řád",
       "return_policy_line_1": "Na žádost o vrácení nebo výměnu máte 30 dní od doručení.",
@@ -304,6 +304,37 @@
       "sort_by_label": "Seřadit podle:",
       "to": "Komu",
       "clear_filter": "Odstranit filtr"
+    },
+    "shipping_country": {
+      "product_country": "Doprava do {{ country }}",
+      "product_country_with_currency": "Doprava do {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "Země doručení potvrzena u pokladny",
+      "product_note_html": "Standardní doprava je zahrnuta v cenách produktů, pokud je dostupná standardní metoda. U pokladny uvidíte přesnou metodu, odhad doručení a případné expresní rozšíření před platbou. <a href=\"{{ link }}\">Zobrazit všechny aktuální země doručení</a>.",
+      "eyebrow": "Kontrola země doručení",
+      "page_title_country": "Ano, aktuálně doručujeme do {{ country }}",
+      "page_title_default": "Aktuální země doručení",
+      "page_summary": "Standardní doprava je zahrnuta v cenách produktů pro země a regiony dostupné v našem výběru země u pokladny. Zadejte celou adresu a potvrďte přesnou metodu, odhad doručení a případné expresní rozšíření před platbou.",
+      "page_note_html": "Pokud zde vaše země není uvedena nebo pokladna nezobrazí metodu pro vaši přesnou adresu, napište před objednávkou na <a href=\"mailto:{{ email }}\">{{ email }}</a>.",
+      "schema_standard_shipping": "Standardní doprava v ceně",
+      "country_list_heading": "Země, do kterých aktuálně doručujeme ({{ count }})",
+      "country_list_highlight": "Každá země v tomto seznamu je povolena u pokladny. Vybraná země se zvýrazní, když ji Shopify dokáže rozpoznat.",
+      "checker_trigger": "Posíláme do mé země?",
+      "checker_trigger_meta": "{{ count }} zemí aktivních",
+      "checker_trigger_meta_country": "{{ country }} vybráno / {{ count }} zemí",
+      "checker_footer_heading": "Zkontrolujte dopravu před objednáním",
+      "checker_footer_text": "Prohledejte aktuální seznam zemí v checkoutu a potvrďte cíl během pár sekund.",
+      "checker_title": "Posíláme do mé země?",
+      "checker_summary": "Ano, pokud je vaše země níže. Těchto {{ count }} zemí a regionů je právě aktivních v checkoutu.",
+      "checker_current_country": "Aktuálně vybraná země je {{ country }}.",
+      "checker_search_label": "Hledat zemi nebo region",
+      "checker_search_placeholder": "Zadejte zemi, kód nebo měnu",
+      "checker_result_label": "zemí zobrazeno",
+      "checker_selected_badge": "Vybráno",
+      "checker_available_badge": "Doručujeme sem",
+      "checker_no_results": "V aktuálním seznamu checkoutu nebyla nalezena odpovídající země. Zkuste jiný zápis nebo nám před objednáním napište.",
+      "checker_note_html": "Standardní doprava je zahrnuta v cenách produktů tam, kde je dostupná standardní metoda. Checkout před platbou potvrdí přesnou metodu, odhad doručení a případnou expresní možnost. <a href=\"{{ link }}\">Detaily dopravy</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Zavřít kontrolu země",
+      "checker_result_single_label": "země zobrazena"
     }
   },
   "templates": {
@@ -515,7 +546,8 @@
       "carousel": "Kolotoč",
       "announcement": "Oznámení",
       "announcement_bar": "Oznamovací lišta",
-      "default_promo": "DOPRAVA ZDARMA NA VŠECHNY OBJEDNÁVKY | RODINNÉ LADĚNÍ SNADNO | ZABEZPEČENÁ POKLADNA"
+      "default_promo": "STANDARDNÍ DOPRAVA V CENĚ | EXPRESNÍ MOŽNOSTI U POKLADNY | BEZPEČNÁ POKLADNA",
+      "shipping_country_promo": "STANDARDNÍ DOPRAVA DO {{ country }} V CENĚ | EXPRESNÍ MOŽNOSTI U POKLADNY | BEZPEČNÁ POKLADNA"
     },
     "header": {
       "announcement": "Oznámení",
@@ -536,10 +568,10 @@
       "empty": "Váš košík je prázdný",
       "cart_error": "Při aktualizaci vašeho košíku došlo k chybě. Zkuste to prosím znovu.",
       "cart_quantity_error_html": "Do košíku můžete přidat pouze {{ quantity }} tohoto produktu.",
-      "taxes_and_shipping_policy_at_checkout_html": "Daně, slevy a doprava vypočítané při pokladně. <a href=\"{{ link }}\">přepravní podmínky</a>",
-      "taxes_included_but_shipping_at_checkout": "Včetně daně. Slevy a doprava se počítají při pokladně.",
-      "taxes_included_and_shipping_policy_html": "Včetně daně. Slevy a doprava se počítají při pokladně. <a href=\"{{ link }}\">přepravní podmínky</a>",
-      "taxes_and_shipping_at_checkout": "Daně, slevy a doprava vypočítané při pokladně.",
+      "taxes_and_shipping_policy_at_checkout_html": "Daně a slevy se počítají u pokladny. Standardní doprava je zahrnuta, pokud je dostupná standardní metoda; expresní rozšíření se zobrazí u pokladny. <a href=\"{{ link }}\">Přepravní podmínky</a>",
+      "taxes_included_but_shipping_at_checkout": "Daň zahrnuta. Slevy se počítají u pokladny. Standardní doprava je zahrnuta, pokud je dostupná standardní metoda; expresní rozšíření se zobrazí u pokladny.",
+      "taxes_included_and_shipping_policy_html": "Daň zahrnuta. Slevy se počítají u pokladny. Standardní doprava je zahrnuta, pokud je dostupná standardní metoda; expresní rozšíření se zobrazí u pokladny. <a href=\"{{ link }}\">Přepravní podmínky</a>",
+      "taxes_and_shipping_at_checkout": "Daně a slevy se počítají u pokladny. Standardní doprava je zahrnuta, pokud je dostupná standardní metoda; expresní rozšíření se zobrazí u pokladny.",
       "headings": {
         "product": "Produkt",
         "price": "Cena",
@@ -562,18 +594,19 @@
       "trust": {
         "secure_checkout": "Bezpečná pokladna",
         "ssl_encrypted": "SSL šifrováno",
-        "free_shipping": "Možnosti dopravy",
+        "free_shipping": "Doprava v ceně",
         "returns": "30denní vrácení",
         "secure": "Zajistit",
         "encrypted": "Zašifrováno",
-        "free_ship": "Doprava"
+        "free_ship": "Doprava v ceně"
       },
       "discount_code_toggle": "Máte slevový kód?",
       "shipping_label": "Doprava",
-      "shipping_free": "Vypočítáno při pokladně",
+      "shipping_free": "Standard v ceně",
       "popular_with_families": "Oblíbené u rodin",
       "recently_viewed": "Nedávno zobrazené",
-      "savings_html": "Ukládáte <strong>{{ amount }}</strong>"
+      "savings_html": "Ukládáte <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Doprava do {{ country }}. Standardní doprava je v ceně; přesný odhad doručení a případné expresní rozšíření se zobrazí před platbou."
     },
     "footer": {
       "payment": "Platební metody"

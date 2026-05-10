@@ -169,7 +169,7 @@
       },
       "view_full_details": "Vis alle detaljer",
       "include_taxes": "Avgift inkludert.",
-      "shipping_policy_html": "Fraktalternativer og kostnader vises i kassen etter adresseoppføring. <a href=\"{{ link }}\">Forsendelsespolicy</a>",
+      "shipping_policy_html": "Standard frakt er inkludert i produktprisene for støttede land. Eksakte metoder, leveringsestimater og eventuelle ekspressoppgraderinger vises i kassen etter at adressen er lagt inn. <a href=\"{{ link }}\">Forsendelsespolicy</a>",
       "choose_options": "Velg alternativer",
       "choose_product_options": "Velg alternativer for {{ product_name }}",
       "value_unavailable": "{{ option_value }} – utilgjengelig",
@@ -227,7 +227,7 @@
         "write_review": "Skriv en anmeldelse",
         "write_review_title": "Skriv en anmeldelse"
       },
-      "free_shipping_all_orders": "Gratis frakt på alle bestillinger",
+      "free_shipping_all_orders": "Standard frakt inkludert",
       "selected_size_label": "Størrelse: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Detaljer",
@@ -279,17 +279,17 @@
       "secure_checkout": "Sikker utsjekking",
       "ssl_encrypted": "SSL kryptert",
       "returns": "30 dagers returperiode",
-      "free_shipping": "Frakt vises i kassen",
+      "free_shipping": "Standard frakt inkludert",
       "trusted_since": "Familiematching gjort enkelt",
       "assistance_note": "Trenger du hjelp? Vi svarer vanligvis innen én virkedag."
     },
     "additional_info": {
       "shipping_title": "Frakt og levering",
-      "free_shipping_label": "Gratis frakt",
+      "free_shipping_label": "Standard frakt inkludert",
       "estimated_delivery": "Estimert levering:",
       "standard_delivery_window": "12-15 virkedager",
       "premium_delivery_window": "Ekspressalternativer vises i kassen der dette er tilgjengelig.",
-      "faster_shipping_prefix": "Vil du ha det raskere? Bruk $100+ og få",
+      "faster_shipping_prefix": "Ekspressalternativer kan være tilgjengelige i kassen der det støttes.",
       "free_premium_shipping": "Ekspressfrakt",
       "return_policy_title": "Returpolicy",
       "return_policy_line_1": "Du har 30 dager fra levering til å be om retur eller bytte.",
@@ -304,6 +304,37 @@
       "secure_logistics_line_2": "Bruk koblingen for bestillingssporing for de siste operatøroppdateringene. Internasjonale bestillinger kan være underlagt lokale skatter, avgifter eller tollavgifter som kreves inn av transportøren eller lokale myndigheter.",
       "secure_privacy_title": "Sikkert personvern",
       "secure_privacy_description": "Å beskytte personvernet ditt er viktig for oss! Vær sikker på at informasjonen din vil bli holdt sikret og kompromissløs. Vi selger ikke din personlige informasjon for penger og vil kun bruke informasjonen din i samsvar med vår personvern- og informasjonskapselpolicy for å tilby og forbedre tjenestene våre til deg."
+    },
+    "shipping_country": {
+      "product_country": "Frakt til {{ country }}",
+      "product_country_with_currency": "Frakt til {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "Fraktland bekreftes i kassen",
+      "product_note_html": "Standard frakt er inkludert i produktprisene der en standardmetode er tilgjengelig. Kassen viser nøyaktig metode, leveringsestimat og eventuell ekspressoppgradering før betaling. <a href=\"{{ link }}\">Se alle gjeldende fraktland</a>.",
+      "eyebrow": "Sjekk fraktland",
+      "page_title_country": "Ja, vi sender for øyeblikket til {{ country }}",
+      "page_title_default": "Gjeldende fraktland",
+      "page_summary": "Standard frakt er inkludert i produktprisene for land og regioner som er tilgjengelige i landvelgeren i kassen. Skriv inn hele adressen i kassen for å bekrefte nøyaktig metode, leveringsestimat og eventuell ekspressoppgradering før betaling.",
+      "page_note_html": "Hvis landet ditt ikke er oppført her, eller kassen ikke viser en fraktmetode for den nøyaktige adressen din, send e-post til <a href=\"mailto:{{ email }}\">{{ email }}</a> før du bestiller.",
+      "schema_standard_shipping": "Standard frakt inkludert",
+      "country_list_heading": "Land vi sender til nå ({{ count }})",
+      "country_list_highlight": "Alle land i denne listen er aktivert i kassen. Det valgte landet markeres når Shopify kan registrere det.",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -374,10 +405,10 @@
       "empty": "Handlekurven din er tom",
       "cart_error": "Det oppstod en feil under oppdateringen av handlekurven din. Prøv på nytt.",
       "cart_quantity_error_html": "Du kan bare legge {{ quantity }} av denne varen i handlekurven.",
-      "taxes_and_shipping_policy_at_checkout_html": "Skatter, rabatter og frakt beregnes i kassen. <a href=\"{{ link }}\">Forsendelsespolicy</a>",
-      "taxes_included_but_shipping_at_checkout": "Skatt inkludert. Rabatter og frakt beregnes i kassen.",
-      "taxes_included_and_shipping_policy_html": "Skatt inkludert. Rabatter og frakt beregnes i kassen. <a href=\"{{ link }}\">Forsendelsespolicy</a>",
-      "taxes_and_shipping_at_checkout": "Skatter, rabatter og frakt beregnes i kassen.",
+      "taxes_and_shipping_policy_at_checkout_html": "Skatter og rabatter beregnes i kassen. Standard frakt er inkludert der en standardmetode er tilgjengelig; ekspressoppgraderinger vises i kassen. <a href=\"{{ link }}\">Forsendelsespolicy</a>",
+      "taxes_included_but_shipping_at_checkout": "Skatt inkludert. Rabatter beregnes i kassen. Standard frakt er inkludert der en standardmetode er tilgjengelig; ekspressoppgraderinger vises i kassen.",
+      "taxes_included_and_shipping_policy_html": "Skatt inkludert. Rabatter beregnes i kassen. Standard frakt er inkludert der en standardmetode er tilgjengelig; ekspressoppgraderinger vises i kassen. <a href=\"{{ link }}\">Forsendelsespolicy</a>",
+      "taxes_and_shipping_at_checkout": "Skatter og rabatter beregnes i kassen. Standard frakt er inkludert der en standardmetode er tilgjengelig; ekspressoppgraderinger vises i kassen.",
       "headings": {
         "product": "Produkt",
         "price": "Pris",
@@ -402,18 +433,19 @@
       "trust": {
         "secure_checkout": "Sikker utsjekking",
         "ssl_encrypted": "SSL kryptert",
-        "free_shipping": "Fraktalternativer",
+        "free_shipping": "Frakt inkludert",
         "returns": "30 dagers retur",
         "secure": "Sikker",
         "encrypted": "Kryptert",
-        "free_ship": "Frakt"
+        "free_ship": "Frakt inkludert"
       },
       "popular_with_families": "Populært blant familier",
       "recently_viewed": "Nylig sett",
       "discount_code_toggle": "Have a discount code?",
-      "shipping_free": "Beregnet i kassen",
+      "shipping_free": "Standard inkludert",
       "shipping_label": "Shipping",
-      "savings_html": "Du sparer <strong>{{ amount }}</strong>"
+      "savings_html": "Du sparer <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Frakt til {{ country }}. Standard frakt er inkludert; nøyaktig leveringsestimat og eventuell ekspressoppgradering vises før betaling."
     },
     "footer": {
       "payment": "Betalingsmåter"
@@ -456,7 +488,8 @@
       "carousel": "Karusell",
       "announcement": "Kunngjøring",
       "announcement_bar": "Kunngjøringslinje",
-      "default_promo": "GRATIS FRAKT PÅ ALLE BESTILLINGER | FAMILIEMATCHING GJORT ENKELT | SIKKER KASSE"
+      "default_promo": "STANDARD FRAKT INKLUDERT | EKSPRESSALTERNATIVER I KASSEN | SIKKER BETALING",
+      "shipping_country_promo": "STANDARD FRAKT TIL {{ country }} INKLUDERT | EKSPRESSALTERNATIVER I KASSEN | SIKKER BETALING"
     },
     "quick_order_list": {
       "product_total": "Produktets delsum",

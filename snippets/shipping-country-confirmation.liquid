@@ -1,0 +1,82 @@
+{%- liquid
+  assign confirmation_mode = mode | default: 'page'
+  assign available_countries = localization.available_countries | sort: 'name'
+  assign country_count = available_countries.size
+  assign current_country = localization.country.name | default: ''
+  assign current_country_code = localization.country.iso_code | default: ''
+  assign current_currency_code = localization.country.currency.iso_code | default: ''
+  assign current_currency_symbol = localization.country.currency.symbol | default: ''
+  assign localized_root_url = routes.root_url | default: '/'
+  assign localized_root_url_last = localized_root_url | slice: -1
+  if localized_root_url_last == '/'
+    assign shipping_info_url = localized_root_url | append: 'pages/shipping-info'
+  else
+    assign shipping_info_url = localized_root_url | append: '/pages/shipping-info'
+  endif
+  if current_country_code != blank
+    assign shipping_info_url = shipping_info_url | append: '?country=' | append: current_country_code
+  endif
+-%}
+
+{{ 'component-shipping-countries-v2.css' | asset_url | stylesheet_tag }}
+
+{%- if confirmation_mode == 'product-note' -%}
+  <div class="shipping-country-note">
+    <p class="shipping-country-note__line">
+      <strong>
+        {%- if current_country != blank -%}
+          {%- if current_currency_code != blank -%}
+            {{ 'products.shipping_country.product_country_with_currency' | t: country: current_country, currency: current_currency_code, symbol: current_currency_symbol }}
+          {%- else -%}
+            {{ 'products.shipping_country.product_country' | t: country: current_country }}
+          {%- endif -%}
+        {%- else -%}
+          {{ 'products.shipping_country.product_country_confirmed' | t }}
+        {%- endif -%}
+      </strong>
+    </p>
+    <p class="shipping-country-note__text">
+      {{ 'products.shipping_country.product_note_html' | t: link: shipping_info_url }}
+    </p>
+  </div>
+{%- elsif country_count > 0 -%}
+  <section class="shipping-country-confirmation" aria-labelledby="ShippingCountryConfirmationTitle">
+    <div class="page-width page-width--narrow shipping-country-confirmation__inner">
+      <p class="shipping-country-confirmation__eyebrow">{{ 'products.shipping_country.eyebrow' | t }}</p>
+      <h2 id="ShippingCountryConfirmationTitle" class="shipping-country-confirmation__title">
+        {%- if current_country != blank -%}
+          {{ 'products.shipping_country.page_title_country' | t: country: current_country }}
+        {%- else -%}
+          {{ 'products.shipping_country.page_title_default' | t }}
+        {%- endif -%}
+      </h2>
+      <p class="shipping-country-confirmation__summary">
+        {{ 'products.shipping_country.page_summary' | t }}
+      </p>
+      <h3 class="shipping-country-confirmation__list-heading">
+        {{ 'products.shipping_country.country_list_heading' | t: count: country_count }}
+      </h3>
+      <p class="shipping-country-confirmation__highlight">
+        {{ 'products.shipping_country.country_list_highlight' | t }}
+      </p>
+      <ul class="shipping-country-confirmation__list" role="list">
+        {%- for country in available_countries -%}
+          <li
+            class="shipping-country-confirmation__item"
+            {% if country.iso_code == current_country_code %}
+              aria-current="true"
+            {% endif %}
+          >
+            <span class="shipping-country-confirmation__country">{{ country.name }}</span>
+            <span class="shipping-country-confirmation__currency">
+              {{ country.currency.iso_code }} {{ country.currency.symbol }}
+            </span>
+          </li>
+        {%- endfor -%}
+      </ul>
+      <p class="shipping-country-confirmation__note">
+        {{ 'products.shipping_country.page_note_html' | t: email: 'info@dresslikemommy.com' }}
+      </p>
+    </div>
+  </section>
+{%- endif -%}

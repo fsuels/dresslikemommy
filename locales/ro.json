@@ -188,7 +188,7 @@
       "xr_button": "Vezi în spațiul tău",
       "xr_button_label": "Vizualizează în spațiul tău, încarcă articolul în fereastra de realitate augmentată",
       "include_taxes": "Taxa inclusă.",
-      "shipping_policy_html": "Opțiunile de livrare și costurile sunt afișate la finalizarea comenzii după introducerea adresei. <a href=\"{{ link }}\">Politica de expediere</a>",
+      "shipping_policy_html": "Livrarea standard este inclusă în prețurile produselor pentru țările acceptate. Metodele exacte, estimările de livrare și orice upgrade expres sunt afișate la finalizare după introducerea adresei. <a href=\"{{ link }}\">Politica de livrare</a>",
       "select_size": "Selectați mărimea",
       "select_color": "Selectați culoarea",
       "size_required_message": "Vă rugăm să selectați o mărime înainte de a adăuga în coș.",
@@ -230,7 +230,7 @@
         "write_review": "Scrie o recenzie",
         "write_review_title": "Scrie o recenzie"
       },
-      "free_shipping_all_orders": "Opțiunile de livrare apar la finalizare",
+      "free_shipping_all_orders": "Livrare standard inclusă",
       "selected_size_label": "Dimensiune: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Detalii",
@@ -248,17 +248,17 @@
       "secure_checkout": "Checkout securizat",
       "ssl_encrypted": "SSL criptat",
       "returns": "Fereastră de retur de 30 de zile",
-      "free_shipping": "Livrare afișată la finalizare",
+      "free_shipping": "Livrare standard inclusă",
       "trusted_since": "Potrivirea familiei este ușoară",
       "assistance_note": "Ai nevoie de ajutor? De obicei, răspundem în termen de o zi lucrătoare."
     },
     "additional_info": {
       "shipping_title": "Livrare și livrare",
-      "free_shipping_label": "Opțiuni de livrare",
+      "free_shipping_label": "Livrare standard inclusă",
       "estimated_delivery": "Livrare estimată:",
       "standard_delivery_window": "12-15 zile lucrătoare",
       "premium_delivery_window": "Opțiunile Express sunt afișate la casă, acolo unde sunt disponibile.",
-      "faster_shipping_prefix": "Opțiunile Express pot apărea la finalizare acolo unde sunt acceptate.",
+      "faster_shipping_prefix": "Opțiunile expres pot fi disponibile la finalizare unde sunt acceptate.",
       "free_premium_shipping": "Livrare expres",
       "return_policy_title": "Politica de returnare",
       "return_policy_line_1": "Aveți la dispoziție 30 de zile de la livrare pentru a solicita retur sau schimb.",
@@ -304,6 +304,37 @@
       "sort_by_label": "Sortează după:",
       "to": "Către",
       "clear_filter": "Elimină filtrul"
+    },
+    "shipping_country": {
+      "product_country": "Livrare către {{ country }}",
+      "product_country_with_currency": "Livrare către {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "Țara de livrare este confirmată la finalizare",
+      "product_note_html": "Livrarea standard este inclusă în prețurile produselor unde este disponibilă o metodă standard. La finalizare vezi metoda exactă, estimarea de livrare și orice upgrade expres înainte de plată. <a href=\"{{ link }}\">Vezi toate țările de livrare actuale</a>.",
+      "eyebrow": "Verificare țară de livrare",
+      "page_title_country": "Da, în prezent livrăm către {{ country }}",
+      "page_title_default": "Țări de livrare actuale",
+      "page_summary": "Livrarea standard este inclusă în prețurile produselor pentru țările și regiunile disponibile în selectorul de țară de la finalizare. Introdu adresa completă pentru a confirma metoda exactă, estimarea de livrare și orice upgrade expres înainte de plată.",
+      "page_note_html": "Dacă țara ta nu este listată aici sau finalizarea nu afișează o metodă pentru adresa exactă, trimite un e-mail la <a href=\"mailto:{{ email }}\">{{ email }}</a> înainte de comandă.",
+      "schema_standard_shipping": "Livrare standard inclusă",
+      "country_list_heading": "Țări către care livrăm în prezent ({{ count }})",
+      "country_list_highlight": "Fiecare țară din această listă este activată la finalizare. Țara selectată este evidențiată când Shopify o poate detecta.",
+      "checker_trigger": "Livrăm în țara mea?",
+      "checker_trigger_meta": "{{ count }} țări active",
+      "checker_trigger_meta_country": "{{ country }} selectată / {{ count }} țări",
+      "checker_footer_heading": "Verifică livrarea înainte de comandă",
+      "checker_footer_text": "Caută în lista actuală de țări din checkout și confirmă destinația în câteva secunde.",
+      "checker_title": "Livrăm în țara mea?",
+      "checker_summary": "Da, dacă țara ta apare mai jos. Aceste {{ count }} țări și regiuni sunt active acum în checkout.",
+      "checker_current_country": "Țara selectată acum este {{ country }}.",
+      "checker_search_label": "Caută țară sau regiune",
+      "checker_search_placeholder": "Scrie țara, codul sau moneda",
+      "checker_result_label": "țări afișate",
+      "checker_selected_badge": "Selectată",
+      "checker_available_badge": "Livrăm aici",
+      "checker_no_results": "Nu am găsit o țară potrivită în lista actuală din checkout. Încearcă o altă scriere sau contactează-ne înainte de comandă.",
+      "checker_note_html": "Livrarea standard este inclusă în prețurile produselor acolo unde este disponibilă o metodă standard. Checkout-ul confirmă metoda exactă, estimarea de livrare și orice opțiune express înainte de plată. <a href=\"{{ link }}\">Detalii livrare</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Închide verificarea țării",
+      "checker_result_single_label": "țară afișată"
     }
   },
   "templates": {
@@ -515,7 +546,8 @@
       "carousel": "Carusel",
       "announcement": "Anunț",
       "announcement_bar": "Bară de anunțuri",
-      "default_promo": "LIVRARE GRATUITĂ LA TOATE COMENZILE | ȚINUTE ASORTATE DE FAMILIE UȘOR | CHECKOUT SIGUR"
+      "default_promo": "LIVRARE STANDARD INCLUSĂ | OPȚIUNI EXPRES LA FINALIZARE | PLATĂ SECURIZATĂ",
+      "shipping_country_promo": "LIVRARE STANDARD INCLUSĂ CĂTRE {{ country }} | OPȚIUNI EXPRES LA FINALIZARE | PLATĂ SECURIZATĂ"
     },
     "header": {
       "announcement": "Anunț",
@@ -536,10 +568,10 @@
       "empty": "Coșul tău este gol",
       "cart_error": "A apărut o eroare la actualizarea coșului dumneavoastră. Vă rugăm să încercați din nou.",
       "cart_quantity_error_html": "Poți adăuga în coș doar {{ quantity }} din acest articol.",
-      "taxes_and_shipping_policy_at_checkout_html": "Taxele, reducerile și transportul sunt calculate la finalizarea comenzii. <a href=\"{{ link }}\">Politica de expediere</a>",
-      "taxes_included_but_shipping_at_checkout": "Taxe incluse. Reducerile si transportul sunt calculate la checkout.",
-      "taxes_included_and_shipping_policy_html": "Taxe incluse. Reducerile si transportul sunt calculate la checkout. <a href=\"{{ link }}\">Politica de expediere</a>",
-      "taxes_and_shipping_at_checkout": "Taxele, reducerile și transportul sunt calculate la finalizarea comenzii.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxele și reducerile sunt calculate la finalizare. Livrarea standard este inclusă unde este disponibilă o metodă standard; upgrade-urile expres sunt afișate la finalizare. <a href=\"{{ link }}\">Politica de livrare</a>",
+      "taxes_included_but_shipping_at_checkout": "Taxă inclusă. Reducerile sunt calculate la finalizare. Livrarea standard este inclusă unde este disponibilă o metodă standard; upgrade-urile expres sunt afișate la finalizare.",
+      "taxes_included_and_shipping_policy_html": "Taxă inclusă. Reducerile sunt calculate la finalizare. Livrarea standard este inclusă unde este disponibilă o metodă standard; upgrade-urile expres sunt afișate la finalizare. <a href=\"{{ link }}\">Politica de livrare</a>",
+      "taxes_and_shipping_at_checkout": "Taxele și reducerile sunt calculate la finalizare. Livrarea standard este inclusă unde este disponibilă o metodă standard; upgrade-urile expres sunt afișate la finalizare.",
       "headings": {
         "product": "Produs",
         "price": "Preț",
@@ -562,18 +594,19 @@
       "trust": {
         "secure_checkout": "Checkout securizat",
         "ssl_encrypted": "SSL criptat",
-        "free_shipping": "Opțiuni de livrare",
+        "free_shipping": "Livrare inclusă",
         "returns": "Retururi de 30 de zile",
         "secure": "Asigura",
         "encrypted": "Criptat",
-        "free_ship": "Livrare"
+        "free_ship": "Livrare inclusă"
       },
       "discount_code_toggle": "Ai un cod de reducere?",
       "shipping_label": "Livrare",
-      "shipping_free": "Calculat la casă",
+      "shipping_free": "Standard inclus",
       "popular_with_families": "Popular printre familii",
       "recently_viewed": "Vizualizat recent",
-      "savings_html": "Salvați <strong>{{ amount }}</strong>"
+      "savings_html": "Salvați <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Livrare către {{ country }}. Livrarea standard este inclusă; estimarea exactă și orice upgrade expres apar înainte de plată."
     },
     "footer": {
       "payment": "Metode de plată"

@@ -1,0 +1,168 @@
+{
+  "lane": "economics-creative",
+  "date": "2026-05-08",
+  "decision": "LOCAL_READY_NO_EXTERNAL_WRITES",
+  "write_scope": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-safe-followup/lanes/economics-creative/",
+  "external_writes": false,
+  "live_spend_authorized": false,
+  "campaign_edits_authorized": false,
+  "core_model": {
+    "aov_usd": 70.0,
+    "target_roas": 6.5,
+    "target_roas_percent": 650,
+    "max_cpa_usd": 10.77,
+    "margin_or_non_marketing_cost_scenario_percent": 50,
+    "non_marketing_cost_usd": 35.0,
+    "contribution_after_target_cpa_before_returns_usd": 24.23,
+    "conservative_decision_band_usd": "9.49-9.73"
+  },
+  "cpc_thresholds_at_70_aov": [
+    {
+      "cpc_usd": 0.04,
+      "required_cvr_pct": 0.37,
+      "clicks_per_target_cpa": 269
+    },
+    {
+      "cpc_usd": 0.08,
+      "required_cvr_pct": 0.74,
+      "clicks_per_target_cpa": 135
+    },
+    {
+      "cpc_usd": 0.1,
+      "required_cvr_pct": 0.93,
+      "clicks_per_target_cpa": 108
+    },
+    {
+      "cpc_usd": 0.12,
+      "required_cvr_pct": 1.11,
+      "clicks_per_target_cpa": 90
+    },
+    {
+      "cpc_usd": 0.15,
+      "required_cvr_pct": 1.39,
+      "clicks_per_target_cpa": 72
+    },
+    {
+      "cpc_usd": 0.2,
+      "required_cvr_pct": 1.86,
+      "clicks_per_target_cpa": 54
+    }
+  ],
+  "tier_recommendations": [
+    {
+      "tier": "existing_us_nonbrand_search",
+      "countries": ["US"],
+      "starting_budget_if_spend_approved_usd_per_day": 2.0,
+      "cpc_cap_usd": 0.15,
+      "posture": "Existing paused campaign 23827590655; do not duplicate."
+    },
+    {
+      "tier": "priority_english_search",
+      "countries": ["GB", "CA", "AU"],
+      "starting_budget_if_spend_approved_usd_per_day": 2.0,
+      "cpc_cap_usd": 0.15,
+      "posture": "Best first non-US Search candidates after presentment, shipping, catalog, tracking, and Ads readbacks."
+    },
+    {
+      "tier": "high_value_watchlist_search",
+      "countries": ["CH", "DK"],
+      "starting_budget_if_spend_approved_usd_per_day": 1.0,
+      "cpc_cap_usd": 0.12,
+      "posture": "Paused English shells only until local route, checkout, duties/returns clarity, and native QA pass."
+    },
+    {
+      "tier": "broader_ecommerce_search",
+      "countries": ["DE", "NL", "SE", "FR", "BE", "ES", "IT"],
+      "starting_budget_if_spend_approved_usd_per_day": 1.0,
+      "cpc_cap_usd": 0.12,
+      "posture": "ES/IT have localized URL evidence; all remain spend-gated by catalog, tracking, economics, and approval."
+    },
+    {
+      "tier": "lower_cpc_discovery_search",
+      "countries": ["PL", "CZ", "RO", "GR", "PT"],
+      "starting_budget_if_spend_approved_usd_per_day": 1.0,
+      "cpc_cap_usd": 0.1,
+      "posture": "Use $0.08-$0.10 where possible. PT/RO have localized route evidence; RO needs RON or FX-normalized economics."
+    },
+    {
+      "tier": "pinterest_us_catalog_retargeting",
+      "countries": ["US"],
+      "starting_budget_if_spend_approved_usd_per_day": 1.0,
+      "effective_cpc_planning_target_usd": "0.10-0.15",
+      "posture": "Paused draft only until exact approval; use clean 342-row EN-US scope and 4 exclusions; Event Quality Fair remains spend gate."
+    }
+  ],
+  "kill_rules": [
+    "At about $5 spend with weak search terms, irrelevant intent, or no qualified product engagement: pause, narrow, or add negatives after approval.",
+    "At $9.49-$10.77 spend with 0 purchases: force pause, narrowing pass, or owner decision.",
+    "At $16 spend with 0 purchases: hard pause the unit.",
+    "After 2 purchases, hold or reduce if CPA is above $10.77 or ROAS is below 650%.",
+    "Do not scale from CTR, add-to-cart, checkout starts, saves, outbound clicks, or cheap CPC alone."
+  ],
+  "scale_rules": [
+    "Require at least 3 purchases in the unit being scaled.",
+    "Require trusted primary purchase value, correct currency, and clean transaction IDs.",
+    "Require CPA at or below $10.77 or ROAS at or above 650%.",
+    "Prefer CPA below $8.75 or ROAS at or above 800% before larger scaling.",
+    "Use 10%-20% increases for borderline winners and 20%-30% for clean winners, no more often than every 3-7 days."
+  ],
+  "claim_safe_creative_themes": {
+    "google_rsa": [
+      "Matching family outfits",
+      "Mommy and me dresses",
+      "Family photo outfits",
+      "Vacation family looks",
+      "Pick sizes separately",
+      "Daddy and me outfits",
+      "Family pajama ideas",
+      "Matching swimwear",
+      "Coordinated looks"
+    ],
+    "pinterest": [
+      "Mommy and me dress ideas",
+      "Matching family outfit ideas",
+      "Family vacation outfit ideas",
+      "Matching family pajama ideas",
+      "Coordinated swimwear ideas",
+      "Daddy and me outfit ideas",
+      "Warm retargeting without urgency, discount, or availability claims"
+    ]
+  },
+  "claims_to_avoid_without_evidence": [
+    "fast shipping",
+    "guaranteed delivery",
+    "warehouse",
+    "local inventory",
+    "stocked inventory",
+    "store pickup",
+    "guaranteed on-hand stock",
+    "bestseller",
+    "top rated",
+    "review counts",
+    "sale or promotion",
+    "limited-time offer",
+    "guaranteed fit",
+    "no-risk returns"
+  ],
+  "evidence_needed_for_stronger_claims": {
+    "fast_shipping": "Market-specific checkout delivery estimates, shipping-policy source text, provider proof, and recent order delivery evidence.",
+    "free_shipping": "Country-specific checkout rate readback and current policy/source confirmation; outbound shipping must not be called returns.",
+    "discount_or_promo": "Live storefront promo evidence, approved terms, start/end dates, coupon rules, and destination-page consistency.",
+    "reviews_or_ratings": "Live review system evidence, count/rating source, product or brand scope, and screenshot/API readback.",
+    "bestseller_or_popular": "Recent sales/order evidence by SKU/category, date range, and comparison-set definition.",
+    "price_claims": "Live PDP price and target-country currency readback, including variant-level price if relevant.",
+    "availability": "Feed/PDP eligibility proof only; do not convert channel salability into warehouse, stocked, local inventory, or guaranteed-on-hand claims.",
+    "local_language_quality": "Native or high-confidence QA of landing page, policy, cart, checkout, sizing, and support wording."
+  },
+  "active_gates_for_parent": [
+    "No live spend or account writes from this lane.",
+    "US/es Merchant age_group issue remains a gate before US Spanish paid testing.",
+    "Pinterest Event Quality Fair remains a spend gate.",
+    "Country final URLs, checkout/currency, catalog health, and tracking must be read back before any spend."
+  ],
+  "files_written": [
+    "ECONOMICS_AND_CREATIVE_SAFE_GROWTH_PACK.md",
+    "economics_creative_summary.json",
+    "cpc_cvr_cpa_guardrails_by_tier.csv"
+  ]
+}

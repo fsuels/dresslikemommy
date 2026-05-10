@@ -1,0 +1,313 @@
+{%- liquid
+  assign available_countries = localization.available_countries | sort: 'name'
+  assign country_count = available_countries.size
+  assign current_country = localization.country.name | default: ''
+  assign current_country_code = localization.country.iso_code | default: ''
+  assign localized_root_url = routes.root_url | default: '/'
+  assign localized_root_url_last = localized_root_url | slice: -1
+  if localized_root_url_last == '/'
+    assign shipping_info_url = localized_root_url | append: 'pages/shipping-info'
+  else
+    assign shipping_info_url = localized_root_url | append: '/pages/shipping-info'
+  endif
+  if current_country_code != blank
+    assign shipping_info_url = shipping_info_url | append: '?country=' | append: current_country_code
+  endif
+-%}
+
+{%- if country_count > 0 -%}
+  <div class="shipping-country-checker" data-shipping-country-checker hidden>
+    <div class="shipping-country-checker__backdrop" data-shipping-country-close></div>
+    <section
+      class="shipping-country-checker__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="ShippingCountryCheckerTitle"
+      aria-describedby="ShippingCountryCheckerSummary"
+      tabindex="-1"
+    >
+      <button
+        type="button"
+        class="shipping-country-checker__close"
+        data-shipping-country-close
+        aria-label="{{ 'products.shipping_country.checker_close' | t }}"
+      >
+        {% render 'icon-close' %}
+      </button>
+
+      <p class="shipping-country-checker__eyebrow">{{ 'products.shipping_country.eyebrow' | t }}</p>
+      <h2 id="ShippingCountryCheckerTitle" class="shipping-country-checker__title">
+        {{ 'products.shipping_country.checker_title' | t }}
+      </h2>
+      <p id="ShippingCountryCheckerSummary" class="shipping-country-checker__summary">
+        {{ 'products.shipping_country.checker_summary' | t: count: country_count }}
+      </p>
+
+      {%- if current_country != blank -%}
+        <p class="shipping-country-checker__current">
+          {{ 'products.shipping_country.checker_current_country' | t: country: current_country }}
+        </p>
+      {%- endif -%}
+
+      <div class="shipping-country-checker__search-field">
+        <label for="ShippingCountryCheckerSearch">
+          {{ 'products.shipping_country.checker_search_label' | t }}
+        </label>
+        <input
+          id="ShippingCountryCheckerSearch"
+          type="search"
+          autocomplete="off"
+          autocapitalize="words"
+          spellcheck="false"
+          data-shipping-country-search
+          placeholder="{{ 'products.shipping_country.checker_search_placeholder' | t }}"
+        >
+      </div>
+
+      <p
+        class="shipping-country-checker__count"
+        data-shipping-country-count
+        data-result-single-label="{{ 'products.shipping_country.checker_result_single_label' | t }}"
+        data-result-label="{{ 'products.shipping_country.checker_result_label' | t }}"
+        aria-live="polite"
+      >
+        {{ country_count }} {{ 'products.shipping_country.checker_result_label' | t }}
+      </p>
+
+      <ul class="shipping-country-checker__list" data-shipping-country-results role="list">
+        {%- for country in available_countries -%}
+          {%- capture country_search_terms -%}
+            {{ country.name }} {{ country.iso_code }} {{ country.currency.iso_code }}
+          {%- endcapture -%}
+          <li
+            class="shipping-country-checker__item"
+            data-shipping-country-row
+            data-country-search="{{ country_search_terms | strip | downcase | escape }}"
+            {% if country.iso_code == current_country_code %}
+              aria-current="true"
+            {% endif %}
+          >
+            <span class="shipping-country-checker__country">{{ country.name }}</span>
+            <span class="shipping-country-checker__status">
+              {%- if country.iso_code == current_country_code -%}
+                {{ 'products.shipping_country.checker_selected_badge' | t }}
+              {%- else -%}
+                {{ 'products.shipping_country.checker_available_badge' | t }}
+              {%- endif -%}
+            </span>
+            <span class="shipping-country-checker__currency">
+              {{ country.currency.iso_code }} {{ country.currency.symbol }}
+            </span>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      <p class="shipping-country-checker__empty" data-shipping-country-empty hidden>
+        {{ 'products.shipping_country.checker_no_results' | t }}
+      </p>
+
+      <p class="shipping-country-checker__note">
+        {{ 'products.shipping_country.checker_note_html' | t: link: shipping_info_url, email: 'info@dresslikemommy.com' }}
+      </p>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      if (window.DLMShippingCountryChecker) return;
+
+      var modal = document.querySelector('[data-shipping-country-checker]');
+      if (!modal) return;
+
+      var dialog = modal.querySelector('.shipping-country-checker__dialog');
+      var search = modal.querySelector('[data-shipping-country-search]');
+      var rows = Array.prototype.slice.call(modal.querySelectorAll('[data-shipping-country-row]'));
+      var count = modal.querySelector('[data-shipping-country-count]');
+      var empty = modal.querySelector('[data-shipping-country-empty]');
+      var lastTrigger = null;
+      var openedAt = 0;
+      var lastVisibleCount = rows.length;
+      var lastQueryLength = 0;
+      var searchTimer = null;
+      var lastSearchSignature = '';
+      var lastNoResultSignature = '';
+      var checkerContext = {
+        selected_country: {{ current_country | json }},
+        selected_country_code: {{ current_country_code | json }},
+        shipping_country_count: {{ country_count | json }}
+      };
+
+      function normalize(value) {
+        return String(value || '').trim().toLowerCase();
+      }
+
+      function pushCheckerEvent(eventName, payload) {
+        try {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push(Object.assign({
+            event: eventName,
+            page_path: window.location && window.location.pathname
+          }, checkerContext, payload || {}));
+        } catch (e) {
+          // no-op
+        }
+      }
+
+      function setSessionFlag(name, value) {
+        try {
+          if (!window.sessionStorage) return;
+          window.sessionStorage.setItem(name, String(value));
+        } catch (e) {
+          // no-op
+        }
+      }
+
+      function incrementSessionCounter(name) {
+        try {
+          if (!window.sessionStorage) return;
+          var current = parseInt(window.sessionStorage.getItem(name) || '0', 10);
+          if (!Number.isFinite(current) || current < 0) current = 0;
+          window.sessionStorage.setItem(name, String(current + 1));
+        } catch (e) {
+          // no-op
+        }
+      }
+
+      function getTriggerContext(trigger) {
+        return String(
+          trigger &&
+            trigger.getAttribute &&
+            trigger.getAttribute('data-shipping-country-trigger-context') || ''
+        ).trim();
+      }
+
+      function scheduleSearchTracking(query, visible) {
+        window.clearTimeout(searchTimer);
+        lastQueryLength = query.length;
+        lastVisibleCount = visible;
+
+        if (query.length < 2) return;
+
+        searchTimer = window.setTimeout(function () {
+          var signature = [query.length, visible].join('|');
+          if (signature !== lastSearchSignature) {
+            lastSearchSignature = signature;
+            incrementSessionCounter('dlmShippingCountryCheckerSearches');
+            pushCheckerEvent('shipping_country_checker_search', {
+              query_length: query.length,
+              result_count: visible,
+              has_results: visible > 0
+            });
+          }
+
+          if (visible === 0 && signature !== lastNoResultSignature) {
+            lastNoResultSignature = signature;
+            setSessionFlag('dlmShippingCountryCheckerNoResults', '1');
+            pushCheckerEvent('shipping_country_checker_no_results', {
+              query_length: query.length,
+              result_count: 0
+            });
+          }
+        }, 650);
+      }
+
+      function updateResults(options) {
+        var query = normalize(search && search.value);
+        var visible = 0;
+
+        rows.forEach(function (row) {
+          var terms = row.getAttribute('data-country-search') || '';
+          var match = !query || terms.indexOf(query) !== -1;
+          row.hidden = !match;
+          if (match) visible += 1;
+        });
+
+        if (count) {
+          var resultLabel = visible === 1
+            ? count.getAttribute('data-result-single-label')
+            : count.getAttribute('data-result-label');
+          count.textContent = visible + ' ' + (resultLabel || '');
+        }
+        if (empty) {
+          empty.hidden = visible !== 0;
+        }
+
+        lastVisibleCount = visible;
+        lastQueryLength = query.length;
+
+        if (options && options.track) {
+          scheduleSearchTracking(query, visible);
+        }
+      }
+
+      function openChecker(trigger) {
+        lastTrigger = trigger || document.activeElement;
+        openedAt = Date.now();
+        modal.hidden = false;
+        document.documentElement.classList.add('shipping-country-checker-open');
+        setSessionFlag('dlmShippingCountryCheckerOpened', '1');
+        incrementSessionCounter('dlmShippingCountryCheckerOpens');
+        pushCheckerEvent('shipping_country_checker_open', {
+          trigger_context: getTriggerContext(lastTrigger)
+        });
+
+        if (search) {
+          search.value = '';
+        }
+        updateResults({ track: false });
+
+        window.requestAnimationFrame(function () {
+          if (search) {
+            search.focus();
+          } else if (dialog) {
+            dialog.focus();
+          }
+        });
+      }
+
+      function closeChecker() {
+        var durationMs = openedAt ? Date.now() - openedAt : 0;
+        modal.hidden = true;
+        document.documentElement.classList.remove('shipping-country-checker-open');
+        pushCheckerEvent('shipping_country_checker_close', {
+          duration_ms: durationMs,
+          last_query_length: lastQueryLength,
+          last_result_count: lastVisibleCount
+        });
+        if (lastTrigger && typeof lastTrigger.focus === 'function') {
+          lastTrigger.focus();
+        }
+      }
+
+      document.addEventListener('click', function (event) {
+        var trigger = event.target.closest('[data-shipping-country-trigger]');
+        if (trigger) {
+          event.preventDefault();
+          openChecker(trigger);
+          return;
+        }
+
+        if (event.target.closest('[data-shipping-country-close]')) {
+          event.preventDefault();
+          closeChecker();
+        }
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (modal.hidden || event.key !== 'Escape') return;
+        closeChecker();
+      });
+
+      if (search) {
+        search.addEventListener('input', function () {
+          updateResults({ track: true });
+        });
+      }
+
+      window.DLMShippingCountryChecker = {
+        open: openChecker,
+        close: closeChecker
+      };
+    })();
+  </script>
+{%- endif -%}

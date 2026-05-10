@@ -169,7 +169,7 @@
       },
       "view_full_details": "Vollständige Details anzeigen",
       "include_taxes": "inkl. MwSt.",
-      "shipping_policy_html": "Versandoptionen und -kosten werden im Checkout nach der Adresseingabe angezeigt. <a href=\"{{ link }}\">Versandbedingungen</a>",
+      "shipping_policy_html": "Der Standardversand ist für unterstützte Länder im Produktpreis enthalten. Genaue Methoden, Lieferprognosen und mögliche Express-Upgrades werden nach Eingabe der Adresse im Checkout angezeigt. <a href=\"{{ link }}\">Versandbedingungen</a>",
       "choose_options": "Optionen auswählen",
       "choose_product_options": "Optionen für {{ product_name }} auswählen",
       "value_unavailable": "{{ option_value }} – nicht verfügbar",
@@ -230,7 +230,7 @@
         "write_review": "Schreiben Sie eine Rezension",
         "write_review_title": "Schreiben Sie eine Bewertung"
       },
-      "free_shipping_all_orders": "Versandoptionen werden an der Kasse angezeigt",
+      "free_shipping_all_orders": "Standardversand inklusive",
       "selected_size_label": "Größe: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Details",
@@ -279,17 +279,17 @@
       "secure_checkout": "Sicherer Checkout",
       "ssl_encrypted": "SSL-verschlüsselt",
       "returns": "30-tägiges Rückgabefenster",
-      "free_shipping": "Versand wird an der Kasse angezeigt",
+      "free_shipping": "Standardversand inklusive",
       "trusted_since": "Familienzusammenführung leicht gemacht",
       "assistance_note": "Brauchen Sie Hilfe? Wir antworten in der Regel innerhalb eines Werktages."
     },
     "additional_info": {
       "shipping_title": "Versand & Lieferung",
-      "free_shipping_label": "Versandoptionen",
+      "free_shipping_label": "Standardversand inklusive",
       "estimated_delivery": "Voraussichtliche Lieferung:",
       "standard_delivery_window": "12-15 Werktage",
       "premium_delivery_window": "Express-Optionen werden an der Kasse angezeigt, sofern verfügbar.",
-      "faster_shipping_prefix": "Expressoptionen werden an der Kasse angezeigt, sofern verfügbar.",
+      "faster_shipping_prefix": "Expressoptionen können im Checkout verfügbar sein, wo unterstützt.",
       "free_premium_shipping": "Expressversand",
       "return_policy_title": "Rückgaberecht",
       "return_policy_line_1": "Ab der Lieferung haben Sie 30 Tage Zeit, um eine Rückgabe oder einen Umtausch zu beantragen.",
@@ -304,6 +304,37 @@
       "secure_logistics_line_2": "Verwenden Sie Ihren Bestellverfolgungslink, um die neuesten Updates zu den Versanddienstleistern zu erhalten. Für internationale Bestellungen können lokale Steuern, Zölle oder Zollgebühren anfallen, die vom Spediteur oder der örtlichen Behörde erhoben werden.",
       "secure_privacy_title": "Datenschutz",
       "secure_privacy_description": "Der Schutz deiner Privatsphäre ist uns wichtig! Du kannst sicher sein, dass deine Daten geschützt und sicher aufbewahrt werden. Wir verkaufen deine personenbezogenen Daten nicht und verwenden sie nur gemäß unserer Datenschutz- und Cookie-Richtlinie, um unsere Services für dich bereitzustellen und zu verbessern."
+    },
+    "shipping_country": {
+      "product_country": "Versand nach {{ country }}",
+      "product_country_with_currency": "Versand nach {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "Versandland wird im Checkout bestätigt",
+      "product_note_html": "Standardversand ist im Produktpreis enthalten, wenn eine Standardmethode verfügbar ist. Im Checkout werden genaue Methode, Lieferprognose und mögliche Express-Upgrades vor der Zahlung angezeigt. <a href=\"{{ link }}\">Alle aktuellen Versandländer ansehen</a>.",
+      "eyebrow": "Versandland prüfen",
+      "page_title_country": "Ja, wir liefern derzeit nach {{ country }}",
+      "page_title_default": "Aktuelle Versandländer",
+      "page_summary": "Standardversand ist im Produktpreis für Länder und Regionen enthalten, die in unserer Checkout-Länderauswahl verfügbar sind. Geben Sie Ihre vollständige Adresse im Checkout ein, um genaue Methode, Lieferprognose und mögliche Express-Upgrades vor der Zahlung zu bestätigen.",
+      "page_note_html": "Wenn Ihr Land hier nicht aufgeführt ist oder der Checkout für Ihre genaue Adresse keine Versandmethode zeigt, schreiben Sie vor der Bestellung an <a href=\"mailto:{{ email }}\">{{ email }}</a>.",
+      "schema_standard_shipping": "Standardversand inklusive",
+      "country_list_heading": "Länder, in die wir aktuell liefern ({{ count }})",
+      "country_list_highlight": "Jedes Land in dieser Liste ist im Checkout aktiviert. Ihr ausgewähltes Land wird hervorgehoben, wenn Shopify es erkennen kann.",
+      "checker_trigger": "Liefern wir in mein Land?",
+      "checker_trigger_meta": "{{ count }} Länder aktiviert",
+      "checker_trigger_meta_country": "{{ country }} ausgewählt / {{ count }} Länder",
+      "checker_footer_heading": "Lieferung vor der Bestellung prüfen",
+      "checker_footer_text": "Durchsuche die aktuelle Checkout-Länderliste und bestätige dein Zielland in Sekunden.",
+      "checker_title": "Liefern wir in mein Land?",
+      "checker_summary": "Ja, wenn dein Land unten angezeigt wird. Diese {{ count }} Länder und Regionen sind derzeit im Checkout aktiviert.",
+      "checker_current_country": "Deine aktuelle Länderauswahl ist {{ country }}.",
+      "checker_search_label": "Land oder Region suchen",
+      "checker_search_placeholder": "Land, Code oder Währung eingeben",
+      "checker_result_label": "Länder angezeigt",
+      "checker_selected_badge": "Ausgewählt",
+      "checker_available_badge": "Lieferung möglich",
+      "checker_no_results": "Kein passendes Land in der aktuellen Checkout-Liste gefunden. Versuche eine andere Schreibweise oder schreibe uns vor der Bestellung.",
+      "checker_note_html": "Standardversand ist in den Produktpreisen enthalten, sofern eine Standardmethode verfügbar ist. Der Checkout bestätigt die genaue Methode, Lieferzeit und mögliche Express-Option vor der Zahlung. <a href=\"{{ link }}\">Versanddetails</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Länderprüfung schließen",
+      "checker_result_single_label": "Land angezeigt"
     }
   },
   "templates": {
@@ -374,10 +405,10 @@
       "empty": "Dein Warenkorb ist leer",
       "cart_error": "Beim Aktualisieren deines Warenkorbs ist ein Fehler aufgetreten. Bitte versuche es erneut.",
       "cart_quantity_error_html": "Du kannst deinem Warenkorb nur {{ quantity }} Stück dieses Artikels hinzufügen.",
-      "taxes_and_shipping_policy_at_checkout_html": "Steuern, Rabatte und Versandkosten werden an der Kasse berechnet. <a href=\"{{ link }}\">Versandbedingungen</a>",
-      "taxes_included_but_shipping_at_checkout": "Steuer inbegriffen. Rabatte und Versandkosten werden an der Kasse berechnet.",
-      "taxes_included_and_shipping_policy_html": "Steuer inbegriffen. Rabatte und Versandkosten werden an der Kasse berechnet. <a href=\"{{ link }}\">Versandbedingungen</a>",
-      "taxes_and_shipping_at_checkout": "Steuern, Rabatte und Versandkosten werden an der Kasse berechnet.",
+      "taxes_and_shipping_policy_at_checkout_html": "Steuern und Rabatte werden im Checkout berechnet. Standardversand ist enthalten, wenn eine Standardmethode verfügbar ist; Express-Upgrades werden im Checkout angezeigt. <a href=\"{{ link }}\">Versandbedingungen</a>",
+      "taxes_included_but_shipping_at_checkout": "Steuer inklusive. Rabatte werden im Checkout berechnet. Standardversand ist enthalten, wenn eine Standardmethode verfügbar ist; Express-Upgrades werden im Checkout angezeigt.",
+      "taxes_included_and_shipping_policy_html": "Steuer inklusive. Rabatte werden im Checkout berechnet. Standardversand ist enthalten, wenn eine Standardmethode verfügbar ist; Express-Upgrades werden im Checkout angezeigt. <a href=\"{{ link }}\">Versandbedingungen</a>",
+      "taxes_and_shipping_at_checkout": "Steuern und Rabatte werden im Checkout berechnet. Standardversand ist enthalten, wenn eine Standardmethode verfügbar ist; Express-Upgrades werden im Checkout angezeigt.",
       "headings": {
         "product": "Produkt",
         "price": "Preis",
@@ -402,18 +433,19 @@
       "trust": {
         "secure_checkout": "Sicherer Checkout",
         "ssl_encrypted": "SSL-verschlüsselt",
-        "free_shipping": "Versandoptionen",
+        "free_shipping": "Versand inklusive",
         "returns": "30-tägige Rückgabefrist",
         "secure": "Sicher",
         "encrypted": "Verschlüsselt",
-        "free_ship": "Versand"
+        "free_ship": "Versand inklusive"
       },
       "discount_code_toggle": "Haben Sie einen Rabattcode?",
       "shipping_label": "Versand",
-      "shipping_free": "Wird an der Kasse berechnet",
+      "shipping_free": "Standard inklusive",
       "popular_with_families": "Beliebt bei Familien",
       "recently_viewed": "Zuletzt angesehen",
-      "savings_html": "Sie sparen <strong>{{ amount }}</strong>"
+      "savings_html": "Sie sparen <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Versand nach {{ country }}. Standardversand ist enthalten; genaue Lieferprognose und mögliche Express-Upgrades erscheinen vor der Zahlung."
     },
     "footer": {
       "payment": "Zahlungsmethoden"
@@ -456,7 +488,8 @@
       "carousel": "Karussell",
       "announcement": "Ankündigung",
       "announcement_bar": "Ankündigungsleiste",
-      "default_promo": "VERSANDOPTIONEN AN DER KASSE | FAMILIENLOOKS LEICHT GEMACHT | SICHERE KASSE"
+      "default_promo": "STANDARDVERSAND INKLUSIVE | EXPRESSOPTIONEN IM CHECKOUT | SICHERER CHECKOUT",
+      "shipping_country_promo": "STANDARDVERSAND NACH {{ country }} INKLUSIVE | EXPRESSOPTIONEN IM CHECKOUT | SICHERER CHECKOUT"
     },
     "quick_order_list": {
       "product_total": "Produktzwischensumme",

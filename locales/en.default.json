@@ -188,7 +188,7 @@
       "xr_button": "View in your space",
       "xr_button_label": "View in your space, loads item in augmented reality window",
       "include_taxes": "Tax included.",
-      "shipping_policy_html": "Shipping options and costs are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
       "select_size": "Select size",
       "select_color": "Select color",
       "size_required_message": "Please select a size before adding to cart.",
@@ -230,7 +230,7 @@
         "write_review": "Write a review",
         "write_review_title": "Write a Review"
       },
-      "free_shipping_all_orders": "Shipping options shown at checkout",
+      "free_shipping_all_orders": "Standard shipping included",
       "selected_size_label": "Size: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Details",
@@ -248,13 +248,13 @@
       "secure_checkout": "Secure Checkout",
       "ssl_encrypted": "SSL Encrypted",
       "returns": "30-day return window",
-      "free_shipping": "Shipping shown at checkout",
+      "free_shipping": "Standard shipping included",
       "trusted_since": "Family matching made easy",
       "assistance_note": "Need help? We typically reply within one business day."
     },
     "additional_info": {
       "shipping_title": "Shipping & Delivery",
-      "free_shipping_label": "Shipping Options",
+      "free_shipping_label": "Standard shipping included",
       "estimated_delivery": "Estimated delivery:",
       "standard_delivery_window": "12-15 business days",
       "premium_delivery_window": "Express options are shown at checkout where available.",
@@ -304,6 +304,37 @@
       "sort_by_label": "Sort by:",
       "to": "To",
       "clear_filter": "Remove filter"
+    },
+    "shipping_country": {
+      "product_country": "Shipping to {{ country }}",
+      "product_country_with_currency": "Shipping to {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "Shipping country confirmed at checkout",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "eyebrow": "Shipping country check",
+      "page_title_country": "Yes, we currently ship to {{ country }}",
+      "page_title_default": "Current shipping countries",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
+      "schema_standard_shipping": "Standard shipping included",
+      "country_list_heading": "Countries we currently ship to ({{ count }})",
+      "country_list_highlight": "Every country in this list is enabled in checkout. Your selected country is highlighted when Shopify can detect it.",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -363,7 +394,8 @@
       "carousel": "Carousel",
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar",
-      "default_promo": "SHIPPING OPTIONS AT CHECKOUT | FAMILY MATCHING MADE EASY | SECURE CHECKOUT"
+      "default_promo": "STANDARD SHIPPING INCLUDED | EXPRESS OPTIONS AT CHECKOUT | SECURE CHECKOUT",
+      "shipping_country_promo": "STANDARD SHIPPING INCLUDED TO {{ country }} | EXPRESS OPTIONS AT CHECKOUT | SECURE CHECKOUT"
     },
     "header": {
       "announcement": "Announcement",
@@ -384,10 +416,10 @@
       "empty": "Your cart is empty",
       "cart_error": "There was an error while updating your cart. Please try again.",
       "cart_quantity_error_html": "You can only add {{ quantity }} of this item to your cart.",
-      "taxes_and_shipping_policy_at_checkout_html": "Taxes, discounts, and shipping calculated at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
-      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts and shipping calculated at checkout.",
-      "taxes_included_and_shipping_policy_html": "Tax included. Discounts and shipping calculated at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
-      "taxes_and_shipping_at_checkout": "Taxes, discounts, and shipping calculated at checkout.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
       "headings": {
         "product": "Product",
         "price": "Price",
@@ -412,16 +444,17 @@
       "trust": {
         "secure_checkout": "Secure Checkout",
         "ssl_encrypted": "SSL Encrypted",
-        "free_shipping": "Shipping options",
+        "free_shipping": "Shipping included",
         "returns": "30-day returns",
         "secure": "Secure",
         "encrypted": "Encrypted",
-        "free_ship": "Shipping"
+        "free_ship": "Shipping included"
       },
       "discount_code_toggle": "Have a discount code?",
       "shipping_label": "Shipping",
-      "shipping_free": "Calculated at checkout",
-      "savings_html": "You're saving <strong>{{ amount }}</strong>"
+      "shipping_free": "Standard included",
+      "savings_html": "You're saving <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
     },
     "footer": {
       "payment": "Payment methods"

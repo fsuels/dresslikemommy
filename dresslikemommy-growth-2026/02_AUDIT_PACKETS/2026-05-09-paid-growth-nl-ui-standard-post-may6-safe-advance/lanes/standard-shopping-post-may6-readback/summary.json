@@ -1,0 +1,63 @@
+{
+  "lane": "standard-shopping-post-may6-readback",
+  "decision": "CUSTOM_RANGE_READBACK_PASSED_NO_ADS_WRITES",
+  "campaign_id": "23802638621",
+  "campaign_name": "DLM_US_STANDARD_SHOPPING_TEST_PAID_READY",
+  "ui_timezone": "(GMT-07:00) North American Pacific Time",
+  "ui_date_range_used": {
+    "start": "2026-05-06",
+    "end": "2026-05-09",
+    "label": "Custom / 2026 May 6-9",
+    "note": "Google Ads displayed: viewing data from 2026-05-06 to 2026-05-09"
+  },
+  "campaign_readback": {
+    "status": "Enabled / Eligible",
+    "campaign_type": "Shopping",
+    "budget": "US$20.00/day",
+    "clicks": 1,
+    "impressions": 58,
+    "ctr": "1.72%",
+    "average_cpc": "US$0.02",
+    "cost": "US$0.02",
+    "conversions": "0.00",
+    "cost_per_conversion": "US$0.00",
+    "conversion_value": "0.00"
+  },
+  "product_group_readback": [
+    {"product_group": "All products", "impressions": 58, "clicks": 1, "cost": "US$0.02", "average_cpc": "US$0.02"},
+    {"product_group": "us_test_ready / daddy_me", "max_cpc": "US$0.04", "impressions": 14, "clicks": 0, "cost": "US$0.00"},
+    {"product_group": "us_test_ready / family_matching", "max_cpc": "US$0.04", "impressions": 7, "clicks": 0, "cost": "US$0.00"},
+    {"product_group": "us_test_ready / mommy_me", "max_cpc": "US$0.04", "impressions": 19, "clicks": 1, "cost": "US$0.02", "average_cpc": "US$0.02"},
+    {"product_group": "us_test_ready / pajamas", "max_cpc": "US$0.04", "impressions": 0, "clicks": 0, "cost": "US$0.00"},
+    {"product_group": "us_test_ready / swimsuits", "max_cpc": "US$0.04", "impressions": 18, "clicks": 0, "cost": "US$0.00"},
+    {"product_group": "Everything else in All products", "status": "Excluded", "impressions": 0, "clicks": 0, "cost": "US$0.00"}
+  ],
+  "search_terms_readback": {
+    "visible_rows": 19,
+    "visible_rows_all_zero_clicks": true,
+    "visible_rows_all_zero_cost": true,
+    "visible_examples": [
+      {"search_term": "baby and me dresses", "impressions": 1, "clicks": 0, "cost": "US$0.00"},
+      {"search_term": "clothes to wear for family photo shoot", "impressions": 3, "clicks": 0, "cost": "US$0.00"},
+      {"search_term": "family matching outfits for photoshoot", "impressions": 5, "clicks": 0, "cost": "US$0.00"},
+      {"search_term": "matching family beach outfits", "impressions": 1, "clicks": 0, "cost": "US$0.00"},
+      {"search_term": "matching family vacation outfits", "impressions": 1, "clicks": 0, "cost": "US$0.00"}
+    ],
+    "residual": "The campaign-level click did not appear in the visible search-term rows captured; a full export was not downloaded."
+  },
+  "no_write_proof": [
+    "Used existing logged-in Chrome CDP route on localhost:9222 and opened disposable read-only tabs.",
+    "Clicked only the Google Ads date range selector and the date-picker dialog Apply control scoped to aria-label Date range selector.",
+    "Did not click campaign/account setting Save or Apply, Enable, Pause, Upload, Edit, budget, bid, product group, feed label, product scope, conversion goal, Merchant, Shopify, or Pinterest controls.",
+    "Did not sign in, switch accounts, accept permissions, solve CAPTCHA, or change credentials.",
+    "Closed disposable campaign tabs after capture; no new persistent Ads tabs were left by this worker."
+  ],
+  "evidence": {
+    "campaign_custom_capture": "raw/05_after_readonly_date_apply.json",
+    "campaign_custom_text": "raw/05_after_readonly_date_apply.txt",
+    "campaign_custom_screenshot": "raw/05_after_readonly_date_apply.png",
+    "product_groups_custom_capture": "raw/05_productgroups_after_readonly_date_apply.json",
+    "search_terms_custom_capture": "raw/05_searchterms_after_readonly_date_apply.json",
+    "script_log": "raw/custom_date_attempt.log"
+  }
+}

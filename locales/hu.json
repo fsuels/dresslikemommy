@@ -170,7 +170,7 @@
       },
       "view_full_details": "Minden részlet megtekintése",
       "include_taxes": "Tartalmazza az adót.",
-      "shipping_policy_html": "A szállítási lehetőségek és költségek a pénztárnál a cím megadása után láthatók. <a href=\"{{ link }}\">Szállítási szabályzat</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
       "choose_options": "Válassz a lehetőségek közül",
       "choose_product_options": "Termékváltozatok – {{ product_name }}",
       "value_unavailable": "{{ option_value }} – Nincs készleten",
@@ -227,7 +227,7 @@
         "write_review": "Írjon véleményt",
         "write_review_title": "Írjon véleményt"
       },
-      "free_shipping_all_orders": "Ingyenes szállítás minden rendelésre",
+      "free_shipping_all_orders": "A normál szállítás benne van",
       "selected_size_label": "Méret: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Részletek",
@@ -279,17 +279,17 @@
       "secure_checkout": "Biztonságos fizetés",
       "ssl_encrypted": "SSL titkosított",
       "returns": "30 napos visszaküldési időszak",
-      "free_shipping": "A kiszállítás a pénztárnál látható",
+      "free_shipping": "A normál szállítás benne van",
       "trusted_since": "A családi párosítás egyszerű",
       "assistance_note": "Segítségre van szüksége? Általában egy munkanapon belül válaszolunk."
     },
     "additional_info": {
       "shipping_title": "Szállítás és szállítás",
-      "free_shipping_label": "Ingyenes szállítás",
+      "free_shipping_label": "A normál szállítás benne van",
       "estimated_delivery": "Becsült kézbesítés:",
       "standard_delivery_window": "12-15 munkanap",
       "premium_delivery_window": "Az expressz opciók megjelennek a pénztárnál, ha elérhetők.",
-      "faster_shipping_prefix": "Gyorsabban akarod? Töltsön el több mint 100 dollárt, és kap",
+      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
       "free_premium_shipping": "Expressz szállítás",
       "return_policy_title": "Visszaküldési szabályzat",
       "return_policy_line_1": "A kézbesítéstől számítva 30 napja van visszaküldést vagy cserét kérni.",
@@ -304,6 +304,37 @@
       "secure_logistics_line_2": "A legfrissebb szolgáltatói frissítésekért használja a rendeléskövető linket. A nemzetközi megrendelésekre a fuvarozó vagy a helyi hatóság által beszedett helyi adók, vámok vagy vámok vonatkozhatnak.",
       "secure_privacy_title": "Biztonságos adatvédelem",
       "secure_privacy_description": "Személyes adatainak védelme fontos számunkra! Biztos lehet benne, hogy adatait biztonságban és kompromisszumok nélkül kezeljük. Személyes adatait nem adjuk el pénzért, és adatait csak adatvédelmi és cookie-kra vonatkozó szabályzatunknak megfelelően használjuk fel szolgáltatásaink biztosítására és fejlesztésére."
+    },
+    "shipping_country": {
+      "product_country": "Szállítás ide: {{ country }}",
+      "product_country_with_currency": "Szállítás ide: {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "A szállítási országot a pénztárnál erősítjük meg",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "eyebrow": "Szállítási ország ellenőrzése",
+      "page_title_country": "Igen, jelenleg szállítunk ide: {{ country }}",
+      "page_title_default": "Aktuális szállítási országok",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
+      "schema_standard_shipping": "A normál szállítás benne van",
+      "country_list_heading": "Országok, ahová jelenleg szállítunk ({{ count }})",
+      "country_list_highlight": "A listában szereplő minden ország engedélyezve van a pénztárnál. A kiválasztott ország kiemelve jelenik meg, ha a Shopify felismeri.",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -374,10 +405,10 @@
       "empty": "A kosarad üres",
       "cart_error": "Hiba történt a kosár frissítése közben. Próbálkozz újra.",
       "cart_quantity_error_html": "Ebből a termékből legfeljebb {{ quantity }} darabot rakhatsz a kosárba.",
-      "taxes_and_shipping_policy_at_checkout_html": "Az adókat, kedvezményeket és szállítási költséget a fizetéskor számítjuk ki. <a href=\"{{ link }}\">Szállítási szabályzat</a>",
-      "taxes_included_but_shipping_at_checkout": "Adót tartalmaz. A kedvezmények és a szállítási költség a pénztárnál számítva.",
-      "taxes_included_and_shipping_policy_html": "Adót tartalmaz. A kedvezmények és a szállítási költség a pénztárnál számítva. <a href=\"{{ link }}\">Szállítási szabályzat</a>",
-      "taxes_and_shipping_at_checkout": "Az adókat, kedvezményeket és szállítási költséget a fizetéskor számítjuk ki.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
       "headings": {
         "product": "Termék",
         "price": "Ár",
@@ -402,18 +433,19 @@
       "trust": {
         "secure_checkout": "Biztonságos fizetés",
         "ssl_encrypted": "SSL titkosított",
-        "free_shipping": "Szállítási lehetőségek",
+        "free_shipping": "Szállítás benne van",
         "returns": "30 napos visszaküldés",
         "secure": "Biztonságos",
         "encrypted": "Titkosított",
-        "free_ship": "Szállítás"
+        "free_ship": "Szállítás benne van"
       },
       "popular_with_families": "Népszerű a családok körében",
       "recently_viewed": "Nemrég megtekintett",
       "discount_code_toggle": "Have a discount code?",
-      "shipping_free": "Pénztárnál számolva",
+      "shipping_free": "Normál benne van",
       "shipping_label": "Shipping",
-      "savings_html": "Megtakarítod a következőt: <strong>{{ amount }}</strong>"
+      "savings_html": "Megtakarítod a következőt: <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
     },
     "footer": {
       "payment": "Fizetési módok"
@@ -456,7 +488,8 @@
       "carousel": "Forgótár",
       "announcement": "Közlemény",
       "announcement_bar": "Közleménysáv",
-      "default_promo": "INGYENES SZÁLLÍTÁS MINDEN RENDELÉSRE | CSALÁDI ÖSSZEÖLTÖZÉS EGYSZERŰEN | BIZTONSÁGOS FIZETÉS"
+      "default_promo": "NORMÁL SZÁLLÍTÁS BENNE VAN | EXPRESSZ OPCIÓK A PÉNZTÁRNÁL | BIZTONSÁGOS FIZETÉS",
+      "shipping_country_promo": "NORMÁL SZÁLLÍTÁS {{ country }} RÉSZÉRE BENNE VAN | EXPRESSZ OPCIÓK A PÉNZTÁRNÁL | BIZTONSÁGOS FIZETÉS"
     },
     "quick_order_list": {
       "product_total": "Termék részösszege",

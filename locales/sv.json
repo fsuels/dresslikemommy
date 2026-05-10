@@ -169,7 +169,7 @@
       },
       "view_full_details": "Visa alla uppgifter",
       "include_taxes": "Skatt ingår.",
-      "shipping_policy_html": "Fraktalternativ och kostnader visas i kassan efter adressinmatning. <a href=\"{{ link }}\">Fraktpolicy</a>",
+      "shipping_policy_html": "Standardfrakt ingår i produktpriserna för länder som stöds. Exakta metoder, leveransestimat och eventuella expressuppgraderingar visas i kassan efter adressinmatning. <a href=\"{{ link }}\">Fraktpolicy</a>",
       "choose_options": "Välj alternativ",
       "choose_product_options": "Välj alternativ för {{ product_name }}",
       "value_unavailable": "{{ option_value }} – inte tillgängligt",
@@ -230,7 +230,7 @@
         "write_review": "Skriv en recension",
         "write_review_title": "Skriv en recension"
       },
-      "free_shipping_all_orders": "Fraktalternativ visas i kassan",
+      "free_shipping_all_orders": "Standardfrakt ingår",
       "selected_size_label": "Storlek: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Detaljer",
@@ -279,13 +279,13 @@
       "secure_checkout": "Säker utcheckning",
       "ssl_encrypted": "SSL-krypterad",
       "returns": "30 dagars returtid",
-      "free_shipping": "Frakt visas i kassan",
+      "free_shipping": "Standardfrakt ingår",
       "trusted_since": "Familjematchning på ett enkelt sätt",
       "assistance_note": "Behöver du hjälp? Vi svarar vanligtvis inom en arbetsdag."
     },
     "additional_info": {
       "shipping_title": "Frakt & leverans",
-      "free_shipping_label": "Fraktalternativ",
+      "free_shipping_label": "Standardfrakt ingår",
       "estimated_delivery": "Beräknad leverans:",
       "standard_delivery_window": "12-15 arbetsdagar",
       "premium_delivery_window": "Expressalternativ visas i kassan där sådana finns.",
@@ -304,6 +304,37 @@
       "secure_logistics_line_2": "Använd din beställningsspårningslänk för de senaste operatörsuppdateringarna. Internationella beställningar kan vara föremål för lokala skatter, tullar eller tullavgifter som tas ut av transportören eller den lokala myndigheten.",
       "secure_privacy_title": "Säker integritet",
       "secure_privacy_description": "Att skydda din integritet är viktigt för oss! Du kan vara säker på att din information kommer att hållas säker och kompromisslös. Vi säljer inte din personliga information för pengar och kommer endast att använda din information i enlighet med vår integritets- och cookiepolicy för att tillhandahålla och förbättra våra tjänster till dig."
+    },
+    "shipping_country": {
+      "product_country": "Frakt till {{ country }}",
+      "product_country_with_currency": "Frakt till {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "Fraktland bekräftas i kassan",
+      "product_note_html": "Standardfrakt ingår i produktpriserna där en standardmetod är tillgänglig. Kassan visar exakt metod, leveransestimat och eventuell expressuppgradering före betalning. <a href=\"{{ link }}\">Se alla aktuella fraktländer</a>.",
+      "eyebrow": "Kontrollera fraktland",
+      "page_title_country": "Ja, vi skickar för närvarande till {{ country }}",
+      "page_title_default": "Aktuella fraktländer",
+      "page_summary": "Standardfrakt ingår i produktpriserna för länder och regioner som finns i vår landsväljare i kassan. Ange hela adressen i kassan för att bekräfta exakt metod, leveransestimat och eventuell expressuppgradering före betalning.",
+      "page_note_html": "Om ditt land inte finns här, eller om kassan inte visar en fraktmetod för din exakta adress, mejla <a href=\"mailto:{{ email }}\">{{ email }}</a> innan du beställer.",
+      "schema_standard_shipping": "Standardfrakt ingår",
+      "country_list_heading": "Länder vi skickar till just nu ({{ count }})",
+      "country_list_highlight": "Varje land i den här listan är aktiverat i kassan. Ditt valda land markeras när Shopify kan identifiera det.",
+      "checker_trigger": "Skickar vi till mitt land?",
+      "checker_trigger_meta": "{{ count }} länder aktiva",
+      "checker_trigger_meta_country": "{{ country }} valt / {{ count }} länder",
+      "checker_footer_heading": "Kontrollera leverans innan du beställer",
+      "checker_footer_text": "Sök i den aktuella checkout-listan och bekräfta din destination på några sekunder.",
+      "checker_title": "Skickar vi till mitt land?",
+      "checker_summary": "Ja, om ditt land visas nedan. Dessa {{ count }} länder och regioner är aktiva i checkout just nu.",
+      "checker_current_country": "Ditt valda land är {{ country }}.",
+      "checker_search_label": "Sök land eller region",
+      "checker_search_placeholder": "Skriv land, kod eller valuta",
+      "checker_result_label": "länder visas",
+      "checker_selected_badge": "Valt",
+      "checker_available_badge": "Vi skickar hit",
+      "checker_no_results": "Inget matchande land hittades i den aktuella checkout-listan. Prova en annan stavning eller mejla oss innan du beställer.",
+      "checker_note_html": "Standardfrakt ingår i produktpriserna där en standardmetod är tillgänglig. Checkout bekräftar exakt metod, leveransestimat och eventuell expressuppgradering före betalning. <a href=\"{{ link }}\">Leveransdetaljer</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Stäng landkontroll",
+      "checker_result_single_label": "land visas"
     }
   },
   "templates": {
@@ -374,10 +405,10 @@
       "empty": "Din varukorg är tom",
       "cart_error": "Ett fel uppstod när du uppdaterade din varukorg. Försök igen.",
       "cart_quantity_error_html": "Du kan endast lägga till {{ quantity }} av denna artikel i din varukorg.",
-      "taxes_and_shipping_policy_at_checkout_html": "Skatter, rabatter och frakt beräknas i kassan. <a href=\"{{ link }}\">Fraktpolicy</a>",
-      "taxes_included_but_shipping_at_checkout": "Skatt ingår. Rabatter och frakt beräknas i kassan.",
-      "taxes_included_and_shipping_policy_html": "Skatt ingår. Rabatter och frakt beräknas i kassan. <a href=\"{{ link }}\">Fraktpolicy</a>",
-      "taxes_and_shipping_at_checkout": "Skatter, rabatter och frakt beräknas i kassan.",
+      "taxes_and_shipping_policy_at_checkout_html": "Skatter och rabatter beräknas i kassan. Standardfrakt ingår där en standardmetod är tillgänglig; expressuppgraderingar visas i kassan. <a href=\"{{ link }}\">Fraktpolicy</a>",
+      "taxes_included_but_shipping_at_checkout": "Skatt ingår. Rabatter beräknas i kassan. Standardfrakt ingår där en standardmetod är tillgänglig; expressuppgraderingar visas i kassan.",
+      "taxes_included_and_shipping_policy_html": "Skatt ingår. Rabatter beräknas i kassan. Standardfrakt ingår där en standardmetod är tillgänglig; expressuppgraderingar visas i kassan. <a href=\"{{ link }}\">Fraktpolicy</a>",
+      "taxes_and_shipping_at_checkout": "Skatter och rabatter beräknas i kassan. Standardfrakt ingår där en standardmetod är tillgänglig; expressuppgraderingar visas i kassan.",
       "headings": {
         "product": "Produkt",
         "price": "Pris",
@@ -402,18 +433,19 @@
       "trust": {
         "secure_checkout": "Säker utcheckning",
         "ssl_encrypted": "SSL-krypterad",
-        "free_shipping": "Fraktalternativ",
+        "free_shipping": "Frakt ingår",
         "returns": "30 dagars retur",
         "secure": "Säkra",
         "encrypted": "Krypterad",
-        "free_ship": "Frakt"
+        "free_ship": "Frakt ingår"
       },
       "discount_code_toggle": "Har du en rabattkod?",
       "shipping_label": "Frakt",
-      "shipping_free": "Beräknat i kassan",
+      "shipping_free": "Standard ingår",
       "popular_with_families": "Populärt bland familjer",
       "recently_viewed": "Nyligen visade",
-      "savings_html": "Du sparar <strong>{{ amount }}</strong>"
+      "savings_html": "Du sparar <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Frakt till {{ country }}. Standardfrakt ingår; exakt leveransestimat och eventuell expressuppgradering visas före betalning."
     },
     "footer": {
       "payment": "Betalningsmetoder"
@@ -456,7 +488,8 @@
       "carousel": "Karusell",
       "announcement": "Meddelande",
       "announcement_bar": "Meddelandefält",
-      "default_promo": "GRATIS FRAKT PÅ ALLA BESTÄLLNINGAR | FAMILJEMATCHNING GJORD ENKEL | SÄKER KASSA"
+      "default_promo": "STANDARDFRAKT INGÅR | EXPRESSALTERNATIV I KASSAN | SÄKER BETALNING",
+      "shipping_country_promo": "STANDARDFRAKT TILL {{ country }} INGÅR | EXPRESSALTERNATIV I KASSAN | SÄKER BETALNING"
     },
     "quick_order_list": {
       "product_total": "Delsumma för produkt",

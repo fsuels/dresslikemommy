@@ -1,0 +1,75 @@
+{
+  "anchor": "AGENT_CONTINUITY_ANCHOR: 2026-05-08-paid-growth-safe-followup-us-es-checkout",
+  "date": "2026-05-08",
+  "decision": "LOCAL_READONLY_SAFE_FOLLOWUP_COMPLETE__MERCHANT_US_ES_ACTIVE_READONLY_GATE__GB_CA_RATE_EVIDENCE_PASSED__AU_429_TRACKED__ADS_PINTEREST_APPROVAL_GATED",
+  "external_writes_made": false,
+  "guardrails_preserved": {
+    "no_live_spend": true,
+    "no_campaign_enablement": true,
+    "no_budget_bid_status_changes": true,
+    "no_pmax_enable": true,
+    "no_standard_shopping_changes": true,
+    "no_product_scope_feed_label_product_group_changes": true,
+    "no_conversion_goal_changes": true,
+    "no_merchant_upload_or_source_sync": true,
+    "no_shopify_live_product_data_changes": true,
+    "no_pinterest_account_writes": true,
+    "no_checkout_payment_or_order": true
+  },
+  "lane_results": {
+    "merchant_us_es": {
+      "status": "ACTIVE_DIAGNOSE_READONLY",
+      "problem_id": "PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP",
+      "remaining_unique_paid_ids": 625,
+      "remaining_rows": 1250,
+      "context": {
+        "feed_label": "US",
+        "language": "es",
+        "country": "United States"
+      },
+      "likely_source_id": "10627981690",
+      "current_us_en_standard_shopping_risk": "LOW_NOT_CURRENT_US_EN_GATE",
+      "next_action": "Read-only inspect affected Merchant product detail and source/settings for language=es feedLabel=US before any live fix approval."
+    },
+    "localization_gb_ca_au": {
+      "gb": "PASS_WITH_CHECKOUT_UI_RESIDUAL_RISK",
+      "ca": "PASS_WITH_CHECKOUT_UI_RESIDUAL_RISK",
+      "au": "PLATFORM_REFRESH_PENDING_HTTP_429",
+      "new_problem_id": "PROB-2026-05-08-AU-CHECKOUT-429"
+    },
+    "google_ads_intl": {
+      "status": "PASS_LOCAL_ONLY_APPROVAL_REQUIRED",
+      "campaigns": 17,
+      "ad_groups": 204,
+      "keywords": 612,
+      "negatives": 629,
+      "rsas": 204,
+      "web_bulk_rows": 1666,
+      "max_cpc_usd": 0.15,
+      "existing_us_campaign_23827590655_present": false
+    },
+    "pinterest_gate": {
+      "status": "PAUSED_US_DRAFT_GATE_READY_FOR_EXACT_OWNER_APPROVAL__LIVE_SPEND_BLOCKED_BY_EVENT_QUALITY_FAIR",
+      "clean_scope_rows": 342,
+      "excluded_variants": [
+        "41878208249953",
+        "41878208479329",
+        "41878208577633",
+        "41878208610401"
+      ],
+      "event_quality": "Fair"
+    },
+    "economics_creative": {
+      "target_roas_percent": 650,
+      "aov_usd": 70.0,
+      "max_cpa_usd": 10.77,
+      "required_cvr_at_0_15_cpc_percent": 1.39,
+      "claim_safe_only": true
+    }
+  },
+  "reports": [
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-safe-followup/PAID_GROWTH_SAFE_FOLLOWUP_REPORT.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-safe-followup/LANE_BOARD.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-safe-followup/NEXT_CONTINUATION_PROMPT.md"
+  ]
+}

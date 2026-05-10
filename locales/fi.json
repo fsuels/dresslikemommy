@@ -169,7 +169,7 @@
       },
       "view_full_details": "Näytä kaikki tiedot",
       "include_taxes": "Sisältää veron.",
-      "shipping_policy_html": "Toimitusvaihtoehdot ja -kulut näkyvät kassalla osoitteen syöttämisen jälkeen. <a href=\"{{ link }}\">Toimituspolitiikka</a>",
+      "shipping_policy_html": "Vakiotoimitus sisältyy tuotehintoihin tuetuissa maissa. Tarkat toimitustavat, toimitusarviot ja mahdolliset pikatoimituspäivitykset näytetään kassalla osoitteen syöttämisen jälkeen. <a href=\"{{ link }}\">Toimituskäytäntö</a>",
       "choose_options": "Valitse vaihtoehdot",
       "choose_product_options": "Valitse vaihtoehtoja tuotteelle {{ product_name }}",
       "value_unavailable": "{{ option_value }} – Ei ole käytettävissä",
@@ -230,7 +230,7 @@
         "write_review": "Kirjoita arvostelu",
         "write_review_title": "Kirjoita arvostelu"
       },
-      "free_shipping_all_orders": "Ilmainen toimitus kaikkiin tilauksiin",
+      "free_shipping_all_orders": "Vakiotoimitus sisältyy hintaan",
       "selected_size_label": "Koko: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Yksityiskohdat",
@@ -279,17 +279,17 @@
       "secure_checkout": "Turvallinen kassa",
       "ssl_encrypted": "SSL-salattu",
       "returns": "30 päivän palautusikkuna",
-      "free_shipping": "Toimitus näkyy kassalla",
+      "free_shipping": "Vakiotoimitus sisältyy hintaan",
       "trusted_since": "Perheen yhdistäminen on tehty helpoksi",
       "assistance_note": "Tarvitsetko apua? Vastaamme yleensä yhden arkipäivän kuluessa."
     },
     "additional_info": {
       "shipping_title": "Toimitus ja toimitus",
-      "free_shipping_label": "Ilmainen toimitus",
+      "free_shipping_label": "Vakiotoimitus sisältyy hintaan",
       "estimated_delivery": "Arvioitu toimitus:",
       "standard_delivery_window": "12-15 arkipäivää",
       "premium_delivery_window": "Express-vaihtoehdot näkyvät kassalla, jos niitä on saatavilla.",
-      "faster_shipping_prefix": "Haluatko nopeammin? Käytä yli 100 dollaria ja saat",
+      "faster_shipping_prefix": "Pikatoimitusvaihtoehdot voivat näkyä kassalla, jos ne ovat saatavilla.",
       "free_premium_shipping": "Pikalähetys",
       "return_policy_title": "Palautuskäytäntö",
       "return_policy_line_1": "Sinulla on 30 päivää toimituksesta pyytää palautusta tai vaihtoa.",
@@ -304,6 +304,37 @@
       "secure_logistics_line_2": "Käytä tilauksen seurantalinkkiäsi saadaksesi viimeisimmät operaattoripäivitykset. Kansainvälisistä tilauksista voidaan periä paikalliset verot, tullit tai tullimaksut, jotka rahdinkuljettaja tai paikallinen viranomainen kerää.",
       "secure_privacy_title": "Turvallinen yksityisyys",
       "secure_privacy_description": "Yksityisyytesi suojaaminen on meille tärkeää! Voit olla varma, että tietosi säilytetään turvassa ja tinkimättöminä. Emme myy henkilötietojasi rahasta ja käytämme tietojasi vain tietosuoja- ja evästekäytäntömme mukaisesti tarjotaksemme ja parantaaksemme palveluitamme sinulle."
+    },
+    "shipping_country": {
+      "product_country": "Toimitus maahan {{ country }}",
+      "product_country_with_currency": "Toimitus maahan {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "Toimitusmaa vahvistetaan kassalla",
+      "product_note_html": "Vakiotoimitus sisältyy tuotehintoihin, kun vakiomenetelmä on saatavilla. Kassalla näkyvät tarkka menetelmä, toimitusarvio ja mahdollinen pikapäivitys ennen maksua. <a href=\"{{ link }}\">Katso kaikki nykyiset toimitusmaat</a>.",
+      "eyebrow": "Toimitusmaan tarkistus",
+      "page_title_country": "Kyllä, toimitamme tällä hetkellä maahan {{ country }}",
+      "page_title_default": "Nykyiset toimitusmaat",
+      "page_summary": "Vakiotoimitus sisältyy tuotehintoihin maille ja alueille, jotka ovat saatavilla kassamme maavalitsimessa. Syötä koko osoitteesi kassalla vahvistaaksesi tarkan menetelmän, toimitusarvion ja mahdollisen pikapäivityksen ennen maksua.",
+      "page_note_html": "Jos maatasi ei ole luettelossa tai kassa ei näytä toimitustapaa tarkalle osoitteellesi, lähetä sähköpostia osoitteeseen <a href=\"mailto:{{ email }}\">{{ email }}</a> ennen tilaamista.",
+      "schema_standard_shipping": "Vakiotoimitus sisältyy hintaan",
+      "country_list_heading": "Maat, joihin toimitamme tällä hetkellä ({{ count }})",
+      "country_list_highlight": "Jokainen tämän luettelon maa on käytössä kassalla. Valittu maasi korostetaan, kun Shopify voi tunnistaa sen.",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -374,10 +405,10 @@
       "empty": "Ostoskorisi on tyhjä",
       "cart_error": "Ostoskorisi päivityksessä tapahtui virhe. Yritä uudelleen.",
       "cart_quantity_error_html": "Voit lisätä ostoskoriisi vain {{ quantity }} kappaletta tätä tuotetta.",
-      "taxes_and_shipping_policy_at_checkout_html": "Verot, alennukset ja toimituskulut lasketaan kassalla. <a href=\"{{ link }}\">Toimituspolitiikka</a>",
-      "taxes_included_but_shipping_at_checkout": "Sisältää verot. Alennukset ja toimituskulut lasketaan kassalla.",
-      "taxes_included_and_shipping_policy_html": "Sisältää verot. Alennukset ja toimituskulut lasketaan kassalla. <a href=\"{{ link }}\">Toimituspolitiikka</a>",
-      "taxes_and_shipping_at_checkout": "Verot, alennukset ja toimituskulut lasketaan kassalla.",
+      "taxes_and_shipping_policy_at_checkout_html": "Verot ja alennukset lasketaan kassalla. Vakiotoimitus sisältyy hintaan, kun vakiomenetelmä on saatavilla; pikatoimituspäivitykset näytetään kassalla. <a href=\"{{ link }}\">Toimituskäytäntö</a>",
+      "taxes_included_but_shipping_at_checkout": "Vero sisältyy. Alennukset lasketaan kassalla. Vakiotoimitus sisältyy hintaan, kun vakiomenetelmä on saatavilla; pikatoimituspäivitykset näytetään kassalla.",
+      "taxes_included_and_shipping_policy_html": "Vero sisältyy. Alennukset lasketaan kassalla. Vakiotoimitus sisältyy hintaan, kun vakiomenetelmä on saatavilla; pikatoimituspäivitykset näytetään kassalla. <a href=\"{{ link }}\">Toimituskäytäntö</a>",
+      "taxes_and_shipping_at_checkout": "Verot ja alennukset lasketaan kassalla. Vakiotoimitus sisältyy hintaan, kun vakiomenetelmä on saatavilla; pikatoimituspäivitykset näytetään kassalla.",
       "headings": {
         "product": "Tuote",
         "price": "Hinta",
@@ -402,18 +433,19 @@
       "trust": {
         "secure_checkout": "Turvallinen kassa",
         "ssl_encrypted": "SSL-salattu",
-        "free_shipping": "Toimitusvaihtoehdot",
+        "free_shipping": "Toimitus sisältyy",
         "returns": "30 päivän palautusoikeus",
         "secure": "Turvallinen",
         "encrypted": "Salattu",
-        "free_ship": "Toimitus"
+        "free_ship": "Toimitus sisältyy"
       },
       "discount_code_toggle": "Onko sinulla alennuskoodi?",
       "shipping_label": "Toimitus",
-      "shipping_free": "Laskettu kassalla",
+      "shipping_free": "Vakio sisältyy",
       "popular_with_families": "Suosittu perheiden keskuudessa",
       "recently_viewed": "Äskettäin katsottu",
-      "savings_html": "Säästät <strong>{{ amount }}</strong>"
+      "savings_html": "Säästät <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Toimitus maahan {{ country }}. Vakiotoimitus sisältyy; tarkka toimitusarvio ja mahdollinen pikapäivitys näkyvät ennen maksua."
     },
     "footer": {
       "payment": "Maksutavat"
@@ -456,7 +488,8 @@
       "carousel": "Karuselli",
       "announcement": "Ilmoitus",
       "announcement_bar": "Ilmoituspalkki",
-      "default_promo": "ILMAINEN TOIMITUS KAIKKIIN TILAUKSIIN | PERHEEN YHTEEN SOPIVAT ASUT HELPOSTI | TURVALLINEN KASSA"
+      "default_promo": "VAKIOTOIMITUS SISÄLTYY | PIKAVAIHTOEHDOT KASSALLA | TURVALLINEN KASSA",
+      "shipping_country_promo": "VAKIOTOIMITUS MAALLE {{ country }} SISÄLTYY | PIKAVAIHTOEHDOT KASSALLA | TURVALLINEN KASSA"
     },
     "quick_order_list": {
       "product_total": "Tuotteen välisumma",

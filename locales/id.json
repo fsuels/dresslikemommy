@@ -170,7 +170,7 @@
       },
       "view_full_details": "Lihat detail lengkap",
       "include_taxes": "Termasuk pajak.",
-      "shipping_policy_html": "Opsi pengiriman dan biaya ditampilkan saat checkout setelah entri alamat. <a href=\"{{ link }}\">Kebijakan pengiriman</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
       "choose_options": "Pilih opsi",
       "choose_product_options": "Pilih opsi untuk {{ product_name }}",
       "value_unavailable": "{{ option_value }} - Tidak tersedia",
@@ -230,7 +230,7 @@
         "write_review": "Tulis ulasan",
         "write_review_title": "Tulis Ulasan"
       },
-      "free_shipping_all_orders": "Gratis ongkos kirim untuk semua pesanan",
+      "free_shipping_all_orders": "Pengiriman standar termasuk",
       "selected_size_label": "Ukuran: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Detail",
@@ -279,17 +279,17 @@
       "secure_checkout": "Pembayaran Aman",
       "ssl_encrypted": "SSL Terenkripsi",
       "returns": "Jendela pengembalian 30 hari",
-      "free_shipping": "Pengiriman ditampilkan saat checkout",
+      "free_shipping": "Pengiriman standar termasuk",
       "trusted_since": "Pencocokan keluarga menjadi mudah",
       "assistance_note": "Butuh bantuan? Kami biasanya membalas dalam satu hari kerja."
     },
     "additional_info": {
       "shipping_title": "Pengiriman & Pengiriman",
-      "free_shipping_label": "Gratis ongkir",
+      "free_shipping_label": "Pengiriman standar termasuk",
       "estimated_delivery": "Estimasi pengiriman:",
       "standard_delivery_window": "12-15 hari kerja",
       "premium_delivery_window": "Opsi ekspres ditampilkan saat checkout jika tersedia.",
-      "faster_shipping_prefix": "Ingin lebih cepat? Habiskan $100+ dan dapatkan",
+      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
       "free_premium_shipping": "Pengiriman ekspres",
       "return_policy_title": "Kebijakan Pengembalian",
       "return_policy_line_1": "Anda memiliki waktu 30 hari sejak pengiriman untuk meminta pengembalian atau penukaran.",
@@ -304,6 +304,37 @@
       "secure_logistics_line_2": "Gunakan tautan pelacakan pesanan Anda untuk pembaruan operator terkini. Pesanan internasional mungkin dikenakan pajak, bea, atau biaya bea cukai setempat yang dipungut oleh pengangkut atau otoritas setempat.",
       "secure_privacy_title": "Privasi Aman",
       "secure_privacy_description": "Melindungi privasi Anda penting bagi kami! Yakinlah bahwa informasi Anda akan tetap aman dan tanpa kompromi. Kami tidak menjual informasi pribadi Anda demi uang dan hanya akan menggunakan informasi Anda sesuai dengan kebijakan privasi dan cookie kami untuk menyediakan dan meningkatkan layanan kami kepada Anda."
+    },
+    "shipping_country": {
+      "product_country": "Pengiriman ke {{ country }}",
+      "product_country_with_currency": "Pengiriman ke {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "Negara pengiriman dikonfirmasi saat checkout",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "eyebrow": "Cek negara pengiriman",
+      "page_title_country": "Ya, saat ini kami mengirim ke {{ country }}",
+      "page_title_default": "Negara pengiriman saat ini",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
+      "schema_standard_shipping": "Pengiriman standar termasuk",
+      "country_list_heading": "Negara yang saat ini kami layani ({{ count }})",
+      "country_list_highlight": "Setiap negara dalam daftar ini diaktifkan di checkout. Negara pilihan Anda disorot saat Shopify dapat mendeteksinya.",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -374,10 +405,10 @@
       "empty": "Keranjang Anda kosong",
       "cart_error": "Terjadi kesalahan saat memperbarui keranjang. Silakan coba lagi.",
       "cart_quantity_error_html": "Hanya dapat menambahkan {{ quantity }} item ini ke keranjang Anda.",
-      "taxes_and_shipping_policy_at_checkout_html": "Pajak, diskon, dan pengiriman dihitung saat checkout. <a href=\"{{ link }}\">Kebijakan pengiriman</a>",
-      "taxes_included_but_shipping_at_checkout": "Termasuk pajak. Diskon dan ongkos kirim dihitung saat checkout.",
-      "taxes_included_and_shipping_policy_html": "Termasuk pajak. Diskon dan ongkos kirim dihitung saat checkout. <a href=\"{{ link }}\">Kebijakan pengiriman</a>",
-      "taxes_and_shipping_at_checkout": "Pajak, diskon, dan pengiriman dihitung saat checkout.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
       "headings": {
         "product": "Produk",
         "price": "Harga",
@@ -402,18 +433,19 @@
       "trust": {
         "secure_checkout": "Pembayaran Aman",
         "ssl_encrypted": "SSL Terenkripsi",
-        "free_shipping": "Opsi pengiriman",
+        "free_shipping": "Pengiriman termasuk",
         "returns": "Pengembalian 30 hari",
         "secure": "Aman",
         "encrypted": "Terenkripsi",
-        "free_ship": "Pengiriman"
+        "free_ship": "Pengiriman termasuk"
       },
       "discount_code_toggle": "Punya kode diskon?",
       "shipping_label": "Pengiriman",
-      "shipping_free": "Dihitung saat checkout",
+      "shipping_free": "Standar termasuk",
       "popular_with_families": "Populer di kalangan Keluarga",
       "recently_viewed": "Baru Dilihat",
-      "savings_html": "Anda menyimpan <strong>{{ amount }}</strong>"
+      "savings_html": "Anda menyimpan <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
     },
     "footer": {
       "payment": "Metode pembayaran"
@@ -456,7 +488,8 @@
       "carousel": "Carousel",
       "announcement": "Pengumuman",
       "announcement_bar": "Bilah pengumuman",
-      "default_promo": "GRATIS ONGKOS KIRIM UNTUK SEMUA PESANAN | MATCHING KELUARGA JADI MUDAH | CHECKOUT AMAN"
+      "default_promo": "PENGIRIMAN STANDAR TERMASUK | OPSI EKSPRES DI CHECKOUT | CHECKOUT AMAN",
+      "shipping_country_promo": "PENGIRIMAN STANDAR KE {{ country }} TERMASUK | OPSI EKSPRES DI CHECKOUT | CHECKOUT AMAN"
     },
     "quick_order_list": {
       "product_total": "Subtotal produk",

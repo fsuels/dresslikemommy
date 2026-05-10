@@ -1,0 +1,127 @@
+{
+  "status": "PASS_FOR_EXACT_OWNER_APPROVED_PAUSED_US_DRAFT__FAIL_FOR_LIVE_SPEND_UNTIL_EVENT_QUALITY_ACCEPTED_OR_REPAIRED",
+  "generated_at_local": "2026-05-08",
+  "mode": "local_read_only_subagent_validation",
+  "external_writes_made": [],
+  "pinterest_account_writes_made": false,
+  "shopify_or_merchant_or_ads_writes_made": false,
+  "write_scope_used": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-ai-army-safe-advance-2/lanes/pinterest-gate/",
+  "source_evidence": {
+    "prior_report": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/PINTEREST_CATALOG_EVENT_UNBLOCK_REPORT.md",
+    "prior_safe_followup_gate": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-safe-followup/lanes/pinterest-gate/PINTEREST_EVENT_QUALITY_DRAFT_GATE.md",
+    "clean_scope_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/pinterest_us_clean_launch_scope_resolved_342.csv",
+    "exclusions_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/pinterest_us_unresolved_exclusions_4.csv",
+    "event_quality_api_probe": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/event_quality_api_probe.json",
+    "campaign_spend_baseline": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/campaign_spend_baseline.json"
+  },
+  "clean_scope_validation": {
+    "rows": 342,
+    "unique_shopify_variant_ids": 342,
+    "duplicate_variant_ids": [],
+    "locale_counts": {
+      "en-US": 342
+    },
+    "availability_counts": {
+      "IN_STOCK": 342
+    },
+    "item_status_counts": {
+      "FOUND_EN_US_IN_STOCK": 342
+    },
+    "review_status_counts": {
+      "CANDIDATE_ONLY_NOT_LAUNCH_APPROVED": 342
+    },
+    "custom_label_0_counts": {
+      "paid_eligible": 342
+    },
+    "custom_label_2_counts": {
+      "mommy_me": 210,
+      "family_matching": 103,
+      "pajamas": 29
+    },
+    "custom_label_4_counts": {
+      "us_test_ready": 342
+    },
+    "market_counts": {
+      "US": 342
+    },
+    "merchant_center_status_counts": {
+      "Approved": 342
+    }
+  },
+  "exclusion_validation": {
+    "rows": 4,
+    "unique_shopify_variant_ids": 4,
+    "variant_ids": [
+      "41878208249953",
+      "41878208479329",
+      "41878208577633",
+      "41878208610401"
+    ],
+    "exclusion_status_counts": {
+      "NOT_RERESOLVED": 4
+    },
+    "item_status_counts": {
+      "NOT_CURRENTLY_RESOLVED_EN_US": 4
+    },
+    "review_status_counts": {
+      "EXCLUDED_FROM_CURRENT_PINTEREST_SCOPE": 4
+    },
+    "clean_scope_overlap": []
+  },
+  "reresolve_summary": {
+    "candidate_rows_checked": 9,
+    "reresolved_en_us_in_stock": 5,
+    "not_reresolved": 4,
+    "supersedes": "Older 337 resolved / 9 unresolved Pinterest draft gate"
+  },
+  "event_quality": {
+    "advertiser_id": "549756244483",
+    "probe_generated_at": "2026-05-08T05:55:17.164Z",
+    "updated_date": "2026-05-06",
+    "web_tag_status": "FAIR",
+    "web_conversions_api_status": "FAIR",
+    "verified_merchant_program": "PASS",
+    "automatic_enhanced_match": "PASS",
+    "enhanced_match": "ERROR",
+    "latest_tag_timestamp_raw": 1778219456502890000,
+    "latest_capi_timestamp_raw": 1778219473760287700,
+    "top_action_items": [
+      {
+        "rank": 1,
+        "action_item_id": "product_id__ADD_PAYMENT_INFO",
+        "status": "NEEDS_IMPROVEMENT"
+      },
+      {
+        "rank": 2,
+        "action_item_id": "hashed_email__ADD_TO_CART",
+        "status": "NEEDS_IMPROVEMENT"
+      },
+      {
+        "rank": 3,
+        "action_item_id": "click_id_epik__CHECKOUT",
+        "status": "NEEDS_IMPROVEMENT"
+      }
+    ],
+    "paused_draft_blocker": false,
+    "live_spend_blocker": true
+  },
+  "advertiser_baseline": {
+    "advertiser_id": "549756244483",
+    "account_domain": "Dress Like Mommy | Matching Family Outfits / dresslikemommy.com",
+    "campaign_baseline_date_range": "2026-04-08 through 2026-05-07",
+    "campaigns_zero_in_stored_text": true,
+    "currently_serving_zero_in_stored_text": true,
+    "spend_zero_in_stored_text": true,
+    "login_or_blocker_hints": {
+      "hasLoginText": false,
+      "hasCaptchaText": false,
+      "hasUnsavedText": false,
+      "hasBillingPrompt": false
+    }
+  },
+  "approval_gates": {
+    "paused_us_draft_build": "APPROVE PAUSED PINTEREST US CATALOG/RETARGETING DRAFT BUILD ONLY: USE THE 2026-05-08 CLEAN 342-ROW EN-US IN-STOCK SCOPE AND EXCLUDE THE 4 UNRESOLVED VARIANTS; KEEP ALL CAMPAIGNS, AD GROUPS, ADS, AND PRODUCT GROUPS PAUSED; NO LIVE SPEND; NO BUDGET OR BID ACTIVATION; NO CATALOG SOURCE, TAG, CAPI, AUDIENCE, SHOPIFY PRODUCT, MERCHANT, GOOGLE ADS, OR FEED CHANGES; READ BACK BEFORE AND AFTER.",
+    "narrow_event_quality_repair": "APPROVE NARROW PINTEREST EVENT QUALITY REPAIR ONLY: INVESTIGATE OFFICIAL SHOPIFY/PINTEREST APP AND CUSTOMER EVENTS CONFIGURATION FOR PRODUCT ID, EMAIL, AND CLICK ID GAPS; NO CAMPAIGN, DRAFT, PRODUCT GROUP, CATALOG SOURCE, AUDIENCE, BUDGET, BID, STATUS, OR SPEND CHANGES; NO DUPLICATE THEME TAG; NO CUSTOM CAPI DEPLOYMENT OR CUSTOMER-DATA CHANGE WITHOUT A SEPARATE READBACK AND APPROVAL; READ BACK BEFORE AND AFTER."
+  },
+  "next_action": "Parent/orchestrator should either request exact paused US Pinterest draft approval or exact narrow Event Quality repair approval, then run just-in-time readbacks before any account write."
+}

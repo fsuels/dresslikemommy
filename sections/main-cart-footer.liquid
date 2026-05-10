@@ -125,6 +125,14 @@
                   <span>{{ 'sections.cart.shipping_label' | t }}</span>
                   <span class="cart-page__shipping-free">{{ 'sections.cart.shipping_free' | t }}</span>
                 </div>
+                {%- if localization.country.name != blank -%}
+                  <p class="cart-page__shipping-note">
+                    {{ 'sections.cart.shipping_country_reassurance' | t: country: localization.country.name }}
+                  </p>
+                {%- endif -%}
+                <div class="cart-page__country-checker">
+                  {% render 'shipping-country-checker-trigger', context: 'cart' %}
+                </div>
                 <div class="totals">
                   <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
                   <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>

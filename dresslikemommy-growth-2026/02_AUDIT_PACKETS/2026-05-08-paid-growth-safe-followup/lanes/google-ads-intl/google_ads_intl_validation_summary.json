@@ -1,0 +1,156 @@
+{
+  "validation_date": "2026-05-08",
+  "lane": "Google Ads non-US international Search local packet validation",
+  "status": "PASS",
+  "source_packet": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-controlled-infra-refresh/lanes/ads-intl/",
+  "validated_importable_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-controlled-infra-refresh/lanes/ads-intl/web_bulk_upload/00_intl_search_paused_draft_web_bulk.csv",
+  "outputs": [
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-safe-followup/lanes/google-ads-intl/GOOGLE_ADS_INTL_PACKET_VALIDATION.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-safe-followup/lanes/google-ads-intl/google_ads_intl_validation_summary.json"
+  ],
+  "account_writes_made": false,
+  "guardrails_honored": {
+    "no_live_spend": true,
+    "no_campaign_enablement": true,
+    "no_campaign_import_create_or_edit": true,
+    "no_ads_account_writes": true,
+    "no_budget_bid_status_changes": true,
+    "no_product_scope_feed_label_product_group_changes": true,
+    "no_conversion_goal_changes": true,
+    "no_merchant_shopify_pinterest_writes": true
+  },
+  "counts": {
+    "web_bulk_rows": 1666,
+    "campaigns": 17,
+    "ad_groups": 204,
+    "positive_keywords": 612,
+    "campaign_negative_keywords": 629,
+    "responsive_search_ads": 204,
+    "final_url_rows_checked": 816,
+    "final_url_mapping_rows": 102
+  },
+  "row_type_counts": {
+    "Campaign": 17,
+    "Ad group": 204,
+    "Keyword": 612,
+    "Negative keyword": 629,
+    "Ad": 204
+  },
+  "countries": [
+    "AU",
+    "BE",
+    "CA",
+    "CH",
+    "CZ",
+    "DE",
+    "DK",
+    "ES",
+    "FR",
+    "GB",
+    "GR",
+    "IT",
+    "NL",
+    "PL",
+    "PT",
+    "RO",
+    "SE"
+  ],
+  "checks": {
+    "all_rows_action_add": true,
+    "all_campaigns_paused": true,
+    "all_ad_groups_paused": true,
+    "all_keywords_paused": true,
+    "all_ads_paused": true,
+    "negative_keywords_campaign_level": true,
+    "non_us_only": true,
+    "existing_us_campaign_id_absent_from_importable_file": true,
+    "existing_us_campaign_name_absent_from_importable_file": true,
+    "all_entity_id_fields_blank": true,
+    "search_campaigns_only": true,
+    "google_search_network_only": true,
+    "manual_cpc_only": true,
+    "target_cpa_blank": true,
+    "target_roas_blank": true,
+    "campaign_subtype_blank": true,
+    "inventory_type_blank": true,
+    "positive_keywords_exact_or_phrase_only": true,
+    "max_cpc_at_or_below_0_20": true,
+    "max_cpc_expected_0_15_maximum": true,
+    "country_parameter_present_on_all_final_urls": true,
+    "country_parameter_matches_campaign_country": true,
+    "localized_es_it_ro_pt_paths_present": true,
+    "no_bare_language_only_urls": true,
+    "forbidden_terms_absent_from_importable_file": true
+  },
+  "cpc": {
+    "min_default_max_cpc": "0.10",
+    "max_default_max_cpc": "0.15",
+    "approval_ceiling": "0.20"
+  },
+  "match_types": {
+    "positive_keywords": {
+      "Exact match": 306,
+      "Phrase match": 306,
+      "Broad match": 0
+    },
+    "campaign_negatives": {
+      "Broad match": 374,
+      "Exact match": 170,
+      "Phrase match": 85
+    }
+  },
+  "url_checks": {
+    "missing_country_parameter_count": 0,
+    "country_parameter_mismatch_count": 0,
+    "localized_path_failure_count": 0,
+    "bare_language_only_url_count": 0,
+    "samples": {
+      "GB": "https://www.dresslikemommy.com/products/elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits?country=GB",
+      "ES": "https://www.dresslikemommy.com/es/products/elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits?country=ES",
+      "IT": "https://www.dresslikemommy.com/it/products/elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits?country=IT",
+      "RO": "https://www.dresslikemommy.com/ro/products/elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits?country=RO",
+      "PT": "https://www.dresslikemommy.com/pt/products/elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits?country=PT"
+    }
+  },
+  "forbidden_importable_scan": {
+    "pmax_or_performance_max_hits": 0,
+    "standard_shopping_hits": 0,
+    "product_scope_or_custom_label_hits": 0,
+    "feed_label_hits": 0,
+    "product_group_or_listing_group_hits": 0,
+    "conversion_goal_hits": 0,
+    "existing_us_campaign_id_hits": 0,
+    "existing_us_campaign_name_hits": 0
+  },
+  "supporting_file_notes": [
+    "campaign_structure.csv contains guidance text to inherit account-default Purchases after readback; this is not an importable conversion-goal edit row.",
+    "manual_qa/intl_search_pre_import_qa.csv mentions PMax and conversion-goal edits only as prohibited guardrails.",
+    "country_tier_plan.csv and manual_qa/intl_search_pre_import_qa.csv mention existing US campaign 23827590655 only as a do-not-duplicate guardrail."
+  ],
+  "required_approval_wording": "APPROVE PAUSED NON-US GOOGLE SEARCH BUILD ONLY: CREATE PAUSED GOOGLE SEARCH TEST CAMPAIGNS FOR UK, CANADA, AUSTRALIA, SWITZERLAND, DENMARK, GERMANY, NETHERLANDS, SWEDEN, FRANCE, BELGIUM, SPAIN, ITALY, POLAND, CZECHIA, ROMANIA, PORTUGAL, AND GREECE; DO NOT DUPLICATE OR EDIT EXISTING US NONBRAND CAMPAIGN 23827590655; USE TIGHT EXACT/PHRASE KEYWORDS, LOCAL LANGUAGE ONLY WHERE LANDING PAGE QUALITY IS ACCEPTABLE, ENGLISH ONLY WHERE LOCALIZATION IS NOT READY, CPC CAPS AT OR BELOW $0.20, NO LIVE SPEND; READ BACK BEFORE AND AFTER; NO ENABLE, NO PMAX, NO STANDARD SHOPPING CHANGES, NO PRODUCT SCOPE EXPANSION, NO FEED LABEL CHANGES, NO PRODUCT GROUP CHANGES, NO CONVERSION-GOAL CHANGES, NO PINTEREST CHANGES.",
+  "preview_readback_checklist": {
+    "before_import_or_preview": [
+      "Confirm exact action-time owner approval.",
+      "Confirm existing US nonbrand campaign 23827590655 still exists and remains paused.",
+      "Confirm import file contains no US campaign rows and no nonblank existing entity IDs.",
+      "Confirm Standard Shopping, PMax, Remarketing, product scope, feed labels, product groups, and conversion goals are not selected or edited.",
+      "Run Google Ads bulk import preview only; stop on any errors or unexpected edits."
+    ],
+    "after_future_owner_approved_paused_build": [
+      "Read back all 17 new campaigns as paused.",
+      "Read back ad groups, keywords, and RSAs as paused.",
+      "Confirm one country per campaign and presence-only location targeting.",
+      "Confirm Google Search only, no Display, no Search Partners, no PMax, no AI Max.",
+      "Confirm Manual CPC and all default max CPC values are at or below $0.20.",
+      "Confirm exact/phrase positive keywords only and campaign negatives present.",
+      "Confirm existing US campaign 23827590655 was not edited or duplicated.",
+      "Confirm no Standard Shopping, product-scope, feed-label, product-group, or conversion-goal changes occurred.",
+      "Confirm landing, shipping, checkout, Merchant/catalog, policy/ad review, tracking, and economics gates pass before any separate enable approval."
+    ]
+  },
+  "residual_risks": [
+    "Validation is local-file and CSV-based only; no Google Ads account preview or account readback was performed.",
+    "Presence-only location targeting must be verified after an approved paused build.",
+    "Policy/ad-review, landing-page quality, Merchant/catalog health, tracking, and country-level ROAS math remain live-spend gates."
+  ]
+}

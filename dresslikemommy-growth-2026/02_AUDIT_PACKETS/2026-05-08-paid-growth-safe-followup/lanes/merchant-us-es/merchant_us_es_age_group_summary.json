@@ -1,0 +1,170 @@
+{
+  "generated_at": "2026-05-08T03:03:05-04:00",
+  "lane": "merchant-us-es-age-group-diagnosis",
+  "problem_id": "PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP",
+  "mode": "LOCAL_READ_ONLY_DIAGNOSIS",
+  "guardrails_preserved": [
+    "No Merchant upload.",
+    "No Merchant source sync, refresh, source edit, or source creation.",
+    "No Shopify live product-data change.",
+    "No Google Ads or Pinterest write.",
+    "No campaign enablement, spend, budget, bid, status, product-scope, feed-label, product-group, or conversion-goal change.",
+    "No checkout payment or order."
+  ],
+  "status": "US_ES_SPANISH_US_SURFACE_STILL_HAS_MISSING_AGE_GROUP",
+  "evidence_inputs": {
+    "exact_export_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-exact-export-readback/raw/product-issues-browser-export/product_issues_2026-05-08_01-58-05.csv",
+    "exact_export_report": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-exact-export-readback/MERCHANT_AGE_GROUP_EXACT_EXPORT_READBACK_REPORT.md",
+    "paid_cohort_input": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-06-live-visual-qa-merchant-age-group-gate/paid_cohort_age_group_after_patch_rows.csv",
+    "age_group_review_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-dedicated-supplemental-repair/age_group_only_upload_review.csv",
+    "age_group_upload_txt": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-dedicated-supplemental-repair/upload_paid_cohort_age_group_only.txt",
+    "dedicated_source_join_details": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-dedicated-supplemental-repair/join_input_requests_new_source_details.json",
+    "dedicated_source_processing_rpc": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-dedicated-supplemental-repair/new_source_processing_report_rpc.json",
+    "source_refresh_summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-source-refresh-approved-action/summary.json",
+    "source_detail_text": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-source-refresh-approved-action/source-detail-processing-readback/source_detail.txt",
+    "us_en_us_es_sample_readback_after_refresh": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-source-refresh-approved-action/readback-after-timestamp-advance/browser-source-readback/merchant_exact_label_readback_refresh_check.json",
+    "us_es_sample_readback_exact_export_packet": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-exact-export-readback/raw/browser-source-readback-us-es-sample/merchant_exact_label_readback_refresh_check.json"
+  },
+  "exact_export_reconciliation": {
+    "export_rows": 33620,
+    "paid_cohort_item_ids": 780,
+    "paid_missing_age_group_rows_any_context": 1250,
+    "paid_missing_age_group_unique_ids_any_context": 625,
+    "paid_us_en_missing_age_group_rows": 0,
+    "paid_us_en_missing_age_group_unique_ids": 0,
+    "paid_us_es_missing_age_group_rows": 1250,
+    "paid_us_es_missing_age_group_unique_ids": 625,
+    "us_es_context": {
+      "feed_label": "US",
+      "language": "es",
+      "country": "United States",
+      "traffic_type_counts": {
+        "Free listings": 625,
+        "Shopping ads": 625
+      },
+      "item_status_counts": {
+        "ELIGIBLE_LIMITED": 1250
+      },
+      "issue_severity_counts": {
+        "SEVERITY_DEMOTED": 1250
+      },
+      "click_potential_counts": {
+        "Low": 1244,
+        "Available soon": 6
+      },
+      "channels_counts": {
+        "ONLINE": 1250
+      }
+    },
+    "us_es_ids_present_in_age_group_upload": 625,
+    "us_es_ids_missing_from_age_group_upload": 0,
+    "derived_age_group_counts_for_us_es_ids": {
+      "adult": 284,
+      "kids": 216,
+      "toddler": 123,
+      "infant": 2
+    },
+    "paid_product_type_counts_for_us_es_ids": {
+      "swimsuits": 267,
+      "mommy_me": 159,
+      "family_matching": 96,
+      "daddy_me": 74,
+      "pajamas": 29
+    }
+  },
+  "source_artifact_findings": {
+    "dedicated_age_group_source": {
+      "source_id": "10651516446",
+      "source_name": "upload_paid_cohort_age_group_only.txt",
+      "source_type": "File (manual)",
+      "used_in": "Shopify App API (US, English)",
+      "feed_label": "US",
+      "content_language": "en",
+      "last_updated_visible": "May 8, 2026 1:55 AM",
+      "total_updated_products": 780,
+      "matched_products": 771,
+      "unmatched_products": 9,
+      "attribute_names_status": "All recognized",
+      "recognized_attribute": "n:age_group"
+    },
+    "sample_us_en_row": {
+      "source_id": "10627623003",
+      "source_name": "Shopify App API",
+      "feed_label": "US",
+      "language": "en",
+      "last_updated_utc": "2026-05-08T05:55:06+00:00",
+      "custom_label_0": "paid_eligible",
+      "custom_label_4": "us_test_ready",
+      "product_detail_effective_age_group_seen": true,
+      "product_detail_missing_age_group_seen": false
+    },
+    "sample_us_es_row": {
+      "likely_source_id": "10627981690",
+      "source_name": "Shopify App API",
+      "feed_label": "US",
+      "language": "es",
+      "observed_last_updated_utc_examples": [
+        "2026-05-04T20:09:48+00:00",
+        "2026-05-07T19:26:38+00:00"
+      ],
+      "observed_paid_label_pair": false,
+      "observed_old_or_empty_label_values": true
+    }
+  },
+  "risk_assessment": {
+    "current_us_en_standard_shopping_serving_risk": "LOW_NOT_CURRENT_US_EN_GATE",
+    "spanish_us_shopping_or_free_listing_surface_risk": "ACTIVE_DIAGNOSTIC_DO_NOT_USE_FOR_PAID_TESTING_YET",
+    "basis": [
+      "US/en exact export paid-cohort Missing age group count is zero.",
+      "US/en product detail sample contains effective n:age_group.",
+      "US/es rows are a separate Shopify App API source path with language es.",
+      "US/es rows include Shopping ads traffic type, so Spanish-language US paid usage remains gated."
+    ]
+  },
+  "attempts": [
+    {
+      "name": "exact_export_csv_reconciliation",
+      "status": "completed",
+      "result": "Confirmed remaining paid-cohort age_group rows are only US/es/United States, 625 unique IDs and 1250 rows."
+    },
+    {
+      "name": "source_and_report_artifact_inspection",
+      "status": "completed",
+      "result": "Found dedicated age_group source is US/en and sample US/es rows use separate Shopify App API source 10627981690."
+    }
+  ],
+  "ruled_out_or_failed_paths": [
+    {
+      "path": "redo Shopify ProductVariant age_group edits",
+      "result": "Ruled out for this lane; affected IDs already have derived age_group values in local review/upload artifacts and Shopify-side repair was previously completed."
+    },
+    {
+      "path": "treat as current US/en blocker",
+      "result": "Ruled out; exact export shows 0 paid-cohort US/en Missing age group rows."
+    },
+    {
+      "path": "attribute remaining issue to 9 unmatched source rows",
+      "result": "Ruled out as full explanation; remaining issue affects 625 IDs and the dedicated source is US/en."
+    },
+    {
+      "path": "live Merchant repair now",
+      "result": "Blocked by guardrails; any source action/upload/sync/edit needs fresh owner approval."
+    }
+  ],
+  "next_read_only_gate": [
+    "Inspect at least one affected Merchant product detail with language=es and feedLabel=US.",
+    "Confirm whether source 10627981690 processed US/es data lacks n:age_group.",
+    "Inspect source/settings details for Shopify App API source 10627981690 if available read-only."
+  ],
+  "next_live_fix_gate": "Fresh explicit owner action-time approval is required before any Merchant source upload, source creation, source sync/update, source edit, Shopify product-data change, or other live fix for US/es.",
+  "fixed_criteria": [
+    "Fresh exact product-issues export or equivalent readback shows 0 paid-cohort Missing age group rows for US/es/United States.",
+    "At least one affected US/es product detail readback shows effective n:age_group.",
+    "US/en paid labels and Standard Shopping scope remain unchanged."
+  ],
+  "outputs": {
+    "diagnosis_md": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-safe-followup/lanes/merchant-us-es/MERCHANT_US_ES_AGE_GROUP_DIAGNOSIS.md",
+    "summary_json": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-safe-followup/lanes/merchant-us-es/merchant_us_es_age_group_summary.json",
+    "sample_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-safe-followup/lanes/merchant-us-es/merchant_us_es_age_group_sample.csv"
+  }
+}

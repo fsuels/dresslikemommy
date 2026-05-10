@@ -171,7 +171,7 @@
       },
       "view_full_details": "Просмотреть всю информацию",
       "include_taxes": "Сумма налога включена.",
-      "shipping_policy_html": "Варианты и стоимость доставки отображаются при оформлении заказа после ввода адреса. <a href=\"{{ link }}\">Политика доставки</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
       "choose_options": "Выберите варианты",
       "choose_product_options": "Выберите варианты для {{ product_name }}",
       "value_unavailable": "{{ option_value }} — Недоступно",
@@ -232,7 +232,7 @@
         "write_review": "Написать отзыв",
         "write_review_title": "Написать отзыв"
       },
-      "free_shipping_all_orders": "Бесплатная доставка на все заказы",
+      "free_shipping_all_orders": "Стандартная доставка включена",
       "selected_size_label": "Размер: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Подробности",
@@ -287,17 +287,17 @@
       "secure_checkout": "Безопасная оплата",
       "ssl_encrypted": "SSL-шифрование",
       "returns": "30-дневное окно возврата",
-      "free_shipping": "Доставка указана при оформлении заказа",
+      "free_shipping": "Стандартная доставка включена",
       "trusted_since": "Сопоставление членов семьи стало проще",
       "assistance_note": "Нужна помощь? Обычно мы отвечаем в течение одного рабочего дня."
     },
     "additional_info": {
       "shipping_title": "Доставка и доставка",
-      "free_shipping_label": "Бесплатная доставка",
+      "free_shipping_label": "Стандартная доставка включена",
       "estimated_delivery": "Ориентировочная доставка:",
       "standard_delivery_window": "12-15 рабочих дней",
       "premium_delivery_window": "Варианты экспресс-оплаты отображаются при оформлении заказа, если они доступны.",
-      "faster_shipping_prefix": "Хотите быстрее? Потратьте от $100 и получите",
+      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
       "free_premium_shipping": "Экспресс-доставка",
       "return_policy_title": "Политика возврата",
       "return_policy_line_1": "У вас есть 30 дней с момента доставки, чтобы запросить возврат или обмен.",
@@ -312,6 +312,37 @@
       "secure_logistics_line_2": "Используйте ссылку для отслеживания заказов, чтобы получать последние обновления оператора связи. Международные заказы могут облагаться местными налогами, пошлинами или таможенными сборами, взимаемыми перевозчиком или местными властями.",
       "secure_privacy_title": "Защита конфиденциальности",
       "secure_privacy_description": "Защита вашей конфиденциальности очень важна для нас. Будьте уверены, что ваша информация надежно защищена и не будет использована ненадлежащим образом. Мы не продаем ваши персональные данные и используем их только в соответствии с нашей политикой конфиденциальности и файлов cookie, чтобы предоставлять и улучшать наши услуги."
+    },
+    "shipping_country": {
+      "product_country": "Доставка в {{ country }}",
+      "product_country_with_currency": "Доставка в {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "Страна доставки подтверждается при оформлении",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "eyebrow": "Проверка страны доставки",
+      "page_title_country": "Да, сейчас мы доставляем в {{ country }}",
+      "page_title_default": "Текущие страны доставки",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
+      "schema_standard_shipping": "Стандартная доставка включена",
+      "country_list_heading": "Страны, куда мы сейчас доставляем ({{ count }})",
+      "country_list_highlight": "Каждая страна в этом списке включена при оформлении заказа. Выбранная страна выделяется, когда Shopify может ее определить.",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -394,10 +425,10 @@
       "empty": "Корзина пуста.",
       "cart_error": "Не удалось обновить корзину. Повторите попытку.",
       "cart_quantity_error_html": "Максимально допустимое количество единиц этого товара в корзине: {{ quantity }}.",
-      "taxes_and_shipping_policy_at_checkout_html": "Налоги, скидки и стоимость доставки рассчитываются при оформлении заказа. <a href=\"{{ link }}\">Политика доставки</a>",
-      "taxes_included_but_shipping_at_checkout": "Налог включен. Скидки и стоимость доставки рассчитываются при оформлении заказа.",
-      "taxes_included_and_shipping_policy_html": "Налог включен. Скидки и стоимость доставки рассчитываются при оформлении заказа. <a href=\"{{ link }}\">Политика доставки</a>",
-      "taxes_and_shipping_at_checkout": "Налоги, скидки и стоимость доставки рассчитываются при оформлении заказа.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
       "update": "Обновить",
       "headings": {
         "product": "Товар",
@@ -422,18 +453,19 @@
       "trust": {
         "secure_checkout": "Безопасная оплата",
         "ssl_encrypted": "SSL-шифрование",
-        "free_shipping": "Варианты доставки",
+        "free_shipping": "Доставка включена",
         "returns": "30-дневный возврат",
         "secure": "Безопасный",
         "encrypted": "Зашифрованный",
-        "free_ship": "Доставка"
+        "free_ship": "Доставка включена"
       },
       "discount_code_toggle": "Есть код скидки?",
       "shipping_label": "Перевозки",
-      "shipping_free": "Рассчитывается при оформлении заказа",
+      "shipping_free": "Стандарт включен",
       "popular_with_families": "Популярно среди семей",
       "recently_viewed": "Недавно просмотренные",
-      "savings_html": "Вы экономите <strong>{{ amount }}</strong>"
+      "savings_html": "Вы экономите <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
     },
     "footer": {
       "payment": "Способы оплаты"
@@ -476,7 +508,8 @@
       "carousel": "Карусель",
       "announcement": "Объявление",
       "announcement_bar": "Строка объявления",
-      "default_promo": "БЕСПЛАТНАЯ ДОСТАВКА НА ВСЕ ЗАКАЗЫ | СЕМЕЙНЫЕ ОБРАЗЫ ЛЕГКО | БЕЗОПАСНАЯ ОПЛАТА"
+      "default_promo": "СТАНДАРТНАЯ ДОСТАВКА ВКЛЮЧЕНА | ЭКСПРЕСС-ОПЦИИ ПРИ ОПЛАТЕ | БЕЗОПАСНАЯ ОПЛАТА",
+      "shipping_country_promo": "СТАНДАРТНАЯ ДОСТАВКА В {{ country }} ВКЛЮЧЕНА | ЭКСПРЕСС-ОПЦИИ ПРИ ОПЛАТЕ | БЕЗОПАСНАЯ ОПЛАТА"
     },
     "quick_order_list": {
       "product_total": "Промежуточный итог по товару",

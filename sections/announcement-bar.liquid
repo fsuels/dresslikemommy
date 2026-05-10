@@ -13,12 +13,15 @@
     assign announcement_bar = true
   endif
   assign announcement_locale = request.locale.iso_code | downcase
-  assign announcement_default_promo = 'sections.announcements.default_promo' | t
-  assign announcement_default_promo_fallback_en = 'SHIPPING OPTIONS AT CHECKOUT | FAMILY MATCHING MADE EASY | SECURE CHECKOUT'
-  if announcement_locale contains 'es' and announcement_default_promo == announcement_default_promo_fallback_en
-    assign announcement_default_promo = 'OPCIONES DE ENVÍO AL PAGAR | COMBINAR EN FAMILIA ES FÁCIL | PAGO SEGURO'
+  assign announcement_static_promo = 'sections.announcements.default_promo' | t
+  assign announcement_default_promo = announcement_static_promo
+  assign announcement_default_promo_fallback_en = 'STANDARD SHIPPING INCLUDED | EXPRESS OPTIONS AT CHECKOUT | SECURE CHECKOUT'
+  if localization.country.name != blank
+    assign announcement_default_promo = 'sections.announcements.shipping_country_promo' | t: country: localization.country.name
+  elsif announcement_locale contains 'es' and announcement_default_promo == announcement_default_promo_fallback_en
+    assign announcement_default_promo = 'ENVÍO ESTÁNDAR INCLUIDO | OPCIONES EXPRÉS AL PAGAR | PAGO SEGURO'
   elsif announcement_locale contains 'fr' and announcement_default_promo == announcement_default_promo_fallback_en
-    assign announcement_default_promo = 'OPTIONS DE LIVRAISON AU PAIEMENT | LOOKS ASSORTIS EN FAMILLE FACILES | PAIEMENT SÉCURISÉ'
+    assign announcement_default_promo = 'LIVRAISON STANDARD INCLUSE | OPTIONS EXPRESS AU PAIEMENT | PAIEMENT SÉCURISÉ'
   endif
 -%}
 
@@ -122,6 +125,14 @@
           {%- assign single_announcement_rendered_text = single_announcement_text | remove_first: 't:' | t -%}
         {%- endif -%}
         {%- assign single_announcement_text_upcase = single_announcement_rendered_text | upcase -%}
+        {%- assign single_announcement_is_default_promo = false -%}
+        {%- if single_announcement_text contains 'sections.announcements.default_promo'
+          or single_announcement_text_upcase contains 'FREE SHIPPING ON ALL ORDERS'
+          or single_announcement_text_upcase contains 'SHIPPING OPTIONS AT CHECKOUT'
+          or single_announcement_text_upcase contains 'STANDARD SHIPPING INCLUDED'
+        -%}
+          {%- assign single_announcement_is_default_promo = true -%}
+        {%- endif -%}
         {%- if single_announcement_text != blank -%}
           {%- if section.blocks.first.settings.link != blank -%}
             <a
@@ -131,9 +142,7 @@
           {%- endif -%}
           <p class="announcement-bar__message h5">
             <span>
-              {%- if single_announcement_text_upcase contains 'FREE SHIPPING ON ALL ORDERS'
-                and single_announcement_text_upcase contains 'SECURE CHECKOUT'
-              -%}
+              {%- if single_announcement_is_default_promo -%}
                 {{ announcement_default_promo }}
               {%- else -%}
                 {{ single_announcement_rendered_text | escape }}
@@ -195,6 +204,14 @@
                     {%- assign announcement_rendered_text = announcement_text | remove_first: 't:' | t -%}
                   {%- endif -%}
                   {%- assign announcement_text_upcase = announcement_rendered_text | upcase -%}
+                  {%- assign announcement_is_default_promo = false -%}
+                  {%- if announcement_text contains 'sections.announcements.default_promo'
+                    or announcement_text_upcase contains 'FREE SHIPPING ON ALL ORDERS'
+                    or announcement_text_upcase contains 'SHIPPING OPTIONS AT CHECKOUT'
+                    or announcement_text_upcase contains 'STANDARD SHIPPING INCLUDED'
+                  -%}
+                    {%- assign announcement_is_default_promo = true -%}
+                  {%- endif -%}
                   {%- if announcement_text != blank -%}
                     {%- if block.settings.link != blank -%}
                       <a
@@ -204,9 +221,7 @@
                     {%- endif -%}
                     <p class="announcement-bar__message h5">
                       <span>
-                        {%- if announcement_text_upcase contains 'FREE SHIPPING ON ALL ORDERS'
-                          and announcement_text_upcase contains 'SECURE CHECKOUT'
-                        -%}
+                        {%- if announcement_is_default_promo -%}
                           {{ announcement_default_promo }}
                         {%- else -%}
                           {{ announcement_rendered_text | escape }}

@@ -19,6 +19,7 @@ from ops.scripts.poll_shopify_product_translations import (  # noqa: E402
     ResourceSnapshot,
     build_translation_payload,
     deterministic_option_translation,
+    ensure_product_html_size_chart_coverage,
     repair_product_html_size_labels,
 )
 
@@ -88,6 +89,23 @@ def main() -> None:
     assert "Niño 5 años" not in repaired
     assert "Mother S" not in repaired
 
+    missing_chart_translation = """
+    <ul><li><strong>Tela:</strong> Ligera y cómoda.</li></ul>
+    <p>Una prenda coordinada para fotos familiares.</p>
+    """
+    chart_restored = ensure_product_html_size_chart_coverage(
+        source_html,
+        missing_chart_translation,
+        "es",
+        girl_context,
+    )
+
+    assert '<table id="size-chart">' in chart_restored
+    assert "Tabla de tallas - Vestido" in chart_restored
+    assert "Niña 5 años" in chart_restored
+    assert "Mamá S" in chart_restored
+    assert "DLM localized size-chart fallback" in chart_restored
+
     product = RecentProduct(
         product_gid="gid://shopify/Product/1",
         product_id="1",
@@ -129,6 +147,40 @@ def main() -> None:
     assert summary["translated_count"] == 1
     body_translation = payload[product.product_gid][0]
     assert body_translation["value"] == repaired
+
+    snapshot_missing_chart = ResourceSnapshot(
+        resource_id=product.product_gid,
+        resource_type="Product",
+        translatable_content=[
+            {
+                "key": "body_html",
+                "value": source_html,
+                "digest": "digest-body",
+                "locale": "en",
+            }
+        ],
+        existing_translations={
+            ("es", "body_html"): ExistingTranslation(
+                locale="es",
+                key="body_html",
+                value=missing_chart_translation,
+                outdated=False,
+            )
+        },
+    )
+    payload_missing_chart, summary_missing_chart = build_translation_payload(
+        [snapshot_missing_chart],
+        ["es"],
+        translator=None,
+        progress_prefix="test",
+        product=product,
+        deterministic_repairs_only=True,
+    )
+
+    assert summary_missing_chart["translated_count"] == 1
+    repaired_missing_chart = payload_missing_chart[product.product_gid][0]["value"]
+    assert '<table id="size-chart">' in repaired_missing_chart
+    assert "Niña 5 años" in repaired_missing_chart
 
     print("ok")
 

@@ -182,6 +182,34 @@ window.dataLayer = window.dataLayer || [];
     return output;
   }
 
+  function getShippingCountryCheckerSessionContext() {
+    var context = {};
+
+    try {
+      if (!window.sessionStorage) return context;
+
+      var opened = window.sessionStorage.getItem('dlmShippingCountryCheckerOpened') === '1';
+      var noResults = window.sessionStorage.getItem('dlmShippingCountryCheckerNoResults') === '1';
+      var opens = parsePositiveInteger(
+        window.sessionStorage.getItem('dlmShippingCountryCheckerOpens'),
+        0
+      );
+      var searches = parsePositiveInteger(
+        window.sessionStorage.getItem('dlmShippingCountryCheckerSearches'),
+        0
+      );
+
+      if (opened) context.shipping_country_checker_used = true;
+      if (noResults) context.shipping_country_checker_no_results_seen = true;
+      if (opens > 0) context.shipping_country_checker_opens = opens;
+      if (searches > 0) context.shipping_country_checker_searches = searches;
+    } catch (e) {
+      // no-op
+    }
+
+    return context;
+  }
+
   function getLinkLabel(link) {
     if (!link) return '';
 
@@ -893,9 +921,16 @@ window.dataLayer = window.dataLayer || [];
     if (signature === state.lastViewCartSignature) return;
     state.lastViewCartSignature = signature;
 
-    pushEcommerceEvent('view_cart', buildEcommerceFromSnapshot(snapshot), {
-      cart_context: context,
-    });
+    pushEcommerceEvent(
+      'view_cart',
+      buildEcommerceFromSnapshot(snapshot),
+      Object.assign(
+        {
+          cart_context: context,
+        },
+        getShippingCountryCheckerSessionContext()
+      )
+    );
   }
 
   function pushBeginCheckoutEvent(source, eventData) {
@@ -912,9 +947,16 @@ window.dataLayer = window.dataLayer || [];
       ? buildEcommerceFromSnapshot(snapshot)
       : buildEcommercePayload([]);
 
-    pushEcommerceEvent('begin_checkout', ecommerce, {
-      checkout_source: normalizeText(source),
-    });
+    pushEcommerceEvent(
+      'begin_checkout',
+      ecommerce,
+      Object.assign(
+        {
+          checkout_source: normalizeText(source),
+        },
+        getShippingCountryCheckerSessionContext()
+      )
+    );
   }
 
   function pushViewItemOnce() {

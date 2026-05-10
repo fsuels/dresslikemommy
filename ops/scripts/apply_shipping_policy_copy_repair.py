@@ -52,6 +52,8 @@ BLOCKER_PHRASES = [
     "Don\u2019t see your country?",
     "we ship matching family outfits to families worldwide",
     "All prices are in USD unless otherwise noted",
+    "Standard shipping is free when a free standard method is shown",
+    "Free And Paid Shipping Options",
 ]
 
 
@@ -154,7 +156,7 @@ def shipping_policy_body() -> str:
 <p>If your destination does not appear at checkout, or if no shipping method is shown for your address, contact us at <a href="mailto:info@dresslikemommy.com">info@dresslikemommy.com</a> before ordering.</p>
 
 <h2>Shipping Rates</h2>
-<p>Available shipping methods and rates are shown at checkout before payment. Standard shipping is free when a free standard method is shown for your destination. Express or paid options may be available for some addresses and will display before you place the order.</p>
+<p>Standard shipping is included in product prices for countries and regions where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment.</p>
 
 <h2>Processing Time</h2>
 <p>Orders are processed within 1-3 business days after payment confirmation. During holidays, promotions, or high-volume periods, processing may take an additional 1-2 business days.</p>
@@ -197,8 +199,8 @@ def shipping_info_body() -> str:
     return """<h2>Shipping Information</h2>
 <p>At <strong>Dress Like Mommy</strong>, we are an online store that ships matching family outfits to destinations available at checkout through our shipping and fulfillment partners. Here is how to confirm shipping, delivery timing, and tracking before you place an order.</p>
 
-<h3>Free And Paid Shipping Options</h3>
-<p>Available shipping methods and rates are shown at checkout before payment. Standard shipping is free when a free standard method is shown for your destination. Express or paid options may be available for some addresses.</p>
+<h3>Standard And Express Shipping Options</h3>
+<p>Standard shipping is included in product prices for countries and regions where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment.</p>
 
 <h3>Where We Ship</h3>
 <p>Shipping availability is based on the country/region and address entered at checkout. If checkout shows a shipping method for your address, we can ship there under the displayed method and rate.</p>
@@ -237,7 +239,7 @@ def update_terms_body(current_body: str) -> str:
   <li>Dress Like Mommy is an online store. Shipping is available to countries and regions where checkout shows an available shipping method for the address entered.</li>
   <li>Processing time is typically 1-3 business days after payment confirmation.</li>
   <li>Available shipping methods, rates, delivery estimates, taxes, and duties information are shown at checkout before payment where available.</li>
-  <li>Standard shipping is free when a free standard method is shown for your destination.</li>
+  <li>Standard shipping is included in product prices for countries and regions where a standard method is available.</li>
   <li>Express shipping may be available for some destinations where shown at checkout.</li>
   <li>Tracking information is provided by email once the order ships.</li>
   <li>We are not responsible for delays caused by customs, weather, holidays, carrier issues, or local delivery conditions.</li>

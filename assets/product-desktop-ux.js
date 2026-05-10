@@ -132,7 +132,7 @@ function initProductDesktopUx(wrapper) {
   if (!productData) return;
 
   initDeliveryHighlights(wrapper);
-  initMatchingSizeGuide(wrapper, sectionId);
+  initMatchingSizeGuide(wrapper, sectionId, productData);
   initMatchingSetBuilder(wrapper, sectionId, productData);
   initPhotoReviewPanel(wrapper);
   initDesktopStickyAtc(wrapper, sectionId);
@@ -443,13 +443,13 @@ var ROLE_DEFINITIONS = [
     key: 'girl',
     label: 'Girl',
     labels: { ar: 'البنت', es: 'Niña', fr: 'Fille' },
-    aliases: ['girl', 'daughter', 'daughter dress', 'nina', 'niña', 'fille', 'menina', 'ragazza', 'bambina', 'tyttö', 'mädchen', 'maedchen', 'pige', 'jente', 'flicka', 'dziewczynka', 'dívka', 'κορίτσι', 'fată', 'אילדה', 'ילדה', 'девочка', '女孩', '女の子', '여아', 'लड़की', 'البنت', 'فتاة', 'الفتاة'],
+    aliases: ['girl', 'daughter', 'daughter dress', 'hija', 'filha', 'figlia', 'tochter', 'fille', 'daughter', 'nina', 'niña', 'menina', 'ragazza', 'bambina', 'tyttö', 'mädchen', 'maedchen', 'pige', 'jente', 'flicka', 'dziewczynka', 'dívka', 'κορίτσι', 'fată', 'אילדה', 'ילדה', 'девочка', 'дочь', '女孩', '女の子', '娘', '여아', '딸', 'लड़की', 'البنت', 'ابنة', 'الابنة', 'فتاة', 'الفتاة'],
   },
   {
     key: 'boy',
     label: 'Boy',
     labels: { ar: 'الولد', es: 'Niño', fr: 'Garçon' },
-    aliases: ['boy', 'son', 'son shirt', 'nino', 'niño', 'garcon', 'garçon', 'menino', 'ragazzo', 'junge', 'dreng', 'gutt', 'pojke', 'chłopiec', 'chlapec', 'ילד', 'мальчик', '男孩', '男の子', '남아', 'लड़का', 'الولد', 'ولد', 'فتى', 'الفتى'],
+    aliases: ['boy', 'son', 'son shirt', 'hijo', 'filho', 'figlio', 'sohn', 'fils', 'nino', 'niño', 'garcon', 'garçon', 'menino', 'ragazzo', 'junge', 'dreng', 'gutt', 'pojke', 'chłopiec', 'chlapec', 'ילד', 'мальчик', 'сын', '男孩', '男の子', '息子', '남아', '아들', 'लड़का', 'الولد', 'ابن', 'الابن', 'ولد', 'فتى', 'الفتى'],
   },
   {
     key: 'child',
@@ -859,9 +859,10 @@ function parseRoleFromSizeLabel(label) {
 
   for (var index = 0; index < ROLE_DEFINITIONS.length; index += 1) {
     var roleDefinition = ROLE_DEFINITIONS[index];
+    var aliasCandidates = getRoleAliasCandidates(roleDefinition);
 
-    for (var aliasIndex = 0; aliasIndex < roleDefinition.aliases.length; aliasIndex += 1) {
-      var alias = roleDefinition.aliases[aliasIndex];
+    for (var aliasIndex = 0; aliasIndex < aliasCandidates.length; aliasIndex += 1) {
+      var alias = aliasCandidates[aliasIndex];
       var escapedAlias = escapeRegExp(alias).replace(/\s+/g, '\\s+');
       var startPattern = new RegExp('^' + escapedAlias + '(?:\\s+|\\s*[-–/]\\s*)(.+)$', 'i');
       var endPattern = new RegExp('^(.+?)(?:\\s+|\\s*[-–/]\\s*)' + escapedAlias + '$', 'i');
@@ -886,6 +887,30 @@ function parseRoleFromSizeLabel(label) {
   }
 
   return null;
+}
+
+function getRoleAliasCandidates(roleDefinition) {
+  var aliases = (roleDefinition && roleDefinition.aliases ? roleDefinition.aliases : []).slice();
+  var seen = {};
+
+  Object.keys(ROLE_LABELS_BY_LOCALE).forEach(function (locale) {
+    var localizedLabel = ROLE_LABELS_BY_LOCALE[locale] && ROLE_LABELS_BY_LOCALE[locale][roleDefinition.key];
+    if (localizedLabel) aliases.push(localizedLabel);
+  });
+
+  return aliases
+    .map(function (alias) {
+      return String(alias || '').trim();
+    })
+    .filter(function (alias) {
+      var key = String(alias || '').toLowerCase().trim();
+      if (!key || seen[key]) return false;
+      seen[key] = true;
+      return true;
+    })
+    .sort(function (first, second) {
+      return second.length - first.length;
+    });
 }
 
 function getRoleOrder(roleKey) {
@@ -1257,10 +1282,11 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   }
 }
 
-function initMatchingSizeGuide(wrapper, sectionId) {
+function initMatchingSizeGuide(wrapper, sectionId, productData) {
   var UNIT_SYSTEM_STORAGE_KEY = 'dlm_size_chart_unit_system';
   var productSection = sectionId ? document.getElementById('MainProduct-' + sectionId) : null;
   var sizeGuideRoot = productSection || wrapper.closest('[id^="MainProduct-"]') || wrapper;
+  var productHandle = String(wrapper.getAttribute('data-product-handle') || '').trim();
   var descriptionRoot = getCurrentDescriptionRoot();
   var imagePresetGuide = descriptionRoot ? getImageBasedSizeGuidePreset(descriptionRoot) : null;
   var snapshot = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide-snapshot]') : null;
@@ -1268,11 +1294,12 @@ function initMatchingSizeGuide(wrapper, sectionId) {
   var content = sizeGuideRoot ? sizeGuideRoot.querySelector('[data-matching-size-guide-content]') : null;
   var summary = details ? details.querySelector('summary') : null;
   var sizeTable = getSizeGuideTable(sizeGuideRoot, getCurrentSizeSelect(), getSelectedGuideTypeValue());
-  if (!snapshot || !details || !content || !sizeTable) return;
+  var defaultLocaleSizeGuideLoad = null;
+  if (!snapshot || !details || !content) return;
 
-  var parsed = parseSizeGuideTable(sizeTable);
-  if (!parsed) return;
-  if (descriptionRoot) hideRedundantSizeGuideSources(descriptionRoot, imagePresetGuide);
+  var parsed = sizeTable ? parseSizeGuideTable(sizeTable) : null;
+  if (sizeTable && !parsed) return;
+  if (descriptionRoot && parsed) hideRedundantSizeGuideSources(descriptionRoot, imagePresetGuide);
 
   var compareLabel = wrapper.getAttribute('data-size-guide-compare-label') || 'Compare all sizes';
   var groupedLabel = wrapper.getAttribute('data-size-guide-grouped-label') || 'Compare family sizes';
@@ -1288,8 +1315,87 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     return (sizeGuideRoot && sizeGuideRoot.querySelector('[data-product-description]')) || document.querySelector('[data-product-description]');
   }
 
+  function defaultLocaleProductJsonUrl() {
+    if (!productHandle || !window.location || !window.location.origin) return '';
+    return window.location.origin + '/products/' + encodeURIComponent(productHandle) + '.js';
+  }
+
+  function htmlContainsSizeGuideTable(html) {
+    return /<table\b/i.test(String(html || '')) && /size-chart/i.test(String(html || ''));
+  }
+
+  function appendDefaultLocaleSizeGuideSource(descriptionHtml) {
+    var targetRoot = getCurrentDescriptionRoot();
+    if (!targetRoot || !htmlContainsSizeGuideTable(descriptionHtml)) return false;
+    if (targetRoot.querySelector('[data-default-locale-size-guide-source]')) return true;
+
+    var parserRoot = document.createElement('div');
+    parserRoot.innerHTML = descriptionHtml;
+    var sourceTables = Array.from(parserRoot.querySelectorAll('table#size-chart, table[id*="size-chart"], table.size-chart'));
+    if (!sourceTables.length) return false;
+
+    var sourceContainer = document.createElement('div');
+    sourceContainer.setAttribute('data-default-locale-size-guide-source', 'true');
+    sourceContainer.setAttribute('aria-hidden', 'true');
+    sourceContainer.hidden = true;
+    sourceContainer.style.setProperty('display', 'none', 'important');
+
+    sourceTables.forEach(function (table) {
+      var previous = table.previousElementSibling;
+      if (previous && /^H[1-6]$/i.test(previous.tagName) && /size|chart/i.test(previous.textContent || '')) {
+        sourceContainer.appendChild(previous.cloneNode(true));
+      }
+      sourceContainer.appendChild(table.cloneNode(true));
+    });
+
+    targetRoot.appendChild(sourceContainer);
+    return true;
+  }
+
+  function loadDefaultLocaleSizeGuideSource() {
+    if (defaultLocaleSizeGuideLoad) return defaultLocaleSizeGuideLoad;
+
+    var productJsonUrl = defaultLocaleProductJsonUrl();
+    if (!productJsonUrl || typeof fetch !== 'function') {
+      defaultLocaleSizeGuideLoad = Promise.resolve(false);
+      return defaultLocaleSizeGuideLoad;
+    }
+
+    defaultLocaleSizeGuideLoad = fetch(productJsonUrl, { credentials: 'same-origin' })
+      .then(function (response) {
+        if (!response || !response.ok) return null;
+        return response.json();
+      })
+      .then(function (productJson) {
+        var fallbackDescription =
+          productJson && (productJson.description || productJson.body_html || productJson.body || '');
+        return appendDefaultLocaleSizeGuideSource(fallbackDescription);
+      })
+      .catch(function () {
+        return false;
+      });
+
+    return defaultLocaleSizeGuideLoad;
+  }
+
   function getCurrentVariantSelects() {
     return sectionId ? document.getElementById('variant-selects-' + sectionId) : null;
+  }
+
+  function getCurrentVariant() {
+    if (!productData || !Array.isArray(productData.variants)) return null;
+
+    var variantInput =
+      (sizeGuideRoot && sizeGuideRoot.querySelector('form[action*="/cart/add"] input[name="id"]')) ||
+      document.querySelector('form[action*="/cart/add"] input[name="id"], input[name="id"]');
+    var selectedId = variantInput ? String(variantInput.value || '').trim() : '';
+    if (!selectedId) return null;
+
+    return (
+      productData.variants.find(function (variant) {
+        return String(variant && variant.id) === selectedId;
+      }) || null
+    );
   }
 
   function getCurrentSizeSelect() {
@@ -1658,9 +1764,6 @@ function initMatchingSizeGuide(wrapper, sectionId) {
       previous = previous.previousElementSibling;
     }
 
-    var headerRow = table.querySelector('thead tr');
-    if (headerRow) context.push(cellText(headerRow));
-
     return normalizeText(context.join(' '));
   }
 
@@ -1670,12 +1773,27 @@ function initMatchingSizeGuide(wrapper, sectionId) {
 
     var context = getSizeGuideTableContextText(table);
     if (!context) return false;
+    var selectedGarmentKey = getGarmentKey(selectedTypeValue);
+    var contextGarmentKey = getGarmentKey(context);
+
+    if (selectedGarmentKey) {
+      if (selectedGarmentKey === 'dress') {
+        return contextGarmentKey === 'dress' || (!contextGarmentKey && normalizeText(table.id) === 'size chart');
+      }
+
+      if (['shirt', 'shorts', 'shirtShortsSet'].indexOf(selectedGarmentKey) !== -1) {
+        return ['shirt', 'shorts', 'shirtShortsSet'].indexOf(contextGarmentKey) !== -1;
+      }
+
+      if (contextGarmentKey) return selectedGarmentKey === contextGarmentKey;
+    }
+
     if (context.indexOf(normalizedType) !== -1) return true;
 
     return normalizedType
       .split(/\s+/)
       .filter(function (token) {
-        return token && token.length > 2;
+        return token && token.length > 3;
       })
       .some(function (token) {
         return context.indexOf(token) !== -1;
@@ -1739,7 +1857,15 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     if (!preferredGuide) return existingTable;
 
     var existingParsed = parseSizeGuideTable(existingTable);
-    if (!existingParsed || (preferredGuide && preferredGuide.rows.length > existingParsed.rows.length)) {
+    var shouldUseFallbackGuide =
+      !existingParsed ||
+      (preferredGuide &&
+        existingParsed.headers &&
+        existingParsed.headers.length <= 2 &&
+        preferredGuide.headers &&
+        preferredGuide.headers.length > existingParsed.headers.length &&
+        preferredGuide.rows.length > existingParsed.rows.length);
+    if (shouldUseFallbackGuide) {
       return descriptionRoot ? buildFallbackSizeGuideTable(descriptionRoot, preferredGuide.headers, preferredGuide.rows) : existingTable;
     }
 
@@ -1930,14 +2056,48 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     if (parsedRawValue && parsedRawValue.sizeLabel) comparableValues.push(parsedRawValue.sizeLabel);
     if (parsedRawText && parsedRawText.sizeLabel) comparableValues.push(parsedRawText.sizeLabel);
     if (parsedDisplayValue && parsedDisplayValue.sizeLabel) comparableValues.push(parsedDisplayValue.sizeLabel);
-    var selectedRole = parsedRawValue || parsedRawText || parsedDisplayValue || null;
+    var variantRole = null;
+    var currentVariant = getCurrentVariant();
+    var sizeOptionIndex = productData && Array.isArray(productData.options) ? findSizeOptionIndex(productData.options) : -1;
+    if (currentVariant && sizeOptionIndex > -1) {
+      variantRole = getRoleInfoForVariant(currentVariant, productData.options, sizeOptionIndex);
+      var variantSizeValue = getOptionValue(currentVariant, sizeOptionIndex);
+      if (variantSizeValue) comparableValues.push(variantSizeValue);
+      if (variantRole && variantRole.fullLabel) comparableValues.push(variantRole.fullLabel);
+      if (variantRole && variantRole.sizeLabel) comparableValues.push(variantRole.sizeLabel);
+    }
+    var selectedRole = variantRole || parsedRawValue || parsedRawText || parsedDisplayValue || null;
+    var selectedRoleKey = selectedRole && selectedRole.key ? selectedRole.key : '';
+    var selectedRoleLabel = selectedRole && selectedRole.label ? selectedRole.label : '';
+    var baseRoleKeyForType = selectedRoleKey;
+    if (!baseRoleKeyForType) {
+      var comparableForRole = getPrimaryComparableSize(comparableValues);
+      if (comparableForRole && comparableForRole.adultToken) {
+        baseRoleKeyForType = 'adult';
+      } else if (comparableForRole) {
+        baseRoleKeyForType = 'child';
+      }
+    }
+    var selectedTypeRoleKey = inferRoleKeyFromType(getSelectedGuideTypeValue(), baseRoleKeyForType);
+
+    if (
+      selectedTypeRoleKey &&
+      (!selectedRoleKey ||
+        selectedRoleKey === 'child' ||
+        selectedRoleKey === 'adult' ||
+        (selectedRoleKey === 'boy' && selectedTypeRoleKey === 'girl') ||
+        (selectedRoleKey === 'girl' && selectedTypeRoleKey === 'boy'))
+    ) {
+      selectedRoleKey = selectedTypeRoleKey;
+      selectedRoleLabel = getLocalizedRoleLabelByKey(selectedTypeRoleKey);
+    }
 
     return {
       rawValue: rawValue,
       rawText: rawText,
       displayValue: displayValue,
-      roleKey: selectedRole && selectedRole.key ? selectedRole.key : '',
-      roleLabel: selectedRole && selectedRole.label ? selectedRole.label : '',
+      roleKey: selectedRoleKey,
+      roleLabel: selectedRoleLabel,
       sizeLabel: selectedRole && selectedRole.sizeLabel ? selectedRole.sizeLabel : '',
       tokens: buildSizeMatchTokens(comparableValues),
       comparableValues: comparableValues,
@@ -1991,6 +2151,9 @@ function initMatchingSizeGuide(wrapper, sectionId) {
       if (normalized === 'س') tokens.s = true;
       if (normalized === 'م') tokens.m = true;
       if (normalized === 'ل') tokens.l = true;
+      if (/^(?:小|小号|小號)$/.test(normalized)) tokens.s = true;
+      if (/^(?:中|中号|中號)$/.test(normalized)) tokens.m = true;
+      if (/^(?:大|長|长|大号|大號)$/.test(normalized)) tokens.l = true;
 
       var comparable = parseComparableSize(raw);
       if (comparable) {
@@ -2136,9 +2299,18 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     return rowValues;
   }
 
+  function areSizeGuideRolesCompatible(selectedRoleKey, rowRoleKey) {
+    if (!selectedRoleKey || !rowRoleKey || selectedRoleKey === rowRoleKey) return true;
+    if (selectedRoleKey === 'child') return rowRoleKey === 'girl' || rowRoleKey === 'boy' || rowRoleKey === 'baby';
+    if (selectedRoleKey === 'adult') return rowRoleKey === 'mother' || rowRoleKey === 'father';
+    if (rowRoleKey === 'child') return selectedRoleKey === 'girl' || selectedRoleKey === 'boy' || selectedRoleKey === 'baby';
+    if (rowRoleKey === 'adult') return selectedRoleKey === 'mother' || selectedRoleKey === 'father';
+    return false;
+  }
+
   function getGuideRowMatchScore(rowLabel, selectedState, rowRoleKey) {
     if (!selectedState || !selectedState.tokens) return -Infinity;
-    if (selectedState.roleKey && rowRoleKey && selectedState.roleKey !== rowRoleKey) return -Infinity;
+    if (!areSizeGuideRolesCompatible(selectedState.roleKey, rowRoleKey)) return -Infinity;
 
     var rowValues = getGuideRowValues(rowLabel);
     var rowTokens = buildSizeMatchTokens(rowValues);
@@ -2513,7 +2685,13 @@ function initMatchingSizeGuide(wrapper, sectionId) {
     details.removeAttribute('hidden');
   }
 
-  renderGuide();
+  if (sizeTable && parsed) {
+    renderGuide();
+  } else {
+    loadDefaultLocaleSizeGuideSource().then(function (loaded) {
+      if (loaded) scheduleGuideRender(0);
+    });
+  }
 
   sizeGuideRoot.addEventListener('change', function (event) {
     var target = event && event.target;
@@ -2807,13 +2985,58 @@ function parseRoleFromHeader(header) {
   if (!cleaned) return null;
 
   var parsed = parseRoleFromSizeLabel(cleaned);
-  if (!parsed || !parsed.sizeLabel) return null;
+  if (parsed && parsed.sizeLabel) {
+    return {
+      key: parsed.key,
+      label: parsed.label,
+      measurement: cleanRoleHeaderMeasurement(parsed.sizeLabel),
+    };
+  }
 
-  return {
-    key: parsed.key,
-    label: parsed.label,
-    measurement: parsed.sizeLabel,
-  };
+  var normalizedHeader = normalizeText(cleaned);
+  for (var index = 0; index < ROLE_DEFINITIONS.length; index += 1) {
+    var roleDefinition = ROLE_DEFINITIONS[index];
+    var aliasCandidates = getRoleAliasCandidates(roleDefinition);
+
+    for (var aliasIndex = 0; aliasIndex < aliasCandidates.length; aliasIndex += 1) {
+      var alias = aliasCandidates[aliasIndex];
+      var normalizedAlias = normalizeText(alias);
+      if (!normalizedAlias || normalizedAlias.length < 3 || normalizedHeader.indexOf(normalizedAlias) === -1) continue;
+
+      return {
+        key: roleDefinition.key,
+        label: getLocalizedRoleLabel(roleDefinition),
+        measurement: cleanRoleHeaderMeasurement(stripRoleAliasFromHeader(cleaned, aliasCandidates)) || cleaned,
+      };
+    }
+  }
+
+  return null;
+}
+
+function stripRoleAliasFromHeader(header, aliases) {
+  var measurement = String(header || '').trim();
+  if (!measurement) return '';
+
+  for (var index = 0; index < aliases.length; index += 1) {
+    var alias = String(aliases[index] || '').trim();
+    if (!alias) continue;
+
+    var escapedAlias = escapeRegExp(alias).replace(/\s+/g, '\\s+');
+    var aliasPattern = new RegExp('(^|\\s+|\\s*[-–/]\\s*)' + escapedAlias + '(?=\\s+|$|\\s*[-–/]\\s*)', 'i');
+    if (!aliasPattern.test(measurement)) continue;
+
+    return measurement.replace(aliasPattern, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  return measurement;
+}
+
+function cleanRoleHeaderMeasurement(value) {
+  return String(value || '')
+    .replace(/\s+(?:de|del|de la|do|da|dos|das|di|della|del|du|des|of|for)\s*$/i, '')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function buildSizeGuideGroups(parsed) {
@@ -2893,6 +3116,11 @@ function buildSizeGuideGroups(parsed) {
       var group = groupedHeaders[key];
       var rows = parsed.rows
         .map(function (row) {
+          var hasRoleSpecificValue = group.columnIndexes.some(function (columnIndex) {
+            return !isGuideEmptyValue(row[columnIndex]);
+          });
+          if (!hasRoleSpecificValue) return null;
+
           var rowValues = [row[0]];
           if (heightIndex > -1) rowValues.push(row[heightIndex]);
           group.columnIndexes.forEach(function (columnIndex) {
@@ -2901,9 +3129,7 @@ function buildSizeGuideGroups(parsed) {
           return rowValues;
         })
         .filter(function (rowValues) {
-          return rowValues.slice(1).some(function (value) {
-            return !isGuideEmptyValue(value);
-          });
+          return !!rowValues;
         });
 
       var prunedGroup = pruneGuideGroupColumns(group.headers, rows);

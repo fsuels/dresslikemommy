@@ -1,0 +1,328 @@
+{
+  "generated": "2026-05-09",
+  "worker": "Worker C / market activation priority lane",
+  "decision": "LOCAL_APPROVAL_GATED_SCORECARD_ONLY__LIVE_SPEND_READY_MARKETS_0",
+  "live_spend_ready_markets": 0,
+  "paused_infrastructure_markets": 17,
+  "guardrails": [
+    "No external systems opened or changed by this lane",
+    "No Google Ads preview/import/upload/campaign creation/enablement",
+    "No budget, bid, status, product-scope, feed-label, product-group, or conversion-goal change",
+    "No Merchant, Shopify, Pinterest, theme, checkout payment, or order action"
+  ],
+  "evidence_summary": {
+    "non_us_markets_have_checkout_rate_evidence": true,
+    "held_csv_rows": 1496,
+    "held_csv_campaigns": 17,
+    "held_csv_ad_groups": 170,
+    "held_csv_positive_keywords": 510,
+    "held_csv_negative_keywords": 629,
+    "held_csv_responsive_search_ads": 170,
+    "held_csv_final_url_rows": 680,
+    "held_csv_max_cpc_usd": 0.15,
+    "held_csv_excludes_vacation_family": true,
+    "standard_shopping_post_may6": {
+      "clicks": 1,
+      "impressions": 58,
+      "cost_usd": 0.02,
+      "conversions": 0,
+      "conversion_value": 0
+    },
+    "economics": {
+      "aov_usd": 70,
+      "target_roas_percent": 650,
+      "max_cpa_usd": 10.77,
+      "stricter_international_band_usd": "9.49-9.73",
+      "zero_purchase_hard_pause_context_usd": 16
+    }
+  },
+  "scoring_model": {
+    "checkout_and_currency_evidence": 30,
+    "fit_with_current_english_first_csv": 20,
+    "held_search_csv_cleanliness": 15,
+    "smallest_unit_practicality": 15,
+    "shared_measurement_catalog_risk": 10,
+    "economics_priority": 10,
+    "note": "Scores rank approval-gated test priority only; they do not authorize spend."
+  },
+  "smallest_first_approved_test_units": [
+    {
+      "sequence": 1,
+      "unit": "GB / Mommy & Me Dresses - Exact only",
+      "reason": "English market, GBP checkout evidence, strongest fit with English-first ad copy.",
+      "pre_spend_readback": [
+        "Paused entity status immediately before activation",
+        "United Kingdom only, no United States targeting",
+        "Presence-only location targeting",
+        "Final URLs include country=GB",
+        "GBP checkout and purchase/value tracking ready"
+      ]
+    },
+    {
+      "sequence": 2,
+      "unit": "CA / Mommy & Me Dresses - Exact only",
+      "reason": "English market, CAD checkout evidence, clean one-country read.",
+      "pre_spend_readback": [
+        "Paused entity status immediately before activation",
+        "Canada only, no United States targeting",
+        "Presence-only location targeting",
+        "Final URLs include country=CA",
+        "CAD checkout and purchase/value tracking ready"
+      ]
+    },
+    {
+      "sequence": 3,
+      "unit": "AU / Mommy & Me Dresses - Exact only",
+      "reason": "English market, AUD checkout evidence, prior 429 blocker solved.",
+      "pre_spend_readback": [
+        "Paused entity status immediately before activation",
+        "Australia only, no United States targeting",
+        "Presence-only location targeting",
+        "Final URLs include country=AU",
+        "AUD checkout and no verification wall"
+      ]
+    },
+    {
+      "sequence": 4,
+      "unit": "ES / Mommy & Me Dresses - Exact only",
+      "reason": "Strong localized URL and EUR evidence, but English-first copy risk remains.",
+      "pre_spend_readback": [
+        "Owner accepts English-first copy or approves native copy",
+        "Spain only, no United States targeting",
+        "Localized path plus country=ES",
+        "EUR checkout and localized policy/page behavior still pass"
+      ]
+    },
+    {
+      "sequence": 5,
+      "unit": "IT / Mommy & Me Dresses - Exact only",
+      "reason": "Strong localized URL and EUR evidence, similar to Spain.",
+      "pre_spend_readback": [
+        "Owner accepts English-first copy or approves native copy",
+        "Italy only, no United States targeting",
+        "Localized path plus country=IT",
+        "EUR checkout and localized policy/page behavior still pass"
+      ]
+    },
+    {
+      "sequence": 6,
+      "unit": "PT or RO / Mommy & Me Dresses - Exact only",
+      "reason": "Both have localized checkout/currency evidence; owner should choose the next market after ES/IT.",
+      "pre_spend_readback": [
+        "Owner chooses PT or RO explicitly",
+        "Owner accepts English-first copy or approves native copy",
+        "Target country only, no United States targeting",
+        "Country-qualified final URL and matching checkout currency"
+      ]
+    }
+  ],
+  "markets": [
+    {
+      "rank": 1,
+      "iso": "GB",
+      "country": "United Kingdom",
+      "currency_checkout_evidence": "GBP / en-GB checkout evidence",
+      "current_language_posture": "English-first fit",
+      "priority_score": 91,
+      "tier": "First approved test queue",
+      "smallest_candidate_unit": "GB / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 2,
+      "iso": "CA",
+      "country": "Canada",
+      "currency_checkout_evidence": "CAD / en-CA checkout evidence",
+      "current_language_posture": "English-first fit",
+      "priority_score": 90,
+      "tier": "First approved test queue",
+      "smallest_candidate_unit": "CA / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 3,
+      "iso": "AU",
+      "country": "Australia",
+      "currency_checkout_evidence": "AUD / en-AU checkout evidence",
+      "current_language_posture": "English-first fit",
+      "priority_score": 89,
+      "tier": "First approved test queue",
+      "smallest_candidate_unit": "AU / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 4,
+      "iso": "ES",
+      "country": "Spain",
+      "currency_checkout_evidence": "EUR / localized ES evidence",
+      "current_language_posture": "Localized URL with English ads",
+      "priority_score": 83,
+      "tier": "Localized-url queue",
+      "smallest_candidate_unit": "ES / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 5,
+      "iso": "IT",
+      "country": "Italy",
+      "currency_checkout_evidence": "EUR / localized IT evidence",
+      "current_language_posture": "Localized URL with English ads",
+      "priority_score": 82,
+      "tier": "Localized-url queue",
+      "smallest_candidate_unit": "IT / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 6,
+      "iso": "RO",
+      "country": "Romania",
+      "currency_checkout_evidence": "RON / localized RO evidence",
+      "current_language_posture": "Localized URL with English ads",
+      "priority_score": 80,
+      "tier": "Localized-url queue",
+      "smallest_candidate_unit": "RO / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 7,
+      "iso": "PT",
+      "country": "Portugal",
+      "currency_checkout_evidence": "EUR / pt-BR route evidence",
+      "current_language_posture": "Localized URL with English ads",
+      "priority_score": 79,
+      "tier": "Localized-url queue",
+      "smallest_candidate_unit": "PT / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 8,
+      "iso": "CH",
+      "country": "Switzerland",
+      "currency_checkout_evidence": "CHF / en-CH checkout evidence",
+      "current_language_posture": "English-first shell",
+      "priority_score": 72,
+      "tier": "Watchlist queue",
+      "smallest_candidate_unit": "CH / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 9,
+      "iso": "DK",
+      "country": "Denmark",
+      "currency_checkout_evidence": "DKK / en-DK checkout evidence",
+      "current_language_posture": "English-first shell",
+      "priority_score": 71,
+      "tier": "Watchlist queue",
+      "smallest_candidate_unit": "DK / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 10,
+      "iso": "DE",
+      "country": "Germany",
+      "currency_checkout_evidence": "EUR / en-DE checkout evidence",
+      "current_language_posture": "English-first shell",
+      "priority_score": 70,
+      "tier": "Watchlist queue",
+      "smallest_candidate_unit": "DE / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 11,
+      "iso": "NL",
+      "country": "Netherlands",
+      "currency_checkout_evidence": "EUR / en-NL checkout evidence",
+      "current_language_posture": "English-first shell",
+      "priority_score": 69,
+      "tier": "Watchlist queue",
+      "smallest_candidate_unit": "NL / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 12,
+      "iso": "SE",
+      "country": "Sweden",
+      "currency_checkout_evidence": "SEK / en-SE checkout evidence",
+      "current_language_posture": "English-first shell",
+      "priority_score": 68,
+      "tier": "Watchlist queue",
+      "smallest_candidate_unit": "SE / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 13,
+      "iso": "FR",
+      "country": "France",
+      "currency_checkout_evidence": "EUR / en-FR checkout evidence",
+      "current_language_posture": "English-first shell",
+      "priority_score": 67,
+      "tier": "Watchlist queue",
+      "smallest_candidate_unit": "FR / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 14,
+      "iso": "BE",
+      "country": "Belgium",
+      "currency_checkout_evidence": "EUR / en-BE checkout evidence",
+      "current_language_posture": "English-first shell",
+      "priority_score": 66,
+      "tier": "Watchlist queue",
+      "smallest_candidate_unit": "BE / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 15,
+      "iso": "PL",
+      "country": "Poland",
+      "currency_checkout_evidence": "PLN / en-PL checkout evidence",
+      "current_language_posture": "English-first shell",
+      "priority_score": 64,
+      "tier": "Later queue",
+      "smallest_candidate_unit": "PL / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 16,
+      "iso": "CZ",
+      "country": "Czechia",
+      "currency_checkout_evidence": "CZK / en-CZ checkout evidence",
+      "current_language_posture": "English-first shell",
+      "priority_score": 63,
+      "tier": "Later queue",
+      "smallest_candidate_unit": "CZ / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    },
+    {
+      "rank": 17,
+      "iso": "GR",
+      "country": "Greece",
+      "currency_checkout_evidence": "EUR / en-GR checkout evidence",
+      "current_language_posture": "English-first shell",
+      "priority_score": 62,
+      "tier": "Later queue",
+      "smallest_candidate_unit": "GR / Mommy & Me Dresses - Exact only",
+      "live_spend_ready": false
+    }
+  ],
+  "required_readback_before_any_spend": [
+    "Owner approval text names the exact country, campaign, ad group, budget/spend cap, CPC cap, status action, and stop rule",
+    "Campaign, ad group, keywords, and ad exist and are paused immediately before activation",
+    "Only the approved country is targeted and United States is absent",
+    "Location targeting is presence-only",
+    "Search Network only and no Display expansion, PMax, Shopping, Merchant, product group, product scope, feed label, or conversion-goal changes",
+    "CPC is at or below the approved cap and not above US$0.20",
+    "Final URLs keep country=<ISO> and do not contain the held beach/Vacation Family product",
+    "Product landing, cart, shipping rates, and checkout currency still match the target market",
+    "Purchase conversion and value reporting are ready for ROAS decisions",
+    "Reporting packet is ready for spend, clicks, CPC, conversions, value, CPA, ROAS, final URL, search terms, and country/currency"
+  ],
+  "residual_gates": [
+    "Non-US Google Search TEST BUILD exact owner approval required before preview/import/build",
+    "Any spend activation requires separate exact owner approval",
+    "Merchant US/es age_group source 10627981690 remains separate approval gate",
+    "Pinterest Event Quality is Fair and paused drafts/Event Quality repair require separate approval",
+    "Beach/Vacation Family metadata remains excluded until Shopify metadata repair and public readback",
+    "Current Google Search CSV is English-first; native-language launch quality requires a separate copy decision or packet"
+  ]
+}

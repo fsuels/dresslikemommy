@@ -1,0 +1,82 @@
+{
+  "generated_at": "2026-05-09T01:14:08-04:00",
+  "lane": "checkout-ch-dk",
+  "mode": "public_storefront_isolated_chrome_no_payment_no_order",
+  "guardrails_preserved": {
+    "payment_data_entered": false,
+    "pay_now_or_place_order_clicked": false,
+    "order_created": false,
+    "account_or_admin_writes": false,
+    "shopify_admin_writes": false,
+    "google_ads_writes": false,
+    "merchant_writes": false,
+    "pinterest_writes": false,
+    "theme_or_live_product_data_writes": false
+  },
+  "product": {
+    "handle": "elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits",
+    "variant_id": "41878479831137"
+  },
+  "markets": [
+    {
+      "country_code": "CH",
+      "decision": "CH_CHECKOUT_TO_SHIPPING_PASSED_READONLY_NO_PAYMENT_NO_ORDER",
+      "product_currency_meta": "CHF",
+      "cart_add_status": 200,
+      "cart_read_status": 200,
+      "cart_currency": "CHF",
+      "cart_item_count": 1,
+      "shipping_rates_status": 200,
+      "shipping_rates": [
+        {
+          "name": "Standard Delivery (10 - 14 Days)",
+          "price": "0.00",
+          "currency": "CHF"
+        },
+        {
+          "name": "Express Delivery (7 - 11 Days)",
+          "price": "10.24",
+          "currency": "CHF"
+        }
+      ],
+      "checkout_html_lang": "en-CH",
+      "checkout_ui_has_standard": true,
+      "checkout_ui_has_express": true,
+      "checkout_ui_has_currency": true,
+      "blocked_by_429_captcha_or_verification": false,
+      "order_confirmation_found": false
+    },
+    {
+      "country_code": "DK",
+      "decision": "DK_CHECKOUT_TO_SHIPPING_PASSED_READONLY_NO_PAYMENT_NO_ORDER",
+      "product_currency_meta": "DKK",
+      "cart_add_status": 200,
+      "cart_read_status": 200,
+      "cart_currency": "DKK",
+      "cart_item_count": 1,
+      "shipping_rates_status": 200,
+      "shipping_rates": [
+        {
+          "name": "Standard Delivery (10 - 14 Days)",
+          "price": "0.00",
+          "currency": "DKK"
+        },
+        {
+          "name": "Express Delivery (7 - 11 Days)",
+          "price": "83.60",
+          "currency": "DKK"
+        }
+      ],
+      "checkout_html_lang": "en-DK",
+      "checkout_ui_has_standard": true,
+      "checkout_ui_has_express": true,
+      "checkout_ui_has_currency": true,
+      "blocked_by_429_captcha_or_verification": false,
+      "order_confirmation_found": false
+    }
+  ],
+  "residual_risks": [
+    "This is checkout evidence for paused infrastructure only; it is not approval for live spend.",
+    "Broader paid-growth gates remain: Merchant/Pinterest/tracking/economics, exact owner approval, and URL-quality controls."
+  ]
+}

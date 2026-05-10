@@ -1,0 +1,73 @@
+{
+  "anchor": "AGENT_CONTINUITY_ANCHOR: 2026-05-08-paid-growth-ai-army-safe-advance-2",
+  "created_at_local": "2026-05-08 20:38 EDT",
+  "mode": "local_readonly_orchestration",
+  "guardrails": {
+    "external_account_writes": false,
+    "live_spend_or_enablement": false,
+    "campaign_budget_bid_status_changes": false,
+    "pmax_or_standard_shopping_changes": false,
+    "product_scope_feed_label_product_group_changes": false,
+    "conversion_goal_changes": false,
+    "merchant_uploads_or_source_edits": false,
+    "shopify_live_product_data_changes": false,
+    "pinterest_writes": false,
+    "checkout_payment_or_order": false,
+    "theme_publish": false
+  },
+  "lanes": {
+    "google_ads_intl": "pass_with_approval_gate_sharpening",
+    "localization_checkout": "all_17_product_landings_passed_no_spend_ready_markets",
+    "merchant_us_es_repair": "owner_approval_required_path_a_or_b",
+    "pinterest_gate": "pass_for_paused_draft_after_exact_approval_fail_for_live_spend",
+    "economics_reporting": "local_ready_no_external_writes"
+  },
+  "key_results": {
+    "google_ads_intl": {
+      "campaigns": 17,
+      "ad_groups": 204,
+      "positive_keywords": 612,
+      "negative_keywords": 629,
+      "rsas": 204,
+      "web_bulk_rows": 1666,
+      "max_cpc": "0.15",
+      "all_importable_statuses_paused": true,
+      "no_us_campaign_23827590655_rows": true,
+      "canonical_approval_gate_needs_use": true
+    },
+    "localization_checkout": {
+      "public_product_landing_gets": 17,
+      "public_product_landing_passes": 17,
+      "strong_paused_candidates": ["GB", "CA", "AU", "ES", "IT", "RO", "PT"],
+      "landing_only_candidates": ["CH", "DK", "DE", "NL", "SE", "FR", "BE", "PL", "CZ", "GR"],
+      "live_spend_ready_markets": 0,
+      "new_problem": "PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH"
+    },
+    "merchant_us_es": {
+      "status": "OWNER_APPROVAL_REQUIRED_FOR_LIVE_FIX",
+      "source_id": "10627981690",
+      "affected_paid_ids": 625,
+      "affected_rows": 1250,
+      "preferred_path": "PATH_A_US_ES_AGE_GROUP_ONLY_SUPPLEMENTAL_SOURCE"
+    },
+    "pinterest": {
+      "clean_scope_rows": 342,
+      "excluded_variants": ["41878208249953", "41878208479329", "41878208577633", "41878208610401"],
+      "event_quality": "FAIR",
+      "paused_draft_possible_after_exact_approval": true,
+      "live_spend_blocked": true
+    },
+    "economics": {
+      "target_roas": "650%",
+      "planning_aov_usd": 70.0,
+      "max_cpa_usd": 10.77,
+      "required_cvr_at_0_15_cpc": "1.39%",
+      "zero_purchase_hard_pause_spend_usd": 16.0
+    }
+  },
+  "active_problem_ids": [
+    "PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP",
+    "PROB-2026-05-08-PINTEREST-EVENT-QUALITY",
+    "PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH"
+  ]
+}

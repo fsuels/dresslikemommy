@@ -170,7 +170,7 @@
       },
       "view_full_details": "전체 세부 정보 보기",
       "include_taxes": "세금이 포함됩니다.",
-      "shipping_policy_html": "배송 옵션과 비용은 주소 입력 후 결제 시 표시됩니다. <a href=\"{{ link }}\">배송 정책</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
       "choose_options": "옵션 선택하기",
       "choose_product_options": "{{ product_name }}의 옵션 선택",
       "value_unavailable": "{{ option_value }} - 사용할 수 없음",
@@ -230,7 +230,7 @@
         "write_review": "리뷰 작성",
         "write_review_title": "리뷰 작성"
       },
-      "free_shipping_all_orders": "모든 주문 무료 배송",
+      "free_shipping_all_orders": "일반 배송 포함",
       "selected_size_label": "크기: {{ size }}",
       "description_sections": {
         "details_eyebrow": "세부",
@@ -279,17 +279,17 @@
       "secure_checkout": "안전한 결제",
       "ssl_encrypted": "SSL 암호화됨",
       "returns": "30일 반품 기간",
-      "free_shipping": "결제 시 배송 표시",
+      "free_shipping": "일반 배송 포함",
       "trusted_since": "가족 매칭이 쉬워졌습니다",
       "assistance_note": "도움이 필요하신가요? 일반적으로 영업일 기준 1일 이내에 답변해 드립니다."
     },
     "additional_info": {
       "shipping_title": "배송 및 배송",
-      "free_shipping_label": "무료 배송",
+      "free_shipping_label": "일반 배송 포함",
       "estimated_delivery": "예상 배송일:",
       "standard_delivery_window": "영업일 기준 12-15일",
       "premium_delivery_window": "익스프레스 옵션은 가능한 경우 결제 시 표시됩니다.",
-      "faster_shipping_prefix": "더 빨리 원하시나요? $100 이상 지출하고 받기",
+      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
       "free_premium_shipping": "특급 배송",
       "return_policy_title": "반품 정책",
       "return_policy_line_1": "반품이나 교환을 요청할 수 있는 기간은 배송일로부터 30일입니다.",
@@ -304,6 +304,37 @@
       "secure_logistics_line_2": "최신 배송업체 업데이트를 보려면 주문 추적 링크를 사용하세요. 해외 주문에는 운송업체나 지역 당국이 징수하는 현지 세금, 관세 또는 관세가 적용될 수 있습니다.",
       "secure_privacy_title": "안전한 개인 정보 보호",
       "secure_privacy_description": "귀하의 개인정보를 보호하는 것은 우리에게 중요합니다! 귀하의 정보는 안전하고 손상되지 않는 상태로 유지됩니다. 당사는 귀하의 개인정보를 금전 목적으로 판매하지 않으며, 귀하에게 서비스를 제공하고 개선하기 위해 당사의 개인정보 보호 및 쿠키 정책에 따라서만 귀하의 정보를 사용할 것입니다."
+    },
+    "shipping_country": {
+      "product_country": "{{ country }} 배송",
+      "product_country_with_currency": "{{ country }} 배송 / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "배송 국가는 결제 시 확인됩니다",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "eyebrow": "배송 국가 확인",
+      "page_title_country": "예, 현재 {{ country }}(으)로 배송합니다",
+      "page_title_default": "현재 배송 국가",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
+      "schema_standard_shipping": "일반 배송 포함",
+      "country_list_heading": "현재 배송 가능한 국가 ({{ count }})",
+      "country_list_highlight": "이 목록의 모든 국가는 결제에서 활성화되어 있습니다. Shopify가 감지할 수 있으면 선택한 국가가 강조 표시됩니다.",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -374,10 +405,10 @@
       "empty": "카트가 비어 있습니다",
       "cart_error": "카트를 업데이트하는 중 오류가 발생했습니다. 다시 시도하십시오.",
       "cart_quantity_error_html": "카트에는 이 품목을 {{ quantity }}개만 추가할 수 있습니다.",
-      "taxes_and_shipping_policy_at_checkout_html": "세금, 할인, 배송비는 결제 시 계산됩니다. <a href=\"{{ link }}\">배송 정책</a>",
-      "taxes_included_but_shipping_at_checkout": "세금이 포함되어 있습니다. 할인 및 배송비는 결제 시 계산됩니다.",
-      "taxes_included_and_shipping_policy_html": "세금이 포함되어 있습니다. 할인 및 배송비는 결제 시 계산됩니다. <a href=\"{{ link }}\">배송 정책</a>",
-      "taxes_and_shipping_at_checkout": "세금, 할인, 배송비는 결제 시 계산됩니다.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
       "headings": {
         "product": "제품",
         "price": "가격",
@@ -402,18 +433,19 @@
       "trust": {
         "secure_checkout": "안전한 결제",
         "ssl_encrypted": "SSL 암호화됨",
-        "free_shipping": "배송 옵션",
+        "free_shipping": "배송 포함",
         "returns": "30일 반품",
         "secure": "안전한",
         "encrypted": "암호화됨",
-        "free_ship": "해운"
+        "free_ship": "배송 포함"
       },
       "discount_code_toggle": "할인 코드가 있나요?",
       "shipping_label": "해운",
-      "shipping_free": "결제 시 계산됨",
+      "shipping_free": "일반 포함",
       "popular_with_families": "가족에게 인기가 있음",
       "recently_viewed": "최근 본 상품",
-      "savings_html": "<strong>{{ amount }}</strong>를 저장 중입니다."
+      "savings_html": "<strong>{{ amount }}</strong>를 저장 중입니다.",
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
     },
     "footer": {
       "payment": "결제 방법"
@@ -456,7 +488,8 @@
       "carousel": "캐러셀",
       "announcement": "공지",
       "announcement_bar": "공지 표시줄",
-      "default_promo": "모든 주문 무료 배송 | 쉬운 패밀리 매칭룩 | 안전한 결제"
+      "default_promo": "일반 배송 포함 | 결제 시 특급 옵션 | 안전한 결제",
+      "shipping_country_promo": "{{ country }} 일반 배송 포함 | 결제 시 특급 옵션 | 안전한 결제"
     },
     "quick_order_list": {
       "product_total": "제품 소계",

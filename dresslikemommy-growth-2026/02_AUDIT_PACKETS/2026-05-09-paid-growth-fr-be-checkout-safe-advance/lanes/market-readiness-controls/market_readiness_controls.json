@@ -1,0 +1,254 @@
+{
+  "generated": "2026-05-09",
+  "worker": "Worker D",
+  "scope": "local-only market readiness controls for FR/BE safe advance",
+  "live_spend_ready_count": 0,
+  "paused_infra_approval_gated": [
+    "GB",
+    "CA",
+    "AU",
+    "ES",
+    "IT",
+    "RO",
+    "PT",
+    "CH",
+    "DK",
+    "DE",
+    "FR",
+    "BE"
+  ],
+  "checkout_pending": [
+    "NL",
+    "SE",
+    "PL",
+    "CZ",
+    "GR"
+  ],
+  "countries": {
+    "GB": {
+      "currency": "GBP",
+      "readiness": "paused-infra approval-gated",
+      "checkout_evidence": "Visual checkout UI passed en-GB with Standard FREE and Express GBP 10.00; no 429/CAPTCHA/payment/order.",
+      "main_blockers": [
+        "Beach URL SEO/social title hold",
+        "Merchant/Pinterest/tracking/economics gates",
+        "exact owner approval"
+      ]
+    },
+    "CA": {
+      "currency": "CAD",
+      "readiness": "paused-infra approval-gated",
+      "checkout_evidence": "Visual checkout UI passed en-CA with Standard FREE and Express CAD 19.00; no 429/CAPTCHA/payment/order.",
+      "main_blockers": [
+        "French Canada posture unresolved",
+        "Beach URL SEO/social title hold",
+        "Merchant/Pinterest/tracking/economics gates",
+        "exact owner approval"
+      ]
+    },
+    "AU": {
+      "currency": "AUD",
+      "readiness": "paused-infra approval-gated",
+      "checkout_evidence": "Isolated checkout passed with cart/rates 200, Standard 0.00 AUD, Express API 18.24 AUD, checkout UI en-AU.",
+      "main_blockers": [
+        "Prior 429 history",
+        "Beach URL SEO/social title hold",
+        "Merchant/Pinterest/tracking/economics gates",
+        "exact owner approval"
+      ]
+    },
+    "ES": {
+      "currency": "EUR",
+      "readiness": "paused-infra approval-gated",
+      "checkout_evidence": "Prior localized checkout reached shipping with Standard free and Express EUR 11.95.",
+      "main_blockers": [
+        "Checkout mostly English",
+        "bare language route can land US/USD",
+        "Merchant/Pinterest/tracking/economics gates",
+        "exact owner approval"
+      ]
+    },
+    "IT": {
+      "currency": "EUR",
+      "readiness": "paused-infra approval-gated",
+      "checkout_evidence": "Prior localized checkout reached shipping with Standard free and Express EUR 11.95.",
+      "main_blockers": [
+        "Checkout mostly English",
+        "Merchant/Pinterest/tracking/economics gates",
+        "exact owner approval"
+      ]
+    },
+    "RO": {
+      "currency": "RON",
+      "readiness": "paused-infra approval-gated",
+      "checkout_evidence": "Prior localized checkout reached shipping with Standard free and Express 60.00 lei.",
+      "main_blockers": [
+        "RON economics and FX reporting",
+        "Checkout mostly English",
+        "Merchant/Pinterest/tracking/economics gates",
+        "exact owner approval"
+      ]
+    },
+    "PT": {
+      "currency": "EUR",
+      "readiness": "paused-infra approval-gated",
+      "checkout_evidence": "Cooldown retry passed in pt-BR with Standard GRATIS, Express EUR 11.95, total EUR 24.95.",
+      "main_blockers": [
+        "pt-BR copy for Portugal",
+        "direct /pt can initially land US/USD",
+        "Merchant/Pinterest/tracking/economics gates",
+        "exact owner approval"
+      ]
+    },
+    "CH": {
+      "currency": "CHF",
+      "readiness": "paused-infra approval-gated",
+      "checkout_evidence": "2026-05-09 isolated checkout passed with cart/rates 200, Standard 0.00 CHF, Express 10.24 CHF, checkout UI en-CH.",
+      "main_blockers": [
+        "Duties/language split",
+        "Merchant/Pinterest/tracking/economics gates",
+        "exact owner approval"
+      ]
+    },
+    "DK": {
+      "currency": "DKK",
+      "readiness": "paused-infra approval-gated",
+      "checkout_evidence": "2026-05-09 isolated checkout passed with cart/rates 200, Standard 0.00 DKK, Express 83.60 DKK, checkout UI en-DK.",
+      "main_blockers": [
+        "Danish language quality",
+        "DKK economics",
+        "Merchant/Pinterest/tracking/economics gates",
+        "exact owner approval"
+      ]
+    },
+    "DE": {
+      "currency": "EUR",
+      "readiness": "paused-infra approval-gated",
+      "checkout_evidence": "2026-05-09 isolated checkout passed with cart/rates 200, Standard 0.00 EUR, Express API 11.19 EUR, checkout UI en-DE.",
+      "main_blockers": [
+        "German landing/policy quality only public-sanity checked",
+        "Merchant/Pinterest/tracking/economics gates",
+        "exact owner approval"
+      ]
+    },
+    "NL": {
+      "currency": "EUR",
+      "readiness": "checkout-pending",
+      "checkout_evidence": "Landing/policy passed, but two cart/rates attempts returned HTTP 429 verification HTML; checkout not reached.",
+      "main_blockers": [
+        "Storefront 429/rate-limit",
+        "no current checkout/rate proof"
+      ]
+    },
+    "FR": {
+      "currency": "EUR",
+      "readiness": "paused-infra approval-gated",
+      "checkout_evidence": "Worker A checkout passed with cart/rates 200, Standard 0.00 EUR, Express API 11.19 EUR, checkout UI en-FR, no verification/payment/order.",
+      "main_blockers": [
+        "French language/policy quality",
+        "Merchant/Pinterest/tracking/economics gates",
+        "exact owner approval"
+      ]
+    },
+    "BE": {
+      "currency": "EUR",
+      "readiness": "paused-infra approval-gated",
+      "checkout_evidence": "Worker A checkout passed with cart/rates 200, Standard 0.00 EUR, Express API 11.19 EUR, checkout UI en-BE, no verification/payment/order.",
+      "main_blockers": [
+        "French/Dutch split",
+        "Merchant/Pinterest/tracking/economics gates",
+        "exact owner approval"
+      ]
+    },
+    "SE": {
+      "currency": "SEK",
+      "readiness": "checkout-pending",
+      "checkout_evidence": "Product landing evidence only.",
+      "main_blockers": [
+        "no checkout/rate proof",
+        "Swedish language quality",
+        "SEK economics",
+        "parent gates"
+      ]
+    },
+    "PL": {
+      "currency": "PLN",
+      "readiness": "checkout-pending",
+      "checkout_evidence": "Product landing evidence only.",
+      "main_blockers": [
+        "no checkout/rate proof",
+        "Polish language quality",
+        "PLN economics",
+        "parent gates"
+      ]
+    },
+    "CZ": {
+      "currency": "CZK",
+      "readiness": "checkout-pending",
+      "checkout_evidence": "Product landing evidence only.",
+      "main_blockers": [
+        "no checkout/rate proof",
+        "Czech language quality",
+        "CZK economics",
+        "parent gates"
+      ]
+    },
+    "GR": {
+      "currency": "EUR",
+      "readiness": "checkout-pending",
+      "checkout_evidence": "Product landing evidence only.",
+      "main_blockers": [
+        "no checkout/rate proof",
+        "Greek language quality",
+        "parent gates"
+      ]
+    }
+  },
+  "active_gates": {
+    "non_us_google_search_paused_build": "OWNER_APPROVAL_REQUIRED",
+    "live_non_us_spend": "BLOCKED",
+    "standard_shopping_metrics": "CREDENTIALS_REQUIRED",
+    "merchant_us_es_age_group": "OWNER_APPROVAL_REQUIRED_FOR_LIVE_FIX",
+    "pinterest_event_quality_paused_drafts": "OWNER_APPROVAL_REQUIRED",
+    "beach_vacation_url_metadata": "OWNER_APPROVAL_REQUIRED_FOR_SHOPIFY_FIX_OR_HELD_CSV",
+    "nl_checkout": "RATE_LIMITED_CHECKOUT_PENDING",
+    "fr_be_checkout": "WORKER_A_PASSED__PARENT_INTEGRATION_NEEDED"
+  },
+  "fr_be_worker_a_evidence": {
+    "source": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-fr-be-checkout-safe-advance/lanes/checkout-fr-be/FR_BE_CHECKOUT_TO_SHIPPING.md",
+    "fr": "PASS_READONLY_NO_PAYMENT_NO_ORDER",
+    "be": "PASS_READONLY_NO_PAYMENT_NO_ORDER",
+    "note": "Supports paused-infrastructure approval-gated status only; parent owns problem tracker/final packet integration."
+  },
+  "held_csv_remaining_validation": {
+    "source": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-fr-be-checkout-safe-advance/lanes/ads-held-csv-remaining/HELD_CSV_REMAINING_VALIDATION.md",
+    "status": "PASS_LOCAL_ONLY_APPROVAL_GATED",
+    "focus_countries": [
+      "NL",
+      "FR",
+      "BE",
+      "SE",
+      "PL",
+      "CZ",
+      "GR"
+    ],
+    "rows_per_focus_country": 88,
+    "final_urls_per_focus_country": 40,
+    "forbidden_hits": 0,
+    "note": "This validates paused local CSV structure only; it does not clear checkout or live spend."
+  },
+  "next_safe_subagent_split": [
+    "Worker A: completed FR and BE no-payment checkout-to-shipping QA; parent should integrate the pass into problem tracker/final packet.",
+    "Worker B: integrate remaining-country landing/policy sanity evidence.",
+    "Worker C: completed remaining-country held CSV validation; parent can cite it and re-run only if the CSV changes or approval-time preview is imminent.",
+    "Parent: update problem tracker, final packet report, worklog anchor, and readiness tier changes.",
+    "Next checkout wave: SE, PL, CZ, GR; retry NL later after cooldown or approved browser path."
+  ],
+  "guardrails_preserved": [
+    "no external account/browser writes",
+    "no live spend or enablement",
+    "no campaign/feed/product/conversion changes",
+    "no shared ops files edited by Worker D",
+    "outputs limited to market-readiness-controls lane"
+  ]
+}

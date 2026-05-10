@@ -1,0 +1,92 @@
+{
+  "generated": "2026-05-09",
+  "lane": "native-language-copy-options",
+  "decision": "LOCAL_NATIVE_LANGUAGE_OPTIONS_READY_FOR_NATIVE_REVIEW_NO_ADS_WRITES",
+  "problem_mitigated": "PROB-2026-05-09-NON-US-SEARCH-NATIVE-LANGUAGE-COPY-GATE",
+  "scope": {
+    "write_scope": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-localized-copy-pinterest-manifest-safe-advance/lanes/native-language-copy-options/",
+    "external_writes": false,
+    "google_ads_import_or_preview": false,
+    "campaign_enablement": false,
+    "budget_bid_status_changes": false,
+    "merchant_or_shopify_writes": false,
+    "pinterest_writes": false
+  },
+  "source_held_csv": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-url-hold-checkout-safe-advance/lanes/google-ads-url-hold/web_bulk_upload/00_intl_search_paused_draft_web_bulk_vacation_family_hold.csv",
+    "rows": 1496,
+    "campaigns": 17,
+    "campaign_language_counts": {
+      "en": 17
+    },
+    "themes_preserved": [
+      "Mommy & Me Dresses",
+      "Family Matching",
+      "Matching Pajamas",
+      "Matching Swimwear",
+      "Daddy & Me"
+    ],
+    "theme_still_excluded": "Vacation Family"
+  },
+  "coverage": {
+    "requested_markets_covered": [
+      "ES",
+      "IT",
+      "PT",
+      "RO",
+      "DE",
+      "NL",
+      "FR",
+      "BE",
+      "SE",
+      "DK",
+      "PL",
+      "CZ",
+      "GR"
+    ],
+    "locale_variants": [
+      "es-ES",
+      "it-IT",
+      "pt-PT",
+      "ro-RO",
+      "de-DE",
+      "nl-NL",
+      "fr-FR",
+      "fr-BE",
+      "nl-BE",
+      "sv-SE",
+      "da-DK",
+      "pl-PL",
+      "cs-CZ",
+      "el-GR"
+    ],
+    "rsa_option_rows": 14,
+    "keyword_note_rows": 14,
+    "themes_per_locale": 5,
+    "native_speaker_review_required_for_all_rows": true
+  },
+  "validation": {
+    "csv_parse": "pass",
+    "max_headline_length": 24,
+    "headline_limit": 30,
+    "max_description_length": 73,
+    "description_limit": 90,
+    "length_violations": 0,
+    "forbidden_claim_hits": 0,
+    "scan_notes": "Customer-facing RSA option fields were scanned for unsupported shipping-speed, warehouse/local-stock, pickup, guarantee, review/social-proof, promotion/discount, urgency, bestseller, and availability claims."
+  },
+  "gates_remaining": [
+    "Native-speaker review for every locale variant before any local-language import.",
+    "Native landing, policy, cart, checkout, and customer-support wording QA for DE, NL, FR, BE, SE, DK, PL, CZ, and GR before local-language traffic.",
+    "Portugal wording review because the storefront path evidence is pt-BR behavior for a Portugal target.",
+    "Belgium language split decision before any BE local-language campaign or ad group structure.",
+    "Owner approval, Google Ads preview validation, all-entities-paused readback, and no-spend guardrails before any paused build.",
+    "Separate activation approval and just-in-time Merchant, tracking, storefront, and economics readbacks before any spend."
+  ],
+  "files": [
+    "NATIVE_LANGUAGE_COPY_OPTIONS_REPORT.md",
+    "native_language_rsa_options.csv",
+    "native_language_keyword_option_notes.csv",
+    "native_language_copy_options_summary.json"
+  ]
+}

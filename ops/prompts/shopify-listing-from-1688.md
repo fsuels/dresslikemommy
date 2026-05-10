@@ -153,6 +153,13 @@ Cost rule for every generated or updated Shopify variant:
 - In Shopify CSV backups, populate `Cost per item` from the row's final `Variant Price`.
 - If any variant is missing stale Cost per item after verification, fix cost to 50% of the current price; do not reset the operator's manual price just to match an earlier generated spec.
 
+Localized size-chart rule:
+
+- After creating or updating a product that contains a body size chart, the agent must register/refresh Shopify product translations for the handle, run `ops/scripts/repair_localized_product_size_charts.py --handles <handle> --execute`, then rerun the same script with `--fail-on-missing`.
+- The listing is not complete until the readback shows `products_with_missing_locale_size_chart=0`, `planned_translation_count=0`, and `error_count=0`.
+- The agent must also run `ops/scripts/audit_localized_size_chart_variant_mapping.py --handles <handle> --fail-on-unmatched`; the listing is not complete until `unmatched_variant_locale_count=0`.
+- This applies to drafts and active products; do not rely on English-only size tables when Shopify serves translated `body_html` on localized storefront routes.
+
 Expected option model for Example 4:
 
 - one Shopify product

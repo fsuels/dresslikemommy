@@ -170,7 +170,7 @@
       },
       "view_full_details": "Xem toàn bộ chi tiết",
       "include_taxes": "Đã bao gồm thuế.",
-      "shipping_policy_html": "Các tùy chọn vận chuyển và chi phí được hiển thị khi thanh toán sau khi nhập địa chỉ. <a href=\"{{ link }}\">Chính sách vận chuyển</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
       "choose_options": "Chọn các tùy chọn",
       "choose_product_options": "Chọn tùy chọn cho {{ product_name }}",
       "value_unavailable": "{{ option_value }} - Không khả dụng",
@@ -230,7 +230,7 @@
         "write_review": "Viết đánh giá",
         "write_review_title": "Viết đánh giá"
       },
-      "free_shipping_all_orders": "Miễn phí vận chuyển cho tất cả đơn hàng",
+      "free_shipping_all_orders": "Đã bao gồm giao hàng tiêu chuẩn",
       "selected_size_label": "Kích thước: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Chi tiết",
@@ -279,17 +279,17 @@
       "secure_checkout": "Thanh toán an toàn",
       "ssl_encrypted": "SSL được mã hóa",
       "returns": "Thời hạn hoàn trả 30 ngày",
-      "free_shipping": "Vận chuyển được hiển thị khi thanh toán",
+      "free_shipping": "Đã bao gồm giao hàng tiêu chuẩn",
       "trusted_since": "Việc kết hợp gia đình trở nên dễ dàng",
       "assistance_note": "Cần giúp đỡ? Chúng tôi thường trả lời trong vòng một ngày làm việc."
     },
     "additional_info": {
       "shipping_title": "Vận chuyển & Giao hàng",
-      "free_shipping_label": "Miễn phí vận chuyển",
+      "free_shipping_label": "Đã bao gồm giao hàng tiêu chuẩn",
       "estimated_delivery": "Dự kiến giao hàng:",
       "standard_delivery_window": "12-15 ngày làm việc",
       "premium_delivery_window": "Tùy chọn nhanh được hiển thị khi thanh toán nếu có.",
-      "faster_shipping_prefix": "Muốn nó nhanh hơn? Chi hơn $100 và nhận được",
+      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
       "free_premium_shipping": "Chuyển phát nhanh",
       "return_policy_title": "Chính sách hoàn trả",
       "return_policy_line_1": "Bạn có 30 ngày kể từ ngày giao hàng để yêu cầu trả lại hoặc trao đổi.",
@@ -304,6 +304,37 @@
       "secure_logistics_line_2": "Sử dụng liên kết theo dõi đơn hàng của bạn để biết thông tin cập nhật mới nhất của nhà cung cấp dịch vụ. Các đơn đặt hàng quốc tế có thể phải chịu thuế, phí hải quan hoặc phí hải quan địa phương do nhà vận chuyển hoặc chính quyền địa phương thu.",
       "secure_privacy_title": "Bảo mật quyền riêng tư",
       "secure_privacy_description": "Bảo vệ sự riêng tư của bạn là quan trọng đối với chúng tôi! Hãy yên tâm rằng thông tin của bạn sẽ được giữ an toàn và không bị xâm phạm. Chúng tôi không bán thông tin cá nhân của bạn để lấy tiền và sẽ chỉ sử dụng thông tin của bạn theo chính sách quyền riêng tư và cookie của chúng tôi để cung cấp và cải thiện dịch vụ của chúng tôi cho bạn."
+    },
+    "shipping_country": {
+      "product_country": "Giao hàng đến {{ country }}",
+      "product_country_with_currency": "Giao hàng đến {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "Quốc gia giao hàng được xác nhận khi thanh toán",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "eyebrow": "Kiểm tra quốc gia giao hàng",
+      "page_title_country": "Có, hiện chúng tôi giao hàng đến {{ country }}",
+      "page_title_default": "Quốc gia giao hàng hiện tại",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
+      "schema_standard_shipping": "Đã bao gồm giao hàng tiêu chuẩn",
+      "country_list_heading": "Các quốc gia chúng tôi hiện giao hàng ({{ count }})",
+      "country_list_highlight": "Mọi quốc gia trong danh sách này đều được bật ở bước thanh toán. Quốc gia bạn chọn sẽ được tô nổi bật khi Shopify có thể nhận diện.",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -374,10 +405,10 @@
       "empty": "Giỏ hàng của bạn đang trống",
       "cart_error": "Đã xảy ra lỗi khi cập nhật giỏ hàng. Vui lòng thử lại.",
       "cart_quantity_error_html": "Bạn chỉ có thể thêm {{ quantity }} mặt hàng này vào giỏ hàng.",
-      "taxes_and_shipping_policy_at_checkout_html": "Thuế, chiết khấu và vận chuyển được tính khi thanh toán. <a href=\"{{ link }}\">Chính sách vận chuyển</a>",
-      "taxes_included_but_shipping_at_checkout": "Đã bao gồm thuế. Giảm giá và vận chuyển được tính khi thanh toán.",
-      "taxes_included_and_shipping_policy_html": "Đã bao gồm thuế. Giảm giá và vận chuyển được tính khi thanh toán. <a href=\"{{ link }}\">Chính sách vận chuyển</a>",
-      "taxes_and_shipping_at_checkout": "Thuế, chiết khấu và vận chuyển được tính khi thanh toán.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
       "headings": {
         "product": "Sản phẩm",
         "price": "Giá",
@@ -402,18 +433,19 @@
       "trust": {
         "secure_checkout": "Thanh toán an toàn",
         "ssl_encrypted": "SSL được mã hóa",
-        "free_shipping": "Tùy chọn vận chuyển",
+        "free_shipping": "Đã gồm giao hàng",
         "returns": "Trả lại 30 ngày",
         "secure": "Chắc chắn",
         "encrypted": "Đã mã hóa",
-        "free_ship": "vận chuyển"
+        "free_ship": "Đã gồm giao hàng"
       },
       "discount_code_toggle": "Có mã giảm giá?",
       "shipping_label": "vận chuyển",
-      "shipping_free": "Được tính khi thanh toán",
+      "shipping_free": "Đã gồm tiêu chuẩn",
       "popular_with_families": "Phổ biến với gia đình",
       "recently_viewed": "Đã xem gần đây",
-      "savings_html": "Bạn đang tiết kiệm <strong>{{ amount }}</strong>"
+      "savings_html": "Bạn đang tiết kiệm <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
     },
     "footer": {
       "payment": "Phương thức thanh toán"
@@ -456,7 +488,8 @@
       "carousel": "Quay vòng",
       "announcement": "Thông báo",
       "announcement_bar": "Thanh thông báo",
-      "default_promo": "MIỄN PHÍ VẬN CHUYỂN CHO TẤT CẢ ĐƠN HÀNG | PHỐI ĐỒ GIA ĐÌNH DỄ DÀNG | THANH TOÁN AN TOÀN"
+      "default_promo": "ĐÃ BAO GỒM GIAO HÀNG TIÊU CHUẨN | TÙY CHỌN NHANH KHI THANH TOÁN | THANH TOÁN AN TOÀN",
+      "shipping_country_promo": "ĐÃ BAO GỒM GIAO HÀNG TIÊU CHUẨN ĐẾN {{ country }} | TÙY CHỌN NHANH KHI THANH TOÁN | THANH TOÁN AN TOÀN"
     },
     "quick_order_list": {
       "product_total": "Tổng phụ sản phẩm",

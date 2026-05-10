@@ -1,0 +1,104 @@
+{
+  "overall_status": "PASS_WITH_APPROVAL_GATE_SHARPENING",
+  "scope": {
+    "source_packet": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-controlled-infra-refresh/lanes/ads-intl/",
+    "output_lane": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-ai-army-safe-advance-2/lanes/google-ads-intl/",
+    "local_only": true,
+    "external_account_writes": false,
+    "google_ads_import_or_preview_run": false,
+    "browser_account_actions": false
+  },
+  "counts": {
+    "campaigns": 17,
+    "countries": [
+      "GB",
+      "CA",
+      "AU",
+      "CH",
+      "DK",
+      "DE",
+      "NL",
+      "SE",
+      "FR",
+      "BE",
+      "ES",
+      "IT",
+      "PL",
+      "CZ",
+      "RO",
+      "GR",
+      "PT"
+    ],
+    "unique_ad_groups": 204,
+    "positive_keywords": 612,
+    "campaign_negatives": 629,
+    "rsas": 204,
+    "web_bulk_rows": 1666,
+    "web_bulk_row_types": {
+      "Campaign": 17,
+      "Ad group": 204,
+      "Keyword": 612,
+      "Negative keyword": 629,
+      "Ad": 204
+    }
+  },
+  "guardrails": {
+    "all_importable_statuses_paused": {
+      "status": "PASS",
+      "failure_count": 0,
+      "note": "Negative keyword web-bulk rows do not carry a status field; source negative_keyword_plan.csv marks each as Paused import row and the parent campaign rows are Paused."
+    },
+    "max_cpc_at_or_below_0_20": {
+      "status": "PASS",
+      "max_seen": "0.15",
+      "limit": "0.20",
+      "failure_count": 0
+    },
+    "no_importable_us_campaign_23827590655_rows": {
+      "status": "PASS",
+      "failure_count": 0,
+      "non_importable_context_reference_note": "country_tier_plan.csv and manifest/script/documentation context can reference existing US campaign 23827590655 as the template/gate; importable rows do not."
+    },
+    "no_prohibited_google_ads_surface_rows": {
+      "status": "PASS",
+      "failure_count": 0,
+      "checked_phrases": [
+        "pmax",
+        "performance max",
+        "standard shopping",
+        "product-scope",
+        "product scope",
+        "feed-label",
+        "feed label",
+        "product-group",
+        "product group",
+        "conversion-goal",
+        "conversion goal"
+      ]
+    },
+    "es_it_ro_pt_final_urls_country_qualified": {
+      "status": "PASS",
+      "failure_count": 0,
+      "expected_patterns": {
+        "ES": "/es/products/<handle>?country=ES",
+        "IT": "/it/products/<handle>?country=IT",
+        "RO": "/ro/products/<handle>?country=RO",
+        "PT": "/pt/products/<handle>?country=PT"
+      },
+      "checked_final_url_fields_per_country": 102
+    }
+  },
+  "approval_gate": {
+    "existing_packet_gate_matches_canonical_owner_standard": false,
+    "status": "NEEDS_SHARPENING",
+    "recommended_exact_wording": "APPROVE PAUSED NON-US GOOGLE SEARCH TEST BUILD ONLY: CREATE PAUSED GOOGLE SEARCH TEST CAMPAIGNS FOR UK, CANADA, AUSTRALIA, SWITZERLAND, DENMARK, GERMANY, NETHERLANDS, SWEDEN, FRANCE, BELGIUM, SPAIN, ITALY, POLAND, CZECHIA, ROMANIA, PORTUGAL, AND GREECE; DO NOT CREATE OR EDIT US CAMPAIGN 23827590655; USE TIGHT EXACT/PHRASE KEYWORDS, PRESENCE-ONLY LOCATION TARGETING, CPC CAPS AT OR BELOW $0.20, AND KEEP ALL CAMPAIGNS, AD GROUPS, ADS, AND KEYWORDS PAUSED; NO LIVE SPEND; NO PMAX, STANDARD SHOPPING, PRODUCT-SCOPE, FEED-LABEL, PRODUCT-GROUP, CONVERSION-GOAL, MERCHANT, SHOPIFY PRODUCT-DATA, PINTEREST, THEME, BUDGET-INCREASE, BID-INCREASE, OR ENABLEMENT CHANGES; PREVIEW AND READ BACK BEFORE AND AFTER."
+  },
+  "residual_risks": [
+    "No Google Ads preview/import/readback was run in this local-only lane.",
+    "Future paused import still requires exact owner approval and preview-only validation before applying.",
+    "International live spend remains blocked by Merchant, Pinterest, tracking, economics, checkout, landing-page, and final approval gates.",
+    "GB and CA still need visual checkout UI confirmation before spend.",
+    "English-only shells outside English-first countries may have limited reach and conversion quality."
+  ],
+  "next_best_action": "Use the recommended exact approval gate before any paused non-US Google Search build; if approved, run preview-only import validation and just-in-time readbacks before applying."
+}

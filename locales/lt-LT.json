@@ -172,7 +172,7 @@
       },
       "view_full_details": "Žiūrėti visą informaciją",
       "include_taxes": "Mokesčiai įtraukti.",
-      "shipping_policy_html": "Pristatymo parinktys ir mokesčiai rodomi kasoje po adreso įvedimo. <a href=\"{{ link }}\">Pristatymo politika</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
       "choose_options": "Rinktis variantus",
       "choose_product_options": "Rinktis {{ product_name }} variantus",
       "value_unavailable": "{{ option_value }} – neturime",
@@ -229,7 +229,7 @@
         "write_review": "Parašyk atsiliepimą",
         "write_review_title": "Parašykite atsiliepimą"
       },
-      "free_shipping_all_orders": "Nemokamas pristatymas visiems užsakymams",
+      "free_shipping_all_orders": "Standartinis pristatymas įskaičiuotas",
       "selected_size_label": "Dydis: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Detalės",
@@ -287,17 +287,17 @@
       "secure_checkout": "Saugi patikra",
       "ssl_encrypted": "SSL šifruotas",
       "returns": "30 dienų grąžinimo langas",
-      "free_shipping": "Siuntimas parodytas kasoje",
+      "free_shipping": "Standartinis pristatymas įskaičiuotas",
       "trusted_since": "Paprasta suderinti šeimą",
       "assistance_note": "Reikia pagalbos? Paprastai atsakome per vieną darbo dieną."
     },
     "additional_info": {
       "shipping_title": "Siuntimas ir pristatymas",
-      "free_shipping_label": "Nemokamas pristatymas",
+      "free_shipping_label": "Standartinis pristatymas įskaičiuotas",
       "estimated_delivery": "Numatomas pristatymas:",
       "standard_delivery_window": "12-15 darbo dienų",
       "premium_delivery_window": "Greitosios parinktys rodomos atsiskaitant, jei jos yra.",
-      "faster_shipping_prefix": "Norite greičiau? Išleiskite daugiau nei 100 USD ir gaukite",
+      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
       "free_premium_shipping": "Greitas siuntimas",
       "return_policy_title": "Grąžinimo politika",
       "return_policy_line_1": "Jūs turite 30 dienų nuo pristatymo pateikti prašymą grąžinti arba pakeisti.",
@@ -312,6 +312,37 @@
       "secure_logistics_line_2": "Norėdami gauti naujausius operatoriaus naujinius, naudokite užsakymo stebėjimo nuorodą. Tarptautiniams užsakymams gali būti taikomi vietiniai mokesčiai, muitai arba muito mokesčiai, kuriuos renka vežėjas arba vietos valdžios institucija.",
       "secure_privacy_title": "Saugus privatumas",
       "secure_privacy_description": "Mums svarbu apsaugoti Jūsų privatumą! Būkite tikri, kad jūsų informacija bus saugi ir be kompromisų. Mes neparduodame jūsų asmeninės informacijos už pinigus ir naudosime jūsų informaciją tik vadovaudamiesi savo privatumo ir slapukų politika, siekdami teikti ir tobulinti jums teikiamas paslaugas."
+    },
+    "shipping_country": {
+      "product_country": "Pristatymas į {{ country }}",
+      "product_country_with_currency": "Pristatymas į {{ country }} / {{ currency }} {{ symbol }}",
+      "product_country_confirmed": "Pristatymo šalis patvirtinama atsiskaitant",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "eyebrow": "Pristatymo šalies patikra",
+      "page_title_country": "Taip, šiuo metu pristatome į {{ country }}",
+      "page_title_default": "Dabartinės pristatymo šalys",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
+      "schema_standard_shipping": "Standartinis pristatymas įskaičiuotas",
+      "country_list_heading": "Šalys, į kurias šiuo metu pristatome ({{ count }})",
+      "country_list_highlight": "Kiekviena šiame sąraše esanti šalis yra įjungta atsiskaityme. Pasirinkta šalis paryškinama, kai Shopify gali ją aptikti.",
+      "checker_trigger": "Do we ship to my country?",
+      "checker_trigger_meta": "{{ count }} countries enabled",
+      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
+      "checker_footer_heading": "Check shipping before you order",
+      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
+      "checker_title": "Do we ship to my country?",
+      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
+      "checker_current_country": "Your current country selection is {{ country }}.",
+      "checker_search_label": "Search country or region",
+      "checker_search_placeholder": "Type a country name, code, or currency",
+      "checker_result_label": "countries shown",
+      "checker_selected_badge": "Selected",
+      "checker_available_badge": "Ships here",
+      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "Close country checker",
+      "checker_result_single_label": "country shown"
     }
   },
   "templates": {
@@ -394,10 +425,10 @@
       "empty": "Jūsų krepšelis tuščias",
       "cart_error": "Atnaujinant krepšelį įvyko klaida. Bandykite dar kartą.",
       "cart_quantity_error_html": "Į krepšelį galite įdėti tik {{ quantity }}šios prekės vnt.",
-      "taxes_and_shipping_policy_at_checkout_html": "Mokesčiai, nuolaidos ir pristatymas apskaičiuojami atsiskaitant. <a href=\"{{ link }}\">Pristatymo politika</a>",
-      "taxes_included_but_shipping_at_checkout": "Mokesčiai įskaičiuoti. Nuolaidos ir siuntimas apskaičiuojamas atsiskaitant.",
-      "taxes_included_and_shipping_policy_html": "Mokesčiai įskaičiuoti. Nuolaidos ir siuntimas apskaičiuojamas atsiskaitant. <a href=\"{{ link }}\">Pristatymo politika</a>",
-      "taxes_and_shipping_at_checkout": "Mokesčiai, nuolaidos ir pristatymas apskaičiuojami atsiskaitant.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
       "update": "Atnaujinti",
       "headings": {
         "product": "Gaminys",
@@ -422,18 +453,19 @@
       "trust": {
         "secure_checkout": "Saugi patikra",
         "ssl_encrypted": "SSL šifruotas",
-        "free_shipping": "Siuntimo parinktys",
+        "free_shipping": "Pristatymas įskaičiuotas",
         "returns": "30 dienų grąžinimas",
         "secure": "Saugus",
         "encrypted": "Šifruota",
-        "free_ship": "Siuntimas"
+        "free_ship": "Pristatymas įskaičiuotas"
       },
       "popular_with_families": "Populiarus tarp šeimų",
       "recently_viewed": "Neseniai žiūrėta",
       "discount_code_toggle": "Have a discount code?",
-      "shipping_free": "Skaičiuojama atsiskaitant",
+      "shipping_free": "Standartinis įskaičiuotas",
       "shipping_label": "Shipping",
-      "savings_html": "Jūs taupote <strong>{{ amount }}</strong>"
+      "savings_html": "Jūs taupote <strong>{{ amount }}</strong>",
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
     },
     "footer": {
       "payment": "Mokėjimo būdai"
@@ -476,7 +508,8 @@
       "carousel": "Karuselė",
       "announcement": "Skelbimas",
       "announcement_bar": "Skelbimo juosta",
-      "default_promo": "NEMOKAMAS PRISTATYMAS VISIEMS UŽSAKYMAMS | ŠEIMOS DERINIAI PAPRASTAI | SAUGUS ATSISKAITYMAS"
+      "default_promo": "STANDARTINIS PRISTATYMAS ĮSKAIČIUOTAS | EXPRESS PARINKTYS ATSISKAITANT | SAUGUS ATSISKAITYMAS",
+      "shipping_country_promo": "STANDARTINIS PRISTATYMAS Į {{ country }} ĮSKAIČIUOTAS | EXPRESS PARINKTYS ATSISKAITANT | SAUGUS ATSISKAITYMAS"
     },
     "quick_order_list": {
       "product_total": "Gaminių tarpinė suma",

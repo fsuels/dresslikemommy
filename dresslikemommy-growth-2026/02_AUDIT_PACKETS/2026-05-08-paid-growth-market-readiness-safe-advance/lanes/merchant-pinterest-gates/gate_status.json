@@ -1,0 +1,143 @@
+{
+  "generated_at": "2026-05-09",
+  "mode": "local_read_only_synthesis",
+  "external_writes_made": false,
+  "repo_write_scope": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-market-readiness-safe-advance/lanes/merchant-pinterest-gates/",
+  "merchant": {
+    "account_id": "124884876",
+    "overall_status": "OWNER_APPROVAL_REQUIRED_FOR_NARROW_US_ES_REPAIR",
+    "live_spend_ready": false,
+    "us_en_age_group": {
+      "status": "SOLVED_DO_NOT_REDO",
+      "problem_id": "PROB-2026-05-08-MERCHANT-AGE-GROUP-EXACT-EXPORT",
+      "paid_cohort_missing_age_group_count": 0,
+      "prior_exact_count": 623,
+      "note": "Original US/en/United States paid-cohort Missing age group blocker is closed and should not trigger repeat Shopify age_group edits or broad Merchant refreshes."
+    },
+    "us_es_age_group": {
+      "status": "OWNER_APPROVAL_REQUIRED_FOR_LIVE_FIX",
+      "problem_id": "PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP",
+      "source_id": "10627981690",
+      "source_name": "Shopify App API",
+      "feed_label": "US",
+      "language": "es",
+      "country": "United States",
+      "issue": "Missing age group",
+      "affected_paid_item_ids": 625,
+      "affected_issue_rows": 1250,
+      "shopping_ads_rows": 625,
+      "free_listings_rows": 625,
+      "preferred_repair_path": "Path A: age_group-only supplemental source joined to source 10627981690 after exact row/source preview",
+      "fallback_repair_path": "Path B: one source-specific official refresh only if UI proves it is narrow to source 10627981690 / US / es",
+      "blocked_actions_without_exact_approval": [
+        "Merchant upload",
+        "Merchant source refresh",
+        "Merchant source edit",
+        "Shopify product-data edit",
+        "Google Ads edit",
+        "Pinterest edit",
+        "product-scope change",
+        "feed-label change",
+        "product-group change",
+        "conversion-goal change",
+        "budget/bid/status change",
+        "PMax or Standard Shopping change",
+        "live-spend change"
+      ],
+      "fixed_criteria": [
+        "Fresh exact product-issues export or equivalent shows 0 paid-cohort US/es/United States Missing age group rows",
+        "At least two formerly affected US/es product details show effective n:age_group and no Missing age group",
+        "Paid-cohort US/en/United States remains 0",
+        "Paid labels and Standard Shopping product scope remain unchanged",
+        "No Google Ads, Pinterest, Shopify product-data, product-scope, feed-label, product-group, conversion-goal, budget, bid, status, PMax, Standard Shopping, or live-spend change occurred"
+      ]
+    }
+  },
+  "pinterest": {
+    "advertiser_id": "549756244483",
+    "overall_status": "PAUSED_US_DRAFT_READY_FOR_EXACT_OWNER_APPROVAL__LIVE_SPEND_BLOCKED_BY_EVENT_QUALITY_FAIR",
+    "paused_draft_ready_with_approval": true,
+    "live_spend_ready": false,
+    "problem_id": "PROB-2026-05-08-PINTEREST-EVENT-QUALITY",
+    "clean_scope": {
+      "csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/pinterest_us_clean_launch_scope_resolved_342.csv",
+      "rows": 342,
+      "locale": "en-US",
+      "availability": "IN_STOCK",
+      "custom_label_0": "paid_eligible",
+      "custom_label_4": "us_test_ready",
+      "product_split": {
+        "mommy_me": 210,
+        "family_matching": 103,
+        "pajamas": 29
+      }
+    },
+    "exclusions": {
+      "csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/pinterest_us_unresolved_exclusions_4.csv",
+      "rows": 4,
+      "shopify_variant_ids": [
+        "41878208249953",
+        "41878208479329",
+        "41878208577633",
+        "41878208610401"
+      ],
+      "clean_exclusion_overlap": 0
+    },
+    "event_quality": {
+      "status": "Fair",
+      "updated_date": "2026-05-06",
+      "pinterest_tag_status": "Fair",
+      "conversions_api_status": "Fair",
+      "pinterest_tag_latest": "2026-05-08T05:50:56.502Z",
+      "conversions_api_latest": "2026-05-08T05:51:13.760Z",
+      "verified_merchant_program": "PASS",
+      "automatic_enhanced_match": "PASS",
+      "enhanced_match": "ERROR",
+      "top_action_items": [
+        "product_id__ADD_PAYMENT_INFO",
+        "hashed_email__ADD_TO_CART",
+        "click_id_epik__CHECKOUT"
+      ],
+      "interpretation": "Official Pinterest app path is alive. Fair Event Quality permits exact-owner-approved paused draft creation but blocks live spend unless risk is explicitly accepted or a narrow repair is approved."
+    },
+    "safe_source_gate": {
+      "use_source_id": "3041760867124595727",
+      "do_not_use_source_ids": [
+        "3041760916127467912"
+      ],
+      "do_not_use": [
+        "failed sitemap source",
+        "localized Pinterest sources",
+        "international Pinterest expansion before US measurement improves"
+      ]
+    },
+    "blocked_actions_without_exact_approval": [
+      "Pinterest draft creation",
+      "Pinterest campaign creation",
+      "Pinterest product group creation",
+      "Pinterest catalog source edit",
+      "Pinterest audience edit",
+      "Pinterest tag/CAPI edit",
+      "budget/bid/status/live spend change",
+      "Shopify product edit",
+      "Merchant edit",
+      "Google Ads edit",
+      "feed change"
+    ]
+  },
+  "next_exact_approval_gates": {
+    "merchant_path_a": "APPROVE MERCHANT US/ES AGE_GROUP PATH A ONLY: CREATE OR UPDATE ONE AGE_GROUP-ONLY MERCHANT SUPPLEMENTAL SOURCE JOINED TO SOURCE 10627981690 / SHOPIFY APP API FOR FEED LABEL US, LANGUAGE ES, COUNTRY UNITED STATES, USING ONLY EXACT PREVIEWED PAID-COHORT ITEM IDS CURRENTLY FAILING MISSING AGE_GROUP AND ONLY COLUMNS ID AND AGE_GROUP; NO GOOGLE ADS, PINTEREST, SHOPIFY PRODUCT-DATA, PRODUCT-SCOPE, FEED-LABEL, PRODUCT-GROUP, CONVERSION-GOAL, BUDGET, BID, STATUS, PMAX, STANDARD SHOPPING, OR LIVE-SPEND CHANGES; NO PRIMARY SOURCE EDIT, BROAD SOURCE REFRESH, OR NON-AGE_GROUP PRODUCT-DATA CHANGE; PREVIEW ROW SCOPE FIRST, APPLY ONLY IF PREVIEW MATCHES, AND READ BACK SOURCE PROCESSING, PRODUCT DETAILS, EXACT EXPORT, AND LABEL/SCOPE INTEGRITY AFTER.",
+    "pinterest_paused_us_draft": "APPROVE PAUSED PINTEREST US CATALOG/RETARGETING DRAFT BUILD ONLY: USE THE 2026-05-08 CLEAN 342-ROW EN-US IN-STOCK SCOPE AND EXCLUDE THE 4 UNRESOLVED VARIANTS; KEEP ALL CAMPAIGNS, AD GROUPS, ADS, AND PRODUCT GROUPS PAUSED; NO LIVE SPEND; NO BUDGET OR BID ACTIVATION; NO CATALOG SOURCE, TAG, CAPI, AUDIENCE, SHOPIFY PRODUCT, MERCHANT, GOOGLE ADS, OR FEED CHANGES; READ BACK BEFORE AND AFTER.",
+    "pinterest_event_quality_repair": "APPROVE NARROW PINTEREST EVENT QUALITY REPAIR ONLY: INVESTIGATE OFFICIAL SHOPIFY/PINTEREST APP AND CUSTOMER EVENTS CONFIGURATION FOR PRODUCT ID, EMAIL, AND CLICK ID GAPS; NO CAMPAIGN, DRAFT, PRODUCT GROUP, CATALOG SOURCE, AUDIENCE, BUDGET, BID, STATUS, OR SPEND CHANGES; NO DUPLICATE THEME TAG; NO CUSTOM CAPI DEPLOYMENT OR CUSTOMER-DATA CHANGE WITHOUT A SEPARATE READBACK AND APPROVAL; READ BACK BEFORE AND AFTER."
+  },
+  "evidence_used": [
+    "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+    "ops/PROBLEM_TRACKER.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-exact-export-readback/MERCHANT_AGE_GROUP_EXACT_EXPORT_READBACK_REPORT.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-readonly-us-es-au-followup/lanes/merchant-us-es-readonly/MERCHANT_US_ES_SOURCE_DETAIL_READBACK.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-ai-army-safe-advance-2/lanes/merchant-us-es-repair/MERCHANT_US_ES_AGE_GROUP_REPAIR_APPROVAL_PACKET.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/PINTEREST_CATALOG_EVENT_UNBLOCK_REPORT.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-safe-followup/lanes/pinterest-gate/PINTEREST_EVENT_QUALITY_DRAFT_GATE.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-ai-army-safe-advance-2/lanes/pinterest-gate/PINTEREST_PAUSED_US_DRAFT_EVENT_QUALITY_GATE_REFRESH.md"
+  ]
+}

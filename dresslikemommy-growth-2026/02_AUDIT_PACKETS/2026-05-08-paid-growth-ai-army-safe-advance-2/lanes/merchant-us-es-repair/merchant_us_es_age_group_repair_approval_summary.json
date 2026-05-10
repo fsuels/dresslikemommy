@@ -1,0 +1,206 @@
+{
+  "packet": "merchant_us_es_age_group_repair_approval_packet",
+  "prepared_at": "2026-05-09",
+  "problem_id": "PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP",
+  "mode": "LOCAL_READ_ONLY_APPROVAL_PACKET_ONLY",
+  "write_scope_honored": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-ai-army-safe-advance-2/lanes/merchant-us-es-repair/",
+  "external_account_access": false,
+  "live_actions_taken": [],
+  "guardrails_preserved": [
+    "No Merchant feed upload.",
+    "No Merchant source sync, refresh, update click, source creation, or source edit.",
+    "No Shopify product-data edit.",
+    "No Google Ads or Pinterest write.",
+    "No product-scope, feed-label, product-group, conversion-goal, budget, bid, status, PMax, Standard Shopping, or live-spend change."
+  ],
+  "current_problem_state": {
+    "merchant_center_account": "124884876",
+    "status": "OWNER_APPROVAL_REQUIRED_FOR_LIVE_FIX",
+    "surface": {
+      "source_id": "10627981690",
+      "source_name": "Shopify App API",
+      "feed_label": "US",
+      "language": "es",
+      "country": "United States"
+    },
+    "issue": "Missing age group",
+    "affected_paid_cohort_unique_item_ids": 625,
+    "affected_rows": 1250,
+    "traffic_type_counts": {
+      "Shopping ads": 625,
+      "Free listings": 625
+    },
+    "item_status_counts": {
+      "ELIGIBLE_LIMITED": 1250
+    },
+    "issue_severity_counts": {
+      "SEVERITY_DEMOTED": 1250
+    },
+    "click_potential_counts": {
+      "Low": 1244,
+      "Available soon": 6
+    },
+    "derived_age_group_counts_for_affected_ids": {
+      "adult": 284,
+      "kids": 216,
+      "toddler": 123,
+      "infant": 2
+    }
+  },
+  "why_us_en_is_solved_and_separate": {
+    "us_en_status": "SOLVED_READBACK_PASSED",
+    "prior_us_en_unique_item_ids": 623,
+    "current_us_en_unique_item_ids": 0,
+    "delta": -623,
+    "us_en_source_path": {
+      "primary_source_id": "10627623003",
+      "primary_source_name": "Shopify App API",
+      "feed_label": "US",
+      "language": "en",
+      "dedicated_age_group_source_id": "10651516446",
+      "dedicated_age_group_source_name": "upload_paid_cohort_age_group_only.txt",
+      "dedicated_source_used_in": "Shopify App API (US, English)",
+      "recognized_attribute": "n:age_group",
+      "total_updated_products": 780,
+      "matched_products": 771,
+      "unmatched_products": 9
+    },
+    "us_es_separate_basis": [
+      "Remaining exact export rows are only feed label US, language es, country United States.",
+      "Read-only product details show source 10627981690 / Shopify App API for US/es.",
+      "Two affected US/es samples lack effective n:age_group and still show Missing age group.",
+      "A control sample on source 10627981690 has n:age_group and no Missing age group.",
+      "This does not reopen the solved US/en Standard Shopping gate."
+    ]
+  },
+  "evidence_chain": [
+    {
+      "type": "exact_export_report",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-exact-export-readback/MERCHANT_AGE_GROUP_EXACT_EXPORT_READBACK_REPORT.md",
+      "key_result": "Paid-cohort US/en/United States Missing age group count is 0; US/es follow-up remains."
+    },
+    {
+      "type": "exact_export_summary",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-exact-export-readback/reconciliation/merchant-product-issues-summary-2026-05-08-0252.json",
+      "key_result": "download_rows=33620; paid_missing_age_group_unique_item_ids_us_en_united_states=0."
+    },
+    {
+      "type": "context_breakdown",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-merchant-age-group-exact-export-readback/reconciliation/merchant-product-issues-paid-age-group-context-breakdown.json",
+      "key_result": "Remaining paid Missing age group rows are 625 Free listings and 625 Shopping ads rows, all US/es/United States."
+    },
+    {
+      "type": "local_us_es_diagnosis",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-safe-followup/lanes/merchant-us-es/MERCHANT_US_ES_AGE_GROUP_DIAGNOSIS.md",
+      "key_result": "Likely source path is source 10627981690; all 625 affected IDs have derived local age_group values."
+    },
+    {
+      "type": "live_read_only_source_detail",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-readonly-us-es-au-followup/lanes/merchant-us-es-readonly/MERCHANT_US_ES_SOURCE_DETAIL_READBACK.md",
+      "key_result": "Two affected US/es details lack n:age_group; one control sample has n:age_group."
+    }
+  ],
+  "sample_readbacks": [
+    {
+      "item_id": "shopify_US_7227630649441_41872775020641",
+      "expected_age_group": "kids",
+      "source_id": "10627981690",
+      "missing_age_group_shown": true,
+      "effective_n_age_group_present": false,
+      "notes": "Affected sample; issue appears under Free listings."
+    },
+    {
+      "item_id": "shopify_US_7227379023969_41871522431073",
+      "expected_age_group": "adult",
+      "source_id": "10627981690",
+      "missing_age_group_shown": true,
+      "effective_n_age_group_present": false,
+      "notes": "Affected sample; issue appears under Shopping ads."
+    },
+    {
+      "item_id": "shopify_US_7227254276193_41871113158753",
+      "expected_age_group": "toddler",
+      "source_id": "10627981690",
+      "missing_age_group_shown": false,
+      "effective_n_age_group_present": true,
+      "notes": "Control sample on the same source."
+    }
+  ],
+  "repair_path_candidates": [
+    {
+      "id": "PATH_A",
+      "name": "US/es age_group-only supplemental source",
+      "recommended_order": 1,
+      "live_write_required": true,
+      "summary": "Create or update one age_group-only supplemental source joined to source 10627981690 for feed label US, language es, country United States, using only exact previewed affected IDs and only id,age_group columns.",
+      "why_safe": [
+        "Limits write surface to the missing attribute.",
+        "Avoids broad source refresh side effects.",
+        "Has a previewable row count and schema."
+      ],
+      "main_risk": "Still a Merchant upload/source action; must not proceed without exact approval and a clean source join preview."
+    },
+    {
+      "id": "PATH_B",
+      "name": "Source-specific official refresh",
+      "recommended_order": 2,
+      "live_write_required": true,
+      "summary": "After readback, click one clearly labeled official source-specific refresh/sync/update-products control only if the UI proves it applies to source 10627981690 / US / es.",
+      "why_safe": [
+        "Uses the native app/source path.",
+        "May pick up already-correct data without creating a new source."
+      ],
+      "main_risk": "Official controls may be broader than they appear; if context is ambiguous, do not click."
+    }
+  ],
+  "approval_texts": {
+    "PATH_A": "APPROVE MERCHANT US/ES AGE_GROUP PATH A ONLY: CREATE OR UPDATE ONE AGE_GROUP-ONLY MERCHANT SUPPLEMENTAL SOURCE JOINED TO SOURCE 10627981690 / SHOPIFY APP API FOR FEED LABEL US, LANGUAGE ES, COUNTRY UNITED STATES, USING ONLY EXACT PREVIEWED PAID-COHORT ITEM IDS CURRENTLY FAILING MISSING AGE_GROUP AND ONLY COLUMNS ID AND AGE_GROUP; NO GOOGLE ADS, PINTEREST, SHOPIFY PRODUCT-DATA, PRODUCT-SCOPE, FEED-LABEL, PRODUCT-GROUP, CONVERSION-GOAL, BUDGET, BID, STATUS, PMAX, STANDARD SHOPPING, OR LIVE-SPEND CHANGES; NO PRIMARY SOURCE EDIT, BROAD SOURCE REFRESH, OR NON-AGE_GROUP PRODUCT-DATA CHANGE; PREVIEW ROW SCOPE FIRST, APPLY ONLY IF PREVIEW MATCHES, AND READ BACK SOURCE PROCESSING, PRODUCT DETAILS, EXACT EXPORT, AND LABEL/SCOPE INTEGRITY AFTER.",
+    "PATH_B": "APPROVE MERCHANT US/ES AGE_GROUP PATH B ONLY: READ BACK SOURCE 10627981690 AND TWO AFFECTED US/ES PRODUCT DETAILS FIRST; THEN CLICK ONE CLEARLY LABELED SOURCE-SPECIFIC OFFICIAL SHOPIFY APP API / GOOGLE & YOUTUBE REFRESH, SYNC, OR UPDATE-PRODUCTS CONTROL ONLY IF THE UI CONTEXT PROVES IT APPLIES TO SOURCE 10627981690 / FEED LABEL US / LANGUAGE ES; NO MERCHANT UPLOAD, SOURCE CREATION, PRIMARY SOURCE EDIT, SHOPIFY PRODUCT-DATA EDIT, GOOGLE ADS, PINTEREST, PRODUCT-SCOPE, FEED-LABEL, PRODUCT-GROUP, CONVERSION-GOAL, BUDGET, BID, STATUS, PMAX, STANDARD SHOPPING, OR LIVE-SPEND CHANGES; DO NOT USE A BROAD ALL-SOURCES REFRESH; READ BACK SOURCE TIMESTAMP, PRODUCT DETAILS, EXACT EXPORT, AND LABEL/SCOPE INTEGRITY AFTER."
+  },
+  "ruled_out_paths": [
+    "Redo Shopify ProductVariant age_group edits unless fresh Shopify readback proves regression.",
+    "Treat the issue as a reopened US/en blocker.",
+    "Explain the remaining issue as the US/en dedicated source's 9 unmatched rows.",
+    "Broad Merchant source refresh/sync/update without exact approval.",
+    "Merchant source edit without preview.",
+    "Shopify product-data edit by inference.",
+    "Product-scope, feed-label, product-group, Standard Shopping, PMax, conversion-goal, budget, bid, status, or live-spend changes.",
+    "Local inventory feed/store-pickup/physical-store repair."
+  ],
+  "preflight_readbacks": [
+    "Confirm parent owns a narrow active write claim for Merchant US/es age_group only.",
+    "Fresh exact export or equivalent confirms US/en remains 0 and records current US/es count.",
+    "Read back affected item shopify_US_7227630649441_41872775020641 with expected age_group kids.",
+    "Read back affected item shopify_US_7227379023969_41871522431073 with expected age_group adult.",
+    "Read back control item shopify_US_7227254276193_41871113158753 with expected age_group toddler.",
+    "Confirm source 10627981690 / Shopify App API / US / es.",
+    "For Path A, preview exact row scope and only id,age_group columns.",
+    "For Path B, prove the UI control is source-specific; stop if it is account-wide or ambiguous."
+  ],
+  "post_readbacks": [
+    "Source/action timestamp or processing report advanced and has no parse errors.",
+    "For Path A, n:age_group is recognized and matched/unmatched counts are recorded.",
+    "Two affected product details show n:age_group and no Missing age group.",
+    "Control product detail remains clean for age_group.",
+    "Fresh exact export shows US/es Missing age group is 0 or remaining rows are itemized under a narrower problem.",
+    "US/en Missing age group remains 0.",
+    "US/en paid labels and Standard Shopping scope/settings are unchanged.",
+    "Problem tracker, worklog, coordination, and evidence packet are updated by the parent/orchestrator."
+  ],
+  "fixed_criteria": [
+    "Fresh exact product-issues export or equivalent readback shows 0 paid-cohort US/es/United States Missing age group rows.",
+    "At least two formerly affected US/es product details show effective n:age_group and no Missing age group.",
+    "Paid-cohort US/en/United States remains 0.",
+    "US/en paid labels and Standard Shopping product scope remain unchanged.",
+    "No Google Ads, Pinterest, Shopify product-data, product-scope, feed-label, product-group, conversion-goal, budget, bid, status, PMax, Standard Shopping, or live-spend change occurred as part of this repair."
+  ],
+  "parallel_lanes_to_continue": [
+    "Paused non-US Google Search infrastructure approval gate and local validation.",
+    "Pinterest paused US draft/Event Quality gate using clean 342-row EN-US scope and 4 exclusions.",
+    "GB/CA visual checkout UI confirmation before spend.",
+    "ROAS/economics guardrail refinement.",
+    "Claim-safe creative/RSA/Pinterest copy packs.",
+    "Reporting/readback packet work for campaign and catalog readiness."
+  ],
+  "parent_integration_note": "This subagent did not update ops/PROBLEM_TRACKER.md, ops/AGENT_WORKLOG.md, or ops/AGENT_COORDINATION.md because the assigned write scope was limited to the lane directory."
+}
