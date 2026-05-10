@@ -2251,6 +2251,20 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     return match[1].toLowerCase();
   }
 
+  function getAdultSizeRank(token) {
+    var ranks = {
+      xs: 1,
+      s: 2,
+      m: 3,
+      l: 4,
+      xl: 5,
+      '2xl': 6,
+      '3xl': 7,
+      '4xl': 8,
+    };
+    return Object.prototype.hasOwnProperty.call(ranks, token) ? ranks[token] : null;
+  }
+
   function hasComparableSizeData(comparable) {
     return !!(
       comparable &&
@@ -2284,7 +2298,7 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
       heightMax: null,
     };
 
-    var ageRangeMatch = comparableRaw.match(/(\d{1,2})\s*-\s*(\d{1,2})\s*(?:t|y|yr|yrs|year|years)\b/i);
+    var ageRangeMatch = comparableRaw.match(/(\d{1,2})\s*-\s*(\d{1,2})\s*(?:t|y|yr|yrs|year|years|歳|才|岁|歲|세|년)\b/i);
     if (ageRangeMatch) {
       comparable.ageMin = parseInt(ageRangeMatch[1], 10);
       comparable.ageMax = parseInt(ageRangeMatch[2], 10);
@@ -2302,6 +2316,16 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
           if (comparable.ageMin === null) comparable.ageMin = monthYears > 1 ? monthYears - 1 : monthYears;
           if (!comparable.toddlerToken) comparable.toddlerToken = String(monthYears) + 't';
         }
+      }
+    }
+
+    var localizedSingleAgeMatch = comparableRaw.match(/(?:^|[^0-9])(\d{1,2})\s*(?:歳|才|岁|歲|세|년)(?:\b|$)/i);
+    if (localizedSingleAgeMatch) {
+      var localizedAgeValue = parseInt(localizedSingleAgeMatch[1], 10);
+      if (!isNaN(localizedAgeValue)) {
+        if (comparable.ageMax === null) comparable.ageMax = localizedAgeValue;
+        if (comparable.ageMin === null) comparable.ageMin = localizedAgeValue;
+        if (!comparable.toddlerToken) comparable.toddlerToken = String(localizedAgeValue) + 't';
       }
     }
 
@@ -2388,7 +2412,13 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
         if (selectedComparable.adultToken === rowComparable.adultToken) {
           score += 140;
         } else {
-          score -= 140;
+          var selectedAdultRank = getAdultSizeRank(selectedComparable.adultToken);
+          var rowAdultRank = getAdultSizeRank(rowComparable.adultToken);
+          if (selectedAdultRank !== null && rowAdultRank !== null && Math.abs(selectedAdultRank - rowAdultRank) <= 2) {
+            score += Math.max(20, 80 - Math.abs(selectedAdultRank - rowAdultRank) * 30);
+          } else {
+            score -= 140;
+          }
         }
       }
 

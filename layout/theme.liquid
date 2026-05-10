@@ -999,6 +999,85 @@
 <link rel="stylesheet" href="{{ 'theme-inline-head-static-04.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'theme-inline-head-static-05.css' | asset_url }}">
 {% endif %}
+<script>
+  (function () {
+    var localeCodes = /^(ar|cs|da|de|el|en|es|fi|fr|he|hi|it|ja|ko|nl|no|pl|pt|pt-br|ro|ru|sv)$/i;
+
+    function normalizedShippingInfoPath(pathname) {
+      var match = String(pathname || '').match(/^\/([a-z]{2}(?:-[a-z]{2})?)pages\/shipping-info\/?$/i);
+
+      if (!match || !localeCodes.test(match[1])) {
+        return '';
+      }
+
+      return '/' + match[1].toLowerCase() + '/pages/shipping-info';
+    }
+
+    function currentCountryCode() {
+      try {
+        return new URLSearchParams(window.location.search).get('country') || '';
+      } catch (error) {
+        return '';
+      }
+    }
+
+    function normalizedShippingInfoHref(href) {
+      try {
+        var url = new URL(href, window.location.origin);
+        var normalizedPath = normalizedShippingInfoPath(url.pathname);
+
+        if (!normalizedPath || url.origin !== window.location.origin) {
+          return '';
+        }
+
+        if (!url.searchParams.get('country')) {
+          var country = currentCountryCode();
+
+          if (country) {
+            url.searchParams.set('country', country);
+          }
+        }
+
+        return normalizedPath + url.search + url.hash;
+      } catch (error) {
+        return '';
+      }
+    }
+
+    function repairShippingInfoLinks(root) {
+      var scope = root || document;
+
+      if (!scope.querySelectorAll) {
+        return;
+      }
+
+      scope.querySelectorAll('a[href*="pages/shipping-info"]').forEach(function (link) {
+        var repairedHref = normalizedShippingInfoHref(link.getAttribute('href'));
+
+        if (repairedHref) {
+          link.setAttribute('href', repairedHref);
+        }
+      });
+    }
+
+    var currentPath = normalizedShippingInfoPath(window.location.pathname);
+
+    if (currentPath) {
+      window.location.replace(currentPath + window.location.search + window.location.hash);
+      return;
+    }
+
+    window.DLMRepairShippingInfoLinks = repairShippingInfoLinks;
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () {
+        repairShippingInfoLinks(document);
+      });
+    } else {
+      repairShippingInfoLinks(document);
+    }
+  })();
+</script>
 </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
