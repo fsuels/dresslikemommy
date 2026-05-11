@@ -912,6 +912,16 @@
           trustEl.textContent = formatDeliveryWindow(today, trustWindow);
           setDeliveryRowVisibility(trustEl, true);
         }
+
+        // PDP compact delivery-promise card: populate "Estimated delivery:
+        // <date range>" with a live computed window so the shopper sees a
+        // concrete date instead of inferring from "12–15 business days".
+        const cardEl = document.getElementById('dlm-shipping-card-date');
+        const cardWindow = getDeliveryWindow('standard', cardEl);
+        if (cardEl && cardWindow) {
+          cardEl.textContent = formatDeliveryWindow(today, cardWindow);
+          setDeliveryRowVisibility(cardEl, true);
+        }
       }
 
       calculateDeliveryDates();

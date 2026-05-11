@@ -48,17 +48,12 @@
           {{ 'products.shipping_country.product_country_confirmed' | t }}
         {%- endif -%}
       </strong>
-      {%- if country_count > 0 -%}
-        <button
-          type="button"
-          class="shipping-country-note__change"
-          data-shipping-country-trigger
-          data-shipping-country-trigger-context="product-note-change"
-          aria-haspopup="dialog"
-        >
-          {{ 'products.shipping_country.checker_trigger' | t }}
-        </button>
-      {%- endif -%}
+      {%- comment -%}
+        CRO: removed inline "Do we ship to my country?" change button — it
+        opened the same modal as the "See all current shipping countries"
+        link rendered just below inside product_note_html, so the duplicate
+        CTA was redundant. The inline link remains the single entry point.
+      {%- endcomment -%}
     </p>
     <p class="shipping-country-note__text">
       {{ product_note_html }}

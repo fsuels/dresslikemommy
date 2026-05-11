@@ -1,0 +1,433 @@
+{%- comment -%}
+  PDP Purchase Confidence module (Baymard-aligned).
+
+  Consolidates shipping, returns, and security into a single visual block
+  with three promise-first summaries and three collapsed <details>:
+
+    🚚  Free standard shipping
+        Estimated delivery to United States: May 27 – June 1
+        Change country
+
+    🔄  30-day returns & exchanges
+        Unworn, unwashed items with tags attached. Some exclusions apply.
+
+    🛡  Secure checkout
+        Encrypted payment. Major cards and express payment options accepted.
+
+    ▾ Shipping details
+    ▾ Return policy
+    ▾ Payment & privacy
+
+  The key principle: show the promise first, hide the policy detail until
+  requested. Replaces three separate auto-expanded accordions on the PDP.
+
+  Inputs (all optional, all driven by the same liquid scope as before):
+    - shipping_label_copy:      "Free standard shipping included" (still used
+                                 for the aria-label / meta channels)
+    - delivery_estimate_copy:   "Estimated delivery:" — only used as fallback
+    - standard_delivery_window: "12-15 business days" fallback text
+    - standard_delivery_copy:   combined fallback line
+{%- endcomment -%}
+
+{%- liquid
+  assign pc_label_copy = shipping_label_copy | default: 'Free standard shipping included'
+  assign pc_window = standard_delivery_window | default: '12-15 business days'
+  assign pc_fallback_copy = standard_delivery_copy | default: pc_window
+
+  assign pc_country = localization.country.name | default: ''
+  assign pc_country_code = localization.country.iso_code | default: ''
+  assign pc_currency_code = localization.country.currency.iso_code | default: ''
+  assign pc_country_count = localization.available_countries.size
+
+  assign pc_localized_root_url = routes.root_url | default: '/'
+  assign pc_localized_root_url_last = pc_localized_root_url | slice: -1
+  if pc_localized_root_url_last == '/'
+    assign pc_shipping_info_url = pc_localized_root_url | append: 'pages/shipping-info'
+  else
+    assign pc_shipping_info_url = pc_localized_root_url | append: '/pages/shipping-info'
+  endif
+  if pc_country_code != blank
+    assign pc_shipping_info_url = pc_shipping_info_url | append: '?country=' | append: pc_country_code
+  endif
+
+  # Headline — drops "included" because "Free" already communicates cost.
+  assign pc_shipping_headline = 'products.purchase_confidence.shipping_headline' | t
+  assign pc_shipping_headline_check = pc_shipping_headline | downcase
+  if pc_shipping_headline == blank or pc_shipping_headline_check contains 'translation missing'
+    assign pc_shipping_headline = 'Free standard shipping'
+  endif
+
+  # Estimate line — combines destination + window into one scannable line:
+  #   "Estimated delivery to United States: May 27 – June 1"
+  # The date span is populated live by the existing JS hook in theme.liquid
+  # (looks up #dlm-shipping-card-date) with the computed range.
+  if pc_country != blank
+    assign pc_estimate_template = 'products.purchase_confidence.estimate_to_country' | t: country: pc_country
+  else
+    assign pc_estimate_template = 'products.purchase_confidence.estimate_default' | t
+  endif
+  assign pc_estimate_check = pc_estimate_template | downcase
+  if pc_estimate_template == blank or pc_estimate_check contains 'translation missing'
+    if pc_country != blank
+      assign pc_estimate_template = 'Estimated delivery to ' | append: pc_country | append: ': '
+    else
+      assign pc_estimate_template = 'Estimated delivery: '
+    endif
+  endif
+
+  # "Ships to {{ country }}" label — gives the orphan "USD" line context.
+  if pc_country != blank
+    assign pc_ships_to = 'products.purchase_confidence.ships_to_country' | t: country: pc_country
+  else
+    assign pc_ships_to = 'products.purchase_confidence.ships_to_default' | t
+  endif
+  assign pc_ships_to_check = pc_ships_to | downcase
+  if pc_ships_to == blank or pc_ships_to_check contains 'translation missing'
+    if pc_country != blank
+      assign pc_ships_to = 'Ships to ' | append: pc_country
+    else
+      assign pc_ships_to = 'Ships to your country'
+    endif
+  endif
+
+  assign pc_change_country = 'products.purchase_confidence.change_short' | t
+  assign pc_change_country_check = pc_change_country | downcase
+  if pc_change_country == blank or pc_change_country_check contains 'translation missing'
+    assign pc_change_country = 'products.shipping_card.change_country' | t
+    assign pc_change_country_check = pc_change_country | downcase
+    if pc_change_country == blank or pc_change_country_check contains 'translation missing'
+      assign pc_change_country = 'Change'
+    endif
+  endif
+
+  assign pc_shipping_details_label = 'products.purchase_confidence.shipping_details_label' | t
+  if pc_shipping_details_label == blank or pc_shipping_details_label contains 'translation missing'
+    assign pc_shipping_details_label = 'Shipping details'
+  endif
+  assign pc_shipping_details_body = 'products.purchase_confidence.shipping_details_body' | t
+  if pc_shipping_details_body == blank or pc_shipping_details_body contains 'translation missing'
+    assign pc_shipping_details_body = 'products.shipping_card.details_body' | t
+    if pc_shipping_details_body == blank or pc_shipping_details_body contains 'translation missing'
+      assign pc_shipping_details_body = 'Standard shipping is free for this item where available. Express upgrades and exact carrier options are shown before payment.'
+    endif
+  endif
+  assign pc_see_countries = 'products.shipping_card.see_countries' | t
+  if pc_see_countries == blank or pc_see_countries contains 'translation missing'
+    assign pc_see_countries = 'See shipping countries'
+  endif
+
+  # === Returns summary ===
+  assign pc_returns_headline = 'products.purchase_confidence.returns_headline' | t
+  if pc_returns_headline == blank or pc_returns_headline contains 'translation missing'
+    assign pc_returns_headline = '30-day returns & exchanges'
+  endif
+  assign pc_returns_summary = 'products.purchase_confidence.returns_summary' | t
+  if pc_returns_summary == blank or pc_returns_summary contains 'translation missing'
+    assign pc_returns_summary = 'This item is returnable if unworn, unwashed, and tags are attached.'
+  endif
+  assign pc_returns_details_label = 'products.purchase_confidence.returns_details_label' | t
+  if pc_returns_details_label == blank or pc_returns_details_label contains 'translation missing'
+    assign pc_returns_details_label = 'Return policy'
+  endif
+  assign pc_returns_eligible = 'products.purchase_confidence.returns_eligible' | t
+  if pc_returns_eligible == blank or pc_returns_eligible contains 'translation missing'
+    assign pc_returns_eligible = 'This item is eligible for return or exchange within 30 days if unworn, unwashed, and returned with tags attached.'
+  endif
+  assign pc_returns_exclusions = 'products.purchase_confidence.returns_exclusions' | t
+  if pc_returns_exclusions == blank or pc_returns_exclusions contains 'translation missing'
+    assign pc_returns_exclusions = 'Final-sale, personalized, swimwear, and intimate items may be excluded.'
+  endif
+  assign pc_returns_full_link_label = 'products.purchase_confidence.returns_full_link_label' | t
+  if pc_returns_full_link_label == blank or pc_returns_full_link_label contains 'translation missing'
+    assign pc_returns_full_link_label = 'See full return policy'
+  endif
+  assign pc_returns_full_url = pc_localized_root_url
+  assign pc_returns_full_url_last = pc_returns_full_url | slice: -1
+  if pc_returns_full_url_last == '/'
+    assign pc_returns_full_url = pc_returns_full_url | append: 'policies/refund-policy'
+  else
+    assign pc_returns_full_url = pc_returns_full_url | append: '/policies/refund-policy'
+  endif
+
+  # === Returns full-policy link label (kept) — now reads "View full return policy"
+  if pc_returns_full_link_label == 'See full return policy'
+    assign pc_returns_full_link_label = 'View full return policy'
+  endif
+
+  # === Privacy policy URL + label/body ===
+  assign pc_privacy_url = pc_localized_root_url
+  assign pc_privacy_url_last = pc_privacy_url | slice: -1
+  if pc_privacy_url_last == '/'
+    assign pc_privacy_url = pc_privacy_url | append: 'policies/privacy-policy'
+  else
+    assign pc_privacy_url = pc_privacy_url | append: '/policies/privacy-policy'
+  endif
+
+  assign pc_security_details_body = 'products.purchase_confidence.security_details_body' | t
+  if pc_security_details_body == blank or pc_security_details_body contains 'translation missing'
+    assign pc_security_details_body = 'Payments are encrypted and processed securely by our payment providers. We do not store your full card number.'
+  endif
+
+  assign pc_privacy_link_label = 'products.purchase_confidence.privacy_link_label' | t
+  if pc_privacy_link_label == blank or pc_privacy_link_label contains 'translation missing'
+    assign pc_privacy_link_label = 'View privacy policy'
+  endif
+
+  # === Security summary ===
+  assign pc_security_headline = 'products.purchase_confidence.security_headline' | t
+  if pc_security_headline == blank or pc_security_headline contains 'translation missing'
+    assign pc_security_headline = 'Secure checkout'
+  endif
+  assign pc_security_summary = 'products.purchase_confidence.security_summary' | t
+  if pc_security_summary == blank or pc_security_summary contains 'translation missing'
+    assign pc_security_summary = 'Encrypted payment. Major cards and express payment options accepted.'
+  endif
+  assign pc_security_details_label = 'products.purchase_confidence.security_details_label' | t
+  if pc_security_details_label == blank or pc_security_details_label contains 'translation missing'
+    assign pc_security_details_label = 'Payment & privacy'
+  endif
+-%}
+
+<style>
+  .dlm-purchase-confidence {
+    border: 1px solid #d6ecdf;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #1f2937;
+    padding: 2px 16px;
+    margin: 10px 0;
+  }
+  .dlm-pc-row {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 11px;
+    align-items: start;
+    padding: 12px 0;
+    border-bottom: 1px solid #eef3f0;
+  }
+  .dlm-pc-row:last-of-type { border-bottom: 0; }
+  .dlm-pc-row__icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ecf7f1;
+    color: #1D8656;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .dlm-pc-row__body { min-width: 0; }
+  .dlm-pc-row__title {
+    margin: 0;
+    font-weight: 700;
+    color: #1D8656;
+    font-size: 0.98em;
+    line-height: 1.35;
+  }
+  .dlm-pc-row__estimate,
+  .dlm-pc-row__summary {
+    margin: 2px 0 0;
+    color: #1f2937;
+    font-size: 0.92em;
+    line-height: 1.45;
+  }
+  .dlm-pc-row__summary { color: #4a5560; }
+  .dlm-pc-row__estimate-date { font-weight: 600; }
+
+  .dlm-pc-row__action-row {
+    margin: 6px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+    align-items: baseline;
+    color: #5a6b73;
+    font-size: 0.88em;
+    line-height: 1.4;
+  }
+  .dlm-pc-row__ships-to,
+  .dlm-pc-row__currency,
+  .dlm-pc-row__sep { color: #5a6b73; }
+  .dlm-pc-link {
+    background: none;
+    border: 0;
+    padding: 0;
+    color: #1D8656;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .dlm-pc-link:hover,
+  .dlm-pc-link:focus-visible { color: #146642; }
+  .dlm-pc-link:focus-visible {
+    outline: 2px solid #1D8656;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  a.dlm-pc-link { text-decoration: underline; }
+
+  .dlm-pc-details-group {
+    padding: 4px 0 10px;
+  }
+  .dlm-pc-details {
+    margin: 4px 0 0;
+    border-top: 1px solid #eef3f0;
+    padding-top: 6px;
+  }
+  .dlm-pc-details:first-of-type { border-top: 0; padding-top: 2px; }
+  .dlm-pc-details summary {
+    cursor: pointer;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #1f2937;
+    font-size: 0.9em;
+    font-weight: 500;
+    padding: 3px 0;
+    border-radius: 4px;
+  }
+  .dlm-pc-details summary::-webkit-details-marker { display: none; }
+  .dlm-pc-details summary:focus-visible {
+    outline: 2px solid #1D8656;
+    outline-offset: 2px;
+  }
+  .dlm-pc-details summary::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #5a6b73;
+    transition: transform 0.15s ease;
+    flex-shrink: 0;
+  }
+  .dlm-pc-details[open] summary::before {
+    transform: rotate(180deg);
+  }
+  .dlm-pc-details__body {
+    margin: 6px 0 0;
+    padding: 0 0 0 14px;
+    color: #4a5560;
+    font-size: 0.88em;
+    line-height: 1.55;
+  }
+  .dlm-pc-details__body p { margin: 0 0 6px; }
+  .dlm-pc-details__body p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 480px) {
+    .dlm-purchase-confidence { padding: 2px 12px; margin: 8px 0; }
+    .dlm-pc-row { gap: 10px; padding: 10px 0; grid-template-columns: 30px 1fr; }
+    .dlm-pc-row__icon { width: 30px; height: 30px; }
+    .dlm-pc-row__title { font-size: 0.95em; }
+    .dlm-pc-row__estimate, .dlm-pc-row__summary { font-size: 0.9em; }
+  }
+</style>
+
+<section class="dlm-purchase-confidence" data-pdp-purchase-confidence aria-label="{{ pc_label_copy | escape }}">
+
+  {%- comment -%} === Row 1: Shipping promise === {%- endcomment -%}
+  <div class="dlm-pc-row">
+    <span class="dlm-pc-row__icon" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    </span>
+    <div class="dlm-pc-row__body">
+      <p class="dlm-pc-row__title">{{ pc_shipping_headline }}</p>
+      <p
+        class="dlm-pc-row__estimate"
+        data-delivery-estimate-row
+        data-delivery-estimate-tier="standard"
+        data-delivery-fallback-visible
+      >
+        {{ pc_estimate_template }}<span
+          class="dlm-pc-row__estimate-date"
+          id="dlm-shipping-card-date"
+          data-delivery-prefix=""
+          data-delivery-window="{{ pc_window | escape }}"
+          data-delivery-fallback="{{ pc_window | escape }}"
+        >{{ pc_window }}</span>
+      </p>
+      <p class="dlm-pc-row__action-row">
+        <span class="dlm-pc-row__ships-to">{{ pc_ships_to }}</span>
+        {%- if pc_currency_code != blank -%}
+          <span class="dlm-pc-row__sep" aria-hidden="true">·</span>
+          <span class="dlm-pc-row__currency">{{ pc_currency_code }}</span>
+        {%- endif -%}
+        {%- if pc_country_count > 0 -%}
+          <span class="dlm-pc-row__sep" aria-hidden="true">·</span>
+          <button
+            type="button"
+            class="dlm-pc-link"
+            data-shipping-country-trigger
+            data-shipping-country-trigger-context="pdp-purchase-confidence-change"
+            aria-haspopup="dialog"
+          >{{ pc_change_country }}</button>
+        {%- endif -%}
+      </p>
+    </div>
+  </div>
+
+  {%- comment -%} === Row 2: Returns promise === {%- endcomment -%}
+  <div class="dlm-pc-row">
+    <span class="dlm-pc-row__icon" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+    </span>
+    <div class="dlm-pc-row__body">
+      <p class="dlm-pc-row__title">{{ pc_returns_headline }}</p>
+      <p class="dlm-pc-row__summary">{{ pc_returns_summary }}</p>
+    </div>
+  </div>
+
+  {%- comment -%} === Row 3: Security promise === {%- endcomment -%}
+  <div class="dlm-pc-row">
+    <span class="dlm-pc-row__icon" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 5v6c0 5 3.5 9.7 8 11 4.5-1.3 8-6 8-11V5l-8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+    </span>
+    <div class="dlm-pc-row__body">
+      <p class="dlm-pc-row__title">{{ pc_security_headline }}</p>
+      <p class="dlm-pc-row__summary">{{ pc_security_summary }}</p>
+    </div>
+  </div>
+
+  {%- comment -%} === Collapsed details, chevron-driven === {%- endcomment -%}
+  <div class="dlm-pc-details-group">
+
+    <details class="dlm-pc-details">
+      <summary>{{ pc_shipping_details_label }}</summary>
+      <div class="dlm-pc-details__body">
+        <p>{{ pc_shipping_details_body }}</p>
+        {%- if pc_country_count > 0 -%}
+          <p>
+            <button
+              type="button"
+              class="dlm-pc-link"
+              data-shipping-country-trigger
+              data-shipping-country-trigger-context="pdp-purchase-confidence-see-countries"
+              aria-haspopup="dialog"
+            >{{ pc_see_countries }}</button>
+          </p>
+        {%- endif -%}
+      </div>
+    </details>
+
+    <details class="dlm-pc-details">
+      <summary>{{ pc_returns_details_label }}</summary>
+      <div class="dlm-pc-details__body">
+        <p>{{ pc_returns_eligible }}</p>
+        <p>{{ pc_returns_exclusions }} <a class="dlm-pc-link" href="{{ pc_returns_full_url }}">{{ pc_returns_full_link_label }}</a></p>
+      </div>
+    </details>
+
+    <details class="dlm-pc-details">
+      <summary>{{ pc_security_details_label }}</summary>
+      <div class="dlm-pc-details__body">
+        <p>{{ pc_security_details_body }}</p>
+        <p><a class="dlm-pc-link" href="{{ pc_privacy_url }}">{{ pc_privacy_link_label }}</a></p>
+      </div>
+    </details>
+
+  </div>
+
+</section>

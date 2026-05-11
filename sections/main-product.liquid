@@ -1380,117 +1380,14 @@
                 {%- endif -%}
 
                 {%- comment -%}
-                  CRO: above-the-fold trust strip.
-                  Shows country + currency (from Shopify localization), live delivery date range
-                  (populated by theme.liquid's calculateDeliveryDates), and "shipping included" badge.
-                  Localized via existing translation keys — no per-locale code needed.
-                  The "Change country" pill opens the global shipping-country-checker modal.
+                  CRO: removed above-the-fold trust strip — it duplicated the "Shipping & Delivery"
+                  collapsible directly below it (same country, arrival window, and "Standard shipping
+                  included" copy). Kept the collapsible as the single source of truth; the "Free"
+                  wording in `free_shipping_label` and `product_note_html` makes it clear shoppers
+                  pay nothing extra for standard shipping.
                 {%- endcomment -%}
-                {{ 'component-shipping-countries-v2.css' | asset_url | stylesheet_tag }}
-                {%- liquid
-                  assign trust_country = localization.country.name | default: ''
-                  assign trust_currency_code = localization.country.currency.iso_code | default: ''
-                  assign trust_currency_symbol = localization.country.currency.symbol | default: ''
-                  assign trust_country_count = localization.available_countries.size
 
-                  assign trust_standard_window = 'products.additional_info.standard_delivery_window' | t
-                  assign trust_standard_window_check = trust_standard_window | downcase
-                  if trust_standard_window == blank or trust_standard_window_check contains 'translation missing'
-                    assign trust_standard_window = '12-15 business days'
-                  endif
-
-                  assign trust_ships_label = 'products.shipping_country.trust_ships_to' | t: country: trust_country
-                  assign trust_ships_check = trust_ships_label | downcase
-                  if trust_ships_label == blank or trust_ships_check contains 'translation missing'
-                    if trust_country != blank
-                      assign trust_ships_label = 'Ships to ' | append: trust_country
-                    else
-                      assign trust_ships_label = 'Ships to your country'
-                    endif
-                  endif
-
-                  assign trust_currency_label = ''
-                  if trust_currency_code != blank
-                    assign trust_currency_label = trust_currency_code
-                    if trust_currency_symbol != blank
-                      assign trust_currency_label = trust_currency_label | append: ' ' | append: trust_currency_symbol
-                    endif
-                  endif
-
-                  assign trust_arrives_prefix = 'products.shipping_country.trust_arrives' | t
-                  assign trust_arrives_check = trust_arrives_prefix | downcase
-                  if trust_arrives_prefix == blank or trust_arrives_check contains 'translation missing'
-                    assign trust_arrives_prefix = 'Arrives'
-                  endif
-
-                  assign trust_included_label = 'products.additional_info.free_shipping_label' | t
-                  assign trust_included_check = trust_included_label | downcase
-                  if trust_included_label == blank or trust_included_check contains 'translation missing'
-                    assign trust_included_label = 'Standard shipping included'
-                  endif
-
-                  assign trust_change_label = 'products.shipping_country.checker_trigger' | t
-                  assign trust_change_check = trust_change_label | downcase
-                  if trust_change_label == blank or trust_change_check contains 'translation missing'
-                    assign trust_change_label = 'Change'
-                  endif
-                -%}
-
-                <div class="pdp-trust-strip" data-pdp-trust-strip>
-                  <div class="pdp-trust-strip__row">
-                    <span class="pdp-trust-strip__icon" aria-hidden="true">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-                    </span>
-                    <span class="pdp-trust-strip__text">
-                      <strong class="pdp-trust-strip__country">{{ trust_ships_label }}</strong>
-                      {%- if trust_currency_label != blank -%}
-                        <span class="pdp-trust-strip__currency"> · {{ trust_currency_label }}</span>
-                      {%- endif -%}
-                    </span>
-                    {%- if trust_country_count > 0 -%}
-                      <button
-                        type="button"
-                        class="pdp-trust-strip__change"
-                        data-shipping-country-trigger
-                        data-shipping-country-trigger-context="pdp-trust-strip"
-                        aria-haspopup="dialog"
-                      >
-                        {{ trust_change_label }}
-                      </button>
-                    {%- endif -%}
-                  </div>
-                  <div class="pdp-trust-strip__row pdp-trust-strip__row--arrives" data-delivery-estimate-row data-delivery-estimate-tier="standard" data-delivery-fallback-visible>
-                    <span class="pdp-trust-strip__icon" aria-hidden="true">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </span>
-                    <span class="pdp-trust-strip__text">
-                      <strong>{{ trust_arrives_prefix }}</strong>
-                      <span
-                        id="pdp-trust-strip-date"
-                        data-delivery-prefix="{{ trust_arrives_prefix | escape }}"
-                        data-delivery-window="{{ trust_standard_window | escape }}"
-                        data-delivery-fallback="{{ trust_standard_window | escape }}"
-                      >{{ trust_standard_window }}</span>
-                    </span>
-                  </div>
-                  <div class="pdp-trust-strip__row pdp-trust-strip__row--included">
-                    <span class="pdp-trust-strip__icon pdp-trust-strip__icon--check" aria-hidden="true">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </span>
-                    <span class="pdp-trust-strip__text">{{ trust_included_label }}</span>
-                  </div>
-                </div>
-
-<!-- Additional Info Links -->
-<style>
-  .collapsible .toggle-icon::after {
-    content: '+';
-  }
-  .collapsible[aria-expanded="true"] .toggle-icon::after {
-    content: 'X';
-  }
-</style>
-
+<!-- Purchase Confidence module -->
 <div class="additional-info">
   {%- liquid
     assign shipping_label_copy = 'products.additional_info.free_shipping_label' | t
@@ -1499,7 +1396,7 @@
     assign premium_delivery_window = 'products.additional_info.premium_delivery_window' | t
 
     if shipping_label_copy == blank or shipping_label_copy contains 'translation missing'
-      assign shipping_label_copy = 'Shipping Options'
+      assign shipping_label_copy = 'Free standard shipping included'
     endif
     if delivery_estimate_copy == blank or delivery_estimate_copy contains 'translation missing'
       assign delivery_estimate_copy = 'Estimated delivery:'
@@ -1513,84 +1410,24 @@
 
     assign standard_delivery_copy = delivery_estimate_copy | append: ' ' | append: standard_delivery_window
   -%}
-  <button class="collapsible active" aria-expanded="true" aria-controls="collapsible-shipping">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1D8656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="1" y="3" width="15" height="13"></rect>
-      <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-      <circle cx="5.5" cy="18.5" r="2.5"></circle>
-      <circle cx="18.5" cy="18.5" r="2.5"></circle>
-      <path d="M1 13h15v4H1z"></path>
-    </svg>
-    {{ 'products.additional_info.shipping_title' | t }}
-    <span class="toggle-icon" aria-hidden="true"></span>
-  </button>
-  <div class="content" id="collapsible-shipping" style="display: block;">
-    <div id="delivery-info-content">
-      <p style="margin-bottom:0.6em;" data-delivery-estimate-row data-delivery-estimate-tier="standard" data-delivery-fallback-visible><strong>{{ shipping_label_copy }}</strong><br><span id="dhl-delivery-date" data-delivery-prefix="{{ delivery_estimate_copy | escape }}" data-delivery-window="{{ standard_delivery_window | escape }}" data-delivery-fallback="{{ standard_delivery_copy | escape }}">{{ standard_delivery_copy }}</span></p>
-      {%- comment -%} TODO: Move free premium shipping threshold to theme settings {%- endcomment -%}
-      <p style="margin-top:0;padding-top:0.6em;border-top:1px solid #e5e7eb;color:#374151;font-size:0.92em;" data-delivery-estimate-row data-delivery-estimate-tier="premium" hidden>{{ 'products.additional_info.faster_shipping_prefix' | t }} <strong><span id="ups-delivery-date" data-delivery-window="{{ premium_delivery_window | escape }}" data-delivery-fallback="{{ premium_delivery_window | escape }}"></span></strong></p>
-      {% render 'shipping-country-confirmation', mode: 'product-note' %}
-    </div>
-  </div>
-  <button class="collapsible" aria-expanded="false" aria-controls="collapsible-returns">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1a936f" width="24px" height="24px">
-      <path d="M0 0h24v24H0z" fill="none"/>
-      <path d="M21 5h-3V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v1H3c-1.1 0-1.99.9-1.99 2L1 19a2 2 0 0 0 2 2h14.01c1.1 0 1.99-.9 1.99-2V7a2 2 0 0 0-2-2zm-8 12H8v-2h5v-2H8v-2h5v-2l3 3-3 3z"/>
-    </svg>
-    {{ 'products.additional_info.return_policy_title' | t }}
-    <span class="toggle-icon" aria-hidden="true"></span>
-  </button>
-  <div class="content" id="collapsible-returns">
-    <h2>{{ 'products.additional_info.return_policy_title' | t }}</h2>
-    <p>{{ 'products.additional_info.return_policy_line_1' | t }}</p>
-    <p>{{ 'products.additional_info.return_policy_line_2' | t }}</p>
-    <p>{{ 'products.additional_info.return_policy_line_3' | t }}</p>
-    <p>{{ 'products.additional_info.return_policy_line_4' | t }}</p>
+  {%- comment -%}
+    CRO (Baymard-aligned): consolidated Shipping, Returns, and Shopping
+    Security into ONE Purchase Confidence module — three promise-first
+    summary rows + three collapsed <details>. Replaces the previous
+    delivery-promise card and the two auto-expanded accordions.
 
-  </div>
+    Principle: show the promise first, hide the policy detail until
+    requested. Chevron icons (▾) make it obvious the details are
+    expandable; "X"-style toggles are gone.
+  {%- endcomment -%}
+  {% render 'pdp-purchase-confidence',
+     shipping_label_copy: shipping_label_copy,
+     delivery_estimate_copy: delivery_estimate_copy,
+     standard_delivery_window: standard_delivery_window,
+     standard_delivery_copy: standard_delivery_copy %}
 
-  <button class="collapsible" aria-expanded="false" aria-controls="collapsible-security">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1a936f" width="24px" height="24px">
-      <path d="M0 0h24v24H0z" fill="none"/>
-      <path d="M12 2L4 5v6c0 5 3.5 9.7 8 11 4.5-1.3 8-6 8-11V5l-8-3zm0 18c-3.9-1.1-7-5.5-7-9V6.3l7-2.6 7 2.6V11c0 3.5-3.1 7.9-7 9z"/>
-      <path d="M10 16l5-5-1.4-1.4L10 13.2l-2.6-2.6L6 12l4 4z"/>
-    </svg>
-    {{ 'products.additional_info.shopping_security_title' | t }}
-    <span class="toggle-icon" aria-hidden="true"></span>
-  </button>
-  <div class="content" id="collapsible-security">
-    <div class="secure-section">
- <div class="payment-section">
-  <span class="payment-title">{{ 'products.additional_info.safe_payment_options_title' | t }}</span>
-  <div class="payment-methods">
-    {%- for type in shop.enabled_payment_types -%}
-      {{ type | payment_type_svg_tag: class: 'payment-icon' }}
-    {%- endfor -%}
-  </div>
-</div>
-      <p>{{ 'products.additional_info.safe_payment_description' | t }}
-
-</p>
-
-    </div>
-
-    <div class="secure-section">
-      <div class="secure-heading">
-        <span>{{ 'products.additional_info.secure_logistics_title' | t }}</span>
-      </div>
-      <ul>
-        <li>{{ 'products.additional_info.secure_logistics_line_1' | t }}</li>
-        <li>{{ 'products.additional_info.secure_logistics_line_2' | t }}</li>
-      </ul>
-    </div>
-
-    <div class="secure-section">
-      <div class="secure-heading">
-        <span>{{ 'products.additional_info.secure_privacy_title' | t }}</span>
-      </div>
-      <p>{{ 'products.additional_info.secure_privacy_description' | t }}</p>
-    </div>
-  </div>
+  {%- comment -%} Hidden premium-tier row — surfaced by JS if/when an express rate is configured. {%- endcomment -%}
+  <p style="margin:6px 0 0;color:#374151;font-size:0.92em;" data-delivery-estimate-row data-delivery-estimate-tier="premium" hidden>{{ 'products.additional_info.faster_shipping_prefix' | t }} <strong><span id="ups-delivery-date" data-delivery-window="{{ premium_delivery_window | escape }}" data-delivery-fallback="{{ premium_delivery_window | escape }}"></span></strong></p>
 </div>
 
 
