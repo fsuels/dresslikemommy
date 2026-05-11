@@ -123,7 +123,7 @@
   endif
   assign pc_returns_summary = 'products.purchase_confidence.returns_summary' | t
   if pc_returns_summary == blank or pc_returns_summary contains 'translation missing'
-    assign pc_returns_summary = 'This item is returnable if unworn, unwashed, and tags are attached.'
+    assign pc_returns_summary = 'Return or exchange within 30 days of delivery if unworn, unwashed, and tags are attached.'
   endif
   assign pc_returns_details_label = 'products.purchase_confidence.returns_details_label' | t
   if pc_returns_details_label == blank or pc_returns_details_label contains 'translation missing'
@@ -149,9 +149,12 @@
     assign pc_returns_full_url = pc_returns_full_url | append: '/policies/refund-policy'
   endif
 
-  # === Returns full-policy link label (kept) — now reads "View full return policy"
-  if pc_returns_full_link_label == 'See full return policy'
-    assign pc_returns_full_link_label = 'View full return policy'
+  # === Returns full-policy link label — now an in-page modal trigger,
+  # surfaced as "View return details" per CRO recommendation. The real
+  # /policies/refund-policy URL stays on the trigger as the no-JS fallback
+  # so right-click "open in new tab", SEO, and accessibility are preserved.
+  if pc_returns_full_link_label == 'See full return policy' or pc_returns_full_link_label == 'View full return policy'
+    assign pc_returns_full_link_label = 'View return details'
   endif
 
   # === Privacy policy URL + label/body ===
@@ -169,8 +172,10 @@
   endif
 
   assign pc_privacy_link_label = 'products.purchase_confidence.privacy_link_label' | t
-  if pc_privacy_link_label == blank or pc_privacy_link_label contains 'translation missing'
-    assign pc_privacy_link_label = 'View privacy policy'
+  if pc_privacy_link_label == blank or pc_privacy_link_label contains 'translation missing' or pc_privacy_link_label == 'View privacy policy'
+    # CRO: shorter, reassuring trigger label; full /policies/privacy-policy URL
+    # stays on the trigger for no-JS, right-click "open in new tab", and SEO.
+    assign pc_privacy_link_label = 'View privacy details'
   endif
 
   # === Security summary ===
@@ -180,7 +185,7 @@
   endif
   assign pc_security_summary = 'products.purchase_confidence.security_summary' | t
   if pc_security_summary == blank or pc_security_summary contains 'translation missing'
-    assign pc_security_summary = 'Encrypted payment. Major cards and express payment options accepted.'
+    assign pc_security_summary = 'Encrypted checkout. We never store your full card number and do not sell your personal information.'
   endif
   assign pc_security_details_label = 'products.purchase_confidence.security_details_label' | t
   if pc_security_details_label == blank or pc_security_details_label contains 'translation missing'
@@ -416,7 +421,15 @@
       <summary>{{ pc_returns_details_label }}</summary>
       <div class="dlm-pc-details__body">
         <p>{{ pc_returns_eligible }}</p>
-        <p>{{ pc_returns_exclusions }} <a class="dlm-pc-link" href="{{ pc_returns_full_url }}">{{ pc_returns_full_link_label }}</a></p>
+        <p>{{ pc_returns_exclusions }}
+          <a
+            class="dlm-pc-link"
+            href="{{ pc_returns_full_url }}"
+            data-policy-modal-trigger="return"
+            aria-haspopup="dialog"
+            aria-controls="DlmPolicyModal-return"
+          >{{ pc_returns_full_link_label }}</a>
+        </p>
       </div>
     </details>
 
@@ -424,7 +437,15 @@
       <summary>{{ pc_security_details_label }}</summary>
       <div class="dlm-pc-details__body">
         <p>{{ pc_security_details_body }}</p>
-        <p><a class="dlm-pc-link" href="{{ pc_privacy_url }}">{{ pc_privacy_link_label }}</a></p>
+        <p>
+          <a
+            class="dlm-pc-link"
+            href="{{ pc_privacy_url }}"
+            data-policy-modal-trigger="privacy"
+            aria-haspopup="dialog"
+            aria-controls="DlmPolicyModal-privacy"
+          >{{ pc_privacy_link_label }}</a>
+        </p>
       </div>
     </details>
 

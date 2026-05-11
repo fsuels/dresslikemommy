@@ -1,0 +1,389 @@
+{%- comment -%}
+  PDP Policy Modals (CRO).
+
+  Renders two lightweight, conversion-friendly modals that intercept the
+  "View return details" and "View privacy details" links inside the
+  Purchase Confidence module. The triggers keep their real /policies/...
+  hrefs so right-click "Open in new tab", screen readers, SEO crawlers,
+  and no-JS shoppers all still work — JS only intercepts a plain left
+  click and opens the modal instead.
+
+  UX behaviour:
+    • Center modal on desktop, bottom sheet on mobile (<=600px).
+    • Opens fast (no transition jank, opacity + transform only).
+    • Close button (top-right), Escape, and backdrop click all close it.
+    • Focus is trapped inside the dialog while open.
+    • Focus returns to the trigger after close.
+    • Body scroll is locked while open.
+    • Each modal includes a secondary "Open full policy in new tab"
+      link that goes to the real /policies/refund-policy or
+      /policies/privacy-policy page.
+
+  Inputs: none. URLs are derived from localization.country.
+
+  Triggers (already emitted by pdp-purchase-confidence.liquid):
+    <a data-policy-modal-trigger="return"  href="/policies/refund-policy">…</a>
+    <a data-policy-modal-trigger="privacy" href="/policies/privacy-policy">…</a>
+{%- endcomment -%}
+
+{%- liquid
+  assign dpm_root_url = routes.root_url | default: '/'
+  assign dpm_root_url_last = dpm_root_url | slice: -1
+  if dpm_root_url_last == '/'
+    assign dpm_refund_url = dpm_root_url | append: 'policies/refund-policy'
+    assign dpm_privacy_url = dpm_root_url | append: 'policies/privacy-policy'
+  else
+    assign dpm_refund_url = dpm_root_url | append: '/policies/refund-policy'
+    assign dpm_privacy_url = dpm_root_url | append: '/policies/privacy-policy'
+  endif
+-%}
+
+<style>
+  .dlm-policy-modal {
+    /* Match the shipping-country checker: high z-index so we sit above
+       the PDP image gallery's stacking context, and a single fixed
+       overlay that paints both backdrop and dialog together. */
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .dlm-policy-modal[data-open] { display: flex; }
+  .dlm-policy-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 16, 14, 0.48);
+  }
+  .dlm-policy-modal__dialog {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 480px;
+    max-height: calc(100vh - 32px);
+    background: #ffffff;
+    border: 1px solid rgba(32, 22, 19, 0.12);
+    border-radius: 12px;
+    box-shadow: 0 24px 70px rgba(20, 16, 14, 0.24);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .dlm-policy-modal__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px 20px 8px;
+    border-bottom: 1px solid #eef3f0;
+  }
+  .dlm-policy-modal__title {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    font-weight: 700;
+    color: #1D8656;
+  }
+  .dlm-policy-modal__close {
+    background: none;
+    border: 0;
+    padding: 6px;
+    margin: -6px -6px 0 0;
+    cursor: pointer;
+    color: #4a5560;
+    border-radius: 6px;
+    line-height: 0;
+    flex-shrink: 0;
+  }
+  .dlm-policy-modal__close:hover { color: #1D8656; background: #f4faf6; }
+  .dlm-policy-modal__close:focus-visible {
+    outline: 2px solid #1D8656;
+    outline-offset: 2px;
+  }
+  .dlm-policy-modal__close svg { display: block; }
+  .dlm-policy-modal__body {
+    padding: 14px 20px 18px;
+    overflow-y: auto;
+    color: #1f2937;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    -webkit-overflow-scrolling: touch;
+  }
+  .dlm-policy-modal__body p { margin: 0 0 12px; }
+  .dlm-policy-modal__body p:last-child { margin-bottom: 0; }
+  .dlm-policy-modal__body ul {
+    margin: 0 0 14px;
+    padding: 0 0 0 18px;
+  }
+  .dlm-policy-modal__body li { margin: 0 0 6px; }
+  .dlm-policy-modal__body li:last-child { margin-bottom: 0; }
+  .dlm-policy-modal__footer {
+    padding: 12px 20px 18px;
+    border-top: 1px solid #eef3f0;
+    background: #fbfdfc;
+  }
+  .dlm-policy-modal__full-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #1D8656;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .dlm-policy-modal__full-link:hover,
+  .dlm-policy-modal__full-link:focus-visible { color: #146642; }
+  .dlm-policy-modal__full-link svg { width: 14px; height: 14px; }
+
+  /* Lock the document, not the body — matches the shipping-country
+     checker. Locking <body> with padding-right can shift sticky/fixed
+     PDP elements (like the image gallery) and make them appear to
+     vanish behind the modal backdrop. */
+  html.dlm-policy-modal-open {
+    overflow: hidden;
+  }
+
+  /* Bottom sheet on mobile */
+  @media (max-width: 600px) {
+    .dlm-policy-modal { padding: 0; align-items: flex-end; }
+    .dlm-policy-modal__dialog {
+      max-width: 100%;
+      width: 100%;
+      max-height: 86vh;
+      border-right: 0;
+      border-bottom: 0;
+      border-left: 0;
+      border-radius: 16px 16px 0 0;
+    }
+    .dlm-policy-modal__dialog::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 4px;
+      border-radius: 2px;
+      background: #d8e1dc;
+      margin: 8px auto 0;
+    }
+    .dlm-policy-modal__header { padding-top: 10px; }
+  }
+</style>
+
+{%- comment -%} === Return details modal === {%- endcomment -%}
+<div
+  class="dlm-policy-modal"
+  id="DlmPolicyModal-return"
+  data-policy-modal="return"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="DlmPolicyModalTitle-return"
+  aria-hidden="true"
+>
+  <div class="dlm-policy-modal__backdrop" data-policy-modal-close></div>
+  <div class="dlm-policy-modal__dialog" tabindex="-1">
+    <div class="dlm-policy-modal__header">
+      <h2 id="DlmPolicyModalTitle-return" class="dlm-policy-modal__title">30-day returns &amp; exchanges</h2>
+      <button
+        type="button"
+        class="dlm-policy-modal__close"
+        data-policy-modal-close
+        aria-label="Close"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="dlm-policy-modal__body">
+      <ul>
+        <li>Return or exchange within <strong>30 days of delivery</strong>.</li>
+        <li>Items must be <strong>unworn, unwashed, and have tags attached</strong>.</li>
+        <li>Final-sale, swimwear, intimate, gift card, or late-return items may be excluded.</li>
+        <li>Damaged or defective item? Contact support within <strong>7 days with photos</strong>.</li>
+        <li>Return shipping is customer-paid unless the item arrived damaged or defective.</li>
+      </ul>
+    </div>
+    <div class="dlm-policy-modal__footer">
+      <a
+        class="dlm-policy-modal__full-link"
+        href="{{ dpm_refund_url }}"
+        target="_blank"
+        rel="noopener"
+      >
+        Open full return policy in a new tab
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+{%- comment -%} === Privacy details modal === {%- endcomment -%}
+<div
+  class="dlm-policy-modal"
+  id="DlmPolicyModal-privacy"
+  data-policy-modal="privacy"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="DlmPolicyModalTitle-privacy"
+  aria-hidden="true"
+>
+  <div class="dlm-policy-modal__backdrop" data-policy-modal-close></div>
+  <div class="dlm-policy-modal__dialog" tabindex="-1">
+    <div class="dlm-policy-modal__header">
+      <h2 id="DlmPolicyModalTitle-privacy" class="dlm-policy-modal__title">Privacy &amp; secure checkout</h2>
+      <button
+        type="button"
+        class="dlm-policy-modal__close"
+        data-policy-modal-close
+        aria-label="Close"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="dlm-policy-modal__body">
+      <ul>
+        <li>Checkout is <strong>encrypted</strong>.</li>
+        <li>Payments are processed securely by Shopify and our payment providers.</li>
+        <li>Dress Like Mommy <strong>does not store your full card number</strong>.</li>
+        <li>Personal data is used to process orders, shipping, support, fraud prevention, and consent-based marketing.</li>
+        <li>We <strong>do not sell</strong> your personal information.</li>
+      </ul>
+    </div>
+    <div class="dlm-policy-modal__footer">
+      <a
+        class="dlm-policy-modal__full-link"
+        href="{{ dpm_privacy_url }}"
+        target="_blank"
+        rel="noopener"
+      >
+        Open full privacy policy in a new tab
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    if (window.DLMPolicyModal) return;
+
+    var FOCUSABLE = [
+      'a[href]',
+      'area[href]',
+      'button:not([disabled])',
+      'input:not([disabled]):not([type="hidden"])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])'
+    ].join(',');
+
+    var openModal = null;
+    var lastTrigger = null;
+    var keydownHandler = null;
+
+    function getModal(key) {
+      return document.querySelector('[data-policy-modal="' + key + '"]');
+    }
+
+    function lockScroll() {
+      // Lock the document (not <body>) — matches the shipping-country
+      // checker and avoids reflowing sticky/fixed PDP elements.
+      document.documentElement.classList.add('dlm-policy-modal-open');
+    }
+
+    function unlockScroll() {
+      document.documentElement.classList.remove('dlm-policy-modal-open');
+    }
+
+    function trapFocus(modal, event) {
+      var nodes = modal.querySelectorAll(FOCUSABLE);
+      if (!nodes.length) return;
+      var first = nodes[0];
+      var last = nodes[nodes.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    function open(modal, trigger) {
+      if (!modal || openModal === modal) return;
+      if (openModal) close();
+      openModal = modal;
+      lastTrigger = trigger || null;
+      modal.setAttribute('data-open', '');
+      modal.setAttribute('aria-hidden', 'false');
+      lockScroll();
+
+      // Focus the dialog so screen readers announce the heading,
+      // then move to the first focusable on next tick for keyboard users.
+      var dialog = modal.querySelector('.dlm-policy-modal__dialog');
+      if (dialog) {
+        try { dialog.focus({ preventScroll: true }); } catch (e) { dialog.focus(); }
+      }
+      window.requestAnimationFrame(function () {
+        var firstFocusable = modal.querySelector(FOCUSABLE);
+        if (firstFocusable) {
+          try { firstFocusable.focus({ preventScroll: true }); } catch (e) { firstFocusable.focus(); }
+        }
+      });
+
+      keydownHandler = function (event) {
+        if (event.key === 'Escape' || event.key === 'Esc') {
+          event.stopPropagation();
+          close();
+        } else if (event.key === 'Tab') {
+          trapFocus(modal, event);
+        }
+      };
+      document.addEventListener('keydown', keydownHandler, true);
+    }
+
+    function close() {
+      if (!openModal) return;
+      var modal = openModal;
+      modal.removeAttribute('data-open');
+      modal.setAttribute('aria-hidden', 'true');
+      unlockScroll();
+      if (keydownHandler) {
+        document.removeEventListener('keydown', keydownHandler, true);
+        keydownHandler = null;
+      }
+      openModal = null;
+      if (lastTrigger && typeof lastTrigger.focus === 'function') {
+        try { lastTrigger.focus({ preventScroll: true }); } catch (e) { lastTrigger.focus(); }
+      }
+      lastTrigger = null;
+    }
+
+    document.addEventListener('click', function (event) {
+      // Close handlers (backdrop + close button).
+      var closeEl = event.target.closest('[data-policy-modal-close]');
+      if (closeEl && openModal && openModal.contains(closeEl)) {
+        event.preventDefault();
+        close();
+        return;
+      }
+
+      var trigger = event.target.closest('[data-policy-modal-trigger]');
+      if (!trigger) return;
+
+      // Respect modified clicks so right-click / cmd-click / middle-click
+      // / shift-click can still open the real policy page in a new tab.
+      if (event.defaultPrevented) return;
+      if (event.button && event.button !== 0) return;
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+      var key = trigger.getAttribute('data-policy-modal-trigger');
+      var modal = getModal(key);
+      if (!modal) return;
+
+      event.preventDefault();
+      open(modal, trigger);
+    });
+
+    window.DLMPolicyModal = { open: function (key) { open(getModal(key)); }, close: close };
+  })();
+</script>

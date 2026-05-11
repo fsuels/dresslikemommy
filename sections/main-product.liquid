@@ -1426,6 +1426,15 @@
      standard_delivery_window: standard_delivery_window,
      standard_delivery_copy: standard_delivery_copy %}
 
+  {%- comment -%}
+    CRO: in-page modals for "View return details" and "View privacy details".
+    The triggers inside pdp-purchase-confidence keep their real /policies/...
+    hrefs, so right-click "open in new tab", SEO crawlers, and no-JS users
+    still reach the full policy pages — JS only intercepts a plain left
+    click to open a lightweight modal instead, keeping shoppers on the PDP.
+  {%- endcomment -%}
+  {% render 'pdp-policy-modals' %}
+
   {%- comment -%} Hidden premium-tier row — surfaced by JS if/when an express rate is configured. {%- endcomment -%}
   <p style="margin:6px 0 0;color:#374151;font-size:0.92em;" data-delivery-estimate-row data-delivery-estimate-tier="premium" hidden>{{ 'products.additional_info.faster_shipping_prefix' | t }} <strong><span id="ups-delivery-date" data-delivery-window="{{ premium_delivery_window | escape }}" data-delivery-fallback="{{ premium_delivery_window | escape }}"></span></strong></p>
 </div>
