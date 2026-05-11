@@ -1,0 +1,99 @@
+{%- comment -%}
+  PDP "Sold separately" clarity callout.
+
+  Renders directly under the price block on family-matching / matching-set
+  products that sell Top/Pants as independently-priced variants. The
+  product title and URL imply a "set" but the underlying SKUs are sold
+  separately — this callout makes that explicit at the moment of price
+  discovery, preventing "I thought I was getting the whole outfit"
+  refunds.
+
+  Render rules:
+    - Only when has_matching_set_context is true (computed in
+      sections/main-product.liquid from collection handles, tags, title,
+      or the custom.subcategory metafield).
+    - Only when the product has variants. Single-variant products don't
+      need the warning.
+
+  Inputs (all optional):
+    - has_matching_set_context: boolean — pass from parent scope
+    - title_override / body_override: strings — override the locale copy
+{%- endcomment -%}
+
+{%- liquid
+  assign ssc_show = false
+  if has_matching_set_context and product.has_only_default_variant == false
+    assign ssc_show = true
+  endif
+
+  assign ssc_title = title_override | default: blank
+  if ssc_title == blank
+    assign ssc_title = 'products.product.sold_separately.title' | t
+    if ssc_title == blank or ssc_title contains 'translation missing'
+      assign ssc_title = 'Build your look piece by piece'
+    endif
+  endif
+
+  assign ssc_body = body_override | default: blank
+  if ssc_body == blank
+    assign ssc_body = 'products.product.sold_separately.body' | t
+    if ssc_body == blank or ssc_body contains 'translation missing'
+      assign ssc_body = 'Choose a top or pants for each family member. Each piece is sold separately.'
+    endif
+  endif
+-%}
+
+{%- if ssc_show -%}
+  <style>
+    .dlm-sold-separately {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 10px 0 6px;
+      padding: 10px 12px;
+      border: 1px solid #d6ecdf;
+      background: #f5fbf8;
+      border-radius: 10px;
+      color: #1f2937;
+      line-height: 1.4;
+    }
+    .dlm-sold-separately__icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #ecf7f1;
+      color: #1D8656;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .dlm-sold-separately__title {
+      margin: 0;
+      font-weight: 700;
+      color: #1D8656;
+      font-size: 0.95em;
+    }
+    .dlm-sold-separately__body {
+      margin: 2px 0 0;
+      color: #1f2937;
+      font-size: 0.9em;
+    }
+    @media (max-width: 480px) {
+      .dlm-sold-separately { padding: 9px 11px; margin: 8px 0 4px; gap: 9px; }
+      .dlm-sold-separately__title { font-size: 0.92em; }
+      .dlm-sold-separately__body { font-size: 0.88em; }
+    }
+  </style>
+
+  <aside class="dlm-sold-separately" role="note" aria-label="{{ ssc_title | escape }}">
+    <span class="dlm-sold-separately__icon" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </span>
+    <div>
+      <p class="dlm-sold-separately__title">{{ ssc_title }}</p>
+      <p class="dlm-sold-separately__body">{{ ssc_body }}</p>
+    </div>
+  </aside>
+{%- endif -%}

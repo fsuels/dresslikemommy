@@ -1,3 +1,26 @@
+{%- comment -%}
+  PDP buy-column canonical block order (CRO Phase 2/3 reference):
+
+    1.  Title
+    2.  Price (+ sale anchor)
+    3.  Variant picker (with numbered step headings on multi-option SKUs:
+        "1. Who is this for? / 2. Choose piece / 3. Choose size")
+    4.  Size guide trigger (lives inside the Purchase Confidence panel)
+    5.  Buy buttons — primary CTA
+        - On matching-set products: matching-set CTA reads as primary
+          and the single-piece ATC is demoted to outline-style
+          (via :has() in component-product-desktop-ux.css)
+    6.  Compressed trust row + three promise rows + collapsed details
+        (snippets/pdp-purchase-confidence.liquid)
+    7.  Photos / details / care / full size chart (existing accordions)
+    8.  Similar styles / recommendations
+    9.  Reviews (kept low; above-fold review count suppressed via
+        snippets/pdp-review-social-proof.liquid)
+
+  Theme-editor block order can be tweaked per-product, but please keep
+  the above as the canonical sequence — each step exists for a CRO
+  reason documented in the corresponding snippet header.
+{%- endcomment -%}
 <section
   id="MainProduct-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
@@ -984,6 +1007,17 @@
                   {%- assign clean_title = product.title | escape | split: ' | ' | first -%}
                   <h1 class="product__title-text">{{ clean_title }}</h1>
                 </div>
+                {%- comment -%}
+                  CRO: suppress above-the-fold "No reviews" social proof on
+                  zero-review products and render a soft store-level line
+                  ("New arrival" pill + family-matching reassurance) instead.
+                  See snippets/pdp-review-social-proof.liquid.
+                {%- endcomment -%}
+                {% render 'pdp-review-social-proof',
+                  product: product,
+                  show_new_arrival_badge: section.settings.show_new_arrival_badge,
+                  social_proof_text: section.settings.social_proof_text
+                %}
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
@@ -1401,8 +1435,11 @@
     if delivery_estimate_copy == blank or delivery_estimate_copy contains 'translation missing'
       assign delivery_estimate_copy = 'Estimated delivery:'
     endif
-    if standard_delivery_window == blank or standard_delivery_window contains 'translation missing'
-      assign standard_delivery_window = '12-15 business days'
+    if standard_delivery_window == blank or standard_delivery_window contains 'translation missing' or standard_delivery_window contains 'business days'
+      # CRO: standardized 12-16 calendar-day window for the PDP Purchase
+      # Confidence card. Calendar mode is enabled on #dlm-shipping-card-date
+      # so the displayed date range is identical across all countries.
+      assign standard_delivery_window = '12-16 days'
     endif
     if premium_delivery_window contains 'translation missing' or premium_delivery_window contains '5-7 business days' or premium_delivery_window == blank
       assign premium_delivery_window = ''
@@ -1435,6 +1472,14 @@
   {%- endcomment -%}
   {% render 'pdp-policy-modals' %}
 
+  {%- comment -%}
+    CRO Step 7: rewrite apologetic / merchant-y phrases inside the
+    rendered product description on the live DOM. Lets live shoppers
+    see clean copy immediately while the underlying product
+    descriptions are updated in Shopify Admin.
+  {%- endcomment -%}
+  {% render 'pdp-description-copy-cleanup' %}
+
   {%- comment -%} Hidden premium-tier row — surfaced by JS if/when an express rate is configured. {%- endcomment -%}
   <p style="margin:6px 0 0;color:#374151;font-size:0.92em;" data-delivery-estimate-row data-delivery-estimate-tier="premium" hidden>{{ 'products.additional_info.faster_shipping_prefix' | t }} <strong><span id="ups-delivery-date" data-delivery-window="{{ premium_delivery_window | escape }}" data-delivery-fallback="{{ premium_delivery_window | escape }}"></span></strong></p>
 </div>
@@ -1442,7 +1487,11 @@
 
 
               {%- when 'rating' -%}
-                {%- if product.metafields.reviews.rating.value != blank -%}
+                {%- liquid
+                  assign rating_count_raw = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count
+                  assign rating_count_int = rating_count_raw | plus: 0
+                -%}
+                {%- if product.metafields.reviews.rating.value != blank and rating_count_int > 0 -%}
                   <div class="rating-wrapper">
                     {% liquid
                       assign rating_decimal = 0
@@ -1708,10 +1757,25 @@
 
 {%- comment -%} Sticky mobile Add to Cart bar {%- endcomment -%}
 {%- if product.available -%}
+  {%- liquid
+    assign sticky_free_shipping_label = 'products.product.free_shipping_short' | t
+    if sticky_free_shipping_label == blank or sticky_free_shipping_label contains 'translation missing'
+      assign sticky_free_shipping_label = 'Free shipping'
+    endif
+  -%}
   <div class="sticky-mobile-atc" id="StickyMobileATC-{{ section.id }}">
     <div class="sticky-mobile-atc__details" aria-live="polite" aria-atomic="true">
       <span class="sticky-mobile-atc__price" data-sticky-mobile-atc-price>
         {{- product.selected_or_first_available_variant.price | money -}}
+      </span>
+      {%- comment -%}
+        CRO Step 6: free-shipping reassurance on the sticky bar.
+        Visible by default (when size/color are unconfirmed) so the
+        shopper sees a benefit alongside the price. Hidden by JS once
+        selections complete (the size chip + ATC price take over).
+      {%- endcomment -%}
+      <span class="sticky-mobile-atc__shipping" data-sticky-mobile-atc-shipping>
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:2px;"><polyline points="20 6 9 17 4 12"/></svg>{{ sticky_free_shipping_label }}
       </span>
       <span class="sticky-mobile-atc__size" data-sticky-mobile-atc-size hidden></span>
     </div>
@@ -1728,6 +1792,7 @@
       var stickyBtn = sticky.querySelector('[data-sticky-mobile-atc-button]');
       var stickyPrice = sticky.querySelector('[data-sticky-mobile-atc-price]');
       var stickySize = sticky.querySelector('[data-sticky-mobile-atc-size]');
+      var stickyShipping = sticky.querySelector('[data-sticky-mobile-atc-shipping]');
       var sizeConversionMessage = document.getElementById('size-conversion-message');
       var mediaContainer =
         document.getElementById('GalleryViewer-{{ section.id }}') ||
@@ -2149,6 +2214,18 @@
         stickyPrice.removeAttribute('title');
       }
 
+      function syncStickyShipping(sizeIsConfirmed) {
+        // CRO Step 6: hide the "Free shipping" reassurance once a size is
+        // selected so the size chip can take its place without crowding
+        // the bar. Before selection it's the most useful piece of info.
+        if (!stickyShipping) return;
+        if (sizeIsConfirmed) {
+          stickyShipping.setAttribute('hidden', 'hidden');
+        } else {
+          stickyShipping.removeAttribute('hidden');
+        }
+      }
+
       function syncStickySize(sizeSelectionState) {
         if (!stickySize) return;
 
@@ -2156,6 +2233,7 @@
         if (currentSizeState.hasSizeOption && (!hasUserConfirmedSizeSelection || !currentSizeState.isComplete)) {
           stickySize.textContent = '';
           stickySize.setAttribute('hidden', 'hidden');
+          syncStickyShipping(false);
           return;
         }
 
@@ -2170,11 +2248,13 @@
           });
           stickySize.textContent = selectedSizeTemplate.replace('__SIZE__', visibleSizeValues.join(' / '));
           stickySize.removeAttribute('hidden');
+          syncStickyShipping(true);
           return;
         }
 
         stickySize.textContent = '';
         stickySize.setAttribute('hidden', 'hidden');
+        syncStickyShipping(false);
       }
 
       function syncStickyState() {
@@ -2373,8 +2453,12 @@
     var translations = {
       'Build your matching set': copy.matching_set_heading,
       ['Choose the family sizes you want and add them together from one product page.']: copy.matching_set_copy,
+      ['Add one piece per family member. Sizes are independent and each piece is sold separately.']: copy.matching_set_copy,
       ['Choose at least one family size to add your set.']: copy.matching_set_empty,
+      ['Choose at least one size to add your set.']: copy.matching_set_empty,
       'Add selected pieces': copy.matching_set_add,
+      'Add selected pieces to cart': copy.matching_set_add,
+      'Add matching pieces to cart': copy.matching_set_add,
       'Compare family sizes': copy.grouped_size_guide_label,
       'Compare all sizes': copy.compare_size_guide_label,
       'Size guide & fit': copy.single_size_guide_label,
@@ -3907,6 +3991,35 @@
       "id": "enable_sticky_info",
       "default": true,
       "label": "t:sections.main-product.settings.enable_sticky_info.label"
+    },
+    {
+      "type": "header",
+      "content": "Above-the-fold social proof"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_new_arrival_badge",
+      "default": true,
+      "label": "Show \"New arrival\" pill on zero-review products",
+      "info": "Renders a small pill near the product title in place of any \"No reviews\" badge."
+    },
+    {
+      "type": "text",
+      "id": "social_proof_text",
+      "default": "Family matching styles loved by moms for vacations, birthdays, and photos.",
+      "label": "Store-level social proof line",
+      "info": "Shown on products with zero reviews. Leave blank to hide."
+    },
+    {
+      "type": "header",
+      "content": "Variant picker (CRO)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_picker_step_headings",
+      "default": true,
+      "label": "Show numbered step headings above option groups",
+      "info": "Adds \"1. Who is this for / 2. Choose piece / 3. Choose size\" labels on multi-option products."
     },
     {
       "type": "color_scheme",

@@ -339,8 +339,19 @@
     margin-top: 1rem;
     padding: 1.6rem;
     border-radius: 1.8rem;
-    background: linear-gradient(180deg, #f9faf6 0%, #f4f8f1 100%);
-    border: 0.1rem solid rgba(92, 127, 84, 0.18);
+    background: linear-gradient(180deg, #f4faf6 0%, #ecf7f1 100%);
+    border: 0.15rem solid rgba(29, 134, 86, 0.32);
+    box-shadow: 0 2px 14px rgba(29, 134, 86, 0.08);
+  }
+  /* CRO Step 5: Brand the matching-set eyebrow so the block reads as
+     the primary buying action on family-set products. */
+  .product-matching-set__eyebrow {
+    margin: 0 0 0.3rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1D8656;
+    font-weight: 700;
   }
 
   .product-matching-set__title,
@@ -449,13 +460,27 @@
   }
 
   .product-matching-set__button {
-    min-width: 20rem;
-    min-height: 5rem;
+    min-width: 22rem;
+    min-height: 5.2rem;
     padding: 0 2.4rem;
     border: 0;
     border-radius: 999px;
-    background: #101418;
+    background: #1D8656;
     color: #ffffff;
+    font-weight: 700;
+    font-size: 1.45rem;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 14px rgba(29, 134, 86, 0.24);
+    transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+  }
+
+  .product-matching-set__button:hover:not([disabled]) {
+    background: #146642;
+    box-shadow: 0 6px 18px rgba(29, 134, 86, 0.32);
+  }
+
+  .product-matching-set__button:active:not([disabled]) {
+    transform: translateY(1px);
   }
 
   .product-matching-set__button::before,
@@ -466,6 +491,33 @@
   .product-matching-set__button[disabled] {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  /* CRO Step 5: when the matching-set block is visible (not hidden), the
+     standalone "Add to cart" above it becomes the secondary action.
+     Demote it to outline-style so the matching-set CTA reads as the
+     primary buying pattern. Uses :has() which is supported in modern
+     evergreen browsers; older browsers degrade gracefully (both buttons
+     stay primary, which is just the pre-change state). */
+  @supports selector(:has(*)) {
+    .product__info-container:has(.product-matching-set:not([hidden])) .product-form__submit:not([disabled]) {
+      background: #ffffff;
+      color: #1D8656;
+      border: 0.15rem solid #1D8656;
+      box-shadow: none;
+    }
+    .product__info-container:has(.product-matching-set:not([hidden])) .product-form__submit:not([disabled]):hover {
+      background: #f4faf6;
+      color: #146642;
+    }
+    .product__info-container:has(.product-matching-set:not([hidden])) .product-form__buttons::before {
+      content: 'Or add just one piece:';
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: rgba(17, 24, 39, 0.6);
+      margin: 0.8rem 0 0.4rem;
+    }
   }
 
   .product-photo-strip {

@@ -37,8 +37,8 @@
     if shipping_intro == blank or shipping_intro contains 'translation missing'
       assign shipping_intro = 'Estimated delivery:'
     endif
-    if shipping_window == blank or shipping_window contains 'translation missing'
-      assign shipping_window = '12-15 business days'
+    if shipping_window == blank or shipping_window contains 'translation missing' or shipping_window contains 'business days'
+      assign shipping_window = '12-16 days'
     endif
 
     capture shipping_answer

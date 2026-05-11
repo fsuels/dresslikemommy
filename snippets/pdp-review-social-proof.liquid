@@ -1,0 +1,113 @@
+{%- comment -%}
+  PDP above-the-fold review/social-proof gate.
+
+  Replaces the "No reviews" social proof signal that third-party review
+  widgets (Judge.me etc.) render near the title when a product has zero
+  reviews. We:
+
+    - Render NOTHING above the fold if the product has reviews (the
+      third-party widget will continue to show its real star count).
+    - Render a "New arrival" pill + a soft store-level social-proof line
+      when the product has no reviews yet, and hide any zero-review
+      preview badge the third-party widget might still try to inject.
+
+  The lower-page reviews section is intentionally untouched so customers
+  can still leave reviews.
+
+  Inputs (optional):
+    - show_new_arrival_badge: boolean (default true)
+    - social_proof_text: string fallback if locale string is missing
+
+  Render anywhere above the variant picker — typically right under the
+  product title block.
+{%- endcomment -%}
+
+{%- liquid
+  assign rsp_rating_count_raw = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count
+  assign rsp_rating_count = rsp_rating_count_raw | plus: 0
+  assign rsp_has_reviews = false
+  if rsp_rating_count > 0
+    assign rsp_has_reviews = true
+  endif
+
+  assign rsp_show_badge = show_new_arrival_badge
+  if rsp_show_badge == nil
+    assign rsp_show_badge = true
+  endif
+
+  assign rsp_badge_label = 'products.product.social_proof.new_arrival' | t
+  if rsp_badge_label == blank or rsp_badge_label contains 'translation missing'
+    assign rsp_badge_label = 'New arrival'
+  endif
+
+  assign rsp_social_proof = social_proof_text | default: blank
+  if rsp_social_proof == blank
+    assign rsp_social_proof = 'products.product.social_proof.line' | t
+    if rsp_social_proof == blank or rsp_social_proof contains 'translation missing'
+      assign rsp_social_proof = 'Family matching styles loved by moms for vacations, birthdays, and photos.'
+    endif
+  endif
+-%}
+
+{%- unless rsp_has_reviews -%}
+  <style>
+    /* Hide third-party "No reviews" preview badge above the fold when
+       the product has zero reviews. The full review widget lower on the
+       page is unaffected (it lives outside .product__info-container). */
+    .product__info-container .jdgm-prev-badge[data-average-rating="0.00"],
+    .product__info-container .jdgm-prev-badge[data-number-of-reviews="0"],
+    .product__info-container .spr-badge[data-rating="0.0"],
+    .product__info-container .spr-badge:not(.spr-badge--has-reviews),
+    .product__info-container .jdgm-widget.jdgm-no-reviews,
+    .product__info-container [data-review-count="0"] {
+      display: none !important;
+    }
+
+    .dlm-pdp-social-proof {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 12px;
+      margin: 6px 0 10px;
+      font-size: 0.92em;
+      line-height: 1.4;
+      color: #4a5560;
+    }
+    .dlm-pdp-social-proof__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: #ecf7f1;
+      color: #1D8656;
+      font-weight: 600;
+      font-size: 0.85em;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .dlm-pdp-social-proof__badge::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #1D8656;
+    }
+    .dlm-pdp-social-proof__line {
+      color: #4a5560;
+    }
+    @media (max-width: 480px) {
+      .dlm-pdp-social-proof { font-size: 0.88em; margin: 4px 0 8px; }
+    }
+  </style>
+
+  <div class="dlm-pdp-social-proof" data-pdp-social-proof>
+    {%- if rsp_show_badge -%}
+      <span class="dlm-pdp-social-proof__badge">{{ rsp_badge_label }}</span>
+    {%- endif -%}
+    {%- if rsp_social_proof != blank -%}
+      <span class="dlm-pdp-social-proof__line">{{ rsp_social_proof }}</span>
+    {%- endif -%}
+  </div>
+{%- endunless -%}

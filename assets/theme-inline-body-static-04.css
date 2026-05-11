@@ -291,6 +291,20 @@ button.product-form__submit.button--full-width:active {
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  /* CRO Step 6: "Free shipping" reassurance on the sticky mobile bar.
+     Visible while a size/color is unconfirmed, hidden by JS once the
+     size chip can take its place. */
+  .sticky-mobile-atc__shipping {
+    color: #1D8656;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+  }
+  .sticky-mobile-atc__shipping[hidden] { display: none; }
   .sticky-mobile-atc__btn {
     flex: 1;
     background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);

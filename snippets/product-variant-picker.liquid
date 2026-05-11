@@ -44,6 +44,7 @@
 
   -%}
   {%- assign rendered_size_help = false -%}
+  {%- assign visible_option_index = 0 -%}
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
@@ -132,6 +133,39 @@
           endif
         endif
       -%}
+      {%- comment -%}
+        CRO Step 4: step-mini-headings above each option group.
+        Renders a small numbered label so the shopper sees a clear flow.
+        The number reflects the option's actual visible position (we
+        increment a running counter only when the option will render);
+        the phrase reflects the option's role (Family / Type / Size /
+        Color / generic). Gated on section setting (default on) and
+        only on multi-option products to avoid label noise.
+      {%- endcomment -%}
+      {%- liquid
+        assign show_step_heading = false
+        if hide_single_value_color_option == false and section.settings.show_picker_step_headings != false and product.options.size >= 2
+          assign show_step_heading = true
+          assign visible_option_index = visible_option_index | plus: 1
+        endif
+        assign step_phrase = blank
+        if show_step_heading
+          if option_name_downcased contains 'family' or option_name_downcased contains 'who' or option_name_downcased contains 'wearer'
+            assign step_phrase = 'Who is this for?'
+          elsif is_size_option
+            assign step_phrase = 'Choose size'
+          elsif is_color_option
+            assign step_phrase = 'Choose color'
+          elsif has_type_or_style_option and option_name_downcased contains 'type' or option_name_downcased contains 'style' or option_name_downcased contains 'piece'
+            assign step_phrase = 'Choose piece'
+          else
+            assign step_phrase = 'Choose ' | append: option_label | downcase
+          endif
+        endif
+      -%}
+      {%- if show_step_heading and step_phrase != blank -%}
+        <p class="product-form__step-heading" aria-hidden="true" style="margin: 14px 0 4px; font-size: 0.78em; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #1D8656;">{{ visible_option_index }}. {{ step_phrase }}</p>
+      {%- endif -%}
       {%- if hide_single_value_color_option -%}
         {%- assign hidden_color_value = single_available_color_value | default: option.selected_value | default: option.values.first -%}
         <select

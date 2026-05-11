@@ -25,13 +25,17 @@
     - shipping_label_copy:      "Free standard shipping included" (still used
                                  for the aria-label / meta channels)
     - delivery_estimate_copy:   "Estimated delivery:" — only used as fallback
-    - standard_delivery_window: "12-15 business days" fallback text
+    - standard_delivery_window: "12-16 days" calendar-day fallback text
     - standard_delivery_copy:   combined fallback line
 {%- endcomment -%}
 
 {%- liquid
   assign pc_label_copy = shipping_label_copy | default: 'Free standard shipping included'
-  assign pc_window = standard_delivery_window | default: '12-15 business days'
+  # CRO: standardized delivery window in calendar days so today's
+  # displayed range matches across every country and auto-rolls daily.
+  # The "min-max days" values are read by layout/theme.liquid's
+  # calculateDeliveryDates() (calendar-day mode for #dlm-shipping-card-date).
+  assign pc_window = standard_delivery_window | default: '12-16 days'
   assign pc_fallback_copy = standard_delivery_copy | default: pc_window
 
   assign pc_country = localization.country.name | default: ''
@@ -185,11 +189,29 @@
   endif
   assign pc_security_summary = 'products.purchase_confidence.security_summary' | t
   if pc_security_summary == blank or pc_security_summary contains 'translation missing'
-    assign pc_security_summary = 'Encrypted checkout. We never store your full card number and do not sell your personal information.'
+    assign pc_security_summary = 'Encrypted checkout. We never store your full card number.'
   endif
+  # CRO Step 11: also shorten the legacy "and do not sell your personal
+  # information" tail if the locale string still carries it. Privacy
+  # over-disclosure near the CTA increases purchase anxiety; the full
+  # privacy modal covers the detail.
+  assign pc_security_summary = pc_security_summary | replace: ' and do not sell your personal information', ''
   assign pc_security_details_label = 'products.purchase_confidence.security_details_label' | t
   if pc_security_details_label == blank or pc_security_details_label contains 'translation missing'
     assign pc_security_details_label = 'Payment & privacy'
+  endif
+
+  # === Size guide trigger (CRO Step 3) ===
+  # Single-product theme has a size-guide system in product-variant-picker
+  # and product-desktop-ux. We surface a deep-link from the trust block so
+  # the shopper can jump to it from the moment they're evaluating fit.
+  assign pc_size_guide_label = 'products.product.size_guide.guide_and_fit' | t
+  if pc_size_guide_label == blank or pc_size_guide_label contains 'translation missing'
+    assign pc_size_guide_label = 'Size guide & fit'
+  endif
+  assign pc_size_guide_show = false
+  if product.has_only_default_variant == false
+    assign pc_size_guide_show = true
   endif
 -%}
 
@@ -329,9 +351,67 @@
     .dlm-pc-row__title { font-size: 0.95em; }
     .dlm-pc-row__estimate, .dlm-pc-row__summary { font-size: 0.9em; }
   }
+
+  /* CRO Step 8: compressed trust row at the top of the panel — one
+     scannable line of pills directly under the buy CTA so the shopper
+     sees the trust signals before they parse the full module. The full
+     three-row module continues below for shoppers who want detail. */
+  .dlm-pc-compact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    align-items: center;
+    padding: 10px 0 4px;
+    border-bottom: 1px solid #eef3f0;
+    margin-bottom: 4px;
+  }
+  .dlm-pc-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: #ecf7f1;
+    color: #1D8656;
+    font-size: 0.78em;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .dlm-pc-pill svg {
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 480px) {
+    .dlm-pc-compact-row { gap: 5px 6px; padding: 8px 0 3px; }
+    .dlm-pc-pill { padding: 3px 8px; font-size: 0.74em; }
+  }
 </style>
 
 <section class="dlm-purchase-confidence" data-pdp-purchase-confidence aria-label="{{ pc_label_copy | escape }}">
+
+  {%- comment -%} === Compressed trust row (CRO Step 8) === {%- endcomment -%}
+  <div class="dlm-pc-compact-row" aria-hidden="true">
+    <span class="dlm-pc-pill">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Secure checkout
+    </span>
+    <span class="dlm-pc-pill">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      Free shipping
+    </span>
+    <span class="dlm-pc-pill">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      30-day returns
+    </span>
+    {%- if pc_country != blank -%}
+      <span class="dlm-pc-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.5 8 12 8 12s8-6.5 8-12a8 8 0 0 0-8-8z"/></svg>
+        Ships to {{ pc_country }}
+      </span>
+    {%- endif -%}
+  </div>
 
   {%- comment -%} === Row 1: Shipping promise === {%- endcomment -%}
   <div class="dlm-pc-row">
@@ -351,6 +431,7 @@
           id="dlm-shipping-card-date"
           data-delivery-prefix=""
           data-delivery-window="{{ pc_window | escape }}"
+          data-delivery-window-mode="calendar"
           data-delivery-fallback="{{ pc_window | escape }}"
         >{{ pc_window }}</span>
       </p>
@@ -449,6 +530,67 @@
       </div>
     </details>
 
+    {%- if pc_size_guide_show -%}
+      {%- comment -%}
+        Size guide entry point. Opens the existing
+        [data-matching-size-guide] <details> element rendered by
+        product-variant-picker.liquid and scrolls it into view. We do not
+        build a competing modal here — that would split the size data
+        across two implementations.
+      {%- endcomment -%}
+      <p class="dlm-pc-details" style="border-top: 1px solid #eef3f0; padding-top: 8px; margin-top: 4px;">
+        <a
+          href="#size-chart"
+          class="dlm-pc-link"
+          data-pdp-size-guide-trigger
+          aria-haspopup="dialog"
+        >{{ pc_size_guide_label }} →</a>
+      </p>
+    {%- endif -%}
+
   </div>
 
 </section>
+
+{%- if pc_size_guide_show -%}
+  <script>
+    (function () {
+      if (window.DLMPCSizeGuide) return;
+      window.DLMPCSizeGuide = true;
+
+      function findGuide() {
+        return document.querySelector('[data-matching-size-guide]');
+      }
+
+      function openGuide(trigger) {
+        var guide = findGuide();
+        if (!guide) return false;
+        // Unhide if the variant picker has marked it as hidden.
+        if (guide.hasAttribute('hidden')) guide.removeAttribute('hidden');
+        if (guide.tagName === 'DETAILS') guide.setAttribute('open', '');
+        try {
+          guide.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (e) {
+          guide.scrollIntoView();
+        }
+        // Move keyboard focus to the summary if available.
+        var focusTarget = guide.querySelector('summary') || guide;
+        window.setTimeout(function () {
+          try { focusTarget.focus({ preventScroll: true }); } catch (e) { focusTarget.focus(); }
+        }, 350);
+        return true;
+      }
+
+      document.addEventListener('click', function (event) {
+        var trigger = event.target.closest('[data-pdp-size-guide-trigger]');
+        if (!trigger) return;
+        if (event.defaultPrevented) return;
+        if (event.button && event.button !== 0) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (openGuide(trigger)) {
+          event.preventDefault();
+        }
+      });
+    })();
+  </script>
+{%- endif -%}

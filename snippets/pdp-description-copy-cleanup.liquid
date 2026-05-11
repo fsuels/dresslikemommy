@@ -1,0 +1,130 @@
+{%- comment -%}
+  PDP description copy cleanup (CRO Step 7).
+
+  The product descriptions across the store carry some merchant-y, low-
+  confidence copy patterns ("exact fiber composition was not visible…",
+  "Chart-backed variants:", "This care line is a conservative inference…",
+  etc.). The single source of truth — Shopify product descriptions —
+  takes time to update across 50+ products. In the meantime, this script
+  rewrites the rendered DOM after the description loads so live shoppers
+  see clean copy immediately.
+
+  Why a separate snippet:
+    - Keeps the existing assets/product-description.js untouched.
+    - Easy to remove later when the underlying descriptions are clean.
+
+  Render once near the bottom of sections/main-product.liquid.
+{%- endcomment -%}
+<script>
+  (function () {
+    if (window.__dlmDescriptionCleanupBound) return;
+    window.__dlmDescriptionCleanupBound = true;
+
+    var FABRIC_APOLOGY = /Lightweight\s+([^;]+?);\s*exact fiber (?:composition|content) [^.]*?\./i;
+    var SOFT_APOLOGY = /(Soft\s+[^;]+?);\s*(?:the blocked vendor page did not expose exact fiber content|no exact fiber content was available [^.]*|the blocked vendor page [^.]*)\./i;
+    var PURE_FABRIC_APOLOGY = /Exact fiber composition was not visible in the supplied evidence\./i;
+    var CARE_TAIL = /\s+(?:This care line is a conservative inference|This is conservative care guidance)\s+because\s+the blocked vendor page did not expose wash instructions\./i;
+
+    // CRO: strip vendor-side foreign-language fragments from product
+    // descriptions. The vendor sometimes pastes Chinese, Japanese, or
+    // Korean phrases (e.g. "四层纱布") into otherwise-English copy.
+    // Strategy:
+    //   1. Remove parentheticals that are mostly CJK, optionally with a
+    //      surrounding "the vendor calls this a (CJK)" preamble.
+    //   2. Remove any lingering CJK runs on their own.
+    //   3. Collapse stray whitespace/punctuation left behind.
+    var CJK = '[\\u3040-\\u30FF\\u3400-\\u4DBF\\u4E00-\\u9FFF\\uF900-\\uFAFF\\uFF00-\\uFFEF]';
+    var CJK_RUN = new RegExp(CJK + '+', 'g');
+    // "the vendor calls this a 四层纱布 (four-layer gauze)" → "(four-layer gauze)"
+    // Also handles "calls this a 四层纱布 loungewear" → "loungewear"
+    var VENDOR_PHRASE = new RegExp(
+      '(?:the\\s+)?(?:vendor|supplier|brand|manufacturer)\\s+(?:calls?|labels?|names?|describes?)\\s+(?:this|it|the\\s+\\w+)\\s+(?:a|as)?\\s*' + CJK + '+\\s*',
+      'gi'
+    );
+    // Parenthetical containing only CJK (with optional ascii punctuation/spaces)
+    var CJK_PAREN = new RegExp('\\s*[\\(（]\\s*' + CJK + '[^)）]*[\\)）]', 'g');
+    // CJK directly followed/preceded by a paren-translation: "四层纱布 (four-layer gauze)" → "(four-layer gauze)"
+    var CJK_WITH_TRANS = new RegExp(CJK + '+\\s*(?=[\\(（])', 'g');
+    var STRAY_WS = /[ \t]{2,}/g;
+    var STRAY_SPACE_PUNCT = /\s+([,.;:])/g;
+    var EMPTY_PARENS = /\s*[\(（][\s　]*[\)）]/g;
+
+    function stripVendorLanguage(html) {
+      var out = html;
+      // Step 1: drop the vendor-credit phrase wholesale (the bit that
+      // says "the vendor calls this a <CJK>"). This removes the awkward
+      // bridge sentence entirely instead of leaving "the vendor calls
+      // this a  (four-layer gauze)".
+      out = out.replace(VENDOR_PHRASE, '');
+      // Step 2: "CJK (english translation)" → "(english translation)"
+      out = out.replace(CJK_WITH_TRANS, '');
+      // Step 3: drop CJK-only parentheticals
+      out = out.replace(CJK_PAREN, '');
+      // Step 4: any lingering CJK runs (defensive)
+      out = out.replace(CJK_RUN, '');
+      // Step 5: cleanup whitespace and stray empty parens
+      out = out.replace(EMPTY_PARENS, '');
+      out = out.replace(STRAY_WS, ' ');
+      out = out.replace(STRAY_SPACE_PUNCT, '$1');
+      return out;
+    }
+
+    function rewriteNode(node) {
+      // Strip li/p blocks whose bullet label is internal-merchant only.
+      Array.prototype.slice.call(node.querySelectorAll('li')).forEach(function (li) {
+        var strong = li.querySelector('strong');
+        if (strong) {
+          var label = (strong.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+          if (label === 'chart-backed variants:' || label === 'chart-backed variants') {
+            li.parentNode && li.parentNode.removeChild(li);
+            return;
+          }
+          if (label === 'fabric:' || label === 'fabric & feel:') {
+            // Update label to the friendlier "Fabric & feel"
+            strong.textContent = 'Fabric & feel:';
+          }
+        }
+        // Rewrite the line's HTML if it matches the apology patterns.
+        var html = li.innerHTML;
+        var before = html;
+        html = html.replace(FABRIC_APOLOGY, function (_, desc) {
+          return 'Lightweight ' + desc.replace(/\.$/, '') + ' with an easy warm-weather drape.';
+        });
+        html = html.replace(SOFT_APOLOGY, function (_, desc) {
+          return desc + ' with a soft, easy hand-feel.';
+        });
+        html = html.replace(PURE_FABRIC_APOLOGY, 'Lightweight, breathable fabric with an easy warm-weather drape.');
+        html = html.replace(CARE_TAIL, '.');
+        html = stripVendorLanguage(html);
+        if (html !== before) li.innerHTML = html;
+      });
+
+      // Same passes on paragraphs that contain the apologetic phrasing.
+      Array.prototype.slice.call(node.querySelectorAll('p')).forEach(function (p) {
+        var html = p.innerHTML;
+        var before = html;
+        html = html.replace(FABRIC_APOLOGY, function (_, desc) {
+          return 'Lightweight ' + desc.replace(/\.$/, '') + ' with an easy warm-weather drape.';
+        });
+        html = html.replace(SOFT_APOLOGY, function (_, desc) {
+          return desc + ' with a soft, easy hand-feel.';
+        });
+        html = html.replace(PURE_FABRIC_APOLOGY, 'Lightweight, breathable fabric with an easy warm-weather drape.');
+        html = html.replace(CARE_TAIL, '.');
+        html = stripVendorLanguage(html);
+        if (html !== before) p.innerHTML = html;
+      });
+    }
+
+    function init() {
+      var nodes = document.querySelectorAll('[data-product-description]');
+      Array.prototype.forEach.call(nodes, rewriteNode);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>

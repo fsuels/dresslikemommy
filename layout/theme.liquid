@@ -818,6 +818,14 @@
         return date;
       }
 
+      // Calendar-day variant for "X-Y days" windows that should include
+      // weekends (used by the PDP Purchase Confidence card).
+      function addCalendarDays(startDate, days) {
+        const date = new Date(startDate);
+        date.setDate(date.getDate() + days);
+        return date;
+      }
+
       function parseBusinessDayWindow(value) {
         var matches = String(value || '').match(/\d+/g);
         if (!matches || !matches.length) return null;
@@ -915,12 +923,27 @@
 
         // PDP compact delivery-promise card: populate "Estimated delivery:
         // <date range>" with a live computed window so the shopper sees a
-        // concrete date instead of inferring from "12–15 business days".
+        // concrete date instead of inferring from a business-day range.
+        // Uses calendar days (not business days) so the displayed window
+        // is consistent across all destination countries.
         const cardEl = document.getElementById('dlm-shipping-card-date');
-        const cardWindow = getDeliveryWindow('standard', cardEl);
-        if (cardEl && cardWindow) {
-          cardEl.textContent = formatDeliveryWindow(today, cardWindow);
-          setDeliveryRowVisibility(cardEl, true);
+        if (cardEl) {
+          var cardMode = cardEl.getAttribute('data-delivery-window-mode') || 'business';
+          var cardWindow = parseBusinessDayWindow(cardEl.getAttribute('data-delivery-window'));
+          if (cardWindow) {
+            var minDate, maxDate;
+            if (cardMode === 'calendar') {
+              minDate = addCalendarDays(today, cardWindow.minBusinessDays);
+              maxDate = addCalendarDays(today, cardWindow.maxBusinessDays);
+            } else {
+              minDate = addBusinessDays(today, cardWindow.minBusinessDays);
+              maxDate = addBusinessDays(today, cardWindow.maxBusinessDays);
+            }
+            var minText = formatDate(minDate);
+            var maxText = formatDate(maxDate);
+            cardEl.textContent = minText === maxText ? minText : minText + ' - ' + maxText;
+            setDeliveryRowVisibility(cardEl, true);
+          }
         }
       }
 
