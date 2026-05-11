@@ -474,6 +474,13 @@ def select_table_for_role(tables: list[Any], type_value: str, expected_role: str
         context = table_context(table)
         context_garment = garment_key(context)
         table_id = norm(table.get("id") or "")
+        id_garment = garment_key(table_id)
+        if selected and id_garment:
+            if selected == id_garment:
+                return table
+            if selected in {"shirt", "shorts", "shirtShortsSet"} and id_garment in {"shirt", "shorts", "shirtShortsSet"}:
+                return table
+            continue
         if selected and context_has_garment(context, selected):
             return table
         if selected == "dress" and (context_garment == "dress" or (not context_garment and table_id == "size-chart")):

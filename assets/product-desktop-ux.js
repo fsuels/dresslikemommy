@@ -1775,6 +1775,18 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     if (!context) return false;
     var selectedGarmentKey = getGarmentKey(selectedTypeValue);
     var contextGarmentKey = getGarmentKey(context);
+    var idGarmentKey = getGarmentKey(table.id || '');
+
+    if (selectedGarmentKey && idGarmentKey) {
+      if (selectedGarmentKey === idGarmentKey) return true;
+      if (
+        ['shirt', 'shorts', 'shirtShortsSet'].indexOf(selectedGarmentKey) !== -1 &&
+        ['shirt', 'shorts', 'shirtShortsSet'].indexOf(idGarmentKey) !== -1
+      ) {
+        return true;
+      }
+      return false;
+    }
 
     if (selectedGarmentKey && contextContainsGarmentKey(context, selectedGarmentKey)) return true;
 
@@ -2414,8 +2426,9 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
         } else {
           var selectedAdultRank = getAdultSizeRank(selectedComparable.adultToken);
           var rowAdultRank = getAdultSizeRank(rowComparable.adultToken);
-          if (selectedAdultRank !== null && rowAdultRank !== null && Math.abs(selectedAdultRank - rowAdultRank) <= 2) {
-            score += Math.max(20, 80 - Math.abs(selectedAdultRank - rowAdultRank) * 30);
+          if (selectedAdultRank !== null && rowAdultRank !== null) {
+            var adultRankDistance = Math.abs(selectedAdultRank - rowAdultRank);
+            score += Math.max(10, 90 - adultRankDistance * 12);
           } else {
             score -= 140;
           }

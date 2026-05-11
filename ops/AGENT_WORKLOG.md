@@ -33328,3 +33328,710 @@ Guardrails:
 
 Next:
 - Closed for active family-tops products. If archived family-top products are republished later, recheck their Spanish taxonomy translations before activation because archived rows were intentionally left untouched.
+
+2026-05-10 - Localized Shipping Info browser fallback live
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-localized-shipping-info-link-browser-fallback-live
+
+Why:
+- Owner asked to spot-check the exact language/product combo that failed in the browser after representative curl readbacks looked clean.
+- Exact isolated Chrome readback of the Spanish product path still received cached stale product HTML with `href="/espages/shipping-info"` for `Ver todos los paises de envio actuales`.
+
+What changed:
+- Added a small `layout/theme.liquid` fallback that repairs malformed Shipping Info anchors on fresh pages and redirects malformed localized paths like `/espages/shipping-info` to `/es/pages/shipping-info`.
+- Scoped-pushed only `layout/theme.liquid` to live theme `134923321441` / `DLM CRO Preview 2026-05-06`.
+- Updated `PROB-2026-05-10-LOCALIZED-SHIPPING-INFO-LINK`, coordination, and the evidence report.
+
+Verification:
+- `shopify theme check --path . --fail-level error` passed with `264` files inspected.
+- `git diff --check -- layout/theme.liquid` passed before push.
+- Live/local pullback after the layout push matched local for `layout/theme.liquid`.
+- Exact isolated Chrome click from the stale Spanish product link landed on `https://www.dresslikemommy.com/es/pages/shipping-info`, showed H1 `Informacion de envio`, had no 404 text, and showed the current shipping-country list.
+
+Guardrails:
+- No Shopify Admin page/policy/product data, Shopify Markets, shipping-rate/profile/checkout settings, Merchant, Google Ads, Pinterest, feed, campaign, budget, bid, product-scope, product-group, conversion, checkout payment, or order changes.
+
+Next:
+- Closed. The snippet fix handles fresh product HTML, and the layout fallback catches cached malformed localized links while Shopify/CDN/browser caches settle.
+
+2026-05-10 - Paid growth orchestrator safe resume (Cowork session, no browser access)
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-paid-growth-orchestrator-safe-resume
+
+Why:
+- Continued the Dress Like Mommy paid-growth sprint as parent/orchestrator from anchor `2026-05-10-google-ads-non-us-search-paused-build-it-still-in-progress-remaining-absent`.
+- This session is in Cowork mode without logged-in Google Ads / Merchant Center / Pinterest / Shopify Admin browser access. Per the canonical operating prompt's non-blocking execution rule, the parent stated this clearly and ran disjoint local read-only lanes in parallel rather than freezing the sprint.
+
+What changed:
+- Spawned 5 disjoint parallel subagents under one parent in a single message:
+  - Lane A `Ads-Resume-Order` re-validated all 8 unresolved-country split CSVs and froze the safest resume order.
+  - Lane B `Beach-Seo-Gate` re-confirmed the held `1496`-row CSV mitigation and drafted the exact narrow Shopify SEO/social-title repair owner-approval phrase.
+  - Lane C `Pinterest-Paused-Draft` revalidated the canonical clean `342`-row scope and the review-only paused-draft templates.
+  - Lane D `Roas-Economics` refreshed the `650%` ROAS / `$70` AOV math, the `$16` zero-purchase hard-pause rule, the breakeven CVR table, and the smallest-future-spend-unit recommendation.
+  - Lane E `Market-Activation` produced a per-country activation readiness matrix for all 17 markets with the staged enablement order.
+- Wrote 1 packet README, 1 packet integrated report, and 5 lane reports.
+- Added attempt rows to `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`, `PROB-2026-05-09-NON-US-SEARCH-NATIVE-LANGUAGE-COPY-GATE`, `PROB-2026-05-08-PINTEREST-EVENT-QUALITY`, and `PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH` linking to the new packet.
+
+Verification:
+- All 5 lane report files exist at `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-safe-resume/lanes/*/`.
+- All 8 unresolved split CSV checksums match the lane's existing `SHA256SUMS.txt`.
+- Canonical Pinterest clean-scope CSV reconfirmed at `343` lines = 1 header + `342` data rows.
+- Lane D math reproduced: target CPA `$10.77`, contribution per order after CPA `$24.23`, breakeven CVR `1.39%` at `$0.15` CPC.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-safe-resume/PAID_GROWTH_ORCHESTRATOR_SAFE_RESUME_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-safe-resume/lanes/ads-resume-order/ADS_RESUME_ORDER_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-safe-resume/lanes/beach-seo-gate/BEACH_SEO_GATE_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-safe-resume/lanes/pinterest-paused-draft/PINTEREST_PAUSED_DRAFT_GATE_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-safe-resume/lanes/roas-economics/ROAS_ECONOMICS_REFRESH.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-safe-resume/lanes/market-activation/MARKET_ACTIVATION_SCORECARD.md`
+
+Guardrails:
+- No live spend, no campaign enablement, no budget/bid/status changes. No PMax enable. No Standard Shopping changes. No product-scope/feed-label/product-group changes. No conversion-goal changes. No Merchant uploads. No Shopify live product-data changes. No Pinterest live writes. No theme edits. No checkout payment or order submission. No CAPTCHA/verification bypass. No credential changes. No browser/account writes of any kind.
+- No durable bootstrap memory in `AGENTS.md` changed because the live external-system state did not change. The latest paid-growth anchor pointer in `AGENTS.md` remains `2026-05-10-google-ads-non-us-search-paused-build-it-still-in-progress-remaining-absent`; this orchestrator-safe-resume packet is a sidecar that prepares the next browser-enabled session.
+
+Next:
+- Resume the next paid-growth session from this anchor, follow the canonical paid-growth prompt, and use lane A's safest resume order once browser access is available.
+- Do NOT re-request the non-US Search `TEST BUILD` approval (already given on 2026-05-10 and partially used).
+- Do not re-upload the 9 completed countries.
+- Start with `PL` once the IT in-progress preview is verified to have cleared. Pause/kill rules from lane D apply at the first live enable.
+- Pinterest paused-draft creation, Merchant US/es age_group repair, and beach SEO/social-title repair remain exact-owner-approval-gated; the exact approval phrases are reproduced verbatim in lanes B and C.
+
+2026-05-10 - Localized product size-chart variant-row repair live final
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-localized-product-size-chart-variant-row-repair-live-final
+
+Why:
+- Owner reported the localized PDP size chart issue was still active, specifically `https://www.dresslikemommy.com/es/products/geometric-blue-family-matching-set?variant=44085199274081`, and required all active listings to show size-chart information in every storefront language.
+
+What changed:
+- Fixed the remaining selected-variant row matching bugs in `assets/product-desktop-ux.js`: localized child/adult role compatibility, stable `size-chart-*` table id selection, shirt/shorts/shared-set compatibility, translated header grouping, and nearest adult fallback for active variants larger than the source chart's max row.
+- Hardened `ops/scripts/repair_localized_product_size_charts.py` and `ops/scripts/poll_shopify_product_translations.py` so incomplete localized table sets are repair-worthy.
+- Added `ops/scripts/audit_localized_size_chart_variant_mapping.py` as the future listing guard.
+- Updated `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` so new listing work must run localized table repair/readback and variant-row mapping audit before completion.
+- Ran Shopify Admin translation repairs: `354` complete table-set translation registrations across `24` active products, then `560` force-rebuild registrations across `28` failing handles.
+- Scoped-pushed the final `assets/product-desktop-ux.js` patch to live theme `134923321441`.
+
+Verification:
+- Final complete table-set readback: `327` active products scanned, `268` source-chart products, `0` missing localized table sets, `0` planned repairs, `0` errors across `20` published non-primary locales.
+- Final active variant-row audit: `327` active products scanned, `268` source-chart products, `25,160` variant-locale checks, `0` products with unmatched variants, `0` unmatched variant-locale rows.
+- Owner exact Spanish URL browser readback passed: `lang=es`, selected `Shorts / Infantil 1-2 anos`, hidden variant `44085199274081`, visible selected-size snapshot `DETALLES DE TU TALLA Nino 1-2 anos`, selected row count `1`, `0` reconstructed fallback tables.
+- Extra Greek edge browser readback passed: `blue-check-family-matching-set?variant=44087754489953&country=GR`, selected `Shorts / Adult 3XL`, hidden variant `44087754489953`, visible snapshot resolves to nearest available adult row `Adult L`, selected row count `1`.
+- `node --check assets/product-desktop-ux.js` passed.
+- `python3 -m py_compile` passed for the touched Python scripts.
+- `shopify theme check --path . --fail-level error` passed with `264` files inspected and no offenses.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-localized-product-size-chart-variant-row-repair/LOCALIZED_PRODUCT_SIZE_CHART_VARIANT_ROW_REPAIR_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-localized-product-size-chart-variant-row-repair/lanes/admin-audit/full_active_complete_table_set_FINAL_READBACK_AFTER_FORCE.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-localized-product-size-chart-variant-row-repair/lanes/admin-audit/full_active_variant_row_mapping_FINAL_ZERO_UNMATCHED.json`
+
+Guardrails:
+- No Google Ads, Merchant, Pinterest, GA4/GTM, campaign/feed/budget/bid/status/product-scope/product-group/conversion changes.
+- No product status/publication/price/variant/inventory/tag/handle/image/SEO edits.
+- No source/vendor URL writes.
+- No checkout payment/order submission.
+
+Next:
+- Closed for active source-chart listings as of this readback. For any future listing or product translation work, run:
+  - `python3 ops/scripts/repair_localized_product_size_charts.py --execute`
+  - `python3 ops/scripts/repair_localized_product_size_charts.py --fail-on-missing`
+  - `python3 ops/scripts/audit_localized_size_chart_variant_mapping.py --fail-on-unmatched`
+
+2026-05-10 - Paid growth orchestrator deep follow-up (Cowork session, no browser access)
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-paid-growth-orchestrator-deep-followup
+
+Why:
+- Continued the Dress Like Mommy paid-growth sprint as parent/orchestrator from anchor `2026-05-10-paid-growth-orchestrator-safe-resume`.
+- This Cowork session has file/bash/Agent-subagent tools but no logged-in Google Ads / Merchant / Pinterest / Shopify Admin browser access. Per the canonical operating prompt's non-blocking execution rule, the parent stated this clearly and ran 5 disjoint local read-only lanes in parallel rather than freezing the sprint.
+- This packet does NOT duplicate the prior orchestrator-safe-resume packet; it advances the next layer of operator-paste-ready artifacts so the next browser-enabled session can move directly to apply, pre-enable measurement gates, Pinterest Event Quality repair, native-language review, and the very first non-US live enable.
+
+What changed:
+- Spawned 5 disjoint parallel subagents under one parent in a single message:
+  - Lane A `Ads-Apply-Playbook` produced per-country paste-ready playbook for the 8 unresolved Search countries (PL, CZ, RO, PT, GR, IT, FR, BE) with row counts, currency/budget read directly from the held CSVs, RPC readback targets, per-country preflight, common pre/postflight, and rollback procedure.
+  - Lane B `Measurement-Conversion-Gap` audited cross-market conversion goal inheritance (US `Account-default: Purchases` applied to 9 non-US Search campaigns), GA4/Tag readbacks needed before any non-US enable, currency presentment risk on the `purchase` event, Pinterest Tag/CAPI dedupe state, and pre-enable measurement gate checklist.
+  - Lane C `Pinterest-Event-Quality-Fix-Plan` mapped each Event-Quality `Fair` gap (Product ID in AddPaymentInfo, Email in AddToCart, Click ID in Checkout) to category (Shopify Pinterest official app vs Pinterest dashboard vs theme vs volume-gated), produced full theme-side Pinterest readback, drafted two distinct exact-quote owner-approval phrases (Phrase A app/dashboard; Phrase B narrow theme Customer Events subscriber), and defined "Good enough to enable" criteria.
+  - Lane D `Native-Language-Review-Checklist` catalogued all 14 native-language locale variants with reviewer briefs covering dialect, brand voice, forbidden claims, locale-specific gotchas, landing-language QA spot-checks, and reviewer recruitment options. Recommended staging order. Surfaced two notable native-review flags (`pt-PT` storefront serving `pt-BR` = HIGH RISK; `da-DK` row 1 H2 contains Swedish/Norwegian "Mamma" = REWRITE) and a Belgium FR/NL split decision.
+  - Lane E `First-Enable-Runbook` produced operator-facing runbook for the very first non-US live enable: GB campaign `23838895360` / ad group `Mommy & Me Dresses - Exact only`. 12-item pre-enable gate checklist, verbatim owner-approval phrase, apply-time runbook, 24h/72h/7d review cadence, $8/$16/$24 kill thresholds, rollback procedure, and forward escalation path to CA, AU.
+- Wrote 1 packet README, 1 integrated report, and 5 lane reports.
+- Added attempt rows to `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`, `PROB-2026-05-09-NON-US-SEARCH-NATIVE-LANGUAGE-COPY-GATE`, and `PROB-2026-05-08-PINTEREST-EVENT-QUALITY` linking to the new packet.
+- Appended `2026-05-10-paid-growth-orchestrator-deep-followup` evidence paths to the active-summary evidence column for the same three problems.
+- Added a new top-priority `DONE_LOCAL_PACKET_NO_LIVE_WRITES` row to `ops/AGENT_COORDINATION.md`.
+
+Verification:
+- All 5 lane report files exist at `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-deep-followup/lanes/*/`.
+- Lane A: every CSV row count claim is backed by a bash command run by the lane subagent (88 rows = 1 Campaign + 10 Ad group + 30 Keyword + 37 Negative keyword + 10 Ad for all 8 unresolved countries; currency MCC-inherited USD).
+- Lane B: every theme-code claim cites file:line (`assets/analytics.js:126-139, 392, 462, 820`; `layout/theme.liquid:301-308, 319-340`; `snippets/shipping-country-checker-modal.liquid:144-275`).
+- Lane C: zero `pintrk` / `pinterest_tag` / `tag_id` / `epik` matches anywhere in theme; theme Pinterest references are only social/icon/JSON-LD (cited at multiple file:line locations).
+- Lane D: every locale row read directly from `native_language_rsa_options.csv`; 14 locales catalogued.
+- Lane E: economics math traces back to lane D of the prior packet (target CPA $10.77, breakeven CVR 1.39% at $0.15 CPC, contribution per order $24.23).
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-deep-followup/README.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-deep-followup/PAID_GROWTH_ORCHESTRATOR_DEEP_FOLLOWUP_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-deep-followup/lanes/ads-apply-playbook/ADS_APPLY_PLAYBOOK_REPORT.md` (273 lines)
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-deep-followup/lanes/measurement-conversion-gap/MEASUREMENT_CONVERSION_GAP_REPORT.md` (277 lines)
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-deep-followup/lanes/pinterest-event-quality-fix-plan/PINTEREST_EVENT_QUALITY_FIX_PLAN_REPORT.md` (362 lines)
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-deep-followup/lanes/native-language-review-checklist/NATIVE_LANGUAGE_REVIEW_CHECKLIST_REPORT.md` (522 lines)
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-deep-followup/lanes/first-enable-runbook/FIRST_ENABLE_RUNBOOK_REPORT.md` (441 lines)
+
+Guardrails:
+- No live spend, no campaign enablement, no budget/bid/status changes. No PMax enable. No Standard Shopping changes. No product-scope/feed-label/product-group changes. No conversion-goal changes. No Merchant uploads. No Shopify live product-data changes. No Pinterest live writes. No theme edits. No checkout payment or order submission. No CAPTCHA/verification bypass. No credential changes. No browser/account writes of any kind.
+- No durable bootstrap memory in `AGENTS.md` changed because the live external-system state did not change. The latest paid-growth anchor pointer in `AGENTS.md` and the canonical paid-growth prompt remains `2026-05-10-google-ads-non-us-search-paused-build-it-still-in-progress-remaining-absent`; this orchestrator-deep-followup packet is a sidecar that prepares the next browser-enabled session.
+
+Top 3 measurement risks before any non-US enable (from Lane B):
+1. Currency presentment on the `purchase` event for non-US orders is unverified — the theme has NO `purchase` event; purchase fires only from the official Shopify Google & YouTube app on `/checkout/thank_you`, and whether that app sends `currency=EUR/SEK/CHF/RON/etc.` or `currency=USD` for non-US orders is unproven by any prior packet.
+2. `Account-default: Purchases` is a single-action, US-history bucket; non-US Search will count conversions against it without country segmentation.
+3. Pinterest Event Quality `Fair` cannot be theme-fixed because the residual gaps live in the Shopify Pinterest official app behavior; the `_epik` Click ID gap is volume-gated and only closes after real paid Pinterest traffic arrives.
+
+Problems:
+- `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE` (P1): no status change. New attempt rows for Lane A apply playbook + Lane E first-enable runbook.
+- `PROB-2026-05-09-NON-US-SEARCH-NATIVE-LANGUAGE-COPY-GATE` (P2): no status change. New attempt row for Lane D reviewer checklist.
+- `PROB-2026-05-08-PINTEREST-EVENT-QUALITY` (P1): no status change. New attempt row for Lane C fix plan.
+- `PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH` (P2): not touched in this session. Mitigation remains intact per the prior packet's lane B audit.
+- `PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP` (P2): not touched. Out of scope (no Merchant browser access).
+
+Next:
+- Resume the next paid-growth session from this anchor and use the canonical paid-growth prompt.
+- Once browser access is available, follow the prior packet's lane A safest resume order plus this packet's per-country apply playbook (Lane A): start with `PL`, then `CZ` → `RO` → `PT` → `GR` (5 unattempted clean countries first), then `IT` after stale preview clears, then `FR` after a fresh completed preview, then `BE` last after upload-throttle cooldown.
+- Before any first non-US enable: run the Lane B measurement gate readbacks (especially the `purchase`-event currency presentment confirm per market via Tag Assistant + GA4 Realtime).
+- For the very first non-US enable, follow the Lane E runbook for GB / Mommy & Me Dresses - Exact only and request the verbatim Lane E approval phrase from the owner action-time.
+- Pinterest paused-draft creation, Merchant US/es age_group repair, beach SEO/social-title repair, native-language localized launches, and any non-GB live enable remain exact-owner-approval-gated; the verbatim approval phrases are reproduced in the relevant lane reports of this packet and the prior orchestrator-safe-resume packet.
+
+2026-05-10 - Paid growth browser recovery: IT and PL paused Search built
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-paid-growth-browser-recovery-it-pl-paused-search-built
+
+Why:
+- Continued the Dress Like Mommy paid-growth sprint as parent/orchestrator from anchor `2026-05-10-paid-growth-orchestrator-deep-followup`.
+- The prior durable live Ads state had 9 paused non-US Search campaigns built and `IT` parked as an in-progress preview. Owner had already given the exact paused non-US Search `TEST BUILD` approval on 2026-05-10, so the session did not request it again.
+
+What changed:
+- Claimed the browser recovery + unresolved non-US Search preflight lane in `ops/AGENT_COORDINATION.md`.
+- Spawned 3 disjoint subagents:
+  - Ads CSV revalidation for unresolved split files.
+  - Public measurement preflight.
+  - Native-copy risk triage.
+- Direct Browser/Playwright MCP launch paths were blocked by a Chrome profile lock; parent recovered by using the existing logged-in Chrome remote-debugging session on port `9222`.
+- Rechecked Google Ads bulk-upload history and found the stale `IT` preview had completed cleanly.
+- Applied `IT` and `PL` one country at a time after clean `88/88 # OK` preview/download validations.
+- Read back and narrow-repaired both new campaigns from positive geo `DONT_CARE` to `LOCATION_OF_PRESENCE`.
+- Opened/updated measurement gate `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT` because non-US purchase-event currency/value remains unproven.
+- Updated `AGENTS.md`, `ops/prompts/paid-growth-ai-army-continuation-prompt.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md` to preserve the new 11-campaign state.
+
+Google Ads result:
+- `IT` campaign `23829232530` / `DLM_IT_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507`: paused Search, `$1/day`, content off, YouTube off, positive and negative `LOCATION_OF_PRESENCE`.
+- `PL` campaign `23829238698` / `DLM_PL_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507`: paused Search, `$1/day`, content off, YouTube off, positive and negative `LOCATION_OF_PRESENCE`.
+- Approved paused non-US Search build is now 11/17 applied and read back clean: `GB`, `CA`, `AU`, `CH`, `DK`, `DE`, `NL`, `SE`, `ES`, `IT`, `PL`.
+- Remaining unresolved countries: `CZ`, `RO`, `PT`, `GR`, `FR`, `BE`.
+
+Verification:
+- IT preview validation: `88` rows, all `# OK`, paused campaign/ad group/keyword/ad statuses.
+- IT apply validation: `88` rows, all `# OK`, paused campaign/ad group/keyword/ad statuses.
+- IT final RPC readback passed after presence-only repair.
+- PL preview validation: `88` rows, all `# OK`, paused campaign/ad group/keyword/ad statuses.
+- PL apply validation: `88` rows, all `# OK`, paused campaign/ad group/keyword/ad statuses.
+- PL final RPC readback passed after presence-only repair.
+- Ads CSV sidecar revalidated all 8 unresolved split files against the manifest and found `0` bad beach/Vacation Family hits.
+- Public measurement preflight returned Shopify `429` for `PL`, `CZ`, `RO`, `PT`, and `GR`, so it stopped without retrying; the purchase-event currency gap remains open.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-browser-recovery-and-remaining-search-preflight/PAID_GROWTH_BROWSER_RECOVERY_AND_REMAINING_SEARCH_PREFLIGHT_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-browser-recovery-and-remaining-search-preflight/raw/remaining-readback/IT_campaign_rpc/final_validated_summary.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-browser-recovery-and-remaining-search-preflight/raw/remaining-readback/PL_campaign_rpc/final_validated_summary.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-browser-recovery-and-remaining-search-preflight/lanes/ads-csv-revalidation/ADS_CSV_REVALIDATION_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-browser-recovery-and-remaining-search-preflight/lanes/public-measurement-preflight/PUBLIC_MEASUREMENT_PREFLIGHT_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-browser-recovery-and-remaining-search-preflight/lanes/native-copy-risk-triage/NATIVE_COPY_RISK_TRIAGE.md`
+
+Guardrails:
+- No live spend, no campaign enablement, no Standard Shopping edits, no PMax edits, no US campaign `23827590655` edits, no existing-campaign budget/bid/status changes, no product-scope/feed-label/product-group changes, no conversion-goal changes, no Merchant uploads/source edits, no Shopify product-data changes, no Pinterest writes, no theme edits, no account/billing/credential changes, no checkout payment, and no order.
+- The only Ads writes were the already-approved paused new-campaign build actions for `IT` and `PL`, plus narrow presence-only repairs after readback.
+
+Problems:
+- `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`: updated to `PARTIAL_11_APPLIED_REMAINING_CZ_RO_PT_GR_ABSENT_FR_STALE_PREVIEW_BE_THROTTLE`.
+- `PROB-2026-05-09-NON-US-SEARCH-NATIVE-LANGUAGE-COPY-GATE`: status unchanged; added native risk triage attempt.
+- `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`: opened/updated as `OWNER_APPROVAL_REQUIRED_FOR_PURCHASE_EVENT_PROOF`.
+
+Next:
+- Resume from this anchor and the canonical paid-growth prompt.
+- Do not re-request the TEST BUILD approval and do not re-upload completed countries.
+- Next safest Ads sequence: `CZ` → `RO` → `PT` → `GR`, one country at a time with absent/preview/apply/download/RPC readback; then `FR` only after fresh non-stale completed preview and no-duplicate readback; then `BE` last after upload-throttle cooldown.
+- Before any non-US enablement, run the purchase-event currency measurement gate. If it requires a real order, ask for exact owner approval for a controlled non-US test purchase/refund/cancel procedure.
+
+2026-05-10 - Paid growth CZ built, RO preview pending
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-paid-growth-cz-built-ro-preview-pending
+
+Why:
+- Continued the Dress Like Mommy paid-growth sprint as parent/orchestrator from anchor `2026-05-10-paid-growth-browser-recovery-it-pl-paused-search-built`.
+- Owner had already given the exact paused non-US Google Search `TEST BUILD` approval on 2026-05-10, so this session did not request it again.
+- The next approved sequence was `CZ` -> `RO` -> `PT` -> `GR`, one country at a time, with `FR` parked for a fresh non-stale preview/no-duplicate readback and `BE` last after upload-throttle cooldown.
+
+What changed:
+- Claimed the `CZ`/`RO`/`PT`/`GR` paused Search continuation lane in `ops/AGENT_COORDINATION.md`.
+- Spawned 2 local/read-only sidecars:
+  - Remaining split CSV guardrail validation for `CZ`, `RO`, `PT`, `GR`, `FR`, and `BE`.
+  - Purchase-event currency measurement gate status update.
+- Recovered the Google Ads bulk upload helper by using the global Playwright install and patching row-scoped upload-result handling.
+- Built only `CZ` inside the approved paused TEST BUILD scope.
+- Started the `RO` preview, but did not apply it because the preview remained in progress after bounded waits.
+- Did not attempt `PT` or `GR` because the one-country-at-a-time guard forbids stacking uploads behind an in-progress preview.
+- Updated `AGENTS.md`, `ops/prompts/paid-growth-ai-army-continuation-prompt.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md` to preserve the new 12-campaign state and the `RO` preview blocker.
+
+Google Ads result:
+- `CZ` campaign `23829253812` / `DLM_CZ_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507`: paused Search, `$1/day`, content off, YouTube off, positive and negative `LOCATION_OF_PRESENCE` after narrow presence-only repair.
+- Approved paused non-US Search build is now 12/17 applied and read back clean: `GB`, `CA`, `AU`, `CH`, `DK`, `DE`, `NL`, `SE`, `ES`, `IT`, `PL`, `CZ`.
+- `RO` campaign remains absent/uncreated. Its bulk upload preview was still in progress with `Error count 0` after a 120-second helper wait and a 180-second extended poll; no apply was clicked.
+- `PT` and `GR` remain absent/unattempted.
+
+Verification:
+- `CZ` pre-apply absent readback passed.
+- `CZ` preview validation: `88` rows, all `# OK`, expected row types, paused statuses.
+- `CZ` apply validation: `88` rows, all `# OK`, expected row types, paused statuses.
+- `CZ` final RPC readback passed after presence-only repair.
+- `RO` pre-apply absent readback passed; post-wait absent readback still passed.
+- `node --check` passed for the patched Playwright helper.
+- `python3 -m json.tool` passed for the helper state file and key campaign summary JSON files.
+- `git diff --check` passed for the touched paid-growth memory/report/helper files.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-cz-ro-pt-gr-paused-search-build/PAID_GROWTH_CZ_RO_PT_GR_PAUSED_SEARCH_BUILD_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-cz-ro-pt-gr-paused-search-build/NEXT_CONTINUATION_PROMPT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-google-ads-non-us-search-paused-test-build-approved/raw/after-readbacks/CZ_campaign_rpc/final_validated_summary.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-google-ads-non-us-search-paused-test-build-approved/raw/after-readbacks/downloads/CZ/CZ_intl_search_paused_draft_web_bulk_RESULTS.csv.validation.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-cz-ro-pt-gr-paused-search-build/raw/ro-preview-timeout/ro_preview_extended_poll.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-browser-recovery-and-remaining-search-preflight/lanes/remaining-split-csv-guardrail-validation/REMAINING_SPLIT_CSV_GUARDRAIL_VALIDATION.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-browser-recovery-and-remaining-search-preflight/lanes/public-measurement-preflight/PURCHASE_EVENT_CURRENCY_GATE_STATUS_UPDATE.md`
+
+Guardrails:
+- No live spend, no campaign enablement, no Standard Shopping edits, no PMax edits, no US campaign `23827590655` edits, no existing-campaign budget/bid/status changes, no product-scope/feed-label/product-group changes, no conversion-goal changes, no Merchant uploads/source edits, no Shopify product-data changes, no Pinterest writes, no theme edits, no account/billing/credential changes, no checkout payment, and no order.
+- The only Ads write was the already-approved paused new-campaign build action for `CZ`, plus narrow presence-only repair after readback.
+
+Problems:
+- `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`: updated to `PARTIAL_12_APPLIED_RO_PREVIEW_IN_PROGRESS_PT_GR_ABSENT_FR_STALE_PREVIEW_BE_THROTTLE`.
+- `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`: status unchanged as `OWNER_APPROVAL_REQUIRED_FOR_PURCHASE_EVENT_PROOF`; sidecar added latest status update and exact controlled-test approval wording if needed.
+
+Next:
+- Resume from this anchor and the canonical paid-growth prompt.
+- Do not re-request the TEST BUILD approval and do not re-upload completed countries, including `CZ`.
+- First recheck the existing `RO` preview in Google Ads bulk uploads. If clean, download/validate then apply/read back `RO`; if stale/in-progress/errors/throttle, park `RO` with absent readback and do not stack `PT`/`GR`.
+- After `RO` resolves, continue one country at a time with `PT`, then `GR`; `FR` only after a fresh non-stale completed `88/88 # OK` preview and no-duplicate readback; `BE` last after upload-throttle cooldown.
+- Before any non-US enablement, close the purchase-event currency measurement gate. If it requires a real order, ask for exact owner approval for a controlled non-US test purchase/refund/cancel procedure.
+
+2026-05-10 - Paid growth RO parked, PT/GR not attempted
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-paid-growth-ro-parked-preview-not-visible
+
+Why:
+- Continued the Dress Like Mommy paid-growth sprint as parent/orchestrator from anchor `2026-05-10-paid-growth-cz-built-ro-preview-pending`.
+- The required next step was to recheck the existing `RO` Google Ads bulk-upload preview first, without re-uploading completed countries or stacking `PT`/`GR` behind unresolved `RO`.
+
+What changed:
+- Claimed the narrow `RO`/`PT`/`GR` Ads continuation lane in `ops/AGENT_COORDINATION.md`.
+- Spawned 2 disjoint local/read-only sidecars:
+  - CSV guardrail revalidation for `RO`, `PT`, `GR`, `FR`, and `BE`.
+  - Purchase-event currency measurement gate recheck.
+- Added a scoped RO preview recheck helper under the new packet to inspect the existing preview without uploading the file again.
+- Rechecked `RO` twice:
+  - Existing-page recheck returned `PREVIEW_IN_PROGRESS_ERROR_0`.
+  - Reload + 90-second poll returned `PREVIEW_FILE_NOT_VISIBLE`.
+- Ran fresh RPC absent readbacks for `RO`, `PT`, and `GR`; all three remain absent/uncreated.
+- Updated `AGENTS.md`, `ops/prompts/paid-growth-ai-army-continuation-prompt.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md`.
+
+Google Ads result:
+- No Ads write was made in this session.
+- No `RO` apply was clicked.
+- `PT` and `GR` were not attempted because the one-country-at-a-time guard blocks stacking behind unresolved `RO`.
+- Completed countries remain unchanged: `GB`, `CA`, `AU`, `CH`, `DK`, `DE`, `NL`, `SE`, `ES`, `IT`, `PL`, and `CZ` are the only built paused non-US Search campaigns from this approved build.
+
+Verification:
+- `RO` immediate preview recheck: `PREVIEW_IN_PROGRESS_ERROR_0`.
+- `RO` refreshed upload-history recheck: `PREVIEW_FILE_NOT_VISIBLE`.
+- `RO`, `PT`, and `GR` campaign RPC readbacks: `found=false`.
+- CSV sidecar: `RO`, `PT`, `GR`, `FR`, and `BE` split files still pass local guardrails: `88` rows each, all importable statuses paused, CPC <= `$0.20`, checksums match, and `0` protected-campaign/Standard Shopping/PMax/stale beach hits.
+- Measurement sidecar: non-US purchase-event currency gate remains open; pre-purchase presentment is supported, but app-fired checkout `purchase` currency/value remains unproven.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-ro-pt-gr-search-continuation/PAID_GROWTH_RO_PT_GR_SEARCH_CONTINUATION_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-ro-pt-gr-search-continuation/raw/ro/RO_PREVIEW_RECHECK_ATTEMPTS.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-ro-pt-gr-search-continuation/raw/ro/existing_preview_recheck_status.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-ro-pt-gr-search-continuation/raw/campaign-absent-readbacks/RO_campaign_rpc/initial_summary.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-ro-pt-gr-search-continuation/raw/campaign-absent-readbacks/PT_campaign_rpc/initial_summary.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-ro-pt-gr-search-continuation/raw/campaign-absent-readbacks/GR_campaign_rpc/initial_summary.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-ro-pt-gr-search-continuation/lanes/csv-guardrail-revalidation/CSV_GUARDRAIL_REVALIDATION.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-ro-pt-gr-search-continuation/lanes/measurement-gate-recheck/PURCHASE_EVENT_CURRENCY_GATE_RECHECK.md`
+
+Guardrails:
+- No live spend, no campaign enablement, no Standard Shopping edits, no PMax edits, no US campaign `23827590655` edits, no existing-campaign budget/bid/status changes, no product-scope/feed-label/product-group changes, no conversion-goal changes, no Merchant uploads/source edits, no Shopify product-data changes, no Pinterest writes, no theme edits, no account/billing/credential changes, no checkout payment, and no order.
+
+Problems:
+- `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`: updated to `PARTIAL_12_APPLIED_RO_STALE_PREVIEW_NOT_VISIBLE_PT_GR_ABSENT_FR_STALE_PREVIEW_BE_THROTTLE`.
+- `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`: status unchanged as `OWNER_APPROVAL_REQUIRED_FOR_PURCHASE_EVENT_PROOF`; latest sidecar evidence added.
+
+Next:
+- Resume from this anchor and the canonical paid-growth prompt.
+- Do not re-request the broad TEST BUILD approval and do not re-upload completed countries.
+- Next Ads action needs fresh owner direction to either retry `RO` with a new one-country preview after confirming no in-progress row/no RO campaign, or skip/park `RO` and continue one country at a time with `PT`, then `GR`.
+- `FR` still needs fresh non-stale completed `88/88 # OK` preview and no-duplicate readback; `BE` remains last after upload-throttle cooldown.
+- Before any non-US enablement, close the purchase-event currency measurement gate.
+
+2026-05-10 - Paid growth goal-orchestrated follow-up
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-paid-growth-goal-orchestrated-followup
+
+Why:
+- Owner asked to run the paid-growth continuation as a Codex goal, act as parent/orchestrator, use parallel subagents, keep working within guardrails, update evidence/problem/worklog memory, and finish with the next continuation prompt.
+- Canonical prompt and continuity files were read first; latest durable state was `2026-05-10-paid-growth-ro-parked-preview-not-visible`.
+- Next Google Ads writes remain gated by fresh owner direction because `RO` is stale/not-visible and the next branch is ambiguous.
+
+What changed:
+- Created local/read-only packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-goal-orchestrated-followup/`.
+- Spawned 4 disjoint workers:
+  - `ads-current-state-decision`: reconciled current non-US Search state as `12 built / 3 absent / 2 parked` and flagged stale decision-pack drift.
+  - `measurement-preenable-gate`: hardened the non-US purchase currency/value gate and controlled-test approval wording.
+  - `merchant-pinterest-beach-gates`: consolidated current Merchant US/es, Pinterest Event Quality, and beach metadata gates.
+  - `first-enable-scorecard`: refreshed first-enable/economics scorecard and a weekly scorecard CSV with current campaign IDs.
+- Wrote packet README, integrated report, lane reports, weekly CSV, and `NEXT_CONTINUATION_PROMPT.md`.
+- Updated `ops/PROBLEM_TRACKER.md` attempt logs for `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`, `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`, `PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP`, `PROB-2026-05-08-PINTEREST-EVENT-QUALITY`, and `PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH`.
+- Updated `ops/AGENT_COORDINATION.md` with a completed local/no-live-writes coordination row.
+- Updated latest paid-growth anchor pointers in `AGENTS.md` and the canonical paid-growth prompt.
+
+Verification:
+- Worker reports exist:
+  - `lanes/ads-current-state-decision/ADS_CURRENT_STATE_DECISION.md`
+  - `lanes/measurement-preenable-gate/MEASUREMENT_PREENABLE_GATE.md`
+  - `lanes/merchant-pinterest-beach-gates/MERCHANT_PINTEREST_BEACH_GATES.md`
+  - `lanes/first-enable-scorecard/FIRST_ENABLE_SCORECARD.md`
+  - `lanes/first-enable-scorecard/weekly_scorecard_template.csv`
+- Worker D validated the weekly CSV as `21` rows / `21` columns / `0` malformed rows.
+- Parent ran targeted readbacks of the canonical prompt, protocols, problem tracker, coordination, worklog, and created lane reports.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-goal-orchestrated-followup/PAID_GROWTH_GOAL_ORCHESTRATED_FOLLOWUP_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-goal-orchestrated-followup/NEXT_CONTINUATION_PROMPT.md`
+
+Guardrails:
+- No live spend, no campaign enablement, no budget/bid/status changes.
+- No PMax, Standard Shopping, Brand Search, Remarketing, Merchant upload/source edit/sync, Shopify Admin product-data edit, Pinterest write, GA4/GTM write, theme edit/push, product-scope/feed-label/product-group/conversion-goal change, account/billing/credential change, checkout payment/order/refund/cancel, CAPTCHA/verification bypass, or destructive filesystem action.
+- No external browser/account write occurred in this goal session.
+
+Problems:
+- `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`: status unchanged; latest packet clarifies stale decision-pack is reference-only and the current true state is `12 built / 3 absent / 2 parked`.
+- `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`: status unchanged as `OWNER_APPROVAL_REQUIRED_FOR_PURCHASE_EVENT_PROOF`; pre-purchase presentment is supported, but app-fired purchase currency/value remains unproven.
+- `PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP`: unchanged as approval-gated; US/en remains solved and must not be redone.
+- `PROB-2026-05-08-PINTEREST-EVENT-QUALITY`: unchanged as approval-gated; clean `342` scope remains the paused-draft path.
+- `PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH`: unchanged as locally mitigated by the held `1496`-row Ads CSV; Shopify SEO/social repair remains exact-owner-approval-gated.
+
+Next:
+- First, run browser-enabled Tag Assistant/GA4/Google Ads readbacks for non-US purchase currency/value. If no genuine non-US purchase can prove the path, request exact owner approval for one controlled low-value non-US test purchase/refund/cancel before any non-US live enablement.
+- Then get fresh owner direction for the Ads branch: retry `RO` with a new one-country preview after no-in-progress/no-campaign readback, or skip/park `RO` and proceed `PT`, then `GR`.
+- Keep `FR` parked until a fresh non-stale `88/88 # OK` preview plus no-duplicate readback; keep `BE` last after throttle cooldown.
+- Do not use `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-decision-pack-and-preflight/` as current Ads state; it is stale and predates `IT`, `PL`, and `CZ` completion plus the later `RO` stale/not-visible readback.
+
+2026-05-10 - Paid growth measurement pre-purchase pass, Ads branch gated
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-paid-growth-measurement-prepurchase-branch-gated
+
+Why:
+- Owner asked why the goal stopped and requested continuation of the Dress Like Mommy paid-growth sprint from `2026-05-10-paid-growth-goal-orchestrated-followup`, starting with the measurement gate and then the `RO` / `PT` / `GR` Ads branch decision.
+- The Codex `/goal` tool could not create another active goal in this thread because an earlier goal already existed as complete; parent continued manually under the canonical paid-growth prompt and North Star.
+
+What changed:
+- Created packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-measurement-ads-branch-continuation/`.
+- Added parent report, measurement browser readback report, packet README, and `NEXT_CONTINUATION_PROMPT.md`.
+- Integrated three disjoint sidecar outputs:
+  - Ads branch decision: current Ads state is still `12 built / 3 absent / 2 parked`; latest user message is not exact approval to retry `RO` or skip/park `RO`.
+  - Historical non-US purchase evidence hunt: no historical non-US `purchase` event proof was found; existing order proof is US/USD only.
+  - North Star lane board: measurement proof and explicit Ads branch direction remain the closest path to controlled profitable growth.
+- Updated `ops/PROBLEM_TRACKER.md`, `ops/AGENT_COORDINATION.md`, `AGENTS.md`, and `ops/prompts/paid-growth-ai-army-continuation-prompt.md`.
+
+Browser/readback results:
+- `GB` / `GBP` Tag Assistant checkout-entry path passed pre-purchase evidence: tags `AW-853411529`, `G-N4EQNK0MMB`, and `GT-WRH8Q3MD` were detected; checkout was `en-GB`; `begin_checkout` carried `currency: GBP`, `value: 15`, and country `GB`.
+- `DE` / `EUR` Chrome CDP checkout-entry capture passed pre-purchase evidence: Google/GA `add_to_cart` and `begin_checkout` requests carried `currency=EUR`, value `17.95`; the Google Ads `begin_checkout` request used label `ditQCJzowY8YEMmN-JYD`.
+- Google Ads conversion-action readback passed for setup health: `Google Shopping App Purchase` is the single Primary account-level purchase action, dynamic value setting is enabled, enhanced conversions are enabled, and a recent request was present from `2026-05-09T02:40:54.022671+00:00`.
+- No non-US `purchase` event was observed.
+- No payment, Pay Now click, order, refund, cancelation, or live Ads/Merchant/Shopify/Pinterest/GA4/GTM write occurred.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-measurement-ads-branch-continuation/PAID_GROWTH_MEASUREMENT_ADS_BRANCH_CONTINUATION_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-measurement-ads-branch-continuation/lanes/measurement-browser-readback/MEASUREMENT_BROWSER_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-measurement-ads-branch-continuation/lanes/measurement-browser-readback/google_ads_conversion_value_readback/google_ads_conversion_value_gate_report.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-measurement-ads-branch-continuation/lanes/ads-branch-decision/ADS_BRANCH_DECISION.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-measurement-ads-branch-continuation/lanes/measurement-browser-readback/HISTORICAL_NON_US_PURCHASE_EVIDENCE_HUNT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-measurement-ads-branch-continuation/lanes/north-star-lane-board/NORTH_STAR_LANE_BOARD.md`
+
+Guardrails:
+- No live spend, campaign enablement, budget/bid/status changes, PMax enable, Standard Shopping change, product-scope/feed-label/product-group change, conversion-goal/action change, Merchant upload/source edit/sync, Shopify live product-data change, Shopify theme edit/push, Pinterest write, GA4/GTM write, checkout payment/order/refund/cancel, credential/account/billing edit, sign-in/account switch, CAPTCHA/verification bypass, or destructive filesystem action.
+
+Problems:
+- `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`: remains `OWNER_APPROVAL_REQUIRED_FOR_PURCHASE_EVENT_PROOF`, but now has a stronger partial pass. `GB`/`GBP` and `DE`/`EUR` pre-purchase Google/GA events are presentment-aware through checkout entry. The official app `purchase` event remains unproven.
+- `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`: unchanged as `PARTIAL_12_APPLIED_RO_STALE_PREVIEW_NOT_VISIBLE_PT_GR_ABSENT_FR_STALE_PREVIEW_BE_THROTTLE`; latest branch sidecar says exact owner direction is required before retrying `RO` or skipping to `PT`/`GR`.
+
+Next:
+- Measurement first: observe a genuine non-US purchase event in Tag Assistant/GA4/Google Ads if one exists; otherwise get exact owner approval for a controlled non-US test purchase/refund/cancel procedure.
+- Ads branch second: ask for exact direction to retry `RO`, or skip/park `RO` and proceed `PT` then `GR`, one country at a time.
+- Do not enable non-US campaigns, do not re-upload completed countries, and do not change budgets/bids/statuses/conversions/feed/product scope by inference.
+
+2026-05-10 - Paid growth multilingual platform matrix
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-paid-growth-multilingual-platform-matrix
+
+Why:
+- Owner explicitly requested continuing the paid-growth sprint by reading the canonical prompt, inspecting problem/worklog/artifacts, creating a full Google Ads/Pinterest language-platform execution matrix, executing all safe read-only/local/draft/prep/verification/documentation work, and finishing with a new anchor.
+- Current guardrails were stricter than some older paused-build language: no live spend, no enablement, and no budget/bid/status changes. Parent followed the stricter rule and documented the conflict as an approval gate.
+
+What changed:
+- Created packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-platform-matrix/`.
+- Spawned 4 read-only sidecars:
+  - Google Ads matrix: confirmed the in-scope Google Ads set is 17 countries and current state is `12 built / 3 absent / 2 parked`.
+  - Pinterest matrix: confirmed Pinterest is only US `en-US` local-template-ready; no non-US Pinterest scope/templates/readbacks exist.
+  - QA/guardrails: confirmed solved checkout/localization gates remain solved and active gates remain unchanged.
+  - Continuity: confirmed dirty worktree should be preserved and active problem statuses should be updated without disturbing solved rows.
+- Added `EXECUTION_MATRIX.md`, parent report, sidecar summary, Pinterest multilingual local prep checklist, and `NEXT_CONTINUATION_PROMPT.md`.
+- Updated `ops/PROBLEM_TRACKER.md` with no-status-change attempt rows for active gates and opened:
+  - `PROB-2026-05-10-PAID-GROWTH-GUARDRAIL-SCOPE-CONFLICT`
+  - `PROB-2026-05-10-PINTEREST-MULTILINGUAL-SETUP-GATE`
+- Updated `ops/AGENT_COORDINATION.md`, `AGENTS.md`, and the canonical paid-growth prompt with the new anchor/state.
+
+Verification/readbacks:
+- Fresh local parse of all 17 Google Ads split CSVs found each has `88` rows, `1` campaign, `10` ad groups, `30` keywords, `37` negatives, `10` ads, all importable statuses paused, `40` country-qualified final URL rows, max CPC at or below `$0.15`, and `0` forbidden hits for PMax/Standard Shopping/product/feed/conversion/Vacation Family/bad beach handle.
+- Local Chrome CDP endpoint `127.0.0.1:9222` was available and showed logged-in Google Ads, Shopify Admin, and Merchant Center tabs; no account action was taken because remaining account work is approval-gated.
+- Sidecar outputs aligned with parent matrix: Google Ads `12 built / 3 absent / 2 parked`; Pinterest US-only local-template-ready; live-spend-ready non-US markets remain `0`.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-platform-matrix/README.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-platform-matrix/EXECUTION_MATRIX.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-platform-matrix/PAID_GROWTH_MULTILINGUAL_PLATFORM_MATRIX_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-platform-matrix/lanes/pinterest-matrix/PINTEREST_MULTILINGUAL_LOCAL_PREP.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-platform-matrix/lanes/continuity/SIDECAR_SUMMARIES.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-platform-matrix/NEXT_CONTINUATION_PROMPT.md`
+
+Guardrails:
+- No live spend, campaign enablement, campaign creation, account-object creation, upload/preview/apply, budget/bid/status change, PMax, Standard Shopping, product-scope/feed-label/product-group change, conversion-goal change, Merchant upload/source edit/sync, Shopify live product-data change, theme edit/push, Pinterest campaign/draft/product-group/tag/CAPI/audience/catalog/source write, GA4/GTM write, checkout payment/order/refund/cancel, credential/account/billing edit, sign-in/account switch, CAPTCHA/verification bypass, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Problems:
+- `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`: unchanged; current state remains `12 built / 3 absent / 2 parked`.
+- `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`: unchanged; non-US purchase event remains unproven.
+- `PROB-2026-05-09-NON-US-SEARCH-NATIVE-LANGUAGE-COPY-GATE`: unchanged; local native copy remains concept-only and review-gated.
+- `PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP`: unchanged; US/es source `10627981690` remains approval-gated.
+- `PROB-2026-05-08-PINTEREST-EVENT-QUALITY`: unchanged; US paused drafts/Event Quality repair remain exact-approval-gated.
+- `PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH`: unchanged; held Ads CSV mitigation remains in force.
+- New `PROB-2026-05-10-PAID-GROWTH-GUARDRAIL-SCOPE-CONFLICT`: current stricter no-budget/bid/status guardrail blocks new paused account objects unless the owner explicitly reconciles setup fields.
+- New `PROB-2026-05-10-PINTEREST-MULTILINGUAL-SETUP-GATE`: non-US Pinterest requires local country packets and separate exact approval; do not infer readiness from Google Ads artifacts.
+
+Next:
+- Measurement first: prove non-US purchase event currency/value or request exact controlled non-US test purchase/refund/cancel approval.
+- Google Ads branch second: get exact owner direction to retry `RO`, or skip/park `RO` and continue `PT` then `GR`; do not re-upload completed countries.
+- Pinterest: request exact paused US draft approval or read-only Event Quality official-app reconfirmation approval. For non-US Pinterest, build one local country packet first; no account object without approval.
+- Native-language QA: start native-speaker review for the 14 locale variants before local-language platform use.
+
+2026-05-10 - Paid growth authority safe-launch prep
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-paid-growth-authority-safe-launch-prep
+
+Why:
+- Owner asked why work stopped, clarified that the North Star was not reached, and gave broad authority to get everything ready and start advertising only when everything is clean/perfect enough.
+- Parent continued under the canonical paid-growth prompt, preserving the hard no-live-spend posture until launch gates pass.
+
+What changed:
+- Created packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-authority-safe-launch-prep/`.
+- Added integrated parent report and canonical packet continuation prompt:
+  - `PAID_GROWTH_AUTHORITY_SAFE_LAUNCH_PREP_REPORT.md`
+  - `NEXT_CONTINUATION_PROMPT.md`
+- Created/updated Google Ads launch-readiness files:
+  - `lanes/google-ads-launch-readiness/PERFECT_BEFORE_ADVERTISING_CHECKLIST.md`
+  - `lanes/google-ads-launch-readiness/GOOGLE_ADS_FIRST_ENABLE_READBACKS.md`
+  - `lanes/google-ads-launch-readiness/google_ads_market_readiness.csv`
+  - `lanes/google-ads-launch-readiness/RO_RETRY_BLOCKED_BY_UPLOAD_THROTTLE.md`
+- Created first 14-day monitoring and kill-rule files:
+  - `lanes/roas-monitoring/FIRST_14_DAY_MONITORING_RULES.md`
+  - `lanes/roas-monitoring/launch_monitoring_template.csv`
+- Spawned two safe local worker lanes:
+  - Pinterest non-US local drafts: created local-only review templates for all 17 non-US markets; no account objects or upload files.
+  - Native-copy deep QA: validated all 14 locale variants / 70 theme rows with `0` length violations and `0` automated forbidden-claim hits.
+- Corrected active first-enable docs from stale `Mommy & Me Dresses - Exact only` to readback-backed `Mommy & Me Dresses - Exact`.
+- Updated `AGENTS.md`, canonical prompt, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md`.
+
+Readbacks/actions:
+- Fresh read-only GB campaign RPC confirmed campaign `23838895360` remains paused Search, `$2/day`, English, GB presence-only, content/YouTube off.
+- Fresh read-only absent campaign RPCs confirmed `RO`, `PT`, `GR`, `FR`, and `BE` absent before any new import attempt.
+- Retried the safest RO paused-build branch after absent readback; Google Ads showed concurrent-upload/throttle before file upload, so no RO upload/preview/apply/campaign creation occurred.
+- Browser-style GB first final URL readback passed after raw `curl` had returned `403`: exact GB URL loaded, GB/GBP presentment visible, no visible verification wall or stale Christmas metadata, add-to-cart succeeded, and checkout entry reached with no payment/order.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-authority-safe-launch-prep/PAID_GROWTH_AUTHORITY_SAFE_LAUNCH_PREP_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-authority-safe-launch-prep/lanes/parent-readbacks/GB_FIRST_EXACT_BROWSER_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-authority-safe-launch-prep/lanes/google-ads-launch-readiness/RO_RETRY_BLOCKED_BY_UPLOAD_THROTTLE.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-authority-safe-launch-prep/lanes/pinterest-non-us-local-drafts/PINTEREST_NON_US_LOCAL_DRAFTS_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-authority-safe-launch-prep/lanes/native-copy-deep-qa/NATIVE_COPY_DEEP_QA_REPORT.md`
+
+Guardrails:
+- No live spend, campaign enablement, PMax enablement, Standard Shopping change, budget/bid/status change, product-scope/feed-label/product-group change, conversion-goal change, Merchant upload/source edit/sync, Shopify live product-data change, Pinterest account write, GA4/GTM write, checkout payment/order/refund/cancel, credential/account/billing edit, sign-in/account switch, CAPTCHA/verification bypass, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+- Browser checkout entry was reached for GB only; no payment data was entered, no Pay Now / Place Order click happened, and no order was created.
+
+Problems:
+- `PROB-2026-05-10-GB-FIRST-ENABLE-LANDING-CURL-403`: closed as `SOLVED_BROWSER_READBACK_PASSED`.
+- `PROB-2026-05-10-GB-FIRST-ENABLE-ADGROUP-NAME-MISMATCH`: closed as `SOLVED_LOCAL_DOC_REPAIRED`.
+- `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`: now `PARTIAL_12_APPLIED_RO_UPLOAD_THROTTLE_STILL_ACTIVE_PT_GR_ABSENT_FR_STALE_BE_THROTTLE`.
+- `PROB-2026-05-09-NON-US-SEARCH-NATIVE-LANGUAGE-COPY-GATE`: now `LOCAL_QA_COMPLETE__NATIVE_REVIEW_BLOCKERS_IDENTIFIED`.
+- `PROB-2026-05-10-PINTEREST-MULTILINGUAL-SETUP-GATE`: now `LOCAL_NON_US_PREP_READY__ACCOUNT_WRITES_GATED`.
+- `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`: still active and remains the blocker to new non-US spend.
+
+Next:
+- Measurement first: observe a genuine non-US purchase event with correct currency/value in Tag Assistant/GA4/Google Ads, or get exact owner approval for a controlled low-value non-US test purchase/refund/cancel.
+- If measurement closes, repeat just-in-time readbacks for campaign `23838895360` and ad group `Mommy & Me Dresses - Exact`; enable only that exact GB unit if every gate passes.
+- For remaining paused Google Ads infrastructure, wait for upload-throttle cooldown, confirm no in-progress RO/FR/BE row and no RO campaign, then retry one-country RO preview only. Do not stack PT/GR behind unresolved RO.
+- Keep Pinterest non-US local-only until country-specific source/catalog/product-group/readback scope and exact account-write approval exist.
+
+2026-05-10 - Paid growth multilingual keyword quality upgrade
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-paid-growth-keyword-quality-upgrade
+
+Why:
+- Owner asked to make sure every campaign is fully complete with the best keywords in each language and excellent quality.
+- Parent treated this as launch-prep and quality-packet authority, not permission to bypass native review, measurement, account-write, or no-live-spend guardrails.
+
+What changed:
+- Created local-only packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/`.
+- Spawned/read two read-only sidecars:
+  - Google Ads audit confirmed all 17 non-US split CSVs are mechanically complete (`88` rows each, 10 ad groups, 30 keywords, 37 negatives, 10 RSAs, 15H/4D, paused, exact/phrase only, country-qualified URLs) while account state remains `12 built / 3 absent / 2 parked`.
+  - Pinterest audit confirmed US `en-US` is the only concrete clean-scope path; non-US Pinterest has local prep only and no country-specific source/catalog/product-group readbacks.
+- Built `google_ads_current_search_campaign_quality_audit.csv` for US + 17 non-US Search structures.
+- Built `google_ads_existing_keywords_by_market_theme.csv` with `546` existing staged keyword rows.
+- Built `google_ads_native_language_keyword_master.csv` with `700` native exact/phrase keyword rows across `14` locale variants and `5` themes.
+- Built `google_ads_native_language_rsa_quality_pack.csv` with `70` native RSA rows; every row has `15` headlines and `4` descriptions.
+- Built `google_ads_native_campaign_shell_plan.csv`, `google_ads_english_first_keyword_expansion_candidates.csv`, `pinterest_multilingual_keyword_interest_quality_plan.csv`, Google/Pinterest gate docs, validation summary, report, README, and packet continuation prompt.
+- Updated `ops/PROBLEM_TRACKER.md`, `ops/AGENT_COORDINATION.md`, `AGENTS.md`, and the canonical paid-growth prompt.
+
+Validation:
+- `keyword_quality_validation_summary.json`: `700` native keyword rows, `70` native RSA rows, `70/70` with `15` headlines, `70/70` with `4` descriptions, max headline length `27`, max description length `74`, `0` native keyword/RSA forbidden-pattern rows, `54` Pinterest local plan rows.
+- Re-ran the generator after fixing a false-positive supplier-domain scan so source-domain negatives are not treated as customer-facing copy problems.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/PAID_GROWTH_MULTILINGUAL_KEYWORD_QUALITY_UPGRADE_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/google_ads_current_search_campaign_quality_audit.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/google_ads_native_language_keyword_master.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/google_ads_native_language_rsa_quality_pack.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/pinterest_multilingual_keyword_interest_quality_plan.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/keyword_quality_validation_summary.json`
+
+Guardrails:
+- No live spend, campaign enablement, campaign/account-object creation, upload/preview/apply, budget/bid/status changes, PMax, Standard Shopping, product-scope/feed-label/product-group changes, conversion-goal changes, Merchant upload/source edit/sync, Shopify live product-data or theme change, Pinterest account/campaign/draft/product-group/catalog/source/tag/CAPI/audience/budget/bid/status/spend write, GA4/GTM write, checkout payment/order/refund/cancel, credential/account/billing edit, CAPTCHA bypass, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Problems:
+- `PROB-2026-05-09-NON-US-SEARCH-NATIVE-LANGUAGE-COPY-GATE`: now `LOCAL_15H_4D_KEYWORD_QUALITY_PACKET_READY_NATIVE_REVIEW_GATED`.
+- `PROB-2026-05-10-PINTEREST-MULTILINGUAL-SETUP-GATE`: now `LOCAL_NON_US_PREP_AND_KEYWORD_PLAN_READY__ACCOUNT_WRITES_GATED`.
+- `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`: unchanged; non-US purchase event proof still blocks new non-US spend.
+- `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`: unchanged; `RO` upload throttle and remaining country gates remain.
+
+Next:
+- Native-review the 700-row keyword master and 70-row 15H/4D RSA quality pack by locale, starting with `es-ES`, `it-IT`, and `ro-RO`.
+- Keep existing English-first paused campaigns as the first controlled Search path after measurement proof and exact enable approval.
+- Do not import native campaign shell plans until native review, landing-language QA, exact action-time approval, and readbacks are complete.
+- For Pinterest, resolve US/Event Quality first; use the new Pinterest CSV only as local catalog/copy-term guidance until source/catalog/product-group readbacks and exact approval exist.
+
+2026-05-10 - Paid growth keyword quality expert hardening
+AGENT_CONTINUITY_ANCHOR: 2026-05-10-paid-growth-keyword-quality-expert-hardening
+
+Why:
+- Owner said everything must be done to expert level after the first keyword-quality packet.
+- Parent treated this as a stricter local QA/hardening instruction, not permission to bypass native review, measurement, account-write, or no-live-spend guardrails.
+
+What changed:
+- Re-audited the generated multilingual keyword/RSA packet for quality, not just mechanical validity.
+- Fixed a native RSA quality issue: generation now preserves natural phrase casing instead of forcing title case across languages.
+- Added `google_ads_native_negative_keyword_review_plan.csv` with `205` localized negative-keyword review rows.
+- Added `EXPERT_QA_REVIEW_NOTES.md` and expanded the report with expert stop conditions: do not import machine-generated native rows directly, do not bulk-add all expansion keywords, do not use broad match before conversion/search-term/ROAS proof, do not use native-language ads where storefront language/dialect mismatches, and do not treat Pinterest as a keyword-import platform.
+- Updated `AGENTS.md`, the canonical paid-growth prompt, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md` to the expert-hardening anchor/status.
+
+Validation:
+- Re-ran `build_keyword_quality_upgrade_packet.py`.
+- `keyword_quality_validation_summary.json`: `700` native keyword rows, `205` native negative review rows, `70` native RSA rows, `70/70` at `15` headlines, `70/70` at `4` descriptions, max headline `27`, max description `74`, `0` native keyword forbidden-pattern rows, `0` native RSA forbidden-pattern rows, `54` Pinterest local plan rows.
+- `python3 -m py_compile` passed for the packet generator.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/PAID_GROWTH_MULTILINGUAL_KEYWORD_QUALITY_UPGRADE_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/EXPERT_QA_REVIEW_NOTES.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/google_ads_native_language_keyword_master.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/google_ads_native_language_rsa_quality_pack.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/google_ads_native_negative_keyword_review_plan.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/keyword_quality_validation_summary.json`
+
+Guardrails:
+- No live spend, campaign enablement, campaign/account-object creation, upload/preview/apply, budget/bid/status changes, PMax, Standard Shopping, product-scope/feed-label/product-group changes, conversion-goal changes, Merchant upload/source edit/sync, Shopify live product-data or theme change, Pinterest account/campaign/draft/product-group/catalog/source/tag/CAPI/audience/budget/bid/status/spend write, GA4/GTM write, checkout payment/order/refund/cancel, credential/account/billing edit, CAPTCHA bypass, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Problems:
+- `PROB-2026-05-09-NON-US-SEARCH-NATIVE-LANGUAGE-COPY-GATE`: now `LOCAL_EXPERT_HARDENED_KEYWORD_QUALITY_PACKET_READY_NATIVE_REVIEW_GATED`.
+- `PROB-2026-05-10-PINTEREST-MULTILINGUAL-SETUP-GATE`: status unchanged, but expert Pinterest stop conditions are now documented.
+- `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`: unchanged; non-US purchase event proof still blocks new non-US spend.
+- `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`: unchanged; `RO` upload throttle and remaining country gates remain.
+
+Next:
+- Native-review the 700-row keyword master, 70-row 15H/4D RSA pack, and 205-row localized negative review plan by locale.
+- Keep existing English-first paused campaigns as the first controlled Search path after measurement proof and exact enable approval.
+- Do not import native campaign shell plans until native review, landing-language QA, exact action-time approval, and readbacks are complete.
+- For Pinterest, resolve US/Event Quality first; use the new Pinterest CSV only as local catalog/copy-term guidance until source/catalog/product-group readbacks and exact approval exist.
+
+2026-05-11 - Paid growth native review + measurement read-only continuation
+AGENT_CONTINUITY_ANCHOR: 2026-05-11-paid-growth-native-review-measurement-readonly-continuation
+
+Why:
+- Owner asked to continue from `AGENT_CONTINUITY_ANCHOR: 2026-05-10-paid-growth-keyword-quality-expert-hardening`, not redo the expert keyword packet, native-review the `700` Google Ads keyword rows, `70` RSA rows, and `205` negative-review rows by locale, and separately close the non-US purchase-event currency/value gate before any live spend.
+
+What changed:
+- Read `ops/prompts/paid-growth-ai-army-continuation-prompt.md`, continuity/protocol files, `ops/PROBLEM_TRACKER.md`, `ops/AGENT_COORDINATION.md`, and current paid-growth memory.
+- Spawned four read-only locale sidecars and integrated their results into `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-11-paid-growth-native-review-measurement-readonly-continuation/`.
+- Created `native_review_locale_verdicts.csv` and `native_review_rewrite_queue.csv`.
+- Refreshed read-only Google Ads conversion-value evidence under `google_ads_conversion_value_readback/`.
+- Queried Shopify Admin read-only for sanitized non-USD presentment order candidates and wrote `sanitized_shopify_non_usd_order_candidates.json` / `.csv` with no customer PII or full order identifiers.
+- Updated `ops/PROBLEM_TRACKER.md`, `ops/AGENT_COORDINATION.md`, `AGENTS.md`, and `ops/prompts/paid-growth-ai-army-continuation-prompt.md`.
+
+Native review results:
+- Source packet remains unchanged and review-only: `700` keyword rows, `70` RSA rows, `205` negative-review rows.
+- `REWRITE_RECOMMENDED`: `es-ES`, `it-IT`, `ro-RO`, `de-DE`, `nl-NL`, `fr-FR`, `sv-SE`, `pl-PL`, `cs-CZ`.
+- `BLOCKED`: `pt-PT`, `da-DK`, `fr-BE`, `nl-BE`.
+- `PASS_AI_REVIEW_NATIVE_REVIEW_STILL_REQUIRED`: `el-GR`.
+- `BLOCKED_NO_NATIVE_ROWS`: `CH`, because the expert packet has no Swiss German/French/Italian native rows and needs a separate language-split decision before any native campaign copy.
+
+Measurement results:
+- Read-only Google Ads capture still shows `Google Shopping App Purchase` as the single Primary account-level purchase action with dynamic value/recent request evidence, but this remains aggregate/configuration proof, not non-US order-level purchase-event proof.
+- Shopify Admin read-only evidence found `7` sanitized non-USD presentment order candidates since 2026-04-01 across `DKK`, `GBP`, and `CHF`. These are candidates for GA4/Google Ads matching, not proof that GA4/Ads received correct non-US purchase currency/value.
+- Local gcloud ADC was unavailable and the signed-in `gcloud auth print-access-token` path returned `403 ACCESS_TOKEN_SCOPE_INSUFFICIENT` from the GA4 Admin API, so GA4 API matching was not completed from CLI.
+- Existing Chrome CDP read-only probe reached GA4 UI `Analytics | Home` for account `88409806`, property `330266838`, visible property name `dresslikemommy.com - GA4`, and a visible `Purchases` card. This proves UI access for the next read-only matching step but does not prove order-level currency/value.
+- Bounded GA4 `View events` click reached `Analytics | Events: Event name` and showed first `10` of `15` event rows plus total revenue `$1,103.34`, but the visible first page did not expose `purchase` or event-level currency/value. No GA4 settings were changed.
+
+Problems:
+- `PROB-2026-05-09-NON-US-SEARCH-NATIVE-LANGUAGE-COPY-GATE`: now `AI_TRIAGE_COMPLETE_REWRITE_AND_NATIVE_REVIEW_GATED`.
+- `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`: now `READONLY_NON_USD_ORDER_CANDIDATES_FOUND__PURCHASE_EVENT_PROOF_STILL_REQUIRED`.
+- `PROB-2026-05-10-PINTEREST-MULTILINGUAL-SETUP-GATE`: unchanged; non-US Pinterest remains local-only/account-write-gated.
+- `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`: unchanged; RO/PT/GR/FR/BE build gates remain separate.
+
+Guardrails:
+- No live spend, campaign enablement, account-object creation, upload/preview/apply, campaign/budget/bid/status change, PMax, Standard Shopping, product-scope/feed-label/product-group change, conversion-goal change, Merchant upload/source edit/sync, Shopify live product-data/theme write, Pinterest account/campaign/draft/product-group/catalog/source/tag/CAPI/audience/budget/bid/status/spend write, GA4/GTM write, checkout payment/order/refund/cancel, credential/account/billing edit, CAPTCHA bypass, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Next:
+- Build corrected local-only replacement review packets for flagged locales, starting with `es-ES`, `it-IT`, and `ro-RO` if prioritizing the strongest localized markets.
+- Separately use logged-in GA4/Google Ads read-only surfaces to match the sanitized Shopify non-USD order candidates to actual `purchase` event currency/value/transaction evidence.
+- If no genuine historical non-US purchase event can be observed, use the exact controlled non-US test-purchase approval wording in `NON_US_PURCHASE_MEASUREMENT_EVIDENCE_HUNT.md`; do not create a payment/order by inference.
+
+2026-05-11 - Paid growth native rewrite + measurement aggregate read-only continuation
+AGENT_CONTINUITY_ANCHOR: 2026-05-11-paid-growth-native-rewrite-local-measurement-continuation
+
+Why:
+- Owner asked to continue from `AGENT_CONTINUITY_ANCHOR: 2026-05-11-paid-growth-native-review-measurement-readonly-continuation`, use the 2026-05-11 native-review packet as the current review layer, not redo the expert keyword packet, create corrected local-only replacement keyword/RSA/negative-review rows for flagged locales, and separately continue the non-US purchase-event currency/value gate before any live spend.
+
+What changed:
+- Created local-only evidence packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-11-paid-growth-native-rewrite-local-measurement-continuation/`.
+- Built `google_ads_native_keyword_replacements_local_only.csv`, `google_ads_native_rsa_replacements_local_only.csv`, `google_ads_native_negative_replacements_local_only.csv`, and `native_rewrite_locale_status.csv`.
+- Rewrote review rows for `es-ES`, `it-IT`, `ro-RO`, `de-DE`, `nl-NL`, `fr-FR`, `sv-SE`, `pl-PL`, and `cs-CZ`.
+- Preserved gates for `pt-PT`, `da-DK`, `fr-BE`, `nl-BE`, `el-GR`, and `CH`.
+- Continued the GA4 measurement read-only path with Events pagination and purchase-row click probes; no settings were changed.
+- Updated `ops/PROBLEM_TRACKER.md`, `ops/AGENT_COORDINATION.md`, `AGENTS.md`, and `ops/prompts/paid-growth-ai-army-continuation-prompt.md`.
+
+Validation and readbacks:
+- Generator validation: source rows stayed `700` keywords / `70` RSAs / `205` negatives; replacement layer has `450` keyword rows, `45` RSA rows, `133` negative-review rows, and `15` locale-status rows.
+- Native replacement validation: max keyword length `41`, max headline length `30`, max description length `77`, `0` RSA forbidden hits, and all upload statuses `REVIEW_ONLY_NOT_UPLOAD`.
+- GA4 standard Events report read-only probe for property `330266838`, `Apr 13 - May 10, 2026`, exposed `purchase` on row `12` with `17` events, `16` users, and `$1,103.34` total revenue.
+- Follow-up purchase-row click did not expose transaction ID, event currency, order-level value, or a sanitized non-USD order-candidate match; the measurement gate remains open.
+
+Problems:
+- `PROB-2026-05-09-NON-US-SEARCH-NATIVE-LANGUAGE-COPY-GATE`: now `LOCAL_REWRITE_PACKET_READY_NATIVE_REVIEW_AND_LANDING_QA_GATED`.
+- `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`: now `AGGREGATE_GA4_PURCHASE_VISIBLE__ORDER_LEVEL_NON_US_CURRENCY_VALUE_PROOF_STILL_REQUIRED`.
+- Other paid-growth gates remain unchanged: no non-US campaign enablement, no Pinterest non-US account writes, and no RO/PT/GR/FR/BE Search build changes occurred in this continuation.
+
+Guardrails:
+- No live spend, campaign enablement, account-object creation, upload/preview/apply, budget/bid/status change, PMax, Standard Shopping, product-scope/feed-label/product-group change, conversion-goal change, Merchant upload/source edit/sync, Shopify live product-data/theme write, Pinterest account/campaign/draft/product-group/catalog/source/tag/CAPI/audience/budget/bid/status/spend write, GA4/GTM settings write, checkout payment/order/refund/cancel, credential/account/billing edit, CAPTCHA bypass, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Next:
+- Send the local-only replacement slices for `es-ES`, `it-IT`, `ro-RO`, `de-DE`, `nl-NL`, `fr-FR`, `sv-SE`, `pl-PL`, and `cs-CZ` to native reviewers, then run country-qualified landing-language QA before any platform use.
+- Continue measurement with GA4 UI Explore/report export for property `330266838`, or refreshed read-only GA4 Data/Admin API scopes, to match sanitized Shopify non-USD order candidates to actual `purchase` transaction/currency/value evidence.
+- If read-only historical proof cannot expose the needed fields and the owner wants the gate closed now, use the exact controlled non-US test-purchase/refund/cancel approval wording already documented in the prior measurement packet. Do not create a payment/order by inference.

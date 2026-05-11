@@ -21,7 +21,21 @@
 {{ 'component-shipping-countries-v2.css' | asset_url | stylesheet_tag }}
 
 {%- if confirmation_mode == 'product-note' -%}
-  <div class="shipping-country-note">
+  {%- comment -%}
+    CRO upgrade — keep shoppers on the PDP.
+    The translated `product_note_html` ships an <a href="{{ link }}"> that navigates to /pages/shipping-info,
+    which breaks buying momentum on the product page. We render it once into a string, then convert that
+    anchor into a <button data-shipping-country-trigger> so the existing global modal opens in place.
+    Translations are untouched — works automatically for every locale, currency, and selected country.
+  {%- endcomment -%}
+  {%- capture product_note_raw -%}
+    {{ 'products.shipping_country.product_note_html' | t: link: shipping_info_url }}
+  {%- endcapture -%}
+  {%- assign product_note_anchor_open = '<a href="' | append: shipping_info_url | append: '"' -%}
+  {%- assign trigger_open = '<button type="button" class="shipping-country-note__cta" data-shipping-country-trigger data-shipping-country-trigger-context="product-note" aria-haspopup="dialog"' -%}
+  {%- assign product_note_html = product_note_raw | replace: product_note_anchor_open, trigger_open | replace: '</a>', '</button>' -%}
+
+  <div class="shipping-country-note" data-shipping-country-note>
     <p class="shipping-country-note__line">
       <strong>
         {%- if current_country != blank -%}
@@ -34,9 +48,20 @@
           {{ 'products.shipping_country.product_country_confirmed' | t }}
         {%- endif -%}
       </strong>
+      {%- if country_count > 0 -%}
+        <button
+          type="button"
+          class="shipping-country-note__change"
+          data-shipping-country-trigger
+          data-shipping-country-trigger-context="product-note-change"
+          aria-haspopup="dialog"
+        >
+          {{ 'products.shipping_country.checker_trigger' | t }}
+        </button>
+      {%- endif -%}
     </p>
     <p class="shipping-country-note__text">
-      {{ 'products.shipping_country.product_note_html' | t: link: shipping_info_url }}
+      {{ product_note_html }}
     </p>
   </div>
 {%- elsif country_count > 0 -%}

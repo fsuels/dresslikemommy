@@ -904,6 +904,14 @@
         } else {
           setDeliveryRowVisibility(dhlEl, false);
         }
+
+        // PDP above-the-fold trust strip: populate "Arrives <date range>"
+        const trustEl = document.getElementById('pdp-trust-strip-date');
+        const trustWindow = getDeliveryWindow('standard', trustEl);
+        if (trustEl && trustWindow) {
+          trustEl.textContent = formatDeliveryWindow(today, trustWindow);
+          setDeliveryRowVisibility(trustEl, true);
+        }
       }
 
       calculateDeliveryDates();
@@ -1241,8 +1249,8 @@
     {%- if settings.predictive_search_enabled -%}
       <script defer src="{{ 'predictive-search.js' | asset_url }}"></script>
     {%- endif -%}
-    
-    
+
+
 
     {%- liquid
       assign is_product_template = false
@@ -1278,7 +1286,7 @@
     {%- endif -%}
 
 
-  
+
     {%- if is_product_template -%}
       <link rel="stylesheet" href="{{ 'theme-inline-body-static-04.css' | asset_url }}">
     {%- endif -%}

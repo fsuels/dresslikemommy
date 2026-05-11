@@ -50,7 +50,7 @@ async function bodyText(page) {
 }
 
 async function clickLastText(page, pattern, label) {
-  const locator = page.locator('material-button, button, [role=button], a').filter({ hasText: pattern });
+  const locator = page.locator('material-button, button, [role=button], a').filter({ hasText: pattern, visible: true });
   const count = await locator.count();
   if (!count) throw new Error(`Could not find ${label}`);
   await locator.nth(count - 1).click({ timeout: 15000 });
@@ -74,7 +74,19 @@ async function ensureUploadFileSource(page) {
   if (body.includes('从计算机选择文件') || body.includes('Choose file from computer') || body.includes('Select file from computer')) return;
   const source = page.locator('div[role=button], material-dropdown-select, dropdown-button').filter({ hasText: /选择来源|Select source|Choose source/ }).first();
   await source.click({ timeout: 15000 });
-  await page.locator('material-select-dropdown-item, [role=option]').filter({ hasText: /上传文件|Upload File/ }).first().click({ timeout: 15000, force: true });
+  try {
+    await page.locator('material-select-dropdown-item, [role=option]').filter({ hasText: /上传文件|Upload File/ }).first().click({ timeout: 15000, force: true });
+  } catch (_error) {
+    await page.evaluate(() => {
+      const visible = (e) => !!(e.offsetWidth || e.offsetHeight || e.getClientRects().length);
+      const option = [...document.querySelectorAll('material-select-dropdown-item, [role=option]')]
+        .find((e) => visible(e) && /上传文件|Upload File/.test((e.innerText || e.textContent || '').trim()));
+      if (!option) throw new Error('Upload File source option not found');
+      option.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, button: 0 }));
+      option.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, button: 0 }));
+      option.click();
+    });
+  }
   await page.waitForFunction(
     () => document.body.innerText.includes('从计算机选择文件') || document.body.innerText.includes('Choose file from computer') || document.body.innerText.includes('Select file from computer'),
     null,
@@ -140,19 +152,30 @@ async function downloadResults(page, country, phase, expectedName) {
   const dir = path.join(PACKET, phase === 'preview' ? `raw/preview/downloads/${country}` : `raw/after-readbacks/downloads/${country}`);
   fs.rmSync(dir, { recursive: true, force: true });
   mkdirp(dir);
+  const sourceName = expectedName.replace('_RESULTS.csv', '.csv');
   await page.waitForFunction(
     ([name]) => {
       const body = document.body.innerText || '';
       return body.includes(name) && (body.includes('下载结果') || body.includes('Download results'));
     },
-    [expectedName.replace('_RESULTS.csv', '.csv')],
+    [sourceName],
     { timeout: 30000 },
   );
   const downloadPromise = page.waitForEvent('download', { timeout: 30000 });
-  const locator = page.locator('material-button, button, [role=button], a').filter({ hasText: /下载结果|Download results/ });
-  const count = await locator.count();
-  if (!count) throw new Error(`Could not find ${phase} download results`);
-  await locator.nth(phase === 'apply' ? 0 : count - 1).click({ timeout: 15000 });
+  const rowLocator = page
+    .locator('.particle-table-row, [role=row], tr')
+    .filter({ hasText: sourceName, visible: true })
+    .locator('material-button, button, [role=button], a')
+    .filter({ hasText: /下载结果|Download results/, visible: true });
+  const rowCount = await rowLocator.count();
+  if (rowCount) {
+    await rowLocator.last().click({ timeout: 15000 });
+  } else {
+    const locator = page.locator('material-button, button, [role=button], a').filter({ hasText: /下载结果|Download results/, visible: true });
+    const count = await locator.count();
+    if (!count) throw new Error(`Could not find ${phase} download results`);
+    await locator.nth(phase === 'apply' ? 0 : count - 1).click({ timeout: 15000 });
+  }
   const download = await downloadPromise;
   const suggested = download.suggestedFilename();
   if (!suggested.includes(expectedName)) throw new Error(`Unexpected ${phase} download ${suggested}; expected ${expectedName}`);

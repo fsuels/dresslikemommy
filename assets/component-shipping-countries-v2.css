@@ -89,6 +89,140 @@
   text-underline-offset: 0.2rem;
 }
 
+/* In-text trigger that replaces the legacy <a href="/pages/shipping-info">.
+   Visually identical to the surrounding link copy so localization
+   (every language) keeps reading naturally, but opens the modal
+   instead of navigating off the PDP. */
+.shipping-country-note__cta {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: rgb(var(--color-link));
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+  cursor: pointer;
+}
+.shipping-country-note__cta:hover,
+.shipping-country-note__cta:focus-visible {
+  text-decoration-thickness: 0.15rem;
+  outline: none;
+}
+.shipping-country-note__cta:focus-visible {
+  outline: 0.2rem solid rgb(var(--color-link));
+  outline-offset: 0.2rem;
+  border-radius: 0.2rem;
+}
+
+/* Compact inline "change country" pill next to the auto-detected country line.
+   Lets users self-correct their country/currency without leaving the PDP. */
+.shipping-country-note__change {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.6rem;
+  padding: 0.15rem 0.7rem;
+  background: rgba(29, 134, 86, 0.08);
+  border: 0.1rem solid rgba(29, 134, 86, 0.25);
+  border-radius: 999px;
+  color: #1d8656;
+  font-size: 0.82em;
+  font-weight: 500;
+  line-height: 1.6;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+  white-space: nowrap;
+}
+.shipping-country-note__change:hover,
+.shipping-country-note__change:focus-visible {
+  background: rgba(29, 134, 86, 0.14);
+  border-color: rgba(29, 134, 86, 0.45);
+  outline: none;
+}
+[dir="rtl"] .shipping-country-note__change {
+  margin-left: 0;
+  margin-right: 0.6rem;
+}
+
+/* PDP trust strip — compact above-the-fold reassurance block.
+   Sits directly under the Add to Cart button. Three rows:
+   (1) Ships to <country> · <currency>  [Change]
+   (2) Arrives <auto-computed date range>
+   (3) Standard shipping included
+   Built to inherit the active locale's text direction, currency, and date format. */
+.pdp-trust-strip {
+  margin-top: 1.2rem;
+  padding: 1rem 1.2rem;
+  background: rgba(29, 134, 86, 0.05);
+  border: 0.1rem solid rgba(29, 134, 86, 0.18);
+  border-radius: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  color: #1f2937;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+.pdp-trust-strip__row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.pdp-trust-strip__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: #1d8656;
+}
+.pdp-trust-strip__icon--check {
+  color: #1d8656;
+}
+.pdp-trust-strip__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.pdp-trust-strip__country {
+  font-weight: 600;
+}
+.pdp-trust-strip__currency {
+  color: #374151;
+  font-weight: 400;
+}
+.pdp-trust-strip__change {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.8rem;
+  background: #fff;
+  border: 0.1rem solid rgba(29, 134, 86, 0.35);
+  border-radius: 999px;
+  color: #1d8656;
+  font-size: 0.85em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+.pdp-trust-strip__change:hover,
+.pdp-trust-strip__change:focus-visible {
+  background: rgba(29, 134, 86, 0.1);
+  border-color: rgba(29, 134, 86, 0.6);
+  outline: none;
+}
+.pdp-trust-strip__row--arrives strong {
+  font-weight: 600;
+  margin-inline-end: 0.3rem;
+}
+@media (max-width: 480px) {
+  .pdp-trust-strip {
+    font-size: 0.9rem;
+    padding: 0.85rem 1rem;
+  }
+}
+
 .shipping-country-note {
   margin-top: 0.8rem;
   padding-top: 0.8rem;

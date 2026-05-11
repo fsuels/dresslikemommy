@@ -1,0 +1,7 @@
+Continue the Dress Like Mommy paid-growth sprint in `/Users/fsuels/Projects/dresslikemommy`.
+
+Use `ops/prompts/paid-growth-ai-army-continuation-prompt.md` as the canonical operating prompt. Latest anchor: `AGENT_CONTINUITY_ANCHOR: 2026-05-11-paid-growth-native-review-measurement-readonly-continuation`.
+
+Do not redo the expert keyword packet. The native AI triage packet is at `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-11-paid-growth-native-review-measurement-readonly-continuation/` and found: rewrite recommended for `es-ES`, `it-IT`, `ro-RO`, `de-DE`, `nl-NL`, `fr-FR`, `sv-SE`, `pl-PL`, and `cs-CZ`; blocked for `pt-PT`, `da-DK`, `fr-BE`, `nl-BE`, and `CH`; `el-GR` passed AI triage but still needs native review.
+
+Next best action: create corrected local-only replacement review packets for the flagged Google Ads native keyword/RSA/negative rows by locale, starting with `es-ES`, `it-IT`, and `ro-RO`, while separately closing `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT` by matching sanitized Shopify non-USD order candidates to actual GA4/Google Ads `purchase` event currency/value evidence. The CLI GA4 Admin API path returned `403 ACCESS_TOKEN_SCOPE_INSUFFICIENT`; the logged-in GA4 UI does open to account `88409806` / property `330266838`, so use that UI or another approved read-only access path next. Do not enable campaigns or start live spend. Do not import native Ads rows or perform any account write without exact action-time approval and readbacks.

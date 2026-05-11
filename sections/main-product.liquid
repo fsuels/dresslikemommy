@@ -1347,8 +1347,8 @@
                     {{ block.settings.text | default: block.settings.page.title | escape }}
                   </button>
                 </modal-opener>
-      
-              
+
+
               {%- when 'share' -%}
                 {% liquid
                   assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin
@@ -1378,6 +1378,102 @@
                     {{ 'products.product.inventory_low_stock_show_count' | t: quantity: product.selected_or_first_available_variant.inventory_quantity }}
                   </div>
                 {%- endif -%}
+
+                {%- comment -%}
+                  CRO: above-the-fold trust strip.
+                  Shows country + currency (from Shopify localization), live delivery date range
+                  (populated by theme.liquid's calculateDeliveryDates), and "shipping included" badge.
+                  Localized via existing translation keys — no per-locale code needed.
+                  The "Change country" pill opens the global shipping-country-checker modal.
+                {%- endcomment -%}
+                {%- liquid
+                  assign trust_country = localization.country.name | default: ''
+                  assign trust_currency_code = localization.country.currency.iso_code | default: ''
+                  assign trust_currency_symbol = localization.country.currency.symbol | default: ''
+                  assign trust_country_count = localization.available_countries.size
+
+                  assign trust_standard_window = 'products.additional_info.standard_delivery_window' | t
+                  if trust_standard_window == blank or trust_standard_window contains 'translation missing'
+                    assign trust_standard_window = '12-15 business days'
+                  endif
+
+                  assign trust_ships_label = 'products.shipping_country.trust_ships_to' | t: country: trust_country
+                  if trust_ships_label contains 'translation missing'
+                    if trust_country != blank
+                      assign trust_ships_label = 'Ships to ' | append: trust_country
+                    else
+                      assign trust_ships_label = 'Ships to your country'
+                    endif
+                  endif
+
+                  assign trust_currency_label = ''
+                  if trust_currency_code != blank
+                    assign trust_currency_label = trust_currency_code
+                    if trust_currency_symbol != blank
+                      assign trust_currency_label = trust_currency_label | append: ' ' | append: trust_currency_symbol
+                    endif
+                  endif
+
+                  assign trust_arrives_prefix = 'products.shipping_country.trust_arrives' | t
+                  if trust_arrives_prefix contains 'translation missing' or trust_arrives_prefix == blank
+                    assign trust_arrives_prefix = 'Arrives'
+                  endif
+
+                  assign trust_included_label = 'products.additional_info.free_shipping_label' | t
+                  if trust_included_label contains 'translation missing' or trust_included_label == blank
+                    assign trust_included_label = 'Standard shipping included'
+                  endif
+
+                  assign trust_change_label = 'products.shipping_country.checker_trigger' | t
+                  if trust_change_label contains 'translation missing' or trust_change_label == blank
+                    assign trust_change_label = 'Change'
+                  endif
+                -%}
+
+                <div class="pdp-trust-strip" data-pdp-trust-strip>
+                  <div class="pdp-trust-strip__row">
+                    <span class="pdp-trust-strip__icon" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                    </span>
+                    <span class="pdp-trust-strip__text">
+                      <strong class="pdp-trust-strip__country">{{ trust_ships_label }}</strong>
+                      {%- if trust_currency_label != blank -%}
+                        <span class="pdp-trust-strip__currency"> · {{ trust_currency_label }}</span>
+                      {%- endif -%}
+                    </span>
+                    {%- if trust_country_count > 0 -%}
+                      <button
+                        type="button"
+                        class="pdp-trust-strip__change"
+                        data-shipping-country-trigger
+                        data-shipping-country-trigger-context="pdp-trust-strip"
+                        aria-haspopup="dialog"
+                      >
+                        {{ trust_change_label }}
+                      </button>
+                    {%- endif -%}
+                  </div>
+                  <div class="pdp-trust-strip__row pdp-trust-strip__row--arrives" data-delivery-estimate-row data-delivery-estimate-tier="standard" data-delivery-fallback-visible>
+                    <span class="pdp-trust-strip__icon" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </span>
+                    <span class="pdp-trust-strip__text">
+                      <strong>{{ trust_arrives_prefix }}</strong>
+                      <span
+                        id="pdp-trust-strip-date"
+                        data-delivery-prefix="{{ trust_arrives_prefix | escape }}"
+                        data-delivery-window="{{ trust_standard_window | escape }}"
+                        data-delivery-fallback="{{ trust_standard_window | escape }}"
+                      >{{ trust_standard_window }}</span>
+                    </span>
+                  </div>
+                  <div class="pdp-trust-strip__row pdp-trust-strip__row--included">
+                    <span class="pdp-trust-strip__icon pdp-trust-strip__icon--check" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    <span class="pdp-trust-strip__text">{{ trust_included_label }}</span>
+                  </div>
+                </div>
 
 <!-- Additional Info Links -->
 <style>

@@ -1,0 +1,72 @@
+{
+  "generated": "2026-05-10",
+  "lane": "native-copy-deep-qa",
+  "worker_scope": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-authority-safe-launch-prep/lanes/native-copy-deep-qa",
+  "external_writes": false,
+  "sources": [
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-localized-copy-pinterest-manifest-safe-advance/lanes/native-language-copy-options/native_language_rsa_options.csv",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-localized-copy-pinterest-manifest-safe-advance/lanes/native-language-copy-options/native_language_keyword_option_notes.csv",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-localized-copy-pinterest-manifest-safe-advance/lanes/native-language-copy-options/native_language_copy_options_summary.json",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-orchestrator-deep-followup/lanes/native-language-review-checklist/NATIVE_LANGUAGE_REVIEW_CHECKLIST_REPORT.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-browser-recovery-and-remaining-search-preflight/lanes/native-copy-risk-triage/NATIVE_COPY_RISK_TRIAGE.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-controlled-infra-refresh/lanes/localization/LOCALIZATION_CONTROLLED_INFRA_READINESS.md",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-platform-matrix/EXECUTION_MATRIX.md"
+  ],
+  "coverage": {
+    "locale_variants": [
+      "es-ES",
+      "it-IT",
+      "pt-PT",
+      "ro-RO",
+      "de-DE",
+      "nl-NL",
+      "fr-FR",
+      "fr-BE",
+      "nl-BE",
+      "sv-SE",
+      "da-DK",
+      "pl-PL",
+      "cs-CZ",
+      "el-GR"
+    ],
+    "locale_count": 14,
+    "themes_per_locale": 5,
+    "headline_options_per_locale": 15,
+    "description_options_per_locale": 10,
+    "total_theme_review_rows": 70
+  },
+  "validation": {
+    "csv_parse": "pass",
+    "max_headline_length": 24,
+    "max_headline_locale": "it-IT",
+    "max_headline_text": "Look famiglia coordinati",
+    "headline_limit": 30,
+    "max_description_length": 73,
+    "max_description_locale": "nl-NL",
+    "max_description_text": "Ideeën voor bijpassende pyjama's voor rustige ochtenden en familiefoto's.",
+    "description_limit": 90,
+    "length_violations": 0,
+    "forbidden_claim_hits": 0,
+    "forbidden_scan_note": "Automated scan covers known claim families; native and legal/policy review still required before platform use."
+  },
+  "status_counts": {
+    "CONCEPT_READY_NATIVE_REVIEW_REQUIRED": 3,
+    "NATIVE_REVIEW_REQUIRED": 7,
+    "PLATFORM_USE_BLOCKED": 4
+  },
+  "manual_blockers": {
+    "pt-PT": [
+      "pt-PT copy vs pt-BR storefront behavior risk"
+    ],
+    "da-DK": [
+      "Likely non-Danish headline option: Mamma datter kjoler"
+    ],
+    "fr-BE": [
+      "fr-BE duplicates fr-FR; Belgium FR/NL split undecided"
+    ],
+    "nl-BE": [
+      "nl-BE duplicates nl-NL; Belgium FR/NL split undecided"
+    ]
+  },
+  "no_write_guardrail": "No Ads, Pinterest, Shopify, Merchant, theme, tracking, budget, bid, or status writes were performed."
+}
