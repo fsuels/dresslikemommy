@@ -1,0 +1,256 @@
+{
+  "generated_at": "2026-05-11T12:31:34+00:00",
+  "mode": "READ_ONLY_GA4_ADMIN_DATA_API_PROBE_NO_SETTINGS_WRITES",
+  "property_id": "330266838",
+  "account_id": "88409806",
+  "date_range": {
+    "start_date": "2026-04-01",
+    "end_date": "2026-05-10"
+  },
+  "credential_inventory": {
+    "generated_at": "2026-05-11T12:31:34+00:00",
+    "gcloud_active_account_masked": "t***@gmail.com",
+    "gcloud_project": "legaldoc-26ea8",
+    "gcloud_user_access_token_available": true,
+    "gcloud_user_access_token_command": {
+      "method": "gcloud auth print-access-token",
+      "returncode": 0,
+      "stderr_summary": ""
+    },
+    "application_default_credentials_token_available": false,
+    "application_default_credentials_error_summary": "WARNING: Compute Engine Metadata server unavailable on attempt 1 of 3. Reason: timed out WARNING: Compute Engine Metadata server unavailable on attempt 2 of 3. Reason: timed out WARNING: Compute Engine Metadata server unavailable on attempt 3 of 3. Reason: [Errno 64] Host is down ERROR: (gcloud.auth.application-default.print-access-token) Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for mo",
+    "analytics_readonly_scoped_token_request_available": false,
+    "analytics_readonly_scoped_token_request_command": {
+      "method": "gcloud auth print-access-token --scopes=<analytics-readonly>",
+      "returncode": 1,
+      "stderr_summary": "ERROR: (gcloud.auth.print-access-token) Invalid value for [--scopes]: Invalid scopes value. Please make sure the scopes are from [('openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/cloud-platform', 'https://www.googleapis.com/auth/appengine.admin', 'https://www.googleapis.com/auth/sqlservice.login', 'https://www.googleapis.com/auth/compute')]"
+    },
+    "tokens_are_not_stored": true
+  },
+  "credential_attempts": [
+    {
+      "label": "gcloud_user_default_token",
+      "token_available": true,
+      "token_command": {
+        "method": "gcloud auth print-access-token",
+        "returncode": 0,
+        "stderr_summary": ""
+      },
+      "tokeninfo": {
+        "ok": true,
+        "status": 200,
+        "email_masked": "t***@gmail.com",
+        "scope_count": 8,
+        "scopes": [
+          "email",
+          "https://www.googleapis.com/auth/accounts.reauth",
+          "https://www.googleapis.com/auth/appengine.admin",
+          "https://www.googleapis.com/auth/cloud-platform",
+          "https://www.googleapis.com/auth/compute",
+          "https://www.googleapis.com/auth/sqlservice.login",
+          "https://www.googleapis.com/auth/userinfo.email",
+          "openid"
+        ],
+        "analytics_read_scope_present": false
+      },
+      "admin_account_summaries": {
+        "ok": false,
+        "status": 403,
+        "body": {
+          "error": {
+            "code": 403,
+            "message": "Request had insufficient authentication scopes.",
+            "status": "PERMISSION_DENIED",
+            "details": [
+              {
+                "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+                "reason": "ACCESS_TOKEN_SCOPE_INSUFFICIENT",
+                "domain": "googleapis.com",
+                "metadata": {
+                  "service": "analyticsadmin.googleapis.com",
+                  "method": "google.analytics.admin.v1beta.AnalyticsAdminService.ListAccountSummaries"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "data_metadata": {
+        "ok": false,
+        "status": 403,
+        "body": {
+          "error": {
+            "code": 403,
+            "message": "Request had insufficient authentication scopes.",
+            "status": "PERMISSION_DENIED",
+            "details": [
+              {
+                "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+                "reason": "ACCESS_TOKEN_SCOPE_INSUFFICIENT",
+                "domain": "googleapis.com",
+                "metadata": {
+                  "service": "analyticsdata.googleapis.com",
+                  "method": "google.analytics.data.v1beta.BetaAnalyticsData.GetMetadata"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "run_report_attempts": [
+        {
+          "name": "order_level_full",
+          "request": {
+            "dateRanges": [
+              {
+                "startDate": "2026-04-01",
+                "endDate": "2026-05-10"
+              }
+            ],
+            "dimensions": [
+              {
+                "name": "dateHourMinute"
+              },
+              {
+                "name": "date"
+              },
+              {
+                "name": "eventName"
+              },
+              {
+                "name": "transactionId"
+              },
+              {
+                "name": "currencyCode"
+              },
+              {
+                "name": "countryId"
+              },
+              {
+                "name": "country"
+              }
+            ],
+            "metrics": [
+              {
+                "name": "eventCount"
+              },
+              {
+                "name": "totalRevenue"
+              },
+              {
+                "name": "purchaseRevenue"
+              },
+              {
+                "name": "ecommercePurchases"
+              }
+            ],
+            "dimensionFilter": {
+              "filter": {
+                "fieldName": "eventName",
+                "stringFilter": {
+                  "matchType": "EXACT",
+                  "value": "purchase"
+                }
+              }
+            },
+            "limit": 1000
+          },
+          "response": {
+            "ok": false,
+            "status": 403,
+            "body": {
+              "error": {
+                "code": 403,
+                "message": "Request had insufficient authentication scopes.",
+                "status": "PERMISSION_DENIED",
+                "details": [
+                  {
+                    "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+                    "reason": "ACCESS_TOKEN_SCOPE_INSUFFICIENT",
+                    "domain": "googleapis.com",
+                    "metadata": {
+                      "service": "analyticsdata.googleapis.com",
+                      "method": "google.analytics.data.v1beta.BetaAnalyticsData.GetMetadata"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "aggregate_purchase_minimal",
+          "request": {
+            "dateRanges": [
+              {
+                "startDate": "2026-04-01",
+                "endDate": "2026-05-10"
+              }
+            ],
+            "dimensions": [
+              {
+                "name": "eventName"
+              }
+            ],
+            "metrics": [
+              {
+                "name": "eventCount"
+              },
+              {
+                "name": "totalRevenue"
+              }
+            ],
+            "dimensionFilter": {
+              "filter": {
+                "fieldName": "eventName",
+                "stringFilter": {
+                  "matchType": "EXACT",
+                  "value": "purchase"
+                }
+              }
+            },
+            "limit": 1000
+          },
+          "response": {
+            "ok": false,
+            "status": 403,
+            "body": {
+              "error": {
+                "code": 403,
+                "message": "Request had insufficient authentication scopes.",
+                "status": "PERMISSION_DENIED",
+                "details": [
+                  {
+                    "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+                    "reason": "ACCESS_TOKEN_SCOPE_INSUFFICIENT",
+                    "domain": "googleapis.com",
+                    "metadata": {
+                      "service": "analyticsdata.googleapis.com",
+                      "method": "google.analytics.data.v1beta.BetaAnalyticsData.RunReport"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "gcloud_user_analytics_readonly_scope_request",
+      "token_available": false,
+      "token_command": {
+        "method": "gcloud auth print-access-token --scopes=<analytics-readonly>",
+        "returncode": 1,
+        "stderr_summary": "ERROR: (gcloud.auth.print-access-token) Invalid value for [--scopes]: Invalid scopes value. Please make sure the scopes are from [('openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/cloud-platform', 'https://www.googleapis.com/auth/appengine.admin', 'https://www.googleapis.com/auth/sqlservice.login', 'https://www.googleapis.com/auth/compute')]"
+      },
+      "tokeninfo": null,
+      "admin_account_summaries": null,
+      "data_metadata": null,
+      "run_report_attempts": []
+    }
+  ],
+  "gate_solved": false,
+  "guardrail": "No GA4/GTM/Ads/Shopify/Pinterest settings writes; no checkout/order/payment/refund; no token or PII stored.",
+  "conclusion": "Existing CLI credentials did not produce order-level non-US GA4 purchase currency/value/transaction proof."
+}

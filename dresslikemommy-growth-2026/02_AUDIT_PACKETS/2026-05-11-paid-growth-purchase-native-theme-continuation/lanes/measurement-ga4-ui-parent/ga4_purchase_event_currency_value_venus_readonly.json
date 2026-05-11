@@ -1,0 +1,146 @@
+{
+  "generated_at": "2026-05-11T12:30:54.616483+00:00",
+  "endpoint": "https://analytics.google.com/analytics/app/data/v2/venus?accessmode=read&dataset=a88409806p330266838&hl=en_US&gamonitor=gafe&state=app.reports.reports.explorer",
+  "request": {
+    "entity": {
+      "propertyId": "330266838",
+      "identityBlendingStrategy": 4
+    },
+    "requests": [
+      {
+        "dimensions": [
+          {
+            "name": "event_name",
+            "isSecondary": false
+          },
+          {
+            "name": "transaction_id",
+            "isSecondary": false
+          },
+          {
+            "name": "currency_code",
+            "isSecondary": false
+          },
+          {
+            "name": "country",
+            "isSecondary": false
+          },
+          {
+            "name": "date_hour_minute",
+            "isSecondary": false
+          },
+          {
+            "name": "filter_partition",
+            "isSecondary": true
+          }
+        ],
+        "dimensionFilters": [
+          {
+            "filters": [
+              {
+                "fieldName": "event_name",
+                "expression": "purchase",
+                "expressionList": [
+                  "purchase"
+                ],
+                "evaluation": 7,
+                "complement": false,
+                "isCaseSensitive": true
+              }
+            ]
+          }
+        ],
+        "metrics": [
+          {
+            "name": "event_count",
+            "isInvisible": false,
+            "isSecondary": false
+          },
+          {
+            "name": "total_users",
+            "isInvisible": false,
+            "isSecondary": false
+          },
+          {
+            "name": "eventCountPerUser",
+            "isInvisible": false,
+            "isSecondary": false,
+            "expression": "event_count/active_users"
+          },
+          {
+            "name": "combinedRevenue",
+            "isInvisible": false,
+            "isSecondary": false,
+            "expression": "total_ad_revenue + revenue - refund_value"
+          }
+        ],
+        "metricFilters": [],
+        "cardName": "explorer_top-events",
+        "cardId": "explorerCard",
+        "requestGrandTotal": true,
+        "dateRanges": [
+          {
+            "startDate": "2026-04-13",
+            "endDate": "2026-05-10"
+          }
+        ],
+        "rowAxis": {
+          "fieldNames": [
+            "event_name",
+            "transaction_id",
+            "currency_code",
+            "country",
+            "date_hour_minute"
+          ],
+          "sorts": [
+            {
+              "fieldName": "date_hour_minute",
+              "sortType": 1,
+              "isDesc": false,
+              "pivotSortInfos": []
+            }
+          ],
+          "limit": 100,
+          "offset": 0,
+          "metaAggTypes": []
+        },
+        "filterPartitions": [
+          {
+            "name": "All Users",
+            "dimensionFilters": []
+          }
+        ],
+        "columnAxis": {
+          "fieldNames": [
+            "filter_partition"
+          ],
+          "sorts": [
+            {
+              "fieldName": "filter_partition",
+              "sortType": 1
+            }
+          ]
+        }
+      }
+    ],
+    "reportId": "explorer_card_explorerCard",
+    "reportTitle": "top-events",
+    "guid": "READONLY-PURCHASE-FILTER",
+    "reportingRequestMetadata": {
+      "isDefault": false,
+      "reportType": 0,
+      "hasNonDefaultFilter": true,
+      "comparisonCount": 1,
+      "isFromFirebase": false
+    }
+  },
+  "response_status": 400,
+  "response_ok": false,
+  "response_prefix": ")]}',\n{\"er\":{\"errorC",
+  "dimensions": null,
+  "metrics": null,
+  "overallRowCount": null,
+  "totalsRow": null,
+  "sanitized_rows": [],
+  "guardrail": "Read-only GA4 UI-origin Venus fetch from current logged-in Analytics session; no settings edit/export/save, no checkout/payment/order/refund, no Ads/Merchant/Pinterest writes. Full transaction IDs are not stored."
+}

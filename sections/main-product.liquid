@@ -1386,6 +1386,7 @@
                   Localized via existing translation keys — no per-locale code needed.
                   The "Change country" pill opens the global shipping-country-checker modal.
                 {%- endcomment -%}
+                {{ 'component-shipping-countries-v2.css' | asset_url | stylesheet_tag }}
                 {%- liquid
                   assign trust_country = localization.country.name | default: ''
                   assign trust_currency_code = localization.country.currency.iso_code | default: ''
@@ -1393,12 +1394,14 @@
                   assign trust_country_count = localization.available_countries.size
 
                   assign trust_standard_window = 'products.additional_info.standard_delivery_window' | t
-                  if trust_standard_window == blank or trust_standard_window contains 'translation missing'
+                  assign trust_standard_window_check = trust_standard_window | downcase
+                  if trust_standard_window == blank or trust_standard_window_check contains 'translation missing'
                     assign trust_standard_window = '12-15 business days'
                   endif
 
                   assign trust_ships_label = 'products.shipping_country.trust_ships_to' | t: country: trust_country
-                  if trust_ships_label contains 'translation missing'
+                  assign trust_ships_check = trust_ships_label | downcase
+                  if trust_ships_label == blank or trust_ships_check contains 'translation missing'
                     if trust_country != blank
                       assign trust_ships_label = 'Ships to ' | append: trust_country
                     else
@@ -1415,17 +1418,20 @@
                   endif
 
                   assign trust_arrives_prefix = 'products.shipping_country.trust_arrives' | t
-                  if trust_arrives_prefix contains 'translation missing' or trust_arrives_prefix == blank
+                  assign trust_arrives_check = trust_arrives_prefix | downcase
+                  if trust_arrives_prefix == blank or trust_arrives_check contains 'translation missing'
                     assign trust_arrives_prefix = 'Arrives'
                   endif
 
                   assign trust_included_label = 'products.additional_info.free_shipping_label' | t
-                  if trust_included_label contains 'translation missing' or trust_included_label == blank
+                  assign trust_included_check = trust_included_label | downcase
+                  if trust_included_label == blank or trust_included_check contains 'translation missing'
                     assign trust_included_label = 'Standard shipping included'
                   endif
 
                   assign trust_change_label = 'products.shipping_country.checker_trigger' | t
-                  if trust_change_label contains 'translation missing' or trust_change_label == blank
+                  assign trust_change_check = trust_change_label | downcase
+                  if trust_change_label == blank or trust_change_check contains 'translation missing'
                     assign trust_change_label = 'Change'
                   endif
                 -%}

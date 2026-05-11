@@ -333,9 +333,37 @@
       // Also handle auxclick for some browsers' middle-click on intercepted anchors
       // (we don't intercept those — the early return above lets them through).
 
+      // Focus trap — keep Tab cycling inside the dialog while it's open.
+      function getFocusable() {
+        if (!dialog) return [];
+        var selector = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+        return Array.prototype.slice.call(dialog.querySelectorAll(selector)).filter(function (el) {
+          return !el.hasAttribute('hidden') && el.offsetParent !== null;
+        });
+      }
+
       document.addEventListener('keydown', function (event) {
-        if (modal.hidden || event.key !== 'Escape') return;
-        closeChecker();
+        if (modal.hidden) return;
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeChecker();
+          return;
+        }
+        if (event.key !== 'Tab') return;
+
+        var focusable = getFocusable();
+        if (!focusable.length) return;
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        var active = document.activeElement;
+
+        if (event.shiftKey && (active === first || active === dialog)) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && active === last) {
+          event.preventDefault();
+          first.focus();
+        }
       });
 
       if (search) {
