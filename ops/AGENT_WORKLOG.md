@@ -34728,3 +34728,148 @@ Residual risks:
 
 Guardrails:
 - No Shopify Admin product/page/policy/translation/discount write, checkout edit, Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred. The only live storefront write was the scoped two-file theme push.
+
+2026-05-12 - Desktop matching-set sticky CTA parity live repair
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-desktop-matching-set-sticky-cta-live
+
+Why:
+- Owner reported the live desktop Picnic Plaid PDP still showed the old sticky standalone product-form CTA: `$15.99 USD ADD TO CART`.
+- Desired behavior: desktop sticky should be the continuation of the green matching-set button only when that green button is out of view, reflecting selected pieces already chosen in the builder.
+
+What changed live:
+- Patched `assets/product-desktop-ux.js` so desktop matching-set PDPs:
+  - Detect the matching-set builder and `[data-matching-set-add-button]`.
+  - Observe the green matching-set CTA for viewport visibility.
+  - Consume `DLMMatchingSetStickyState` / `dlm:matching-set-summary`.
+  - Hide the sticky while the green matching-set CTA is visible.
+  - Show selected piece count/total when the green CTA scrolls out of view.
+  - Forward ready sticky clicks to the real matching-set add button.
+- Patched `assets/component-product-desktop-ux.css` so the desktop matching-set sticky uses the green CTA styling.
+- Pushed only those two assets to live theme `dresslikemommy/main` (`#133290917985`).
+- Added evidence packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-desktop-pdp-matching-set-sticky-cta/`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Validation:
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check -- assets/product-desktop-ux.js assets/component-product-desktop-ux.css ops/AGENT_COORDINATION.md` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- `shopify theme push --theme 133290917985 --only assets/product-desktop-ux.js --only assets/component-product-desktop-ux.css --allow-live` completed successfully.
+- Live hard-refresh desktop readback on `https://www.dresslikemommy.com/products/picnic-plaid-family-matching-set` passed:
+  - Live JS asset `product-desktop-ux.js?v=84777925448218368241778581590` contains desktop matching-set sticky logic.
+  - Live CSS asset `component-product-desktop-ux.css?v=136782400840342921741778581590` contains matching-set sticky styling.
+  - With Mother S and Girl 2 Years selected and the green CTA visible, sticky was hidden.
+  - After the green CTA scrolled out of view, sticky was visible as `2 Matching Pieces Total $60.98 ADD MATCHING PIECES`.
+  - Sticky button background was `rgb(29, 134, 86)`.
+
+Residual risks:
+- Scoped GitHub sync for the desktop parity fix is still pending at this anchor.
+- Existing unrelated dirty worktree artifacts were left untouched, including paid-growth/Ads files.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, checkout edit, Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred. The only live storefront write was the scoped two-asset theme push.
+
+2026-05-12 - Desktop matching-set sticky cart drawer follow-up
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-desktop-matching-set-sticky-cart-drawer-live
+
+Why:
+- Owner compared the sticky CTA cart-open state against the regular green matching-set button and showed the sticky path opening the cart drawer with a blank/gray-feeling top and footer content first.
+- Conversion read: the sticky CTA should behave like a continuation of the green matching-set button, including opening the cart drawer in the same clean top-of-cart state.
+
+What changed live:
+- Patched `assets/cart-drawer.js`.
+- `CartDrawer.renderContents()` now clears stale `is-empty` from the outer `<cart-drawer>` before opening a newly filled cart.
+- Added `resetDrawerScroll()` and call it before `open()` so `.drawer__inner` and `cart-drawer-items` start at top.
+- Pushed only `assets/cart-drawer.js` to live theme `dresslikemommy/main` (`#133290917985`).
+- Updated evidence packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-desktop-pdp-matching-set-sticky-cta/`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Validation:
+- `node --check assets/cart-drawer.js` passed.
+- `git diff --check -- assets/cart-drawer.js assets/product-desktop-ux.js assets/component-product-desktop-ux.css` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- `shopify theme push --theme 133290917985 --only assets/cart-drawer.js --allow-live` completed successfully.
+- Live hard-refresh desktop readback on `https://www.dresslikemommy.com/products/picnic-plaid-family-matching-set` passed after CDN propagation:
+  - Sticky pre-click: `2 Matching Pieces Total $60.98 ADD MATCHING PIECES`.
+  - Live cart drawer asset `cart-drawer.js?v=138855533694470059091778582391` exposes `resetDrawerScroll`.
+  - After sticky click: drawer class `drawer animate active`, title `Your cart (2)`, first item visible, header height `71`, first item height `204`, drawer scroll tops `0`.
+  - Regular green matching-set button path also passed with the same top-of-cart drawer state.
+
+Residual risks:
+- Scoped GitHub sync for the desktop sticky parity plus cart drawer fix is still pending at this anchor.
+- Existing unrelated dirty worktree artifacts were left untouched, including paid-growth/Ads files.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, checkout edit, Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred. The live storefront write was limited to `assets/cart-drawer.js` in this follow-up.
+
+2026-05-12 - Google Ads GB first non-US Search enable live
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-google-ads-gb-first-enable-live
+
+Why:
+- Owner clarified the paid-growth goal is active expert Google Ads and Pinterest coverage for every viable language/market, not audit-only work.
+- Owner instructed Codex to assume tags are correct and stop looping on tag/Event Quality/GA4 proof as a launch-prep blocker.
+- Owner gave exact action-time approval: `APPROVE ENABLE GB SEARCH CAMPAIGN 23838895360, AD GROUP Mommy & Me Dresses - Exact, WITH NO BUDGET, BID, PRODUCT SCOPE, FEED, MERCHANT, PINTEREST, OR CONVERSION GOAL CHANGES.`
+
+What changed live:
+- Enabled Google Ads GB Search campaign `23838895360` / `DLM_GB_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507`.
+- Enabled only ad group `194138528537` / `Mommy & Me Dresses - Exact`.
+- No CA, AU, other non-US, US nonbrand, PMax, Standard Shopping, Merchant, Pinterest, Shopify product data, product-scope, feed-label, product-group, budget, bid, or conversion-goal changes were made.
+
+Readback and evidence:
+- Pre-enable readback confirmed campaign and all GB ad groups were paused, budget was `US$2/day`, Search only, content/YouTube off, GB presence-only, and no campaign conversion-goal override.
+- First live mutation attempt failed closed because the scalar status field used `MERGE`; immediate readback confirmed no partial status change.
+- Recovery used Google Ads RPC update operator `3`, enabling the target ad group first and then the campaign.
+- Final readback passed: campaign `23838895360` is `Enabled`; ad group `194138528537` / `Mommy & Me Dresses - Exact` is `Enabled`; all other GB ad groups remain `Paused`; budget remains `US$2/day`; Search only/content and YouTube off; GB presence-only; no campaign conversion-goal override.
+- Evidence packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-non-us-first-enable-gb-live/`.
+- Key files: `FIRST_ENABLE_GB_EXECUTION_REPORT.md`, `raw/pre-enable-readback/pre_enable_gate_checks.json`, `raw/enable-action/adgroup_enable_updateop3_response.json`, `raw/enable-action/campaign_enable_updateop3_response.json`, and `raw/post-enable-readback/final_success_summary.json`.
+
+Current paid-growth state:
+- Live Google Ads now includes Standard Shopping, Brand Search, and the first non-US GB Search unit above.
+- Other built non-US Search campaigns remain paused: CA `23834423669`, AU `23834424182`, CH `23834425358`, DK `23838969244`, DE `23834427575`, NL `23829110118`, SE `23838970036`, ES `23829133584`, IT `23829232530`, PL `23829238698`, and CZ `23829253812`.
+- RO remains absent/file-picker blocked; PT/GR absent behind RO guard; FR stale; BE last/throttle.
+- Pinterest paused US catalog/retargeting draft build remains exact-approved but blocked by authenticated Pinterest Ads Manager access in a controllable browser/session.
+- Tags are assumed good for launch prep per owner, but that does not authorize additional live enablement without exact campaign/action approval.
+
+Next best action:
+- Fastest expert expansion path is exact owner approval for CA and AU first, each English-first and limited to `Mommy & Me Dresses - Exact`.
+- Suggested combined approval wording: `APPROVE ENABLE CA AND AU SEARCH CAMPAIGNS ONLY: ENABLE CAMPAIGN 23834423669 AD GROUP Mommy & Me Dresses - Exact AND CAMPAIGN 23834424182 AD GROUP Mommy & Me Dresses - Exact; KEEP EXISTING BUDGETS, BIDS, PRODUCT SCOPE, FEED, MERCHANT, PINTEREST, AND CONVERSION GOALS UNCHANGED; DO NOT ENABLE ANY OTHER CAMPAIGNS OR AD GROUPS.`
+- After CA/AU, keep ES/IT as the first localized-language candidates only after native/landing QA, and separately restore Pinterest Ads Manager access to complete the already-approved paused US draft.
+
+Guardrails:
+- No broad live spend expansion, campaign enablement beyond the exact GB scope, budget/bid/product-scope/feed-label/product-group/conversion-goal change, Merchant upload/source edit, Pinterest account write, Shopify product-data write, payment/order/refund/cancel, credential/account/billing edit, or destructive filesystem action occurred.
+
+2026-05-12 - Google Ads CA/AU English-first Search enable live
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-google-ads-ca-au-enable-live
+
+Why:
+- Owner asked why Codex stopped and gave exact action-time approval to enable CA and AU Search campaigns only.
+- Approval phrase: `APPROVE ENABLE CA AND AU SEARCH CAMPAIGNS ONLY: ENABLE CAMPAIGN 23834423669 AD GROUP Mommy & Me Dresses - Exact AND CAMPAIGN 23834424182 AD GROUP Mommy & Me Dresses - Exact; KEEP EXISTING BUDGETS, BIDS, PRODUCT SCOPE, FEED, MERCHANT, PINTEREST, AND CONVERSION GOALS UNCHANGED; DO NOT ENABLE ANY OTHER CAMPAIGNS OR AD GROUPS.`
+
+What changed live:
+- Enabled Google Ads CA Search campaign `23834423669` / `DLM_CA_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507`.
+- Enabled only CA ad group `196679079575` / `Mommy & Me Dresses - Exact`.
+- Enabled Google Ads AU Search campaign `23834424182` / `DLM_AU_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507`.
+- Enabled only AU ad group `198852670520` / `Mommy & Me Dresses - Exact`.
+- No other campaigns or ad groups were enabled.
+
+Readback and evidence:
+- Pre-enable gates passed for both CA and AU: expected campaign ID/name, all campaign/ad group statuses paused, `$2/day` budget, Search only, content/YouTube off, presence-only geo targeting, no campaign conversion-goal override, exact-match paused target keywords, paused target ads, and country-qualified final URLs.
+- Final post-enable readbacks passed:
+  - CA campaign `23834423669` is `Enabled`; only ad group `196679079575` is `Enabled`; all other CA ad groups remain `Paused`; budget remains `US$2/day`; Search only/content and YouTube off; presence-only; no campaign conversion-goal override.
+  - AU campaign `23834424182` is `Enabled`; only ad group `198852670520` is `Enabled`; all other AU ad groups remain `Paused`; budget remains `US$2/day`; Search only/content and YouTube off; presence-only; no campaign conversion-goal override.
+- Evidence packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-ca-au-enable-live/`.
+- Key files: `CA_AU_ENABLE_EXECUTION_REPORT.md`, `enable_ca_au_exact_live_cdp.py`, `raw/pre-enable-readback/CA/pre_enable_gate_checks.json`, `raw/pre-enable-readback/AU/pre_enable_gate_checks.json`, `raw/post-enable-readback/CA/post_enable_delta_checks.json`, `raw/post-enable-readback/AU/post_enable_delta_checks.json`, and `raw/post-enable-readback/final_success_summary.json`.
+
+Current paid-growth state:
+- Live Google Ads now includes Standard Shopping, Brand Search, GB Search exact first test, CA Search exact first test, and AU Search exact first test.
+- Built non-US Search campaigns still paused: CH `23834425358`, DK `23838969244`, DE `23834427575`, NL `23829110118`, SE `23838970036`, ES `23829133584`, IT `23829232530`, PL `23829238698`, and CZ `23829253812`.
+- RO remains absent/file-picker blocked; PT/GR absent behind RO guard; FR stale; BE last/throttle.
+- Pinterest paused US catalog/retargeting draft build remains exact-approved but blocked by authenticated Pinterest Ads Manager access in a controllable browser/session.
+- Tags remain assumed good for launch prep per owner, but that does not authorize further campaign enables without exact campaign/action approval.
+
+Next best action:
+- Monitor GB/CA/AU as the first English-first live Search cohort using 650% ROAS guardrails and search-term/spend/conversion readbacks.
+- Restore authenticated Pinterest Ads Manager access to complete the already-approved paused US draft.
+- Do not blindly enable the rest: choose the next Search markets after early GB/CA/AU data or fresh exact owner decision. ES/IT remain localized-language candidates only after native/landing QA.
+
+Guardrails:
+- No campaign enablement beyond the exact approved CA/AU scope, no additional ad groups, no budget/bid/product-scope/feed-label/product-group/conversion-goal change, no Merchant upload/source edit, no Pinterest account write, no Shopify product-data write, no PMax/Standard Shopping edit, no payment/order/refund/cancel, no credential/account/billing edit, and no destructive filesystem action occurred.
