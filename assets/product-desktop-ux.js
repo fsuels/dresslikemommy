@@ -2541,6 +2541,11 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       // We only re-render when state actually changed, so hovering
       // around the currently selected pill doesn't trigger render thrash.
       var dismissPinnedPanelsForPillPreview = function () {
+        // On touch/mobile, focus fires before the synthetic click. If we
+        // re-render here, the first tap on a new size gets swallowed and
+        // shoppers have to tap twice. Let the click handler switch the
+        // selected size and reopen the panel in one pass.
+        if (isMobileSizePanelViewport()) return;
         var hoveredInstanceId = pill.getAttribute('data-instance-pill');
         var hoveredSizeLabel = pill.getAttribute('data-size-label');
         var changed = false;

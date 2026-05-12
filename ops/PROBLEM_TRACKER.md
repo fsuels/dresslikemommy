@@ -1795,6 +1795,47 @@ Approval/credential/platform gates:
 Parallel work to continue:
 - Ads, Merchant, Pinterest, GA4, checkout payments/orders, and product pricing/inventory remain out of scope for this lane.
 
+### `PROB-2026-05-12-MOBILE-PDP-SIZE-PANEL-SINGLE-TAP`
+
+Priority: `P1`
+
+Status: `SOLVED_LOCAL_READBACK_PASSED_NO_LIVE_PUSH`
+
+Owner/session: Codex current session, 2026-05-12 05:55 EDT.
+
+Surface: Mobile PDP matching-set selected-size measurement panel in `assets/product-desktop-ux.js`.
+
+Exact symptom:
+- On mobile, when the selected-size measurement panel was already open for a size such as Mother L, tapping a different size such as Mother S required two taps before the S panel opened.
+
+Business impact:
+- Shoppers comparing S/M/L measurements on a phone hit friction exactly when deciding fit, which can reduce add-to-cart confidence.
+
+Definition of fixed:
+- A single mobile tap on a different size changes the selected size, keeps exactly one measurement panel open, and updates the panel title/measurements to the new size.
+- Desktop hover/focus preview behavior still avoids stacked pinned panels.
+- `node --check`, `git diff --check`, Theme Check error-level verification, and mobile local-preview readback pass.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-12 05:55 EDT | Inspected matching-set size-pill handlers | Root cause found: mobile touch focus could fire the desktop preview-dismiss handler before click, re-rendering the card and swallowing the first tap | `assets/product-desktop-ux.js` |
+| 2026-05-12 05:55 EDT | Patched preview-dismiss behavior | Made the hover/focus preview-dismiss path desktop-only with `isMobileSizePanelViewport()` guard; mobile click now owns the size switch and reopens the panel in one pass | `assets/product-desktop-ux.js` |
+| 2026-05-12 05:56 EDT | Ran verification | `SOLVED_LOCAL_READBACK_PASSED`: local mobile Golden Daisy preview selected Mother L, then one tap on S produced one open panel titled `Mother · S` and selected S button `aria-pressed=true`; syntax, diff, and Theme Check passed | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-mobile-pdp-size-panel-option-contrast/mobile_size_panel_single_tap_readback.json` |
+
+Failed or ruled-out paths:
+- A live theme push was ruled out in this follow-up because the user asked for the opinion/diagnosis and the safe smallest action was a local patch plus proof. Use the normal deploy/sync path if this should go live immediately.
+
+Current next action:
+- Deploy/sync `assets/product-desktop-ux.js` through the normal GitHub/theme path, then hard-refresh a live mobile Golden Daisy PDP and repeat the L -> S single-tap readback.
+
+Approval/credential/platform gates:
+- No Shopify Admin product/page/policy/translation/discount writes, checkout edits, Ads/Merchant/Pinterest/GA4/GTM writes, live spend/account changes, payment/order/refund/cancel, credential/account/billing edits, or live theme push happened in this follow-up.
+
+Parallel work to continue:
+- Ads, Merchant, Pinterest, GA4, checkout/payment, and Admin product-data lanes remain separate.
+
 Copy this template for every new problem:
 
 ```markdown

@@ -34633,3 +34633,31 @@ Evidence:
 - `ops/PROBLEM_TRACKER.md`
 - `ops/AGENT_COORDINATION.md`
 - `ops/prompts/paid-growth-ai-army-continuation-prompt.md`
+
+2026-05-12 - Mobile size panel single-tap follow-up
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-mobile-size-panel-single-tap-local
+
+Why:
+- Owner reported a mobile PDP fit-panel friction: if Mother L size details were already open, tapping another mother size such as S required two taps before the S details opened.
+
+What changed locally:
+- Patched `assets/product-desktop-ux.js` so the desktop hover/focus preview-dismiss handler does not run on mobile/touch viewports.
+- Root cause: touch focus could close the old pinned panel and re-render the card before the click event selected the new size, so the first tap was swallowed.
+- Mobile click now handles the whole transition: selected size changes, `closedPanels` clears for that instance, and the panel re-renders for the new size in one tap.
+
+Validation:
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check -- assets/product-desktop-ux.js` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Local mobile headless Chrome readback against `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set?mobile_size_single_tap=1` passed: after selecting Mother L, one tap on S produced exactly one open panel titled `Mother · S`, and the S pill read `aria-pressed=true`.
+- Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-mobile-pdp-size-panel-option-contrast/mobile_size_panel_single_tap_readback.json`.
+
+Residual risks:
+- This follow-up was local-only; no live theme push/publish was made.
+- Prior live theme still has the earlier X-only scroll/quantity behavior, but not this local single-tap patch until synced/deployed.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, checkout edit, Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, unrelated dirty-worktree cleanup, or live theme push occurred.
+
+Next:
+- Deploy/sync `assets/product-desktop-ux.js` through the normal GitHub/theme path, then run a live mobile hard-refresh readback for Mother L -> S single-tap behavior.
