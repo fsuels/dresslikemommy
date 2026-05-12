@@ -2444,6 +2444,11 @@
             }
             return;
           }
+          if (bundleSection && typeof bundleSection.getBoundingClientRect === 'function') {
+            var bundleTop = bundleSection.getBoundingClientRect().top + window.scrollY - 120;
+            window.DLMCartDrawerOpenScrollY = Math.max(0, bundleTop);
+            window.scrollTo({ top: window.DLMCartDrawerOpenScrollY, behavior: 'auto' });
+          }
           atcBtn.click();
           return;
         }

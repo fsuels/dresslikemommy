@@ -54,7 +54,19 @@ class CartDrawer extends HTMLElement {
   }
 
   lockScroll() {
-    this.scrollPosition = window.scrollY;
+    const requestedScrollPosition =
+      typeof window.DLMCartDrawerOpenScrollY === 'number' && Number.isFinite(window.DLMCartDrawerOpenScrollY)
+        ? Math.max(0, window.DLMCartDrawerOpenScrollY)
+        : null;
+
+    if (requestedScrollPosition !== null) {
+      window.scrollTo(0, requestedScrollPosition);
+      this.scrollPosition = requestedScrollPosition;
+      window.DLMCartDrawerOpenScrollY = null;
+    } else {
+      this.scrollPosition = window.scrollY;
+    }
+
     document.documentElement.style.setProperty('--scroll-lock-top', `-${this.scrollPosition}px`);
     document.documentElement.classList.add('overflow-hidden');
     document.body.classList.add('overflow-hidden');

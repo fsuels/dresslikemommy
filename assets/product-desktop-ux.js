@@ -5154,6 +5154,18 @@ function initDesktopStickyAtc(wrapper, sectionId) {
     stickyBar.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
   }
 
+  function alignMatchingSetForDrawer() {
+    if (!matchingSetBuilder || typeof matchingSetBuilder.getBoundingClientRect !== 'function') return;
+
+    var headerOffset = 120;
+    var targetTop = matchingSetBuilder.getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.DLMCartDrawerOpenScrollY = Math.max(0, targetTop);
+    window.scrollTo({
+      top: window.DLMCartDrawerOpenScrollY,
+      behavior: 'auto',
+    });
+  }
+
   stickyButton.addEventListener('click', function (event) {
     if (isMatchingSet) {
       if (!matchingSetStickyState || !matchingSetStickyState.isReady || matchingSetButton.hasAttribute('disabled')) {
@@ -5163,6 +5175,7 @@ function initDesktopStickyAtc(wrapper, sectionId) {
         }
         return;
       }
+      alignMatchingSetForDrawer();
       matchingSetButton.click();
       return;
     }
