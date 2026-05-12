@@ -69,7 +69,33 @@
       return out;
     }
 
+    function rewriteLocalizedAdminCopy(html) {
+      return html
+        .replace(/Referencia de impresión:/gi, 'Patrón:')
+        .replace(/Referencia de estampa:/gi, 'Estampa:')
+        .replace(/Referência de estampa:/gi, 'Estampa:')
+        .replace(/Riferimento stampa:/gi, 'Motivo:')
+        .replace(/Referință (?:imprimeu|de imprimare):/gi, 'Model:')
+        .replace(/Référence imprimé\s*:/gi, 'Motif :')
+        .replace(/Druckreferenz:/gi, 'Muster:')
+        .replace(/Tela liviana con apariencia de tejido;\s*La composición exacta de la fibra no era visible en el cuadro o imagen suministrados\./gi, 'Tela ligera con caída fácil para clima cálido.')
+        .replace(/Tecido leve com aparência tecida;\s*a composição exata da fibra não estava visível no gráfico ou imagem fornecidos\./gi, 'Tecido leve com caimento fácil para dias quentes.')
+        .replace(/Tessuto leggero dall’aspetto intrecciato;\s*la composizione esatta della fibra non era visibile nella tabella o nell’immagine fornite\./gi, 'Tessuto leggero con una caduta facile per il clima caldo.')
+        .replace(/Țesătură ușoară cu aspect țesut;\s*compoziția exactă a fibrei nu era vizibilă în tabelul sau imaginea furnizată\./gi, 'Țesătură ușoară, cu cădere lejeră pentru vreme caldă.');
+    }
+
+    function stripAdminArtifacts(node) {
+      Array.prototype.slice.call(node.querySelectorAll('meta[http-equiv], meta[content*="text/html"]')).forEach(function (meta) {
+        meta.parentNode && meta.parentNode.removeChild(meta);
+      });
+      Array.prototype.slice.call(node.querySelectorAll('a[href*="admin.shopify.com"]')).forEach(function (anchor) {
+        anchor.parentNode && anchor.parentNode.removeChild(anchor);
+      });
+    }
+
     function rewriteNode(node) {
+      stripAdminArtifacts(node);
+
       // Strip li/p blocks whose bullet label is internal-merchant only.
       Array.prototype.slice.call(node.querySelectorAll('li')).forEach(function (li) {
         var strong = li.querySelector('strong');
@@ -79,9 +105,42 @@
             li.parentNode && li.parentNode.removeChild(li);
             return;
           }
+          if (label === 'mother-daughter sizing:' || label === 'mother-daughter sizing') {
+            li.innerHTML = '<strong>Mother-daughter sizing:</strong> Child and mother sizes are shown separately so each person can get her own fit.';
+            return;
+          }
           if (label === 'fabric:' || label === 'fabric & feel:') {
             // Update label to the friendlier "Fabric & feel"
             strong.textContent = 'Fabric & feel:';
+          }
+          if (
+            label === 'print reference:' ||
+            label === 'print reference' ||
+            label === 'referencia de impresión:' ||
+            label === 'referencia de impresión' ||
+            label === 'referencia de estampa:' ||
+            label === 'referência de estampa:' ||
+            label === 'riferimento stampa:' ||
+            label === 'referință imprimeu:' ||
+            label === 'referință de imprimare:' ||
+            label === 'référence imprimé :' ||
+            label === 'druckreferenz:'
+          ) {
+            if (label.indexOf('referencia') === 0) {
+              strong.textContent = 'Patrón:';
+            } else if (label.indexOf('referência') === 0) {
+              strong.textContent = 'Estampa:';
+            } else if (label.indexOf('riferimento') === 0) {
+              strong.textContent = 'Motivo:';
+            } else if (label.indexOf('referință') === 0) {
+              strong.textContent = 'Model:';
+            } else if (label.indexOf('référence') === 0) {
+              strong.textContent = 'Motif :';
+            } else if (label.indexOf('druckreferenz') === 0) {
+              strong.textContent = 'Muster:';
+            } else {
+              strong.textContent = 'Pattern:';
+            }
           }
         }
         // Rewrite the line's HTML if it matches the apology patterns.
@@ -95,12 +154,18 @@
         });
         html = html.replace(PURE_FABRIC_APOLOGY, 'Lightweight, breathable fabric with an easy warm-weather drape.');
         html = html.replace(CARE_TAIL, '.');
+        html = rewriteLocalizedAdminCopy(html);
         html = stripVendorLanguage(html);
         if (html !== before) li.innerHTML = html;
       });
 
       // Same passes on paragraphs that contain the apologetic phrasing.
       Array.prototype.slice.call(node.querySelectorAll('p')).forEach(function (p) {
+        var text = (p.textContent || '').replace(/\s+/g, ' ').trim();
+        if (text.indexOf('The attached chart publishes YC8970') !== -1 || text.indexOf('this draft keeps the shopper picker honest') !== -1) {
+          p.textContent = 'Choose the top or pants in the picker, then tap a size to see the matching measurements before you add pieces to cart.';
+          return;
+        }
         var html = p.innerHTML;
         var before = html;
         html = html.replace(FABRIC_APOLOGY, function (_, desc) {
@@ -111,6 +176,7 @@
         });
         html = html.replace(PURE_FABRIC_APOLOGY, 'Lightweight, breathable fabric with an easy warm-weather drape.');
         html = html.replace(CARE_TAIL, '.');
+        html = rewriteLocalizedAdminCopy(html);
         html = stripVendorLanguage(html);
         if (html !== before) p.innerHTML = html;
       });

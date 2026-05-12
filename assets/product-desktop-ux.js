@@ -360,6 +360,255 @@ var SIZE_UNIT_LABELS_BY_LOCALE = {
   sv: { year: 'år', years: 'år', month: 'mån', months: 'mån', joiner: ' ' },
   zh: { year: '岁', years: '岁', month: '个月', months: '个月', joiner: '' },
 };
+var UI_LABELS_BY_LOCALE = {
+  en: {
+    pieceOne: '1 Matching Piece',
+    pieceMany: '{count} Matching Pieces',
+    total: 'Total',
+    each: 'each',
+    units: 'Units',
+    closeSizeDetails: 'Close size details',
+    outOfStockCurrent: 'Out of stock for current selection',
+    notAvailableSelectedSize: 'Not available in your selected size',
+    pickSize: 'Pick a size',
+    pickAxis: 'Pick a {axis}',
+    removeRole: 'Remove {role}',
+    decreaseQuantity: 'Decrease quantity',
+    increaseQuantity: 'Increase quantity',
+    findFit: "Find {role}'s fit",
+    addRole: '+ Add {role}',
+    addAnotherFamilyMember: 'Add another family member',
+    customerPhotos: 'Customer photos',
+  },
+  cs: {
+    pieceOne: '1 ladící kus',
+    pieceMany: '{count} ladících kusů',
+    total: 'Celkem',
+    each: 'za kus',
+    units: 'Jednotky',
+    closeSizeDetails: 'Zavřít detaily velikosti',
+    outOfStockCurrent: 'Není skladem pro aktuální výběr',
+    notAvailableSelectedSize: 'Není dostupné ve vybrané velikosti',
+    pickSize: 'Vyberte velikost',
+    pickAxis: 'Vyberte {axis}',
+    removeRole: 'Odebrat {role}',
+    decreaseQuantity: 'Snížit množství',
+    increaseQuantity: 'Zvýšit množství',
+    findFit: 'Najít velikost pro {role}',
+    addRole: '+ Přidat {role}',
+    addAnotherFamilyMember: 'Přidat dalšího člena rodiny',
+    customerPhotos: 'Fotky zákazníků',
+  },
+  da: {
+    pieceOne: '1 matchende del',
+    pieceMany: '{count} matchende dele',
+    total: 'I alt',
+    each: 'stk.',
+    units: 'Enheder',
+    closeSizeDetails: 'Luk størrelsesdetaljer',
+    outOfStockCurrent: 'Udsolgt for det aktuelle valg',
+    notAvailableSelectedSize: 'Ikke tilgængelig i den valgte størrelse',
+    pickSize: 'Vælg en størrelse',
+    pickAxis: 'Vælg {axis}',
+    removeRole: 'Fjern {role}',
+    decreaseQuantity: 'Sænk antal',
+    increaseQuantity: 'Øg antal',
+    findFit: 'Find pasform til {role}',
+    addRole: '+ Tilføj {role}',
+    addAnotherFamilyMember: 'Tilføj endnu et familiemedlem',
+    customerPhotos: 'Kundebilleder',
+  },
+  de: {
+    pieceOne: '1 passendes Teil',
+    pieceMany: '{count} passende Teile',
+    total: 'Gesamt',
+    each: 'pro Stück',
+    units: 'Einheiten',
+    closeSizeDetails: 'Größendetails schließen',
+    outOfStockCurrent: 'Für die aktuelle Auswahl ausverkauft',
+    notAvailableSelectedSize: 'In der gewählten Größe nicht verfügbar',
+    pickSize: 'Größe wählen',
+    pickAxis: '{axis} wählen',
+    removeRole: '{role} entfernen',
+    decreaseQuantity: 'Menge verringern',
+    increaseQuantity: 'Menge erhöhen',
+    findFit: 'Passform für {role} finden',
+    addRole: '+ {role} hinzufügen',
+    addAnotherFamilyMember: 'Weiteres Familienmitglied hinzufügen',
+    customerPhotos: 'Kundenfotos',
+  },
+  el: {
+    pieceOne: '1 ασορτί κομμάτι',
+    pieceMany: '{count} ασορτί κομμάτια',
+    total: 'Σύνολο',
+    each: 'το καθένα',
+    units: 'Μονάδες',
+    closeSizeDetails: 'Κλείσιμο λεπτομερειών μεγέθους',
+    outOfStockCurrent: 'Εξαντλημένο για την τρέχουσα επιλογή',
+    notAvailableSelectedSize: 'Δεν είναι διαθέσιμο στο επιλεγμένο μέγεθος',
+    pickSize: 'Επιλέξτε μέγεθος',
+    pickAxis: 'Επιλέξτε {axis}',
+    removeRole: 'Αφαίρεση {role}',
+    decreaseQuantity: 'Μείωση ποσότητας',
+    increaseQuantity: 'Αύξηση ποσότητας',
+    findFit: 'Βρείτε εφαρμογή για {role}',
+    addRole: '+ Προσθήκη {role}',
+    addAnotherFamilyMember: 'Προσθήκη άλλου μέλους οικογένειας',
+    customerPhotos: 'Φωτογραφίες πελατών',
+  },
+  es: {
+    pieceOne: '1 pieza a juego',
+    pieceMany: '{count} piezas a juego',
+    total: 'Total',
+    each: 'cada una',
+    units: 'Unidades',
+    closeSizeDetails: 'Cerrar detalles de talla',
+    outOfStockCurrent: 'Agotado para la selección actual',
+    notAvailableSelectedSize: 'No disponible en la talla seleccionada',
+    pickSize: 'Elige una talla',
+    pickAxis: 'Elige {axis}',
+    removeRole: 'Quitar {role}',
+    decreaseQuantity: 'Disminuir cantidad',
+    increaseQuantity: 'Aumentar cantidad',
+    findFit: 'Ver talla de {role}',
+    addRole: '+ Añadir {role}',
+    addAnotherFamilyMember: 'Añadir otro familiar',
+    customerPhotos: 'Fotos de clientes',
+  },
+  fr: {
+    pieceOne: '1 pièce assortie',
+    pieceMany: '{count} pièces assorties',
+    total: 'Total',
+    each: 'chacune',
+    units: 'Unités',
+    closeSizeDetails: 'Fermer les détails de taille',
+    outOfStockCurrent: 'En rupture pour la sélection actuelle',
+    notAvailableSelectedSize: 'Non disponible dans la taille sélectionnée',
+    pickSize: 'Choisissez une taille',
+    pickAxis: 'Choisissez {axis}',
+    removeRole: 'Retirer {role}',
+    decreaseQuantity: 'Diminuer la quantité',
+    increaseQuantity: 'Augmenter la quantité',
+    findFit: 'Trouver la taille pour {role}',
+    addRole: '+ Ajouter {role}',
+    addAnotherFamilyMember: 'Ajouter un autre membre de la famille',
+    customerPhotos: 'Photos clients',
+  },
+  it: {
+    pieceOne: '1 capo coordinato',
+    pieceMany: '{count} capi coordinati',
+    total: 'Totale',
+    each: 'ciascuno',
+    units: 'Unità',
+    closeSizeDetails: 'Chiudi dettagli taglia',
+    outOfStockCurrent: 'Esaurito per la selezione attuale',
+    notAvailableSelectedSize: 'Non disponibile nella taglia selezionata',
+    pickSize: 'Scegli una taglia',
+    pickAxis: 'Scegli {axis}',
+    removeRole: 'Rimuovi {role}',
+    decreaseQuantity: 'Diminuisci quantità',
+    increaseQuantity: 'Aumenta quantità',
+    findFit: 'Trova la vestibilità per {role}',
+    addRole: '+ Aggiungi {role}',
+    addAnotherFamilyMember: 'Aggiungi un altro familiare',
+    customerPhotos: 'Foto dei clienti',
+  },
+  nl: {
+    pieceOne: '1 matchend item',
+    pieceMany: '{count} matchende items',
+    total: 'Totaal',
+    each: 'per stuk',
+    units: 'Eenheden',
+    closeSizeDetails: 'Maatdetails sluiten',
+    outOfStockCurrent: 'Uitverkocht voor de huidige selectie',
+    notAvailableSelectedSize: 'Niet beschikbaar in de geselecteerde maat',
+    pickSize: 'Kies een maat',
+    pickAxis: 'Kies {axis}',
+    removeRole: '{role} verwijderen',
+    decreaseQuantity: 'Aantal verlagen',
+    increaseQuantity: 'Aantal verhogen',
+    findFit: 'Vind de pasvorm voor {role}',
+    addRole: '+ {role} toevoegen',
+    addAnotherFamilyMember: 'Nog een gezinslid toevoegen',
+    customerPhotos: "Foto's van klanten",
+  },
+  pl: {
+    pieceOne: '1 pasujący element',
+    pieceMany: '{count} pasujących elementów',
+    total: 'Razem',
+    each: 'za sztukę',
+    units: 'Jednostki',
+    closeSizeDetails: 'Zamknij szczegóły rozmiaru',
+    outOfStockCurrent: 'Wyprzedane dla bieżącego wyboru',
+    notAvailableSelectedSize: 'Niedostępne w wybranym rozmiarze',
+    pickSize: 'Wybierz rozmiar',
+    pickAxis: 'Wybierz {axis}',
+    removeRole: 'Usuń {role}',
+    decreaseQuantity: 'Zmniejsz ilość',
+    increaseQuantity: 'Zwiększ ilość',
+    findFit: 'Znajdź rozmiar dla {role}',
+    addRole: '+ Dodaj {role}',
+    addAnotherFamilyMember: 'Dodaj kolejnego członka rodziny',
+    customerPhotos: 'Zdjęcia klientów',
+  },
+  pt: {
+    pieceOne: '1 peça combinando',
+    pieceMany: '{count} peças combinando',
+    total: 'Total',
+    each: 'cada',
+    units: 'Unidades',
+    closeSizeDetails: 'Fechar detalhes de tamanho',
+    outOfStockCurrent: 'Esgotado para a seleção atual',
+    notAvailableSelectedSize: 'Não disponível no tamanho selecionado',
+    pickSize: 'Escolha um tamanho',
+    pickAxis: 'Escolha {axis}',
+    removeRole: 'Remover {role}',
+    decreaseQuantity: 'Diminuir quantidade',
+    increaseQuantity: 'Aumentar quantidade',
+    findFit: 'Encontrar caimento para {role}',
+    addRole: '+ Adicionar {role}',
+    addAnotherFamilyMember: 'Adicionar outro familiar',
+    customerPhotos: 'Fotos de clientes',
+  },
+  ro: {
+    pieceOne: '1 piesă asortată',
+    pieceMany: '{count} piese asortate',
+    total: 'Total',
+    each: 'fiecare',
+    units: 'Unități',
+    closeSizeDetails: 'Închide detaliile mărimii',
+    outOfStockCurrent: 'Stoc epuizat pentru selecția curentă',
+    notAvailableSelectedSize: 'Indisponibil pentru mărimea selectată',
+    pickSize: 'Alege o mărime',
+    pickAxis: 'Alege {axis}',
+    removeRole: 'Elimină {role}',
+    decreaseQuantity: 'Scade cantitatea',
+    increaseQuantity: 'Crește cantitatea',
+    findFit: 'Găsește potrivirea pentru {role}',
+    addRole: '+ Adaugă {role}',
+    addAnotherFamilyMember: 'Adaugă un alt membru al familiei',
+    customerPhotos: 'Fotografii de la clienți',
+  },
+  sv: {
+    pieceOne: '1 matchande del',
+    pieceMany: '{count} matchande delar',
+    total: 'Totalt',
+    each: 'styck',
+    units: 'Enheter',
+    closeSizeDetails: 'Stäng storleksdetaljer',
+    outOfStockCurrent: 'Slut i lager för aktuellt val',
+    notAvailableSelectedSize: 'Inte tillgänglig i vald storlek',
+    pickSize: 'Välj storlek',
+    pickAxis: 'Välj {axis}',
+    removeRole: 'Ta bort {role}',
+    decreaseQuantity: 'Minska antal',
+    increaseQuantity: 'Öka antal',
+    findFit: 'Hitta passform för {role}',
+    addRole: '+ Lägg till {role}',
+    addAnotherFamilyMember: 'Lägg till en familjemedlem',
+    customerPhotos: 'Kundfoton',
+  },
+};
 var GUIDE_MEASUREMENT_TOKENS = [
   'length',
   'bust',
@@ -562,6 +811,18 @@ function getLocaleRoot() {
 function getLocaleMap(source, fallbackLocale) {
   var locale = getLocaleRoot();
   return source[locale] || source[fallbackLocale || 'en'] || {};
+}
+
+function interpolateLabel(template, values) {
+  return String(template || '').replace(/\{([a-zA-Z0-9_]+)\}/g, function (_match, key) {
+    return Object.prototype.hasOwnProperty.call(values || {}, key) ? String(values[key]) : '';
+  });
+}
+
+function uiLabel(key, fallback, values) {
+  var labels = getLocaleMap(UI_LABELS_BY_LOCALE, 'en');
+  var english = UI_LABELS_BY_LOCALE.en || {};
+  return interpolateLabel(labels[key] || english[key] || fallback || '', values || {});
 }
 
 function containsDictionaryToken(value, tokens) {
@@ -1303,10 +1564,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   //     ...
   //   ]
   //
-  // BUNDLE_DISCOUNT is UI-only — see Frank-TODO below.
   // ─────────────────────────────────────────────────────────────────────
-  var BUNDLE_DISCOUNT = 0.10;
-  var BUNDLE_DISCOUNT_MIN_PIECES = 2;
   var instances = [];
   var instanceCounter = 0;
   var hasSeededDefaults = false;
@@ -1779,8 +2037,8 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   }
 
   function formatPieceCount(count) {
-    if (count === 1) return '1 Matching Piece';
-    return count + ' Matching Pieces';
+    if (count === 1) return uiLabel('pieceOne', '1 Matching Piece');
+    return uiLabel('pieceMany', '{count} Matching Pieces', { count: count });
   }
 
   function updateSummary() {
@@ -1791,12 +2049,6 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     var subtotal = items.reduce(function (sum, item) {
       return sum + item.unitPrice * item.quantity;
     }, 0);
-    var qualifies = pieceCount >= BUNDLE_DISCOUNT_MIN_PIECES;
-    var savings = qualifies ? subtotal * BUNDLE_DISCOUNT : 0;
-    var grandTotal = subtotal - savings;
-
-    var savingsNode = builder.querySelector('[data-matching-set-savings]');
-
     if (!pieceCount) {
       if (emptyCopy) emptyCopy.removeAttribute('hidden');
       if (chips) {
@@ -1806,10 +2058,6 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       if (total) {
         total.textContent = '';
         total.setAttribute('hidden', 'hidden');
-      }
-      if (savingsNode) {
-        savingsNode.textContent = '';
-        savingsNode.setAttribute('hidden', 'hidden');
       }
       addButton.setAttribute('disabled', 'disabled');
       return;
@@ -1825,17 +2073,8 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     }
     if (total) {
       total.innerHTML =
-        'Total <strong>' + escapeHtml(formatMoney(grandTotal, currency)) + '</strong>';
+        escapeHtml(uiLabel('total', 'Total')) + ' <strong>' + escapeHtml(formatMoney(subtotal, currency)) + '</strong>';
       total.removeAttribute('hidden');
-    }
-    if (savingsNode) {
-      if (qualifies && savings > 0) {
-        savingsNode.textContent = 'You saved ' + formatMoney(savings, currency);
-        savingsNode.removeAttribute('hidden');
-      } else {
-        savingsNode.textContent = '';
-        savingsNode.setAttribute('hidden', 'hidden');
-      }
     }
     addButton.removeAttribute('disabled');
   }
@@ -1860,7 +2099,8 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       escapeHtml(sizeLabel) +
       '</strong> &middot; ' +
       escapeHtml(formatMoney(unitPrice, currency)) +
-      ' each' +
+      ' ' +
+      escapeHtml(uiLabel('each', 'each')) +
       '</span>' +
       '</p>'
     );
@@ -1921,7 +2161,9 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
             var isImperial = unitSystem === 'imperial';
             pinnedExtras =
               '<span class="product-matching-set__pill-tooltip-controls">' +
-              '<span class="product-matching-set__pill-tooltip-toggle" role="group" aria-label="Units">' +
+              '<span class="product-matching-set__pill-tooltip-toggle" role="group" aria-label="' +
+              escapeHtml(uiLabel('units', 'Units')) +
+              '">' +
               '<button type="button" class="product-matching-set__pill-tooltip-unit' +
               (isImperial ? '' : ' is-active') +
               '" data-unit-set="metric" aria-pressed="' +
@@ -1935,7 +2177,9 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
               '</span>' +
               '<button type="button" class="product-matching-set__pill-tooltip-close" data-size-panel-close="' +
               escapeHtml(inst.instanceId) +
-              '" aria-label="Close size details">×</button>' +
+              '" aria-label="' +
+              escapeHtml(uiLabel('closeSizeDetails', 'Close size details')) +
+              '">×</button>' +
               '</span>';
           }
           tooltipHtml =
@@ -1973,7 +2217,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
           escapeHtml(option.price) +
           '"' +
           (isDisabled ? ' disabled aria-disabled="true"' : '') +
-          (isDisabled ? ' title="Out of stock for current selection"' : '') +
+          (isDisabled ? ' title="' + escapeHtml(uiLabel('outOfStockCurrent', 'Out of stock for current selection')) + '"' : '') +
           ' aria-pressed="' +
           (isSelected ? 'true' : 'false') +
           '">' +
@@ -2042,7 +2286,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
           ' data-axis-value="' +
           escapeHtml(value) +
           '"' +
-          (disabled ? ' disabled aria-disabled="true" title="Not available in your selected size"' : '') +
+          (disabled ? ' disabled aria-disabled="true" title="' + escapeHtml(uiLabel('notAvailableSelectedSize', 'Not available in your selected size')) + '"' : '') +
           ' aria-pressed="' +
           (isSelectedSwatch ? 'true' : 'false') +
           '">' +
@@ -2054,8 +2298,8 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       // axis pills when nothing has been picked yet. Small, subtle.
       var axisHint = pickedValue
         ? ''
-        : '<p class="product-matching-set__inline-hint">Pick a ' +
-          escapeHtml(axisName.toLowerCase()) +
+        : '<p class="product-matching-set__inline-hint">' +
+          escapeHtml(uiLabel('pickAxis', 'Pick a {axis}', { axis: axisName.toLowerCase() })) +
           '</p>';
       return (
         '<div class="product-matching-set__axis-row" role="group" aria-label="' +
@@ -2085,8 +2329,8 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       '</span>' +
       '<button type="button" class="product-matching-set__card-remove" data-instance-remove="' +
       escapeHtml(inst.instanceId) +
-      '" aria-label="Remove ' +
-      escapeHtml(group.label) +
+      '" aria-label="' +
+      escapeHtml(uiLabel('removeRole', 'Remove {role}', { role: group.label })) +
       '">×</button>' +
       '</div>' +
       (group.helper
@@ -2102,7 +2346,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       // a full-width banner) so each prompt reads as guidance for the
       // adjacent control.
       (!inst.sizeLabel
-        ? '<p class="product-matching-set__inline-hint">Pick a size</p>'
+        ? '<p class="product-matching-set__inline-hint">' + escapeHtml(uiLabel('pickSize', 'Pick a size')) + '</p>'
         : '') +
       // Per-card axis rows (Color, Pattern, etc.) — each axis row
       // emits its own inline "Pick a {axis}" hint below its pills.
@@ -2113,11 +2357,15 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       '<div class="product-matching-set__qty" data-instance-qty="' +
       escapeHtml(inst.instanceId) +
       '">' +
-      '<button type="button" class="product-matching-set__qty-button" data-qty-action="dec" aria-label="Decrease quantity">−</button>' +
+      '<button type="button" class="product-matching-set__qty-button" data-qty-action="dec" aria-label="' +
+      escapeHtml(uiLabel('decreaseQuantity', 'Decrease quantity')) +
+      '">−</button>' +
       '<span class="product-matching-set__qty-value" data-qty-value>' +
       String(qty) +
       '</span>' +
-      '<button type="button" class="product-matching-set__qty-button" data-qty-action="inc" aria-label="Increase quantity">+</button>' +
+      '<button type="button" class="product-matching-set__qty-button" data-qty-action="inc" aria-label="' +
+      escapeHtml(uiLabel('increaseQuantity', 'Increase quantity')) +
+      '">+</button>' +
       '<span class="product-matching-set__card-price" data-role-price>' +
       escapeHtml(formatMoney(minimumPrice, currency)) +
       '</span>' +
@@ -2125,9 +2373,8 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       // Per-card "Find my fit" link — uses the same delegated handler
       // as the Purchase Confidence size-guide trigger.
       '<a href="#size-chart" class="product-matching-set__fit-link" data-pdp-size-guide-trigger aria-haspopup="dialog">' +
-      'Find ' +
-      escapeHtml(group.label) +
-      "'s fit →" +
+      escapeHtml(uiLabel('findFit', "Find {role}'s fit", { role: group.label })) +
+      ' →' +
       '</a>' +
       '</div>'
     );
@@ -2144,14 +2391,16 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         return (
           '<button type="button" class="product-matching-set__add-role" data-add-role-group="' +
           escapeHtml(group.key) +
-          '">+ Add ' +
-          escapeHtml(group.label) +
+          '">' +
+          escapeHtml(uiLabel('addRole', '+ Add {role}', { role: group.label })) +
           '</button>'
         );
       })
       .join('');
     return (
-      '<div class="product-matching-set__add-roles" role="group" aria-label="Add another family member">' +
+      '<div class="product-matching-set__add-roles" role="group" aria-label="' +
+      escapeHtml(uiLabel('addAnotherFamilyMember', 'Add another family member')) +
+      '">' +
       buttonsHtml +
       '</div>'
     );
@@ -4604,10 +4853,15 @@ function buildSizeGuideGroups(parsed) {
 function initPhotoReviewPanel(wrapper) {
   var panel = wrapper.querySelector('[data-photo-review-panel]');
   var media = wrapper.querySelector('[data-photo-review-media]');
+  var title = wrapper.querySelector('.product-photo-strip__title');
+  var reviewCount = parseInt(wrapper.getAttribute('data-product-review-count'), 10) || 0;
+  var customerPhotosLabel = wrapper.getAttribute('data-customer-photos-label') || uiLabel('customerPhotos', 'Customer photos');
   var reviewRoot = document.getElementById('judgeme_product_reviews');
   if (!panel || !media || !reviewRoot) return;
 
   function populatePhotoPanel() {
+    if (title && reviewCount <= 0) title.textContent = customerPhotosLabel;
+
     var links = Array.from(
       reviewRoot.querySelectorAll('.jdgm-rev__pics a, .jdgm-rev__pic-link, .jdgm-gallery__thumbnail-link, .jdgm-gallery__image-link')
     )

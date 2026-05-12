@@ -1,5 +1,6 @@
 {%- liquid
   assign matching_set_heading = 'products.product.matching_set.heading' | t
+  assign matching_set_copy = 'products.product.matching_set.copy' | t
   assign matching_set_empty = 'products.product.matching_set.empty' | t
   assign matching_set_add = 'products.product.matching_set.add' | t
   assign matching_set_success = 'products.product.matching_set.success' | t
@@ -10,9 +11,86 @@
   assign selected_size_guide_label = 'products.product.size_guide.your_size_details' | t
   assign size_guide_compare_hint = 'products.product.size_guide.compare_hint' | t
   assign size_guide_unit_toggle_label = 'products.product.size_guide.chart_units' | t
+  assign current_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase
   assign reviews_heading = 'products.product.reviews.heading' | t
   assign photo_heading = 'products.product.reviews.photo_heading' | t
+  assign customer_photos_heading = 'Customer photos'
+  case current_locale_root
+    when 'cs'
+      assign customer_photos_heading = 'Fotky zákazníků'
+    when 'da'
+      assign customer_photos_heading = 'Kundebilleder'
+    when 'de'
+      assign customer_photos_heading = 'Kundenfotos'
+    when 'el'
+      assign customer_photos_heading = 'Φωτογραφίες πελατών'
+    when 'es'
+      assign customer_photos_heading = 'Fotos de clientes'
+    when 'fr'
+      assign customer_photos_heading = 'Photos clients'
+    when 'it'
+      assign customer_photos_heading = 'Foto dei clienti'
+    when 'nl'
+      assign customer_photos_heading = "Foto's van klanten"
+    when 'pl'
+      assign customer_photos_heading = 'Zdjęcia klientów'
+    when 'pt'
+      assign customer_photos_heading = 'Fotos de clientes'
+    when 'ro'
+      assign customer_photos_heading = 'Fotografii de la clienți'
+    when 'sv'
+      assign customer_photos_heading = 'Kundfoton'
+  endcase
   assign jump_to_reviews = 'products.product.reviews.jump_to_reviews' | t
+  assign pdu_rating_count_raw = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count
+  assign pdu_rating_count = pdu_rating_count_raw | plus: 0
+
+  if pdu_rating_count <= 0
+    assign pdu_judgeme_badge_metafield = product.metafields.judgeme.badge
+    assign pdu_judgeme_badge_markup = pdu_judgeme_badge_metafield.value | default: pdu_judgeme_badge_metafield | default: '' | append: '' | strip_newlines
+    if pdu_judgeme_badge_markup != blank
+      if pdu_judgeme_badge_markup contains 'data-number-of-reviews="'
+        assign pdu_rating_count = pdu_judgeme_badge_markup | split: 'data-number-of-reviews="' | last | split: '"' | first | replace: ',', '' | plus: 0
+      elsif pdu_judgeme_badge_markup contains "data-number-of-reviews='"
+        assign pdu_rating_count = pdu_judgeme_badge_markup | split: "data-number-of-reviews='" | last | split: "'" | first | replace: ',', '' | plus: 0
+      elsif pdu_judgeme_badge_markup contains 'data-reviews-count="'
+        assign pdu_rating_count = pdu_judgeme_badge_markup | split: 'data-reviews-count="' | last | split: '"' | first | replace: ',', '' | plus: 0
+      elsif pdu_judgeme_badge_markup contains "data-reviews-count='"
+        assign pdu_rating_count = pdu_judgeme_badge_markup | split: "data-reviews-count='" | last | split: "'" | first | replace: ',', '' | plus: 0
+      endif
+    endif
+  endif
+
+  if pdu_rating_count <= 0
+    assign pdu_judgeme_widget_metafield = product.metafields.judgeme.widget
+    assign pdu_judgeme_widget_markup = pdu_judgeme_widget_metafield.value | default: pdu_judgeme_widget_metafield | default: '' | append: '' | strip_newlines
+    if pdu_judgeme_widget_markup != blank
+      if pdu_judgeme_widget_markup contains 'data-number-of-reviews="'
+        assign pdu_rating_count = pdu_judgeme_widget_markup | split: 'data-number-of-reviews="' | last | split: '"' | first | replace: ',', '' | plus: 0
+      elsif pdu_judgeme_widget_markup contains "data-number-of-reviews='"
+        assign pdu_rating_count = pdu_judgeme_widget_markup | split: "data-number-of-reviews='" | last | split: "'" | first | replace: ',', '' | plus: 0
+      elsif pdu_judgeme_widget_markup contains 'data-reviews-count="'
+        assign pdu_rating_count = pdu_judgeme_widget_markup | split: 'data-reviews-count="' | last | split: '"' | first | replace: ',', '' | plus: 0
+      elsif pdu_judgeme_widget_markup contains "data-reviews-count='"
+        assign pdu_rating_count = pdu_judgeme_widget_markup | split: "data-reviews-count='" | last | split: "'" | first | replace: ',', '' | plus: 0
+      endif
+    endif
+  endif
+
+  assign photo_strip_heading = customer_photos_heading
+  if pdu_rating_count > 0
+    assign photo_strip_heading = photo_heading
+  endif
+
+  assign matching_set_builder_copy = matching_set_copy
+  assign matching_set_guide_enabled = false
+  assign matching_set_guide_label_1 = 'Top and pants are separate pieces'
+  assign matching_set_guide_label_2 = 'Add mom and child sizes together'
+  assign matching_set_guide_label_3 = 'Tap a size to see measurements'
+  if product.handle == 'golden-daisy-mommy-and-me-set' and current_locale_root == 'en'
+    assign matching_set_guide_enabled = true
+    assign matching_set_builder_copy = 'Pair the yellow daisy top with the ivory floral pants for a complete mommy-and-me outfit.'
+  endif
 -%}
 
 <div
@@ -23,6 +101,7 @@
   data-select-size-label="{{ 'products.product.select_size' | t | escape }}"
   data-add-to-cart-label="{{ 'products.product.add_to_cart' | t | escape }}"
   data-choose-options-label="{{ 'products.product.choose_options' | t | escape }}"
+  data-matching-set-copy="{{ matching_set_builder_copy | escape }}"
   data-matching-set-empty="{{ matching_set_empty | escape }}"
   data-matching-set-add="{{ matching_set_add | escape }}"
   data-matching-set-success="{{ matching_set_success | escape }}"
@@ -33,16 +112,16 @@
   data-size-guide-selected-label="{{ selected_size_guide_label | escape }}"
   data-size-guide-compare-hint="{{ size_guide_compare_hint | escape }}"
   data-size-guide-unit-toggle-label="{{ size_guide_unit_toggle_label | escape }}"
+  data-product-review-count="{{ pdu_rating_count }}"
+  data-customer-photos-label="{{ customer_photos_heading | escape }}"
 >
   {%- comment -%}
     CRO redesign (May 2026): stacked family-member cards with pills +
-    quantity steppers + live bundle summary. Eyebrow line advertises
-    the bundle savings (UI-only — see product-desktop-ux.js
-    BUNDLE_DISCOUNT comment and Frank's pre-launch TODO).
+    quantity steppers + live bundle summary.
 
     The summary panel sits ABOVE the CTA so the count, total, and
-    savings are visible before commitment. The CTA below is the single
-    primary action — the standalone Add-to-Cart is hidden via CSS on
+    current cart subtotal are visible before commitment. The CTA below
+    is the single primary action — the standalone Add-to-Cart is hidden via CSS on
     matching-set products (see component-product-desktop-ux.css).
 
     The static trust row under the CTA mirrors the spec — compact
@@ -50,20 +129,25 @@
   {%- endcomment -%}
   <section class="product-matching-set" data-matching-set-builder hidden>
     <div class="product-matching-set__header">
-      <p class="product-matching-set__eyebrow">Save 10% automatically when you add 2+ pieces</p>
       <h2 class="product-matching-set__title">{{ matching_set_heading }}</h2>
-      <p class="product-matching-set__copy">Choose sizes for each family member</p>
+      <p class="product-matching-set__copy">{{ matching_set_builder_copy }}</p>
+      {%- if matching_set_guide_enabled -%}
+        <ul class="product-matching-set__guide" aria-label="How the matching set works">
+          <li>{{ matching_set_guide_label_1 }}</li>
+          <li>{{ matching_set_guide_label_2 }}</li>
+          <li>{{ matching_set_guide_label_3 }}</li>
+        </ul>
+      {%- endif -%}
     </div>
     <div class="product-matching-set__grid" data-matching-set-roles></div>
     <div class="product-matching-set__summary" data-matching-set-summary>
       <p class="product-matching-set__empty" data-matching-set-empty-copy>Choose sizes for each family member</p>
       <div class="product-matching-set__chips" data-matching-set-chips hidden></div>
       <strong class="product-matching-set__total" data-matching-set-total hidden></strong>
-      <span class="product-matching-set__savings" data-matching-set-savings hidden></span>
     </div>
     <div class="product-matching-set__footer">
       <button type="button" class="button product-matching-set__button" data-matching-set-add-button disabled>
-        Add Matching Set to Cart
+        {{ matching_set_add }}
       </button>
     </div>
     {%- comment -%}
@@ -81,7 +165,7 @@
     <div class="product-photo-strip__header">
       <div>
         <p class="product-photo-strip__eyebrow">{{ reviews_heading }}</p>
-        <h2 class="product-photo-strip__title">{{ photo_heading }}</h2>
+        <h2 class="product-photo-strip__title">{{ photo_strip_heading }}</h2>
       </div>
       <a href="#judgeme_product_reviews" class="product-photo-strip__link">{{ jump_to_reviews }}</a>
     </div>

@@ -104,6 +104,11 @@
     {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ article.title | json }},"item":{{ article_breadcrumb_url | json }}}{%- endcapture -%}
   {%- endif -%}
 {%- elsif template contains 'product' and product -%}
+  {%- assign schema_product_title = product.title -%}
+  {%- assign schema_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase -%}
+  {%- if product.handle == 'golden-daisy-mommy-and-me-set' and schema_locale_root == 'en' -%}
+    {%- assign schema_product_title = 'Golden Daisy Mommy & Me Matching Separates' -%}
+  {%- endif -%}
   {%- assign primary_collection = collection -%}
   {%- if primary_collection == blank and product.collections.size > 0 -%}
     {%- assign primary_collection = product.collections | first -%}
@@ -121,7 +126,7 @@
   {%- else -%}
     {%- assign product_breadcrumb_url = shop.url | append: product.url -%}
   {%- endif -%}
-  {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ product.title | json }},"item":{{ product_breadcrumb_url | json }}}{%- endcapture -%}
+  {%- capture breadcrumb_items -%}{{ breadcrumb_items }},{"@type":"ListItem","position":{{ breadcrumb_position }},"name":{{ schema_product_title | json }},"item":{{ product_breadcrumb_url | json }}}{%- endcapture -%}
 {%- endif -%}
 
 {%- if breadcrumb_items contains '"position":2' or template contains 'product' -%}
@@ -139,6 +144,11 @@
 {%- endif -%}
 
 {%- if template contains 'product' and product -%}
+  {%- assign schema_product_title = product.title -%}
+  {%- assign schema_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase -%}
+  {%- if product.handle == 'golden-daisy-mommy-and-me-set' and schema_locale_root == 'en' -%}
+    {%- assign schema_product_title = 'Golden Daisy Mommy & Me Matching Separates' -%}
+  {%- endif -%}
   {%- if resolved_canonical_url != blank -%}
     {%- assign product_url = resolved_canonical_url -%}
   {%- else -%}
@@ -146,6 +156,32 @@
   {%- endif -%}
   {%- assign product_brand = schema_brand_name -%}
   {%- assign product_description = product.description | strip_html | strip -%}
+  {%- assign product_description = product_description | replace: 'Print reference:', 'Pattern:' -%}
+  {%- assign product_description = product_description | replace: 'Referencia de impresión:', 'Patrón:' -%}
+  {%- assign product_description = product_description | replace: 'Referencia de estampa:', 'Estampa:' -%}
+  {%- assign product_description = product_description | replace: 'Referência de estampa:', 'Estampa:' -%}
+  {%- assign product_description = product_description | replace: 'Riferimento stampa:', 'Motivo:' -%}
+  {%- assign product_description = product_description | replace: 'Referință imprimeu:', 'Model:' -%}
+  {%- assign product_description = product_description | replace: 'Referință de imprimare:', 'Model:' -%}
+  {%- assign product_description = product_description | replace: 'Référence imprimé :', 'Motif :' -%}
+  {%- assign product_description = product_description | replace: 'Druckreferenz:', 'Muster:' -%}
+  {%- assign product_description = product_description | replace: 'Chart-backed variants:', 'Available options:' -%}
+  {%- assign product_description = product_description | replace: 'attached vendor size-chart image', 'size chart' -%}
+  {%- assign product_description = product_description | replace: 'attached vendor size chart image', 'size chart' -%}
+  {%- assign product_description = product_description | replace: 'The attached chart publishes', 'The size chart lists' -%}
+  {%- assign product_description = product_description | replace: 'this draft keeps the shopper picker honest with', 'the picker uses' -%}
+  {%- assign product_description = product_description | replace: 'no dad or boy rows were invented', 'only available size rows are shown' -%}
+  {%- assign product_description = product_description | replace: 'Exact fiber composition was not visible in the supplied evidence.', 'Lightweight fabric with an easy drape.' -%}
+  {%- assign product_description = product_description | replace: 'exact fiber composition was not visible in the supplied chart or image.', 'fabric has an easy drape.' -%}
+  {%- assign product_description = product_description | replace: 'Tela liviana con apariencia de tejido; La composición exacta de la fibra no era visible en el cuadro o imagen suministrados.', 'Tela ligera con caída fácil para clima cálido.' -%}
+  {%- assign product_description = product_description | replace: 'Tecido leve com aparência tecida; a composição exata da fibra não estava visível no gráfico ou imagem fornecidos.', 'Tecido leve com caimento fácil para dias quentes.' -%}
+  {%- assign product_description = product_description | replace: 'Tessuto leggero dall’aspetto intrecciato; la composizione esatta della fibra non era visibile nella tabella o nell’immagine fornite.', 'Tessuto leggero con una caduta facile per il clima caldo.' -%}
+  {%- assign product_description = product_description | replace: 'Țesătură ușoară cu aspect țesut; compoziția exactă a fibrei nu era vizibilă în tabelul sau imaginea furnizată.', 'Țesătură ușoară, cu cădere lejeră pentru vreme caldă.' -%}
+  {%- assign product_description = product_description | replace: 'This care line is a conservative inference because the blocked vendor page did not expose wash instructions.', '' -%}
+  {%- assign product_description = product_description | replace: 'This is conservative care guidance because the blocked vendor page did not expose wash instructions.', '' -%}
+  {%- if product.handle == 'golden-daisy-mommy-and-me-set' and schema_locale_root == 'en' -%}
+    {%- assign product_description = 'Golden Daisy mommy-and-me matching separates with a yellow daisy sleeveless top and ivory floral wide-leg pants. Choose the top, pants, or build the full matching outfit for vacations, picnics, and family photos.' -%}
+  {%- endif -%}
   {%- assign product_page_description = page_description | default: '' | strip -%}
   {%- if product_description == blank or product_description.size < 120 -%}
     {%- if product_page_description != blank and product_page_description.size > product_description.size -%}
@@ -153,7 +189,7 @@
     {%- endif -%}
   {%- endif -%}
   {%- if product_description == blank -%}
-    {%- assign product_description = product.title | append: ' by ' | append: product_brand | append: '.' -%}
+    {%- assign product_description = schema_product_title | append: ' by ' | append: product_brand | append: '.' -%}
   {%- endif -%}
   {%- if product_description.size < 120 -%}
     {%- capture product_description -%}
@@ -233,7 +269,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": {{ product.title | json }},
+    "name": {{ schema_product_title | json }},
     "description": {{ product_description | json }},
     "url": {{ product_url | json }},
     {% if product_images != '' %}

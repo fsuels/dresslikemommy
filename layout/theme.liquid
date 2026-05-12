@@ -143,6 +143,10 @@
         render 'product-seo-description-fallback', product: product, collection: collection, page_description: resolved_page_description
       endcapture
       assign product_seo_description = product_seo_description | strip
+      assign product_title_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase
+      if product.handle == 'golden-daisy-mommy-and-me-set' and product_title_locale_root == 'en'
+        assign resolved_page_title = 'Golden Daisy Mommy & Me Matching Separates'
+      endif
     endif
 
     if request.page_type == 'index'

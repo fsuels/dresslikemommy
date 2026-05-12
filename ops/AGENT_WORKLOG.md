@@ -34121,3 +34121,290 @@ Guardrails:
 
 Next:
 - Hard-refresh the product page if a browser still shows the stale table from cache.
+
+2026-05-12 - PDP zero-review social-proof repair
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-pdp-zero-review-social-proof-repair
+
+Why:
+- Owner reported that the PDP social-proof score still suffers because zero-review products can show harmful above-fold Judge.me `No reviews` messaging while customer-photo content can look like `Customer photo reviews`.
+
+What changed:
+- Patched `snippets/pdp-review-social-proof.liquid` so the zero-review gate reads Shopify review count plus Judge.me badge/widget count attributes before deciding whether the product has verified reviews.
+- Strengthened the zero-review CSS to hide the entire above-fold Judge.me preview widget/app-block output inside `.product__info-container`, not just one text span.
+- Patched `snippets/product-desktop-ux.liquid` so zero-review products render the photo strip heading as `Customer photos`; products with positive verified review counts keep `Customer photo reviews`.
+- Patched `assets/product-desktop-ux.js` to enforce the zero-review `Customer photos` heading after Judge.me/photo-strip mutations.
+- Patched `sections/main-product.liquid` and `snippets/product-page-copy-map.liquid` so runtime copy translation has a `Customer photos` fallback.
+- Updated `ops/AGENT_COORDINATION.md` and `ops/PROBLEM_TRACKER.md` with `PROB-2026-05-12-PDP-ZERO-REVIEW-SOCIAL-PROOF`.
+
+Validation:
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output text` passed at error level; the only output was the known unrelated warning for unused `pc_fallback_copy` in `snippets/pdp-purchase-confidence.liquid`.
+- Local raw preview readbacks for `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set` and `http://127.0.0.1:9292/products/sunshine-stripe-family-matching-tops` showed `data-product-review-count="0"`, `data-customer-photos-label="Customer photos"`, and `product-photo-strip__title">Customer photos</h2>`.
+- Local raw preview for `golden-daisy-mommy-and-me-set` showed the strengthened hide CSS directly before the Judge.me preview badge block that contains hidden zero-review markup.
+- Browser Playwright visual verification was attempted, but the Playwright MCP profile was already locked by another browser session; no browser/account writes occurred.
+
+Guardrails:
+- No live theme push/publish, Shopify Admin product/page/policy write, Google Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, checkout payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Next:
+- Deploy/sync this local theme patch through the normal GitHub/theme sync path when ready, then hard-refresh the live PDP and visually confirm no above-fold `No reviews` badge appears on zero-review products.
+
+2026-05-12 - Golden Daisy PDP conversion copy refinement
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-golden-daisy-pdp-copy-cta-refinement
+
+Why:
+- Owner asked whether changes had been made after seeing the same local PDP. The prior pass was recommendation-only, while the local page still needed the narrow conversion-copy refinements.
+
+What changed:
+- Layered on top of the existing uncommitted zero-review social-proof repair without reverting it.
+- Patched `sections/main-product.liquid` so the Golden Daisy visible H1 renders as `Golden Daisy Mommy & Me Matching Separates` without changing Shopify Admin product data/SEO JSON-LD.
+- Patched `snippets/pdp-review-social-proof.liquid` so Golden Daisy uses the product-specific above-fold story line `A sunny mom-and-daughter look for vacations, picnics, and family photos.` instead of broad soft social proof.
+- Patched `snippets/product-desktop-ux.liquid`, `locales/en.default.json`, `snippets/product-page-copy-map.liquid`, and runtime translation mapping so the matching-set CTA reads `Add matching pieces` and the Golden Daisy bundle module says `Pair the yellow daisy top with the ivory floral pants for a complete mommy-and-me outfit.`
+- Patched `sections/main-product.liquid` and `assets/component-product-desktop-ux.css` so matching-set PDPs do not render/show the generic `Sale` price badge; the sale price, compare-at price, and `Save 23%` pill remain.
+- Updated `ops/AGENT_COORDINATION.md` and `ops/PROBLEM_TRACKER.md` with `PROB-2026-05-12-GOLDEN-DAISY-PDP-COPY-CTA`.
+
+Validation:
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output text` passed at error level; the only output remains the known unrelated warning for unused `pc_fallback_copy` in `snippets/pdp-purchase-confidence.liquid`.
+- Local preview readback for `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set` showed the new H1, the new above-fold story line, `data-matching-set-add="Add matching pieces"`, CTA text `Add matching pieces`, the new Golden Daisy module copy, and `Customer photos` for the zero-review photo strip.
+- Local buy-box slice readback no longer showed the PDP generic `price__badge-sale`; hidden Judge.me zero-review markup still exists in raw HTML from the app but is covered by the zero-review hide CSS.
+- Browser MCP visual verification was attempted but blocked by existing Chrome/Playwright profile locks, so verification used local HTML readbacks.
+
+Problems:
+- `PROB-2026-05-12-GOLDEN-DAISY-PDP-COPY-CTA`: opened and closed as `SOLVED_LOCAL_READBACK_PASSED`.
+- `PROB-2026-05-12-PDP-ZERO-REVIEW-SOCIAL-PROOF`: preserved; not reverted.
+
+Guardrails:
+- No live theme push/publish, Shopify Admin product/page/policy write, product-data/title/admin SEO write, Google Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, checkout payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Next:
+- Hard-refresh the local PDP at `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set`.
+- If approved for deployment, sync/push the local theme patch through the normal GitHub/theme path, then visually recheck the live PDP after Shopify sync.
+
+2026-05-12 - Golden Daisy PDP 8.7 CRO hardening
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-golden-daisy-pdp-87-cro-hardening
+
+Why:
+- Owner asked to push the new Golden Daisy PDP from the post-copy-fix 8.1 range toward 8.7+/9 without fake reviews, while preserving the parts of the page already working.
+
+What changed:
+- Kept the no-fake-review posture: no review count, rating, or customer-proof claim was invented.
+- Aligned the theme-rendered product title surfaces for Golden Daisy: browser title, OG/Twitter title, Product JSON-LD name, Breadcrumb JSON-LD name, fallback SEO description title wording, image alt fallback, and visible H1 now use `Golden Daisy Mommy & Me Matching Separates` locally.
+- Preserved Shopify Admin/product-data boundaries: no Shopify Admin product title/SEO/body write was made.
+- Cleaned rendered PDP description copy in `snippets/optimized-product-description.liquid` and `snippets/pdp-description-copy-cleanup.liquid`: removed the leaked Shopify Admin breadcrumb link, `text/html` meta artifact, supplier chart-code/internal draft wording, invented-row wording, chart-backed-variants line, and fabric-apology phrasing from the shopper-visible description.
+- Added a truthful buying-guide strip to the Golden Daisy bundle card: top/pants are separate pieces, mom and child sizes can be added together, and tapping a size shows measurements.
+- Fixed the runtime localization script so English Golden Daisy keeps the product-specific bundle outcome copy instead of being replaced with generic matching-set copy after page load.
+- Added size-pill polish in CSS: selected pills now have a check indicator and stronger focus-visible rings.
+- Updated `ops/AGENT_COORDINATION.md` and `ops/PROBLEM_TRACKER.md` with `PROB-2026-05-12-GOLDEN-DAISY-PDP-87-CRO-HARDENING`.
+
+Validation:
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output text` passed at error level; the only output remains the known unrelated warning for unused `pc_fallback_copy` in `snippets/pdp-purchase-confidence.liquid`.
+- Local HTML readback for `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set` confirmed title/SEO/schema alignment, the Golden Daisy bundle copy, the new buying guide, no visible admin href/meta artifact in the rendered description, no visible internal chart-code/draft/invented-row/fabric-apology copy in the rendered description, and `Customer photos` for zero-review photo content.
+- Playwright opened the local PDP successfully after the previous profile-lock blocker cleared. Snapshot `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-golden-daisy-pdp-87-cro-hardening/golden-daisy-pdp-87-buybox-after-runtime-fix.md` confirmed the live-rendered buy box kept the Golden Daisy outcome copy and guide strip; screenshot `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-golden-daisy-pdp-87-cro-hardening/golden-daisy-pdp-87-desktop-after-runtime-fix.png` was saved.
+- Browser console showed local-preview-only CORS errors for `dresslikemommy-com.myshopify.com/api/collect` and a blocked Shop Pay frame; no new theme JS syntax error was observed.
+
+Guardrails:
+- No live theme push/publish, Shopify Admin product/page/policy write, product data/title/admin SEO write, Google Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, checkout payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Score recommendation:
+- Local page after these fixes is now a credible `8.6-8.8/10` CRO score without reviews. It can reach `9.0` only with stronger product images and/or legitimate first-party proof such as UGC, review capture, press/brand proof, or post-purchase photo submissions.
+
+Next:
+- If deploying, sync this local theme patch through the normal GitHub/theme path, then recheck the live PDP after Shopify sync/cache delay.
+- Next biggest conversion lever remains image quality/ordering: show the full top+pants look, close-up daisy/texture detail, and a clearer mom-child matching outcome above the fold.
+
+2026-05-12 - PDP matching-set discount truth repair
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-pdp-bundle-discount-mismatch-local-truth-repair
+
+Why:
+- Owner reported that PDP matching-set copy says shoppers get 10% off for adding more than one item, but the cart/checkout does not show the 10% saved.
+
+What changed:
+- Confirmed the mismatch: the matching-set bundle discount was UI-only in `assets/product-desktop-ux.js`; no actual Shopify cart/checkout discount was present.
+- Removed the PDP `Save 10% automatically when you add 2+ pieces` line from `snippets/product-desktop-ux.liquid`.
+- Removed the hidden `data-matching-set-savings` node from the bundle summary.
+- Patched `assets/product-desktop-ux.js` so the bundle summary shows the actual selected-item subtotal, not a discounted grand total, and no longer renders `You saved ...`.
+- Updated coordination/problem tracking with `PROB-2026-05-12-PDP-BUNDLE-DISCOUNT-MISMATCH`.
+
+Validation:
+- Isolated local cart readback: cleared a temp cookie cart, added two Golden Daisy variants through `/cart/add.js`, and read `/cart.js`; result was item_count `2`, subtotal/total `4590`, `total_discount=0`, no cart-level discount applications, and no line-level discounts.
+- Local PDP HTML readback for `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set` returned `0` hits for `Save 10% automatically`, `You saved`, `data-matching-set-savings`, and `BUNDLE_DISCOUNT`.
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output text` passed at error level; the only output remains the known unrelated warning for unused `pc_fallback_copy` in `snippets/pdp-purchase-confidence.liquid`.
+
+Guardrails:
+- No Shopify Admin discount/code/automatic-discount/function write was made; no live theme push/publish, Shopify Admin product/page/policy write, checkout edit, Google Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Next:
+- If the business really wants a 10% multi-piece promotion, create it as a real Shopify discount/automatic-discount path under fresh explicit approval, then read back cart and checkout before restoring any PDP savings promise.
+
+2026-05-12 - Golden Daisy localized title guard follow-up
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-golden-daisy-localized-title-guard-followup
+
+Why:
+- Translation/localization sidecar flagged that the Golden Daisy CRO hardening forced English title/SEO/schema/image-alt overrides onto localized PDP routes.
+
+What changed:
+- Restricted the hard-coded Golden Daisy title/SEO/schema/image-alt replacement to English routes only in `sections/main-product.liquid`, `layout/theme.liquid`, `snippets/meta-tags.liquid`, `snippets/jsonld-seo.liquid`, `snippets/product-image-alt.liquid`, and `snippets/product-seo-description-fallback.liquid`.
+- Restricted the Golden Daisy English buying-guide strip and product-specific bundle copy to English routes in `snippets/product-desktop-ux.liquid`.
+- Preserved the discount-truth repair: no 10% UI-only promise is shown.
+
+Validation:
+- Local route readbacks passed:
+  - `/products/golden-daisy-mommy-and-me-set` stayed English with H1 `Golden Daisy Mommy & Me Matching Separates` and guide-strip count `3`.
+  - `/es/products/golden-daisy-mommy-and-me-set?country=ES` showed `lang=es`, localized H1 `Golden Daisy Mamá e hija - top o pantalón`, guide-strip count `0`, false-discount count `0`.
+  - `/it/products/golden-daisy-mommy-and-me-set?country=IT` showed `lang=it`, localized H1 `Golden Daisy mamma e figlia - top o pantaloni`, guide-strip count `0`, false-discount count `0`.
+  - `/ro/products/golden-daisy-mommy-and-me-set?country=RO` showed `lang=ro`, localized H1 `Golden Daisy mamă și fiică - top sau pantaloni`, guide-strip count `0`, false-discount count `0`.
+  - `/pt-br/products/golden-daisy-mommy-and-me-set?country=PT` showed `lang=pt-BR`, localized H1 `Golden Daisy mamãe e filha - top ou calça`, guide-strip count `0`, false-discount count `0`.
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output text` passed at error level with only the known unrelated `pc_fallback_copy` warning.
+
+Remaining localization gaps:
+- Matching-set builder JS still emits several English dynamic labels on localized PDPs (`Matching Pieces`, `Total`, `Pick a size`, `Pick a type`, `each`, `Find X's fit`, `+ Add`, some aria/title strings). This needs a dedicated locale-key/data-attribute pass.
+- Zero-review `Customer photos` needs locale-key coverage across locales.
+- Romanian purchase-confidence copy and cart discount UI need localization hardening.
+
+Guardrails:
+- No live theme push/publish, Shopify Admin product/page/policy/translation write, Shopify Admin discount write, checkout edit, ads/feed/analytics write, payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+2026-05-12 - Sitewide PDP CRO foundation follow-up
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-sitewide-pdp-cro-foundation-followup
+
+Why:
+- Sitewide CRO and localization sidecars confirmed that Golden Daisy-specific work was not enough: product/admin description copy could still reach visible descriptions/schema/meta on other PDPs, `free shipping` language was inconsistent with the standard-shipping-included policy, duplicate trust strips could appear near non-matching buy boxes, and Shopify inventory counts should not be used as dropshipping urgency.
+
+What changed locally:
+- Added broader Liquid sanitization to `snippets/jsonld-seo.liquid`, `snippets/product-seo-description-fallback.liquid`, and `snippets/optimized-product-description.liquid` for internal phrases including `Print reference`, `Chart-backed variants`, `attached vendor size-chart image`, `attached vendor size chart image`, `The attached chart publishes`, `this draft keeps...`, invented-row wording, and fiber/care apology wording.
+- Normalized English trust copy away from `Free shipping` / `Free standard shipping` toward `Standard shipping included` in `snippets/pdp-purchase-confidence.liquid`, `sections/main-product.liquid`, and `locales/en.default.json`.
+- Suppressed the legacy buy-buttons trust strip by passing `hide_trust_strip: true` from `sections/main-product.liquid` and guarding the strip in `snippets/buy-buttons.liquid`, leaving the newer purchase-confidence module as the single PDP trust surface.
+- Removed the low-stock urgency block directly under the buy buttons so Shopify channel/feed inventory counts are not used as owned-stock urgency for a dropshipping business.
+
+Validation:
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output text` passed at error level; only the known unrelated `pc_fallback_copy` warning remains.
+- Local readbacks for `/products/golden-daisy-mommy-and-me-set` and `/products/sunshine-stripe-family-matching-tops` showed:
+  - `visible_desc_bad_hits=0` for the targeted internal/admin copy patterns.
+  - `jsonld_bad_hits=0` for the targeted internal/admin copy patterns.
+  - `false_discount=0` for `Save 10% automatically`, `You saved`, and `data-matching-set-savings`.
+  - `free_shipping_visible_phrase=0` for `Free shipping` / `Free standard shipping`.
+
+Remaining sitewide CRO/localization gaps:
+- This does not make every product page 8.7+/9 by itself. Product images/media, Admin product titles/SEO, product-specific descriptions, and native translations still need product-level QA and possibly Shopify Admin work under explicit approval.
+- Matching-set builder JS still has English dynamic labels on localized PDPs (`Matching Pieces`, `Total`, `Pick a size`, `Pick a type`, `each`, `Find X's fit`, `+ Add`, some aria/title strings). Needs a dedicated localization/data-attribute pass.
+- Zero-review `Customer photos` needs real locale-key coverage across locale files.
+- Romanian purchase-confidence and cart discount UI need localization hardening.
+- Known beach/vacation product SEO/social mismatch remains product-data-gated and should stay excluded from paid URLs until approved repair/readback.
+
+Guardrails:
+- No live theme push/publish, Shopify Admin product/page/policy/translation write, Shopify Admin discount write, checkout edit, ads/feed/analytics write, payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+2026-05-12 - PDP matching-set CTA hover text hotfix
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-pdp-matching-cta-hover-text-hotfix
+
+Why:
+- Owner screenshot showed the desktop matching-set CTA text (`Add matching pieces`) becoming nearly invisible on hover.
+
+What changed locally:
+- Patched `assets/component-product-desktop-ux.css` so the scoped matching-set CTA keeps white text during hover, focus-visible, and active states.
+- Neutralized the scoped matching-set CTA `::before` and `::after` pseudo-elements so inherited Dawn/global button styling cannot repaint over this custom CTA.
+- Updated coordination/problem tracking with `PROB-2026-05-12-PDP-MATCHING-CTA-HOVER-CONTRAST`.
+
+Validation:
+- Local preview target `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set` returned HTTP `200`.
+- Browser Node REPL was unavailable through tool discovery, and Playwright MCP / Chrome DevTools profile paths were locked by existing browser profiles, so verification used an isolated headless Chrome CDP run.
+- Isolated Chrome readback selected matching pieces (`S`/`Top` and `2 Years`/`Top`) to enable the CTA, then hovered it; computed style stayed `color: rgb(255, 255, 255)` before and during hover, and `::before` / `::after` computed `none`.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output text` passed with no offenses.
+
+Guardrails:
+- No live theme push/publish, Shopify Admin product/page/policy/translation/discount write, checkout edit, ads/feed/analytics write, payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Next:
+- Deploy/sync through the normal GitHub/theme path when the broader local PDP worktree is ready, then hard-refresh the live PDP and visually confirm the hover state after Shopify sync.
+
+2026-05-12 - Paid growth measurement safe lanes
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-paid-growth-measurement-safe-lanes
+
+Why:
+- Owner asked to continue the canonical paid-growth sprint under `ops/prompts/paid-growth-ai-army-continuation-prompt.md`, preserve all live-write approval gates, and move every safe read-only/local/paused-build lane as far as possible instead of stopping at audit-only work.
+
+What changed locally/read-only:
+- Created evidence packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-measurement-safe-lanes/` with a lane board, measurement report, GA4 read-only probe scripts/summaries/screenshots, and `NEXT_CONTINUATION_PROMPT.md` pointing back to the single canonical prompt.
+- Ran parent/orchestrator plus four parallel sidecar lanes: Google Ads paused non-US Search verification, native/localized copy gates, Pinterest/Merchant/beach blockers, and theme/local paid-growth QA.
+- Measurement gate advanced but did not close: GA4 Data API retry for property `330266838` still returned `403 ACCESS_TOKEN_SCOPE_INSUFFICIENT`; read-only GA4 UI/CDP reached a transaction ID report route with visible `purchase` and `transaction` text; sanitized GA4 network probing found report/config snippets only, not usable order-level non-US currency/value/transaction proof.
+- Local-only theme copy repair fixed stale Romanian/English PDP wording that still said or implied `Free standard shipping`; standard shipping copy now says it is included in product prices where available, and the unused `pc_fallback_copy` assignment was removed from `snippets/pdp-purchase-confidence.liquid`.
+- Updated `ops/PROBLEM_TRACKER.md`, `ops/AGENT_COORDINATION.md`, and the canonical paid-growth prompt with the new anchor/status.
+
+Validation:
+- `ruby -rjson -e 'ARGV.each { |f| JSON.parse(File.read(f)); puts "OK #{f}" }' locales/en.default.json locales/ro.json locales/ro-RO.json` passed.
+- `rg -n "Free standard shipping|Standard shipping is free|Livrare standard gratuit" locales/ro.json locales/ro-RO.json locales/en.default.json snippets/pdp-purchase-confidence.liquid` returned no matches.
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output text` passed with no offenses after removing the unused assignment.
+- Local PDP readbacks on `http://127.0.0.1:9292` for English and Romanian Golden Daisy routes showed `free_standard_hits=0`, `false_discount_hits=0`, and expected localized H1s; English had `standard_included_hits=14`, Romanian had `standard_included_hits=13`.
+- Sidecar verification rechecked the non-US Ads packet checksums/CSV structure and confirmed the known safe Ads state remains `12 built / 3 absent / 2 parked`, with all built campaigns paused/Search/presence-only/content off/YouTube off.
+
+Problem tracker updates:
+- `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`: now `GA4_TRANSACTION_REPORT_VISIBLE__ORDER_LEVEL_NON_US_CURRENCY_VALUE_PROOF_STILL_REQUIRED`. Exact next unblock is refreshed read-only GA4 Data/Admin API scopes for property `330266838` or exact owner approval for a controlled non-US test purchase/refund/cancel procedure.
+- `PROB-2026-05-09-NON-US-SEARCH-NATIVE-LANGUAGE-COPY-GATE`: kept review-only; added 2026-05-12 landing blockers and safe next actions. Do not upload/import native rows before native review, landing QA, exact approval, and readbacks.
+- `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE`: unchanged as `PARTIAL_12_APPLIED_RO_UPLOAD_THROTTLE_STILL_ACTIVE_PT_GR_ABSENT_FR_STALE_BE_THROTTLE`; do not re-upload completed countries.
+- `PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP`, `PROB-2026-05-08-PINTEREST-EVENT-QUALITY`, and `PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH`: rechecked/local evidence integrated; all remain approval/readback gated.
+- `PROB-2026-05-12-RO-PDP-SHIPPING-COPY-FREE-WORDING`: opened and solved locally with Theme Check and local EN/RO PDP readbacks.
+
+Remaining blockers and next gates:
+- Non-US live enablement remains blocked until actual purchase-event currency/value/transaction proof exists for GA4 property `330266838`, or the owner gives exact approval for a controlled non-US test purchase/refund/cancel procedure.
+- Google Ads non-US Search remains `12 built / 3 absent / 2 parked`: next safe Ads action is wait for upload-throttle cooldown, confirm no active in-progress `RO`/`FR`/`BE` row and no `RO` campaign, then retry one-country `RO` preview only, or get exact owner approval to park/skip `RO` and proceed one-country-at-a-time to `PT`/`GR`. Do not re-upload completed countries.
+- Native copy remains `REVIEW_ONLY_NOT_UPLOAD`; ES/IT are cleanest review candidates, while RO/DE/SE/CZ have supplier/source-token or language blockers, and NL/FR/PL/CZ need title/copy/final-URL QA.
+- Pinterest Event Quality remains `Fair`; Pinterest draft/account writes still require exact owner approval.
+- Merchant US/es age_group repair remains exact-owner-approval-gated for source `10627981690`.
+- Beach SEO/social-title repair remains Shopify product-data-write-gated; keep that handle excluded/held from paid URLs.
+- Local theme residuals remain: matching-set JS still has English dynamic labels on localized PDP interactions, and zero-review `Customer photos` still needs locale-key coverage.
+
+Guardrails:
+- No live spend, campaign enablement, budget/bid/status change, PMax enable, Standard Shopping change, product-scope/feed-label/product-group change, conversion-goal change, Merchant upload, Pinterest account write, Shopify product-data write, payment/order/refund/cancel, credential/account/billing edit, or destructive filesystem action occurred.
+
+2026-05-12 - Sitewide PDP CRO/localization hardening completion
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-sitewide-pdp-cro-localization-hardening-complete
+
+Why:
+- Owner explicitly asked to fix the PDP conversion/localization issues across the site, not just give a plan. The biggest local/theme blockers were shared: false matching-set discount UI, English dynamic matching-set labels, "Optional" bundle-building copy, zero-review photo labels, duplicate/trust wording, inventory urgency, and internal product-description language leaking into visible/SEO/schema output.
+
+What changed locally:
+- Removed the matching-set 10% UI-only promise and savings math so product/cart/checkout messaging no longer claims a discount that the cart does not apply.
+- Added localized matching-set UI labels in `assets/product-desktop-ux.js` for EN/ES/IT/RO/PT/DE/NL/FR/SV/PL/CS/DA/EL, covering piece count, total, each, pick-size/pick-axis hints, fit links, add-role buttons, remove/quantity aria labels, tooltip labels, and customer-photo fallback.
+- Localized zero-review `Customer photos` output in `snippets/product-desktop-ux.liquid` and the runtime translation pass in `sections/main-product.liquid`.
+- Replaced weak `Optional...` matching-set copy and "selected pieces" CTAs in ES/PT/RO/DE local theme data and locale files with confident set-building language.
+- Extended shared description/SEO/schema cleanup in `snippets/optimized-product-description.liquid`, `snippets/product-seo-description-fallback.liquid`, `snippets/jsonld-seo.liquid`, and `snippets/pdp-description-copy-cleanup.liquid`, including common localized admin labels for ES/PT/IT/RO plus EN internal phrases.
+- Kept Golden Daisy product-specific title/story/guide overrides EN-only so localized PDPs preserve native titles and do not inherit English guide copy.
+- Preserved the shared trust foundation: standard-shipping-included wording, no duplicate legacy trust strip, and no low-stock urgency block directly under buy buttons.
+- Updated `PROB-2026-05-12-SITEWIDE-PDP-CRO-FOUNDATIONS` and marked the coordination row done.
+
+Validation:
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Local Playwright/browser readbacks for Golden Daisy EN/ES/RO/PT passed:
+  - EN kept H1 `Golden Daisy Mommy & Me Matching Separates`, `Customer photos`, and the 3-item English guide strip.
+  - ES kept localized H1 `Golden Daisy Mamá e hija - top o pantalón`, localized `Fotos de clientes`, no English guide strip, no targeted raw-admin description hits, CTA `Añadir piezas a juego`, and set-building copy without `Opcional`.
+  - RO kept localized H1 `Golden Daisy mamă și fiică - top sau pantaloni`, localized `Fotografii de la clienți`, no English guide strip, no targeted raw-admin description hits, CTA `Adaugă piese asortate`, and set-building copy without `Opțional`.
+  - PT-BR kept localized H1 `Golden Daisy mamãe e filha - top ou calça`, localized `Fotos de clientes`, no English guide strip, no targeted raw-admin description hits, CTA `Adicionar peças combinando`, and set-building copy without `Opcional`.
+- Screenshot saved at `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-golden-daisy-pdp-87-cro-hardening/golden-daisy-pt-localized-pdp-after-hardening.png`.
+
+Residual risks:
+- No live theme push/publish was done.
+- Backend/Admin product title, SEO, product-media improvements, and native product translations are not fully solved by local theme code and need an approval-gated Shopify Admin lane.
+- A real multi-item 10% savings offer still requires a Shopify discount/admin setup and cart/checkout readback; this pass only removed the false local theme promise.
+- The known beach/vacation SEO/social mismatch remains product-data-gated and should stay excluded from paid URLs until repaired and read back.
+
+Guardrails:
+- No Shopify Admin writes, live theme publish, discount creation/edit, checkout edit, ads/feed/analytics write, payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Next:
+- Review local preview, then deploy/sync the local theme changes through the normal GitHub/theme path. After live sync, run a live visual QA pass on Golden Daisy plus representative matching/non-matching PDPs and decide whether to approve the separate Shopify Admin discount/product-data/image lane.

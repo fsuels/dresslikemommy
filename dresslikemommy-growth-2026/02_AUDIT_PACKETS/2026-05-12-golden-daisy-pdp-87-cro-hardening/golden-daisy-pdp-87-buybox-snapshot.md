@@ -1,0 +1,319 @@
+- generic [ref=e116] [box=818,-235,643,3414]:
+  - heading "Golden Daisy Mommy & Me Matching Separates" [level=1] [ref=e118] [box=842,-190,595,28]
+  - generic [ref=e119] [box=842,-146,595,52]:
+    - generic [ref=e120] [box=842,-146,102,24]: New arrival
+    - generic [ref=e121] [box=842,-114,545,21]: A sunny mom-and-daughter look for vacations, picnics, and family photos.
+  - text: 
+  - status [ref=e122] [box=842,-77,595,60]:
+    - generic [ref=e125] [box=842,-78,260,27]:
+      - generic [ref=e126] [box=842,-77,1,23]: Regular price
+      - generic [ref=e128] [box=842,-77,123,26]: $33.99 USD
+      - generic [ref=e129] [box=980,-77,1,23]: Sale price
+      - generic [ref=e130] [box=980,-77,122,26]: $25.99 USD
+    - generic [ref=e131] [box=848,-42,75,24]: Save 23%
+  - generic [ref=e133] [box=842,-1,595,1122]:
+    - generic [ref=e134] [box=857,14,565,127]:
+      - paragraph [ref=e135] [box=857,14,565,19]: Save 10% automatically when you add 2+ pieces
+      - heading "Build your matching set" [level=2] [ref=e136] [box=857,37,565,22]
+      - paragraph [ref=e137] [box=857,62,565,17]: Add matching family sizes below — each selection is sold separately.
+      - list "How the matching set works" [ref=e138] [box=857,89,565,53]:
+        - listitem [ref=e139] [box=857,89,565,15]: Top and pants are separate pieces
+        - listitem [ref=e140] [box=857,108,565,15]: Add mom and child sizes together
+        - listitem [ref=e141] [box=857,127,565,15]: Tap a size to see measurements
+    - generic [ref=e142] [box=857,155,565,829]:
+      - generic [ref=e143] [box=857,155,565,357]:
+        - generic [ref=e144] [box=870,168,539,28]:
+          - generic [ref=e145] [box=870,170,48,24]: Mother
+          - button "Remove Mother" [ref=e146] [cursor=pointer] [box=1381,168,28,28]: ×
+        - generic [ref=e147] [box=870,209,539,19]: Top
+        - group "Mother size" [ref=e148] [box=870,243,539,44]:
+          - generic [ref=e149] [box=870,243,44,44]:
+            - button "S" [ref=e150] [cursor=pointer] [box=870,243,44,44]
+            - tooltip "Mother · S Weight (kg) 42.5-50 Height (cm) 155-160 Top Chest/Bust (cm) 92 Top Length (cm) 64 Pants Length (cm) 96 Top Hip (cm) 92 Top Waist (cm) 80 Pants Waist (cm) 62" [box=802,58,180,183]:
+              - generic [box=812,66,160,19]:
+                - generic [box=812,66,60,15]: Mother · S
+              - generic [box=812,89,160,143]:
+                - generic [box=812,89,160,16]
+                - generic [box=812,108,160,16]
+                - generic [box=812,126,160,16]
+                - generic [box=812,144,160,16]
+                - generic [box=812,162,160,16]
+                - generic [box=812,180,160,16]
+                - generic [box=812,199,160,16]
+                - generic [box=812,217,160,16]
+          - generic [ref=e151] [box=920,243,44,44]:
+            - button "M" [ref=e152] [cursor=pointer] [box=920,243,44,44]
+            - tooltip "Mother · M Weight (kg) 50-57.5 Height (cm) 160-165 Top Chest/Bust (cm) 96 Top Length (cm) 66 Pants Length (cm) 99 Top Hip (cm) 96 Top Waist (cm) 84 Pants Waist (cm) 64" [box=852,58,180,183]:
+              - generic [box=862,66,160,19]:
+                - generic [box=862,66,63,15]: Mother · M
+              - generic [box=862,89,160,143]:
+                - generic [box=862,89,160,16]
+                - generic [box=862,108,160,16]
+                - generic [box=862,126,160,16]
+                - generic [box=862,144,160,16]
+                - generic [box=862,162,160,16]
+                - generic [box=862,180,160,16]
+                - generic [box=862,199,160,16]
+                - generic [box=862,217,160,16]
+          - generic [ref=e153] [box=969,243,44,44]:
+            - button "L" [ref=e154] [cursor=pointer] [box=969,243,44,44]
+            - tooltip "Mother · L Weight (kg) 57.5-65 Height (cm) 165-170 Top Chest/Bust (cm) 100 Top Length (cm) 68 Pants Length (cm) 102 Top Hip (cm) 100 Top Waist (cm) 88 Pants Waist (cm) 66" [box=901,58,180,183]:
+              - generic [box=911,66,160,19]:
+                - generic [box=911,66,60,15]: Mother · L
+              - generic [box=911,89,160,143]:
+                - generic [box=911,89,160,16]
+                - generic [box=911,108,160,16]
+                - generic [box=911,126,160,16]
+                - generic [box=911,144,160,16]
+                - generic [box=911,162,160,16]
+                - generic [box=911,180,160,16]
+                - generic [box=911,199,160,16]
+                - generic [box=911,217,160,16]
+        - paragraph [ref=e155] [box=870,307,539,13]: ↑ Pick a size
+        - group "Type" [ref=e156] [box=870,334,539,86]:
+          - generic [ref=e157] [box=870,334,539,19]: Type
+          - generic [ref=e158] [box=870,357,539,34]:
+            - button "Top" [ref=e159] [cursor=pointer] [box=870,357,40,34]
+            - button "Pants" [ref=e160] [cursor=pointer] [box=915,357,51,34]
+          - paragraph [ref=e161] [box=870,401,69,13]: ↑ Pick a type
+        - generic [ref=e162] [box=870,433,539,34]:
+          - button "Decrease quantity" [ref=e163] [cursor=pointer] [box=870,433,34,34]: −
+          - generic [ref=e164] [box=912,439,22,23]: "1"
+          - button "Increase quantity" [ref=e165] [cursor=pointer] [box=942,433,34,34]: +
+          - generic [ref=e166] [box=1362,439,47,22]: $26.99
+        - link "Find Mother's fit →" [ref=e167] [cursor=pointer] [box=870,482,539,20]:
+          - /url: "#size-chart"
+      - generic [ref=e168] [box=857,521,565,407]:
+        - generic [ref=e169] [box=870,534,539,28]:
+          - generic [ref=e170] [box=870,536,24,24]: Girl
+          - button "Remove Girl" [ref=e171] [cursor=pointer] [box=1381,534,28,28]: ×
+        - generic [ref=e172] [box=870,575,539,19]: Top
+        - group "Girl size" [ref=e173] [box=870,610,539,94]:
+          - generic [ref=e174] [box=870,610,72,44]:
+            - button "2 Years" [ref=e175] [cursor=pointer] [box=870,610,72,44]
+            - tooltip "Girl · 2 Years Age 2 Weight (kg) 12-14.5 Height (cm) 86-95 Top Chest/Bust (cm) 67 Top Length (cm) 37 Pants Length (cm) 46 Top Hip (cm) 71 Top Waist (cm) 67 Pants Waist (cm) 42" [box=816,406,180,202]:
+              - generic [box=826,414,160,19]:
+                - generic [box=826,414,75,15]: Girl · 2 Years
+              - generic [box=826,438,160,161]:
+                - generic [box=826,438,160,16]
+                - generic [box=826,456,160,16]
+                - generic [box=826,474,160,16]
+                - generic [box=826,492,160,16]
+                - generic [box=826,510,160,16]
+                - generic [box=826,529,160,16]
+                - generic [box=826,547,160,16]
+                - generic [box=826,565,160,16]
+                - generic [box=826,583,160,16]
+          - generic [ref=e176] [box=948,610,72,44]:
+            - button "3 Years" [ref=e177] [cursor=pointer] [box=948,610,72,44]
+            - tooltip "Girl · 3 Years Age 3 Weight (kg) 15-17.5 Height (cm) 96-105 Top Chest/Bust (cm) 70 Top Length (cm) 40 Pants Length (cm) 50 Top Hip (cm) 74 Top Waist (cm) 70 Pants Waist (cm) 44" [box=894,406,180,202]:
+              - generic [box=904,414,160,19]:
+                - generic [box=904,414,75,15]: Girl · 3 Years
+              - generic [box=904,438,160,161]:
+                - generic [box=904,438,160,16]
+                - generic [box=904,456,160,16]
+                - generic [box=904,474,160,16]
+                - generic [box=904,492,160,16]
+                - generic [box=904,510,160,16]
+                - generic [box=904,529,160,16]
+                - generic [box=904,547,160,16]
+                - generic [box=904,565,160,16]
+                - generic [box=904,583,160,16]
+          - generic [ref=e178] [box=1025,610,72,44]:
+            - button "4 Years" [ref=e179] [cursor=pointer] [box=1025,610,72,44]
+            - tooltip "Girl · 4 Years Age 4 Weight (kg) 18-20 Height (cm) 106-115 Top Chest/Bust (cm) 73 Top Length (cm) 43 Pants Length (cm) 55 Top Hip (cm) 77 Top Waist (cm) 73 Pants Waist (cm) 46" [box=971,406,180,202]:
+              - generic [box=981,414,160,19]:
+                - generic [box=981,414,76,15]: Girl · 4 Years
+              - generic [box=981,438,160,161]:
+                - generic [box=981,438,160,16]
+                - generic [box=981,456,160,16]
+                - generic [box=981,474,160,16]
+                - generic [box=981,492,160,16]
+                - generic [box=981,510,160,16]
+                - generic [box=981,529,160,16]
+                - generic [box=981,547,160,16]
+                - generic [box=981,565,160,16]
+                - generic [box=981,583,160,16]
+          - generic [ref=e180] [box=1102,610,72,44]:
+            - button "5 Years" [ref=e181] [cursor=pointer] [box=1102,610,72,44]
+            - tooltip "Girl · 5 Years Age 5 Weight (kg) 20.5-22.5 Height (cm) 116-125 Top Chest/Bust (cm) 76 Top Length (cm) 46 Pants Length (cm) 60 Top Hip (cm) 80 Top Waist (cm) 76 Pants Waist (cm) 48" [box=1048,406,180,202]:
+              - generic [box=1058,414,160,19]:
+                - generic [box=1058,414,75,15]: Girl · 5 Years
+              - generic [box=1058,438,160,161]:
+                - generic [box=1058,438,160,16]
+                - generic [box=1058,456,160,16]
+                - generic [box=1058,474,160,16]
+                - generic [box=1058,492,160,16]
+                - generic [box=1058,510,160,16]
+                - generic [box=1058,529,160,16]
+                - generic [box=1058,547,160,16]
+                - generic [box=1058,565,160,16]
+                - generic [box=1058,583,160,16]
+          - generic [ref=e182] [box=1180,610,83,44]:
+            - button "6-7 Years" [ref=e183] [cursor=pointer] [box=1180,610,83,44]
+            - tooltip "Girl · 6-7 Years Age 6-7 Weight (kg) 23-25 Height (cm) 126-135 Top Chest/Bust (cm) 79 Top Length (cm) 49 Pants Length (cm) 65 Top Hip (cm) 83 Top Waist (cm) 79 Pants Waist (cm) 50" [box=1131,406,180,202]:
+              - generic [box=1141,414,160,19]:
+                - generic [box=1141,414,88,15]: Girl · 6-7 Years
+              - generic [box=1141,438,160,161]:
+                - generic [box=1141,438,160,16]
+                - generic [box=1141,456,160,16]
+                - generic [box=1141,474,160,16]
+                - generic [box=1141,492,160,16]
+                - generic [box=1141,510,160,16]
+                - generic [box=1141,529,160,16]
+                - generic [box=1141,547,160,16]
+                - generic [box=1141,565,160,16]
+                - generic [box=1141,583,160,16]
+          - generic [ref=e184] [box=1268,610,72,44]:
+            - button "8 Years" [ref=e185] [cursor=pointer] [box=1268,610,72,44]
+            - tooltip "Girl · 8 Years Age 8 Weight (kg) 25.5-30 Height (cm) 136-145 Top Chest/Bust (cm) 82 Top Length (cm) 52 Pants Length (cm) 70 Top Hip (cm) 86 Top Waist (cm) 82 Pants Waist (cm) 52" [box=1214,406,180,202]:
+              - generic [box=1224,414,160,19]:
+                - generic [box=1224,414,76,15]: Girl · 8 Years
+              - generic [box=1224,438,160,161]:
+                - generic [box=1224,438,160,16]
+                - generic [box=1224,456,160,16]
+                - generic [box=1224,474,160,16]
+                - generic [box=1224,492,160,16]
+                - generic [box=1224,510,160,16]
+                - generic [box=1224,529,160,16]
+                - generic [box=1224,547,160,16]
+                - generic [box=1224,565,160,16]
+                - generic [box=1224,583,160,16]
+          - generic [ref=e186] [box=870,659,89,44]:
+            - button "9-10 Years" [ref=e187] [cursor=pointer] [box=870,659,89,44]
+            - tooltip "Girl · 9-10 Years Age 9-10 Weight (kg) 30.5-40 Height (cm) 146-155 Top Chest/Bust (cm) 85 Top Length (cm) 55 Pants Length (cm) 75 Top Hip (cm) 89 Top Waist (cm) 85 Pants Waist (cm) 54" [box=825,455,180,202]:
+              - generic [box=835,464,160,19]:
+                - generic [box=835,464,95,15]: Girl · 9-10 Years
+              - generic [box=835,487,160,161]:
+                - generic [box=835,487,160,16]
+                - generic [box=835,505,160,16]
+                - generic [box=835,524,160,16]
+                - generic [box=835,542,160,16]
+                - generic [box=835,560,160,16]
+                - generic [box=835,578,160,16]
+                - generic [box=835,596,160,16]
+                - generic [box=835,614,160,16]
+                - generic [box=835,633,160,16]
+          - generic [ref=e188] [box=965,659,83,44]:
+            - button "1-2 Years" [disabled] [ref=e189] [box=965,659,83,44]
+            - tooltip "Girl · 1-2 Years Age 1-2 Weight (kg) 9-11.5 Height (cm) 75-85 Pants Length (cm) 42 Pants Waist (cm) 40" [box=916,528,180,129]:
+              - generic [box=926,537,160,19]:
+                - generic [box=926,537,87,15]: Girl · 1-2 Years
+              - generic [box=926,560,160,88]:
+                - generic [box=926,560,160,16]
+                - generic [box=926,578,160,16]
+                - generic [box=926,596,160,16]
+                - generic [box=926,614,160,16]
+                - generic [box=926,633,160,16]
+        - paragraph [ref=e190] [box=870,723,539,13]: ↑ Pick a size
+        - group "Type" [ref=e191] [box=870,750,539,86]:
+          - generic [ref=e192] [box=870,750,539,19]: Type
+          - generic [ref=e193] [box=870,773,539,34]:
+            - button "Top" [ref=e194] [cursor=pointer] [box=870,773,40,34]
+            - button "Pants" [ref=e195] [cursor=pointer] [box=915,773,51,34]
+          - paragraph [ref=e196] [box=870,817,69,13]: ↑ Pick a type
+        - generic [ref=e197] [box=870,849,539,34]:
+          - button "Decrease quantity" [ref=e198] [cursor=pointer] [box=870,849,34,34]: −
+          - generic [ref=e199] [box=912,855,22,23]: "1"
+          - button "Increase quantity" [ref=e200] [cursor=pointer] [box=942,849,34,34]: +
+          - generic [ref=e201] [box=1362,855,47,22]: $25.99
+        - link "Find Girl's fit →" [ref=e202] [cursor=pointer] [box=870,898,539,20]:
+          - /url: "#size-chart"
+      - group "Add another family member" [ref=e203] [box=857,946,565,38]:
+        - button "+ Add Mother" [ref=e204] [cursor=pointer] [box=857,946,101,38]
+        - button "+ Add Girl" [ref=e205] [cursor=pointer] [box=964,946,83,38]
+    - generic [ref=e206] [box=857,995,565,50]:
+      - paragraph [ref=e207] [box=869,1005,541,17]: Choose sizes for each family member
+      - strong [box=869,1036,541,0]
+    - button "Add matching pieces" [disabled] [ref=e209] [box=857,1055,565,54]
+  - generic [ref=e210] [box=1110,722,380,78]:
+    - generic "$25.99 USD, compare at $33.99 USD" [ref=e212] [box=1123,746,102,30]: $25.99 USD
+    - button "Add to cart" [ref=e213] [cursor=pointer] [box=1236,735,241,52]
+  - region "Free standard shipping included" [ref=e215] [box=842,1138,595,276]:
+    - generic [ref=e216] [box=859,1141,561,95]:
+      - img [ref=e218] [box=866,1160,18,18]
+      - generic [ref=e223] [box=902,1153,518,70]:
+        - paragraph [ref=e224] [box=902,1153,518,21]: Free standard shipping
+        - paragraph [ref=e225] [box=902,1176,518,21]: "Estimated delivery to United States: May 24 - May 28"
+        - paragraph [ref=e226] [box=902,1204,518,20]:
+          - generic [ref=e227] [box=902,1204,158,20]: Ships to United States
+          - generic [ref=e228] [box=1068,1204,5,20]: ·
+          - generic [ref=e229] [box=1081,1204,31,20]: USD
+          - generic [ref=e230] [box=1120,1204,5,20]: ·
+          - button "Change" [ref=e231] [cursor=pointer] [box=1132,1204,50,20]
+    - generic [ref=e232] [box=859,1236,561,70]:
+      - img [ref=e234] [box=866,1255,18,18]
+      - generic [ref=e237] [box=902,1248,518,45]:
+        - paragraph [ref=e238] [box=902,1248,518,21]: 30-day returns & exchanges
+        - paragraph [ref=e239] [box=902,1271,518,21]: This item is returnable if unworn, unwashed, and tags are attached.
+    - generic [ref=e240] [box=859,1306,561,91]:
+      - img [ref=e242] [box=866,1325,18,18]
+      - generic [ref=e245] [box=902,1318,518,66]:
+        - paragraph [ref=e246] [box=902,1318,518,21]: Secure checkout
+        - paragraph [ref=e247] [box=902,1341,518,43]: Encrypted payment. Major cards and express checkout options accepted.
+  - generic [ref=e249] [box=842,1430,595,1589]:
+    - generic [ref=e250] [box=842,1432,595,49]:
+      - generic [ref=e251] [box=842,1432,595,19]: Details
+      - heading "Why You'll Love It" [level=3] [ref=e252] [box=842,1456,595,25]
+    - list [ref=e253] [box=842,1499,595,640]:
+      - listitem [ref=e254] [box=842,1499,595,85]:
+        - text: ✓
+        - paragraph [ref=e255] [box=897,1516,522,52]:
+          - strong [ref=e256] [box=897,1519,104,18]: "Fabric & feel:"
+          - text: Lightweight woven-look fabric with an easy warm-weather drape.
+      - listitem [ref=e257] [box=842,1595,595,85]:
+        - text: ✓
+        - paragraph [ref=e258] [box=897,1611,522,52]:
+          - strong [ref=e259] [box=897,1614,102,18]: "Family story:"
+          - text: A sunny mom-and-daughter look for garden walks, vacations, picnics, and warm-weather family photos.
+      - listitem [ref=e260] [box=842,1691,595,110]:
+        - text: ✓
+        - paragraph [ref=e261] [box=897,1707,522,77]:
+          - strong [ref=e262] [box=897,1710,64,18]: "Pattern:"
+          - text: Golden Daisy pairs a mustard-yellow sleeveless top with white daisy embroidery and ivory wide-leg pants with tonal floral cutwork.
+      - listitem [ref=e263] [box=842,1812,595,110]:
+        - text: ✓
+        - paragraph [ref=e264] [box=897,1828,522,77]:
+          - strong [ref=e265] [box=897,1831,118,18]: "Design details:"
+          - text: Choose the top or pants separately. The top has a relaxed sleeveless swing shape; the pants have a pull-on waist and easy wide-leg drape.
+      - listitem [ref=e266] [box=842,1933,595,85]:
+        - text: ✓
+        - paragraph [ref=e267] [box=897,1950,522,52]:
+          - strong [ref=e268] [box=897,1953,42,18]: "Care:"
+          - text: Machine wash cold on gentle, turn inside out, line dry, and avoid bleach.
+      - listitem [ref=e269] [box=842,2029,595,110]:
+        - text: ✓
+        - paragraph [ref=e270] [box=897,2045,522,77]:
+          - strong [ref=e271] [box=897,2048,88,18]: "Size range:"
+          - text: Top in Child 2 Years through Child 9-10 Years and Mother S-L; pants in Child 1-2 Years through Child 9-10 Years and Mother S-L.
+    - heading "Size Chart - Top and Pants" [level=3] [ref=e272] [box=842,2157,595,23]
+    - paragraph [ref=e273] [box=842,2199,595,172]: Golden Daisy is a cheerful mommy-and-me outfit story built from two coordinated separates. The yellow sleeveless top brings the bright daisy moment, while the ivory pants add soft texture and an easy wide-leg silhouette for summer photos.
+    - paragraph [ref=e274] [box=842,2388,595,109]: The attached chart publishes YC8970 as the top and YC8971 as the pants, so this draft keeps the shopper picker honest with a Type choice. The size guide is keyed to the same child and mother size labels shoppers select, with dashes where a piece is not charted in that size.
+    - heading "Key Features:" [level=3] [ref=e275] [box=842,2516,595,23]
+    - list [ref=e276] [box=842,2557,595,371]:
+      - listitem [ref=e277] [box=842,2557,595,85]:
+        - text: ✓
+        - paragraph [ref=e278] [box=897,2574,522,52]:
+          - strong [ref=e279] [box=897,2577,177,18]: "Separate piece picker:"
+          - text: Type options let shoppers choose the top or pants instead of assuming a bundled set.
+      - listitem [ref=e280] [box=842,2653,595,85]:
+        - text: ✓
+        - paragraph [ref=e281] [box=897,2669,522,52]:
+          - strong [ref=e282] [box=897,2672,192,18]: "Mother-daughter sizing:"
+          - text: Chart-backed child and mother rows only; no dad or boy rows were invented.
+      - listitem [ref=e283] [box=842,2748,595,85]:
+        - text: ✓
+        - paragraph [ref=e284] [box=897,2765,522,52]:
+          - strong [ref=e285] [box=897,2768,164,18]: "Photo-ready palette:"
+          - text: Mustard yellow and ivory make the matching look bright, soft, and easy to style.
+      - listitem [ref=e286] [box=842,2844,595,85]:
+        - text: ✓
+        - paragraph [ref=e287] [box=897,2861,522,52]:
+          - strong [ref=e288] [box=897,2864,163,18]: "Summer silhouettes:"
+          - text: Sleeveless swing top and wide-leg pants keep the look breezy.
+    - paragraph [ref=e289] [box=842,2947,595,55]: Choose the pieces and sizes you need to build a golden matching look for your next sunny day together.
+  - paragraph [ref=e291] [box=871,3061,537,61]:
+    - text: See more
+    - link "Matching Family Vacation Outfits" [ref=e292] [cursor=pointer] [box=958,3065,283,21]:
+      - /url: /collections/matching-family-vacation-outfits
+    - text: for coordinated travel looks, resort dinners, and family photo days.

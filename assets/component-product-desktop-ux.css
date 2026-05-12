@@ -972,6 +972,33 @@
   line-height: 1.45;
   color: rgba(17, 24, 39, 0.7);
 }
+.product__info-container--matching-set .product-matching-set__guide {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.product__info-container--matching-set .product-matching-set__guide li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+  color: rgba(17, 24, 39, 0.72);
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+.product__info-container--matching-set .product-matching-set__guide li::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 0.62rem;
+  height: 0.62rem;
+  margin-top: 0.42rem;
+  border-radius: 999px;
+  background: #1D8656;
+  box-shadow: 0 0 0 0.24rem rgba(29, 134, 86, 0.1);
+}
 
 /* 5. Stacked cards (mobile-first, single column). */
 .product__info-container--matching-set .product-matching-set__grid {
@@ -1034,6 +1061,10 @@
   margin: 0.2rem 0 0.9rem;
 }
 .product__info-container--matching-set .product-matching-set__pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
   min-height: 4.4rem;
   min-width: 4.4rem;
   padding: 0 1.4rem;
@@ -1055,6 +1086,27 @@
   background: #1D8656;
   border-color: #1D8656;
   color: #ffffff;
+}
+.product__info-container--matching-set .product-matching-set__pill.is-selected::after {
+  content: '\2713';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  color: currentColor;
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.product__info-container--matching-set .product-matching-set__pill:focus-visible,
+.product__info-container--matching-set .product-matching-set__axis-pill:focus-visible,
+.product__info-container--matching-set .product-matching-set__add-role:focus-visible,
+.product__info-container--matching-set .product-matching-set__button:focus-visible {
+  outline: 0.22rem solid rgba(29, 134, 86, 0.35);
+  outline-offset: 0.2rem;
 }
 .product__info-container--matching-set .product-matching-set__pill.is-selected:hover:not(.is-disabled),
 .product__info-container--matching-set .product-matching-set__pill.is-selected:focus:not(.is-disabled),
@@ -1628,10 +1680,19 @@
 }
 .product__info-container--matching-set .product-matching-set__button:hover:not([disabled]) {
   background: linear-gradient(135deg, #146642 0%, #0f5235 100%);
+  color: #ffffff;
   box-shadow: 0 0.5rem 1.6rem rgba(29, 134, 86, 0.36);
 }
+.product__info-container--matching-set .product-matching-set__button:focus-visible:not([disabled]) {
+  color: #ffffff;
+}
 .product__info-container--matching-set .product-matching-set__button:active:not([disabled]) {
+  color: #ffffff;
   transform: translateY(1px);
+}
+.product__info-container--matching-set .product-matching-set__button::before,
+.product__info-container--matching-set .product-matching-set__button::after {
+  content: none;
 }
 .product__info-container--matching-set .product-matching-set__button[disabled] {
   opacity: 0.5;
@@ -1716,4 +1777,8 @@
 .product__info-container--matching-set .pdp-save-pill {
   background: #e8f6ee;
   color: #146642;
+}
+
+.product__info-container--matching-set .price__badge-sale {
+  display: none !important;
 }

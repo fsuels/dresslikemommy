@@ -14,6 +14,12 @@
   assign current_collection_handle = collection.handle | default: ''
   assign fallback_title = fallback_title | default: '' | strip
   assign resolved_product_title = resolved_product.title | default: '' | strip
+  assign golden_daisy_matching_set = false
+  assign image_alt_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase
+  if resolved_product.handle == 'golden-daisy-mommy-and-me-set' and image_alt_locale_root == 'en'
+    assign golden_daisy_matching_set = true
+    assign resolved_product_title = 'Golden Daisy Mommy & Me Matching Separates'
+  endif
   assign resolved_collection_title = resolved_collection.title | default: '' | strip
   assign resolved_context_title = fallback_title
   if resolved_context_title == blank and resolved_product_title != blank
@@ -146,10 +152,15 @@
     assign should_replace_alt = true
   elsif raw_alt_has_swim_terms and context_has_swim_terms == false
     assign should_replace_alt = true
+  elsif golden_daisy_matching_set and raw_alt_downcase contains 'top or pants'
+    assign should_replace_alt = true
   endif
 
   if should_replace_alt
     assign resolved_alt = resolved_context_title | default: resolved_product_title | default: product_type_phrase | default: audience_phrase
+    if golden_daisy_matching_set
+      assign resolved_alt = 'Golden Daisy mommy and me matching yellow daisy top and ivory floral pants'
+    endif
     assign resolved_alt_downcase = resolved_alt | downcase
     if fallback_title == blank and resolved_alt_downcase contains product_type_phrase_downcase
     elsif fallback_title == blank and resolved_context_title != blank

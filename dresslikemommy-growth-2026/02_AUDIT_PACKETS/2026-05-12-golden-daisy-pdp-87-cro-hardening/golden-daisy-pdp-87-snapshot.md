@@ -1,0 +1,67 @@
+- generic [active] [ref=e1] [box=0,-322,1510,6321]:
+  - link "Skip to content" [ref=e2] [cursor=pointer] [box=-1,-323,122,47]:
+    - /url: "#MainContent"
+  - region "Announcement" [ref=e6] [box=-3,-322,1516,38]:
+    - paragraph [ref=e7] [box=-3,-322,1516,38]:
+      - generic [ref=e8] [box=-3,-312,1516,13]: STANDARD SHIPPING INCLUDED TO United States | EXPRESS OPTIONS AT CHECKOUT | SECURE CHECKOUT
+  - generic [ref=e9] [box=0,-284,1510,131]:
+    - search [ref=e11] [box=20,-255,400,47]:
+      - generic [ref=e12] [box=20,-255,400,47]:
+        - combobox "Search for products" [ref=e13] [box=21,-254,398,45]
+        - generic [box=41,-244,159,24]: Search for products
+        - button "Search for products" [ref=e14] [cursor=pointer] [box=375,-254,44,44]
+      - status [ref=e16] [box=19,-209,400,1]
+    - banner [ref=e18] [box=0,-279,1510,125]:
+      - link "Dress Like Mommy" [ref=e19] [cursor=pointer] [box=688,-271,135,64]:
+        - /url: /
+        - img "Dress Like Mommy" [ref=e21] [box=695,-263,120,49]
+      - navigation [ref=e22] [box=403,-197,703,35]:
+        - list [ref=e23] [box=403,-197,703,35]
+      - generic [ref=e42] [box=1162,-261,324,44]:
+        - generic [ref=e43] [box=1162,-258,228,38]
+        - link "Log in" [ref=e60] [cursor=pointer] [box=1390,-261,44,44]:
+          - /url: https://www.dresslikemommy.com/customer_authentication/redirect?locale=en&region_country=US
+        - button "Cart 0 items" [ref=e63] [cursor=pointer] [box=1434,-261,44,44]
+  - main [ref=e68] [box=0,-153,1510,5324]:
+    - generic [ref=e70] [box=0,-153,1510,3513]:
+      - generic [ref=e71] [box=17,-153,1476,79]:
+        - generic [ref=e72] [box=37,-153,1436,38]
+        - navigation "breadcrumbs" [ref=e76] [box=37,-107,1436,33]
+      - generic [ref=e83] [box=37,-74,1436,3434]:
+        - region "Gallery Viewer" [ref=e85] [box=37,30,773,1074]
+        - generic [ref=e116] [box=818,-68,643,3414]
+    - region "Browse more from" [ref=e296] [box=50,3420,1410,1506]:
+      - generic [ref=e297] [box=65,3436,1380,122]:
+        - paragraph [ref=e298] [box=65,3436,1380,18]: Similar styles
+        - heading "Browse more from" [level=2] [ref=e299] [box=65,3458,1380,46]
+        - paragraph [ref=e300] [box=65,3539,1380,18]: Use this collection to compare a few close matches before you go back to shopping.
+      - list [ref=e301] [box=65,3569,1380,1343]:
+        - listitem [ref=e302] [box=65,3569,453,666]
+        - listitem [ref=e324] [box=528,3569,453,666]
+        - listitem [ref=e346] [box=992,3569,453,666]
+        - listitem [ref=e368] [box=65,4246,453,666]
+        - listitem [ref=e390] [box=528,4246,453,666]
+    - generic [ref=e417] [box=155,4994,1200,177]:
+      - generic [ref=e418] [box=171,5035,1168,112]:
+        - heading "Customer Reviews" [level=2] [ref=e419] [box=171,5035,1168,18]
+        - generic [ref=e420] [box=171,5078,1168,70]
+      - text: 
+  - contentinfo [ref=e432] [box=0,5171,1510,827]:
+    - generic [ref=e433] [box=0,5232,1510,423]:
+      - generic [ref=e434] [box=50,5232,1410,181]:
+        - generic [ref=e435] [box=50,5232,449,181]
+        - generic [ref=e444] [box=531,5232,449,181]
+        - generic [ref=e457] [box=1011,5232,449,181]
+      - generic [ref=e462] [box=50,5414,1410,103]:
+        - heading "Style Journal" [level=2] [ref=e463] [box=50,5414,1410,14]
+        - generic [ref=e464] [box=50,5443,1410,74]
+      - generic [ref=e468] [box=50,5547,1410,77]:
+        - heading "Get 10% off your first order" [level=2] [ref=e469] [box=50,5547,1410,14]
+        - generic [ref=e472] [box=575,5576,360,47]
+    - generic [ref=e476] [box=0,5695,1510,263]:
+      - generic [ref=e477] [box=0,5716,1510,121]:
+        - generic [ref=e481] [box=50,5726,82,101]
+        - generic [ref=e488] [box=866,5761,594,32]
+      - generic [ref=e584] [box=50,5878,1410,81]:
+        - generic [ref=e585] [box=674,5908,163,10]
+        - list [ref=e587] [box=50,5933,1410,26]

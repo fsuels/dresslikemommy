@@ -190,23 +190,25 @@
     <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 
-  <div class="product__trust-strip" aria-label="{{ 'products.trust.secure_checkout' | t }}">
-    <span class="trust-strip__item">
-      {%- render 'icon-padlock' -%}
-      <span class="trust-strip__label">{{ 'products.trust.secure_checkout' | t }}</span>
-    </span>
-    <span class="trust-strip__item">
-      {%- render 'icon-checkmark' -%}
-      <span class="trust-strip__label">{{ 'products.trust.returns' | t }}</span>
-    </span>
-    <span class="trust-strip__item">
-      {%- render 'icon-checkmark' -%}
-      <span class="trust-strip__label">{{ 'products.trust.free_shipping' | t }}</span>
-    </span>
-    <span class="trust-strip__item">
-      {%- render 'icon-tick' -%}
-      <span class="trust-strip__label">{{ 'products.trust.trusted_since' | t }}</span>
-    </span>
-  </div>
-  <p class="product__trust-note">{{ 'products.trust.assistance_note' | t }}</p>
+  {%- unless hide_trust_strip -%}
+    <div class="product__trust-strip" aria-label="{{ 'products.trust.secure_checkout' | t }}">
+      <span class="trust-strip__item">
+        {%- render 'icon-padlock' -%}
+        <span class="trust-strip__label">{{ 'products.trust.secure_checkout' | t }}</span>
+      </span>
+      <span class="trust-strip__item">
+        {%- render 'icon-checkmark' -%}
+        <span class="trust-strip__label">{{ 'products.trust.returns' | t }}</span>
+      </span>
+      <span class="trust-strip__item">
+        {%- render 'icon-checkmark' -%}
+        <span class="trust-strip__label">{{ 'products.trust.free_shipping' | t }}</span>
+      </span>
+      <span class="trust-strip__item">
+        {%- render 'icon-tick' -%}
+        <span class="trust-strip__label">{{ 'products.trust.trusted_since' | t }}</span>
+      </span>
+    </div>
+    <p class="product__trust-note">{{ 'products.trust.assistance_note' | t }}</p>
+  {%- endunless -%}
 </div>

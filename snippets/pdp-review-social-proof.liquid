@@ -25,6 +25,39 @@
 {%- liquid
   assign rsp_rating_count_raw = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count
   assign rsp_rating_count = rsp_rating_count_raw | plus: 0
+
+  if rsp_rating_count <= 0
+    assign rsp_judgeme_badge_metafield = product.metafields.judgeme.badge
+    assign rsp_judgeme_badge_markup = rsp_judgeme_badge_metafield.value | default: rsp_judgeme_badge_metafield | default: '' | append: '' | strip_newlines
+    if rsp_judgeme_badge_markup != blank
+      if rsp_judgeme_badge_markup contains 'data-number-of-reviews="'
+        assign rsp_rating_count = rsp_judgeme_badge_markup | split: 'data-number-of-reviews="' | last | split: '"' | first | replace: ',', '' | plus: 0
+      elsif rsp_judgeme_badge_markup contains "data-number-of-reviews='"
+        assign rsp_rating_count = rsp_judgeme_badge_markup | split: "data-number-of-reviews='" | last | split: "'" | first | replace: ',', '' | plus: 0
+      elsif rsp_judgeme_badge_markup contains 'data-reviews-count="'
+        assign rsp_rating_count = rsp_judgeme_badge_markup | split: 'data-reviews-count="' | last | split: '"' | first | replace: ',', '' | plus: 0
+      elsif rsp_judgeme_badge_markup contains "data-reviews-count='"
+        assign rsp_rating_count = rsp_judgeme_badge_markup | split: "data-reviews-count='" | last | split: "'" | first | replace: ',', '' | plus: 0
+      endif
+    endif
+  endif
+
+  if rsp_rating_count <= 0
+    assign rsp_judgeme_widget_metafield = product.metafields.judgeme.widget
+    assign rsp_judgeme_widget_markup = rsp_judgeme_widget_metafield.value | default: rsp_judgeme_widget_metafield | default: '' | append: '' | strip_newlines
+    if rsp_judgeme_widget_markup != blank
+      if rsp_judgeme_widget_markup contains 'data-number-of-reviews="'
+        assign rsp_rating_count = rsp_judgeme_widget_markup | split: 'data-number-of-reviews="' | last | split: '"' | first | replace: ',', '' | plus: 0
+      elsif rsp_judgeme_widget_markup contains "data-number-of-reviews='"
+        assign rsp_rating_count = rsp_judgeme_widget_markup | split: "data-number-of-reviews='" | last | split: "'" | first | replace: ',', '' | plus: 0
+      elsif rsp_judgeme_widget_markup contains 'data-reviews-count="'
+        assign rsp_rating_count = rsp_judgeme_widget_markup | split: 'data-reviews-count="' | last | split: '"' | first | replace: ',', '' | plus: 0
+      elsif rsp_judgeme_widget_markup contains "data-reviews-count='"
+        assign rsp_rating_count = rsp_judgeme_widget_markup | split: "data-reviews-count='" | last | split: "'" | first | replace: ',', '' | plus: 0
+      endif
+    endif
+  endif
+
   assign rsp_has_reviews = false
   if rsp_rating_count > 0
     assign rsp_has_reviews = true
@@ -47,13 +80,26 @@
       assign rsp_social_proof = 'Family matching styles loved by moms for vacations, birthdays, and photos.'
     endif
   endif
+
+  if product.handle == 'golden-daisy-mommy-and-me-set'
+    assign rsp_social_proof = 'A sunny mom-and-daughter look for vacations, picnics, and family photos.'
+  endif
 -%}
 
 {%- unless rsp_has_reviews -%}
   <style>
-    /* Hide third-party "No reviews" preview badge above the fold when
-       the product has zero reviews. The full review widget lower on the
-       page is unaffected (it lives outside .product__info-container). */
+    /* Hide all above-fold third-party preview output for true zero-review
+       products. The full review widget lower on the page is unaffected. */
+    .product__info-container [id*="judge_me_reviews_preview_badge"],
+    .product__info-container [id*="judge-me-reviews"][id*="preview"],
+    .product__info-container .shopify-block:has(.jdgm-prev-badge),
+    .product__info-container .shopify-app-block:has(.jdgm-prev-badge),
+    .product__info-container .shopify-block:has(.jdgm-preview-badge),
+    .product__info-container .shopify-app-block:has(.jdgm-preview-badge),
+    .product__info-container .jdgm-widget,
+    .product__info-container .jdgm-preview-badge,
+    .product__info-container [class*="jdgm-preview"],
+    .product__info-container [class*="jdgm-prev"],
     .product__info-container .jdgm-prev-badge[data-average-rating="0.00"],
     .product__info-container .jdgm-prev-badge[data-number-of-reviews="0"],
     .product__info-container .spr-badge[data-rating="0.0"],

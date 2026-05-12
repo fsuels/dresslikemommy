@@ -1,0 +1,168 @@
+- generic [ref=e116] [box=1045,-181,716,3261]:
+  - heading "Golden Daisy Mommy & Me Matching Separates" [level=1] [ref=e118] [box=1069,-136,668,28]
+  - generic [ref=e119] [box=1069,-92,668,24]:
+    - generic [ref=e120] [box=1069,-92,102,24]: New arrival
+    - generic [ref=e121] [box=1182,-90,545,21]: A sunny mom-and-daughter look for vacations, picnics, and family photos.
+  - text: 
+  - status [ref=e122] [box=1069,-52,668,60]:
+    - generic [ref=e125] [box=1069,-53,260,27]:
+      - generic [ref=e126] [box=1069,-52,1,23]: Regular price
+      - generic [ref=e128] [box=1069,-52,123,26]: $33.99 USD
+      - generic [ref=e129] [box=1206,-52,1,23]: Sale price
+      - generic [ref=e130] [box=1206,-52,122,26]: $25.99 USD
+    - generic [ref=e131] [box=1075,-17,75,24]: Save 23%
+  - generic [ref=e133] [box=1069,25,668,1122]:
+    - generic [ref=e134] [box=1084,40,638,127]:
+      - paragraph [ref=e135] [box=1084,40,638,19]: Save 10% automatically when you add 2+ pieces
+      - heading "Build your matching set" [level=2] [ref=e136] [box=1084,62,638,22]
+      - paragraph [ref=e137] [box=1084,88,638,17]: Pair the yellow daisy top with the ivory floral pants for a complete mommy-and-me outfit.
+      - list "How the matching set works" [ref=e138] [box=1084,114,638,53]:
+        - listitem [ref=e139] [box=1084,114,638,15]: Top and pants are separate pieces
+        - listitem [ref=e140] [box=1084,133,638,15]: Add mom and child sizes together
+        - listitem [ref=e141] [box=1084,152,638,15]: Tap a size to see measurements
+    - generic [ref=e142] [box=1084,180,638,829]:
+      - generic [ref=e143] [box=1084,180,638,357]:
+        - generic [ref=e144] [box=1097,193,612,28]:
+          - generic [ref=e145] [box=1097,195,48,24]: Mother
+          - button "Remove Mother" [ref=e146] [cursor=pointer] [box=1681,193,28,28]: ×
+        - generic [ref=e147] [box=1097,234,612,19]: Top
+        - group "Mother size" [ref=e148] [box=1097,269,612,44]:
+          - generic [ref=e149] [box=1097,269,44,44]
+          - generic [ref=e151] [box=1146,269,44,44]
+          - generic [ref=e153] [box=1196,269,44,44]
+        - paragraph [ref=e155] [box=1097,333,612,13]: ↑ Pick a size
+        - group "Type" [ref=e156] [box=1097,359,612,86]:
+          - generic [ref=e157] [box=1097,359,612,19]: Type
+          - generic [ref=e158] [box=1097,382,612,34]
+          - paragraph [ref=e161] [box=1097,426,69,13]: ↑ Pick a type
+        - generic [ref=e162] [box=1097,459,612,34]:
+          - button "Decrease quantity" [ref=e163] [cursor=pointer] [box=1097,459,34,34]: −
+          - generic [ref=e164] [box=1139,464,22,23]: "1"
+          - button "Increase quantity" [ref=e165] [cursor=pointer] [box=1169,459,34,34]: +
+          - generic [ref=e166] [box=1662,465,47,22]: $26.99
+        - link "Find Mother's fit →" [ref=e167] [cursor=pointer] [box=1097,507,612,20]:
+          - /url: "#size-chart"
+      - generic [ref=e168] [box=1084,547,638,407]:
+        - generic [ref=e169] [box=1097,560,612,28]:
+          - generic [ref=e170] [box=1097,562,24,24]: Girl
+          - button "Remove Girl" [ref=e171] [cursor=pointer] [box=1681,560,28,28]: ×
+        - generic [ref=e172] [box=1097,601,612,19]: Top
+        - group "Girl size" [ref=e173] [box=1097,635,612,94]:
+          - generic [ref=e174] [box=1097,635,72,44]
+          - generic [ref=e176] [box=1174,635,72,44]
+          - generic [ref=e178] [box=1251,635,72,44]
+          - generic [ref=e180] [box=1329,635,72,44]
+          - generic [ref=e182] [box=1406,635,83,44]
+          - generic [ref=e184] [box=1494,635,72,44]
+          - generic [ref=e186] [box=1571,635,89,44]
+          - generic [ref=e188] [box=1097,685,83,44]
+        - paragraph [ref=e190] [box=1097,749,612,13]: ↑ Pick a size
+        - group "Type" [ref=e191] [box=1097,775,612,86]:
+          - generic [ref=e192] [box=1097,775,612,19]: Type
+          - generic [ref=e193] [box=1097,798,612,34]
+          - paragraph [ref=e196] [box=1097,842,69,13]: ↑ Pick a type
+        - generic [ref=e197] [box=1097,874,612,34]:
+          - button "Decrease quantity" [ref=e198] [cursor=pointer] [box=1097,874,34,34]: −
+          - generic [ref=e199] [box=1139,880,22,23]: "1"
+          - button "Increase quantity" [ref=e200] [cursor=pointer] [box=1169,874,34,34]: +
+          - generic [ref=e201] [box=1662,881,47,22]: $25.99
+        - link "Find Girl's fit →" [ref=e202] [cursor=pointer] [box=1097,923,612,20]:
+          - /url: "#size-chart"
+      - group "Add another family member" [ref=e203] [box=1084,972,638,38]:
+        - button "+ Add Mother" [ref=e204] [cursor=pointer] [box=1084,972,101,38]
+        - button "+ Add Girl" [ref=e205] [cursor=pointer] [box=1190,972,83,38]
+    - generic [ref=e206] [box=1084,1021,638,50]:
+      - paragraph [ref=e207] [box=1096,1031,614,17]: Choose sizes for each family member
+      - strong [box=1096,1061,614,0]
+    - button "Add matching pieces" [disabled] [ref=e209] [box=1084,1080,638,54]
+  - generic [ref=e210] [box=1514,882,380,78]:
+    - generic "$25.99 USD, compare at $33.99 USD" [ref=e212] [box=1527,906,102,30]: $25.99 USD
+    - button "Add to cart" [ref=e213] [cursor=pointer] [box=1640,895,241,52]
+  - region "Free standard shipping included" [ref=e215] [box=1069,1163,668,254]:
+    - generic [ref=e216] [box=1086,1166,634,95]:
+      - img [ref=e218] [box=1093,1185,18,18]
+      - generic [ref=e223] [box=1129,1178,591,70]:
+        - paragraph [ref=e224] [box=1129,1178,591,21]: Free standard shipping
+        - paragraph [ref=e225] [box=1129,1202,591,21]: "Estimated delivery to United States: May 24 - May 28"
+        - paragraph [ref=e226] [box=1129,1229,591,20]:
+          - generic [ref=e227] [box=1129,1229,158,20]: Ships to United States
+          - generic [ref=e228] [box=1294,1229,5,20]: ·
+          - generic [ref=e229] [box=1307,1229,31,20]: USD
+          - generic [ref=e230] [box=1346,1229,5,20]: ·
+          - button "Change" [ref=e231] [cursor=pointer] [box=1359,1229,50,20]
+    - generic [ref=e232] [box=1086,1262,634,70]:
+      - img [ref=e234] [box=1093,1281,18,18]
+      - generic [ref=e237] [box=1129,1274,591,45]:
+        - paragraph [ref=e238] [box=1129,1274,591,21]: 30-day returns & exchanges
+        - paragraph [ref=e239] [box=1129,1297,591,21]: This item is returnable if unworn, unwashed, and tags are attached.
+    - generic [ref=e240] [box=1086,1331,634,70]:
+      - img [ref=e242] [box=1093,1350,18,18]
+      - generic [ref=e245] [box=1129,1343,591,45]:
+        - paragraph [ref=e246] [box=1129,1343,591,21]: Secure checkout
+        - paragraph [ref=e247] [box=1129,1366,591,21]: Encrypted payment. Major cards and express checkout options accepted.
+  - generic [ref=e249] [box=1069,1434,668,1486]:
+    - generic [ref=e250] [box=1069,1436,668,49]:
+      - generic [ref=e251] [box=1069,1436,668,19]: Details
+      - heading "Why You'll Love It" [level=3] [ref=e252] [box=1069,1460,668,25]
+    - list [ref=e253] [box=1069,1503,668,537]:
+      - listitem [ref=e254] [box=1069,1503,668,59]:
+        - text: ✓
+        - paragraph [ref=e255] [box=1124,1520,595,26]:
+          - strong [ref=e256] [box=1124,1523,104,18]: "Fabric & feel:"
+          - text: Lightweight woven-look fabric with an easy warm-weather drape.
+      - listitem [ref=e257] [box=1069,1573,668,85]:
+        - text: ✓
+        - paragraph [ref=e258] [box=1124,1590,595,52]:
+          - strong [ref=e259] [box=1124,1593,102,18]: "Family story:"
+          - text: A sunny mom-and-daughter look for garden walks, vacations, picnics, and warm-weather family photos.
+      - listitem [ref=e260] [box=1069,1669,668,85]:
+        - text: ✓
+        - paragraph [ref=e261] [box=1124,1685,595,52]:
+          - strong [ref=e262] [box=1124,1688,64,18]: "Pattern:"
+          - text: Golden Daisy pairs a mustard-yellow sleeveless top with white daisy embroidery and ivory wide-leg pants with tonal floral cutwork.
+      - listitem [ref=e263] [box=1069,1764,668,110]:
+        - text: ✓
+        - paragraph [ref=e264] [box=1124,1781,595,77]:
+          - strong [ref=e265] [box=1124,1784,118,18]: "Design details:"
+          - text: Choose the top or pants separately. The top has a relaxed sleeveless swing shape; the pants have a pull-on waist and easy wide-leg drape.
+      - listitem [ref=e266] [box=1069,1886,668,59]:
+        - text: ✓
+        - paragraph [ref=e267] [box=1124,1902,595,26]:
+          - strong [ref=e268] [box=1124,1905,42,18]: "Care:"
+          - text: Machine wash cold on gentle, turn inside out, line dry, and avoid bleach.
+      - listitem [ref=e269] [box=1069,1956,668,85]:
+        - text: ✓
+        - paragraph [ref=e270] [box=1124,1972,595,52]:
+          - strong [ref=e271] [box=1124,1975,88,18]: "Size range:"
+          - text: Top in Child 2 Years through Child 9-10 Years and Mother S-L; pants in Child 1-2 Years through Child 9-10 Years and Mother S-L.
+    - heading "Size Chart - Top and Pants" [level=3] [ref=e272] [box=1069,2058,668,23]
+    - paragraph [ref=e273] [box=1069,2100,668,172]: Golden Daisy is a cheerful mommy-and-me outfit story built from two coordinated separates. The yellow sleeveless top brings the bright daisy moment, while the ivory pants add soft texture and an easy wide-leg silhouette for summer photos.
+    - paragraph [ref=e274] [box=1069,2289,668,109]: The attached chart publishes YC8970 as the top and YC8971 as the pants, so this draft keeps the shopper picker honest with a Type choice. The size guide is keyed to the same child and mother size labels shoppers select, with dashes where a piece is not charted in that size.
+    - heading "Key Features:" [level=3] [ref=e275] [box=1069,2417,668,23]
+    - list [ref=e276] [box=1069,2458,668,371]:
+      - listitem [ref=e277] [box=1069,2458,668,85]:
+        - text: ✓
+        - paragraph [ref=e278] [box=1124,2475,595,52]:
+          - strong [ref=e279] [box=1124,2478,177,18]: "Separate piece picker:"
+          - text: Type options let shoppers choose the top or pants instead of assuming a bundled set.
+      - listitem [ref=e280] [box=1069,2554,668,85]:
+        - text: ✓
+        - paragraph [ref=e281] [box=1124,2570,595,52]:
+          - strong [ref=e282] [box=1124,2573,192,18]: "Mother-daughter sizing:"
+          - text: Chart-backed child and mother rows only; no dad or boy rows were invented.
+      - listitem [ref=e283] [box=1069,2649,668,85]:
+        - text: ✓
+        - paragraph [ref=e284] [box=1124,2666,595,52]:
+          - strong [ref=e285] [box=1124,2669,164,18]: "Photo-ready palette:"
+          - text: Mustard yellow and ivory make the matching look bright, soft, and easy to style.
+      - listitem [ref=e286] [box=1069,2745,668,85]:
+        - text: ✓
+        - paragraph [ref=e287] [box=1124,2761,595,52]:
+          - strong [ref=e288] [box=1124,2764,163,18]: "Summer silhouettes:"
+          - text: Sleeveless swing top and wide-leg pants keep the look breezy.
+    - paragraph [ref=e289] [box=1069,2848,668,55]: Choose the pieces and sizes you need to build a golden matching look for your next sunny day together.
+  - paragraph [ref=e291] [box=1098,2962,610,61]:
+    - text: See more
+    - link "Matching Family Vacation Outfits" [ref=e292] [cursor=pointer] [box=1184,2966,283,21]:
+      - /url: /collections/matching-family-vacation-outfits
+    - text: for coordinated travel looks, resort dinners, and family photo days.

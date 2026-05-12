@@ -53,6 +53,10 @@
       assign og_description = collection_seo_meta_description
     endif
   elsif request.page_type == 'product' and product != blank
+    assign product_title_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase
+    if product.handle == 'golden-daisy-mommy-and-me-set' and product_title_locale_root == 'en'
+      assign og_title = 'Golden Daisy Mommy & Me Matching Separates'
+    endif
     capture product_seo_description
       render 'product-seo-description-fallback', product: product, collection: collection, page_description: page_description
     endcapture

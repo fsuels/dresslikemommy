@@ -4,7 +4,7 @@
   Consolidates shipping, returns, and security into a single visual block
   with three promise-first summaries and three collapsed <details>:
 
-    🚚  Free standard shipping
+    🚚  Standard shipping included
         Estimated delivery to United States: May 27 – June 1
         Change country
 
@@ -22,7 +22,7 @@
   requested. Replaces three separate auto-expanded accordions on the PDP.
 
   Inputs (all optional, all driven by the same liquid scope as before):
-    - shipping_label_copy:      "Free standard shipping included" (still used
+    - shipping_label_copy:      "Standard shipping included" (still used
                                  for the aria-label / meta channels)
     - delivery_estimate_copy:   "Estimated delivery:" — only used as fallback
     - standard_delivery_window: "12-16 days" calendar-day fallback text
@@ -30,14 +30,12 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign pc_label_copy = shipping_label_copy | default: 'Free standard shipping included'
+  assign pc_label_copy = shipping_label_copy | default: 'Standard shipping included'
   # CRO: standardized delivery window in calendar days so today's
   # displayed range matches across every country and auto-rolls daily.
   # The "min-max days" values are read by layout/theme.liquid's
   # calculateDeliveryDates() (calendar-day mode for #dlm-shipping-card-date).
   assign pc_window = standard_delivery_window | default: '12-16 days'
-  assign pc_fallback_copy = standard_delivery_copy | default: pc_window
-
   assign pc_country = localization.country.name | default: ''
   assign pc_country_code = localization.country.iso_code | default: ''
   assign pc_currency_code = localization.country.currency.iso_code | default: ''
@@ -54,11 +52,11 @@
     assign pc_shipping_info_url = pc_shipping_info_url | append: '?country=' | append: pc_country_code
   endif
 
-  # Headline — drops "included" because "Free" already communicates cost.
+  # Headline — avoids "free" wording because standard shipping is included in product prices.
   assign pc_shipping_headline = 'products.purchase_confidence.shipping_headline' | t
   assign pc_shipping_headline_check = pc_shipping_headline | downcase
   if pc_shipping_headline == blank or pc_shipping_headline_check contains 'translation missing'
-    assign pc_shipping_headline = 'Free standard shipping'
+    assign pc_shipping_headline = 'Standard shipping included'
   endif
 
   # Estimate line — combines destination + window into one scannable line:
@@ -112,7 +110,7 @@
   if pc_shipping_details_body == blank or pc_shipping_details_body contains 'translation missing'
     assign pc_shipping_details_body = 'products.shipping_card.details_body' | t
     if pc_shipping_details_body == blank or pc_shipping_details_body contains 'translation missing'
-      assign pc_shipping_details_body = 'Standard shipping is free for this item where available. Express upgrades and exact carrier options are shown before payment.'
+      assign pc_shipping_details_body = 'Standard shipping is included in product prices where available. Express upgrades and exact carrier options are shown before payment.'
     endif
   endif
   assign pc_see_countries = 'products.shipping_card.see_countries' | t
@@ -399,7 +397,7 @@
     </span>
     <span class="dlm-pc-pill">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-      Free shipping
+      Standard shipping included
     </span>
     <span class="dlm-pc-pill">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>

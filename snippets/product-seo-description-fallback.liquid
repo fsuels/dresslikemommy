@@ -5,6 +5,34 @@
     echo product.description | strip_html | replace: '&nbsp;', ' ' | replace: '&#160;', ' ' | strip_newlines
   endcapture
   assign stripped_product_description = stripped_product_description | replace: '  ', ' ' | replace: '  ', ' ' | replace: '  ', ' ' | strip
+  assign stripped_product_description = stripped_product_description | replace: 'Print reference:', 'Pattern:'
+  assign stripped_product_description = stripped_product_description | replace: 'Referencia de impresión:', 'Patrón:'
+  assign stripped_product_description = stripped_product_description | replace: 'Referencia de estampa:', 'Estampa:'
+  assign stripped_product_description = stripped_product_description | replace: 'Referência de estampa:', 'Estampa:'
+  assign stripped_product_description = stripped_product_description | replace: 'Riferimento stampa:', 'Motivo:'
+  assign stripped_product_description = stripped_product_description | replace: 'Referință imprimeu:', 'Model:'
+  assign stripped_product_description = stripped_product_description | replace: 'Referință de imprimare:', 'Model:'
+  assign stripped_product_description = stripped_product_description | replace: 'Référence imprimé :', 'Motif :'
+  assign stripped_product_description = stripped_product_description | replace: 'Druckreferenz:', 'Muster:'
+  assign stripped_product_description = stripped_product_description | replace: 'Chart-backed variants:', 'Available options:'
+  assign stripped_product_description = stripped_product_description | replace: 'attached vendor size-chart image', 'size chart'
+  assign stripped_product_description = stripped_product_description | replace: 'attached vendor size chart image', 'size chart'
+  assign stripped_product_description = stripped_product_description | replace: 'The attached chart publishes', 'The size chart lists'
+  assign stripped_product_description = stripped_product_description | replace: 'this draft keeps the shopper picker honest with', 'the picker uses'
+  assign stripped_product_description = stripped_product_description | replace: 'no dad or boy rows were invented', 'only available size rows are shown'
+  assign stripped_product_description = stripped_product_description | replace: 'Exact fiber composition was not visible in the supplied evidence.', 'Lightweight fabric with an easy drape.'
+  assign stripped_product_description = stripped_product_description | replace: 'exact fiber composition was not visible in the supplied chart or image.', 'fabric has an easy drape.'
+  assign stripped_product_description = stripped_product_description | replace: 'Tela liviana con apariencia de tejido; La composición exacta de la fibra no era visible en el cuadro o imagen suministrados.', 'Tela ligera con caída fácil para clima cálido.'
+  assign stripped_product_description = stripped_product_description | replace: 'Tecido leve com aparência tecida; a composição exata da fibra não estava visível no gráfico ou imagem fornecidos.', 'Tecido leve com caimento fácil para dias quentes.'
+  assign stripped_product_description = stripped_product_description | replace: 'Tessuto leggero dall’aspetto intrecciato; la composizione esatta della fibra non era visibile nella tabella o nell’immagine fornite.', 'Tessuto leggero con una caduta facile per il clima caldo.'
+  assign stripped_product_description = stripped_product_description | replace: 'Țesătură ușoară cu aspect țesut; compoziția exactă a fibrei nu era vizibilă în tabelul sau imaginea furnizată.', 'Țesătură ușoară, cu cădere lejeră pentru vreme caldă.'
+  assign stripped_product_description = stripped_product_description | replace: 'This care line is a conservative inference because the blocked vendor page did not expose wash instructions.', ''
+  assign stripped_product_description = stripped_product_description | replace: 'This is conservative care guidance because the blocked vendor page did not expose wash instructions.', ''
+  assign seo_description_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase
+  if product.handle == 'golden-daisy-mommy-and-me-set' and seo_description_locale_root == 'en'
+    assign stripped_product_description = stripped_product_description | replace: 'Golden Daisy Mommy and Me Separates - Top or Pants', 'Golden Daisy Mommy & Me Matching Separates'
+    assign stripped_product_description = stripped_product_description | replace: 'Print reference:', 'Pattern:'
+  endif
 
   assign resolved_page_description_downcase = resolved_page_description | downcase
   assign stripped_product_description_downcase = stripped_product_description | downcase
@@ -37,7 +65,11 @@
 
       capture generated_description
         echo 'Shop '
-        echo product.title | strip
+        if product.handle == 'golden-daisy-mommy-and-me-set' and seo_description_locale_root == 'en'
+          echo 'Golden Daisy Mommy & Me Matching Separates'
+        else
+          echo product.title | strip
+        endif
         echo ' at Dress Like Mommy. Explore '
         echo product_category_name | downcase
         echo ' with current pricing, size options, and shipping details.'

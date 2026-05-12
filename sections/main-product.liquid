@@ -1012,8 +1012,14 @@
                 </p>
               {%- when 'title' -%}
                 <div class="product__title" {{ block.shopify_attributes }}>
-                  {%- assign clean_title = product.title | escape | split: ' | ' | first -%}
-                  <h1 class="product__title-text">{{ clean_title }}</h1>
+                  {%- liquid
+                    assign clean_title = product.title | split: ' | ' | first
+                    assign title_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase
+                    if product.handle == 'golden-daisy-mommy-and-me-set' and title_locale_root == 'en'
+                      assign clean_title = 'Golden Daisy Mommy & Me Matching Separates'
+                    endif
+                  -%}
+                  <h1 class="product__title-text">{{ clean_title | escape }}</h1>
                 </div>
                 {%- comment -%}
                   CRO: suppress above-the-fold "No reviews" social proof on
@@ -1035,6 +1041,10 @@
                 {%- liquid
                   assign pdp_variant = product.selected_or_first_available_variant
                   assign pdp_sale_pct = 0
+                  assign pdp_show_price_badges = true
+                  if has_matching_set_context
+                    assign pdp_show_price_badges = false
+                  endif
                   if pdp_variant.compare_at_price and pdp_variant.compare_at_price > pdp_variant.price
                     assign pdp_diff = pdp_variant.compare_at_price | minus: pdp_variant.price
                     assign pdp_diff_x100 = pdp_diff | times: 100
@@ -1050,7 +1060,7 @@
                   {%- render 'price',
                     product: product,
                     use_variant: true,
-                    show_badges: true,
+                    show_badges: pdp_show_price_badges,
                     show_sold_out_badge: false,
                     price_class: 'price--large'
                   -%}
@@ -1428,20 +1438,16 @@
                   product_form_id: product_form_id,
                   section_id: section.id,
                   show_pickup_availability: true,
-                  has_matching_set_context: has_matching_set_context
+                  has_matching_set_context: has_matching_set_context,
+                  hide_trust_strip: true
                 -%}
                 {% render 'product-desktop-ux', product: product, section: section %}
 
-                {%- comment -%} Low stock urgency — only shows when inventory is low {%- endcomment -%}
-                {%- if product.selected_or_first_available_variant.inventory_management == 'shopify'
-                  and product.selected_or_first_available_variant.inventory_quantity > 0
-                  and product.selected_or_first_available_variant.inventory_quantity <= 10
-                -%}
-                  <div class="low-stock-urgency" role="status" aria-live="polite" aria-atomic="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    {{ 'products.product.inventory_low_stock_show_count' | t: quantity: product.selected_or_first_available_variant.inventory_quantity }}
-                  </div>
-                {%- endif -%}
+                {%- comment -%}
+                  Dropshipping guardrail: do not create shopper urgency from
+                  Shopify inventory counts. Channel/feed inventory is a
+                  salability signal here, not proof of owned local stock.
+                {%- endcomment -%}
 
                 {%- comment -%}
                   CRO: removed above-the-fold trust strip — it duplicated the "Shipping & Delivery"
@@ -1460,7 +1466,7 @@
     assign premium_delivery_window = 'products.additional_info.premium_delivery_window' | t
 
     if shipping_label_copy == blank or shipping_label_copy contains 'translation missing'
-      assign shipping_label_copy = 'Free standard shipping included'
+      assign shipping_label_copy = 'Standard shipping included'
     endif
     if delivery_estimate_copy == blank or delivery_estimate_copy contains 'translation missing'
       assign delivery_estimate_copy = 'Estimated delivery:'
@@ -1788,10 +1794,10 @@
 {%- comment -%} Sticky mobile Add to Cart bar {%- endcomment -%}
 {%- if product.available -%}
   {%- liquid
-    assign sticky_free_shipping_label = 'products.product.free_shipping_short' | t
-    if sticky_free_shipping_label == blank or sticky_free_shipping_label contains 'translation missing'
-      assign sticky_free_shipping_label = 'Free shipping'
-    endif
+      assign sticky_free_shipping_label = 'products.product.free_shipping_short' | t
+      if sticky_free_shipping_label == blank or sticky_free_shipping_label contains 'translation missing'
+      assign sticky_free_shipping_label = 'Standard shipping included'
+      endif
   -%}
   <div class="sticky-mobile-atc" id="StickyMobileATC-{{ section.id }}">
     <div class="sticky-mobile-atc__details" aria-live="polite" aria-atomic="true">
@@ -1799,7 +1805,7 @@
         {{- product.selected_or_first_available_variant.price | money -}}
       </span>
       {%- comment -%}
-        CRO Step 6: free-shipping reassurance on the sticky bar.
+        CRO Step 6: standard-shipping reassurance on the sticky bar.
         Visible by default (when size/color are unconfirmed) so the
         shopper sees a benefit alongside the price. Hidden by JS once
         selections complete (the size chip + ATC price take over).
@@ -2266,7 +2272,7 @@
       }
 
       function syncStickyShipping(sizeIsConfirmed) {
-        // CRO Step 6: hide the "Free shipping" reassurance once a size is
+        // CRO Step 6: hide the shipping reassurance once a size is
         // selected so the size chip can take its place without crowding
         // the bar. Before selection it's the most useful piece of info.
         if (!stickyShipping) return;
@@ -2520,19 +2526,43 @@
 
     var copy = localeCopy();
     if (!copy) return;
+    var desktopUxWrapper = document.querySelector('[data-product-desktop-ux]');
+    var isGoldenDaisyPdp = desktopUxWrapper && desktopUxWrapper.getAttribute('data-product-handle') === 'golden-daisy-mommy-and-me-set';
+    var localeRoot = currentLocale().toLowerCase().split('-')[0];
+    var customerPhotosByLocale = {
+      cs: 'Fotky zákazníků',
+      da: 'Kundebilleder',
+      de: 'Kundenfotos',
+      el: 'Φωτογραφίες πελατών',
+      es: 'Fotos de clientes',
+      fr: 'Photos clients',
+      it: 'Foto dei clienti',
+      nl: "Foto's van klanten",
+      pl: 'Zdjęcia klientów',
+      pt: 'Fotos de clientes',
+      ro: 'Fotografii de la clienți',
+      sv: 'Kundfoton'
+    };
+    var customerPhotosHeading = copy.customer_photos_heading || customerPhotosByLocale[localeRoot] || 'Customer photos';
+    var matchingSetRuntimeCopy = copy.matching_set_copy;
+    if (isGoldenDaisyPdp && (!localeRoot || localeRoot === 'en')) {
+      matchingSetRuntimeCopy = 'Pair the yellow daisy top with the ivory floral pants for a complete mommy-and-me outfit.';
+    }
 
     var translations = {
       'Build your matching set': copy.matching_set_heading,
-      ['Choose the family sizes you want and add them together from one product page.']: copy.matching_set_copy,
-      ['Add one piece per family member. Sizes are independent and each piece is sold separately.']: copy.matching_set_copy,
+      ['Choose the family sizes you want and add them together from one product page.']: matchingSetRuntimeCopy,
+      ['Add one piece per family member. Sizes are independent and each piece is sold separately.']: matchingSetRuntimeCopy,
       // CRO Tier 1 (May 2026): new conversion-friendly EN default — must
       // still get swapped to the localized matching_set_copy for non-EN
       // shoppers, so we add it as another runtime translation key.
-      ['Add matching family sizes below — each selection is sold separately.']: copy.matching_set_copy,
+      ['Add matching family sizes below — each selection is sold separately.']: matchingSetRuntimeCopy,
+      ['Pair the yellow daisy top with the ivory floral pants for a complete mommy-and-me outfit.']: matchingSetRuntimeCopy,
       ['Choose at least one family size to add your set.']: copy.matching_set_empty,
       ['Choose at least one size to add your set.']: copy.matching_set_empty,
       'Add selected pieces': copy.matching_set_add,
       'Add selected pieces to cart': copy.matching_set_add,
+      'Add matching pieces': copy.matching_set_add,
       'Add matching pieces to cart': copy.matching_set_add,
       // CRO redesign May 2026: new bundle CTA copy.
       'Add Matching Set to Cart': copy.matching_set_add,
@@ -2543,6 +2573,7 @@
       'Open the full chart below to compare nearby sizes.': copy.size_guide_compare_hint,
       'Customer reviews': copy.reviews_heading,
       'Customer photo reviews': copy.photo_heading,
+      'Customer photos': customerPhotosHeading,
       'Jump to reviews': copy.jump_to_reviews,
       'Secure Checkout': copy.secure_checkout,
       ['30-Day ' + 'Returns']: copy.returns,
@@ -2603,8 +2634,9 @@
     }
 
     function applyAttributeTranslations() {
-      var wrapper = document.querySelector('[data-product-desktop-ux]');
+      var wrapper = desktopUxWrapper || document.querySelector('[data-product-desktop-ux]');
       if (wrapper) {
+        wrapper.setAttribute('data-matching-set-copy', matchingSetRuntimeCopy);
         wrapper.setAttribute('data-matching-set-empty', copy.matching_set_empty);
         wrapper.setAttribute('data-matching-set-add', copy.matching_set_add);
         wrapper.setAttribute('data-matching-set-success', copy.matching_set_success);
@@ -2615,6 +2647,7 @@
         wrapper.setAttribute('data-size-guide-selected-label', copy.selected_size_guide_label);
         wrapper.setAttribute('data-size-guide-compare-hint', copy.size_guide_compare_hint);
         wrapper.setAttribute('data-size-guide-unit-toggle-label', copy.size_guide_unit_toggle_label);
+        wrapper.setAttribute('data-customer-photos-label', customerPhotosHeading);
       }
 
       document.querySelectorAll('[data-back-to-results]').forEach(function (control) {
