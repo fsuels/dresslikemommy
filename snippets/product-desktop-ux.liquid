@@ -1,6 +1,5 @@
 {%- liquid
   assign matching_set_heading = 'products.product.matching_set.heading' | t
-  assign matching_set_copy = 'products.product.matching_set.copy' | t
   assign matching_set_empty = 'products.product.matching_set.empty' | t
   assign matching_set_add = 'products.product.matching_set.add' | t
   assign matching_set_success = 'products.product.matching_set.success' | t
@@ -35,23 +34,46 @@
   data-size-guide-compare-hint="{{ size_guide_compare_hint | escape }}"
   data-size-guide-unit-toggle-label="{{ size_guide_unit_toggle_label | escape }}"
 >
+  {%- comment -%}
+    CRO redesign (May 2026): stacked family-member cards with pills +
+    quantity steppers + live bundle summary. Eyebrow line advertises
+    the bundle savings (UI-only — see product-desktop-ux.js
+    BUNDLE_DISCOUNT comment and Frank's pre-launch TODO).
+
+    The summary panel sits ABOVE the CTA so the count, total, and
+    savings are visible before commitment. The CTA below is the single
+    primary action — the standalone Add-to-Cart is hidden via CSS on
+    matching-set products (see component-product-desktop-ux.css).
+
+    The static trust row under the CTA mirrors the spec — compact
+    reassurance directly adjacent to the buy moment, not below fold.
+  {%- endcomment -%}
   <section class="product-matching-set" data-matching-set-builder hidden>
     <div class="product-matching-set__header">
-      <p class="product-matching-set__eyebrow">{{ 'sections.cart.complete_the_look' | t }}</p>
+      <p class="product-matching-set__eyebrow">Save 10% automatically when you add 2+ pieces</p>
       <h2 class="product-matching-set__title">{{ matching_set_heading }}</h2>
-      <p class="product-matching-set__copy">{{ matching_set_copy }}</p>
+      <p class="product-matching-set__copy">Choose sizes for each family member</p>
     </div>
     <div class="product-matching-set__grid" data-matching-set-roles></div>
+    <div class="product-matching-set__summary" data-matching-set-summary>
+      <p class="product-matching-set__empty" data-matching-set-empty-copy>Choose sizes for each family member</p>
+      <div class="product-matching-set__chips" data-matching-set-chips hidden></div>
+      <strong class="product-matching-set__total" data-matching-set-total hidden></strong>
+      <span class="product-matching-set__savings" data-matching-set-savings hidden></span>
+    </div>
     <div class="product-matching-set__footer">
-      <div class="product-matching-set__selection">
-        <p class="product-matching-set__empty" data-matching-set-empty-copy>{{ matching_set_empty }}</p>
-        <div class="product-matching-set__chips" data-matching-set-chips hidden></div>
-        <strong class="product-matching-set__total" data-matching-set-total hidden></strong>
-      </div>
       <button type="button" class="button product-matching-set__button" data-matching-set-add-button disabled>
-        {{ matching_set_add }}
+        Add Matching Set to Cart
       </button>
     </div>
+    {%- comment -%}
+      The detailed Purchase Confidence module (shipping country, delivery
+      date, returns, secure checkout, size-guide link, Shipping/Return/
+      Privacy accordions) is rendered immediately below this block by
+      main-product.liquid → `<div class="additional-info">`. We
+      intentionally do NOT duplicate a tiny trust-row strip here; the
+      full module sits directly under the CTA in DOM order.
+    {%- endcomment -%}
     <p class="product-matching-set__status" data-matching-set-status hidden></p>
   </section>
 

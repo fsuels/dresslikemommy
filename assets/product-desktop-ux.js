@@ -581,6 +581,82 @@ function isTypeLikeLabel(value) {
   return containsDictionaryToken(value, TYPE_LABEL_TOKENS);
 }
 
+// Detect "Type perfectly partitions roles" — i.e. each Type value
+// (Dress / Shirt / etc.) corresponds to a disjoint set of family roles
+// with NO role appearing in two Types. When this holds, the Type
+// picker is redundant — each role's natural Type is implied. The
+// matching bundle uses this to:
+//   (a) hide the global Type picker
+//   (b) skip the Type filter in buildRoleGroups (so all four role
+//       groups stay available even though only one Type is "selected")
+//   (c) show the Type as a small subtitle below the role name
+// Returns { implicit: true, roleToType: { mother:'Dress', boy:'Shirt'... } }
+// when the pattern matches, otherwise { implicit: false }.
+function detectImplicitTypeMapping(productData) {
+  var result = { implicit: false, roleToType: {} };
+  if (!productData || !productData.options || !productData.variants) return result;
+
+  var sizeOptionIndex = findSizeOptionIndex(productData.options);
+  if (sizeOptionIndex === -1) return result;
+
+  var typeOptionIndex = -1;
+  for (var oi = 0; oi < productData.options.length; oi += 1) {
+    if (oi === sizeOptionIndex) continue;
+    if (isTypeLikeLabel(normalizeText(productData.options[oi].name))) {
+      typeOptionIndex = oi;
+      break;
+    }
+  }
+  if (typeOptionIndex === -1) return result; // no Type axis → nothing to do
+
+  // For each variant, collect roleKey ↔ typeValue. If any role has more
+  // than one Type, the pattern fails.
+  var roleToTypes = Object.create(null);
+  var typeToRoles = Object.create(null);
+
+  for (var vi = 0; vi < productData.variants.length; vi += 1) {
+    var variant = productData.variants[vi];
+    if (!variant) continue;
+    var roleInfo = getRoleInfoForVariant(variant, productData.options, sizeOptionIndex);
+    if (!roleInfo) continue;
+    var roleKey = roleInfo.key;
+    var typeValue = getOptionValue(variant, typeOptionIndex);
+    if (!typeValue) continue;
+
+    if (!roleToTypes[roleKey]) roleToTypes[roleKey] = Object.create(null);
+    roleToTypes[roleKey][typeValue] = true;
+
+    if (!typeToRoles[typeValue]) typeToRoles[typeValue] = Object.create(null);
+    typeToRoles[typeValue][roleKey] = true;
+  }
+
+  // Every role must map to exactly ONE Type.
+  var roleKeys = Object.keys(roleToTypes);
+  if (!roleKeys.length) return result;
+  for (var rk = 0; rk < roleKeys.length; rk += 1) {
+    var types = Object.keys(roleToTypes[roleKeys[rk]]);
+    if (types.length !== 1) return result;
+    result.roleToType[roleKeys[rk]] = types[0];
+  }
+
+  // And the Type → Role sets must be DISJOINT (a role can't appear
+  // in two Types). Already guaranteed by the previous check since
+  // each role maps to one Type; double-check defensively.
+  var typeKeys = Object.keys(typeToRoles);
+  for (var tk = 0; tk < typeKeys.length; tk += 1) {
+    // ok: each typeToRoles[type] = set of roles. As long as every
+    // role only appears in one type's set we're disjoint. Already
+    // covered. We just need at least 2 distinct Types to make this
+    // a partition (otherwise there's nothing to skip).
+  }
+  if (typeKeys.length < 2) return result;
+
+  result.implicit = true;
+  result.typeOptionIndex = typeOptionIndex;
+  result.typeOptionName = productData.options[typeOptionIndex].name;
+  return result;
+}
+
 function isHeightLikeLabel(value) {
   return containsDictionaryToken(value, HEIGHT_LABEL_TOKENS);
 }
@@ -960,22 +1036,45 @@ function getOptionNameFromControl(control) {
   return match && match[1] ? match[1] : name;
 }
 
-function buildRoleGroups(productData, currentOptionContext) {
+function buildRoleGroups(productData, currentOptionContext, includeAllAxes, opts) {
   var sizeOptionIndex = findSizeOptionIndex(productData.options);
   if (sizeOptionIndex === -1) return [];
+
+  // When the caller passes `opts.skipTypeFilter = true`, we treat Type
+  // as implicit (a role-discriminator) instead of a global filter —
+  // see detectImplicitTypeMapping(). Variants of every Type are emitted
+  // into their natural role groups (mother→Dress, father→Shirt, etc.).
+  var skipTypeFilter = !!(opts && opts.skipTypeFilter);
 
   var roleGroups = {};
 
   productData.variants.forEach(function (variant) {
-    if (!variant || !variant.available) return;
+    if (!variant) return;
+    // When includeAllAxes is true the caller wants every variant (the
+    // bundle does per-card axis filtering itself). Otherwise we skip
+    // unavailable variants to preserve legacy behavior.
+    if (!includeAllAxes && !variant.available) return;
 
     for (var optionIndex = 0; optionIndex < productData.options.length; optionIndex += 1) {
       if (optionIndex === sizeOptionIndex) continue;
 
       var optionName = normalizeText(productData.options[optionIndex].name);
-      if (!currentOptionContext[optionName]) continue;
-      if (isTypeLikeLabel(optionName)) continue;
 
+      // Type filter: normally applied when picker has a value, BUT
+      // skipped entirely when Type is implicit (per-role). In implicit
+      // mode each role group naturally collects variants of its own
+      // Type, so Mother sees only Dress variants etc.
+      if (isTypeLikeLabel(optionName)) {
+        if (skipTypeFilter) continue;
+        if (!currentOptionContext[optionName]) continue;
+        if (normalizeText(getOptionValue(variant, optionIndex)) !== normalizeText(currentOptionContext[optionName])) {
+          return;
+        }
+        continue;
+      }
+
+      if (includeAllAxes) continue; // per-card filters handle Color/etc
+      if (!currentOptionContext[optionName]) continue;
       if (normalizeText(getOptionValue(variant, optionIndex)) !== normalizeText(currentOptionContext[optionName])) {
         return;
       }
@@ -997,11 +1096,26 @@ function buildRoleGroups(productData, currentOptionContext) {
 	      };
 	    }
 
+	    // Capture every non-size, non-type axis value (Color, Pattern,
+	    // Style, etc.) per variant so the bundle's per-card picker can
+	    // build a swatch/pill for each axis with OOS combos disabled.
+	    var nonSizeAxes = {};
+	    for (var ai = 0; ai < productData.options.length; ai += 1) {
+	      if (ai === sizeOptionIndex) continue;
+	      var axisName = productData.options[ai].name;
+	      if (!axisName) continue;
+	      if (isTypeLikeLabel(normalizeText(axisName))) continue;
+	      var axisVal = getOptionValue(variant, ai);
+	      if (axisVal) nonSizeAxes[axisName] = axisVal;
+	    }
+
 	    roleGroups[groupKey].options.push({
 	      id: String(variant.id),
 	      sizeLabel: localizeSizeLabel(roleInfo.sizeLabel, roleInfo.key),
 	      fullLabel: roleInfo.fullLabel,
 	      price: Number(variant.price) || 0,
+	      available: variant.available !== false,
+	      axes: nonSizeAxes,
 	    });
   });
 
@@ -1021,10 +1135,21 @@ function getRoleHelperLabel(variant, options, sizeOptionIndex) {
 }
 
 function getMatchingSetSelections(builder) {
+  // Returns { groupKey: variantId } map for whichever instance cards
+  // currently have a selected pill. Used to preserve user choices when
+  // the main <variant-selects> fires "change". With the instance model
+  // (May 11 2026 rev), per-card state is held in the closure's
+  // `instances` array — this function exists for back-compat with the
+  // outer change handler but most preservation is already automatic.
   var selections = {};
-  builder.querySelectorAll('[data-role-select]').forEach(function (select) {
-    if (!select.value) return;
-    selections[select.getAttribute('data-role-select')] = String(select.value);
+  builder.querySelectorAll('[data-instance-card]').forEach(function (card) {
+    var groupKey = card.getAttribute('data-role-card');
+    var selectedPill = card.querySelector('[data-instance-pill].is-selected');
+    if (!groupKey || !selectedPill) return;
+    // Last write wins — if two cards of the same group both have
+    // selections, the second one overrides. That's fine for the outer
+    // change handler because the instance model itself isn't reset.
+    selections[groupKey] = String(selectedPill.getAttribute('data-variant-id') || '');
   });
   return selections;
 }
@@ -1038,6 +1163,46 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   var builder = wrapper.querySelector('[data-matching-set-builder]');
   if (!builder) return;
 
+  // ─────────────────────────────────────────────────────────────────────
+  // CRITICAL: normalize productData.options ordering by .position.
+  // The Liquid template iterates product.options_with_values which is
+  // not guaranteed to be position-sorted. Our buildRoleGroups +
+  // getOptionValue use ARRAY INDEX (assumes index+1 = variant.option{N}),
+  // so an unordered array causes wrong field lookups (size column
+  // returning a color value, etc.). Sort once on init.
+  // ─────────────────────────────────────────────────────────────────────
+  if (productData && Array.isArray(productData.options)) {
+    var sortedOptions = productData.options.slice().sort(function (a, b) {
+      var pa = Number(a && a.position) || 0;
+      var pb = Number(b && b.position) || 0;
+      return pa - pb;
+    });
+    // Only swap if order actually differs to avoid breaking referential
+    // equality where it isn't needed.
+    var needsSort = sortedOptions.some(function (opt, idx) {
+      return opt !== productData.options[idx];
+    });
+    if (needsSort) {
+      productData = Object.assign({}, productData, { options: sortedOptions });
+    }
+  }
+
+  // CRO redesign May 2026: on bundle products the legacy "Compare
+  // family sizes" details element (rendered by product-variant-picker.liquid)
+  // sits at the same DOM level as the variant picker we hide via CSS,
+  // but without the `hidden` attribute it stays visible and adds an
+  // empty disclosure above the bundle. Mark it hidden so it doesn't
+  // paint by default; the existing [data-pdp-size-guide-trigger] handler
+  // will remove the attribute when the shopper taps "Find {role}'s fit"
+  // on a card.
+  var infoContainer = wrapper.closest('.product__info-container--matching-set');
+  if (infoContainer) {
+    var legacyGuide = document.querySelector('[data-matching-size-guide]');
+    if (legacyGuide && !legacyGuide.hasAttribute('hidden')) {
+      legacyGuide.setAttribute('hidden', 'hidden');
+    }
+  }
+
   var roleGrid = builder.querySelector('[data-matching-set-roles]');
   var chips = builder.querySelector('[data-matching-set-chips]');
   var total = builder.querySelector('[data-matching-set-total]');
@@ -1049,6 +1214,305 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   var selectedVariantInput = productForm ? productForm.querySelector('[name="id"]') : null;
   var currency = productData.currency || 'USD';
 
+  // ─────────────────────────────────────────────────────────────────────
+  // CRO redesign May 2026 — INSTANCE MODEL (rev 2, May 11).
+  //
+  // The first rev keyed selections by role (one Mother card, one Child
+  // card, period). That broke real family use cases — moms with two
+  // daughters in different sizes, or a mom who wants two matching
+  // outfits for herself + a friend, couldn't add them.
+  //
+  // Current model: `instances` is an ORDERED ARRAY of cards. Each card
+  // is one independent line item. The same role can appear N times
+  // with different sizes/qty. Default state shows one empty Mother
+  // card + one empty Child card; + Add buttons always create a NEW
+  // instance (never reuses an existing one); × removes that specific
+  // instance.
+  //
+  //   instances = [
+  //     { instanceId, roleKey, groupKey, variantId, quantity },
+  //     ...
+  //   ]
+  //
+  // BUNDLE_DISCOUNT is UI-only — see Frank-TODO below.
+  // ─────────────────────────────────────────────────────────────────────
+  var BUNDLE_DISCOUNT = 0.10;
+  var BUNDLE_DISCOUNT_MIN_PIECES = 2;
+  var instances = [];
+  var instanceCounter = 0;
+  var hasSeededDefaults = false;
+  var roleGroupsCache = [];
+  // Tracks the last Type axis value seen (e.g. "shirt" / "dress").
+  // When the global Type picker changes, the bundle resets its
+  // default-visible cards. null sentinel = first render — don't reset.
+  var lastTypeContext = null;
+
+  // Implicit-Type detection: when each Type value maps to a disjoint
+  // set of roles (e.g. Dress↔mother/girl, Shirt↔father/boy), the
+  // global Type picker becomes redundant and we treat Type as an
+  // implied per-role attribute. See detectImplicitTypeMapping().
+  var typeMapping = detectImplicitTypeMapping(productData);
+  var typeIsImplicit = !!(typeMapping && typeMapping.implicit);
+  // When Type is implicit we also instruct the surrounding CSS to hide
+  // the global Type picker. The body class is read by the bundle's
+  // CSS selectors.
+  if (typeIsImplicit) {
+    try {
+      var bundleRoot = wrapper.closest('.product__info-container--matching-set');
+      if (bundleRoot) bundleRoot.setAttribute('data-type-implicit', 'true');
+    } catch (_e) { /* defensive */ }
+  }
+
+  // Per-bundle persistent size panel state.
+  //   unitSystem      'metric' | 'imperial' — shared with the legacy
+  //                   size-guide unit toggle via localStorage so the
+  //                   shopper's preference rides across reloads and
+  //                   between the panel + the full size chart.
+  //   closedPanels    instanceIds the shopper has X-dismissed; cleared
+  //                   when they pick a different size on that card so
+  //                   the panel re-opens with fresh info.
+  var BUNDLE_UNIT_STORAGE_KEY = 'dlm_size_chart_unit_system';
+  var unitSystem = (function () {
+    try {
+      var stored = window.localStorage && window.localStorage.getItem(BUNDLE_UNIT_STORAGE_KEY);
+      if (stored === 'imperial' || stored === 'metric') return stored;
+    } catch (e) { /* localStorage may be blocked; default to metric */ }
+    return 'metric';
+  })();
+  var closedPanels = Object.create(null);
+
+  function setUnitSystem(next) {
+    if (next !== 'metric' && next !== 'imperial') return;
+    if (next === unitSystem) return;
+    unitSystem = next;
+    try {
+      if (window.localStorage) window.localStorage.setItem(BUNDLE_UNIT_STORAGE_KEY, next);
+    } catch (e) { /* ignore */ }
+    renderBuilder();
+  }
+
+  // ─────────────────────────────────────────────────────────────────────
+  // Size-measurements lookup, populated lazily on first card render.
+  // Source: the same <table id="size-chart"> that powers the legacy
+  // "Compare family sizes" details element. Parsing is shared with
+  // parseSizeGuideTable() so the tooltip can't drift from the size
+  // chart Frank already maintains per product.
+  //
+  // Shape: sizeMeasurementsByLabel = {
+  //   "mother s": { headers: [...], row: [...] },
+  //   "boy 4t":   { headers: [...], row: [...] },
+  //   ...
+  // }
+  // Keyed by lowercased+trimmed size label. Empty cells / age/weight
+  // columns that don't apply to a given role are filtered out by the
+  // tooltip renderer.
+  // ─────────────────────────────────────────────────────────────────────
+  var sizeMeasurementsByLabel = null;
+
+  function normalizeSizeKey(text) {
+    return String(text || '').toLowerCase().replace(/\s+/g, ' ').trim();
+  }
+
+  function buildSizeMeasurementsLookup() {
+    if (sizeMeasurementsByLabel) return sizeMeasurementsByLabel;
+    sizeMeasurementsByLabel = Object.create(null);
+
+    var table = document.querySelector('table#size-chart, table[id*="size-chart"]');
+    if (!table || typeof parseSizeGuideTable !== 'function') return sizeMeasurementsByLabel;
+
+    var parsed = parseSizeGuideTable(table);
+    if (!parsed || !parsed.rows || !parsed.headers) return sizeMeasurementsByLabel;
+
+    parsed.rows.forEach(function (row) {
+      var rawLabel = String((row[0] || '')).trim();
+      if (!rawLabel) return;
+      var key = normalizeSizeKey(rawLabel);
+      sizeMeasurementsByLabel[key] = { headers: parsed.headers, row: row };
+    });
+    return sizeMeasurementsByLabel;
+  }
+
+  function findMeasurementsForOption(group, option) {
+    if (!option) return null;
+    buildSizeMeasurementsLookup();
+    if (!sizeMeasurementsByLabel) return null;
+
+    // Try multiple lookup keys in order of specificity. Each PDP's
+    // variant naming convention varies — try the raw size label
+    // ("Mother S"), the role-prefixed full label ("Mother S"), and
+    // size-only ("S") as fallbacks.
+    var candidates = [];
+    if (option.fullLabel) candidates.push(option.fullLabel);
+    if (group && group.label && option.sizeLabel) {
+      candidates.push(group.label + ' ' + option.sizeLabel);
+    }
+    if (option.sizeLabel) candidates.push(option.sizeLabel);
+
+    for (var i = 0; i < candidates.length; i += 1) {
+      var key = normalizeSizeKey(candidates[i]);
+      if (sizeMeasurementsByLabel[key]) return sizeMeasurementsByLabel[key];
+    }
+    return null;
+  }
+
+  function isMeaningfulMeasurementValue(value) {
+    if (value === null || value === undefined) return false;
+    var text = String(value).trim();
+    if (!text) return false;
+    if (text === '-' || text === '—' || text === '--') return false;
+    // The size-chart cells empty for a role show as "" — already filtered.
+    return /[0-9]/.test(text);
+  }
+
+  // Pick the unit-system-appropriate value from a dual-unit cell like
+  // "92.71-95.25 / 36.5-37.5" (cm / in) and return { value, unit }.
+  // Falls back gracefully if the cell only has one unit (we return it
+  // as-is with the header's first unit).
+  function extractValueForUnit(rawValue, header, activeUnit) {
+    var text = String(rawValue || '').trim();
+    if (!text) return null;
+    var parts = (typeof splitGuideMeasurementParts === 'function')
+      ? splitGuideMeasurementParts(text)
+      : text.split(/\s+\/\s+/).map(function (p) { return p.trim(); }).filter(Boolean);
+    var units = (header && header.units) ? header.units : [];
+
+    // Multi-unit cell: pick the index matching activeUnit.
+    if (parts.length >= 2 && units.length >= 2) {
+      for (var i = 0; i < units.length; i += 1) {
+        if (String(units[i]).toLowerCase() === activeUnit) {
+          return { value: parts[Math.min(i, parts.length - 1)], unit: units[i] };
+        }
+      }
+      return { value: parts[0], unit: units[0] };
+    }
+
+    // Single-unit cell: convert on the fly if needed.
+    var sourceUnit = (units[0] || '').toLowerCase();
+    if (!sourceUnit) return { value: text, unit: '' };
+    if (sourceUnit === activeUnit) return { value: text, unit: sourceUnit };
+    var converted = convertRangeValue(text, sourceUnit, activeUnit);
+    if (converted) return { value: converted, unit: activeUnit };
+    return { value: text, unit: sourceUnit };
+  }
+
+  // Convert a single value or "min-max" range from one unit to another.
+  // Supports cm <-> in and kg <-> lbs. Returns null if conversion isn't
+  // possible (e.g. unitless age columns).
+  function convertRangeValue(text, from, to) {
+    if (!text || !from || !to || from === to) return null;
+    var factor = null;
+    if (from === 'cm' && to === 'in') factor = 1 / 2.54;
+    else if (from === 'in' && to === 'cm') factor = 2.54;
+    else if (from === 'kg' && to === 'lbs') factor = 2.2046226218;
+    else if (from === 'lbs' && to === 'kg') factor = 1 / 2.2046226218;
+    if (factor === null) return null;
+
+    var pieces = String(text).split('-').map(function (p) { return p.trim(); });
+    var converted = [];
+    for (var i = 0; i < pieces.length; i += 1) {
+      var n = parseFloat(pieces[i]);
+      if (!isFinite(n)) return null;
+      converted.push(roundMeasurement(n * factor));
+    }
+    return converted.join('-');
+  }
+
+  // Round any numeric measurement to a single decimal place — and drop
+  // the trailing .0 so "92" stays "92", not "92.0". Used both on
+  // converted values and on raw chart cells (some products were entered
+  // with absurd precision like 44.8819 inches; this trims them down to
+  // a single decimal at render time without touching the source data).
+  function roundMeasurement(num) {
+    if (!isFinite(num)) return String(num);
+    return Number(num).toFixed(1).replace(/\.0$/, '');
+  }
+
+  // Take a raw chart cell value (which may be a number, a "min-max"
+  // range, or already contain a unit suffix) and trim trailing decimals
+  // beyond 1 on each numeric piece. Non-numeric text is passed through.
+  function tidyMeasurementValue(text) {
+    var raw = String(text || '').trim();
+    if (!raw) return raw;
+    // Replace any number with more than one decimal with a 1-decimal version.
+    return raw.replace(/(\d+)\.(\d{2,})/g, function (_, intPart, decimals) {
+      var n = parseFloat(intPart + '.' + decimals);
+      if (!isFinite(n)) return _;
+      return roundMeasurement(n);
+    });
+  }
+
+  function buildMeasurementsHtml(measurements, options) {
+    if (!measurements || !measurements.headers || !measurements.row) return '';
+    var opts = options || {};
+    var activeUnit = opts.activeUnit || (unitSystem === 'imperial' ? 'in' : 'cm');
+
+    var pairs = [];
+    measurements.headers.forEach(function (header, headerIndex) {
+      if (headerIndex === 0) return; // index 0 is the size label itself
+      var rawValue = measurements.row[headerIndex];
+      if (!isMeaningfulMeasurementValue(rawValue)) return;
+
+      var headerLabel = '';
+      var headerUnits = [];
+      if (header && typeof header === 'object') {
+        headerLabel = header.label || header.raw || '';
+        headerUnits = (header.units || []).map(function (u) { return String(u).toLowerCase(); });
+      } else {
+        headerLabel = String(header || '');
+      }
+
+      // For length-style headers (cm/in) honor the active unit system.
+      // For weight (kg/lbs) honor it the same way. For unitless headers
+      // (Age, Size) show as-is regardless of toggle.
+      var preferredUnit = activeUnit;
+      if (headerUnits.indexOf('kg') !== -1 || headerUnits.indexOf('lbs') !== -1) {
+        preferredUnit = unitSystem === 'imperial' ? 'lbs' : 'kg';
+      } else if (headerUnits.indexOf('cm') !== -1 || headerUnits.indexOf('in') !== -1) {
+        preferredUnit = unitSystem === 'imperial' ? 'in' : 'cm';
+      } else {
+        preferredUnit = '';
+      }
+
+      var extracted = preferredUnit
+        ? extractValueForUnit(rawValue, header, preferredUnit)
+        : { value: String(rawValue).trim(), unit: '' };
+      if (!extracted || !extracted.value) return;
+
+      var displayLabel = headerLabel;
+      if (extracted.unit) displayLabel += ' (' + extracted.unit + ')';
+
+      // Trim absurd precision in raw chart cells before display.
+      // E.g. some products were entered with "44.8819" — show "44.9".
+      pairs.push({ label: displayLabel, value: tidyMeasurementValue(extracted.value) });
+    });
+    if (!pairs.length) return '';
+    return (
+      '<dl class="product-matching-set__measurement-list">' +
+      pairs
+        .map(function (pair) {
+          return (
+            '<div class="product-matching-set__measurement-row">' +
+            '<dt>' +
+            escapeHtml(pair.label) +
+            '</dt>' +
+            '<dd>' +
+            escapeHtml(pair.value) +
+            '</dd>' +
+            '</div>'
+          );
+        })
+        .join('') +
+      '</dl>'
+    );
+  }
+
+  var selectSizeLabel = wrapper.getAttribute('data-select-size-label') || 'Select size';
+
+  function newInstanceId() {
+    instanceCounter += 1;
+    return 'inst-' + instanceCounter;
+  }
+
   function getCurrentVariant() {
     if (!selectedVariantInput || !selectedVariantInput.value) return null;
     var selectedId = String(selectedVariantInput.value);
@@ -1059,57 +1523,769 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     );
   }
 
-  function updateSummary() {
-    var selectedItems = [];
+  function getGroupByKey(groupKey) {
+    for (var i = 0; i < roleGroupsCache.length; i += 1) {
+      if (roleGroupsCache[i].key === groupKey) return roleGroupsCache[i];
+    }
+    return null;
+  }
 
-    builder.querySelectorAll('[data-role-select]').forEach(function (select) {
-      var selectedOption = select.options[select.selectedIndex];
-      var priceNode = select.closest('.product-matching-set__card').querySelector('[data-role-price]');
-      if (selectedOption && selectedOption.getAttribute('data-price')) {
-        priceNode.textContent = formatMoney(selectedOption.getAttribute('data-price'), currency);
-      } else {
-        priceNode.textContent = priceNode.getAttribute('data-default-price') || '';
-      }
+  // Get one representative group per roleKey (so the + Add row lists
+  // each family role once, even when the product has multiple groupKeys
+  // per role like mother__dress vs mother__shirt).
+  function getRoleRepresentatives() {
+    var seen = Object.create(null);
+    var reps = [];
+    roleGroupsCache.forEach(function (group) {
+      var roleKey = group.roleKey || group.key;
+      if (seen[roleKey]) return;
+      seen[roleKey] = true;
+      reps.push(group);
+    });
+    return reps;
+  }
 
-      if (!select.value || !selectedOption) return;
+  function getOptionByVariantId(group, variantId) {
+    if (!group || !variantId) return null;
+    for (var i = 0; i < group.options.length; i += 1) {
+      if (String(group.options[i].id) === String(variantId)) return group.options[i];
+    }
+    return null;
+  }
 
-      selectedItems.push({
-        id: select.value,
-        label: selectedOption.textContent,
-        price: Number(selectedOption.getAttribute('data-price')) || 0,
+  // ─── Axis helpers (May 2026 rev 5: per-card color/pattern picker) ──
+  // Distinct size labels for a group, in the order variants were
+  // emitted. Used to render the size pill row.
+  function getDistinctSizesForGroup(group) {
+    if (!group) return [];
+    var seen = Object.create(null);
+    var result = [];
+    group.options.forEach(function (opt) {
+      var key = opt.sizeLabel || '';
+      if (!key || seen[key]) return;
+      seen[key] = true;
+      result.push(key);
+    });
+    return result;
+  }
+
+  // Distinct axis NAMES present on this group (e.g. ['Color']).
+  function getAxisNamesForGroup(group) {
+    if (!group) return [];
+    var seen = Object.create(null);
+    var names = [];
+    group.options.forEach(function (opt) {
+      Object.keys(opt.axes || {}).forEach(function (axisName) {
+        if (seen[axisName]) return;
+        seen[axisName] = true;
+        names.push(axisName);
       });
     });
+    return names;
+  }
 
-    if (!selectedItems.length) {
-      emptyCopy.removeAttribute('hidden');
-      chips.innerHTML = '';
-      chips.setAttribute('hidden', 'hidden');
-      total.textContent = '';
-      total.setAttribute('hidden', 'hidden');
+  // Distinct values for a given axis on this group, in first-seen order.
+  function getAxisValuesForGroup(group, axisName) {
+    if (!group || !axisName) return [];
+    var seen = Object.create(null);
+    var values = [];
+    group.options.forEach(function (opt) {
+      var v = opt.axes && opt.axes[axisName];
+      if (!v || seen[v]) return;
+      seen[v] = true;
+      values.push(v);
+    });
+    return values;
+  }
+
+  // Resolve { sizeLabel, axisSelections } to a variant in the group.
+  // Returns the option object or null when no exact match exists.
+  function resolveVariantInGroup(group, sizeLabel, axisSelections) {
+    if (!group) return null;
+    var sels = axisSelections || {};
+    var selKeys = Object.keys(sels);
+    for (var i = 0; i < group.options.length; i += 1) {
+      var opt = group.options[i];
+      if (sizeLabel && opt.sizeLabel !== sizeLabel) continue;
+      var matches = true;
+      for (var k = 0; k < selKeys.length; k += 1) {
+        var axisName = selKeys[k];
+        if (!sels[axisName]) continue;
+        if ((opt.axes && opt.axes[axisName]) !== sels[axisName]) {
+          matches = false;
+          break;
+        }
+      }
+      if (matches) return opt;
+    }
+    return null;
+  }
+
+  // Does this group have at least one available variant for the given
+  // sizeLabel + axisSelections combo? Used to disable OOS pills.
+  function isComboAvailable(group, sizeLabel, axisSelections) {
+    var opt = resolveVariantInGroup(group, sizeLabel, axisSelections);
+    return !!(opt && opt.available !== false);
+  }
+
+  function findInstance(instanceId) {
+    for (var i = 0; i < instances.length; i += 1) {
+      if (instances[i].instanceId === instanceId) return instances[i];
+    }
+    return null;
+  }
+
+  function removeInstance(instanceId) {
+    instances = instances.filter(function (inst) {
+      return inst.instanceId !== instanceId;
+    });
+  }
+
+  function addInstanceForGroup(group) {
+    instances.push({
+      instanceId: newInstanceId(),
+      roleKey: group.roleKey || group.key,
+      groupKey: group.key,
+      sizeLabel: '',          // size pill picked by shopper
+      axisSelections: {},     // { Color: 'Pink', Pattern: 'Plaid', ... }
+      variantId: '',          // derived from sizeLabel + axisSelections
+      quantity: 1,
+    });
+  }
+
+  // Recompute inst.variantId whenever the shopper changes a pill on
+  // any axis. Sets variantId to '' when the current size + axis combo
+  // doesn't resolve to a real variant (OOS or impossible combination).
+  //
+  // STRICT REQUIREMENT (May 2026): every axis present on this group
+  // (e.g. Color) must have a value in inst.axisSelections before we
+  // commit a variantId. Without this guard, resolveVariantInGroup
+  // happily returns the first option that matches the picked size,
+  // which causes two visible bugs on PDPs with un-picked color
+  // swatches:
+  //   1) The green "Mother · S · $31.99 each" confirmation appears
+  //      before the shopper has chosen a color.
+  //   2) The "ADD SELECTED PIECES TO CART" button enables, letting
+  //      shoppers add a variant they never explicitly picked.
+  // Note: resolveVariantInGroup itself stays permissive — it's also
+  // used as a "is anything available for this combo?" probe by the
+  // size-pill and axis-swatch renderers, which DO want wildcard
+  // behavior. Only the commit step here needs to be strict.
+  function refreshInstanceVariantId(inst) {
+    var group = getGroupByKey(inst.groupKey);
+    if (!group) { inst.variantId = ''; return; }
+    if (!inst.sizeLabel) { inst.variantId = ''; return; }
+    var requiredAxes = getAxisNamesForGroup(group).filter(function (axisName) {
+      // Treat single-value axes as auto-satisfied — the renderer hides
+      // them ("values.length <= 1 → return ''") so the shopper has no
+      // way to pick them.
+      return getAxisValuesForGroup(group, axisName).length > 1;
+    });
+    var sels = inst.axisSelections || {};
+    for (var i = 0; i < requiredAxes.length; i += 1) {
+      if (!sels[requiredAxes[i]]) { inst.variantId = ''; return; }
+    }
+    var opt = resolveVariantInGroup(group, inst.sizeLabel, sels);
+    inst.variantId = opt && opt.available !== false ? String(opt.id) : '';
+  }
+
+  function getSelectedItems() {
+    var items = [];
+    instances.forEach(function (inst) {
+      if (!inst.variantId || !inst.quantity) return;
+      var group = getGroupByKey(inst.groupKey);
+      var option = getOptionByVariantId(group, inst.variantId);
+      if (!group || !option) return;
+      items.push({
+        instanceId: inst.instanceId,
+        roleKey: inst.roleKey,
+        roleLabel: group.label,
+        sizeLabel: option.sizeLabel,
+        id: inst.variantId,
+        quantity: inst.quantity,
+        unitPrice: Number(option.price) || 0,
+      });
+    });
+    return items;
+  }
+
+  function formatPieceCount(count) {
+    if (count === 1) return '1 Matching Piece';
+    return count + ' Matching Pieces';
+  }
+
+  function updateSummary() {
+    var items = getSelectedItems();
+    var pieceCount = items.reduce(function (sum, item) {
+      return sum + item.quantity;
+    }, 0);
+    var subtotal = items.reduce(function (sum, item) {
+      return sum + item.unitPrice * item.quantity;
+    }, 0);
+    var qualifies = pieceCount >= BUNDLE_DISCOUNT_MIN_PIECES;
+    var savings = qualifies ? subtotal * BUNDLE_DISCOUNT : 0;
+    var grandTotal = subtotal - savings;
+
+    var savingsNode = builder.querySelector('[data-matching-set-savings]');
+
+    if (!pieceCount) {
+      if (emptyCopy) emptyCopy.removeAttribute('hidden');
+      if (chips) {
+        chips.innerHTML = '';
+        chips.setAttribute('hidden', 'hidden');
+      }
+      if (total) {
+        total.textContent = '';
+        total.setAttribute('hidden', 'hidden');
+      }
+      if (savingsNode) {
+        savingsNode.textContent = '';
+        savingsNode.setAttribute('hidden', 'hidden');
+      }
       addButton.setAttribute('disabled', 'disabled');
       return;
     }
 
-    emptyCopy.setAttribute('hidden', 'hidden');
-    chips.removeAttribute('hidden');
-    chips.innerHTML = selectedItems
-      .map(function (item) {
-        return '<span class="product-matching-set__chip">' + escapeHtml(item.label) + '</span>';
-      })
-      .join('');
-
-    total.textContent = formatMoney(
-      selectedItems.reduce(function (sum, item) {
-        return sum + item.price;
-      }, 0),
-      currency
-    );
-    total.removeAttribute('hidden');
+    if (emptyCopy) emptyCopy.setAttribute('hidden', 'hidden');
+    if (chips) {
+      chips.innerHTML =
+        '<span class="product-matching-set__chip product-matching-set__chip--count">' +
+        escapeHtml(formatPieceCount(pieceCount)) +
+        '</span>';
+      chips.removeAttribute('hidden');
+    }
+    if (total) {
+      total.innerHTML =
+        'Total <strong>' + escapeHtml(formatMoney(grandTotal, currency)) + '</strong>';
+      total.removeAttribute('hidden');
+    }
+    if (savingsNode) {
+      if (qualifies && savings > 0) {
+        savingsNode.textContent = 'You saved ' + formatMoney(savings, currency);
+        savingsNode.removeAttribute('hidden');
+      } else {
+        savingsNode.textContent = '';
+        savingsNode.setAttribute('hidden', 'hidden');
+      }
+    }
     addButton.removeAttribute('disabled');
   }
 
+  function renderInstanceSizeBlurb(inst, group) {
+    // Friendly green confirmation line beneath the pills once a size
+    // is picked. The detailed measurements live in the pinned compact
+    // tooltip floating above the selected pill (see renderCard) —
+    // same look as the unselected-pill hover tooltip, just pinned
+    // open with an × and a cm/in toggle.
+    var option = getOptionByVariantId(group, inst.variantId);
+    if (!option) return '';
+    var sizeLabel = option.sizeLabel || '';
+    var unitPrice = Number(option.price) || 0;
+
+    return (
+      '<p class="product-matching-set__size-blurb" role="status">' +
+      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>' +
+      '<span class="product-matching-set__size-blurb-text">' +
+      escapeHtml(group.label) +
+      ' &middot; <strong>' +
+      escapeHtml(sizeLabel) +
+      '</strong> &middot; ' +
+      escapeHtml(formatMoney(unitPrice, currency)) +
+      ' each' +
+      '</span>' +
+      '</p>'
+    );
+  }
+
+  function renderCard(inst) {
+    var group = getGroupByKey(inst.groupKey);
+    if (!group) return '';
+
+    // Backfill the new instance fields for cards that pre-existed the
+    // axes refactor: derive sizeLabel + axisSelections from variantId
+    // if they're empty.
+    if (!inst.sizeLabel && inst.variantId) {
+      var existingOpt = getOptionByVariantId(group, inst.variantId);
+      if (existingOpt) {
+        inst.sizeLabel = existingOpt.sizeLabel || '';
+        inst.axisSelections = Object.assign({}, existingOpt.axes || {});
+      }
+    }
+    if (!inst.axisSelections) inst.axisSelections = {};
+
+    var minimumPrice = group.options.reduce(function (lowest, option) {
+      return lowest === null || option.price < lowest ? option.price : lowest;
+    }, null);
+
+    var distinctSizes = getDistinctSizesForGroup(group);
+    var axisNames = getAxisNamesForGroup(group);
+
+    var pillsHtml = distinctSizes
+      .map(function (sizeLabel) {
+        // Each distinct size pill represents ONE size — its underlying
+        // variant is resolved via current axisSelections (e.g. picked
+        // color). When no variant exists for this size + selections we
+        // disable & strike through the pill so shoppers see what's OOS.
+        var representative = resolveVariantInGroup(group, sizeLabel, inst.axisSelections) ||
+          group.options.find(function (o) { return o.sizeLabel === sizeLabel; });
+        if (!representative) return '';
+        var option = representative;
+        var isSelected = inst.sizeLabel === sizeLabel;
+        var combo = resolveVariantInGroup(group, sizeLabel, inst.axisSelections);
+        var isDisabled = !combo || combo.available === false;
+
+        // Compact floating tooltip on EVERY pill that has measurement
+        // data. When the pill is unselected it shows on hover/focus
+        // (mouse-over preview). When the pill is selected AND the
+        // shopper hasn't dismissed it, the tooltip is pinned open
+        // with an × close button and a cm/in toggle so the size
+        // information stays visible while picking quantity and
+        // other family members. Picking a different size on the
+        // same card auto-reopens the new pinned tooltip.
+        var measurements = findMeasurementsForOption(group, option);
+        var measurementsHtml = measurements ? buildMeasurementsHtml(measurements) : '';
+        var isPinned = isSelected && measurementsHtml && !closedPanels[inst.instanceId];
+        var tooltipHtml = '';
+        if (measurementsHtml) {
+          var pinnedExtras = '';
+          if (isPinned) {
+            var isImperial = unitSystem === 'imperial';
+            pinnedExtras =
+              '<span class="product-matching-set__pill-tooltip-controls">' +
+              '<span class="product-matching-set__pill-tooltip-toggle" role="group" aria-label="Units">' +
+              '<button type="button" class="product-matching-set__pill-tooltip-unit' +
+              (isImperial ? '' : ' is-active') +
+              '" data-unit-set="metric" aria-pressed="' +
+              (isImperial ? 'false' : 'true') +
+              '">cm</button>' +
+              '<button type="button" class="product-matching-set__pill-tooltip-unit' +
+              (isImperial ? ' is-active' : '') +
+              '" data-unit-set="imperial" aria-pressed="' +
+              (isImperial ? 'true' : 'false') +
+              '">in</button>' +
+              '</span>' +
+              '<button type="button" class="product-matching-set__pill-tooltip-close" data-size-panel-close="' +
+              escapeHtml(inst.instanceId) +
+              '" aria-label="Close size details">×</button>' +
+              '</span>';
+          }
+          tooltipHtml =
+            '<span class="product-matching-set__pill-tooltip' +
+            (isPinned ? ' is-pinned' : '') +
+            '" role="tooltip">' +
+            '<span class="product-matching-set__pill-tooltip-header">' +
+            '<span class="product-matching-set__pill-tooltip-title">' +
+            escapeHtml(group.label) +
+            ' &middot; ' +
+            escapeHtml(option.sizeLabel || '') +
+            '</span>' +
+            pinnedExtras +
+            '</span>' +
+            measurementsHtml +
+            '</span>';
+        }
+
+        return (
+          '<span class="product-matching-set__pill-wrap' +
+          (tooltipHtml ? ' has-tooltip' : '') +
+          '">' +
+          '<button type="button"' +
+          ' class="product-matching-set__pill' +
+          (isSelected ? ' is-selected' : '') +
+          (isDisabled ? ' is-disabled' : '') +
+          '"' +
+          ' data-instance-pill="' +
+          escapeHtml(inst.instanceId) +
+          '"' +
+          ' data-size-label="' +
+          escapeHtml(sizeLabel) +
+          '"' +
+          ' data-price="' +
+          escapeHtml(option.price) +
+          '"' +
+          (isDisabled ? ' disabled aria-disabled="true"' : '') +
+          (isDisabled ? ' title="Out of stock for current selection"' : '') +
+          ' aria-pressed="' +
+          (isSelected ? 'true' : 'false') +
+          '">' +
+          escapeHtml(sizeLabel) +
+          '</button>' +
+          tooltipHtml +
+          '</span>'
+        );
+      })
+      .filter(Boolean)
+      .join('');
+
+    // Per-axis pickers (Color, Pattern, etc.) rendered after the size
+    // pill row. Each axis becomes its own row with swatches. OOS combos
+    // for the current size selection are disabled but visible.
+    var axisRowsHtml = axisNames.map(function (axisName) {
+      var values = getAxisValuesForGroup(group, axisName);
+      if (values.length <= 1) return ''; // single-value axis = no choice
+      var pickedValue = inst.axisSelections[axisName] || '';
+      // Debug: log axis probe state when window.DLM_BUNDLE_DEBUG is
+      // set (use ?dlm_bundle_debug=1 in the URL to enable). Helps
+      // trace OOS false-positives.
+      var debug = typeof window !== 'undefined' && window.DLM_BUNDLE_DEBUG;
+      var swatchesHtml = values.map(function (value) {
+        // Probe availability: variant must exist for current sizeLabel
+        // (if picked) and this axis value. If no size is picked yet,
+        // probe across any size.
+        var probeSels = Object.assign({}, inst.axisSelections);
+        probeSels[axisName] = value;
+        var sizeForProbe = inst.sizeLabel || '';
+        var matchOpt = resolveVariantInGroup(group, sizeForProbe, probeSels);
+        var anyMatch = matchOpt || group.options.find(function (o) {
+          return (o.axes && o.axes[axisName]) === value;
+        });
+        var avail = matchOpt && matchOpt.available !== false;
+        var disabled = !anyMatch || (sizeForProbe && !avail);
+        var isSelectedSwatch = pickedValue === value;
+        if (debug) {
+          /* eslint-disable no-console */
+          console.log('[bundle axis probe]', {
+            role: group.label,
+            axisName: axisName,
+            value: value,
+            size: sizeForProbe,
+            probeSels: JSON.stringify(probeSels),
+            matchOpt: matchOpt && { id: matchOpt.id, axes: matchOpt.axes, sizeLabel: matchOpt.sizeLabel, available: matchOpt.available },
+            anyMatch: !!anyMatch,
+            avail: avail,
+            disabled: disabled,
+            groupOptions: group.options.map(function (o) { return { sl: o.sizeLabel, axes: o.axes, avail: o.available }; }),
+          });
+          /* eslint-enable no-console */
+        }
+        return (
+          '<button type="button"' +
+          ' class="product-matching-set__axis-pill' +
+          (isSelectedSwatch ? ' is-selected' : '') +
+          (disabled ? ' is-disabled' : '') +
+          '"' +
+          ' data-instance-axis="' +
+          escapeHtml(inst.instanceId) +
+          '"' +
+          ' data-axis-name="' +
+          escapeHtml(axisName) +
+          '"' +
+          ' data-axis-value="' +
+          escapeHtml(value) +
+          '"' +
+          (disabled ? ' disabled aria-disabled="true" title="Not available in your selected size"' : '') +
+          ' aria-pressed="' +
+          (isSelectedSwatch ? 'true' : 'false') +
+          '">' +
+          escapeHtml(value) +
+          '</button>'
+        );
+      }).join('');
+      // Inline contextual prompt for this axis — appears beneath the
+      // axis pills when nothing has been picked yet. Small, subtle.
+      var axisHint = pickedValue
+        ? ''
+        : '<p class="product-matching-set__inline-hint">Pick a ' +
+          escapeHtml(axisName.toLowerCase()) +
+          '</p>';
+      return (
+        '<div class="product-matching-set__axis-row" role="group" aria-label="' +
+        escapeHtml(axisName) +
+        '">' +
+        '<span class="product-matching-set__axis-label">' +
+        escapeHtml(axisName) +
+        (pickedValue ? ': <strong>' + escapeHtml(pickedValue) + '</strong>' : '') +
+        '</span>' +
+        '<div class="product-matching-set__axis-pills">' + swatchesHtml + '</div>' +
+        axisHint +
+        '</div>'
+      );
+    }).filter(Boolean).join('');
+
+    var qty = inst.quantity || 1;
+
+    return (
+      '<div class="product-matching-set__card" data-instance-card="' +
+      escapeHtml(inst.instanceId) +
+      '" data-role-card="' +
+      escapeHtml(inst.roleKey) +
+      '">' +
+      '<div class="product-matching-set__card-header">' +
+      '<span class="product-matching-set__card-title">' +
+      escapeHtml(group.label) +
+      '</span>' +
+      '<button type="button" class="product-matching-set__card-remove" data-instance-remove="' +
+      escapeHtml(inst.instanceId) +
+      '" aria-label="Remove ' +
+      escapeHtml(group.label) +
+      '">×</button>' +
+      '</div>' +
+      (group.helper
+        ? '<span class="product-matching-set__card-helper">' + escapeHtml(group.helper) + '</span>'
+        : '') +
+      '<div class="product-matching-set__pills" role="group" aria-label="' +
+      escapeHtml(group.label + ' size') +
+      '">' +
+      pillsHtml +
+      '</div>' +
+      // Inline contextual prompt directly under the size pills if no
+      // size picked yet. Small + subtle (sits inside the row, not as
+      // a full-width banner) so each prompt reads as guidance for the
+      // adjacent control.
+      (!inst.sizeLabel
+        ? '<p class="product-matching-set__inline-hint">Pick a size</p>'
+        : '') +
+      // Per-card axis rows (Color, Pattern, etc.) — each axis row
+      // emits its own inline "Pick a {axis}" hint below its pills.
+      axisRowsHtml +
+      // Green confirmation blurb only when the card is fully resolved
+      // (size + every axis picked → variantId exists).
+      (inst.variantId ? renderInstanceSizeBlurb(inst, group) : '') +
+      '<div class="product-matching-set__qty" data-instance-qty="' +
+      escapeHtml(inst.instanceId) +
+      '">' +
+      '<button type="button" class="product-matching-set__qty-button" data-qty-action="dec" aria-label="Decrease quantity">−</button>' +
+      '<span class="product-matching-set__qty-value" data-qty-value>' +
+      String(qty) +
+      '</span>' +
+      '<button type="button" class="product-matching-set__qty-button" data-qty-action="inc" aria-label="Increase quantity">+</button>' +
+      '<span class="product-matching-set__card-price" data-role-price>' +
+      escapeHtml(formatMoney(minimumPrice, currency)) +
+      '</span>' +
+      '</div>' +
+      // Per-card "Find my fit" link — uses the same delegated handler
+      // as the Purchase Confidence size-guide trigger.
+      '<a href="#size-chart" class="product-matching-set__fit-link" data-pdp-size-guide-trigger aria-haspopup="dialog">' +
+      'Find ' +
+      escapeHtml(group.label) +
+      "'s fit →" +
+      '</a>' +
+      '</div>'
+    );
+  }
+
+  function renderAddRoleButtons() {
+    // Always show one + Add button per role available on this product.
+    // Tapping creates a NEW card instance (so a mom with two daughters
+    // can have two Girl cards, each with its own size + quantity).
+    var reps = getRoleRepresentatives();
+    if (!reps.length) return '';
+    var buttonsHtml = reps
+      .map(function (group) {
+        return (
+          '<button type="button" class="product-matching-set__add-role" data-add-role-group="' +
+          escapeHtml(group.key) +
+          '">+ Add ' +
+          escapeHtml(group.label) +
+          '</button>'
+        );
+      })
+      .join('');
+    return (
+      '<div class="product-matching-set__add-roles" role="group" aria-label="Add another family member">' +
+      buttonsHtml +
+      '</div>'
+    );
+  }
+
+  function getDefaultGroupsForBootstrap(groups) {
+    // First page load: surface ONE adult card (Mother → Father) + ONE
+    // child card (Girl → Boy → Child → Baby), in role-priority order.
+    // Falls back gracefully when the product is missing either pole.
+    var result = [];
+
+    var adultPriorities = ['mother', 'father', 'adult'];
+    for (var i = 0; i < adultPriorities.length && !result.length; i += 1) {
+      var rk = adultPriorities[i];
+      var match = groups.find(function (g) {
+        return (g.roleKey || g.key) === rk;
+      });
+      if (match) result.push(match);
+    }
+
+    var childPriorities = ['girl', 'boy', 'child', 'baby'];
+    for (var j = 0; j < childPriorities.length; j += 1) {
+      var ck = childPriorities[j];
+      var cmatch = groups.find(function (g) {
+        return (g.roleKey || g.key) === ck;
+      });
+      if (cmatch && result.indexOf(cmatch) === -1) {
+        result.push(cmatch);
+        break;
+      }
+    }
+
+    // Ensure two cards default-visible. If the product only has one
+    // role bucket, push the next available group. (Some products may
+    // only have a single bucket — e.g. all "Child" variants — and we
+    // still want the shopper to see a clear "+ Add another Child"
+    // affordance below the single visible card.)
+    if (!result.length && groups.length) result.push(groups[0]);
+    if (result.length === 1 && groups.length > 1) {
+      var second = groups.find(function (g) {
+        return g !== result[0];
+      });
+      if (second) result.push(second);
+    }
+    return result;
+  }
+
+  function bindCardEvents() {
+    // Size pill click — sets inst.sizeLabel and recomputes variantId
+    // from the current axisSelections. Toggling the selected pill
+    // clears it.
+    builder.querySelectorAll('[data-instance-pill]').forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        if (pill.hasAttribute('disabled')) return;
+        var instanceId = pill.getAttribute('data-instance-pill');
+        var sizeLabel = pill.getAttribute('data-size-label');
+        var inst = findInstance(instanceId);
+        if (!inst) return;
+        if (inst.sizeLabel === sizeLabel) {
+          inst.sizeLabel = '';
+        } else {
+          inst.sizeLabel = sizeLabel;
+        }
+        refreshInstanceVariantId(inst);
+        delete closedPanels[instanceId];
+        if (status) status.setAttribute('hidden', 'hidden');
+        renderBuilder();
+      });
+    });
+
+    // Axis swatch click (Color, Pattern, etc.). Picking a new value
+    // updates inst.axisSelections; if the current size is no longer
+    // available in the new combo, sizeLabel is preserved but variantId
+    // becomes '' (and the size pill renders as OOS until shopper
+    // adjusts).
+    builder.querySelectorAll('[data-instance-axis]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (btn.hasAttribute('disabled')) return;
+        var instanceId = btn.getAttribute('data-instance-axis');
+        var axisName = btn.getAttribute('data-axis-name');
+        var axisValue = btn.getAttribute('data-axis-value');
+        var inst = findInstance(instanceId);
+        if (!inst || !axisName) return;
+        if (!inst.axisSelections) inst.axisSelections = {};
+        if (inst.axisSelections[axisName] === axisValue) {
+          delete inst.axisSelections[axisName];
+        } else {
+          inst.axisSelections[axisName] = axisValue;
+        }
+        refreshInstanceVariantId(inst);
+        delete closedPanels[instanceId];
+        renderBuilder();
+      });
+    });
+
+    // Size-panel close (×).
+    builder.querySelectorAll('[data-size-panel-close]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var instanceId = btn.getAttribute('data-size-panel-close');
+        closedPanels[instanceId] = true;
+        renderBuilder();
+      });
+    });
+
+    // Per-panel cm/in toggle — flips the global unitSystem and
+    // re-renders ALL panels. Persists to localStorage.
+    builder.querySelectorAll('[data-unit-set]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var next = btn.getAttribute('data-unit-set');
+        setUnitSystem(next);
+      });
+    });
+
+    builder.querySelectorAll('[data-instance-qty]').forEach(function (qtyEl) {
+      var instanceId = qtyEl.getAttribute('data-instance-qty');
+      qtyEl.querySelectorAll('[data-qty-action]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          var inst = findInstance(instanceId);
+          if (!inst) return;
+          var action = button.getAttribute('data-qty-action');
+          if (action === 'inc') {
+            inst.quantity = (inst.quantity || 1) + 1;
+          } else if (action === 'dec') {
+            var current = inst.quantity || 1;
+            if (current <= 1) {
+              // At qty=1, − behaves like × — remove the whole card so
+              // shoppers don't get stuck with a row they can't dismiss
+              // from the qty stepper.
+              removeInstance(instanceId);
+            } else {
+              inst.quantity = current - 1;
+            }
+          }
+          renderBuilder();
+        });
+      });
+    });
+
+    builder.querySelectorAll('[data-instance-remove]').forEach(function (removeBtn) {
+      removeBtn.addEventListener('click', function () {
+        var instanceId = removeBtn.getAttribute('data-instance-remove');
+        removeInstance(instanceId);
+        renderBuilder();
+      });
+    });
+
+    builder.querySelectorAll('[data-add-role-group]').forEach(function (addBtn) {
+      addBtn.addEventListener('click', function () {
+        var groupKey = addBtn.getAttribute('data-add-role-group');
+        var group = getGroupByKey(groupKey);
+        if (!group) return;
+        addInstanceForGroup(group);
+        renderBuilder();
+      });
+    });
+  }
+
   function renderBuilder(preservedSelections) {
-    var groups = buildRoleGroups(productData, getCurrentOptionContext(variantSelects));
+    // Pass `true` so we get every variant (including OOS combos) plus
+    // the axes map. When Type is implicit per role (mother↔Dress,
+    // father↔Shirt etc.), also skip the Type filter so all four role
+    // groups stay available regardless of which Type the legacy picker
+    // happens to have selected.
+    var currentCtx = getCurrentOptionContext(variantSelects);
+    var groups = buildRoleGroups(productData, currentCtx, true, {
+      skipTypeFilter: typeIsImplicit,
+    });
+    roleGroupsCache = groups;
+
+    // Optional debug dump. Enable in browser console with
+    //   window.DLM_BUNDLE_DEBUG = true;
+    // and click any pill to trigger a re-render — useful when chasing
+    // per-card axis bugs (e.g. "only one color showing" cases).
+    try {
+      if (window && window.DLM_BUNDLE_DEBUG) {
+      // eslint-disable-next-line no-console
+      console.debug('[DLM bundle render]', {
+        typeIsImplicit: typeIsImplicit,
+        currentCtx: currentCtx,
+        productOptions: productData.options,
+        groups: groups.map(function (g) {
+          return {
+            key: g.key, roleKey: g.roleKey, label: g.label, helper: g.helper,
+            distinctSizes: getDistinctSizesForGroup(g),
+            axisNames: getAxisNamesForGroup(g),
+            axisValues: getAxisNamesForGroup(g).reduce(function (a, n) {
+              a[n] = getAxisValuesForGroup(g, n);
+              return a;
+            }, {}),
+            optionsSample: g.options.slice(0, 30).map(function (o) {
+              return { id: o.id, sl: o.sizeLabel, axes: o.axes, avail: o.available };
+            }),
+          };
+        }),
+        instances: instances.map(function (inst) {
+          return {
+            id: inst.instanceId, roleKey: inst.roleKey, groupKey: inst.groupKey,
+            sizeLabel: inst.sizeLabel, axisSelections: inst.axisSelections, variantId: inst.variantId,
+          };
+        }),
+      });
+      }
+    } catch (_e) { /* ignore */ }
 
     if (groups.length < 2) {
       builder.setAttribute('hidden', 'hidden');
@@ -1118,98 +2294,61 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
 
     builder.removeAttribute('hidden');
 
-    roleGrid.innerHTML = groups
-      .map(function (group) {
-        var minimumPrice = group.options.reduce(function (lowest, option) {
-          return lowest === null || option.price < lowest ? option.price : lowest;
-        }, null);
-
-        var optionMarkup = group.options
-          .map(function (option) {
-            return (
-              '<option value="' +
-              escapeHtml(option.id) +
-              '" data-price="' +
-              escapeHtml(option.price) +
-              '">' +
-	              escapeHtml(getMatchingSetOptionLabel(group, option)) +
-              '</option>'
-            );
-          })
-          .join('');
-
-        return (
-          '<div class="product-matching-set__card">' +
-          '<div class="product-matching-set__card-header">' +
-          '<span class="product-matching-set__card-title">' +
-          escapeHtml(group.label) +
-          '</span>' +
-          '<span class="product-matching-set__card-price" data-role-price data-default-price="' +
-          escapeHtml(formatMoney(minimumPrice, currency)) +
-          '">' +
-          escapeHtml(formatMoney(minimumPrice, currency)) +
-          '</span>' +
-          '</div>' +
-          (group.helper
-            ? '<span class="product-matching-set__card-helper">' + escapeHtml(group.helper) + '</span>'
-            : '') +
-          '<select class="product-matching-set__select" data-role-select="' +
-          escapeHtml(group.key) +
-          '">' +
-          '<option value="">' +
-          escapeHtml(wrapper.getAttribute('data-select-size-label') || 'Select size') +
-          '</option>' +
-          optionMarkup +
-          '</select>' +
-          '</div>'
-        );
-      })
-      .join('');
-
-    var nextSelections = preservedSelections || {};
-    if (!Object.keys(nextSelections).length) {
-      var currentVariant = getCurrentVariant();
-	      if (currentVariant && !getFirstMissingOption(variantSelects)) {
-	        var sizeIndex = findSizeOptionIndex(productData.options);
-	        var currentRole = getRoleInfoForVariant(currentVariant, productData.options, sizeIndex);
-	        if (currentRole) {
-	          var currentGroupKey = getRoleGroupKey(
-	            currentRole,
-	            getTypeOptionValue(currentVariant, productData.options, sizeIndex)
-	          );
-	          if (currentGroupKey) nextSelections[currentGroupKey] = String(currentVariant.id);
-	        }
-	      }
+    // Type axis reactivity. Only relevant when Type is NOT implicit —
+    // for products where Type cleanly partitions roles, the per-card
+    // model already shows all roles and Type changes are noise we
+    // don't want to react to (they'd erase the shopper's cards).
+    if (!typeIsImplicit) {
+      var typeKey = '';
+      var ctxKeys = Object.keys(currentCtx);
+      for (var ti = 0; ti < ctxKeys.length; ti += 1) {
+        if (isTypeLikeLabel(ctxKeys[ti])) {
+          typeKey = String(currentCtx[ctxKeys[ti]] || '').toLowerCase();
+          break;
+        }
+      }
+      if (lastTypeContext !== null && lastTypeContext !== typeKey) {
+        instances = [];
+        hasSeededDefaults = false;
+        closedPanels = Object.create(null);
+      }
+      lastTypeContext = typeKey;
     }
 
-    builder.querySelectorAll('[data-role-select]').forEach(function (select) {
-      var roleKey = select.getAttribute('data-role-select');
-      var selectionValue = nextSelections[roleKey];
-      if (!selectionValue) return;
-      var matchingOption = Array.from(select.options).find(function (option) {
-        return option.value === selectionValue;
+    // First render (or after a Type change): seed one EMPTY card per
+    // default-visible role. The shopper must deliberately pick a size
+    // — no URL-variant pre-selection (covered in earlier fix).
+    if (!hasSeededDefaults && !instances.length) {
+      hasSeededDefaults = true;
+      getDefaultGroupsForBootstrap(groups).forEach(function (group) {
+        addInstanceForGroup(group);
       });
-      if (matchingOption) select.value = selectionValue;
-    });
+    }
 
-    builder.querySelectorAll('[data-role-select]').forEach(function (select) {
-      select.addEventListener('change', function () {
-        status.setAttribute('hidden', 'hidden');
-        updateSummary();
-      });
-    });
+    // NOTE: we intentionally drop the old preservedSelections bootstrap
+    // here. The `instances` array IS the source of truth and survives
+    // re-renders (it lives in the closure). Auto-filling cards from a
+    // <variant-selects> change event would re-trigger the same wrong
+    // pre-selection behavior described above.
 
+    // Render cards in instance-order (the order the shopper added them).
+    var visibleCardsHtml = instances.map(renderCard).join('');
+    roleGrid.innerHTML = visibleCardsHtml + renderAddRoleButtons();
+
+    bindCardEvents();
     updateSummary();
   }
 
   async function addSelectedItems() {
-    var selectedItems = Array.from(builder.querySelectorAll('[data-role-select]'))
-      .filter(function (select) {
-        return !!select.value;
+    var items = getSelectedItems()
+      .filter(function (item) {
+        return !!item.id && item.quantity > 0;
       })
-      .map(function (select) {
-        return { id: select.value, quantity: 1 };
+      .map(function (item) {
+        return { id: item.id, quantity: item.quantity };
       });
+
+    var selectedItems = items;
 
     if (!selectedItems.length) return;
 
@@ -2668,7 +3807,11 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
       .join('');
 
     var selectedGuideDisplay = formatSelectedGuideDisplay(match, selectedState);
-    var snapshotHtml = '<section class="matching-size-guide__snapshot-card" aria-live="polite" aria-atomic="true">';
+    // CRO Tier 1 (May 2026): the measurement grid is dense and dominates
+    // the viewport before commitment. Collapse it by default and reveal
+    // it on demand so the size-confirmation summary stays clean.
+    var metricsId = 'matching-size-guide-metrics-' + Math.random().toString(36).slice(2, 9);
+    var snapshotHtml = '<section class="matching-size-guide__snapshot-card matching-size-guide__snapshot-card--collapsible" data-matching-size-guide-snapshot-card aria-live="polite" aria-atomic="true">';
     snapshotHtml += '<div class="matching-size-guide__toolbar">';
     snapshotHtml += '<div class="matching-size-guide__intro">';
     snapshotHtml += '<p class="matching-size-guide__eyebrow">' + escapeHtml(snapshotLabel) + '</p>';
@@ -2681,7 +3824,19 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     snapshotHtml += '</div>';
 
     if (measurementHtml) {
-      snapshotHtml += '<div class="matching-size-guide__metrics">' + measurementHtml + '</div>';
+      snapshotHtml +=
+        '<button type="button" class="matching-size-guide__metrics-toggle" data-matching-size-guide-metrics-toggle aria-expanded="false" aria-controls="' +
+        metricsId +
+        '">' +
+        '<span class="matching-size-guide__metrics-toggle-label" data-matching-size-guide-metrics-toggle-label>Find your family\'s fit</span>' +
+        '<span class="matching-size-guide__metrics-toggle-icon" aria-hidden="true"></span>' +
+        '</button>';
+      snapshotHtml +=
+        '<div class="matching-size-guide__metrics matching-size-guide__metrics--collapsible" id="' +
+        metricsId +
+        '" data-matching-size-guide-metrics hidden>' +
+        measurementHtml +
+        '</div>';
     } else {
       snapshotHtml += '<p class="matching-size-guide__helper matching-size-guide__helper--snapshot">' + escapeHtml(compareHintLabel) + '</p>';
     }
@@ -2689,6 +3844,27 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     snapshotHtml += '</section>';
     snapshot.innerHTML = snapshotHtml;
     snapshot.removeAttribute('hidden');
+
+    // Wire up the new measurements toggle. The button starts collapsed
+    // (aria-expanded="false"), reveals the grid on first click, and
+    // updates its label text/aria-expanded so it stays accessible.
+    var toggle = snapshot.querySelector('[data-matching-size-guide-metrics-toggle]');
+    var metricsPanel = snapshot.querySelector('[data-matching-size-guide-metrics]');
+    var toggleLabel = snapshot.querySelector('[data-matching-size-guide-metrics-toggle-label]');
+    if (toggle && metricsPanel) {
+      toggle.addEventListener('click', function () {
+        var nextExpanded = toggle.getAttribute('aria-expanded') !== 'true';
+        toggle.setAttribute('aria-expanded', nextExpanded ? 'true' : 'false');
+        if (nextExpanded) {
+          metricsPanel.removeAttribute('hidden');
+        } else {
+          metricsPanel.setAttribute('hidden', 'hidden');
+        }
+        if (toggleLabel) {
+          toggleLabel.textContent = nextExpanded ? 'Hide fit details' : 'Find your family\'s fit';
+        }
+      });
+    }
   }
 
   var renderTableCard = function (headers, rows, title, helper, selectedEntry, roleKey) {

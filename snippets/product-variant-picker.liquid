@@ -98,6 +98,18 @@
           assign hide_unavailable_dropdown_options = true
         endif
 
+        comment
+          CRO Tier 1 (May 2026): apparel converts better when sizes are
+          pill buttons rather than a dropdown — faster scanning, bigger
+          tap targets, easier comparison, and disabled-OOS visibility.
+          Force the size option to render as pill buttons regardless of
+          the section setting. Other options (color, family, type) keep
+          whatever picker the theme settings asked for.
+        endcomment
+        if is_size_option
+          assign picker_type = 'button'
+        endif
+
         if is_color_option
           for variant in product.variants
             if variant.available

@@ -955,7 +955,15 @@
           id="ProductInfo-{{ section.id }}"
           data-section="{{ section.id }}"
           data-url="{{ product.url }}"
-          class="product__info-container dlm-reference-ui{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
+          {%- comment -%}
+            CRO redesign (May 2026): expose has_matching_set_context to
+            CSS/JS so the redesigned bundle UI (single CTA, family-member
+            cards, compressed spacing, collapsed Purchase Confidence) can
+            be scoped cleanly with [data-has-matching-set="true"] and
+            non-bundle products keep their Dawn-default behavior.
+          {%- endcomment -%}
+          data-has-matching-set="{% if has_matching_set_context %}true{% else %}false{% endif %}"
+          class="product__info-container dlm-reference-ui{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}{% if has_matching_set_context %} product__info-container--matching-set{% endif %}"
         >
 
 
@@ -1019,7 +1027,26 @@
                   social_proof_text: section.settings.social_proof_text
                 %}
               {%- when 'price' -%}
-                <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                {%- comment -%}
+                  CRO redesign (May 2026): expose computed savings % on the
+                  price container so CSS can render a 'Save Z%' badge in
+                  the matching-set scope without forking snippets/price.liquid.
+                {%- endcomment -%}
+                {%- liquid
+                  assign pdp_variant = product.selected_or_first_available_variant
+                  assign pdp_sale_pct = 0
+                  if pdp_variant.compare_at_price and pdp_variant.compare_at_price > pdp_variant.price
+                    assign pdp_diff = pdp_variant.compare_at_price | minus: pdp_variant.price
+                    assign pdp_diff_x100 = pdp_diff | times: 100
+                    assign pdp_sale_pct = pdp_diff_x100 | divided_by: pdp_variant.compare_at_price
+                  endif
+                -%}
+                <div
+                  id="price-{{ section.id }}"
+                  role="status"
+                  data-pdp-sale-percent="{{ pdp_sale_pct }}"
+                  {{ block.shopify_attributes }}
+                >
                   {%- render 'price',
                     product: product,
                     use_variant: true,
@@ -1027,6 +1054,9 @@
                     show_sold_out_badge: false,
                     price_class: 'price--large'
                   -%}
+                  {%- if pdp_sale_pct > 0 -%}
+                    <span class="pdp-save-pill" aria-hidden="true">Save {{ pdp_sale_pct }}%</span>
+                  {%- endif -%}
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
@@ -1816,6 +1846,20 @@
       var selectedSizeTemplate = getProductPageCopyValue('selected_size_label') || 'Size: __SIZE__';
 
       if (!atcBtn && productForm) atcBtn = productForm.querySelector('[name="add"]');
+
+      // CRO redesign May 2026: on matching-set products the standalone
+      // ATC is hidden in favor of the bundle CTA. Repoint the sticky
+      // bottom bar at the bundle's "Add Matching Set to Cart" button so
+      // it (a) tracks the correct in-viewport target and (b) forwards
+      // taps to the right action. Falls back to the original ATC when
+      // there is no matching-set builder on the page.
+      var infoContainer = document.getElementById('ProductInfo-{{ section.id }}');
+      var isMatchingSet = infoContainer && infoContainer.getAttribute('data-has-matching-set') === 'true';
+      if (isMatchingSet) {
+        var bundleCta = document.querySelector('[data-matching-set-add-button]');
+        if (bundleCta) atcBtn = bundleCta;
+      }
+
       if (!atcBtn || !stickyBtn) return;
 
       function getProductPageCopyValue(key) {
@@ -1851,6 +1895,13 @@
       }
 
       function getButtonLabel() {
+        // CRO redesign May 2026: on matching-set products the sticky
+        // button forwards to the bundle CTA. Mirror its visible label
+        // verbatim rather than the default "Add to cart" translation.
+        if (isMatchingSet && atcBtn && atcBtn.hasAttribute('data-matching-set-add-button')) {
+          var bundleText = (atcBtn.textContent || '').trim();
+          return bundleText || 'Add Matching Set';
+        }
         var labelNode = atcBtn.querySelector('span');
         if (!labelNode) return addToCartLabel;
         var labelText = labelNode.textContent ? labelNode.textContent.trim() : '';
@@ -2310,6 +2361,26 @@
       }
 
       stickyBtn.addEventListener('click', function (event) {
+        // CRO redesign May 2026: bundle products use their own per-card
+        // size selection. The legacy size/color/option-prompt gating
+        // below relies on the main variant-selects, which is irrelevant
+        // for the bundle flow — bypass it and forward straight to the
+        // bundle CTA (which has its own disabled-until-valid state).
+        if (isMatchingSet && atcBtn && atcBtn.hasAttribute('data-matching-set-add-button')) {
+          if (atcBtn.hasAttribute('disabled')) {
+            event.preventDefault();
+            // Scroll the bundle into view so the shopper knows what to
+            // pick. The bundle CTA itself is the call-out.
+            var bundleSection = document.querySelector('[data-matching-set-builder]');
+            if (bundleSection && typeof bundleSection.scrollIntoView === 'function') {
+              bundleSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return;
+          }
+          atcBtn.click();
+          return;
+        }
+
         var sizeSelectionState = getSizeSelectionState();
         if (sizeSelectionState.hasSizeOption && (!hasUserConfirmedSizeSelection || !sizeSelectionState.isComplete)) {
           event.preventDefault();
@@ -2454,11 +2525,17 @@
       'Build your matching set': copy.matching_set_heading,
       ['Choose the family sizes you want and add them together from one product page.']: copy.matching_set_copy,
       ['Add one piece per family member. Sizes are independent and each piece is sold separately.']: copy.matching_set_copy,
+      // CRO Tier 1 (May 2026): new conversion-friendly EN default — must
+      // still get swapped to the localized matching_set_copy for non-EN
+      // shoppers, so we add it as another runtime translation key.
+      ['Add matching family sizes below — each selection is sold separately.']: copy.matching_set_copy,
       ['Choose at least one family size to add your set.']: copy.matching_set_empty,
       ['Choose at least one size to add your set.']: copy.matching_set_empty,
       'Add selected pieces': copy.matching_set_add,
       'Add selected pieces to cart': copy.matching_set_add,
       'Add matching pieces to cart': copy.matching_set_add,
+      // CRO redesign May 2026: new bundle CTA copy.
+      'Add Matching Set to Cart': copy.matching_set_add,
       'Compare family sizes': copy.grouped_size_guide_label,
       'Compare all sizes': copy.compare_size_guide_label,
       'Size guide & fit': copy.single_size_guide_label,

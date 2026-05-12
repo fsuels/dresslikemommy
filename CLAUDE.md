@@ -18,14 +18,24 @@ When Frank says **"sync to main"**, **"sync all changes to main"**,
 **"do it for me"**, **"push to live"**, or any similar phrasing, this is
 what he means and what Claude MUST do:
 
-1. **Push to GitHub `main`** — commit every local change and push to
-   `origin/main`.
-2. **Deploy to the Shopify LIVE theme** — push the same files into the
-   currently-published theme on `dresslikemommy.com`.
+**Push to GitHub `main`. THAT IS the live deploy.** The live theme on
+`dresslikemommy.com` is configured as a **GitHub-connected theme** —
+see Shopify Admin → Online Store → Themes, where the live theme card
+shows `dresslikemommy/main` with a GitHub icon. Pushing to
+`origin/main` causes Shopify to pull the new theme files automatically
+within seconds. There is no separate `shopify theme push --live` step
+required, and the older Shopify CLI prompt that sometimes appears in
+Terminal can be answered with `n` — it's a leftover from before the
+GitHub integration was wired up.
 
-A GitHub push alone does NOT update the live storefront. The live theme
-is not connected to the GitHub branch — it's deployed via the Shopify
-CLI.
+**If Frank sees the live site still showing old content after a push:**
+1. Hard-refresh the page (Cmd+Shift+R) to bust browser cache.
+2. If still wrong, wait 30-60s — Shopify's GitHub pull can lag briefly.
+3. If still wrong after a minute, check Shopify Admin → Themes → click
+   the `···` menu next to the live theme → confirm GitHub sync ran.
+
+Never tell Frank to re-run `shopify theme push --live` to "fix" a
+cache issue. The GitHub push IS the deploy.
 
 ### THE WORKING PROCEDURE (proven May 11, 2026 — DO NOT DEVIATE)
 
@@ -77,17 +87,16 @@ The proven path uses VS Code's Source Control panel because:
      button is gone / greyed out).
    - The Terminal window shows the git push output ending in
      `<old>..<new>  main -> main`.
-   - The Shopify CLI prompt is visible: "Push theme files to the live
-     theme on dresslikemommy-com.myshopify.com? (y) Yes (n) Cancel".
 
-7. **The final `y` confirmation in Shopify CLI must be typed by Frank**
-   — Claude cannot type into Terminal. Claude should:
-   - Click into the Terminal window to focus it.
-   - Tell Frank explicitly: **"Press `y` then Return to confirm the
-     live deploy"** — and nothing else, no walls of text, no options.
+7. **That's it. GitHub push = live deploy.** Tell Frank the commit
+   landed and to hard-refresh (Cmd+Shift+R) on the live site in 30s to
+   bust browser cache. Do NOT ask him to confirm a Shopify CLI prompt
+   — that prompt, if it appears in Terminal from a stale CLI hook, is
+   safe to answer `n`. The GitHub integration handles deploy.
 
-8. After Frank confirms, wait 30s and screenshot again to verify the
-   Shopify CLI returned to a clean `$` prompt with no errors.
+8. Verify the commit landed on `origin/main` from the sandbox shell:
+   `cd /sessions/.../dresslikemommy && git log origin/main --oneline -2`.
+   That confirms the push reached GitHub and Shopify will pick it up.
 
 ### Why the OLD "give Frank a clipboard one-liner" approach is BANNED
 
