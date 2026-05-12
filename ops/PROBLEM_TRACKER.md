@@ -16,6 +16,7 @@ Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
 | `PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH` | `P2` | `PARTIALLY_MITIGATED_LOCAL_ADS_HOLD__OWNER_APPROVAL_REQUIRED_FOR_SHOPIFY_FIX` | Next Shopify/CRO or Google Ads growth agent | Public Shopify product `7227378892897` / handle `matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set`; paid-candidate final URL | Use the held 1496-row local Google Ads CSV or its per-country split files for any future approved paused non-US Search preview/import, or get exact owner approval for a narrow Shopify product SEO/social metadata repair in English plus localized routes. Do not edit live Shopify product data under paid-growth guardrails without approval | Public readback shows beach/vacation-specific title/OG/Twitter title and no stale Christmas wording on the paid-candidate URL, or active Ads import packets exclude/swap all Vacation Family rows tied to the bad handle until fixed | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-localized-copy-pinterest-manifest-safe-advance/lanes/google-ads-split-manifest/GOOGLE_ADS_SPLIT_IMPORT_CONTROL_REPORT.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-url-hold-checkout-safe-advance/` |
 | `PROB-2026-05-10-PAID-GROWTH-GUARDRAIL-SCOPE-CONFLICT` | `P1` | `PARTIALLY_SUPERSEDED_FOR_PREP_NOT_LIVE_ENABLE` | Parent/orchestrator / next paid-growth operator | Current owner goal guardrails vs canonical paused-build language | The current goal says no budget/bid/status changes, while older canonical/approved paused-build lanes can require setting initial budgets/bids/statuses to create paused account objects. Stricter rule controls: do not create new Google Ads/Pinterest account objects in this scope without fresh explicit action-time approval that names the allowed budget/bid/status fields | Owner gives a new exact approval that reconciles the conflict for a named paused build, or all remaining setup stays local/read-only/draft-template only | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-platform-matrix/PAID_GROWTH_MULTILINGUAL_PLATFORM_MATRIX_REPORT.md` |
 | `PROB-2026-05-10-PINTEREST-MULTILINGUAL-SETUP-GATE` | `P2` | `LOCAL_NON_US_PREP_AND_KEYWORD_PLAN_READY__ACCOUNT_WRITES_GATED` | Parent/orchestrator / next Pinterest growth agent | Pinterest setup beyond US `en-US` | Current repo evidence has US-only Pinterest clean scope/templates; non-US Pinterest now has local-only operator templates and a catalog/copy term quality plan for all 17 markets, but no non-US country-specific Pinterest catalog/source/product-group/readback scope exists. Do not infer Pinterest readiness from Google Search artifacts | Each target market has a local Pinterest scope/source/copy/readback packet and exact approval gate, or the owner explicitly decides Pinterest stays US-only until Event Quality/US draft gates clear | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/pinterest_multilingual_keyword_interest_quality_plan.csv`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/PINTEREST_KEYWORD_QUALITY_GATES.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-authority-safe-launch-prep/lanes/pinterest-non-us-local-drafts/PINTEREST_NON_US_LOCAL_DRAFTS_REPORT.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-platform-matrix/lanes/pinterest-matrix/PINTEREST_MULTILINGUAL_LOCAL_PREP.md` |
+| `PROB-2026-05-12-ACTIVE-CAMPAIGN-COVERAGE-GOAL` | `P0` | `GOAL_NOT_COMPLETE__ACTIVATION_PATH_MAPPED_APPROVAL_AND_MEASUREMENT_GATED` | Parent/orchestrator / next activation operator | Owner goal: working active Google Ads and Pinterest campaigns for every viable language/market | Use `ACTIVE_CAMPAIGN_COVERAGE_MATRIX.md` and `APPROVAL_LADDER.md` as the activation map. Next unblock is refreshed GA4 read-only scopes or exact controlled-test-purchase approval; then first Google Ads GB activation readbacks/approval. In parallel, get exact approval for paused Pinterest US EN draft creation. Continue RO/PT/GR/FR/BE paused build only with one-country/no-duplicate safeguards | Google Ads and Pinterest have active, measured, read-back-clean campaigns for every owner-approved viable language/market, or each excluded market has an explicit owner decision and evidence-backed reason | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-active-campaign-activation-push/ACTIVE_CAMPAIGN_COVERAGE_MATRIX.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-active-campaign-activation-push/APPROVAL_LADDER.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-active-campaign-activation-push/ga4_scope_retry/GA4_SCOPE_RETRY.md` |
 | `PROB-2026-05-12-RO-PDP-SHIPPING-COPY-FREE-WORDING` | `P2` | `SOLVED_LOCAL_READBACK_PASSED` | Codex parent/orchestrator 2026-05-12 | Local Romanian PDP purchase-confidence copy and English fallback in theme files | No further local action for this narrow copy issue. Do not deploy/publish separately without normal theme sync/deployment path | RO local PDP and relevant locale/snippet files have `0` hits for `Free standard shipping`, `Standard shipping is free`, or `Livrare standard gratuit`, and Theme Check has no offenses | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-measurement-safe-lanes/PAID_GROWTH_MEASUREMENT_SAFE_LANES_REPORT.md` |
 
 ## Recently Solved
@@ -45,6 +46,57 @@ Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
 | `PROB-2026-05-08-PINTEREST-CATALOG-337-346` | `P1` | `SUPERSEDED_BY_SAFER_PATH` | 2026-05-08 | Pinterest EN-US catalog proof for US paused draft scope | Re-resolved 5 stale rows, built clean 342-row scope, excluded 4 unresolved variants | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/PINTEREST_CATALOG_EVENT_UNBLOCK_REPORT.md` |
 
 ## Detailed Problem Records
+
+### `PROB-2026-05-12-ACTIVE-CAMPAIGN-COVERAGE-GOAL`
+
+Priority: `P0`
+
+Status: `GOAL_NOT_COMPLETE__ACTIVATION_PATH_MAPPED_APPROVAL_AND_MEASUREMENT_GATED`
+
+Owner/session: Parent/orchestrator current session, 2026-05-12.
+
+Surface: Google Ads and Pinterest active campaign coverage across every viable language/market.
+
+Exact symptom:
+- Owner clarified that the real goal is not merely safe-lane documentation. The target is working active Google Ads and Pinterest campaigns for every viable language/market.
+
+Business impact:
+- Stopping at paused/read-only infrastructure leaves revenue growth unrealized. The sprint needs a concrete activation path while preserving spend and production-write safety gates.
+
+Definition of fixed:
+- Google Ads and Pinterest have active, measured, read-back-clean campaigns for every owner-approved viable language/market, or each excluded market has an explicit owner decision and evidence-backed reason.
+- Activation readbacks prove correct campaign/status/budget/bid/location/network/conversion/product or catalog scope, with no unintended spend or production mutation.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-12 current session | Reframed the sprint from safe-lane completion to active-campaign coverage after owner correction | `GOAL_NOT_COMPLETE`: Google Ads has active US Shopping and Brand Search plus paused infrastructure; Pinterest has no active campaigns. The active-campaign path is now mapped instead of being treated as done | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-active-campaign-activation-push/ACTIVE_CAMPAIGN_COVERAGE_MATRIX.md` |
+| 2026-05-12 current session | Ran Google Ads activation-readiness sidecar | Confirmed current active campaigns, paused built campaigns, absent/parked markets, first GB activation approval wording, and that measurement proof must close before first non-US activation | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-active-campaign-activation-push/ACTIVE_CAMPAIGN_COVERAGE_MATRIX.md` |
+| 2026-05-12 current session | Ran Pinterest activation-readiness sidecar | Confirmed Pinterest has no active campaigns; US EN is the only account-ready paused-draft scope after approval; non-US Pinterest remains local-only/gated | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-active-campaign-activation-push/ACTIVE_CAMPAIGN_COVERAGE_MATRIX.md` |
+| 2026-05-12 current session | Retried safe read-only GA4 API recovery | `STILL_GATED`: current `gcloud` user account exists, ADC is unavailable, installed `gcloud auth print-access-token` has no `--scopes` option, and GA4 Data API metadata still returns `403 ACCESS_TOKEN_SCOPE_INSUFFICIENT` | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-active-campaign-activation-push/ga4_scope_retry/GA4_SCOPE_RETRY.md` |
+| 2026-05-12 current session | Built exact approval ladder | Created separate exact approval text for controlled non-US measurement test purchase, first GB Google Ads activation, paused Pinterest US draft build, optional Pinterest read-only freshness check, and remaining Google Ads paused build continuation | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-active-campaign-activation-push/APPROVAL_LADDER.md` |
+
+Failed or ruled-out paths:
+- Enabling campaigns or creating live Pinterest account objects from the owner-stated goal alone is ruled out by the standing hard guardrails. Those actions are live-spend/status/account writes and need exact action-time approval naming the action and scope.
+- The current CLI token path cannot close GA4 measurement proof because it lacks Analytics scopes.
+
+Current next action:
+- Refresh GA4 read-only Data/Admin API scopes for property `330266838`, or get exact approval for the controlled non-US measurement test purchase in `APPROVAL_LADDER.md`.
+- After measurement is resolved, use the first GB Google Ads activation approval wording and run just-in-time pre/post readbacks.
+- In parallel, get exact approval for the paused Pinterest US EN draft build, then read back before/after.
+
+Approval/credential/platform gates:
+- GA4 read-only scope refresh or exact controlled test-purchase approval.
+- Exact Google Ads activation approval for campaign/ad group/status delta.
+- Exact Pinterest paused-draft approval before account-object creation.
+- Google Ads upload-throttle cooldown and no-duplicate readbacks before RO/PT/GR/FR/BE continuation.
+
+Parallel work to continue:
+- Build Pinterest non-US local scope packets starting GB, CA, AU.
+- Resolve native review and landing QA for ES/IT first, then other review-ready locales.
+- Repair or continue excluding beach/Vacation Family blocked URL from paid traffic.
+- Resolve Merchant US/es age_group only under exact owner approval.
 
 ### `PROB-2026-05-12-PDP-SIZE-TOOLTIP-STACKING`
 
@@ -1491,6 +1543,52 @@ Approval/credential/platform gates:
 Parallel work to continue:
 - Paid-growth, Google Ads, Merchant, Pinterest, GA4/GTM, and Shopify Admin product/page/policy lanes remain separate.
 
+### `PROB-2026-05-12-MOBILE-PDP-SIZE-PANEL-OPTION-CONTRAST`
+
+Priority: `P1`
+
+Status: `SOLVED_LOCAL_BROWSER_READBACK_PASSED`
+
+Owner/session: Codex current session, 2026-05-12.
+
+Surface: Local PDP matching-set mobile size panel and option controls in `assets/product-desktop-ux.js`, `assets/component-product-desktop-ux.css`, and `sections/main-product.liquid`.
+
+Exact symptom:
+- On mobile, selecting a size pins the size-chart measurement panel open; when the shopper scrolls down, the panel can keep floating over color/type/quantity controls instead of behaving like the shopper tapped the panel X.
+- Some type/option buttons can enter a selected/active state where the fill and text contrast are not reliably readable.
+
+Business impact:
+- The size guidance is useful at the moment of picking a size, but if it blocks the next controls it turns into friction exactly inside the buying flow.
+- Unreadable option buttons make shoppers uncertain about which type/color/piece is selected.
+
+Definition of fixed:
+- On mobile, once a pinned size panel is open, the first meaningful vertical scroll after selection closes it the same way the X close does.
+- Pinned panel state also clears before clicking per-card type/color axes or quantity controls, so it cannot block those controls.
+- Selected global Type/pill controls and per-card axis buttons keep readable contrast in hover, focus, active, and selected states.
+- Browser/mobile readback confirms select size -> panel visible, scroll down -> panel hidden, then axis/type/quantity controls remain clickable/readable.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-12 current session | Opened narrow local theme claim | In progress | `ops/AGENT_COORDINATION.md` |
+| 2026-05-12 current session | Patched matching-set mobile size-panel behavior | Mobile selected-size measurements now render inline instead of as a fixed floating tooltip; mobile scroll closes open panels; quantity/add/remove/add-role interactions close open panels; selected axis/global pill states have explicit readable contrast | `assets/product-desktop-ux.js`; `assets/component-product-desktop-ux.css`; `sections/main-product.liquid` |
+| 2026-05-12 current session | Ran local verification | `node --check assets/product-desktop-ux.js` passed; `git diff --check` passed; `shopify theme check --path . --fail-level error --output json` returned `[]` | Terminal output |
+| 2026-05-12 current session | Ran isolated mobile Chrome/CDP browser readback with local patched JS/CSS injected into the public Golden Daisy PDP | Passed: after Size `S` + Type `Top`, inline panel visible; floating pinned tooltip display `none`; panel overlap with Type axis and quantity was `false`; mobile scroll closed panel to count `0`; quantity `+` incremented to `2`; selected axis had white readable text; global selected pill had dark readable text on white | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-mobile-pdp-size-panel-option-contrast/mobile_size_panel_browser_readback.json`; `mobile-inline-size-panel-after-type.png` |
+
+Failed or ruled-out paths:
+- Local preview `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set` returned `401 Unauthorized` because the preview token on that port is invalid/stale, so the browser interaction readback used the public storefront with local patched assets injected into an isolated mobile browser session.
+- No live theme push/publish or Shopify Admin write was in scope for this local front-end repair.
+
+Current next action:
+- Deploy/sync the local theme patch through the normal theme/GitHub path when ready, then repeat live mobile QA on Golden Daisy and one non-Golden-Daisy matching-set PDP.
+
+Approval/credential/platform gates:
+- Live deployment remains a separate sync/push action.
+
+Parallel work to continue:
+- Shopify Admin PDP discount/product-data lane, paid-growth Ads/Merchant/Pinterest/GA4 lanes, and checkout/payment/order work remain separate.
+
 ### `PROB-2026-05-12-PDP-MATCHING-CTA-HOVER-CONTRAST`
 
 Priority: `P1`
@@ -1630,6 +1728,57 @@ Approval/credential/platform gates:
 
 Parallel work to continue:
 - Product media quality QA, beach/vacation SEO/social mismatch repair, real discount setup, and full native translation QA remain separate workstreams.
+
+### `PROB-2026-05-12-SHOPIFY-ADMIN-PDP-CRO-DISCOUNT-SEO-MEDIA`
+
+Priority: `P1`
+
+Status: `PARTIAL_ADMIN_WRITES_READBACK_PASSED__PUBLIC_BEACH_METAFIELD_CACHE_PENDING`
+
+Owner/session: Codex current session, 2026-05-12.
+
+Surface: Shopify Admin automatic discounts plus selected active PDP Admin title, SEO, and media metadata/order.
+
+Exact symptom:
+- PDP copy previously promised 10% savings for adding multiple matching pieces, but cart/checkout did not apply a matching discount.
+- Backend/Admin product titles, SEO metadata, and media surfaces still lag behind the theme-level Golden Daisy CRO hardening and known top-PDP blockers such as stale beach/vacation SEO/social metadata.
+
+Business impact:
+- A real discount must exist before promotion messaging can safely return to PDP/cart/checkout surfaces.
+- Admin SEO/title/media gaps reduce trust and click-through quality, especially for paid and organic landing pages.
+
+Definition of fixed:
+- Existing Shopify discounts are read back to avoid duplicates or conflicting promotions.
+- A real automatic multi-piece discount is created or repaired with a narrow, documented scope and verified in cart/checkout-facing readbacks.
+- Highest-impact active PDP candidates are selected from current evidence, then Admin title/SEO/media metadata changes are applied only where safe and read back.
+- No source/vendor URLs, product price/cost/variant/status/publication/inventory, ads/feed, or checkout/payment/order data are changed.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-12 current session | Opened approved Shopify Admin lane and claimed narrow write scope | Completed | `ops/AGENT_COORDINATION.md` |
+| 2026-05-12 current session | Read back existing Shopify discounts before creating anything | Passed: `109` discount nodes were all code discounts; `0` automatic discounts existed, so no duplicate automatic discount was present | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-shopify-admin-pdp-cro-discount-seo-media/discount_nodes_before.json` |
+| 2026-05-12 current session | Created real automatic multi-item discount | Passed after two schema-safe retries: active automatic discount `10% off 2+ items`, `10%` percentage, minimum quantity `2`, all items, no stacking with order/product/shipping discounts | `discount_create_response_final.json`; `discount_nodes_after_create.json` |
+| 2026-05-12 current session | Verified discount in storefront cart and no-payment checkout | Passed: `/cart.js` with two Golden Daisy items showed `total_discount=519`, `total_price=4679`, discount title `10% off 2+ items`; checkout snapshot showed row `10% OFF 2+ ITEMS - £4.00` and total `£36.00` | `cart_discount_readback_after_create.json`; `checkout_discount_snapshot_after_create_deep.md`; `cart_discount_readback_after_title_update.json` |
+| 2026-05-12 current session | Read back and repaired selected top PDP Admin title/SEO/media metadata | Passed: updated Golden Daisy title/SEO; repaired beach title/SEO; improved SEO on Sunshine Stripe, Red Heart Raglan, and Red Resort; updated `24` media alt texts across those five active PDPs with no product-update or media-update errors | `top_pdp_admin_readback_before.json`; `admin_product_seo_media_update_plan.json`; `admin_product_seo_media_update_results.json`; `top_pdp_admin_readback_after.json` |
+| 2026-05-12 current session | Repaired beach stale product pattern metafield after public readback exposed remaining current-product `Christmas` markers | Admin readback passed: `custom.pattern` changed from `Christmas` to `Tropical`; public title/OG/Twitter/meta description are beach/vacation-clean, but public HTML still showed stale product-pattern markers immediately afterward, likely Shopify/CDN theme-object cache | `beach_pattern_metafield_update_response.json`; `public_meta_readback_after_final.json`; `beach_public_html_after_admin_final.html` |
+
+Failed or ruled-out paths:
+- Broad catalog rewrite is ruled out; this lane is limited to the real discount and selected high-impact PDP data/media surfaces.
+- Actual new product/lifestyle image creation or uploads were not done in this pass; this pass improved Admin media metadata/alt text on existing images.
+- Product prices, variants, status, publications, inventory, tags, source/vendor fields, Ads/Merchant/Pinterest/GA4, checkout settings, payment/order/refund/cancel, and account/billing surfaces were not changed.
+
+Current next action:
+- After cache settles, rerun public readbacks for the beach PDP and confirm `custom-pattern`/JSON-LD/dataLayer no longer show `Christmas`; then decide whether to restore PDP/cart promo copy now that the real automatic discount is verified.
+
+Approval/credential/platform gates:
+- Credentials must stay outside repo/worklog/theme files.
+- Any destructive or irreversible Admin action remains blocked.
+- Native translated Admin SEO/title for non-Golden top PDPs remains a separate localization pass if the owner wants full-language parity beyond English source/Admin cleanup.
+
+Parallel work to continue:
+- Ads, Merchant, Pinterest, GA4, checkout payments/orders, and product pricing/inventory remain out of scope for this lane.
 
 Copy this template for every new problem:
 

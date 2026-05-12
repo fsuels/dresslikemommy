@@ -1,0 +1,49 @@
+{
+  "data": {
+    "discountAutomaticBasicCreate": {
+      "automaticDiscountNode": {
+        "id": "gid://shopify/DiscountAutomaticNode/1290988912737",
+        "automaticDiscount": {
+          "__typename": "DiscountAutomaticBasic",
+          "title": "10% off 2+ items",
+          "status": "ACTIVE",
+          "startsAt": "2026-05-12T08:52:23Z",
+          "endsAt": null,
+          "summary": "10% off entire order \u2022 Minimum quantity of 2",
+          "shortSummary": "10% off entire order",
+          "minimumRequirement": {
+            "__typename": "DiscountMinimumQuantity",
+            "greaterThanOrEqualToQuantity": "2"
+          },
+          "customerGets": {
+            "value": {
+              "__typename": "DiscountPercentage",
+              "percentage": 0.1
+            },
+            "items": {
+              "__typename": "AllDiscountItems",
+              "allItems": true
+            }
+          },
+          "combinesWith": {
+            "orderDiscounts": false,
+            "productDiscounts": false,
+            "shippingDiscounts": false
+          }
+        }
+      },
+      "userErrors": []
+    }
+  },
+  "extensions": {
+    "cost": {
+      "requestedQueryCost": 16,
+      "actualQueryCost": 16,
+      "throttleStatus": {
+        "maximumAvailable": 2000.0,
+        "currentlyAvailable": 1981,
+        "restoreRate": 100.0
+      }
+    }
+  }
+}

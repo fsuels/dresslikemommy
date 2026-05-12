@@ -1,0 +1,54 @@
+{
+  "errors": [
+    {
+      "message": "Variable $discount of type DiscountAutomaticBasicInput! was provided invalid value for minimumRequirement.quantity.greaterThanOrEqualToQuantity (UnsignedInt64 '2' must be encoded as a string)",
+      "locations": [
+        {
+          "line": 1,
+          "column": 31
+        }
+      ],
+      "extensions": {
+        "code": "INVALID_VARIABLE",
+        "value": {
+          "title": "10% off 2+ items",
+          "startsAt": "2026-05-12T08:51:35Z",
+          "context": {
+            "all": "ALL"
+          },
+          "minimumRequirement": {
+            "quantity": {
+              "greaterThanOrEqualToQuantity": 2
+            }
+          },
+          "customerGets": {
+            "value": {
+              "percentage": 0.1
+            },
+            "items": {
+              "all": true
+            },
+            "appliesOnOneTimePurchase": true,
+            "appliesOnSubscription": false
+          },
+          "combinesWith": {
+            "orderDiscounts": false,
+            "productDiscounts": false,
+            "shippingDiscounts": false
+          }
+        },
+        "problems": [
+          {
+            "path": [
+              "minimumRequirement",
+              "quantity",
+              "greaterThanOrEqualToQuantity"
+            ],
+            "explanation": "UnsignedInt64 '2' must be encoded as a string",
+            "message": "UnsignedInt64 '2' must be encoded as a string"
+          }
+        ]
+      }
+    }
+  ]
+}

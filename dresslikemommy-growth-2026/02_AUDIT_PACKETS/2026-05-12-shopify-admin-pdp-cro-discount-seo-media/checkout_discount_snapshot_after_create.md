@@ -1,0 +1,25 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - link "Skip to content" [ref=e7] [cursor=pointer]:
+        - /url: "#checkout-main"
+      - generic [ref=e8]:
+        - banner [ref=e9]:
+          - generic [ref=e14]:
+            - link "Dress Like Mommy Navigate to Online Store" [ref=e18] [cursor=pointer]:
+              - /url: https://www.dresslikemommy.com
+            - link "Cart" [ref=e21] [cursor=pointer]:
+              - /url: https://www.dresslikemommy.com/cart
+        - generic [ref=e25]:
+          - generic [ref=e27]:
+            - main [ref=e28]
+            - contentinfo [ref=e313]
+          - complementary [ref=e330]:
+            - generic [ref=e333]
+    - generic:
+      - progressbar
+  - generic [ref=e463]: Opens external website in a new window.
+  - generic [ref=e464]: Opens in a new window.
+  - generic [ref=e465]: Opens external website.
+  - status [ref=e466]
+  - alert [ref=e467]

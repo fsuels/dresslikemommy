@@ -1,0 +1,38 @@
+{
+  "data": {
+    "discountAutomaticBasicCreate": {
+      "automaticDiscountNode": null,
+      "userErrors": [
+        {
+          "field": [
+            "automaticBasicDiscount",
+            "customerGets",
+            "appliesOnSubscription"
+          ],
+          "message": "applies_on_subscription field is not permitted without the shop using subscriptions.",
+          "code": "INVALID"
+        },
+        {
+          "field": [
+            "automaticBasicDiscount",
+            "customerGets",
+            "appliesOnOneTimePurchase"
+          ],
+          "message": "applies_on_one_time_purchase field is not permitted without the shop using subscriptions.",
+          "code": "INVALID"
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "cost": {
+      "requestedQueryCost": 16,
+      "actualQueryCost": 10,
+      "throttleStatus": {
+        "maximumAvailable": 2000.0,
+        "currentlyAvailable": 1988,
+        "restoreRate": 100.0
+      }
+    }
+  }
+}

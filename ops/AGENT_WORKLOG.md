@@ -34439,3 +34439,108 @@ Guardrails:
 
 Next:
 - Start the separate approved Shopify Admin lane for real discount setup, product image/media ordering, and Admin SEO/title cleanup on the highest-traffic/top PDPs.
+
+2026-05-12 - Paid growth active campaign coverage push
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-paid-growth-active-campaign-coverage-push
+
+Why:
+- Owner clarified that the true goal is working active Google Ads and Pinterest campaigns for every viable language/market, not stopping after safe read-only/local lanes. The previous safe-lane stopping point was too narrow.
+
+What changed locally/read-only:
+- Created packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-active-campaign-activation-push/`.
+- Added `ACTIVE_CAMPAIGN_COVERAGE_MATRIX.md` to show the actual platform state:
+  - Google Ads active now: US Standard Shopping `23802638621` and US Brand Search `23805046526`.
+  - Google Ads built/paused: US nonbrand `23827590655`, plus GB `23838895360`, CA `23834423669`, AU `23834424182`, CH `23834425358`, DK `23838969244`, DE `23834427575`, NL `23829110118`, SE `23838970036`, ES `23829133584`, IT `23829232530`, PL `23829238698`, and CZ `23829253812`.
+  - Google Ads absent/parked: RO, PT, GR, FR, BE.
+  - Pinterest active now: none documented; US EN is paused-draft-ready only after exact approval; non-US Pinterest remains local-only/gated.
+- Added `APPROVAL_LADDER.md` with exact action-time approval wording for controlled non-US measurement test purchase, first GB Google Ads activation, paused Pinterest US draft build, optional Pinterest read-only freshness check, and remaining Google Ads paused-build continuation.
+- Retried the safe read-only GA4 CLI/API scope path and documented it in `ga4_scope_retry/GA4_SCOPE_RETRY.md`: current `gcloud` account exists, ADC is unavailable, no scoped token flag is exposed, and GA4 Data API metadata still returns `403 ACCESS_TOKEN_SCOPE_INSUFFICIENT`.
+- Updated `PROB-2026-05-12-ACTIVE-CAMPAIGN-COVERAGE-GOAL` and `ops/AGENT_COORDINATION.md`.
+
+Validation:
+- Sidecar Google Ads readiness review completed without account/browser writes.
+- Sidecar Pinterest readiness review completed without account/browser writes.
+- GA4 metadata retry returned the same insufficient-scope blocker, confirming the current CLI token path cannot close the measurement gate.
+
+Current truth:
+- The active-campaign goal is not complete.
+- New campaign activation or Pinterest account-object creation is still blocked by exact approval gates and, for non-US Google activation, the measurement proof gate.
+- A broad goal statement is not enough to enable spend/statuses or create Pinterest campaigns under the hard guardrails; the next required step is exact action-time approval for the named action after the measurement gate is resolved or explicitly test-approved.
+
+Next:
+- Fastest path to first new active Google Ads traffic: refresh GA4 read-only scopes or approve the controlled non-US measurement test purchase; then run just-in-time GB readbacks and use the first GB activation approval wording in `APPROVAL_LADDER.md`.
+- Fastest path to Pinterest: approve the paused US EN Pinterest draft build from the clean 342-row scope; live Pinterest spend remains a separate approval after readback.
+- Continue RO/PT/GR/FR/BE paused Google Search build only with one-country/no-duplicate/upload-throttle safeguards and exact approval.
+
+Guardrails:
+- No live spend, campaign enablement, budget/bid/status change, Google Ads upload/preview/apply, Pinterest account write, Merchant upload/source edit, Shopify product/admin write, product-scope/feed-label/product-group/conversion-goal change, checkout payment/order/refund/cancel, credential/account/billing edit, or destructive filesystem action occurred.
+
+2026-05-12 - Mobile PDP size panel and option contrast repair
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-mobile-pdp-size-panel-option-contrast
+
+Why:
+- Owner reported that on mobile, after selecting a size, the size chart/measurement panel could stay open while scrolling and block Type/Color/Quantity controls; some Type/options also became unreadable when selected.
+
+What changed locally:
+- Patched `assets/product-desktop-ux.js` so mobile scrolling closes open selected-size panels the same way the panel X close does.
+- Added an inline mobile selected-size panel inside the matching-set card, and hid the old fixed pinned tooltip on mobile so it cannot overlay Type/Color/Quantity controls.
+- Kept the selected-size info available after Size + Type/axis selection, while closing it once shoppers move to quantity/add/remove/add-role controls.
+- Patched `assets/component-product-desktop-ux.css` for the inline mobile panel and selected axis-button hover/focus/active contrast.
+- Patched the scoped PDP pill CSS in `sections/main-product.liquid` so selected global Type/pill controls keep dark readable text on a white selected pill.
+- Created evidence packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-mobile-pdp-size-panel-option-contrast/`.
+
+Validation:
+- Local preview `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set` returned `401 Unauthorized` because that preview token is invalid/stale, so browser testing used an isolated mobile Chrome/CDP session against the public Golden Daisy PDP with the local patched JS/CSS injected. No live theme push was made.
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Mobile browser readback at `390x844` passed: matching-set builder visible with 2 cards; after Size `S` + Type `Top`, inline size panel visible; old floating pinned tooltip display `none`; panel overlap with Type axis and Quantity was `false`; selected Type axis text stayed white on green; global checked pill text stayed dark on white; after scroll, panel count/visible count/pinned tooltip count were all `0`; quantity `+` remained clickable and incremented to `2`.
+- Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-mobile-pdp-size-panel-option-contrast/mobile_size_panel_browser_readback.json` and `mobile-inline-size-panel-after-type.png`.
+
+Problem tracker:
+- `PROB-2026-05-12-MOBILE-PDP-SIZE-PANEL-OPTION-CONTRAST` is `SOLVED_LOCAL_BROWSER_READBACK_PASSED`.
+
+Residual risks:
+- No live theme push/publish was done in this session; deployment and post-deploy live mobile QA remain separate.
+- Golden Daisy only shows the measurement row after Size + Type because Type is needed to match the chart row; products with direct Size-to-chart rows may show it immediately after Size.
+
+Guardrails:
+- No live theme push/publish, Shopify Admin product/page/policy/translation/discount write, checkout edit, Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Next:
+- Deploy/sync the local theme patch through the normal GitHub/theme path when the broader worktree is ready, then repeat live mobile QA on Golden Daisy plus one representative matching-set PDP with Type/Color choices.
+
+2026-05-12 - Shopify Admin PDP CRO discount and media/SEO lane
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-shopify-admin-pdp-cro-discount-seo-media
+
+Why:
+- Owner asked to start the Shopify Admin lane for the real automatic discount plus top-PDP image/media and Admin SEO/title cleanup after the theme-only PDP work removed the false 10% savings promise.
+
+What changed in Shopify Admin:
+- Read back existing discounts first: `109` discount nodes were all code discounts and `0` automatic discounts existed.
+- Created a real automatic discount: `10% off 2+ items`, active from `2026-05-12T08:52:23Z`, `10%` off all items, minimum quantity `2`, no stacking with order/product/shipping discounts.
+- Updated Golden Daisy Admin product title from `Golden Daisy Mommy and Me Separates - Top or Pants` to `Golden Daisy Mommy & Me Matching Separates`.
+- Updated Admin SEO on five active/high-impact PDPs: Golden Daisy, the known beach/vacation SEO blocker, Sunshine Stripe, Red Heart Raglan, and Red Resort.
+- Updated `24` existing media alt texts across those five PDPs. No actual image upload/reorder was done in this pass.
+- Repaired the beach product `custom.pattern` metafield from `Christmas` to `Tropical` after public readback showed stale current-product pattern markers.
+
+Validation:
+- Admin discount readback shows `DiscountAutomaticBasic 10% off 2+ items ACTIVE` with summary `10% off entire order - Minimum quantity of 2`.
+- Storefront `/cart.js` with two Golden Daisy variants shows `total_discount=519`, `total_price=4679`, and cart-level discount title `10% off 2+ items`.
+- No-payment checkout snapshot shows `Subtotal - 2 items £40.00`, discount row `10% OFF 2+ ITEMS - £4.00`, and total `GBP £36.00`.
+- Fresh cart readback after the Admin title update shows line titles now use `Golden Daisy Mommy &amp; Me Matching Separates`.
+- Admin product readback after the updates shows `blank_alt_count=0` for the five touched PDPs and the intended title/SEO values.
+- Public Golden Daisy readback shows title/H1/OG/Twitter aligned to `Golden Daisy Mommy & Me Matching Separates`.
+- Public beach readback shows title/OG/Twitter/meta description repaired to beach/vacation wording; current-product `Christmas` pattern markers still appeared immediately after the Admin metafield repair, likely Shopify/CDN theme-object cache.
+
+Evidence:
+- Packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-shopify-admin-pdp-cro-discount-seo-media/`.
+- Key files: `discount_nodes_before.json`, `discount_create_response_final.json`, `discount_nodes_after_create.json`, `cart_discount_readback_after_title_update.json`, `checkout_discount_snapshot_after_create_deep.md`, `admin_product_seo_media_update_results.json`, `top_pdp_admin_readback_after.json`, `public_meta_readback_after_final.json`, and `beach_pattern_metafield_update_response.json`.
+
+Residual risks:
+- Public beach product-pattern markers need a later public recheck after Shopify/cache settles.
+- Native translated Admin SEO/title for non-Golden top PDPs remains a separate localization pass.
+- Actual product image creative quality is still a bigger 9/10 lever; this pass improved existing media metadata, not the source images.
+
+Guardrails:
+- No Ads/Merchant/Pinterest/GA4/GTM writes, live spend/campaign/budget/bid/status/product-scope/feed-label/product-group/conversion-goal change, product price/cost/variant/status/publication/inventory change, source/vendor URL exposure, checkout setting/payment/order/refund/cancel action, account/billing edit, or destructive filesystem action occurred.

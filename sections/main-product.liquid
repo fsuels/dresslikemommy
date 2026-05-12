@@ -358,6 +358,19 @@
       background: #ffffff !important;
     }
 
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--pill input[type='radio']:checked + label {
+      border-color: #1a1a1a !important;
+      box-shadow: 0 0 0 0.1rem #1a1a1a !important;
+      color: #151a20 !important;
+    }
+
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--pill input[type='radio']:checked + label:hover,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--pill input[type='radio']:checked + label:focus,
+    #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--pill input[type='radio']:checked + label:active {
+      background: #ffffff !important;
+      color: #151a20 !important;
+    }
+
     #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image input[type='radio'] + .color-image-option__tile,
     #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image input[type='radio']:checked + .color-image-option__tile,
     #MainProduct-{{ section.id }} .dlm-reference-ui .product-form__input--color-image input[type='radio']:focus-visible + .color-image-option__tile,

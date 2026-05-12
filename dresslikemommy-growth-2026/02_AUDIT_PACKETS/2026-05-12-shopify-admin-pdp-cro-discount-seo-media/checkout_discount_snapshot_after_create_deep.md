@@ -1,0 +1,161 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - link "Skip to content" [ref=e7] [cursor=pointer]:
+        - /url: "#checkout-main"
+      - generic [ref=e8]:
+        - banner [ref=e9]:
+          - generic [ref=e14]:
+            - link "Dress Like Mommy Navigate to Online Store" [ref=e18] [cursor=pointer]:
+              - /url: https://www.dresslikemommy.com
+              - img "Dress Like Mommy"
+              - generic [ref=e19]: Navigate to Online Store
+            - link "Cart" [ref=e21] [cursor=pointer]:
+              - /url: https://www.dresslikemommy.com/cart
+              - img [ref=e23]
+        - generic [ref=e25]:
+          - generic [ref=e27]:
+            - main [ref=e28]:
+              - heading "Dress Like Mommy Checkout" [level=1] [ref=e29]
+              - generic [ref=e31]:
+                - generic [ref=e32]:
+                  - generic [ref=e33]:
+                    - region "Express checkout" [ref=e34]:
+                      - generic [ref=e36]:
+                        - heading "Express checkout" [level=2] [ref=e38]
+                        - list [ref=e41]
+                    - generic [ref=e55]:
+                      - paragraph [ref=e56]: OR
+                      - separator
+                  - region "Contact" [ref=e57]:
+                    - generic [ref=e61]:
+                      - generic [ref=e62]:
+                        - heading "Contact" [level=2] [ref=e63]
+                        - link "Sign in" [ref=e64] [cursor=pointer]:
+                          - /url: https://www.dresslikemommy.com/customer_authentication/login?locale=en-GB&return_to=%2Fcheckouts%2Fcn%2FhWNBzuCpoewuty6jHwzGqFCU%2Fen-gb%3F_r%3DAQABBLfWEXGNUC-41QVBPjVJnPQGz0aXkqVBfbAiL57JwXo%26cart_link_id%3D84hTrM8q%26company_location_id%26locale%3Den-GB
+                      - generic [ref=e66]:
+                        - generic [ref=e71]
+                        - generic [ref=e75]
+                  - group "Delivery" [ref=e82]:
+                    - generic [ref=e83]:
+                      - heading "Delivery" [level=2] [ref=e85]
+                      - generic [ref=e91]:
+                        - generic [ref=e95]
+                        - generic [ref=e160]
+                  - region "Payment" [ref=e168]:
+                    - group "Payment" [ref=e172]:
+                      - generic [ref=e173]:
+                        - heading "Payment" [level=2] [ref=e174]
+                        - paragraph [ref=e175]: All transactions are secure and encrypted.
+                      - generic [ref=e177]:
+                        - group [ref=e182]
+                        - group "Remember me" [ref=e288]
+                        - button "Add discount" [ref=e298] [cursor=pointer]
+                    - generic [ref=e305]:
+                      - heading "Finalize order" [level=2] [ref=e306]
+                      - button "Pay now" [ref=e310] [cursor=pointer]:
+                        - generic
+                - button [ref=e312] [cursor=pointer]: Submit
+            - contentinfo [ref=e313]:
+              - list [ref=e317]:
+                - listitem [ref=e318]:
+                  - button "Refund policy" [ref=e319] [cursor=pointer]:
+                    - generic: Refund policy
+                - listitem [ref=e320]:
+                  - button "Shipping" [ref=e321] [cursor=pointer]:
+                    - generic: Shipping
+                - listitem [ref=e322]:
+                  - button "Privacy policy" [ref=e323] [cursor=pointer]:
+                    - generic: Privacy policy
+                - listitem [ref=e324]:
+                  - button "Terms of service" [ref=e325] [cursor=pointer]:
+                    - generic: Terms of service
+                - listitem [ref=e326]:
+                  - button "Contact" [ref=e327] [cursor=pointer]:
+                    - generic: Contact
+          - complementary [ref=e330]:
+            - generic [ref=e333]:
+              - heading "Order summary" [level=2] [ref=e334]
+              - generic [ref=e337]:
+                - region "Shopping cart" [ref=e338]:
+                  - heading "Shopping cart" [level=3] [ref=e340]
+                  - table "Shopping cart" [ref=e341]:
+                    - rowgroup [ref=e342]:
+                      - row "Product image Description Quantity Price":
+                        - columnheader "Product image" [ref=e343]
+                        - columnheader "Description" [ref=e344]
+                        - columnheader "Quantity" [ref=e345]
+                        - columnheader "Price" [ref=e346]
+                    - rowgroup [ref=e347]:
+                      - row "Golden Daisy Mommy and Me Separates - Top or Pants Quantity 1 Golden Daisy Mommy and Me Separates - Top or Pants Top / Child 3 Years 1 £20.00" [ref=e348]:
+                        - cell "Golden Daisy Mommy and Me Separates - Top or Pants Quantity 1" [ref=e349]
+                        - cell "Golden Daisy Mommy and Me Separates - Top or Pants Top / Child 3 Years" [ref=e355]
+                        - cell "1"
+                        - cell "£20.00" [ref=e361]
+                      - row "Golden Daisy Mommy and Me Separates - Top or Pants Quantity 1 Golden Daisy Mommy and Me Separates - Top or Pants Top / Child 2 Years 1 £20.00" [ref=e364]:
+                        - cell "Golden Daisy Mommy and Me Separates - Top or Pants Quantity 1" [ref=e365]
+                        - cell "Golden Daisy Mommy and Me Separates - Top or Pants Top / Child 2 Years" [ref=e371]
+                        - cell "1"
+                        - cell "£20.00" [ref=e377]
+                - generic:
+                  - generic:
+                    - generic:
+                      - text: Scroll for more items
+                      - generic:
+                        - img
+              - generic [ref=e382]:
+                - heading "Discount code or gift card" [level=3] [ref=e383]
+                - generic [ref=e384]:
+                  - generic [ref=e385]:
+                    - generic [ref=e387]:
+                      - generic [ref=e390]:
+                        - generic
+                        - textbox "Discount code or gift card" [ref=e391]
+                        - generic [ref=e392]
+                      - button [ref=e394] [cursor=pointer]: Submit
+                    - list "Discount code or gift card" [ref=e398]:
+                      - listitem [ref=e399]:
+                        - group [ref=e400]
+                  - button "Back to finalize order" [ref=e412] [cursor=pointer]:
+                    - generic:
+                      - generic:
+                        - generic
+                        - generic: Back to finalize order
+              - generic [ref=e413]:
+                - heading "Cost summary" [level=3] [ref=e415]
+                - table "Cost summary" [ref=e416]:
+                  - rowgroup [ref=e417]:
+                    - row "Item Value" [ref=e418]:
+                      - columnheader "Item" [ref=e419]
+                      - columnheader "Value" [ref=e420]
+                  - rowgroup [ref=e421]:
+                    - row "Subtotal · 2 items £40.00" [ref=e422]:
+                      - rowheader "Subtotal · 2 items" [ref=e423]
+                      - cell "£40.00" [ref=e424]
+                    - row "Order discount" [ref=e425]:
+                      - rowheader "Order discount" [ref=e426]:
+                        - generic [ref=e428]: Order discount
+                    - row "10% OFF 2+ ITEMS − £4.00" [ref=e429]:
+                      - rowheader "10% OFF 2+ ITEMS" [ref=e430]:
+                        - generic [ref=e431]
+                      - cell "− £4.00" [ref=e436]
+                    - row "Shipping Shipping Enter shipping address" [ref=e437]:
+                      - rowheader "Shipping Shipping" [ref=e438]:
+                        - generic [ref=e439]
+                      - cell "Enter shipping address" [ref=e445]
+                    - row "Total GBP £36.00" [ref=e446]:
+                      - rowheader "Total" [ref=e447]:
+                        - strong [ref=e448]: Total
+                      - cell "GBP £36.00" [ref=e449]:
+                        - generic [ref=e450]
+                    - row "TOTAL SAVINGS £4.00" [ref=e455]:
+                      - rowheader "TOTAL SAVINGS £4.00" [ref=e456]:
+                        - generic [ref=e457]
+                      - cell
+    - generic:
+      - progressbar
+  - generic [ref=e463]: Opens external website in a new window.
+  - generic [ref=e464]: Opens in a new window.
+  - generic [ref=e465]: Opens external website.
+  - status [ref=e466]
+  - alert [ref=e467]

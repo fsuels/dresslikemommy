@@ -1607,6 +1607,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     return 'metric';
   })();
   var closedPanels = Object.create(null);
+  var lastMobileScrollY = typeof window !== 'undefined' ? window.scrollY || 0 : 0;
 
   function setUnitSystem(next) {
     if (next !== 'metric' && next !== 'imperial') return;
@@ -1616,6 +1617,29 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       if (window.localStorage) window.localStorage.setItem(BUNDLE_UNIT_STORAGE_KEY, next);
     } catch (e) { /* ignore */ }
     renderBuilder();
+  }
+
+  function hasOpenSizePanels() {
+    for (var i = 0; i < instances.length; i += 1) {
+      if (instances[i] && instances[i].sizeLabel && !closedPanels[instances[i].instanceId]) return true;
+    }
+    return false;
+  }
+
+  function closeOpenSizePanels() {
+    var changed = false;
+    for (var i = 0; i < instances.length; i += 1) {
+      var inst = instances[i];
+      if (!inst || !inst.sizeLabel || closedPanels[inst.instanceId]) continue;
+      closedPanels[inst.instanceId] = true;
+      changed = true;
+    }
+    return changed;
+  }
+
+  function isMobileSizePanelViewport() {
+    if (typeof window === 'undefined') return false;
+    return !window.matchMedia || window.matchMedia('(max-width: 749px)').matches;
   }
 
   // ─────────────────────────────────────────────────────────────────────
@@ -2129,6 +2153,53 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     var distinctSizes = getDistinctSizesForGroup(group);
     var axisNames = getAxisNamesForGroup(group);
 
+    var selectedPanelOption = null;
+    var selectedPanelMeasurementsHtml = '';
+    var selectedPanelHtml = '';
+
+    if (inst.sizeLabel && !closedPanels[inst.instanceId]) {
+      selectedPanelOption =
+        resolveVariantInGroup(group, inst.sizeLabel, inst.axisSelections) ||
+        group.options.find(function (o) { return o.sizeLabel === inst.sizeLabel; });
+      var selectedPanelMeasurements = selectedPanelOption ? findMeasurementsForOption(group, selectedPanelOption) : null;
+      selectedPanelMeasurementsHtml = selectedPanelMeasurements ? buildMeasurementsHtml(selectedPanelMeasurements) : '';
+      if (selectedPanelMeasurementsHtml) {
+        var mobileIsImperial = unitSystem === 'imperial';
+        selectedPanelHtml =
+          '<div class="product-matching-set__mobile-size-panel" role="status">' +
+          '<div class="product-matching-set__mobile-size-panel-header">' +
+          '<strong class="product-matching-set__mobile-size-panel-title">' +
+          escapeHtml(group.label) +
+          ' &middot; ' +
+          escapeHtml(selectedPanelOption.sizeLabel || inst.sizeLabel || '') +
+          '</strong>' +
+          '<span class="product-matching-set__pill-tooltip-controls">' +
+          '<span class="product-matching-set__pill-tooltip-toggle" role="group" aria-label="' +
+          escapeHtml(uiLabel('units', 'Units')) +
+          '">' +
+          '<button type="button" class="product-matching-set__pill-tooltip-unit' +
+          (mobileIsImperial ? '' : ' is-active') +
+          '" data-unit-set="metric" aria-pressed="' +
+          (mobileIsImperial ? 'false' : 'true') +
+          '">cm</button>' +
+          '<button type="button" class="product-matching-set__pill-tooltip-unit' +
+          (mobileIsImperial ? ' is-active' : '') +
+          '" data-unit-set="imperial" aria-pressed="' +
+          (mobileIsImperial ? 'true' : 'false') +
+          '">in</button>' +
+          '</span>' +
+          '<button type="button" class="product-matching-set__pill-tooltip-close" data-size-panel-close="' +
+          escapeHtml(inst.instanceId) +
+          '" aria-label="' +
+          escapeHtml(uiLabel('closeSizeDetails', 'Close size details')) +
+          '">×</button>' +
+          '</span>' +
+          '</div>' +
+          selectedPanelMeasurementsHtml +
+          '</div>';
+      }
+    }
+
     var pillsHtml = distinctSizes
       .map(function (sizeLabel) {
         // Each distinct size pill represents ONE size — its underlying
@@ -2341,6 +2412,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       '">' +
       pillsHtml +
       '</div>' +
+      selectedPanelHtml +
       // Inline contextual prompt directly under the size pills if no
       // size picked yet. Small + subtle (sits inside the row, not as
       // a full-width banner) so each prompt reads as guidance for the
@@ -2546,6 +2618,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         button.addEventListener('click', function () {
           var inst = findInstance(instanceId);
           if (!inst) return;
+          closeOpenSizePanels();
           var action = button.getAttribute('data-qty-action');
           if (action === 'inc') {
             inst.quantity = (inst.quantity || 1) + 1;
@@ -2568,6 +2641,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     builder.querySelectorAll('[data-instance-remove]').forEach(function (removeBtn) {
       removeBtn.addEventListener('click', function () {
         var instanceId = removeBtn.getAttribute('data-instance-remove');
+        closeOpenSizePanels();
         removeInstance(instanceId);
         renderBuilder();
       });
@@ -2578,6 +2652,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         var groupKey = addBtn.getAttribute('data-add-role-group');
         var group = getGroupByKey(groupKey);
         if (!group) return;
+        closeOpenSizePanels();
         addInstanceForGroup(group);
         renderBuilder();
       });
@@ -2752,7 +2827,18 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   }
   if (typeof window !== 'undefined') {
     window.addEventListener('resize', schedulePillTooltipReposition);
-    window.addEventListener('scroll', schedulePillTooltipReposition, { passive: true });
+    window.addEventListener('scroll', function () {
+      var currentY = window.scrollY || 0;
+      var scrollDelta = Math.abs(currentY - lastMobileScrollY);
+      lastMobileScrollY = currentY;
+
+      if (isMobileSizePanelViewport() && scrollDelta >= 12 && hasOpenSizePanels() && closeOpenSizePanels()) {
+        renderBuilder();
+        return;
+      }
+
+      schedulePillTooltipReposition();
+    }, { passive: true });
     window.addEventListener('orientationchange', schedulePillTooltipReposition);
   }
 
