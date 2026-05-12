@@ -101,6 +101,7 @@ class CartDrawer extends HTMLElement {
   }
 
   renderContents(parsedState) {
+    this.classList.remove('is-empty');
     this.querySelector('.drawer__inner').classList.contains('is-empty') &&
       this.querySelector('.drawer__inner').classList.remove('is-empty');
     this.productId = parsedState.id;
@@ -112,8 +113,17 @@ class CartDrawer extends HTMLElement {
     });
 
     setTimeout(() => {
+      this.resetDrawerScroll();
       this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
       this.open();
+    });
+  }
+
+  resetDrawerScroll() {
+    [this.querySelector('.drawer__inner'), this.querySelector('cart-drawer-items')].forEach((element) => {
+      if (!element) return;
+      element.scrollTop = 0;
+      element.scrollLeft = 0;
     });
   }
 
