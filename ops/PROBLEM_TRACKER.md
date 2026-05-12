@@ -1582,11 +1582,11 @@ Parallel work to continue:
 
 Priority: `P1`
 
-Status: `SOLVED_LOCAL_BROWSER_READBACK_PASSED_NO_LIVE_PUSH`
+Status: `SOLVED_LIVE_PUSH_READBACK_PASSED`
 
 Owner/session: Codex current session, 2026-05-12.
 
-Surface: Local theme PDP CRO/localization foundations: matching-set UI, zero-review photo labels, SEO/schema/description sanitization, trust modules, and PDP discount-promise truthfulness.
+Surface: Local and live theme PDP CRO/localization foundations: matching-set UI, zero-review photo labels, SEO/schema/description sanitization, trust modules, and PDP discount-promise truthfulness.
 
 Exact symptom:
 - Golden Daisy had been hardened more deeply than the rest of the theme, while shared PDP surfaces could still leak English dynamic labels, "Optional" matching-set copy, internal/admin product-description phrasing, duplicate trust strips, inventory urgency, and UI-only 10% bundle promises that did not match cart/checkout.
@@ -1600,7 +1600,7 @@ Definition of fixed:
 - Matching-set dynamic UI labels localize for priority locales and localized Golden Daisy routes no longer force English guide copy.
 - Zero-review photo label is localized for priority locales.
 - "Optional" matching-set copy and "selected pieces" CTAs are replaced in the touched priority locales.
-- Local browser readbacks show no targeted raw-admin copy hits, no localized English guide leak, and localized matching-set CTA/copy for EN/ES/RO/PT.
+- Local and live browser/readback checks show no targeted raw-admin copy hits, no localized English guide leak, and localized matching-set CTA/copy for EN/ES/RO/PT where tested.
 - `node --check`, `git diff --check`, and Theme Check error-level verification pass.
 
 Attempt log:
@@ -1613,14 +1613,16 @@ Attempt log:
 | 2026-05-12 | Localized matching-set dynamic JS labels and zero-review photo label fallback | Browser readbacks for EN/ES/RO/PT Golden Daisy passed: localized H1s preserved, localized photo label, no English guide leak outside EN, no targeted raw-admin text, localized CTA/copy in ES/RO/PT | Playwright MCP local browser readback |
 | 2026-05-12 | Replaced "Optional" matching-set copy and "selected pieces" CTA wording in priority locale theme data | ES/PT/RO copy now uses confident set-building language and matching-piece CTA wording | `snippets/product-page-copy-map.liquid`, `locales/es.json`, `locales/pt-BR.json`, `locales/pt-PT.json`, `locales/ro.json`, `locales/ro-RO.json`, `locales/de.json` |
 | 2026-05-12 | Ran verification | `node --check assets/product-desktop-ux.js` passed; `git diff --check` passed; `shopify theme check --path . --fail-level error --output json` returned `[]` | Terminal output |
+| 2026-05-12 | Synced/deployed the theme work | Commit `3439e38` pushed to `origin/main`; old recorded live theme ID `134923321441` was stale, then targeted Shopify CLI push succeeded to current live theme `133290917985` / `dresslikemommy/main` | `git push origin main`; `shopify theme list --json`; `shopify theme push --theme 133290917985 --allow-live --strict --only ... --json` |
+| 2026-05-12 | Ran post-deploy public readbacks | Live Golden Daisy returned new H1/title/schema description, CTA `Add matching pieces`, `Customer photos`, no above-fold `No reviews`, no false matching-discount promise, and no targeted visible/schema raw-admin copy hits after cache settled | Public URL `https://www.dresslikemommy.com/products/golden-daisy-mommy-and-me-set?live_review=3439e38`; screenshot `golden-daisy-live-after-deploy-3439e38.png` |
 
 Failed or ruled-out paths:
-- No live theme push/publish was made.
+- GitHub-connected sync initially produced a temporary mixed/cache state where some live requests still returned stale schema; a targeted Shopify CLI live-theme push and later no-cache/browser readbacks cleared it.
 - No Shopify Admin product/title/SEO/image/translation writes were made, so backend structured product data and Admin product data still require an approval-gated lane.
 - No Shopify discount rule was created or edited; the truthful local fix removes the mismatch until a real discount is approved and read back.
 
 Current next action:
-- Review the local preview, then sync/deploy through the normal repo/theme path. After deployment, perform live PDP visual readbacks on Golden Daisy plus 3-5 representative matching/non-matching products and verify cart/checkout still contains no unmatched 10% matching-set promise.
+- Follow with a separate Shopify Admin/product-data lane for real automatic discount setup, product image/media upgrades, and Admin SEO/title cleanup on top PDPs.
 
 Approval/credential/platform gates:
 - Real 10% multi-item savings requires a Shopify discount/admin path with explicit approval and checkout/cart readback.

@@ -34408,3 +34408,34 @@ Guardrails:
 
 Next:
 - Review local preview, then deploy/sync the local theme changes through the normal GitHub/theme path. After live sync, run a live visual QA pass on Golden Daisy plus representative matching/non-matching PDPs and decide whether to approve the separate Shopify Admin discount/product-data/image lane.
+
+2026-05-12 - PDP CRO hardening live sync/deploy
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-pdp-cro-hardening-live-sync-deployed
+
+Why:
+- Owner asked to review `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set`, then sync/deploy the theme changes.
+
+What changed:
+- Committed and pushed the PDP/theme hardening and evidence artifacts to `origin/main` as `3439e38` (`Harden PDP conversion and localized copy`).
+- Confirmed `origin/main` points at `3439e38efd2657a9d789d8690b7f35677d11d33f`.
+- Public GitHub-connected sync initially produced a temporary stale/mixed live readback: some live requests had the new title/CTA while one schema/description readback still showed the old product JSON-LD and old matching-set eyebrow.
+- The old remembered live theme ID `134923321441` was stale. `shopify theme list --json` showed current live theme `133290917985`, name `dresslikemommy/main`.
+- Pushed only the changed theme files directly to live theme `133290917985` with `shopify theme push --theme 133290917985 --path . --allow-live --strict --only ... --json`.
+- Saved live post-deploy screenshot `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-golden-daisy-pdp-87-cro-hardening/golden-daisy-live-after-deploy-3439e38.png`.
+
+Validation:
+- Pre-deploy local browser review passed on Golden Daisy: title/H1 `Golden Daisy Mommy & Me Matching Separates`, CTA `Add matching pieces`, `Customer photos`, 3-item buying guide, no above-fold `No reviews`, no false matching discount, no visible/schema targeted admin-copy hits, and no free-shipping wording in the buy box.
+- Pre-deploy checks passed: `node --check assets/product-desktop-ux.js`, `git diff --check`, and `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Post-push public no-cache readback passed after cache settled: new schema title/description present, old schema title absent, old `exact fiber composition` schema text absent, `data-matching-set-add="Add matching pieces"` present, old `Save 10% automatically` eyebrow absent, raw `Print reference` and `Chart-backed variants` absent, `Customer photos` present.
+- Post-push live browser readback passed on `https://www.dresslikemommy.com/products/golden-daisy-mommy-and-me-set?live_review=3439e38`: title/H1 `Golden Daisy Mommy & Me Matching Separates`, CTA `Add matching pieces`, `Customer photos`, no above-fold `No reviews`, no false matching-discount promise, no targeted visible/schema raw-admin copy hits, schema new title/description present, guide count `3`.
+
+Residual risks:
+- No Shopify Admin product/title/SEO/image/translation writes were made. Backend/Admin product data still needs a separate approval-gated product-data lane.
+- No real Shopify discount rule was created or edited. A true 10% multi-item offer still requires an approved automatic-discount setup plus cart/checkout readback.
+- Product media quality remains the next biggest conversion lever for 9+ scoring.
+
+Guardrails:
+- No Ads/Merchant/Pinterest/GA4 writes, Shopify Admin product-data writes, discount creation/edit, checkout edit, payment/order/refund/cancel, credential/account/billing edit, or destructive filesystem action occurred.
+
+Next:
+- Start the separate approved Shopify Admin lane for real discount setup, product image/media ordering, and Admin SEO/title cleanup on the highest-traffic/top PDPs.
