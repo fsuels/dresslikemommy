@@ -1874,8 +1874,14 @@
       // there is no matching-set builder on the page.
       var infoContainer = document.getElementById('ProductInfo-{{ section.id }}');
       var isMatchingSet = infoContainer && infoContainer.getAttribute('data-has-matching-set') === 'true';
+      var bundleSection = null;
+      var matchingSetStickyState =
+        window.DLMMatchingSetStickyState && window.DLMMatchingSetStickyState['{{ section.id }}']
+          ? window.DLMMatchingSetStickyState['{{ section.id }}']
+          : null;
       if (isMatchingSet) {
         var bundleCta = document.querySelector('[data-matching-set-add-button]');
+        bundleSection = document.querySelector('[data-matching-set-builder]');
         if (bundleCta) atcBtn = bundleCta;
       }
 
@@ -2296,6 +2302,39 @@
         }
       }
 
+      function setMatchingStickyDetails() {
+        if (!isMatchingSet) return false;
+
+        var hasSelectedPieces = !!(matchingSetStickyState && matchingSetStickyState.isReady);
+        if (stickyPrice) {
+          stickyPrice.textContent = hasSelectedPieces
+            ? matchingSetStickyState.pieceCountLabel || getButtonLabel()
+            : getProductPageCopyValue('matching_set_heading') || 'Matching pieces';
+          stickyPrice.removeAttribute('aria-label');
+          stickyPrice.removeAttribute('title');
+        }
+        if (stickySize) {
+          if (hasSelectedPieces && matchingSetStickyState.totalText) {
+            stickySize.textContent = matchingSetStickyState.totalText;
+            if (matchingSetStickyState.summaryText) {
+              stickySize.title = matchingSetStickyState.summaryText;
+              stickySize.setAttribute('aria-label', matchingSetStickyState.totalText + ': ' + matchingSetStickyState.summaryText);
+            } else {
+              stickySize.removeAttribute('title');
+              stickySize.removeAttribute('aria-label');
+            }
+            stickySize.removeAttribute('hidden');
+          } else {
+            stickySize.textContent = '';
+            stickySize.removeAttribute('title');
+            stickySize.removeAttribute('aria-label');
+            stickySize.setAttribute('hidden', 'hidden');
+          }
+        }
+        if (stickyShipping) stickyShipping.setAttribute('hidden', 'hidden');
+        return hasSelectedPieces;
+      }
+
       function syncStickySize(sizeSelectionState) {
         if (!stickySize) return;
 
@@ -2328,6 +2367,16 @@
       }
 
       function syncStickyState() {
+        if (isMatchingSet && atcBtn && atcBtn.hasAttribute('data-matching-set-add-button')) {
+          var matchingSetReady = setMatchingStickyDetails();
+          canShowSticky = true;
+          sticky.classList.toggle('requires-options', !matchingSetReady);
+          stickyBtn.textContent = matchingSetReady ? getButtonLabel() : chooseOptionsLabel;
+          stickyBtn.removeAttribute('disabled');
+          toggleStickyVisibility();
+          return;
+        }
+
         var sizeSelectionState = getSizeSelectionState();
         var colorSelectionState = getColorSelectionState();
         var missingOption = getFirstMissingOption();
@@ -2386,11 +2435,10 @@
         // for the bundle flow — bypass it and forward straight to the
         // bundle CTA (which has its own disabled-until-valid state).
         if (isMatchingSet && atcBtn && atcBtn.hasAttribute('data-matching-set-add-button')) {
-          if (atcBtn.hasAttribute('disabled')) {
+          if (!matchingSetStickyState || !matchingSetStickyState.isReady || atcBtn.hasAttribute('disabled')) {
             event.preventDefault();
             // Scroll the bundle into view so the shopper knows what to
             // pick. The bundle CTA itself is the call-out.
-            var bundleSection = document.querySelector('[data-matching-set-builder]');
             if (bundleSection && typeof bundleSection.scrollIntoView === 'function') {
               bundleSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
@@ -2481,6 +2529,14 @@
           childList: true,
           subtree: true,
           characterData: true,
+        });
+      }
+
+      if (isMatchingSet) {
+        document.addEventListener('dlm:matching-set-summary', function (event) {
+          if (!event || !event.detail || event.detail.sectionId !== '{{ section.id }}') return;
+          matchingSetStickyState = event.detail;
+          syncStickyState();
         });
       }
 

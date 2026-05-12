@@ -2076,6 +2076,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         total.setAttribute('hidden', 'hidden');
       }
       addButton.setAttribute('disabled', 'disabled');
+      publishMatchingSetStickyState(items, pieceCount, subtotal);
       return;
     }
 
@@ -2093,6 +2094,33 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       total.removeAttribute('hidden');
     }
     addButton.removeAttribute('disabled');
+    publishMatchingSetStickyState(items, pieceCount, subtotal);
+  }
+
+  function publishMatchingSetStickyState(items, pieceCount, subtotal) {
+    var summaryItems = (items || []).map(function (item) {
+      var label = [item.roleLabel, item.sizeLabel].filter(Boolean).join(' ');
+      if (item.quantity > 1) label += ' x' + item.quantity;
+      return label;
+    }).filter(Boolean);
+    var detail = {
+      sectionId: sectionId,
+      pieceCount: pieceCount || 0,
+      pieceCountLabel: pieceCount ? formatPieceCount(pieceCount) : '',
+      totalText: pieceCount ? uiLabel('total', 'Total') + ' ' + formatMoney(subtotal || 0, currency) : '',
+      summaryText: summaryItems.join(', '),
+      isReady: !!pieceCount,
+    };
+
+    try {
+      window.DLMMatchingSetStickyState = window.DLMMatchingSetStickyState || {};
+      window.DLMMatchingSetStickyState[sectionId] = detail;
+      document.dispatchEvent(
+        new CustomEvent('dlm:matching-set-summary', {
+          detail: detail,
+        })
+      );
+    } catch (_e) { /* non-critical sticky enhancement */ }
   }
 
   function renderInstanceSizeBlurb(inst, group) {
