@@ -1209,6 +1209,72 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────
+   Mobile: full-width measurement panel (May 2026 fix).
+
+   The pill-anchored tooltip used left:50% + translateX(-50%) to
+   center over the pill. For the leftmost pills (e.g. "2 Years" on
+   the child age picker, "S" on the adult picker) that pushed the
+   tooltip past the left edge of the viewport, clipping label text
+   like "Garment Length" to "arment Length", "Skirt Length" to
+   "irt Length", etc.
+
+   On mobile we instead anchor the tooltip to the matching-set CARD
+   container so it spans the full card width and never clips. The
+   arrow `::after` is hidden in this mode because the panel reads as
+   an inline measurement card, not a callout from a single pill.
+   ───────────────────────────────────────────────────────────── */
+@media screen and (max-width: 749px) {
+  /* Make the card the positioning context so the tooltip can break
+     out of the inline-flex pill-wrap. */
+  .product__info-container--matching-set .product-matching-set__card {
+    position: relative;
+  }
+
+  /* The wrap stays inline-flex for pill layout, but its tooltip
+     child gets repositioned out of it via a fixed-positioned panel. */
+  .product__info-container--matching-set .product-matching-set__pill-wrap .product-matching-set__pill-tooltip {
+    position: fixed;
+    /* CSS variable set by the JS positioner so the panel sits just
+       above the active pill row. Falls back to a safe value. */
+    top: var(--dlm-pill-tooltip-top, auto);
+    bottom: var(--dlm-pill-tooltip-bottom, auto);
+    left: 1rem;
+    right: 1rem;
+    transform: none !important;
+    max-width: none;
+    min-width: 0;
+    width: auto;
+    margin: 0;
+  }
+
+  .product__info-container--matching-set .product-matching-set__pill-wrap .product-matching-set__pill-tooltip::after {
+    /* Hide the callout arrow on mobile — the panel is a card, not
+       a speech bubble pinned to one pill. */
+    display: none;
+  }
+
+  /* Pinned tooltip on mobile uses the same full-width panel rules
+     above; just make sure the !important on its transform from the
+     desktop rule below doesn't undo our `transform: none`. */
+  .product__info-container--matching-set .product-matching-set__pill-wrap .product-matching-set__pill-tooltip.is-pinned {
+    transform: none !important;
+    min-width: 0 !important;
+  }
+
+  /* Give the measurement labels and values room to breathe in the
+     wider mobile panel. */
+  .product__info-container--matching-set .product-matching-set__pill-tooltip-title {
+    font-size: 1.25rem;
+  }
+  .product__info-container--matching-set .product-matching-set__measurement-row dt {
+    font-size: 1.2rem;
+  }
+  .product__info-container--matching-set .product-matching-set__measurement-row dd {
+    font-size: 1.25rem;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────
    Pinned compact tooltip (May 2026 rev 4)
    Replaces the large inline size panel from rev 3. When the pill is
    SELECTED and not dismissed, the same compact black tooltip from the

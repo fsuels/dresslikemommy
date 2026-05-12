@@ -127,12 +127,60 @@ clean up, then blocks every future git operation in the repo. This wasted
 
 When Frank says "sync to main", do this — no detours, no sandbox git:
 
+#### STEP 0 — PREFLIGHT (DO THIS FIRST, ALWAYS)
+
+Before opening VS Code, before touching the clipboard, before
+anything: run this in the sandbox shell to detect a stale lock left
+over from any previous session/agent:
+
+```
+cd /sessions/.../mnt/dresslikemommy && \
+  git status --short && \
+  ls -la .git/index.lock 2>&1 | head -3
+```
+
+If you see `.git/index.lock` existing OR if the `M` status column has
+TWO characters (e.g. `MM filename`, meaning "staged then unstaged
+again" — VS Code's signature for an interrupted commit), STOP. Tell
+Frank verbatim, in a SINGLE message, before doing anything else:
+
+> "A stale git lock from a previous session is blocking the commit.
+> Please run this in Terminal and reply 'done':
+> `rm -f /Users/fsuels/Projects/dresslikemommy/.git/index.lock`"
+
+Do NOT proceed to open VS Code. Do NOT click Commit & Push. The lock
+WILL kill the commit and you'll have to ask Frank to remove it
+afterward instead of beforehand — which doubles the wait time and is
+the single biggest source of Frank's frustration with this workflow.
+
+This preflight check is MANDATORY on every sync attempt, even if you
+just successfully synced 10 minutes ago. Lock files can be left by:
+- A previous failed VS Code commit (most common)
+- Another agent (Codex, Cursor) interrupted mid-commit
+- A previous sandbox-git attempt by an earlier session
+- Frank running a git command himself that got interrupted
+
+#### STEP 1 — Open VS Code
+
 1. `mcp__computer-use__request_access` for `["com.microsoft.VSCode"]` with
    `clipboardWrite: true`. Bring VS Code forward (`open_application`).
 
 2. `mcp__computer-use__write_clipboard` with a short single-line commit
    message (e.g. "PDP: <one-line summary>"). Multi-line is fine but the
    FIRST line must be a good one-line summary.
+
+   **GOTCHA — VS Code is tier-"click", so `write_clipboard` is BLOCKED
+   while VS Code is frontmost.** Two correct orderings:
+
+   (a) Write the clipboard FIRST, before `open_application` brings VS
+       Code forward. Order in step 1 above is correct.
+   (b) If VS Code is already frontmost and you need to rewrite the
+       clipboard mid-flow, request access to Finder (tier "full") with
+       `clipboardWrite: true`, `open_application("Finder")`, then
+       `write_clipboard`, then `open_application` VS Code again.
+
+   Do NOT use any other workaround (no AppleScript, no Terminal echo,
+   no tier escalation). Just briefly switch focus.
 
 3. Screenshot. Confirm the Source Control panel shows the modified files
    and the empty `Message (⌘Enter to commit on "main")` box.
@@ -152,11 +200,23 @@ When Frank says "sync to main", do this — no detours, no sandbox git:
 8. Screenshot. Verify either: "Committing Changes…" → gone (success),
    OR the Output panel shows an error.
 
-9. **If the Output panel shows `Unable to create '.git/index.lock': File exists`**,
-   the previous run crashed. CLAUDE cannot recover this. Tell Frank
-   verbatim: "VS Code crashed mid-commit and left a lock file. In Terminal
-   run: `rm -f /Users/fsuels/Projects/dresslikemommy/.git/index.lock` and
-   say 'done'." When he says done, go back to step 6.
+9. **If the Output panel shows `Unable to create '.git/index.lock': File exists`**:
+
+   This SHOULDN'T happen if STEP 0 preflight ran. If it does, VS Code
+   crashed mid-commit on this very click. CLAUDE cannot delete the
+   lock from the sandbox.
+
+   **Send ONE clean message to Frank** — never a two-step "delete this,
+   then say done, then I'll come back": batch it into a single ask, do
+   the rest yourself without further prompts. Verbatim:
+
+   > "Please run in Terminal:
+   > `rm -f /Users/fsuels/Projects/dresslikemommy/.git/index.lock`
+   > Reply 'done' and I'll finish the commit without further input."
+
+   When Frank says "done", immediately go back to step 6 (click the
+   Commit & Push dropdown again — the staged files are still staged).
+   Do NOT ask him to verify, re-confirm, or take any further step.
 
 10. After commit success, verify from the sandbox shell:
     `git log origin/main --oneline -2` — confirm the new commit is on

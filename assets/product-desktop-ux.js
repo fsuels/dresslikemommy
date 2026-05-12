@@ -2430,6 +2430,79 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
 
     bindCardEvents();
     updateSummary();
+    positionMobilePillTooltips();
+  }
+
+  // ─────────────────────────────────────────────────────────────────
+  // Mobile pill-tooltip positioner.
+  //
+  // On phones the tooltip can't be centered over the pill (it would
+  // clip past the left edge for the leftmost pill, hiding text like
+  // "Garment Length", "Skirt Length", "Hip"). The matching CSS rule
+  // (see component-product-desktop-ux.css "Mobile: full-width
+  // measurement panel") repositions the tooltip with `position: fixed;
+  // left: 1rem; right: 1rem;` so it spans the viewport — but it still
+  // needs a vertical position. We compute it here and write it to the
+  // tooltip element as a CSS variable.
+  //
+  // We anchor the tooltip just ABOVE the pill row so the panel doesn't
+  // cover the pills the shopper is comparing. If there's no room above
+  // (pill row is near the top of the viewport), we drop it BELOW.
+  // ─────────────────────────────────────────────────────────────────
+  function positionMobilePillTooltips() {
+    if (typeof window === 'undefined') return;
+    if (window.matchMedia && !window.matchMedia('(max-width: 749px)').matches) {
+      // Desktop / tablet: the default CSS positioning is correct.
+      // Clear any previously-set CSS vars in case the user resized.
+      var stale = roleGrid && roleGrid.querySelectorAll
+        ? roleGrid.querySelectorAll('.product-matching-set__pill-tooltip')
+        : [];
+      for (var s = 0; s < stale.length; s += 1) {
+        stale[s].style.removeProperty('--dlm-pill-tooltip-top');
+        stale[s].style.removeProperty('--dlm-pill-tooltip-bottom');
+      }
+      return;
+    }
+    if (!roleGrid || !roleGrid.querySelectorAll) return;
+
+    var tooltips = roleGrid.querySelectorAll('.product-matching-set__pill-tooltip');
+    for (var i = 0; i < tooltips.length; i += 1) {
+      var tip = tooltips[i];
+      var wrap = tip.closest('.product-matching-set__pill-wrap');
+      var pillsRow = wrap ? wrap.closest('.product-matching-set__pills') : null;
+      var anchor = pillsRow || wrap;
+      if (!anchor) continue;
+      var rect = anchor.getBoundingClientRect();
+      var viewportH = window.innerHeight || document.documentElement.clientHeight;
+      var GAP = 12; // gap between tooltip and pill row, in px
+      // Prefer ABOVE the row (so pills stay tappable below it).
+      // If above doesn't have enough room (< 220px), drop BELOW.
+      var spaceAbove = rect.top;
+      var spaceBelow = viewportH - rect.bottom;
+      if (spaceAbove >= 220 || spaceAbove >= spaceBelow) {
+        tip.style.setProperty('--dlm-pill-tooltip-bottom', (viewportH - rect.top + GAP) + 'px');
+        tip.style.removeProperty('--dlm-pill-tooltip-top');
+      } else {
+        tip.style.setProperty('--dlm-pill-tooltip-top', (rect.bottom + GAP) + 'px');
+        tip.style.removeProperty('--dlm-pill-tooltip-bottom');
+      }
+    }
+  }
+
+  // Recompute when the viewport changes (rotation, browser-chrome
+  // hide/show on iOS Safari). Throttled with rAF so we don't thrash.
+  var __dlmPillTooltipResizeRaf = null;
+  function schedulePillTooltipReposition() {
+    if (__dlmPillTooltipResizeRaf) return;
+    __dlmPillTooltipResizeRaf = window.requestAnimationFrame(function () {
+      __dlmPillTooltipResizeRaf = null;
+      positionMobilePillTooltips();
+    });
+  }
+  if (typeof window !== 'undefined') {
+    window.addEventListener('resize', schedulePillTooltipReposition);
+    window.addEventListener('scroll', schedulePillTooltipReposition, { passive: true });
+    window.addEventListener('orientationchange', schedulePillTooltipReposition);
   }
 
   async function addSelectedItems() {
