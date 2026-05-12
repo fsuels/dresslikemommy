@@ -23,6 +23,7 @@ Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
 
 | Problem ID | Priority | Status | Closed | Surface | Result | Evidence |
 |---|---|---|---|---|---|---|
+| `PROB-2026-05-12-MOBILE-PDP-MATCHING-STICKY-CTA` | `P1` | `SOLVED_LIVE_READBACK_PASSED` | 2026-05-12 | Live Shopify theme mobile PDP matching-set sticky CTA | Matching-set sticky CTA now mirrors the selected bundle instead of acting like a single-variant add-to-cart: empty state shows matching-set context and a clickable chooser; selected state shows `2 Matching Pieces`, `Total $52.98`, selected summary `Mother S, Girl 2 Years`, and `Add matching pieces`. Scoped live push to theme `#133290917985` succeeded, cache-busted live mobile readback confirmed asset version `product-desktop-ux.js?v=56127774210270559611778580822` contains the new emitter, and click-forward readback confirmed the sticky button forwards to the real matching-set add button | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-mobile-pdp-matching-set-sticky-cta/MOBILE_MATCHING_SET_STICKY_CTA_READBACK.md`; `live_mobile_matching_set_sticky_cta_readback.json`; `node --check assets/product-desktop-ux.js`; `git diff --check`; `shopify theme check --path . --fail-level error --output json`; `shopify theme push --theme 133290917985 --only assets/product-desktop-ux.js --only sections/main-product.liquid --allow-live` |
 | `PROB-2026-05-12-PDP-BUNDLE-DISCOUNT-MISMATCH` | `P1` | `SOLVED_LOCAL_FALSE_PROMISE_REMOVED` | 2026-05-12 | Local Shopify theme matching-set PDP builder vs cart/checkout discount behavior | Confirmed the 10% bundle discount was UI-only: isolated `/cart.js` readback with two Golden Daisy variants showed subtotal/total `4590`, `total_discount=0`, and no discount applications. Removed the PDP `Save 10% automatically when you add 2+ pieces` line, removed `data-matching-set-savings`, and changed JS summary math from discounted grand total to actual subtotal. No Shopify Admin discount was created or edited. A real 10% discount still requires a separately approved Shopify automatic discount/code/function path plus cart/checkout readbacks | Local preview `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set`; isolated `/cart/add.js` + `/cart.js` readback; `node --check assets/product-desktop-ux.js`; `git diff --check`; `shopify theme check --path . --fail-level error --output text` |
 | `PROB-2026-05-12-GOLDEN-DAISY-PDP-87-CRO-HARDENING` | `P1` | `SOLVED_LOCAL_BROWSER_READBACK_PASSED_WITH_LOCALIZED_TITLE_GUARD` | 2026-05-12 | Local Shopify theme Golden Daisy PDP CRO | Theme-rendered English title/SEO/schema now use `Golden Daisy Mommy & Me Matching Separates`; localized routes are no longer forced back to English and local ES/IT/RO/PT-BR readbacks showed localized H1/title behavior. The rendered English PDP description no longer exposes the admin breadcrumb link, `text/html` meta artifact, supplier chart codes, `draft`, invented-row language, chart-backed-variants line, or fabric apology; English bundle builder keeps the Golden Daisy outcome copy and truthful buying guidance; size pills gained selected-state/focus polish. Playwright opened the local PDP, confirmed the English title and buy-box copy in snapshot, and saved a screenshot. No live theme push or Shopify Admin product/SEO/translation write was made | Local preview `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set`; localized readbacks `/es`, `/it`, `/ro`, `/pt-br`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-golden-daisy-pdp-87-cro-hardening/`; `node --check assets/product-desktop-ux.js`; `git diff --check`; `shopify theme check --path . --fail-level error --output text` |
 | `PROB-2026-05-12-PDP-SIZE-TOOLTIP-STACKING` | `P1` | `SOLVED_LOCAL_PREVIEW_PASSED` | 2026-05-12 | Shopify local theme PDP matching-set size pill tooltips | Patched `assets/product-desktop-ux.js` so hovering/focusing a different size pill dismisses any already-open pinned size panel, including the selected panel in the same card. Follow-up patched `assets/component-product-desktop-ux.css` so selected green pill labels stay white while hovered/focused. Local desktop preview confirmed click `S` -> one pinned panel with visible white `S`; hover `M` -> `0` pinned panels and only the `M` hover preview visible; clicking `M` reopens one pinned `M` panel with visible white `M`. `node --check`, `git diff --check`, and Theme Check error-level verification passed. No live theme push or Shopify Admin write was made | Local preview `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set`; `node --check assets/product-desktop-ux.js`; `git diff --check`; `shopify theme check --path . --fail-level error --output text` |
@@ -46,6 +47,53 @@ Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
 | `PROB-2026-05-08-PINTEREST-CATALOG-337-346` | `P1` | `SUPERSEDED_BY_SAFER_PATH` | 2026-05-08 | Pinterest EN-US catalog proof for US paused draft scope | Re-resolved 5 stale rows, built clean 342-row scope, excluded 4 unresolved variants | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/PINTEREST_CATALOG_EVENT_UNBLOCK_REPORT.md` |
 
 ## Detailed Problem Records
+
+### `PROB-2026-05-12-MOBILE-PDP-MATCHING-STICKY-CTA`
+
+Priority: `P1`
+
+Status: `SOLVED_LIVE_READBACK_PASSED`
+
+Owner/session: Codex current session, 2026-05-12 06:01 EDT.
+
+Surface: Live Shopify theme mobile PDP matching-set sticky CTA in `sections/main-product.liquid` and `assets/product-desktop-ux.js`.
+
+Exact symptom:
+- The sticky add-to-cart bar on matching-set PDPs did not make sense because it looked like a single-product shortcut even though the shopper still needed to choose piece sizes/types in the matching-set builder.
+- When selected pieces existed above, the sticky bar did not clearly reflect those selected pieces.
+
+Business impact:
+- Mobile shoppers could hit a confusing checkout shortcut at the exact point where fit and family-member choices matter, lowering confidence and increasing wrong-cart risk.
+
+Definition of fixed:
+- On matching-set PDPs, the sticky bar reflects the matching-set builder state, not the hidden standalone single-product form.
+- Empty state remains actionable by scrolling the shopper to the builder.
+- Selected state shows piece count, total, selected summary, and the real matching-set CTA label.
+- Sticky button forwards to the real matching-set add button once pieces are selected.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-12 06:01 EDT | Inspected sticky mobile ATC and matching-set builder wiring | Found existing matching-set mode forwarded sticky clicks to the bundle CTA, but the bar details still came from the legacy single-variant flow | `sections/main-product.liquid`; `assets/product-desktop-ux.js` |
+| 2026-05-12 06:07 EDT | Added a matching-set summary state emitter | Builder now publishes section-scoped piece count, total, selected summary, and readiness state after every summary update | `assets/product-desktop-ux.js` |
+| 2026-05-12 06:10 EDT | Rewired sticky mobile ATC on matching-set PDPs | Sticky bar now shows matching-set context in empty state, selected piece count/total when ready, keeps shipping reassurance hidden for bundle state, never disables the chooser button, and forwards ready clicks to the real bundle CTA | `sections/main-product.liquid` |
+| 2026-05-12 06:16 EDT | Ran local mobile readbacks | `SOLVED_LOCAL_READBACK_PASSED`: empty sticky showed `Build your matching set` / `Choose options`; after selecting Mother S and Girl 2 Years, sticky showed `2 Matching Pieces`, `Total $52.98`, `Add matching pieces`, and click-forward count was `1` | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-mobile-pdp-matching-set-sticky-cta/MOBILE_MATCHING_SET_STICKY_CTA_READBACK.md` |
+| 2026-05-12 06:14 EDT | Pushed scoped fix live | Shopify CLI reported theme `dresslikemommy/main` `#133290917985` pushed successfully with only `assets/product-desktop-ux.js` and `sections/main-product.liquid` | Shopify CLI output; `MOBILE_MATCHING_SET_STICKY_CTA_READBACK.md` |
+| 2026-05-12 06:16 EDT | Ran cache-busted live mobile readback | `SOLVED_LIVE_READBACK_PASSED`: live asset `product-desktop-ux.js?v=56127774210270559611778580822` contained `DLMMatchingSetStickyState` / `dlm:matching-set-summary`; empty sticky showed `Build your matching set` / `Choose options`; after selecting Mother S and Girl 2 Years, sticky showed `2 Matching Pieces`, `Total $52.98`, `Add matching pieces`; click-forward count was `1` | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-mobile-pdp-matching-set-sticky-cta/live_mobile_matching_set_sticky_cta_readback.json` |
+
+Failed or ruled-out paths:
+- The default Playwright MCP and Chrome DevTools MCP browser profiles were locked, so visual/readback verification used an isolated headless Chromium run via the installed global Playwright package.
+- A new sticky component was ruled out because the existing sticky bar could be safely made state-aware with a narrower patch.
+
+Current next action:
+- Finish scoped GitHub sync for the theme/docs evidence files, leaving unrelated Ads artifacts untouched.
+
+Approval/credential/platform gates:
+- No Shopify Admin product/page/policy/translation/discount writes, checkout edits, Ads/Merchant/Pinterest/GA4/GTM writes, live spend/account changes, payment/order/refund/cancel, credential/account/billing edits, or destructive filesystem actions happened in this follow-up. The only live storefront write was the scoped two-file theme push.
+
+Parallel work to continue:
+- Ads, Merchant, Pinterest, GA4, checkout/payment, and Admin product-data lanes remain separate.
 
 ### `PROB-2026-05-12-ACTIVE-CAMPAIGN-COVERAGE-GOAL`
 

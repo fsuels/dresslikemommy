@@ -34661,3 +34661,70 @@ Guardrails:
 
 Next:
 - Deploy/sync `assets/product-desktop-ux.js` through the normal GitHub/theme path, then run a live mobile hard-refresh readback for Mother L -> S single-tap behavior.
+
+2026-05-12 - Mobile matching-set sticky CTA clarity
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-mobile-matching-set-sticky-cta-local
+
+Why:
+- Owner flagged that the mobile sticky add-to-cart on matching-set PDPs did not make sense because shoppers cannot choose size/type from that bar.
+- The better behavior is for the sticky bar to reflect the matching pieces already selected in the builder above, then forward to the matching-set add action.
+
+What changed locally:
+- Patched `assets/product-desktop-ux.js` so the matching-set builder publishes section-scoped selected-piece state after every summary update: piece count, total text, selected summary, and readiness.
+- Patched `sections/main-product.liquid` so matching-set PDPs put the sticky bar in bundle-aware mode:
+  - Empty state shows matching-set context and a clickable chooser button.
+  - Selected state shows selected piece count and total.
+  - The hidden/shipping line no longer crowds the bundle state.
+  - The sticky button remains clickable while incomplete so it can scroll shoppers back to the builder.
+  - When ready, sticky clicks forward to the real `[data-matching-set-add-button]`.
+- Added evidence packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-mobile-pdp-matching-set-sticky-cta/MOBILE_MATCHING_SET_STICKY_CTA_READBACK.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Validation:
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check -- sections/main-product.liquid assets/product-desktop-ux.js assets/theme-inline-body-static-04.css ops/AGENT_COORDINATION.md` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Local mobile headless Chromium readback against `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set?sticky_matching_set_readback=1` passed: empty sticky showed `Build your matching set` / `Choose options`; after selecting Mother S and Girl 2 Years, sticky showed `2 Matching Pieces`, `Total $52.98`, selected summary `Mother S, Girl 2 Years`, and `Add matching pieces`.
+- Sticky click-forward readback passed with `forwardedClicks: 1` to the real matching-set add button.
+
+Residual risks:
+- Local-only; no live theme push/publish was made.
+- Default Playwright/Chrome DevTools MCP profiles were locked, so readback used an isolated headless Chromium run via the installed global Playwright package.
+- Existing unrelated dirty worktree file `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-google-ads-non-us-search-paused-test-build-approved/raw/after-readbacks/GB_campaign_rpc/initial_response.json` was left untouched.
+
+Guardrails:
+- No live theme push/publish, Shopify Admin product/page/policy/translation/discount write, checkout edit, Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Next:
+- Deploy/sync the local theme changes through the normal path if this should go live, then hard-refresh one live mobile matching-set PDP and repeat the selected-piece sticky readback.
+
+2026-05-12 - Mobile matching-set sticky CTA live deploy and readback
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-mobile-matching-set-sticky-cta-live
+
+Why:
+- Owner asked to deploy/sync the mobile matching-set sticky CTA change, then hard-refresh one live mobile matching-set PDP and repeat the same sticky CTA readback.
+
+What changed live:
+- Pushed only `assets/product-desktop-ux.js` and `sections/main-product.liquid` to live theme `dresslikemommy/main` (`#133290917985`) with Shopify CLI.
+- Updated evidence packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-mobile-pdp-matching-set-sticky-cta/`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Validation:
+- Pre-push `node --check assets/product-desktop-ux.js` passed.
+- Pre-push scoped `git diff --check` passed.
+- Pre-push `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- `shopify theme push --theme 133290917985 --only assets/product-desktop-ux.js --only sections/main-product.liquid --allow-live` completed successfully.
+- Live hard-refresh/mobile fresh-context readback on `https://www.dresslikemommy.com/products/golden-daisy-mommy-and-me-set?sticky_live_readback=1778580888656` passed.
+- Live asset readback: `https://www.dresslikemommy.com/cdn/shop/t/100/assets/product-desktop-ux.js?v=56127774210270559611778580822`; fetched script contained both `DLMMatchingSetStickyState` and `dlm:matching-set-summary`.
+- Live sticky state readback: empty state showed `Build your matching set` / `Choose options`; after selecting Mother S and Girl 2 Years, sticky showed `2 Matching Pieces`, `Total $52.98`, selected summary `Mother S, Girl 2 Years`, and `Add matching pieces`.
+- Live sticky click-forward readback passed with `forwardedClicks: 1` to the real matching-set add button.
+
+Sync:
+- Scoped GitHub sync includes only the matching-set sticky CTA theme files, evidence, and continuity notes.
+- Existing unrelated dirty worktree artifacts were left untouched, including the Google Ads packet changes.
+
+Residual risks:
+- None known for the live sticky CTA path after the cache-busted mobile readback.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, checkout edit, Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred. The only live storefront write was the scoped two-file theme push.
