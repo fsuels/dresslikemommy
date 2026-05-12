@@ -2,7 +2,7 @@
 
 ## Links
 - **Admin:** https://admin.shopify.com/store/dresslikemommy/products/7545279512673
-- **Live:** not published
+- **Live:** https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops
 - **Vendor source:** https://detail.1688.com/offer/1038879477265.html?
 - **Product GID:** `gid://shopify/Product/7545279512673`
 - **Handle:** `sunshine-stripe-family-matching-tops`
@@ -56,23 +56,23 @@ Direct 1688 fetch returned Alibaba anti-bot/CAPTCHA punish markup, so the attach
 ## Derivations
 - The chart text says `条纹短袖` and the supplied product photo shows one short-sleeve striped tee for children and adults; bottoms and props are styling only.
 - The chart states fabric as `95% cotton + 5% spandex`; Shopify fabric writes the verified `Cotton` catalog value, while spandex is retained in body copy and notes because no spandex fabric metaobject was verified.
-- Source chest values (`37` through `64`) are flat garment widths despite the screenshot column label reading chest; they were doubled into wearable `chest_cm` values.
-- Hip and waist are derived from the canonical top/shirt rules: child top rows use `hip = chest + 4` and `waist = chest`; adult top rows use `hip = chest` and `waist = chest - 12`.
+- Source chest values (`37` through `64`) are flat garment widths despite the screenshot column label reading chest; the table now shows both the flat chest width and doubled chest-around value so shoppers can compare against a T-shirt they own.
+- Vendor non-garment fit ranges are intentionally not shown to shoppers because this listing sells the T-shirt only; those ranges were fit suggestions, not shirt measurements.
 - The vendor chart publishes one child ladder and one adult ladder, not separate girl/boy/mom/dad ladders, so the variant picker uses `Child ...` and `Adult ...` size labels instead of inventing unsupported role rows.
 - Pricing is anchored to the canonical Tops fallback and nearby family-top pattern: child `24.99`, adult `28.99`; Cost per item is exactly 50%.
 
 ## Verification
 | Check | Result | Detail |
 |---|---|---|
-| Product status is DRAFT | PASS | DRAFT |
-| publishedAt is null | PASS | None |
-| No sales-channel publications live | PASS | [] |
+| Product status preserved | PASS | ACTIVE |
+| publishedAt preserved | PASS | 2026-05-06T07:06:34Z |
+| Sales-channel publication state respected | PASS | ['Google & YouTube', 'Facebook & Instagram', 'Online Store', 'Pinterest', 'Microsoft Channel', 'TikTok', 'Buy Button', 'Point of Sale', 'n8n Integration'] |
 | Taxonomy fullName matches | PASS | Apparel & Accessories > Clothing > Clothing Tops > T-Shirts |
 | Variant count matches SIZE_CHART | PASS | 14 vs 14 |
 | Price and cost parity | PASS | 14 variants checked |
 | Source URL guard | PASS | no forbidden source tokens in Shopify product fields |
 | Size table rows | PASS | 14 |
-| Size table headers | PASS | 10 headers |
+| Size table headers | PASS | 7 headers |
 
 ## Price and Cost Parity
 | SKU | Live Price | Live Compare-at | Live Cost | Spec Price | Spec Compare-at | Spec Cost | Match |
@@ -111,10 +111,14 @@ Direct 1688 fetch returned Alibaba anti-bot/CAPTCHA punish markup, so the attach
 - `mm-google-shopping.custom_label_4`
 - `mm-google-shopping.custom_product`
 - `mm-google-shopping.gender`
+- `msft_bingads.product_status`
 - `shopify.age-group`
+- `shopify.care-instructions`
 - `shopify.color-pattern`
 - `shopify.fabric`
+- `shopify.neckline`
 - `shopify.size`
+- `shopify.sleeve-length-type`
 - `shopify.target-gender`
 
 ## Metafields Skipped

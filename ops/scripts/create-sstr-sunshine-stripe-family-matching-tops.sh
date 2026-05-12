@@ -76,20 +76,20 @@ SIZE_MAP = {
 }
 
 SIZE_CHART = [
-    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"90","picker_label":"Child 2 Years","sku_suffix":"KID2Y","age":"2","weight":"20-25 jin","height":"85-95 cm","source_chest_width_cm":37,"chest_cm":74,"shoulder_cm":34.5,"sleeve_cm":12.5,"hip_cm":78,"waist_cm":74,"length_cm":39,"pant_cm":0},
-    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"100","picker_label":"Child 3 Years","sku_suffix":"KID3Y","age":"3","weight":"25-30 jin","height":"90-105 cm","source_chest_width_cm":39,"chest_cm":78,"shoulder_cm":36,"sleeve_cm":13.5,"hip_cm":82,"waist_cm":78,"length_cm":42,"pant_cm":0},
-    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"110","picker_label":"Child 4 Years","sku_suffix":"KID4Y","age":"4","weight":"30-35 jin","height":"105-115 cm","source_chest_width_cm":41,"chest_cm":82,"shoulder_cm":37.5,"sleeve_cm":14,"hip_cm":86,"waist_cm":82,"length_cm":45,"pant_cm":0},
-    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"120","picker_label":"Child 5 Years","sku_suffix":"KID5Y","age":"5","weight":"35-45 jin","height":"115-125 cm","source_chest_width_cm":43,"chest_cm":86,"shoulder_cm":39,"sleeve_cm":15,"hip_cm":90,"waist_cm":86,"length_cm":48,"pant_cm":0},
-    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"130","picker_label":"Child 6-7 Years","sku_suffix":"KID67Y","age":"6-7","weight":"45-55 jin","height":"125-135 cm","source_chest_width_cm":45,"chest_cm":90,"shoulder_cm":40.5,"sleeve_cm":15.5,"hip_cm":94,"waist_cm":90,"length_cm":51,"pant_cm":0},
-    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"140","picker_label":"Child 8 Years","sku_suffix":"KID8Y","age":"8","weight":"55-65 jin","height":"135-145 cm","source_chest_width_cm":47,"chest_cm":94,"shoulder_cm":42.5,"sleeve_cm":16,"hip_cm":98,"waist_cm":94,"length_cm":54,"pant_cm":0},
-    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"150","picker_label":"Child 9-10 Years","sku_suffix":"KID910Y","age":"9-10","weight":"65-75 jin","height":"145-155 cm","source_chest_width_cm":49,"chest_cm":98,"shoulder_cm":44,"sleeve_cm":17,"hip_cm":102,"waist_cm":98,"length_cm":57,"pant_cm":0},
-    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"S/160","picker_label":"Adult S","sku_suffix":"S","age":"-","weight":"90-105 jin","height":"160-165 cm","source_chest_width_cm":52,"chest_cm":104,"shoulder_cm":49.5,"sleeve_cm":17.5,"hip_cm":104,"waist_cm":92,"length_cm":64.5,"pant_cm":0},
-    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"M/165","picker_label":"Adult M","sku_suffix":"M","age":"-","weight":"105-115 jin","height":"165-170 cm","source_chest_width_cm":54,"chest_cm":108,"shoulder_cm":51.5,"sleeve_cm":18,"hip_cm":108,"waist_cm":96,"length_cm":66.5,"pant_cm":0},
-    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"L/170","picker_label":"Adult L","sku_suffix":"L","age":"-","weight":"115-130 jin","height":"170-175 cm","source_chest_width_cm":56,"chest_cm":112,"shoulder_cm":53.5,"sleeve_cm":19,"hip_cm":112,"waist_cm":100,"length_cm":68.5,"pant_cm":0},
-    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"XL/175","picker_label":"Adult XL","sku_suffix":"XL","age":"-","weight":"130-145 jin","height":"175-180 cm","source_chest_width_cm":58,"chest_cm":116,"shoulder_cm":55,"sleeve_cm":19.5,"hip_cm":116,"waist_cm":104,"length_cm":70.5,"pant_cm":0},
-    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"2XL/180","picker_label":"Adult 2XL","sku_suffix":"2XL","age":"-","weight":"145-160 jin","height":"180-185 cm","source_chest_width_cm":60,"chest_cm":120,"shoulder_cm":57,"sleeve_cm":20.5,"hip_cm":120,"waist_cm":108,"length_cm":72.5,"pant_cm":0},
-    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"3XL/185","picker_label":"Adult 3XL","sku_suffix":"3XL","age":"-","weight":"160-180 jin","height":"185-190 cm","source_chest_width_cm":62,"chest_cm":124,"shoulder_cm":58.5,"sleeve_cm":21,"hip_cm":124,"waist_cm":112,"length_cm":74.5,"pant_cm":0},
-    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"4XL/190","picker_label":"Adult 4XL","sku_suffix":"4XL","age":"-","weight":"180-200 jin","height":"190-195 cm","source_chest_width_cm":64,"chest_cm":128,"shoulder_cm":60.5,"sleeve_cm":22,"hip_cm":128,"waist_cm":116,"length_cm":76.5,"pant_cm":0},
+    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"90","picker_label":"Child 2 Years","sku_suffix":"KID2Y","source_chest_width_cm":37,"chest_cm":74,"shoulder_cm":34.5,"sleeve_cm":12.5,"length_cm":39},
+    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"100","picker_label":"Child 3 Years","sku_suffix":"KID3Y","source_chest_width_cm":39,"chest_cm":78,"shoulder_cm":36,"sleeve_cm":13.5,"length_cm":42},
+    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"110","picker_label":"Child 4 Years","sku_suffix":"KID4Y","source_chest_width_cm":41,"chest_cm":82,"shoulder_cm":37.5,"sleeve_cm":14,"length_cm":45},
+    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"120","picker_label":"Child 5 Years","sku_suffix":"KID5Y","source_chest_width_cm":43,"chest_cm":86,"shoulder_cm":39,"sleeve_cm":15,"length_cm":48},
+    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"130","picker_label":"Child 6-7 Years","sku_suffix":"KID67Y","source_chest_width_cm":45,"chest_cm":90,"shoulder_cm":40.5,"sleeve_cm":15.5,"length_cm":51},
+    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"140","picker_label":"Child 8 Years","sku_suffix":"KID8Y","source_chest_width_cm":47,"chest_cm":94,"shoulder_cm":42.5,"sleeve_cm":16,"length_cm":54},
+    {"audience":"child","role":"Child Shirt","garment":"Shirt","vendor_label":"150","picker_label":"Child 9-10 Years","sku_suffix":"KID910Y","source_chest_width_cm":49,"chest_cm":98,"shoulder_cm":44,"sleeve_cm":17,"length_cm":57},
+    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"S/160","picker_label":"Adult S","sku_suffix":"S","source_chest_width_cm":52,"chest_cm":104,"shoulder_cm":49.5,"sleeve_cm":17.5,"length_cm":64.5},
+    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"M/165","picker_label":"Adult M","sku_suffix":"M","source_chest_width_cm":54,"chest_cm":108,"shoulder_cm":51.5,"sleeve_cm":18,"length_cm":66.5},
+    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"L/170","picker_label":"Adult L","sku_suffix":"L","source_chest_width_cm":56,"chest_cm":112,"shoulder_cm":53.5,"sleeve_cm":19,"length_cm":68.5},
+    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"XL/175","picker_label":"Adult XL","sku_suffix":"XL","source_chest_width_cm":58,"chest_cm":116,"shoulder_cm":55,"sleeve_cm":19.5,"length_cm":70.5},
+    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"2XL/180","picker_label":"Adult 2XL","sku_suffix":"2XL","source_chest_width_cm":60,"chest_cm":120,"shoulder_cm":57,"sleeve_cm":20.5,"length_cm":72.5},
+    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"3XL/185","picker_label":"Adult 3XL","sku_suffix":"3XL","source_chest_width_cm":62,"chest_cm":124,"shoulder_cm":58.5,"sleeve_cm":21,"length_cm":74.5},
+    {"audience":"adult","role":"Adult Shirt","garment":"Shirt","vendor_label":"4XL/190","picker_label":"Adult 4XL","sku_suffix":"4XL","source_chest_width_cm":64,"chest_cm":128,"shoulder_cm":60.5,"sleeve_cm":22,"length_cm":76.5},
 ]
 
 
@@ -171,29 +171,23 @@ def sku_for(row: dict) -> str:
 def build_body() -> str:
     headers = [
         "Size",
-        "Age",
-        "Weight (jin)",
-        "Height (cm)",
-        "Chest/Bust (cm)",
-        "Sleeve or Skirt (cm)",
-        "Pant/Short or - (cm)",
-        "Hip (cm)",
-        "Waist (cm)",
-        "Garment Length (cm)",
+        "Vendor Label",
+        "Shirt Length (cm)",
+        "Chest Width - Flat (cm)",
+        "Chest Around (cm)",
+        "Shoulder (cm)",
+        "Sleeve (cm)",
     ]
     rendered = []
     for row in SIZE_CHART:
         cells = [
             row["picker_label"],
-            row["age"] if row["audience"] == "child" else "-",
-            source_range(row["weight"], "jin"),
-            source_range(row["height"], "cm"),
-            cm(row["chest_cm"]),
-            cm(row["sleeve_cm"]),
-            "-",
-            cm(row["hip_cm"]),
-            cm(row["waist_cm"]),
+            row["vendor_label"],
             cm(row["length_cm"]),
+            cm(row["source_chest_width_cm"]),
+            cm(row["chest_cm"]),
+            cm(row["shoulder_cm"]),
+            cm(row["sleeve_cm"]),
         ]
         rendered.append("<tr>" + "".join(f"<td>{html.escape(str(cell))}</td>" for cell in cells) + "</tr>")
     return "\n\n".join([
@@ -205,7 +199,8 @@ def build_body() -> str:
         "<li><strong>Care:</strong> Machine wash cold on gentle, turn inside out, line dry or tumble low, and avoid bleach.</li>",
         "<li><strong>Size range:</strong> Child 2 Years through Child 9-10 Years and Adult S through Adult 4XL.</li>",
         "</ul>",
-        "<h3>Size Chart - Shirt</h3>",
+        "<h3>T-Shirt Size Chart</h3>",
+        "<p>Measure a T-shirt that already fits, then compare it with the garment measurements below. The chart is for the shirt only; bottoms and styling props are not included.</p>",
         "<table id=\"size-chart\">",
         "<thead><tr>",
         *[f"<th>{header}</th>" for header in headers],
@@ -317,7 +312,7 @@ def table_row_count(body: str) -> int:
 
 def validate_preflight(body: str, variants: list[dict]) -> None:
     errors = []
-    required = {"audience", "role", "garment", "vendor_label", "picker_label", "sku_suffix", "age", "weight", "height", "chest_cm", "hip_cm", "waist_cm", "length_cm", "sleeve_cm", "pant_cm"}
+    required = {"audience", "role", "garment", "vendor_label", "picker_label", "sku_suffix", "source_chest_width_cm", "chest_cm", "shoulder_cm", "length_cm", "sleeve_cm"}
     if len(SIZE_CHART) != 14 or len(variants) != len(SIZE_CHART):
         errors.append("SIZE_CHART/variant count mismatch")
     for row in SIZE_CHART:
@@ -336,8 +331,8 @@ def validate_preflight(body: str, variants: list[dict]) -> None:
         errors.append(f"seo description too long: {len(SEO_DESCRIPTION)}")
     if table_row_count(body) != len(SIZE_CHART):
         errors.append("body size-table row count mismatch")
-    if any(part.count("<th>") != 10 for part in re.findall(r"<table.*?</table>", body, re.S)):
-        errors.append("one or more size table does not have 10 headers")
+    if any(part.count("<th>") != 7 for part in re.findall(r"<table.*?</table>", body, re.S)):
+        errors.append("one or more size table does not have 7 headers")
     for row, variant in zip(SIZE_CHART, variants):
         if variant["price"] != price_for(row):
             errors.append("FORCE_SPEC_PRICES guard failed")
@@ -471,17 +466,21 @@ def write_csv(body: str, variants: list[dict]) -> None:
         writer.writerows(rows)
 
 
-def verify_product(product: dict, variants: list[dict]) -> tuple[list[str], list[dict]]:
+def verify_product(product: dict, variants: list[dict], expected_status: str, expected_published_at: str | None) -> tuple[list[str], list[dict]]:
     spec_by_sku = {variant["inventoryItem"]["sku"]: variant for variant in variants}
     live_variants = product["variants"]["nodes"]
     errors = []
     price_rows = []
-    if product["status"] != "DRAFT":
-        errors.append(f"status is {product['status']}, expected DRAFT")
-    if product.get("publishedAt"):
-        errors.append(f"publishedAt is {product['publishedAt']}, expected null")
-    if any(node["isPublished"] for node in product["resourcePublicationsV2"]["nodes"]):
-        errors.append("one or more sales-channel publications is live")
+    if product["status"] != expected_status:
+        errors.append(f"status changed to {product['status']}, expected preserved {expected_status}")
+    live_publications = [node for node in product["resourcePublicationsV2"]["nodes"] if node["isPublished"]]
+    if expected_status == "DRAFT":
+        if product.get("publishedAt"):
+            errors.append(f"publishedAt is {product['publishedAt']}, expected null")
+        if live_publications:
+            errors.append("one or more sales-channel publications is live")
+    elif expected_published_at and product.get("publishedAt") != expected_published_at:
+        errors.append(f"publishedAt changed to {product.get('publishedAt')}, expected preserved {expected_published_at}")
     if (product["category"] or {}).get("fullName") != EXPECTED_TAXONOMY_FULL_NAME:
         errors.append(f"taxonomy is {(product['category'] or {}).get('fullName')}")
     if len(live_variants) != len(variants):
@@ -492,8 +491,8 @@ def verify_product(product: dict, variants: list[dict]) -> tuple[list[str], list
         errors.append("live SKUs do not match derived SKUs")
     if table_row_count(product["descriptionHtml"]) != len(SIZE_CHART):
         errors.append("size table row count does not match SIZE_CHART")
-    if any(part.count("<th>") != 10 for part in re.findall(r"<table.*?</table>", product["descriptionHtml"], re.S)):
-        errors.append("one or more live size table does not have 10 headers")
+    if any(part.count("<th>") != 7 for part in re.findall(r"<table.*?</table>", product["descriptionHtml"], re.S)):
+        errors.append("one or more live size table does not have 7 headers")
     if [option["name"] for option in product["options"]] != ["Size", "Color"]:
         errors.append("option axes are not Size / Color")
     expected_pairs = {(row["picker_label"], COLOR_NAME) for row in SIZE_CHART}
@@ -547,7 +546,7 @@ def verify_product(product: dict, variants: list[dict]) -> tuple[list[str], list
     return errors, price_rows
 
 
-def write_listing(product_id: str, verify: dict, variants: list[dict], price_rows: list[dict]) -> None:
+def write_listing(product_id: str, verify: dict, variants: list[dict], price_rows: list[dict], expected_status: str, expected_published_at: str | None) -> None:
     admin_url = f"https://admin.shopify.com/store/dresslikemommy/products/{product_id.split('/')[-1]}"
     recap = []
     for row, variant in zip(SIZE_CHART, variants):
@@ -566,21 +565,21 @@ def write_listing(product_id: str, verify: dict, variants: list[dict], price_row
     smart_collections = verify["collections"]["nodes"] or []
     smart_lines = [f"- {item['title']} (`/{item['handle']}`)" for item in smart_collections] or ["- None returned immediately; draft products may not index into smart collections until publication."]
     verification_rows = [
-        ("Product status is DRAFT", verify["status"] == "DRAFT", verify["status"]),
-        ("publishedAt is null", not verify.get("publishedAt"), str(verify.get("publishedAt"))),
-        ("No sales-channel publications live", not live_publications, str([p["publication"]["name"] for p in live_publications])),
+        ("Product status preserved", verify["status"] == expected_status, verify["status"]),
+        ("publishedAt preserved", verify.get("publishedAt") == expected_published_at if expected_published_at else not verify.get("publishedAt"), str(verify.get("publishedAt"))),
+        ("Sales-channel publication state respected", not live_publications if expected_status == "DRAFT" else True, str([p["publication"]["name"] for p in live_publications])),
         ("Taxonomy fullName matches", verify["category"]["fullName"] == EXPECTED_TAXONOMY_FULL_NAME, verify["category"]["fullName"]),
         ("Variant count matches SIZE_CHART", len(verify["variants"]["nodes"]) == len(SIZE_CHART), f"{len(verify['variants']['nodes'])} vs {len(SIZE_CHART)}"),
         ("Price and cost parity", all(row["match"] for row in price_rows), f"{len(price_rows)} variants checked"),
         ("Source URL guard", all(token not in ("\n".join([verify["title"], verify["descriptionHtml"], verify["productType"], ", ".join(verify["tags"]), verify["seo"]["title"] or "", verify["seo"]["description"] or ""]).lower()) for token in ["1688", "alibaba", "detail.1688.com"]), "no forbidden source tokens in Shopify product fields"),
         ("Size table rows", table_row_count(verify["descriptionHtml"]) == len(SIZE_CHART), str(table_row_count(verify["descriptionHtml"]))),
-        ("Size table headers", all(part.count("<th>") == 10 for part in re.findall(r"<table.*?</table>", verify["descriptionHtml"], re.S)), "10 headers"),
+        ("Size table headers", all(part.count("<th>") == 7 for part in re.findall(r"<table.*?</table>", verify["descriptionHtml"], re.S)), "7 headers"),
     ]
     lines = [
         f"# {TITLE}", "",
         "## Links",
         f"- **Admin:** {admin_url}",
-        "- **Live:** not published",
+        f"- **Live:** {verify.get('onlineStoreUrl') or 'not published'}",
         f"- **Vendor source:** {VENDOR_URL}",
         f"- **Product GID:** `{product_id}`",
         f"- **Handle:** `{HANDLE}`", "",
@@ -612,8 +611,8 @@ def write_listing(product_id: str, verify: dict, variants: list[dict], price_row
         "## Derivations",
         "- The chart text says `条纹短袖` and the supplied product photo shows one short-sleeve striped tee for children and adults; bottoms and props are styling only.",
         "- The chart states fabric as `95% cotton + 5% spandex`; Shopify fabric writes the verified `Cotton` catalog value, while spandex is retained in body copy and notes because no spandex fabric metaobject was verified.",
-        "- Source chest values (`37` through `64`) are flat garment widths despite the screenshot column label reading chest; they were doubled into wearable `chest_cm` values.",
-        "- Hip and waist are derived from the canonical top/shirt rules: child top rows use `hip = chest + 4` and `waist = chest`; adult top rows use `hip = chest` and `waist = chest - 12`.",
+        "- Source chest values (`37` through `64`) are flat garment widths despite the screenshot column label reading chest; the table now shows both the flat chest width and doubled chest-around value so shoppers can compare against a T-shirt they own.",
+        "- Vendor non-garment fit ranges are intentionally not shown to shoppers because this listing sells the T-shirt only; those ranges were fit suggestions, not shirt measurements.",
         "- The vendor chart publishes one child ladder and one adult ladder, not separate girl/boy/mom/dad ladders, so the variant picker uses `Child ...` and `Adult ...` size labels instead of inventing unsupported role rows.",
         "- Pricing is anchored to the canonical Tops fallback and nearby family-top pattern: child `24.99`, adult `28.99`; Cost per item is exactly 50%.", "",
         "## Verification",
@@ -673,16 +672,15 @@ def main() -> None:
         "vendor": VENDOR,
         "productType": PRODUCT_TYPE,
         "tags": tags(),
-        "status": "DRAFT",
         "category": TAXONOMY_GID,
         "seo": {"title": SEO_TITLE, "description": SEO_DESCRIPTION},
     }
 
-    existing = gql("""query($handle:String!){ productByHandle(handle:$handle){ id status onlineStoreUrl variants(first:100){nodes{id sku selectedOptions{name value}}} } }""", {"handle": HANDLE})["data"]["productByHandle"]
+    existing = gql("""query($handle:String!){ productByHandle(handle:$handle){ id status publishedAt onlineStoreUrl variants(first:100){nodes{id sku selectedOptions{name value}}} } }""", {"handle": HANDLE})["data"]["productByHandle"]
     if existing:
-        if existing["status"] == "ACTIVE":
-            raise RuntimeError(f"Existing product {HANDLE} is ACTIVE; refusing to change publish state: {existing.get('onlineStoreUrl')}")
         product_id = existing["id"]
+        expected_status = existing["status"]
+        expected_published_at = existing.get("publishedAt")
         res = gql("""mutation($product:ProductUpdateInput!){ productUpdate(product:$product){ product{id handle title status} userErrors{field message} } }""", {"product": {"id": product_id, **product_input}})
         require_no_user_errors(res, ["data", "productUpdate", "userErrors"])
         live_by_sku = {node["sku"]: node for node in existing["variants"]["nodes"] if node.get("sku")}
@@ -707,7 +705,9 @@ def main() -> None:
         })
         require_no_user_errors(res, ["data", "productVariantsBulkUpdate", "userErrors"])
     else:
-        res = gql("""mutation($input:ProductInput!){ productCreate(input:$input){ product{id handle title status} userErrors{field message} } }""", {"input": {**product_input, "productOptions": product_options}})
+        expected_status = "DRAFT"
+        expected_published_at = None
+        res = gql("""mutation($input:ProductInput!){ productCreate(input:$input){ product{id handle title status} userErrors{field message} } }""", {"input": {**product_input, "status": "DRAFT", "productOptions": product_options}})
         require_no_user_errors(res, ["data", "productCreate", "userErrors"])
         product_id = res["data"]["productCreate"]["product"]["id"]
         res = gql("""mutation($productId:ID!,$variants:[ProductVariantsBulkInput!]!,$strategy:ProductVariantsBulkCreateStrategy){ productVariantsBulkCreate(productId:$productId, variants:$variants, strategy:$strategy){ productVariants{id sku title price compareAtPrice inventoryPolicy inventoryItem{tracked requiresShipping unitCost{amount currencyCode}}} userErrors{field message} } }""", {
@@ -726,8 +726,8 @@ def main() -> None:
     time.sleep(2)
     verify = gql("""query($id:ID!){ product(id:$id){ id title handle productType status publishedAt onlineStoreUrl descriptionHtml tags seo{title description} category{id fullName} options{name values} variants(first:100){nodes{id sku title price compareAtPrice inventoryPolicy selectedOptions{name value} inventoryItem{tracked requiresShipping unitCost{amount currencyCode}}}} media(first:50){nodes{... on MediaImage{alt image{url}}}} collections(first:50){nodes{title handle}} metafields(first:120){nodes{namespace key type value}} resourcePublicationsV2(first:20){nodes{isPublished publishDate publication{id name}}} } }""", {"id": product_id})["data"]["product"]
     VERIFY_JSON_OUT.write_text(json.dumps({"data": {"product": verify}}, indent=2), encoding="utf-8")
-    errors, price_rows = verify_product(verify, variants)
-    write_listing(product_id, verify, variants, price_rows)
+    errors, price_rows = verify_product(verify, variants, expected_status, expected_published_at)
+    write_listing(product_id, verify, variants, price_rows, expected_status, expected_published_at)
     if errors:
         raise RuntimeError("FINAL VERIFY FAILED:\n- " + "\n- ".join(errors))
     print(json.dumps({

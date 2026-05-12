@@ -1346,6 +1346,49 @@ Approval/credential/platform gates:
 Parallel work to continue:
 - This was independent from Ads, Merchant, Pinterest, GA4/GTM, and paid-growth launch gates.
 
+### `PROB-2026-05-12-SUNSHINE-STRIPE-TEE-SIZE-GUIDE`
+
+Priority: `P1`
+
+Status: `SOLVED_READBACK_PASSED`
+
+Owner/session: Codex current session, 2026-05-12.
+
+Surface: Shopify Admin product `sunshine-stripe-family-matching-tops`; local listing script and artifacts under `ops/scripts/create-sstr-sunshine-stripe-family-matching-tops.sh` and `ops/listings/*sunshine-stripe-family-matching-tops*`.
+
+Exact symptom:
+- Owner reported the PDP size information for `http://127.0.0.1:9292/products/sunshine-stripe-family-matching-tops` does not make sense because the listing is only selling the T-shirt, while the size guide includes confusing person-weight guidance and non-shirt-derived fields.
+
+Business impact:
+- A customer-facing tee listing with confusing size guidance can reduce trust, increase wrong-size purchases, and delay launch/publication of the draft product.
+
+Definition of fixed:
+- Product description and saved listing artifacts show tee-only size information, with no person-weight/pounds/`jin` shopper-facing guidance and no pants/shorts/skirt columns.
+- Product publish state is preserved, with the same variant count, prices, costs, and source-URL guard intact.
+- Local preview/readback confirms the stale confusing labels are gone.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-12 EDT | Started narrow coordination claim and inspected existing listing artifacts/readback | Confirmed source listing script generated a tee-only product but included `Weight (jin)`, hip/waist, and pant/short placeholder columns in the shopper-facing table. Repair is scoped to draft product description and local artifacts only | `ops/AGENT_COORDINATION.md`; `ops/scripts/create-sstr-sunshine-stripe-family-matching-tops.sh`; `ops/listings/body-sunshine-stripe-family-matching-tops.html`; `ops/listings/verify-sunshine-stripe-family-matching-tops.json` |
+| 2026-05-12 EDT | First repair run after removing non-shirt table fields | Existing product had become `ACTIVE`, so the old draft-only guard stopped before any product write. This avoided accidentally forcing publish state. | `ops/scripts/create-sstr-sunshine-stripe-family-matching-tops.sh` terminal output |
+| 2026-05-12 EDT | Adjusted the script to preserve the existing product status/publishedAt, then reran the Sunshine Stripe correction | `SOLVED_READBACK_PASSED`: product stayed `ACTIVE`, `publishedAt` stayed `2026-05-06T07:06:34Z`, `onlineStoreUrl` remained `https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops`, variant count stayed `14`, price/cost parity passed, source-URL guard passed, and the size table is now tee-only with `7` headers and `14` rows | `ops/listings/verify-sunshine-stripe-family-matching-tops.json`; `ops/listings/body-sunshine-stripe-family-matching-tops.html`; local preview `http://127.0.0.1:9292/products/sunshine-stripe-family-matching-tops` |
+
+Failed or ruled-out paths:
+- Publishing or activating the draft product is ruled out.
+- Changing prices, costs, variants, handle, product scope, feed labels, or unrelated product data is ruled out.
+- Forcing the product back to draft was ruled out after readback showed it is already active; final repair preserved the existing active/published state instead.
+
+Current next action:
+- No further action required for this issue. If the page is open in a browser, hard-refresh the product page to clear any stale local/browser cache.
+
+Approval/credential/platform gates:
+- None remaining for this issue. Any later publish-state, price, variant, product-scope, feed-label, or unrelated product changes still require fresh explicit approval.
+
+Parallel work to continue:
+- Paid-growth and theme lanes remain separate and should not be mixed into this product-listing correction.
+
 Copy this template for every new problem:
 
 ```markdown

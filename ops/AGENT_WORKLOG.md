@@ -34087,3 +34087,37 @@ Guardrails:
 
 Next:
 - Deploy/sync this local theme patch through the normal GitHub/theme sync path when ready.
+
+2026-05-12 - Sunshine Stripe tee size-guide correction
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-sunshine-stripe-tee-size-guide-correction
+
+Why:
+- Owner reported that `http://127.0.0.1:9292/products/sunshine-stripe-family-matching-tops` is only selling the T-shirt, but the size information showed confusing person-weight guidance and non-shirt fields.
+
+What changed:
+- Patched `ops/scripts/create-sstr-sunshine-stripe-family-matching-tops.sh` so the generated product body uses a tee-only size table.
+- Removed shopper-facing person-weight/`jin`, height, hip, waist, and pant/short/skirt table columns from the Sunshine Stripe product description and regenerated the local artifacts:
+  - `ops/listings/body-sunshine-stripe-family-matching-tops.html`
+  - `ops/listings/size-chart-sunshine-stripe-family-matching-tops.json`
+  - `ops/listings/sunshine-stripe-family-matching-tops-shopify-import.csv`
+  - `ops/listings/sunshine-stripe-family-matching-tops-listing.md`
+  - `ops/listings/verify-sunshine-stripe-family-matching-tops.json`
+- First script run stopped safely because the product is now `ACTIVE`; updated the script to preserve existing status/publishedAt instead of trying to force draft status.
+- Applied the corrected description to the existing Shopify product only.
+
+Validation/readbacks:
+- Script readback passed: product `7545279512673` stayed `ACTIVE`, `publishedAt` stayed `2026-05-06T07:06:34Z`, `onlineStoreUrl` stayed `https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops`, variant count stayed `14`, price/cost parity passed, and source-URL guard passed.
+- Product description readback has tee-only headers: `Size`, `Vendor Label`, `Shirt Length (cm)`, `Chest Width - Flat (cm)`, `Chest Around (cm)`, `Shoulder (cm)`, and `Sleeve (cm)`.
+- Product description readback has `14` size rows and `0` forbidden hits for `Weight`, `Suggested Weight`, `pounds`, `lbs`, `jin`, `Pant/Short`, `Hip (cm)`, or `Waist (cm)`.
+- Local preview HTML at `http://127.0.0.1:9292/products/sunshine-stripe-family-matching-tops` showed the corrected `T-Shirt Size Chart`, `14` rows, and no forbidden hits inside `#size-chart`.
+- `bash -n ops/scripts/create-sstr-sunshine-stripe-family-matching-tops.sh` passed.
+- `git diff --check` passed.
+
+Problems:
+- `PROB-2026-05-12-SUNSHINE-STRIPE-TEE-SIZE-GUIDE`: opened and closed as `SOLVED_READBACK_PASSED`.
+
+Guardrails:
+- No publish-state change, handle change, price/cost change, variant count change, product-scope/feed-label change, vendor/source URL exposure, unrelated product edit, Google Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/conversion-goal change, checkout payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Next:
+- Hard-refresh the product page if a browser still shows the stale table from cache.
