@@ -21,6 +21,7 @@ Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
 
 | Problem ID | Priority | Status | Closed | Surface | Result | Evidence |
 |---|---|---|---|---|---|---|
+| `PROB-2026-05-12-PDP-SIZE-TOOLTIP-STACKING` | `P1` | `SOLVED_LOCAL_PREVIEW_PASSED` | 2026-05-12 | Shopify local theme PDP matching-set size pill tooltips | Patched `assets/product-desktop-ux.js` so hovering/focusing a different size pill dismisses any already-open pinned size panel, including the selected panel in the same card. Follow-up patched `assets/component-product-desktop-ux.css` so selected green pill labels stay white while hovered/focused. Local desktop preview confirmed click `S` -> one pinned panel with visible white `S`; hover `M` -> `0` pinned panels and only the `M` hover preview visible; clicking `M` reopens one pinned `M` panel with visible white `M`. `node --check`, `git diff --check`, and Theme Check error-level verification passed. No live theme push or Shopify Admin write was made | Local preview `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set`; `node --check assets/product-desktop-ux.js`; `git diff --check`; `shopify theme check --path . --fail-level error --output text` |
 | `PROB-2026-05-10-GB-FIRST-ENABLE-ADGROUP-NAME-MISMATCH` | `P1` | `SOLVED_LOCAL_DOC_REPAIRED` | 2026-05-10 | Google Ads first-enable runbook and launch-readiness docs for campaign `23838895360` | Local launch docs incorrectly used `Mommy & Me Dresses - Exact only`; live/readback artifacts and split CSV show the actual ad group name is `Mommy & Me Dresses - Exact`. Current runbook, scorecard, canonical prompt, AGENTS memory, and new launch-prep packet now use the actual name and add a stop condition if stale wording appears during action-time readback. No Ads/account writes were made | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-google-ads-non-us-search-paused-test-build-approved/raw/after-readbacks/gb_direct_campaign_readback/ads.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-authority-safe-launch-prep/lanes/google-ads-launch-readiness/GOOGLE_ADS_FIRST_ENABLE_READBACKS.md` |
 | `PROB-2026-05-10-GB-FIRST-ENABLE-LANDING-CURL-403` | `P2` | `SOLVED_BROWSER_READBACK_PASSED` | 2026-05-10 | GB first-enable final URL public browser readback | Raw terminal `curl` returned `403`, but browser-style readback loaded the exact GB final URL, showed GB/GBP presentment, no visible verification wall or stale Christmas metadata, add-to-cart worked, and checkout entry was reached with no payment/order. This solves the raw-curl uncertainty only; the separate non-US purchase-event proof remains active | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-authority-safe-launch-prep/lanes/parent-readbacks/GB_FIRST_EXACT_BROWSER_READBACK.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-authority-safe-launch-prep/lanes/parent-readbacks/gb_first_exact_browser_checkout_entry_2026-05-10.json` |
 | `PROB-2026-05-10-LOCALIZED-SHIPPING-INFO-LINK` | `P0` | `SOLVED_READBACK_PASSED` | 2026-05-10 | Shopify live theme localized PDP shipping note and shipping-country modal links to `/pages/shipping-info` | Scoped theme patch normalized `routes.root_url` before appending `/pages/shipping-info`, carries the current `country` code, and added a layout-level fallback for cached malformed `/espages/shipping-info`-style paths. Live ES/DE/FR PDP curl readbacks render corrected links; exact headless-Chrome Spanish product click from stale `/espages/shipping-info` landed on `/es/pages/shipping-info` with Spanish Shipping Info visible, no 404, and the country list present. No Shopify Admin page/policy/product data, market, rate, checkout, feed, ad, campaign, conversion, payment, or order changes were made | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-localized-shipping-info-link-repair/LOCALIZED_SHIPPING_INFO_LINK_REPAIR_REPORT.md` |
@@ -41,6 +42,45 @@ Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
 | `PROB-2026-05-08-PINTEREST-CATALOG-337-346` | `P1` | `SUPERSEDED_BY_SAFER_PATH` | 2026-05-08 | Pinterest EN-US catalog proof for US paused draft scope | Re-resolved 5 stale rows, built clean 342-row scope, excluded 4 unresolved variants | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/PINTEREST_CATALOG_EVENT_UNBLOCK_REPORT.md` |
 
 ## Detailed Problem Records
+
+### `PROB-2026-05-12-PDP-SIZE-TOOLTIP-STACKING`
+
+Priority: `P1`
+
+Status: `SOLVED_LOCAL_PREVIEW_PASSED`
+
+Owner/session: Codex current session, 2026-05-12.
+
+Surface: Shopify local theme PDP matching-set size pill tooltip behavior in `assets/product-desktop-ux.js`.
+
+Exact symptom:
+- Owner screenshot showed the selected size panel stayed open while a hovered size panel also opened on desktop, creating two overlapping black measurement panels.
+
+Business impact:
+- Desktop shoppers could see two size-detail panels at once, making the size picker feel broken and obscuring nearby size buttons.
+
+Definition of fixed:
+- After a shopper clicks a size, moving the pointer or keyboard focus to a different size pill closes the originally opened pinned panel as if the shopper clicked its close button.
+- Exactly one measurement panel is visible during size preview, and clicking the newly chosen size can still open its pinned panel.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-12 | Inspected matching-set tooltip code | Found existing handler closed pinned panels only on other cards; same-card hover was explicitly a no-op | `assets/product-desktop-ux.js` |
+| 2026-05-12 | Patched the size-pill hover/focus handler | Same-card different-size hover/focus now marks the selected instance panel closed before rendering the hover preview | `assets/product-desktop-ux.js` |
+| 2026-05-12 | Patched selected-pill hover/focus styling | Selected green pill label now stays white when the selected pill is also hovered/focused | `assets/component-product-desktop-ux.css` |
+| 2026-05-12 | Local desktop preview on Shopify theme dev | Passed: click `S` showed one pinned panel with visible white `S`; hover `M` produced `0` pinned panels and only the `M` hover preview; click `M` reopened one pinned `M` panel with visible white `M` | `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set` |
+| 2026-05-12 | Static/theme checks | Passed: `node --check assets/product-desktop-ux.js`; `git diff --check`; `shopify theme check --path . --fail-level error --output text` passed with only the known unrelated `pc_fallback_copy` warning | Terminal verification in current session |
+
+Failed or ruled-out paths:
+- CSS-only hiding was not used because the owner asked for the original panel to close as if dismissed, so the durable `closedPanels` state needed to be updated.
+
+Current next action:
+- Push/sync the local theme patch when the owner wants it deployed through the normal GitHub/theme sync path.
+
+Approval/credential/platform gates:
+- No live theme push/publish or Shopify Admin write was made in this local patch.
 
 ### `PROB-2026-05-10-GB-FIRST-ENABLE-LANDING-CURL-403`
 

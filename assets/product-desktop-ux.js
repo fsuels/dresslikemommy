@@ -2221,18 +2221,20 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         renderBuilder();
       });
 
-      // Auto-close OTHER cards' pinned size panels as soon as the
-      // shopper hovers (mouseenter) or keyboard-focuses a pill on a
-      // different card. Two pinned panels never stack — this acts as
-      // if the other card's × was clicked. Same-card hover is a no-op.
+      // Auto-close any pinned size panel as soon as the shopper hovers
+      // (mouseenter) or keyboard-focuses a different size pill. That
+      // includes the same card, so a clicked XL panel is dismissed
+      // before a hovered S preview can show. Two panels never stack.
       // We only re-render when state actually changed, so hovering
-      // around inside a single card doesn't trigger render thrash.
-      var dismissOtherPinnedPanels = function () {
+      // around the currently selected pill doesn't trigger render thrash.
+      var dismissPinnedPanelsForPillPreview = function () {
         var hoveredInstanceId = pill.getAttribute('data-instance-pill');
+        var hoveredSizeLabel = pill.getAttribute('data-size-label');
         var changed = false;
         for (var i = 0; i < instances.length; i += 1) {
           var other = instances[i];
-          if (!other || other.instanceId === hoveredInstanceId) continue;
+          if (!other) continue;
+          if (other.instanceId === hoveredInstanceId && other.sizeLabel === hoveredSizeLabel) continue;
           // A pinned panel exists when the other card has a sizeLabel
           // selected AND the shopper hasn't already X-dismissed it.
           if (other.sizeLabel && !closedPanels[other.instanceId]) {
@@ -2242,8 +2244,8 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         }
         if (changed) renderBuilder();
       };
-      pill.addEventListener('mouseenter', dismissOtherPinnedPanels);
-      pill.addEventListener('focusin', dismissOtherPinnedPanels);
+      pill.addEventListener('mouseenter', dismissPinnedPanelsForPillPreview);
+      pill.addEventListener('focusin', dismissPinnedPanelsForPillPreview);
     });
 
     // Axis swatch click (Color, Pattern, etc.). Picking a new value

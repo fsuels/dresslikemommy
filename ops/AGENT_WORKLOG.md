@@ -34065,3 +34065,25 @@ Guardrails:
 Next:
 - Hard-refresh the live storefront after Shopify's GitHub theme sync catches up.
 - Optional cleanup: remove the unrelated `pc_fallback_copy` unused assignment warning in `snippets/pdp-purchase-confidence.liquid` in a separate focused patch.
+
+2026-05-12 - PDP matching-set size-tooltip single-open repair
+
+Why:
+- Owner reported a desktop PDP issue where clicking one size left its measurement panel open, then hovering another size opened a second measurement panel at the same time.
+
+What changed:
+- Patched `assets/product-desktop-ux.js` so the matching-set size-pill hover/focus handler closes any already-open pinned size panel when the shopper moves to a different size pill, including another size in the same card.
+- Patched `assets/component-product-desktop-ux.css` so selected green size-pill labels stay white while hovered/focused; this fixes the disappearing `S` label on the selected pill.
+- Updated `ops/AGENT_COORDINATION.md` and `ops/PROBLEM_TRACKER.md` with `PROB-2026-05-12-PDP-SIZE-TOOLTIP-STACKING`.
+
+Validation:
+- `node --check assets/product-desktop-ux.js` passed.
+- Local desktop preview on `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set` passed: click `S` showed one pinned panel and a visible white `S` on the green pill; hover `M` left `0` pinned panels and only the `M` hover preview visible; clicking `M` reopened one pinned `M` panel with a visible white `M`.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output text` passed at error level; the only output was the known unrelated warning for unused `pc_fallback_copy` in `snippets/pdp-purchase-confidence.liquid`.
+
+Guardrails:
+- No live theme push/publish, Shopify Admin product/page/policy write, Google Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, checkout payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred.
+
+Next:
+- Deploy/sync this local theme patch through the normal GitHub/theme sync path when ready.
