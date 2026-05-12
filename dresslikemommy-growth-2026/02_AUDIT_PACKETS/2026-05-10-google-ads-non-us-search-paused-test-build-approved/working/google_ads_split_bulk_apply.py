@@ -73,6 +73,21 @@ class CDP:
     def close(self):
         self.ws.close()
 
+    def recv_event(self, method: str, timeout: int = 10) -> dict | None:
+        previous_timeout = self.ws.gettimeout()
+        self.ws.settimeout(timeout)
+        deadline = time.time() + timeout
+        try:
+            while time.time() < deadline:
+                msg = json.loads(self.ws.recv())
+                if msg.get("method") == method:
+                    return msg.get("params", {})
+        except Exception:
+            return None
+        finally:
+            self.ws.settimeout(previous_timeout)
+        return None
+
 
 def json_get(path: str):
     with urllib.request.urlopen(f"{CDP_BASE}{path}", timeout=20) as response:
@@ -156,7 +171,7 @@ def ensure_upload_form(cdp: CDP):
     if "Upload spreadsheet" not in body and "上传电子表格" not in body:
         click_first_matching(
             cdp,
-            "x.aria.includes('新建上传操作') || x.aria.includes('New upload') || x.aria.includes('Create upload operation')",
+            "x.aria.includes('新建上传操作') || /New upload/i.test(x.aria) || x.aria.includes('Create upload operation')",
             "new upload",
         )
         wait_for(cdp, lambda b: "Upload spreadsheet" in b or "上传电子表格" in b, 20, "upload form")
@@ -187,7 +202,7 @@ def ensure_upload_form(cdp: CDP):
                 r"""
 (() => [...document.querySelectorAll('material-select-dropdown-item,[role=option]')]
   .some(e => !!(e.offsetWidth || e.offsetHeight || e.getClientRects().length)
-    && (/上传文件|Upload File/.test((e.innerText||e.textContent||'').trim()))))()
+    && (/上传文件|Upload File|Upload a file/.test((e.innerText||e.textContent||'').trim()))))()
 """
             )),
             10,
@@ -195,13 +210,16 @@ def ensure_upload_form(cdp: CDP):
         )
         click_first_matching(
             cdp,
-            "x.text === '上传文件' || x.text === 'Upload File'",
+            "x.text === '上传文件' || x.text === 'Upload File' || x.text === 'Upload a file'",
             "Upload File source option",
         )
         wait_for(
             cdp,
-            lambda b: ("从计算机选择文件" in b or "Choose file from computer" in b)
-            and bool(file_input_node_ids(cdp)),
+            lambda b: (
+                "从计算机选择文件" in b
+                or "Choose file from computer" in b
+                or "Select a file from your computer" in b
+            ),
             10,
             "upload file source and file input",
         )
@@ -211,9 +229,26 @@ def navigate_bulk(cdp: CDP):
     cdp.call("Page.navigate", {"url": ADS_BULK_URL})
     wait_for(
         cdp,
-        lambda b: ("Upload operation" in b or "上传操作" in b) and ("Add filter" in b or "添加过滤" in b or "add" in b),
+        lambda b: (
+            "Upload operation" in b
+            or "Upload spreadsheet" in b
+            or "Uploads" in b
+            or "上传操作" in b
+        )
+        and ("Add filter" in b or "添加过滤" in b or "add" in b or "Create" in b),
         30,
         "bulk uploads page",
+    )
+    cdp.eval(
+        r"""
+(() => {
+  for (const el of document.querySelectorAll('.ad-blocker-detected-overlay, .ad-blocker-detected-inner-warning')) {
+    el.style.display = 'none';
+    el.setAttribute('data-dlm-hidden-for-upload-ui-recovery', 'true');
+  }
+  return true;
+})()
+"""
     )
     time.sleep(1)
 
@@ -239,9 +274,18 @@ def file_input_node_ids(cdp: CDP) -> list[int]:
 
 def set_file(cdp: CDP, file_path: Path):
     cdp.call("DOM.enable")
+    cdp.eval(
+        r"""
+(() => {
+  for (const el of document.querySelectorAll('.ad-blocker-detected-overlay, .ad-blocker-detected-inner-warning')) {
+    el.style.display = 'none';
+    el.setAttribute('data-dlm-hidden-for-file-picker-recovery', 'true');
+  }
+  return true;
+})()
+"""
+    )
     nodes = file_input_node_ids(cdp)
-    if not nodes:
-        raise RuntimeError("input[type=file] not found")
     errors = []
     for node in nodes:
         try:
@@ -250,7 +294,40 @@ def set_file(cdp: CDP, file_path: Path):
             return
         except Exception as exc:
             errors.append(f"node {node}: {exc}")
-    raise RuntimeError("Could not set file input: " + " | ".join(errors))
+
+    # Newer Google Ads renders a custom file-picker and opens a chooser lazily.
+    # Intercept that chooser through CDP so no macOS UI interaction is needed.
+    cdp.call("Page.setInterceptFileChooserDialog", {"enabled": True})
+    rect = cdp.eval(
+        r"""
+(() => {
+  const visible = e => !!(e.offsetWidth || e.offsetHeight || e.getClientRects().length);
+  const el = [...document.querySelectorAll('[role=button], local-file-picker, file-picker, div')]
+    .find(e => visible(e) && /Select a file from your computer|Choose file from computer|从计算机选择文件/i.test((e.innerText || e.textContent || '').trim()));
+  if (!el) return null;
+  const r = el.getBoundingClientRect();
+  return {x: r.x + r.width / 2, y: r.y + r.height / 2, text: (el.innerText || el.textContent || '').trim()};
+})()
+"""
+    )
+    if rect:
+        cdp.call("Input.dispatchMouseEvent", {"type": "mouseMoved", "x": rect["x"], "y": rect["y"]})
+        cdp.call("Input.dispatchMouseEvent", {"type": "mousePressed", "x": rect["x"], "y": rect["y"], "button": "left", "clickCount": 1})
+        cdp.call("Input.dispatchMouseEvent", {"type": "mouseReleased", "x": rect["x"], "y": rect["y"], "button": "left", "clickCount": 1})
+    else:
+        click_first_matching(
+            cdp,
+            "/Select a file from your computer|Choose file from computer|从计算机选择文件/i.test(x.text)",
+            "choose local file",
+        )
+    chooser = cdp.recv_event("Page.fileChooserOpened", timeout=10)
+    if not chooser:
+        raise RuntimeError("input[type=file] not found and file chooser did not open: " + " | ".join(errors))
+    params = {"files": [str(file_path)]}
+    if chooser.get("backendNodeId"):
+        params["backendNodeId"] = chooser["backendNodeId"]
+    cdp.call("DOM.setFileInputFiles", params)
+    wait_for(cdp, lambda b: file_path.name in b, 8, f"{file_path.name} selected")
 
 
 def screenshot(cdp: CDP, path: Path):

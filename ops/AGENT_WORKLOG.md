@@ -34544,3 +34544,92 @@ Residual risks:
 
 Guardrails:
 - No Ads/Merchant/Pinterest/GA4/GTM writes, live spend/campaign/budget/bid/status/product-scope/feed-label/product-group/conversion-goal change, product price/cost/variant/status/publication/inventory change, source/vendor URL exposure, checkout setting/payment/order/refund/cancel action, account/billing edit, or destructive filesystem action occurred.
+
+2026-05-12 - Controlled measurement and Pinterest/Ads execution push
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-controlled-measurement-pinterest-build
+
+Why:
+- Owner corrected the goal again: do not keep looping on tag proof; assume tags are correct and keep solving the campaign/Pinterest setup and activation path.
+- Owner gave exact approvals for one controlled non-US measurement test purchase and paused Pinterest US catalog/retargeting draft build.
+
+What changed:
+- Created packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-controlled-measurement-pinterest-build/`.
+- Controlled checkout lane selected the lowest-practical GB/GBP candidate: variant `41497061916769`, `Child 2-3 years / Multi-Color`, checkout total `GBP £12.00`, standard shipping free, no tax/duty shown. Synthetic contact/address data only; no payment data entered; Pay now not clicked; no order/refund/cancel was created.
+- Pinterest lane preserved the approved 342-row EN-US scope and 4 exclusions, but account-object creation was blocked because the controllable CDP tab redirected to public Pinterest Ads login. Chrome DevTools MCP and Playwright MCP were profile-locked; Computer Use returned Apple event `-1743`. No Pinterest write occurred.
+- Google Ads remaining-build lane stopped checking tags and retried the concrete `RO` paused-build path. Read-only bulk-upload probe showed no visible `RO`/`PT`/`GR`/`FR`/`BE` upload rows and no throttle hint; RPC confirmed `RO` campaign absent. RO upload remained blocked by Google Ads' native/custom file picker in the current CDP browser, despite helper patches for the current UI, file chooser interception, trusted mouse click, and ad-blocker overlay recovery. No preview/apply/campaign write occurred.
+- Updated `ops/PROBLEM_TRACKER.md` to mark tracking as owner-assumed-good for launch prep and to move blockers to execution/access gates.
+- Updated `ops/AGENT_COORDINATION.md` for the controlled purchase and Pinterest draft lanes.
+
+Validation:
+- `python3 .../checkout_precheck_cdp.py` captured cart/checkout precheck with no payment.
+- `python3 .../checkout_shipping_precheck_cdp.py` captured delivery/shipping/total precheck with no payment.
+- `python3 .../google_ads_bulk_upload_readonly_probe.py` passed read-only upload-page probe.
+- `python3 .../google_ads_campaign_rpc_readback.py RO --expect-absent` confirmed `RO` absent.
+- Multiple `python3 .../google_ads_split_bulk_apply.py RO` attempts stopped before preview/apply; final state recorded in `google_ads_split_bulk_apply_state.json`.
+
+Residual blockers:
+- First live Google Ads enable still needs exact action-time approval naming the campaign/ad group/status action; fastest candidate remains GB campaign `23838895360` / ad group `Mommy & Me Dresses - Exact`, with tags assumed good by owner.
+- Pinterest paused US draft build is approved but blocked until authenticated Pinterest Ads Manager access is available in a controllable browser/session.
+- RO paused Google Search build is approved but blocked by file-picker-capable Google Ads upload access or Google Ads Editor posting path.
+- Optional controlled measurement purchase is blocked until a safe owner-provided payment/test path exists.
+
+Guardrails:
+- No live spend, campaign enablement, Google Ads preview/apply, Pinterest account write, Merchant write, Shopify product-data write, product/feed/conversion/budget/bid/status/product-scope/feed-label/product-group change, payment/order/refund/cancel, account/billing edit, or destructive action occurred.
+
+2026-05-12 - Mobile size panel scroll X-only correction
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-mobile-size-panel-scroll-x-only
+
+Why:
+- Owner clarified the mobile size-chart/selected-size panel should not automatically close when scrolling down. It should only close when the shopper taps the visible X.
+
+What changed locally:
+- Patched `assets/product-desktop-ux.js` to remove the mobile scroll auto-dismiss path.
+- Kept the scroll listener only for tooltip/panel repositioning.
+- Kept the X close handler unchanged.
+- Gated quantity/remove/add-role auto-dismiss so those interactions still close panels on desktop, but do not close the selected-size panel on mobile.
+- Added evidence file `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-mobile-pdp-size-panel-option-contrast/mobile_size_panel_scroll_x_only_readback.json`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md` so the prior "mobile scroll closes the panel" behavior is no longer treated as the fixed target.
+
+What changed live:
+- Pushed only `assets/product-desktop-ux.js` to live theme `dresslikemommy/main` (`#133290917985`) with Shopify CLI.
+- Added live evidence file `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-mobile-pdp-size-panel-option-contrast/live_mobile_size_panel_scroll_x_only_readback.json`.
+
+Validation:
+- `node --check assets/product-desktop-ux.js` passed.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Started local Shopify preview on `http://127.0.0.1:9293` for theme `134998098017`.
+- Mobile headless Chrome/CDP readback at `390x844` passed on Golden Daisy local preview: panel count was `1` after Size `S`, `1` after Type `Top`, `1` after scrolling down, `1` after quantity increase, and `0` only after tapping the panel X.
+- `shopify theme push --theme 133290917985 --only assets/product-desktop-ux.js --allow-live` completed successfully.
+- Live mobile headless Chrome/CDP readback at `390x844` passed on Golden Daisy: JS asset `product-desktop-ux.js?v=7250271294769740341778578989`, panel count was `1` after Size `S`, `1` after Type `Top`, `1` after scrolling down, `1` after quantity increase, and `0` only after tapping the panel X.
+
+Residual risks:
+- GitHub/main is not yet synced; the live theme has the one-file asset patch, but the repo still has local uncommitted changes.
+- Existing unrelated dirty worktree items under Ads/Pinterest packets were left untouched.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, checkout edit, Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, payment/order/refund/cancel, credential/account/billing edit, destructive filesystem action, or unrelated dirty-worktree cleanup occurred. The only live storefront write was the scoped single-asset theme push above.
+
+Next:
+- Sync/commit the repo changes through the normal GitHub path when ready, then optionally spot-check one additional matching-set PDP on mobile.
+
+2026-05-12 - Paid growth anchor restored after mobile theme follow-up
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-controlled-measurement-pinterest-build
+
+Why:
+- Preserve the paid-growth continuation chain after an unrelated mobile theme follow-up wrote a later worklog anchor.
+- The owner-standard paid-growth continuation prompt now points to this anchor and should remain the starting point for the next Google Ads/Pinterest activation sprint.
+
+Current paid-growth state:
+- Owner instructed to assume tags are correct and stop spending launch-prep time rechecking GA4/Event Quality/tag proof.
+- No live spend, campaign enablement, budget/bid/status/product-scope/feed-label/product-group/conversion-goal change, Merchant upload/source edit, Pinterest account write, Shopify product-data write, payment/order/refund/cancel, account/billing edit, or destructive action occurred in the paid-growth execution push.
+- Fastest Google Ads activation candidate remains GB Search campaign `23838895360`, ad group `Mommy & Me Dresses - Exact`; exact action-time owner approval naming the enable/status action is still required before any live enablement.
+- Pinterest paused US catalog/retargeting draft build is exact-approved from the clean 342-row EN-US scope with 4 exclusions, but blocked by authenticated Pinterest Ads Manager access in a controllable browser/session.
+- Remaining RO paused Google Search build is exact-approved but blocked by Google Ads native/custom file-picker access or Google Ads Editor posting path; `RO` remains absent and no preview/apply occurred.
+- Optional controlled non-US purchase proof is blocked until a safe owner-provided payment/test path exists; the GB/GBP precheck stopped before payment at `GBP £12.00`.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-controlled-measurement-pinterest-build/CONTROLLED_MEASUREMENT_PINTEREST_BUILD_REPORT.md`
+- `ops/PROBLEM_TRACKER.md`
+- `ops/AGENT_COORDINATION.md`
+- `ops/prompts/paid-growth-ai-army-continuation-prompt.md`
