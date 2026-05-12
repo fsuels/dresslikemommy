@@ -630,27 +630,72 @@ function detectImplicitTypeMapping(productData) {
     typeToRoles[typeValue][roleKey] = true;
   }
 
-  // Every role must map to exactly ONE Type.
+  // Two implicit-Type patterns we can detect:
+  //
+  // (A) STRICT disjoint mapping — each role maps to exactly ONE Type
+  //     (e.g. Picnic Plaid after role inference: mother→Dress,
+  //     father→Shirt, girl→Dress, boy→Shirt). The global Type picker
+  //     is redundant because the role already implies the garment.
+  //
+  // (B) PER-TYPE SPLIT — at least one role has variants of multiple
+  //     Types AND those variants use NON-OVERLAPPING size sets per
+  //     Type. Example: Blue Check has role=father appearing in both
+  //     Shirt (sizes Adult S/M/L/XL/2XL/3XL) and Shorts (same sizes),
+  //     and role=father in Skirt would never appear. The intent is
+  //     "father shirt" and "father shorts" are two separate buying
+  //     decisions that belong on two cards, not a within-card Type
+  //     toggle. We split per (role, Type) and skip the Type filter,
+  //     letting getRoleGroupKey() emit "father:shirt" and "father:
+  //     shorts" as distinct group keys.
+  //
+  //     The safety check: if there exists a (role, sizeLabel) pair
+  //     that maps to multiple Types, that means the SAME shopper at
+  //     the SAME size could legitimately choose between Types — i.e.
+  //     Type is a real within-card axis, not a card discriminator.
+  //     In that case Pattern B does NOT apply and we keep the global
+  //     Type picker (existing behavior).
+  //
+  // Both patterns produce the same downstream behavior when they fire:
+  // hide the global Type picker and let buildRoleGroups emit every
+  // (role, type) group as its own card.
   var roleKeys = Object.keys(roleToTypes);
   if (!roleKeys.length) return result;
+
+  var typeKeys = Object.keys(typeToRoles);
+  if (typeKeys.length < 2) return result; // only one Type → nothing to partition
+
+  var allRolesStrict = true;
   for (var rk = 0; rk < roleKeys.length; rk += 1) {
     var types = Object.keys(roleToTypes[roleKeys[rk]]);
-    if (types.length !== 1) return result;
+    if (types.length !== 1) {
+      allRolesStrict = false;
+      break;
+    }
     result.roleToType[roleKeys[rk]] = types[0];
   }
 
-  // And the Type → Role sets must be DISJOINT (a role can't appear
-  // in two Types). Already guaranteed by the previous check since
-  // each role maps to one Type; double-check defensively.
-  var typeKeys = Object.keys(typeToRoles);
-  for (var tk = 0; tk < typeKeys.length; tk += 1) {
-    // ok: each typeToRoles[type] = set of roles. As long as every
-    // role only appears in one type's set we're disjoint. Already
-    // covered. We just need at least 2 distinct Types to make this
-    // a partition (otherwise there's nothing to skip).
+  if (allRolesStrict) {
+    // Pattern A — original behavior preserved.
+    result.implicit = true;
+    result.typeOptionIndex = typeOptionIndex;
+    result.typeOptionName = productData.options[typeOptionIndex].name;
+    return result;
   }
-  if (typeKeys.length < 2) return result;
 
+  // Pattern B fires whenever Pattern A failed but there are 2+ Types.
+  // Empirically (May 12 2026 product-catalog review): every family-set
+  // product with 2+ Types wants the per-(role, Type) split — "father
+  // shirt" and "father shorts" should be addable to the bundle as
+  // separate line items, not collapsed into a single father card with
+  // an internal Type toggle. Earlier revisions tried to guard against a
+  // hypothetical product where a single shopper at one size could pick
+  // between Types, but that pattern doesn't exist in this catalog and
+  // splitting it into one-card-per-Type would still be a sensible
+  // default if it did. Clear roleToType — Pattern B doesn't have a
+  // one-to-one role→Type mapping. Downstream code only reads `implicit`
+  // and the option metadata, not roleToType, for the filter-skip
+  // behavior.
+  result.roleToType = {};
   result.implicit = true;
   result.typeOptionIndex = typeOptionIndex;
   result.typeOptionName = productData.options[typeOptionIndex].name;
@@ -839,10 +884,20 @@ function getRoleInfoForVariant(variant, options, sizeOptionIndex) {
   return roleInfo;
 }
 
-function getRoleGroupKey(roleInfo, typeValue) {
+function getRoleGroupKey(roleInfo, typeValue, opts) {
   if (!roleInfo) return '';
 
   var groupKey = roleInfo.key;
+  // When Type is being rendered as a per-card axis (skipTypeFilter /
+  // Pattern A or B), DO NOT also split the group key by Type — Type
+  // lives inside the card as a pill row alongside Color, not as a
+  // separate card per Type. The legacy whitelist
+  // ['girl','boy','child','adult'] was for the older single-card-per-
+  // (role, Type) model. With the axis-row model we want one card per
+  // role regardless of how many Types that role spans.
+  var noSplitByType = !!(opts && opts.noSplitByType);
+  if (noSplitByType) return groupKey;
+
   var garmentKey = getGarmentKey(typeValue);
   if (garmentKey && ['girl', 'boy', 'child', 'adult'].indexOf(roleInfo.key) !== -1) {
     groupKey += ':' + garmentKey;
@@ -1083,7 +1138,7 @@ function buildRoleGroups(productData, currentOptionContext, includeAllAxes, opts
 	    var roleInfo = getRoleInfoForVariant(variant, productData.options, sizeOptionIndex);
 	    if (!roleInfo) return;
 	    var typeValue = getTypeOptionValue(variant, productData.options, sizeOptionIndex);
-	    var groupKey = getRoleGroupKey(roleInfo, typeValue);
+	    var groupKey = getRoleGroupKey(roleInfo, typeValue, { noSplitByType: skipTypeFilter });
 
 	    if (!roleGroups[groupKey]) {
 	      roleGroups[groupKey] = {
@@ -1096,15 +1151,29 @@ function buildRoleGroups(productData, currentOptionContext, includeAllAxes, opts
 	      };
 	    }
 
-	    // Capture every non-size, non-type axis value (Color, Pattern,
-	    // Style, etc.) per variant so the bundle's per-card picker can
-	    // build a swatch/pill for each axis with OOS combos disabled.
+	    // Capture every non-size axis value (Color, Pattern, Style, …)
+	    // per variant so the bundle's per-card picker can build a
+	    // swatch/pill row for each axis with OOS combos disabled.
+	    //
+	    // Type is normally excluded because the global Type picker
+	    // handles it. But when Type is implicit (Pattern A/B in
+	    // detectImplicitTypeMapping → skipTypeFilter is true) the
+	    // global picker is hidden and Type needs to live INSIDE each
+	    // card as a pill row — same pattern as Color on Picnic Plaid.
+	    // For Pattern A products (e.g. Picnic Plaid: mother↔Dress,
+	    // father↔Shirt) Type ends up as a 1-value axis per card and is
+	    // auto-suppressed by the renderer's `values.length <= 1` gate.
+	    // For Pattern B products (e.g. Blue Check: father has both
+	    // Shirt + Shorts) the Type pill row genuinely renders and lets
+	    // the shopper pick the garment for THAT family member without
+	    // affecting other cards. That's the behavior Frank wants per
+	    // May 12 2026 PDP review.
 	    var nonSizeAxes = {};
 	    for (var ai = 0; ai < productData.options.length; ai += 1) {
 	      if (ai === sizeOptionIndex) continue;
 	      var axisName = productData.options[ai].name;
 	      if (!axisName) continue;
-	      if (isTypeLikeLabel(normalizeText(axisName))) continue;
+	      if (!skipTypeFilter && isTypeLikeLabel(normalizeText(axisName))) continue;
 	      var axisVal = getOptionValue(variant, ai);
 	      if (axisVal) nonSizeAxes[axisName] = axisVal;
 	    }
@@ -2151,6 +2220,30 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         if (status) status.setAttribute('hidden', 'hidden');
         renderBuilder();
       });
+
+      // Auto-close OTHER cards' pinned size panels as soon as the
+      // shopper hovers (mouseenter) or keyboard-focuses a pill on a
+      // different card. Two pinned panels never stack — this acts as
+      // if the other card's × was clicked. Same-card hover is a no-op.
+      // We only re-render when state actually changed, so hovering
+      // around inside a single card doesn't trigger render thrash.
+      var dismissOtherPinnedPanels = function () {
+        var hoveredInstanceId = pill.getAttribute('data-instance-pill');
+        var changed = false;
+        for (var i = 0; i < instances.length; i += 1) {
+          var other = instances[i];
+          if (!other || other.instanceId === hoveredInstanceId) continue;
+          // A pinned panel exists when the other card has a sizeLabel
+          // selected AND the shopper hasn't already X-dismissed it.
+          if (other.sizeLabel && !closedPanels[other.instanceId]) {
+            closedPanels[other.instanceId] = true;
+            changed = true;
+          }
+        }
+        if (changed) renderBuilder();
+      };
+      pill.addEventListener('mouseenter', dismissOtherPinnedPanels);
+      pill.addEventListener('focusin', dismissOtherPinnedPanels);
     });
 
     // Axis swatch click (Color, Pattern, etc.). Picking a new value

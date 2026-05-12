@@ -144,6 +144,61 @@
             assign hide_single_value_color_option = true
           endif
         endif
+
+        comment
+          CRO hygiene (May 2026): collapse ANY option that only has a
+          single effective value. The legacy code only did this for
+          Color; Shopify happily exposes a 1-value Type, Style, Material,
+          etc. and Dawn renders it as a useless single-button row (see
+          Scarlet Ruffle Mommy and Me Tank Top — Type: "Tank Top" only).
+          Generalise the existing color trick: count distinct AVAILABLE
+          values across product.variants for this option; if <=1 we render
+          a hidden <select> below so the variant form still submits the
+          required option value but no visible chooser is drawn.
+
+          Color keeps its own dedicated logic above
+          (hide_single_value_color_option) because that one also handles
+          "all unavailable but option has values" → still hide. Other
+          options use a simpler count.
+        endcomment
+        assign hide_single_value_other_option = false
+        unless is_color_option
+          assign other_seen_values = ''
+          assign other_available_value_count = 0
+          assign other_single_value = blank
+          for variant in product.variants
+            if variant.available
+              assign other_option_value_for_variant = blank
+              case option.position
+                when 1
+                  assign other_option_value_for_variant = variant.option1
+                when 2
+                  assign other_option_value_for_variant = variant.option2
+                when 3
+                  assign other_option_value_for_variant = variant.option3
+              endcase
+              if other_option_value_for_variant != blank
+                assign other_option_value_token = '|' | append: other_option_value_for_variant | append: '|'
+                unless other_seen_values contains other_option_value_token
+                  assign other_seen_values = other_seen_values | append: other_option_value_token
+                  assign other_available_value_count = other_available_value_count | plus: 1
+                  if other_single_value == blank
+                    assign other_single_value = other_option_value_for_variant
+                  endif
+                endunless
+              endif
+            endif
+          endfor
+          if other_available_value_count == 0
+            assign other_available_value_count = option.values | size
+          endif
+          if other_available_value_count <= 1
+            assign hide_single_value_other_option = true
+            if other_single_value == blank
+              assign other_single_value = option.selected_value | default: option.values.first
+            endif
+          endif
+        endunless
       -%}
       {%- comment -%}
         CRO Step 4: step-mini-headings above each option group.
@@ -156,7 +211,7 @@
       {%- endcomment -%}
       {%- liquid
         assign show_step_heading = false
-        if hide_single_value_color_option == false and section.settings.show_picker_step_headings != false and product.options.size >= 2
+        if hide_single_value_color_option == false and hide_single_value_other_option == false and section.settings.show_picker_step_headings != false and product.options.size >= 2
           assign show_step_heading = true
           assign visible_option_index = visible_option_index | plus: 1
         endif
@@ -190,6 +245,26 @@
           data-single-value-color-option="true"
         >
           <option value="{{ hidden_color_value | escape }}" selected>{{ hidden_color_value }}</option>
+        </select>
+      {%- elsif hide_single_value_other_option -%}
+        {%- comment -%}
+          Single-value non-color option (e.g. Type: "Tank Top" on a
+          mommy-and-me single-piece product). Submit the value via a
+          visually-hidden <select> so the cart form posts the right
+          variant; render no visible row. See generalisation comment
+          above where hide_single_value_other_option is computed.
+        {%- endcomment -%}
+        {%- assign hidden_other_value = other_single_value | default: option.selected_value | default: option.values.first -%}
+        <select
+          class="visually-hidden"
+          name="options[{{ option.name | escape }}]"
+          form="{{ product_form_id }}"
+          hidden
+          aria-hidden="true"
+          tabindex="-1"
+          data-single-value-option="true"
+        >
+          <option value="{{ hidden_other_value | escape }}" selected>{{ hidden_other_value }}</option>
         </select>
       {%- elsif picker_type == 'swatch' -%}
         <fieldset

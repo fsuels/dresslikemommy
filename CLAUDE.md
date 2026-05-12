@@ -110,55 +110,83 @@ and it failed badly on May 11 because:
 - Frank should NEVER be debugging git locks. The VS Code Source Control
   GUI handles all of this automatically.
 
-### CRITICAL: when VS Code GUI dead-ends with .git/index.lock
+### HARD CONSTRAINT (proven May 11–12, 2026): the Cowork sandbox CANNOT touch .git/
 
-If `.git/index.lock` is present, VS Code's Commit & Push silently
-fails. CLAUDE's sandbox CANNOT delete that lock file (macOS denies
-`.git/` writes; `rm .git/index.lock` returns `Operation not permitted`).
-This dead-ended a sync on May 11, 2026 — the agent had to hand the
-lock-removal back to Frank.
+Empirical test: even after Frank ran `chown fsuels:staff` and `chmod u+rwX,g+rwX`
+on `/Users/fsuels/Projects/dresslikemommy/.git`, the sandbox could create
+files in `.git/` but could NOT delete them. `rm .git/anything` returns
+`Operation not permitted`. This is a Cowork-sandbox-layer restriction,
+not a Unix permissions problem. Host chmod/chown does not change it.
 
-**Escalation order when the GUI fails AND .git/index.lock exists:**
+**Therefore: NEVER run `git commit` or `git push` from the sandbox shell.**
+Every sandbox-git attempt leaves a `.git/index.lock` the sandbox can't
+clean up, then blocks every future git operation in the repo. This wasted
+~40 minutes on May 12.
 
-1. **Try the perms fix first** (one-time, permanent). Frank runs:
-   ```
-   sudo chown -R fsuels:staff /Users/fsuels/Projects/dresslikemommy/.git
-   chmod -R u+rwX,g+rwX /Users/fsuels/Projects/dresslikemommy/.git
-   ```
-   After this, the sandbox can manage `.git/` directly and Claude can
-   recover stale locks autonomously by running:
-   ```
-   cd /sessions/<id>/mnt/dresslikemommy && rm -f .git/index.lock && \
-     git add -A && git commit -F <(echo "msg") && git push origin main
-   ```
+### THE ONLY WORKING SYNC FLOW
 
-2. **If perms aren't fixed yet**, fall back to the
-   clipboard-Terminal-paste pattern (NOT the original one-liner — that
-   one's still banned for the editor-opens-mid-chain reason). The
-   pattern that works:
-   - Claude writes the full command sequence to the clipboard.
-   - Frank opens Terminal himself, pastes, presses Enter.
-   - The command must use `git commit -F /tmp/msg.txt` (a here-doc'd
-     file, not -m) so multi-line messages don't break the chain.
+When Frank says "sync to main", do this — no detours, no sandbox git:
 
-3. **NEVER tell Frank to "just delete the lock file" and stop there.**
-   That's a half-fix that leaves him doing manual git work. Give him a
-   complete recoverable command, OR push him toward option 1 so this
-   never happens again.
+1. `mcp__computer-use__request_access` for `["com.microsoft.VSCode"]` with
+   `clipboardWrite: true`. Bring VS Code forward (`open_application`).
 
-### Side note on competing agents
+2. `mcp__computer-use__write_clipboard` with a short single-line commit
+   message (e.g. "PDP: <one-line summary>"). Multi-line is fine but the
+   FIRST line must be a good one-line summary.
+
+3. Screenshot. Confirm the Source Control panel shows the modified files
+   and the empty `Message (⌘Enter to commit on "main")` box.
+
+4. `left_click` the message box to focus it. Then tell Frank in chat:
+   "Press ⌘V to paste the commit message, then say 'pasted'." Wait.
+
+5. After Frank confirms "pasted", screenshot. Verify the message box
+   is no longer empty.
+
+6. `left_click` the dropdown caret `⌄` immediately to the right of the
+   `✓ Commit` button. A menu opens with: Commit / Commit (Amend) /
+   Commit & Push / Commit & Sync.
+
+7. `left_click` "Commit & Push" in that menu. Wait 6 seconds.
+
+8. Screenshot. Verify either: "Committing Changes…" → gone (success),
+   OR the Output panel shows an error.
+
+9. **If the Output panel shows `Unable to create '.git/index.lock': File exists`**,
+   the previous run crashed. CLAUDE cannot recover this. Tell Frank
+   verbatim: "VS Code crashed mid-commit and left a lock file. In Terminal
+   run: `rm -f /Users/fsuels/Projects/dresslikemommy/.git/index.lock` and
+   say 'done'." When he says done, go back to step 6.
+
+10. After commit success, verify from the sandbox shell:
+    `git log origin/main --oneline -2` — confirm the new commit is on
+    `origin/main`. (Read-only ops in `.git/` DO work from the sandbox.)
+
+### Things to NEVER do — wasted hours of Frank's time
+
+- ❌ Don't run `git commit` or `git push` from the sandbox shell. The
+  half-completed lock file is unrecoverable from inside the sandbox.
+- ❌ Don't paste a Terminal one-liner with `git commit -m "..."` where the
+  closing `"` is on a later line — Frank's $EDITOR opens mid-chain and
+  breaks the `&&` sequence.
+- ❌ Don't tell Frank to "just delete the lock file" without ALSO giving
+  the complete follow-up (commit + push). Half-fixes leave him doing
+  manual git work he shouldn't be doing.
+- ❌ Don't recommend the `sudo chown / chmod` perms fix as a path to
+  letting the sandbox sync — empirically it doesn't help (the sandbox
+  blocks `.git/` writes at its own layer). Leave that section deleted.
+- ❌ Don't get fancy: no `git commit -F /tmp/msg.txt` here-doc tricks,
+  no AppleScript, no Terminal tier-"full" escalation. The VS Code GUI
+  click path above is the ONLY proven path.
+
+### Before any sync attempt: check if a competing agent already pushed
 
 If another agent (Codex CLI, Cursor, etc.) has been working in this
-repo, it may have committed and pushed on its own. Always run
-`git status --short` and `git log origin/main --oneline -3` BEFORE
-attempting your own sync — you don't want to push stale local edits
-over remote work that already landed.
-
-**The clipboard fallback is reserved for ONLY two situations:**
-1. VS Code is not running.
-2. Frank explicitly says "give me the Terminal command".
-
-In every other case: **drive VS Code's Source Control button.**
+repo, it may have committed and pushed on its own. ALWAYS run
+`git status --short && git log origin/main --oneline -3` from the
+sandbox shell BEFORE attempting your own sync. If origin/main already
+has the changes, tell Frank "already synced by another agent — here's
+the latest commit on origin/main" instead of trying to push.
 
 ### Important details for the Shopify push
 
@@ -171,24 +199,25 @@ In every other case: **drive VS Code's Source Control button.**
   `shopify theme push --unpublished --json`. But "sync to main" default
   = push to LIVE.
 
-### Sandbox limitations Claude must work AROUND, not bring up as excuses
+### Sandbox limitations Claude must work AROUND
 
-- Claude's sandbox cannot write to `.git/` (macOS file-permission
-  boundary). Workaround: use VS Code's Commit & Push button.
-- Claude cannot type into Terminal or VS Code (tier-"click"). Workaround:
-  use VS Code GUI buttons; Frank presses `y` only for the final Shopify
-  confirm prompt.
-- Claude cannot run `shopify theme push` directly. Workaround: the
-  Shopify CLI is automatically invoked from the project's post-push
-  hook (visible in the screenshot — after `git push origin main` ran,
-  the Terminal automatically showed the Shopify `(y) (n)` prompt
-  without Claude doing anything extra). If that hook is ever missing,
-  fallback: tell Frank to run `shopify theme push --live` manually.
+- Claude's sandbox CANNOT write or delete inside `.git/`. This is a
+  Cowork-sandbox restriction, NOT host Unix permissions. Host
+  chown/chmod does not change it. The proven workaround is the VS Code
+  Commit & Push GUI path above. Do not try sandbox `git commit` again
+  — every attempt creates an unrecoverable `.git/index.lock`.
+- Claude cannot type into Terminal or VS Code (tier-"click"). Use
+  GUI button clicks + the clipboard (write the commit message to
+  Frank's clipboard, ask him to ⌘V into VS Code's message box).
+- Claude cannot run `shopify theme push` directly. The GitHub-connected
+  theme deploys automatically when `origin/main` advances — no
+  separate CLI step is needed. If the legacy Shopify CLI prompt
+  appears in Terminal after a push, answer `n` — it's a stale hook
+  from before the GitHub integration.
 
-**NEVER tell Frank "I can't do this" when the proven path above exists.
-The proof is in commit `c892877` on May 11, 2026 — Claude clicked the
-Commit & Push button, the entire chain executed, and only the final
-Shopify `y` required Frank's keypress.**
+**Proof the GUI path works: commit `c892877` (May 11, 2026) and
+`beed4c3` / `8f6ae08` (May 12) all landed on `origin/main` via VS
+Code's Commit & Push button.**
 
 ## Theme layout notes (so Claude doesn't have to re-discover them)
 
