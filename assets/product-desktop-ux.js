@@ -5031,6 +5031,13 @@ function initDesktopStickyAtc(wrapper, sectionId) {
   var variantSelects = document.getElementById('variant-selects-' + sectionId);
   var productForm = document.getElementById('product-form-' + sectionId);
   var mainButton = document.getElementById('ProductSubmitButton-' + sectionId);
+  var matchingSetBuilder = wrapper.querySelector('[data-matching-set-builder]');
+  var matchingSetButton = wrapper.querySelector('[data-matching-set-add-button]');
+  var isMatchingSet = !!(matchingSetBuilder && matchingSetButton);
+  var matchingSetStickyState =
+    window.DLMMatchingSetStickyState && window.DLMMatchingSetStickyState[sectionId]
+      ? window.DLMMatchingSetStickyState[sectionId]
+      : null;
   var priceContainer = document.getElementById('price-' + sectionId);
   var desktopMedia = window.matchMedia('(min-width: 990px)');
   var buttonInView = true;
@@ -5038,10 +5045,21 @@ function initDesktopStickyAtc(wrapper, sectionId) {
 
   if (!stickyBar || !stickyButton) return;
   if (!mainButton && productForm) mainButton = productForm.querySelector('[name="add"]');
+  if (isMatchingSet) mainButton = matchingSetButton;
   if (!mainButton) return;
+  stickyBar.classList.toggle('sticky-desktop-atc--matching-set', isMatchingSet);
 
   function updatePrice() {
     if (!stickyPrice) return;
+    if (isMatchingSet) {
+      var hasSelectedPieces = !!(matchingSetStickyState && matchingSetStickyState.isReady);
+      stickyPrice.textContent = hasSelectedPieces
+        ? matchingSetStickyState.pieceCountLabel || wrapper.getAttribute('data-matching-set-add') || 'Matching pieces'
+        : wrapper.getAttribute('data-matching-set-copy') || wrapper.getAttribute('data-matching-set-add') || 'Matching pieces';
+      stickyPrice.removeAttribute('aria-label');
+      stickyPrice.removeAttribute('title');
+      return;
+    }
 
     var priceState = getRenderedPriceState(priceContainer);
     if (!priceState || !priceState.currentPrice) return;
@@ -5062,6 +5080,27 @@ function initDesktopStickyAtc(wrapper, sectionId) {
 
   function updateSize() {
     if (!stickySize || !variantSelects) return;
+    if (isMatchingSet) {
+      var hasSelectedPieces = !!(matchingSetStickyState && matchingSetStickyState.isReady);
+      if (hasSelectedPieces && matchingSetStickyState.totalText) {
+        stickySize.textContent = matchingSetStickyState.totalText;
+        if (matchingSetStickyState.summaryText) {
+          stickySize.title = matchingSetStickyState.summaryText;
+          stickySize.setAttribute('aria-label', matchingSetStickyState.totalText + ': ' + matchingSetStickyState.summaryText);
+        } else {
+          stickySize.removeAttribute('title');
+          stickySize.removeAttribute('aria-label');
+        }
+        stickySize.removeAttribute('hidden');
+      } else {
+        stickySize.textContent = '';
+        stickySize.removeAttribute('title');
+        stickySize.removeAttribute('aria-label');
+        stickySize.setAttribute('hidden', 'hidden');
+      }
+      return;
+    }
+
     var selectedSizes = [];
 
     Array.from(variantSelects.querySelectorAll('.product-form__input')).forEach(function (group) {
@@ -5081,6 +5120,16 @@ function initDesktopStickyAtc(wrapper, sectionId) {
   }
 
   function updateButtonState() {
+    if (isMatchingSet) {
+      var hasSelectedPieces = !!(matchingSetStickyState && matchingSetStickyState.isReady);
+      stickyButton.textContent = hasSelectedPieces
+        ? (matchingSetButton.textContent || wrapper.getAttribute('data-matching-set-add') || 'Add matching pieces').replace(/\s+/g, ' ').trim()
+        : wrapper.getAttribute('data-choose-options-label') || 'Choose options';
+      stickyButton.removeAttribute('disabled');
+      stickyBar.classList.toggle('requires-options', !hasSelectedPieces);
+      return;
+    }
+
     var missingOption = getFirstMissingOption(variantSelects);
     var labelNode = mainButton.querySelector('span');
     var mainLabel = labelNode && labelNode.textContent ? labelNode.textContent.replace(/\s+/g, ' ').trim() : '';
@@ -5106,6 +5155,18 @@ function initDesktopStickyAtc(wrapper, sectionId) {
   }
 
   stickyButton.addEventListener('click', function (event) {
+    if (isMatchingSet) {
+      if (!matchingSetStickyState || !matchingSetStickyState.isReady || matchingSetButton.hasAttribute('disabled')) {
+        event.preventDefault();
+        if (matchingSetBuilder && typeof matchingSetBuilder.scrollIntoView === 'function') {
+          matchingSetBuilder.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+      matchingSetButton.click();
+      return;
+    }
+
     var missingOption = getFirstMissingOption(variantSelects);
     if (missingOption) {
       event.preventDefault();
@@ -5122,6 +5183,17 @@ function initDesktopStickyAtc(wrapper, sectionId) {
     if (mainButton.hasAttribute('disabled')) return;
     mainButton.click();
   });
+
+  if (isMatchingSet) {
+    document.addEventListener('dlm:matching-set-summary', function (event) {
+      if (!event || !event.detail || event.detail.sectionId !== sectionId) return;
+      matchingSetStickyState = event.detail;
+      updatePrice();
+      updateSize();
+      updateButtonState();
+      syncVisibility();
+    });
+  }
 
   var buttonObserver = new IntersectionObserver(
     function (entries) {
