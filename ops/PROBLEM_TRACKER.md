@@ -1265,6 +1265,47 @@ Approval/credential/platform gates:
 Parallel work to continue:
 - Paid-growth lanes remain separate; do not mix this CRO/shipping-copy work with Merchant, Ads, Pinterest, or live-spend changes.
 
+### `PROB-2026-05-11-PDP-OCCASIONS-TRANSLATION-PARITY`
+
+Priority: `P2`
+
+Status: `SOLVED_THEME_CHECK_PASSED`
+
+Owner/session: Codex sync session, 2026-05-11 23:13 EDT.
+
+Surface: Theme locale JSON files and `snippets/pdp-occasion-block.liquid`.
+
+Exact symptom:
+- During the GitHub main sync validation, `shopify theme check --path . --fail-level error --output text` failed because `snippets/pdp-occasion-block.liquid` referenced `products.product.occasions.title` without a matching entry in `locales/en.default.json`.
+- After adding the English key, Theme Check correctly exposed locale parity errors for the same key across non-primary locale files.
+
+Business impact:
+- Error-level Theme Check failures weaken confidence in GitHub-connected live theme syncs and can hide newer PDP regressions behind translation-noise failures.
+
+Definition of fixed:
+- `products.product.occasions.title` exists in the default locale and all theme locale JSON files.
+- Theme Check has no error-level offenses after the patch.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-11 23:09 EDT | Added `products.product.occasions.title` to `locales/en.default.json` | Cleared the original default-locale missing-key error but surfaced `MatchingTranslations` errors in non-primary locales | Theme Check output in terminal |
+| 2026-05-11 23:10 EDT | Mechanically inserted the same fallback label in all non-primary locale JSON files missing the key | Locale parity errors cleared | `shopify theme check --path . --fail-level error --output text` |
+
+Failed or ruled-out paths:
+- Leaving the default-locale key missing was ruled out because the repo's standard error-level Theme Check stayed red.
+- Adding native human translations was deferred because this sync task needed a safe parity fix, and the existing Liquid fallback already used the same English label.
+
+Current next action:
+- No action required for this problem. Optional future localization polish may replace the fallback label with native translations.
+
+Approval/credential/platform gates:
+- None. Local theme-file change only.
+
+Parallel work to continue:
+- This was independent from Ads, Merchant, Pinterest, GA4/GTM, and paid-growth launch gates.
+
 Copy this template for every new problem:
 
 ```markdown

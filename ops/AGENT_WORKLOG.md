@@ -34035,3 +34035,33 @@ Next:
 - Send the local-only replacement slices for `es-ES`, `it-IT`, `ro-RO`, `de-DE`, `nl-NL`, `fr-FR`, `sv-SE`, `pl-PL`, and `cs-CZ` to native reviewers, then run country-qualified landing-language QA before any platform use.
 - Continue measurement with GA4 UI Explore/report export for property `330266838`, or refreshed read-only GA4 Data/Admin API scopes, to match sanitized Shopify non-USD order candidates to actual `purchase` transaction/currency/value evidence.
 - If read-only historical proof cannot expose the needed fields and the owner wants the gate closed now, use the exact controlled non-US test-purchase/refund/cancel approval wording already documented in the prior measurement packet. Do not create a payment/order by inference.
+
+2026-05-11 - GitHub main sync for local PDP matching-set CRO changes
+AGENT_CONTINUITY_ANCHOR: 2026-05-11-github-main-sync-pdp-matching-set-cro
+
+Why:
+- Owner asked to sync the current local changes visible at `http://127.0.0.1:9292/` to GitHub `main`.
+
+What changed:
+- Committed and pushed the local PDP matching-set CRO/theme changes to `origin/main` in commit `beed4c3` (`Sync PDP matching set CRO updates`).
+- Included the already-local changes in `CLAUDE.md`, `assets/component-product-desktop-ux.css`, `assets/product-desktop-ux.js`, `sections/main-product.liquid`, `snippets/product-desktop-ux.liquid`, `snippets/product-page-copy-map.liquid`, `snippets/product-variant-picker.liquid`, and `locales/en.default.json`.
+- Removed one unused Liquid assignment in `snippets/product-desktop-ux.liquid`.
+- Fixed a Theme Check translation-parity blocker by adding `products.product.occasions.title` to all theme locale JSON files.
+- Removed a stale `.git/index.lock` only after checking active git processes; the lock timestamp was stale and blocked `git add`.
+
+Validation:
+- `git diff --check` passed.
+- Local preview readback passed on `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set`: matching-set scope rendered, builder markup existed, savings eyebrow rendered, and the bundle CTA markup existed.
+- Playwright readback on the same local preview showed matching-set scope `true`, visible builder, savings eyebrow, and two default family cards; console noise was local Shopify/CORS noise only.
+- `shopify theme check --path . --fail-level error --output text` passed with `0` errors and one remaining unrelated warning: `snippets/pdp-purchase-confidence.liquid` unused `pc_fallback_copy`.
+- `git fetch origin main` showed local `main` was only one commit ahead before push; `git push origin main` advanced `origin/main` from `4d1507f` to `beed4c3`.
+
+Problems:
+- `PROB-2026-05-11-PDP-OCCASIONS-TRANSLATION-PARITY`: opened and closed as `SOLVED_THEME_CHECK_PASSED`.
+
+Guardrails:
+- No Google Ads, Merchant Center, Pinterest, GA4/GTM, Shopify Admin product/page/policy data, campaign, spend, budget, bid, product-scope, feed-label, conversion-goal, checkout payment/order/refund/cancel, credential, billing, or account-setting writes occurred.
+
+Next:
+- Hard-refresh the live storefront after Shopify's GitHub theme sync catches up.
+- Optional cleanup: remove the unrelated `pc_fallback_copy` unused assignment warning in `snippets/pdp-purchase-confidence.liquid` in a separate focused patch.
