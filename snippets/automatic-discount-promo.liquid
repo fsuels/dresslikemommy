@@ -1,0 +1,117 @@
+{{ 'component-automatic-discount-promo.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign promo_context = context | default: 'cart'
+  assign promo_state = state | default: ''
+  assign promo_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase
+
+  assign promo_title = '10% off 2+ items'
+  assign promo_body = 'Applies automatically in cart and checkout.'
+  assign promo_applied = '10% off 2+ items is applied automatically.'
+  assign promo_next = 'Add one more item and 10% off applies automatically.'
+  assign promo_eligible = '10% off 2+ items applies automatically when eligible.'
+
+  case promo_locale_root
+    when 'cs'
+      assign promo_title = '10 % sleva na 2+ položky'
+      assign promo_body = 'Použije se automaticky v košíku a pokladně.'
+      assign promo_applied = '10 % sleva na 2+ položky je použita automaticky.'
+      assign promo_next = 'Přidejte ještě jednu položku a 10 % sleva se použije automaticky.'
+      assign promo_eligible = '10 % sleva na 2+ položky se použije automaticky, když je objednávka způsobilá.'
+    when 'da'
+      assign promo_title = '10% rabat på 2+ varer'
+      assign promo_body = 'Anvendes automatisk i kurven og ved betaling.'
+      assign promo_applied = '10% rabat på 2+ varer er anvendt automatisk.'
+      assign promo_next = 'Tilføj én vare mere, så anvendes 10% rabat automatisk.'
+      assign promo_eligible = '10% rabat på 2+ varer anvendes automatisk, når ordren er berettiget.'
+    when 'de'
+      assign promo_title = '10 % Rabatt ab 2 Artikeln'
+      assign promo_body = 'Wird automatisch im Warenkorb und Checkout angewendet.'
+      assign promo_applied = '10 % Rabatt ab 2 Artikeln wird automatisch angewendet.'
+      assign promo_next = 'Fügen Sie noch einen Artikel hinzu, dann wird 10 % Rabatt automatisch angewendet.'
+      assign promo_eligible = '10 % Rabatt ab 2 Artikeln wird automatisch angewendet, wenn die Bestellung berechtigt ist.'
+    when 'el'
+      assign promo_title = '10% έκπτωση σε 2+ είδη'
+      assign promo_body = 'Εφαρμόζεται αυτόματα στο καλάθι και στο checkout.'
+      assign promo_applied = 'Η έκπτωση 10% σε 2+ είδη εφαρμόζεται αυτόματα.'
+      assign promo_next = 'Προσθέστε ακόμη ένα είδος και η έκπτωση 10% θα εφαρμοστεί αυτόματα.'
+      assign promo_eligible = 'Η έκπτωση 10% σε 2+ είδη εφαρμόζεται αυτόματα όταν η παραγγελία είναι επιλέξιμη.'
+    when 'es'
+      assign promo_title = '10% de descuento en 2+ artículos'
+      assign promo_body = 'Se aplica automáticamente en el carrito y al pagar.'
+      assign promo_applied = 'El 10% de descuento en 2+ artículos se aplicó automáticamente.'
+      assign promo_next = 'Añade un artículo más y el 10% de descuento se aplicará automáticamente.'
+      assign promo_eligible = 'El 10% de descuento en 2+ artículos se aplica automáticamente cuando el pedido califica.'
+    when 'fr'
+      assign promo_title = '10 % de réduction dès 2 articles'
+      assign promo_body = 'S’applique automatiquement dans le panier et au paiement.'
+      assign promo_applied = 'La réduction de 10 % dès 2 articles est appliquée automatiquement.'
+      assign promo_next = 'Ajoutez encore un article et la réduction de 10 % s’appliquera automatiquement.'
+      assign promo_eligible = 'La réduction de 10 % dès 2 articles s’applique automatiquement lorsque la commande est admissible.'
+    when 'it'
+      assign promo_title = '10% di sconto su 2+ articoli'
+      assign promo_body = 'Si applica automaticamente nel carrello e al checkout.'
+      assign promo_applied = 'Il 10% di sconto su 2+ articoli è applicato automaticamente.'
+      assign promo_next = 'Aggiungi un altro articolo e il 10% di sconto si applicherà automaticamente.'
+      assign promo_eligible = 'Il 10% di sconto su 2+ articoli si applica automaticamente quando l’ordine è idoneo.'
+    when 'nl'
+      assign promo_title = '10% korting op 2+ items'
+      assign promo_body = 'Wordt automatisch toegepast in winkelwagen en checkout.'
+      assign promo_applied = '10% korting op 2+ items is automatisch toegepast.'
+      assign promo_next = 'Voeg nog één item toe en 10% korting wordt automatisch toegepast.'
+      assign promo_eligible = '10% korting op 2+ items wordt automatisch toegepast wanneer de bestelling in aanmerking komt.'
+    when 'pl'
+      assign promo_title = '10% zniżki przy 2+ produktach'
+      assign promo_body = 'Naliczana automatycznie w koszyku i przy kasie.'
+      assign promo_applied = '10% zniżki przy 2+ produktach naliczono automatycznie.'
+      assign promo_next = 'Dodaj jeszcze jeden produkt, a 10% zniżki naliczy się automatycznie.'
+      assign promo_eligible = '10% zniżki przy 2+ produktach nalicza się automatycznie, gdy zamówienie się kwalifikuje.'
+    when 'pt'
+      assign promo_title = '10% off em 2+ itens'
+      assign promo_body = 'Aplicado automaticamente no carrinho e no checkout.'
+      assign promo_applied = '10% off em 2+ itens foi aplicado automaticamente.'
+      assign promo_next = 'Adicione mais um item e 10% off será aplicado automaticamente.'
+      assign promo_eligible = '10% off em 2+ itens é aplicado automaticamente quando o pedido se qualifica.'
+    when 'ro'
+      assign promo_title = '10% reducere la 2+ articole'
+      assign promo_body = 'Se aplică automat în coș și la checkout.'
+      assign promo_applied = 'Reducerea de 10% la 2+ articole este aplicată automat.'
+      assign promo_next = 'Adaugă încă un articol și reducerea de 10% se aplică automat.'
+      assign promo_eligible = 'Reducerea de 10% la 2+ articole se aplică automat când comanda este eligibilă.'
+    when 'sv'
+      assign promo_title = '10% rabatt på 2+ varor'
+      assign promo_body = 'Tillämpas automatiskt i varukorgen och kassan.'
+      assign promo_applied = '10% rabatt på 2+ varor har tillämpats automatiskt.'
+      assign promo_next = 'Lägg till en vara till så tillämpas 10% rabatt automatiskt.'
+      assign promo_eligible = '10% rabatt på 2+ varor tillämpas automatiskt när beställningen är berättigad.'
+  endcase
+
+  if promo_state == blank and cart != blank
+    if cart.item_count < 2
+      assign promo_state = 'next'
+    elsif cart.total_discount > 0 or cart.cart_level_discount_applications.size > 0
+      assign promo_state = 'applied'
+    else
+      assign promo_state = 'eligible'
+    endif
+  endif
+
+  assign promo_message = promo_body
+  if promo_state == 'applied'
+    assign promo_message = promo_applied
+  elsif promo_state == 'next'
+    assign promo_message = promo_next
+  elsif promo_state == 'eligible'
+    assign promo_message = promo_eligible
+  endif
+-%}
+
+<div class="automatic-discount-promo automatic-discount-promo--{{ promo_context | escape }} automatic-discount-promo--{{ promo_state | escape }}" role="note">
+  <span class="automatic-discount-promo__icon" aria-hidden="true">
+    {%- render 'icon-discount' -%}
+  </span>
+  <span class="automatic-discount-promo__text">
+    <strong>{{ promo_title }}</strong>
+    <span>{{ promo_message }}</span>
+  </span>
+</div>
