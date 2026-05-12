@@ -1607,7 +1607,6 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     return 'metric';
   })();
   var closedPanels = Object.create(null);
-  var lastMobileScrollY = typeof window !== 'undefined' ? window.scrollY || 0 : 0;
 
   function setUnitSystem(next) {
     if (next !== 'metric' && next !== 'imperial') return;
@@ -1617,13 +1616,6 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       if (window.localStorage) window.localStorage.setItem(BUNDLE_UNIT_STORAGE_KEY, next);
     } catch (e) { /* ignore */ }
     renderBuilder();
-  }
-
-  function hasOpenSizePanels() {
-    for (var i = 0; i < instances.length; i += 1) {
-      if (instances[i] && instances[i].sizeLabel && !closedPanels[instances[i].instanceId]) return true;
-    }
-    return false;
   }
 
   function closeOpenSizePanels() {
@@ -2618,7 +2610,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         button.addEventListener('click', function () {
           var inst = findInstance(instanceId);
           if (!inst) return;
-          closeOpenSizePanels();
+          if (!isMobileSizePanelViewport()) closeOpenSizePanels();
           var action = button.getAttribute('data-qty-action');
           if (action === 'inc') {
             inst.quantity = (inst.quantity || 1) + 1;
@@ -2641,7 +2633,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     builder.querySelectorAll('[data-instance-remove]').forEach(function (removeBtn) {
       removeBtn.addEventListener('click', function () {
         var instanceId = removeBtn.getAttribute('data-instance-remove');
-        closeOpenSizePanels();
+        if (!isMobileSizePanelViewport()) closeOpenSizePanels();
         removeInstance(instanceId);
         renderBuilder();
       });
@@ -2652,7 +2644,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         var groupKey = addBtn.getAttribute('data-add-role-group');
         var group = getGroupByKey(groupKey);
         if (!group) return;
-        closeOpenSizePanels();
+        if (!isMobileSizePanelViewport()) closeOpenSizePanels();
         addInstanceForGroup(group);
         renderBuilder();
       });
@@ -2827,18 +2819,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   }
   if (typeof window !== 'undefined') {
     window.addEventListener('resize', schedulePillTooltipReposition);
-    window.addEventListener('scroll', function () {
-      var currentY = window.scrollY || 0;
-      var scrollDelta = Math.abs(currentY - lastMobileScrollY);
-      lastMobileScrollY = currentY;
-
-      if (isMobileSizePanelViewport() && scrollDelta >= 12 && hasOpenSizePanels() && closeOpenSizePanels()) {
-        renderBuilder();
-        return;
-      }
-
-      schedulePillTooltipReposition();
-    }, { passive: true });
+    window.addEventListener('scroll', schedulePillTooltipReposition, { passive: true });
     window.addEventListener('orientationchange', schedulePillTooltipReposition);
   }
 
