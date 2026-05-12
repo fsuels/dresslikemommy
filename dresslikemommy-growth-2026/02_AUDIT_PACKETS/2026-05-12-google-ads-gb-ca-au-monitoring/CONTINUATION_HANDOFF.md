@@ -27,17 +27,26 @@ Each enabled exact ad group has:
   - `mom and daughter matching outfits`
 - `1` paused responsive search ad
 
+Read-only inner entity discovery is complete:
+
+| Market | Ad Group ID | Paused Keyword Criterion IDs | Paused RSA Ad ID |
+|---|---:|---|---:|
+| GB | `194138528537` | `299141671628`, `301154335636`, `301154336396` | `808406712704` |
+| CA | `196679079575` | `299141671628`, `301154335636`, `301154336396` | `808294804728` |
+| AU | `198852670520` | `299141671628`, `301154335636`, `301154336396` | `808328767090` |
+
+Evidence: `raw/inner-entity-discovery/inner_entity_discovery_summary.json`.
+
 ## Next Exact Approval Needed
 
 `APPROVE ENABLE GB CA AU EXACT SEARCH INNER ENTITIES ONLY: IN CAMPAIGN 23838895360 AD GROUP Mommy & Me Dresses - Exact, CAMPAIGN 23834423669 AD GROUP Mommy & Me Dresses - Exact, AND CAMPAIGN 23834424182 AD GROUP Mommy & Me Dresses - Exact, ENABLE ONLY THE 3 EXACT-MATCH KEYWORDS mommy and me dresses, mother daughter dresses, mom and daughter matching outfits AND THE 1 RESPONSIVE SEARCH AD IN EACH NAMED AD GROUP; KEEP ALL OTHER AD GROUPS, ADS, KEYWORDS, CAMPAIGNS, BUDGETS, BIDS, PRODUCT SCOPE, FEED, MERCHANT, PINTEREST, CONVERSION GOALS, PMAX, STANDARD SHOPPING, SHOPIFY PRODUCT DATA, AND BILLING UNCHANGED.`
 
 ## Next Operator Steps After Approval
 
-1. Run a read-only discovery for exact keyword and RSA entity IDs inside the three named exact ad groups.
-2. Pre-readback status, final URLs, campaign/ad-group status, budget, network, geo, and conversion-goal override.
-3. Enable only the named inner exact keywords and RSA entities.
-4. Post-readback that only those inner entities changed and that each campaign moves away from `Not eligible` or has a clear platform review/status reason.
-5. Update `ops/PROBLEM_TRACKER.md`, `ops/AGENT_COORDINATION.md`, `ops/AGENT_WORKLOG.md`, `AGENTS.md`, the canonical prompt, and this packet.
+1. Pre-readback status, final URLs, campaign/ad-group status, budget, network, geo, and conversion-goal override.
+2. Enable only the named inner exact keywords and RSA entities.
+3. Post-readback that only those inner entities changed and that each campaign moves away from `Not eligible` or has a clear platform review/status reason.
+4. Update `ops/PROBLEM_TRACKER.md`, `ops/AGENT_COORDINATION.md`, `ops/AGENT_WORKLOG.md`, `AGENTS.md`, the canonical prompt, and this packet.
 
 ## Other Active Paths
 

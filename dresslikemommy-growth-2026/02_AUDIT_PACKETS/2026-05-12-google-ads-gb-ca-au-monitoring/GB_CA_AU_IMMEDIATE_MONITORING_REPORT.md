@@ -47,10 +47,24 @@ Each enabled exact ad group has:
 - `1` paused responsive search ad
 - Country-qualified final URLs for that market
 
+## Read-Only Inner Entity Discovery
+
+A follow-up read-only RPC discovery found the exact paused keyword/ad entities that would need the next owner approval. No mutate RPCs were sent.
+
+| Market | Ad Group ID | Paused Keyword Criterion IDs | Paused RSA Ad ID | URL Check |
+|---|---:|---|---:|---|
+| `GB` | `194138528537` | `299141671628`, `301154335636`, `301154336396` | `808406712704` | `?country=GB` |
+| `CA` | `196679079575` | `299141671628`, `301154335636`, `301154336396` | `808294804728` | `?country=CA` |
+| `AU` | `198852670520` | `299141671628`, `301154335636`, `301154336396` | `808328767090` | `?country=AU` |
+
+Discovery checks passed for each market: exactly `3` paused keyword criteria, exactly `1` paused ad, and all final URLs country-qualified.
+
 ## Evidence
 
 - Monitor script: `monitor_gb_ca_au_readonly_cdp.py`
+- Inner discovery script: `discover_gb_ca_au_inner_entities_readonly_cdp.py`
 - Summary: `raw/monitoring_summary.json`
+- Inner discovery summary: `raw/inner-entity-discovery/inner_entity_discovery_summary.json`
 - RPC readbacks: `raw/rpc/GB/`, `raw/rpc/CA/`, `raw/rpc/AU/`
 - UI captures: `raw/ui/GB/`, `raw/ui/CA/`, `raw/ui/AU/`
 - Safety checks: `raw/checks/GB/monitor_checks.json`, `raw/checks/CA/monitor_checks.json`, `raw/checks/AU/monitor_checks.json`

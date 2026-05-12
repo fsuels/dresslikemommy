@@ -34890,10 +34890,16 @@ Readback:
 - RPC/safety checks passed for GB `23838895360`, CA `23834423669`, and AU `23834424182`: each campaign is `Enabled`, exactly one ad group is `Enabled` (`Mommy & Me Dresses - Exact`), all other ad groups are `Paused`, budgets remain `$2/day`, Search only/content and YouTube off, presence-only geo targeting, and no campaign conversion-goal override.
 - Google Ads visible UI showed all three campaigns are still `Not eligible` with reason `All keywords are paused, All ads are paused`.
 - Split-file evidence confirms each exact ad group has 3 paused exact-match keywords (`mommy and me dresses`, `mother daughter dresses`, `mom and daughter matching outfits`) and 1 paused responsive search ad.
+- Follow-up read-only inner entity discovery succeeded with no mutate RPCs:
+  - GB ad group `194138528537`: paused keyword criteria `299141671628`, `301154335636`, `301154336396`; paused RSA ad `808406712704`.
+  - CA ad group `196679079575`: paused keyword criteria `299141671628`, `301154335636`, `301154336396`; paused RSA ad `808294804728`.
+  - AU ad group `198852670520`: paused keyword criteria `299141671628`, `301154335636`, `301154336396`; paused RSA ad `808328767090`.
+  - All discovered keyword/ad final URLs remain country-qualified.
 
 Evidence:
 - Report: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-monitoring/GB_CA_AU_IMMEDIATE_MONITORING_REPORT.md`.
 - Summary: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-monitoring/raw/monitoring_summary.json`.
+- Inner entity discovery: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-monitoring/raw/inner-entity-discovery/inner_entity_discovery_summary.json`.
 - UI captures: `raw/ui/GB/`, `raw/ui/CA/`, `raw/ui/AU/`.
 - RPC/readback checks: `raw/rpc/GB/`, `raw/rpc/CA/`, `raw/rpc/AU/`, `raw/checks/GB/monitor_checks.json`, `raw/checks/CA/monitor_checks.json`, `raw/checks/AU/monitor_checks.json`.
 
@@ -34950,3 +34956,33 @@ Next best action:
 
 Guardrails:
 - No Shopify Admin discount/product/page/policy/translation writes, product price/cost/variant/status/publication/inventory changes, checkout settings/payment/order/refund/cancel, Ads/Merchant/Pinterest/GA4/GTM writes, spend/campaign/budget/bid/status/product-scope/feed-label/product-group/conversion-goal changes, credential/account/billing edits, destructive filesystem actions, or unrelated dirty-worktree cleanup occurred.
+2026-05-12 - Desktop sticky cart drawer gray/background parity final fix
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-desktop-sticky-cart-drawer-gray-parity-live
+
+Why:
+- Owner clarified the sticky matching-set cart drawer had to match the regular upper green matching-set button path exactly: same drawer overlay color and visible product/matching-set background, not a dark/blank lower-page gray field.
+
+What changed live:
+- Sampled the owner reference screenshot gray field as `#888888`, which matches the theme drawer overlay `rgba(18, 18, 18, 0.5)`.
+- Restored `assets/component-cart-drawer.css` drawer overlay to `rgba(var(--color-foreground), 0.5)` after a temporary lighter test.
+- Patched `assets/product-desktop-ux.js` and the inline fallback in `sections/main-product.liquid` so sticky matching-set clicks set `window.DLMCartDrawerOpenScrollY` to the matching-set builder/product area before forwarding to the real bundle CTA.
+- Patched `assets/cart-drawer.js` scroll lock to honor `window.DLMCartDrawerOpenScrollY` before locking the drawer, so AJAX cart opens from the same product-section visual context even when the shopper clicked sticky from far down the page.
+- Pushed scoped live theme files to theme `dresslikemommy/main` `#133290917985`.
+
+Validation:
+- Sampled owner reference screenshot gray as `#888888`.
+- `node --check assets/product-desktop-ux.js && node --check assets/cart-drawer.js` passed.
+- `git diff --check -- assets/component-cart-drawer.css assets/cart-drawer.js assets/product-desktop-ux.js sections/main-product.liquid` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Live Sunlit Floral readback on `https://www.dresslikemommy.com/products/sunlit-floral-family-matching-set` passed after cache-busted reload:
+  - sticky clicked from lower page `scrollY=3396` with text `2 Matching Pieces Total £46.00 ADD MATCHING PIECES`.
+  - drawer computed background `rgba(18, 18, 18, 0.5)`, matching the reference overlay color.
+  - drawer title `Your cart (2)`, `cartItems=2`.
+  - matching-set builder visible behind drawer at top `120`; media visible behind drawer; screenshot `sunlit-sticky-cart-drawer-final-reference-gray.png` shows product visible behind overlay instead of blank lower-page gray.
+
+Residual risks:
+- Browser cache can briefly hold old JS/CSS; hard refresh/private window should load `component-cart-drawer.css?v=160227409459879130331778584700`, `cart-drawer.js?v=29725735370286489081778584659`, and `product-desktop-ux.js?v=169705818677815506441778584659` or newer.
+- Existing unrelated dirty worktree artifacts were left untouched.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, checkout edit, Ads/Merchant/Pinterest/GA4/GTM write, spend/campaign/budget/bid/status/product-scope/feed-label/conversion-goal change, payment/order/refund/cancel, credential/account/billing edit, or destructive filesystem action occurred. Live storefront writes were scoped to the four theme files named above.
