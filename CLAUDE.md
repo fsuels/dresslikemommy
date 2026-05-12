@@ -110,6 +110,50 @@ and it failed badly on May 11 because:
 - Frank should NEVER be debugging git locks. The VS Code Source Control
   GUI handles all of this automatically.
 
+### CRITICAL: when VS Code GUI dead-ends with .git/index.lock
+
+If `.git/index.lock` is present, VS Code's Commit & Push silently
+fails. CLAUDE's sandbox CANNOT delete that lock file (macOS denies
+`.git/` writes; `rm .git/index.lock` returns `Operation not permitted`).
+This dead-ended a sync on May 11, 2026 — the agent had to hand the
+lock-removal back to Frank.
+
+**Escalation order when the GUI fails AND .git/index.lock exists:**
+
+1. **Try the perms fix first** (one-time, permanent). Frank runs:
+   ```
+   sudo chown -R fsuels:staff /Users/fsuels/Projects/dresslikemommy/.git
+   chmod -R u+rwX,g+rwX /Users/fsuels/Projects/dresslikemommy/.git
+   ```
+   After this, the sandbox can manage `.git/` directly and Claude can
+   recover stale locks autonomously by running:
+   ```
+   cd /sessions/<id>/mnt/dresslikemommy && rm -f .git/index.lock && \
+     git add -A && git commit -F <(echo "msg") && git push origin main
+   ```
+
+2. **If perms aren't fixed yet**, fall back to the
+   clipboard-Terminal-paste pattern (NOT the original one-liner — that
+   one's still banned for the editor-opens-mid-chain reason). The
+   pattern that works:
+   - Claude writes the full command sequence to the clipboard.
+   - Frank opens Terminal himself, pastes, presses Enter.
+   - The command must use `git commit -F /tmp/msg.txt` (a here-doc'd
+     file, not -m) so multi-line messages don't break the chain.
+
+3. **NEVER tell Frank to "just delete the lock file" and stop there.**
+   That's a half-fix that leaves him doing manual git work. Give him a
+   complete recoverable command, OR push him toward option 1 so this
+   never happens again.
+
+### Side note on competing agents
+
+If another agent (Codex CLI, Cursor, etc.) has been working in this
+repo, it may have committed and pushed on its own. Always run
+`git status --short` and `git log origin/main --oneline -3` BEFORE
+attempting your own sync — you don't want to push stale local edits
+over remote work that already landed.
+
 **The clipboard fallback is reserved for ONLY two situations:**
 1. VS Code is not running.
 2. Frank explicitly says "give me the Terminal command".
