@@ -1938,6 +1938,53 @@ Approval/credential/platform gates:
 Parallel work to continue:
 - Ads, Merchant, Pinterest, GA4, checkout/payment, and Admin product-data lanes remain separate.
 
+### `PROB-2026-05-12-DISCOUNT-PROMO-COPY-RESTORE`
+
+Priority: `P1`
+
+Status: `SOLVED_LIVE_READBACK_PASSED`
+
+Owner/session: Codex current session, 2026-05-12.
+
+Surface: Public PDP matching-set promo copy, cart drawer promo copy, cart page promo copy, and beach PDP public cache readback.
+
+Exact symptom:
+- After the real automatic `10% off 2+ items` discount was created and verified, the theme needed truthful customer-facing promo copy again.
+- The beach PDP also needed a post-cache public HTML recheck because stale Christmas metadata/pattern markers had appeared immediately after Admin cleanup.
+
+Business impact:
+- Truthful PDP/cart discount copy can lift bundle intent without creating a cart/checkout mismatch.
+- Beach public metadata needs to stay clean before any future paid traffic goes back to that URL.
+
+Definition of fixed:
+- Public beach HTML has clean beach title/OG/Twitter metadata and no Christmas hits.
+- Golden Daisy public PDP shows the real automatic discount message without fake savings claims.
+- Public cart page and cart drawer show the applied `10% off 2+ items` message only when cart state supports it.
+- `/cart.js` with two Golden Daisy items shows a real cart-level automatic discount.
+- Theme syntax checks and scoped live deploy pass.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-12 current session | Rechecked public beach cache | Passed: title/OG/Twitter all `Matching Family Beach Outfits | Dress Like Mommy`; `christmas_hits=0`; tropical/beach markers present | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-discount-promo-copy-restore/live_public_promo_readback_summary_after_deploy.json` |
+| 2026-05-12 current session | Added shared truthful promo snippet and isolated CSS asset | Passed local readback: PDP showed `10% off 2+ items` and `Applies automatically in cart and checkout.`; old `You saved` copy absent | `snippets/automatic-discount-promo.liquid`; `assets/component-automatic-discount-promo.css`; local HTML evidence in packet |
+| 2026-05-12 current session | Scoped live theme push | Passed: live theme `133290917985` updated only promo snippet, PDP hook, cart drawer hook, cart footer hook, and new promo CSS asset | Shopify CLI push output; scoped file list in worklog |
+| 2026-05-12 current session | Public cart/drawer/cart.js readback with two Golden Daisy items | Passed: cart page and drawer show applied promo; `/cart.js item_count=2`, `total_discount=519`, discount title `10% off 2+ items` | `live_cart_page_after_deploy.html`; `live_cart_drawer_section_after_deploy.html`; `live_cart_js_after_deploy.json` |
+
+Failed or ruled-out paths:
+- Deploying existing shared product/cart CSS changes was ruled out to avoid carrying unrelated dirty work; promo styling was moved into a new isolated asset.
+- Shopify Admin discount/product writes were ruled out in this pass because the real discount was already verified.
+
+Current next action:
+- Monitor live PDP/cart UX and keep any future discount copy tied to actual `/cart.js` or checkout readback, not estimated savings math.
+
+Approval/credential/platform gates:
+- No Shopify Admin product/discount writes, checkout edits, Ads/Merchant/Pinterest/GA4/GTM writes, spend changes, product/feed/conversion scope changes, payment/order/refund/cancel, credential/account/billing edits, or destructive filesystem actions occurred.
+
+Parallel work to continue:
+- Ads, Merchant, Pinterest, GA4, checkout/payment, Admin product-data, and unrelated PDP sticky/single-tap local patches remain separate lanes.
+
 Copy this template for every new problem:
 
 ```markdown

@@ -34873,3 +34873,80 @@ Next best action:
 
 Guardrails:
 - No campaign enablement beyond the exact approved CA/AU scope, no additional ad groups, no budget/bid/product-scope/feed-label/product-group/conversion-goal change, no Merchant upload/source edit, no Pinterest account write, no Shopify product-data write, no PMax/Standard Shopping edit, no payment/order/refund/cancel, no credential/account/billing edit, and no destructive filesystem action occurred.
+
+2026-05-12 - Google Ads GB/CA/AU immediate monitor found inner paused entities
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-google-ads-gb-ca-au-monitoring
+
+Why:
+- Owner asked to monitor GB/CA/AU immediately and continue pushing toward active expert Google Ads/Pinterest coverage.
+- The previous exact approvals enabled only campaign and ad group statuses, so the monitor checked whether the first English-first Search cohort could actually serve.
+
+What changed:
+- No live account change was made in this monitor pass.
+- Added evidence packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-monitoring/`.
+- Updated `ops/PROBLEM_TRACKER.md`, `ops/AGENT_COORDINATION.md`, `AGENTS.md`, and the canonical paid-growth continuation prompt.
+
+Readback:
+- RPC/safety checks passed for GB `23838895360`, CA `23834423669`, and AU `23834424182`: each campaign is `Enabled`, exactly one ad group is `Enabled` (`Mommy & Me Dresses - Exact`), all other ad groups are `Paused`, budgets remain `$2/day`, Search only/content and YouTube off, presence-only geo targeting, and no campaign conversion-goal override.
+- Google Ads visible UI showed all three campaigns are still `Not eligible` with reason `All keywords are paused, All ads are paused`.
+- Split-file evidence confirms each exact ad group has 3 paused exact-match keywords (`mommy and me dresses`, `mother daughter dresses`, `mom and daughter matching outfits`) and 1 paused responsive search ad.
+
+Evidence:
+- Report: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-monitoring/GB_CA_AU_IMMEDIATE_MONITORING_REPORT.md`.
+- Summary: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-monitoring/raw/monitoring_summary.json`.
+- UI captures: `raw/ui/GB/`, `raw/ui/CA/`, `raw/ui/AU/`.
+- RPC/readback checks: `raw/rpc/GB/`, `raw/rpc/CA/`, `raw/rpc/AU/`, `raw/checks/GB/monitor_checks.json`, `raw/checks/CA/monitor_checks.json`, `raw/checks/AU/monitor_checks.json`.
+
+Residual risk:
+- GB/CA/AU are not yet working active Search tests despite enabled campaign/ad-group shells. They will not serve until the inner exact keywords and RSAs are enabled.
+- Broad "continue" approval is not enough to change this new inner keyword/ad status scope under the live-write guardrails.
+
+Exact next approval gate:
+- `APPROVE ENABLE GB CA AU EXACT SEARCH INNER ENTITIES ONLY: IN CAMPAIGN 23838895360 AD GROUP Mommy & Me Dresses - Exact, CAMPAIGN 23834423669 AD GROUP Mommy & Me Dresses - Exact, AND CAMPAIGN 23834424182 AD GROUP Mommy & Me Dresses - Exact, ENABLE ONLY THE 3 EXACT-MATCH KEYWORDS mommy and me dresses, mother daughter dresses, mom and daughter matching outfits AND THE 1 RESPONSIVE SEARCH AD IN EACH NAMED AD GROUP; KEEP ALL OTHER AD GROUPS, ADS, KEYWORDS, CAMPAIGNS, BUDGETS, BIDS, PRODUCT SCOPE, FEED, MERCHANT, PINTEREST, CONVERSION GOALS, PMAX, STANDARD SHOPPING, SHOPIFY PRODUCT DATA, AND BILLING UNCHANGED.`
+
+Guardrails:
+- No Google Ads writes, no keyword/ad/ad group/campaign status changes, no budget/bid/product-scope/feed-label/product-group/conversion-goal changes, no Merchant upload/source edit, no Pinterest account write, no Shopify product-data write, no payment/order/refund/cancel, no credential/account/billing edit, no destructive filesystem action, and no unrelated dirty-worktree cleanup occurred.
+
+2026-05-12 - Discount promo copy restore live after real automatic discount
+AGENT_CONTINUITY_ANCHOR: 2026-05-12-discount-promo-copy-restore-live
+
+Why:
+- Owner asked to recheck the beach public HTML after cache settled, then restore truthful PDP/cart promo copy now that the real automatic discount is verified.
+- The goal was to regain bundle-conversion messaging without reintroducing the earlier cart/checkout mismatch.
+
+What changed live:
+- Added shared snippet `snippets/automatic-discount-promo.liquid` for the verified `10% off 2+ items` automatic discount, with localized strings for the theme's active language roots.
+- Added isolated CSS asset `assets/component-automatic-discount-promo.css` so the deploy did not carry unrelated dirty shared CSS work.
+- Rendered the promo in:
+  - `snippets/product-desktop-ux.liquid` for matching-set PDPs.
+  - `snippets/cart-drawer.liquid` inside the cart drawer summary.
+  - `sections/main-cart-footer.liquid` inside the cart page subtotal block.
+- Scoped live theme push went to theme `133290917985` and included only the promo snippet, PDP hook, cart drawer hook, cart footer hook, and new promo CSS asset.
+
+Readback and evidence:
+- Public beach cache recheck passed: `Matching Family Beach Outfits | Dress Like Mommy` is the title/OG/Twitter title, `christmas_hits=0`, and beach/tropical markers are present.
+- Golden Daisy live PDP passed after CDN/cache retry: it shows `10% off 2+ items` and `Applies automatically in cart and checkout.`; false `You saved` copy is absent.
+- Live cart page and cart drawer passed with two Golden Daisy variants: both show `10% off 2+ items is applied automatically.`
+- Live `/cart.js` passed with two Golden Daisy items: `item_count=2`, `total_discount=519`, `total_price=4679`, and cart-level discount title `10% off 2+ items`.
+- Evidence packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-discount-promo-copy-restore/`.
+- Summary file: `live_public_promo_readback_summary_after_deploy.json`.
+
+Verification:
+- `node --check assets/product-desktop-ux.js && node --check assets/cart-drawer.js`
+- `git diff --check`
+- `shopify theme check --path . --fail-level error --output json` -> `[]`
+- `shopify theme list --json` confirmed live theme `133290917985`.
+- `shopify theme push --path . --theme 133290917985 --allow-live --only ... --json` completed.
+- Public curl readbacks for beach PDP, Golden Daisy PDP, `/cart.js`, `/cart`, and `cart-drawer` section all returned `200`.
+
+Residual risks:
+- Shopify CDN/product HTML cache took one retry before the PDP promo appeared, so use cache-busted public readbacks after future theme pushes.
+- The theme worktree still has unrelated dirty files from other lanes; those were intentionally left untouched.
+- This pass did not create/upload new product imagery or do additional Shopify Admin SEO/product writes.
+
+Next best action:
+- Monitor live PDP/cart UX and keep future discount copy tied to real automatic discount/cart readbacks.
+- Separately decide whether to live-deploy the unrelated local mobile size-panel single-tap patch and sync the pending desktop sticky CTA changes.
+
+Guardrails:
+- No Shopify Admin discount/product/page/policy/translation writes, product price/cost/variant/status/publication/inventory changes, checkout settings/payment/order/refund/cancel, Ads/Merchant/Pinterest/GA4/GTM writes, spend/campaign/budget/bid/status/product-scope/feed-label/product-group/conversion-goal changes, credential/account/billing edits, destructive filesystem actions, or unrelated dirty-worktree cleanup occurred.
