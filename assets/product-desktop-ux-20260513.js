@@ -1040,9 +1040,14 @@ function getTypeOptionValue(variant, options, sizeOptionIndex) {
   return '';
 }
 
-function getGarmentKey(value) {
+function getGarmentKeys(value) {
   var text = normalizeText(value);
-  if (!text) return '';
+  if (!text) return [];
+
+  var keys = [];
+  function add(key) {
+    if (key && keys.indexOf(key) === -1) keys.push(key);
+  }
 
   if (
     text.indexOf('shirt & shorts') !== -1 ||
@@ -1051,29 +1056,50 @@ function getGarmentKey(value) {
     text.indexOf('chemise et short') !== -1 ||
     text.indexOf('قميص وشورت') !== -1
   ) {
-    return 'shirtShortsSet';
+    add('shirtShortsSet');
+    return keys;
   }
 
   if (/(dress|skirt|robe|vestido|vestito|kleid|jurk|kjole|sukienka|rochie|плать|فستان|שמלה|ड्रेस|ワンピース|드레스|连衣裙|連衣裙|洋裝)/i.test(text)) {
-    return 'dress';
+    add('dress');
   }
   if (/(shirt|tee|t-shirt|camisa|chemise|hemd|skjorte|koszula|cămașă|camicie|рубаш|قميص|חולצה|शर्ट|シャツ|셔츠|衬衫|襯衫)/i.test(text)) {
-    return 'shirt';
+    add('shirt');
   }
   if (/(short|shorts|trunk|bermuda|шорт|شورت|מכנסיים קצרים|ショーツ|반바지|短裤|短褲)/i.test(text)) {
-    return 'shorts';
+    add('shorts');
   }
   if (/(romper|pelele|barboteuse|strampler|pagliaccetto|rampers|אוברול|ロンパース|롬퍼|连体衣|連身衣)/i.test(text)) {
-    return 'romper';
+    add('romper');
   }
   if (/(pant|pants|trouser|pantal|hose|broek|bukse|spodnie|брюк|بنطال|מכנסיים|पैंट|パンツ|바지|长裤|長褲)/i.test(text)) {
-    return 'pants';
+    add('pants');
   }
   if (/(top|haut|topp|yläosa|上衣|トップス|상의|טופ|टॉप|توب)/i.test(text)) {
-    return 'top';
+    add('top');
   }
 
-  return '';
+  return keys;
+}
+
+function getGarmentKey(value) {
+  var keys = getGarmentKeys(value);
+  return keys[0] || '';
+}
+
+function getSingularGarmentKey(value) {
+  var keys = getGarmentKeys(value);
+  return keys.length === 1 ? keys[0] : '';
+}
+
+function isSharedFitMeasurementHeader(header) {
+  var text =
+    typeof header === 'object'
+      ? normalizeText([header.raw, header.label].filter(Boolean).join(' '))
+      : normalizeText(header);
+  if (!text) return false;
+
+  return /(age|weight|height|waist|chest|bust|hip|hips)/i.test(text);
 }
 
 function localizeTypeLabel(value) {
@@ -1566,9 +1592,8 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   // sits at the same DOM level as the variant picker we hide via CSS,
   // but without the `hidden` attribute it stays visible and adds an
   // empty disclosure above the bundle. Mark it hidden so it doesn't
-  // paint by default; the existing [data-pdp-size-guide-trigger] handler
-  // will remove the attribute when the shopper taps "Find {role}'s fit"
-  // on a card.
+  // paint by default; the per-card "Find {role}'s fit" path now opens
+  // a focused inline chart instead of expanding the full shared chart.
   var infoContainer = wrapper.closest('.product__info-container--matching-set');
   if (infoContainer) {
     var legacyGuide = document.querySelector('[data-matching-size-guide]');
@@ -1955,10 +1980,42 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     return '';
   }
 
-  function pruneMeasurementsForRole(roleKey, headers, row) {
+  function headerGarmentKeys(header) {
+    if (!header) return [];
+    if (typeof header === 'object') return getGarmentKeys([header.raw, header.label].filter(Boolean).join(' '));
+    return getGarmentKeys(header);
+  }
+
+  function headerMatchesGarment(header, garmentKey) {
+    if (!garmentKey) return true;
+    var headerKeys = headerGarmentKeys(header);
+    if (!headerKeys.length) return true;
+    return headerKeys.some(function (headerKey) {
+      return garmentKeysCompatible(garmentKey, headerKey);
+    });
+  }
+
+  function getMeasurementGarmentKeysFromHeaders(headers) {
+    var seen = Object.create(null);
+    var keys = [];
+    (headers || []).forEach(function (header, index) {
+      if (index === 0) return;
+      headerGarmentKeys(header).forEach(function (key) {
+        if (!key || seen[key]) return;
+        seen[key] = true;
+        keys.push(key);
+      });
+    });
+    return keys;
+  }
+
+  function pruneMeasurementsForRole(roleKey, headers, row, garmentKey) {
     if (!headers || !row || !row.length) return null;
     var hasRoleColumns = headers.some(function (header, index) {
       return index > 0 && !!parseRoleFromHeader(header);
+    });
+    var hasGarmentHeaders = !!garmentKey && headers.some(function (header, index) {
+      return index > 0 && headerGarmentKeys(header).length > 0;
     });
 
     var keepIndexes = headers
@@ -1968,6 +2025,8 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       .filter(function (index) {
         if (index === 0) return true;
         if (isGuideEmptyValue(row[index])) return false;
+        if (hasGarmentHeaders && !headerGarmentKeys(headers[index]).length && !isSharedFitMeasurementHeader(headers[index])) return false;
+        if (!headerMatchesGarment(headers[index], garmentKey)) return false;
         if (!hasRoleColumns) return true;
         var headerRole = parseRoleFromHeader(headers[index]);
         return !headerRole || roleKeysCompatible(roleKey, headerRole.key);
@@ -2016,20 +2075,39 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       lookup.byRoleGarmentLabel[makeMeasurementEntryKey(entry.roleKey, entry.garmentKey, labelKey)] = entry;
     }
     if (entry.roleKey) {
-      lookup.byRoleLabel[makeMeasurementEntryKey(entry.roleKey, '', labelKey)] = entry;
+      var roleLabelKey = makeMeasurementEntryKey(entry.roleKey, '', labelKey);
+      if (!entry.garmentKey || !lookup.byRoleLabel[roleLabelKey]) lookup.byRoleLabel[roleLabelKey] = entry;
     }
     if (!lookup.byLabel[labelKey]) lookup.byLabel[labelKey] = entry;
+  }
+
+  function addPrunedSizeMeasurementEntries(lookup, roleKey, contextGarmentKey, label, headers, row) {
+    var headerGarmentKeys = getMeasurementGarmentKeysFromHeaders(headers);
+    var targetGarmentKeys = headerGarmentKeys.length ? headerGarmentKeys : [];
+    if (!targetGarmentKeys.length && contextGarmentKey) targetGarmentKeys.push(contextGarmentKey);
+
+    if (!targetGarmentKeys.length) {
+      addSizeMeasurementEntry(lookup, roleKey, '', label, headers, row);
+      return;
+    }
+
+    targetGarmentKeys.forEach(function (garmentKey) {
+      var garmentMeasurements = pruneMeasurementsForRole(roleKey, headers, row, garmentKey);
+      if (garmentMeasurements) {
+        addSizeMeasurementEntry(lookup, roleKey, garmentKey, label, garmentMeasurements.headers, garmentMeasurements.row);
+      }
+    });
   }
 
   function indexParsedSizeGuideRows(lookup, parsed, table) {
     var contextText = getSizeMeasurementTableContextText(table);
     var contextRoleKeys = getMeasurementRoleKeysFromText(contextText);
-    var contextGarmentKey = getGarmentKey(contextText);
+    var contextGarmentKey = getSingularGarmentKey(contextText);
     var grouped = typeof buildSizeGuideGroups === 'function' ? buildSizeGuideGroups(parsed) : [];
 
     grouped.forEach(function (group) {
       (group.rows || []).forEach(function (row) {
-        addSizeMeasurementEntry(lookup, group.key, contextGarmentKey, row[0], group.headers, row);
+        addPrunedSizeMeasurementEntries(lookup, group.key, contextGarmentKey, row[0], group.headers, row);
       });
     });
 
@@ -2039,7 +2117,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
 
       var parsedRole = parseRoleFromSizeLabel(rawLabel);
       if (parsedRole) {
-        var parsedRoleMeasurements = pruneMeasurementsForRole(parsedRole.key, parsed.headers, row);
+        var parsedRoleMeasurements = pruneMeasurementsForRole(parsedRole.key, parsed.headers, row, contextGarmentKey);
         if (parsedRoleMeasurements) {
           addSizeMeasurementEntry(
             lookup,
@@ -2055,7 +2133,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       contextRoleKeys.forEach(function (roleKey) {
         var baseRoleKey = inferBaseRoleKeyFromMeasurementSize(rawLabel);
         if (baseRoleKey && !roleKeysCompatible(roleKey, baseRoleKey)) return;
-        var roleMeasurements = pruneMeasurementsForRole(roleKey, parsed.headers, row);
+        var roleMeasurements = pruneMeasurementsForRole(roleKey, parsed.headers, row, contextGarmentKey);
         if (!roleMeasurements) return;
         var roleSizeLabel = parsedRole && parsedRole.sizeLabel ? parsedRole.sizeLabel : rawLabel;
         addSizeMeasurementEntry(lookup, roleKey, contextGarmentKey, roleSizeLabel, roleMeasurements.headers, roleMeasurements.row);
@@ -2081,17 +2159,20 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     return sizeMeasurementsByLabel;
   }
 
-  function findMeasurementsForOption(group, option) {
+  function findMeasurementsForOption(group, option, context) {
     if (!option) return null;
     var lookup = buildSizeMeasurementsLookup();
     if (!lookup) return null;
+    var measurementContext = context || {};
 
     // Try multiple lookup keys in order of specificity. Each PDP's
     // variant naming convention varies — try the raw size label
     // ("Mother S"), the role-prefixed full label ("Mother S"), and
     // size-only ("S") as fallbacks.
     var roleKey = (group && (group.roleKey || group.key)) || '';
-    var garmentKey = getGarmentKey((group && (group.helperRaw || group.helper)) || '');
+    var garmentKey = Object.prototype.hasOwnProperty.call(measurementContext, 'garmentKey')
+      ? measurementContext.garmentKey
+      : getMeasurementGarmentKey(group, option, measurementContext);
     var candidates = [];
     if (option.fullLabel) candidates.push(option.fullLabel);
     if (group && group.label && option.sizeLabel) {
@@ -2378,6 +2459,99 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     return values;
   }
 
+  function getTypeAxisNamesForGroup(group) {
+    return getAxisNamesForGroup(group).filter(function (axisName) {
+      return isTypeLikeLabel(normalizeText(axisName));
+    });
+  }
+
+  function getOptionTypeValue(option) {
+    if (!option || !option.axes) return '';
+    var axisNames = Object.keys(option.axes);
+    for (var index = 0; index < axisNames.length; index += 1) {
+      var axisName = axisNames[index];
+      if (isTypeLikeLabel(normalizeText(axisName))) return String(option.axes[axisName] || '').trim();
+    }
+    return '';
+  }
+
+  function getTypeValuesForGroupSize(group, sizeLabel) {
+    var typeAxisNames = getTypeAxisNamesForGroup(group);
+    if (!typeAxisNames.length) return [];
+
+    var seen = Object.create(null);
+    var values = [];
+    (group && group.options ? group.options : []).forEach(function (option) {
+      if (sizeLabel && option.sizeLabel !== sizeLabel) return;
+      typeAxisNames.forEach(function (axisName) {
+        var value = option.axes && option.axes[axisName];
+        if (!value || seen[value]) return;
+        seen[value] = true;
+        values.push(value);
+      });
+    });
+    return values;
+  }
+
+  function getSelectedTypeValue(group, axisSelections) {
+    var selections = axisSelections || {};
+    var typeAxisNames = getTypeAxisNamesForGroup(group);
+    for (var index = 0; index < typeAxisNames.length; index += 1) {
+      var axisName = typeAxisNames[index];
+      if (selections[axisName]) return selections[axisName];
+    }
+    return '';
+  }
+
+  function getPendingMeasurementAxisLabel(group, axisSelections, sizeLabel) {
+    var typeAxisNames = getTypeAxisNamesForGroup(group);
+    if (!typeAxisNames.length) return '';
+    if (getSelectedTypeValue(group, axisSelections)) return '';
+    return getTypeValuesForGroupSize(group, sizeLabel).length > 1 ? typeAxisNames[0] : '';
+  }
+
+  function getMeasurementGarmentKey(group, option, context) {
+    var measurementContext = context || {};
+    var selectedTypeValue = getSelectedTypeValue(group, measurementContext.axisSelections || {});
+    var typeValue = selectedTypeValue || '';
+    if (!typeValue) {
+      var typeValues = getTypeValuesForGroupSize(group, measurementContext.sizeLabel || (option && option.sizeLabel) || '');
+      if (typeValues.length === 1) typeValue = typeValues[0];
+    }
+    if (!typeValue) typeValue = getOptionTypeValue(option);
+
+    var typeAxes = getTypeAxisNamesForGroup(group);
+    if (!typeValue && !typeAxes.length) typeValue = (group && (group.helperRaw || group.helper)) || '';
+
+    return getGarmentKey(typeValue);
+  }
+
+  function getMeasurementContextForInstance(group, inst, option) {
+    var axisSelections = (inst && inst.axisSelections) || {};
+    var sizeLabel = (inst && inst.sizeLabel) || (option && option.sizeLabel) || '';
+    var pendingAxisName = getPendingMeasurementAxisLabel(group, axisSelections, sizeLabel);
+    if (pendingAxisName) {
+      return {
+        ambiguous: true,
+        pendingAxisName: pendingAxisName,
+        axisSelections: axisSelections,
+        sizeLabel: sizeLabel,
+        garmentKey: '',
+      };
+    }
+
+    return {
+      ambiguous: false,
+      pendingAxisName: '',
+      axisSelections: axisSelections,
+      sizeLabel: sizeLabel,
+      garmentKey: getMeasurementGarmentKey(group, option, {
+        axisSelections: axisSelections,
+        sizeLabel: sizeLabel,
+      }),
+    };
+  }
+
   // Resolve { sizeLabel, axisSelections } to a variant in the group.
   // Returns the option object or null when no exact match exists.
   function resolveVariantInGroup(group, sizeLabel, axisSelections) {
@@ -2634,12 +2808,16 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     var selectedPanelOption = null;
     var selectedPanelMeasurementsHtml = '';
     var selectedPanelHtml = '';
+    var selectedMeasurementContext = null;
 
     if (inst.sizeLabel && !closedPanels[inst.instanceId]) {
       selectedPanelOption =
         resolveVariantInGroup(group, inst.sizeLabel, inst.axisSelections) ||
         group.options.find(function (o) { return o.sizeLabel === inst.sizeLabel; });
-      var selectedPanelMeasurements = selectedPanelOption ? findMeasurementsForOption(group, selectedPanelOption) : null;
+      selectedMeasurementContext = selectedPanelOption ? getMeasurementContextForInstance(group, inst, selectedPanelOption) : null;
+      var selectedPanelMeasurements = selectedPanelOption && selectedMeasurementContext && !selectedMeasurementContext.ambiguous
+        ? findMeasurementsForOption(group, selectedPanelOption, selectedMeasurementContext)
+        : null;
       selectedPanelMeasurementsHtml = selectedPanelMeasurements ? buildMeasurementsHtml(selectedPanelMeasurements) : '';
       if (selectedPanelMeasurementsHtml) {
         var mobileIsImperial = unitSystem === 'imperial';
@@ -2691,6 +2869,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         var isSelected = inst.sizeLabel === sizeLabel;
         var combo = resolveVariantInGroup(group, sizeLabel, inst.axisSelections);
         var isDisabled = !combo || combo.available === false;
+        var measurementContext = getMeasurementContextForInstance(group, inst, option);
 
         // Compact floating tooltip on EVERY pill that has measurement
         // data. When the pill is unselected it shows on hover/focus
@@ -2700,7 +2879,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         // information stays visible while picking quantity and
         // other family members. Picking a different size on the
         // same card auto-reopens the new pinned tooltip.
-        var measurements = findMeasurementsForOption(group, option);
+        var measurements = measurementContext.ambiguous ? null : findMeasurementsForOption(group, option, measurementContext);
         var measurementsHtml = measurements ? buildMeasurementsHtml(measurements) : '';
         var isPinned = isSelected && measurementsHtml && !closedPanels[inst.instanceId];
         var tooltipHtml = '';
@@ -2865,6 +3044,9 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     }).filter(Boolean).join('');
 
     var qty = inst.quantity || 1;
+    var fitPanelId = 'DlmInlineFitPanel-' + String(sectionId || 'product') + '-' + inst.instanceId;
+    var fitMeasurementContext = selectedMeasurementContext || getMeasurementContextForInstance(group, inst, selectedPanelOption);
+    var fitGarmentKey = fitMeasurementContext && !fitMeasurementContext.ambiguous ? fitMeasurementContext.garmentKey : '';
 
     return (
       '<div class="product-matching-set__card" data-instance-card="' +
@@ -2885,11 +3067,39 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       (group.helper
         ? '<span class="product-matching-set__card-helper">' + escapeHtml(group.helper) + '</span>'
         : '') +
+      '<div class="product-matching-set__size-row">' +
       '<div class="product-matching-set__pills" role="group" aria-label="' +
       escapeHtml(group.label + ' size') +
       '">' +
       pillsHtml +
       '</div>' +
+      '<button type="button" class="product-matching-set__fit-icon" data-pdp-fit-inline-trigger data-fit-group-key="' +
+      escapeHtml(group.roleKey || group.key) +
+      '" data-fit-role-key="' +
+      escapeHtml(group.roleKey || group.key) +
+      '" data-fit-garment-key="' +
+      escapeHtml(fitGarmentKey) +
+      '" data-fit-size-label="' +
+      escapeHtml(inst.sizeLabel || '') +
+      '" aria-controls="' +
+      escapeHtml(fitPanelId) +
+      '" aria-expanded="false" aria-label="' +
+      escapeHtml(uiLabel('findFit', "Find {role}'s fit", { role: group.label })) +
+      '" title="' +
+      escapeHtml(uiLabel('findFit', "Find {role}'s fit", { role: group.label })) +
+      '">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M4 7.5 7.5 4l12.5 12.5-3.5 3.5L4 7.5Z"></path>' +
+      '<path d="m8 5.5-1.5 1.5"></path>' +
+      '<path d="m10.5 8-1.5 1.5"></path>' +
+      '<path d="m13 10.5-1.5 1.5"></path>' +
+      '<path d="m15.5 13-1.5 1.5"></path>' +
+      '</svg>' +
+      '</button>' +
+      '</div>' +
+      '<div id="' +
+      escapeHtml(fitPanelId) +
+      '" class="product-matching-set__inline-fit-panel" data-fit-inline-panel hidden></div>' +
       selectedPanelHtml +
       // Inline contextual prompt directly under the size pills if no
       // size picked yet. Small + subtle (sits inside the row, not as
@@ -2919,12 +3129,6 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       escapeHtml(uiLabel('increaseQuantity', 'Increase quantity')) +
       '">+</button>' +
       '</div>' +
-      // Per-card "Find my fit" link — uses the same delegated handler
-      // as the Purchase Confidence size-guide trigger.
-      '<a href="#size-chart" class="product-matching-set__fit-link" data-pdp-size-guide-trigger aria-haspopup="dialog">' +
-      escapeHtml(uiLabel('findFit', "Find {role}'s fit", { role: group.label })) +
-      ' →' +
-      '</a>' +
       '</div>'
     );
   }
@@ -3415,6 +3619,9 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
   var groups = buildSizeGuideGroups(parsed);
   var selectedUnitSystem = getStoredSizeGuideUnitSystem() || 'metric';
   var scheduledGuideRender = null;
+  var fitModal = null;
+  var activeFitModalGroupKey = '';
+  var lastFitModalTrigger = null;
 
   function getCurrentDescriptionRoot() {
     return (sizeGuideRoot && sizeGuideRoot.querySelector('[data-product-description]')) || document.querySelector('[data-product-description]');
@@ -4852,7 +5059,7 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
         .map(function (row) {
           var isSelectedRow = isSelectedGuideRow(selectedEntry, row[0], roleKey);
           return (
-            '<tr' + (isSelectedRow ? ' class="is-selected"' : '') + '>' +
+            '<tr' + (isSelectedRow ? ' class="is-selected"' : '') + ' tabindex="0">' +
             row
               .map(function (cell, cellIndex) {
                 return '<td>' + escapeHtml(formatGuideCellValue(cell, headers[cellIndex], selectedUnitSystem)) + '</td>';
@@ -4869,6 +5076,456 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     );
   };
 
+  function getFitModalId() {
+    return 'DlmFitModal-' + String(sectionId || 'product');
+  }
+
+  function ensureFitModal() {
+    if (fitModal) return fitModal;
+
+    fitModal = document.createElement('div');
+    fitModal.id = getFitModalId();
+    fitModal.className = 'dlm-fit-modal';
+    fitModal.setAttribute('hidden', 'hidden');
+    fitModal.setAttribute('aria-hidden', 'true');
+    fitModal.innerHTML =
+      '<div class="dlm-fit-modal__backdrop" data-fit-modal-close></div>' +
+      '<section class="dlm-fit-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="' +
+      escapeHtml(getFitModalId()) +
+      '-title" tabindex="-1">' +
+      '<div class="dlm-fit-modal__header">' +
+      '<div>' +
+      '<p class="dlm-fit-modal__eyebrow">' +
+      escapeHtml(groupedLabel || compareLabel || 'Size chart') +
+      '</p>' +
+      '<h2 class="dlm-fit-modal__title" id="' +
+      escapeHtml(getFitModalId()) +
+      '-title">Find fit</h2>' +
+      '</div>' +
+      '<button type="button" class="dlm-fit-modal__close" data-fit-modal-close aria-label="' +
+      escapeHtml(uiLabel('closeSizeDetails', 'Close size details')) +
+      '">×</button>' +
+      '</div>' +
+      '<div class="dlm-fit-modal__tabs" data-fit-modal-tabs></div>' +
+      '<div class="dlm-fit-modal__body" data-fit-modal-body></div>' +
+      '</section>';
+
+    (sizeGuideRoot || document.body).appendChild(fitModal);
+    fitModal.addEventListener('click', function (event) {
+      if (event.target.closest('[data-fit-modal-close]')) closeFitModal();
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && fitModal && !fitModal.hasAttribute('hidden')) closeFitModal();
+    });
+
+    return fitModal;
+  }
+
+  function getFitModalGroups() {
+    if (groups && groups.length) return groups;
+    if (parsed && parsed.headers && parsed.rows && parsed.rows.length) {
+      return [
+        {
+          key: 'all',
+          label: compareLabel || 'Size chart',
+          helper: '',
+          headers: parsed.headers,
+          rows: parsed.rows,
+        },
+      ];
+    }
+    return [];
+  }
+
+  function fitGarmentKeysCompatible(selectedGarmentKey, candidateGarmentKey) {
+    if (!selectedGarmentKey || !candidateGarmentKey || selectedGarmentKey === candidateGarmentKey) return true;
+    var shirtFamily = ['shirt', 'shorts', 'shirtShortsSet'];
+    return shirtFamily.indexOf(selectedGarmentKey) !== -1 && shirtFamily.indexOf(candidateGarmentKey) !== -1;
+  }
+
+  function getFitHeaderGarmentKeys(header) {
+    if (!header) return [];
+    if (typeof header === 'object') return getGarmentKeys([header.raw, header.label].filter(Boolean).join(' '));
+    return getGarmentKeys(header);
+  }
+
+  function getFitRoleFamilyKey(roleKey) {
+    if (roleKey === 'mother' || roleKey === 'father' || roleKey === 'adult') return 'adult';
+    if (roleKey === 'girl' || roleKey === 'boy' || roleKey === 'child' || roleKey === 'baby') return 'child';
+    return '';
+  }
+
+  function getFitRowRoleKey(rowLabel) {
+    var parsedRole = parseRoleFromSizeLabel(rowLabel);
+    if (parsedRole && parsedRole.key) return parsedRole.key;
+    return inferBaseRoleKeyFromStandaloneSize(rowLabel);
+  }
+
+  function pruneFitGroupForRole(group, roleKey) {
+    if (!group || !roleKey || !group.headers || !group.rows || !group.rows.length) return group || null;
+
+    var roleFamilyKey = getFitRoleFamilyKey(roleKey);
+    if (!roleFamilyKey) return group;
+
+    var rowMatches = group.rows.map(function (row) {
+      var rowRoleKey = getFitRowRoleKey(row && row[0]);
+      if (!rowRoleKey) return null;
+      return areSizeGuideRolesCompatible(roleKey, rowRoleKey) || rowRoleKey === roleFamilyKey;
+    });
+    var hasMatchingRows = rowMatches.some(function (matches) { return matches === true; });
+    var hasNonMatchingRows = rowMatches.some(function (matches) { return matches === false; });
+    if (!hasMatchingRows || !hasNonMatchingRows) return group;
+
+    var filteredRows = group.rows.filter(function (_row, index) {
+      return rowMatches[index] !== false;
+    });
+    if (!filteredRows.length) return null;
+
+    var prunedGroup = pruneGuideGroupColumns(group.headers, filteredRows);
+    if (!prunedGroup.rows.length) return null;
+
+    return {
+      key: roleKey,
+      label: getLocalizedRoleLabelByKey(roleKey) || group.label,
+      helper: getRoleFitCopy(roleKey) || group.helper,
+      headers: prunedGroup.headers,
+      rows: prunedGroup.rows,
+    };
+  }
+
+  function pruneFitGroupForGarment(group, garmentKey) {
+    if (!group || !garmentKey || !group.headers || !group.rows) return group || null;
+
+    var hasGarmentHeaders = group.headers.some(function (header, index) {
+      return index > 0 && getFitHeaderGarmentKeys(header).length > 0;
+    });
+    if (!hasGarmentHeaders) return group;
+
+    var matchedSpecificHeader = false;
+    var keepIndexes = group.headers
+      .map(function (_header, index) {
+        return index;
+      })
+      .filter(function (index) {
+        if (index === 0) return true;
+        var headerKeys = getFitHeaderGarmentKeys(group.headers[index]);
+        if (!headerKeys.length) return isSharedFitMeasurementHeader(group.headers[index]);
+        var matches = headerKeys.some(function (headerKey) {
+          return fitGarmentKeysCompatible(garmentKey, headerKey);
+        });
+        if (matches) matchedSpecificHeader = true;
+        return matches;
+      });
+
+    if (!matchedSpecificHeader || keepIndexes.length <= 1) return null;
+
+    var pruned = pruneGuideGroupColumns(
+      keepIndexes.map(function (index) {
+        return group.headers[index];
+      }),
+      group.rows.map(function (row) {
+        return keepIndexes.map(function (index) {
+          return row[index];
+        });
+      })
+    );
+
+    if (!pruned.rows.length || !pruned.rows.some(function (row) {
+      return row.slice(1).some(function (value) { return !isGuideEmptyValue(value); });
+    })) {
+      return null;
+    }
+
+    return {
+      key: group.key,
+      label: group.label,
+      helper: group.helper,
+      headers: pruned.headers,
+      rows: pruned.rows,
+    };
+  }
+
+  function findActiveFitGroupInList(groupList, groupKey, roleKey, garmentKey) {
+    var modalGroups = groupList || [];
+    if (!modalGroups.length) return null;
+
+    var normalizedGroupKey = String(groupKey || '').trim();
+    var normalizedRoleKey = String(roleKey || '').trim();
+    var findExact = function (key) {
+      if (!key) return null;
+      return modalGroups.find(function (group) {
+        return String(group.key || '') === key;
+      }) || null;
+    };
+    var findCompatible = function (key) {
+      if (!key) return null;
+      return modalGroups.find(function (group) {
+        return areSizeGuideRolesCompatible(key, String(group.key || ''));
+      }) || null;
+    };
+
+    var activeGroup =
+      findExact(normalizedRoleKey) ||
+      findCompatible(normalizedRoleKey) ||
+      findExact(normalizedGroupKey) ||
+      findCompatible(normalizedGroupKey) ||
+      modalGroups[0];
+
+    if (!activeGroup) return null;
+    var rolePrunedGroup = pruneFitGroupForRole(activeGroup, normalizedRoleKey || normalizedGroupKey);
+    if (!rolePrunedGroup) return null;
+    return pruneFitGroupForGarment(rolePrunedGroup, garmentKey) || (!garmentKey ? rolePrunedGroup : null);
+  }
+
+  function getFitGroupFromProductTables(groupKey, roleKey, garmentKey) {
+    if (!garmentKey) return null;
+    var sourceRoot = getCurrentDescriptionRoot();
+    var sourceTables = sourceRoot
+      ? Array.from(sourceRoot.querySelectorAll('table#size-chart, table[id*="size-chart"], table.size-chart'))
+      : [];
+    if (!sourceTables.length) return null;
+
+    for (var index = 0; index < sourceTables.length; index += 1) {
+      var table = sourceTables[index];
+      var contextGarmentKey = getSingularGarmentKey(getSizeGuideTableContextText(table));
+      if (contextGarmentKey && !fitGarmentKeysCompatible(garmentKey, contextGarmentKey)) continue;
+
+      var tableParsed = parseSizeGuideTable(table);
+      if (!tableParsed) continue;
+      var tableGroups = buildSizeGuideGroups(tableParsed);
+      var activeGroup = findActiveFitGroupInList(tableGroups.length ? tableGroups : [{
+        key: 'all',
+        label: compareLabel || 'Size chart',
+        helper: '',
+        headers: tableParsed.headers,
+        rows: tableParsed.rows,
+      }], groupKey, roleKey, garmentKey);
+      if (activeGroup) return activeGroup;
+    }
+
+    return null;
+  }
+
+  function getFitModalActiveGroup(groupKey, roleKey, garmentKey) {
+    var modalGroups = getFitModalGroups();
+    return findActiveFitGroupInList(modalGroups, groupKey, roleKey, garmentKey);
+  }
+
+  function bindFitModalEvents() {
+    if (!fitModal) return;
+    fitModal.querySelectorAll('[data-fit-modal-group]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var nextGroup = button.getAttribute('data-fit-modal-group');
+        if (!nextGroup || nextGroup === activeFitModalGroupKey) return;
+        activeFitModalGroupKey = nextGroup;
+        renderFitModal(activeFitModalGroupKey);
+      });
+    });
+  }
+
+  function renderFitModal(groupKey, roleKey) {
+    var modal = ensureFitModal();
+    var modalGroups = getFitModalGroups();
+    var activeGroup = getFitModalActiveGroup(groupKey, roleKey, '');
+    var tabs = modal.querySelector('[data-fit-modal-tabs]');
+    var body = modal.querySelector('[data-fit-modal-body]');
+    var title = modal.querySelector('.dlm-fit-modal__title');
+
+    if (!activeGroup || !body) return false;
+    activeFitModalGroupKey = activeGroup.key;
+    if (title) title.textContent = activeGroup.label || 'Find fit';
+
+    if (tabs) {
+      if (modalGroups.length > 1) {
+        tabs.innerHTML = modalGroups
+          .map(function (group) {
+            var isActive = String(group.key) === String(activeGroup.key);
+            return (
+              '<button type="button" class="dlm-fit-modal__tab' +
+              (isActive ? ' is-active' : '') +
+              '" data-fit-modal-group="' +
+              escapeHtml(group.key) +
+              '" aria-pressed="' +
+              (isActive ? 'true' : 'false') +
+              '">' +
+              escapeHtml(group.label || group.key) +
+              '</button>'
+            );
+          })
+          .join('');
+        tabs.removeAttribute('hidden');
+      } else {
+        tabs.innerHTML = '';
+        tabs.setAttribute('hidden', 'hidden');
+      }
+    }
+
+    body.innerHTML =
+      renderGuideContentToolbar(activeGroup.headers || [], activeGroup.label || '') +
+      renderTableCard(
+        activeGroup.headers || [],
+        activeGroup.rows || [],
+        activeGroup.label || '',
+        activeGroup.helper || '',
+        getSelectedGuideMatch(getSelectedSizeState()),
+        activeGroup.key
+      );
+
+    bindFitModalEvents();
+    bindUnitToggleEvents();
+    return true;
+  }
+
+  function closeInlineFitPanel(panel, trigger) {
+    if (panel) {
+      panel.setAttribute('hidden', 'hidden');
+      panel.innerHTML = '';
+    }
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+  }
+
+  function getFitTriggerSelectedMatch(trigger, activeGroup) {
+    if (!trigger || !activeGroup || !activeGroup.rows || !activeGroup.rows.length) return null;
+    var sizeLabel = String(trigger.getAttribute('data-fit-size-label') || '').trim();
+    if (!sizeLabel) return null;
+
+    var roleKey = String(trigger.getAttribute('data-fit-role-key') || activeGroup.key || '').trim();
+    var roleLabel = activeGroup.label || '';
+    var comparableValues = [sizeLabel];
+    if (roleLabel) comparableValues.push(roleLabel + ' ' + sizeLabel);
+
+    var selectedState = {
+      rawValue: sizeLabel,
+      rawText: sizeLabel,
+      displayValue: sizeLabel,
+      roleKey: roleKey,
+      roleLabel: roleLabel,
+      sizeLabel: sizeLabel,
+      tokens: buildSizeMatchTokens(comparableValues),
+      comparableValues: comparableValues,
+      comparable: getPrimaryComparableSize(comparableValues),
+    };
+
+    var bestRow = null;
+    var bestScore = -Infinity;
+    activeGroup.rows.forEach(function (row) {
+      var score = getGuideRowMatchScore(row[0], selectedState, activeGroup.key);
+      if (score > bestScore) {
+        bestScore = score;
+        bestRow = row;
+      }
+    });
+
+    if (!bestRow || bestScore === -Infinity) return null;
+    return {
+      label: activeGroup.label || '',
+      helper: activeGroup.helper || '',
+      headers: activeGroup.headers,
+      row: bestRow,
+      roleKey: activeGroup.key || '',
+    };
+  }
+
+  function renderInlineFitPanel(trigger, forceOpen) {
+    if (!trigger) return false;
+    var targetId = trigger.getAttribute('aria-controls') || '';
+    var panel = targetId ? document.getElementById(targetId) : null;
+    if (!panel) return false;
+
+    var isOpen = !panel.hasAttribute('hidden');
+    if (isOpen && !forceOpen) {
+      closeInlineFitPanel(panel, trigger);
+      return true;
+    }
+
+    sizeGuideRoot.querySelectorAll('[data-fit-inline-panel]').forEach(function (otherPanel) {
+      if (otherPanel === panel) return;
+      var otherTrigger = null;
+      sizeGuideRoot.querySelectorAll('[data-pdp-fit-inline-trigger]').forEach(function (candidate) {
+        if (candidate.getAttribute('aria-controls') === otherPanel.id) otherTrigger = candidate;
+      });
+      closeInlineFitPanel(otherPanel, otherTrigger);
+    });
+
+    var triggerGroupKey = trigger.getAttribute('data-fit-group-key');
+    var triggerRoleKey = trigger.getAttribute('data-fit-role-key');
+    var triggerGarmentKey = trigger.getAttribute('data-fit-garment-key');
+    var activeGroup =
+      getFitGroupFromProductTables(triggerGroupKey, triggerRoleKey, triggerGarmentKey) ||
+      getFitModalActiveGroup(triggerGroupKey, triggerRoleKey, triggerGarmentKey);
+    if (!activeGroup) return false;
+
+    var activeHeaders = activeGroup.headers || [];
+    var mobileMinWidthRem = 5.2 + Math.max(activeHeaders.length - 1, 0) * 7;
+    panel.style.setProperty('--dlm-fit-table-min-width', mobileMinWidthRem.toFixed(1) + 'rem');
+
+    var selectedMatch = getFitTriggerSelectedMatch(trigger, activeGroup) || getSelectedGuideMatch(getSelectedSizeState());
+    panel.innerHTML =
+      '<div class="product-matching-set__inline-fit-panel-bar">' +
+      '<strong>' +
+      escapeHtml(activeGroup.label || 'Size chart') +
+      '</strong>' +
+      renderGuideUnitToggle(activeHeaders) +
+      '</div>' +
+      renderTableCard(
+        activeHeaders,
+        activeGroup.rows || [],
+        '',
+        '',
+        selectedMatch,
+        activeGroup.key
+      );
+    bindInlineFitPanelScroll(panel);
+    panel.removeAttribute('hidden');
+    trigger.setAttribute('aria-expanded', 'true');
+    bindUnitToggleEvents();
+    return true;
+  }
+
+  function renderVisibleInlineFitPanels() {
+    sizeGuideRoot.querySelectorAll('[data-pdp-fit-inline-trigger][aria-expanded="true"]').forEach(function (trigger) {
+      renderInlineFitPanel(trigger, true);
+    });
+  }
+
+  function bindInlineFitPanelScroll(panel) {
+    if (!panel) return;
+    var tableWrap = panel.querySelector('.matching-size-guide__table-wrap');
+    if (!tableWrap) return;
+    var syncScroll = function () {
+      panel.style.setProperty('--dlm-fit-scroll-left', String(tableWrap.scrollLeft || 0) + 'px');
+    };
+    syncScroll();
+    tableWrap.addEventListener('scroll', syncScroll, { passive: true });
+  }
+
+  function openFitModal(trigger) {
+    var groupKey = trigger ? trigger.getAttribute('data-fit-group-key') : '';
+    var roleKey = trigger ? trigger.getAttribute('data-fit-role-key') : '';
+    if (!renderFitModal(groupKey, roleKey)) return false;
+
+    lastFitModalTrigger = trigger || null;
+    fitModal.removeAttribute('hidden');
+    fitModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('dlm-fit-modal-open');
+
+    var focusTarget = fitModal.querySelector('.dlm-fit-modal__dialog') || fitModal;
+    window.setTimeout(function () {
+      try { focusTarget.focus({ preventScroll: true }); } catch (_error) { focusTarget.focus(); }
+    }, 0);
+    return true;
+  }
+
+  function closeFitModal() {
+    if (!fitModal) return;
+    fitModal.setAttribute('hidden', 'hidden');
+    fitModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('dlm-fit-modal-open');
+    if (lastFitModalTrigger) {
+      try { lastFitModalTrigger.focus({ preventScroll: true }); } catch (_error) { lastFitModalTrigger.focus(); }
+    }
+  }
+
   function bindUnitToggleEvents() {
     sizeGuideRoot.querySelectorAll('[data-size-guide-unit]').forEach(function (button) {
       button.addEventListener('click', function () {
@@ -4878,6 +5535,10 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
         selectedUnitSystem = nextUnitSystem;
         storeSizeGuideUnitSystem(selectedUnitSystem);
         renderGuide();
+        if (fitModal && !fitModal.hasAttribute('hidden')) {
+          renderFitModal(activeFitModalGroupKey);
+        }
+        renderVisibleInlineFitPanels();
       });
     });
   }
@@ -4945,6 +5606,24 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     if (!optionName || (!isSizeLikeLabel(optionName) && !isTypeLikeLabel(optionName))) return;
 
     scheduleGuideRender(ON_CHANGE_DEBOUNCE_TIMER + 25);
+  });
+
+  sizeGuideRoot.addEventListener('click', function (event) {
+    var inlineTrigger = event && event.target ? event.target.closest('[data-pdp-fit-inline-trigger]') : null;
+    if (inlineTrigger) {
+      if (event.defaultPrevented) return;
+      if (event.button && event.button !== 0) return;
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (renderInlineFitPanel(inlineTrigger)) event.preventDefault();
+      return;
+    }
+
+    var trigger = event && event.target ? event.target.closest('[data-pdp-fit-modal-trigger]') : null;
+    if (!trigger) return;
+    if (event.defaultPrevented) return;
+    if (event.button && event.button !== 0) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (openFitModal(trigger)) event.preventDefault();
   });
 
   if (typeof subscribe === 'function' && typeof PUB_SUB_EVENTS !== 'undefined' && PUB_SUB_EVENTS.variantChange) {
@@ -5060,7 +5739,7 @@ function inferGuideUnitFromText(text) {
 
 function splitGuideMeasurementParts(text) {
   return String(text || '')
-    .split(/\s+\/\s+/)
+    .split(/\s*\/\s*/)
     .map(function (part) {
       return String(part || '').trim();
     })
