@@ -1013,6 +1013,97 @@
   box-shadow: 0 0 0 0.24rem rgba(29, 134, 86, 0.1);
 }
 
+.product__info-container--matching-set .product-matching-set__step-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 0.8rem;
+  color: #101418;
+}
+
+.product__info-container--matching-set .product-matching-set__step-heading span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 2.4rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  background: #1D8656;
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.product__info-container--matching-set .product-matching-set__step-heading strong {
+  font-size: 1.22rem;
+  line-height: 1.25;
+}
+
+.product__info-container--matching-set .product-matching-set__role-step {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 1.4rem;
+  background: #ffffff;
+  border: 0.1rem solid rgba(17, 24, 39, 0.08);
+}
+
+.product__info-container--matching-set .product-matching-set__role-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.product__info-container--matching-set .product-matching-set__role-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  min-height: 5.4rem;
+  padding: 0.9rem 1rem;
+  border: 0.14rem solid rgba(17, 24, 39, 0.14);
+  border-radius: 1.2rem;
+  background: #ffffff;
+  color: #101418;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.14s ease, background 0.14s ease, box-shadow 0.14s ease;
+}
+
+.product__info-container--matching-set .product-matching-set__role-button:hover,
+.product__info-container--matching-set .product-matching-set__role-button:focus-visible {
+  border-color: rgba(29, 134, 86, 0.55);
+  background: #f6fbf7;
+}
+
+.product__info-container--matching-set .product-matching-set__role-button.is-selected {
+  border-color: #1D8656;
+  background: #f0faf4;
+  box-shadow: inset 0 0 0 0.1rem rgba(29, 134, 86, 0.18);
+}
+
+.product__info-container--matching-set .product-matching-set__role-label {
+  min-width: 0;
+  font-size: 1.22rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.product__info-container--matching-set .product-matching-set__role-price {
+  flex: 0 0 auto;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgba(17, 24, 39, 0.62);
+  white-space: nowrap;
+}
+
+.product__info-container--matching-set .product-matching-set__role-hint {
+  margin: 0.75rem 0 0;
+  font-size: 1.08rem;
+  line-height: 1.4;
+  color: rgba(17, 24, 39, 0.64);
+}
+
 /* 5. Stacked cards (mobile-first, single column). */
 .product__info-container--matching-set .product-matching-set__grid {
   display: flex;
@@ -1033,11 +1124,19 @@
   gap: 0.8rem;
   margin-bottom: 0.55rem;
 }
+.product__info-container--matching-set .product-matching-set__card .product-matching-set__step-heading {
+  margin-bottom: 1rem;
+}
 .product__info-container--matching-set .product-matching-set__card-title {
   font-size: 1.35rem;
   font-weight: 700;
   color: #101418;
   letter-spacing: 0.005em;
+}
+.product__info-container--matching-set .product-matching-set__card-price--header {
+  flex: 0 0 auto;
+  font-weight: 800;
+  color: #1D8656;
 }
 .product__info-container--matching-set .product-matching-set__card-remove {
   width: 2.8rem;
@@ -1116,6 +1215,7 @@
 }
 .product__info-container--matching-set .product-matching-set__pill:focus-visible,
 .product__info-container--matching-set .product-matching-set__axis-pill:focus-visible,
+.product__info-container--matching-set .product-matching-set__role-button:focus-visible,
 .product__info-container--matching-set .product-matching-set__add-role:focus-visible,
 .product__info-container--matching-set .product-matching-set__button:focus-visible {
   outline: 0.22rem solid rgba(29, 134, 86, 0.35);
@@ -1743,6 +1843,12 @@
   padding: 0;
   border: 0;
 }
+.product__info-container--matching-set .product-matching-set__chip--ready {
+  color: #1D8656;
+}
+.product__info-container--matching-set .product-matching-set__chip--selection {
+  color: #101418;
+}
 .product__info-container--matching-set .product-matching-set__total {
   font-size: 1.45rem;
   font-weight: 600;
@@ -1850,6 +1956,9 @@
   .product__info-container--matching-set .product-matching-set__card {
     padding: 1rem;
   }
+  .product__info-container--matching-set .product-matching-set__role-buttons {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────
@@ -1880,6 +1989,11 @@
 .product__info-container--matching-set .price .price-item--regular {
   font-size: 0.85em;
   color: rgba(17, 24, 39, 0.55);
+}
+.product__info-container--matching-set .price--range .price-item--regular {
+  font-size: 1em;
+  font-weight: 800;
+  color: #111418;
 }
 .product__info-container--matching-set .pdp-save-pill {
   background: #e8f6ee;

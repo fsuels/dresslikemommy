@@ -379,6 +379,13 @@ var UI_LABELS_BY_LOCALE = {
     addRole: '+ Add {role}',
     addAnotherFamilyMember: 'Add another family member',
     customerPhotos: 'Customer photos',
+    chooseRoleStep: 'Choose who this piece is for',
+    chooseOptionsStep: 'Choose size and options',
+    chooseRoleCta: 'Choose a family member',
+    chooseRoleHint: 'Choose who you want to add first. You can add another piece after it is in your bag.',
+    chooseSizeForRole: 'Choose a size for {role}',
+    addCurrentPiece: 'Add this piece to bag',
+    readyToAdd: 'Ready to add',
   },
   cs: {
     pieceOne: '1 ladící kus',
@@ -1569,6 +1576,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   var instanceCounter = 0;
   var hasSeededDefaults = false;
   var roleGroupsCache = [];
+  var currentGroupKey = '';
   // Tracks the last Type axis value seen (e.g. "shirt" / "dress").
   // When the global Type picker changes, the bundle resets its
   // default-visible cards. null sentinel = first render — don't reset.
@@ -1985,7 +1993,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   }
 
   function addInstanceForGroup(group) {
-    instances.push({
+    var instance = {
       instanceId: newInstanceId(),
       roleKey: group.roleKey || group.key,
       groupKey: group.key,
@@ -1993,7 +2001,9 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       axisSelections: {},     // { Color: 'Pink', Pattern: 'Plaid', ... }
       variantId: '',          // derived from sizeLabel + axisSelections
       quantity: 1,
-    });
+    };
+    instances.push(instance);
+    return instance;
   }
 
   // Recompute inst.variantId whenever the shopper changes a pill on
@@ -2057,6 +2067,36 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     return uiLabel('pieceMany', '{count} Matching Pieces', { count: count });
   }
 
+  function getGroupPriceText(group) {
+    if (!group || !group.options || !group.options.length) return '';
+    var pricedOptions = group.options.filter(function (option) {
+      return option && option.available !== false && Number(option.price) >= 0;
+    });
+    if (!pricedOptions.length) pricedOptions = group.options;
+    var min = pricedOptions.reduce(function (lowest, option) {
+      var priceValue = Number(option.price) || 0;
+      return lowest === null || priceValue < lowest ? priceValue : lowest;
+    }, null);
+    var max = pricedOptions.reduce(function (highest, option) {
+      var priceValue = Number(option.price) || 0;
+      return highest === null || priceValue > highest ? priceValue : highest;
+    }, null);
+    if (min === null || max === null) return '';
+    if (min === max) return formatMoney(min, currency);
+    return formatMoney(min, currency) + ' - ' + formatMoney(max, currency);
+  }
+
+  function selectRoleGroup(groupKey) {
+    var group = getGroupByKey(groupKey);
+    if (!group) return;
+    currentGroupKey = group.key;
+    instances = [];
+    closedPanels = Object.create(null);
+    addInstanceForGroup(group);
+    if (status) status.setAttribute('hidden', 'hidden');
+    renderBuilder();
+  }
+
   function updateSummary() {
     var items = getSelectedItems();
     var pieceCount = items.reduce(function (sum, item) {
@@ -2065,8 +2105,14 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     var subtotal = items.reduce(function (sum, item) {
       return sum + item.unitPrice * item.quantity;
     }, 0);
+    var activeGroup = currentGroupKey ? getGroupByKey(currentGroupKey) : null;
     if (!pieceCount) {
       if (emptyCopy) emptyCopy.removeAttribute('hidden');
+      if (emptyCopy) {
+        emptyCopy.textContent = activeGroup
+          ? uiLabel('chooseSizeForRole', 'Choose a size for {role}', { role: activeGroup.label })
+          : uiLabel('chooseRoleHint', 'Choose who you want to add first. You can add another piece after it is in your bag.');
+      }
       if (chips) {
         chips.innerHTML = '';
         chips.setAttribute('hidden', 'hidden');
@@ -2076,24 +2122,34 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         total.setAttribute('hidden', 'hidden');
       }
       addButton.setAttribute('disabled', 'disabled');
+      addButton.textContent = activeGroup
+        ? uiLabel('addCurrentPiece', 'Add this piece to bag')
+        : uiLabel('chooseRoleCta', 'Choose a family member');
       publishMatchingSetStickyState(items, pieceCount, subtotal);
       return;
     }
 
     if (emptyCopy) emptyCopy.setAttribute('hidden', 'hidden');
     if (chips) {
+      var readyItem = items[0];
+      var readyLabel = readyItem
+        ? [readyItem.roleLabel, readyItem.sizeLabel, formatMoney(readyItem.unitPrice, currency)].filter(Boolean).join(' - ')
+        : formatPieceCount(pieceCount);
       chips.innerHTML =
-        '<span class="product-matching-set__chip product-matching-set__chip--count">' +
-        escapeHtml(formatPieceCount(pieceCount)) +
+        '<span class="product-matching-set__chip product-matching-set__chip--ready">' +
+        escapeHtml(uiLabel('readyToAdd', 'Ready to add')) +
+        '</span>' +
+        '<span class="product-matching-set__chip product-matching-set__chip--selection">' +
+        escapeHtml(readyLabel) +
         '</span>';
       chips.removeAttribute('hidden');
     }
     if (total) {
-      total.innerHTML =
-        escapeHtml(uiLabel('total', 'Total')) + ' <strong>' + escapeHtml(formatMoney(subtotal, currency)) + '</strong>';
-      total.removeAttribute('hidden');
+      total.textContent = '';
+      total.setAttribute('hidden', 'hidden');
     }
     addButton.removeAttribute('disabled');
+    addButton.textContent = uiLabel('addCurrentPiece', 'Add this piece to bag');
     publishMatchingSetStickyState(items, pieceCount, subtotal);
   }
 
@@ -2414,15 +2470,18 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       '" data-role-card="' +
       escapeHtml(inst.roleKey) +
       '">' +
+      '<div class="product-matching-set__step-heading">' +
+      '<span>2</span><strong>' +
+      escapeHtml(uiLabel('chooseOptionsStep', 'Choose size and options')) +
+      '</strong>' +
+      '</div>' +
       '<div class="product-matching-set__card-header">' +
       '<span class="product-matching-set__card-title">' +
       escapeHtml(group.label) +
       '</span>' +
-      '<button type="button" class="product-matching-set__card-remove" data-instance-remove="' +
-      escapeHtml(inst.instanceId) +
-      '" aria-label="' +
-      escapeHtml(uiLabel('removeRole', 'Remove {role}', { role: group.label })) +
-      '">×</button>' +
+      '<span class="product-matching-set__card-price product-matching-set__card-price--header">' +
+      escapeHtml(getGroupPriceText(group)) +
+      '</span>' +
       '</div>' +
       (group.helper
         ? '<span class="product-matching-set__card-helper">' + escapeHtml(group.helper) + '</span>'
@@ -2451,7 +2510,9 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       '">' +
       '<button type="button" class="product-matching-set__qty-button" data-qty-action="dec" aria-label="' +
       escapeHtml(uiLabel('decreaseQuantity', 'Decrease quantity')) +
-      '">−</button>' +
+      '"' +
+      (qty <= 1 ? ' disabled aria-disabled="true"' : '') +
+      '>−</button>' +
       '<span class="product-matching-set__qty-value" data-qty-value>' +
       String(qty) +
       '</span>' +
@@ -2472,28 +2533,48 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     );
   }
 
-  function renderAddRoleButtons() {
-    // Always show one + Add button per role available on this product.
-    // Tapping creates a NEW card instance (so a mom with two daughters
-    // can have two Girl cards, each with its own size + quantity).
+  function renderRoleSelector() {
+    // Step-by-step PDP flow: show one role decision first, then one
+    // size/options card for that role. This keeps matching sets from
+    // looking like a long cart-building form.
     var reps = getRoleRepresentatives();
     if (!reps.length) return '';
     var buttonsHtml = reps
       .map(function (group) {
+        var isSelected = currentGroupKey === group.key;
         return (
-          '<button type="button" class="product-matching-set__add-role" data-add-role-group="' +
+          '<button type="button" class="product-matching-set__role-button' +
+          (isSelected ? ' is-selected' : '') +
+          '" data-select-role-group="' +
           escapeHtml(group.key) +
+          '" aria-pressed="' +
+          (isSelected ? 'true' : 'false') +
           '">' +
-          escapeHtml(uiLabel('addRole', '+ Add {role}', { role: group.label })) +
+          '<span class="product-matching-set__role-label">' +
+          escapeHtml(group.label) +
+          '</span>' +
+          '<span class="product-matching-set__role-price">' +
+          escapeHtml(getGroupPriceText(group)) +
+          '</span>' +
           '</button>'
         );
       })
       .join('');
     return (
-      '<div class="product-matching-set__add-roles" role="group" aria-label="' +
-      escapeHtml(uiLabel('addAnotherFamilyMember', 'Add another family member')) +
+      '<div class="product-matching-set__role-step">' +
+      '<div class="product-matching-set__step-heading">' +
+      '<span>1</span><strong>' +
+      escapeHtml(uiLabel('chooseRoleStep', 'Choose who this piece is for')) +
+      '</strong>' +
+      '</div>' +
+      '<div class="product-matching-set__role-buttons" role="group" aria-label="' +
+      escapeHtml(uiLabel('chooseRoleStep', 'Choose who this piece is for')) +
       '">' +
       buttonsHtml +
+      '</div>' +
+      '<p class="product-matching-set__role-hint">' +
+      escapeHtml(uiLabel('chooseRoleHint', 'Choose who you want to add first. You can add another piece after it is in your bag.')) +
+      '</p>' +
       '</div>'
     );
   }
@@ -2649,12 +2730,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
             inst.quantity = (inst.quantity || 1) + 1;
           } else if (action === 'dec') {
             var current = inst.quantity || 1;
-            if (current <= 1) {
-              // At qty=1, − behaves like × — remove the whole card so
-              // shoppers don't get stuck with a row they can't dismiss
-              // from the qty stepper.
-              removeInstance(instanceId);
-            } else {
+            if (current > 1) {
               inst.quantity = current - 1;
             }
           }
@@ -2672,14 +2748,12 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       });
     });
 
-    builder.querySelectorAll('[data-add-role-group]').forEach(function (addBtn) {
-      addBtn.addEventListener('click', function () {
-        var groupKey = addBtn.getAttribute('data-add-role-group');
-        var group = getGroupByKey(groupKey);
-        if (!group) return;
+    builder.querySelectorAll('[data-select-role-group]').forEach(function (roleBtn) {
+      roleBtn.addEventListener('click', function () {
+        var groupKey = roleBtn.getAttribute('data-select-role-group');
+        if (!groupKey || currentGroupKey === groupKey) return;
         if (!isMobileSizePanelViewport()) closeOpenSizePanels();
-        addInstanceForGroup(group);
-        renderBuilder();
+        selectRoleGroup(groupKey);
       });
     });
   }
@@ -2731,7 +2805,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       }
     } catch (_e) { /* ignore */ }
 
-    if (groups.length < 2) {
+    if (!groups.length) {
       builder.setAttribute('hidden', 'hidden');
       return;
     }
@@ -2753,20 +2827,26 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       }
       if (lastTypeContext !== null && lastTypeContext !== typeKey) {
         instances = [];
+        currentGroupKey = '';
         hasSeededDefaults = false;
         closedPanels = Object.create(null);
       }
       lastTypeContext = typeKey;
     }
 
-    // First render (or after a Type change): seed one EMPTY card per
-    // default-visible role. The shopper must deliberately pick a size
-    // — no URL-variant pre-selection (covered in earlier fix).
-    if (!hasSeededDefaults && !instances.length) {
-      hasSeededDefaults = true;
-      getDefaultGroupsForBootstrap(groups).forEach(function (group) {
-        addInstanceForGroup(group);
-      });
+    if (currentGroupKey && !getGroupByKey(currentGroupKey)) {
+      currentGroupKey = '';
+      instances = [];
+    }
+
+    if (!currentGroupKey && groups.length === 1) {
+      currentGroupKey = groups[0].key;
+      addInstanceForGroup(groups[0]);
+    }
+
+    if (currentGroupKey && !instances.length) {
+      var activeGroup = getGroupByKey(currentGroupKey);
+      if (activeGroup) addInstanceForGroup(activeGroup);
     }
 
     // NOTE: we intentionally drop the old preservedSelections bootstrap
@@ -2775,9 +2855,11 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     // <variant-selects> change event would re-trigger the same wrong
     // pre-selection behavior described above.
 
-    // Render cards in instance-order (the order the shopper added them).
+    // Render a role selector first, then one active card. Shoppers add
+    // each family member to the bag as a focused step instead of
+    // building a long multi-line cart summary on the PDP.
     var visibleCardsHtml = instances.map(renderCard).join('');
-    roleGrid.innerHTML = visibleCardsHtml + renderAddRoleButtons();
+    roleGrid.innerHTML = renderRoleSelector() + visibleCardsHtml;
 
     bindCardEvents();
     updateSummary();

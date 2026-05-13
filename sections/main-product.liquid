@@ -1055,10 +1055,11 @@
                   assign pdp_variant = product.selected_or_first_available_variant
                   assign pdp_sale_pct = 0
                   assign pdp_show_price_badges = true
+                  assign pdp_use_variant_price = true
                   if has_matching_set_context
                     assign pdp_show_price_badges = false
-                  endif
-                  if pdp_variant.compare_at_price and pdp_variant.compare_at_price > pdp_variant.price
+                    assign pdp_use_variant_price = false
+                  elsif pdp_variant.compare_at_price and pdp_variant.compare_at_price > pdp_variant.price
                     assign pdp_diff = pdp_variant.compare_at_price | minus: pdp_variant.price
                     assign pdp_diff_x100 = pdp_diff | times: 100
                     assign pdp_sale_pct = pdp_diff_x100 | divided_by: pdp_variant.compare_at_price
@@ -1072,7 +1073,8 @@
                 >
                   {%- render 'price',
                     product: product,
-                    use_variant: true,
+                    use_variant: pdp_use_variant_price,
+                    show_price_range: has_matching_set_context,
                     show_badges: pdp_show_price_badges,
                     show_sold_out_badge: false,
                     price_class: 'price--large'
