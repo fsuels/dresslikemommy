@@ -49,13 +49,20 @@ Entity-page UI readbacks also supported the RPC result:
 
 - GB/CA/AU keyword pages showed the three exact keyword rows as `Eligible` under `Keyword status: Enabled`.
 - GB/CA/AU ads pages showed the target RSA row as `Eligible` under the exact ad group, with `Ad status: Enabled, Paused` visible in filter context.
-- Campaign overview pages still showed the stale message `All keywords are paused, All ads are paused` immediately after enablement. Treat this as a UI/serving-status lag unless it persists in the next monitor, because entity-level RPC and UI readbacks show the inner entities enabled/eligible.
+- Campaign overview pages still showed the stale message `All keywords are paused, All ads are paused` immediately after enablement. A follow-up read-only monitor at `2026-05-12T07:38:01-04:00` cleared that propagation issue: GB/CA/AU campaign overview pages now show `Enabled` / `Eligible`, `$2.00/day`, and only the target exact ad group enabled.
 
 ## Current Negative Keyword Quality
 
 The first live cohort is deliberately exact-match only, which sharply limits query expansion risk. The current split files include a shared campaign-level negative base of `37` terms for GB/CA/AU, covering free/DIY/sewing-pattern/tutorial intent, marketplace/low-quality source intent, used/rental, adult/sexy, doll/game, supplier/source, and fabric-only traffic.
 
 This shared negative base is suitable for the first exact-match opening, but it is not the final expert negative strategy. The next optimization lane must add country- and language-specific negatives from search-term evidence, for example country marketplace/retailer leakage, regional non-buying phrasing, translation/dialect false positives, and irrelevant photo/costume/tutorial terms per market. Do not blindly copy one negative list across all languages after expansion.
+
+Local operator files now exist for that next optimization lane:
+
+- `GB_CA_AU_FIRST_72H_OPTIMIZATION_PLAN.md`
+- `gb_ca_au_negative_watchlist.csv`
+
+The watchlist is not an upload file. It is a search-term review aid; live negative edits still require exact approval naming the terms and scope.
 
 ## Evidence Files
 
@@ -65,10 +72,13 @@ This shared negative base is suitable for the first exact-match opening, but it 
 - Failed first-attempt evidence: `raw/enable-action/enable_error.txt`, `raw/enable-action/GB/keyword_*_enable_response.json`, `rollback/trigger_summary.txt`
 - Recovery proof: `raw/recovery-status-code-1/GB/`
 - Entity-page UI proof: `raw/post-inner-ui-entity-pages/`
+- Follow-up overview monitor proof: `../2026-05-12-google-ads-gb-ca-au-monitoring/raw/monitoring_summary.json`
+- First 72h optimization plan: `GB_CA_AU_FIRST_72H_OPTIMIZATION_PLAN.md`
+- Negative watchlist: `gb_ca_au_negative_watchlist.csv`
 
 ## Next Expert Marketing Actions
 
-1. Monitor GB/CA/AU search terms and cost within the first 24 hours and again daily for the first 72 hours.
+1. Monitor GB/CA/AU search terms, impressions, clicks, cost, and conversion/ROAS signals within the first 24 hours and again daily for the first 72 hours.
 2. Add country-specific negatives only from evidence or clearly irrelevant country-tail terms, under fresh exact approval if live account edits are needed.
 3. Do not scale budget until conversions or high-quality assisted intent supports it. Hold the `$2/day` micro-test until waste/CTR/CVR evidence is visible.
 4. Prepare the next market pair only after this cohort is confirmed serving cleanly, or with fresh exact owner approval for the next controlled pair.

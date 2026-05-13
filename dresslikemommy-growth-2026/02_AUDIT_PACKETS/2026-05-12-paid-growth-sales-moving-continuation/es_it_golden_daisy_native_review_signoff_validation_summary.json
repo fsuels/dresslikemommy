@@ -1,0 +1,95 @@
+{
+  "checks": [
+    {
+      "check": "row_count",
+      "expected": 8,
+      "observed": 8,
+      "status": "PASS"
+    },
+    {
+      "check": "row_ids",
+      "expected": [
+        "ES-KW-01",
+        "ES-KW-02",
+        "ES-KW-03",
+        "ES-RSA-01",
+        "IT-KW-01",
+        "IT-KW-02",
+        "IT-KW-03",
+        "IT-RSA-01"
+      ],
+      "observed": [
+        "ES-KW-01",
+        "ES-KW-02",
+        "ES-KW-03",
+        "ES-RSA-01",
+        "IT-KW-01",
+        "IT-KW-02",
+        "IT-KW-03",
+        "IT-RSA-01"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "markets",
+      "expected": [
+        "ES",
+        "IT"
+      ],
+      "observed": [
+        "ES",
+        "IT"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "asset_types",
+      "expected": [
+        "keyword",
+        "rsa"
+      ],
+      "observed": [
+        "keyword",
+        "rsa"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "allowed_verdicts",
+      "expected": [
+        "APPROVED_NATIVE",
+        "APPROVED_WITH_EDITS",
+        "PENDING_NATIVE_REVIEW",
+        "REJECTED_REWRITE_REQUIRED"
+      ],
+      "observed": [],
+      "status": "PASS"
+    },
+    {
+      "check": "approved_with_edits_have_replacement",
+      "expected": [],
+      "observed": [],
+      "status": "PASS"
+    },
+    {
+      "check": "rejected_rows_have_notes",
+      "expected": [],
+      "observed": [],
+      "status": "PASS"
+    }
+  ],
+  "guardrail": "This validator does not authorize Google Ads platform use; exact owner action-time approval is still required.",
+  "pending_rows": [
+    "ES-KW-01",
+    "ES-KW-02",
+    "ES-KW-03",
+    "ES-RSA-01",
+    "IT-KW-01",
+    "IT-KW-02",
+    "IT-KW-03",
+    "IT-RSA-01"
+  ],
+  "platform_use_ready": false,
+  "rejected_rows": [],
+  "status": "PENDING_NATIVE_REVIEW"
+}

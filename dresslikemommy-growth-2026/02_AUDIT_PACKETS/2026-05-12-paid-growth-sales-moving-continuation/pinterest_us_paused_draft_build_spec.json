@@ -1,0 +1,171 @@
+{
+  "generated_at": "2026-05-12",
+  "mode": "LOCAL_BUILD_SPEC_ONLY_NO_PINTEREST_WRITES",
+  "approval_state": "OWNER_APPROVED_PAUSED_US_DRAFT_BUT_AUTHENTICATED_ADS_MANAGER_ACCESS_BLOCKED",
+  "advertiser": {
+    "advertiser_id": "549756244483",
+    "domain": "dresslikemommy.com",
+    "required_readback_before_write": true
+  },
+  "catalog": {
+    "catalog_name": "Catalog_Retail",
+    "catalog_id": "3041764155561548387",
+    "allowed_feed_profile_id": "3041760867124595727",
+    "allowed_locale": "en-US",
+    "blocked_source_ids": [
+      "3041760916127467912"
+    ],
+    "blocked_source_reason": "failed sitemap or non-approved source must not be selected"
+  },
+  "scope": {
+    "clean_scope_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/pinterest_us_clean_launch_scope_resolved_342.csv",
+    "clean_rows": 342,
+    "unique_shopify_variant_ids": 342,
+    "clean_scope_sha256": "ae0c1721cc40e1ca0fbb51f3a15e1fa1bc49095f6226c6f73ef908f4b7a7ab83",
+    "exclusions_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/pinterest_us_unresolved_exclusions_4.csv",
+    "excluded_shopify_variant_ids": [
+      "41878208249953",
+      "41878208479329",
+      "41878208577633",
+      "41878208610401"
+    ],
+    "exclusions_sha256": "d3fb918a30a61edb2e9aa618f7bd0582f46d7fc0eb3885619205ab64914de14a",
+    "required_product_group_counts": {
+      "mommy_me": 210,
+      "family_matching": 103,
+      "pajamas": 29
+    }
+  },
+  "campaigns": [
+    {
+      "name": "DLM_PIN_US_CATALOG_342_PAUSED_20260512",
+      "purpose": "catalog_shopping_shell",
+      "country": "US",
+      "locale": "en-US",
+      "status_required": "paused_or_draft",
+      "budget_rule": "do_not_activate_or_enter_budget_without_fresh_exact_approval_naming_budget_field",
+      "bid_rule": "do_not_activate_or_enter_bid_without_fresh_exact_approval_naming_bid_field",
+      "audience_rule": "prospecting_or_catalog_shopping_only_if_no_audience_create_or_edit_is_required",
+      "ad_groups": [
+        {
+          "name": "DLM_PIN_US_CATALOG_MOMMY_ME_PAUSED_20260512",
+          "custom_label_2": "mommy_me",
+          "expected_rows": 210,
+          "status_required": "paused_or_draft",
+          "copy_key": "mommy_me"
+        },
+        {
+          "name": "DLM_PIN_US_CATALOG_FAMILY_MATCHING_PAUSED_20260512",
+          "custom_label_2": "family_matching",
+          "expected_rows": 103,
+          "status_required": "paused_or_draft",
+          "copy_key": "family_matching"
+        },
+        {
+          "name": "DLM_PIN_US_CATALOG_PAJAMAS_PAUSED_20260512",
+          "custom_label_2": "pajamas",
+          "expected_rows": 29,
+          "status_required": "paused_or_draft",
+          "copy_key": "pajamas"
+        }
+      ]
+    },
+    {
+      "name": "DLM_PIN_US_RETARGETING_342_PAUSED_20260512",
+      "purpose": "catalog_retargeting_shell",
+      "country": "US",
+      "locale": "en-US",
+      "status_required": "paused_or_draft",
+      "budget_rule": "do_not_activate_or_enter_budget_without_fresh_exact_approval_naming_budget_field",
+      "bid_rule": "do_not_activate_or_enter_bid_without_fresh_exact_approval_naming_bid_field",
+      "audience_rule": "reuse_only_existing_platform_native_retargeting_selector_do_not_create_or_edit_audience",
+      "create_only_if": "Pinterest UI offers a retargeting selector without creating or modifying an audience",
+      "ad_groups": [
+        {
+          "name": "DLM_PIN_US_RETARGETING_MOMMY_ME_PAUSED_20260512",
+          "custom_label_2": "mommy_me",
+          "expected_rows": 210,
+          "status_required": "paused_or_draft",
+          "copy_key": "mommy_me"
+        },
+        {
+          "name": "DLM_PIN_US_RETARGETING_FAMILY_MATCHING_PAUSED_20260512",
+          "custom_label_2": "family_matching",
+          "expected_rows": 103,
+          "status_required": "paused_or_draft",
+          "copy_key": "family_matching"
+        },
+        {
+          "name": "DLM_PIN_US_RETARGETING_PAJAMAS_PAUSED_20260512",
+          "custom_label_2": "pajamas",
+          "expected_rows": 29,
+          "status_required": "paused_or_draft",
+          "copy_key": "pajamas"
+        }
+      ]
+    }
+  ],
+  "product_group_filter_template": {
+    "custom_label_0": "paid_eligible",
+    "custom_label_4": "us_test_ready",
+    "locale": "en-US",
+    "availability": "IN_STOCK",
+    "exclude_shopify_variant_ids": [
+      "41878208249953",
+      "41878208479329",
+      "41878208577633",
+      "41878208610401"
+    ]
+  },
+  "copy": {
+    "mommy_me": {
+      "headline": "Mommy & Me Matching Outfits",
+      "description": "Coordinated dresses and looks for moms and kids, ready for photos, birthdays, trips, and everyday moments.",
+      "cta": "Shop now"
+    },
+    "family_matching": {
+      "headline": "Family Matching Outfits",
+      "description": "Find coordinated family outfits for parents and kids across casual looks, vacations, photos, and special days.",
+      "cta": "Shop now"
+    },
+    "pajamas": {
+      "headline": "Matching Family Pajamas",
+      "description": "Explore coordinated pajama looks for family photos, holidays, lounging, and cozy at-home moments.",
+      "cta": "Shop now"
+    }
+  },
+  "before_write_readbacks_required": [
+    "advertiser_id_is_549756244483",
+    "catalog_id_is_3041764155561548387",
+    "feed_profile_id_is_3041760867124595727",
+    "failed_sitemap_source_3041760916127467912_not_selected",
+    "baseline_campaigns_and_serving_objects_recorded",
+    "scope_counts_342_210_103_29_reconciled",
+    "four_excluded_variants_absent",
+    "event_quality_recorded_without_repair"
+  ],
+  "after_write_readbacks_required_if_created_under_approval": [
+    "all_campaigns_paused_or_draft",
+    "all_ad_groups_paused_or_draft",
+    "all_ads_paused_or_draft",
+    "all_product_groups_paused_or_draft",
+    "currently_serving_remains_zero",
+    "spend_remains_zero",
+    "catalog_and_source_unchanged",
+    "scope_totals_still_342_210_103_29",
+    "four_excluded_variants_absent"
+  ],
+  "stop_conditions": [
+    "not_authenticated_for_advertiser_549756244483",
+    "captcha_or_login_or_account_switcher_or_billing_or_payment_prompt",
+    "publish_launch_enable_promote_or_spend_required",
+    "paused_or_draft_state_unavailable_before_save",
+    "budget_or_bid_required_without_fresh_exact_approval",
+    "audience_creation_or_edit_required",
+    "tag_capi_customer_data_pixel_source_feed_catalog_shopify_merchant_or_google_ads_change_requested",
+    "catalog_or_source_not_allowed",
+    "scope_counts_or_exclusions_do_not_match",
+    "any_object_would_be_enabled_or_serving_after_creation"
+  ],
+  "writes_made": "none_external_local_json_only"
+}

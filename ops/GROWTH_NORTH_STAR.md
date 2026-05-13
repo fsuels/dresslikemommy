@@ -6,6 +6,10 @@ Purpose: define the destination so every continuation prompt and subagent workst
 
 The owner wants Dress Like Mommy to make more money, not just get more traffic.
 
+The set goal is to build and run a profitable paid-growth machine for Dress Like Mommy: Google Ads and Pinterest campaigns active across every viable language/market, executed expertly and safely, aiming for as many profitable conversions as possible at about `650% ROAS`.
+
+This is not an audit project. Audits, packets, trackers, and readbacks exist only to support action that can make sales happen: building controlled campaigns, enabling exact-approved tests, improving targeting/copy/assets/landing pages, removing blockers, monitoring performance, adding evidence-backed negatives, scaling winners, and killing waste.
+
 The goal is aggressive but intelligent growth:
 
 - Increase sales.
@@ -22,6 +26,8 @@ The goal is aggressive but intelligent growth:
 - The owner clarified on 2026-05-07 that Dress Like Mommy is a dropshipping business with no physical store and no owned physical inventory. Growth work must not imply a retail location, warehouse, local inventory, stocked inventory, or guaranteed on-hand stock; platform availability/inventory labels are channel salability diagnostics only.
 - The owner wants the AI to act like the responsible marketing operator, not just an advisor.
 - The owner wants actual implementation, not slow endless audits.
+- The owner wants visible progress in actual sales-moving changes, not just documentation that something is blocked.
+- The owner expects the agent to keep moving until every safe local/read-only/paused/approved live lane is advanced, and every remaining blocker has an exact next unblock action.
 - The owner wants low-cost qualified traffic and strong conversion quality.
 - The owner thinks about economics clearly: if AOV is around `$70` and gross margin is around `50%`, then ad spend must stay tight enough that marketing plus returns still leaves profit.
 - The owner considers around `$0.25` per click expensive in many cases and prefers CPC near or below `$0.20` when testing.
@@ -36,6 +42,11 @@ The goal is aggressive but intelligent growth:
 The destination is not "a lot of campaigns exist." The destination is a controlled paid-growth machine.
 
 A strong reached-state looks like this:
+
+0. Work is judged by sales-moving progress.
+   - Campaigns, ad groups, ads, keywords, product groups, feeds, landing pages, and tracking surfaces are moved forward when safe and approved.
+   - Audits are not considered progress unless they directly produce an action, approval packet, blocker removal, optimization decision, or verified performance readback.
+   - Each session should end closer to revenue: active/eligible campaigns monitored, paused-ready campaigns built, copy/assets improved, landing pages fixed, catalog blockers removed, negatives/keywords refined, or exact approval gates narrowed.
 
 1. Measurement is trusted.
    - Purchase conversion is primary.
@@ -94,13 +105,14 @@ A strong reached-state looks like this:
 
 The growth sprint is "done enough" when:
 
-- Google Ads and Pinterest have a clean, documented, controlled campaign structure.
+- Google Ads and Pinterest have active, expert, controlled campaign structures for every owner-approved viable market/language, or a documented reason why a market is excluded.
 - Key campaigns are either live with approved low-risk budgets or paused-ready with exact approval gates.
 - Merchant/feed blockers for the paid cohort are resolved or safely isolated.
 - Conversion tracking is trusted for ROAS decisions.
 - Paid landing pages for active markets are clean enough to convert.
 - There is a weekly optimization routine using spend, CPC, conversion rate, CPA, ROAS, search terms, product performance, country performance, and return risk.
 - The owner can look at reporting and know which markets/products/campaigns are making money, which are learning, and which should be killed.
+- Every remaining blocker has at least two grounded recovery paths tried or ruled out, evidence, and one exact next unblock action.
 
 ## Not The Goal
 
@@ -110,6 +122,8 @@ The growth sprint is "done enough" when:
 - Not "cheap traffic at any quality."
 - Not "ROAS based on inflated micro-conversion value."
 - Not "keep auditing forever without building."
+- Not "write packets instead of making sales-moving changes."
+- Not "stop because one platform or browser lane is blocked."
 
 ## Continuation Prompt Rule
 

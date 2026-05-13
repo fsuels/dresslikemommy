@@ -1,0 +1,205 @@
+{
+  "checks": [
+    {
+      "check": "clean_scope_exists",
+      "expected": true,
+      "observed": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/pinterest_us_clean_launch_scope_resolved_342.csv",
+      "status": "PASS"
+    },
+    {
+      "check": "exclusions_exists",
+      "expected": true,
+      "observed": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/pinterest_us_unresolved_exclusions_4.csv",
+      "status": "PASS"
+    },
+    {
+      "check": "clean_row_count",
+      "expected": 342,
+      "observed": 342,
+      "status": "PASS"
+    },
+    {
+      "check": "clean_unique_variant_count",
+      "expected": 342,
+      "observed": 342,
+      "status": "PASS"
+    },
+    {
+      "check": "clean_scope_sha256",
+      "expected": "ae0c1721cc40e1ca0fbb51f3a15e1fa1bc49095f6226c6f73ef908f4b7a7ab83",
+      "observed": "ae0c1721cc40e1ca0fbb51f3a15e1fa1bc49095f6226c6f73ef908f4b7a7ab83",
+      "status": "PASS"
+    },
+    {
+      "check": "exclusion_row_count",
+      "expected": 4,
+      "observed": 4,
+      "status": "PASS"
+    },
+    {
+      "check": "exclusion_variant_ids",
+      "expected": [
+        "41878208249953",
+        "41878208479329",
+        "41878208577633",
+        "41878208610401"
+      ],
+      "observed": [
+        "41878208249953",
+        "41878208479329",
+        "41878208577633",
+        "41878208610401"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "clean_exclusion_overlap",
+      "expected": [],
+      "observed": [],
+      "status": "PASS"
+    },
+    {
+      "check": "exclusions_sha256",
+      "expected": "d3fb918a30a61edb2e9aa618f7bd0582f46d7fc0eb3885619205ab64914de14a",
+      "observed": "d3fb918a30a61edb2e9aa618f7bd0582f46d7fc0eb3885619205ab64914de14a",
+      "status": "PASS"
+    },
+    {
+      "check": "product_group_counts",
+      "expected": {
+        "family_matching": 103,
+        "mommy_me": 210,
+        "pajamas": 29
+      },
+      "observed": {
+        "family_matching": 103,
+        "mommy_me": 210,
+        "pajamas": 29
+      },
+      "status": "PASS"
+    },
+    {
+      "check": "clean_scope_custom_label_0",
+      "expected": [
+        "paid_eligible"
+      ],
+      "observed": [
+        "paid_eligible"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "clean_scope_custom_label_4",
+      "expected": [
+        "us_test_ready"
+      ],
+      "observed": [
+        "us_test_ready"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "clean_scope_pinterest_en_us_locale",
+      "expected": [
+        "en-US"
+      ],
+      "observed": [
+        "en-US"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "clean_scope_pinterest_en_us_availability",
+      "expected": [
+        "IN_STOCK"
+      ],
+      "observed": [
+        "IN_STOCK"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "clean_scope_pinterest_en_us_feed_profile_id",
+      "expected": [
+        "3041760867124595727"
+      ],
+      "observed": [
+        "3041760867124595727"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "clean_scope_market",
+      "expected": [
+        "US"
+      ],
+      "observed": [
+        "US"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "clean_scope_review_only_launch_status",
+      "expected": [
+        "CANDIDATE_ONLY_NOT_LAUNCH_APPROVED"
+      ],
+      "observed": [
+        "CANDIDATE_ONLY_NOT_LAUNCH_APPROVED"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "campaign_name_count_unique",
+      "expected": "2 unique",
+      "observed": [
+        "DLM_PIN_US_CATALOG_342_PAUSED_20260512",
+        "DLM_PIN_US_RETARGETING_342_PAUSED_20260512"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "ad_group_name_count_unique",
+      "expected": "6 unique",
+      "observed": [
+        "DLM_PIN_US_CATALOG_MOMMY_ME_PAUSED_20260512",
+        "DLM_PIN_US_CATALOG_FAMILY_MATCHING_PAUSED_20260512",
+        "DLM_PIN_US_CATALOG_PAJAMAS_PAUSED_20260512",
+        "DLM_PIN_US_RETARGETING_MOMMY_ME_PAUSED_20260512",
+        "DLM_PIN_US_RETARGETING_FAMILY_MATCHING_PAUSED_20260512",
+        "DLM_PIN_US_RETARGETING_PAJAMAS_PAUSED_20260512"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "campaign_status_required_paused_or_draft",
+      "expected": [
+        "paused_or_draft"
+      ],
+      "observed": [
+        "paused_or_draft",
+        "paused_or_draft"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "ad_group_status_required_paused_or_draft",
+      "expected": [
+        "paused_or_draft"
+      ],
+      "observed": [
+        "paused_or_draft",
+        "paused_or_draft",
+        "paused_or_draft",
+        "paused_or_draft",
+        "paused_or_draft",
+        "paused_or_draft"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "clean_scope": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/pinterest_us_clean_launch_scope_resolved_342.csv",
+  "exclusions": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/lanes/pinterest/raw/pinterest_us_unresolved_exclusions_4.csv",
+  "spec": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-sales-moving-continuation/pinterest_us_paused_draft_build_spec.json",
+  "status": "PASS",
+  "writes_made": "local_validation_summary_only"
+}

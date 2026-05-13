@@ -2,6 +2,8 @@
 
 Date: 2026-05-12
 
+Superseded follow-up note: this file captured the earlier campaign/ad-group-only enable state before the owner-approved inner keyword/RSA enable. Current post-inner-enable performance/search-term readback is documented in `GB_CA_AU_POST_INNER_ENABLE_PERFORMANCE_SEARCH_TERMS_MONITOR.md`.
+
 ## Scope
 
 Read-only monitor pass for the first English-first live Search cohort:

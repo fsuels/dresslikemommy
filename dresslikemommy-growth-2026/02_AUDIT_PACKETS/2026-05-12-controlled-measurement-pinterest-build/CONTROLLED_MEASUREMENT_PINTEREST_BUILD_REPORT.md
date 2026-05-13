@@ -62,11 +62,15 @@ Attempts:
 3. Chrome DevTools MCP recovery failed because its profile is already running/locked.
 4. Playwright MCP recovery failed because its profile is already running/locked.
 5. Computer Use recovery failed with Apple event error `-1743`.
+6. Fresh 2026-05-12T20:11:17Z retry again opened `https://ads.pinterest.com/`; the page still showed login hints, no Create control was found, no campaign option was clicked, and no wizard/draft object was created.
+7. Fresh Chrome DevTools recovery failed because the Chrome DevTools MCP profile is already running/locked.
+8. Fresh Computer Use recovery failed again with Apple event error `-1743`.
 
 Result:
 
 - No Pinterest campaign, ad group, ad, product group, catalog source, tag, CAPI, audience, budget, bid, status, or spend write occurred.
-- The paused draft build is blocked by missing authenticated Pinterest browser/session access in the currently controllable tools.
+- The paused draft build remains blocked by missing authenticated Pinterest browser/session access in the currently controllable tools.
+- Exact next unblock: authenticate Pinterest Ads Manager for advertiser `549756244483` in the controllable Chrome/CDP session, or fix macOS automation permission for Computer Use, then rerun `pinterest/pinterest_create_flow_probe_cdp.py` and proceed only with the already-approved paused US draft build scope.
 
 Evidence:
 
