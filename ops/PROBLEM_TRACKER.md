@@ -2234,6 +2234,101 @@ Approval/credential/platform gates:
 Parallel work to continue:
 - Paid-growth, Merchant, Pinterest, GA4, checkout/payment, Admin product-data, and PDP ruler lanes remain separate.
 
+### `PROB-2026-05-13-MOBILE-PDP-RULER-STICKY-COLUMN`
+
+Priority: `P1`
+
+Status: `SOLVED_LIVE_READBACK_PASSED`
+
+Owner/session: Codex current session, 2026-05-13
+
+Surface: Mobile PDP inline ruler chart and selected-size panel in the matching-set builder; active theme assets `assets/product-desktop-ux-20260513-ruler-sync.js` and `assets/component-product-desktop-ux-ruler-sync.css` plus source mirrors.
+
+Exact symptom:
+- Owner screenshots show the mobile ruler chart's frozen `Size` column being covered by horizontally scrolled measurement columns, and the first column not staying fixed while scrolling right.
+- Owner also reported that after choosing a size, the automatic selected-size information panel remains open when the shopper opens the ruler icon chart, wasting mobile space.
+
+Business impact:
+- Mobile shoppers can lose the size labels while comparing measurements and can see two competing size-information blocks at once, making the set-builder feel cramped and broken.
+
+Definition of fixed:
+- On mobile, the inline ruler table must keep the first `Size` column visually fixed on horizontal scroll, with an opaque background and higher stacking than scrolled measurement cells.
+- The selected row highlight must not cover or obscure the frozen first column.
+- Opening a ruler chart for a role/card must close the automatic selected-size information panel for that same card, leaving only the ruler chart open.
+- The fix must apply to the shared matching-set PDP behavior, not only one product row.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-13 14:43 EDT | Inspected current active PDP ruler CSS/JS and prior coordination state | Confirmed active live assets are the `ruler-sync` files; mobile sticky first column used both `position: sticky` and a JS-driven `translateX(--dlm-fit-scroll-left)`, which can make sticky positioning and paint order fight during horizontal scroll | local source inspection |
+| 2026-05-13 14:45 EDT | Patched active/source mirror CSS and JS | Added selected-size-panel data hooks, mobile-only selected-panel removal when the ruler opens, stronger sticky-column stacking/backgrounds, and adaptive scroll transform fallback for browsers where horizontal `position: sticky` on table cells does not hold | local diff |
+| 2026-05-13 14:47 EDT | Local browser smoke test | Caught two JS scope regressions from the first pass: `isMobileSizePanelViewport` and `closedPanels` were private to the set-builder scope, not available inside size-guide code | Playwright console readback |
+| 2026-05-13 14:49 EDT | Repaired JS scope errors | Added a local `isInlineFitMobileViewport()` helper inside `initMatchingSizeGuide()` and made selected-panel closing DOM-scoped instead of touching private set-builder state | local source inspection; `node --check` |
+| 2026-05-13 14:51 EDT | Local mobile browser matrix on Golden Daisy | Passed 3/3: Girl 5 Years Top, Mother L Top, and Mother L Pants all had 1 automatic selected-size panel before ruler click, 0 after ruler click, 1 inline ruler open, `aria-expanded=true`, and first/header column left aligned to wrapper after horizontal scroll | Playwright readback at `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set` |
+| 2026-05-13 14:52 EDT | Static checks | Passed: `node --check` for all three PDP JS assets, `git diff --check`, and `shopify theme check --path . --fail-level error --output json` returned `[]` | command output |
+| 2026-05-13 14:53 EDT | Scoped live theme push | Passed to live theme `dresslikemommy/main` `#133290917985` with only the five PDP ruler JS/CSS assets | Shopify CLI output |
+| 2026-05-13 14:55 EDT | Public live mobile browser matrix on Golden Daisy | Passed 3/3: live page loaded `product-desktop-ux-20260513-ruler-sync.js` and `component-product-desktop-ux-ruler-sync.css`; each scenario closed the automatic selected-size panel when the ruler opened, kept one ruler panel open, and kept the first/header column left aligned to wrapper after horizontal scroll | Playwright readback at `https://www.dresslikemommy.com/products/golden-daisy-mommy-and-me-set` |
+| 2026-05-13 16:03 EDT | Owner live readback reported neighboring columns still visibly peeking through the frozen `Size` highlight while right-scrolling | Reopened the paint-layer fix: numeric alignment was not enough because the issue was visual masking/layering | owner live readback plus fresh public Playwright repro |
+| 2026-05-13 16:05 EDT | Added mobile-only frozen-column overlay generated from first-column cells | Local readback passed: right-scrolled chart had an opaque overlay at z-index `20`; neighboring selected-row cells existed underneath but were visually covered by the overlay | local Playwright readback on Golden Daisy |
+| 2026-05-13 16:08 EDT | Scoped live theme push and public live readback | Passed: live page loaded new versioned `ruler-sync` JS/CSS assets; right-scroll overlay used `transform` matching scroll-left, selected row remained masked, and the first-column overlay stayed above scrolled cells | public Playwright readback at `https://www.dresslikemommy.com/products/golden-daisy-mommy-and-me-set` |
+
+Failed or ruled-out paths:
+- Shopify Admin product/body/translation edits are ruled out because this is a shared theme rendering/interaction bug, not missing product size-chart data.
+- A pure CSS-only sticky-column fix was ruled out after local browser readback showed Chrome still moved the first table column left with horizontal scroll. The final fix keeps CSS sticky semantics but adds an adaptive JS scroll offset only when the browser needs it.
+
+Current next action:
+- Sync the verified live theme changes to GitHub `main`, then no further action unless a specific mobile browser still reproduces the covered/non-fixed Size column after hard refresh.
+
+Approval/credential/platform gates:
+- Scoped live theme push was limited to PDP ruler JS/CSS assets. No Shopify Admin product/page/policy/translation/discount writes, checkout settings/payment/order/refund/cancel action, Ads/Merchant/Pinterest/GA4/GTM writes, spend/account/feed/conversion changes, credentials/billing edits, unrelated dirty-worktree cleanup, or destructive filesystem actions occurred.
+
+Parallel work to continue:
+- Paid-growth, Merchant, Pinterest, GA4, checkout/payment, Admin product-data, and unrelated theme lanes remain separate.
+
+### `PROB-2026-05-13-MOBILE-PDP-RULER-DUAL-HIGHLIGHT`
+
+Priority: `P1`
+
+Status: `SOLVED_LIVE_READBACK_PASSED`
+
+Owner/session: Codex current session, 2026-05-13
+
+Surface: Mobile PDP inline ruler chart opened from the matching-set ruler icon; active theme assets `assets/product-desktop-ux-20260513-ruler-sync.js` and `assets/component-product-desktop-ux-ruler-sync.css` plus source mirrors.
+
+Exact symptom:
+- Owner reported that when a shopper chooses a size before opening the ruler chart, that selected row is highlighted, but tapping/clicking another row in the chart can create two same-looking green highlights on mobile.
+- Desktop has distinct states: the selected size row is beige, while the interacted/hovered row is green.
+
+Business impact:
+- Mobile shoppers can misread the size chart as having two selected sizes, which weakens size-confidence UX.
+
+Definition of fixed:
+- The selected size row in the inline ruler chart uses the same beige selected-row treatment as desktop.
+- The currently tapped/focused chart row uses the green interactive treatment.
+- The frozen first-column overlay mirrors both states, so the first column does not show stale or mismatched colors while horizontally scrolled.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-13 16:04 EDT | Compared mobile inline CSS against the shared desktop chart styles | Found the inline override made `tr.is-selected` green, while the shared chart selected-row style is beige | local source inspection |
+| 2026-05-13 16:06 EDT | Reverted inline selected-row colors to desktop beige and added active-row styling for the overlay first column | Local readback passed: selected row/overlay first cell `rgb(234, 219, 206)` beige; focused row/overlay first cell green; both states were distinct | local Playwright readback |
+| 2026-05-13 16:08 EDT | Scoped live theme push and public live readback | Passed: live Golden Daisy mobile readback showed selected row beige, interacted row green, and overlay selected/active cells in distinct colors after horizontal scroll | public Playwright readback |
+
+Failed or ruled-out paths:
+- Product-data edits were ruled out because this is a shared chart UI state bug.
+- Leaving the overlay static was ruled out because it hid the first-column green active state; final implementation syncs overlay active row state from pointer/focus events.
+
+Current next action:
+- Sync the verified live theme changes to GitHub `main`.
+
+Approval/credential/platform gates:
+- Scoped live theme push was limited to PDP ruler JS/CSS assets. No Shopify Admin product/page/policy/translation/discount writes, checkout settings/payment/order/refund/cancel action, Ads/Merchant/Pinterest/GA4/GTM writes, spend/account/feed/conversion changes, credentials/billing edits, unrelated dirty-worktree cleanup, or destructive filesystem actions occurred.
+
+Parallel work to continue:
+- Paid-growth, Merchant, Pinterest, GA4, checkout/payment, Admin product-data, and unrelated theme lanes remain separate.
+
 Copy this template for every new problem:
 
 ```markdown

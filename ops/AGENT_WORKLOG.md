@@ -35964,3 +35964,53 @@ Readback:
 
 Guardrails:
 - No Shopify Admin product/page/policy/translation/discount write, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
+2026-05-13 - Mobile PDP ruler sticky-column and panel exclusivity live
+AGENT_CONTINUITY_ANCHOR: 2026-05-13-mobile-pdp-ruler-sticky-column-live
+
+Why:
+- Owner showed mobile screenshots where the inline ruler chart's frozen `Size` column was covered/not fixed during horizontal scroll, and asked that opening the ruler icon closes the automatic selected-size information panel so both do not occupy mobile space at the same time.
+
+What changed:
+- Claimed the narrow theme lane in `ops/AGENT_COORDINATION.md` and tracked `PROB-2026-05-13-MOBILE-PDP-RULER-STICKY-COLUMN`.
+- Updated `assets/component-product-desktop-ux.css` and `assets/component-product-desktop-ux-ruler-sync.css` so the mobile inline fit table wrapper isolates its paint layer, the first column has higher stacking/opaque selected-row backgrounds, and the selected row uses the green fit-highlight treatment.
+- Updated `assets/product-desktop-ux.js`, `assets/product-desktop-ux-20260513.js`, and `assets/product-desktop-ux-20260513-ruler-sync.js` so selected-size panels carry a removable data hook, opening the ruler removes the automatic selected-size panel on mobile, and the first column gets an adaptive scroll offset only when the browser does not keep horizontal table-cell sticky positioning fixed.
+- Scoped live push to `dresslikemommy/main` theme `#133290917985` included only those five PDP ruler JS/CSS assets.
+
+Readback:
+- `node --check assets/product-desktop-ux.js`
+- `node --check assets/product-desktop-ux-20260513.js`
+- `node --check assets/product-desktop-ux-20260513-ruler-sync.js`
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Local mobile browser matrix passed 3/3 on Golden Daisy: Girl 5 Years Top, Mother L Top, and Mother L Pants each had `beforePanels=1`, `afterPanels=0`, `inlineOpen=1`, `aria-expanded=true`, and first/header column left aligned to the table wrapper after horizontal scroll.
+- Public live Golden Daisy mobile matrix passed 3/3 with fresh assets `product-desktop-ux-20260513-ruler-sync.js` and `component-product-desktop-ux-ruler-sync.css`; first/header column stayed aligned after horizontal scroll and selected-size panels closed when the ruler opened.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
+2026-05-13 - Mobile PDP ruler overlay mask and chart color-state correction live
+AGENT_CONTINUITY_ANCHOR: 2026-05-13-mobile-pdp-ruler-overlay-color-live
+
+Why:
+- Owner live-readback showed the first mobile ruler fix still allowed horizontally scrolled measurement cells to peek through/around the frozen `Size` column highlight.
+- Owner also reported a related mobile-only chart state bug: after selecting a child size, tapping another chart row could make two rows look green, unlike desktop where selected and interacted rows use distinct colors.
+
+What changed:
+- Added a mobile-only frozen first-column overlay for inline ruler charts. It is generated from the first table column, follows horizontal scroll, sits above the scrolled measurement cells, and masks the underlying row highlight so neighboring columns do not bleed through.
+- Restored the inline chart selected-row color to the desktop-style beige state, while keeping tapped/focused rows green.
+- Added overlay active-row syncing so the frozen first column mirrors both states: selected row beige, interacted row green.
+- Updated `ops/PROBLEM_TRACKER.md` with the second-pass attempts and new `PROB-2026-05-13-MOBILE-PDP-RULER-DUAL-HIGHLIGHT`.
+
+Readback:
+- `node --check assets/product-desktop-ux.js`
+- `node --check assets/product-desktop-ux-20260513.js`
+- `node --check assets/product-desktop-ux-20260513-ruler-sync.js`
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Scoped live push to theme `dresslikemommy/main` `#133290917985` succeeded with only the five PDP ruler JS/CSS assets.
+- Public live Golden Daisy mobile readback loaded new versioned assets `component-product-desktop-ux-ruler-sync.css?v=50387909671708515441778702862` and `product-desktop-ux-20260513-ruler-sync.js?v=25338964657939224841778702863`.
+- Live right-scroll readback passed: frozen overlay z-index `20`, selected row/overlay cell beige, focused row/overlay cell green, ruler panel open, and no selected-size/ruler double-stack.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
