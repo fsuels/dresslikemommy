@@ -2170,7 +2170,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     if (chips) {
       var readyItem = items[0];
       var readyLabel = readyItem
-        ? [readyItem.roleLabel, readyItem.sizeLabel, formatMoney(readyItem.unitPrice, currency)].filter(Boolean).join(' - ')
+        ? [readyItem.roleLabel, readyItem.sizeLabel, formatMoney(readyItem.unitPrice * readyItem.quantity, currency)].filter(Boolean).join(' - ')
         : formatPieceCount(pieceCount);
       chips.innerHTML =
         '<span class="product-matching-set__chip product-matching-set__chip--ready">' +
@@ -2225,7 +2225,6 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     var option = getOptionByVariantId(group, inst.variantId);
     if (!option) return '';
     var sizeLabel = option.sizeLabel || '';
-    var unitPrice = Number(option.price) || 0;
 
     return (
       '<p class="product-matching-set__size-blurb" role="status">' +
@@ -2234,10 +2233,8 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       escapeHtml(group.label) +
       ' &middot; <strong>' +
       escapeHtml(sizeLabel) +
-      '</strong> &middot; ' +
-      escapeHtml(formatMoney(unitPrice, currency)) +
-      ' ' +
-      escapeHtml(uiLabel('each', 'each')) +
+      '</strong> ' +
+      escapeHtml(uiLabel('selectedSize', 'selected')) +
       '</span>' +
       '</p>'
     );
@@ -2258,10 +2255,6 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       }
     }
     if (!inst.axisSelections) inst.axisSelections = {};
-
-    var minimumPrice = group.options.reduce(function (lowest, option) {
-      return lowest === null || option.price < lowest ? option.price : lowest;
-    }, null);
 
     var distinctSizes = getDistinctSizesForGroup(group);
     var axisNames = getAxisNamesForGroup(group);
@@ -2516,9 +2509,6 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       '<span class="product-matching-set__card-title">' +
       escapeHtml(group.label) +
       '</span>' +
-      '<span class="product-matching-set__card-price product-matching-set__card-price--header">' +
-      escapeHtml(getGroupPriceText(group)) +
-      '</span>' +
       '</div>' +
       (group.helper
         ? '<span class="product-matching-set__card-helper">' + escapeHtml(group.helper) + '</span>'
@@ -2556,9 +2546,6 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       '<button type="button" class="product-matching-set__qty-button" data-qty-action="inc" aria-label="' +
       escapeHtml(uiLabel('increaseQuantity', 'Increase quantity')) +
       '">+</button>' +
-      '<span class="product-matching-set__card-price" data-role-price>' +
-      escapeHtml(formatMoney(minimumPrice, currency)) +
-      '</span>' +
       '</div>' +
       // Per-card "Find my fit" link — uses the same delegated handler
       // as the Purchase Confidence size-guide trigger.
@@ -2589,9 +2576,6 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
           '">' +
           '<span class="product-matching-set__role-label">' +
           escapeHtml(group.label) +
-          '</span>' +
-          '<span class="product-matching-set__role-price">' +
-          escapeHtml(getGroupPriceText(group)) +
           '</span>' +
           '</button>'
         );
