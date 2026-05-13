@@ -91,10 +91,6 @@
               {% render block %}
             {%- when 'subtotal' -%}
               <div class="js-contents" {{ block.shopify_attributes }}>
-                {%- if cart != empty -%}
-                  {% render 'automatic-discount-promo', context: 'cart-page' %}
-                {%- endif -%}
-
                 <div>
                   {%- if cart.cart_level_discount_applications.size > 0 -%}
                     <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">

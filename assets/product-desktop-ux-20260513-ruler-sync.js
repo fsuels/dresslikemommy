@@ -382,8 +382,6 @@ var UI_LABELS_BY_LOCALE = {
     chooseRoleStep: 'Choose who this piece is for',
     chooseOptionsStep: 'Choose size and options',
     chooseRoleCta: 'Choose a family member',
-    chooseRoleHint: 'Mother is ready to size first. Switch family member anytime before adding to bag.',
-    chooseSizeForRole: 'Choose a size for {role}',
     addCurrentPiece: 'Add this piece to bag',
     readyToAdd: 'Ready to add',
   },
@@ -1603,6 +1601,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   }
 
   var roleGrid = builder.querySelector('[data-matching-set-roles]');
+  var matchingSetSummary = builder.querySelector('[data-matching-set-summary]');
   var chips = builder.querySelector('[data-matching-set-chips]');
   var total = builder.querySelector('[data-matching-set-total]');
   var emptyCopy = builder.querySelector('[data-matching-set-empty-copy]');
@@ -2631,18 +2630,38 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     var group = getGroupByKey(inst.groupKey);
     if (!group) { inst.variantId = ''; return; }
     if (!inst.sizeLabel) { inst.variantId = ''; return; }
-    var requiredAxes = getAxisNamesForGroup(group).filter(function (axisName) {
-      // Treat single-value axes as auto-satisfied — the renderer hides
-      // them ("values.length <= 1 → return ''") so the shopper has no
-      // way to pick them.
-      return getAxisValuesForGroup(group, axisName).length > 1;
-    });
+    var requiredAxes = getRequiredAxesForGroup(group);
     var sels = inst.axisSelections || {};
     for (var i = 0; i < requiredAxes.length; i += 1) {
       if (!sels[requiredAxes[i]]) { inst.variantId = ''; return; }
     }
     var opt = resolveVariantInGroup(group, inst.sizeLabel, sels);
     inst.variantId = opt && opt.available !== false ? String(opt.id) : '';
+  }
+
+  function getRequiredAxesForGroup(group) {
+    return getAxisNamesForGroup(group).filter(function (axisName) {
+      // Treat single-value axes as auto-satisfied — the renderer hides
+      // them ("values.length <= 1 → return ''") so the shopper has no
+      // way to pick them.
+      return getAxisValuesForGroup(group, axisName).length > 1;
+    });
+  }
+
+  function getCurrentPiecePrompt(activeGroup) {
+    if (!activeGroup) return uiLabel('chooseRoleCta', 'Choose a family member');
+    var activeInstance = instances.find(function (inst) {
+      return inst && inst.groupKey === activeGroup.key;
+    }) || instances[0] || null;
+    if (!activeInstance || !activeInstance.sizeLabel) return uiLabel('pickSize', 'Pick a size');
+    var requiredAxes = getRequiredAxesForGroup(activeGroup);
+    var selections = activeInstance.axisSelections || {};
+    for (var i = 0; i < requiredAxes.length; i += 1) {
+      if (!selections[requiredAxes[i]]) {
+        return uiLabel('pickAxis', 'Pick a {axis}', { axis: requiredAxes[i].toLowerCase() });
+      }
+    }
+    return uiLabel('chooseOptionsStep', 'Choose size and options');
   }
 
   function getSelectedItems() {
@@ -2691,12 +2710,11 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     }, 0);
     var activeGroup = currentGroupKey ? getGroupByKey(currentGroupKey) : null;
     if (!pieceCount) {
-      if (emptyCopy) emptyCopy.removeAttribute('hidden');
       if (emptyCopy) {
-        emptyCopy.textContent = activeGroup
-          ? uiLabel('chooseSizeForRole', 'Choose a size for {role}', { role: activeGroup.label })
-          : uiLabel('chooseRoleHint', 'Mother is ready to size first. Switch family member anytime before adding to bag.');
+        emptyCopy.textContent = '';
+        emptyCopy.setAttribute('hidden', 'hidden');
       }
+      if (matchingSetSummary) matchingSetSummary.setAttribute('hidden', 'hidden');
       if (chips) {
         chips.innerHTML = '';
         chips.setAttribute('hidden', 'hidden');
@@ -2706,13 +2724,12 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         total.setAttribute('hidden', 'hidden');
       }
       addButton.setAttribute('disabled', 'disabled');
-      addButton.textContent = activeGroup
-        ? uiLabel('chooseSizeForRole', 'Choose a size for {role}', { role: activeGroup.label })
-        : uiLabel('chooseRoleCta', 'Choose a family member');
+      addButton.textContent = getCurrentPiecePrompt(activeGroup);
       publishMatchingSetStickyState(items, pieceCount, subtotal);
       return;
     }
 
+    if (matchingSetSummary) matchingSetSummary.removeAttribute('hidden');
     if (emptyCopy) emptyCopy.setAttribute('hidden', 'hidden');
     if (chips) {
       var readyItem = items[0];
@@ -3171,9 +3188,6 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       '">' +
       buttonsHtml +
       '</div>' +
-      '<p class="product-matching-set__role-hint">' +
-      escapeHtml(uiLabel('chooseRoleHint', 'Mother is ready to size first. Switch family member anytime before adding to bag.')) +
-      '</p>' +
       '</div>'
     );
   }

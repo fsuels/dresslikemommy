@@ -138,10 +138,9 @@
           <li>{{ matching_set_guide_label_3 }}</li>
         </ul>
       {%- endif -%}
-      {% render 'automatic-discount-promo', context: 'pdp', state: 'pdp' %}
     </div>
     <div class="product-matching-set__grid" data-matching-set-roles></div>
-    <div class="product-matching-set__summary" data-matching-set-summary>
+    <div class="product-matching-set__summary" data-matching-set-summary hidden>
       <p class="product-matching-set__empty" data-matching-set-empty-copy>Choose sizes for each family member</p>
       <div class="product-matching-set__chips" data-matching-set-chips hidden></div>
       <strong class="product-matching-set__total" data-matching-set-total hidden></strong>
