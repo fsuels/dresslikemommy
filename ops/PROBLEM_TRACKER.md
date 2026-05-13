@@ -8,7 +8,8 @@ Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
 
 | Problem ID | Priority | Status | Owner | Surface | Current Next Action | Fixed Criteria | Evidence |
 |---|---|---|---|---|---|---|---|
-| `PROB-2026-05-13-PDP-SIZE-TOOLTIP-RULER-MISMATCH` | `P1` | `SOLVED_LIVE_READBACK_PASSED` | Codex current session | Matching-set PDP size pill tooltip/selected-size panel and inline ruler chart | No further action for this narrow issue unless a specific live listing still shows mismatched tooltip/selected-panel vs ruler data after cache refresh | Tooltip/selected-size metrics and the opened ruler selected row now match for the selected role, size, and garment/type; Father/Mother ruler charts no longer include child rows, and Girl/Boy charts no longer include adult rows. Local matrix passed `18/18`; live storefront matrix passed `16/16`; scoped live push updated only `assets/product-desktop-ux-20260513.js` on theme `#133290917985` | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/local_desktop_mobile_role_row_filter_matrix_v3.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/live_desktop_mobile_role_row_filter_matrix.json` |
+| `PROB-2026-05-13-MOBILE-PDP-SCROLL-TRAP` | `P1` | `SOLVED_LIVE_READBACK_PASSED` | Codex current session | Mobile PDP gallery/info scroll flow on `sections/main-product.liquid`; reported Golden Daisy URL | No further action unless a specific phone/browser still reproduces the content hiding under the gallery after hard refresh | Mobile PDP info wrapper no longer computes as a vertical `overflow: auto` scroll container; it stays in normal document scroll with `overflow-y: visible`, and touch swipes from the gallery advance the page scroll into product info on local and live Golden Daisy readbacks | Local and live isolated mobile browser readbacks on `golden-daisy-mommy-and-me-set`; `shopify theme check --path . --fail-level error --output json` returned `[]`; scoped live push to theme `#133290917985` of `sections/main-product.liquid` |
+| `PROB-2026-05-13-PDP-SIZE-TOOLTIP-RULER-MISMATCH` | `P1` | `SOLVED_LIVE_READBACK_PASSED` | Codex current session | Matching-set PDP size pill tooltip/selected-size panel and inline ruler chart | No further action for this narrow issue unless a specific live listing still shows mismatched tooltip/selected-panel vs ruler data after hard refresh/browser readback | Tooltip/selected-size metrics and the opened ruler selected row now match for the selected role, size, and garment/type; Father/Mother ruler charts no longer include child rows, and Girl/Boy charts no longer include adult rows. Local matrix passed `18/18`; live storefront matrix passed `16/16`; reported swimsuit local/live mobile+desktop browser parity passed; scoped live sync now includes fresh PDP ruler JS/CSS filenames for CDN bypass | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/local_desktop_mobile_role_row_filter_matrix_v3.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/live_desktop_mobile_role_row_filter_matrix.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/SWIMSUIT_RULER_LOCAL_LIVE_PARITY_REPORT.md` |
 | `PROB-2026-05-13-PDP-COLLECTION-IMAGE-PARITY` | `P1` | `SOLVED_LIVE_READBACK_PASSED` | Codex current session | Collection product cards and PDP gallery initial media | No further action for this narrow issue unless a specific product/collection still shows a mismatch after cache refresh | A product clicked from a collection card opens its PDP with the same first image shown in the collection card; explicit variant deep links still may honor the selected variant media | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-collection-image-parity/PDP_COLLECTION_IMAGE_PARITY_REPORT.md` |
 | `PROB-2026-05-13-PDP-SET-BUILDER-PRICE-RANGE` | `P1` | `BROWSER_READBACK_PASSED_CURL_ACCEPT_CACHE_RECHECK` | Codex current session / next Shopify theme operator | Matching-set PDP builder, price display, and exact Lavender variant storefront cache | Recheck the owner-reported exact Lavender variant URL with both browser-equivalent `Accept` headers and plain curl after the Shopify page-cache window. Customer/browser-style US readback is solved; only the plain-curl `Accept: */*` cache variant remains to reconcile. | Matching-set PDPs show a range price, open with an adult role selected and size/options visible, switch roles without hiding the options step, remove redundant builder price labels, show the final ready-to-add chip as the only builder price, and browser/customer-style exact Lavender URL serves the fresh JS/CSS assets | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-step-builder-price-range/PDP_STEP_BUILDER_PRICE_RANGE_REPORT.md`; exact URL `https://www.dresslikemommy.com/products/lavender-plaid-family-matching-set-tank-dress-shirt-2?variant=44104772943969` |
 | `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE` | `P1` | `RO_PREVIEW_ONLY_SPEC_READY__PLATFORM_ACTION_REQUIRES_AUTH_AND_EXACT_APPROVAL` | Codex parent/orchestrator current session / next Google Ads operator | Approved paused non-US Google Search build; `GB`, `CA`, `AU`, `CH`, `DK`, `DE`, `NL`, `SE`, `ES`, `IT`, `PL`, and `CZ` are created paused and read back clean; `RO` remains absent; `PT`, `GR`, `FR`, and `BE` remain uncreated/blocked | Use `RO_GOOGLE_SEARCH_PREVIEW_ONLY_EXECUTION_SPEC.md` before any Google Ads action. Do not re-upload completed countries and do not stack `PT`/`GR` behind unresolved `RO`. Next unblock is a file-picker-capable authenticated Google Ads browser session or Google Ads Editor path plus fresh exact owner approval to preview only `RO_intl_search_paused_draft_web_bulk.csv`, validate clean `88/88`, then read back before any apply. `FR` still needs a fresh non-stale preview/no-duplicate readback; `BE` remains last after the RO path is clear | Completed countries remain paused/presence-only; remaining approved paused campaigns are either built with clean before/after evidence and no live spend, or safely parked with exact unblock action | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-sales-moving-continuation/RO_GOOGLE_SEARCH_PREVIEW_ONLY_EXECUTION_SPEC.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-sales-moving-continuation/ro_google_search_preview_only_execution_spec.json`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-sales-moving-continuation/RO_PT_GR_FR_BE_GOOGLE_SEARCH_NO_DUPLICATE_PREFLIGHT.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-localized-copy-pinterest-manifest-safe-advance/lanes/google-ads-split-manifest/split_csvs/RO_intl_search_paused_draft_web_bulk.csv` |
@@ -65,6 +66,7 @@ Surface: Shopify theme matching-set PDP size pill tooltip, selected-size panel, 
 Exact symptom:
 - Owner screenshot on Golden Daisy showed `Mother · L` tooltip/selected panel displaying `Weight`, `Waist`, and `Skirt Length`, while the opened ruler table in the same card displayed Adult columns `Weight`, `Chest/Bust`, `Shoulder`, and `Garment Length`.
 - Owner reopened on 2026-05-13 13:24 EDT with a Father-selected family listing where `Father · XL` tooltip/panel used father measurements but the opened ruler chart was titled `Compare all sizes` and included child rows (`2 Years` through `9-10 Years`) mixed with adult rows.
+- Owner reopened again on 2026-05-13 14:11 EDT with the swimsuit product `elegant-mother-daughter-matching-one-piece-swimsuit-with-patterned-mesh-skirt-family-beachwear-set`, saying local looked correct but live did not match the ruler icon/chart behavior.
 
 Business impact:
 - Shopper-facing fit guidance can contradict itself on multi-garment PDPs, making shoppers less confident and increasing wrong-size/wrong-piece risk.
@@ -75,6 +77,7 @@ Definition of fixed:
 - Golden Daisy local browser readback passes before and after Type selection, and one multi-role family PDP still opens role-appropriate ruler data.
 - Father/Mother inline ruler charts are pruned to adult rows only; Girl/Boy inline ruler charts are pruned to child rows only when the source vendor table mixes both families.
 - Live storefront desktop/mobile browser readbacks pass on multiple matching-set categories.
+- The reported swimsuit URL shows local/live browser parity for the inline ruler icon, inline panel opening behavior, and selected chart rows on mobile and desktop.
 
 Attempt log:
 
@@ -86,16 +89,19 @@ Attempt log:
 | 2026-05-13 13:34 EDT | Reopened after owner showed Father XL ruler mixing child and adult rows; patched inline ruler group selection to prune mixed vendor tables by role family before garment pruning | Local desktop/mobile matrix passed `18/18`: reported floral Father XL, Mother L, Girl child; Hawaiian Father/Girl; Golden Daisy Mother Top/Pants; Tropical Vibes Father/Boy. Tooltip/selected-panel metrics matched the opened ruler row and wrong-family rows were `0` in every checked scenario | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/local_desktop_mobile_role_row_filter_matrix_v3.json` |
 | 2026-05-13 13:41 EDT | Ran static checks, then pushed only the loaded PDP JS asset to live theme `dresslikemommy/main` `#133290917985` | Passed: `node --check assets/product-desktop-ux.js`; `node --check assets/product-desktop-ux-20260513.js`; `git diff --check`; Theme Check `[]`; Shopify CLI push succeeded with `--only assets/product-desktop-ux-20260513.js` | command output |
 | 2026-05-13 13:45 EDT | Public live storefront browser matrix after deploy | Passed `16/16` on desktop/mobile: reported floral Father XL/Girl child, Hawaiian Father/Girl, Golden Daisy Mother Top/Pants, Tropical Vibes Father/Boy. Father/Mother charts were adult-only, Girl/Boy charts were child-only, and tooltip metrics matched ruler rows | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/live_desktop_mobile_role_row_filter_matrix.json` |
+| 2026-05-13 14:11 EDT | Reopened from owner-reported local/live mismatch on the exact swimsuit URL | Confirmed the live theme source could be updated while Shopify public CDN/page-cache could still serve older immutable asset filenames for the bare product URL; variant-parameter renders showed fresh theme assets sooner than the bare URL | owner report; `curl`/pullback/browser readbacks |
+| 2026-05-13 14:15 EDT | Added fresh PDP ruler asset filenames and updated `sections/main-product.liquid` to load them, then pushed scoped live files | Shopify CLI push succeeded for `sections/main-product.liquid`, `assets/product-desktop-ux-20260513-ruler-sync.js`, and `assets/component-product-desktop-ux-ruler-sync.css`; scoped pullback matched local source. A template-only cache refresh comment was also pushed in `templates/product.json`; no product data was touched | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/SWIMSUIT_RULER_LOCAL_LIVE_PARITY_REPORT.md` |
+| 2026-05-13 14:18 EDT | Final local/live browser parity readback on the reported swimsuit URL | Passed on mobile and desktop: local and live each had `1` inline ruler trigger, `0` old fit links/legacy triggers, opened an inline panel, did not open a modal or legacy full guide, and rendered identical `S/M/L/XL` Mother measurement rows. Computed icon/panel/table styles also matched local/live | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/SWIMSUIT_RULER_LOCAL_LIVE_PARITY_REPORT.md` |
 
 Failed or ruled-out paths:
 - Browser MCP verification path was attempted but its profile was already in use; verification used isolated headless Chromium through the globally installed Playwright package.
 - A broader product sweep initially found compact dual-unit values rounded differently between panel and ruler on Tropical Vibes; the parser was patched and the focused final readback then passed.
 
 Current next action:
-- No further action for this narrow issue unless a specific live listing still shows mismatched tooltip/selected-panel vs ruler data after cache refresh.
+- No further action for this narrow issue unless a specific live listing still shows mismatched tooltip/selected-panel vs ruler data after hard refresh/browser readback.
 
 Approval/credential/platform gates:
-- Scoped live theme push was limited to `assets/product-desktop-ux-20260513.js`. No Shopify Admin product/page/policy/translation/discount writes, checkout actions, Ads/Merchant/Pinterest/GA4/GTM writes, spend/account/feed/conversion changes, credentials/billing edits, unrelated dirty-worktree cleanup, or destructive filesystem actions occurred.
+- Scoped live theme pushes were limited to PDP theme assets, `sections/main-product.liquid`, and a product-template cache-refresh comment. No Shopify Admin product/page/policy/translation/discount writes, checkout actions, Ads/Merchant/Pinterest/GA4/GTM writes, spend/account/feed/conversion changes, credentials/billing edits, unrelated dirty-worktree cleanup, or destructive filesystem actions occurred.
 
 Parallel work to continue:
 - Paid-growth, Merchant, Pinterest, GA4, checkout/payment, and Admin product-data lanes remain separate.
@@ -2182,6 +2188,51 @@ Approval/credential/platform gates:
 
 Parallel work to continue:
 - Paid-growth, Merchant, Pinterest, GA4, checkout/payment, and Admin product-data lanes remain separate.
+
+### `PROB-2026-05-13-MOBILE-PDP-SCROLL-TRAP`
+
+Priority: `P1`
+
+Status: `SOLVED_LIVE_READBACK_PASSED`
+
+Owner/session: Codex current session, 2026-05-13
+
+Surface: Mobile PDP gallery/info scroll flow in `sections/main-product.liquid`; reported URL `https://www.dresslikemommy.com/products/golden-daisy-mommy-and-me-set`
+
+Exact symptom:
+- Owner reported that on iPhone/mobile the product page can feel stuck while scrolling up or down, with the page content appearing to hide below/under the product image instead of all content moving together in the page scroll.
+
+Business impact:
+- Shoppers can feel trapped at the top of a PDP and may miss the title, price, and set-builder controls.
+
+Definition of fixed:
+- Mobile PDP product info must stay in normal document scroll, not become a separate vertical scroll container.
+- Touch swipes from the gallery area must advance `window.scrollY` and move from image to product info in order.
+- The fix must apply to the PDP layout, not only one Golden Daisy product data row.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-13 14:30 EDT | Local/live mobile computed-style readback before patch | Confirmed the PDP info wrapper computed as `overflow: hidden auto` / `overflow-y: auto` on mobile, caused by older `overflow-x: hidden` behavior in the cascade | isolated Chromium mobile readback |
+| 2026-05-13 14:35 EDT | Patched mobile `#MainProduct` info wrapper in `sections/main-product.liquid` | Info wrapper now computes as `position: relative`, `z-index: 1`, `overflow-x: clip`, `overflow-y: visible` | local preview source and computed style |
+| 2026-05-13 14:38 EDT | Local mobile touch-style readback on Golden Daisy | Passed: two upward swipes from the gallery/product area advanced `scrollY` from `0` to `770`; the top hit target moved from image to product info | isolated Chromium mobile readback |
+| 2026-05-13 14:40 EDT | Static checks | Passed: `git diff --check`; `shopify theme check --path . --fail-level error --output json` returned `[]` | command output |
+| 2026-05-13 14:42 EDT | Scoped live theme push | Passed to live theme `dresslikemommy/main` `#133290917985` with only `sections/main-product.liquid` | Shopify CLI output |
+| 2026-05-13 14:44 EDT | Public live Golden Daisy mobile readback after deploy | Passed: computed `overflow-y: visible`, `overflow-x: clip`, `position: relative`, `z-index: 1`; two touch swipes advanced `scrollY` from `0` to `770` and product info became the top hit target | isolated Chromium mobile readback; curl showed the live HTML contains the new overflow rules |
+
+Failed or ruled-out paths:
+- Browser MCP and Chrome DevTools profile paths were unavailable because their profiles were already in use; verification used isolated local Playwright instead.
+- Shopify Admin product/content edits were ruled out because the issue was layout/scroll CSS, not product data.
+
+Current next action:
+- No further action unless a specific mobile browser still reproduces the sticky/hidden-under-image feeling after hard refresh.
+
+Approval/credential/platform gates:
+- Scoped live theme push was limited to `sections/main-product.liquid`. No Shopify Admin product/page/policy/translation/discount writes, checkout settings/payment/order/refund/cancel action, Ads/Merchant/Pinterest/GA4/GTM writes, spend/account/feed/conversion changes, credentials/billing edits, unrelated dirty-worktree cleanup, or destructive filesystem actions occurred.
+
+Parallel work to continue:
+- Paid-growth, Merchant, Pinterest, GA4, checkout/payment, Admin product-data, and PDP ruler lanes remain separate.
 
 Copy this template for every new problem:
 

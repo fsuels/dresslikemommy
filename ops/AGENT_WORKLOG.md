@@ -35910,3 +35910,57 @@ Readback:
 
 Guardrails:
 - No Shopify Admin product/page/policy/translation/discount write, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
+2026-05-13 - Swimsuit PDP ruler local/live parity fix
+AGENT_CONTINUITY_ANCHOR: 2026-05-13-swimsuit-ruler-local-live-parity
+
+Why:
+- Owner reported the exact live swimsuit PDP did not look the same as local for the ruler icon and how the size chart opens: `elegant-mother-daughter-matching-one-piece-swimsuit-with-patterned-mesh-skirt-family-beachwear-set`.
+
+What changed:
+- Reopened `PROB-2026-05-13-PDP-SIZE-TOOLTIP-RULER-MISMATCH` and the coordination lane for a scoped theme-only local-to-live fix.
+- Pushed current local PDP ruler JS/CSS to live, then confirmed Shopify public CDN/page cache could still serve older immutable asset paths for the bare product URL.
+- Added fresh cache-busting asset filenames:
+  - `assets/product-desktop-ux-20260513-ruler-sync.js`
+  - `assets/component-product-desktop-ux-ruler-sync.css`
+- Updated `sections/main-product.liquid` to load those fresh PDP ruler assets.
+- Added a harmless comment bump to `templates/product.json` as a theme-only cache refresh attempt.
+- Added evidence report `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/SWIMSUIT_RULER_LOCAL_LIVE_PARITY_REPORT.md`.
+
+Readback:
+- `node --check assets/product-desktop-ux.js`
+- `node --check assets/product-desktop-ux-20260513.js`
+- `node --check assets/product-desktop-ux-20260513-ruler-sync.js`
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- `git diff --check` passed.
+- Scoped live pushes to theme `dresslikemommy/main` `#133290917985` succeeded.
+- Scoped live pullback of `sections/main-product.liquid`, `assets/product-desktop-ux-20260513-ruler-sync.js`, and `assets/component-product-desktop-ux-ruler-sync.css` matched local source.
+- Final isolated-browser readback on the exact swimsuit URL passed on mobile and desktop: local/live each had `1` inline ruler trigger, `0` old fit links/legacy size-guide triggers, opened the inline panel only, opened no modal/full legacy guide, and showed identical Mother `S/M/L/XL` measurement rows.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
+2026-05-13 - Mobile PDP normal document scroll repair live
+AGENT_CONTINUITY_ANCHOR: 2026-05-13-mobile-pdp-scroll-trap-live
+
+Why:
+- Owner reported an iPhone/mobile PDP scrolling bug on `https://www.dresslikemommy.com/products/golden-daisy-mommy-and-me-set`: while scrolling, the page could feel stuck and content appeared to hide under the product image instead of moving as one normal page.
+
+What changed:
+- Claimed the narrow theme lane in `ops/AGENT_COORDINATION.md`.
+- Patched `sections/main-product.liquid` mobile PDP rules so the product info wrapper no longer becomes a vertical nested scroll container.
+- The mobile info wrapper now stays in normal document scroll with `position: relative`, `z-index: 1`, `overflow-y: visible`, and `overflow-x: clip`.
+- Updated `ops/PROBLEM_TRACKER.md` with `PROB-2026-05-13-MOBILE-PDP-SCROLL-TRAP`.
+
+Readback:
+- Local isolated mobile browser readback before the patch showed `.product__info-wrapper` computed as `overflow: hidden auto` / `overflow-y: auto`.
+- Local readback after the patch showed `overflow: clip visible`, `overflow-x: clip`, `overflow-y: visible`, `position: relative`, and `z-index: 1`.
+- Local touch-style mobile readback on Golden Daisy passed: two upward swipes from the gallery/product area advanced `scrollY` from `0` to `770`, and the top hit target moved from image into product info.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Scoped live push to theme `dresslikemommy/main` `#133290917985` succeeded with only `sections/main-product.liquid`.
+- Public live Golden Daisy mobile readback with cache-busted URL passed: computed `overflow-y: visible`, `overflow-x: clip`, `position: relative`, `z-index: 1`; two touch swipes advanced `scrollY` from `0` to `770`.
+- Curl readback of the live Golden Daisy HTML showed the new `overflow-x: clip` / `overflow-y: visible` rules in the product section.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
