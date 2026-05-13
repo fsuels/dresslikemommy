@@ -2104,25 +2104,6 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     return uiLabel('pieceMany', '{count} Matching Pieces', { count: count });
   }
 
-  function getGroupPriceText(group) {
-    if (!group || !group.options || !group.options.length) return '';
-    var pricedOptions = group.options.filter(function (option) {
-      return option && option.available !== false && Number(option.price) >= 0;
-    });
-    if (!pricedOptions.length) pricedOptions = group.options;
-    var min = pricedOptions.reduce(function (lowest, option) {
-      var priceValue = Number(option.price) || 0;
-      return lowest === null || priceValue < lowest ? priceValue : lowest;
-    }, null);
-    var max = pricedOptions.reduce(function (highest, option) {
-      var priceValue = Number(option.price) || 0;
-      return highest === null || priceValue > highest ? priceValue : highest;
-    }, null);
-    if (min === null || max === null) return '';
-    if (min === max) return formatMoney(min, currency);
-    return formatMoney(min, currency) + ' - ' + formatMoney(max, currency);
-  }
-
   function selectRoleGroup(groupKey) {
     var group = getGroupByKey(groupKey);
     if (!group) return;
@@ -2233,8 +2214,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       escapeHtml(group.label) +
       ' &middot; <strong>' +
       escapeHtml(sizeLabel) +
-      '</strong> ' +
-      escapeHtml(uiLabel('selectedSize', 'selected')) +
+      '</strong>' +
       '</span>' +
       '</p>'
     );
