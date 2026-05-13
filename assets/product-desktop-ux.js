@@ -1680,19 +1680,10 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
 
   // ─────────────────────────────────────────────────────────────────────
   // Size-measurements lookup, populated lazily on first card render.
-  // Source: the same <table id="size-chart"> that powers the legacy
-  // "Compare family sizes" details element. Parsing is shared with
-  // parseSizeGuideTable() so the tooltip can't drift from the size
-  // chart Frank already maintains per product.
-  //
-  // Shape: sizeMeasurementsByLabel = {
-  //   "mother s": { headers: [...], row: [...] },
-  //   "boy 4t":   { headers: [...], row: [...] },
-  //   ...
-  // }
-  // Keyed by lowercased+trimmed size label. Empty cells / age/weight
-  // columns that don't apply to a given role are filtered out by the
-  // tooltip renderer.
+  // Source: every size-chart table in the product copy. Multi-role
+  // listings often split Dress vs Shirt tables or put Mom/Dad/Girl/Boy
+  // measurements in header groups, so the lookup keeps role/table context
+  // instead of treating the first chart row as globally correct.
   // ─────────────────────────────────────────────────────────────────────
   var sizeMeasurementsByLabel = null;
 
@@ -1700,34 +1691,407 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     return String(text || '').toLowerCase().replace(/\s+/g, ' ').trim();
   }
 
-  function buildSizeMeasurementsLookup() {
-    if (sizeMeasurementsByLabel) return sizeMeasurementsByLabel;
-    sizeMeasurementsByLabel = Object.create(null);
+  function makeSizeMeasurementLookup() {
+    return {
+      byLabel: Object.create(null),
+      byRoleLabel: Object.create(null),
+      byRoleGarmentLabel: Object.create(null),
+      entries: [],
+    };
+  }
 
-    var table = document.querySelector('table#size-chart, table[id*="size-chart"]');
-    if (!table || typeof parseSizeGuideTable !== 'function') return sizeMeasurementsByLabel;
+  function makeMeasurementEntryKey(roleKey, garmentKey, label) {
+    return [roleKey || '', garmentKey || '', normalizeSizeKey(label)].join('::');
+  }
 
-    var parsed = parseSizeGuideTable(table);
-    if (!parsed || !parsed.rows || !parsed.headers) return sizeMeasurementsByLabel;
+  function getMeasurementRoleKeysFromText(text) {
+    var normalizedText = normalizeText(text);
+    if (!normalizedText) return [];
+
+    var roles = [];
+    ROLE_DEFINITIONS.forEach(function (roleDefinition) {
+      var aliases = getRoleAliasCandidates(roleDefinition);
+      var matched = aliases.some(function (alias) {
+        var normalizedAlias = normalizeText(alias);
+        if (!normalizedAlias || normalizedAlias.length < 3) return false;
+        if (/^[a-z0-9]+$/.test(normalizedAlias)) {
+          var aliasPattern = new RegExp('(^|[^a-z0-9])' + escapeRegExp(normalizedAlias) + '([^a-z0-9]|$)', 'i');
+          return aliasPattern.test(normalizedText);
+        }
+        return normalizedText.indexOf(normalizedAlias) !== -1;
+      });
+
+      if (matched && roles.indexOf(roleDefinition.key) === -1) roles.push(roleDefinition.key);
+    });
+
+    return roles;
+  }
+
+  function getSizeMeasurementTableContextText(table) {
+    if (!table) return '';
+
+    var context = [];
+    if (table.id) context.push(table.id);
+
+    var previous = table.previousElementSibling;
+    while (previous) {
+      if (/^H[1-6]$/i.test(previous.tagName)) {
+        context.push(cellText(previous));
+        break;
+      }
+      if (/^TABLE$/i.test(previous.tagName)) break;
+      previous = previous.previousElementSibling;
+    }
+
+    return context.join(' ');
+  }
+
+  function comparableSizeTokens(value) {
+    var parsedRole = parseRoleFromSizeLabel(value);
+    var text = normalizeText((parsedRole && parsedRole.sizeLabel) || value)
+      .replace(/[\u2013\u2014]/g, '-')
+      .replace(/(\d{1,2})\s*m(?=\/|\b|$)/gi, '$1m');
+    var tokens = {};
+
+    function add(token) {
+      if (token) tokens[token] = true;
+    }
+
+    add(text);
+
+    var adult = text.match(/\b(xxxxl|xxxl|xxl|[2-9]xl|xl|xs|s|m|l)\b/i);
+    if (adult) {
+      var adultToken = adult[1].toLowerCase();
+      adultToken = { xxl: '2xl', xxxl: '3xl', xxxxl: '4xl' }[adultToken] || adultToken;
+      add('adult:' + adultToken);
+    }
+
+    var month = text.match(/(?:^|[^0-9])(\d{1,2})\s*m(?:onths?)?(?=\/|\b|$)/i);
+    if (month) {
+      var monthValue = Number(month[1]);
+      add('month:' + monthValue + 'm');
+      if (monthValue && monthValue % 12 === 0) {
+        var yearFromMonth = monthValue / 12;
+        add('age-max:' + yearFromMonth);
+        add('toddler:' + yearFromMonth + 't');
+      }
+    }
+
+    var toddler = text.match(/(?:^|[^0-9])(\d{1,2})\s*t(?=\/|\b|$)/i);
+    if (toddler) {
+      var toddlerValue = Number(toddler[1]);
+      if (toddlerValue) {
+        add('toddler:' + toddlerValue + 't');
+        add('age-max:' + toddlerValue);
+        add('age-range:' + Math.max(1, toddlerValue - 1) + '-' + toddlerValue);
+      }
+    }
+
+    var ageRange = text.match(
+      /(?:^|[^0-9])(\d{1,2})\s*-\s*(\d{1,2})\s*(?:t|y|yr|yrs|year|years|ano|anos|año|años|an|ans|jahr|jahre|anni|anno|jaar|år|lat|lata|ani|let)?(?=\b|$)/i
+    );
+    if (ageRange) {
+      var ageMin = Number(ageRange[1]);
+      var ageMax = Number(ageRange[2]);
+      if (ageMin > 0 && ageMin <= ageMax && ageMax <= 20) {
+        add('age-min:' + ageMin);
+        add('age-max:' + ageMax);
+        add('age-range:' + ageMin + '-' + ageMax);
+        add('toddler:' + ageMax + 't');
+      }
+    }
+
+    var singleAge = text.match(
+      /(?:^|[^0-9])(\d{1,2})\s*(?:t|y|yr|yrs|year|years|ano|anos|año|años|an|ans|jahr|jahre|anni|anno|jaar|år|lat|lata|ani|let)(?=\b|$)/i
+    );
+    if (singleAge) {
+      var ageValue = Number(singleAge[1]);
+      if (ageValue > 0 && ageValue <= 20) {
+        add('age-min:' + ageValue);
+        add('age-max:' + ageValue);
+        add('toddler:' + ageValue + 't');
+      }
+    }
+
+    var height = text.match(/(?:^|[^0-9])(\d{2,3})(?:\s*cm)?(?=\b|$)/i);
+    if (height && Number(height[1]) >= 80) add('height-max:' + Number(height[1]));
+
+    var numbers = text.match(/\d+(?:[.,]\d+)?/g);
+    if (numbers && numbers.length) {
+      add(
+        'n:' +
+          numbers
+            .map(function (number) {
+              return number.replace(',', '.').replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
+            })
+            .join('-')
+      );
+    }
+
+    return Object.keys(tokens);
+  }
+
+  function mergeComparableSizeTokens(values) {
+    var merged = {};
+    (values || []).forEach(function (value) {
+      comparableSizeTokens(value).forEach(function (token) {
+        merged[token] = true;
+      });
+    });
+    return Object.keys(merged);
+  }
+
+  function adultSizeRank(token) {
+    var ranks = { xs: 1, s: 2, m: 3, l: 4, xl: 5, '2xl': 6, '3xl': 7, '4xl': 8 };
+    return Object.prototype.hasOwnProperty.call(ranks, token) ? ranks[token] : null;
+  }
+
+  function numericTokenValues(tokens, prefix) {
+    return (tokens || [])
+      .filter(function (token) {
+        return token.indexOf(prefix) === 0;
+      })
+      .map(function (token) {
+        return Number(token.slice(prefix.length).replace(/[tm]$/, ''));
+      })
+      .filter(function (value) {
+        return !Number.isNaN(value);
+      });
+  }
+
+  function sizeTokenMatchRank(selectedTokens, rowTokens) {
+    var selected = selectedTokens || [];
+    var row = rowTokens || [];
+    var selectedLookup = {};
+    for (var i = 0; i < selected.length; i += 1) selectedLookup[selected[i]] = true;
+    for (var j = 0; j < row.length; j += 1) {
+      if (selectedLookup[row[j]]) return 1;
+    }
+
+    var selectedAdults = selected.filter(function (token) { return token.indexOf('adult:') === 0; });
+    var rowAdults = row.filter(function (token) { return token.indexOf('adult:') === 0; });
+    if (selectedAdults.length || rowAdults.length) {
+      var selectedAdultRanks = selectedAdults
+        .map(function (token) { return adultSizeRank(token.split(':', 2)[1]); })
+        .filter(function (rank) { return rank !== null; });
+      var rowAdultRanks = rowAdults
+        .map(function (token) { return adultSizeRank(token.split(':', 2)[1]); })
+        .filter(function (rank) { return rank !== null; });
+      if (!selectedAdultRanks.length || !rowAdultRanks.length) return 0;
+      return selectedAdultRanks.some(function (selectedRank) {
+        return rowAdultRanks.some(function (rowRank) {
+          return Math.abs(selectedRank - rowRank) <= 2;
+        });
+      })
+        ? 2
+        : 0;
+    }
+
+    var selectedAges = numericTokenValues(selected, 'age-max:').concat(numericTokenValues(selected, 'toddler:'));
+    var rowAges = numericTokenValues(row, 'age-max:').concat(numericTokenValues(row, 'toddler:'));
+    if (
+      selectedAges.length &&
+      rowAges.length &&
+      selectedAges.some(function (selectedAge) {
+        return rowAges.some(function (rowAge) {
+          return Math.abs(selectedAge - rowAge) <= 2;
+        });
+      })
+    ) {
+      return 2;
+    }
+
+    var selectedHeights = numericTokenValues(selected, 'height-max:');
+    var rowHeights = numericTokenValues(row, 'height-max:');
+    if (
+      selectedHeights.length &&
+      rowHeights.length &&
+      selectedHeights.some(function (selectedHeight) {
+        return rowHeights.some(function (rowHeight) {
+          return Math.abs(selectedHeight - rowHeight) <= 10;
+        });
+      })
+    ) {
+      return 2;
+    }
+
+    return 0;
+  }
+
+  function roleKeysCompatible(selectedRoleKey, entryRoleKey) {
+    if (!selectedRoleKey || !entryRoleKey || selectedRoleKey === entryRoleKey) return true;
+    if (selectedRoleKey === 'child' && ['girl', 'boy', 'baby'].indexOf(entryRoleKey) !== -1) return true;
+    if (selectedRoleKey === 'adult' && ['mother', 'father'].indexOf(entryRoleKey) !== -1) return true;
+    if (entryRoleKey === 'child' && ['girl', 'boy', 'baby'].indexOf(selectedRoleKey) !== -1) return true;
+    if (entryRoleKey === 'adult' && ['mother', 'father'].indexOf(selectedRoleKey) !== -1) return true;
+    return false;
+  }
+
+  function garmentKeysCompatible(selectedGarmentKey, entryGarmentKey) {
+    if (!selectedGarmentKey || !entryGarmentKey || selectedGarmentKey === entryGarmentKey) return true;
+    var shirtFamily = ['shirt', 'shorts', 'shirtShortsSet'];
+    return shirtFamily.indexOf(selectedGarmentKey) !== -1 && shirtFamily.indexOf(entryGarmentKey) !== -1;
+  }
+
+  function inferBaseRoleKeyFromMeasurementSize(sizeLabel) {
+    var parsed = parseRoleFromSizeLabel(sizeLabel);
+    if (parsed) return parsed.key;
+
+    var tokens = comparableSizeTokens(sizeLabel);
+    if (tokens.some(function (token) { return token.indexOf('adult:') === 0; })) return 'adult';
+    if (
+      tokens.some(function (token) {
+        return (
+          token.indexOf('age-min:') === 0 ||
+          token.indexOf('age-max:') === 0 ||
+          token.indexOf('toddler:') === 0 ||
+          token.indexOf('month:') === 0 ||
+          token.indexOf('height-max:') === 0
+        );
+      })
+    ) {
+      return 'child';
+    }
+    return '';
+  }
+
+  function pruneMeasurementsForRole(roleKey, headers, row) {
+    if (!headers || !row || !row.length) return null;
+    var hasRoleColumns = headers.some(function (header, index) {
+      return index > 0 && !!parseRoleFromHeader(header);
+    });
+
+    var keepIndexes = headers
+      .map(function (_header, index) {
+        return index;
+      })
+      .filter(function (index) {
+        if (index === 0) return true;
+        if (isGuideEmptyValue(row[index])) return false;
+        if (!hasRoleColumns) return true;
+        var headerRole = parseRoleFromHeader(headers[index]);
+        return !headerRole || roleKeysCompatible(roleKey, headerRole.key);
+      });
+
+    if (keepIndexes.length <= 1) return null;
+
+    var pruned = pruneGuideGroupColumns(
+      keepIndexes.map(function (index) {
+        return headers[index];
+      }),
+      [
+        keepIndexes.map(function (index) {
+          return row[index];
+        }),
+      ]
+    );
+
+    if (!pruned.rows.length || !pruned.rows[0].slice(1).some(function (value) { return !isGuideEmptyValue(value); })) {
+      return null;
+    }
+
+    return {
+      headers: pruned.headers,
+      row: pruned.rows[0],
+    };
+  }
+
+  function addSizeMeasurementEntry(lookup, roleKey, garmentKey, label, headers, row) {
+    var labelKey = normalizeSizeKey(label);
+    if (!labelKey || !headers || !row || !row.length) return;
+    if (!row.slice(1).some(function (value) { return !isGuideEmptyValue(value); })) return;
+
+    var entry = {
+      roleKey: roleKey || '',
+      garmentKey: garmentKey || '',
+      labelKey: labelKey,
+      sizeTokens: comparableSizeTokens(label),
+      headers: headers,
+      row: row,
+    };
+
+    lookup.entries.push(entry);
+
+    if (entry.roleKey && entry.garmentKey) {
+      lookup.byRoleGarmentLabel[makeMeasurementEntryKey(entry.roleKey, entry.garmentKey, labelKey)] = entry;
+    }
+    if (entry.roleKey) {
+      lookup.byRoleLabel[makeMeasurementEntryKey(entry.roleKey, '', labelKey)] = entry;
+    }
+    if (!lookup.byLabel[labelKey]) lookup.byLabel[labelKey] = entry;
+  }
+
+  function indexParsedSizeGuideRows(lookup, parsed, table) {
+    var contextText = getSizeMeasurementTableContextText(table);
+    var contextRoleKeys = getMeasurementRoleKeysFromText(contextText);
+    var contextGarmentKey = getGarmentKey(contextText);
+    var grouped = typeof buildSizeGuideGroups === 'function' ? buildSizeGuideGroups(parsed) : [];
+
+    grouped.forEach(function (group) {
+      (group.rows || []).forEach(function (row) {
+        addSizeMeasurementEntry(lookup, group.key, contextGarmentKey, row[0], group.headers, row);
+      });
+    });
 
     parsed.rows.forEach(function (row) {
       var rawLabel = String((row[0] || '')).trim();
       if (!rawLabel) return;
-      var key = normalizeSizeKey(rawLabel);
-      sizeMeasurementsByLabel[key] = { headers: parsed.headers, row: row };
+
+      var parsedRole = parseRoleFromSizeLabel(rawLabel);
+      if (parsedRole) {
+        var parsedRoleMeasurements = pruneMeasurementsForRole(parsedRole.key, parsed.headers, row);
+        if (parsedRoleMeasurements) {
+          addSizeMeasurementEntry(
+            lookup,
+            parsedRole.key,
+            contextGarmentKey,
+            parsedRole.sizeLabel || rawLabel,
+            parsedRoleMeasurements.headers,
+            parsedRoleMeasurements.row
+          );
+        }
+      }
+
+      contextRoleKeys.forEach(function (roleKey) {
+        var baseRoleKey = inferBaseRoleKeyFromMeasurementSize(rawLabel);
+        if (baseRoleKey && !roleKeysCompatible(roleKey, baseRoleKey)) return;
+        var roleMeasurements = pruneMeasurementsForRole(roleKey, parsed.headers, row);
+        if (!roleMeasurements) return;
+        var roleSizeLabel = parsedRole && parsedRole.sizeLabel ? parsedRole.sizeLabel : rawLabel;
+        addSizeMeasurementEntry(lookup, roleKey, contextGarmentKey, roleSizeLabel, roleMeasurements.headers, roleMeasurements.row);
+      });
+
+      addSizeMeasurementEntry(lookup, '', contextGarmentKey, rawLabel, parsed.headers, row);
     });
+  }
+
+  function buildSizeMeasurementsLookup() {
+    if (sizeMeasurementsByLabel) return sizeMeasurementsByLabel;
+    sizeMeasurementsByLabel = makeSizeMeasurementLookup();
+
+    var tables = Array.from(document.querySelectorAll('table#size-chart, table[id*="size-chart"], table.size-chart'));
+    if (!tables.length || typeof parseSizeGuideTable !== 'function') return sizeMeasurementsByLabel;
+
+    tables.forEach(function (table) {
+      var parsed = parseSizeGuideTable(table);
+      if (!parsed || !parsed.rows || !parsed.headers) return;
+      indexParsedSizeGuideRows(sizeMeasurementsByLabel, parsed, table);
+    });
+
     return sizeMeasurementsByLabel;
   }
 
   function findMeasurementsForOption(group, option) {
     if (!option) return null;
-    buildSizeMeasurementsLookup();
-    if (!sizeMeasurementsByLabel) return null;
+    var lookup = buildSizeMeasurementsLookup();
+    if (!lookup) return null;
 
     // Try multiple lookup keys in order of specificity. Each PDP's
     // variant naming convention varies — try the raw size label
     // ("Mother S"), the role-prefixed full label ("Mother S"), and
     // size-only ("S") as fallbacks.
+    var roleKey = (group && (group.roleKey || group.key)) || '';
+    var garmentKey = getGarmentKey((group && (group.helperRaw || group.helper)) || '');
     var candidates = [];
     if (option.fullLabel) candidates.push(option.fullLabel);
     if (group && group.label && option.sizeLabel) {
@@ -1737,7 +2101,36 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
 
     for (var i = 0; i < candidates.length; i += 1) {
       var key = normalizeSizeKey(candidates[i]);
-      if (sizeMeasurementsByLabel[key]) return sizeMeasurementsByLabel[key];
+      var roleGarmentMatch = lookup.byRoleGarmentLabel[makeMeasurementEntryKey(roleKey, garmentKey, key)];
+      if (roleGarmentMatch) return roleGarmentMatch;
+      var roleMatch = lookup.byRoleLabel[makeMeasurementEntryKey(roleKey, '', key)];
+      if (roleMatch && garmentKeysCompatible(garmentKey, roleMatch.garmentKey)) return roleMatch;
+    }
+
+    var selectedTokens = mergeComparableSizeTokens(candidates);
+    var bestMatch = null;
+    var bestScore = Infinity;
+    lookup.entries.forEach(function (entry) {
+      if (!roleKeysCompatible(roleKey, entry.roleKey)) return;
+      if (!garmentKeysCompatible(garmentKey, entry.garmentKey)) return;
+
+      var tokenRank = sizeTokenMatchRank(selectedTokens, entry.sizeTokens);
+      if (!tokenRank) return;
+
+      var score =
+        tokenRank * 10 +
+        (entry.roleKey === roleKey ? 0 : 2) +
+        (entry.garmentKey && entry.garmentKey === garmentKey ? 0 : 1);
+      if (score < bestScore) {
+        bestScore = score;
+        bestMatch = entry;
+      }
+    });
+    if (bestMatch) return bestMatch;
+
+    for (var fallbackIndex = 0; fallbackIndex < candidates.length; fallbackIndex += 1) {
+      var fallbackKey = normalizeSizeKey(candidates[fallbackIndex]);
+      if (lookup.byLabel[fallbackKey]) return lookup.byLabel[fallbackKey];
     }
     return null;
   }
