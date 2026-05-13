@@ -448,8 +448,7 @@
     color: #101418;
   }
 
-  .product-matching-set__card-helper,
-  .product-matching-set__card-price {
+  .product-matching-set__card-helper {
     font-size: 1.15rem;
     color: rgba(17, 24, 39, 0.7);
   }
@@ -740,6 +739,12 @@
    prominently visible. */
 .product__info-container--matching-set .product-desktop-ux {
   display: block;
+}
+
+.product__info-container--matching-set .product-matching-set__role-price,
+.product__info-container--matching-set .product-matching-set__card-price,
+.product__info-container--matching-set .product-matching-set__card-price--header {
+  display: none !important;
 }
 
 /* 1. Single primary CTA + single source of size truth.
@@ -1124,11 +1129,6 @@
   font-weight: 700;
   color: #101418;
   letter-spacing: 0.005em;
-}
-.product__info-container--matching-set .product-matching-set__card-price--header {
-  flex: 0 0 auto;
-  font-weight: 800;
-  color: #1D8656;
 }
 .product__info-container--matching-set .product-matching-set__card-remove {
   width: 2.8rem;
@@ -1672,13 +1672,6 @@
   text-align: center;
   color: #101418;
 }
-.product__info-container--matching-set .product-matching-set__qty .product-matching-set__card-price {
-  margin-left: auto;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #1D8656;
-}
-
 /* "Pick a size for {role}" prompt — shown beneath the pills when a
    card has no variant selected. Soft amber so it reads as guidance,
    not error. */
