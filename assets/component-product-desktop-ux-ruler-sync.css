@@ -1450,6 +1450,8 @@ body.dlm-fit-modal-open {
 
 .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table-wrap {
   overflow: visible;
+  position: relative;
+  isolation: isolate;
 }
 
 .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table {
@@ -1484,6 +1486,16 @@ body.dlm-fit-modal-open {
 .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table tbody tr:focus td:first-child {
   background: rgba(29, 134, 86, 0.18);
   color: #0f5235;
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table tbody tr.is-selected td {
+  background: rgba(29, 134, 86, 0.12);
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table tbody tr.is-selected td:first-child {
+  background: rgba(29, 134, 86, 0.18);
+  color: #0f5235;
+  font-weight: 800;
 }
 
 .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table tbody tr:focus-visible {
@@ -1523,20 +1535,27 @@ body.dlm-fit-modal-open {
   .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table td:first-child {
     position: sticky;
     left: 0;
-    transform: translateX(var(--dlm-fit-scroll-left, 0px));
-    z-index: 2;
+    transform: translate3d(var(--dlm-fit-scroll-left, 0px), 0, 0);
+    z-index: 5;
     min-width: 5.2rem;
     max-width: 6.6rem;
-    box-shadow: 0.1rem 0 0 rgba(17, 24, 39, 0.08);
+    background-clip: padding-box;
+    box-shadow: 0.16rem 0 0 rgba(255, 255, 255, 0.96), 0.26rem 0 0 rgba(17, 24, 39, 0.08);
   }
 
   .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table th:first-child {
-    z-index: 3;
+    z-index: 7;
     background: #f7efe8;
   }
 
   .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table td:first-child {
+    z-index: 6;
     background: #ffffff;
+  }
+
+  .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table tbody tr.is-selected td:first-child {
+    background: #dff3e9;
+    box-shadow: 0.16rem 0 0 #dff3e9, 0.26rem 0 0 rgba(17, 24, 39, 0.08);
   }
 }
 

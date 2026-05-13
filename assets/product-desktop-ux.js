@@ -2822,7 +2822,9 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       if (selectedPanelMeasurementsHtml) {
         var mobileIsImperial = unitSystem === 'imperial';
         selectedPanelHtml =
-          '<div class="product-matching-set__mobile-size-panel" role="status">' +
+          '<div class="product-matching-set__mobile-size-panel" data-selected-size-panel="' +
+          escapeHtml(inst.instanceId) +
+          '" role="status">' +
           '<div class="product-matching-set__mobile-size-panel-header">' +
           '<strong class="product-matching-set__mobile-size-panel-title">' +
           escapeHtml(group.label) +
@@ -3622,6 +3624,10 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
   var fitModal = null;
   var activeFitModalGroupKey = '';
   var lastFitModalTrigger = null;
+
+  function isInlineFitMobileViewport() {
+    return window.matchMedia && window.matchMedia('(max-width: 749px)').matches;
+  }
 
   function getCurrentDescriptionRoot() {
     return (sizeGuideRoot && sizeGuideRoot.querySelector('[data-product-description]')) || document.querySelector('[data-product-description]');
@@ -5384,6 +5390,18 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     if (trigger) trigger.setAttribute('aria-expanded', 'false');
   }
 
+  function closeSelectedSizePanelForTrigger(trigger) {
+    if (!trigger) return;
+    var card = trigger.closest('[data-instance-card]');
+    if (!card) return;
+    var instanceId = card.getAttribute('data-instance-card');
+    if (!instanceId) return;
+
+    card.querySelectorAll('[data-selected-size-panel]').forEach(function (panel) {
+      if (panel.getAttribute('data-selected-size-panel') === instanceId) panel.remove();
+    });
+  }
+
   function getFitTriggerSelectedMatch(trigger, activeGroup) {
     if (!trigger || !activeGroup || !activeGroup.rows || !activeGroup.rows.length) return null;
     var sizeLabel = String(trigger.getAttribute('data-fit-size-label') || '').trim();
@@ -5436,6 +5454,10 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     if (isOpen && !forceOpen) {
       closeInlineFitPanel(panel, trigger);
       return true;
+    }
+
+    if (isInlineFitMobileViewport()) {
+      closeSelectedSizePanelForTrigger(trigger);
     }
 
     sizeGuideRoot.querySelectorAll('[data-fit-inline-panel]').forEach(function (otherPanel) {
@@ -5492,8 +5514,21 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     if (!panel) return;
     var tableWrap = panel.querySelector('.matching-size-guide__table-wrap');
     if (!tableWrap) return;
+    var needsScrollTransform = null;
     var syncScroll = function () {
-      panel.style.setProperty('--dlm-fit-scroll-left', String(tableWrap.scrollLeft || 0) + 'px');
+      var scrollLeft = tableWrap.scrollLeft || 0;
+      var offset = 0;
+      if (scrollLeft > 0) {
+        if (needsScrollTransform === null) {
+          panel.style.setProperty('--dlm-fit-scroll-left', '0px');
+          var firstCell = tableWrap.querySelector('tbody td:first-child, thead th:first-child');
+          var wrapRect = tableWrap.getBoundingClientRect();
+          var cellRect = firstCell ? firstCell.getBoundingClientRect() : null;
+          needsScrollTransform = !!(cellRect && Math.abs(wrapRect.left - cellRect.left) > 1);
+        }
+        if (needsScrollTransform) offset = scrollLeft;
+      }
+      panel.style.setProperty('--dlm-fit-scroll-left', String(offset) + 'px');
     };
     syncScroll();
     tableWrap.addEventListener('scroll', syncScroll, { passive: true });
