@@ -8,6 +8,7 @@ Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
 
 | Problem ID | Priority | Status | Owner | Surface | Current Next Action | Fixed Criteria | Evidence |
 |---|---|---|---|---|---|---|---|
+| `PROB-2026-05-13-PDP-SIZE-TOOLTIP-RULER-MISMATCH` | `P1` | `SOLVED_LIVE_READBACK_PASSED` | Codex current session | Matching-set PDP size pill tooltip/selected-size panel and inline ruler chart | No further action for this narrow issue unless a specific live listing still shows mismatched tooltip/selected-panel vs ruler data after cache refresh | Tooltip/selected-size metrics and the opened ruler selected row now match for the selected role, size, and garment/type; Father/Mother ruler charts no longer include child rows, and Girl/Boy charts no longer include adult rows. Local matrix passed `18/18`; live storefront matrix passed `16/16`; scoped live push updated only `assets/product-desktop-ux-20260513.js` on theme `#133290917985` | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/local_desktop_mobile_role_row_filter_matrix_v3.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/live_desktop_mobile_role_row_filter_matrix.json` |
 | `PROB-2026-05-13-PDP-COLLECTION-IMAGE-PARITY` | `P1` | `SOLVED_LIVE_READBACK_PASSED` | Codex current session | Collection product cards and PDP gallery initial media | No further action for this narrow issue unless a specific product/collection still shows a mismatch after cache refresh | A product clicked from a collection card opens its PDP with the same first image shown in the collection card; explicit variant deep links still may honor the selected variant media | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-collection-image-parity/PDP_COLLECTION_IMAGE_PARITY_REPORT.md` |
 | `PROB-2026-05-13-PDP-SET-BUILDER-PRICE-RANGE` | `P1` | `BROWSER_READBACK_PASSED_CURL_ACCEPT_CACHE_RECHECK` | Codex current session / next Shopify theme operator | Matching-set PDP builder, price display, and exact Lavender variant storefront cache | Recheck the owner-reported exact Lavender variant URL with both browser-equivalent `Accept` headers and plain curl after the Shopify page-cache window. Customer/browser-style US readback is solved; only the plain-curl `Accept: */*` cache variant remains to reconcile. | Matching-set PDPs show a range price, open with an adult role selected and size/options visible, switch roles without hiding the options step, remove redundant builder price labels, show the final ready-to-add chip as the only builder price, and browser/customer-style exact Lavender URL serves the fresh JS/CSS assets | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-step-builder-price-range/PDP_STEP_BUILDER_PRICE_RANGE_REPORT.md`; exact URL `https://www.dresslikemommy.com/products/lavender-plaid-family-matching-set-tank-dress-shirt-2?variant=44104772943969` |
 | `PROB-2026-05-09-NON-US-SEARCH-TEST-BUILD-GATE` | `P1` | `RO_PREVIEW_ONLY_SPEC_READY__PLATFORM_ACTION_REQUIRES_AUTH_AND_EXACT_APPROVAL` | Codex parent/orchestrator current session / next Google Ads operator | Approved paused non-US Google Search build; `GB`, `CA`, `AU`, `CH`, `DK`, `DE`, `NL`, `SE`, `ES`, `IT`, `PL`, and `CZ` are created paused and read back clean; `RO` remains absent; `PT`, `GR`, `FR`, and `BE` remain uncreated/blocked | Use `RO_GOOGLE_SEARCH_PREVIEW_ONLY_EXECUTION_SPEC.md` before any Google Ads action. Do not re-upload completed countries and do not stack `PT`/`GR` behind unresolved `RO`. Next unblock is a file-picker-capable authenticated Google Ads browser session or Google Ads Editor path plus fresh exact owner approval to preview only `RO_intl_search_paused_draft_web_bulk.csv`, validate clean `88/88`, then read back before any apply. `FR` still needs a fresh non-stale preview/no-duplicate readback; `BE` remains last after the RO path is clear | Completed countries remain paused/presence-only; remaining approved paused campaigns are either built with clean before/after evidence and no live spend, or safely parked with exact unblock action | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-sales-moving-continuation/RO_GOOGLE_SEARCH_PREVIEW_ONLY_EXECUTION_SPEC.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-sales-moving-continuation/ro_google_search_preview_only_execution_spec.json`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-sales-moving-continuation/RO_PT_GR_FR_BE_GOOGLE_SEARCH_NO_DUPLICATE_PREFLIGHT.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-localized-copy-pinterest-manifest-safe-advance/lanes/google-ads-split-manifest/split_csvs/RO_intl_search_paused_draft_web_bulk.csv` |
@@ -50,6 +51,54 @@ Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
 | `PROB-2026-05-08-PINTEREST-CATALOG-337-346` | `P1` | `SUPERSEDED_BY_SAFER_PATH` | 2026-05-08 | Pinterest EN-US catalog proof for US paused draft scope | Re-resolved 5 stale rows, built clean 342-row scope, excluded 4 unresolved variants | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-pinterest-catalog-event-unblock/PINTEREST_CATALOG_EVENT_UNBLOCK_REPORT.md` |
 
 ## Detailed Problem Records
+
+### `PROB-2026-05-13-PDP-SIZE-TOOLTIP-RULER-MISMATCH`
+
+Priority: `P1`
+
+Status: `SOLVED_LIVE_READBACK_PASSED`
+
+Owner/session: Codex current session, 2026-05-13 12:58 EDT.
+
+Surface: Shopify theme matching-set PDP size pill tooltip, selected-size panel, and inline ruler chart in `assets/product-desktop-ux.js`, `assets/product-desktop-ux-20260513.js`, and `assets/component-product-desktop-ux.css`.
+
+Exact symptom:
+- Owner screenshot on Golden Daisy showed `Mother · L` tooltip/selected panel displaying `Weight`, `Waist`, and `Skirt Length`, while the opened ruler table in the same card displayed Adult columns `Weight`, `Chest/Bust`, `Shoulder`, and `Garment Length`.
+- Owner reopened on 2026-05-13 13:24 EDT with a Father-selected family listing where `Father · XL` tooltip/panel used father measurements but the opened ruler chart was titled `Compare all sizes` and included child rows (`2 Years` through `9-10 Years`) mixed with adult rows.
+
+Business impact:
+- Shopper-facing fit guidance can contradict itself on multi-garment PDPs, making shoppers less confident and increasing wrong-size/wrong-piece risk.
+
+Definition of fixed:
+- Tooltip/hover preview, selected-size panel, and inline ruler chart are sourced from the same selected role plus selected garment/type context.
+- If the shopper has picked only size on a multi-garment card and no unique garment/type exists yet, the UI does not invent a conflicting measurement set.
+- Golden Daisy local browser readback passes before and after Type selection, and one multi-role family PDP still opens role-appropriate ruler data.
+- Father/Mother inline ruler charts are pruned to adult rows only; Girl/Boy inline ruler charts are pruned to child rows only when the source vendor table mixes both families.
+- Live storefront desktop/mobile browser readbacks pass on multiple matching-set categories.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-13 12:58 EDT | Created active tracker/coordination entries and inspected existing PDP size-chart code | Root cause candidate: size-pill measurement lookup can use one representative option/garment while inline ruler chart uses the current/global chart group, so Golden Daisy Top vs Pants can diverge before Type is selected | `assets/product-desktop-ux.js`; owner screenshot |
+| 2026-05-13 13:22 EDT | Patched local JS to carry selected role/size/garment context into both measurement lookup and inline ruler rendering | Golden Daisy focused readback passed for size-only, Top L, and Pants L: size-only stayed non-specific; Top and Pants selected panels matched their opened ruler charts | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-size-tooltip-ruler-consistency/size_tooltip_ruler_consistency_readback.json` |
+| 2026-05-13 13:42 EDT | Tightened garment-specific pruning and compact dual-unit parsing | Final mobile readback passed exact selected-panel vs ruler selected-row pair equality for Golden Daisy Top L, Golden Daisy Pants L, Hawaiian Mother Dress L, Tropical Vibes Mother Dress L, and Tropical Vibes Father Shirt L. Theme Check returned `[]`; `node --check` and `git diff --check` passed | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-size-tooltip-ruler-consistency/mobile_size_tooltip_ruler_consistency_final.json` |
+| 2026-05-13 13:34 EDT | Reopened after owner showed Father XL ruler mixing child and adult rows; patched inline ruler group selection to prune mixed vendor tables by role family before garment pruning | Local desktop/mobile matrix passed `18/18`: reported floral Father XL, Mother L, Girl child; Hawaiian Father/Girl; Golden Daisy Mother Top/Pants; Tropical Vibes Father/Boy. Tooltip/selected-panel metrics matched the opened ruler row and wrong-family rows were `0` in every checked scenario | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/local_desktop_mobile_role_row_filter_matrix_v3.json` |
+| 2026-05-13 13:41 EDT | Ran static checks, then pushed only the loaded PDP JS asset to live theme `dresslikemommy/main` `#133290917985` | Passed: `node --check assets/product-desktop-ux.js`; `node --check assets/product-desktop-ux-20260513.js`; `git diff --check`; Theme Check `[]`; Shopify CLI push succeeded with `--only assets/product-desktop-ux-20260513.js` | command output |
+| 2026-05-13 13:45 EDT | Public live storefront browser matrix after deploy | Passed `16/16` on desktop/mobile: reported floral Father XL/Girl child, Hawaiian Father/Girl, Golden Daisy Mother Top/Pants, Tropical Vibes Father/Boy. Father/Mother charts were adult-only, Girl/Boy charts were child-only, and tooltip metrics matched ruler rows | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/live_desktop_mobile_role_row_filter_matrix.json` |
+
+Failed or ruled-out paths:
+- Browser MCP verification path was attempted but its profile was already in use; verification used isolated headless Chromium through the globally installed Playwright package.
+- A broader product sweep initially found compact dual-unit values rounded differently between panel and ruler on Tropical Vibes; the parser was patched and the focused final readback then passed.
+
+Current next action:
+- No further action for this narrow issue unless a specific live listing still shows mismatched tooltip/selected-panel vs ruler data after cache refresh.
+
+Approval/credential/platform gates:
+- Scoped live theme push was limited to `assets/product-desktop-ux-20260513.js`. No Shopify Admin product/page/policy/translation/discount writes, checkout actions, Ads/Merchant/Pinterest/GA4/GTM writes, spend/account/feed/conversion changes, credentials/billing edits, unrelated dirty-worktree cleanup, or destructive filesystem actions occurred.
+
+Parallel work to continue:
+- Paid-growth, Merchant, Pinterest, GA4, checkout/payment, and Admin product-data lanes remain separate.
 
 ### `PROB-2026-05-12-DESKTOP-PDP-MATCHING-STICKY-CTA`
 

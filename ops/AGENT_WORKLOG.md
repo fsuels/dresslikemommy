@@ -35707,3 +35707,206 @@ Summary:
 
 Guardrails:
 - No Shopify Admin product/page/policy/translation/discount write, no product price/cost/variant/status/publication/inventory change, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
+2026-05-13 - Desktop PDP Find Fit modal local repair
+AGENT_CONTINUITY_ANCHOR: 2026-05-13-desktop-pdp-find-fit-modal-local
+
+Why:
+- Owner asked for the desktop PDP `Find Fit` link to stop expanding the large inline full chart and instead open a modal showing only the selected family member's size chart, while keeping size-hover tooltips.
+
+What changed:
+- Updated `assets/product-desktop-ux.js` and `assets/product-desktop-ux-20260513.js` so per-card `Find {role}'s fit` links use a new modal trigger instead of the global inline size-guide trigger.
+- Added a focused size-chart modal inside the existing size-guide runtime. It opens on the selected family member, shows only that role's chart, supports switching roles inside the modal, preserves the cm/in toggle, closes by backdrop/close/Escape, and leaves the legacy full-chart details hidden for the card-link path.
+- Updated `assets/component-product-desktop-ux.css` with the modal overlay, dialog, tabs, close button, and responsive scrolling styles.
+- Updated `ops/AGENT_COORDINATION.md` for the scoped local theme lane.
+
+Readback:
+- `node --check assets/product-desktop-ux.js`
+- `node --check assets/product-desktop-ux-20260513.js`
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- `git diff --check` passed.
+- Local preview started at `http://127.0.0.1:9292`.
+- Browser readback on `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set?fit_modal_readback=1`:
+  - per-card fit link text was `Find Mother's fit`;
+  - old per-card `data-pdp-size-guide-trigger` count was `0`;
+  - modal opened with Mother active and tabs for Mother/Child;
+  - switching to Child changed the modal body to Child rows;
+  - legacy `[data-matching-size-guide]` stayed `hidden=true` and `open=false`;
+  - tooltip markup stayed present.
+- Browser readback on `http://127.0.0.1:9292/products/family-matching-hawaiian-shirt-and-floral-dress?fit_modal_readback=3`:
+  - modal opened with tabs for Mother/Father/Girl/Boy;
+  - switching to Father showed the Father chart only;
+  - legacy inline full chart stayed hidden/closed;
+  - tooltip markup stayed present.
+- Local browser console still showed pre-existing local-preview CORS/Shopify frame/log endpoint noise; no new theme JS syntax error was observed.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, no live theme push, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
+2026-05-13 - PDP inline fit chart role accuracy and mobile readability fix
+AGENT_CONTINUITY_ANCHOR: 2026-05-13-pdp-inline-fit-role-accuracy-mobile-readability-local
+
+Why:
+- Owner reported the inline ruler chart could show Child information while Mother was selected, and mobile chart headers were unreadable. Requirement: every selected family member must open the accurate matching chart; mobile should keep the Size column frozen and use horizontal scrolling for the remaining columns while keeping headers readable.
+
+What changed:
+- Updated `assets/product-desktop-ux.js` and `assets/product-desktop-ux-20260513.js` so inline ruler triggers use the selected `roleKey` as their chart key instead of a potentially split product group key.
+- Tightened `getFitModalActiveGroup()` so chart selection always prefers exact selected role, then compatible role fallback, before any generic fallback. This prevents Mother/Father/Girl/Boy from accidentally landing on another family member's chart.
+- Added per-panel mobile table width sizing so wide charts scroll horizontally only when they need to.
+- Added an inline-panel scroll sync that keeps the first Size column visually frozen while the measurement columns scroll on mobile.
+- Updated `assets/component-product-desktop-ux.css` mobile inline chart rules so headers do not break into unreadable fragments, wide charts get horizontal scroll, and the Size column remains pinned/readable.
+- Updated `ops/AGENT_COORDINATION.md` with the completed local-readback lane state.
+
+Readback:
+- `node --check assets/product-desktop-ux.js`
+- `node --check assets/product-desktop-ux-20260513.js`
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- `git diff --check` passed.
+- Local role-accuracy readback at `768x1000` on `http://127.0.0.1:9292/products/family-matching-hawaiian-shirt-and-floral-dress?role_accuracy_after=1`:
+  - Mother selected -> trigger `mother`, panel title `Mother`, headers `Size|Bust (cm)|Length (cm)`, first row `S|94|114`;
+  - Father selected -> trigger `father`, panel title `Father`, headers `Size|Bust (cm)|Shoulder (cm)|Length (cm)`, first row `M|96|41|67`;
+  - Girl selected -> trigger `girl`, panel title `Girl`, headers `Size|Height (cm)|Bust (cm)|Length (cm)`, first row `24M/90|90|58|58`;
+  - Boy selected -> trigger `boy`, panel title `Boy`, headers `Size|Height (cm)|Bust (cm)|Shoulder (cm)|Length (cm)`, first row `24M/90|90|57|25|38`.
+- Local mobile readability readback at `375x900` on `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set?mobile_table_after=4`:
+  - wide Mother chart had horizontal scroll: wrapper `clientWidth=285`, `scrollWidth=612`;
+  - mobile min table width was `61.2rem`;
+  - Size column stayed frozen after scrolling: first header left stayed `39 -> 39`, transform synced to `180px`;
+  - header text styles were readable: `word-break=normal`, `overflow-wrap=normal`, with multi-word headers kept as words instead of letter stacks.
+- Desktop regression readback at `1440x1000` on `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set?desktop_after_mobile_fix=1`:
+  - panel title `Mother`;
+  - wrapper `clientWidth=491`, `scrollWidth=491`, no horizontal scroll;
+  - modal open count `0`, body modal lock `false`.
+- Local browser console still showed pre-existing local-preview HotReload/CORS/Shopify frame noise; no edited theme syntax error or pageerror was captured.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, no live theme push, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
+2026-05-13 - Desktop PDP inline fit chart icon follow-up
+AGENT_CONTINUITY_ANCHOR: 2026-05-13-desktop-pdp-inline-fit-chart-icon-local
+
+Why:
+- Owner asked desktop PDP sizing to replace the `Find Fit` text link with a ruler/size-chart icon next to the size buttons, open the size chart directly in that card area, keep hover measurement previews, and keep the expanded chart compact with no horizontal or vertical scrollbars.
+
+What changed:
+- Updated `assets/product-desktop-ux.js` and `assets/product-desktop-ux-20260513.js` so each matching-set size row renders a ruler icon button beside the size pills and a hidden inline fit panel for that selected family member.
+- Added inline fit-panel rendering inside the existing size-guide runtime so the icon opens only the selected role's chart in place, reuses the current cm/in toggle, and does not open the modal/body lock path.
+- Removed the per-card `Find {role}'s fit ->` text link/trigger from the card render path.
+- Updated `assets/component-product-desktop-ux.css` so the inline chart is compact, has visible overflow instead of table scrollbars, wraps cells to fit all columns, uses minimal padding, and highlights rows on hover/focus.
+- Updated `ops/AGENT_COORDINATION.md` with the completed local-readback lane state.
+
+Readback:
+- `node --check assets/product-desktop-ux.js`
+- `node --check assets/product-desktop-ux-20260513.js`
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- `git diff --check` passed.
+- Local preview was already listening at `http://127.0.0.1:9292`.
+- Local desktop browser readback at `1440x1000` on `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set?inline_fit_readback=2`:
+  - found `1` `[data-pdp-fit-inline-trigger]` and `0` `[data-pdp-fit-modal-trigger]` / `.product-matching-set__fit-link`;
+  - clicking the icon opened an inline panel with `aria-expanded=true`;
+  - body modal lock was `false` and open modal count was `0`;
+  - chart showed `3` rows and `9` columns;
+  - panel/wrap overflow was `visible` in both axes;
+  - panel `clientWidth=502`, `scrollWidth=502`, `clientHeight=157`, `scrollHeight=157`;
+  - wrapper `clientWidth=491`, `scrollWidth=491`, `clientHeight=101`, `scrollHeight=101`;
+  - focus row highlight applied: second cell background `rgba(29, 134, 86, 0.12)`;
+  - icon was aligned beside the size pills.
+- Local desktop browser readback at `1440x1000` on `http://127.0.0.1:9292/products/family-matching-hawaiian-shirt-and-floral-dress?inline_fit_readback=4`:
+  - found `1` inline trigger and `0` modal/text triggers;
+  - inline panel opened with no modal/body lock;
+  - chart showed `5` rows and `3` columns;
+  - panel/wrap overflow was `visible` in both axes;
+  - panel/wrap client and scroll dimensions matched in both axes;
+  - tooltip markup remained present.
+- Local browser console still showed pre-existing local-preview HotReload/CORS/Shopify frame noise; no app pageerror from the edited theme code was captured.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, no live theme push, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
+2026-05-13 - Desktop PDP Find Fit modal width and row-highlight follow-up
+AGENT_CONTINUITY_ANCHOR: 2026-05-13-desktop-pdp-find-fit-modal-width-highlight-local
+
+Why:
+- Owner asked for the desktop size-chart modal to fit all columns without horizontal scrolling and to make the interacted size row clear on mouse hover or keyboard focus.
+
+What changed:
+- Updated `assets/component-product-desktop-ux.css` so desktop fit modals expand to `min(150rem, calc(100vw - 3.2rem))`, reduce table cell padding inside the modal, allow modal table cells to wrap, and remove horizontal overflow on desktop modal table wrappers.
+- Added modal-scoped row highlighting for `:hover`, `:focus`, and `:focus-within`, including a stronger first-column highlight.
+- Updated `assets/product-desktop-ux.js` and `assets/product-desktop-ux-20260513.js` so rendered size-chart rows have `tabindex="0"` and can receive keyboard focus.
+- Updated `ops/AGENT_COORDINATION.md` for the follow-up readback state.
+
+Readback:
+- `node --check assets/product-desktop-ux.js`
+- `node --check assets/product-desktop-ux-20260513.js`
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- `git diff --check` passed.
+- Local desktop browser readback at `1440x1100` on Golden Daisy Child modal:
+  - dialog width `1402`;
+  - table wrapper client width `1364`;
+  - wrapper scroll width `1364`;
+  - `hasHorizontalScroll=false`;
+  - focused row was a `TR` with `tabindex="0"`;
+  - focus highlight applied: first cell `rgb(223, 243, 233)`, second cell `rgba(29, 134, 86, 0.1)`;
+  - legacy inline size guide stayed `hidden=true` and `open=false`.
+- Local desktop browser readback at `1440x1100` on Hawaiian Father modal:
+  - dialog width `1402`;
+  - wrapper client width `1364`;
+  - wrapper scroll width `1364`;
+  - `hasHorizontalScroll=false`;
+  - hover highlight applied with the same first/second-cell colors;
+  - legacy inline size guide stayed hidden/closed.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, no live theme push, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
+2026-05-13 - PDP size tooltip and ruler consistency local fix
+AGENT_CONTINUITY_ANCHOR: 2026-05-13-pdp-size-tooltip-ruler-consistency-local
+
+Why:
+- Owner reported a serious mobile PDP contradiction: choosing a size showed one measurement set in the tooltip/selected-size panel, while clicking the ruler icon opened a different chart for the same selected size. Requirement: each listing's vendor size information must match between the automatic panel and the ruler chart.
+
+What changed:
+- Updated `assets/product-desktop-ux.js` and mirrored `assets/product-desktop-ux-20260513.js` so measurement lookup and the inline ruler chart both use the selected role, selected size, and selected garment/type context.
+- Added multi-garment guarding so size-only selections on products like Golden Daisy do not invent Top/Pants measurements before the shopper chooses the garment/type.
+- Tightened garment-specific chart pruning so a selected garment keeps its own vendor columns plus shared fit columns instead of leaking unrelated construction columns.
+- Fixed compact dual-unit vendor values such as `102/40.16` so the selected panel and ruler table format the same value the same way.
+- Updated `ops/AGENT_COORDINATION.md` and `ops/PROBLEM_TRACKER.md`; no live theme push was made.
+
+Readback:
+- `node --check assets/product-desktop-ux.js`
+- `node --check assets/product-desktop-ux-20260513.js`
+- `git diff --check`
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Local mobile Playwright readback saved at `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-size-tooltip-ruler-consistency/mobile_size_tooltip_ruler_consistency_final.json`.
+- Final scenarios all passed exact selected-panel vs ruler selected-row metric/value equality:
+  - Golden Daisy Mother Top L.
+  - Golden Daisy Mother Pants L.
+  - Hawaiian Mother Dress L.
+  - Tropical Vibes Mother Dress L with compact `cm/in` cells.
+  - Tropical Vibes Father Shirt L with compact `cm/in` cells.
+- Browser MCP was attempted but blocked by an existing profile lock, so isolated headless Chromium via global Playwright was used for the actionable readbacks.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, no live theme push, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
+2026-05-13 - PDP ruler role-row filter live fix
+AGENT_CONTINUITY_ANCHOR: 2026-05-13-pdp-ruler-role-row-filter-live
+
+Why:
+- Owner reopened the size-tooltip/ruler issue with a live-looking screenshot: Father was selected, the `Father · XL` hover/selected-size data showed father measurements, but the ruler chart opened as `Compare all sizes` and mixed child rows with adult Father rows. Requirement: each listing's vendor size information must match between tooltip/selected panel and ruler, and the ruler must show only the selected family member's relevant rows.
+
+What changed:
+- Updated `assets/product-desktop-ux.js` and mirrored `assets/product-desktop-ux-20260513.js` so inline ruler charts prune mixed vendor size tables by selected role family before garment-specific pruning.
+- Father/Mother/adult selections now keep adult rows only when the source table mixes children and adults; Girl/Boy/child selections keep child rows only.
+- The earlier selected-role/selected-size/selected-garment consistency fix remains in place, so the tooltip/selected-size metrics are compared against the same ruler row the shopper sees.
+
+Readback:
+- `node --check assets/product-desktop-ux.js`
+- `node --check assets/product-desktop-ux-20260513.js`
+- `git diff --check`
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Local isolated-browser matrix passed `18/18` at desktop and mobile viewports across reported floral Father XL, Mother L, Girl child; Hawaiian Father/Girl; Golden Daisy Mother Top/Pants; Tropical Vibes Father/Boy. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/local_desktop_mobile_role_row_filter_matrix_v3.json`.
+- Scoped live push succeeded to `dresslikemommy/main` theme `#133290917985` with only `assets/product-desktop-ux-20260513.js`.
+- Public live storefront matrix passed `16/16` at desktop and mobile viewports across reported floral Father XL/Girl child, Hawaiian Father/Girl, Golden Daisy Mother Top/Pants, and Tropical Vibes Father/Boy. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/live_desktop_mobile_role_row_filter_matrix.json`.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount write, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.

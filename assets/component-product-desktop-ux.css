@@ -319,6 +319,210 @@
   border-bottom: 0;
 }
 
+body.dlm-fit-modal-open {
+  overflow: hidden;
+}
+
+.dlm-fit-modal[hidden] {
+  display: none !important;
+}
+
+.dlm-fit-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.4rem;
+}
+
+.dlm-fit-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.42);
+}
+
+.dlm-fit-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(92rem, 100%);
+  max-height: min(76rem, calc(100vh - 4.8rem));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.8rem;
+  background: #ffffff;
+  box-shadow: 0 2rem 5rem rgba(15, 23, 42, 0.22);
+  outline: none;
+}
+
+.dlm-fit-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.6rem;
+  padding: 1.6rem 1.8rem 1.2rem;
+  border-bottom: 0.1rem solid rgba(17, 24, 39, 0.08);
+}
+
+.dlm-fit-modal__eyebrow {
+  margin: 0 0 0.35rem;
+  color: rgba(17, 24, 39, 0.54);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dlm-fit-modal__title {
+  margin: 0;
+  color: #101418;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.dlm-fit-modal__close {
+  width: 3.6rem;
+  height: 3.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(17, 24, 39, 0.07);
+  color: #101418;
+  font-size: 2.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.dlm-fit-modal__close:hover,
+.dlm-fit-modal__close:focus-visible {
+  background: rgba(17, 24, 39, 0.12);
+  outline: none;
+}
+
+.dlm-fit-modal__tabs {
+  display: flex;
+  gap: 0.6rem;
+  padding: 1.2rem 1.8rem 0;
+  overflow-x: auto;
+}
+
+.dlm-fit-modal__tab {
+  min-height: 3.4rem;
+  padding: 0 1.3rem;
+  border: 0.1rem solid rgba(17, 24, 39, 0.12);
+  border-radius: 999px;
+  background: #ffffff;
+  color: rgba(17, 24, 39, 0.72);
+  font-size: 1.12rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.dlm-fit-modal__tab:hover,
+.dlm-fit-modal__tab:focus-visible {
+  border-color: rgba(29, 134, 86, 0.55);
+  color: #146642;
+  outline: none;
+}
+
+.dlm-fit-modal__tab.is-active {
+  border-color: #1D8656;
+  background: #1D8656;
+  color: #ffffff;
+}
+
+.dlm-fit-modal__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: 1.2rem 1.8rem 1.8rem;
+}
+
+.dlm-fit-modal__body .matching-size-guide__toolbar {
+  padding-top: 0;
+}
+
+.dlm-fit-modal__body .matching-size-guide__card {
+  border-radius: 0.8rem;
+}
+
+.dlm-fit-modal__body .matching-size-guide__table tbody tr {
+  outline: none;
+}
+
+.dlm-fit-modal__body .matching-size-guide__table tbody tr:hover td,
+.dlm-fit-modal__body .matching-size-guide__table tbody tr:focus-within td,
+.dlm-fit-modal__body .matching-size-guide__table tbody tr:focus td {
+  background: rgba(29, 134, 86, 0.1);
+}
+
+.dlm-fit-modal__body .matching-size-guide__table tbody tr:hover td:first-child,
+.dlm-fit-modal__body .matching-size-guide__table tbody tr:focus-within td:first-child,
+.dlm-fit-modal__body .matching-size-guide__table tbody tr:focus td:first-child {
+  background: #dff3e9;
+  color: #0f5235;
+}
+
+.dlm-fit-modal__body .matching-size-guide__table tbody tr:focus-visible {
+  outline: 0.2rem solid rgba(29, 134, 86, 0.55);
+  outline-offset: -0.2rem;
+}
+
+@media screen and (min-width: 990px) {
+  .dlm-fit-modal {
+    padding: 1.6rem;
+  }
+
+  .dlm-fit-modal__dialog {
+    width: min(150rem, calc(100vw - 3.2rem));
+    max-height: min(82rem, calc(100vh - 3.2rem));
+  }
+
+  .dlm-fit-modal__body .matching-size-guide__table-wrap {
+    overflow-x: visible;
+  }
+
+  .dlm-fit-modal__body .matching-size-guide__table {
+    table-layout: auto;
+  }
+
+  .dlm-fit-modal__body .matching-size-guide__table th,
+  .dlm-fit-modal__body .matching-size-guide__table td {
+    padding: 0.72rem 0.7rem;
+    white-space: normal;
+  }
+
+  .dlm-fit-modal__body .matching-size-guide__table th:first-child,
+  .dlm-fit-modal__body .matching-size-guide__table td:first-child {
+    white-space: nowrap;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .dlm-fit-modal {
+    align-items: flex-end;
+    padding: 1rem;
+  }
+
+  .dlm-fit-modal__dialog {
+    max-height: calc(100vh - 2rem);
+  }
+
+  .dlm-fit-modal__header,
+  .dlm-fit-modal__tabs,
+  .dlm-fit-modal__body {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+}
+
 @media screen and (min-width: 990px) {
   .product-desktop-ux {
     display: block;
@@ -1158,12 +1362,184 @@
 }
 
 /* 6. Size pills. */
+.product__info-container--matching-set .product-matching-set__size-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin: 0.2rem 0 0.65rem;
+}
+
 .product__info-container--matching-set .product-matching-set__pills {
   display: flex;
   flex-wrap: wrap;
+  flex: 1 1 auto;
   gap: 0.55rem;
-  margin: 0.2rem 0 0.9rem;
+  min-width: 0;
+  margin: 0;
 }
+
+.product__info-container--matching-set .product-matching-set__fit-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 4.4rem;
+  width: 4.4rem;
+  height: 4.4rem;
+  padding: 0;
+  border: 0.15rem solid rgba(17, 24, 39, 0.16);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #146642;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease, transform 0.05s ease;
+}
+
+.product__info-container--matching-set .product-matching-set__fit-icon svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.product__info-container--matching-set .product-matching-set__fit-icon:hover,
+.product__info-container--matching-set .product-matching-set__fit-icon:focus-visible,
+.product__info-container--matching-set .product-matching-set__fit-icon[aria-expanded='true'] {
+  border-color: #1D8656;
+  background: rgba(29, 134, 86, 0.08);
+  color: #0f5235;
+}
+
+.product__info-container--matching-set .product-matching-set__fit-icon:focus-visible {
+  outline: 0.22rem solid rgba(29, 134, 86, 0.35);
+  outline-offset: 0.2rem;
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel[hidden] {
+  display: none !important;
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel {
+  margin: -0.15rem 0 0.75rem;
+  padding: 0.55rem;
+  border: 0.1rem solid rgba(17, 24, 39, 0.12);
+  border-radius: 0.8rem;
+  background: #fbfbfd;
+  overflow: visible;
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  margin-bottom: 0.45rem;
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel-bar strong {
+  min-width: 0;
+  color: #101418;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__card {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table-wrap {
+  overflow: visible;
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table {
+  table-layout: fixed;
+  font-size: 0.9rem;
+  line-height: 1.15;
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table th,
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table td {
+  padding: 0.32rem 0.34rem;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  vertical-align: middle;
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table th:first-child,
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table td:first-child {
+  position: static;
+  box-shadow: none;
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table tbody tr:hover td,
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table tbody tr:focus-within td,
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table tbody tr:focus td {
+  background: rgba(29, 134, 86, 0.12);
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table tbody tr:hover td:first-child,
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table tbody tr:focus-within td:first-child,
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table tbody tr:focus td:first-child {
+  background: rgba(29, 134, 86, 0.18);
+  color: #0f5235;
+}
+
+.product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table tbody tr:focus-visible {
+  outline: 0.2rem solid rgba(29, 134, 86, 0.42);
+  outline-offset: -0.2rem;
+}
+
+@media screen and (max-width: 749px) {
+  .product__info-container--matching-set .product-matching-set__inline-fit-panel {
+    padding: 0.5rem;
+  }
+
+  .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table-wrap {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table {
+    min-width: max(100%, var(--dlm-fit-table-min-width, 100%));
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: auto;
+    font-size: 0.98rem;
+  }
+
+  .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table th,
+  .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table td {
+    min-width: 5.6rem;
+    padding: 0.42rem 0.5rem;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table th:first-child,
+  .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table td:first-child {
+    position: sticky;
+    left: 0;
+    transform: translateX(var(--dlm-fit-scroll-left, 0px));
+    z-index: 2;
+    min-width: 5.2rem;
+    max-width: 6.6rem;
+    box-shadow: 0.1rem 0 0 rgba(17, 24, 39, 0.08);
+  }
+
+  .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table th:first-child {
+    z-index: 3;
+    background: #f7efe8;
+  }
+
+  .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table td:first-child {
+    background: #ffffff;
+  }
+}
+
 .product__info-container--matching-set .product-matching-set__pill {
   display: inline-flex;
   align-items: center;
@@ -1743,24 +2119,6 @@
 .product__info-container--matching-set .product-matching-set__size-blurb-text strong {
   font-weight: 800;
   color: #101418;
-}
-
-/* Per-card "Find {role}'s fit →" link — opens the same shared size
-   guide that the Purchase Confidence "Size guide & fit" link opens. */
-.product__info-container--matching-set .product-matching-set__fit-link {
-  display: inline-block;
-  margin-top: 0.7rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1D8656;
-  text-decoration: underline;
-  text-underline-offset: 0.25rem;
-  text-decoration-thickness: 0.1rem;
-}
-.product__info-container--matching-set .product-matching-set__fit-link:hover,
-.product__info-container--matching-set .product-matching-set__fit-link:focus-visible {
-  color: #146642;
-  outline: none;
 }
 
 /* 8. Progressive "+ Add Dad / + Add Baby" chip row. */
