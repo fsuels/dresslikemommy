@@ -569,51 +569,6 @@
 
       </cart-drawer-items>
       <div class="drawer__footer">
-        {%- comment -%} ── Discount code (collapsible) ── {%- endcomment -%}
-        <div class="cart-drawer__discount">
-          <div class="cart-drawer__discount-toggle">
-            <button type="button" class="cart-drawer__discount-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false'); this.closest('.cart-drawer__discount').querySelector('.cart-drawer__discount-form').classList.toggle('is-open');">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-              {{ 'sections.cart.discount_code_toggle' | t }}
-            </button>
-          </div>
-          <div class="cart-drawer__discount-form">
-            <div class="cart-drawer__discount-input-wrap">
-              <input type="text" class="cart-drawer__discount-input" placeholder="Discount code" id="CartDrawer-Discount" autocomplete="off">
-              <button type="button" class="cart-drawer__discount-apply button button--secondary" id="CartDrawer-DiscountApply" onclick="
-                var code = document.getElementById('CartDrawer-Discount').value;
-                if(!code) return;
-                var btn = this;
-                btn.disabled = true;
-                btn.textContent = '...';
-                fetch('/discount/' + encodeURIComponent(code))
-                  .then(function() { return fetch('/cart.js'); })
-                  .then(function(r) { return r.json(); })
-                  .then(function(cart) {
-                    btn.disabled = false;
-                    btn.textContent = 'Apply';
-                    if(cart.total_discount > 0 || cart.cart_level_discount_applications.length > 0) {
-                      var wrap = btn.closest('.cart-drawer__discount');
-                      wrap.innerHTML = '<div class=\'cart-drawer__discount-success\'><svg width=\'14\' height=\'14\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#2e7d32\' stroke-width=\'2\' aria-hidden=\'true\'><polyline points=\'20 6 9 17 4 12\'/></svg> Code <strong>' + code + '</strong> applied!</div>';
-                      location.reload();
-                    } else {
-                      var input = document.getElementById('CartDrawer-Discount');
-                      input.style.borderColor = '#c62828';
-                      var existing = wrap ? wrap.querySelector('.cart-drawer__discount-error') : null;
-                      if(!existing) {
-                        var err = document.createElement('p');
-                        err.className = 'cart-drawer__discount-error';
-                        err.textContent = 'Invalid or expired code';
-                        btn.parentNode.after(err);
-                      }
-                    }
-                  })
-                  .catch(function() { btn.disabled = false; btn.textContent = 'Apply'; });
-              ">Apply</button>
-            </div>
-          </div>
-        </div>
-
         {%- comment -%} ── Order summary: shipping + savings + total ── {%- endcomment -%}
         <div class="cart-drawer__summary">
           {%- if cart.cart_level_discount_applications.size > 0 -%}
@@ -647,11 +602,6 @@
             <span>{{ 'sections.cart.shipping_label' | t }}</span>
             <span class="cart-drawer__shipping-free">{{ 'sections.cart.shipping_free' | t }}</span>
           </div>
-          {%- if localization.country.name != blank -%}
-            <p class="cart-drawer__shipping-note">
-              {{ 'sections.cart.shipping_country_reassurance' | t: country: localization.country.name }}
-            </p>
-          {%- endif -%}
           <div class="cart-drawer__country-checker">
             {% render 'shipping-country-checker-trigger', context: 'cart' %}
           </div>
@@ -661,17 +611,40 @@
             <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
           </div>
 
-          <small class="tax-note caption-large rte">
-            {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-              {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
-            {%- elsif cart.taxes_included -%}
-              {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
-            {%- elsif shop.shipping_policy.body != blank -%}
-              {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
-            {%- else -%}
-              {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+          <div class="cart-drawer__checkout-note caption-large">
+            <span>
+              {%- if cart.taxes_included -%}
+                Taxes included.
+              {%- else -%}
+                Taxes calculated at checkout.
+              {%- endif -%}
+            </span>
+            {%- if shop.shipping_policy.body != blank -%}
+              <button type="button" class="cart-drawer__policy-trigger" aria-expanded="false" aria-controls="CartDrawer-ShippingPolicy" onclick="
+                var panel = document.getElementById('CartDrawer-ShippingPolicy');
+                if (!panel) return;
+                var isHidden = panel.hasAttribute('hidden');
+                panel.toggleAttribute('hidden', !isHidden);
+                this.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+              ">Shipping details</button>
             {%- endif -%}
-          </small>
+          </div>
+          {%- if shop.shipping_policy.body != blank -%}
+            <div id="CartDrawer-ShippingPolicy" class="cart-drawer__policy-panel" hidden>
+              <div class="cart-drawer__policy-panel-header">
+                <strong>Shipping details</strong>
+                <button type="button" class="cart-drawer__policy-close" aria-label="{{ 'accessibility.close' | t }}" onclick="
+                  var panel = document.getElementById('CartDrawer-ShippingPolicy');
+                  var trigger = document.querySelector('[aria-controls=&quot;CartDrawer-ShippingPolicy&quot;]');
+                  if (panel) panel.setAttribute('hidden', 'hidden');
+                  if (trigger) trigger.setAttribute('aria-expanded', 'false');
+                ">×</button>
+              </div>
+              <div class="cart-drawer__policy-body rte">
+                {{ shop.shipping_policy.body }}
+              </div>
+            </div>
+          {%- endif -%}
         </div>
 
         {%- comment -%} ── Checkout CTA + delivery reassurance ── {%- endcomment -%}
@@ -706,26 +679,9 @@
             <span class="trust-strip__label">{{ 'sections.cart.trust.secure' | t }}</span>
           </span>
           <span class="trust-strip__item">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span class="trust-strip__label">{{ 'sections.cart.trust.encrypted' | t }}</span>
-          </span>
-          <span class="trust-strip__item">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <span class="trust-strip__label">{{ 'sections.cart.trust.free_ship' | t }}</span>
           </span>
-          <span class="trust-strip__item">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            <span class="trust-strip__label">{{ 'sections.cart.trust.returns' | t }}</span>
-          </span>
-        </div>
-
-        {%- comment -%} ── Payment icons (compact, single row) ── {%- endcomment -%}
-        <div class="cart-drawer__payment-icons">
-          <div class="payment-icons__list">
-            {%- for type in shop.enabled_payment_types -%}
-              {{ type | payment_type_svg_tag: class: 'payment-icon' }}
-            {%- endfor -%}
-          </div>
         </div>
 
         {%- comment -%} ── You may also like — moved below all checkout elements ── {%- endcomment -%}

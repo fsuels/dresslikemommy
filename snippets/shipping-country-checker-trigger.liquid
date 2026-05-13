@@ -14,10 +14,18 @@
     aria-haspopup="dialog"
   >
     <span class="shipping-country-checker-trigger__label">
-      {{ 'products.shipping_country.checker_trigger' | t }}
+      {%- if checker_context == 'cart' and current_country != blank -%}
+        Ships to {{ current_country }}
+      {%- elsif checker_context == 'cart' -%}
+        Check shipping country
+      {%- else -%}
+        {{ 'products.shipping_country.checker_trigger' | t }}
+      {%- endif -%}
     </span>
     <span class="shipping-country-checker-trigger__meta">
-      {%- if current_country != blank -%}
+      {%- if checker_context == 'cart' -%}
+        {{ country_count }} countries
+      {%- elsif current_country != blank -%}
         {{ 'products.shipping_country.checker_trigger_meta_country' | t: country: current_country, count: country_count }}
       {%- else -%}
         {{ 'products.shipping_country.checker_trigger_meta' | t: count: country_count }}

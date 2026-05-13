@@ -125,11 +125,6 @@
                   <span>{{ 'sections.cart.shipping_label' | t }}</span>
                   <span class="cart-page__shipping-free">{{ 'sections.cart.shipping_free' | t }}</span>
                 </div>
-                {%- if localization.country.name != blank -%}
-                  <p class="cart-page__shipping-note">
-                    {{ 'sections.cart.shipping_country_reassurance' | t: country: localization.country.name }}
-                  </p>
-                {%- endif -%}
                 <div class="cart-page__country-checker">
                   {% render 'shipping-country-checker-trigger', context: 'cart' %}
                 </div>
@@ -138,17 +133,23 @@
                   <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
                 </div>
 
-                <small class="tax-note caption-large rte">
-                  {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-                    {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                  {%- elsif cart.taxes_included -%}
-                    {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
-                  {%- elsif shop.shipping_policy.body != blank -%}
-                    {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
-                  {%- else -%}
-                    {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+                <div class="cart-page__checkout-note caption-large">
+                  <span>
+                    {%- if cart.taxes_included -%}
+                      Taxes included.
+                    {%- else -%}
+                      Taxes calculated at checkout.
+                    {%- endif -%}
+                  </span>
+                  {%- if shop.shipping_policy.body != blank -%}
+                    <details class="cart-page__policy-details">
+                      <summary>Shipping details</summary>
+                      <div class="rte">
+                        {{ shop.shipping_policy.body }}
+                      </div>
+                    </details>
                   {%- endif -%}
-                </small>
+                </div>
               </div>
             {%- else -%}
               {%- comment -%} Delivery timing remains hidden until address-specific checkout rates are confirmed. {%- endcomment -%}
