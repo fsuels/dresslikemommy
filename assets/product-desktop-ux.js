@@ -1113,6 +1113,37 @@ function inferRoleKeyFromType(typeValue, baseRoleKey) {
   return '';
 }
 
+function inferBaseRoleKeyFromStandaloneSize(sizeLabel) {
+  var text = normalizeText(sizeLabel);
+  if (!text) return '';
+
+  var compact = text.replace(/[\s._-]+/g, '');
+  if (/^(xxs|xs|s|m|l|xl|xxl|xxxl|[2-9]xl|small|medium|large|extralarge|onesize|os)$/.test(compact)) {
+    return 'adult';
+  }
+
+  if (
+    /^\d+(?:\s*[–-]\s*\d+)?\s*(?:years?|yrs?|yr|y|months?|mos?|mo|t)?$/.test(text) ||
+    /\b(?:years?|yrs?|months?|mos?|toddler|kids?|children)\b/.test(text)
+  ) {
+    return 'child';
+  }
+
+  return '';
+}
+
+function getStandaloneRoleInfo(sizeLabel, roleKey) {
+  var cleanedSize = sanitizeRoleSizeLabel(sizeLabel);
+  if (!cleanedSize || !roleKey) return null;
+
+  return {
+    key: roleKey,
+    label: getLocalizedRoleLabelByKey(roleKey),
+    sizeLabel: cleanedSize,
+    fullLabel: String(sizeLabel || '').trim(),
+  };
+}
+
 function cloneRoleInfoWithKey(roleInfo, roleKey) {
   if (!roleInfo || !roleKey || roleInfo.key === roleKey) return roleInfo;
 
@@ -1125,10 +1156,16 @@ function cloneRoleInfoWithKey(roleInfo, roleKey) {
 }
 
 function getRoleInfoForVariant(variant, options, sizeOptionIndex) {
-  var roleInfo = parseRoleFromSizeLabel(getOptionValue(variant, sizeOptionIndex));
+  var rawSizeLabel = getOptionValue(variant, sizeOptionIndex);
+  var roleInfo = parseRoleFromSizeLabel(rawSizeLabel);
+  var skuRoleKey = inferRoleKeyFromSku(variant && variant.sku);
+
+  if (!roleInfo) {
+    roleInfo = getStandaloneRoleInfo(rawSizeLabel, skuRoleKey || inferBaseRoleKeyFromStandaloneSize(rawSizeLabel));
+  }
+
   if (!roleInfo) return null;
 
-  var skuRoleKey = inferRoleKeyFromSku(variant && variant.sku);
   if (skuRoleKey) {
     roleInfo = cloneRoleInfoWithKey(roleInfo, skuRoleKey);
   }
