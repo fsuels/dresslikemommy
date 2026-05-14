@@ -5534,6 +5534,7 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
       panel.style.removeProperty('--dlm-fit-frozen-width');
       panel.style.removeProperty('--dlm-fit-frozen-height');
       panel.style.removeProperty('--dlm-fit-overlay-scroll-left');
+      panel.style.removeProperty('--dlm-fit-scroll-left');
       return;
     }
 
@@ -5630,8 +5631,11 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     if (!tableWrap) return;
     var needsScrollTransform = null;
     var syncScroll = function () {
-      var scrollLeft = tableWrap.scrollLeft || 0;
+      var rawScrollLeft = tableWrap.scrollLeft || 0;
+      var maxScrollLeft = Math.max(0, (tableWrap.scrollWidth || 0) - (tableWrap.clientWidth || 0));
+      var scrollLeft = Math.min(maxScrollLeft, Math.max(0, rawScrollLeft));
       var offset = 0;
+      if (Math.abs(rawScrollLeft - scrollLeft) > 0.5) tableWrap.scrollLeft = scrollLeft;
       panel.style.setProperty('--dlm-fit-overlay-scroll-left', String(scrollLeft) + 'px');
       if (scrollLeft > 0) {
         if (needsScrollTransform === null) {

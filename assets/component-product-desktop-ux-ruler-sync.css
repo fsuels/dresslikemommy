@@ -1511,6 +1511,7 @@ body.dlm-fit-modal-open {
   .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table-wrap {
     overflow-x: auto;
     overflow-y: visible;
+    overscroll-behavior-x: none;
     -webkit-overflow-scrolling: touch;
   }
 
@@ -1578,9 +1579,11 @@ body.dlm-fit-modal-open {
 
   .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table-wrap[data-dlm-fit-frozen-overlay='true'] .matching-size-guide__table th:first-child,
   .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table-wrap[data-dlm-fit-frozen-overlay='true'] .matching-size-guide__table td:first-child {
-    width: 0 !important;
-    min-width: 0 !important;
-    max-width: 0 !important;
+    position: static !important;
+    z-index: auto;
+    width: var(--dlm-fit-frozen-width, 4.8rem) !important;
+    min-width: var(--dlm-fit-frozen-width, 4.8rem) !important;
+    max-width: var(--dlm-fit-frozen-width, 4.8rem) !important;
     padding-right: 0;
     padding-left: 0;
     border-right: 0;
@@ -1588,7 +1591,9 @@ body.dlm-fit-modal-open {
     color: transparent;
     background: transparent;
     box-shadow: none;
+    transform: none !important;
     overflow: hidden;
+    pointer-events: none;
   }
 
   .product__info-container--matching-set .product-matching-set__inline-fit-panel .matching-size-guide__table th,
