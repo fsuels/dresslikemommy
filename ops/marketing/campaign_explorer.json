@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-05-14 08:12 EDT",
-  "source_note": "Human-facing campaign details for operator_cockpit.html. Values are repo-known plus the latest saved live/read-only evidence; stale or missing live facts are labeled explicitly. Expert strategy fields are sourced from ops/marketing/expert_growth_playbook_2026.md.",
+  "last_updated": "2026-05-14 08:49 EDT",
+  "source_note": "Human-facing campaign details for operator_cockpit.html. Values are repo-known plus the latest saved live/read-only evidence; stale or missing live facts are labeled explicitly. Expert strategy fields are sourced from ops/marketing/expert_growth_playbook_2026.md. 2026-05-14 update: active keyword campaigns now include market/language-specific long-tail strategy from the GB/CA/AU Day 1 zero-impression keyword repair packet. 2026-05-14 08:18 update: fresh GB/CA/AU Ads monitor cleared stale search-term filters and passed keyword/RSA/final URL checks, but live final URLs still fail the supplier/source sanitizer gate; exact-scope bounded action packet is blocked. 2026-05-14 owner correction added: hard $0.15 CPC cap; head/near-head keyword rows are rejected unless validated at $0.15. 2026-05-14 US primary correction: US is the biggest market and must be first in keyword intelligence; GB/CA/AU are expansion Search repair lanes. 2026-05-14 08:49 update: local keyword system now includes keyword_strategy.md, keyword_scoring_rubric.md, and a 105-row keyword_universe.csv; it is for validation and controlled promotion, not live upload.",
   "channels": [
     {
       "id": "google_ads",
@@ -19,7 +19,7 @@
       "campaign_id": "23838895360",
       "campaign_name": "DLM_GB_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507",
       "status_label": "ACTIVE: Enabled / Eligible",
-      "running_state": "Running as a live micro-test, but latest readback has 0 impressions, 0 clicks, $0.00 cost, and 0.00 conversions for 2026-05-13.",
+      "running_state": "Running as a live micro-test with no spend/click/impression/conversion learning yet; current Ads-side structure is intact, but no expansion is allowed while the landing sanitizer fails.",
       "budget": "$2.00/day",
       "bid_strategy": "Manual CPC, target ad group max CPC $0.15",
       "bid_strategy_type": "Manual CPC, not Maximize Clicks",
@@ -37,10 +37,10 @@
       ],
       "optimization_score": "97.6%",
       "ad_strength": "Pending",
-      "health_status": "NO LEARNING YET / TODAY READBACK NEEDED",
+      "health_status": "ADS READBACK PASSED / LANDING AND $0.15 CPC GATES BLOCK LIVE ACTION",
       "activated_at": "2026-05-12 07:21:52 EDT (04:21:52 PDT) under exact owner approval; propagation-clean monitor at 2026-05-12 07:38:01 EDT.",
-      "latest_readback": "2026-05-14 05:34:01 EDT; saved metrics are for reporting day 2026-05-13.",
-      "next_decision": "Action due now: saved T+24 evidence already shows zero impressions. Run same-day serving diagnosis and prepare high-buyer-intent long-tail or auction-entry options; T+72 is escalation, not permission to wait.",
+      "latest_readback": "2026-05-14 08:10:31 EDT Ads monitor; 2026-05-14 08:17:17 EDT public landing source readback.",
+      "next_decision": "Do not execute keyword, bid, status, or negative changes yet. Ads-side checks passed and stale search-term filters are clear, but the live final URL still exposes a supplier/source URL and the current head-term auction fails the hard $0.15 CPC cap. After sanitizer sync/readback, validate only true long-tail buyer-moment candidates at max CPC $0.15; no bid raise and no close-head variants.",
       "success_measurement": [
         "Final success: as many profitable sales as possible while targeting about 650% ROAS.",
         "Day 1 growth rule: by tomorrow report sales, revenue, CPA, ROAS, and what changed; zero impressions after 24 hours requires same-day diagnosis and action planning.",
@@ -50,9 +50,9 @@
         "Early diagnostics such as impressions, clicks, CTR, CPC, ad strength, Quality Score, and search terms only matter because they explain how to reach profitable sales."
       ],
       "metrics_snapshot": [
-        "Today 2026-05-14: fresh live readback needed; not captured in current artifacts.",
-        "Yesterday 2026-05-13: 0 impressions, 0 clicks, $0.00 cost, 0.00 conversions, $0.00 conversion value.",
-        "Baseline 2026-05-12 07:38 EDT: enabled/eligible, $2/day, 1 target ad group enabled, 9 ad groups paused, $0.00 cost, 0.00 conversions, $0.00 conversion value."
+        "Fresh monitor 2026-05-14 08:10 EDT: displayed 0 impressions, 0 clicks, $0.00 cost, 0.00 conversions, $0.00 conversion value in the current visible monitor window.",
+        "Search terms after filter clear: stale Keyword: \"human hair wigs\" chip removed; no search terms available afterward.",
+        "Landing gate 2026-05-14 08:17 EDT: HTTP 200 and expected currency signal, but data-analytics-vendor still exposes detail.1688.com."
       ],
       "test_clock": [
         "T+24 checkpoint was 2026-05-13 07:21 EDT; saved May 14 readback shows zero impressions/clicks for reporting day May 13, so action is due now.",
@@ -95,12 +95,15 @@
       ],
       "objective": "Test English-first UK demand for high-intent mommy-and-me / mother-daughter dress shoppers with the smallest safe live Search unit.",
       "strategy_reasoning": [
+        "2026-05-14 keyword repair: GB now has a market-language intent map, not a generic copied keyword set.",
+        "UK search behavior may use mum/mummy and holiday vocabulary, while the current exact ad group still owns the original mommy-and-me dress test.",
+        "The next sales-moving action is not broadening blindly; it is fresh read-only diagnosis plus an approval-ready long-tail packet if gates pass.",
         "Exact-match only limits waste while the account learns whether non-US English traffic can convert.",
         "The landing URL is country-qualified for GB and showed GBP/country signals in readback.",
         "Only the dress-intent ad group is enabled; 9 other ad groups remain paused so broader category tests cannot leak spend.",
         "No optimization edit is justified until impressions, clicks, search terms, or conversion value appear."
       ],
-      "deadline_or_next_check": "Monitor after reporting populates; first checks are 24h, 72h, and 7d from enablement. Current next check: fresh read-only monitor before any negative, pause, scale, bid, or budget recommendation.",
+      "deadline_or_next_check": "Immediate blocker: live paid landing sanitizer sync/readback. After that passes, rerun GB/CA/AU monitor and reviewer before any bounded live Ads action.",
       "active_objects": [
         "Campaign enabled: 23838895360",
         "Ad group enabled: 194138528537 / Mommy & Me Dresses - Exact",
@@ -113,16 +116,20 @@
         "[mother daughter dresses] / Exact / Eligible / criterion 301154336396 / max CPC $0.15"
       ],
       "keyword_selection_criteria": [
-        "These are not assumed to be the final smartest keywords; they are the first controlled exact-match learning cohort.",
-        "Selection criteria: high commercial mother-daughter / mommy-and-me dress intent, exact match only, direct fit to the country-qualified PDP, English-first GB search behavior, and small enough to avoid broad waste.",
-        "The keywords were chosen to test core category demand before expanding into broader, phrase, event, competitor, or collection-level terms.",
-        "A keyword becomes smarter only if fresh data proves it: impressions, qualified search terms, CTR/CPC, conversion value, CPA, and path to 650% ROAS."
+        "2026-05-14 correction: GB cannot be run as only the same three obvious head terms copied from other markets; the enabled keywords are a starter control, not the strategy.",
+        "GB strategy must use English-UK vocabulary where natural: mum, mummy, holiday, family photo, family photoshoot, wedding guest, beach, and mother-daughter dress intent.",
+        "Core exact ad group keeps ownership of current mommy/mother-daughter dress demand; approved phrase or long-tail tests should be isolated into tightly themed ad groups.",
+        "Do not send pajamas, swimwear, Daddy-and-Me, or broad family beach intent to the beige chiffon dress PDP unless the landing/product route is changed to match that promise.",
+        "A GB keyword becomes smart only after impressions, qualified search terms, CPC, clicks, conversion value, CPA, and path to about 650% ROAS prove it.",
+        "2026-05-14 hard CPC correction: owner cannot pay more than $0.15 CPC; first-page estimates above $0.15 are rejected action rows, not bid-up opportunities.",
+        "UK vocabulary is useful only when it makes a real long-tail buyer-moment query; mum/mummy alone is not enough.",
+        "No candidate may upload unless Keyword Planner or keyword UI validation shows first-page estimate <= $0.15 or no below-first-page warning at max CPC $0.15."
       ],
       "negative_keyword_strategy": [
-        "Existing base negatives cover free/DIY/sewing-pattern/tutorial intent, marketplace/source-quality traffic, used/rental, adult/sexy, doll/game, supplier/source, and fabric-only traffic.",
-        "Market watchlist is saved in `gb_ca_au_negative_watchlist.csv`; examples for GB include Primark, Next, Marks and Spencer, ASOS, Vinted, eBay, near me, pickup, same day, hire, and op shop style intent.",
-        "Watchlist status is `watch_only_not_uploaded`; do not add negatives because they look plausible.",
-        "Add exact or phrase negatives only when actual search-term data shows irrelevant, low-buying, wrong-channel, local-store, supplier/source, used/rental, free/DIY, or unsupported delivery-speed intent."
+        "GB watchlist stays watch_only_not_uploaded until search-term evidence proves waste.",
+        "Market watch themes: Primark, Next, M&S, ASOS, Vinted, eBay, near me, pickup, same day, hire, sewing pattern, free, used, and source/supplier terms.",
+        "Do not negative match retailer or marketplace names by hunch; use exact/phrase negatives only after real queries show irrelevant or unprofitable intent.",
+        "Do not block mommy/mum/mummy variants prematurely; use the market terms to learn local demand rather than erase it."
       ],
       "daily_optimization_owner": [
         "Primary owner: google_ads_operator monitors this campaign daily.",
@@ -132,6 +139,7 @@
       ],
       "continuous_improvement_loop": [
         "By tomorrow: report paid-growth sales, revenue, CPA, ROAS, and the exact action taken or due if sales/impressions remain zero.",
+        "Same-day keyword repair now means market-language long-tail planning is required for zero-impression active Search; do not leave copied generic head terms as the whole strategy.",
         "Daily: read today/yesterday impressions, clicks, cost, search terms, conversions, conversion value, Quality Score columns if available, ad strength, landing route, and blocker state.",
         "If zero impressions by T+72: diagnose exact-match volume, CPC cap, eligibility, ad/RSA pending state, Quality Score gaps, policy/destination, impression share lost, and geo/keyword settings.",
         "If qualified search terms appear: keep winners, identify expansion candidates, and build approval-ready keyword/ad tests inside caps.",
@@ -144,25 +152,35 @@
         "Visible description starts: Shop mother daughter matching dresses for photos, birthdays and vacations."
       ],
       "quality_notes": [
-        "Campaign optimization score is 97.6% in the latest campaign monitor.",
-        "Ad strength is Pending in the saved ad entity page, not Excellent/Good yet.",
-        "Keyword rows read Eligible, but there is not enough traffic data to score quality or ROAS."
+        "Keyword UI exposes Quality Score, Exp. CTR, Ad relevance, Landing page exp., policy, and final URL columns.",
+        "Current keywords are Eligible (Limited) because max CPC $0.15 is below first-page bid estimates around $0.65-$0.74.",
+        "Owner hard CPC cap is $0.15; current Eligible (Limited) head terms with $0.65-$0.74 first-page estimates are economic rejects for bid-up and close-variant expansion.",
+        "Three exact keywords and one RSA are enabled by read-only RPC; all keyword/ad final URLs are country-qualified.",
+        "No search-term negative is justified because search terms are filter-clean but empty/no terms."
       ],
       "evidence": [
         "ops/marketing/current_marketing_state.md",
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/LIVE_RECONCILIATION_REPORT.md",
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/GB_CA_AU_INNER_ENABLE_EXECUTION_REPORT.md",
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/GB/ads/page_text.txt",
-        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/GB/keywords/page_text.txt"
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/GB/keywords/page_text.txt",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-gb-ca-au-keyword-strategy-repair/GB_CA_AU_DAY1_ZERO_IMPRESSION_KEYWORD_STRATEGY_REPAIR.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-gb-ca-au-keyword-strategy-repair/gb_ca_au_high_intent_candidate_map.csv",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/FRESH_GB_CA_AU_ADS_MONITOR_AND_GATE_REVIEW.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/exact_scope_bounded_action_packet_blocked.csv",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/CPC_015_LONG_TAIL_CORRECTION.md"
       ],
       "human_verify": [
         "Check that campaign, ad group, 3 keywords, and 1 RSA are still enabled/eligible.",
         "Check that only the named exact ad group is enabled.",
         "Check whether ad strength has moved from Pending.",
         "Check search terms only after stale filters are absent and impressions/clicks exist.",
-        "Check whether the current obvious exact terms are too competitive for a $0.15 CPC cap and whether long-tail buyer-intent alternatives can learn faster without cannibalizing the exact test."
+        "Check whether the current obvious exact terms are too competitive for a $0.15 CPC cap and whether long-tail buyer-intent alternatives can learn faster without cannibalizing the exact test.",
+        "Verify GB keyword strategy includes mum/mummy/holiday/photo-day variants and does not route non-dress intent to the dress PDP.",
+        "Verify live final URL source/DOM is sanitizer-clean before any keyword, bid, status, or negative action.",
+        "After sanitizer passes, rerun search-term pages and confirm filters remain absent before judging negatives."
       ],
-      "blocked_or_risk": "The active paid landing has a local supplier/source sanitizer fix but still needs approved live theme sync/readback before expansion.",
+      "blocked_or_risk": "Fresh public final URL readback still exposes detail.1688.com in data-analytics-vendor, and current head/near-head keyword economics fail the hard $0.15 CPC cap; live Ads traffic expansion is blocked until sanitizer and CPC validation gates pass.",
       "expert_strategy_standard": [
         "Source-backed standard: follow Google Ads Help for match types, search terms, negatives, Target ROAS readiness, Quality Score, ad quality, and account keyword prioritization; follow Pinterest Business for lower-funnel product creative and clickthrough consistency; follow OpenAI/Anthropic agent guidance for clear instructions, guardrails, evals, and simple accountable workflows.",
         "Day 1 rule: every day without sales growth, usable learning, or a sales-moving improvement is a failure signal that requires action.",
@@ -174,12 +192,11 @@
         "For zero-impression Search, expert speed means moving beyond only obvious competitive keywords into high-buyer-intent long-tail testing while preserving caps, measurement, and anti-cannibalization."
       ],
       "keyword_economics": [
-        "Current exact keywords are a starter hypothesis, not proven winners; they become smart only if daily data shows qualified search terms, acceptable CPC, relevant clicks, and a credible CPA/ROAS path.",
-        "Use aggressive AI-speed ideation for long-tail buyer-intent themes, but every candidate still needs landing fit, no self-cannibalization, plausible CPC/CPA, and reviewer gate before any live action.",
-        "Long-tail themes to investigate quickly: mother-daughter wedding guest dresses, mommy and me birthday dresses, matching family photoshoot dresses, family beach vacation outfits, mother daughter floral dresses, mom and baby girl dresses, and country-specific wording where natural.",
-        "Prefer high-commercial-intent mother-daughter, mommy-and-me, matching family dress, role, and event terms before broad fashion, inspiration, or low-intent bargain terms.",
-        "Cheap CPC is not enough: reject terms that are cheap because they are free/DIY/sewing, used/rental, unsupported marketplace, supplier/source, local pickup, doll/game, or wrong-product intent.",
-        "A term is scale-eligible only when fresh evidence supports profitable sales: target CPA about $10.77, conversion value proof, and path to about 650% ROAS."
+        "Hard cap: max CPC remains $0.15. Do not raise bids above this cap to force generic auction entry.",
+        "Rejected: current head terms and close variants with first-page estimates around $0.65-$0.74; they do not support the 650% ROAS path at the owner CPC ceiling.",
+        "Priority GB validation-only long tails: [beige mother daughter summer dresses], [chiffon mother daughter summer dresses], [mum daughter summer photo dresses], [mother daughter beach photo dresses]. Reject [mummy and me dresses] as a close head variant unless future readback proves <= $0.15 auction entry and profitable intent.",
+        "Every candidate remains validation-only until landing sanitizer passes, CPC validation passes, reviewer approves, and after-state readback is planned.",
+        "Target economics remain about $10.77 CPA from $70 AOV at 650% ROAS; candidate rows are not scale-ready until real purchase/value evidence appears."
       ],
       "anti_cannibalization_rules": [
         "One active query-intent owner per country/language/landing path: the enabled exact ad group owns the named mommy-and-me dress intent for this micro-test.",
@@ -195,7 +212,7 @@
       "campaign_id": "23834423669",
       "campaign_name": "DLM_CA_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507",
       "status_label": "ACTIVE: Enabled / Eligible",
-      "running_state": "Running as a live micro-test, but latest readback has 0 impressions, 0 clicks, $0.00 cost, and 0.00 conversions for 2026-05-13.",
+      "running_state": "Running as a live micro-test with no spend/click/impression/conversion learning yet; current Ads-side structure is intact, but no expansion is allowed while the landing sanitizer fails.",
       "budget": "$2.00/day",
       "bid_strategy": "Manual CPC, target ad group max CPC $0.15",
       "bid_strategy_type": "Manual CPC, not Maximize Clicks",
@@ -213,10 +230,10 @@
       ],
       "optimization_score": "97.6%",
       "ad_strength": "Pending",
-      "health_status": "NO LEARNING YET / TODAY READBACK NEEDED",
+      "health_status": "ADS READBACK PASSED / LANDING AND $0.15 CPC GATES BLOCK LIVE ACTION",
       "activated_at": "2026-05-12 07:21:52 EDT (04:21:52 PDT) under exact owner approval; propagation-clean monitor at 2026-05-12 07:38:01 EDT.",
-      "latest_readback": "2026-05-14 05:34:01 EDT; saved metrics are for reporting day 2026-05-13.",
-      "next_decision": "Action due now: saved T+24 evidence already shows zero impressions. Run same-day serving diagnosis, clear/avoid stale search-term filters, and prepare high-buyer-intent long-tail or auction-entry options.",
+      "latest_readback": "2026-05-14 08:10:31 EDT Ads monitor; 2026-05-14 08:17:17 EDT public landing source readback.",
+      "next_decision": "Do not execute keyword, bid, status, or negative changes yet. Ads-side checks passed and stale search-term filters are clear, but the live final URL still exposes a supplier/source URL and the current head-term auction fails the hard $0.15 CPC cap. After sanitizer sync/readback, validate only true long-tail buyer-moment candidates at max CPC $0.15; no bid raise and no close-head variants.",
       "success_measurement": [
         "Final success: as many profitable sales as possible while targeting about 650% ROAS.",
         "Day 1 growth rule: by tomorrow report sales, revenue, CPA, ROAS, and what changed; zero impressions after 24 hours requires same-day diagnosis and action planning.",
@@ -226,9 +243,9 @@
         "Early diagnostics such as impressions, clicks, CTR, CPC, ad strength, Quality Score, and search terms only matter because they explain how to reach profitable sales."
       ],
       "metrics_snapshot": [
-        "Today 2026-05-14: fresh live readback needed; not captured in current artifacts.",
-        "Yesterday 2026-05-13: 0 impressions, 0 clicks, $0.00 cost, 0.00 conversions, $0.00 conversion value.",
-        "Baseline 2026-05-12 07:38 EDT: enabled/eligible, $2/day, 1 target ad group enabled, 9 ad groups paused, $0.00 cost, 0.00 conversions, $0.00 conversion value."
+        "Fresh monitor 2026-05-14 08:10 EDT: displayed 0 impressions, 0 clicks, $0.00 cost, 0.00 conversions, $0.00 conversion value in the current visible monitor window.",
+        "Search terms after filter clear: stale Keyword: \"human hair wigs\" chip removed; no search terms available afterward.",
+        "Landing gate 2026-05-14 08:17 EDT: HTTP 200 and expected currency signal, but data-analytics-vendor still exposes detail.1688.com."
       ],
       "test_clock": [
         "T+24 checkpoint was 2026-05-13 07:21 EDT; saved May 14 readback shows zero impressions/clicks for reporting day May 13, so action is due now.",
@@ -271,12 +288,15 @@
       ],
       "objective": "Test English-first Canada demand for the same exact mommy-and-me dress intent after GB proved safe enough to extend to another English market.",
       "strategy_reasoning": [
+        "2026-05-14 keyword repair: CA now has an English-Canada intent map plus a clearly gated French-Canada future lane.",
+        "Canadian search behavior may mix family photos/family pictures and Canada-qualified shopping terms; current exact keywords still own only the original English dress test.",
+        "The next sales-moving action is fresh read-only diagnosis with stale CA search-term filters cleared, then an approval-ready long-tail packet if gates pass.",
         "Canada stays English-first and low-complexity for the first expansion pair.",
         "Exact-match-only targeting avoids broad query drift.",
         "The landing URL is country-qualified for CA and showed CAD/country signals in readback.",
         "Search-term review is currently blocked by a stale unrelated UI filter, so no negative recommendation is valid yet."
       ],
-      "deadline_or_next_check": "Fresh read-only monitor after reporting populates; clear/avoid the stale search-term filter before judging search terms.",
+      "deadline_or_next_check": "Immediate blocker: live paid landing sanitizer sync/readback. After that passes, rerun GB/CA/AU monitor and reviewer before any bounded live Ads action.",
       "active_objects": [
         "Campaign enabled: 23834423669",
         "Ad group enabled: 196679079575 / Mommy & Me Dresses - Exact",
@@ -289,16 +309,20 @@
         "[mother daughter dresses] / Exact / Eligible / criterion 301154336396 / max CPC $0.15"
       ],
       "keyword_selection_criteria": [
-        "These are not assumed to be the final smartest keywords; they are the first controlled exact-match learning cohort.",
-        "Selection criteria: high commercial mother-daughter / mommy-and-me dress intent, exact match only, direct fit to the country-qualified PDP, English-first CA search behavior, and small enough to avoid broad waste.",
-        "The keywords were chosen to test core category demand before expanding into broader, phrase, event, competitor, or collection-level terms.",
-        "A keyword becomes smarter only if fresh data proves it: impressions, qualified search terms, CTR/CPC, conversion value, CPA, and path to 650% ROAS."
+        "2026-05-14 correction: CA cannot be only the same three obvious exact head terms copied from GB/AU; the enabled keywords are a starter English-Canada control, not the whole strategy.",
+        "CA strategy must use Canadian English and Canada-qualified modifiers where useful: Canada, family photos, family pictures, vacation, beach, wedding guest, birthday, and mommy/mother-daughter dress intent.",
+        "Do not mix French-Canada keywords into this active English-first campaign; French terms require native signoff, French landing QA, separate ownership, and exact approval.",
+        "Core exact ad group keeps ownership of English mommy/mother-daughter dress demand; approved phrase or long-tail tests should be isolated into tightly themed ad groups.",
+        "A CA keyword becomes smart only after impressions, qualified search terms, CPC, clicks, conversion value, CPA, and path to about 650% ROAS prove it.",
+        "2026-05-14 hard CPC correction: owner cannot pay more than $0.15 CPC; first-page estimates above $0.15 are rejected action rows, not bid-up opportunities.",
+        "Canada modifiers must be attached to product-specific or buyer-moment intent; keep French-Canada separate until native/landing gates pass.",
+        "No candidate may upload unless Keyword Planner or keyword UI validation shows first-page estimate <= $0.15 or no below-first-page warning at max CPC $0.15."
       ],
       "negative_keyword_strategy": [
-        "Existing base negatives cover free/DIY/sewing-pattern/tutorial intent, marketplace/source-quality traffic, used/rental, adult/sexy, doll/game, supplier/source, and fabric-only traffic.",
-        "Market watchlist is saved in `gb_ca_au_negative_watchlist.csv`; examples for CA include Walmart Canada, Old Navy, Joe Fresh, Winners, Canadian Tire, Shein Canada, Temu Canada, Poshmark, Facebook Marketplace, Kijiji, near me, pickup, and same day.",
-        "Watchlist status is `watch_only_not_uploaded`; do not add negatives because they look plausible.",
-        "Add exact or phrase negatives only when actual search-term data shows irrelevant, low-buying, wrong-channel, local-store, supplier/source, used/rental, free/DIY, or unsupported delivery-speed intent."
+        "CA watchlist stays watch_only_not_uploaded until search-term evidence proves waste.",
+        "Market watch themes: Walmart Canada, Old Navy, Joe Fresh, Winners, Amazon, Shein Canada, Temu Canada, Poshmark, Kijiji, near me, pickup, same day, pattern, free, used, rental, and source/supplier terms.",
+        "Do not negative match marketplace or retailer terms by hunch; use exact/phrase negatives only after real queries show irrelevant or unprofitable intent.",
+        "Do not upload French negatives or French keywords into this English-first active campaign without native-language review and separate routing."
       ],
       "daily_optimization_owner": [
         "Primary owner: google_ads_operator monitors this campaign daily.",
@@ -308,6 +332,7 @@
       ],
       "continuous_improvement_loop": [
         "By tomorrow: report paid-growth sales, revenue, CPA, ROAS, and the exact action taken or due if sales/impressions remain zero.",
+        "Same-day keyword repair now means market-language long-tail planning is required for zero-impression active Search; do not leave copied generic head terms as the whole strategy.",
         "Daily: read today/yesterday impressions, clicks, cost, search terms, conversions, conversion value, Quality Score columns if available, ad strength, landing route, stale-filter state, and blockers.",
         "If zero impressions by T+72: diagnose exact-match volume, CPC cap, eligibility, ad/RSA pending state, Quality Score gaps, policy/destination, impression share lost, and geo/keyword settings.",
         "If qualified search terms appear: keep winners, identify expansion candidates, and build approval-ready keyword/ad tests inside caps.",
@@ -320,25 +345,34 @@
         "Visible description starts: Shop mother daughter matching dresses for photos, birthdays and vacations."
       ],
       "quality_notes": [
-        "Campaign optimization score is 97.6% in the latest campaign monitor.",
-        "Ad strength is Pending in the saved ad entity page.",
-        "Search-term surface was not actionable because the stale Keyword: human hair wigs filter remained."
+        "Keyword UI exposes Quality Score, Exp. CTR, Ad relevance, Landing page exp., policy, and final URL columns.",
+        "Current keywords are Eligible (Limited) because max CPC $0.15 is below first-page bid estimates around $0.65-$0.74.",
+        "Owner hard CPC cap is $0.15; current Eligible (Limited) head terms with $0.65-$0.74 first-page estimates are economic rejects for bid-up and close-variant expansion.",
+        "Three exact keywords and one RSA are enabled by read-only RPC; all keyword/ad final URLs are country-qualified.",
+        "No search-term negative is justified because search terms are filter-clean but empty/no terms."
       ],
       "evidence": [
         "ops/marketing/current_marketing_state.md",
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/LIVE_RECONCILIATION_REPORT.md",
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/GB_CA_AU_INNER_ENABLE_EXECUTION_REPORT.md",
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/CA/ads/page_text.txt",
-        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/CA/keywords/page_text.txt"
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/CA/keywords/page_text.txt",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-gb-ca-au-keyword-strategy-repair/GB_CA_AU_DAY1_ZERO_IMPRESSION_KEYWORD_STRATEGY_REPAIR.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-gb-ca-au-keyword-strategy-repair/gb_ca_au_high_intent_candidate_map.csv",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/FRESH_GB_CA_AU_ADS_MONITOR_AND_GATE_REVIEW.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/exact_scope_bounded_action_packet_blocked.csv",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/CPC_015_LONG_TAIL_CORRECTION.md"
       ],
       "human_verify": [
-        "Check the stale search-term filter is gone before judging terms.",
         "Check keyword/ad eligibility and ad strength.",
         "Check whether any impressions/clicks appeared.",
         "Do not add negatives or change bids/budgets from zero data.",
-        "Check whether the current obvious exact terms are too competitive for a $0.15 CPC cap and whether long-tail buyer-intent alternatives can learn faster without cannibalizing the exact test."
+        "Check whether the current obvious exact terms are too competitive for a $0.15 CPC cap and whether long-tail buyer-intent alternatives can learn faster without cannibalizing the exact test.",
+        "Verify CA keyword strategy keeps French-Canada out of the active English campaign until native review and landing QA are done.",
+        "Verify live final URL source/DOM is sanitizer-clean before any keyword, bid, status, or negative action.",
+        "After sanitizer passes, rerun search-term pages and confirm filters remain absent before judging negatives."
       ],
-      "blocked_or_risk": "Search-term review is currently filter-blocked; landing sanitizer still needs live sync before expansion.",
+      "blocked_or_risk": "Fresh public final URL readback still exposes detail.1688.com in data-analytics-vendor, and current head/near-head keyword economics fail the hard $0.15 CPC cap; live Ads traffic expansion is blocked until sanitizer and CPC validation gates pass.",
       "expert_strategy_standard": [
         "Source-backed standard: follow Google Ads Help for match types, search terms, negatives, Target ROAS readiness, Quality Score, ad quality, and account keyword prioritization; follow Pinterest Business for lower-funnel product creative and clickthrough consistency; follow OpenAI/Anthropic agent guidance for clear instructions, guardrails, evals, and simple accountable workflows.",
         "Day 1 rule: every day without sales growth, usable learning, or a sales-moving improvement is a failure signal that requires action.",
@@ -350,12 +384,11 @@
         "For zero-impression Search, expert speed means moving beyond only obvious competitive keywords into high-buyer-intent long-tail testing while preserving caps, measurement, and anti-cannibalization."
       ],
       "keyword_economics": [
-        "Current exact keywords are a starter hypothesis, not proven winners; they become smart only if daily data shows qualified search terms, acceptable CPC, relevant clicks, and a credible CPA/ROAS path.",
-        "Use aggressive AI-speed ideation for long-tail buyer-intent themes, but every candidate still needs landing fit, no self-cannibalization, plausible CPC/CPA, and reviewer gate before any live action.",
-        "Long-tail themes to investigate quickly: mother-daughter wedding guest dresses, mommy and me birthday dresses, matching family photoshoot dresses, family beach vacation outfits, mother daughter floral dresses, mom and baby girl dresses, and country-specific wording where natural.",
-        "Prefer high-commercial-intent mother-daughter, mommy-and-me, matching family dress, role, and event terms before broad fashion, inspiration, or low-intent bargain terms.",
-        "Cheap CPC is not enough: reject terms that are cheap because they are free/DIY/sewing, used/rental, unsupported marketplace, supplier/source, local pickup, doll/game, or wrong-product intent.",
-        "A term is scale-eligible only when fresh evidence supports profitable sales: target CPA about $10.77, conversion value proof, and path to about 650% ROAS."
+        "Hard cap: max CPC remains $0.15. Do not raise bids above this cap to force generic auction entry.",
+        "Rejected: current head terms and close variants with first-page estimates around $0.65-$0.74; they do not support the 650% ROAS path at the owner CPC ceiling.",
+        "Priority CA validation-only long tails: [beige mommy daughter summer dresses canada], [mother daughter chiffon dresses canada], [mom daughter family photo dresses canada], [mother daughter beach photo dresses canada]. Reject [mommy and me dresses canada] as a country-modified head term unless future readback proves <= $0.15 auction entry and profitable intent.",
+        "Every candidate remains validation-only until landing sanitizer passes, CPC validation passes, reviewer approves, and after-state readback is planned.",
+        "Target economics remain about $10.77 CPA from $70 AOV at 650% ROAS; candidate rows are not scale-ready until real purchase/value evidence appears."
       ],
       "anti_cannibalization_rules": [
         "One active query-intent owner per country/language/landing path: the enabled exact ad group owns the named mommy-and-me dress intent for this micro-test.",
@@ -371,7 +404,7 @@
       "campaign_id": "23834424182",
       "campaign_name": "DLM_AU_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507",
       "status_label": "ACTIVE: Enabled / Eligible",
-      "running_state": "Running as a live micro-test, but latest readback has 0 impressions, 0 clicks, $0.00 cost, and 0.00 conversions for 2026-05-13.",
+      "running_state": "Running as a live micro-test with no spend/click/impression/conversion learning yet; current Ads-side structure is intact, but no expansion is allowed while the landing sanitizer fails.",
       "budget": "$2.00/day",
       "bid_strategy": "Manual CPC, target ad group max CPC $0.15",
       "bid_strategy_type": "Manual CPC, not Maximize Clicks",
@@ -389,10 +422,10 @@
       ],
       "optimization_score": "97.6%",
       "ad_strength": "Pending",
-      "health_status": "NO LEARNING YET / TODAY READBACK NEEDED",
+      "health_status": "ADS READBACK PASSED / LANDING AND $0.15 CPC GATES BLOCK LIVE ACTION",
       "activated_at": "2026-05-12 07:21:52 EDT (04:21:52 PDT) under exact owner approval; propagation-clean monitor at 2026-05-12 07:38:01 EDT.",
-      "latest_readback": "2026-05-14 05:34:01 EDT; saved metrics are for reporting day 2026-05-13.",
-      "next_decision": "Action due now: saved T+24 evidence already shows zero impressions. Run same-day serving diagnosis, clear/avoid stale search-term filters, and prepare high-buyer-intent long-tail or auction-entry options.",
+      "latest_readback": "2026-05-14 08:10:31 EDT Ads monitor; 2026-05-14 08:17:17 EDT public landing source readback.",
+      "next_decision": "Do not execute keyword, bid, status, or negative changes yet. Ads-side checks passed and stale search-term filters are clear, but the live final URL still exposes a supplier/source URL and the current head-term auction fails the hard $0.15 CPC cap. After sanitizer sync/readback, validate only true long-tail buyer-moment candidates at max CPC $0.15; no bid raise and no close-head variants.",
       "success_measurement": [
         "Final success: as many profitable sales as possible while targeting about 650% ROAS.",
         "Day 1 growth rule: by tomorrow report sales, revenue, CPA, ROAS, and what changed; zero impressions after 24 hours requires same-day diagnosis and action planning.",
@@ -402,9 +435,9 @@
         "Early diagnostics such as impressions, clicks, CTR, CPC, ad strength, Quality Score, and search terms only matter because they explain how to reach profitable sales."
       ],
       "metrics_snapshot": [
-        "Today 2026-05-14: fresh live readback needed; not captured in current artifacts.",
-        "Yesterday 2026-05-13: 0 impressions, 0 clicks, $0.00 cost, 0.00 conversions, $0.00 conversion value.",
-        "Baseline 2026-05-12 07:38 EDT: enabled/eligible, $2/day, 1 target ad group enabled, 9 ad groups paused, $0.00 cost, 0.00 conversions, $0.00 conversion value."
+        "Fresh monitor 2026-05-14 08:10 EDT: displayed 0 impressions, 0 clicks, $0.00 cost, 0.00 conversions, $0.00 conversion value in the current visible monitor window.",
+        "Search terms after filter clear: stale Keyword: \"human hair wigs\" chip removed; no search terms available afterward.",
+        "Landing gate 2026-05-14 08:17 EDT: HTTP 200 and expected currency signal, but data-analytics-vendor still exposes detail.1688.com."
       ],
       "test_clock": [
         "T+24 checkpoint was 2026-05-13 07:21 EDT; saved May 14 readback shows zero impressions/clicks for reporting day May 13, so action is due now.",
@@ -447,12 +480,15 @@
       ],
       "objective": "Test English-first Australia demand for the same exact dress-intent cohort while preserving the tight no-waste structure.",
       "strategy_reasoning": [
+        "2026-05-14 keyword repair: AU now has an English-Australia intent map, not a generic copied keyword set.",
+        "AU search behavior may use mum/mummy and holiday vocabulary; photo, beach, and swim intent need separate landing routes when not dress-specific.",
+        "The next sales-moving action is fresh read-only diagnosis with stale AU search-term filters cleared, then an approval-ready long-tail packet if gates pass.",
         "Australia is an English-first market with country-qualified AU landing/currency proof.",
         "The campaign is intentionally tiny: one exact ad group, three exact keywords, one RSA.",
         "The test is meant to prove whether any qualified traffic exists before broader category or phrase expansion.",
         "No optimization decision is valid while metrics remain zero and search-term filter is stale."
       ],
-      "deadline_or_next_check": "Fresh read-only monitor after reporting populates; clear/avoid stale search-term filter before judging terms.",
+      "deadline_or_next_check": "Immediate blocker: live paid landing sanitizer sync/readback. After that passes, rerun GB/CA/AU monitor and reviewer before any bounded live Ads action.",
       "active_objects": [
         "Campaign enabled: 23834424182",
         "Ad group enabled: 198852670520 / Mommy & Me Dresses - Exact",
@@ -465,16 +501,20 @@
         "[mother daughter dresses] / Exact / Eligible / criterion 301154336396 / max CPC $0.15"
       ],
       "keyword_selection_criteria": [
-        "These are not assumed to be the final smartest keywords; they are the first controlled exact-match learning cohort.",
-        "Selection criteria: high commercial mother-daughter / mommy-and-me dress intent, exact match only, direct fit to the country-qualified PDP, English-first AU search behavior, and small enough to avoid broad waste.",
-        "The keywords were chosen to test core category demand before expanding into broader, phrase, event, competitor, or collection-level terms.",
-        "A keyword becomes smarter only if fresh data proves it: impressions, qualified search terms, CTR/CPC, conversion value, CPA, and path to 650% ROAS."
+        "2026-05-14 correction: AU cannot be only the same three obvious exact head terms copied from GB/CA; the enabled keywords are a starter control, not the whole strategy.",
+        "AU strategy must use English-Australia vocabulary where natural: mum, mummy, holiday, family photo, beach holiday, wedding guest, and mother-daughter dress intent.",
+        "Do not assume US-style mommy wording covers Australia; include mum/mummy variants in review-only candidate planning.",
+        "Core exact ad group keeps ownership of current dress demand; approved phrase or long-tail tests should be isolated into tightly themed ad groups.",
+        "A AU keyword becomes smart only after impressions, qualified search terms, CPC, clicks, conversion value, CPA, and path to about 650% ROAS prove it.",
+        "2026-05-14 hard CPC correction: owner cannot pay more than $0.15 CPC; first-page estimates above $0.15 are rejected action rows, not bid-up opportunities.",
+        "AU mum/mummy vocabulary is useful only inside real long-tail buyer-moment queries; not as a cosmetic head-term variant.",
+        "No candidate may upload unless Keyword Planner or keyword UI validation shows first-page estimate <= $0.15 or no below-first-page warning at max CPC $0.15."
       ],
       "negative_keyword_strategy": [
-        "Existing base negatives cover free/DIY/sewing-pattern/tutorial intent, marketplace/source-quality traffic, used/rental, adult/sexy, doll/game, supplier/source, and fabric-only traffic.",
-        "Market watchlist is saved in `gb_ca_au_negative_watchlist.csv`; examples for AU include Kmart, Big W, Target Australia, Best and Less, Cotton On, Myer, David Jones, Shein Australia, Temu Australia, Gumtree, near me, pickup, and same day.",
-        "Watchlist status is `watch_only_not_uploaded`; do not add negatives because they look plausible.",
-        "Add exact or phrase negatives only when actual search-term data shows irrelevant, low-buying, wrong-channel, local-store, supplier/source, used/rental, free/DIY, or unsupported delivery-speed intent."
+        "AU watchlist stays watch_only_not_uploaded until search-term evidence proves waste.",
+        "Market watch themes: Kmart, Big W, Target Australia, Best and Less, Cotton On, Myer, David Jones, Gumtree, op shop, near me, click and collect, same day, hire, pattern, free, used, and source/supplier terms.",
+        "Do not negative match marketplace or retailer terms by hunch; use exact/phrase negatives only after real queries show irrelevant or unprofitable intent.",
+        "Do not block mom/mum/mummy variants prematurely; let real search-term data decide which local vocabulary earns spend."
       ],
       "daily_optimization_owner": [
         "Primary owner: google_ads_operator monitors this campaign daily.",
@@ -484,6 +524,7 @@
       ],
       "continuous_improvement_loop": [
         "By tomorrow: report paid-growth sales, revenue, CPA, ROAS, and the exact action taken or due if sales/impressions remain zero.",
+        "Same-day keyword repair now means market-language long-tail planning is required for zero-impression active Search; do not leave copied generic head terms as the whole strategy.",
         "Daily: read today/yesterday impressions, clicks, cost, search terms, conversions, conversion value, Quality Score columns if available, ad strength, landing route, stale-filter state, and blockers.",
         "If zero impressions by T+72: diagnose exact-match volume, CPC cap, eligibility, ad/RSA pending state, Quality Score gaps, policy/destination, impression share lost, and geo/keyword settings.",
         "If qualified search terms appear: keep winners, identify expansion candidates, and build approval-ready keyword/ad tests inside caps.",
@@ -496,25 +537,34 @@
         "Visible description starts: Shop mother daughter matching dresses for photos, birthdays and vacations."
       ],
       "quality_notes": [
-        "Campaign optimization score is 97.6% in the latest campaign monitor.",
-        "Ad strength is Pending in the saved ad entity page.",
-        "Search-term surface was not actionable because the stale Keyword: human hair wigs filter remained."
+        "Keyword UI exposes Quality Score, Exp. CTR, Ad relevance, Landing page exp., policy, and final URL columns.",
+        "Current keywords are Eligible (Limited) because max CPC $0.15 is below first-page bid estimates around $0.65-$0.74.",
+        "Owner hard CPC cap is $0.15; current Eligible (Limited) head terms with $0.65-$0.74 first-page estimates are economic rejects for bid-up and close-variant expansion.",
+        "Three exact keywords and one RSA are enabled by read-only RPC; all keyword/ad final URLs are country-qualified.",
+        "No search-term negative is justified because search terms are filter-clean but empty/no terms."
       ],
       "evidence": [
         "ops/marketing/current_marketing_state.md",
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/LIVE_RECONCILIATION_REPORT.md",
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/GB_CA_AU_INNER_ENABLE_EXECUTION_REPORT.md",
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/AU/ads/page_text.txt",
-        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/AU/keywords/page_text.txt"
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/AU/keywords/page_text.txt",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-gb-ca-au-keyword-strategy-repair/GB_CA_AU_DAY1_ZERO_IMPRESSION_KEYWORD_STRATEGY_REPAIR.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-gb-ca-au-keyword-strategy-repair/gb_ca_au_high_intent_candidate_map.csv",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/FRESH_GB_CA_AU_ADS_MONITOR_AND_GATE_REVIEW.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/exact_scope_bounded_action_packet_blocked.csv",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/CPC_015_LONG_TAIL_CORRECTION.md"
       ],
       "human_verify": [
-        "Check the stale search-term filter is gone before judging terms.",
         "Check keyword/ad eligibility and ad strength.",
         "Check whether any impressions/clicks appeared.",
         "Do not add negatives or change bids/budgets from zero data.",
-        "Check whether the current obvious exact terms are too competitive for a $0.15 CPC cap and whether long-tail buyer-intent alternatives can learn faster without cannibalizing the exact test."
+        "Check whether the current obvious exact terms are too competitive for a $0.15 CPC cap and whether long-tail buyer-intent alternatives can learn faster without cannibalizing the exact test.",
+        "Verify AU keyword strategy includes mum/mummy/holiday/beach-holiday variants and keeps swimwear/beach terms on matching landings.",
+        "Verify live final URL source/DOM is sanitizer-clean before any keyword, bid, status, or negative action.",
+        "After sanitizer passes, rerun search-term pages and confirm filters remain absent before judging negatives."
       ],
-      "blocked_or_risk": "Search-term review is currently filter-blocked; landing sanitizer still needs live sync before expansion.",
+      "blocked_or_risk": "Fresh public final URL readback still exposes detail.1688.com in data-analytics-vendor, and current head/near-head keyword economics fail the hard $0.15 CPC cap; live Ads traffic expansion is blocked until sanitizer and CPC validation gates pass.",
       "expert_strategy_standard": [
         "Source-backed standard: follow Google Ads Help for match types, search terms, negatives, Target ROAS readiness, Quality Score, ad quality, and account keyword prioritization; follow Pinterest Business for lower-funnel product creative and clickthrough consistency; follow OpenAI/Anthropic agent guidance for clear instructions, guardrails, evals, and simple accountable workflows.",
         "Day 1 rule: every day without sales growth, usable learning, or a sales-moving improvement is a failure signal that requires action.",
@@ -526,12 +576,11 @@
         "For zero-impression Search, expert speed means moving beyond only obvious competitive keywords into high-buyer-intent long-tail testing while preserving caps, measurement, and anti-cannibalization."
       ],
       "keyword_economics": [
-        "Current exact keywords are a starter hypothesis, not proven winners; they become smart only if daily data shows qualified search terms, acceptable CPC, relevant clicks, and a credible CPA/ROAS path.",
-        "Use aggressive AI-speed ideation for long-tail buyer-intent themes, but every candidate still needs landing fit, no self-cannibalization, plausible CPC/CPA, and reviewer gate before any live action.",
-        "Long-tail themes to investigate quickly: mother-daughter wedding guest dresses, mommy and me birthday dresses, matching family photoshoot dresses, family beach vacation outfits, mother daughter floral dresses, mom and baby girl dresses, and country-specific wording where natural.",
-        "Prefer high-commercial-intent mother-daughter, mommy-and-me, matching family dress, role, and event terms before broad fashion, inspiration, or low-intent bargain terms.",
-        "Cheap CPC is not enough: reject terms that are cheap because they are free/DIY/sewing, used/rental, unsupported marketplace, supplier/source, local pickup, doll/game, or wrong-product intent.",
-        "A term is scale-eligible only when fresh evidence supports profitable sales: target CPA about $10.77, conversion value proof, and path to about 650% ROAS."
+        "Hard cap: max CPC remains $0.15. Do not raise bids above this cap to force generic auction entry.",
+        "Rejected: current head terms and close variants with first-page estimates around $0.65-$0.74; they do not support the 650% ROAS path at the owner CPC ceiling.",
+        "Priority AU validation-only long tails: [mum daughter summer dresses australia], [mum daughter beach photo dresses australia], [mother daughter chiffon dresses australia], [mum daughter holiday photo dresses]. Reject [mummy and me dresses australia] as a country-modified head term unless future readback proves <= $0.15 auction entry and profitable intent.",
+        "Every candidate remains validation-only until landing sanitizer passes, CPC validation passes, reviewer approves, and after-state readback is planned.",
+        "Target economics remain about $10.77 CPA from $70 AOV at 650% ROAS; candidate rows are not scale-ready until real purchase/value evidence appears."
       ],
       "anti_cannibalization_rules": [
         "One active query-intent owner per country/language/landing path: the enabled exact ad group owns the named mommy-and-me dress intent for this micro-test.",
@@ -565,10 +614,10 @@
       ],
       "optimization_score": "Not captured in latest saved Shopping readback",
       "ad_strength": "N/A for Standard Shopping product ads",
-      "health_status": "LOW IMPRESSION / TODAY READBACK NEEDED",
+      "health_status": "US PRIMARY MARKET / SHOPPING LOW IMPRESSION / TODAY READBACK NEEDED",
       "activated_at": "Exact activation timestamp is not captured in the current command layer; latest saved evidence verifies enabled/eligible on 2026-05-14 05:35 EDT.",
       "latest_readback": "2026-05-14 05:35 EDT; saved metrics are for reporting day 2026-05-13.",
-      "next_decision": "Daily read-only monitor. If impressions stay low or clicks remain zero over the next 72 hours, diagnose Merchant capacity, product group coverage, bids, titles/images, and query match before any approved change.",
+      "next_decision": "US is the primary market. Continue daily read-only Shopping monitor, then use the US keyword universe to diagnose product titles/images, search-term quality, product groups, Merchant capacity, and future US Search/Pinterest packets. Do not change Shopping status, budget, bids, product groups, feed labels, product scope, or conversion goals without approval.",
       "success_measurement": [
         "Final success: as many profitable sales as possible while targeting about 650% ROAS.",
         "Day 1 growth rule: by tomorrow report sales, revenue, CPA, ROAS, and what changed; 17 impressions with zero clicks requires product/title/image/query-fit review if it persists.",
@@ -639,7 +688,10 @@
         "Standard Shopping keyword selection is indirect: Google matches from product feed data, product groups, titles, images, descriptions, and Merchant eligibility.",
         "The smart-targeting question is whether the paid-ready product group, feed titles/images, prices, and landing pages attract high-intent matching-family shoppers.",
         "Search terms are used as evidence after serving begins; 0-click terms are not enough to prove a negative or product-group change.",
-        "Expansion or pruning should be based on product-level serving, query quality, clicks, purchases, conversion value, CPA, and ROAS."
+        "Expansion or pruning should be based on product-level serving, query quality, clicks, purchases, conversion value, CPA, and ROAS.",
+        "US is the biggest market and gets the first/largest keyword-intelligence universe, even when Shopping is the current live US lane.",
+        "US language uses mom, mommy, mommy and me, mother daughter, mom daughter, family photos, family pictures, vacation, birthday, wedding guest, beach photos, and matching family.",
+        "For Shopping, keyword intelligence is indirect: use it to evaluate product titles, feed title priorities, product/photo fit, product-group query quality, and future US Search or Pinterest packets."
       ],
       "negative_keyword_strategy": [
         "Do not add Shopping negatives from 0-click terms alone.",
@@ -675,7 +727,9 @@
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/LIVE_RECONCILIATION_REPORT.md",
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/standard-shopping-readback/raw/01_campaign_initial.txt",
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/standard-shopping-readback/raw/01_productgroups_initial.txt",
-        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/standard-shopping-readback/raw/01_searchterms_initial.txt"
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/standard-shopping-readback/raw/01_searchterms_initial.txt",
+        "ops/marketing/us_primary_keyword_lane.md",
+        "ops/marketing/keyword_factory_015_cpc_criteria.md"
       ],
       "human_verify": [
         "Check product groups still exclude Everything else.",
@@ -696,7 +750,9 @@
         "Shopping has no manual Search keywords; economics come from product title/image/feed quality, product group scope, search terms, price, click cost, conversion value, and product-level ROAS.",
         "Low-cost impressions are only useful if product photos and titles pull qualified matching-family shoppers and clicks can convert profitably.",
         "Do not exclude products or change product groups from zero-click terms; wait for search-term, click, spend, and conversion evidence.",
-        "Product-level scale requires purchase/value proof, active/public/purchasable scope, no supplier leakage, and path to about 650% ROAS."
+        "Product-level scale requires purchase/value proof, active/public/purchasable scope, no supplier leakage, and path to about 650% ROAS.",
+        "US long-tail economics still respect the hard $0.15 Search CPC cap when rows become Search candidates; Shopping economics are read through CPC, product-level ROAS, query quality, and conversion value.",
+        "US seed clusters: mom daughter family photo dresses, mommy daughter picture outfits, mother daughter beach photo dresses, mommy and me birthday dresses, mother daughter wedding guest dresses, mommy daughter vacation dresses, matching family photo dresses, matching family beach dresses, mommy and me summer dresses."
       ],
       "anti_cannibalization_rules": [
         "Shopping owns feed/product discovery, not exact query-copy control; Search owns named high-intent query tests.",

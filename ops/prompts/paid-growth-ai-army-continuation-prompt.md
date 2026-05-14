@@ -13,6 +13,8 @@ Set goal: build and run a profitable paid-growth machine for Dress Like Mommy, w
 
 Do not stop at audit-only work. Show progress through actual sales-moving changes: approved live tests enabled/monitored, paused-ready campaigns or Pinterest drafts built, keywords/negatives/copy/assets improved, landing/feed/catalog blockers fixed, performance decisions made from evidence, or exact unblock actions prepared.
 
+If you see a mistake, something broken, something underperforming, or something that can clearly be improved, take proactive action. Fix it immediately when it is local/read-only or covered by current approval. If it requires unapproved live external writes, prepare the smallest exact approval packet and keep another safe sales-moving lane moving. Do not run monitor loops as the deliverable; every monitor must end in a fix, bounded action, approval packet, reroute, or evidence-backed hold.
+
 Act as the parent/orchestrator. Use parallel subagents wherever supported, with disjoint workstreams and separate browser/account tabs when needed.
 
 Follow the problem-solving protocol and update `ops/PROBLEM_TRACKER.md` for every active problem, failed readback, blocker, attempt, result, approval gate, and solved status. Do not document known problems passively. Work the solution until fixed, disproven, superseded by a safer path, or gated with the exact next unblock action.
@@ -44,6 +46,8 @@ Important non-blocking execution rule: do not let one stuck workstream freeze th
 Important solve-to-completion rule: a problem is not a note. It is a live work item until it is fixed, disproven, superseded by a safer solution, or gated by exact owner approval/credentials with the next concrete unblock action named. Do not document a known problem and then evade it. Work the solution, learn from failed attempts, update the tracker, and close only with evidence.
 
 Important progress standard: the owner needs to see movement toward sales, not just better paperwork. Every substantial session should end with at least one of these outcomes unless every lane is gated: live approved campaign progress, paused/ready campaign infrastructure created, platform access restored, landing/conversion/feed blocker fixed, search-term/ROAS optimization decision made from evidence, or a precise owner/platform unblock action prepared. If a lane is blocked, keep another independent paid-growth lane moving.
+
+Important proactive action rule: if you notice a mistake or a better path, do not leave it as commentary. Act inside the current safe/approved scope. The acceptable outcomes are `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`.
 
 ## First actions
 

@@ -52,6 +52,14 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - Added a 2026 expert growth playbook so future agents use source-backed keyword, negative, bidding, Shopping, Pinterest, CRO, measurement, anti-cannibalization, and agent-persona standards.
 - Added Day 1 growth urgency: tomorrow's scorecard must answer sales and ROAS, and a zero-impression campaign after 24 hours now triggers same-day diagnosis and high-buyer-intent long-tail action planning.
 - Updated marketing operating docs so future agents update this cockpit before stopping or compacting.
+- Repaired active GB/CA/AU keyword strategy locally: the three generic exact keywords are now explicitly only starter controls, with GB English-UK, CA English-Canada/French-Canada-gated, and AU English-Australia long-tail intent maps saved as review-only candidates.
+- Ran fresh read-only GB/CA/AU Ads monitor: stale search-term filters were removed, keyword/RSA/final URL checks passed, Quality Score columns were visible, and current keywords show `Eligible (Limited)` below first-page estimates around `$0.65-$0.74`; owner hard `$0.15` CPC cap means those head terms and close variants are rejected as action rows. Live landing sanitizer still failed, so the bounded action packet is blocked/not uploadable.
+- Corrected the blocked GB/CA/AU packet: removed lazy close-head variants as proposed actions and replaced them with market-specific long-tail validation candidates that still require landing-clean and `$0.15` CPC validation before upload.
+- Added the `$0.15` CPC keyword factory criteria: build a big local universe fast, score it, then promote only validated market/landing/economics-safe batches into live packets.
+- Corrected the keyword factory to be US-first. US is the biggest market; GB/CA/AU are expansion Search repair lanes, not a replacement for US keyword intelligence.
+- Added the proactive action mandate: results over monitor loops. If a mistake, broken state, underperforming path, or clear improvement is visible, agents must fix it when safe/approved, or prepare the smallest exact approval packet and keep another safe lane moving.
+- Created the action-biased keyword operating system: `keyword_strategy.md`, `keyword_scoring_rubric.md`, and a 105-row `keyword_universe.csv` seed with US first, market-language adaptation, `GREEN/YELLOW/RED` thresholds, and no live-upload authority.
+- Added the command-layer integration guard: initial audit found 4 side-document risks and current audit now passes with 25 tracked files / 0 risks. New `ops/marketing/` artifacts must be registered, action-linked, logged, or marked generated/archive before they count as complete.
 
 ## Local Changes
 
@@ -64,10 +72,14 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - Campaign detail source now explains whether keywords are truly proving smart from daily data, how negatives are selected from search-term evidence, and which agent owns daily action.
 - Campaign detail source now includes expert-source standard, anti-cannibalization rules, and keyword economics/low-waste tests.
 - Campaign detail source now treats T+24 zero impressions as an action trigger, not a passive hold.
+- Campaign detail source now includes market/language-specific active keyword strategy for GB, CA, and AU, with localized vocabulary, candidate themes, landing-fit gates, negative watchlists, and no-cannibalization ownership.
+- Fresh monitor packet added at `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/` with a blocked exact-scope bounded action packet.
 - New expert standard file: `ops/marketing/expert_growth_playbook_2026.md`.
 - `ops/marketing/spend_authorization.md` now records `APPROVED_ACTIVE` bounded authority from the owner message.
 - Local docs/prompts updated to require reviewer use before risky decisions.
 - Existing stopped-session local sanitizer patch remains in place and was not rewritten.
+- New keyword command files: `ops/marketing/keyword_strategy.md`, `ops/marketing/keyword_scoring_rubric.md`, and `ops/marketing/keyword_universe.csv`.
+- New integration guard: `ops/scripts/audit_marketing_command_integration.py` and generated report `ops/marketing/command_layer_integration_audit.md`.
 
 ## Live Changes
 
@@ -76,20 +88,22 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 
 ## Current Blockers
 
-- Active paid Search landing supplier/source URL leak is locally fixed but still requires approved live theme sync/readback before expansion.
+- Active paid Search landing supplier/source URL leak is locally fixed but still requires approved live theme sync/readback before expansion; fresh 08:17 public GB/CA/AU source readback still fails on `detail.1688.com` in `data-analytics-vendor`.
 - Merchant US/es age_group needs a current exact all-row readback before closure or repair.
 - Merchant Shopping Ads capacity warning needs read-only impact diagnosis for the paid cohort and Standard Shopping.
 - Pinterest Ads Manager remains blocked by authenticated controllable access.
-- GB/CA/AU exact Search have already crossed the T+24 zero-impression line in saved evidence; the next monitor must diagnose serving and evaluate high-intent long-tail/auction-entry actions instead of waiting passively.
-- Standard Shopping has impressions but no clicks/cost/conversion evidence from the latest command-layer readback.
+- GB/CA/AU exact Search have fresh read-only Ads checks done: stale search-term filters are cleared, search terms are still empty, keyword/RSA/final URLs are enabled/country-qualified, and keyword UI shows auction-entry pressure. Live Ads action is blocked by the landing sanitizer failure and by the hard `$0.15` CPC gate for head/near-head terms. A local scored long-tail universe exists for validation, not upload.
+- Standard Shopping has impressions but no clicks/cost/conversion evidence from the latest command-layer readback. US is still the primary market; keyword work applies through Shopping query/title/product/feed diagnostics and future US Search/Pinterest packets.
 - Bounded spend authority is active, but current campaign changes still need fresh readback and quality gates before any proactive live write.
 - Daily optimization ownership is now required: agents must monitor, diagnose, act inside approved caps when gates pass, and keep the dashboard current.
+- Monitoring cannot be the deliverable. Every monitor/readback must end in `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`.
+- Side documents are now a tracked process defect. Current audit result: 25 tracked command-layer files, 0 side-document risks.
 
 ## Next 3 Tasks
 
-1. Run today's sales/ROAS readback and fresh today/yesterday Google Ads and Shopping metrics plus keyword quality, ad/RSA, landing, product/photo, and measurement diagnostics.
-2. Because GB/CA/AU crossed T+24 with zero impressions in saved evidence, run same-day serving diagnosis and prepare/execute only green-gated bounded long-tail or auction-entry actions inside approved caps.
-3. Build a high-buyer-intent long-tail candidate map for GB/CA/AU that avoids self-cannibalization, then continue blocker removal for paid-landing sanitizer sync, Merchant readbacks, and Pinterest access.
+1. Get approval for scoped live theme sanitizer sync/readback, then prove GB/CA/AU final URL source/DOM has zero supplier/source URL hits.
+2. Validate top `GREEN` rows from `keyword_universe.csv` against active products, clean landing routes, and Keyword Planner/keyword UI at max CPC `$0.15`; do not raise bids or upload close-head variants.
+3. Keep the integration audit in the closeout loop: every new `ops/marketing/` file must pass `python3.13 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk` before the task is called done.
 
 ## Assumptions
 
@@ -99,6 +113,11 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - The current exact GB/CA/AU keyword set is a controlled starter hypothesis, not proof of the final smartest keywords; source-backed daily search-term and ROAS evidence must decide expansions, negatives, bid changes, or pauses.
 - 2026 source-backed best practice favors controlled high-intent tests until conversion value, landing quality, and search-term data justify broader automation or scale.
 - The owner wants aggressive AI-speed growth, which means faster daily evidence loops, long-tail ideation, bounded execution, and next-day sales/ROAS review inside guardrails; it does not mean unsafe broadening or unapproved external writes.
+- The owner expects proactive fixes and improvements, not bureaucracy. Local/read-only mistakes should be fixed immediately; currently approved live mistakes should be fixed with before/after readback; unapproved live fixes should become exact approval packets.
+- GB/CA/AU long-tail candidate rows are `review_only_not_uploaded`; they are not live-account instructions until fresh readback, reviewer, landing, `$0.15` CPC validation, and approval/bounded-authority gates pass.
+- The fresh monitor made the stale search-term filter problem better, not the traffic problem: filters are clear now, but no search terms exist and the live landing still blocks traffic expansion.
+- `keyword_universe.csv` is a local universe, not a live upload artifact; `GREEN` rows still need active-product, landing, `$0.15` CPC, reviewer, and after-state gates.
+- If an artifact is not wired into `AGENTS.md`, an action surface, and continuity logs, it is not progress; it is a side-document risk.
 
 ## Risks / Approval Needed
 
@@ -106,3 +125,4 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - Merchant feed/source/product-scope/product-group actions require fresh exact approval.
 - Pinterest object creation, campaign/ad group/product group changes, budget/bid/status changes, or catalog/source/tag/CAPI writes require approval and authenticated access.
 - Any spend/budget/bid/status/feed/product/conversion recommendation must pass the reviewer checklist and cite current evidence.
+- Any GB/CA/AU keyword expansion must keep language and market ownership clear: no French-Canada terms in the active English-Canada campaign, no duplicated exact keywords across live ad groups, no pajama/swim/beach intent routed to a dress PDP, no close-head-term "long tail", and no CPC above `$0.15`.

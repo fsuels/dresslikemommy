@@ -1,15 +1,15 @@
 # Daily Scorecard
 
-Last reconciled: 2026-05-14 07:52 EDT
-Data freshness: read-only Google Ads, Pinterest, Merchant, and public/local paid landing reconciliation completed; no external writes.
+Last reconciled: 2026-05-14 09:01 EDT
+Data freshness: read-only Google Ads, Pinterest, Merchant, and public/local paid landing reconciliation completed; repo-local GB/CA/AU keyword strategy repair completed; fresh GB/CA/AU Ads monitor and landing gate review completed; owner `$0.15` CPC correction applied; 105-row local keyword universe/rubric created; command-layer integration audit passed with `0` side-document risks; no external writes.
 
 ## Required Daily Rows
 
 | Surface | Spend | Clicks | Impr. | Purchases | Revenue | ROAS | Decision | Freshness |
 |---|---:|---:|---:|---:|---:|---:|---|---|
-| GB exact Search | `$0.00` | `0` | `0` | `0.00` | `$0.00` | n/a | `ACTION_DUE_NOW__T24_ZERO_IMPRESSION_DIAGNOSE_LONGTAIL` | Google Ads UI/RPC, `2026-05-14T05:34:01-04:00`, reporting day `2026-05-13` |
-| CA exact Search | `$0.00` | `0` | `0` | `0.00` | `$0.00` | n/a | `ACTION_DUE_NOW__T24_ZERO_IMPRESSION_FILTER_BLOCKED` | Google Ads UI/RPC, `2026-05-14T05:34:01-04:00`, reporting day `2026-05-13` |
-| AU exact Search | `$0.00` | `0` | `0` | `0.00` | `$0.00` | n/a | `ACTION_DUE_NOW__T24_ZERO_IMPRESSION_FILTER_BLOCKED` | Google Ads UI/RPC, `2026-05-14T05:34:01-04:00`, reporting day `2026-05-13` |
+| GB exact Search | `$0.00` | `0` | `0` | `0.00` | `$0.00` | n/a | `HEAD_TERMS_REJECTED__LANDING_AND_015_CPC_BLOCK` | Google Ads UI/RPC, `2026-05-14T08:10:31-04:00`; search-term filter cleared; keyword/RSA/final URL checks passed; head terms below first page at `$0.65-$0.74`; live landing sanitizer failed |
+| CA exact Search | `$0.00` | `0` | `0` | `0.00` | `$0.00` | n/a | `HEAD_TERMS_REJECTED__LANDING_AND_015_CPC_BLOCK` | Google Ads UI/RPC, `2026-05-14T08:10:31-04:00`; search-term filter cleared; keyword/RSA/final URL checks passed; head terms below first page at `$0.65-$0.74`; live landing sanitizer failed |
+| AU exact Search | `$0.00` | `0` | `0` | `0.00` | `$0.00` | n/a | `HEAD_TERMS_REJECTED__LANDING_AND_015_CPC_BLOCK` | Google Ads UI/RPC, `2026-05-14T08:10:31-04:00`; search-term filter cleared; keyword/RSA/final URL checks passed; head terms below first page at `$0.65-$0.74`; live landing sanitizer failed |
 | Standard Shopping US | `$0.00` | `0` | `17` | `0.00` | `$0.00` | n/a | `HOLD_MONITOR_NO_WRITE` | Google Ads UI, `2026-05-14T05:35`, reporting day `2026-05-13` |
 | Pinterest US paused draft path | n/a | n/a | n/a | n/a | n/a | n/a | `AUTH_BLOCKED_NO_CREATE_CONTROL` | Pinterest public login/sign-up page, `2026-05-14T09:36:32Z` |
 | Merchant US/es age_group | n/a | n/a | n/a | n/a | n/a | n/a | `SAMPLE_CLEAR_CURRENT_EXACT_EXPORT_REQUIRED` | Merchant RPC/detail sample readback, `2026-05-14T05:37:54-04:00` |
@@ -24,7 +24,9 @@ Data freshness: read-only Google Ads, Pinterest, Merchant, and public/local paid
 - Repo-known planning AOV: about `$70`.
 - Repo-known target CPA: about `$10.77` at `650% ROAS`.
 - Repo-known zero-purchase hard-pause review context: about `$16` spend per smallest decision unit.
-- CPC preference: keep tests tight; user has repeatedly treated `$0.25` CPC as expensive and prefers closer to or below `$0.20` where possible.
+- CPC hard cap for active Search repair: owner cannot pay more than `$0.15` per click. Do not bid above `$0.15`; do not treat first-page estimates around `$0.65-$0.74` as acceptable; do not use close-head variants as long-tail strategy.
+- Keyword universe rule: build large locally, upload small. Promote only scored `GREEN` rows after active-product, clean-landing, `$0.15` CPC, reviewer, and after-state gates. `YELLOW` rows are local/repair-only; `RED` rows are not paid-Search upload candidates.
+- Command-layer integration rule: a new strategy/report/data artifact is not progress unless it is registered, action-linked, continuity-logged, or marked generated/archive. Run the integration audit before stopping.
 
 Do not apply thresholds mechanically without fresh campaign/search-term/landing and conversion evidence.
 
@@ -49,8 +51,10 @@ Do not apply thresholds mechanically without fresh campaign/search-term/landing 
 ## Today
 
 - No campaign produced cost, purchase count, revenue, or ROAS evidence in the readback window.
-- GB/CA/AU crossed the T+24 zero-impression action line in saved evidence; same-day serving diagnosis and long-tail/auction-entry planning are now due.
+- GB/CA/AU fresh read-only monitor is done: campaign/ad-group/scope checks passed, stale search-term filters were cleared, keyword/RSA/final URL checks passed, and keyword UI showed `Eligible (Limited)` / below-first-page-bid estimates around `$0.65-$0.74`. Owner corrected that this fails the hard `$0.15` CPC economics, so head terms and close variants are rejected; live action is also blocked because the public final URLs still expose a supplier URL in `data-analytics-vendor`.
+- Local keyword action completed: `ops/marketing/keyword_universe.csv` now has `105` scored rows (`60` US, `15` GB, `15` CA, `15` AU; `77` `GREEN`, `20` `YELLOW`, `8` `RED`) plus `keyword_strategy.md` and `keyword_scoring_rubric.md`. No live keyword upload occurred.
+- Command-layer integration action completed: initial audit found `4` side-document risks; current audit covers `25` tracked files with `0` risks after registering/linking/archiving the weak docs.
 - No scale, pause, bid, budget, negative, product-group, or status write is justified from current metrics until fresh readback, reviewer pass, and green-gated authority support the exact action.
 - Standard Shopping visible search terms in saved readback had `0` clicks, `$0.00` cost, and `0.00` conversions; no negative action is justified from `family pictures outfits`, `family same outfit`, or `mommy and me wedding guest dresses`.
 - Active-product/category prep map now exists from public storefront collections/products plus the existing `780`-row paid cohort: immediate Father's Day direction is Daddy-and-Me/father-inclusive family matching, not generic or stale seasonal traffic.
-- Fastest next sales-moving unblocks are a scoped paid-landing theme sanitizer sync/readback, Pinterest authenticated access, and current exact Merchant readback so old US/es age_group evidence does not keep driving repair packets.
+- Fastest next sales-moving unblocks are scoped paid-landing theme sanitizer sync/readback, validation of top `GREEN` keyword rows at `$0.15`, Pinterest authenticated access, current exact Merchant readback, and US Standard Shopping query/product/title diagnosis using the new universe.

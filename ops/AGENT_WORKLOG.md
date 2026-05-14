@@ -36454,3 +36454,280 @@ Guardrails:
 
 Next best action:
 - Run the Day 1 sales/ROAS monitor and GB/CA/AU same-day zero-impression diagnosis now. Build a high-buyer-intent long-tail candidate map with exact anti-cannibalization owner, landing fit, expected CPC/CPA risk, negatives, and reviewer gate; then execute only green-gated bounded actions or log the exact blocker.
+
+2026-05-14 - GB/CA/AU keyword strategy repair
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-gb-ca-au-keyword-strategy-repair
+
+Why:
+- Owner corrected the active keyword strategy: all currently active keyword campaigns in every market need a real market/language strategy, not only obvious copied head terms like `mommy and me dresses`, `mother daughter dresses`, and `family matching outfits`.
+- Saved current-day evidence already showed GB/CA/AU crossed the T+24 zero-impression line, so local serving diagnosis and high-intent long-tail planning were due.
+
+What changed:
+- Created `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-gb-ca-au-keyword-strategy-repair/GB_CA_AU_DAY1_ZERO_IMPRESSION_KEYWORD_STRATEGY_REPAIR.md`.
+- Created `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-gb-ca-au-keyword-strategy-repair/gb_ca_au_high_intent_candidate_map.csv` with review-only candidate rows for GB English-UK, CA English-Canada plus French-Canada gated separately, and AU English-Australia.
+- Updated `ops/marketing/campaign_explorer.json` so GB/CA/AU campaign detail now shows localized keyword selection criteria, market-specific candidate themes, watch-only negatives, landing-fit gates, and no-cannibalization ownership.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `assumption_log.md`, `review_log.md`, `operator_cockpit.md`, and `memory_digest.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md` with the new local strategy repair status and next live gates.
+
+Readback:
+- `python3.13 -m json.tool ops/marketing/campaign_explorer.json` passed.
+- `python3.13` CSV verifier parsed `25` candidate rows and confirmed the expected headers.
+- Official Google Ads docs were checked for Target ROAS math/traffic limits, low-search-volume behavior, match types, Quality Score components, and ad/landing relevance.
+- `csvcut` was attempted for CSV inspection but is not installed; Python CSV verification passed instead.
+
+Guardrails:
+- No live Google Ads, Pinterest, Merchant, Shopify Admin, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or theme publish write occurred.
+- Candidate rows are `review_only_not_uploaded`; they are not live upload/apply instructions.
+- Bounded paid-media authority remains active only inside `ops/marketing/spend_authorization.md` caps and quality gates; it does not approve out-of-scope surfaces or incomplete-quality actions.
+
+Remaining blockers:
+- GB/CA/AU still need a fresh read-only Google Ads monitor before any live action.
+- CA/AU search-term pages must be free of the stale `Keyword: "human hair wigs"` filter before search-term/negative decisions.
+- Active paid landing expansion still requires approved live theme sanitizer sync/readback.
+- Pinterest remains blocked by authenticated controllable Ads Manager access.
+- Merchant US/es exact-current export and Shopping Ads capacity diagnosis remain read-only next lanes.
+
+Next best action:
+- Run a fresh read-only GB/CA/AU monitor today: today/yesterday metrics, keyword Quality Score columns if available, RSA/ad status, final URLs, CA/AU stale-filter absence, and live paid-landing sanitizer state. If gates pass, prepare an exact-scope bounded action packet using the saved market/language long-tail map; otherwise log the exact blocker.
+
+2026-05-14 - Fresh GB/CA/AU Ads monitor blocked by live landing sanitizer
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-fresh-gb-ca-au-ads-monitor-blocked-landing
+
+Why:
+- Owner requested the exact next gate: fresh read-only Ads monitor with CA/AU filters cleared, Quality Score/RSA/final URL checks, live landing sanitizer readback, and an exact-scope bounded action packet only if gates passed.
+
+What changed:
+- Created `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/FRESH_GB_CA_AU_ADS_MONITOR_AND_GATE_REVIEW.md`.
+- Created `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/exact_scope_bounded_action_packet_blocked.csv`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `operator_cockpit.md`, `prompt_log.md`, and `memory_digest.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback:
+- Fresh read-only CDP/RPC Ads monitor passed for GB, CA, and AU: campaigns remain enabled/eligible, `$2/day`, Search only, presence-only, only the target exact ad group enabled, no campaign conversion override.
+- Search-term pages had stale `Keyword: "human hair wigs"` filters at first; clicked only the visible filter-chip delete control and captured after-state with the stale filter absent on GB/CA/AU. No search terms are available after clearing.
+- Read-only RPC confirmed 3 exact keywords and 1 RSA enabled per market with country-qualified final URLs.
+- Keyword UI detail pages showed Quality Score / Exp. CTR / Ad relevance / Landing page experience columns and `Eligible (Limited)` / below-first-page-bid estimates around `$0.65-$0.74` while max CPC remains `$0.15`.
+- Public source readback of GB/CA/AU final URLs returned HTTP `200` and expected currency signals, but all three still exposed `detail.1688.com` in `data-analytics-vendor`.
+- `python3.13 ops/scripts/render_marketing_cockpit.py`, JSON/CSV guards, and `git diff --check` were run after command-layer updates.
+
+Decision:
+- `BLOCK_LIVE_ADS_ACTION__LANDING_SANITIZER_FAILS`.
+- Do not upload/apply/add keywords, raise bids, change status, or add negatives yet.
+- Exact-scope bounded action packet is `BLOCKED_DO_NOT_UPLOAD_OR_APPLY` until the live sanitizer readback passes.
+
+Guardrails:
+- No live Google Ads keyword/ad/negative/bid/budget/status/campaign write occurred.
+- No Google Ads upload/apply/import occurred.
+- No Shopify theme sync/push/publish or Shopify Admin product/vendor data edit occurred.
+- No Merchant/Pinterest/GA4/GTM/billing/feed/product/conversion write occurred.
+
+Remaining blockers:
+- Scoped live theme sanitizer sync/readback is the immediate blocker before Ads expansion from these final URLs.
+- Search terms remain empty even after filters were cleared, so no negative action is justified.
+- Auction-entry pressure is visible, but head-term bid increases are not green-gated without a clean landing and conversion-value/ROAS proof.
+
+Next best action:
+- Get exact approval for scoped live theme sanitizer sync/readback, prove GB/CA/AU final URLs have zero supplier/source URL hits, rerun the Ads monitor/reviewer, then decide whether the blocked localized exact keyword packet can become a bounded live action.
+
+2026-05-14 - GB/CA/AU $0.15 CPC long-tail correction
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-gb-ca-au-015-cpc-long-tail-correction
+
+Why:
+- Owner corrected the GB/CA/AU action packet: `$0.15` CPC is a hard ceiling, and current head terms with first-page estimates around `$0.65-$0.74` are economically dead for the `650% ROAS` path.
+- The first blocked action packet still contained close head-term variants such as `[mummy and me dresses]`, `[mommy and me dresses canada]`, and `[mummy and me dresses australia]`, which were too lazy and too close to the same expensive auction.
+
+What changed:
+- Rewrote `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/exact_scope_bounded_action_packet_blocked.csv` so head and near-head rows are explicitly rejected, not proposed.
+- Added `CPC_015_LONG_TAIL_CORRECTION.md` documenting the hard `$0.15` CPC gate, rejected terms, and validation-only long-tail rule.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `operator_cockpit.md`, `prompt_log.md`, `memory_digest.md`, and `campaign_explorer.json`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback:
+- CSV verifier parsed the corrected packet and confirmed proposed validation candidates are exact-match, `$0.15` capped, and not the banned head/near-head rows.
+- `python3.13 -m json.tool ops/marketing/campaign_explorer.json` passed.
+- `python3.13 ops/scripts/render_marketing_cockpit.py` regenerated `ops/marketing/operator_cockpit.html`.
+- `git diff --check` passed.
+
+Decision:
+- Do not raise bids above `$0.15`.
+- Do not upload `[mummy and me dresses]`, `[mommy and me dresses canada]`, `[mummy and me dresses australia]`, or similar close-head variants as long-tail strategy.
+- Live Ads action remains blocked until the live landing sanitizer passes and candidate rows are validated at `$0.15`.
+
+Guardrails:
+- No live Google Ads keyword/ad/negative/bid/budget/status/campaign write occurred.
+- No Google Ads upload/apply/import occurred.
+- No Shopify theme sync/push/publish or Shopify Admin product/vendor edit occurred.
+- No Merchant/Pinterest/GA4/GTM/billing/feed/product/conversion write occurred.
+
+Next best action:
+- Get exact approval for scoped live theme sanitizer sync/readback, prove GB/CA/AU final URLs have zero supplier/source URL hits, then validate only corrected market-specific long-tail candidates at max CPC `$0.15` before any bounded keyword upload.
+
+2026-05-14 - Keyword factory criteria and action rule
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-keyword-factory-criteria-action-rule
+
+Why:
+- Owner challenged the keyword process: the goal is as many sales as possible as fast as possible at `650% ROAS`, not bureaucracy, and asked why the high-intent long-tail list should not be as large as possible.
+
+What changed:
+- Added `ops/marketing/keyword_factory_015_cpc_criteria.md`.
+- Updated `ops/marketing/expert_growth_playbook_2026.md`, `action_queue.md`, `operator_cockpit.md`, `current_marketing_state.md`, `prompt_log.md`, `memory_digest.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, and `ops/AGENT_COORDINATION.md`.
+
+Decision:
+- Build the keyword universe as large as possible locally.
+- Do not upload the universe as a giant live list. Promote small validated batches that pass market/language, buyer-intent, product specificity, landing fit, `$0.15` economics, conversion plausibility, no-cannibalization, and negative-fit gates.
+- Repo-local mistakes should be fixed immediately. Approved live mistakes should be fixed with before/after readback. Unapproved live writes should become exact smallest approval packets, not passive blocker notes.
+
+Guardrails:
+- No live Google Ads, Shopify, Merchant, Pinterest, GA4/GTM, billing, budget, bid, status, keyword, ad, feed, product, conversion, or theme write occurred.
+
+Next best action:
+- After scoped live sanitizer approval/readback, build and validate the large local GB/CA/AU keyword universe, then promote only the highest-scoring `10-20` exact rows per market at max CPC `$0.15`.
+
+2026-05-14 - US primary keyword lane correction
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-us-primary-keyword-lane-correction
+
+Why:
+- Owner corrected that USA is the biggest market and should not be missing from market-language keyword planning.
+
+What changed:
+- Added `ops/marketing/us_primary_keyword_lane.md`.
+- Updated `ops/marketing/keyword_factory_015_cpc_criteria.md`, `expert_growth_playbook_2026.md`, `current_marketing_state.md`, `action_queue.md`, `operator_cockpit.md`, `memory_digest.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `campaign_explorer.json`, and `ops/AGENT_COORDINATION.md`.
+
+Decision:
+- US is the primary keyword-intelligence market.
+- Current US live lane is Standard Shopping, so US keyword work informs Shopping query/title/product/feed diagnosis and future US Search/Pinterest packets.
+- GB/CA/AU remain active non-US Search repair lanes, not the overall priority over US.
+
+Guardrails:
+- No live Google Ads, Shopping, Merchant, Shopify, Pinterest, GA4/GTM, billing, budget, bid, status, keyword, ad, feed, product, conversion, or theme write occurred.
+
+Next best action:
+- Build the US-first local keyword universe from active products/collections/homepage moments, then use it to diagnose Standard Shopping query/product/title fit and future Search/Pinterest rows.
+
+2026-05-14 - Proactive action/results mandate
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-proactive-action-results-mandate
+
+Why:
+- Owner clarified that monitor loops without actionable real change are unacceptable. The goal is results: proactive fixes, improvements, and actions that move toward sales at about `650% ROAS`.
+
+What changed:
+- Updated root `AGENTS.md`, `ops/marketing/AGENTS.md`, `ops/GROWTH_NORTH_STAR.md`, `ops/prompts/paid-growth-ai-army-continuation-prompt.md`, and `ops/marketing/expert_growth_playbook_2026.md`.
+- Updated `ops/marketing/action_queue.md`, `operator_cockpit.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, and `ops/AGENT_COORDINATION.md`.
+
+Decision:
+- If an agent sees a mistake, broken state, underperforming path, or clear improvement, it must act.
+- If the action is local/read-only or covered by current approval, fix it and verify.
+- If the action needs unapproved live external writes, prepare the smallest exact approval packet and keep another safe sales-moving lane active.
+- Every monitor/readback must end in `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`.
+
+Guardrails:
+- This was a repo-local operating-doc update only.
+- No live Google Ads, Shopify, Merchant, Pinterest, GA4/GTM, billing, budget, bid, status, keyword, ad, feed, product, conversion, or theme write occurred.
+
+Next best action:
+- Use the next detected live/read-only issue to produce an action, not another passive note: fix it if safe/approved, or prepare the exact approval packet and move another safe lane.
+
+2026-05-14 - Claude AGENTS-first bootstrap guard
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-claude-agents-first-bootstrap
+
+Why:
+- Owner wants Claude sessions to start with the same shared repo context Codex receives from `AGENTS.md`.
+
+What changed:
+- Updated the opening of `CLAUDE.md` so Claude must read root `AGENTS.md` first, then follow its Start Here sequence before using Claude-specific workflow notes.
+- Logged this continuity anchor because the change affects durable agent bootstrap behavior.
+
+Decision:
+- `AGENTS.md` is the shared first-read bootstrap for Claude and Codex context parity.
+- `CLAUDE.md` remains the second-read file for Claude-specific sync and GUI workflow notes.
+
+Guardrails:
+- Repo-local documentation update only.
+- No live Google Ads, Shopify, Merchant, Pinterest, GA4/GTM, billing, budget, bid, status, keyword, ad, feed, product, conversion, or theme write occurred.
+
+Next best action:
+- In future Claude sessions, start from `AGENTS.md`, follow its Start Here sequence for the task, then read `CLAUDE.md`.
+
+2026-05-14 - Claude and AGENTS byte-for-byte parity
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-claude-agents-byte-parity
+
+Why:
+- Owner clarified that `CLAUDE.md` should basically be `AGENTS.md` with no differences, not a separate Claude-specific guide layered after `AGENTS.md`.
+
+What changed:
+- Updated root `AGENTS.md` to say the shared bootstrap is maintained in both `AGENTS.md` and `CLAUDE.md`, and that the two files must stay byte-for-byte identical.
+- Replaced the old standalone `CLAUDE.md` content with an exact copy of root `AGENTS.md`.
+- Removed the stale concept that `CLAUDE.md` contains separate historical GitHub-connected live-theme sync notes.
+
+Decision:
+- `AGENTS.md` and `CLAUDE.md` are now the same shared agent bootstrap.
+- Future agent-bootstrap changes should be made to both files together and verified with `cmp -s AGENTS.md CLAUDE.md`.
+
+Guardrails:
+- Repo-local documentation update only.
+- No live Google Ads, Shopify, Merchant, Pinterest, GA4/GTM, billing, budget, bid, status, keyword, ad, feed, product, conversion, or theme write occurred.
+
+Next best action:
+- Keep `AGENTS.md` and `CLAUDE.md` byte-for-byte identical whenever bootstrap guidance changes.
+
+2026-05-14 - Action-biased keyword universe and rubric
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-action-biased-keyword-universe-rubric
+
+Why:
+- Owner agreed with the expert correction: build the keyword universe as large as possible locally, but do not upload the whole universe live.
+- Owner wanted action and real improvement: the command layer needed an actual scoring system, US-first keyword universe, and forced action thresholds instead of another monitor loop.
+
+What changed:
+- Added `ops/marketing/keyword_strategy.md`.
+- Added `ops/marketing/keyword_scoring_rubric.md`.
+- Added `ops/marketing/keyword_universe.csv` with `105` local rows: `60` US, `15` GB, `15` CA, and `15` AU.
+- Updated `ops/marketing/AGENTS.md`, `action_queue.md`, `spend_authorization.md`, `keyword_factory_015_cpc_criteria.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `operator_cockpit.md`, `memory_digest.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, and `campaign_explorer.json`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Decision:
+- Build big locally, upload small.
+- Use the canonical scoring weights: buyer intent `25`, product match `20`, occasion/deadline `15`, landing-page match `15`, economic fit `10`, volume/serveability `10`, and waste risk `5`.
+- Promote only `GREEN` rows (`85-100`) after active-product fit, landing sanitizer proof, `$0.15` CPC validation, anti-cannibalization ownership, reviewer pass, exact action-queue row, and after-state readback.
+- `YELLOW` rows (`70-84`) stay local unless used as a bounded phrase-discovery repair; `RED` rows are not paid-Search upload candidates.
+- Zero impressions after 24 hours requires same-day diagnosis and either serving repair, qualified long-tail expansion, hold/kill/scale decision, or exact blocker/unblock action.
+
+Verification:
+- CSV validator parsed `ops/marketing/keyword_universe.csv`: `105` rows, market counts `US=60`, `GB=15`, `CA=15`, `AU=15`, threshold counts `GREEN=77`, `YELLOW=20`, `RED=8`, score sums and thresholds all passed.
+- No live Google Ads, Shopify, Merchant, Pinterest, GA4/GTM, billing, budget, bid, status, keyword, ad, feed, product, conversion, or theme write occurred.
+
+Next best action:
+- Use the US-first universe to diagnose Standard Shopping query/product/title fit and future Search/Pinterest packets.
+- For GB/CA/AU, first get the live paid-landing sanitizer sync/readback clean, then validate top `GREEN` rows at max CPC `$0.15` before any live keyword action.
+
+2026-05-14 - Command-layer side-document guard
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-command-layer-side-doc-guard
+
+Why:
+- Owner flagged a major process risk: if a session creates a strategy or idea but it is not wired into follow-up, it becomes another side document and is effectively the same as doing nothing.
+
+What changed:
+- Added `ops/scripts/audit_marketing_command_integration.py`.
+- Generated `ops/marketing/command_layer_integration_audit.md`.
+- Updated `ops/marketing/AGENTS.md` with a required command-layer integration gate.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `operator_cockpit.md`, `memory_digest.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `prompt_log.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md`.
+- Registered `keyword_factory_015_cpc_criteria.md` and `us_primary_keyword_lane.md` as source-of-truth command files.
+- Marked `ops/marketing/migration_trace.md` as `Integration status: ARCHIVE_REFERENCE`.
+- Linked `dream_consolidation_prompt.md` from the action queue so the consolidation tool has an action surface.
+
+Readback:
+- Initial audit found `4` side-document risks.
+- Current audit command passed:
+  - `python3.13 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk`
+  - Result: `25` tracked files, `25` integrated/generated/archive files, `0` side-document risks.
+
+Decision:
+- A new `ops/marketing/` artifact is not complete just because it exists.
+- It must be registered, action-linked, continuity-logged, or marked generated/archive.
+- Future agents must run the audit before closing a session that creates or materially changes marketing command-layer artifacts.
+
+Guardrails:
+- Repo-local process/control update only.
+- No live Google Ads, Shopify, Merchant, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, keyword, ad, feed, product, conversion, or theme write occurred.
+
+Next best action:
+- Continue sales-moving execution through `action_queue.md`; use the integration audit as a closeout guard so plans cannot fall out of the operating loop.

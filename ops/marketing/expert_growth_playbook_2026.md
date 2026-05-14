@@ -21,6 +21,8 @@ Current planning math:
 
 The operating question every morning is: how many paid-growth sales did we get by tomorrow, at what CPA and ROAS, and what did we change to get closer to `650% ROAS`?
 
+- Proactive action is mandatory. If a mistake, broken state, underperforming path, or clear improvement is visible, fix it immediately when local/read-only or currently approved. If a live external write is needed but not approved, write the exact smallest approval packet and keep another safe lane moving.
+- Monitoring is not the deliverable. Every monitor/readback loop must end in a concrete result: `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`.
 - By tomorrow, every active paid lane must report sales, revenue/conversion value, CPA, ROAS, and the next action. If sales are zero, the lane still owes a diagnosis and improvement path.
 - Zero impressions after 24 hours is not acceptable drift. It triggers same-day serving diagnosis and a high-intent long-tail expansion or auction-entry decision, inside current approval boundaries.
 - Zero clicks after qualified impressions triggers ad/creative/photo/title/price/query-fit diagnosis.
@@ -60,6 +62,8 @@ Every Search keyword must pass this rubric before it is recommended, added, expa
 | Evidence | Starter hypotheses are allowed only in tight tests; scale, negatives, broadening, and bid changes require fresh data. |
 
 Starter keyword hypotheses are not "smart" until the daily data proves them. A keyword is proving smart only when it produces qualified impressions/search terms, acceptable CPC, relevant clicks, purchase or value signal, and a path to the `650% ROAS` target.
+
+Use `ops/marketing/keyword_factory_015_cpc_criteria.md` as the operating criteria and `ops/marketing/us_primary_keyword_lane.md` for the US-first lane. US is the biggest market and must be the first keyword-intelligence universe, even when the immediate active Search repair is GB/CA/AU. The rule is to build a large local universe quickly, but only promote validated batches into live packets. At the current `$0.15` hard CPC cap, head terms or close-head variants with first-page estimates above `$0.15` are rejected action rows, not bid-up opportunities.
 
 Long-tail candidate themes to investigate quickly, not blindly upload:
 

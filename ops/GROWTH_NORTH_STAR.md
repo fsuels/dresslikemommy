@@ -27,6 +27,8 @@ The goal is aggressive but intelligent growth:
 - The owner wants the AI to act like the responsible marketing operator, not just an advisor.
 - The owner wants actual implementation, not slow endless audits.
 - The owner wants visible progress in actual sales-moving changes, not just documentation that something is blocked.
+- The owner wants proactive action: if an agent sees a mistake, something broken, something underperforming, or a clear improvement, the agent should fix it immediately when safe/approved, or produce the exact smallest approval packet when the fix requires unapproved live external writes.
+- The owner does not want monitor loops as the work. Monitoring is a means to choose a fix, bounded action, approval packet, reroute, or evidence-backed hold.
 - The owner expects the agent to keep moving until every safe local/read-only/paused/approved live lane is advanced, and every remaining blocker has an exact next unblock action.
 - The owner wants low-cost qualified traffic and strong conversion quality.
 - The owner thinks about economics clearly: if AOV is around `$70` and gross margin is around `50%`, then ad spend must stay tight enough that marketing plus returns still leaves profit.
@@ -46,6 +48,7 @@ A strong reached-state looks like this:
 0. Work is judged by sales-moving progress.
    - Campaigns, ad groups, ads, keywords, product groups, feeds, landing pages, and tracking surfaces are moved forward when safe and approved.
    - Audits are not considered progress unless they directly produce an action, approval packet, blocker removal, optimization decision, or verified performance readback.
+   - Monitor/readback loops must not become a hiding place. Each loop ends in `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`.
    - Each session should end closer to revenue: active/eligible campaigns monitored, paused-ready campaigns built, copy/assets improved, landing pages fixed, catalog blockers removed, negatives/keywords refined, or exact approval gates narrowed.
 
 1. Measurement is trusted.

@@ -1,328 +1,119 @@
-# CLAUDE.md — Working notes for the dresslikemommy Shopify theme
+# Agent Guide - dresslikemommy
 
-This file is Claude's persistent memory for this project. Read it at the
-start of any session before touching this repo.
+Scope: this file applies to the whole repository. It is the short agent bootstrap. Detailed, changing state lives in `ops/` and `ops/marketing/`, not here.
 
-## Project at a glance
+This same bootstrap lives in both `AGENTS.md` and `CLAUDE.md`. Keep the two files byte-for-byte identical; do not maintain separate Claude-only instructions.
 
-- Shopify theme (Dawn 14.0.0 base) for **Dress Like Mommy** at
-  `dresslikemommy.com`.
-- Repo: `git@github.com:fsuels/dresslikemommy.git`, default branch: **`main`**.
-- Theme files live in the standard Shopify layout (`sections/`, `snippets/`,
-  `templates/`, `assets/`, `config/`, `locales/`, `layout/`).
-- Owner: Frank (suelsferro@hotmail.com).
+## Start Here
 
-## "Sync to main" — Frank's deploy workflow (CRITICAL — READ EVERY SESSION)
+1. Read this file.
+2. Read `ops/MEMORY_CONTINUITY_PROTOCOL.md`.
+3. If the task involves a known issue, failed readback, blocker, or repeated uncertainty, read `ops/PROBLEM_SOLVING_PROTOCOL.md` and `ops/PROBLEM_TRACKER.md`.
+4. Read the latest entries at the bottom of `ops/AGENT_WORKLOG.md`; search `AGENT_CONTINUITY_ANCHOR` when context is tight.
+5. Before touching external systems, theme files, live product data, paid feeds, campaign artifacts, or shared surfaces, read `ops/AGENT_COORDINATION.md`.
+6. For paid-growth work, read `ops/marketing/AGENTS.md`, `ops/marketing/expert_growth_playbook_2026.md`, `ops/marketing/current_marketing_state.md`, `ops/GROWTH_NORTH_STAR.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and `ops/prompts/paid-growth-ai-army-continuation-prompt.md`.
+7. For subagents or logged-in browser/account work, read `ops/BROWSER_SUBAGENT_COORDINATION.md`.
+8. For listing or sourcing work, read `ops/prompts/START-HERE.md` and the relevant files under `ops/sourcing/`.
 
-When Frank says **"sync to main"**, **"sync all changes to main"**,
-**"do it for me"**, **"push to live"**, or any similar phrasing, this is
-what he means and what Claude MUST do:
+## Paid-Growth Session Start
 
-**Push to GitHub `main`. THAT IS the live deploy.** The live theme on
-`dresslikemommy.com` is configured as a **GitHub-connected theme** —
-see Shopify Admin → Online Store → Themes, where the live theme card
-shows `dresslikemommy/main` with a GitHub icon. Pushing to
-`origin/main` causes Shopify to pull the new theme files automatically
-within seconds. There is no separate `shopify theme push --live` step
-required, and the older Shopify CLI prompt that sometimes appears in
-Terminal can be answered with `n` — it's a leftover from before the
-GitHub integration was wired up.
+When a session starts with `/goal Continue the Dress Like Mommy paid-growth command layer from the latest AGENT_CONTINUITY_ANCHOR`, first render and open the human cockpit:
 
-**If Frank sees the live site still showing old content after a push:**
-1. Hard-refresh the page (Cmd+Shift+R) to bust browser cache.
-2. If still wrong, wait 30-60s — Shopify's GitHub pull can lag briefly.
-3. If still wrong after a minute, check Shopify Admin → Themes → click
-   the `···` menu next to the live theme → confirm GitHub sync ran.
-
-Never tell Frank to re-run `shopify theme push --live` to "fix" a
-cache issue. The GitHub push IS the deploy.
-
-### THE WORKING PROCEDURE (proven May 11, 2026 — DO NOT DEVIATE)
-
-**Claude CAN and MUST drive this end-to-end. Do not hand Frank clipboard
-commands and wait. Do not ask permission three times. Do not warn about
-limitations Claude has already worked around. Just do it.**
-
-The proven path uses VS Code's Source Control panel because:
-- Claude cannot type into Terminal (tier-"click" OS restriction).
-- Claude CAN click buttons in VS Code (tier-"click" allows left-click).
-- VS Code's "Commit & Push" button does git add + commit + push in one
-  click and works perfectly. It uses whatever commit message is in the
-  text box at the time — type it via the `mcp__computer-use__type`-
-  blocked path is impossible, so Claude must accept the message that's
-  already in the box, OR write the message into the box via clipboard
-  paste before clicking. (Confirmed working: VS Code accepts a clicked
-  Commit & Push even if Claude didn't author the message box content.)
-
-**Exact step-by-step the FIRST time in a session:**
-
-1. `mcp__computer-use__request_access` with:
-   - apps: `["com.microsoft.VSCode", "com.apple.Terminal"]`
-   - `clipboardWrite: true`
-   - Note: VS Code's bundle ID is `com.microsoft.VSCode`, NOT
-     "Visual Studio Code" or "Code". Using the wrong name fails with
-     "not installed". The displayName comes back as "Code".
-   - Both get granted at tier "click" — left-click only, no typing.
-
-2. `mcp__computer-use__screenshot` to confirm VS Code is foreground and
-   the Source Control panel is visible on the left with the "Commit &
-   Push" button.
-
-3. If there's a stale `.git/index.lock` from a previous failed git
-   commit (common after an editor opened from `git commit -m` without
-   `&&`-chained args), Claude's sandbox CANNOT delete it (the .git dir
-   is permission-restricted). Frank must `rm` it himself, OR Claude can
-   just click VS Code's Commit & Push — VS Code seems to clean up the
-   lock automatically before running its own commit. (Confirmed working.)
-
-4. `mcp__computer-use__left_click` on the "Commit & Push" button. In a
-   default VS Code layout this is roughly `(203, 131)` but Claude must
-   re-check coordinates against the actual screenshot every time —
-   window position, sidebar width, and zoom level all shift it.
-
-5. `mcp__computer-use__wait` for 4 seconds.
-
-6. `mcp__computer-use__screenshot` to verify:
-   - Source Control panel now shows 0 changes (or the "Commit & Push"
-     button is gone / greyed out).
-   - The Terminal window shows the git push output ending in
-     `<old>..<new>  main -> main`.
-
-7. **That's it. GitHub push = live deploy.** Tell Frank the commit
-   landed and to hard-refresh (Cmd+Shift+R) on the live site in 30s to
-   bust browser cache. Do NOT ask him to confirm a Shopify CLI prompt
-   — that prompt, if it appears in Terminal from a stale CLI hook, is
-   safe to answer `n`. The GitHub integration handles deploy.
-
-8. Verify the commit landed on `origin/main` from the sandbox shell:
-   `cd /sessions/.../dresslikemommy && git log origin/main --oneline -2`.
-   That confirms the push reached GitHub and Shopify will pick it up.
-
-### Why the OLD "give Frank a clipboard one-liner" approach is BANNED
-
-The clipboard-only approach was the previous recommendation in this file
-and it failed badly on May 11 because:
-- A multi-line commit message with `git commit -m "..."` where the `"`
-  closing quote is on a later line will sometimes open Frank's `$EDITOR`
-  in the middle of the chain, breaking the `&&` sequence.
-- That leaves `.git/index.lock` behind, blocking all future git
-  operations until manually removed.
-- Frank should NEVER be debugging git locks. The VS Code Source Control
-  GUI handles all of this automatically.
-
-### HARD CONSTRAINT (proven May 11–12, 2026): the Cowork sandbox CANNOT touch .git/
-
-Empirical test: even after Frank ran `chown fsuels:staff` and `chmod u+rwX,g+rwX`
-on `/Users/fsuels/Projects/dresslikemommy/.git`, the sandbox could create
-files in `.git/` but could NOT delete them. `rm .git/anything` returns
-`Operation not permitted`. This is a Cowork-sandbox-layer restriction,
-not a Unix permissions problem. Host chmod/chown does not change it.
-
-**Therefore: NEVER run `git commit` or `git push` from the sandbox shell.**
-Every sandbox-git attempt leaves a `.git/index.lock` the sandbox can't
-clean up, then blocks every future git operation in the repo. This wasted
-~40 minutes on May 12.
-
-### THE ONLY WORKING SYNC FLOW
-
-When Frank says "sync to main", do this — no detours, no sandbox git:
-
-#### STEP 0 — PREFLIGHT (DO THIS FIRST, ALWAYS)
-
-Before opening VS Code, before touching the clipboard, before
-anything: run this in the sandbox shell to detect a stale lock left
-over from any previous session/agent:
-
-```
-cd /sessions/.../mnt/dresslikemommy && \
-  git status --short && \
-  ls -la .git/index.lock 2>&1 | head -3
+```bash
+python3.13 ops/scripts/open_marketing_cockpit.py
 ```
 
-If you see `.git/index.lock` existing OR if the `M` status column has
-TWO characters (e.g. `MM filename`, meaning "staged then unstaged
-again" — VS Code's signature for an interrupted commit), STOP. Tell
-Frank verbatim, in a SINGLE message, before doing anything else:
+This opens `ops/marketing/operator_cockpit.html` locally for the human. It is a local dashboard action only; it does not create live external writes.
 
-> "A stale git lock from a previous session is blocking the commit.
-> Please run this in Terminal and reply 'done':
-> `rm -f /Users/fsuels/Projects/dresslikemommy/.git/index.lock`"
+## Operating Model
 
-Do NOT proceed to open VS Code. Do NOT click Commit & Push. The lock
-WILL kill the commit and you'll have to ask Frank to remove it
-afterward instead of beforehand — which doubles the wait time and is
-the single biggest source of Frank's frustration with this workflow.
+- Be an end-to-end agent: inspect, plan briefly, edit, run commands, verify, iterate, and report.
+- Evidence first. Base findings on repo files, readbacks, and saved artifacts. Do not invent current platform state.
+- Use the smallest effective change consistent with the repo's Shopify/Dawn patterns.
+- Prefer existing scripts, package managers, helpers, and local conventions.
+- Do not modify secrets, credentials, billing, auth providers, deployment config, infrastructure, production data, or destructive filesystem state unless the task explicitly requires it and the current session has the needed approval.
+- No AI UI or backend agent surface belongs on the live Shopify storefront. Agent tooling is developer/operator-side only.
 
-This preflight check is MANDATORY on every sync attempt, even if you
-just successfully synced 10 minutes ago. Lock files can be left by:
-- A previous failed VS Code commit (most common)
-- Another agent (Codex, Cursor) interrupted mid-commit
-- A previous sandbox-git attempt by an earlier session
-- Frank running a git command himself that got interrupted
+## Memory And Continuity
 
-#### STEP 1 — Open VS Code
+- `ops/AGENT_WORKLOG.md` is the chronological session log and must receive an `AGENT_CONTINUITY_ANCHOR` after any session that changes code, theme files, prompts, scripts, external-system state, or durable strategy.
+- `ops/PROBLEM_TRACKER.md` is the active problem ledger. A real issue stays live until fixed, disproven, superseded by a safer path, or gated with the exact next unblock action.
+- `ops/AGENT_COORDINATION.md` is the active write-claim and lock registry. Do not clear or override another agent's claim unless the owner explicitly transfers or clears it.
+- `ops/marketing/` is the paid-growth daily command layer. Treat it as the compact execution state for marketing decisions; keep older `ops/` files as historical memory and evidence.
+- Do not rely on Codex memory or chat history as authority when checked-in repo docs can answer the question.
+- For paid-growth handoffs, use the single canonical prompt in `ops/prompts/paid-growth-ai-army-continuation-prompt.md`; packet prompts may point back to it but must not become competing operating prompts.
 
-1. `mcp__computer-use__request_access` for `["com.microsoft.VSCode"]` with
-   `clipboardWrite: true`. Bring VS Code forward (`open_application`).
+## Problem Handling
 
-2. `mcp__computer-use__write_clipboard` with a short single-line commit
-   message (e.g. "PDP: <one-line summary>"). Multi-line is fine but the
-   FIRST line must be a good one-line summary.
+- Problem found means solve now inside the approved scope, or route around it while other safe lanes continue.
+- Do not write passive "blocked" notes and stop. Try the safest direct path, try or rule out one grounded alternate path, document evidence and the next unblock action, then continue independent work.
+- Every touched problem entry needs status, owner/session, surface, symptom, business impact, fixed criteria, attempt log, failed paths, gates, next action, and parallel work to continue.
+- Results/action mandate: when you see a mistake, broken state, underperforming path, or clear improvement, take proactive action immediately. If it is local/read-only or inside current approval, fix it and verify. If it requires unapproved live external writes, prepare the smallest exact approval packet and keep other safe sales-moving work going. Monitoring is only useful when it produces a fix, bounded action, optimization decision, or exact unblock step.
 
-   **GOTCHA — VS Code is tier-"click", so `write_clipboard` is BLOCKED
-   while VS Code is frontmost.** Two correct orderings:
+## Coordination And External Systems
 
-   (a) Write the clipboard FIRST, before `open_application` brings VS
-       Code forward. Order in step 1 above is correct.
-   (b) If VS Code is already frontmost and you need to rewrite the
-       clipboard mid-flow, request access to Finder (tier "full") with
-       `clipboardWrite: true`, `open_application("Finder")`, then
-       `write_clipboard`, then `open_application` VS Code again.
+- One writer per campaign/feed/product cohort/theme area/account surface.
+- Read-only audits may run in parallel. Writes require a narrow active claim in `ops/AGENT_COORDINATION.md`.
+- Before clicking Save, Apply, Publish, Upload, Enable, Pause, Remove, Delete, Sync, or Submit in an external system, confirm the claim, approval phrase, before-state readback, and after-state readback plan.
+- Parent/orchestrator owns approvals, live writes, final integration, and the final report. Subagents must use disjoint scopes and separate tabs/sessions.
+- Stop and report if an external account shows login, CAPTCHA, account switcher, billing, permission, policy, unsaved-change, or destructive-action prompts.
 
-   Do NOT use any other workaround (no AppleScript, no Terminal echo,
-   no tier escalation). Just briefly switch focus.
+## Paid-Growth Guardrails
 
-3. Screenshot. Confirm the Source Control panel shows the modified files
-   and the empty `Message (⌘Enter to commit on "main")` box.
+- North Star: build and run a profitable paid-growth machine for Dress Like Mommy across Google Ads and Pinterest, aiming for as many profitable conversions as possible at about `650% ROAS`.
+- Progress must be sales-moving: approved live tests enabled/monitored, paused-ready campaigns or drafts built, keywords/negatives/copy/assets improved, landing/feed/catalog blockers fixed, performance decisions made from evidence, or exact unblock actions prepared.
+- Results over loops: do not run monitor/readback cycles as the deliverable. Every monitor must end by choosing and recording one of `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`.
+- Starting 2026-05-14, paid-growth agents must treat each day without sales growth, usable learning, or a sales-moving improvement as a failure signal requiring same-day action. Tomorrow's check must answer paid-growth sales, revenue, CPA, ROAS, and what changed.
+- Zero impressions after 24 hours is a same-day action trigger. Diagnose serving and evaluate high-buyer-intent long-tail exact/phrase or auction-entry actions instead of waiting passively.
+- Use `ops/marketing/expert_growth_playbook_2026.md` for source-backed 2026 strategy: high-intent/low-waste keywords, anti-cannibalization, channel roles, daily optimization clocks, and specialist agent personas.
+- Audits, packets, and readbacks are support work only. They count when they produce action, approval packets, blocker removal, or optimization decisions.
+- Default to parent/orchestrator plus parallel subagents for paid-growth when tooling supports it.
+- Do not let one blocked lane freeze the sprint. Record the gate and keep independent safe lanes moving.
+- Current command-layer files are under `ops/marketing/`; project-scoped Codex agents are under `.codex/agents/`.
+- Standing bounded spend authority is not active unless `ops/marketing/spend_authorization.md` says it is approved. Until then, live spend/status/budget/bid/feed/product/conversion writes still require fresh explicit action-time approval.
+- Dress Like Mommy is a dropshipping business with no physical store and no owned physical inventory. Do not write policy, ad, listing, feed, or report copy that implies a retail location, warehouse, local inventory, stocked inventory, or guaranteed on-hand stock. Platform inventory/salability labels are diagnostics only.
 
-4. `left_click` the message box to focus it. Then tell Frank in chat:
-   "Press ⌘V to paste the commit message, then say 'pasted'." Wait.
+## Paid-Growth Write Boundaries
 
-5. After Frank confirms "pasted", screenshot. Verify the message box
-   is no longer empty.
+Unless fresh explicit action-time approval exists in the current session, do not:
 
-6. `left_click` the dropdown caret `⌄` immediately to the right of the
-   `✓ Commit` button. A menu opens with: Commit / Commit (Amend) /
-   Commit & Push / Commit & Sync.
+- Enable spend, upload/apply/import campaign changes, change budgets/bids/statuses, alter product/feed/conversion scope, or mutate Merchant/Shopify/Pinterest/GA4/GTM production data.
+- Enable PMax or unresolved remarketing.
+- Change Standard Shopping status, budget, product groups, feed labels, product scope, bids, or conversion goals.
+- Change billing, credentials, account access, conversion goals, Shopify products/prices/discounts/policies, Merchant feeds/sources, Pinterest catalog/source/product groups, or native-language ads that are not signed off.
 
-7. `left_click` "Commit & Push" in that menu. Wait 6 seconds.
+Read-only monitoring, local packet creation, paused/review-only artifacts, and storefront public readbacks are allowed when they stay inside the repo and approved safety bounds.
 
-8. Screenshot. Verify either: "Committing Changes…" → gone (success),
-   OR the Output panel shows an error.
+## Shopify And Credentials
 
-9. **If the Output panel shows `Unable to create '.git/index.lock': File exists`**:
+- Shopify Admin API access exists through the operator-managed `n8n Integration` app. Canonical local credential sources are `~/.config/dresslikemommy/shopify-admin.env`, `~/.config/dresslikemommy/admin-api-token.json`, and `~/.config/dresslikemommy/translation-helper-token.json`.
+- Credentials must stay outside the repo, worklog, theme files, prompts, and evidence snippets.
+- If env vars are unset, say "credentials not loaded in this shell", not "no API access exists".
+- If a stored token returns `401`, treat it as stored token regeneration/reinstall needed, not proof the store lacks API access.
+- Never write vendor/source URLs into Shopify tags, title, SEO, body copy, product type, customer-visible metafields, feed-visible metafields, or sales-channel-visible product data. Source URLs belong only in local operator evidence.
 
-   This SHOULDN'T happen if STEP 0 preflight ran. If it does, VS Code
-   crashed mid-commit on this very click. CLAUDE cannot delete the
-   lock from the sandbox.
+## Shopify Theme And GitHub Sync
 
-   **Send ONE clean message to Frank** — never a two-step "delete this,
-   then say done, then I'll come back": batch it into a single ask, do
-   the rest yourself without further prompts. Verbatim:
+- Theme work should be minimal and Dawn-compatible. Avoid server code in Liquid; use app proxies for backend needs.
+- Run narrow JS/Liquid/theme checks for touched areas and review the diff for scope creep.
+- `AGENTS.md` and `CLAUDE.md` intentionally mirror each other. Follow current user instructions for sync/push requests and preserve unrelated worktree changes.
+- Never use destructive git commands such as `git reset --hard` or `git checkout --` unless explicitly requested.
 
-   > "Please run in Terminal:
-   > `rm -f /Users/fsuels/Projects/dresslikemommy/.git/index.lock`
-   > Reply 'done' and I'll finish the commit without further input."
+## Sourcing And Listing
 
-   When Frank says "done", immediately go back to step 6 (click the
-   Commit & Push dropdown again — the staged files are still staged).
-   Do NOT ask him to verify, re-confirm, or take any further step.
+- For 1688 sourcing, use the existing local sourcing dashboard and files under `ops/sourcing/`; do not restart the pipeline from scratch.
+- Keep source credentials and CAPTCHA/login handling outside the repo.
+- Rejected 1688 offer IDs should stay rejected unless the user restores them.
+- For Shopify listing workflows, use `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md`.
+- New listings with size charts must follow the localized size-chart repair and audit workflow before being considered complete.
 
-10. After commit success, verify from the sandbox shell:
-    `git log origin/main --oneline -2` — confirm the new commit is on
-    `origin/main`. (Read-only ops in `.git/` DO work from the sandbox.)
+## Final Response Format
 
-### Things to NEVER do — wasted hours of Frank's time
+Start with `Confidence: H|M|L`, then report:
 
-- ❌ Don't run `git commit` or `git push` from the sandbox shell. The
-  half-completed lock file is unrecoverable from inside the sandbox.
-- ❌ Don't paste a Terminal one-liner with `git commit -m "..."` where the
-  closing `"` is on a later line — Frank's $EDITOR opens mid-chain and
-  breaks the `&&` sequence.
-- ❌ Don't tell Frank to "just delete the lock file" without ALSO giving
-  the complete follow-up (commit + push). Half-fixes leave him doing
-  manual git work he shouldn't be doing.
-- ❌ Don't recommend the `sudo chown / chmod` perms fix as a path to
-  letting the sandbox sync — empirically it doesn't help (the sandbox
-  blocks `.git/` writes at its own layer). Leave that section deleted.
-- ❌ Don't get fancy: no `git commit -F /tmp/msg.txt` here-doc tricks,
-  no AppleScript, no Terminal tier-"full" escalation. The VS Code GUI
-  click path above is the ONLY proven path.
-
-### Before any sync attempt: check if a competing agent already pushed
-
-If another agent (Codex CLI, Cursor, etc.) has been working in this
-repo, it may have committed and pushed on its own. ALWAYS run
-`git status --short && git log origin/main --oneline -3` from the
-sandbox shell BEFORE attempting your own sync. If origin/main already
-has the changes, tell Frank "already synced by another agent — here's
-the latest commit on origin/main" instead of trying to push.
-
-### Important details for the Shopify push
-
-- `shopify theme push --live` targets the currently-published theme on
-  the store. It prompts for confirmation because `--live` is destructive.
-- Auth is via `.shopify-admin.env` at the repo root (gitignored). If the
-  CLI prompts for login, Frank runs `shopify auth login`.
-- The repo has a `.shopifyignore` — respect it.
-- If Frank wants a preview instead of live, the safer variant is
-  `shopify theme push --unpublished --json`. But "sync to main" default
-  = push to LIVE.
-
-### Sandbox limitations Claude must work AROUND
-
-- Claude's sandbox CANNOT write or delete inside `.git/`. This is a
-  Cowork-sandbox restriction, NOT host Unix permissions. Host
-  chown/chmod does not change it. The proven workaround is the VS Code
-  Commit & Push GUI path above. Do not try sandbox `git commit` again
-  — every attempt creates an unrecoverable `.git/index.lock`.
-- Claude cannot type into Terminal or VS Code (tier-"click"). Use
-  GUI button clicks + the clipboard (write the commit message to
-  Frank's clipboard, ask him to ⌘V into VS Code's message box).
-- Claude cannot run `shopify theme push` directly. The GitHub-connected
-  theme deploys automatically when `origin/main` advances — no
-  separate CLI step is needed. If the legacy Shopify CLI prompt
-  appears in Terminal after a push, answer `n` — it's a stale hook
-  from before the GitHub integration.
-
-**Proof the GUI path works: commit `c892877` (May 11, 2026) and
-`beed4c3` / `8f6ae08` (May 12) all landed on `origin/main` via VS
-Code's Commit & Push button.**
-
-## Theme layout notes (so Claude doesn't have to re-discover them)
-
-- **PDP entry point**: `sections/main-product.liquid`. The conversion-
-  support / trust block lives inside the `.additional-info` wrapper and
-  is rendered via `{% render 'pdp-purchase-confidence' %}`.
-- **Purchase-confidence trust block**: `snippets/pdp-purchase-confidence.liquid`.
-  Three promise rows (shipping, returns, secure checkout) plus three
-  collapsed `<details>` (shipping details, return policy, payment & privacy).
-- **PDP policy modals** (added May 2026): `snippets/pdp-policy-modals.liquid`.
-  Intercepts the "View return details" and "View privacy details" links
-  inside `pdp-purchase-confidence.liquid` and opens an in-page modal
-  instead of navigating to `/policies/refund-policy` or
-  `/policies/privacy-policy`. The triggers keep their real `href` for
-  no-JS, right-click "open in new tab", and SEO.
-- **Shipping-country checker**: `snippets/shipping-country-checker-modal.liquid`.
-  Established modal pattern in this theme — use it as the reference for
-  any new modal (z-index 10000, lock `<html>` overflow, simple
-  no-transition overlay so sticky PDP elements stay painted).
-
-## Conventions Claude should follow in this repo
-
-- Use the existing CSS variables / colors when extending the design
-  (`#1D8656` green, `#201613` near-black for body text). The
-  purchase-confidence module is the reference for new PDP trust UI.
-- Liquid: prefer `{%- liquid ... -%}` blocks for assignment-heavy logic;
-  match the existing whitespace style.
-- Wrap new copy in `'<key>' | t` with a sensible English fallback
-  via `if … contains 'translation missing'`, mirroring the pattern in
-  `pdp-purchase-confidence.liquid`.
-- Don't `localStorage` or `sessionStorage` from scripts injected into
-  Liquid snippets unless there's a clear reason — the shipping checker
-  is the one place this theme does it, with try/catch wrappers.
-- Respect `.shopifyignore`.
-
-## Useful repo paths
-
-- `ops/` — internal ops docs (`SHIPPING_SLA.md`, `experiments.md`, etc.).
-- `dresslikemommy-growth-2026/` — growth / CRO audit packets and reports.
-- `GPT/` — exported reviews, prompt notes, design refs.
-- `agent-backend/` — separate Node service for the storefront agent.
-
-## Recent significant work
-
-- **May 2026** — PDP in-page policy modals (CRO). Commit `e8e62e7` on
-  `origin/main`. Replaces the standalone refund/privacy page exits inside
-  the Purchase Confidence module with a lightweight modal pattern that
-  mirrors the shipping-country checker.
+- what changed
+- files touched
+- commands run
+- results
+- residual risks
+- next best action

@@ -1,6 +1,6 @@
 # Marketing Prompt Log
 
-Last updated: 2026-05-14 07:52 EDT
+Last updated: 2026-05-14 08:24 EDT
 
 ## Canonical Paid-Growth Prompt
 
@@ -97,6 +97,144 @@ Done when:
 - Pinterest Ads Manager access is either restored and read back, or the exact owner/browser unblock action is documented.
 - The command layer names the single next bounded execution row and the approval phrase needed, if any.
 ```
+
+## Goal Execution: 2026-05-14 GB/CA/AU Keyword Strategy Repair
+
+Status: `DONE_LOCAL_NO_EXTERNAL_WRITES`
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-gb-ca-au-keyword-strategy-repair/GB_CA_AU_DAY1_ZERO_IMPRESSION_KEYWORD_STRATEGY_REPAIR.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-gb-ca-au-keyword-strategy-repair/gb_ca_au_high_intent_candidate_map.csv`
+
+Result:
+
+- GB/CA/AU exact Search strategy now treats the current three exact terms as starter controls, not the full plan.
+- GB has English-UK mum/mummy/holiday/photo/wedding/beach candidate themes.
+- CA has English-Canada candidate themes and keeps French-Canada separate until native review and landing QA.
+- AU has English-Australia mum/mummy/holiday/beach-photo/swim candidate themes.
+- Candidate rows are `review_only_not_uploaded`; no live Google Ads write occurred.
+
+Next:
+
+- Run the fresh read-only GB/CA/AU monitor with CA/AU stale filters absent, Quality Score/RSA/final URL checks, live paid-landing sanitizer state, and current sales/ROAS before any live action.
+
+## Goal Execution: 2026-05-14 Fresh GB/CA/AU Ads Monitor And Gate Review
+
+Status: `DONE_READONLY_BLOCKED_NO_EXTERNAL_WRITES`
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/FRESH_GB_CA_AU_ADS_MONITOR_AND_GATE_REVIEW.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/exact_scope_bounded_action_packet_blocked.csv`
+
+Result:
+
+- GB/CA/AU Ads-side readback passed for campaign scope, ad group scope, enabled keywords, enabled RSA, and country-qualified final URLs.
+- Stale `Keyword: "human hair wigs"` search-term filters were cleared on GB/CA/AU; no search terms are available afterward.
+- Keyword UI shows `Eligible (Limited)` / below-first-page-bid estimates around `$0.65-$0.74` while max CPC remains `$0.15`.
+- Live GB/CA/AU final URL source still exposes `detail.1688.com` in `data-analytics-vendor`; live action is blocked.
+
+Next:
+
+- Get scoped live theme sanitizer sync/readback approval, then rerun the Ads monitor/reviewer before any keyword or bid action.
+
+## Goal Execution: 2026-05-14 $0.15 CPC Long-Tail Correction
+
+Status: `DONE_LOCAL_NO_EXTERNAL_WRITES`
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/CPC_015_LONG_TAIL_CORRECTION.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/exact_scope_bounded_action_packet_blocked.csv`
+
+Result:
+
+- Owner corrected that `$0.15` CPC is a hard ceiling, not a preference.
+- Current active head terms read as below-first-page at about `$0.65-$0.74`, so they are rejected for bid-up or expansion.
+- Close variants like `[mummy and me dresses]`, `[mommy and me dresses canada]`, and `[mummy and me dresses australia]` are now rejected as lazy close-head rows, not long-tail strategy.
+- The blocked packet now contains only product-specific, buyer-moment long-tail validation candidates; they still require live landing clean readback and `$0.15` CPC validation before upload.
+
+Next:
+
+- After approved live sanitizer sync/readback, validate corrected long-tail rows in Keyword Planner or keyword UI at max CPC `$0.15`; do not raise bids and do not upload head/near-head variants.
+
+## Goal Execution: 2026-05-14 Expert Keyword Factory Criteria
+
+Status: `DONE_LOCAL_NO_EXTERNAL_WRITES`
+
+Evidence:
+
+- `ops/marketing/keyword_factory_015_cpc_criteria.md`
+- `ops/marketing/expert_growth_playbook_2026.md`
+
+Result:
+
+- Added the operating criteria for creating a big high-intent long-tail keyword universe while still protecting sales/ROAS economics.
+- Rule: build the candidate universe as large as possible locally, but live-upload only validated batches that pass market/language, buyer intent, landing fit, economics, conversion plausibility, no-cannibalization, and negative-fit gates.
+- Added the fix-now rule: repo-local mistakes get fixed immediately; approved live mistakes get fixed and read back; unapproved live writes become exact smallest approval packets, not passive blocker notes.
+
+## Goal Execution: 2026-05-14 Proactive Action/Results Mandate
+
+Status: `DONE_LOCAL_NO_EXTERNAL_WRITES`
+
+Evidence:
+
+- `AGENTS.md`
+- `ops/marketing/AGENTS.md`
+- `ops/GROWTH_NORTH_STAR.md`
+- `ops/prompts/paid-growth-ai-army-continuation-prompt.md`
+- `ops/marketing/expert_growth_playbook_2026.md`
+
+Result:
+
+- Owner directive encoded durably: results and proactive action matter more than monitor loops.
+- If a mistake, broken state, underperforming path, or clear improvement is visible, agents must fix it when safe/approved.
+- If live approval is missing, agents must prepare the smallest exact approval packet and keep another safe sales-moving lane moving.
+- Every monitor/readback must end in `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`.
+
+## Goal Execution: 2026-05-14 Action-Biased Keyword Universe
+
+Status: `DONE_LOCAL_NO_EXTERNAL_WRITES`
+
+Evidence:
+
+- `ops/marketing/keyword_strategy.md`
+- `ops/marketing/keyword_scoring_rubric.md`
+- `ops/marketing/keyword_universe.csv`
+
+Result:
+
+- Agreed with the expert correction: build the keyword universe as large as possible locally, but live-promote only small validated batches.
+- Created a 105-row local universe: `60` US-first rows, `15` GB, `15` CA, and `15` AU.
+- Rubric now uses buyer intent `25`, product match `20`, occasion/deadline `15`, landing match `15`, economic fit `10`, serveability `10`, and waste risk `5`.
+- CSV validation passed: `77` `GREEN`, `20` `YELLOW`, `8` `RED`; all score sums and thresholds matched.
+- No live keyword upload or external account write occurred.
+
+Next:
+
+- Validate top `GREEN` rows against active products, clean landing routes, and `$0.15` auction-entry evidence before any live packet.
+
+## Goal Execution: 2026-05-14 Command-Layer Integration Guard
+
+Status: `DONE_LOCAL_NO_EXTERNAL_WRITES`
+
+Evidence:
+
+- `ops/scripts/audit_marketing_command_integration.py`
+- `ops/marketing/command_layer_integration_audit.md`
+- `ops/marketing/AGENTS.md`
+- `ops/marketing/action_queue.md`
+
+Result:
+
+- Initial integration audit found `4` side-document risks.
+- Fixed them by registering keyword factory and US lane docs, marking migration trace as an archive reference, and linking the consolidation prompt through the action queue.
+- Current audit reports `25` tracked files, `25` integrated/generated/archive files, and `0` side-document risks.
+
+Next:
+
+- Run the audit before closing any future session that creates or materially changes files under `ops/marketing/`.
 
 ## Reusable Prompt: Safe Execution With Reviewer
 

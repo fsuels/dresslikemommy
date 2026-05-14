@@ -1,6 +1,8 @@
 # Agent Guide - dresslikemommy
 
-Scope: this file applies to the whole repository. It is the short Codex bootstrap. Detailed, changing state lives in `ops/` and `ops/marketing/`, not here.
+Scope: this file applies to the whole repository. It is the short agent bootstrap. Detailed, changing state lives in `ops/` and `ops/marketing/`, not here.
+
+This same bootstrap lives in both `AGENTS.md` and `CLAUDE.md`. Keep the two files byte-for-byte identical; do not maintain separate Claude-only instructions.
 
 ## Start Here
 
@@ -46,6 +48,7 @@ This opens `ops/marketing/operator_cockpit.html` locally for the human. It is a 
 - Problem found means solve now inside the approved scope, or route around it while other safe lanes continue.
 - Do not write passive "blocked" notes and stop. Try the safest direct path, try or rule out one grounded alternate path, document evidence and the next unblock action, then continue independent work.
 - Every touched problem entry needs status, owner/session, surface, symptom, business impact, fixed criteria, attempt log, failed paths, gates, next action, and parallel work to continue.
+- Results/action mandate: when you see a mistake, broken state, underperforming path, or clear improvement, take proactive action immediately. If it is local/read-only or inside current approval, fix it and verify. If it requires unapproved live external writes, prepare the smallest exact approval packet and keep other safe sales-moving work going. Monitoring is only useful when it produces a fix, bounded action, optimization decision, or exact unblock step.
 
 ## Coordination And External Systems
 
@@ -59,6 +62,7 @@ This opens `ops/marketing/operator_cockpit.html` locally for the human. It is a 
 
 - North Star: build and run a profitable paid-growth machine for Dress Like Mommy across Google Ads and Pinterest, aiming for as many profitable conversions as possible at about `650% ROAS`.
 - Progress must be sales-moving: approved live tests enabled/monitored, paused-ready campaigns or drafts built, keywords/negatives/copy/assets improved, landing/feed/catalog blockers fixed, performance decisions made from evidence, or exact unblock actions prepared.
+- Results over loops: do not run monitor/readback cycles as the deliverable. Every monitor must end by choosing and recording one of `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`.
 - Starting 2026-05-14, paid-growth agents must treat each day without sales growth, usable learning, or a sales-moving improvement as a failure signal requiring same-day action. Tomorrow's check must answer paid-growth sales, revenue, CPA, ROAS, and what changed.
 - Zero impressions after 24 hours is a same-day action trigger. Diagnose serving and evaluate high-buyer-intent long-tail exact/phrase or auction-entry actions instead of waiting passively.
 - Use `ops/marketing/expert_growth_playbook_2026.md` for source-backed 2026 strategy: high-intent/low-waste keywords, anti-cannibalization, channel roles, daily optimization clocks, and specialist agent personas.
@@ -92,7 +96,7 @@ Read-only monitoring, local packet creation, paused/review-only artifacts, and s
 
 - Theme work should be minimal and Dawn-compatible. Avoid server code in Liquid; use app proxies for backend needs.
 - Run narrow JS/Liquid/theme checks for touched areas and review the diff for scope creep.
-- `CLAUDE.md` contains historical GitHub-connected live-theme sync notes. Follow current user instructions for sync/push requests and preserve unrelated worktree changes.
+- `AGENTS.md` and `CLAUDE.md` intentionally mirror each other. Follow current user instructions for sync/push requests and preserve unrelated worktree changes.
 - Never use destructive git commands such as `git reset --hard` or `git checkout --` unless explicitly requested.
 
 ## Sourcing And Listing

@@ -259,3 +259,260 @@ Evidence:
 Safest next sales-moving action:
 
 - Run the Day 1 sales/ROAS monitor and GB/CA/AU zero-impression diagnosis, then build high-buyer-intent long-tail candidates with exact anti-cannibalization ownership and landing fit.
+
+## 2026-05-14 - GB/CA/AU Day 1 keyword strategy repair
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Repo-local/read-only keyword strategy repair for active GB/CA/AU exact Search campaigns.
+- Official Google Ads docs for Target ROAS math/traffic limits, low-search-volume behavior, exact/phrase/broad match controls, Quality Score components, and ad/landing relevance.
+- Market/language candidate maps for GB English-UK, CA English-Canada with French-Canada gated separately, and AU English-Australia.
+- No live keyword, ad, negative, bid, budget, status, campaign, feed, product, conversion, or theme write.
+
+Risks:
+
+- Latest Ads metrics are saved `2026-05-14 05:34 EDT` readbacks for reporting day `2026-05-13`; a fresh live monitor is still needed before any live action.
+- CA/AU search-term pages remain non-actionable while the stale `Keyword: "human hair wigs"` filter is present.
+- Active paid landing expansion still depends on approved live sanitizer sync/readback.
+
+Required gates/fixes:
+
+- Fresh before-state Google Ads readback with CA/AU filters clear, Quality Score/RSA/final URL checks, and current metrics.
+- Reviewer pass for any exact keyword/ad/bid/status action.
+- Live paid landing supplier/source sanitizer readback before traffic expansion.
+- After-state readback and command-layer logging for any future live action.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-gb-ca-au-keyword-strategy-repair/GB_CA_AU_DAY1_ZERO_IMPRESSION_KEYWORD_STRATEGY_REPAIR.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-gb-ca-au-keyword-strategy-repair/gb_ca_au_high_intent_candidate_map.csv`
+- `ops/marketing/campaign_explorer.json`
+
+Safest next sales-moving action:
+
+- Run the fresh read-only GB/CA/AU monitor and, only if gates pass, prepare an exact-scope bounded action packet for market-language long-tail exact/phrase rows or auction-entry changes.
+
+## 2026-05-14 - Fresh GB/CA/AU Ads monitor and landing gate
+
+Reviewer verdict: `BLOCK`
+
+Checked:
+
+- Fresh read-only Google Ads CDP/RPC/UI monitor for GB, CA, and AU.
+- Search-term filter-chip removal only; no Ads entity mutation.
+- Quality Score/Exp. CTR/ad relevance/landing page experience columns present in keyword UI.
+- RSA/ad status and final URLs through read-only RPC and UI captures.
+- Public GB/CA/AU landing source sanitizer readback.
+
+Risks:
+
+- All active final URLs still expose `detail.1688.com` in `data-analytics-vendor`, which violates paid-landing and supplier/source guardrails.
+- The active exact keywords are `Eligible (Limited)` because `$0.15` max CPC is below first-page estimates around `$0.65-$0.74`; raising bids into generic head terms would be risky without a clean landing and conversion-value proof.
+- Search terms are filter-clean now but still empty/no terms, so no negative action is justified.
+
+Required gates/fixes:
+
+- Scoped live theme sanitizer sync/readback must pass on GB/CA/AU final URLs before any keyword, bid, status, or traffic expansion.
+- Rerun fresh Ads monitor and reviewer gate after landing is live-clean.
+- Keep the exact-scope action packet `BLOCKED_DO_NOT_UPLOAD_OR_APPLY` until gates pass.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/FRESH_GB_CA_AU_ADS_MONITOR_AND_GATE_REVIEW.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/exact_scope_bounded_action_packet_blocked.csv`
+
+Safest next sales-moving action:
+
+- Get approval for scoped live theme sanitizer sync/readback, then rerun the GB/CA/AU monitor and only then decide whether the blocked long-tail exact packet can become a bounded live action.
+
+## 2026-05-14 - $0.15 CPC long-tail packet correction
+
+Reviewer verdict: `BLOCK_WITH_CORRECTION`
+
+Checked:
+
+- Owner hard CPC correction: clicks above `$0.15` are not acceptable for the current active Search repair.
+- Fresh keyword UI readback showing active head terms below first page at `$0.65-$0.74`.
+- Blocked packet rows that still proposed close head variants.
+- Repo-local packet/doc correction only; no Ads or Shopify external write.
+
+Risks:
+
+- Close head variants can look localized while still entering the same expensive auction.
+- Product-specific long tails may have low search volume; they still require read-only planner/keyword UI validation before upload.
+- Live landing supplier/source URL leak still blocks traffic expansion.
+
+Required gates/fixes:
+
+- No bid above `$0.15`.
+- No upload of `[mummy and me dresses]`, `[mommy and me dresses canada]`, `[mummy and me dresses australia]`, or other close-head variants as "long tail."
+- Candidate rows must be market-specific, buyer-moment/product-specific, landing-fit, and validated at `$0.15` before live action.
+- Live sanitizer readback must pass before any traffic expansion.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/CPC_015_LONG_TAIL_CORRECTION.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/exact_scope_bounded_action_packet_blocked.csv`
+
+Safest next sales-moving action:
+
+- Sync/read back the live landing sanitizer after explicit approval, then validate only the corrected long-tail candidates at `$0.15` before any bounded upload.
+
+## 2026-05-14 - Expert keyword factory criteria
+
+Reviewer verdict: `PASS_LOCAL`
+
+Checked:
+
+- Repo-local criteria file only; no platform or live account write.
+- Hard `$0.15` CPC cap and `650% ROAS` math.
+- Large local universe plus small validated live batch rule.
+- Fix-now rule for mistakes found during execution.
+
+Risks:
+
+- A big local universe still needs actual Keyword Planner/keyword UI validation before live use.
+- A clean keyword list cannot overcome the live landing supplier/source leak by itself.
+
+Required gates/fixes:
+
+- Live uploads require clean landing readback, `$0.15` CPC validation, reviewer pass, exact row scope, and after-state readback.
+- For unapproved live writes, produce the exact smallest approval packet instead of stopping at a passive blocker.
+
+Evidence:
+
+- `ops/marketing/keyword_factory_015_cpc_criteria.md`
+- `ops/marketing/expert_growth_playbook_2026.md`
+
+Safest next sales-moving action:
+
+- After landing sanitizer approval/sync, build the large local keyword universe and validate the highest-scoring exact rows at `$0.15` before upload.
+
+## 2026-05-14 - US primary keyword correction
+
+Reviewer verdict: `PASS_LOCAL`
+
+Checked:
+
+- Owner correction that US is the biggest market.
+- Current command layer: US live lane is Standard Shopping; GB/CA/AU are active Search keyword repair lanes.
+- Repo-local criteria/doc updates only.
+
+Risks:
+
+- Operators may mistake non-US Search urgency for overall market priority.
+- Shopping does not accept manual keywords, so US keyword work must feed title/feed/query/product diagnostics and future Search/Pinterest packets.
+
+Required gates/fixes:
+
+- Keep US first in keyword universe generation.
+- Do not mutate Shopping feed/product groups/titles/bids/status without approval.
+- Do not upload US Search rows without `$0.15` validation, clean landing, reviewer pass, and after-state readback plan.
+
+Evidence:
+
+- `ops/marketing/us_primary_keyword_lane.md`
+- `ops/marketing/keyword_factory_015_cpc_criteria.md`
+- `ops/marketing/campaign_explorer.json`
+
+Safest next sales-moving action:
+
+- Build the US-first local keyword universe and use it to diagnose Standard Shopping query/product/title fit, while keeping live writes gated.
+
+## 2026-05-14 - Proactive action/results mandate
+
+Reviewer verdict: `PASS_LOCAL`
+
+Checked:
+
+- Owner directive that results and actions matter more than monitor loops.
+- Repo-local durable operating-doc updates only.
+- No live account or production write.
+
+Risks:
+
+- Action language could be misread as permission to skip approval gates.
+- Monitoring still matters when it produces a decision or proves no action is currently valid.
+
+Required gates/fixes:
+
+- Fix immediately when local/read-only or current approval covers the action.
+- For unapproved live writes, prepare the exact smallest approval packet and keep other safe work moving.
+- Every monitor/readback must end in a concrete result category, not vague observation.
+
+Evidence:
+
+- `AGENTS.md`
+- `ops/marketing/AGENTS.md`
+- `ops/GROWTH_NORTH_STAR.md`
+- `ops/prompts/paid-growth-ai-army-continuation-prompt.md`
+- `ops/marketing/expert_growth_playbook_2026.md`
+
+Safest next sales-moving action:
+
+- Use the next live/read-only finding to either fix now, execute an approved bounded action, or produce the exact approval packet.
+
+## 2026-05-14 - Action-biased keyword universe and scoring rubric
+
+Reviewer verdict: `PASS_LOCAL`
+
+Checked:
+
+- Owner requested the expert model: large local keyword universe, small validated live batches.
+- New files are local docs/data only: `keyword_strategy.md`, `keyword_scoring_rubric.md`, and `keyword_universe.csv`.
+- No live Google Ads, Shopify, Merchant, Pinterest, GA4/GTM, billing, bid, budget, status, keyword, ad, feed, product, conversion, or theme write occurred.
+- CSV validation passed: `105` rows, `60` US, `15` GB, `15` CA, `15` AU; scores sum correctly and thresholds match the rubric.
+
+Risks:
+
+- Future operators could mistake `GREEN` for upload-ready instead of validation-ready.
+- Landing and CPC gates still block GB/CA/AU live expansion.
+
+Required gates/fixes:
+
+- Before live use: active-product fit, clean landing route, `$0.15` CPC validation, anti-cannibalization owner, reviewer pass, exact `action_queue.md` row, and after-state readback plan.
+- `YELLOW` rows stay local unless used as a bounded phrase-discovery repair; `RED` rows are not paid-Search upload candidates.
+
+Evidence:
+
+- `ops/marketing/keyword_strategy.md`
+- `ops/marketing/keyword_scoring_rubric.md`
+- `ops/marketing/keyword_universe.csv`
+- `ops/marketing/spend_authorization.md`
+
+Safest next sales-moving action:
+
+- Validate top US `GREEN` rows against Standard Shopping queries/product titles and validate GB/CA/AU `GREEN` rows only after the paid landing sanitizer is live-clean.
+
+## 2026-05-14 - Command-layer integration guard
+
+Reviewer verdict: `PASS_LOCAL`
+
+Checked:
+
+- Owner identified side documents without follow-up as a critical process failure.
+- Added `ops/scripts/audit_marketing_command_integration.py`.
+- Generated `ops/marketing/command_layer_integration_audit.md`.
+- Initial audit found `4` risks; current rerun reports `25` tracked files and `0` side-document risks.
+
+Risks:
+
+- The guard only covers files under `ops/marketing/`; audit packets and broader `ops/` history remain evidence stores and still need normal tracker/worklog discipline.
+
+Required gates/fixes:
+
+- Any new `ops/marketing/` artifact must be registered, action-linked, continuity-logged, or marked generated/archive.
+- Future closeouts must run the audit when command-layer files are created or materially changed.
+
+Evidence:
+
+- `ops/scripts/audit_marketing_command_integration.py`
+- `ops/marketing/command_layer_integration_audit.md`
+- `ops/marketing/AGENTS.md`
+- `ops/marketing/action_queue.md`
+
+Safest next sales-moving action:
+
+- Keep using `action_queue.md`, `current_marketing_state.md`, and `operator_cockpit.md` as the execution surfaces; do not let new strategy docs bypass them.

@@ -1,5 +1,7 @@
 # Marketing Command Layer Migration Trace
 
+Integration status: `ARCHIVE_REFERENCE`
+
 Last seeded: 2026-05-14
 
 Purpose: make the root `AGENTS.md` compaction auditable. Critical operational memory was either kept in the short root bootstrap or moved/preserved in the named continuity files below.
