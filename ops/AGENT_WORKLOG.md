@@ -37308,3 +37308,42 @@ Next best action:
 - Export forecast/readback rows and run:
   `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/validate_keyword_planner_forecast_export.py --forecast-csv /path/to/authenticated-forecast-export.csv`
 - Promote only `PASS_015_CPC_GATE` rows through a fresh `GREEN` action-queue row with fresh Ads readback, reviewer pass, anti-cannibalization check, and after-state readback.
+
+2026-05-14 - Automation collection source cleanup approval packet
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-collection-source-cleanup-approval
+
+Why:
+- The highest-priority remaining action rows still require authenticated Google Ads/Merchant/Pinterest account surfaces, and this unattended automation runtime is not allowed to spend the run on Computer Use/profile-lock recovery.
+- The next safe sales-moving lane was to stop leaving the remaining supplier-leaking collection routes as vague holds and convert them into an exact cleanup-or-exclude packet.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-collection-source-cleanup-approval/build_collection_source_cleanup_approval.py`.
+- Generated `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-collection-source-cleanup-approval/COLLECTION_SOURCE_CLEANUP_APPROVAL_PACKET.md`.
+- Generated `collection_source_cleanup_route_rows.csv`, `collection_source_cleanup_product_rows.csv`, and `collection_source_cleanup_approval_summary.json`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Public-read back `/collections/swimsuits` and `/collections/matching-dresses` across `US`, `GB`, `CA`, and `AU` with both browser-like and cache-busted/generic header variants.
+- `/collections/swimsuits` returned `200` in all checks but still exposes `2` source-vendor product rows and `8` supplier/url-brand hits per readback through Shopify automatic product JSON.
+- `/collections/matching-dresses` redirects to `/collections/dresses`, returns `200`, and still exposes `1` source-vendor product row and `4` supplier/url-brand hits per readback through Shopify automatic product JSON.
+- `8` US keyword-universe rows still point at these dirty routes; they must remain local-only until rerouted or owner-approved product/vendor source cleanup passes public readback.
+- The current GB/CA/AU 36-row CPC packet remains on clean canonical routes; this cleanup packet is not upload authority.
+
+Verification:
+- Repo write test passed.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-collection-source-cleanup-approval/build_collection_source_cleanup_approval.py` completed and generated the report/CSV/JSON outputs.
+- `python3.13 -m py_compile dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-collection-source-cleanup-approval/build_collection_source_cleanup_approval.py` passed.
+- `python3.13 -m json.tool dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-collection-source-cleanup-approval/collection_source_cleanup_approval_summary.json` passed.
+
+Guardrails:
+- No Shopify Admin product/vendor/source metadata edit occurred.
+- No live Shopify theme push/sync/publish occurred.
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/product-group write occurred.
+- No Merchant feed/source/product/title edit, Pinterest, GA4/GTM, billing, product-scope, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Run authenticated Google Ads / Keyword Planner validation for the clean canonical 36-row GB/CA/AU packet at max `$0.15`.
+- Run authenticated read-only Standard Shopping item-level export for campaign `23802638621`, then run the auth-export join script.
+- If the owner wants to unblock `/collections/swimsuits` or `/collections/matching-dresses`, use `COLLECTION_SOURCE_CLEANUP_APPROVAL_PACKET.md` for exact product/vendor cleanup approval and public before/after readback; otherwise keep those rows excluded or reroute them to clean routes.

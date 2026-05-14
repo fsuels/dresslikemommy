@@ -957,3 +957,32 @@ Evidence:
 Safest next sales-moving action:
 
 - In an account-capable Ads session, validate the canonical rows and run the parser; live action remains blocked until pass rows exist.
+
+## 2026-05-14 - Collection source cleanup approval packet
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Public storefront source readback only; no Shopify Admin, Google Ads, Merchant, live theme, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, product-group, conversion, or destructive write.
+- Exact source scope was `/collections/swimsuits` and `/collections/matching-dresses` across `US`, `GB`, `CA`, and `AU` with browser-like and generic/cache-busted header variants.
+- Packet names only cleanup-or-exclude gates for product/vendor source leakage and keeps current clean GB/CA/AU CPC validation rows untouched.
+
+Risks:
+
+- Product/vendor source cleanup is a Shopify Admin product-data write and requires fresh owner approval.
+- The packet proves public source leakage and product rows, but it does not authorize product edits or paid traffic to those routes.
+
+Required gates/fixes:
+
+- Keep `/collections/swimsuits` and `/collections/matching-dresses` local-only/excluded until rerouted or owner-approved product/vendor cleanup is read back with `0` supplier hits.
+- Do not upload/add keyword rows, edit product/feed titles, or change product groups from this packet alone.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-collection-source-cleanup-approval/COLLECTION_SOURCE_CLEANUP_APPROVAL_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-collection-source-cleanup-approval/collection_source_cleanup_approval_summary.json`
+
+Safest next sales-moving action:
+
+- Keep the current clean-route GB/CA/AU CPC validation as the main path; use this packet only if the owner chooses to clean the remaining dirty collection routes.
