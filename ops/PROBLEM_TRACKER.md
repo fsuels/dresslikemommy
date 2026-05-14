@@ -2329,6 +2329,99 @@ Approval/credential/platform gates:
 Parallel work to continue:
 - Paid-growth, Merchant, Pinterest, GA4, checkout/payment, Admin product-data, and unrelated theme lanes remain separate.
 
+### `PROB-2026-05-13-CART-DISCOUNT-SUSPEND-CLEANUP`
+
+Priority: `P1`
+
+Status: `SOLVED_LIVE_READBACK_PASSED`
+
+Owner/session: Codex current session, 2026-05-13.
+
+Surface: Shopify Admin automatic discount `10% off 2+ items`, cart drawer checkout UX, and cart page checkout summary.
+
+Exact symptom:
+- Owner screenshot showed the real cart row `10% off 2+ items (-$4.69)` still applying after the manual promo copy was removed.
+- Owner also flagged too much cart reading friction and the `Shipping policy` link pulling shoppers away from checkout instead of keeping shipping context in cart.
+
+Business impact:
+- An unwanted automatic discount lowers margin.
+- Extra cart copy and policy navigation compete with the main checkout action at the highest-intent step.
+
+Definition of fixed:
+- Exact automatic discount node is not active.
+- Two matching swimsuit items in live `/cart.js` show `total_discount=0`.
+- Cart drawer no longer contains the discount-code prompt, manual `10% off 2+ items` promo copy, long shipping reassurance paragraph, payment-icon strip, or shipping-policy navigation link in the checkout summary.
+- Shipping details stay in the cart drawer/cart page through an in-cart disclosure.
+- Scoped theme checks, live push, and live source readbacks pass.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-13 16:36 EDT | Claimed narrow coordination lane and read back the exact Admin discount | Found `gid://shopify/DiscountAutomaticNode/1290988912737`, title `10% off 2+ items`, status `ACTIVE`, summary `10% off entire order - Minimum quantity of 2` | Shopify Admin GraphQL readback |
+| 2026-05-13 16:36 EDT | Deactivated exact automatic discount | Passed: mutation returned no user errors; post-readback status `EXPIRED`, `endsAt=2026-05-13T20:36:35Z` | Shopify Admin GraphQL mutation/readback |
+| 2026-05-13 16:37 EDT | Live cart API readback with Mother S Black and Child 6-8 Years Black swimsuit variants | Passed: `item_count=2`, `original_total_price=3198`, `total_price=3198`, `total_discount=0`, no cart-level or item discounts | live `/cart.js` readback |
+| 2026-05-13 16:40 EDT | Simplified cart drawer/cart footer theme files | Removed drawer discount-code prompt, removed manual promo render points, removed long shipping note, shortened country checker copy, replaced policy navigation with in-cart shipping details panel, reduced trust strip, and removed drawer payment-icon strip | local diff |
+| 2026-05-13 16:44 EDT | Static checks | Passed: `git diff --check`; `shopify theme check --path . --fail-level error --output json` returned `[]` | command output |
+| 2026-05-13 16:45 EDT | Scoped live theme push | Passed to live theme `dresslikemommy/main` `#133290917985` with only cart drawer/footer/country-checker/CSS files | Shopify CLI output |
+| 2026-05-13 16:48 EDT | Live source readback | Passed: no `cart-drawer__discount`, no `cart-drawer__payment-icons`, no `cart-drawer__shipping-note`, no `automatic-discount-promo`, no `10% off 2+ items`; drawer policy button/panel and cart page policy details are present | live cart HTML source readback |
+
+Failed or ruled-out paths:
+- A fully item-populated Playwright drawer click/readback was attempted after the successful API proof, but Shopify returned a public `429` verification challenge on the AJAX cart add endpoint. The lane did not keep retrying rapidly; live Admin and cart API readbacks already proved the discount state, and live source readback proved the published cart UI.
+- Checkout settings, payment, order, refund, shipping-rate/profile, and product edits were ruled out because the owner request was limited to suspending this discount and simplifying cart presentation.
+
+Current next action:
+- Sync the verified live cart and PDP changes to GitHub `main` when ready, then keep the discount suspended until the owner explicitly asks to re-enable a promotion.
+
+Approval/credential/platform gates:
+- Shopify Admin write was limited to deactivating the exact owner-reported automatic discount. No product/page/policy/translation/price/inventory edits, checkout settings/payment/order/refund/cancel actions, Ads/Merchant/Pinterest/GA4/GTM writes, spend/account/feed/conversion changes, credentials/billing edits, unrelated dirty-worktree cleanup, or destructive filesystem actions occurred.
+
+Parallel work to continue:
+- Paid-growth, Merchant, Pinterest, GA4, checkout/payment, Admin product-data, and unrelated theme lanes remain separate.
+
+### `PROB-2026-05-14-MOBILE-PDP-RULER-COMPACT-FIRST-COLUMN`
+
+Priority: `P1`
+
+Status: `SOLVED_LOCAL_READBACK_PASSED_LIVE_PUSH_PENDING_APPROVAL`
+
+Owner/session: Codex current session, 2026-05-14.
+
+Surface: Mobile PDP inline ruler chart opened from the matching-set ruler icon; active/source theme assets `assets/product-desktop-ux-20260513-ruler-sync.js`, `assets/product-desktop-ux-20260513.js`, `assets/product-desktop-ux.js`, `assets/component-product-desktop-ux-ruler-sync.css`, and `assets/component-product-desktop-ux.css`.
+
+Exact symptom:
+- Owner screenshot showed the mobile ruler chart opening with too much horizontal space reserved for the frozen first `Size` column, leaving less space for measurement headers and values.
+
+Business impact:
+- Mobile shoppers comparing fit need the measurement columns to be as readable as possible. An oversized first column makes the chart feel cramped even after the duplicate-column bug is fixed.
+
+Definition of fixed:
+- The mobile frozen `Size` column remains visible and does not duplicate, but it uses only the width needed for the actual first-column labels.
+- For Golden Daisy Mother `S/M/L`, the overlay is materially narrower than the prior `68px` treatment.
+- Horizontal scrolling still keeps exactly one visible frozen first column with no repeated original first-column cells.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-14 03:17 EDT | Owner supplied fresh compactness screenshot after the frozen-column repair | Confirmed this is a second-order layout issue: the overlay mask works, but the fixed first-column width wastes mobile chart space | owner screenshot |
+| 2026-05-14 03:20 EDT | Patched mobile overlay width and duplicate-column masking | Overlay width is now derived from longest first-column label, fallback width/padding tightened, and original first-column cells collapse/transparent when overlay is active | local diff |
+| 2026-05-14 03:20 EDT | Local mobile browser readback on Golden Daisy | Passed: selected Mother `M`, opened ruler, overlay width `46px`, real first-column cells `0px`/transparent, and scroll positions `0`, `80`, `160`, and `240` kept one visible `Size/S/M/L` frozen column | local Playwright readback; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-mobile-pdp-ruler-compact-first-column/dlm-mobile-ruler-frozen-column-compact-open.png`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-mobile-pdp-ruler-compact-first-column/dlm-mobile-ruler-frozen-column-compact-after.png` |
+| 2026-05-14 03:20 EDT | JS syntax checks | Passed: `node --check` for all three PDP JS assets | command output |
+
+Failed or ruled-out paths:
+- Shopify Admin product/body/translation edits are still ruled out because this is shared theme layout behavior, not product size-chart content.
+- Reverting the overlay entirely is ruled out because the owner previously showed the pure sticky/table-cell approach can visibly duplicate or bleed while horizontally scrolled.
+
+Current next action:
+- Run final diff/theme checks, then push the scoped five-asset theme fix live only after owner approval for the externally visible theme update.
+
+Approval/credential/platform gates:
+- No live Shopify theme push was made in this local pass. No Shopify Admin product/page/policy/translation/discount writes, checkout settings/payment/order/refund/cancel action, Ads/Merchant/Pinterest/GA4/GTM writes, spend/account/feed/conversion changes, credentials/billing edits, unrelated dirty-worktree cleanup, or destructive filesystem actions occurred.
+
+Parallel work to continue:
+- Paid-growth, Merchant, Pinterest, GA4, checkout/payment, Admin product-data, and unrelated theme lanes remain separate.
+
 Copy this template for every new problem:
 
 ```markdown

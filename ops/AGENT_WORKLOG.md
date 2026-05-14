@@ -35911,6 +35911,85 @@ Readback:
 Guardrails:
 - No Shopify Admin product/page/policy/translation/discount write, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
 
+2026-05-14 - Mobile PDP ruler compact first-column local repair
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-mobile-pdp-ruler-compact-first-column-local
+
+Why:
+- Owner showed a fresh mobile screenshot of the inline ruler chart after the frozen-column repair. The duplicate/bleed issue was gone locally, but the frozen first `Size` column still consumed too much horizontal space for `S/M/L`, reducing room for measurement columns.
+
+What changed:
+- Updated `assets/product-desktop-ux.js`, `assets/product-desktop-ux-20260513.js`, and `assets/product-desktop-ux-20260513-ruler-sync.js` so the mobile frozen-column overlay width is based on the longest first-column label instead of a fixed minimum `68px`.
+- Updated `assets/component-product-desktop-ux.css` and `assets/component-product-desktop-ux-ruler-sync.css` so the overlay fallback width/padding are tighter, and when the overlay is active the original first table column is collapsed/transparent to prevent a repeated `Size` column.
+- Added `PROB-2026-05-14-MOBILE-PDP-RULER-COMPACT-FIRST-COLUMN` and a narrow coordination row.
+
+Readback:
+- `node --check assets/product-desktop-ux.js`
+- `node --check assets/product-desktop-ux-20260513.js`
+- `node --check assets/product-desktop-ux-20260513-ruler-sync.js`
+- Local mobile browser readback on Golden Daisy at `http://127.0.0.1:9292/products/golden-daisy-mommy-and-me-set?codex_ruler_compact=1` passed: selected Mother `M`, opened the ruler, overlay width was `46px`, real first-column cells were transparent/`0px`, and scroll positions `0`, `80`, `160`, and `240` kept exactly one visible `Size/S/M/L` frozen column.
+- Local screenshot evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-mobile-pdp-ruler-compact-first-column/dlm-mobile-ruler-frozen-column-compact-open.png` and `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-mobile-pdp-ruler-compact-first-column/dlm-mobile-ruler-frozen-column-compact-after.png`.
+
+Guardrails:
+- No live Shopify theme push was made in this pass. No Shopify Admin product/page/policy/translation/discount write, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
+2026-05-13 - Cart discount suspended and checkout drawer simplified live
+AGENT_CONTINUITY_ANCHOR: 2026-05-13-cart-discount-suspended-drawer-simplified-live
+
+Why:
+- Owner screenshot showed the real automatic `10% off 2+ items` discount still applying in cart after the manual promo copy was removed.
+- Owner also flagged that the cart drawer had too much text and that `Shipping policy` navigation pulled shoppers away from the checkout path.
+
+What changed:
+- Claimed the narrow cart/discount lane in `ops/AGENT_COORDINATION.md` and tracked `PROB-2026-05-13-CART-DISCOUNT-SUSPEND-CLEANUP`.
+- Deactivated the exact Shopify Admin automatic discount node `gid://shopify/DiscountAutomaticNode/1290988912737` titled `10% off 2+ items`.
+- Removed the cart drawer discount-code prompt and manual automatic-discount promo render points from `snippets/cart-drawer.liquid` and `sections/main-cart-footer.liquid`.
+- Removed the long cart drawer/cart page shipping reassurance paragraph.
+- Replaced the cart drawer summary `Shipping policy` link with an in-cart `Shipping details` disclosure panel, and used a cart page `<details>` disclosure for the same policy content.
+- Shortened the cart country checker trigger copy to `Ships to {country}` and `{count} countries`.
+- Reduced the cart drawer trust strip to `Secure` and `Shipping included`, and removed the drawer payment-icon strip.
+- Scoped live theme push included only `snippets/cart-drawer.liquid`, `sections/main-cart-footer.liquid`, `snippets/shipping-country-checker-trigger.liquid`, `assets/component-shipping-countries-v2.css`, and `assets/component-cart-drawer.css`.
+
+Readback:
+- Shopify Admin GraphQL post-readback passed: discount `10% off 2+ items` is `EXPIRED`, `startsAt=2026-05-12T08:52:23Z`, `endsAt=2026-05-13T20:36:35Z`.
+- Live `/cart.js` readback with swimsuit variants `41498010943585` and `41498011172961` passed: `item_count=2`, `original_total_price=3198`, `total_price=3198`, `total_discount=0`, no cart-level discounts, and no item discounts.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Scoped live theme push to `dresslikemommy/main` `#133290917985` succeeded.
+- Live cart source readback passed: no `cart-drawer__discount`, no `cart-drawer__payment-icons`, no `cart-drawer__shipping-note`, no `automatic-discount-promo`, no `10% off 2+ items`; `cart-drawer__policy-trigger`, `CartDrawer-ShippingPolicy`, and `cart-page__policy-details` are present.
+- A browser item-populated drawer click/readback was attempted after the successful API proof, but Shopify returned a public `429` verification challenge on the AJAX cart add endpoint. I stopped retrying that path to avoid rate-limit pressure.
+
+Guardrails:
+- Shopify Admin write was limited to deactivating the exact owner-reported automatic discount. No product/page/policy/translation/price/inventory edits, checkout settings/payment/order/refund/cancel actions, Ads/Merchant/Pinterest/GA4/GTM writes, spend/account/feed/conversion changes, credentials/billing edits, unrelated dirty-worktree cleanup, or destructive filesystem actions occurred.
+
+2026-05-13 - PDP matching-set copy simplification and promo pause live
+AGENT_CONTINUITY_ANCHOR: 2026-05-13-pdp-matching-set-copy-simplification-live
+
+Why:
+- Owner reviewed the swimsuit PDP matching-set builder screenshot and called out three shopper-confusing items: the `10% off 2+ items` promo block was too much copy for now, the role-helper sentence under Mother/Child was unnecessary, and the disabled CTA/summary could incorrectly say `Choose a size for Child` after a size was already selected but color was still missing.
+
+What changed:
+- Claimed the narrow theme lane in `ops/AGENT_COORDINATION.md`.
+- Removed the manual automatic-discount promo render from the PDP matching-set builder, cart drawer, and cart page. The dormant snippet file remains in the repo, but there are no active render calls on these surfaces.
+- Removed the visible role-helper sentence under the Mother/Child selector.
+- Hid the empty pale-green matching-set summary box until a piece is actually ready to add.
+- Updated all three PDP JS copies (`assets/product-desktop-ux.js`, `assets/product-desktop-ux-20260513.js`, and `assets/product-desktop-ux-20260513-ruler-sync.js`) so the disabled CTA names the next missing choice: `Pick a size` before size selection and `Pick a color` after a size is selected but color is still missing.
+- Added `[hidden]` CSS handling for the summary box in both current and sibling PDP CSS assets.
+
+Readback:
+- `node --check assets/product-desktop-ux.js`
+- `node --check assets/product-desktop-ux-20260513.js`
+- `node --check assets/product-desktop-ux-20260513-ruler-sync.js`
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Local browser readback on the exact swimsuit PDP passed: promo count `0`, no promo copy, no role-helper text, summary hidden, initial CTA `Pick a size`, after Child + `6-8 Years` CTA `Pick a color`, after `Black` CTA `Add this piece to bag` and summary `Ready to add`.
+- Scoped live push to `dresslikemommy/main` theme `#133290917985` succeeded with only the scoped PDP/cart theme files.
+- Public live source readback on the exact swimsuit PDP loaded fresh `product-desktop-ux-20260513-ruler-sync.js?v=67653905852373309871778704042`, retained hidden summary markup, and had no `automatic-discount-promo`, `10% off 2+ items`, `Applies automatically`, or `Mother is ready` hits.
+- Public live browser readback passed: promo count `0`, no promo copy, no role-helper text, initial CTA `Pick a size`, after Child + `6-8 Years` CTA `Pick a color`, after `Black` CTA `Add this piece to bag`.
+- Public live cart page readback had no `automatic-discount-promo`, `10% off 2+ items`, or `Applies automatically` hits.
+
+Guardrails:
+- No Shopify Admin discount/product/page/policy/translation write, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
 2026-05-13 - Swimsuit PDP ruler local/live parity fix
 AGENT_CONTINUITY_ANCHOR: 2026-05-13-swimsuit-ruler-local-live-parity
 

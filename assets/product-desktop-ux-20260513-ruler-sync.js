@@ -5555,10 +5555,11 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     }
 
     var tableRect = table.getBoundingClientRect();
-    var maxCellWidth = firstCells.reduce(function (maxWidth, cell) {
-      return Math.max(maxWidth, cell.getBoundingClientRect().width || 0);
+    var longestCellText = firstCells.reduce(function (maxLength, cell) {
+      return Math.max(maxLength, String(cell.textContent || '').trim().length);
     }, 0);
-    var overlayWidth = Math.min(tableWrap.clientWidth || maxCellWidth, Math.max(maxCellWidth + 10, 68));
+    var compactTextWidth = Math.min(86, Math.max(42, longestCellText * 7 + 18));
+    var overlayWidth = Math.min(tableWrap.clientWidth || compactTextWidth, compactTextWidth);
     var overlayHeight = Math.max(table.offsetHeight || tableRect.height || 0, tableWrap.clientHeight || 0);
 
     panel.style.setProperty('--dlm-fit-frozen-width', Math.ceil(overlayWidth) + 'px');
