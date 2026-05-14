@@ -2383,7 +2383,7 @@ Parallel work to continue:
 
 Priority: `P1`
 
-Status: `SOLVED_LOCAL_READBACK_PASSED_LIVE_PUSH_PENDING_APPROVAL`
+Status: `SOLVED_LIVE_READBACK_PASSED_SYNC_PENDING`
 
 Owner/session: Codex current session, 2026-05-14.
 
@@ -2391,6 +2391,7 @@ Surface: Mobile PDP inline ruler chart opened from the matching-set ruler icon; 
 
 Exact symptom:
 - Owner screenshot showed the mobile ruler chart opening with too much horizontal space reserved for the frozen first `Size` column, leaving less space for measurement headers and values.
+- Owner later checked the live Golden Daisy PDP on phone and showed three remaining defects: `Weight` was hidden under the frozen `Size` column at open, scrolling fully left/right could expose white empty space, and the measurement order needed to start with `Weight` immediately after `Size`.
 
 Business impact:
 - Mobile shoppers comparing fit need the measurement columns to be as readable as possible. An oversized first column makes the chart feel cramped even after the duplicate-column bug is fixed.
@@ -2399,6 +2400,8 @@ Definition of fixed:
 - The mobile frozen `Size` column remains visible and does not duplicate, but it uses only the width needed for the actual first-column labels.
 - For Golden Daisy Mother `S/M/L`, the overlay is materially narrower than the prior `68px` treatment.
 - Horizontal scrolling still keeps exactly one visible frozen first column with no repeated original first-column cells.
+- The original first table column remains as an invisible spacer matching the overlay width, so `Weight` begins immediately after frozen `Size` instead of sliding underneath it.
+- Horizontal scroll is clamped to the real `0..maxScrollLeft` range so fully-left and fully-right positions do not reveal white blank space.
 
 Attempt log:
 
@@ -2408,16 +2411,21 @@ Attempt log:
 | 2026-05-14 03:20 EDT | Patched mobile overlay width and duplicate-column masking | Overlay width is now derived from longest first-column label, fallback width/padding tightened, and original first-column cells collapse/transparent when overlay is active | local diff |
 | 2026-05-14 03:20 EDT | Local mobile browser readback on Golden Daisy | Passed: selected Mother `M`, opened ruler, overlay width `46px`, real first-column cells `0px`/transparent, and scroll positions `0`, `80`, `160`, and `240` kept one visible `Size/S/M/L` frozen column | local Playwright readback; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-mobile-pdp-ruler-compact-first-column/dlm-mobile-ruler-frozen-column-compact-open.png`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-mobile-pdp-ruler-compact-first-column/dlm-mobile-ruler-frozen-column-compact-after.png` |
 | 2026-05-14 03:20 EDT | JS syntax checks | Passed: `node --check` for all three PDP JS assets | command output |
+| 2026-05-14 03:44 EDT | Reproduced the owner's live reopened defect with the current live CDN assets | Confirmed the first original column was collapsed to `0px`, so the `Weight` header began at the overlay's left edge and was covered by frozen `Size`; live issue was real, not phone cache | public mobile Playwright readback |
+| 2026-05-14 03:47 EDT | Patched first-column masking and horizontal scroll bounds | Changed the hidden original first column from `0px` collapse to an invisible spacer equal to the frozen overlay width, added `overscroll-behavior-x: none`, and clamped scrollLeft to the real min/max range | local diff |
+| 2026-05-14 03:50 EDT | Local mobile browser readback on Golden Daisy | Passed: at open, `Weight (lbs)` began exactly after frozen `Size`; forced `scrollLeft=9999` clamped to `312` with table right edge aligned to wrapper; forced negative scroll returned to `0` | local Playwright readback; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-mobile-pdp-ruler-compact-first-column/local-ruler-fix2-open.png`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-mobile-pdp-ruler-compact-first-column/local-ruler-fix2-right.png` |
+| 2026-05-14 03:55 EDT | Final static checks and scoped live theme push | Passed: JS syntax checks, `git diff --check`, Theme Check error-level JSON `[]`, and scoped live push of only the five PDP ruler JS/CSS assets to theme `dresslikemommy/main` `#133290917985` | command output |
+| 2026-05-14 03:58 EDT | Public live Golden Daisy mobile readback after push | Passed: live loaded fresh CDN asset versions; metric view showed `Weight (kg)` immediately after frozen `Size` in `cm`; at right edge `scrollLeft=306/max=306` and the table right edge equaled wrapper right; negative scroll returned to `0`; screenshots show no blank right-side space | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-mobile-pdp-ruler-compact-first-column/live-ruler-fix2-open.png`; `live-ruler-fix2-right.png`; `live-ruler-fix2-cm-open.png` |
 
 Failed or ruled-out paths:
 - Shopify Admin product/body/translation edits are still ruled out because this is shared theme layout behavior, not product size-chart content.
 - Reverting the overlay entirely is ruled out because the owner previously showed the pure sticky/table-cell approach can visibly duplicate or bleed while horizontally scrolled.
 
 Current next action:
-- Run final diff/theme checks, then push the scoped five-asset theme fix live only after owner approval for the externally visible theme update.
+- Sync the verified live theme changes and evidence to GitHub `main`.
 
 Approval/credential/platform gates:
-- No live Shopify theme push was made in this local pass. No Shopify Admin product/page/policy/translation/discount writes, checkout settings/payment/order/refund/cancel action, Ads/Merchant/Pinterest/GA4/GTM writes, spend/account/feed/conversion changes, credentials/billing edits, unrelated dirty-worktree cleanup, or destructive filesystem actions occurred.
+- Scoped live Shopify theme push was limited to the five PDP ruler JS/CSS assets. No Shopify Admin product/page/policy/translation/discount writes, checkout settings/payment/order/refund/cancel action, Ads/Merchant/Pinterest/GA4/GTM writes, spend/account/feed/conversion changes, credentials/billing edits, unrelated dirty-worktree cleanup, or destructive filesystem actions occurred.
 
 Parallel work to continue:
 - Paid-growth, Merchant, Pinterest, GA4, checkout/payment, Admin product-data, and unrelated theme lanes remain separate.

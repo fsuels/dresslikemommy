@@ -36093,3 +36093,33 @@ Readback:
 
 Guardrails:
 - No Shopify Admin product/page/policy/translation/discount write, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
+2026-05-14 - Mobile PDP ruler left/right live defect fixed
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-mobile-pdp-ruler-left-right-live
+
+Why:
+- Owner checked the live Golden Daisy PDP on phone and showed the compact ruler chart was still defective: `Weight` was hidden under frozen `Size` at open, and fully-left/fully-right horizontal scrolling could expose white empty space.
+
+What changed:
+- Reopened `PROB-2026-05-14-MOBILE-PDP-RULER-COMPACT-FIRST-COLUMN` and updated the narrow coordination row.
+- Reproduced the live issue with the active CDN assets: the first original table column was collapsed to `0px`, so `Weight` began underneath the frozen overlay.
+- Updated `assets/component-product-desktop-ux.css` and `assets/component-product-desktop-ux-ruler-sync.css` so the hidden original first column remains an invisible spacer equal to the frozen overlay width, preventing measurement columns from sliding under `Size`.
+- Added horizontal scroll containment to the mobile inline table wrapper.
+- Updated `assets/product-desktop-ux.js`, `assets/product-desktop-ux-20260513.js`, and `assets/product-desktop-ux-20260513-ruler-sync.js` to clamp horizontal scroll to the real min/max range and clear the scroll CSS variable on non-mobile reset.
+- Scoped live theme push included only the five PDP ruler JS/CSS assets.
+
+Readback:
+- `node --check assets/product-desktop-ux.js`
+- `node --check assets/product-desktop-ux-20260513.js`
+- `node --check assets/product-desktop-ux-20260513-ruler-sync.js`
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Scoped live push to theme `dresslikemommy/main` `#133290917985` succeeded.
+- Public live Golden Daisy mobile readback with cache-busted URL loaded fresh CDN assets `product-desktop-ux-20260513-ruler-sync.js?v=142604140232864259571778745430` and `component-product-desktop-ux-ruler-sync.css?v=119066210733363263361778745430`.
+- Live `cm` readback passed: `Weight (kg)` begins immediately after frozen `Size`; `scrollLeft=0`, overlay width `46px`, and `okWeightAfterSize=true`.
+- Live right-edge readback passed: forced `scrollLeft=9999` clamped to `306/max=306`, with table right edge aligned to wrapper right and no blank right-side space.
+- Live left-edge readback passed: forced negative scroll returned to `0`.
+- Screenshot evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-mobile-pdp-ruler-compact-first-column/live-ruler-fix2-open.png`, `live-ruler-fix2-right.png`, and `live-ruler-fix2-cm-open.png`.
+
+Guardrails:
+- Scoped live Shopify theme push was limited to the five PDP ruler JS/CSS assets. No Shopify Admin product/page/policy/translation/discount write, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
