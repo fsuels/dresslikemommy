@@ -36,8 +36,9 @@ Scope: `ops/marketing/` is the daily execution command layer for Dress Like Momm
 2. Read root `AGENTS.md`, this file, `operator_cockpit.md`, `expert_growth_playbook_2026.md`, `current_marketing_state.md`, `spend_authorization.md`, `action_queue.md`, `daily_scorecard.md`, `blocker_board.md`, `assumption_log.md`, `reviewer_checklist.md`, and `team_registry.md`.
 3. Read `ops/MEMORY_CONTINUITY_PROTOCOL.md`, `ops/PROBLEM_SOLVING_PROTOCOL.md`, `ops/PROBLEM_TRACKER.md`, `ops/AGENT_COORDINATION.md`, `ops/BROWSER_SUBAGENT_COORDINATION.md`, `ops/GROWTH_NORTH_STAR.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and the canonical paid-growth prompt.
 4. Reconcile repo-known state against the latest worklog and problem tracker before acting.
-5. For live marketing execution, run read-only live reconciliation first: enabled, eligible, serving, spending, converting, ROAS, search terms, catalog/feed health, Pinterest access, and blockers.
-6. Update the command-layer files after any material readback, decision, gate change, or owner approval.
+5. For account access, read `ops/ACCOUNT_ACCESS_PROTOCOL.md` and complete its recovery ladder before marking Google Ads, Merchant Center, GA4/GTM, Search Console, Shopify Admin, Pinterest, GitHub, or business email as blocked. A fresh login page in one new tab is not enough evidence.
+6. For live marketing execution, run read-only live reconciliation first: enabled, eligible, serving, spending, converting, ROAS, search terms, catalog/feed health, Pinterest access, and blockers.
+7. Update the command-layer files after any material readback, decision, gate change, or owner approval.
 
 ## Command-Layer Integration Gate
 
@@ -138,6 +139,7 @@ python3.13 ops/scripts/open_marketing_cockpit.py
 - Parent/head-of-growth owns approvals, live writes, final integration, and the final report.
 - Operators own disjoint surfaces only. No operator may mutate another operator's lane.
 - One browser/account tab per surface. Stop on login, CAPTCHA, billing, account switch, policy, approval, or unsaved-change prompts.
+- Account access failures must use the recovery labels in `ops/ACCOUNT_ACCESS_PROTOCOL.md`; do not reopen a P0 access blocker until existing tabs/sessions, connectors/local secure credential sources, direct account navigation, and current-session credentials have been checked without persisting secrets.
 
 ## Non-Negotiables
 

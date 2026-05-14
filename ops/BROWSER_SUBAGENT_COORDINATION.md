@@ -32,6 +32,20 @@ Non-blocking lane rule: a blocked browser/account lane must not stall unrelated 
 - Do not sign out, switch Google accounts, switch Merchant/Ads accounts, save passwords, enter credentials, solve CAPTCHA, accept payment/billing prompts, or grant browser permissions unless the owner has explicitly approved that exact action.
 - If one subagent stops on a modal, login, CAPTCHA, policy warning, or missing approval, the parent should leave that lane stopped and reallocate work to other independent lanes rather than asking all agents to wait.
 
+## Account Access Recovery
+
+Read `ops/ACCOUNT_ACCESS_PROTOCOL.md` before declaring any Google Ads, Merchant Center, GA4/GTM, Search Console, Shopify Admin, Pinterest, GitHub, or business-email access blocker.
+
+A login screen in a fresh tab is not enough evidence for a blocker. The parent or surface owner must first:
+
+1. Inventory existing authenticated tabs/sessions and claim the matching one.
+2. Check configured connectors or local secure credential sources without exposing secret values.
+3. Navigate from an authenticated surface to the exact account, advertiser, property, store, repository, or mailbox.
+4. Use owner-provided current-session credentials only transiently when the target site and account are clear.
+5. Stop only for CAPTCHA, MFA/2FA, account chooser ambiguity, permission denial, billing/payment prompts, policy prompts, destructive-change prompts, or no available credential/session after the ladder is complete.
+
+Record the result as `ACCESS_RECOVERY_REQUIRED`, `MFA_OR_CAPTCHA_REQUIRED`, `PERMISSION_REQUIRED`, or `ACCOUNT_SWITCH_REQUIRED` unless the failed access is a true prerequisite for the next approved action. Do not call it a generic P0 blocker while other safe lanes can continue.
+
 ## Atlas Browser Tab Pattern
 
 When logged-in ChatGPT Atlas / in-app browser access exists, use it instead of asking the owner to log in again.

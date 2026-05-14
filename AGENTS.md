@@ -11,8 +11,8 @@ This same bootstrap lives in both `AGENTS.md` and `CLAUDE.md`. Keep the two file
 3. If the task involves a known issue, failed readback, blocker, or repeated uncertainty, read `ops/PROBLEM_SOLVING_PROTOCOL.md` and `ops/PROBLEM_TRACKER.md`.
 4. Read the latest entries at the bottom of `ops/AGENT_WORKLOG.md`; search `AGENT_CONTINUITY_ANCHOR` when context is tight.
 5. Before touching external systems, theme files, live product data, paid feeds, campaign artifacts, or shared surfaces, read `ops/AGENT_COORDINATION.md`.
-6. For paid-growth work, read `ops/marketing/AGENTS.md`, `ops/marketing/expert_growth_playbook_2026.md`, `ops/marketing/current_marketing_state.md`, `ops/GROWTH_NORTH_STAR.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and `ops/prompts/paid-growth-ai-army-continuation-prompt.md`.
-7. For subagents or logged-in browser/account work, read `ops/BROWSER_SUBAGENT_COORDINATION.md`.
+6. For account access, logged-in browser/account work, subagents on account surfaces, or any login/account blocker, read `ops/ACCOUNT_ACCESS_PROTOCOL.md` and `ops/BROWSER_SUBAGENT_COORDINATION.md`.
+7. For paid-growth work, read `ops/marketing/AGENTS.md`, `ops/marketing/expert_growth_playbook_2026.md`, `ops/marketing/current_marketing_state.md`, `ops/GROWTH_NORTH_STAR.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, and `ops/prompts/paid-growth-ai-army-continuation-prompt.md`.
 8. For listing or sourcing work, read `ops/prompts/START-HERE.md` and the relevant files under `ops/sourcing/`.
 
 ## Paid-Growth Session Start
@@ -55,6 +55,7 @@ This opens `ops/marketing/operator_cockpit.html` locally for the human. It is a 
 
 - One writer per campaign/feed/product cohort/theme area/account surface.
 - Read-only audits may run in parallel. Writes require a narrow active claim in `ops/AGENT_COORDINATION.md`.
+- A fresh login page in one new tab is not proof that account access is blocked. Before declaring Google Ads, Merchant Center, GA4/GTM, Search Console, Shopify Admin, Pinterest, GitHub, or business email inaccessible, complete `ops/ACCOUNT_ACCESS_PROTOCOL.md`: check existing authenticated tabs/sessions, local secure credential paths or connectors, direct account URLs from the authenticated session, and current-session owner-provided credentials when safe. Do not persist credentials.
 - Before clicking Save, Apply, Publish, Upload, Enable, Pause, Remove, Delete, Sync, or Submit in an external system, confirm the claim, approval phrase, before-state readback, and after-state readback plan.
 - Parent/orchestrator owns approvals, live writes, final integration, and the final report. Subagents must use disjoint scopes and separate tabs/sessions.
 - Stop and report if an external account shows login, CAPTCHA, account switcher, billing, permission, policy, unsaved-change, or destructive-action prompts.

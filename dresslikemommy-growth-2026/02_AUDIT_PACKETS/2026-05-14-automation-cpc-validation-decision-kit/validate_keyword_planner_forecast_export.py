@@ -14,6 +14,18 @@ from pathlib import Path
 MAX_CPC = 0.15
 PACKET_DIR = Path(__file__).resolve().parent
 SOURCE_MATRIX = PACKET_DIR / "gb_ca_au_36_keyword_planner_validation_matrix.csv"
+POLICY_BLOCK_PATTERNS = [
+    "disapproved",
+    "destination mismatch",
+    "destination not working",
+    "destination requirements",
+    "limited by policy",
+    "policy limited",
+    "policy issue",
+    "policy manager",
+    "suspended",
+    "trademark",
+]
 
 
 def normalize_header(value: str) -> str:
@@ -65,7 +77,7 @@ def classify(row: dict[str, str], source: dict[str, str] | None) -> tuple[str, s
     policy = row_value(row, "policy_status", "policy", "status")
     auction = row_value(row, "auction_status", "auction", "keyword_status")
     policy_text = f"{policy} {auction}".lower()
-    if any(token in policy_text for token in ["disapproved", "limited", "destination", "policy"]):
+    if any(pattern in policy_text for pattern in POLICY_BLOCK_PATTERNS):
         return "POLICY_OR_DESTINATION_BLOCK", "policy/status text indicates a block or limitation"
 
     cpc_values = [

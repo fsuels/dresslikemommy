@@ -1,8 +1,40 @@
 # Marketing Safety Review Log
 
-Last updated: 2026-05-14 13:38 EDT
+Last updated: 2026-05-14 15:58 EDT
 
 Use this log for reviewer outcomes or simulated checklist runs. Keep entries short and tied to evidence.
+
+## 2026-05-14 - Account access recovery protocol
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Repo-local protocol and operating-doc edits only.
+- No password, token, cookie, recovery code, or secret value was written to files or evidence.
+- Account access and live write authority remain separate: authenticated access does not authorize spend, product/feed changes, campaign changes, or credential mutations.
+
+Risks:
+
+- Future agents may still face MFA, CAPTCHA, account chooser ambiguity, or permission prompts that require owner action.
+- Current-session credentials cannot be made durable in the repo; only the protocol and secure non-repo source rules can be durable.
+
+Required gates/fixes:
+
+- Complete `ops/ACCOUNT_ACCESS_PROTOCOL.md` before declaring any account blocked.
+- Use `ACCESS_RECOVERY_REQUIRED`, `MFA_OR_CAPTCHA_REQUIRED`, `PERMISSION_REQUIRED`, or `ACCOUNT_SWITCH_REQUIRED` instead of generic P0 access blockers unless the access is required for the next approved action and the ladder has failed.
+- Do not save or persist owner credentials.
+
+Evidence:
+
+- `ops/ACCOUNT_ACCESS_PROTOCOL.md`
+- `ops/BROWSER_SUBAGENT_COORDINATION.md`
+- `ops/marketing/AGENTS.md`
+- `AGENTS.md`
+
+Safest next sales-moving action:
+
+- Start the next authenticated Ads/Pinterest/Merchant readback by claiming the existing authenticated tab/session first, then run the already-prepared read-only validation/export tasks.
 
 ## 2026-05-14 - US Shopping seasonal related-product filter local fix
 
@@ -986,3 +1018,66 @@ Evidence:
 Safest next sales-moving action:
 
 - Keep the current clean-route GB/CA/AU CPC validation as the main path; use this packet only if the owner chooses to clean the remaining dirty collection routes.
+
+## 2026-05-14 - Current P0 blocker fix readback
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Existing authenticated Pinterest Ads Manager tab for advertiser `549756244483` is controllable.
+- Account/domain read back as `Dress Like Mommy | Matching Family Outfits` / `dresslikemommy.com`.
+- Create menu exposes `Create campaign` and `Load existing campaign draft`.
+- Reporting readback shows `0 campaigns`, `0 currently being served`, `$0.00` spend, and `0` impressions for `05/07/2026 - 05/14/2026`.
+- CPC forecast parser now does not misclassify ordinary `Eligible (Limited)` as a policy/destination block.
+
+Risks:
+
+- Pinterest access does not authorize launch/spend or out-of-scope budget/bid/tag/CAPI/source/feed mutations.
+- Google Ads Keyword Planner is still not accessible in the currently controllable Ads tab, which redirects to Google sign-in.
+- Parser smoke tests are not Keyword Planner proof.
+
+Required gates/fixes:
+
+- For Pinterest, use only the approved paused US draft workflow, with before/after readbacks and no launch/live spend.
+- For GB/CA/AU Search, export authenticated Keyword Planner/Ads forecast rows at max `$0.15` and run the patched parser before any live action row.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-current-p0-blocker-fix/P0_BLOCKER_FIX_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-current-p0-blocker-fix/pinterest_authenticated_reporting_readback.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-current-p0-blocker-fix/forecast_parser_smoke_summary.json`
+
+Safest next sales-moving action:
+
+- Build/read back the approved paused Pinterest US draft from the restored tab, or validate the GB/CA/AU 36-row packet in an authenticated Google Ads/Keyword Planner session.
+
+## 2026-05-14 - US keyword route unblock
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Repo-local `keyword_universe.csv` reroute plus public storefront readback only.
+- Exact source scope was US rows on `/collections/vacation`, `/collections/matching-dresses`, `/collections/swimsuits`, and `/collections/daddy-and-me`.
+- Rerouted `23` rows to `/collections/matching-outfits`, `/collections/mommy-and-me`, and `/collections/family-swimsuits`.
+- Public readback checked all replacement routes across browser-like and cache-busted header variants with `200`, `0` supplier/url-brand hits, and `0` stale seasonal/local-inventory trust hits.
+
+Risks:
+
+- Route cleanliness does not prove active-product fit, CPC feasibility, or paid Search demand.
+- The original dirty collection routes still require owner-approved product/vendor source cleanup before they can receive paid traffic directly.
+
+Required gates/fixes:
+
+- Keep rerouted US rows local-only until active-product proof, authenticated `$0.15` CPC/search feasibility, reviewer pass, and a fresh `GREEN` action row exist.
+- Do not upload/add keywords, change bids/budgets/status, or edit Shopify product/vendor data from this packet alone.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-keyword-route-unblock/US_KEYWORD_ROUTE_UNBLOCK_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-keyword-route-unblock/us_keyword_route_unblock_summary.json`
+
+Safest next sales-moving action:
+
+- Use the rerouted US rows only as a future validation source after the authenticated Standard Shopping export or a separate US Search feasibility packet proves product/query fit.

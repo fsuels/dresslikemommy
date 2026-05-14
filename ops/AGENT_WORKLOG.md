@@ -37347,3 +37347,159 @@ Next best action:
 - Run authenticated Google Ads / Keyword Planner validation for the clean canonical 36-row GB/CA/AU packet at max `$0.15`.
 - Run authenticated read-only Standard Shopping item-level export for campaign `23802638621`, then run the auth-export join script.
 - If the owner wants to unblock `/collections/swimsuits` or `/collections/matching-dresses`, use `COLLECTION_SOURCE_CLEANUP_APPROVAL_PACKET.md` for exact product/vendor cleanup approval and public before/after readback; otherwise keep those rows excluded or reroute them to clean routes.
+
+2026-05-14 - Current P0 blocker fix
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-current-p0-blocker-fix
+
+Why:
+- Owner challenged the account-access blocker, correctly noting that other tabs should already have authenticated login state.
+- The prior Pinterest P0 was caused by using a fresh unauthenticated/public Pinterest Ads page rather than the already-authenticated Ads Manager tab.
+- The GB/CA/AU P0 still requires authenticated Google Ads / Keyword Planner proof at max `$0.15`, but the local parser also had a bug that could misclassify ordinary `Eligible (Limited)` rows as policy blocks.
+
+What changed:
+- Selected the existing authenticated Pinterest Ads Manager tab for advertiser `549756244483`.
+- Saved current readback evidence in `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-current-p0-blocker-fix/`.
+- Patched `validate_keyword_planner_forecast_export.py` so ordinary `Eligible (Limited)` is not treated as `POLICY_OR_DESTINATION_BLOCK`; explicit policy/destination strings still block.
+- Added `forecast_parser_smoke_fixture.csv` and generated smoke decisions/summary.
+- Updated `ops/marketing/blocker_board.md`, `action_queue.md`, `current_marketing_state.md`, `decision_log.md`, `assumption_log.md`, `review_log.md`, `memory_digest.md`, `operator_cockpit.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Pinterest authenticated access is restored: account/domain `Dress Like Mommy | Matching Family Outfits` / `dresslikemommy.com`, Create menu shows `Create campaign` and `Load existing campaign draft`, reporting shows `0 campaigns`, `0 currently being served`, `$0.00` spend, and `0` impressions for `05/07/2026 - 05/14/2026`.
+- No Pinterest campaign, draft, product group, source, tag/CAPI, audience, budget, bid, status, spend, or launch write occurred.
+- Google Ads Keyword Planner remains blocked in the currently controllable Ads page because it redirects to Google sign-in; the shell still lacks Google Ads API env keys and `google.ads.googleads`.
+- Parser smoke summary produced one `PASS_015_CPC_GATE`, one `FAIL_015_CPC_GATE`, one `LOW_VOLUME_OR_NO_AUCTION`, and one `POLICY_OR_DESTINATION_BLOCK`.
+
+Verification:
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-sales-moving-continuation/validate_pinterest_us_paused_draft_spec.py` passed `21` checks.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/validate_keyword_planner_forecast_export.py --forecast-csv dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/forecast_parser_smoke_fixture.csv --output-csv dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/forecast_parser_smoke_decisions.csv --summary-json dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/forecast_parser_smoke_summary.json` passed.
+
+Guardrails:
+- Pinterest access readback is not launch or spend authority.
+- GB/CA/AU public route proof and parser smoke proof are not authenticated CPC proof.
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative action occurred.
+
+Next best action:
+- Use the restored Pinterest tab for the approved paused US draft workflow only, with before/after readbacks and no launch/spend.
+- Use an authenticated Google Ads / Keyword Planner tab or export-capable Ads session to validate the canonical GB/CA/AU 36-row packet at max `$0.15`, then run the patched parser and promote only real pass rows.
+
+2026-05-14 - Account access recovery protocol
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-account-access-recovery-protocol
+
+Why:
+- Owner clarified that future agents should not open fresh unauthenticated tabs, miss existing logged-in account surfaces, and then call Google Ads, Merchant Center, GA4/GTM, Search Console, Shopify Admin, Pinterest, GitHub, or business email inaccessible.
+- The current Pinterest P0 was the concrete failure pattern: a fresh Pinterest page looked unauthenticated, while the existing Ads Manager advertiser tab was already logged in and controllable.
+- Owner supplied current-session Pinterest credentials. They were not written to repo files, evidence packets, worklogs, prompts, or summaries.
+
+What changed:
+- Added `ops/ACCOUNT_ACCESS_PROTOCOL.md`.
+- Updated `AGENTS.md` and mirrored it to `CLAUDE.md` so root startup now includes the account-access protocol before logged-in browser/account work.
+- Updated `ops/BROWSER_SUBAGENT_COORDINATION.md` with an account-access recovery ladder.
+- Updated `ops/marketing/AGENTS.md` so paid-growth sessions must complete the recovery ladder before marking account access blocked.
+- Updated `ops/AGENT_COORDINATION.md`, `ops/marketing/action_queue.md`, `blocker_board.md`, `assumption_log.md`, `decision_log.md`, `review_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+
+Decision:
+- A fresh login page in one new tab is not proof of no access.
+- Future agents must inventory existing authenticated tabs/sessions first, check configured connectors or local secure credential sources without exposing secrets, navigate from an authenticated account surface to the exact account, and use current-session owner credentials only transiently when the target site/account is clear.
+- Account lanes should use `ACCESS_RECOVERY_REQUIRED`, `MFA_OR_CAPTCHA_REQUIRED`, `PERMISSION_REQUIRED`, or `ACCOUNT_SWITCH_REQUIRED` unless the failed access is a true prerequisite for the next approved sales-moving action and the ladder has failed.
+
+Verification:
+- Protocol is wired into root, browser coordination, marketing startup, coordination registry, blocker board, action queue, assumptions, decisions, review log, digest, and cockpit source.
+
+Guardrails:
+- No login was attempted in this protocol pass.
+- No password, token, cookie, recovery code, or credential value was persisted.
+- No Google Ads, Merchant, Analytics, Search Console, Shopify Admin, Pinterest, GitHub, email, billing, campaign, budget, bid, status, feed, product, conversion, or credential write occurred.
+
+Next best action:
+- For the next authenticated Google Ads/Keyword Planner, Merchant, or Pinterest task, start by claiming the existing authenticated tab/session and documenting the surface/account identifier before opening any new login page.
+
+2026-05-14 - Account tab inventory readback
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-account-tab-inventory-readback
+
+Why:
+- Owner repeated the required next action: start the next Google Ads/Keyword Planner, Merchant, or Pinterest readback by claiming the existing authenticated tab/session and documenting the account ID before opening any new login page.
+
+What changed:
+- Ran Chrome/DevTools page inventory before opening any new login flow.
+- Updated `ops/AGENT_COORDINATION.md` with the current tab/session readback.
+- Updated `ops/marketing/blocker_board.md` to record that the Pinterest Ads Manager tab is still visible by advertiser URL.
+
+Readback / decision:
+- Existing selected Pinterest Ads Manager tab is present at advertiser `549756244483` reporting URL.
+- A separate Google account sign-in rejection tab is present, but it is not treated as proof that Google Ads, Merchant, Analytics, or Search Console access is impossible.
+- No new account tab was opened.
+
+Guardrails:
+- No credentials were entered or saved.
+- No sign-out, account switch, CAPTCHA/MFA, billing, permission, policy, Google Ads, Merchant, Analytics, Search Console, Shopify Admin, Pinterest, GitHub, email, campaign, feed, product, conversion, bid, budget, status, or credential write occurred.
+
+Next best action:
+- Continue the highest-priority authenticated readback from the existing Pinterest tab, or complete the Google/Merchant access recovery ladder from `ops/ACCOUNT_ACCESS_PROTOCOL.md` before declaring any Google-side blocker.
+
+2026-05-14 - Pinterest existing draft check
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-pinterest-existing-draft-check
+
+Why:
+- Owner instructed the next step should continue Pinterest from the existing advertiser tab or complete Google/Merchant access recovery before declaring blockers.
+- Pinterest already had an authenticated selected advertiser tab, so the fastest safe lane was a non-committal draft-readback check.
+
+What changed:
+- Selected the existing Pinterest Ads Manager tab for advertiser `549756244483`.
+- Evaluated page text for account/domain, reporting state, login/CAPTCHA/billing/policy/unsaved prompts, and create/draft controls.
+- Clicked `Load existing campaign draft`, observed the existing-draft sheet, and closed it.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-current-p0-blocker-fix/PINTEREST_EXISTING_DRAFT_CHECK.md`.
+- Updated `ops/AGENT_COORDINATION.md`, `ops/marketing/action_queue.md`, `blocker_board.md`, `current_marketing_state.md`, `decision_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+
+Readback / decision:
+- Account/domain visible: `Dress Like Mommy | Matching Family Outfits` / `dresslikemommy.com`.
+- Advertiser URL includes `549756244483`.
+- Reporting shows `0 campaigns`, `0 currently being served`, `$0.00` spend, and `0` impressions for `05/07/2026 - 05/14/2026`.
+- Page text scan showed no login, CAPTCHA, billing, policy, or unsaved-change prompt.
+- Draft sheet says there are no saved campaign drafts at this moment.
+- Next UI step is `Create new campaign`; do not click it as a casual readback because the spec stops on budget/bid/enablement/launch/publish/audience/source/feed/tag/CAPI requirements outside gates.
+
+Guardrails:
+- No Pinterest campaign, draft, ad group, ad, product group, catalog, source, tag, CAPI, audience, budget, bid, status, launch, or spend write occurred.
+- No credentials were entered or saved.
+- The draft sheet was closed and the tab was left on the reporting dashboard.
+
+Next best action:
+- If continuing Pinterest, use `PINTEREST_US_PAUSED_DRAFT_BUILD_SPEC.md` from the existing authenticated tab and proceed only while every object can remain paused/draft with no out-of-gate budget, bid, launch, audience, source, feed, tag, CAPI, or catalog mutation.
+
+2026-05-14 - Automation US keyword route unblock
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-us-keyword-route-unblock
+
+Why:
+- The highest-priority remaining queue rows still require authenticated Google Ads/Merchant account exports or a paused Pinterest draft write; this unattended automation run could not safely execute those without crossing the account/write boundary.
+- The next safe sales-moving lane was to remove remaining US keyword-universe route friction so future US Search validation does not point at broken, supplier-leaking, or seasonally risky collection routes.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-keyword-route-unblock/build_us_keyword_route_unblock.py`.
+- Generated `US_KEYWORD_ROUTE_UNBLOCK_PACKET.md`, `us_keyword_route_unblock_rows.csv`, `us_keyword_route_unblock_public_route_readback.csv`, and `us_keyword_route_unblock_summary.json`.
+- Updated `ops/marketing/keyword_universe.csv`: rerouted `23` US rows from `/collections/vacation`, `/collections/matching-dresses`, `/collections/swimsuits`, and `/collections/daddy-and-me` to `/collections/matching-outfits`, `/collections/mommy-and-me`, and `/collections/family-swimsuits`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `memory_digest.md`, `assumption_log.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Public US readback checked all replacement routes across browser-like and cache-busted header variants.
+- Result: `6/6` route fetches returned `200`, with `0` supplier/source-domain or URL-brand hits and `0` stale seasonal/local-inventory trust hits.
+- `ops/marketing/keyword_universe.csv` now has `0` rows left on `/collections/vacation`, `/collections/matching-dresses`, `/collections/swimsuits`, or `/collections/daddy-and-me`.
+- These rows remain local-only; route proof is not active-product proof, CPC/search feasibility proof, or live keyword authority.
+
+Verification:
+- Repo write test passed.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-keyword-route-unblock/build_us_keyword_route_unblock.py` completed: `23` rerouted rows and `6` public route readbacks.
+- `python3.13 -m py_compile dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-keyword-route-unblock/build_us_keyword_route_unblock.py` passed.
+- `python3.13 -m json.tool dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-keyword-route-unblock/us_keyword_route_unblock_summary.json` passed.
+- CSV parse checks passed for `ops/marketing/keyword_universe.csv`, `us_keyword_route_unblock_rows.csv`, and `us_keyword_route_unblock_public_route_readback.csv`.
+
+Guardrails:
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/campaign write occurred.
+- No Shopify Admin product/vendor/source metadata edit and no live theme push/sync/publish occurred.
+- No Merchant, Pinterest, GA4/GTM, billing, feed, product-scope, product-group, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Run authenticated Google Ads / Keyword Planner validation for the clean canonical GB/CA/AU 36-row packet at max `$0.15`.
+- Run authenticated read-only Standard Shopping item-level export for campaign `23802638621`, then run the auth-export join script.
+- For future US Search, build a small validation packet from the rerouted rows only after active-product proof and `$0.15` CPC/search feasibility; keep original dirty raw collection routes excluded unless owner-approved product/vendor cleanup passes public readback.
