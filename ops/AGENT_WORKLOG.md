@@ -37230,3 +37230,39 @@ Next best action:
 - Run authenticated Google Ads / Keyword Planner validation for dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/gb_ca_au_36_clean_route_cpc_validation_rows.csv at max $0.15 CPC.
 - Promote only pass rows through a fresh GREEN action-queue row with reviewer pass, canonical final URLs where redirects exist, and after-state readback.
 - Continue authenticated Standard Shopping item-level export and Merchant/Pinterest auth blockers in account-capable sessions.
+
+2026-05-14 - Automation 36-row CPC canonical URL packet
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-36-row-cpc-canonical-url-packet
+
+Why:
+- The highest-priority remaining action row is still authenticated Google Ads / Keyword Planner validation for the GB/CA/AU 36-row packet at max $0.15 CPC, but this unattended automation runtime remains account-surface gated.
+- The previous public refresh proved `/collections/family-matching` was source-clean but redirecting to `/collections/matching-outfits`, so the next safe sales-moving lane was removing that final-URL friction before authenticated CPC validation.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-canonical-url-packet/build_canonical_36_row_cpc_packet.py`.
+- Generated `GB_CA_AU_36_ROW_CPC_CANONICAL_URL_PACKET.md`, `gb_ca_au_36_clean_route_cpc_validation_rows_canonical_urls.csv`, `gb_ca_au_36_canonical_url_public_readback_rows.csv`, and `gb_ca_au_36_canonical_url_packet_summary.json`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `memory_digest.md`, `assumption_log.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Converted `11` rows from `/collections/family-matching` to canonical `/collections/matching-outfits` final URLs.
+- Checked `36` source rows as `12` unique market/route URLs with `24` public fetches across browser-like and cache-busted header variants.
+- Result: `0` redirects, `0` non-200s, `0` supplier/source-domain or URL-brand hits, and `0` stale seasonal/local-inventory trust hits.
+- The canonical CSV is now the preferred artifact for authenticated `$0.15` CPC/auction validation; it is still not upload/apply/add keyword/bid/status/budget/negative authority.
+
+Verification:
+- Repo write test passed.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-canonical-url-packet/build_canonical_36_row_cpc_packet.py` completed: `source_row_count=36`, `canonicalized_row_count=11`, `unique_route_count=12`, `route_fetch_count=24`, `redirect_count=0`, `supplier_hit_total=0`, `stale_hit_total=0`.
+- `python3.13 -m py_compile dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-canonical-url-packet/build_canonical_36_row_cpc_packet.py` passed.
+- `python3.13 -m json.tool dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-canonical-url-packet/gb_ca_au_36_canonical_url_packet_summary.json` passed.
+
+Guardrails:
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/campaign write occurred.
+- No Shopify Admin product/vendor/source metadata edit and no live theme push/sync/publish occurred.
+- No Merchant, Pinterest, GA4/GTM, billing, feed, product-scope, product-group, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Run authenticated Google Ads / Keyword Planner validation for `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-canonical-url-packet/gb_ca_au_36_clean_route_cpc_validation_rows_canonical_urls.csv` at max `$0.15` CPC.
+- Promote only pass rows through a fresh `GREEN` action-queue row with fresh Ads readback, reviewer pass, anti-cannibalization check, and after-state readback.
+- Continue authenticated Standard Shopping item-level export and Merchant/Pinterest auth blockers in account-capable sessions.
