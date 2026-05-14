@@ -36773,3 +36773,42 @@ Verification:
 
 Next best action:
 - Future continuity, prompt, cockpit, spend-authority, worklog, handoff, or paid-growth command-layer changes must run `python3.13 ops/scripts/check_continuity_integrity.py --strict` and fix any failure in canonical files before closeout.
+
+2026-05-14 - Automation capability inventory and Merchant capacity local diagnosis
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-capability-merchant-capacity-diagnosis
+
+Why:
+- The automation prompt required a real capability-parity check instead of assuming this unattended runtime matches a normal owner-driven Codex session.
+- No `GREEN` rows remained. The highest-value safe `YELLOW` Merchant lane was Shopping capacity impact diagnosis, but that exact readback depends on authenticated Chrome/account access.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-capability-merchant-capacity-diagnosis/AUTOMATION_CAPABILITY_AND_MERCHANT_CAPACITY_DIAGNOSIS.md`.
+- Updated `ops/marketing/current_marketing_state.md`, `action_queue.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Capability inventory:
+- Repo writes: passed create/remove write test.
+- Network: direct fetch returned `200`.
+- Browser/Playwright MCP: usable.
+- Shell-side Playwright: unavailable (`playwright` package not installed).
+- Chrome DevTools MCP: visible but not usable for authenticated work because the shared profile is already locked by another running browser instance.
+- Computer Use: visible, but interactive access is not granted; `get_app_state` returned `Computer Use permissions are not granted`.
+- GitHub MCP and OpenAI docs MCP: usable.
+
+Decision:
+- `AUTOMATION_CAPABILITY_MISMATCH` applies to authenticated Merchant/Pinterest Chrome-account readbacks in this run.
+- Do not pretend this unattended runtime has manual-session parity on those account surfaces.
+- Merchant Shopping capacity remains an active blocker. Fresh local diagnosis confirms the warning is current and account-level, but Standard Shopping still served `17` impressions on `2026-05-13`, so there is no proven total-serving outage. Exact paid-cohort impact remains unread until an authenticated Merchant session intersects the warning against the live `780`-row `us_test_ready` / `paid_eligible` cohort.
+
+Verification:
+- `mcp__playwright__.browser_tabs` opened a fresh page successfully.
+- `mcp__chrome_devtools__.list_pages` and `new_page` reported the shared profile lock.
+- `mcp__computer_use__.list_apps` worked, while `get_app_state` failed with missing permissions.
+- Local diagnosis report built from current saved Merchant diagnostics text, current Standard Shopping product-group readback, and the `780`-row paid cohort file.
+
+Guardrails:
+- No Google Ads, Merchant, Pinterest, Shopify Admin, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or theme writes occurred.
+- No blocker was closed without proof; the Merchant capacity problem stays active.
+
+Next best action:
+- Use a session with working authenticated Chrome/account access to run the Merchant capacity product-level intersection and a fresh US/es exact export/readback, while continuing other safe local/read-only paid-growth lanes in parallel.

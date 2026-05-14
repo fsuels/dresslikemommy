@@ -61,6 +61,7 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - Created the action-biased keyword operating system: `keyword_strategy.md`, `keyword_scoring_rubric.md`, and a 105-row `keyword_universe.csv` seed with US first, market-language adaptation, `GREEN/YELLOW/RED` thresholds, and no live-upload authority.
 - Added the command-layer integration guard: initial audit found 4 side-document risks and current audit now passes with 25 tracked files / 0 risks. New `ops/marketing/` artifacts must be registered, action-linked, logged, or marked generated/archive before they count as complete.
 - Added the broad continuity integrity guard: `ops/scripts/check_continuity_integrity.py --strict` now blocks stale prompt anchors, unquarantined alternate worklogs, spend-authority disagreements, stale cockpit HTML, failed marketing integration audits, missing worklog anchors, and AGENTS/CLAUDE drift.
+- Added an explicit automation capability inventory and Merchant capacity local diagnosis: shell/repo writes/network/Playwright MCP are usable, but authenticated Chrome/account surfaces are not equivalent in this runtime because Chrome DevTools is profile-locked and Computer Use interactive access is not granted. Merchant capacity warning is current, but exact paid-cohort intersection still needs an authenticated read-only Merchant session.
 
 ## Local Changes
 
@@ -76,6 +77,7 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - Campaign detail source now includes market/language-specific active keyword strategy for GB, CA, and AU, with localized vocabulary, candidate themes, landing-fit gates, negative watchlists, and no-cannibalization ownership.
 - Fresh monitor packet added at `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/` with a blocked exact-scope bounded action packet.
 - New expert standard file: `ops/marketing/expert_growth_playbook_2026.md`.
+- New local packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-capability-merchant-capacity-diagnosis/AUTOMATION_CAPABILITY_AND_MERCHANT_CAPACITY_DIAGNOSIS.md`.
 - `ops/marketing/spend_authorization.md` now records `APPROVED_ACTIVE` bounded authority from the owner message.
 - Local docs/prompts updated to require reviewer use before risky decisions.
 - Existing stopped-session local sanitizer patch remains in place and was not rewritten.
@@ -93,7 +95,7 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 
 - Active paid Search landing supplier/source URL leak is locally fixed but still requires approved live theme sync/readback before expansion; fresh 08:17 public GB/CA/AU source readback still fails on `detail.1688.com` in `data-analytics-vendor`.
 - Merchant US/es age_group needs a current exact all-row readback before closure or repair.
-- Merchant Shopping Ads capacity warning needs read-only impact diagnosis for the paid cohort and Standard Shopping.
+- Merchant Shopping Ads capacity warning is current and account-level, but exact paid-cohort impact is still unresolved because the authenticated Merchant Chrome/account path is unavailable in this automation runtime.
 - Pinterest Ads Manager remains blocked by authenticated controllable access.
 - GB/CA/AU exact Search have fresh read-only Ads checks done: stale search-term filters are cleared, search terms are still empty, keyword/RSA/final URLs are enabled/country-qualified, and keyword UI shows auction-entry pressure. Live Ads action is blocked by the landing sanitizer failure and by the hard `$0.15` CPC gate for head/near-head terms. A local scored long-tail universe exists for validation, not upload.
 - Standard Shopping has impressions but no clicks/cost/conversion evidence from the latest command-layer readback. US is still the primary market; keyword work applies through Shopping query/title/product/feed diagnostics and future US Search/Pinterest packets.
@@ -106,8 +108,8 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 ## Next 3 Tasks
 
 1. Get approval for scoped live theme sanitizer sync/readback, then prove GB/CA/AU final URL source/DOM has zero supplier/source URL hits.
-2. Validate top `GREEN` rows from `keyword_universe.csv` against active products, clean landing routes, and Keyword Planner/keyword UI at max CPC `$0.15`; do not raise bids or upload close-head variants.
-3. Keep both integrity checks in the closeout loop: every new `ops/marketing/` file must pass `python3.13 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk`, and continuity/prompt/cockpit/spend/worklog/handoff changes must pass `python3.13 ops/scripts/check_continuity_integrity.py --strict`.
+2. Use an authenticated Merchant session to intersect the live Shopping capacity warning against the `780`-row `us_test_ready` / `paid_eligible` cohort and to obtain a fresh exact US/es export/readback.
+3. Validate top `GREEN` rows from `keyword_universe.csv` against active products, clean landing routes, and Keyword Planner/keyword UI at max CPC `$0.15`; do not raise bids or upload close-head variants.
 
 ## Assumptions
 
@@ -123,6 +125,7 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - `keyword_universe.csv` is a local universe, not a live upload artifact; `GREEN` rows still need active-product, landing, `$0.15` CPC, reviewer, and after-state gates.
 - If an artifact is not wired into `AGENTS.md`, an action surface, and continuity logs, it is not progress; it is a side-document risk.
 - If a prompt, packet, digest, or memory names an older anchor, resolve latest state from `ops/AGENT_WORKLOG.md` and the command layer instead.
+- If this automation runtime cannot use the authenticated Chrome/account path, treat Merchant/Pinterest account readbacks as capability-mismatched and hand off the exact authenticated next step instead of claiming parity.
 
 ## Risks / Approval Needed
 

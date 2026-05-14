@@ -1,8 +1,39 @@
 # Marketing Safety Review Log
 
-Last updated: 2026-05-14
+Last updated: 2026-05-14 10:38 EDT
 
 Use this log for reviewer outcomes or simulated checklist runs. Keep entries short and tied to evidence.
+
+## 2026-05-14 - Automation capability mismatch plus Merchant capacity local diagnosis
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Repo-local capability inventory only: shell, repo writes, network, Playwright MCP, Chrome DevTools MCP visibility, Computer Use visibility, GitHub MCP visibility, and OpenAI docs MCP.
+- Repo-local/read-only Merchant capacity diagnosis from already-saved evidence plus current command-layer state.
+- No external writes, no blocker closure without proof, and no Merchant/Shopping recommendation that exceeds approval boundaries.
+
+Risks:
+
+- Authenticated Merchant and Pinterest account-surface readbacks are not equivalent in this runtime because Chrome DevTools is profile-locked and Computer Use interactive access is not granted.
+- The current capacity warning is real, but the exact paid-cohort intersection is still unproven; Standard Shopping still had `17` impressions yesterday, so the warning could be broad account noise.
+
+Required gates/fixes:
+
+- Mark the account-surface gap explicitly as `AUTOMATION_CAPABILITY_MISMATCH`.
+- Do not downgrade or close the Merchant capacity blocker from local evidence alone.
+- Next Merchant action must be an authenticated read-only product-level intersection against the `780`-row `us_test_ready` / `paid_eligible` cohort.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-capability-merchant-capacity-diagnosis/AUTOMATION_CAPABILITY_AND_MERCHANT_CAPACITY_DIAGNOSIS.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/merchant-product-issues-export/raw/product-issues-browser-export/diagnostics_page_text_before_download_priority.txt`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/standard-shopping-readback/raw/01_productgroups_initial.txt`
+
+Safest next sales-moving action:
+
+- Use an authenticated Merchant session to prove whether the capacity warning touches the live paid cohort; keep the next independent sales-moving lanes active meanwhile.
 
 ## 2026-05-14 - Reviewer/cockpit implementation
 

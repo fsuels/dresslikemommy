@@ -1,6 +1,6 @@
 # Marketing Assumption Log
 
-Last updated: 2026-05-14
+Last updated: 2026-05-14 10:38 EDT
 
 Use this file for important assumptions that affect paid-growth decisions, especially when evidence is repo-known, stale, sampled, or gated by approval/access.
 
@@ -21,6 +21,7 @@ Use this file for important assumptions that affect paid-growth decisions, espec
 | 2026-05-14 | The 105-row keyword universe is a validation asset, not a platform upload file. | `ops/marketing/keyword_strategy.md`, `ops/marketing/keyword_scoring_rubric.md`, and `ops/marketing/keyword_universe.csv` created in this pass. | A future operator could upload too many unvalidated rows and create noisy low-volume learning or waste. | Before live use, validate active product fit, landing sanitizer, first-page estimate at max `$0.15`, anti-cannibalization owner, reviewer pass, and after-state readback plan. |
 | 2026-05-14 | A strategy file that is not action-linked is a process defect. | Owner challenged side documents; `ops/scripts/audit_marketing_command_integration.py` now reports `0` risks after fixing the first `4`. | Future sessions could create plans with no follow-up and mistake documentation for progress. | Run `python3.13 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk`; any risk must be wired into AGENTS/action surfaces/continuity logs or marked generated/archive. |
 | 2026-05-14 | Canonical continuity can drift even when the marketing audit passes. | `ops/AGENT_WORKLOG_utf8.md` existed as a tracked alternate worklog, and the canonical prompt still carried a stale hard-coded latest-anchor example in First actions. | A future agent could follow documented startup and still pick stale state from a side document or prompt literal. | Run `python3.13 ops/scripts/check_continuity_integrity.py --strict`; if it fails, repair canonical worklog/prompt/spend/cockpit wiring instead of creating another note. |
+| 2026-05-14 | This automation runtime is not account-surface equivalent to a normal owner session. | Shell/repo writes/network/Playwright MCP are usable, but Chrome DevTools MCP is profile-locked, Computer Use interactive access is denied, and shell-side Playwright is not installed. | An agent could overclaim Merchant/Pinterest readback completeness or close a blocker without the authenticated intersection proof. | Treat account-dependent Merchant/Pinterest follow-ups as `AUTOMATION_CAPABILITY_MISMATCH` until a usable authenticated Chrome/account path is restored. |
 
 ## Add New Assumptions Like This
 

@@ -1,7 +1,7 @@
 # Daily Scorecard
 
-Last reconciled: 2026-05-14 09:01 EDT
-Data freshness: read-only Google Ads, Pinterest, Merchant, and public/local paid landing reconciliation completed; repo-local GB/CA/AU keyword strategy repair completed; fresh GB/CA/AU Ads monitor and landing gate review completed; owner `$0.15` CPC correction applied; 105-row local keyword universe/rubric created; command-layer integration audit passed with `0` side-document risks; no external writes.
+Last reconciled: 2026-05-14 10:38 EDT
+Data freshness: read-only Google Ads, Pinterest, Merchant, and public/local paid landing reconciliation completed; repo-local GB/CA/AU keyword strategy repair completed; fresh GB/CA/AU Ads monitor and landing gate review completed; owner `$0.15` CPC correction applied; 105-row local keyword universe/rubric created; automation capability inventory and local Merchant capacity diagnosis completed; command-layer integration audit passed with `0` side-document risks; no external writes.
 
 ## Required Daily Rows
 
@@ -13,7 +13,7 @@ Data freshness: read-only Google Ads, Pinterest, Merchant, and public/local paid
 | Standard Shopping US | `$0.00` | `0` | `17` | `0.00` | `$0.00` | n/a | `HOLD_MONITOR_NO_WRITE` | Google Ads UI, `2026-05-14T05:35`, reporting day `2026-05-13` |
 | Pinterest US paused draft path | n/a | n/a | n/a | n/a | n/a | n/a | `AUTH_BLOCKED_NO_CREATE_CONTROL` | Pinterest public login/sign-up page, `2026-05-14T09:36:32Z` |
 | Merchant US/es age_group | n/a | n/a | n/a | n/a | n/a | n/a | `SAMPLE_CLEAR_CURRENT_EXACT_EXPORT_REQUIRED` | Merchant RPC/detail sample readback, `2026-05-14T05:37:54-04:00` |
-| Merchant Shopping capacity | n/a | n/a | n/a | n/a | n/a | n/a | `DIAGNOSE_READONLY` | Merchant prioritized fixes page, updated `3:09 AM May 14, 2026` |
+| Merchant Shopping capacity | n/a | n/a | n/a | n/a | n/a | n/a | `ACCOUNT_WARNING_CONFIRMED__PAID_COHORT_INTERSECTION_PENDING_AUTH_READBACK` | Merchant prioritized fixes page, updated `3:09 AM May 14, 2026`; local diagnosis confirmed Standard Shopping still had `17` impressions yesterday, so exact paid-cohort impact remains unresolved |
 | GB/CA/AU active Search landing PDP | n/a | n/a | n/a | n/a | n/a | n/a | `LOCAL_FIX_READY_LIVE_SYNC_REQUIRED` | Public/live source plus local theme readback, `2026-05-14 06:05 EDT` |
 
 ## Decision Thresholds To Preserve
@@ -54,7 +54,8 @@ Do not apply thresholds mechanically without fresh campaign/search-term/landing 
 - GB/CA/AU fresh read-only monitor is done: campaign/ad-group/scope checks passed, stale search-term filters were cleared, keyword/RSA/final URL checks passed, and keyword UI showed `Eligible (Limited)` / below-first-page-bid estimates around `$0.65-$0.74`. Owner corrected that this fails the hard `$0.15` CPC economics, so head terms and close variants are rejected; live action is also blocked because the public final URLs still expose a supplier URL in `data-analytics-vendor`.
 - Local keyword action completed: `ops/marketing/keyword_universe.csv` now has `105` scored rows (`60` US, `15` GB, `15` CA, `15` AU; `77` `GREEN`, `20` `YELLOW`, `8` `RED`) plus `keyword_strategy.md` and `keyword_scoring_rubric.md`. No live keyword upload occurred.
 - Command-layer integration action completed: initial audit found `4` side-document risks; current audit covers `25` tracked files with `0` risks after registering/linking/archiving the weak docs.
+- Automation capability correction completed: shell/repo writes/network/Playwright MCP are usable, but authenticated Chrome/account surfaces are not equivalent in this runtime because Chrome DevTools is profile-locked and Computer Use interactive access is not granted. Merchant/Pinterest account readbacks must stay explicitly gated as `AUTOMATION_CAPABILITY_MISMATCH` when they depend on those surfaces.
 - No scale, pause, bid, budget, negative, product-group, or status write is justified from current metrics until fresh readback, reviewer pass, and green-gated authority support the exact action.
 - Standard Shopping visible search terms in saved readback had `0` clicks, `$0.00` cost, and `0.00` conversions; no negative action is justified from `family pictures outfits`, `family same outfit`, or `mommy and me wedding guest dresses`.
 - Active-product/category prep map now exists from public storefront collections/products plus the existing `780`-row paid cohort: immediate Father's Day direction is Daddy-and-Me/father-inclusive family matching, not generic or stale seasonal traffic.
-- Fastest next sales-moving unblocks are scoped paid-landing theme sanitizer sync/readback, validation of top `GREEN` keyword rows at `$0.15`, Pinterest authenticated access, current exact Merchant readback, and US Standard Shopping query/product/title diagnosis using the new universe.
+- Fastest next sales-moving unblocks are scoped paid-landing theme sanitizer sync/readback, validation of top `GREEN` keyword rows at `$0.15`, Pinterest authenticated access, authenticated Merchant capacity and US/es exact readbacks, and US Standard Shopping query/product/title diagnosis using the new universe.
