@@ -37156,3 +37156,41 @@ Next best action:
 - Run authenticated read-only Standard Shopping item-level export for campaign `23802638621` with item ID, product title, product group/custom label, impressions, clicks, cost, query/search-term where available, conversion value, and landing URL or product handle.
 - Run the join script above and use the joined decision CSV to decide whether a narrow title/feed approval packet is justified.
 - Continue authenticated `$0.15` CPC validation for the GB/CA/AU 36-row packet in an account-capable session.
+
+2026-05-14 - Automation US Shopping seasonal live-sync approval packet
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-us-shopping-seasonal-live-sync-approval
+
+Why:
+- The highest-priority remaining action rows still require authenticated Google Ads/Merchant/Pinterest account surfaces, and this unattended automation runtime is already recorded as `AUTOMATION_CAPABILITY_MISMATCH` for those lanes.
+- The next safe sales-moving lane was to move the local swim-trunks stale seasonal related-card fix from "documented local patch" to an exact owner approval/readback packet, so a future approved theme session can execute it without rediscovery or scope creep.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-seasonal-live-sync-approval/US_SHOPPING_SEASONAL_RELATED_FILTER_LIVE_SYNC_APPROVAL_PACKET.md`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-seasonal-live-sync-approval/us_shopping_seasonal_live_sync_approval_summary.json`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `memory_digest.md`, `assumption_log.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- The packet names the exact approval phrase for a one-snippet live theme sync of `snippets/buy-box-similar-styles.liquid`.
+- It requires before/after public source readbacks on `dynamic-duo-father-and-son-matching-swim-trunks-family-beachwear-set?country=US` with both `Accept: text/html` and `Accept: */*`.
+- Pass criteria are strict: live PDP `200`, supplier/source-domain hits remain `0`, and stale `Christmas`/`Santa`/`Xmas` hits must be `0` before the two swim-trunks held rows can leave held status.
+- This packet is not live theme authority, not paid export approval, and not title/feed repair proof.
+
+Verification:
+- Repo write test passed.
+- `python3.13 -m json.tool dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-seasonal-live-sync-approval/us_shopping_seasonal_live_sync_approval_summary.json` passed.
+- `python3.13 ops/scripts/render_marketing_cockpit.py` regenerated `ops/marketing/operator_cockpit.html`.
+- `python3.13 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk` passed with `0` risks.
+- `python3.13 ops/scripts/check_continuity_integrity.py --strict` passed with `CONTINUITY_OK`.
+
+Guardrails:
+- No live Shopify theme push/sync/publish occurred.
+- No Shopify Admin product/vendor/source metadata edit occurred.
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/product-group write occurred.
+- No Merchant feed/source/product/title edit, Pinterest, GA4/GTM, billing, product-scope, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Run authenticated Google Ads / Keyword Planner validation for the GB/CA/AU 36-row packet at max `$0.15`.
+- Run authenticated read-only Standard Shopping item-level export for campaign `23802638621`, then run the auth-export join script.
+- If owner approves the swim-trunks live theme unblock, use `US_SHOPPING_SEASONAL_RELATED_FILTER_LIVE_SYNC_APPROVAL_PACKET.md` to push only the snippet and read back before/after public source; otherwise keep those held rows excluded.

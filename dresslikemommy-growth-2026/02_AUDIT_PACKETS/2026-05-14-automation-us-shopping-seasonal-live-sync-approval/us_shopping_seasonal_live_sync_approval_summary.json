@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-05-14T18:17:30Z",
+  "status": "OWNER_APPROVAL_REQUIRED_FOR_SCOPED_LIVE_THEME_SYNC",
+  "surface": "snippets/buy-box-similar-styles.liquid",
+  "product_url": "https://www.dresslikemommy.com/products/dynamic-duo-father-and-son-matching-swim-trunks-family-beachwear-set?country=US",
+  "related_problem": "PROB-2026-05-14-US-SHOPPING-QUERY-TITLE-FIT",
+  "local_fix_evidence": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-seasonal-related-filter/US_SHOPPING_SEASONAL_RELATED_FILTER_LOCAL_FIX.md",
+  "approval_phrase": "APPROVE LIVE THEME SYNC FOR US SHOPPING SEASONAL RELATED-PRODUCT FILTER ONLY: push the local related-product recommendation filter in snippets/buy-box-similar-styles.liquid so non-seasonal PDPs do not render Christmas/Santa/Xmas related-product metadata; no Shopify Admin product data, Merchant, Google Ads, Pinterest, budget, bid, status, conversion, feed, product-scope, price, discount, or policy changes; read back the dynamic swim-trunks PDP public source before and after and keep it out of paid export/use unless stale seasonal hits are zero.",
+  "pass_criteria": {
+    "http_status": 200,
+    "supplier_source_domain_hits": 0,
+    "stale_seasonal_hits": 0,
+    "headers_to_check": [
+      "Accept: text/html",
+      "Accept: */*"
+    ]
+  },
+  "blocked_actions": [
+    "Shopify Admin product/vendor/source metadata edits",
+    "Merchant feed/source/product/title edits",
+    "Google Ads keyword/product-group/bid/budget/status changes",
+    "Pinterest catalog/source/product-group/tag/CAPI changes",
+    "GA4/GTM/conversion-goal changes",
+    "price/discount/policy changes"
+  ]
+}

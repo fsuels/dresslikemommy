@@ -835,3 +835,34 @@ Evidence:
 Safest next sales-moving action:
 
 - Run the authenticated read-only export and then the join script; convert only proven mismatches into a narrow owner approval packet.
+
+## 2026-05-14 - US Shopping seasonal related filter live-sync approval packet
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Repo-local approval/readback packet only; no live Shopify theme, Shopify Admin, Google Ads, Merchant, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, product-group, title, conversion, or destructive write.
+- Scope is exactly one live theme snippet: `snippets/buy-box-similar-styles.liquid`.
+- The affected swim-trunks rows remain excluded until exact owner approval, snippet sync, and after-state public source readback pass.
+
+Risks:
+
+- Live theme sync can affect the related-product recommendation surface beyond the one PDP, even though the existing local logic is intentionally narrow.
+- The two swim-trunks rows still need authenticated Shopping item-level proof before they influence title/feed decisions.
+
+Required gates/fixes:
+
+- Obtain the exact approval phrase in `US_SHOPPING_SEASONAL_RELATED_FILTER_LIVE_SYNC_APPROVAL_PACKET.md`.
+- Before push, public-read back the swim-trunks PDP source with both `Accept: text/html` and `Accept: */*`.
+- Push only `snippets/buy-box-similar-styles.liquid`.
+- After push, public-read back the same PDP and require `0` supplier/source-domain hits and `0` `Christmas`/`Santa`/`Xmas` stale seasonal hits before considering the two rows repaired.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-seasonal-live-sync-approval/US_SHOPPING_SEASONAL_RELATED_FILTER_LIVE_SYNC_APPROVAL_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-seasonal-live-sync-approval/us_shopping_seasonal_live_sync_approval_summary.json`
+
+Safest next sales-moving action:
+
+- In an owner-approved theme session, execute the one-snippet live sync and before/after public source readbacks; otherwise keep the swim-trunks rows excluded.
