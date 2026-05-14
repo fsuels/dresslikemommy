@@ -36123,3 +36123,334 @@ Readback:
 
 Guardrails:
 - Scoped live Shopify theme push was limited to the five PDP ruler JS/CSS assets. No Shopify Admin product/page/policy/translation/discount write, no checkout settings/payment/order/refund/cancel action, no Ads/Merchant/Pinterest/GA4/GTM write, no spend/account/feed/conversion setting change, no credential/account/billing edit, no unrelated dirty-worktree cleanup, and no destructive filesystem action occurred.
+
+2026-05-14 - Marketing command layer and Codex custom agents
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-marketing-command-layer-codex-agents
+
+Why:
+- Owner approved the hybrid architecture: keep existing `ops/` files as durable historical memory, add `ops/marketing/` as the daily paid-growth execution command layer, add project-scoped Codex custom agents in `.codex/agents/*.toml`, and avoid a competing `AI_Team/` state tree.
+- The root `AGENTS.md` was too large for the default Codex project-doc budget and needed to become a compact bootstrap pointer while preserving safety, coordination, memory, problem-tracker, paid-growth, Shopify credential, and sourcing/listing guardrails.
+
+What changed:
+- Replaced root `AGENTS.md` with an 8.2 KB concise bootstrap that points to `ops/marketing/`, existing continuity files, the canonical paid-growth prompt, coordination files, and sourcing/listing prompts.
+- Added `ops/marketing/AGENTS.md`, `current_marketing_state.md`, `action_queue.md`, `spend_authorization.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `prompt_log.md`, `memory_digest.md`, `dream_consolidation_prompt.md`, and `team_registry.md`.
+- Added project-scoped Codex custom-agent TOML files for `head_of_growth`, `google_ads_operator`, `pinterest_operator`, `merchant_feed_operator`, `analytics_roas_operator`, and `landing_cro_operator`.
+- Updated `ops/MEMORY_CONTINUITY_PROTOCOL.md` to recognize `ops/marketing/` as the compact paid-growth execution command layer.
+- Seeded the marketing state from repo-known evidence only and marked live platform facts as stale/readback-needed until a separate read-only reconciliation goal refreshes them.
+- Encoded the proposed bounded spend policy as `PENDING_OWNER_APPROVAL`; no standing spend authority was activated.
+- Tightened `ops/marketing/current_marketing_state.md` to use explicit labels: `REPO_KNOWN`, `LIVE_READBACK_REQUIRED`, `LIVE_VERIFIED`, and `STALE_OR_SUPERSEDED`.
+- Added `ops/marketing/migration_trace.md` so the destructive-risk parts of the root `AGENTS.md` compaction are traceable to named destination files.
+- Updated root `AGENTS.md` to explicitly preserve the dropshipping/no physical inventory rule and the single canonical paid-growth prompt policy.
+
+Readback:
+- `git diff --check` passed.
+- `python3.13` parsed all six `.codex/agents/*.toml` files with required `name`, `description`, and `developer_instructions`.
+- `git show HEAD:AGENTS.md | wc -c` returned old root `AGENTS.md` size `95610`.
+- `wc -c AGENTS.md` returned new root `AGENTS.md` size `8794`, below the default 32 KiB Codex project-doc limit.
+- `AI_Team absent` check passed.
+- `grep -R "PENDING_OWNER_APPROVAL" ops/marketing/spend_authorization.md` showed bounded spend authority remains inactive.
+- `rg` confirmed the state labels and critical guardrail destinations in `ops/marketing/current_marketing_state.md`, `ops/marketing/migration_trace.md`, and root `AGENTS.md`.
+- Trailing-whitespace scan over `AGENTS.md`, `ops/MEMORY_CONTINUITY_PROTOCOL.md`, `ops/marketing/`, and `.codex/agents/` returned no hits.
+
+Guardrails:
+- No live Google Ads, Pinterest, Merchant, Shopify Admin, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or theme writes occurred.
+- No `AI_Team/` directory or second operational state system was created.
+- `ops/PROBLEM_TRACKER.md` was not updated because no blocker was reclassified or touched beyond command-layer summarization.
+
+Next best action:
+- Run the next `/goal` from `ops/marketing/prompt_log.md` to reconcile live paid-growth state read-only: GB/CA/AU exact Search, Standard Shopping, Pinterest access/draft readiness, Merchant/Pinterest blockers, and ROAS/search-term decision state.
+
+2026-05-14 - Marketing live reconciliation command layer
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-marketing-live-reconciliation-command-layer
+
+Why:
+- Owner asked to review the docs/config diff, then run the read-only `/goal` in `ops/marketing/prompt_log.md` before any bounded execution.
+- The command-layer pass needed to convert stale repo-known marketing memory into current `LIVE_VERIFIED`, `LIVE_READBACK_REQUIRED`, and `STALE_OR_SUPERSEDED` rows.
+
+What changed:
+- Reviewed the docs/config diff from the marketing command-layer migration and found no safety/guardrail issue.
+- Created the read-only goal: reconcile current live paid-growth state without external writes until `ops/marketing/current_marketing_state.md` and `ops/marketing/daily_scorecard.md` show enabled/eligible/serving/spending/converting/blocked/ready state.
+- Added evidence packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/` with Google Ads, Pinterest, Merchant, and summary readbacks.
+- Updated `ops/marketing/current_marketing_state.md`, `daily_scorecard.md`, `action_queue.md`, `blocker_board.md`, `decision_log.md`, and `prompt_log.md`.
+- Updated `ops/PROBLEM_TRACKER.md` for `PROB-2026-05-12-ACTIVE-CAMPAIGN-COVERAGE-GOAL`, `PROB-2026-05-08-PINTEREST-EVENT-QUALITY`, `PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP`, and new `PROB-2026-05-14-MERCHANT-SHOPPING-ADS-CAPACITY`.
+- Added a completed read-only coordination row to `ops/AGENT_COORDINATION.md`.
+
+Readback:
+- GB/CA/AU exact Search monitor passed at `2026-05-14T05:34:01-04:00`: campaigns enabled/eligible, `$2/day`, Search only, presence-only, no campaign conversion override, only the approved exact ad group enabled, and `9` other ad groups paused in each market.
+- GB/CA/AU visible campaign rows for `2026-05-13` showed `$0.00` cost, `0` clicks, `0` impressions, `0.00` conversions, and `0.00` conversion value. Decision: `HOLD_MONITOR_NO_WRITE`.
+- GB search-term route loaded with no stale filter but had no terms because ads had not shown to enough people in the selected range/filter. CA/AU search-term pages remain blocked by stale unrelated `Keyword: "human hair wigs"` filters, so no negative action is justified.
+- Standard Shopping `23802638621` / `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` is enabled/eligible at `$20/day`; `2026-05-13` showed `17` impressions, `0` clicks, `$0.00` cost, `0.00` conversions/value. Product groups still show `us_test_ready` children at `$0.04` and `Everything else in "All products"` excluded.
+- Pinterest advertiser path `549756244483` landed on public `https://ads.pinterest.com/` login/sign-up page; Create control was not found; no Pinterest object was created/saved.
+- Merchant US/es source/detail samples for source `10627981690` now show effective `n:age_group` and no Missing age_group issue on sampled rows, while the downloaded CSV is still stale `product_issues_2026-05-08_02-52-49.csv`; current exact all-row readback is still required before closing or repairing that blocker.
+- Merchant prioritized fixes page updated `3:09 AM May 14, 2026` shows `Over capacity for Shopping ads (outside of CSS program)` / `73.3K products (21%)`; opened `PROB-2026-05-14-MERCHANT-SHOPPING-ADS-CAPACITY`.
+- `git diff --check` passed after docs/evidence updates.
+
+Guardrails:
+- No live Google Ads, Pinterest, Merchant, Shopify Admin, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or theme writes occurred.
+- No Ads negative/budget/bid/status/product-group/conversion-goal edit, no Merchant upload/sync/source edit/product edit, no Pinterest campaign/draft/product-group/budget/bid/audience/source/tag/CAPI/feed save, no Shopify Admin or theme write, no checkout payment/order, no credential/billing edit.
+- Spend authorization remains `PENDING_OWNER_APPROVAL`.
+
+Next best action:
+- Use the next goal in `ops/marketing/prompt_log.md`: read-only Merchant US/es exact current export/readback, Merchant Shopping Ads capacity impact assessment, and Pinterest authenticated Ads Manager access restoration before any bounded execution approval.
+
+2026-05-14 - Paid landing vendor-source URL sanitizer local handoff
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-paid-landing-vendor-source-sanitizer-local
+
+Why:
+- Owner asked to continue the paid-growth command layer from the latest anchor and execute safe/read-only action queue rows. The P2 paid-landing/CRO review found a concrete public-source blocker on the active GB/CA/AU exact Search landing PDP.
+- The public landing did not show stale Christmas copy and did not show visible zero-review social proof, but it exposed a supplier URL in a related product analytics attribute: `data-analytics-vendor="https://detail.1688.com/offer/602107180663.html"`.
+- Owner clarified that supplier/source URLs can never be customer-visible, that only active public products should be advertised, and that category/event optimization must be expert-level.
+
+What changed:
+- Patched local theme vendor/brand sanitizers so blank, URL-like, `1688.com`, `alibaba.com`, and `aliexpress.com` values normalize to `dresslikemommy.com` before storefront analytics/public brand surfaces render.
+- Touched local theme files: `snippets/card-product.liquid`, `snippets/home-spotlight-card.liquid`, `sections/main-product.liquid`, `snippets/cart-drawer.liquid`, `sections/main-cart-items.liquid`, `sections/cart-notification-product.liquid`, `sections/predictive-search.liquid`, `assets/analytics.js`, and `assets/homepage-collection-card-images.js`.
+- Added evidence report `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/paid-landing-source-url-sanitizer/LOCAL_PAID_LANDING_VENDOR_SOURCE_URL_FIX_REPORT.md`.
+- Updated `ops/marketing/current_marketing_state.md`, `action_queue.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `prompt_log.md`, and `memory_digest.md`.
+- Added `PROB-2026-05-14-PAID-LANDING-VENDOR-SOURCE-URL-LEAK` to `ops/PROBLEM_TRACKER.md`.
+- Added a handoff row to `ops/AGENT_COORDINATION.md`.
+- Added active-product/category advertising prep map `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/ACTIVE_PRODUCT_CATEGORY_ADVERTISING_MAP_PREP.md`.
+
+Readback:
+- Public/live GB/CA/AU source returned `200`, correct `GBP`/`CAD`/`AUD` presentment and country shipping signals, no Christmas/local-inventory/warehouse/retail-store copy, but the live supplier URL leak is real until theme sync/readback clears it.
+- Local `127.0.0.1:9292` GB/CA/AU source readback after the patch showed `0` hits for `detail.1688.com`, `1688.com`, `alibaba.com`, `aliexpress.com`, `data-analytics-vendor="https://`, and `data-item-brand="https://`; related cards emitted `data-analytics-vendor="dresslikemommy.com"`.
+- `node --check assets/analytics.js` passed.
+- `node --check assets/homepage-collection-card-images.js` passed.
+- `git diff --check` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- Public storefront readback found `326` products across `/products.json` pages `1-2` and `45` collections; existing paid cohort has `780` variant rows across `81` product handles, including `19` father/daddy candidate handles.
+
+Guardrails:
+- No live Shopify theme push/sync/publish occurred because the current goal did not include fresh explicit approval for external writes.
+- No Shopify Admin product/vendor edit, no Google Ads/Pinterest/Merchant/GA4/GTM/billing/campaign/budget/bid/status/feed/product-scope/conversion write, no checkout payment/order, no credential/billing edit, and no destructive filesystem action occurred.
+
+Remaining blockers:
+- Live active paid landing remains blocked for expansion until a scoped approved theme sanitizer sync/push is completed and public source/DOM readback passes.
+- Upgrade the active-product advertising map with a full current Admin/Merchant/Pinterest intersection before any broad upload/apply; the current prep map is read-only/local and not an approval to advertise all products.
+- Merchant US/es exact current export/readback, Merchant Shopping Ads capacity impact diagnosis, Pinterest authenticated Ads Manager access, and GB/CA/AU performance/search-term monitoring remain open.
+
+Next best action:
+- With fresh approval, perform a scoped live theme sync/push of only the sanitizer files, then public source/DOM readback on GB/CA/AU paid landing URLs. If approval is not available, continue read-only active-product/category mapping and Merchant/Pinterest unblock lanes.
+
+2026-05-14 - Marketing safety reviewer and operator cockpit
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-marketing-safety-reviewer-cockpit
+
+Why:
+- Owner requested an automatic mistake-checking layer and human-friendly operator cockpit for the Dress Like Mommy paid-growth command layer, without making live external writes.
+- The prior stopped session left intentional local work in progress, including the paid-landing supplier/source URL sanitizer and May 14 command-layer readbacks. This session preserved those changes and layered safety review/handoff structure around them.
+
+What changed:
+- Added read-only Codex custom agent `.codex/agents/marketing_safety_reviewer.toml`.
+- Added `ops/marketing/operator_cockpit.md`, `ops/marketing/assumption_log.md`, `ops/marketing/reviewer_checklist.md`, and `ops/marketing/review_log.md`.
+- Updated `ops/marketing/AGENTS.md` so future agents must update the cockpit before stopping/compacting, record important assumptions, and run or simulate the reviewer checklist before non-ops file edits, external writes, blocker reclassification, or spend/budget/bid/status/feed/product/conversion recommendations.
+- Updated `.codex/agents/head_of_growth.toml` so Head of Growth uses the safety reviewer before risky decisions and updates the cockpit before handoff.
+- Updated `ops/marketing/team_registry.md` to include `marketing_safety_reviewer`.
+- Updated `ops/marketing/prompt_log.md` with a reusable continuation prompt that starts from the latest anchor, executes safe rows, uses the reviewer before risky decisions, and updates the cockpit before stopping.
+
+Stopped-session dirty changes preserved:
+- Existing local supplier/source URL sanitizer changes in `assets/analytics.js`, `assets/homepage-collection-card-images.js`, `sections/cart-notification-product.liquid`, `sections/main-cart-items.liquid`, `sections/main-product.liquid`, `sections/predictive-search.liquid`, `snippets/card-product.liquid`, `snippets/cart-drawer.liquid`, and `snippets/home-spotlight-card.liquid` were preserved.
+- Existing May 14 command-layer changes under `ops/marketing/`, `ops/PROBLEM_TRACKER.md`, `ops/AGENT_COORDINATION.md`, and related evidence paths were preserved.
+- No supplier URL sanitizer, active-product advertising, paid-landing, Merchant, Pinterest, Ads, or scorecard state was rewritten blindly.
+
+Readback:
+- `git diff --check` passed.
+- `python3.13` parsed every `.codex/agents/*.toml` file with `tomllib`; all parsed TOML files include required `name`, `description`, and `developer_instructions`.
+- `ops/marketing/operator_cockpit.md` contains sections for Current Goal, Done Today, Local Changes, Live Changes, Current Blockers, Next 3 Tasks, Assumptions, and Risks / Approval Needed.
+- `ops/marketing/spend_authorization.md` still says `PENDING_OWNER_APPROVAL`.
+
+Guardrails:
+- No live Google Ads, Pinterest, Merchant, Shopify Admin, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or theme publish writes occurred.
+- No external account surfaces were opened or mutated in this implementation pass.
+
+Next best action:
+- With fresh approval, perform a scoped live theme sync/push of only the paid-landing vendor/source sanitizer files, then public source/DOM readback on GB/CA/AU paid landing URLs. If approval is unavailable, continue read-only Merchant US/es exact current readback, Merchant Shopping Ads capacity impact diagnosis, and Pinterest authenticated access restoration.
+
+2026-05-14 - Marketing cockpit human UI
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-marketing-cockpit-human-ui
+
+Why:
+- Owner wanted the paid-growth command layer visible in a fast, intuitive, modern screen so a human can check the state without opening multiple files and folders.
+
+What changed:
+- Added `ops/scripts/render_marketing_cockpit.py`, a dependency-free Python renderer that reads the command-layer markdown files and writes a self-contained HTML dashboard.
+- Generated `ops/marketing/operator_cockpit.html` with a one-screen UI: current goal, spend/reviewer/live-write status, next best move, live scorecard cards, action queue, blockers, next 3 tasks, local/live changes, safety notes, done-today items, assumptions, search, and needs-action filtering.
+- Updated `ops/marketing/operator_cockpit.md`, `ops/marketing/AGENTS.md`, and `ops/marketing/prompt_log.md` so future agents update the markdown source and regenerate the HTML before stopping or compacting.
+
+Readback:
+- `python3.13 ops/scripts/render_marketing_cockpit.py` rendered `ops/marketing/operator_cockpit.html`.
+- `python3.13 -m py_compile ops/scripts/render_marketing_cockpit.py` passed.
+- `python3.13` checked the generated HTML for required UI labels and no banned supplier-domain strings; passed.
+- Headless Chrome rendered desktop and phone-width screenshots from the local HTML file using a temporary browser profile.
+- `git diff --check` passed.
+
+Guardrails:
+- This was a repo-local UI/documentation change only.
+- No live Google Ads, Pinterest, Merchant, Shopify Admin, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or theme publish writes occurred.
+
+Next best action:
+- Open `ops/marketing/operator_cockpit.html` for human review. With fresh approval, the next sales-moving goal remains scoped live theme sync/readback of the paid-landing vendor/source sanitizer; otherwise continue read-only Merchant and Pinterest unblock lanes.
+
+2026-05-14 - Marketing cockpit auto-open bootstrap
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-marketing-cockpit-auto-open
+
+Why:
+- Owner asked for the human cockpit to open automatically in the browser whenever a session starts with `/goal Continue the Dress Like Mommy paid-growth command layer from the latest AGENT_CONTINUITY_ANCHOR`.
+
+What changed:
+- Added `ops/scripts/open_marketing_cockpit.py`, which renders `ops/marketing/operator_cockpit.html` and opens it with the local browser.
+- Updated root `AGENTS.md` with the paid-growth session-start command.
+- Updated `ops/marketing/AGENTS.md` required first loop so future agents run the opener before reading deeper command-layer state for that continuation prompt.
+- Updated `ops/marketing/operator_cockpit.md` and `ops/marketing/prompt_log.md` with the render-and-open command.
+
+Readback:
+- `python3.13 -m py_compile ops/scripts/render_marketing_cockpit.py ops/scripts/open_marketing_cockpit.py` passed.
+- `python3.13 ops/scripts/open_marketing_cockpit.py --no-open` rendered the dashboard successfully.
+- `python3.13 ops/scripts/open_marketing_cockpit.py` rendered and opened the local HTML dashboard.
+- `git diff --check` passed.
+
+Guardrails:
+- This was a repo-local bootstrap/UI change only.
+- No live Google Ads, Pinterest, Merchant, Shopify Admin, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or theme publish writes occurred.
+
+Next best action:
+- Future paid-growth continuation sessions should start by opening the cockpit automatically, then execute the highest-priority safe read-only rows until no green/read-only work remains.
+
+2026-05-14 - Marketing campaign explorer dashboard
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-marketing-campaign-explorer-dashboard
+
+Why:
+- Owner needed the cockpit to answer practical campaign questions at a glance: select Pinterest or Google Ads, click into a campaign, see what is active/running, keywords/targeting, ad/creative quality, strategy reasoning, evidence, blockers, and next checks without opening raw folders.
+
+What changed:
+- Added `ops/marketing/campaign_explorer.json` as the human-facing campaign detail source for Google Ads and Pinterest.
+- Updated `ops/scripts/render_marketing_cockpit.py` so `operator_cockpit.html` now includes a Campaign Explorer with channel tabs, clickable campaign cards, KPI chips, active-object lists, targeting/keyword details, ad/creative quality notes, strategy reasoning, evidence, human verification steps, and deadlines/next checks.
+- Updated `ops/marketing/operator_cockpit.md`, `ops/marketing/AGENTS.md`, `ops/marketing/prompt_log.md`, and `ops/marketing/review_log.md` so future paid-growth sessions keep the campaign explorer current.
+
+Readback:
+- `python3.13 -m json.tool ops/marketing/campaign_explorer.json` passed.
+- `python3.13 -m py_compile ops/scripts/render_marketing_cockpit.py ops/scripts/open_marketing_cockpit.py` passed.
+- `python3.13 ops/scripts/render_marketing_cockpit.py` regenerated `ops/marketing/operator_cockpit.html`.
+- Generated HTML contains the Campaign Explorer labels and campaign details, including Google Ads, Pinterest, active object, keyword/targeting, ad/creative, strategy, quality, deadline, and evidence sections.
+- Generated HTML did not contain banned supplier-domain strings checked in this pass.
+- Headless Chrome rendered `/tmp/dlm-campaign-explorer.png` from the local HTML file; visual readback showed the Campaign Explorer with Google Ads/Pinterest tabs and GB exact Search detail panel.
+- `git diff --check` passed before this anchor.
+
+Guardrails:
+- This was a repo-local UI/documentation/data change only.
+- No live Google Ads, Pinterest, Merchant, Shopify Admin, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or theme publish writes occurred.
+- Spend authority remains `PENDING_OWNER_APPROVAL`.
+
+Next best action:
+- Keep the cockpit open for owner review, then either obtain scoped approval for live theme sync/readback of the paid-landing sanitizer or continue read-only Merchant/Pinterest unblock lanes.
+
+2026-05-14 - Marketing cockpit proactive test monitor
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-marketing-proactive-test-monitor
+
+Why:
+- Owner correctly flagged that campaign detail was still too passive: it showed active state and zero metrics, but not when the test became active, what today/yesterday showed, whether the test was learning, when to intervene, what assumptions were being tested, or what changes would improve performance.
+
+What changed:
+- Upgraded `ops/marketing/campaign_explorer.json` with proactive monitor fields for each Google Ads/Pinterest lane: health status, activation time, latest readback, next decision, today/yesterday metric snapshot, test clock, proactive monitoring tasks, improvement/pause/scale triggers, and assumptions to test.
+- Updated `ops/scripts/render_marketing_cockpit.py` so the campaign header now immediately shows health, activation time, latest readback, and next decision, with detailed sections for Test Clock / Decision Deadline, Today / Yesterday Metrics, Improve / Change Triggers, Proactive Monitoring, and Assumptions To Test.
+- Updated `ops/marketing/operator_cockpit.md`, `ops/marketing/AGENTS.md`, `ops/marketing/prompt_log.md`, `ops/marketing/daily_scorecard.md`, and `ops/marketing/review_log.md` so future sessions keep these proactive monitoring fields current.
+
+Readback:
+- `python3.13 -m json.tool ops/marketing/campaign_explorer.json` passed.
+- `python3.13 -m py_compile ops/scripts/render_marketing_cockpit.py ops/scripts/open_marketing_cockpit.py` passed.
+- `python3.13 ops/scripts/render_marketing_cockpit.py` regenerated `ops/marketing/operator_cockpit.html`.
+- HTML guard confirmed Test Clock / Decision Deadline, Today / Yesterday Metrics, Improve / Change Triggers, Proactive Monitoring, Assumptions To Test, activation time, T+72 deadline, today-readback-needed copy, and no banned supplier-domain strings.
+- Browser visual/click-through check confirmed Google Ads header shows health/activation/next decision, detail sections include Today/Yesterday and Improve/Change Triggers, and Pinterest tab switches to the not-running/access-blocked detail panel.
+- `git diff --check` passed before this anchor.
+
+Guardrails:
+- This was a repo-local dashboard/data/documentation change only.
+- No live Google Ads, Pinterest, Merchant, Shopify Admin, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or theme publish writes occurred.
+- Spend authority remains `PENDING_OWNER_APPROVAL`.
+
+Next best action:
+- Run a fresh read-only monitor for today/yesterday GB/CA/AU and Shopping metrics. If GB/CA/AU are still zero-impression by the T+72 checkpoint on 2026-05-15 07:21 EDT, prepare a serving-diagnosis/approval packet instead of waiting passively.
+
+2026-05-14 - Marketing cockpit success and bid strategy clarity
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-marketing-success-bid-quality-cockpit
+
+Why:
+- Owner asked that the cockpit make success and strategy unmistakable: the paid-growth goal is as many sales as possible across marketing at about `650% ROAS`, and campaign detail must show whether the strategy is Manual CPC or Maximize Clicks, why it was chosen, and whether agents are checking quality score, photos, landing page, measurement, and every relevant detail.
+
+What changed:
+- Added a visible Success Measure panel to `ops/marketing/operator_cockpit.html`: maximize profitable Dress Like Mommy paid-growth sales across Google Ads and Pinterest while targeting about `650% ROAS`.
+- Updated `ops/marketing/campaign_explorer.json` with success measurement, bid strategy type, bid-strategy reasoning, bid-change triggers, and full attention checklists for Search, Shopping, and Pinterest lanes.
+- Updated `ops/scripts/render_marketing_cockpit.py` to render Success Measurement, Bid Strategy / Why, Bid Change Rules, and Full Attention Checklist sections in each campaign detail.
+- Updated `ops/marketing/operator_cockpit.md`, `ops/marketing/AGENTS.md`, `ops/marketing/prompt_log.md`, `ops/marketing/daily_scorecard.md`, and `ops/marketing/review_log.md` so future agents keep success, bidding, quality, photo/product fit, landing-page fit, and measurement evidence current.
+
+Readback:
+- `python3.13 -m json.tool ops/marketing/campaign_explorer.json` passed.
+- `python3.13 -m py_compile ops/scripts/render_marketing_cockpit.py ops/scripts/open_marketing_cockpit.py` passed.
+- `python3.13 ops/scripts/render_marketing_cockpit.py` regenerated `ops/marketing/operator_cockpit.html`.
+- HTML guard confirmed Success Measure, `650% ROAS`, Manual CPC vs Maximize Clicks, Bid Strategy / Why, Bid Change Rules, Full Attention Checklist, Quality Score, product/photo fit, purchase/conversion value, and target CPA text.
+- Browser click-through confirmed the visible cockpit contains the Success Measure and the GB campaign detail contains Manual CPC, bid-strategy reasoning, Quality Score checklist, product/photo fit, and target CPA.
+- `git diff --check` passed before this anchor.
+
+Guardrails:
+- This was a repo-local dashboard/data/documentation change only.
+- No live Google Ads, Pinterest, Merchant, Shopify Admin, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or theme publish writes occurred.
+- Spend authority remains `PENDING_OWNER_APPROVAL`.
+
+Next best action:
+- Fresh read-only monitor for today/yesterday metrics plus quality/ad/landing diagnostics. If GB/CA/AU remain zero-impression by T+72, prepare a serving-diagnosis approval packet that evaluates CPC cap, exact-match volume, ad/RSA status, Quality Score signals, policy/destination, impression-share loss, and landing/product/photo fit.
+
+2026-05-14 - Bounded proactive authority and keyword discipline cockpit
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-marketing-bounded-authority-keyword-discipline
+
+Why:
+- Owner authorized agents to spend within the existing limits when actions respect the sales/ROAS goal, and clarified that agents/subagents must be responsible for daily progress monitoring and proactive improvement. Owner also asked whether the current keywords are the smartest choices and what criteria govern keywords and negatives.
+
+What changed:
+- Activated `ops/marketing/spend_authorization.md` as `APPROVED_ACTIVE` with the existing `$80/day` total paid-media cap and `$5/day` new/test campaign cap, plus quality gates.
+- Updated `ops/marketing/action_queue.md` so the next GB/CA/AU monitor/diagnosis row is green-gated under active authority, while still requiring fresh readback, reviewer pass, exact scope, and caps before any live write.
+- Updated `.codex/agents/head_of_growth.toml`, `google_ads_operator.toml`, `analytics_roas_operator.toml`, and `pinterest_operator.toml` so agents must monitor proactively, act inside bounded authority when green-gated, and cannot let campaigns age silently.
+- Updated `ops/marketing/campaign_explorer.json` and the renderer so every campaign can show keyword selection criteria, negative-keyword criteria, daily optimization owner, and continuous-improvement rules.
+- Updated command-layer docs/logs so success remains as many profitable sales as possible at about `650% ROAS`, with keywords/negatives adjusted only from daily evidence.
+
+Readback:
+- `python3.13 -m json.tool ops/marketing/campaign_explorer.json` passed.
+- `python3.13 -m py_compile ops/scripts/render_marketing_cockpit.py ops/scripts/open_marketing_cockpit.py` passed.
+- `python3.13` parsed all `.codex/agents/*.toml` files.
+- `python3.13 ops/scripts/render_marketing_cockpit.py` regenerated `ops/marketing/operator_cockpit.html`.
+- HTML guard confirmed `Spend: APPROVED_ACTIVE`, Keyword Selection Criteria, Negative Keyword Criteria, Daily Owner / Optimization Loop, Continuous Improvement Rules, `watch_only_not_uploaded`, 650% ROAS, Manual CPC vs Maximize Clicks, and no banned supplier-domain strings.
+- Browser click-through confirmed the visible cockpit shows Spend approved, North Star, keyword criteria, negative criteria, daily owner, and continuous improvement loop.
+- `git diff --check` passed before this anchor.
+
+Guardrails:
+- No live Google Ads, Pinterest, Merchant, Shopify Admin, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or theme publish writes occurred in this repo-update pass.
+- Bounded authority is paid-media only and does not automatically approve live Shopify theme sanitizer sync, Merchant feed/source/product-scope changes, Pinterest catalog/source/product-group changes, billing, conversion goals, PMax, unresolved remarketing, unreviewed native-language ads, or spend above caps.
+
+Next best action:
+- Run the fresh daily read-only monitor for today/yesterday Google Ads and Shopping metrics plus keyword/search-term quality, Quality Score or quality-column gaps, ad/RSA quality, landing/product/photo fit, and conversion value. If gates pass, Head of Growth may execute green-gated bounded actions inside active authority; if not, record the exact blocker or diagnosis packet.
+
+2026-05-14 - Marketing expert 2026 playbook and Day 1 growth urgency
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-marketing-expert-2026-day1-growth
+
+Why:
+- Owner clarified the operating mentality: each day without growing sales is a failure signal, success must be measured by paid-growth sales and about `650% ROAS`, zero impressions after one day require action, and agents should move at AI speed with high-buyer-intent long-tail strategy rather than lazy/expensive obvious keywords.
+
+What changed:
+- Added `ops/marketing/expert_growth_playbook_2026.md` with source-backed Google/Pinterest/OpenAI/Anthropic standards, Day 1 growth cadence, high-intent/low-waste keyword rubric, long-tail candidate themes, negative discipline, anti-cannibalization rules, channel strategy guardrails, expert personas, and rookie-mistake blockers.
+- Updated `ops/marketing/campaign_explorer.json` and `ops/marketing/operator_cockpit.html` so each campaign can show expert source standard, keyword economics / low-waste test, anti-cannibalization rules, Day 1 action clock, and same-day zero-impression diagnosis requirements.
+- Updated `ops/marketing/action_queue.md`, `daily_scorecard.md`, `current_marketing_state.md`, `decision_log.md`, `assumption_log.md`, `reviewer_checklist.md`, `review_log.md`, `prompt_log.md`, `operator_cockpit.md`, and `ops/marketing/AGENTS.md` so zero impressions after 24 hours triggers same-day diagnosis and long-tail/auction-entry action planning.
+- Updated root `AGENTS.md` and `.codex/agents/*.toml` so Head of Growth, Google Ads, Analytics/ROAS, Pinterest, Merchant, Landing CRO, and Safety Reviewer operate from expert personas, daily sales/ROAS accountability, and no-cannibalization / high-intent standards.
+
+Readback:
+- `python3.13 -m json.tool ops/marketing/campaign_explorer.json` passed.
+- `python3.13 -m py_compile ops/scripts/render_marketing_cockpit.py ops/scripts/open_marketing_cockpit.py` passed.
+- `python3.13` parsed all `.codex/agents/*.toml` files.
+- `python3.13 ops/scripts/render_marketing_cockpit.py` regenerated `ops/marketing/operator_cockpit.html`.
+- HTML guard confirmed Expert Standard, `2026 Expert Source Standard`, Keyword Economics / Low-Waste Test, Anti-Cannibalization Rules, Day 1, zero impressions after 24 hours, high-buyer-intent long-tail, `ACTION_DUE_NOW`, sales/revenue/CPA/ROAS, `650% ROAS`, `Spend: APPROVED_ACTIVE`, and no banned supplier-domain strings.
+- Playwright opened the local cockpit file and confirmed visible Expert Standard, visible Day 1, visible `ACTION_DUE_NOW`, expert sections in HTML, Pinterest click-through, `Spend: APPROVED_ACTIVE`, and no banned supplier-domain strings. Screenshot: `/tmp/dlm-day1-expert-growth-cockpit-v2.png`.
+- `git diff --check` passed.
+
+Guardrails:
+- This was a repo-local dashboard/data/documentation/agent-instruction change only.
+- No live Google Ads, Pinterest, Merchant, Shopify Admin, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or theme publish writes occurred.
+- Bounded paid-media authority remains active only inside `ops/marketing/spend_authorization.md` caps and quality gates; it does not cover excluded surfaces or incomplete-quality actions.
+
+Next best action:
+- Run the Day 1 sales/ROAS monitor and GB/CA/AU same-day zero-impression diagnosis now. Build a high-buyer-intent long-tail candidate map with exact anti-cannibalization owner, landing fit, expected CPC/CPA risk, negatives, and reviewer gate; then execute only green-gated bounded actions or log the exact blocker.

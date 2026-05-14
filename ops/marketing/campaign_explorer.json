@@ -1,0 +1,873 @@
+{
+  "last_updated": "2026-05-14 08:12 EDT",
+  "source_note": "Human-facing campaign details for operator_cockpit.html. Values are repo-known plus the latest saved live/read-only evidence; stale or missing live facts are labeled explicitly. Expert strategy fields are sourced from ops/marketing/expert_growth_playbook_2026.md.",
+  "channels": [
+    {
+      "id": "google_ads",
+      "label": "Google Ads"
+    },
+    {
+      "id": "pinterest",
+      "label": "Pinterest"
+    }
+  ],
+  "campaigns": [
+    {
+      "id": "gb_exact_search",
+      "channel": "google_ads",
+      "name": "GB exact Search",
+      "campaign_id": "23838895360",
+      "campaign_name": "DLM_GB_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507",
+      "status_label": "ACTIVE: Enabled / Eligible",
+      "running_state": "Running as a live micro-test, but latest readback has 0 impressions, 0 clicks, $0.00 cost, and 0.00 conversions for 2026-05-13.",
+      "budget": "$2.00/day",
+      "bid_strategy": "Manual CPC, target ad group max CPC $0.15",
+      "bid_strategy_type": "Manual CPC, not Maximize Clicks",
+      "bid_strategy_reasoning": [
+        "Manual CPC was chosen for the first GB exact Search micro-test because the account has no usable purchase/value learning signal for this new country test yet.",
+        "The $0.15 CPC cap limits downside while exact keywords prove whether qualified impressions and clicks exist.",
+        "Maximize Clicks is not appropriate yet because it could optimize for click volume before search-term quality, landing safety, purchase tracking, and ROAS are proven.",
+        "Automated bidding or bid increases should wait for fresh evidence: impressions, qualified search terms, clean landing/currency route, and ideally purchase/value data."
+      ],
+      "bid_change_triggers": [
+        "Consider higher manual CPC only if the campaign is eligible but still receives zero impressions through T+72 and diagnosis shows the cap is likely too low for auction entry.",
+        "Consider Maximize Clicks only with a strict cap and owner approval if manual CPC cannot generate learning, landing/tracking are clean, and the goal is controlled traffic discovery.",
+        "Do not switch to conversion-focused bidding until purchase/value tracking is verified for the market and enough conversion data exists.",
+        "Do not change bids from zero-data assumptions; every bid/budget/status change requires fresh explicit approval."
+      ],
+      "optimization_score": "97.6%",
+      "ad_strength": "Pending",
+      "health_status": "NO LEARNING YET / TODAY READBACK NEEDED",
+      "activated_at": "2026-05-12 07:21:52 EDT (04:21:52 PDT) under exact owner approval; propagation-clean monitor at 2026-05-12 07:38:01 EDT.",
+      "latest_readback": "2026-05-14 05:34:01 EDT; saved metrics are for reporting day 2026-05-13.",
+      "next_decision": "Action due now: saved T+24 evidence already shows zero impressions. Run same-day serving diagnosis and prepare high-buyer-intent long-tail or auction-entry options; T+72 is escalation, not permission to wait.",
+      "success_measurement": [
+        "Final success: as many profitable sales as possible while targeting about 650% ROAS.",
+        "Day 1 growth rule: by tomorrow report sales, revenue, CPA, ROAS, and what changed; zero impressions after 24 hours requires same-day diagnosis and action planning.",
+        "Primary metrics: purchases, revenue/conversion value, CPA, ROAS, and conversion currency correctness.",
+        "Planning math: with about $70 AOV and 650% ROAS target, target CPA is about $10.77.",
+        "Current result: no purchases, no revenue, no ROAS evidence; the test is not yet learning because latest saved reporting day has 0 impressions.",
+        "Early diagnostics such as impressions, clicks, CTR, CPC, ad strength, Quality Score, and search terms only matter because they explain how to reach profitable sales."
+      ],
+      "metrics_snapshot": [
+        "Today 2026-05-14: fresh live readback needed; not captured in current artifacts.",
+        "Yesterday 2026-05-13: 0 impressions, 0 clicks, $0.00 cost, 0.00 conversions, $0.00 conversion value.",
+        "Baseline 2026-05-12 07:38 EDT: enabled/eligible, $2/day, 1 target ad group enabled, 9 ad groups paused, $0.00 cost, 0.00 conversions, $0.00 conversion value."
+      ],
+      "test_clock": [
+        "T+24 checkpoint was 2026-05-13 07:21 EDT; saved May 14 readback shows zero impressions/clicks for reporting day May 13, so action is due now.",
+        "T+24 zero-impression rule: same-day serving diagnosis plus high-buyer-intent long-tail or auction-entry action planning; do not wait passively for T+72.",
+        "T+72 checkpoint is 2026-05-15 07:21 EDT; if still zero impressions after diagnosis, escalate to a bounded action or exact approval packet.",
+        "T+7d checkpoint is 2026-05-19 07:21 EDT; scale is allowed only with purchase/value evidence and exact owner approval."
+      ],
+      "proactive_monitoring": [
+        "Run a daily read-only monitor for campaign/ad group/keyword/RSA eligibility plus today and yesterday impressions, clicks, cost, conversions, and value.",
+        "Read keyword Quality Score / expected CTR / ad relevance / landing page experience if available; do not confuse campaign optimization score with keyword quality.",
+        "If impressions appear, inspect CTR, CPC, search terms, country/location, device, and landing currency before any recommendation.",
+        "If clicks appear, check whether query intent is qualified and whether the PDP currency/country route remains clean.",
+        "If purchases/value appear, compare CPA to the $10.77 target and ROAS to the 650% target before any scale recommendation."
+      ],
+      "improvement_triggers": [
+        "Zero impressions after T+24: diagnose exact-match volume, max CPC too low for auction entry, ad/RSA pending status, policy/destination constraints, search impression share lost, location/keyword eligibility, and whether obvious keywords are too competitive for the CPC/ROAS target.",
+        "Same-day long-tail action: generate high-buyer-intent exact/phrase candidates around role + product, occasion + purchase intent, style + role, and country vocabulary; reject cheap low-intent traffic and avoid self-cannibalization.",
+        "Impressions but weak/no clicks: prepare an approval packet for RSA headline/description improvement and possibly tighter landing-message alignment.",
+        "Clicks but no purchase/value: inspect search terms, landing PDP trust, country/currency, shipping clarity, and product fit before bidding or budget changes.",
+        "Wrong country/currency or supplier/source leak: pause/repair path before further expansion.",
+        "Single-market spend reaches about $16 with 0 purchases: prepare exact pause/reduce approval."
+      ],
+      "assumptions": [
+        "The three exact terms have enough GB search volume to create at least some impressions.",
+        "$0.15 max CPC can enter auctions for this micro-cohort.",
+        "The country-qualified PDP is safe to send more traffic only after the local sanitizer is synced live and publicly read back.",
+        "Purchase tracking and currency proof still need current evidence before any ROAS claim."
+      ],
+      "full_quality_checklist": [
+        "Bidding: confirm Manual CPC, max CPC $0.15, no Maximize Clicks/Smart Bidding switch, no budget change, and no bid change without approval.",
+        "Keyword quality: read exact keyword eligibility, Quality Score, expected CTR, ad relevance, landing page experience, and search impression-share/lost-rank signals when columns are available.",
+        "Search terms: inspect actual queries only after impressions/clicks exist; add negatives only from evidence.",
+        "Ad/RSA quality: check ad strength, asset coverage, headline-message match to mommy-and-me dress intent, policy status, and final URL.",
+        "Landing page: verify GB country/currency/shipping route, no supplier/source URL leak, no local-store/warehouse claim, no seasonal mismatch, and clear PDP trust/size/price information.",
+        "Product/photo fit: verify the landing/product imagery visibly matches the ad promise: mother-daughter or family matching dress, not unrelated seasonal, supplier-looking, or low-trust imagery.",
+        "Measurement: verify purchase/conversion value and currency before any ROAS or scale decision.",
+        "Decision discipline: no scale, pause, bid, budget, ad, keyword, or landing recommendation without fresh evidence and reviewer gate.",
+        "Expert standard: apply high-intent/low-waste keyword economics, anti-cannibalization owner, search-term evidence, and 2026 source-backed playbook before any optimization.",
+        "Day 1 urgency: if zero impressions persist after 24 hours, do same-day serving diagnosis and long-tail/auction-entry planning; do not let the campaign age silently."
+      ],
+      "objective": "Test English-first UK demand for high-intent mommy-and-me / mother-daughter dress shoppers with the smallest safe live Search unit.",
+      "strategy_reasoning": [
+        "Exact-match only limits waste while the account learns whether non-US English traffic can convert.",
+        "The landing URL is country-qualified for GB and showed GBP/country signals in readback.",
+        "Only the dress-intent ad group is enabled; 9 other ad groups remain paused so broader category tests cannot leak spend.",
+        "No optimization edit is justified until impressions, clicks, search terms, or conversion value appear."
+      ],
+      "deadline_or_next_check": "Monitor after reporting populates; first checks are 24h, 72h, and 7d from enablement. Current next check: fresh read-only monitor before any negative, pause, scale, bid, or budget recommendation.",
+      "active_objects": [
+        "Campaign enabled: 23838895360",
+        "Ad group enabled: 194138528537 / Mommy & Me Dresses - Exact",
+        "Other ad groups paused: 9",
+        "Search only; presence-only geo; no campaign conversion-goal override"
+      ],
+      "keywords": [
+        "[mommy and me dresses] / Exact / Eligible / criterion 299141671628 / max CPC $0.15",
+        "[mom and daughter matching outfits] / Exact / Eligible / criterion 301154335636 / max CPC $0.15",
+        "[mother daughter dresses] / Exact / Eligible / criterion 301154336396 / max CPC $0.15"
+      ],
+      "keyword_selection_criteria": [
+        "These are not assumed to be the final smartest keywords; they are the first controlled exact-match learning cohort.",
+        "Selection criteria: high commercial mother-daughter / mommy-and-me dress intent, exact match only, direct fit to the country-qualified PDP, English-first GB search behavior, and small enough to avoid broad waste.",
+        "The keywords were chosen to test core category demand before expanding into broader, phrase, event, competitor, or collection-level terms.",
+        "A keyword becomes smarter only if fresh data proves it: impressions, qualified search terms, CTR/CPC, conversion value, CPA, and path to 650% ROAS."
+      ],
+      "negative_keyword_strategy": [
+        "Existing base negatives cover free/DIY/sewing-pattern/tutorial intent, marketplace/source-quality traffic, used/rental, adult/sexy, doll/game, supplier/source, and fabric-only traffic.",
+        "Market watchlist is saved in `gb_ca_au_negative_watchlist.csv`; examples for GB include Primark, Next, Marks and Spencer, ASOS, Vinted, eBay, near me, pickup, same day, hire, and op shop style intent.",
+        "Watchlist status is `watch_only_not_uploaded`; do not add negatives because they look plausible.",
+        "Add exact or phrase negatives only when actual search-term data shows irrelevant, low-buying, wrong-channel, local-store, supplier/source, used/rental, free/DIY, or unsupported delivery-speed intent."
+      ],
+      "daily_optimization_owner": [
+        "Primary owner: google_ads_operator monitors this campaign daily.",
+        "Analytics/ROAS owner validates purchases, revenue, CPA, ROAS, and metric freshness.",
+        "Head of Growth decides and executes green-gated bounded actions under `APPROVED_ACTIVE` authority when quality gates pass.",
+        "Marketing Safety Reviewer must pass before any bid, budget, status, keyword, negative, ad, or landing recommendation."
+      ],
+      "continuous_improvement_loop": [
+        "By tomorrow: report paid-growth sales, revenue, CPA, ROAS, and the exact action taken or due if sales/impressions remain zero.",
+        "Daily: read today/yesterday impressions, clicks, cost, search terms, conversions, conversion value, Quality Score columns if available, ad strength, landing route, and blocker state.",
+        "If zero impressions by T+72: diagnose exact-match volume, CPC cap, eligibility, ad/RSA pending state, Quality Score gaps, policy/destination, impression share lost, and geo/keyword settings.",
+        "If qualified search terms appear: keep winners, identify expansion candidates, and build approval-ready keyword/ad tests inside caps.",
+        "If waste terms spend or click: add exact/phrase negatives when evidence is clear and the row is green-gated.",
+        "If purchases/value appear: compare CPA to about $10.77 and ROAS to about 650%, then scale only bounded winners."
+      ],
+      "ads": [
+        "RSA 808406712704 / Enabled / Eligible / Ad strength Pending",
+        "Visible headlines include: Mommy & Me Dresses, Mother Daughter Dresses, Mom Daughter Outfits, plus 12 more",
+        "Visible description starts: Shop mother daughter matching dresses for photos, birthdays and vacations."
+      ],
+      "quality_notes": [
+        "Campaign optimization score is 97.6% in the latest campaign monitor.",
+        "Ad strength is Pending in the saved ad entity page, not Excellent/Good yet.",
+        "Keyword rows read Eligible, but there is not enough traffic data to score quality or ROAS."
+      ],
+      "evidence": [
+        "ops/marketing/current_marketing_state.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/LIVE_RECONCILIATION_REPORT.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/GB_CA_AU_INNER_ENABLE_EXECUTION_REPORT.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/GB/ads/page_text.txt",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/GB/keywords/page_text.txt"
+      ],
+      "human_verify": [
+        "Check that campaign, ad group, 3 keywords, and 1 RSA are still enabled/eligible.",
+        "Check that only the named exact ad group is enabled.",
+        "Check whether ad strength has moved from Pending.",
+        "Check search terms only after stale filters are absent and impressions/clicks exist.",
+        "Check whether the current obvious exact terms are too competitive for a $0.15 CPC cap and whether long-tail buyer-intent alternatives can learn faster without cannibalizing the exact test."
+      ],
+      "blocked_or_risk": "The active paid landing has a local supplier/source sanitizer fix but still needs approved live theme sync/readback before expansion.",
+      "expert_strategy_standard": [
+        "Source-backed standard: follow Google Ads Help for match types, search terms, negatives, Target ROAS readiness, Quality Score, ad quality, and account keyword prioritization; follow Pinterest Business for lower-funnel product creative and clickthrough consistency; follow OpenAI/Anthropic agent guidance for clear instructions, guardrails, evals, and simple accountable workflows.",
+        "Day 1 rule: every day without sales growth, usable learning, or a sales-moving improvement is a failure signal that requires action.",
+        "North Star: get customers to buy, with as many profitable paid-growth sales as possible at about 650% ROAS; impressions, clicks, CTR, CPC, ad strength, and Quality Score are diagnostics only.",
+        "High-intent and low-waste rule: cheap traffic is useful only when the query, product, ad, landing page, and measurement path can plausibly produce profitable purchases.",
+        "No-rookie-mistake rule: do not broaden traffic, raise bids, add negatives, or scale from stale evidence, watchlists, vanity metrics, or unclear product/landing quality.",
+        "For this Search micro-test, exact match plus Manual CPC is the conservative expert choice until conversion value, search-term quality, landing safety, and auction learning prove a broader or automated strategy is justified.",
+        "Next expert move is not to guess smarter keywords; it is to obtain fresh today/yesterday metrics, Quality Score diagnostics, and search-term readback, then diagnose zero-impression state by T+72.",
+        "For zero-impression Search, expert speed means moving beyond only obvious competitive keywords into high-buyer-intent long-tail testing while preserving caps, measurement, and anti-cannibalization."
+      ],
+      "keyword_economics": [
+        "Current exact keywords are a starter hypothesis, not proven winners; they become smart only if daily data shows qualified search terms, acceptable CPC, relevant clicks, and a credible CPA/ROAS path.",
+        "Use aggressive AI-speed ideation for long-tail buyer-intent themes, but every candidate still needs landing fit, no self-cannibalization, plausible CPC/CPA, and reviewer gate before any live action.",
+        "Long-tail themes to investigate quickly: mother-daughter wedding guest dresses, mommy and me birthday dresses, matching family photoshoot dresses, family beach vacation outfits, mother daughter floral dresses, mom and baby girl dresses, and country-specific wording where natural.",
+        "Prefer high-commercial-intent mother-daughter, mommy-and-me, matching family dress, role, and event terms before broad fashion, inspiration, or low-intent bargain terms.",
+        "Cheap CPC is not enough: reject terms that are cheap because they are free/DIY/sewing, used/rental, unsupported marketplace, supplier/source, local pickup, doll/game, or wrong-product intent.",
+        "A term is scale-eligible only when fresh evidence supports profitable sales: target CPA about $10.77, conversion value proof, and path to about 650% ROAS."
+      ],
+      "anti_cannibalization_rules": [
+        "One active query-intent owner per country/language/landing path: the enabled exact ad group owns the named mommy-and-me dress intent for this micro-test.",
+        "Do not create duplicate exact keywords in other live ad groups or campaigns for the same market until the owner/routing rule is explicit.",
+        "If phrase, broad, Shopping, Pinterest, or remarketing later targets related intent, document its role and use evidence-backed negatives or structure to prevent query confusion.",
+        "Use Google Ads prioritization/readback evidence before claiming two keywords or formats are competing or not competing."
+      ]
+    },
+    {
+      "id": "ca_exact_search",
+      "channel": "google_ads",
+      "name": "CA exact Search",
+      "campaign_id": "23834423669",
+      "campaign_name": "DLM_CA_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507",
+      "status_label": "ACTIVE: Enabled / Eligible",
+      "running_state": "Running as a live micro-test, but latest readback has 0 impressions, 0 clicks, $0.00 cost, and 0.00 conversions for 2026-05-13.",
+      "budget": "$2.00/day",
+      "bid_strategy": "Manual CPC, target ad group max CPC $0.15",
+      "bid_strategy_type": "Manual CPC, not Maximize Clicks",
+      "bid_strategy_reasoning": [
+        "Manual CPC was chosen for the first Canada exact Search micro-test because the account has no usable purchase/value learning signal for this new country test yet.",
+        "The $0.15 CPC cap limits downside while exact keywords prove whether qualified impressions and clicks exist.",
+        "Maximize Clicks is not appropriate yet because it could optimize for click volume before search-term quality, landing safety, purchase tracking, and ROAS are proven.",
+        "Automated bidding or bid increases should wait for fresh evidence: impressions, qualified search terms, clean landing/currency route, and ideally purchase/value data."
+      ],
+      "bid_change_triggers": [
+        "Consider higher manual CPC only if the campaign is eligible but still receives zero impressions through T+72 and diagnosis shows the cap is likely too low for auction entry.",
+        "Consider Maximize Clicks only with a strict cap and owner approval if manual CPC cannot generate learning, landing/tracking are clean, and the goal is controlled traffic discovery.",
+        "Do not switch to conversion-focused bidding until purchase/value tracking is verified for the market and enough conversion data exists.",
+        "Do not change bids from zero-data assumptions; every bid/budget/status change requires fresh explicit approval."
+      ],
+      "optimization_score": "97.6%",
+      "ad_strength": "Pending",
+      "health_status": "NO LEARNING YET / TODAY READBACK NEEDED",
+      "activated_at": "2026-05-12 07:21:52 EDT (04:21:52 PDT) under exact owner approval; propagation-clean monitor at 2026-05-12 07:38:01 EDT.",
+      "latest_readback": "2026-05-14 05:34:01 EDT; saved metrics are for reporting day 2026-05-13.",
+      "next_decision": "Action due now: saved T+24 evidence already shows zero impressions. Run same-day serving diagnosis, clear/avoid stale search-term filters, and prepare high-buyer-intent long-tail or auction-entry options.",
+      "success_measurement": [
+        "Final success: as many profitable sales as possible while targeting about 650% ROAS.",
+        "Day 1 growth rule: by tomorrow report sales, revenue, CPA, ROAS, and what changed; zero impressions after 24 hours requires same-day diagnosis and action planning.",
+        "Primary metrics: purchases, revenue/conversion value, CPA, ROAS, and conversion currency correctness.",
+        "Planning math: with about $70 AOV and 650% ROAS target, target CPA is about $10.77.",
+        "Current result: no purchases, no revenue, no ROAS evidence; the test is not yet learning because latest saved reporting day has 0 impressions.",
+        "Early diagnostics such as impressions, clicks, CTR, CPC, ad strength, Quality Score, and search terms only matter because they explain how to reach profitable sales."
+      ],
+      "metrics_snapshot": [
+        "Today 2026-05-14: fresh live readback needed; not captured in current artifacts.",
+        "Yesterday 2026-05-13: 0 impressions, 0 clicks, $0.00 cost, 0.00 conversions, $0.00 conversion value.",
+        "Baseline 2026-05-12 07:38 EDT: enabled/eligible, $2/day, 1 target ad group enabled, 9 ad groups paused, $0.00 cost, 0.00 conversions, $0.00 conversion value."
+      ],
+      "test_clock": [
+        "T+24 checkpoint was 2026-05-13 07:21 EDT; saved May 14 readback shows zero impressions/clicks for reporting day May 13, so action is due now.",
+        "T+24 zero-impression rule: same-day serving diagnosis plus high-buyer-intent long-tail or auction-entry action planning; do not wait passively for T+72.",
+        "T+72 checkpoint is 2026-05-15 07:21 EDT; if still zero impressions after diagnosis, escalate to a bounded action or exact approval packet.",
+        "T+7d checkpoint is 2026-05-19 07:21 EDT; scale is allowed only with purchase/value evidence and exact owner approval."
+      ],
+      "proactive_monitoring": [
+        "Run a daily read-only monitor for campaign/ad group/keyword/RSA eligibility plus today and yesterday impressions, clicks, cost, conversions, and value.",
+        "Read keyword Quality Score / expected CTR / ad relevance / landing page experience if available; do not confuse campaign optimization score with keyword quality.",
+        "Clear or avoid the stale Keyword: human hair wigs search-term filter before any search-term decision.",
+        "If impressions appear, inspect CTR, CPC, search terms, country/location, device, and landing currency before any recommendation.",
+        "If purchases/value appear, compare CPA to the $10.77 target and ROAS to the 650% target before any scale recommendation."
+      ],
+      "improvement_triggers": [
+        "Zero impressions after T+24: diagnose exact-match volume, max CPC too low for auction entry, ad/RSA pending status, policy/destination constraints, search impression share lost, location/keyword eligibility, and whether obvious keywords are too competitive for the CPC/ROAS target.",
+        "Same-day long-tail action: generate high-buyer-intent exact/phrase candidates around role + product, occasion + purchase intent, style + role, and country vocabulary; reject cheap low-intent traffic and avoid self-cannibalization.",
+        "Impressions but weak/no clicks: prepare an approval packet for RSA headline/description improvement and possibly tighter landing-message alignment.",
+        "Clicks but no purchase/value: inspect search terms, landing PDP trust, country/currency, shipping clarity, and product fit before bidding or budget changes.",
+        "Wrong country/currency or supplier/source leak: pause/repair path before further expansion.",
+        "Single-market spend reaches about $16 with 0 purchases: prepare exact pause/reduce approval."
+      ],
+      "assumptions": [
+        "The same English exact terms have enough Canada search volume to create at least some impressions.",
+        "$0.15 max CPC can enter auctions for this micro-cohort.",
+        "The country-qualified PDP is safe to send more traffic only after the local sanitizer is synced live and publicly read back.",
+        "Purchase tracking and currency proof still need current evidence before any ROAS claim."
+      ],
+      "full_quality_checklist": [
+        "Bidding: confirm Manual CPC, max CPC $0.15, no Maximize Clicks/Smart Bidding switch, no budget change, and no bid change without approval.",
+        "Keyword quality: read exact keyword eligibility, Quality Score, expected CTR, ad relevance, landing page experience, and search impression-share/lost-rank signals when columns are available.",
+        "Search terms: inspect actual queries only after impressions/clicks exist and the stale unrelated filter is absent; add negatives only from evidence.",
+        "Ad/RSA quality: check ad strength, asset coverage, headline-message match to mommy-and-me dress intent, policy status, and final URL.",
+        "Landing page: verify CA country/currency/shipping route, no supplier/source URL leak, no local-store/warehouse claim, no seasonal mismatch, and clear PDP trust/size/price information.",
+        "Product/photo fit: verify the landing/product imagery visibly matches the ad promise: mother-daughter or family matching dress, not unrelated seasonal, supplier-looking, or low-trust imagery.",
+        "Measurement: verify purchase/conversion value and currency before any ROAS or scale decision.",
+        "Decision discipline: no scale, pause, bid, budget, ad, keyword, or landing recommendation without fresh evidence and reviewer gate.",
+        "Expert standard: apply high-intent/low-waste keyword economics, anti-cannibalization owner, search-term evidence, and 2026 source-backed playbook before any optimization.",
+        "Day 1 urgency: if zero impressions persist after 24 hours, do same-day serving diagnosis and long-tail/auction-entry planning; do not let the campaign age silently."
+      ],
+      "objective": "Test English-first Canada demand for the same exact mommy-and-me dress intent after GB proved safe enough to extend to another English market.",
+      "strategy_reasoning": [
+        "Canada stays English-first and low-complexity for the first expansion pair.",
+        "Exact-match-only targeting avoids broad query drift.",
+        "The landing URL is country-qualified for CA and showed CAD/country signals in readback.",
+        "Search-term review is currently blocked by a stale unrelated UI filter, so no negative recommendation is valid yet."
+      ],
+      "deadline_or_next_check": "Fresh read-only monitor after reporting populates; clear/avoid the stale search-term filter before judging search terms.",
+      "active_objects": [
+        "Campaign enabled: 23834423669",
+        "Ad group enabled: 196679079575 / Mommy & Me Dresses - Exact",
+        "Other ad groups paused: 9",
+        "Search only; presence-only geo; no campaign conversion-goal override"
+      ],
+      "keywords": [
+        "[mommy and me dresses] / Exact / Eligible / criterion 299141671628 / max CPC $0.15",
+        "[mom and daughter matching outfits] / Exact / Eligible / criterion 301154335636 / max CPC $0.15",
+        "[mother daughter dresses] / Exact / Eligible / criterion 301154336396 / max CPC $0.15"
+      ],
+      "keyword_selection_criteria": [
+        "These are not assumed to be the final smartest keywords; they are the first controlled exact-match learning cohort.",
+        "Selection criteria: high commercial mother-daughter / mommy-and-me dress intent, exact match only, direct fit to the country-qualified PDP, English-first CA search behavior, and small enough to avoid broad waste.",
+        "The keywords were chosen to test core category demand before expanding into broader, phrase, event, competitor, or collection-level terms.",
+        "A keyword becomes smarter only if fresh data proves it: impressions, qualified search terms, CTR/CPC, conversion value, CPA, and path to 650% ROAS."
+      ],
+      "negative_keyword_strategy": [
+        "Existing base negatives cover free/DIY/sewing-pattern/tutorial intent, marketplace/source-quality traffic, used/rental, adult/sexy, doll/game, supplier/source, and fabric-only traffic.",
+        "Market watchlist is saved in `gb_ca_au_negative_watchlist.csv`; examples for CA include Walmart Canada, Old Navy, Joe Fresh, Winners, Canadian Tire, Shein Canada, Temu Canada, Poshmark, Facebook Marketplace, Kijiji, near me, pickup, and same day.",
+        "Watchlist status is `watch_only_not_uploaded`; do not add negatives because they look plausible.",
+        "Add exact or phrase negatives only when actual search-term data shows irrelevant, low-buying, wrong-channel, local-store, supplier/source, used/rental, free/DIY, or unsupported delivery-speed intent."
+      ],
+      "daily_optimization_owner": [
+        "Primary owner: google_ads_operator monitors this campaign daily.",
+        "Analytics/ROAS owner validates purchases, revenue, CPA, ROAS, and metric freshness.",
+        "Head of Growth decides and executes green-gated bounded actions under `APPROVED_ACTIVE` authority when quality gates pass.",
+        "Marketing Safety Reviewer must pass before any bid, budget, status, keyword, negative, ad, or landing recommendation."
+      ],
+      "continuous_improvement_loop": [
+        "By tomorrow: report paid-growth sales, revenue, CPA, ROAS, and the exact action taken or due if sales/impressions remain zero.",
+        "Daily: read today/yesterday impressions, clicks, cost, search terms, conversions, conversion value, Quality Score columns if available, ad strength, landing route, stale-filter state, and blockers.",
+        "If zero impressions by T+72: diagnose exact-match volume, CPC cap, eligibility, ad/RSA pending state, Quality Score gaps, policy/destination, impression share lost, and geo/keyword settings.",
+        "If qualified search terms appear: keep winners, identify expansion candidates, and build approval-ready keyword/ad tests inside caps.",
+        "If waste terms spend or click: add exact/phrase negatives when evidence is clear, the stale filter is absent, and the row is green-gated.",
+        "If purchases/value appear: compare CPA to about $10.77 and ROAS to about 650%, then scale only bounded winners."
+      ],
+      "ads": [
+        "RSA 808294804728 / Enabled / Eligible / Ad strength Pending",
+        "Visible headlines include: Mommy & Me Dresses, Mother Daughter Dresses, Mom Daughter Outfits, plus 12 more",
+        "Visible description starts: Shop mother daughter matching dresses for photos, birthdays and vacations."
+      ],
+      "quality_notes": [
+        "Campaign optimization score is 97.6% in the latest campaign monitor.",
+        "Ad strength is Pending in the saved ad entity page.",
+        "Search-term surface was not actionable because the stale Keyword: human hair wigs filter remained."
+      ],
+      "evidence": [
+        "ops/marketing/current_marketing_state.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/LIVE_RECONCILIATION_REPORT.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/GB_CA_AU_INNER_ENABLE_EXECUTION_REPORT.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/CA/ads/page_text.txt",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/CA/keywords/page_text.txt"
+      ],
+      "human_verify": [
+        "Check the stale search-term filter is gone before judging terms.",
+        "Check keyword/ad eligibility and ad strength.",
+        "Check whether any impressions/clicks appeared.",
+        "Do not add negatives or change bids/budgets from zero data.",
+        "Check whether the current obvious exact terms are too competitive for a $0.15 CPC cap and whether long-tail buyer-intent alternatives can learn faster without cannibalizing the exact test."
+      ],
+      "blocked_or_risk": "Search-term review is currently filter-blocked; landing sanitizer still needs live sync before expansion.",
+      "expert_strategy_standard": [
+        "Source-backed standard: follow Google Ads Help for match types, search terms, negatives, Target ROAS readiness, Quality Score, ad quality, and account keyword prioritization; follow Pinterest Business for lower-funnel product creative and clickthrough consistency; follow OpenAI/Anthropic agent guidance for clear instructions, guardrails, evals, and simple accountable workflows.",
+        "Day 1 rule: every day without sales growth, usable learning, or a sales-moving improvement is a failure signal that requires action.",
+        "North Star: get customers to buy, with as many profitable paid-growth sales as possible at about 650% ROAS; impressions, clicks, CTR, CPC, ad strength, and Quality Score are diagnostics only.",
+        "High-intent and low-waste rule: cheap traffic is useful only when the query, product, ad, landing page, and measurement path can plausibly produce profitable purchases.",
+        "No-rookie-mistake rule: do not broaden traffic, raise bids, add negatives, or scale from stale evidence, watchlists, vanity metrics, or unclear product/landing quality.",
+        "For this Search micro-test, exact match plus Manual CPC is the conservative expert choice until conversion value, search-term quality, landing safety, and auction learning prove a broader or automated strategy is justified.",
+        "Next expert move is not to guess smarter keywords; it is to obtain fresh today/yesterday metrics, Quality Score diagnostics, and search-term readback, then diagnose zero-impression state by T+72.",
+        "For zero-impression Search, expert speed means moving beyond only obvious competitive keywords into high-buyer-intent long-tail testing while preserving caps, measurement, and anti-cannibalization."
+      ],
+      "keyword_economics": [
+        "Current exact keywords are a starter hypothesis, not proven winners; they become smart only if daily data shows qualified search terms, acceptable CPC, relevant clicks, and a credible CPA/ROAS path.",
+        "Use aggressive AI-speed ideation for long-tail buyer-intent themes, but every candidate still needs landing fit, no self-cannibalization, plausible CPC/CPA, and reviewer gate before any live action.",
+        "Long-tail themes to investigate quickly: mother-daughter wedding guest dresses, mommy and me birthday dresses, matching family photoshoot dresses, family beach vacation outfits, mother daughter floral dresses, mom and baby girl dresses, and country-specific wording where natural.",
+        "Prefer high-commercial-intent mother-daughter, mommy-and-me, matching family dress, role, and event terms before broad fashion, inspiration, or low-intent bargain terms.",
+        "Cheap CPC is not enough: reject terms that are cheap because they are free/DIY/sewing, used/rental, unsupported marketplace, supplier/source, local pickup, doll/game, or wrong-product intent.",
+        "A term is scale-eligible only when fresh evidence supports profitable sales: target CPA about $10.77, conversion value proof, and path to about 650% ROAS."
+      ],
+      "anti_cannibalization_rules": [
+        "One active query-intent owner per country/language/landing path: the enabled exact ad group owns the named mommy-and-me dress intent for this micro-test.",
+        "Do not create duplicate exact keywords in other live ad groups or campaigns for the same market until the owner/routing rule is explicit.",
+        "If phrase, broad, Shopping, Pinterest, or remarketing later targets related intent, document its role and use evidence-backed negatives or structure to prevent query confusion.",
+        "Use Google Ads prioritization/readback evidence before claiming two keywords or formats are competing or not competing."
+      ]
+    },
+    {
+      "id": "au_exact_search",
+      "channel": "google_ads",
+      "name": "AU exact Search",
+      "campaign_id": "23834424182",
+      "campaign_name": "DLM_AU_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507",
+      "status_label": "ACTIVE: Enabled / Eligible",
+      "running_state": "Running as a live micro-test, but latest readback has 0 impressions, 0 clicks, $0.00 cost, and 0.00 conversions for 2026-05-13.",
+      "budget": "$2.00/day",
+      "bid_strategy": "Manual CPC, target ad group max CPC $0.15",
+      "bid_strategy_type": "Manual CPC, not Maximize Clicks",
+      "bid_strategy_reasoning": [
+        "Manual CPC was chosen for the first Australia exact Search micro-test because the account has no usable purchase/value learning signal for this new country test yet.",
+        "The $0.15 CPC cap limits downside while exact keywords prove whether qualified impressions and clicks exist.",
+        "Maximize Clicks is not appropriate yet because it could optimize for click volume before search-term quality, landing safety, purchase tracking, and ROAS are proven.",
+        "Automated bidding or bid increases should wait for fresh evidence: impressions, qualified search terms, clean landing/currency route, and ideally purchase/value data."
+      ],
+      "bid_change_triggers": [
+        "Consider higher manual CPC only if the campaign is eligible but still receives zero impressions through T+72 and diagnosis shows the cap is likely too low for auction entry.",
+        "Consider Maximize Clicks only with a strict cap and owner approval if manual CPC cannot generate learning, landing/tracking are clean, and the goal is controlled traffic discovery.",
+        "Do not switch to conversion-focused bidding until purchase/value tracking is verified for the market and enough conversion data exists.",
+        "Do not change bids from zero-data assumptions; every bid/budget/status change requires fresh explicit approval."
+      ],
+      "optimization_score": "97.6%",
+      "ad_strength": "Pending",
+      "health_status": "NO LEARNING YET / TODAY READBACK NEEDED",
+      "activated_at": "2026-05-12 07:21:52 EDT (04:21:52 PDT) under exact owner approval; propagation-clean monitor at 2026-05-12 07:38:01 EDT.",
+      "latest_readback": "2026-05-14 05:34:01 EDT; saved metrics are for reporting day 2026-05-13.",
+      "next_decision": "Action due now: saved T+24 evidence already shows zero impressions. Run same-day serving diagnosis, clear/avoid stale search-term filters, and prepare high-buyer-intent long-tail or auction-entry options.",
+      "success_measurement": [
+        "Final success: as many profitable sales as possible while targeting about 650% ROAS.",
+        "Day 1 growth rule: by tomorrow report sales, revenue, CPA, ROAS, and what changed; zero impressions after 24 hours requires same-day diagnosis and action planning.",
+        "Primary metrics: purchases, revenue/conversion value, CPA, ROAS, and conversion currency correctness.",
+        "Planning math: with about $70 AOV and 650% ROAS target, target CPA is about $10.77.",
+        "Current result: no purchases, no revenue, no ROAS evidence; the test is not yet learning because latest saved reporting day has 0 impressions.",
+        "Early diagnostics such as impressions, clicks, CTR, CPC, ad strength, Quality Score, and search terms only matter because they explain how to reach profitable sales."
+      ],
+      "metrics_snapshot": [
+        "Today 2026-05-14: fresh live readback needed; not captured in current artifacts.",
+        "Yesterday 2026-05-13: 0 impressions, 0 clicks, $0.00 cost, 0.00 conversions, $0.00 conversion value.",
+        "Baseline 2026-05-12 07:38 EDT: enabled/eligible, $2/day, 1 target ad group enabled, 9 ad groups paused, $0.00 cost, 0.00 conversions, $0.00 conversion value."
+      ],
+      "test_clock": [
+        "T+24 checkpoint was 2026-05-13 07:21 EDT; saved May 14 readback shows zero impressions/clicks for reporting day May 13, so action is due now.",
+        "T+24 zero-impression rule: same-day serving diagnosis plus high-buyer-intent long-tail or auction-entry action planning; do not wait passively for T+72.",
+        "T+72 checkpoint is 2026-05-15 07:21 EDT; if still zero impressions after diagnosis, escalate to a bounded action or exact approval packet.",
+        "T+7d checkpoint is 2026-05-19 07:21 EDT; scale is allowed only with purchase/value evidence and exact owner approval."
+      ],
+      "proactive_monitoring": [
+        "Run a daily read-only monitor for campaign/ad group/keyword/RSA eligibility plus today and yesterday impressions, clicks, cost, conversions, and value.",
+        "Read keyword Quality Score / expected CTR / ad relevance / landing page experience if available; do not confuse campaign optimization score with keyword quality.",
+        "Clear or avoid the stale Keyword: human hair wigs search-term filter before any search-term decision.",
+        "If impressions appear, inspect CTR, CPC, search terms, country/location, device, and landing currency before any recommendation.",
+        "If purchases/value appear, compare CPA to the $10.77 target and ROAS to the 650% target before any scale recommendation."
+      ],
+      "improvement_triggers": [
+        "Zero impressions after T+24: diagnose exact-match volume, max CPC too low for auction entry, ad/RSA pending status, policy/destination constraints, search impression share lost, location/keyword eligibility, and whether obvious keywords are too competitive for the CPC/ROAS target.",
+        "Same-day long-tail action: generate high-buyer-intent exact/phrase candidates around role + product, occasion + purchase intent, style + role, and country vocabulary; reject cheap low-intent traffic and avoid self-cannibalization.",
+        "Impressions but weak/no clicks: prepare an approval packet for RSA headline/description improvement and possibly tighter landing-message alignment.",
+        "Clicks but no purchase/value: inspect search terms, landing PDP trust, country/currency, shipping clarity, and product fit before bidding or budget changes.",
+        "Wrong country/currency or supplier/source leak: pause/repair path before further expansion.",
+        "Single-market spend reaches about $16 with 0 purchases: prepare exact pause/reduce approval."
+      ],
+      "assumptions": [
+        "The same English exact terms have enough Australia search volume to create at least some impressions.",
+        "$0.15 max CPC can enter auctions for this micro-cohort.",
+        "The country-qualified PDP is safe to send more traffic only after the local sanitizer is synced live and publicly read back.",
+        "Purchase tracking and currency proof still need current evidence before any ROAS claim."
+      ],
+      "full_quality_checklist": [
+        "Bidding: confirm Manual CPC, max CPC $0.15, no Maximize Clicks/Smart Bidding switch, no budget change, and no bid change without approval.",
+        "Keyword quality: read exact keyword eligibility, Quality Score, expected CTR, ad relevance, landing page experience, and search impression-share/lost-rank signals when columns are available.",
+        "Search terms: inspect actual queries only after impressions/clicks exist and the stale unrelated filter is absent; add negatives only from evidence.",
+        "Ad/RSA quality: check ad strength, asset coverage, headline-message match to mommy-and-me dress intent, policy status, and final URL.",
+        "Landing page: verify AU country/currency/shipping route, no supplier/source URL leak, no local-store/warehouse claim, no seasonal mismatch, and clear PDP trust/size/price information.",
+        "Product/photo fit: verify the landing/product imagery visibly matches the ad promise: mother-daughter or family matching dress, not unrelated seasonal, supplier-looking, or low-trust imagery.",
+        "Measurement: verify purchase/conversion value and currency before any ROAS or scale decision.",
+        "Decision discipline: no scale, pause, bid, budget, ad, keyword, or landing recommendation without fresh evidence and reviewer gate.",
+        "Expert standard: apply high-intent/low-waste keyword economics, anti-cannibalization owner, search-term evidence, and 2026 source-backed playbook before any optimization.",
+        "Day 1 urgency: if zero impressions persist after 24 hours, do same-day serving diagnosis and long-tail/auction-entry planning; do not let the campaign age silently."
+      ],
+      "objective": "Test English-first Australia demand for the same exact dress-intent cohort while preserving the tight no-waste structure.",
+      "strategy_reasoning": [
+        "Australia is an English-first market with country-qualified AU landing/currency proof.",
+        "The campaign is intentionally tiny: one exact ad group, three exact keywords, one RSA.",
+        "The test is meant to prove whether any qualified traffic exists before broader category or phrase expansion.",
+        "No optimization decision is valid while metrics remain zero and search-term filter is stale."
+      ],
+      "deadline_or_next_check": "Fresh read-only monitor after reporting populates; clear/avoid stale search-term filter before judging terms.",
+      "active_objects": [
+        "Campaign enabled: 23834424182",
+        "Ad group enabled: 198852670520 / Mommy & Me Dresses - Exact",
+        "Other ad groups paused: 9",
+        "Search only; presence-only geo; no campaign conversion-goal override"
+      ],
+      "keywords": [
+        "[mommy and me dresses] / Exact / Eligible / criterion 299141671628 / max CPC $0.15",
+        "[mom and daughter matching outfits] / Exact / Eligible / criterion 301154335636 / max CPC $0.15",
+        "[mother daughter dresses] / Exact / Eligible / criterion 301154336396 / max CPC $0.15"
+      ],
+      "keyword_selection_criteria": [
+        "These are not assumed to be the final smartest keywords; they are the first controlled exact-match learning cohort.",
+        "Selection criteria: high commercial mother-daughter / mommy-and-me dress intent, exact match only, direct fit to the country-qualified PDP, English-first AU search behavior, and small enough to avoid broad waste.",
+        "The keywords were chosen to test core category demand before expanding into broader, phrase, event, competitor, or collection-level terms.",
+        "A keyword becomes smarter only if fresh data proves it: impressions, qualified search terms, CTR/CPC, conversion value, CPA, and path to 650% ROAS."
+      ],
+      "negative_keyword_strategy": [
+        "Existing base negatives cover free/DIY/sewing-pattern/tutorial intent, marketplace/source-quality traffic, used/rental, adult/sexy, doll/game, supplier/source, and fabric-only traffic.",
+        "Market watchlist is saved in `gb_ca_au_negative_watchlist.csv`; examples for AU include Kmart, Big W, Target Australia, Best and Less, Cotton On, Myer, David Jones, Shein Australia, Temu Australia, Gumtree, near me, pickup, and same day.",
+        "Watchlist status is `watch_only_not_uploaded`; do not add negatives because they look plausible.",
+        "Add exact or phrase negatives only when actual search-term data shows irrelevant, low-buying, wrong-channel, local-store, supplier/source, used/rental, free/DIY, or unsupported delivery-speed intent."
+      ],
+      "daily_optimization_owner": [
+        "Primary owner: google_ads_operator monitors this campaign daily.",
+        "Analytics/ROAS owner validates purchases, revenue, CPA, ROAS, and metric freshness.",
+        "Head of Growth decides and executes green-gated bounded actions under `APPROVED_ACTIVE` authority when quality gates pass.",
+        "Marketing Safety Reviewer must pass before any bid, budget, status, keyword, negative, ad, or landing recommendation."
+      ],
+      "continuous_improvement_loop": [
+        "By tomorrow: report paid-growth sales, revenue, CPA, ROAS, and the exact action taken or due if sales/impressions remain zero.",
+        "Daily: read today/yesterday impressions, clicks, cost, search terms, conversions, conversion value, Quality Score columns if available, ad strength, landing route, stale-filter state, and blockers.",
+        "If zero impressions by T+72: diagnose exact-match volume, CPC cap, eligibility, ad/RSA pending state, Quality Score gaps, policy/destination, impression share lost, and geo/keyword settings.",
+        "If qualified search terms appear: keep winners, identify expansion candidates, and build approval-ready keyword/ad tests inside caps.",
+        "If waste terms spend or click: add exact/phrase negatives when evidence is clear, the stale filter is absent, and the row is green-gated.",
+        "If purchases/value appear: compare CPA to about $10.77 and ROAS to about 650%, then scale only bounded winners."
+      ],
+      "ads": [
+        "RSA 808328767090 / Enabled / Eligible / Ad strength Pending",
+        "Visible headlines include: Mommy & Me Dresses, Mother Daughter Dresses, Mom Daughter Outfits, plus 12 more",
+        "Visible description starts: Shop mother daughter matching dresses for photos, birthdays and vacations."
+      ],
+      "quality_notes": [
+        "Campaign optimization score is 97.6% in the latest campaign monitor.",
+        "Ad strength is Pending in the saved ad entity page.",
+        "Search-term surface was not actionable because the stale Keyword: human hair wigs filter remained."
+      ],
+      "evidence": [
+        "ops/marketing/current_marketing_state.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/LIVE_RECONCILIATION_REPORT.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/GB_CA_AU_INNER_ENABLE_EXECUTION_REPORT.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/AU/ads/page_text.txt",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-google-ads-gb-ca-au-inner-enable-live/raw/post-inner-ui-entity-pages/AU/keywords/page_text.txt"
+      ],
+      "human_verify": [
+        "Check the stale search-term filter is gone before judging terms.",
+        "Check keyword/ad eligibility and ad strength.",
+        "Check whether any impressions/clicks appeared.",
+        "Do not add negatives or change bids/budgets from zero data.",
+        "Check whether the current obvious exact terms are too competitive for a $0.15 CPC cap and whether long-tail buyer-intent alternatives can learn faster without cannibalizing the exact test."
+      ],
+      "blocked_or_risk": "Search-term review is currently filter-blocked; landing sanitizer still needs live sync before expansion.",
+      "expert_strategy_standard": [
+        "Source-backed standard: follow Google Ads Help for match types, search terms, negatives, Target ROAS readiness, Quality Score, ad quality, and account keyword prioritization; follow Pinterest Business for lower-funnel product creative and clickthrough consistency; follow OpenAI/Anthropic agent guidance for clear instructions, guardrails, evals, and simple accountable workflows.",
+        "Day 1 rule: every day without sales growth, usable learning, or a sales-moving improvement is a failure signal that requires action.",
+        "North Star: get customers to buy, with as many profitable paid-growth sales as possible at about 650% ROAS; impressions, clicks, CTR, CPC, ad strength, and Quality Score are diagnostics only.",
+        "High-intent and low-waste rule: cheap traffic is useful only when the query, product, ad, landing page, and measurement path can plausibly produce profitable purchases.",
+        "No-rookie-mistake rule: do not broaden traffic, raise bids, add negatives, or scale from stale evidence, watchlists, vanity metrics, or unclear product/landing quality.",
+        "For this Search micro-test, exact match plus Manual CPC is the conservative expert choice until conversion value, search-term quality, landing safety, and auction learning prove a broader or automated strategy is justified.",
+        "Next expert move is not to guess smarter keywords; it is to obtain fresh today/yesterday metrics, Quality Score diagnostics, and search-term readback, then diagnose zero-impression state by T+72.",
+        "For zero-impression Search, expert speed means moving beyond only obvious competitive keywords into high-buyer-intent long-tail testing while preserving caps, measurement, and anti-cannibalization."
+      ],
+      "keyword_economics": [
+        "Current exact keywords are a starter hypothesis, not proven winners; they become smart only if daily data shows qualified search terms, acceptable CPC, relevant clicks, and a credible CPA/ROAS path.",
+        "Use aggressive AI-speed ideation for long-tail buyer-intent themes, but every candidate still needs landing fit, no self-cannibalization, plausible CPC/CPA, and reviewer gate before any live action.",
+        "Long-tail themes to investigate quickly: mother-daughter wedding guest dresses, mommy and me birthday dresses, matching family photoshoot dresses, family beach vacation outfits, mother daughter floral dresses, mom and baby girl dresses, and country-specific wording where natural.",
+        "Prefer high-commercial-intent mother-daughter, mommy-and-me, matching family dress, role, and event terms before broad fashion, inspiration, or low-intent bargain terms.",
+        "Cheap CPC is not enough: reject terms that are cheap because they are free/DIY/sewing, used/rental, unsupported marketplace, supplier/source, local pickup, doll/game, or wrong-product intent.",
+        "A term is scale-eligible only when fresh evidence supports profitable sales: target CPA about $10.77, conversion value proof, and path to about 650% ROAS."
+      ],
+      "anti_cannibalization_rules": [
+        "One active query-intent owner per country/language/landing path: the enabled exact ad group owns the named mommy-and-me dress intent for this micro-test.",
+        "Do not create duplicate exact keywords in other live ad groups or campaigns for the same market until the owner/routing rule is explicit.",
+        "If phrase, broad, Shopping, Pinterest, or remarketing later targets related intent, document its role and use evidence-backed negatives or structure to prevent query confusion.",
+        "Use Google Ads prioritization/readback evidence before claiming two keywords or formats are competing or not competing."
+      ]
+    },
+    {
+      "id": "us_standard_shopping",
+      "channel": "google_ads",
+      "name": "Standard Shopping US",
+      "campaign_id": "23802638621",
+      "campaign_name": "DLM_US_STANDARD_SHOPPING_TEST_PAID_READY",
+      "status_label": "ACTIVE: Enabled / Eligible",
+      "running_state": "Running as the US paid-ready Shopping test. Latest readback: 17 impressions, 0 clicks, $0.00 cost, 0.00 conversions/value for 2026-05-13.",
+      "budget": "$20.00/day",
+      "bid_strategy": "Shopping product groups show included us_test_ready child groups at $0.04; Everything else excluded.",
+      "bid_strategy_type": "Standard Shopping product-group CPC, not Search Maximize Clicks",
+      "bid_strategy_reasoning": [
+        "Shopping does not use manual Search keywords; it serves from Merchant feed/product groups.",
+        "The current known control is product-group inclusion/exclusion plus very low product-group CPC, preserving the paid-ready cohort and preventing catalog-wide leakage.",
+        "Maximize Clicks is not the saved strategy for this surface in current evidence, and changing Shopping bidding would be a live campaign write requiring approval.",
+        "The first job is to prove product-group serving, query quality, Merchant capacity impact, and product/photo offer fit before bid or product-group changes."
+      ],
+      "bid_change_triggers": [
+        "Repeated impressions with 0 clicks: inspect product titles/images/prices/query match before increasing CPC.",
+        "No/low impressions plus clean Merchant status: diagnose product group coverage, bids, approvals, and capacity before changing anything.",
+        "Clicks with poor terms: prepare exact negative/product-group approval from evidence.",
+        "Qualified clicks plus purchase/value evidence: prepare controlled bid/budget/product-group scale recommendation with exact limits."
+      ],
+      "optimization_score": "Not captured in latest saved Shopping readback",
+      "ad_strength": "N/A for Standard Shopping product ads",
+      "health_status": "LOW IMPRESSION / TODAY READBACK NEEDED",
+      "activated_at": "Exact activation timestamp is not captured in the current command layer; latest saved evidence verifies enabled/eligible on 2026-05-14 05:35 EDT.",
+      "latest_readback": "2026-05-14 05:35 EDT; saved metrics are for reporting day 2026-05-13.",
+      "next_decision": "Daily read-only monitor. If impressions stay low or clicks remain zero over the next 72 hours, diagnose Merchant capacity, product group coverage, bids, titles/images, and query match before any approved change.",
+      "success_measurement": [
+        "Final success: as many profitable sales as possible while targeting about 650% ROAS.",
+        "Day 1 growth rule: by tomorrow report sales, revenue, CPA, ROAS, and what changed; 17 impressions with zero clicks requires product/title/image/query-fit review if it persists.",
+        "Primary metrics: purchases, revenue/conversion value, CPA, ROAS, and conversion currency correctness.",
+        "Planning math: with about $70 AOV and 650% ROAS target, target CPA is about $10.77.",
+        "Current result: 17 impressions, 0 clicks, $0.00 cost, 0 purchases, no revenue/ROAS evidence on latest saved reporting day.",
+        "Shopping diagnostics such as impressions, product-group serving, Merchant status, image/title quality, and search terms only matter because they explain how to reach profitable sales."
+      ],
+      "metrics_snapshot": [
+        "Today 2026-05-14: fresh live readback needed; not captured in current artifacts.",
+        "Yesterday 2026-05-13: 17 impressions, 0 clicks, $0.00 cost, 0.00 conversions, $0.00 conversion value.",
+        "Search terms saved in latest readback had 0 clicks and $0.00 cost, so negative action is not justified."
+      ],
+      "test_clock": [
+        "This Shopping test has impressions but no clicks/cost in the latest saved reporting day.",
+        "Next useful checkpoint is daily: look for clicks, cost, search terms, Merchant capacity impact, and product group serving.",
+        "Do not wait weeks with only 0-click impressions; after repeated low/no-click days, prepare a diagnostic packet before changing bids/product groups."
+      ],
+      "proactive_monitoring": [
+        "Read product groups, search terms, cost, clicks, conversions, and product approval/capacity status daily.",
+        "Confirm Everything else in All products remains excluded so spend does not leak outside the paid-ready cohort.",
+        "Check whether Merchant Shopping Ads capacity warning affects the paid cohort or only unrelated inventory.",
+        "If clicks appear, evaluate query quality and PDP fit before any negative or bid/product-group recommendation."
+      ],
+      "improvement_triggers": [
+        "Repeated impressions with 0 clicks: inspect product titles, images, prices, offer competitiveness, and query match.",
+        "Capacity warning touches paid cohort: prepare owner decision packet before product/feed/source changes.",
+        "Clicks with weak/irrelevant terms: prepare exact negative or product-group adjustment approval from evidence.",
+        "Spend without purchase/value: compare to the $10.77 target CPA and prepare reduce/pause options only after enough spend exists.",
+        "Qualified click and purchase/value evidence: prepare controlled scale recommendation with exact budget/bid limits."
+      ],
+      "assumptions": [
+        "The us_test_ready product groups are the intended paid cohort.",
+        "Product Shopping ads can serve from feed/product-group quality without manual keywords.",
+        "Zero-click search terms are not enough evidence for negatives.",
+        "Merchant capacity warning may or may not affect the active paid cohort until diagnosed."
+      ],
+      "full_quality_checklist": [
+        "Bidding/product groups: confirm included us_test_ready product groups, $0.04 product-group CPC where visible, Everything else excluded, and no budget/product-scope change.",
+        "Feed quality: verify Merchant approvals, capacity impact, titles, product types, images, prices, availability, shipping, and policy diagnostics for the paid cohort.",
+        "Product/photo fit: verify feed images look trustworthy and clearly show the matching-family product, not supplier-like, cropped, unrelated, or seasonally mismatched imagery.",
+        "Landing page: verify product/PDP availability, size/price clarity, shipping country clarity, no supplier/source URL leak, and no local-store/warehouse claim.",
+        "Query quality: inspect Shopping search terms only when impressions/clicks/cost exist; do not add negatives from 0-click terms.",
+        "Measurement: verify purchase/conversion value before ROAS decisions.",
+        "Decision discipline: no Shopping bid, budget, status, product-group, feed, product-scope, or conversion-goal change without fresh evidence and approval.",
+        "Expert standard: inspect product/feed/search-term economics and Search-vs-Shopping role before any Shopping recommendation; do not treat 0-click terms as negative evidence."
+      ],
+      "objective": "Let the tight paid-ready US product cohort receive Shopping impressions while preserving product-scope and budget guardrails.",
+      "strategy_reasoning": [
+        "Product scope is constrained to the repo-known paid-ready labels.",
+        "Everything else in All products remains excluded, preventing catalog-wide leakage.",
+        "Search terms had zero clicks and zero cost, so no negative action is justified.",
+        "Do not change Shopping status, budget, bids, product groups, feed labels, product scope, or conversion goals without fresh approval."
+      ],
+      "deadline_or_next_check": "Continue daily read-only monitoring until clicks/cost/conversion data exists; then decide hold, negative, reduce, or scale from evidence.",
+      "active_objects": [
+        "Campaign enabled: 23802638621",
+        "Shopping campaign type",
+        "Budget: $20.00/day",
+        "Included product groups: us_test_ready child groups at $0.04",
+        "Excluded product group: Everything else in All products"
+      ],
+      "keywords": [
+        "Shopping does not target manual keywords; Google matches product feed/product groups.",
+        "Visible zero-click search terms: family pictures outfits, family same outfit, mommy and me wedding guest dresses."
+      ],
+      "keyword_selection_criteria": [
+        "Standard Shopping keyword selection is indirect: Google matches from product feed data, product groups, titles, images, descriptions, and Merchant eligibility.",
+        "The smart-targeting question is whether the paid-ready product group, feed titles/images, prices, and landing pages attract high-intent matching-family shoppers.",
+        "Search terms are used as evidence after serving begins; 0-click terms are not enough to prove a negative or product-group change.",
+        "Expansion or pruning should be based on product-level serving, query quality, clicks, purchases, conversion value, CPA, and ROAS."
+      ],
+      "negative_keyword_strategy": [
+        "Do not add Shopping negatives from 0-click terms alone.",
+        "Add negatives only from search terms with spend/click evidence or unmistakably irrelevant intent that threatens profitable sales.",
+        "Watch for generic family photo outfit research, non-purchase inspiration, used/local marketplace, supplier/source, and unsupported shipping/pickup intent.",
+        "Product-group exclusion or feed/product-scope changes are not covered by simple negative-keyword logic and require the stricter approval gates."
+      ],
+      "daily_optimization_owner": [
+        "Primary owner: google_ads_operator monitors Shopping daily.",
+        "Merchant feed operator checks feed/product approval, capacity, product group, and paid-cohort health.",
+        "Analytics/ROAS owner validates purchases, revenue, CPA, ROAS, and metric freshness.",
+        "Head of Growth decides green-gated bounded action only after product/feed/landing/measurement quality is clear."
+      ],
+      "continuous_improvement_loop": [
+        "By tomorrow: report paid-growth sales, revenue, CPA, ROAS, clicks from Shopping, product/search-term fit, and whether product-title/image or Merchant capacity diagnosis is due.",
+        "Daily: read impressions, clicks, cost, product groups, search terms, Merchant capacity impact, product approvals, conversions, and conversion value.",
+        "If impressions stay low: diagnose Merchant capacity, product group coverage, bid level, titles, images, and query match.",
+        "If impressions but no clicks: inspect product/photo quality, price competitiveness, title relevance, and offer fit.",
+        "If clicks but no purchase: inspect search terms, PDP trust, shipping/price clarity, product fit, and measurement.",
+        "If purchases/value appear: scale only the paid-ready products/product groups that can support about 650% ROAS."
+      ],
+      "ads": [
+        "Product Shopping ads generated from Merchant/product feed; no RSA ad strength.",
+        "Quality check is product/feed/landing cleanliness plus search-term/click/conversion evidence."
+      ],
+      "quality_notes": [
+        "Latest readback showed 17 impressions, 0 clicks, and $0.00 cost.",
+        "No negative/product-group/bid/status decision is justified from zero-click terms.",
+        "Merchant Shopping Ads capacity warning needs read-only impact diagnosis."
+      ],
+      "evidence": [
+        "ops/marketing/current_marketing_state.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/LIVE_RECONCILIATION_REPORT.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/standard-shopping-readback/raw/01_campaign_initial.txt",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/standard-shopping-readback/raw/01_productgroups_initial.txt",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/standard-shopping-readback/raw/01_searchterms_initial.txt"
+      ],
+      "human_verify": [
+        "Check product groups still exclude Everything else.",
+        "Check spend/clicks/search terms before any negative or product group change.",
+        "Check Merchant capacity warning does not affect paid cohort serving."
+      ],
+      "blocked_or_risk": "Merchant Shopping Ads capacity warning is open; no product/feed/scope changes are approved.",
+      "expert_strategy_standard": [
+        "Source-backed standard: follow Google Ads Help for match types, search terms, negatives, Target ROAS readiness, Quality Score, ad quality, and account keyword prioritization; follow Pinterest Business for lower-funnel product creative and clickthrough consistency; follow OpenAI/Anthropic agent guidance for clear instructions, guardrails, evals, and simple accountable workflows.",
+        "North Star: get customers to buy, with as many profitable paid-growth sales as possible at about 650% ROAS; impressions, clicks, CTR, CPC, ad strength, and Quality Score are diagnostics only.",
+        "High-intent and low-waste rule: cheap traffic is useful only when the query, product, ad, landing page, and measurement path can plausibly produce profitable purchases.",
+        "No-rookie-mistake rule: do not broaden traffic, raise bids, add negatives, or scale from stale evidence, watchlists, vanity metrics, or unclear product/landing quality.",
+        "For Standard Shopping, expert work is feed/product economics: titles, images, product groups, active scope, search terms, conversion value, and product-level ROAS, not manual keyword guessing.",
+        "Next expert move is read-only product/search-term/Shopping-capacity diagnosis before any product-group, feed, scope, or bid change.",
+        "Day 1 growth rule: impressions without clicks are not success; if this persists, inspect product photos, titles, prices, query match, and Merchant capacity before changing bids or scope."
+      ],
+      "keyword_economics": [
+        "Shopping has no manual Search keywords; economics come from product title/image/feed quality, product group scope, search terms, price, click cost, conversion value, and product-level ROAS.",
+        "Low-cost impressions are only useful if product photos and titles pull qualified matching-family shoppers and clicks can convert profitably.",
+        "Do not exclude products or change product groups from zero-click terms; wait for search-term, click, spend, and conversion evidence.",
+        "Product-level scale requires purchase/value proof, active/public/purchasable scope, no supplier leakage, and path to about 650% ROAS."
+      ],
+      "anti_cannibalization_rules": [
+        "Shopping owns feed/product discovery, not exact query-copy control; Search owns named high-intent query tests.",
+        "Keep Standard Shopping product scope tied to the approved paid cohort and excluded Everything else group unless fresh approval changes it.",
+        "Do not let Shopping, Search, or future PMax/remarketing overlap without explicit product/query role, exclusion logic, and conversion-value proof.",
+        "If a Shopping term duplicates a winning exact Search query, compare product-level and campaign-level economics before changing routing."
+      ]
+    },
+    {
+      "id": "pinterest_us_paused_draft",
+      "channel": "pinterest",
+      "name": "Pinterest US paused draft path",
+      "campaign_id": "advertiser 549756244483",
+      "campaign_name": "DLM_PIN_US_CATALOG_342_PAUSED_20260512 / DLM_PIN_US_RETARGETING_342_PAUSED_20260512",
+      "status_label": "NOT ACTIVE: auth blocked, paused spec ready",
+      "running_state": "No Pinterest campaign is running from this plan. Current controllable browser lands on public login/sign-up page, and no Pinterest object was saved or created.",
+      "budget": "No live budget. Any budget field requires fresh exact approval.",
+      "bid_strategy": "No live bid. Any bid field requires fresh exact approval.",
+      "bid_strategy_type": "No live bidding strategy; Pinterest objects are not created",
+      "bid_strategy_reasoning": [
+        "Pinterest is not active from this plan, so there is no live bidding strategy to optimize.",
+        "The current strategy is draft/readiness only: restore authenticated access, verify advertiser/catalog/source, then create only paused objects if approval covers it.",
+        "Any Pinterest budget, bid, optimization goal, launch, or status change requires exact owner approval and before/after readbacks.",
+        "The local spec focuses on clean product-group scope first so Pinterest does not launch with blocked, wrong-source, or excluded products."
+      ],
+      "bid_change_triggers": [
+        "After access is restored, record the planned bid/budget fields before any object creation.",
+        "Do not launch spend until the owner approves exact campaign objects, budgets, bids, optimization goal, product groups, and readback plan.",
+        "If catalog/source mismatch appears, stop before bids or budgets are entered.",
+        "If paused objects are created later, define monitoring thresholds before launch."
+      ],
+      "optimization_score": "N/A; objects are not created",
+      "ad_strength": "N/A; Pinterest draft objects are not created",
+      "health_status": "NOT RUNNING / ACCESS BLOCKED",
+      "activated_at": "Not active. No Pinterest campaign or ad group was created or saved from this plan.",
+      "latest_readback": "2026-05-14T09:36:32Z; controllable browser landed on public Pinterest login/sign-up page.",
+      "next_decision": "Immediate unblock is authenticated controllable Ads Manager access for advertiser 549756244483, followed by before-write readbacks. No test clock starts until paused objects exist and a separate launch approval exists.",
+      "success_measurement": [
+        "Final success after launch: as many profitable sales as possible while targeting about 650% ROAS.",
+        "Day 1 growth rule: Pinterest contributes zero sales until access is restored and paused/draft readiness is converted into approved launchable work.",
+        "Primary metrics after launch: purchases, revenue/conversion value, CPA, ROAS, and conversion currency correctness.",
+        "Current result: no live Pinterest campaign from this plan, so there are no spend, sales, or ROAS metrics.",
+        "Pre-launch success is readiness only: clean catalog scope, strong product/photo fit, correct source, paused object safety, and zero unapproved spend.",
+        "Pinterest should not be judged by draft creation alone; it must eventually prove profitable sales after launch approval."
+      ],
+      "metrics_snapshot": [
+        "Today 2026-05-14: no live Pinterest campaign from this plan, so metrics are n/a.",
+        "Yesterday 2026-05-13: no live Pinterest campaign from this plan, so metrics are n/a.",
+        "Local spec quality: 342 clean variants, 4 exclusions, product groups mommy_me 210, family_matching 103, pajamas 29; no objects created."
+      ],
+      "test_clock": [
+        "No live Pinterest test clock is running.",
+        "Access unblock should happen before any draft build attempt.",
+        "If paused drafts are created later, define separate T+24/T+72/T+7d monitoring only after launch/spend approval."
+      ],
+      "proactive_monitoring": [
+        "Confirm advertiser, catalog, source/feed profile, and excluded variants before any write.",
+        "Stop on login, CAPTCHA, account switcher, billing, policy, budget/bid, or publish prompts.",
+        "After access is restored, perform read-only before-write checks before creating paused objects.",
+        "Keep live spend at zero until fresh explicit launch approval exists."
+      ],
+      "improvement_triggers": [
+        "Access restored: build only paused/draft objects if current approval covers it and before-write readbacks are clean.",
+        "Catalog/source mismatch: stop and repair local spec before any platform object creation.",
+        "Event/tag concern appears: read-only verify; do not add duplicate tag/CAPI by inference.",
+        "Owner wants launch: require exact approval naming budget, bid, campaign objects, product groups, and after-state readback plan."
+      ],
+      "assumptions": [
+        "The 342-variant clean scope is still the intended Pinterest launch-prep cohort.",
+        "Pinterest Event Quality Fair should not block local paused prep, but live launch still needs approval.",
+        "No Pinterest metrics exist until objects are created and later launched.",
+        "Authenticated controllable Ads Manager access is the active blocker."
+      ],
+      "full_quality_checklist": [
+        "Access/account: confirm authenticated controllable Ads Manager access to advertiser 549756244483.",
+        "Catalog/source: confirm catalog 3041764155561548387 and allowed source/feed profile 3041760867124595727; keep blocked source excluded.",
+        "Product/photo fit: verify Pinterest product images are visually strong for mommy-and-me, family matching, and pajamas, with no supplier/source-looking or stale seasonal imagery.",
+        "Product groups: verify 342 clean variants, 4 exclusions, no overlap, and the intended mommy_me/family_matching/pajamas split.",
+        "Creative/copy: verify planned Pin copy matches the product group and does not imply inventory, local store, warehouse, or guaranteed stock.",
+        "Tracking: read-only check Event Quality/tag state if relevant; do not add duplicate tag/CAPI by inference.",
+        "Decision discipline: no Pinterest campaign, ad group, ad, product group, budget, bid, catalog, tag, CAPI, source, feed, audience, or launch write without exact approval.",
+        "Expert standard: verify catalog/product-group/creative/landing/measurement fit and no Search-style keyword cannibalization before any Pinterest launch or spend recommendation."
+      ],
+      "objective": "Prepare the first safe US Pinterest catalog/retargeting draft from a proven clean 342-variant scope without launching spend.",
+      "strategy_reasoning": [
+        "The clean US scope has 342 unique variants and 4 explicit exclusions.",
+        "Product-group split is mommy_me 210, family_matching 103, pajamas 29.",
+        "Everything must remain paused or draft; live spend is a separate future approval.",
+        "The blocker is authenticated controllable Ads Manager access, not local spec quality."
+      ],
+      "deadline_or_next_check": "Next check is access restoration: authenticate Pinterest Ads Manager for advertiser 549756244483, then run before-write readbacks. Stop on login, CAPTCHA, billing, account-switcher, policy, budget/bid, or publish prompts.",
+      "active_objects": [
+        "No active Pinterest objects created by this plan.",
+        "Approved local spec only: two paused campaign shells and six paused ad groups if access/approval gates pass.",
+        "Catalog: 3041764155561548387",
+        "Allowed feed profile/source: 3041760867124595727",
+        "Blocked failed sitemap source: 3041760916127467912"
+      ],
+      "keywords": [
+        "Pinterest uses catalog/product-group targeting here, not Search keywords.",
+        "Product groups planned: Mommy & Me, Family Matching, Pajamas."
+      ],
+      "keyword_selection_criteria": [
+        "Pinterest does not use Google-style Search keywords for this planned catalog path.",
+        "Targeting intelligence is product-group and creative fit: mommy_me, family_matching, and pajamas were chosen because they map to visual shopping intent.",
+        "The smart-scope question is whether the 342 clean variants have strong photos, correct source/feed, and clear category fit.",
+        "Future Pinterest keyword/interest/audience ideas must be justified from catalog performance, product saves/clicks, checkout signals, and ROAS path after launch."
+      ],
+      "negative_keyword_strategy": [
+        "Pinterest negative-keyword handling is not active in this local paused-draft path.",
+        "Exclusion logic is product-scope based: keep the 4 excluded variants out, avoid blocked source/feed data, and do not include supplier-leaking or stale products.",
+        "If future audience/interest targeting is added, exclusions must be based on performance and brand-safety evidence, not guesswork.",
+        "No Pinterest catalog/source/product-group mutation is allowed until access, approval, and readback gates pass."
+      ],
+      "daily_optimization_owner": [
+        "Primary owner: pinterest_operator restores access and monitors draft/readiness once authenticated access exists.",
+        "Merchant feed operator validates catalog/source/product-group quality when needed.",
+        "Analytics/ROAS owner validates Pinterest spend, purchases, revenue, CPA, ROAS, and metric freshness after launch.",
+        "Head of Growth decides green-gated bounded action only after paused object safety, product/photo fit, and measurement gates are clear."
+      ],
+      "continuous_improvement_loop": [
+        "By tomorrow: either restore authenticated controllable access for readback/draft work or document the exact owner/browser unblock action blocking Pinterest sales growth.",
+        "Before launch: verify access, advertiser, catalog/source, 342-scope exclusions, product groups, copy, photos, landing pages, and tracking.",
+        "After launch approval: monitor spend, impressions, outbound clicks, saves, add-to-cart, purchases, conversion value, CPA, and ROAS daily.",
+        "If spend without sales: inspect product/photo fit, audience/product group, landing page, and tracking before increasing spend.",
+        "If product groups produce sales near 650% ROAS: scale only bounded winners inside caps.",
+        "If a product group shows weak quality or wrong fit: pause/reduce or split test only with evidence and readback."
+      ],
+      "ads": [
+        "Planned copy only: Mommy & Me Matching Outfits, Family Matching Outfits, Matching Family Pajamas.",
+        "No ads were created or saved in Pinterest."
+      ],
+      "quality_notes": [
+        "Local verifier passed 21 checks.",
+        "Clean rows: 342; unique variants: 342; exclusions: 4; no overlap.",
+        "Event Quality is repo-known Fair but not a blocker for local paused prep."
+      ],
+      "evidence": [
+        "ops/marketing/current_marketing_state.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-sales-moving-continuation/PINTEREST_US_PAUSED_DRAFT_BUILD_SPEC.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-sales-moving-continuation/pinterest_us_paused_draft_build_spec.json",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/pinterest-access-readback/pinterest_create_flow_probe_summary.json"
+      ],
+      "human_verify": [
+        "Confirm the browser is authenticated to advertiser 549756244483 before any build.",
+        "Confirm all created objects would remain paused/draft.",
+        "Confirm catalog/source IDs match the allowed source.",
+        "Confirm the 4 excluded variants are absent."
+      ],
+      "blocked_or_risk": "Authenticated Pinterest Ads Manager access is blocked; no Pinterest write is allowed from the local spec alone.",
+      "expert_strategy_standard": [
+        "Source-backed standard: follow Google Ads Help for match types, search terms, negatives, Target ROAS readiness, Quality Score, ad quality, and account keyword prioritization; follow Pinterest Business for lower-funnel product creative and clickthrough consistency; follow OpenAI/Anthropic agent guidance for clear instructions, guardrails, evals, and simple accountable workflows.",
+        "North Star: get customers to buy, with as many profitable paid-growth sales as possible at about 650% ROAS; impressions, clicks, CTR, CPC, ad strength, and Quality Score are diagnostics only.",
+        "High-intent and low-waste rule: cheap traffic is useful only when the query, product, ad, landing page, and measurement path can plausibly produce profitable purchases.",
+        "No-rookie-mistake rule: do not broaden traffic, raise bids, add negatives, or scale from stale evidence, watchlists, vanity metrics, or unclear product/landing quality.",
+        "For Pinterest, expert work is lower-funnel visual/catalog quality: product-photo clarity, direct CTA, clean product groups, clickthrough consistency, measurement, and access/readback gates.",
+        "Next expert move is authenticated readback and paused-draft readiness, not live object creation from stale local assumptions.",
+        "AI-speed growth means unblocking authenticated access and validating creative/catalog readiness quickly; it does not mean creating live Pinterest objects without gates."
+      ],
+      "keyword_economics": [
+        "Pinterest does not target Google Search keywords; quality is driven by catalog scope, product-photo fit, audience/product groups, creative clarity, CTA, and matching clickthrough experience.",
+        "Lower-funnel creative must make the product obvious, show matching-family value quickly, and send the shopper to a page that matches the Pin promise.",
+        "Cheap Pinterest traffic is not useful if product groups include inactive, supplier-leaking, stale, wrong-season, or low-trust products.",
+        "Launch or scale only after current access, catalog/source, product groups, tag/measurement, landing, and 650% ROAS path are verified."
+      ],
+      "anti_cannibalization_rules": [
+        "Pinterest owns visual discovery and lower-funnel catalog retargeting/consideration; it must not duplicate Search keyword logic as if it were a Search campaign.",
+        "Use product-group and audience roles to prevent the same product intent from being tested in too many live Pinterest shells at once.",
+        "Keep prospecting, retargeting, and catalog shopping roles separate with clean exclusions once live action is approved.",
+        "Do not create objects until authenticated Ads Manager access and before-write readbacks are clean."
+      ]
+    }
+  ]
+}

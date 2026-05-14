@@ -127,9 +127,16 @@
                       {%- endif -%}
                       <div class="predictive-search__item-content{% unless settings.predictive_search_show_vendor or settings.predictive_search_show_price %} predictive-search__item-content--centered{% endunless %}">
                         {%- if settings.predictive_search_show_vendor -%}
+                          {%- liquid
+                            assign predictive_public_brand = product.vendor | default: 'dresslikemommy.com' | strip
+                            assign predictive_public_brand_downcase = predictive_public_brand | downcase
+                            if predictive_public_brand == blank or predictive_public_brand_downcase contains 'http://' or predictive_public_brand_downcase contains 'https://' or predictive_public_brand_downcase contains '1688.com' or predictive_public_brand_downcase contains 'alibaba.com' or predictive_public_brand_downcase contains 'aliexpress.com'
+                              assign predictive_public_brand = 'dresslikemommy.com'
+                            endif
+                          -%}
                           <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
                           <div class="predictive-search__item-vendor caption-with-letter-spacing">
-                            {{ product.vendor }}
+                            {{ predictive_public_brand }}
                           </div>
                         {%- endif -%}
                         <p class="predictive-search__item-heading h5">{{ product.title | escape }}</p>

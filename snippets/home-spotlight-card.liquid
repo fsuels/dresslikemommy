@@ -31,6 +31,11 @@
   assign spotlight_type = spotlight_product.metafields.custom.type | default: spotlight_product.type | default: '' | strip
   assign spotlight_style = spotlight_product.metafields.custom.style | default: '' | strip
   assign spotlight_pattern = spotlight_product.metafields.custom.pattern | default: '' | strip
+  assign spotlight_public_brand = spotlight_product.vendor | default: 'dresslikemommy.com' | strip
+  assign spotlight_public_brand_downcase = spotlight_public_brand | downcase
+  if spotlight_public_brand == blank or spotlight_public_brand_downcase contains 'http://' or spotlight_public_brand_downcase contains 'https://' or spotlight_public_brand_downcase contains '1688.com' or spotlight_public_brand_downcase contains 'alibaba.com' or spotlight_public_brand_downcase contains 'aliexpress.com'
+    assign spotlight_public_brand = 'dresslikemommy.com'
+  endif
 
   if spotlight_image != blank
     assign spotlight_image_id = spotlight_image.id | default: spotlight_product.id
@@ -66,6 +71,11 @@
           assign candidate_type = candidate_product.metafields.custom.type | default: candidate_product.type | default: '' | strip
           assign candidate_style = candidate_product.metafields.custom.style | default: '' | strip
           assign candidate_pattern = candidate_product.metafields.custom.pattern | default: '' | strip
+          assign candidate_public_brand = candidate_product.vendor | default: 'dresslikemommy.com' | strip
+          assign candidate_public_brand_downcase = candidate_public_brand | downcase
+          if candidate_public_brand == blank or candidate_public_brand_downcase contains 'http://' or candidate_public_brand_downcase contains 'https://' or candidate_public_brand_downcase contains '1688.com' or candidate_public_brand_downcase contains 'alibaba.com' or candidate_public_brand_downcase contains 'aliexpress.com'
+            assign candidate_public_brand = 'dresslikemommy.com'
+          endif
 
           if candidate_variant == blank or candidate_image == blank
             continue
@@ -93,7 +103,7 @@
           echo ',"title":'
           echo candidate_product.title | json
           echo ',"vendor":'
-          echo candidate_product.vendor | json
+          echo candidate_public_brand | json
           echo ',"variant":'
           echo candidate_variant.sku | default: candidate_variant.title | default: candidate_variant.id | json
           echo ',"priceCents":'
@@ -183,7 +193,7 @@
         echo ',"title":'
         echo spotlight_product.title | json
         echo ',"vendor":'
-        echo spotlight_product.vendor | json
+        echo spotlight_public_brand | json
         echo ',"variant":'
         echo spotlight_variant.sku | default: spotlight_variant.title | default: spotlight_variant.id | json
         echo ',"priceCents":'
@@ -286,7 +296,7 @@
     data-analytics-variant-id="{{ spotlight_variant.id }}"
     data-analytics-handle="{{ spotlight_product.handle | escape }}"
     data-analytics-title="{{ spotlight_product.title | escape }}"
-    data-analytics-vendor="{{ spotlight_product.vendor | escape }}"
+    data-analytics-vendor="{{ spotlight_public_brand | escape }}"
     data-analytics-variant="{{ spotlight_variant.sku | default: spotlight_variant.title | default: spotlight_variant.id | escape }}"
     data-analytics-price-cents="{{ spotlight_variant.price }}"
     data-analytics-category1="{{ spotlight_category1 | escape }}"

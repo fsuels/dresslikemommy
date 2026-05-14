@@ -38,6 +38,11 @@
     assign card_type = card_product.metafields.custom.type | default: card_product.type | default: '' | strip
     assign card_style = card_product.metafields.custom.style | default: '' | strip
     assign card_pattern = card_product.metafields.custom.pattern | default: '' | strip
+    assign card_public_brand = card_product.vendor | default: 'dresslikemommy.com' | strip
+    assign card_public_brand_downcase = card_public_brand | downcase
+    if card_public_brand == blank or card_public_brand_downcase contains 'http://' or card_public_brand_downcase contains 'https://' or card_public_brand_downcase contains '1688.com' or card_public_brand_downcase contains 'alibaba.com' or card_public_brand_downcase contains 'aliexpress.com'
+      assign card_public_brand = 'dresslikemommy.com'
+    endif
     assign card_active_variant = card_product.selected_or_first_available_variant
     assign card_active_price = card_active_variant.price
     assign card_active_compare_at_price = card_active_variant.compare_at_price
@@ -94,7 +99,7 @@
     data-analytics-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
     data-analytics-handle="{{ card_product.handle | escape }}"
     data-analytics-title="{{ card_product.title | escape }}"
-    data-analytics-vendor="{{ card_product.vendor | escape }}"
+    data-analytics-vendor="{{ card_public_brand | escape }}"
     data-analytics-variant="{{ card_product.selected_or_first_available_variant.sku | default: card_product.selected_or_first_available_variant.title | default: card_product.selected_or_first_available_variant.id | escape }}"
     data-analytics-price-cents="{{ card_product.selected_or_first_available_variant.price }}"
     data-analytics-category1="{{ card_category1 | escape }}"
@@ -239,7 +244,7 @@
           <div class="card-information">
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
-              <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
+              <div class="caption-with-letter-spacing light">{{ card_public_brand }}</div>
             {%- endif -%}
 
             <span class="caption-large light">{{ block.settings.description | escape }}</span>

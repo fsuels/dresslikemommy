@@ -12,6 +12,7 @@ This protocol applies to every session.
 - `ops/PROBLEM_SOLVING_PROTOCOL.md`: required workflow for turning a discovered problem into attempts, learning, solution, readback, and closure.
 - `ops/PROBLEM_TRACKER.md`: active problem ledger. Store problem status, priority, owner, exact symptom, fixed criteria, attempt log, failed paths, gates, and next action.
 - `ops/GOOGLE_ADS_CONTINUITY.md`: durable paid-media memory for Google Ads, Merchant Center, conversion tracking, and paid-launch state.
+- `ops/marketing/`: compact paid-growth execution command layer. Store current repo-known/live-readback-needed marketing state, action queue, spend authority, scorecard, blocker board, decision log, prompt log, memory digest, and team registry here. Keep detailed historical evidence in the worklog, problem tracker, coordination file, and audit packets.
 - `ops/BROWSER_SUBAGENT_COORDINATION.md`: how multiple agents use logged-in Atlas/in-app browser tabs without conflict.
 - `ops/GROWTH_NORTH_STAR.md`: the promise-land goal and definition of done for paid growth.
 - `ops/prompts/*.md`: reusable continuation prompts and operator workflows.
@@ -27,8 +28,9 @@ Every session must:
 4. Read `ops/AGENT_COORDINATION.md` before touching external systems or shared surfaces.
 5. For paid-media work, read `ops/GOOGLE_ADS_CONTINUITY.md`.
 6. For multi-agent/browser work, read `ops/BROWSER_SUBAGENT_COORDINATION.md`.
-7. For growth strategy, read `ops/GROWTH_NORTH_STAR.md`.
-8. Search for relevant prior anchors/surfaces before fixing:
+7. For paid-growth execution, read `ops/marketing/AGENTS.md` and `ops/marketing/current_marketing_state.md`.
+8. For growth strategy, read `ops/GROWTH_NORTH_STAR.md`.
+9. Search for relevant prior anchors/surfaces before fixing:
    - campaign name or ID
    - product/cohort ID
    - Merchant source/feed ID

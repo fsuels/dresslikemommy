@@ -1,5 +1,12 @@
 {%- if cart != empty -%}
   {%- for item in cart.items -%}
+    {%- liquid
+      assign cart_notification_public_brand = item.product.vendor | default: 'dresslikemommy.com' | strip
+      assign cart_notification_public_brand_downcase = cart_notification_public_brand | downcase
+      if cart_notification_public_brand == blank or cart_notification_public_brand_downcase contains 'http://' or cart_notification_public_brand_downcase contains 'https://' or cart_notification_public_brand_downcase contains '1688.com' or cart_notification_public_brand_downcase contains 'alibaba.com' or cart_notification_public_brand_downcase contains 'aliexpress.com'
+        assign cart_notification_public_brand = 'dresslikemommy.com'
+      endif
+    -%}
     <div id="cart-notification-product-{{ item.key }}" class="cart-item">
       {%- if item.image -%}
         <div class="cart-notification-product__image global-media-settings">
@@ -14,7 +21,7 @@
       {%- endif -%}
       <div>
         {%- if settings.show_vendor -%}
-          <p class="caption-with-letter-spacing light">{{ item.product.vendor }}</p>
+          <p class="caption-with-letter-spacing light">{{ cart_notification_public_brand }}</p>
         {%- endif -%}
         <h3 class="cart-notification-product__name h4">{{ item.product.title | escape }}</h3>
         <dl>

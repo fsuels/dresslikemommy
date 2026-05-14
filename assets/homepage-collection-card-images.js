@@ -41,12 +41,24 @@
 
     if (!productId || !imageKey || !imageSrc || !productUrl) return null;
 
+    const vendor = String(candidate.vendor || '').trim();
+    const vendorLower = vendor.toLowerCase();
+    const publicVendor =
+      !vendor ||
+      vendorLower.includes('http://') ||
+      vendorLower.includes('https://') ||
+      vendorLower.includes('1688.com') ||
+      vendorLower.includes('alibaba.com') ||
+      vendorLower.includes('aliexpress.com')
+        ? 'dresslikemommy.com'
+        : vendor;
+
     return {
       productId,
       variantId,
       handle: String(candidate.handle || '').trim(),
       title: String(candidate.title || '').trim(),
-      vendor: String(candidate.vendor || '').trim(),
+      vendor: publicVendor,
       variant: String(candidate.variant || '').trim(),
       priceCents: Number(candidate.priceCents) || 0,
       category1: String(candidate.category1 || '').trim(),

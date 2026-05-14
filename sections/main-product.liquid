@@ -1781,11 +1781,18 @@
     {%- endif -%}
 
     <script type="application/json" id="ProductAnalyticsData-{{ section.id }}">
+      {%- liquid
+        assign product_public_brand = product.vendor | default: 'dresslikemommy.com' | strip
+        assign product_public_brand_downcase = product_public_brand | downcase
+        if product_public_brand == blank or product_public_brand_downcase contains 'http://' or product_public_brand_downcase contains 'https://' or product_public_brand_downcase contains '1688.com' or product_public_brand_downcase contains 'alibaba.com' or product_public_brand_downcase contains 'aliexpress.com'
+          assign product_public_brand = 'dresslikemommy.com'
+        endif
+      -%}
       {
         "id": {{ product.id | json }},
         "handle": {{ product.handle | json }},
         "title": {{ product.title | json }},
-        "vendor": {{ product.vendor | json }},
+        "vendor": {{ product_public_brand | json }},
         "currency": {{ cart.currency.iso_code | json }},
         "category1": {{ taxonomy_category1 | json }},
         "subcategory": {{ taxonomy_subcategory | json }},

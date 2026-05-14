@@ -181,6 +181,11 @@
                             assign cart_item_pattern = normalized_tag | split: ':' | last | strip
                           endif
                         endfor
+                        assign cart_item_public_brand = item.product.vendor | default: 'dresslikemommy.com' | strip
+                        assign cart_item_public_brand_downcase = cart_item_public_brand | downcase
+                        if cart_item_public_brand == blank or cart_item_public_brand_downcase contains 'http://' or cart_item_public_brand_downcase contains 'https://' or cart_item_public_brand_downcase contains '1688.com' or cart_item_public_brand_downcase contains 'alibaba.com' or cart_item_public_brand_downcase contains 'aliexpress.com'
+                          assign cart_item_public_brand = 'dresslikemommy.com'
+                        endif
                       -%}
                       <tr
                         id="CartDrawer-Item-{{ item.index | plus: 1 }}"
@@ -192,7 +197,7 @@
                         data-product-id="{{ item.product.id }}"
                         data-product-handle="{{ item.product.handle | escape }}"
                         data-item-name="{{ item.product.title | escape }}"
-                        data-item-brand="{{ item.product.vendor | escape }}"
+                        data-item-brand="{{ cart_item_public_brand | escape }}"
                         data-item-variant="{{ item.sku | default: item.variant.title | default: item.variant.id | escape }}"
                         data-price-cents="{{ item.final_price }}"
                         data-quantity="{{ item.quantity }}"
@@ -220,7 +225,7 @@
 
                         <td class="cart-item__details" role="cell" headers="CartDrawer-ColumnProduct">
                           {%- if settings.show_vendor -%}
-                            <p class="caption-with-letter-spacing light">{{ item.product.vendor }}</p>
+                            <p class="caption-with-letter-spacing light">{{ cart_item_public_brand }}</p>
                           {%- endif -%}
 
                           <a href="{{ item.url }}" class="cart-item__name h4 break">

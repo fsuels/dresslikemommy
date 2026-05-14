@@ -35,6 +35,22 @@ window.dataLayer = window.dataLayer || [];
     return String(value).trim();
   }
 
+  function normalizePublicBrand(value) {
+    var normalized = normalizeText(value);
+    var lower = normalized.toLowerCase();
+    if (
+      !normalized ||
+      lower.indexOf('http://') !== -1 ||
+      lower.indexOf('https://') !== -1 ||
+      lower.indexOf('1688.com') !== -1 ||
+      lower.indexOf('alibaba.com') !== -1 ||
+      lower.indexOf('aliexpress.com') !== -1
+    ) {
+      return 'dresslikemommy.com';
+    }
+    return normalized;
+  }
+
   function parseNumber(value) {
     if (value === null || value === undefined || value === '') return null;
     var parsed = typeof value === 'number' ? value : parseFloat(value);
@@ -284,7 +300,7 @@ window.dataLayer = window.dataLayer || [];
       id: normalizeText(rawData.id),
       title: normalizeText(rawData.title),
       handle: normalizeText(rawData.handle),
-      vendor: normalizeText(rawData.vendor),
+      vendor: normalizePublicBrand(rawData.vendor),
       category1: normalizeText(rawData.category1),
       subcategory: normalizeText(rawData.subcategory),
       subcategory2: normalizeText(rawData.subcategory2),
@@ -386,7 +402,7 @@ window.dataLayer = window.dataLayer || [];
     return cleanObject({
       item_id: normalizeText(attributes.productId) || normalizeText(attributes.variantId),
       item_name: normalizeText(attributes.title),
-      item_brand: normalizeText(attributes.vendor),
+      item_brand: normalizePublicBrand(attributes.vendor),
       item_variant: normalizeText(attributes.variant),
       price: parseNumber(attributes.price),
       currency: getCurrency(),
@@ -811,7 +827,7 @@ window.dataLayer = window.dataLayer || [];
           {
             item_id: productId || variantId,
             item_name: normalizeText(cartItem.product_title || cartItem.title),
-            item_brand: normalizeText(cartItem.vendor),
+            item_brand: normalizePublicBrand(cartItem.vendor),
             item_variant:
               normalizeText(cartItem.sku) ||
               normalizeText(cartItem.variant_title) ||
