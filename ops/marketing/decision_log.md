@@ -1,6 +1,6 @@
 # Marketing Decision Log
 
-Last updated: 2026-05-14 11:40 EDT
+Last updated: 2026-05-14 11:59 EDT
 
 | Date | Decision | Evidence | Follow-up |
 |---|---|---|---|
@@ -33,6 +33,8 @@ Last updated: 2026-05-14 11:40 EDT
 | 2026-05-14 | Treat the current GB/CA/AU active PDP final URL sanitizer gate as passed, but keep live Search expansion blocked on `$0.15` validation | Public readback at 11:18 EDT checked GB/CA/AU active PDP final URLs across two header/cache variants and found `0` supplier/source-domain hits, `0` URL-like analytics brand attributes, and expected shipping/schema signals. | Do not upload/add/change keywords yet. Validate only clean-route `GREEN` rows in authenticated Google Ads/Keyword Planner at max `$0.15`, then run reviewer before any bounded action. |
 | 2026-05-14 | Hold keyword rows routed to dirty/broken collection pages | Collection preflight found `mommy-and-me`, `family-matching`, and `pajamas` clean; `matching-dresses` and `swimsuits` leak raw Shopify product JSON supplier vendor URLs; `vacation` is `404`; `daddy-and-me` has Christmas pattern metadata hits. | Updated `keyword_universe.csv` row-level `live_action` holds. Repair/reroute/exclude affected routes before any live Search traffic; Shopify product/vendor/metadata edits require fresh approval if needed. |
 | 2026-05-14 | Reroute GB/CA/AU non-swim keyword rows to clean collection routes and keep swimwear held | Public source inspection showed the dirty route supplier leak is Shopify automatic `window.ShopifyAnalytics.meta` product JSON, not our sanitized theme analytics attributes. Public readbacks show `/collections/mommy-and-me`, `/collections/family-matching`, and `/collections/pajamas` are clean across GB/CA/AU. CSV validation now shows `31` GB/CA/AU `GREEN` rows marked `cpc_validation_required`, `0` GB/CA/AU rows left on `vacation`, `matching-dresses`, or `daddy-and-me`, and `5` swimwear rows still held. | Next action is authenticated Google Ads/Keyword Planner `$0.15` CPC validation for the `31` clean-route rows only. Do not use swimwear rows until `/collections/swimsuits` is repaired, rerouted to a clean swim-specific route, or explicitly excluded. |
+
+| 2026-05-14 | Prepare exact GB/CA/AU 31-row CPC validation packet instead of probing blocked GUI/account paths | Highest queue row requires authenticated Google Ads/Keyword Planner validation, but this shell has no Google Ads env keys and no `google.ads.googleads` package; automation memory already records account-surface mismatch. Packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/GB_CA_AU_31_CLEAN_ROUTE_CPC_VALIDATION_PACKET.md` selects only clean-route rows and reconfirms `9/9` public route checks with `0` supplier/url-brand hits. | Next authenticated Ads session validates `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/gb_ca_au_31_clean_route_cpc_validation_rows.csv` at max `$0.15`; no upload/add/change action until exact pass rows, fresh readback, reviewer pass, and after-state plan exist. |
 
 ## Decision Rules
 

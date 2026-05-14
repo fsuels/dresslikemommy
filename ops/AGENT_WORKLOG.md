@@ -36886,3 +36886,38 @@ Next best action:
 - Run authenticated Google Ads / Keyword Planner validation for the `31` clean-route GB/CA/AU `GREEN` rows only, at max `$0.15` CPC.
 - Keep `5` swimwear rows held until `/collections/swimsuits` is repaired, rerouted to a clean swim-specific route, or explicitly excluded.
 - Continue Merchant/Pinterest authenticated access blockers in a session with usable authenticated account surfaces.
+2026-05-14 - Automation CPC validation packet ready
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-cpc-validation-packet-ready
+
+Why:
+- The highest-priority remaining paid-growth action is authenticated Google Ads / Keyword Planner `$0.15` CPC validation for clean-route GB/CA/AU long-tail rows.
+- This unattended automation runtime must not waste the run on GUI permission repair, and no repo-local Google Ads API path is configured.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/GB_CA_AU_31_CLEAN_ROUTE_CPC_VALIDATION_PACKET.md`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/gb_ca_au_31_clean_route_cpc_validation_rows.csv`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/gb_ca_au_31_clean_route_cpc_validation_summary.json`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `memory_digest.md`, `operator_cockpit.md`, and `assumption_log.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Decision:
+- The next authenticated Ads validation scope is now exact: `31` clean-route GB/CA/AU `GREEN` rows, split `GB=11`, `CA=10`, `AU=10`.
+- Included routes are only `/collections/mommy-and-me`, `/collections/family-matching`, and `/collections/pajamas`.
+- All swimwear rows remain held because `/collections/swimsuits` still leaks supplier vendors through Shopify automatic product JSON.
+- Packet readiness is not upload authority. No row can move live until authenticated Keyword Planner/keyword UI validation proves auction-entry feasibility at max `$0.15`, fresh Ads readback exists, reviewer passes, exact action-queue scope is named, and after-state readback is planned.
+
+Readback / verification:
+- Repo write test passed.
+- Focused public route readback for the included routes across `GB`, `CA`, and `AU` passed `9/9`: HTTP `200` and `0` supplier/url-brand hits.
+- Local Google Ads API capability check found no Google Ads env keys and no installed `google.ads.googleads` package.
+- No Computer Use startup probe or permission repair was run.
+
+Guardrails:
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/campaign write occurred.
+- No Shopify Admin product/vendor/source metadata edit and no live theme push/sync/publish occurred.
+- No Merchant, Pinterest, GA4/GTM, billing, feed, product-scope, product-group, conversion, credential, or destructive filesystem write occurred.
+
+Next best action:
+- Run authenticated Google Ads / Keyword Planner validation for `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/gb_ca_au_31_clean_route_cpc_validation_rows.csv` only, at max `$0.15` CPC.
+- Promote only rows that pass through a green-gated action-queue row with reviewer pass and after-state readback.
+- Continue Merchant/Pinterest authenticated access blockers in a session with usable authenticated account surfaces.

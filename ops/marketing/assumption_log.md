@@ -1,6 +1,6 @@
 # Marketing Assumption Log
 
-Last updated: 2026-05-14 11:19 EDT
+Last updated: 2026-05-14 11:59 EDT
 
 Use this file for important assumptions that affect paid-growth decisions, especially when evidence is repo-known, stale, sampled, or gated by approval/access.
 
@@ -23,6 +23,7 @@ Use this file for important assumptions that affect paid-growth decisions, espec
 | 2026-05-14 | Canonical continuity can drift even when the marketing audit passes. | `ops/AGENT_WORKLOG_utf8.md` existed as a tracked alternate worklog, and the canonical prompt still carried a stale hard-coded latest-anchor example in First actions. | A future agent could follow documented startup and still pick stale state from a side document or prompt literal. | Run `python3.13 ops/scripts/check_continuity_integrity.py --strict`; if it fails, repair canonical worklog/prompt/spend/cockpit wiring instead of creating another note. |
 | 2026-05-14 | This automation runtime is not account-surface equivalent to a normal owner session. | Shell/repo writes/network/Playwright MCP are usable, but Chrome DevTools MCP is profile-locked, Computer Use interactive access is denied, and shell-side Playwright is not installed. | An agent could overclaim Merchant/Pinterest readback completeness or close a blocker without the authenticated intersection proof. | Treat account-dependent Merchant/Pinterest follow-ups as `AUTOMATION_CAPABILITY_MISMATCH` until a usable authenticated Chrome/account path is restored. |
 | 2026-05-14 | Clean current PDP final URLs do not prove all future keyword collection routes are clean. | 11:18 public PDP readback passed, but 11:19 collection preflight found `matching-dresses` and `swimsuits` supplier JSON leaks, `vacation` `404`, and `daddy-and-me` Christmas pattern hits. | Live keyword rows could route paid traffic to supplier-leaking, broken, or seasonally mismatched pages. | Validate route cleanliness per candidate route before live use; keep affected `keyword_universe.csv` rows held until repaired, rerouted, or excluded. |
+| 2026-05-14 | Exact 31-row GB/CA/AU CPC validation packet is a handoff artifact, not upload authority. | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/GB_CA_AU_31_CLEAN_ROUTE_CPC_VALIDATION_PACKET.md`; no Google Ads API env keys and no `google.ads.googleads` package in this shell; authenticated GUI surfaces remain gated. | A future operator could mistake the packet for a Google Ads import list and bypass `$0.15` CPC validation. | Validate `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/gb_ca_au_31_clean_route_cpc_validation_rows.csv` in authenticated Google Ads/Keyword Planner; promote only passed rows through `action_queue.md` after reviewer pass and after-state plan. |
 
 ## Add New Assumptions Like This
 

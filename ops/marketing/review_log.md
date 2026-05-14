@@ -618,3 +618,35 @@ Evidence:
 Safest next sales-moving action:
 
 - Run authenticated `$0.15` CPC/auction validation for the `31` clean-route GB/CA/AU `GREEN` rows.
+## 2026-05-14 - GB/CA/AU 31-row CPC validation packet
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Repo-local packet generation only; no Google Ads, Shopify Admin, live theme, Merchant, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or destructive write.
+- Exact scope: `31` clean-route GB/CA/AU `GREEN` rows (`GB=11`, `CA=10`, `AU=10`) from `ops/marketing/keyword_universe.csv`.
+- Included public routes rechecked across GB/CA/AU: `/collections/mommy-and-me`, `/collections/family-matching`, and `/collections/pajamas`; `9/9` returned `200` and `0` supplier/url-brand hits.
+- Account-surface limitation recorded as `AUTOMATION_CAPABILITY_MISMATCH`: no Google Ads API env keys, no `google.ads.googleads` package, and no usable authenticated GUI path in this automation runtime.
+
+Risks:
+
+- Packet readiness is not CPC validation and not upload approval.
+- Some rows may still fail Keyword Planner/UI auction entry at `$0.15`, duplicate live intent, or show low-search-volume behavior.
+- Swimwear remains excluded because `/collections/swimsuits` still leaks supplier vendors.
+
+Required gates/fixes:
+
+- Validate `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/gb_ca_au_31_clean_route_cpc_validation_rows.csv` in authenticated Google Ads/Keyword Planner at max `$0.15`.
+- Only rows that pass may become a small exact-match action row after fresh Ads readback, anti-cannibalization review, reviewer pass, and after-state readback plan.
+- Do not upload/apply/add keywords, raise bids, change budgets/statuses, or add negatives from this packet alone.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/GB_CA_AU_31_CLEAN_ROUTE_CPC_VALIDATION_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/gb_ca_au_31_clean_route_cpc_validation_summary.json`
+- `ops/marketing/action_queue.md`
+
+Safest next sales-moving action:
+
+- Run authenticated `$0.15` CPC/auction validation for the exact packet rows, then promote only passed rows through the green-gated action queue.
