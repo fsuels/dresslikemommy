@@ -927,3 +927,33 @@ Evidence:
 Safest next sales-moving action:
 
 - Authenticated `$0.15` CPC validation for the canonical 36-row packet; only pass rows can become a bounded live action row.
+
+## 2026-05-14 - GB/CA/AU CPC validation decision kit
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Repo-local Keyword Planner input/template/parser generation only; no Google Ads, Merchant, Shopify Admin, live theme, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, product-group, conversion, or destructive write.
+- The source scope is exactly the canonical `36`-row GB/CA/AU packet and expands it only into `72` decision rows for exact+phrase validation.
+- The parser classifies authenticated forecast rows as `PASS_015_CPC_GATE`, `FAIL_015_CPC_GATE`, `LOW_VOLUME_OR_NO_AUCTION`, `POLICY_OR_DESTINATION_BLOCK`, or `MISSING_REQUIRED_FORECAST_DATA`.
+
+Risks:
+
+- This is not a Google Ads/Keyword Planner readback and cannot prove CPC feasibility.
+- Phrase validation rows are decision candidates only; they must not become live rows unless authenticated forecast, reviewer, anti-cannibalization, and after-state gates pass.
+
+Required gates/fixes:
+
+- Run authenticated read-only Google Ads/Keyword Planner validation at max CPC `$0.15`.
+- Export forecast/readback rows and run `validate_keyword_planner_forecast_export.py`.
+- Promote only `PASS_015_CPC_GATE` rows through a fresh `GREEN` action-queue row with fresh Ads before-state readback and after-state plan.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/GB_CA_AU_CPC_VALIDATION_DECISION_KIT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/gb_ca_au_cpc_validation_decision_kit_summary.json`
+
+Safest next sales-moving action:
+
+- In an account-capable Ads session, validate the canonical rows and run the parser; live action remains blocked until pass rows exist.

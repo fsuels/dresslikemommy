@@ -1,6 +1,6 @@
 # Marketing Assumption Log
 
-Last updated: 2026-05-14 14:57 EDT
+Last updated: 2026-05-14 15:19 EDT
 
 Use this file for important assumptions that affect paid-growth decisions, especially when evidence is repo-known, stale, sampled, or gated by approval/access.
 
@@ -31,6 +31,7 @@ Use this file for important assumptions that affect paid-growth decisions, espec
 | 2026-05-14 | The swim-trunks live-sync packet is approval/readback prep, not theme-push authority. | `US_SHOPPING_SEASONAL_RELATED_FILTER_LIVE_SYNC_APPROVAL_PACKET.md` names exact approval language and pass criteria, but no live sync occurred in this automation run. | A future operator could push the theme without owner approval or treat the two swim-trunks rows as paid-clean before public source readback. | Get the exact approval phrase, push only `snippets/buy-box-similar-styles.liquid`, and require after-state public source readback with `0` stale seasonal hits before using those rows. |
 | 2026-05-14 | The GB/CA/AU 36-row packet remains account-gated even though public routes refreshed clean. | Public refresh checked `24` fetches across `12` unique market/route URLs with `0` non-200s, `0` supplier/source-domain or URL-brand hits, and `0` stale seasonal/local-inventory trust hits; the shell still has no Google Ads env keys or `google.ads.googleads` package. | A future operator could mistake public landing proof for Keyword Planner/CPC proof and upload rows that cannot enter auctions at `$0.15`. | Run authenticated Google Ads/Keyword Planner validation at max `$0.15`; promote only pass rows through a fresh green action row with reviewer and after-state readback. |
 | 2026-05-14 | The current GB/CA/AU CPC validation artifact should use canonical `/collections/matching-outfits` URLs, not redirecting `/collections/family-matching` URLs. | Canonical packet converted `11` rows and read back `24` public fetches across `12` unique market/route URLs with `0` redirects, `0` supplier/stale hits, and `0` non-200s. | A future operator could validate or upload a redirecting final URL set, adding friction or tracking/canonical ambiguity. | Use `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-canonical-url-packet/gb_ca_au_36_clean_route_cpc_validation_rows_canonical_urls.csv` for authenticated `$0.15` validation; retire this assumption after pass/fail rows are read back and a fresh action row is created. |
+| 2026-05-14 | The CPC validation decision kit is a no-upload harness, not CPC proof. | `GB_CA_AU_CPC_VALIDATION_DECISION_KIT.md` generated local Keyword Planner inputs, a `72`-row exact+phrase validation matrix, a forecast export template, and parser, but no authenticated Ads forecast was available in this runtime. | A future operator could treat exact/phrase validation rows as live keyword additions without authenticated `$0.15` pass evidence. | In authenticated Ads/Keyword Planner, export forecast/readback rows, run `validate_keyword_planner_forecast_export.py`, and promote only `PASS_015_CPC_GATE` rows through a fresh `GREEN` action row after reviewer and after-state gates. |
 
 ## Add New Assumptions Like This
 

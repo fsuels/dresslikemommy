@@ -37266,3 +37266,45 @@ Next best action:
 - Run authenticated Google Ads / Keyword Planner validation for `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-canonical-url-packet/gb_ca_au_36_clean_route_cpc_validation_rows_canonical_urls.csv` at max `$0.15` CPC.
 - Promote only pass rows through a fresh `GREEN` action-queue row with fresh Ads readback, reviewer pass, anti-cannibalization check, and after-state readback.
 - Continue authenticated Standard Shopping item-level export and Merchant/Pinterest auth blockers in account-capable sessions.
+
+2026-05-14 - Automation CPC validation decision kit
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-cpc-validation-decision-kit
+
+Why:
+- The highest-priority remaining action row is authenticated Google Ads / Keyword Planner validation for the canonical GB/CA/AU 36-row packet at max `$0.15` CPC.
+- Non-GUI Ads validation is unavailable in this unattended shell: `google.ads.googleads` is missing and Google Ads env keys are unset. The automation rule forbids spending the run on Computer Use permission repair or profile-locked browser recovery.
+- The next safe sales-moving lane was to remove account-session friction by preparing exact Keyword Planner inputs and a parser that can convert a future authenticated forecast export into pass/fail rows without rediscovery.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/build_cpc_validation_decision_kit.py`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/validate_keyword_planner_forecast_export.py`.
+- Generated `GB_CA_AU_CPC_VALIDATION_DECISION_KIT.md`.
+- Generated `gb_ca_au_36_keyword_planner_validation_matrix.csv` with `72` exact+phrase validation rows from the canonical `36` source rows.
+- Generated `keyword_planner_forecast_export_template.csv`, market-specific exact/phrase Keyword Planner input text files, and `gb_ca_au_cpc_validation_decision_kit_summary.json`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `memory_digest.md`, `assumption_log.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Source canonical packet remains `36` rows (`GB=12`, `CA=12`, `AU=12`) across clean routes: `/collections/mommy-and-me`, `/collections/matching-outfits`, `/collections/pajamas`, and `/collections/family-swimsuits`.
+- Decision kit expands those into `72` validation rows: exact plus phrase for each source row.
+- Parser classifies authenticated forecast rows as `PASS_015_CPC_GATE`, `FAIL_015_CPC_GATE`, `LOW_VOLUME_OR_NO_AUCTION`, `POLICY_OR_DESTINATION_BLOCK`, or `MISSING_REQUIRED_FORECAST_DATA`.
+- This is not CPC proof and not upload authority. Actual `$0.15` validation remains authenticated account-gated.
+
+Verification:
+- Repo write test passed.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/build_cpc_validation_decision_kit.py` completed: `source_row_count=36`, `validation_row_count=72`, `max_cpc_usd=0.15`.
+- `python3.13 -m py_compile dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/build_cpc_validation_decision_kit.py dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/validate_keyword_planner_forecast_export.py` passed.
+- `python3.13 -m json.tool dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/gb_ca_au_cpc_validation_decision_kit_summary.json` passed.
+- `validate_keyword_planner_forecast_export.py` smoke test with synthetic pass/fail rows returned one `PASS_015_CPC_GATE` and one `FAIL_015_CPC_GATE`.
+
+Guardrails:
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/campaign write occurred.
+- No Shopify Admin product/vendor/source metadata edit and no live theme push/sync/publish occurred.
+- No Merchant, Pinterest, GA4/GTM, billing, feed, product-scope, product-group, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- In an authenticated Google Ads / Keyword Planner session, validate `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-canonical-url-packet/gb_ca_au_36_clean_route_cpc_validation_rows_canonical_urls.csv` at max `$0.15` using the decision kit inputs.
+- Export forecast/readback rows and run:
+  `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/validate_keyword_planner_forecast_export.py --forecast-csv /path/to/authenticated-forecast-export.csv`
+- Promote only `PASS_015_CPC_GATE` rows through a fresh `GREEN` action-queue row with fresh Ads readback, reviewer pass, anti-cannibalization check, and after-state readback.
