@@ -78,11 +78,55 @@
   endif
 
   assign current_product_type = product.type | downcase | strip
+  assign current_product_pattern = product.metafields.custom.pattern | default: '' | downcase | strip
+  capture current_product_seasonal_text
+    echo product.title
+    echo ' '
+    echo product.handle
+    echo ' '
+    echo product.type
+    echo ' '
+    echo current_product_pattern
+    echo ' '
+    for tag in product.tags
+      echo tag
+      echo ' '
+    endfor
+  endcapture
+  assign current_product_seasonal_text = current_product_seasonal_text | downcase | strip
+  assign current_product_is_christmas_context = false
+  if current_product_seasonal_text contains 'christmas' or current_product_seasonal_text contains 'santa' or current_product_seasonal_text contains 'xmas'
+    assign current_product_is_christmas_context = true
+  endif
   assign same_type_match_count = 0
   assign rendered_similar_items_count = 0
   if similar_collection != blank and current_product_type != blank
     for browse_product in similar_collection.products
       if browse_product.id == product.id
+        continue
+      endif
+
+      assign browse_product_pattern = browse_product.metafields.custom.pattern | default: '' | downcase | strip
+      capture browse_product_seasonal_text
+        echo browse_product.title
+        echo ' '
+        echo browse_product.handle
+        echo ' '
+        echo browse_product.type
+        echo ' '
+        echo browse_product_pattern
+        echo ' '
+        for tag in browse_product.tags
+          echo tag
+          echo ' '
+        endfor
+      endcapture
+      assign browse_product_seasonal_text = browse_product_seasonal_text | downcase | strip
+      assign browse_product_is_christmas_context = false
+      if browse_product_seasonal_text contains 'christmas' or browse_product_seasonal_text contains 'santa' or browse_product_seasonal_text contains 'xmas'
+        assign browse_product_is_christmas_context = true
+      endif
+      if browse_product_is_christmas_context and current_product_is_christmas_context == false
         continue
       endif
 
@@ -108,6 +152,30 @@
     if similar_collection != blank
       for browse_product in similar_collection.products
         if browse_product.id == product.id
+          continue
+        endif
+
+        assign browse_product_pattern = browse_product.metafields.custom.pattern | default: '' | downcase | strip
+        capture browse_product_seasonal_text
+          echo browse_product.title
+          echo ' '
+          echo browse_product.handle
+          echo ' '
+          echo browse_product.type
+          echo ' '
+          echo browse_product_pattern
+          echo ' '
+          for tag in browse_product.tags
+            echo tag
+            echo ' '
+          endfor
+        endcapture
+        assign browse_product_seasonal_text = browse_product_seasonal_text | downcase | strip
+        assign browse_product_is_christmas_context = false
+        if browse_product_seasonal_text contains 'christmas' or browse_product_seasonal_text contains 'santa' or browse_product_seasonal_text contains 'xmas'
+          assign browse_product_is_christmas_context = true
+        endif
+        if browse_product_is_christmas_context and current_product_is_christmas_context == false
           continue
         endif
 

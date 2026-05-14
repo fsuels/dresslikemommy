@@ -1,8 +1,37 @@
 # Marketing Safety Review Log
 
-Last updated: 2026-05-14 11:40 EDT
+Last updated: 2026-05-14 13:38 EDT
 
 Use this log for reviewer outcomes or simulated checklist runs. Keep entries short and tied to evidence.
+
+## 2026-05-14 - US Shopping seasonal related-product filter local fix
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Repo-local theme edit only in `snippets/buy-box-similar-styles.liquid`.
+- Public source-context readback separated the dynamic swim-trunks stale seasonal blocker from the sequin lace supplier/source vendor blocker.
+- Theme Check returned `[]`.
+
+Risks:
+
+- This is not live on Shopify until an approved scoped theme sync occurs.
+- The sequin lace PDP supplier/source leak is Shopify injected `product.vendor` data and still needs product-data approval or exclusion; the related-product filter does not fix that handle.
+
+Required gates/fixes:
+
+- Do not include the swim-trunks held rows in paid export/use until the local theme change is live-synced and public source readback shows `0` stale seasonal hits.
+- Do not edit Shopify product/vendor/source fields, Merchant feeds, Ads, budgets, bids, statuses, conversion goals, or product groups without the exact approval gate.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-seasonal-related-filter/US_SHOPPING_SEASONAL_RELATED_FILTER_LOCAL_FIX.md`
+- `snippets/buy-box-similar-styles.liquid`
+
+Safest next sales-moving action:
+
+- Run authenticated Standard Shopping item-level export from the public-clean scope, and separately request scoped live theme sync only if the owner wants the swim-trunks held rows eligible later.
 
 ## 2026-05-14 - Automation capability mismatch plus Merchant capacity local diagnosis
 

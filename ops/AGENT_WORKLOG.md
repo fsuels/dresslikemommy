@@ -37079,3 +37079,38 @@ Next best action:
 - Run authenticated read-only Standard Shopping item-level export for campaign `23802638621`, joined first to `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_auth_export_public_clean_scope.csv`.
 - Use `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-held-pdp-repair-packet/US_SHOPPING_HELD_PDP_REPAIR_PACKET.md` to keep excluded held rows out of decisions unless repaired/read back clean, or unless the one weak-fit source-clean row is proven relevant by item-level export.
 - Continue authenticated `$0.15` CPC validation for the GB/CA/AU 36-row packet in an account-capable session.
+
+2026-05-14 - Automation US Shopping seasonal related filter local fix
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-us-shopping-seasonal-related-filter-local
+
+Why:
+- The highest-priority remaining P0/P1 action rows still require authenticated Google Ads/Merchant account surfaces, and this unattended automation runtime is already recorded as `AUTOMATION_CAPABILITY_MISMATCH` for those lanes.
+- The next safe sales-moving lane was reducing a held US Shopping public-landing blocker before future item-level export/title-feed decisions.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-seasonal-related-filter/US_SHOPPING_SEASONAL_RELATED_FILTER_LOCAL_FIX.md`.
+- Patched `snippets/buy-box-similar-styles.liquid` so non-seasonal PDPs skip Christmas/Santa/Xmas related-product recommendations.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Fresh public source context for `dynamic-duo-father-and-son-matching-swim-trunks-family-beachwear-set?country=US` showed `0` supplier/source URL hits; its stale `Christmas` hits came from related-product card metadata/image alt text.
+- Fresh public source context for `chic-family-matching-sleeveless-dresses-ruffled-hem-mother-daughter-summer-outfit?country=US` showed supplier/source URL hits inside Shopify injected product variant JSON where `product.vendor` is the source URL. That path still needs owner-approved product/vendor source cleanup or exclusion; the related-product filter cannot fix it.
+- The two swim-trunks held rows now have a local theme fix ready, but remain excluded from paid export/use until approved live theme sync and public source readback show `0` stale seasonal hits.
+
+Verification:
+- Repo write test passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- `python3.13 -m json.tool dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-held-pdp-repair-packet/us_shopping_held_pdp_repair_summary.json` passed.
+
+Guardrails:
+- No live Shopify theme push/sync/publish occurred.
+- No Shopify Admin product/vendor/source metadata edit occurred.
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/product-group write occurred.
+- No Merchant feed/source/product/title edit, Pinterest, GA4/GTM, billing, product-scope, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Run authenticated read-only Standard Shopping item-level export for campaign `23802638621`, joined first to `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_auth_export_public_clean_scope.csv`.
+- If the owner wants the swim-trunks held rows eligible later, use the exact approval packet in `US_SHOPPING_SEASONAL_RELATED_FILTER_LOCAL_FIX.md` for a scoped live theme sync and before/after public source readback.
+- Continue authenticated `$0.15` CPC validation for the GB/CA/AU 36-row packet in an account-capable session.
