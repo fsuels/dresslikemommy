@@ -1,6 +1,6 @@
 # Marketing Assumption Log
 
-Last updated: 2026-05-14 13:18 EDT
+Last updated: 2026-05-14 13:58 EDT
 
 Use this file for important assumptions that affect paid-growth decisions, especially when evidence is repo-known, stale, sampled, or gated by approval/access.
 
@@ -27,6 +27,7 @@ Use this file for important assumptions that affect paid-growth decisions, espec
 | 2026-05-14 | US Standard Shopping query/title candidates are hypotheses until item-level export proves them. | `US_STANDARD_SHOPPING_QUERY_TITLE_DIAGNOSIS.md` maps zero-click visible terms to paid-cohort candidates, but the current saved readback does not expose which item IDs/titles received those impressions. | A future operator could edit product/feed titles or product groups based on plausible mapping instead of proof. | Run authenticated read-only item-level export for campaign `23802638621`, then join it to `us_shopping_query_title_candidates.csv`; only proven mismatches become an approval packet. |
 | 2026-05-14 | Public-clean US Shopping PDP rows are export candidates, not proof of item-level demand. | Public PDP preflight saved `18/24` candidate rows as `us_shopping_auth_export_public_clean_scope.csv`, with `5` held source/stale-copy rows and `1` title-fit review row. | A future operator could treat public PDP cleanliness as permission to edit titles/feed or ignore held rows without item-level impression proof. | Run authenticated item-level Standard Shopping export and join first to the public-clean scope; held rows require separate source/title-fit repair before they can influence title/feed decisions. |
 | 2026-05-14 | Held US Shopping PDP rows are exclusion/repair gates, not hidden export candidates. | Held-PDP packet rechecked `6` held/review rows: `3` rows excluded until supplier/source-clean, `2` rows excluded until stale seasonal-copy-clean, and `1` source-clean weak-fit row allowed only if item-level impressions prove relevance. | A future operator could accidentally include supplier-leaking or stale seasonal PDPs in paid export/title repair decisions. | Use `US_SHOPPING_HELD_PDP_REPAIR_PACKET.md`; repair and public-readback excluded rows before paid use, or keep them excluded. |
+| 2026-05-14 | The US Shopping auth-export join prep is a safety harness, not item-level proof. | `US_SHOPPING_AUTH_EXPORT_JOIN_PREP.md` generated a template and join script without an authenticated export in this automation runtime. | A future operator could mistake the prep packet for evidence that title/feed mismatches exist or that product/feed edits are approved. | Run the authenticated export, include product URL/handle, execute the join script, and only convert proven item-level mismatches into an owner approval packet. |
 
 ## Add New Assumptions Like This
 

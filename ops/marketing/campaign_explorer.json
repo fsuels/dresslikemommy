@@ -596,7 +596,7 @@
       "campaign_id": "23802638621",
       "campaign_name": "DLM_US_STANDARD_SHOPPING_TEST_PAID_READY",
       "status_label": "ACTIVE: Enabled / Eligible",
-      "running_state": "Running as the US paid-ready Shopping test. Latest readback: 17 impressions, 0 clicks, $0.00 cost, 0.00 conversions/value for 2026-05-13. Public PDP preflight now narrows the query/title export scope to 18 clean candidate rows.",
+      "running_state": "Running as the US paid-ready Shopping test. Latest readback: 17 impressions, 0 clicks, $0.00 cost, 0.00 conversions/value for 2026-05-13. Public PDP preflight now narrows the query/title export scope to 18 clean candidate rows, and the auth-export join prep is ready.",
       "budget": "$20.00/day",
       "bid_strategy": "Shopping product groups show included us_test_ready child groups at $0.04; Everything else excluded.",
       "bid_strategy_type": "Standard Shopping product-group CPC, not Search Maximize Clicks",
@@ -617,7 +617,7 @@
       "health_status": "US PRIMARY MARKET / SHOPPING LOW IMPRESSION / TODAY READBACK NEEDED",
       "activated_at": "Exact activation timestamp is not captured in the current command layer; latest saved evidence verifies enabled/eligible on 2026-05-14 05:35 EDT.",
       "latest_readback": "2026-05-14 05:35 EDT; saved metrics are for reporting day 2026-05-13.",
-      "next_decision": "Run authenticated read-only item-level Shopping export for campaign 23802638621 and join it first to us_shopping_auth_export_public_clean_scope.csv. Do not change Shopping status, budget, bids, product groups, feed labels, product scope, conversion goals, product titles, or feed attributes until export proof identifies a mismatch and an approval packet exists.",
+      "next_decision": "Run authenticated read-only item-level Shopping export for campaign 23802638621 with product URL/handle where possible, then run run_us_shopping_auth_export_join_prep.py --export-csv. Do not change Shopping status, budget, bids, product groups, feed labels, product scope, conversion goals, product titles, or feed attributes until export proof identifies a mismatch and an approval packet exists.",
       "success_measurement": [
         "Final success: as many profitable sales as possible while targeting about 650% ROAS.",
         "Day 1 growth rule: by tomorrow report sales, revenue, CPA, ROAS, and what changed; 17 impressions with zero clicks requires product/title/image/query-fit review if it persists.",
@@ -732,7 +732,8 @@
         "ops/marketing/keyword_factory_015_cpc_criteria.md",
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-query-title-diagnosis/US_STANDARD_SHOPPING_QUERY_TITLE_DIAGNOSIS.md",
         "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/US_SHOPPING_PUBLIC_PDP_FIT_PREFLIGHT.md",
-        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_auth_export_public_clean_scope.csv"
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_auth_export_public_clean_scope.csv",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/US_SHOPPING_AUTH_EXPORT_JOIN_PREP.md"
       ],
       "human_verify": [
         "Check product groups still exclude Everything else.",
@@ -764,7 +765,7 @@
         "If a Shopping term duplicates a winning exact Search query, compare product-level and campaign-level economics before changing routing."
       ],
       "current_blockers": [
-        "Authenticated item-level Shopping export is still required before any title/feed/product-group decision.",
+        "Authenticated item-level Shopping export is still required before any title/feed/product-group decision; the local join script/template is ready for that export.",
         "Public PDP preflight held 5 candidate rows for source/stale-copy issues and 1 row for title-fit review.",
         "Zero-click zero-cost terms do not justify negatives or product-group edits."
       ]

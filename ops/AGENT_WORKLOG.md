@@ -37114,3 +37114,45 @@ Next best action:
 - Run authenticated read-only Standard Shopping item-level export for campaign `23802638621`, joined first to `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_auth_export_public_clean_scope.csv`.
 - If the owner wants the swim-trunks held rows eligible later, use the exact approval packet in `US_SHOPPING_SEASONAL_RELATED_FILTER_LOCAL_FIX.md` for a scoped live theme sync and before/after public source readback.
 - Continue authenticated `$0.15` CPC validation for the GB/CA/AU 36-row packet in an account-capable session.
+
+2026-05-14 - Automation US Shopping auth export join prep
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-us-shopping-auth-export-join-prep
+
+Why:
+- The highest-priority remaining rows still require authenticated Google Ads/Merchant account surfaces, and this unattended automation runtime is already recorded as `AUTOMATION_CAPABILITY_MISMATCH` for those lanes.
+- The next safe sales-moving lane was reducing execution friction and error risk for the US Standard Shopping item-level export gate, because the US lane has impressions but no clicks/cost/conversions and must not move to title/feed/product-group edits from public hypotheses alone.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/run_us_shopping_auth_export_join_prep.py`.
+- Generated `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/US_SHOPPING_AUTH_EXPORT_JOIN_PREP.md`.
+- Generated `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/us_shopping_authenticated_item_export_template.csv`.
+- Generated `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/us_shopping_public_clean_scope_by_handle.csv`.
+- Generated `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/us_shopping_auth_export_join_prep_summary.json`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, `operator_cockpit.md`, and `campaign_explorer.json`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- The prep script loaded the existing `18` public-clean US Shopping export-scope rows across `7` handles.
+- It also loaded the existing `6` held/review rows across `3` handles so a future authenticated export cannot bypass the repair/exclusion gates.
+- It generated a read-only export template and handle-level scope; no authenticated export was supplied in this automation runtime.
+- Future authenticated session should export campaign `23802638621` item rows with product URL/handle, then run:
+  `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/run_us_shopping_auth_export_join_prep.py --export-csv /path/to/authenticated-export.csv`
+- Only joined rows with item-level impression proof and title-signal gaps should become a narrow owner approval packet. The prep is not approval to edit product/feed/title data.
+
+Verification:
+- Repo write test passed.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/run_us_shopping_auth_export_join_prep.py` completed and regenerated report/CSV/JSON outputs.
+- `python3.13 -m py_compile dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/run_us_shopping_auth_export_join_prep.py` passed.
+- `python3.13 -m json.tool dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/us_shopping_auth_export_join_prep_summary.json` passed.
+
+Guardrails:
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/product-group write occurred.
+- No Merchant feed/source/product/title edit and no Shopify Admin product/title/feed-visible edit occurred.
+- No live Shopify theme push/sync/publish occurred.
+- No Pinterest, GA4/GTM, billing, product-scope, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Run authenticated read-only Standard Shopping item-level export for campaign `23802638621` with item ID, product title, product group/custom label, impressions, clicks, cost, query/search-term where available, conversion value, and landing URL or product handle.
+- Run the join script above and use the joined decision CSV to decide whether a narrow title/feed approval packet is justified.
+- Continue authenticated `$0.15` CPC validation for the GB/CA/AU 36-row packet in an account-capable session.

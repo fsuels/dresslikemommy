@@ -802,3 +802,36 @@ Evidence:
 Safest next sales-moving action:
 
 - Authenticated item-level Shopping export against the public-clean scope, while preserving the held-PDP repair packet as the exact repair/exclusion gate.
+
+## 2026-05-14 - US Shopping authenticated export join prep
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Repo-local script/report/template generation only; no Google Ads, Merchant, Shopify Admin, live theme, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, product-group, conversion, or destructive write.
+- Existing public-clean scope from `us_shopping_auth_export_public_clean_scope.csv`: `18` rows across `7` handles.
+- Existing held-PDP repair rows: `6` rows across `3` handles.
+- Generated join prep report, template, handle-level scope, and JSON summary.
+
+Risks:
+
+- No authenticated export was available in this automation runtime, so the packet is not item-level proof.
+- Export rows without a product URL or handle cannot be safely joined; future operator must include or add the Shopify handle before decision use.
+- Title-signal heuristics are review triggers only, not authority to edit Shopify/Merchant/feed data.
+
+Required gates/fixes:
+
+- Run authenticated read-only Standard Shopping product-item export for campaign `23802638621`.
+- Include item ID, product title, product group/custom labels, impressions, clicks, cost, query/search term where available, conversion value, and product URL or handle.
+- Run `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/run_us_shopping_auth_export_join_prep.py --export-csv /path/to/authenticated-export.csv`.
+- Prepare a title/feed approval packet only for proven item-level mismatches after the join; do not make direct product/feed/title edits.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/US_SHOPPING_AUTH_EXPORT_JOIN_PREP.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/us_shopping_auth_export_join_prep_summary.json`
+
+Safest next sales-moving action:
+
+- Run the authenticated read-only export and then the join script; convert only proven mismatches into a narrow owner approval packet.
