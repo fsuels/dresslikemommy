@@ -37194,3 +37194,39 @@ Next best action:
 - Run authenticated Google Ads / Keyword Planner validation for the GB/CA/AU 36-row packet at max `$0.15`.
 - Run authenticated read-only Standard Shopping item-level export for campaign `23802638621`, then run the auth-export join script.
 - If owner approves the swim-trunks live theme unblock, use `US_SHOPPING_SEASONAL_RELATED_FILTER_LIVE_SYNC_APPROVAL_PACKET.md` to push only the snippet and read back before/after public source; otherwise keep those held rows excluded.
+
+2026-05-14 - Automation 36-row CPC public route refresh
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-36-row-cpc-public-refresh
+
+Why:
+- The highest-priority remaining P0 row is authenticated Google Ads / Keyword Planner validation for the GB/CA/AU 36-row packet at max $0.15 CPC, but this unattended automation runtime has no Google Ads API env keys, no google.ads.googleads package, and account-surface GUI validation remains capability-gated.
+- The safest executable lane was to refresh the public final URLs for the exact packet so the next account-capable session can validate CPC without redoing route-cleanliness work.
+
+What changed:
+- Added dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-public-refresh/refresh_36_row_cpc_public_readback.py.
+- Generated GB_CA_AU_36_ROW_CPC_PUBLIC_ROUTE_REFRESH.md, gb_ca_au_36_row_public_route_readback_rows.csv, and gb_ca_au_36_row_public_route_readback_summary.json.
+- Updated ops/marketing/action_queue.md, current_marketing_state.md, daily_scorecard.md, blocker_board.md, decision_log.md, review_log.md, memory_digest.md, assumption_log.md, and operator_cockpit.md.
+- Updated ops/PROBLEM_TRACKER.md and ops/AGENT_COORDINATION.md.
+
+Readback / decision:
+- Checked the existing 36-row packet as 12 unique market/route URLs and 24 public fetches across browser-like and cache-busted header variants.
+- Result: 0 non-200s, 0 supplier/source-domain or URL-brand hits, and 0 stale seasonal/local-inventory trust hits.
+- Sidecar independently confirmed all routes are safe for CPC validation and noted that /collections/family-matching redirects cleanly to /collections/matching-outfits?country=...; this is not a source-cleanliness blocker, but future live packets should prefer canonical final URLs after CPC validation.
+- The authenticated $0.15 CPC/auction-entry gate remains open and cannot be closed by public route proof.
+
+Verification:
+- Repo write test passed.
+- python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-public-refresh/refresh_36_row_cpc_public_readback.py completed: 36 source rows, 12 unique routes, 24 fetches, 6 redirects, 0 supplier hits, 0 stale/trust hits.
+- python3.13 -m py_compile dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-public-refresh/refresh_36_row_cpc_public_readback.py passed.
+- python3.13 -m json.tool dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-public-refresh/gb_ca_au_36_row_public_route_readback_summary.json passed.
+
+Guardrails:
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/campaign write occurred.
+- No Shopify Admin product/vendor/source metadata edit and no live theme push/sync/publish occurred.
+- No Merchant, Pinterest, GA4/GTM, billing, feed, product-scope, product-group, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Run authenticated Google Ads / Keyword Planner validation for dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/gb_ca_au_36_clean_route_cpc_validation_rows.csv at max $0.15 CPC.
+- Promote only pass rows through a fresh GREEN action-queue row with reviewer pass, canonical final URLs where redirects exist, and after-state readback.
+- Continue authenticated Standard Shopping item-level export and Merchant/Pinterest auth blockers in account-capable sessions.

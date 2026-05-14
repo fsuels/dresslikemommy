@@ -866,3 +866,33 @@ Evidence:
 Safest next sales-moving action:
 
 - In an owner-approved theme session, execute the one-snippet live sync and before/after public source readbacks; otherwise keep the swim-trunks rows excluded.
+
+## 2026-05-14 - GB/CA/AU 36-row CPC public route refresh
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Public storefront readback only; no Google Ads, Merchant, Shopify Admin, live theme, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, product-group, conversion, or destructive write.
+- Exact source scope was the existing `36`-row GB/CA/AU CPC validation packet.
+- Checked `12` unique market/route URLs with `24` fetches across browser-like and cache-busted header variants.
+
+Risks:
+
+- This is not Google Ads/Keyword Planner CPC or auction-entry proof.
+- `/collections/family-matching` redirects cleanly to `/collections/matching-outfits`; not a landing-cleanliness blocker, but future live packets should avoid unnecessary redirects by using canonical URLs after CPC validation.
+
+Required gates/fixes:
+
+- Run authenticated read-only Google Ads/Keyword Planner validation at max CPC `$0.15`.
+- Promote only pass rows through a fresh `GREEN` action-queue row with reviewer pass and after-state readback.
+- No upload/apply/add keyword/bid/status/budget/negative action from public route proof alone.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-public-refresh/GB_CA_AU_36_ROW_CPC_PUBLIC_ROUTE_REFRESH.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-public-refresh/gb_ca_au_36_row_public_route_readback_summary.json`
+
+Safest next sales-moving action:
+
+- Authenticated `$0.15` CPC validation for the exact 36-row packet; then canonicalize passing final URLs before any live action row.
