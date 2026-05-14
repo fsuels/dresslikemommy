@@ -2,7 +2,7 @@
 
 Integration status: `GENERATED`
 
-Last generated: 2026-05-14 09:06
+Last generated: 2026-05-14 09:43
 
 Purpose: identify command-layer files that risk becoming side documents nobody uses.
 
@@ -27,13 +27,13 @@ No new `ops/marketing/` artifact counts as done unless it is either:
 
 | File | Status | Registered | Ref count | Action surface | Fix |
 |---|---|---:|---:|---:|---|
-| `ops/marketing/AGENTS.md` | `PASS_CORE` | `true` | `10` | `true` | none |
+| `ops/marketing/AGENTS.md` | `PASS_CORE` | `true` | `11` | `true` | none |
 | `ops/marketing/action_queue.md` | `PASS_CORE` | `true` | `6` | `true` | none |
 | `ops/marketing/assumption_log.md` | `PASS_CORE` | `true` | `3` | `false` | none |
-| `ops/marketing/blocker_board.md` | `PASS_CORE` | `true` | `4` | `true` | none |
+| `ops/marketing/blocker_board.md` | `PASS_CORE` | `true` | `5` | `true` | none |
 | `ops/marketing/campaign_explorer.json` | `PASS_CORE` | `true` | `10` | `true` | none |
 | `ops/marketing/command_layer_integration_audit.md` | `PASS_GENERATED` | `true` | `9` | `true` | generated integration audit |
-| `ops/marketing/current_marketing_state.md` | `PASS_CORE` | `true` | `8` | `true` | none |
+| `ops/marketing/current_marketing_state.md` | `PASS_CORE` | `true` | `9` | `true` | none |
 | `ops/marketing/daily_scorecard.md` | `PASS_CORE` | `true` | `5` | `true` | none |
 | `ops/marketing/decision_log.md` | `PASS_CORE` | `true` | `3` | `false` | none |
 | `ops/marketing/dream_consolidation_prompt.md` | `PASS_INTEGRATED` | `true` | `4` | `true` | none |
@@ -44,8 +44,8 @@ No new `ops/marketing/` artifact counts as done unless it is either:
 | `ops/marketing/keyword_universe.csv` | `PASS_INTEGRATED` | `true` | `14` | `true` | none |
 | `ops/marketing/memory_digest.md` | `PASS_CORE` | `true` | `2` | `false` | none |
 | `ops/marketing/migration_trace.md` | `PASS_ARCHIVE_REFERENCE` | `true` | `4` | `true` | none |
-| `ops/marketing/operator_cockpit.html` | `PASS_GENERATED` | `true` | `8` | `true` | generated cockpit |
-| `ops/marketing/operator_cockpit.md` | `PASS_CORE` | `true` | `4` | `false` | none |
+| `ops/marketing/operator_cockpit.html` | `PASS_GENERATED` | `true` | `9` | `true` | generated cockpit |
+| `ops/marketing/operator_cockpit.md` | `PASS_CORE` | `true` | `5` | `true` | none |
 | `ops/marketing/prompt_log.md` | `PASS_CORE` | `true` | `2` | `false` | none |
 | `ops/marketing/review_log.md` | `PASS_CORE` | `true` | `3` | `false` | none |
 | `ops/marketing/reviewer_checklist.md` | `PASS_CORE` | `true` | `4` | `false` | none |

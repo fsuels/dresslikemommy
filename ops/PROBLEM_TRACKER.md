@@ -29,6 +29,7 @@ Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
 
 | Problem ID | Priority | Status | Closed | Surface | Result | Evidence |
 |---|---|---|---|---|---|---|
+| `PROB-2026-05-14-CONTINUITY-INTEGRITY-SPLIT-BRAIN` | `P0` | `SOLVED_STRICT_CHECK_ADDED` | 2026-05-14 | Canonical worklog, alternate worklog, canonical prompt, spend authority, cockpit freshness, and command-layer integration | Added `ops/scripts/check_continuity_integrity.py --strict`, quarantined `ops/AGENT_WORKLOG_utf8.md` as `HISTORICAL_DO_NOT_USE`, compared and summarized its unique historical session titles in the canonical worklog, removed stale latest-anchor literal from the canonical prompt First actions, and wired the strict check into durable closeout rules | `ops/scripts/check_continuity_integrity.py`; `ops/AGENT_WORKLOG.md`; `ops/AGENT_WORKLOG_utf8.md`; `ops/prompts/paid-growth-ai-army-continuation-prompt.md`; `AGENTS.md`; `CLAUDE.md`; `ops/marketing/AGENTS.md` |
 | `PROB-2026-05-14-COMMAND-LAYER-SIDE-DOC-RISK` | `P0` | `SOLVED_AUDIT_GUARD_PASSED` | 2026-05-14 | `ops/marketing/` command layer integration and follow-up discipline | Owner identified that a session idea with no follow-up is the same as nothing. Added a repeatable integration audit, registered/unblocked the weak docs, marked migration trace as archive reference, linked consolidation prompt from the action surface, and generated a current report with `25` tracked files and `0` side-document risks | `ops/scripts/audit_marketing_command_integration.py`; `ops/marketing/command_layer_integration_audit.md`; `ops/marketing/AGENTS.md`; `ops/marketing/action_queue.md` |
 | `PROB-2026-05-12-MOBILE-PDP-MATCHING-STICKY-CTA` | `P1` | `SOLVED_LIVE_READBACK_PASSED` | 2026-05-12 | Live Shopify theme mobile PDP matching-set sticky CTA | Matching-set sticky CTA now mirrors the selected bundle instead of acting like a single-variant add-to-cart: empty state shows matching-set context and a clickable chooser; selected state shows `2 Matching Pieces`, `Total $52.98`, selected summary `Mother S, Girl 2 Years`, and `Add matching pieces`. Scoped live push to theme `#133290917985` succeeded, cache-busted live mobile readback confirmed asset version `product-desktop-ux.js?v=56127774210270559611778580822` contains the new emitter, and click-forward readback confirmed the sticky button forwards to the real matching-set add button | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-mobile-pdp-matching-set-sticky-cta/MOBILE_MATCHING_SET_STICKY_CTA_READBACK.md`; `live_mobile_matching_set_sticky_cta_readback.json`; `node --check assets/product-desktop-ux.js`; `git diff --check`; `shopify theme check --path . --fail-level error --output json`; `shopify theme push --theme 133290917985 --only assets/product-desktop-ux.js --only sections/main-product.liquid --allow-live` |
 | `PROB-2026-05-12-DESKTOP-PDP-MATCHING-STICKY-CTA` | `P1` | `SOLVED_LIVE_READBACK_PASSED_SYNC_PENDING` | 2026-05-12 | Live Shopify theme desktop PDP matching-set sticky CTA and cart drawer open state | Desktop sticky CTA now observes the real green matching-set button instead of the hidden standalone product form. Live Picnic Plaid readback passed: sticky is hidden while the green CTA is visible; after the green CTA scrolls out of view, sticky appears as `2 Matching Pieces Total $60.98 ADD MATCHING PIECES` with green button styling. Follow-up live readback confirmed sticky click opens the cart drawer at the same top-of-cart state as the regular button: `Your cart (2)` and line items visible, no stale empty-cart class, drawer scroll reset to top | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-desktop-pdp-matching-set-sticky-cta/DESKTOP_MATCHING_SET_STICKY_CTA_READBACK.md`; `live_desktop_picnic_sticky_cart_drawer_after_fix_retry_readback.json`; `live_desktop_picnic_cart_drawer_after_fix_readback.json`; `node --check assets/product-desktop-ux.js`; `node --check assets/cart-drawer.js`; `git diff --check`; `shopify theme check --path . --fail-level error --output json`; `shopify theme push --theme 133290917985 --only assets/product-desktop-ux.js --only assets/component-product-desktop-ux.css --allow-live`; `shopify theme push --theme 133290917985 --only assets/cart-drawer.js --allow-live` |
@@ -244,6 +245,48 @@ Approval/credential/platform gates:
 
 Parallel work to continue:
 - Ads, Merchant, Pinterest, GA4, checkout/payment, and Admin product-data lanes remain separate.
+
+### `PROB-2026-05-14-CONTINUITY-INTEGRITY-SPLIT-BRAIN`
+
+Priority: `P0`
+
+Status: `SOLVED_STRICT_CHECK_ADDED`
+
+Owner/session: Codex current session, 2026-05-14.
+
+Surface: Canonical worklog, alternate worklog, canonical paid-growth prompt, spend-authority command layer, cockpit render freshness, and command-layer integration audit.
+
+Exact symptom:
+- The marketing integration audit covered `ops/marketing/`, but a future agent could still be misled by a broader continuity split: tracked `ops/AGENT_WORKLOG_utf8.md` existed outside the canonical path, the canonical prompt First actions still carried a stale literal latest-anchor example, and there was no single strict command that checked spend-authority agreement plus cockpit freshness plus the existing marketing integration audit.
+
+Business impact:
+- A session can follow the documented startup path and still miss the real latest state if active state leaks into side documents or stale prompt literals. That creates repeated rediscovery, unsafe approval assumptions, and lost sales-moving momentum.
+
+Definition of fixed:
+- `ops/AGENT_WORKLOG.md` exists, is non-empty, and has a latest `AGENT_CONTINUITY_ANCHOR`.
+- Alternate `ops/AGENT_WORKLOG*.md` files are explicitly quarantined as `HISTORICAL_DO_NOT_USE`, point to the canonical worklog, and have migration status recorded.
+- The canonical paid-growth prompt resolves latest anchor from the canonical worklog instead of hard-coding a practical latest anchor in First actions.
+- `spend_authorization.md`, `current_marketing_state.md`, `action_queue.md`, `blocker_board.md`, `operator_cockpit.md`, and `operator_cockpit.html` agree on the active spend-authority status.
+- `operator_cockpit.html` is newer than its command-layer sources.
+- `audit_marketing_command_integration.py --fail-on-risk` passes with `0` risks.
+- `AGENTS.md` and `CLAUDE.md` remain byte-for-byte identical.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-14 09:14 EDT | Verified other-AI recommendation against repo state | Confirmed current `ops/AGENT_WORKLOG.md` was not empty and spend authority was not contradictory, but `ops/AGENT_WORKLOG_utf8.md` was a tracked alternate worklog and the canonical prompt First actions still named stale May 12 anchor text | `wc -l`; `rg` over worklog, spend, prompt, and command-layer files |
+| 2026-05-14 09:22 EDT | Added strict continuity checker and canonical wiring | Added `ops/scripts/check_continuity_integrity.py`; quarantined `ops/AGENT_WORKLOG_utf8.md`; removed stale first-action latest-anchor literal; wired strict check into `AGENTS.md`, `CLAUDE.md`, `ops/marketing/AGENTS.md`, action queue, memory digest, decision log, assumption log, and cockpit source | `ops/scripts/check_continuity_integrity.py`; `ops/AGENT_WORKLOG_utf8.md`; `ops/prompts/paid-growth-ai-army-continuation-prompt.md` |
+
+Failed or ruled-out paths:
+- Deleting `ops/AGENT_WORKLOG_utf8.md` without comparison was ruled out. It remains preserved as historical evidence only.
+- Manual reminder text alone was ruled out; the strict checker now fails the session if the continuity spine drifts.
+
+Current next action:
+- Run `python3.13 ops/scripts/check_continuity_integrity.py --strict` before closing future continuity, paid-growth command-layer, prompt, cockpit, spend-authority, worklog, or handoff changes.
+
+Parallel work to continue:
+- This guard protects continuity; it is not a substitute for the active sales-moving lanes in `ops/marketing/action_queue.md`.
 
 ### `PROB-2026-05-14-COMMAND-LAYER-SIDE-DOC-RISK`
 

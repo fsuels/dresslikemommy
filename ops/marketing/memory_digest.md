@@ -26,7 +26,7 @@ This layer should answer quickly:
 
 ## Current High-Signal Facts
 
-- Latest durable paid-growth family anchor in memory: `AGENT_CONTINUITY_ANCHOR: 2026-05-12-es-it-native-signoff-bundle`; later paid-growth monitors also exist, but current repo state must be reconciled from worklog and command layer.
+- Latest anchor must be resolved from `ops/AGENT_WORKLOG.md`, then reconciled against this command layer. Do not treat old memory, packet prompts, or historical digests as the practical latest state when the canonical worklog has newer anchors.
 - GB/CA/AU exact Search micro-cohort was enabled under exact owner approval on 2026-05-12 and later saved monitors showed zero data.
 - Pinterest US paused draft path has a validated local spec, but controllable authenticated Ads Manager access was blocked.
 - Merchant US/en age_group is solved; Merchant US/es source `10627981690` remains approval-gated.
@@ -40,6 +40,7 @@ This layer should answer quickly:
 - 2026-05-14 proactive action mandate: results over monitor loops. If a mistake, broken state, underperforming path, or clear improvement is visible, fix it when safe/approved; if live approval is missing, prepare the smallest exact approval packet and keep another safe lane moving.
 - 2026-05-14 action-biased keyword universe: created `ops/marketing/keyword_strategy.md`, `ops/marketing/keyword_scoring_rubric.md`, and `ops/marketing/keyword_universe.csv` with `105` local rows (`60` US, `15` GB, `15` CA, `15` AU; `77` `GREEN`, `20` `YELLOW`, `8` `RED`). It is for validation and controlled promotion, not live upload.
 - 2026-05-14 command-layer integration guard: created `ops/scripts/audit_marketing_command_integration.py` and generated `ops/marketing/command_layer_integration_audit.md`. Initial audit found `4` side-document risks; current audit covers `25` tracked files and reports `0` risks. New `ops/marketing/` artifacts must be registered, action-linked, continuity-logged, or marked generated/archive before they count as complete.
+- 2026-05-14 broad continuity integrity guard: `ops/scripts/check_continuity_integrity.py --strict` now fails if the canonical worklog is missing anchors, alternate worklogs are not quarantined, the canonical prompt hard-codes a stale latest anchor in First actions, spend-authority state disagrees across the command layer, the cockpit HTML is stale, the marketing integration audit has risks, or `AGENTS.md` and `CLAUDE.md` diverge. `ops/AGENT_WORKLOG_utf8.md` is preserved only as `HISTORICAL_DO_NOT_USE`; its unique historical session titles are summarized in the canonical worklog.
 
 ## Maintenance Rule
 

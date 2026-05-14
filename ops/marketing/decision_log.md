@@ -1,6 +1,6 @@
 # Marketing Decision Log
 
-Last updated: 2026-05-14 09:01 EDT
+Last updated: 2026-05-14 09:22 EDT
 
 | Date | Decision | Evidence | Follow-up |
 |---|---|---|---|
@@ -27,6 +27,7 @@ Last updated: 2026-05-14 09:01 EDT
 | 2026-05-14 | Adopt proactive action/results mandate | Owner clarified that monitor loops without actionable change are unacceptable. If an agent sees a mistake, something broken, underperforming, or clearly improvable, the agent must take action. | Durable docs now require every monitor/readback to end in `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`. |
 | 2026-05-14 | Build a large local keyword universe but promote only small validated batches | Owner asked whether the other AI's recommendation was right and told Codex to do it. Created `keyword_strategy.md`, `keyword_scoring_rubric.md`, and 105 scored rows in `keyword_universe.csv`: US first, GB/CA/AU language-adapted, `GREEN/YELLOW/RED`, no live external writes. | Next action is validation, not upload: active-product fit, clean landing route, `$0.15` CPC auction entry, reviewer pass, action-queue row, and after-state readback before any live keyword packet. |
 | 2026-05-14 | Treat unintegrated command-layer artifacts as defects, not harmless docs | Owner warned that a session idea with no follow-up is the same as nothing. Initial audit found `4` side-document risks in `ops/marketing/`; all were fixed. Current generated audit reports `25` tracked files and `0` risks. | Run `ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk` before closing future paid-growth sessions that create or materially change `ops/marketing/` artifacts. |
+| 2026-05-14 | Add broad strict continuity integrity guard on top of the marketing integration audit | Owner asked for the combined fix after comparing other AI recommendations: canonical worklog presence, alternate-worklog quarantine, stale prompt-anchor protection, spend-authority agreement, cockpit freshness, and marketing audit pass. | Run `python3.13 ops/scripts/check_continuity_integrity.py --strict` before closing continuity, prompt, cockpit, spend-authority, worklog, or handoff changes. Alternate worklogs may only remain as `HISTORICAL_DO_NOT_USE` archives after comparison/migration. |
 
 ## Decision Rules
 

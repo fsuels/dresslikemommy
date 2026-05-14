@@ -106,7 +106,8 @@ Before final response, every agent must:
 5. Update `ops/PROBLEM_TRACKER.md` for any problem touched, including attempts, failed paths, current status, evidence, and next action.
 6. Update `ops/AGENT_COORDINATION.md` if a shared/external surface was claimed or rechecked.
 7. Update `AGENTS.md` only if durable bootstrap memory changed.
-8. For paid-growth work, provide the single canonical owner-standard continuation prompt from `ops/prompts/paid-growth-ai-army-continuation-prompt.md`; do not create competing bespoke prompts. For non-paid-growth work, provide a continuation prompt when the work is part of a longer sprint.
+8. Run `python3.13 ops/scripts/check_continuity_integrity.py --strict` after any continuity, paid-growth command-layer, prompt, cockpit, spend-authority, worklog, or handoff change, and fix canonical files if it fails.
+9. For paid-growth work, provide the single canonical owner-standard continuation prompt from `ops/prompts/paid-growth-ai-army-continuation-prompt.md`; do not create competing bespoke prompts. For non-paid-growth work, provide a continuation prompt when the work is part of a longer sprint.
 
 The continuation handoff must include:
 
@@ -122,6 +123,7 @@ Paid-growth special rule:
 - The prompt text itself should remain the owner-standard reusable prompt in `ops/prompts/paid-growth-ai-army-continuation-prompt.md`.
 - Packet `NEXT_CONTINUATION_PROMPT.md` files may exist as pointers, but they must not become alternate operating prompts.
 - Future agents should recover the latest state by reading the canonical prompt, `AGENTS.md`, the bottom of `ops/AGENT_WORKLOG.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md`.
+- If a packet, digest, memory, or sidecar file names a stale latest anchor, the canonical worklog and command layer supersede it.
 
 ## Duplicate-Fix Prevention Rule
 

@@ -42,6 +42,7 @@ This opens `ops/marketing/operator_cockpit.html` locally for the human. It is a 
 - `ops/marketing/` is the paid-growth daily command layer. Treat it as the compact execution state for marketing decisions; keep older `ops/` files as historical memory and evidence.
 - Do not rely on Codex memory or chat history as authority when checked-in repo docs can answer the question.
 - For paid-growth handoffs, use the single canonical prompt in `ops/prompts/paid-growth-ai-army-continuation-prompt.md`; packet prompts may point back to it but must not become competing operating prompts.
+- Run `python3.13 ops/scripts/check_continuity_integrity.py --strict` before closing continuity, paid-growth command-layer, prompt, cockpit, spend-authority, worklog, or handoff changes. The check must pass; if it fails, fix the canonical files rather than creating another side document.
 
 ## Problem Handling
 

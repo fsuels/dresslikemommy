@@ -1,3 +1,18 @@
+# Historical Alternate Worklog - Do Not Use
+
+Status: `HISTORICAL_DO_NOT_USE`
+Canonical source: `ops/AGENT_WORKLOG.md`
+Migration status: `COMPARED_UNIQUE_SUMMARIZED_IN_CANONICAL`
+Compared on: 2026-05-14
+
+This file is preserved only as historical evidence from an older sidecar
+worklog. It is not current operating state. Agents must read and update
+`ops/AGENT_WORKLOG.md` for all continuity decisions and anchors.
+
+The 2026-05-14 continuity-integrity pass compared this file against the
+canonical worklog and summarized its unique historical session titles in
+`ops/AGENT_WORKLOG.md`. Do not add new entries here.
+
 AGENT_CONTINUITY_ANCHOR
 
 Session: PDP sticky image column fix
@@ -491,4 +506,3 @@ Changes applied (evidence-first)
 
 Open TODOs (next session)
 1) If more handles need dedicated intros later, add them to intro-links-secondary (or create a third section) rather than exceeding the block limit.
-

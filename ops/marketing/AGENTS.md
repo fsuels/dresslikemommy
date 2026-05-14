@@ -17,6 +17,7 @@ Scope: `ops/marketing/` is the daily execution command layer for Dress Like Momm
 - `operator_cockpit.html`: one-screen human UI generated from the command layer; regenerate with `python3.13 ops/scripts/render_marketing_cockpit.py`.
 - `campaign_explorer.json`: human-facing campaign detail data for the dashboard; keep active/running status, targeting, ad/creative quality, strategy, evidence, and next checks current.
 - `command_layer_integration_audit.md`: generated side-document guard report; regenerate with `python3.13 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk`.
+- `ops/scripts/check_continuity_integrity.py`: strict broad continuity guard for canonical worklog presence, alternate-worklog quarantine, latest-anchor resolution, spend-authority agreement, cockpit freshness, and marketing integration audit pass.
 - `expert_growth_playbook_2026.md`: source-backed paid-growth strategy, keyword economics, anti-cannibalization rules, channel standards, and agent personas.
 - `keyword_factory_015_cpc_criteria.md`: `$0.15` CPC keyword factory criteria and hard promotion gates.
 - `keyword_strategy.md`: action-biased keyword operating model: build a large local universe, promote only small validated batches, and force action after no-impression or low-serveability evidence.
@@ -52,9 +53,10 @@ Before stopping after creating or materially changing any `ops/marketing/` file:
 
 ```bash
 python3.13 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk
+python3.13 ops/scripts/check_continuity_integrity.py --strict
 ```
 
-If the audit reports a side-document risk, fix the wiring before calling the work complete. A strategy document without action ownership, current-state visibility, and follow-up is a defect.
+If either audit reports a risk, fix the canonical wiring before calling the work complete. A strategy document without action ownership, current-state visibility, and follow-up is a defect.
 
 ## Safety Review Gate
 

@@ -1,7 +1,7 @@
 # Current Marketing State
 
-Last reconciled: 2026-05-14 09:01 EDT
-Source level: repo-known evidence plus 2026-05-14 read-only live reconciliation, public/local paid landing readbacks, repo-local GB/CA/AU keyword strategy repair, fresh GB/CA/AU Ads monitor/gate review, owner `$0.15` CPC correction, the 105-row local keyword universe/rubric build, and command-layer integration audit.
+Last reconciled: 2026-05-14 09:22 EDT
+Source level: repo-known evidence plus 2026-05-14 read-only live reconciliation, public/local paid landing readbacks, repo-local GB/CA/AU keyword strategy repair, fresh GB/CA/AU Ads monitor/gate review, owner `$0.15` CPC correction, the 105-row local keyword universe/rubric build, command-layer integration audit, and broad continuity integrity guard.
 
 ## State Labels
 
@@ -22,6 +22,7 @@ Source level: repo-known evidence plus 2026-05-14 read-only live reconciliation,
 - Hard CPC correction: owner cannot pay more than `$0.15` CPC. Current GB/CA/AU head terms and close variants are not viable expansion ideas because keyword UI first-page estimates around `$0.65-$0.74` are far above the cap. Do not raise bids above `$0.15`; do not upload close-head variants such as `[mummy and me dresses]`, `[mommy and me dresses canada]`, or `[mummy and me dresses australia]`. Future rows must follow `ops/marketing/keyword_factory_015_cpc_criteria.md`: build a large local universe, score it, then promote only validated market-specific long-tail buyer-moment candidates at `$0.15`.
 - Keyword universe correction: build big locally, upload small. Current local seed is `105` rows in `ops/marketing/keyword_universe.csv` with US first (`60` rows), GB/CA/AU adapted (`15` each), and `GREEN/YELLOW/RED` thresholds from `ops/marketing/keyword_scoring_rubric.md`. It is not a live upload file.
 - Command-layer integration guard: strategy docs that are not wired into action surfaces are now treated as defects. Initial audit found `4` side-document risks; current generated audit covers `25` tracked marketing files and reports `0` risks. Use `ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk` before calling new `ops/marketing/` artifacts complete.
+- Broad continuity integrity guard: continuity/prompt/cockpit/spend/worklog/handoff changes must pass `python3.13 ops/scripts/check_continuity_integrity.py --strict`. It verifies canonical worklog anchors, quarantined alternate worklogs, latest-anchor resolution in the canonical prompt, spend-authority agreement, cockpit freshness, marketing audit pass, and `AGENTS.md` / `CLAUDE.md` parity.
 - Latest live task: fresh read-only GB/CA/AU Ads monitor completed. Search-term stale filters were cleared, keyword/RSA/final URL checks passed, but live paid landing sanitizer failed on all three country URLs, and the head-term CPC economics failed, so no bounded Ads action is green-gated.
 - Active-products rule: paid campaigns must advertise only currently active, public, purchasable products with clean landing readbacks. Draft, inactive, stale, excluded, supplier-leaking, seasonally mismatched, or unresolved product URLs cannot enter live traffic.
 - Category strategy rule: campaign/category planning must match real shopper intent and the calendar. For example, Father's Day tests should bias toward Daddy-and-Me, father-inclusive family matching products, and broader family matching categories instead of unrelated or stale seasonal pages.

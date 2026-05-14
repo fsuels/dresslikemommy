@@ -58,9 +58,7 @@ Important proactive action rule: if you notice a mistake or a better path, do no
 5. Read `ops/AGENT_COORDINATION.md`.
 6. Read `ops/BROWSER_SUBAGENT_COORDINATION.md` before orchestrating subagents or using logged-in ChatGPT Atlas / in-app browser tabs.
 7. Read `ops/GROWTH_NORTH_STAR.md` so all work is tied to the owner’s definition of "promise land."
-8. Read the latest entries at the bottom of `ops/AGENT_WORKLOG.md`. As of this prompt refresh, the latest paid-growth anchor is:
-   - `AGENT_CONTINUITY_ANCHOR: 2026-05-12-es-it-native-signoff-bundle`
-   If the worklog or `AGENTS.md` contains a newer paid-growth anchor, the newer durable state supersedes this line.
+8. Read the latest entries at the bottom of `ops/AGENT_WORKLOG.md`. Resolve the latest `AGENT_CONTINUITY_ANCHOR` from `ops/AGENT_WORKLOG.md`, then reconcile it against the command layer before acting. If a pasted prompt, packet, digest, or memory names an older anchor, the canonical worklog and command layer supersede it.
 9. Read `ops/GOOGLE_ADS_CONTINUITY.md` before any Google Ads, Merchant Center, GA4, Shopify tracking, or paid-campaign work.
 10. Search the problem tracker, worklog, and coordination files for the relevant campaign ID, Merchant source/feed ID, product/cohort ID, theme ID, pixel/tag name, file path, or exact issue text before fixing anything.
 11. If a fix was already completed, verify it with a targeted readback instead of redoing it.

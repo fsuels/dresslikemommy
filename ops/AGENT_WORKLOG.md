@@ -36731,3 +36731,45 @@ Guardrails:
 
 Next best action:
 - Continue sales-moving execution through `action_queue.md`; use the integration audit as a closeout guard so plans cannot fall out of the operating loop.
+
+2026-05-14 - Broad continuity integrity strict guard
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-continuity-integrity-strict-guard
+
+Why:
+- Owner asked to implement the combined continuity fix after comparing other AI recommendations, without accepting stale premises blindly.
+- Current repo state already had a passing `ops/marketing/` side-document audit, but a broader strict guard was still missing for the canonical worklog, alternate-worklog quarantine, latest-anchor resolution, spend-authority agreement, cockpit freshness, and command-layer audit pass.
+
+What changed:
+- Added `ops/scripts/check_continuity_integrity.py`.
+- Marked `ops/AGENT_WORKLOG_utf8.md` as `HISTORICAL_DO_NOT_USE`, with canonical source `ops/AGENT_WORKLOG.md` and migration status `COMPARED_UNIQUE_SUMMARIZED_IN_CANONICAL`.
+- Updated the canonical paid-growth prompt so First actions resolve the latest `AGENT_CONTINUITY_ANCHOR` from `ops/AGENT_WORKLOG.md` instead of hard-coding a practical latest anchor.
+- Updated `AGENTS.md` and `CLAUDE.md` with the strict closeout guard while preserving byte-for-byte parity.
+- Updated `ops/marketing/AGENTS.md`, `action_queue.md`, `current_marketing_state.md`, `operator_cockpit.md`, `memory_digest.md`, `decision_log.md`, `assumption_log.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md`.
+
+Historical alternate worklog comparison:
+- `ops/AGENT_WORKLOG_utf8.md` unique historical session titles summarized in canonical worklog: `39`.
+- The unique titles are historical/storefront-development entries, not newer paid-growth operating state: PDP sticky image column fix; Quick Wins + Continuity Setup; Inline CSS cleanup + predictive search vendor; Shipping SLA consolidation + estimator; Shipping SLA surfaces expansion; Featured product + script polish; Homepage hero foundation; Sora hero prompt kit and refinements; Hero liquid/video/visual/mobile/tracking/poster support; Analytics plumbing; Built-in JSON-LD + analytics plumbing; Home best sellers; Trust strip + Judge.me; Best sellers wiring + CTA analytics; Outfit stories module; Mobile sticky CTA; New arrivals carousel; Collection grid consolidation; Mommy & Me collection intro/schema/ratings; collection H1 and intro scalability work through the Intro split for block limits.
+- Decision: preserve the file as historical evidence for now, but do not use it for current state or new anchors. Deletion can happen later only after a separate cleanup decision.
+
+Strict checker coverage:
+- Canonical worklog exists, has enough content, and has a latest anchor.
+- Alternate `ops/AGENT_WORKLOG*.md` files are quarantined and compared.
+- Canonical prompt First actions resolve latest anchor from the worklog.
+- Spend-authority status agrees across `spend_authorization.md`, current state, action queue, blocker board, cockpit markdown, and cockpit HTML.
+- `operator_cockpit.html` is newer than its command-layer source files.
+- `audit_marketing_command_integration.py --fail-on-risk` returns `0` side-document risks.
+- `AGENTS.md` and `CLAUDE.md` are byte-for-byte identical.
+
+Guardrails:
+- Repo-local process/control update only.
+- No live Google Ads, Shopify, Merchant, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, keyword, ad, feed, product, conversion, or theme write occurred.
+
+Verification:
+- `python3.13 ops/scripts/render_marketing_cockpit.py` regenerated `ops/marketing/operator_cockpit.html`.
+- `python3.13 -m py_compile ops/scripts/check_continuity_integrity.py ops/scripts/audit_marketing_command_integration.py ops/scripts/render_marketing_cockpit.py` passed.
+- `python3.13 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk` passed with `25` tracked files and `0` side-document risks.
+- `python3.13 ops/scripts/check_continuity_integrity.py --strict` returned `CONTINUITY_OK`.
+- `cmp -s AGENTS.md CLAUDE.md` returned `0`.
+
+Next best action:
+- Future continuity, prompt, cockpit, spend-authority, worklog, handoff, or paid-growth command-layer changes must run `python3.13 ops/scripts/check_continuity_integrity.py --strict` and fix any failure in canonical files before closeout.
