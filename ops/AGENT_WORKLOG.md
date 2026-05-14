@@ -37041,3 +37041,41 @@ Next best action:
 - Run authenticated read-only Standard Shopping item-level export for campaign `23802638621` with item ID, title, product group/custom label, impressions, clicks, cost, query/search-term where available, conversion value, and landing URL.
 - Join that export first to `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_auth_export_public_clean_scope.csv`.
 - Only if export proof shows a mismatch, prepare a narrow owner approval packet for Shopify/Merchant title/feed repair; do not mutate product/feed data from the public/local diagnosis alone.
+2026-05-14 - Automation US Shopping held PDP repair packet
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-us-shopping-held-pdp-repair-packet
+
+Why:
+- The highest-priority P0 row remains authenticated Google Ads / Keyword Planner `$0.15` CPC validation for the GB/CA/AU 36-row packet, and the next P1 Shopping row remains authenticated item-level export for campaign `23802638621`.
+- This unattended automation runtime is already recorded as `AUTOMATION_CAPABILITY_MISMATCH` for authenticated account surfaces, so the next safe executable lane was reducing ambiguity in the US Shopping held PDP rows before that future export/title-feed decision.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-held-pdp-repair-packet/generate_us_shopping_held_pdp_repair_packet.py`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-held-pdp-repair-packet/US_SHOPPING_HELD_PDP_REPAIR_PACKET.md`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-held-pdp-repair-packet/us_shopping_held_pdp_repair_rows.csv`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-held-pdp-repair-packet/us_shopping_held_pdp_repair_summary.json`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Rechecked the `6` held/review US Shopping candidate rows across `3` public PDP handles with browser-like and generic headers.
+- `3` rows stay excluded from authenticated export/title decisions until supplier/source-clean.
+- `2` rows stay excluded until stale seasonal copy is clean.
+- `1` source-clean weak-fit row may enter export consideration only if authenticated item-level impressions prove relevance.
+- This packet provides exact repair/exclusion gates and approval wording; it is not a Shopify/Merchant/feed/title repair and not an Ads action.
+
+Verification:
+- Repo write test passed.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-held-pdp-repair-packet/generate_us_shopping_held_pdp_repair_packet.py` completed and regenerated report/CSV/JSON outputs.
+- `python3.13 -m json.tool dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-held-pdp-repair-packet/us_shopping_held_pdp_repair_summary.json` passed.
+
+Guardrails:
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/product-group write occurred.
+- No Merchant feed/source/product/title edit and no Shopify Admin product/title/feed-visible edit occurred.
+- No live Shopify theme push/sync/publish occurred.
+- No Pinterest, GA4/GTM, billing, product-scope, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Run authenticated read-only Standard Shopping item-level export for campaign `23802638621`, joined first to `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_auth_export_public_clean_scope.csv`.
+- Use `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-held-pdp-repair-packet/US_SHOPPING_HELD_PDP_REPAIR_PACKET.md` to keep excluded held rows out of decisions unless repaired/read back clean, or unless the one weak-fit source-clean row is proven relevant by item-level export.
+- Continue authenticated `$0.15` CPC validation for the GB/CA/AU 36-row packet in an account-capable session.

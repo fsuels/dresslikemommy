@@ -1,0 +1,141 @@
+{
+  "action_counts": {
+    "AUTH_EXPORT_ALLOWED_ONLY_IF_ITEM_LEVEL_IMPRESSIONS_PROVE_RELEVANCE": 1,
+    "EXCLUDE_FROM_AUTH_EXPORT_UNTIL_SOURCE_CLEAN": 3,
+    "EXCLUDE_FROM_AUTH_EXPORT_UNTIL_STALE_COPY_CLEAN": 2
+  },
+  "generated_at_utc": "2026-05-14T17:23:11+00:00",
+  "guardrails": [
+    "public storefront GET only",
+    "no Google Ads, Merchant, Shopify Admin, Pinterest, GA4/GTM, billing, product, feed, theme, or campaign write",
+    "does not replace authenticated Standard Shopping item-level export"
+  ],
+  "handle_actions": {
+    "chic-family-matching-sleeveless-dresses-ruffled-hem-mother-daughter-summer-outfit": {
+      "action": "EXCLUDE_FROM_AUTH_EXPORT_UNTIL_SOURCE_CLEAN",
+      "landing_url": "https://www.dresslikemommy.com/products/chic-family-matching-sleeveless-dresses-ruffled-hem-mother-daughter-summer-outfit?country=US",
+      "next_action": "Owner-approved Shopify/product-data or theme-safe repair, then public source readback shows zero supplier hits before any paid export/use.",
+      "observed": {
+        "url": "https://www.dresslikemommy.com/products/chic-family-matching-sleeveless-dresses-ruffled-hem-mother-daughter-summer-outfit?country=US",
+        "variants": {
+          "browser": {
+            "stale_hits": {
+              "christmas": 0,
+              "holiday santa": 0,
+              "reindeer": 0,
+              "xmas": 0
+            },
+            "status": 200,
+            "supplier_hits": {
+              "1688.com": 12,
+              "alibaba.com": 0,
+              "aliexpress.com": 0,
+              "detail.1688.com": 12
+            }
+          },
+          "generic": {
+            "stale_hits": {
+              "christmas": 0,
+              "holiday santa": 0,
+              "reindeer": 0,
+              "xmas": 0
+            },
+            "status": 200,
+            "supplier_hits": {
+              "1688.com": 12,
+              "alibaba.com": 0,
+              "aliexpress.com": 0,
+              "detail.1688.com": 12
+            }
+          }
+        }
+      },
+      "reason": "Public source still contains supplier/source domain hits."
+    },
+    "dynamic-duo-father-and-son-matching-swim-trunks-family-beachwear-set": {
+      "action": "EXCLUDE_FROM_AUTH_EXPORT_UNTIL_STALE_COPY_CLEAN",
+      "landing_url": "https://www.dresslikemommy.com/products/dynamic-duo-father-and-son-matching-swim-trunks-family-beachwear-set?country=US",
+      "next_action": "Owner-approved narrow SEO/social/card metadata repair, or keep handle excluded from paid Shopping/Search traffic.",
+      "observed": {
+        "url": "https://www.dresslikemommy.com/products/dynamic-duo-father-and-son-matching-swim-trunks-family-beachwear-set?country=US",
+        "variants": {
+          "browser": {
+            "stale_hits": {
+              "christmas": 4,
+              "holiday santa": 0,
+              "reindeer": 0,
+              "xmas": 0
+            },
+            "status": 200,
+            "supplier_hits": {
+              "1688.com": 0,
+              "alibaba.com": 0,
+              "aliexpress.com": 0,
+              "detail.1688.com": 0
+            }
+          },
+          "generic": {
+            "stale_hits": {
+              "christmas": 4,
+              "holiday santa": 0,
+              "reindeer": 0,
+              "xmas": 0
+            },
+            "status": 200,
+            "supplier_hits": {
+              "1688.com": 0,
+              "alibaba.com": 0,
+              "aliexpress.com": 0,
+              "detail.1688.com": 0
+            }
+          }
+        }
+      },
+      "reason": "Public source contains stale seasonal copy that mismatches current swim/family query intent."
+    },
+    "green-and-white-matching-family-outfits-stylish-floral-print-family-set-for-parents-and-kids": {
+      "action": "AUTH_EXPORT_ALLOWED_ONLY_IF_ITEM_LEVEL_IMPRESSIONS_PROVE_RELEVANCE",
+      "landing_url": "https://www.dresslikemommy.com/products/green-and-white-matching-family-outfits-stylish-floral-print-family-set-for-parents-and-kids?country=US",
+      "next_action": "Run authenticated item export first; only consider title/feed repair if this exact item received meaningful impressions for the query.",
+      "observed": {
+        "url": "https://www.dresslikemommy.com/products/green-and-white-matching-family-outfits-stylish-floral-print-family-set-for-parents-and-kids?country=US",
+        "variants": {
+          "browser": {
+            "stale_hits": {
+              "christmas": 0,
+              "holiday santa": 0,
+              "reindeer": 0,
+              "xmas": 0
+            },
+            "status": 200,
+            "supplier_hits": {
+              "1688.com": 0,
+              "alibaba.com": 0,
+              "aliexpress.com": 0,
+              "detail.1688.com": 0
+            }
+          },
+          "generic": {
+            "stale_hits": {
+              "christmas": 0,
+              "holiday santa": 0,
+              "reindeer": 0,
+              "xmas": 0
+            },
+            "status": 200,
+            "supplier_hits": {
+              "1688.com": 0,
+              "alibaba.com": 0,
+              "aliexpress.com": 0,
+              "detail.1688.com": 0
+            }
+          }
+        }
+      },
+      "reason": "Public page is source-clean but weak for the observed query intent."
+    }
+  },
+  "held_or_review_rows": 6,
+  "source_rows": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_public_pdp_fit_preflight_rows.csv",
+  "unique_handles": 3
+}

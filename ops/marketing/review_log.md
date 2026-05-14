@@ -744,3 +744,32 @@ Evidence:
 Safest next sales-moving action:
 
 - Authenticated item-level Shopping export against the public-clean scope; no product/feed/title write until proof exists.
+
+## 2026-05-14 - US Shopping held PDP repair packet
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Public storefront readback only; no Google Ads, Merchant, Shopify Admin, live theme, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, product-group, conversion, or destructive write.
+- Rechecked only the `6` held/review rows from the prior US Shopping public PDP fit preflight.
+- Packet splits rows into supplier/source repair required, stale seasonal-copy repair required, and weak-fit/export-only-if-proven-relevant.
+
+Risks:
+
+- The supplier/stale public-source issues may require Shopify product-data, theme, or metadata repair, which is outside paid-media bounded authority and needs exact approval.
+- The weak-fit row is source-clean, but using it for title/feed repair without item-level impression proof would still be overreach.
+
+Required gates/fixes:
+
+- Keep excluded rows out of authenticated export/title decisions unless repaired and publicly read back clean.
+- Run authenticated item-level Shopping export first; only the weak-fit row may be considered if the export proves meaningful item-level impressions for that query.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-held-pdp-repair-packet/US_SHOPPING_HELD_PDP_REPAIR_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-held-pdp-repair-packet/us_shopping_held_pdp_repair_summary.json`
+
+Safest next sales-moving action:
+
+- Authenticated item-level Shopping export against the public-clean scope, while preserving the held-PDP repair packet as the exact repair/exclusion gate.
