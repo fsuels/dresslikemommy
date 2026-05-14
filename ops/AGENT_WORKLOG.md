@@ -36812,3 +36812,45 @@ Guardrails:
 
 Next best action:
 - Use a session with working authenticated Chrome/account access to run the Merchant capacity product-level intersection and a fresh US/es exact export/readback, while continuing other safe local/read-only paid-growth lanes in parallel.
+
+2026-05-14 - Automation paid landing post-sanitizer route gates
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-paid-landing-post-sanitizer-route-gates
+
+Why:
+- The unattended paid-growth automation had no `GREEN` rows. The closest sales-moving blocker was the active GB/CA/AU Search landing supplier/source sanitizer gate, which directly blocked any bounded long-tail keyword validation path.
+- The prior command layer said active final URLs still failed. A fresh public readback was safe and did not require authenticated browser, Computer Use, or external writes.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-paid-landing-post-sanitizer-readback/PAID_LANDING_POST_SANITIZER_AND_COLLECTION_PREFLIGHT.md`.
+- Updated `ops/marketing/current_marketing_state.md`, `action_queue.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, `operator_cockpit.md`, `campaign_explorer.json`, and `keyword_universe.csv`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback:
+- Active GB/CA/AU Search PDP final URLs now pass public source readback across two header/cache variants: `0` hits for `detail.1688.com`, `1688.com`, `alibaba.com`, `aliexpress.com`, `data-analytics-vendor="https://`, `data-item-brand="https://`, stale Christmas/local inventory/warehouse/retail-store text, with `Ships to` and `priceCurrency` present.
+- Top collection-route preflight found `/collections/mommy-and-me`, `/collections/family-matching`, and `/collections/pajamas` clean for GB/CA/AU.
+- `/collections/matching-dresses` and `/collections/swimsuits` still expose raw Shopify product JSON supplier vendor URLs, `/collections/vacation` returns `404`, and `/collections/daddy-and-me` exposes Christmas pattern metadata on swim-trunks cards.
+
+Decision:
+- The current active PDP final URL sanitizer blocker is solved for public source readback.
+- Do not treat all long-tail keyword rows as upload-ready. Only clean-route rows may move to authenticated `$0.15` CPC/auction validation.
+- Affected rows in `keyword_universe.csv` are held with explicit `live_action` values until fixed, rerouted, or excluded.
+
+Verification:
+- Repo write test passed.
+- Public source readbacks returned `200` for active GB/CA/AU PDP final URLs and clean collection routes.
+- `node --check assets/analytics.js` passed.
+- `node --check assets/homepage-collection-card-images.js` passed.
+- `shopify theme check --path . --fail-level error --output json` returned `[]`.
+- `python3.13 -m json.tool ops/marketing/campaign_explorer.json` passed.
+- `keyword_universe.csv` validation passed: `105` rows; `US=60`, `GB=15`, `CA=15`, `AU=15`; `GREEN=77`, `YELLOW=20`, `RED=8`; score sums passed.
+
+Guardrails:
+- No Google Ads upload/apply/import, keyword/ad/negative/bid/budget/status/campaign write occurred.
+- No Shopify theme push/sync/publish and no Shopify Admin product/vendor/source metadata write occurred.
+- No Merchant, Pinterest, GA4/GTM, billing, feed, product-scope, product-group, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Run authenticated Google Ads/Keyword Planner validation for clean-route GB/CA/AU `GREEN` rows only, at max `$0.15` CPC.
+- Repair, reroute, or exclude blocked collection routes before any live Search traffic uses them.
+- Continue Merchant/Pinterest authenticated access blockers in a session with usable authenticated account surfaces.

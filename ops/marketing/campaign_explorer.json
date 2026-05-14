@@ -1,6 +1,6 @@
 {
   "last_updated": "2026-05-14 08:49 EDT",
-  "source_note": "Human-facing campaign details for operator_cockpit.html. Values are repo-known plus the latest saved live/read-only evidence; stale or missing live facts are labeled explicitly. Expert strategy fields are sourced from ops/marketing/expert_growth_playbook_2026.md. 2026-05-14 update: active keyword campaigns now include market/language-specific long-tail strategy from the GB/CA/AU Day 1 zero-impression keyword repair packet. 2026-05-14 08:18 update: fresh GB/CA/AU Ads monitor cleared stale search-term filters and passed keyword/RSA/final URL checks, but live final URLs still fail the supplier/source sanitizer gate; exact-scope bounded action packet is blocked. 2026-05-14 owner correction added: hard $0.15 CPC cap; head/near-head keyword rows are rejected unless validated at $0.15. 2026-05-14 US primary correction: US is the biggest market and must be first in keyword intelligence; GB/CA/AU are expansion Search repair lanes. 2026-05-14 08:49 update: local keyword system now includes keyword_strategy.md, keyword_scoring_rubric.md, and a 105-row keyword_universe.csv; it is for validation and controlled promotion, not live upload.",
+  "source_note": "Human-facing campaign details for operator_cockpit.html. Values are repo-known plus the latest saved live/read-only evidence; stale or missing live facts are labeled explicitly. Expert strategy fields are sourced from ops/marketing/expert_growth_playbook_2026.md. 2026-05-14 update: active keyword campaigns now include market/language-specific long-tail strategy from the GB/CA/AU Day 1 zero-impression keyword repair packet. 2026-05-14 08:18 update: fresh GB/CA/AU Ads monitor cleared stale search-term filters and passed keyword/RSA/final URL checks, but current active PDP final URLs now pass the supplier/source sanitizer gate; collection-route rows are partly held and exact-scope action remains blocked. 2026-05-14 owner correction added: hard $0.15 CPC cap; head/near-head keyword rows are rejected unless validated at $0.15. 2026-05-14 US primary correction: US is the biggest market and must be first in keyword intelligence; GB/CA/AU are expansion Search repair lanes. 2026-05-14 08:49 update: local keyword system now includes keyword_strategy.md, keyword_scoring_rubric.md, and a 105-row keyword_universe.csv; it is for validation and controlled promotion, not live upload.",
   "channels": [
     {
       "id": "google_ads",
@@ -19,7 +19,7 @@
       "campaign_id": "23838895360",
       "campaign_name": "DLM_GB_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507",
       "status_label": "ACTIVE: Enabled / Eligible",
-      "running_state": "Running as a live micro-test with no spend/click/impression/conversion learning yet; current Ads-side structure is intact, but no expansion is allowed while the landing sanitizer fails.",
+      "running_state": "Running as a live micro-test with no spend/click/impression/conversion learning yet; current Ads-side structure is intact; expansion is blocked until clean-route rows validate at max CPC $0.15.",
       "budget": "$2.00/day",
       "bid_strategy": "Manual CPC, target ad group max CPC $0.15",
       "bid_strategy_type": "Manual CPC, not Maximize Clicks",
@@ -37,10 +37,10 @@
       ],
       "optimization_score": "97.6%",
       "ad_strength": "Pending",
-      "health_status": "ADS READBACK PASSED / LANDING AND $0.15 CPC GATES BLOCK LIVE ACTION",
+      "health_status": "ADS READBACK PASSED / PDP CLEAN / $0.15 CPC AND ROUTE GATES BLOCK LIVE ACTION",
       "activated_at": "2026-05-12 07:21:52 EDT (04:21:52 PDT) under exact owner approval; propagation-clean monitor at 2026-05-12 07:38:01 EDT.",
       "latest_readback": "2026-05-14 08:10:31 EDT Ads monitor; 2026-05-14 08:17:17 EDT public landing source readback.",
-      "next_decision": "Do not execute keyword, bid, status, or negative changes yet. Ads-side checks passed and stale search-term filters are clear, but the live final URL still exposes a supplier/source URL and the current head-term auction fails the hard $0.15 CPC cap. After sanitizer sync/readback, validate only true long-tail buyer-moment candidates at max CPC $0.15; no bid raise and no close-head variants.",
+      "next_decision": "Do not execute keyword, bid, status, or negative changes yet. Ads-side checks passed, stale search-term filters are clear, and the current PDP final URL source is clean. The current head-term auction still fails the hard $0.15 CPC cap. Validate only clean-route true long-tail buyer-moment candidates at max CPC $0.15; no bid raise and no close-head variants.",
       "success_measurement": [
         "Final success: as many profitable sales as possible while targeting about 650% ROAS.",
         "Day 1 growth rule: by tomorrow report sales, revenue, CPA, ROAS, and what changed; zero impressions after 24 hours requires same-day diagnosis and action planning.",
@@ -52,7 +52,7 @@
       "metrics_snapshot": [
         "Fresh monitor 2026-05-14 08:10 EDT: displayed 0 impressions, 0 clicks, $0.00 cost, 0.00 conversions, $0.00 conversion value in the current visible monitor window.",
         "Search terms after filter clear: stale Keyword: \"human hair wigs\" chip removed; no search terms available afterward.",
-        "Landing gate 2026-05-14 08:17 EDT: HTTP 200 and expected currency signal, but data-analytics-vendor still exposes detail.1688.com."
+        "Landing gate 2026-05-14 11:18 EDT: active PDP final URL source returned 0 supplier-source hits across two header/cache variants; collection-route preflight holds matching-dresses, swimsuits, vacation, and daddy-and-me rows."
       ],
       "test_clock": [
         "T+24 checkpoint was 2026-05-13 07:21 EDT; saved May 14 readback shows zero impressions/clicks for reporting day May 13, so action is due now.",
@@ -103,7 +103,7 @@
         "Only the dress-intent ad group is enabled; 9 other ad groups remain paused so broader category tests cannot leak spend.",
         "No optimization edit is justified until impressions, clicks, search terms, or conversion value appear."
       ],
-      "deadline_or_next_check": "Immediate blocker: live paid landing sanitizer sync/readback. After that passes, rerun GB/CA/AU monitor and reviewer before any bounded live Ads action.",
+      "deadline_or_next_check": "Immediate blocker: authenticated max $0.15 CPC/auction validation for clean-route rows, plus reviewer pass before any bounded live Ads action.",
       "active_objects": [
         "Campaign enabled: 23838895360",
         "Ad group enabled: 194138528537 / Mommy & Me Dresses - Exact",
@@ -180,7 +180,7 @@
         "Verify live final URL source/DOM is sanitizer-clean before any keyword, bid, status, or negative action.",
         "After sanitizer passes, rerun search-term pages and confirm filters remain absent before judging negatives."
       ],
-      "blocked_or_risk": "Fresh public final URL readback still exposes detail.1688.com in data-analytics-vendor, and current head/near-head keyword economics fail the hard $0.15 CPC cap; live Ads traffic expansion is blocked until sanitizer and CPC validation gates pass.",
+      "blocked_or_risk": "Current active PDP final URL source is clean, but head/near-head keyword economics fail the hard $0.15 CPC cap; live Ads traffic expansion is blocked until clean-route candidates pass max $0.15 CPC validation and reviewer gates.",
       "expert_strategy_standard": [
         "Source-backed standard: follow Google Ads Help for match types, search terms, negatives, Target ROAS readiness, Quality Score, ad quality, and account keyword prioritization; follow Pinterest Business for lower-funnel product creative and clickthrough consistency; follow OpenAI/Anthropic agent guidance for clear instructions, guardrails, evals, and simple accountable workflows.",
         "Day 1 rule: every day without sales growth, usable learning, or a sales-moving improvement is a failure signal that requires action.",
@@ -195,7 +195,7 @@
         "Hard cap: max CPC remains $0.15. Do not raise bids above this cap to force generic auction entry.",
         "Rejected: current head terms and close variants with first-page estimates around $0.65-$0.74; they do not support the 650% ROAS path at the owner CPC ceiling.",
         "Priority GB validation-only long tails: [beige mother daughter summer dresses], [chiffon mother daughter summer dresses], [mum daughter summer photo dresses], [mother daughter beach photo dresses]. Reject [mummy and me dresses] as a close head variant unless future readback proves <= $0.15 auction entry and profitable intent.",
-        "Every candidate remains validation-only until landing sanitizer passes, CPC validation passes, reviewer approves, and after-state readback is planned.",
+        "Every candidate remains validation-only until route cleanliness passes, CPC validation passes, reviewer approves, and after-state readback is planned.",
         "Target economics remain about $10.77 CPA from $70 AOV at 650% ROAS; candidate rows are not scale-ready until real purchase/value evidence appears."
       ],
       "anti_cannibalization_rules": [
@@ -212,7 +212,7 @@
       "campaign_id": "23834423669",
       "campaign_name": "DLM_CA_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507",
       "status_label": "ACTIVE: Enabled / Eligible",
-      "running_state": "Running as a live micro-test with no spend/click/impression/conversion learning yet; current Ads-side structure is intact, but no expansion is allowed while the landing sanitizer fails.",
+      "running_state": "Running as a live micro-test with no spend/click/impression/conversion learning yet; current Ads-side structure is intact; expansion is blocked until clean-route rows validate at max CPC $0.15.",
       "budget": "$2.00/day",
       "bid_strategy": "Manual CPC, target ad group max CPC $0.15",
       "bid_strategy_type": "Manual CPC, not Maximize Clicks",
@@ -230,10 +230,10 @@
       ],
       "optimization_score": "97.6%",
       "ad_strength": "Pending",
-      "health_status": "ADS READBACK PASSED / LANDING AND $0.15 CPC GATES BLOCK LIVE ACTION",
+      "health_status": "ADS READBACK PASSED / PDP CLEAN / $0.15 CPC AND ROUTE GATES BLOCK LIVE ACTION",
       "activated_at": "2026-05-12 07:21:52 EDT (04:21:52 PDT) under exact owner approval; propagation-clean monitor at 2026-05-12 07:38:01 EDT.",
       "latest_readback": "2026-05-14 08:10:31 EDT Ads monitor; 2026-05-14 08:17:17 EDT public landing source readback.",
-      "next_decision": "Do not execute keyword, bid, status, or negative changes yet. Ads-side checks passed and stale search-term filters are clear, but the live final URL still exposes a supplier/source URL and the current head-term auction fails the hard $0.15 CPC cap. After sanitizer sync/readback, validate only true long-tail buyer-moment candidates at max CPC $0.15; no bid raise and no close-head variants.",
+      "next_decision": "Do not execute keyword, bid, status, or negative changes yet. Ads-side checks passed, stale search-term filters are clear, and the current PDP final URL source is clean. The current head-term auction still fails the hard $0.15 CPC cap. Validate only clean-route true long-tail buyer-moment candidates at max CPC $0.15; no bid raise and no close-head variants.",
       "success_measurement": [
         "Final success: as many profitable sales as possible while targeting about 650% ROAS.",
         "Day 1 growth rule: by tomorrow report sales, revenue, CPA, ROAS, and what changed; zero impressions after 24 hours requires same-day diagnosis and action planning.",
@@ -245,7 +245,7 @@
       "metrics_snapshot": [
         "Fresh monitor 2026-05-14 08:10 EDT: displayed 0 impressions, 0 clicks, $0.00 cost, 0.00 conversions, $0.00 conversion value in the current visible monitor window.",
         "Search terms after filter clear: stale Keyword: \"human hair wigs\" chip removed; no search terms available afterward.",
-        "Landing gate 2026-05-14 08:17 EDT: HTTP 200 and expected currency signal, but data-analytics-vendor still exposes detail.1688.com."
+        "Landing gate 2026-05-14 11:18 EDT: active PDP final URL source returned 0 supplier-source hits across two header/cache variants; collection-route preflight holds matching-dresses, swimsuits, vacation, and daddy-and-me rows."
       ],
       "test_clock": [
         "T+24 checkpoint was 2026-05-13 07:21 EDT; saved May 14 readback shows zero impressions/clicks for reporting day May 13, so action is due now.",
@@ -296,7 +296,7 @@
         "The landing URL is country-qualified for CA and showed CAD/country signals in readback.",
         "Search-term review is currently blocked by a stale unrelated UI filter, so no negative recommendation is valid yet."
       ],
-      "deadline_or_next_check": "Immediate blocker: live paid landing sanitizer sync/readback. After that passes, rerun GB/CA/AU monitor and reviewer before any bounded live Ads action.",
+      "deadline_or_next_check": "Immediate blocker: authenticated max $0.15 CPC/auction validation for clean-route rows, plus reviewer pass before any bounded live Ads action.",
       "active_objects": [
         "Campaign enabled: 23834423669",
         "Ad group enabled: 196679079575 / Mommy & Me Dresses - Exact",
@@ -372,7 +372,7 @@
         "Verify live final URL source/DOM is sanitizer-clean before any keyword, bid, status, or negative action.",
         "After sanitizer passes, rerun search-term pages and confirm filters remain absent before judging negatives."
       ],
-      "blocked_or_risk": "Fresh public final URL readback still exposes detail.1688.com in data-analytics-vendor, and current head/near-head keyword economics fail the hard $0.15 CPC cap; live Ads traffic expansion is blocked until sanitizer and CPC validation gates pass.",
+      "blocked_or_risk": "Current active PDP final URL source is clean, but head/near-head keyword economics fail the hard $0.15 CPC cap; live Ads traffic expansion is blocked until clean-route candidates pass max $0.15 CPC validation and reviewer gates.",
       "expert_strategy_standard": [
         "Source-backed standard: follow Google Ads Help for match types, search terms, negatives, Target ROAS readiness, Quality Score, ad quality, and account keyword prioritization; follow Pinterest Business for lower-funnel product creative and clickthrough consistency; follow OpenAI/Anthropic agent guidance for clear instructions, guardrails, evals, and simple accountable workflows.",
         "Day 1 rule: every day without sales growth, usable learning, or a sales-moving improvement is a failure signal that requires action.",
@@ -387,7 +387,7 @@
         "Hard cap: max CPC remains $0.15. Do not raise bids above this cap to force generic auction entry.",
         "Rejected: current head terms and close variants with first-page estimates around $0.65-$0.74; they do not support the 650% ROAS path at the owner CPC ceiling.",
         "Priority CA validation-only long tails: [beige mommy daughter summer dresses canada], [mother daughter chiffon dresses canada], [mom daughter family photo dresses canada], [mother daughter beach photo dresses canada]. Reject [mommy and me dresses canada] as a country-modified head term unless future readback proves <= $0.15 auction entry and profitable intent.",
-        "Every candidate remains validation-only until landing sanitizer passes, CPC validation passes, reviewer approves, and after-state readback is planned.",
+        "Every candidate remains validation-only until route cleanliness passes, CPC validation passes, reviewer approves, and after-state readback is planned.",
         "Target economics remain about $10.77 CPA from $70 AOV at 650% ROAS; candidate rows are not scale-ready until real purchase/value evidence appears."
       ],
       "anti_cannibalization_rules": [
@@ -404,7 +404,7 @@
       "campaign_id": "23834424182",
       "campaign_name": "DLM_AU_SEARCH_NONBRAND_EXACT_PHRASE_PAUSED_20260507",
       "status_label": "ACTIVE: Enabled / Eligible",
-      "running_state": "Running as a live micro-test with no spend/click/impression/conversion learning yet; current Ads-side structure is intact, but no expansion is allowed while the landing sanitizer fails.",
+      "running_state": "Running as a live micro-test with no spend/click/impression/conversion learning yet; current Ads-side structure is intact; expansion is blocked until clean-route rows validate at max CPC $0.15.",
       "budget": "$2.00/day",
       "bid_strategy": "Manual CPC, target ad group max CPC $0.15",
       "bid_strategy_type": "Manual CPC, not Maximize Clicks",
@@ -422,10 +422,10 @@
       ],
       "optimization_score": "97.6%",
       "ad_strength": "Pending",
-      "health_status": "ADS READBACK PASSED / LANDING AND $0.15 CPC GATES BLOCK LIVE ACTION",
+      "health_status": "ADS READBACK PASSED / PDP CLEAN / $0.15 CPC AND ROUTE GATES BLOCK LIVE ACTION",
       "activated_at": "2026-05-12 07:21:52 EDT (04:21:52 PDT) under exact owner approval; propagation-clean monitor at 2026-05-12 07:38:01 EDT.",
       "latest_readback": "2026-05-14 08:10:31 EDT Ads monitor; 2026-05-14 08:17:17 EDT public landing source readback.",
-      "next_decision": "Do not execute keyword, bid, status, or negative changes yet. Ads-side checks passed and stale search-term filters are clear, but the live final URL still exposes a supplier/source URL and the current head-term auction fails the hard $0.15 CPC cap. After sanitizer sync/readback, validate only true long-tail buyer-moment candidates at max CPC $0.15; no bid raise and no close-head variants.",
+      "next_decision": "Do not execute keyword, bid, status, or negative changes yet. Ads-side checks passed, stale search-term filters are clear, and the current PDP final URL source is clean. The current head-term auction still fails the hard $0.15 CPC cap. Validate only clean-route true long-tail buyer-moment candidates at max CPC $0.15; no bid raise and no close-head variants.",
       "success_measurement": [
         "Final success: as many profitable sales as possible while targeting about 650% ROAS.",
         "Day 1 growth rule: by tomorrow report sales, revenue, CPA, ROAS, and what changed; zero impressions after 24 hours requires same-day diagnosis and action planning.",
@@ -437,7 +437,7 @@
       "metrics_snapshot": [
         "Fresh monitor 2026-05-14 08:10 EDT: displayed 0 impressions, 0 clicks, $0.00 cost, 0.00 conversions, $0.00 conversion value in the current visible monitor window.",
         "Search terms after filter clear: stale Keyword: \"human hair wigs\" chip removed; no search terms available afterward.",
-        "Landing gate 2026-05-14 08:17 EDT: HTTP 200 and expected currency signal, but data-analytics-vendor still exposes detail.1688.com."
+        "Landing gate 2026-05-14 11:18 EDT: active PDP final URL source returned 0 supplier-source hits across two header/cache variants; collection-route preflight holds matching-dresses, swimsuits, vacation, and daddy-and-me rows."
       ],
       "test_clock": [
         "T+24 checkpoint was 2026-05-13 07:21 EDT; saved May 14 readback shows zero impressions/clicks for reporting day May 13, so action is due now.",
@@ -488,7 +488,7 @@
         "The test is meant to prove whether any qualified traffic exists before broader category or phrase expansion.",
         "No optimization decision is valid while metrics remain zero and search-term filter is stale."
       ],
-      "deadline_or_next_check": "Immediate blocker: live paid landing sanitizer sync/readback. After that passes, rerun GB/CA/AU monitor and reviewer before any bounded live Ads action.",
+      "deadline_or_next_check": "Immediate blocker: authenticated max $0.15 CPC/auction validation for clean-route rows, plus reviewer pass before any bounded live Ads action.",
       "active_objects": [
         "Campaign enabled: 23834424182",
         "Ad group enabled: 198852670520 / Mommy & Me Dresses - Exact",
@@ -564,7 +564,7 @@
         "Verify live final URL source/DOM is sanitizer-clean before any keyword, bid, status, or negative action.",
         "After sanitizer passes, rerun search-term pages and confirm filters remain absent before judging negatives."
       ],
-      "blocked_or_risk": "Fresh public final URL readback still exposes detail.1688.com in data-analytics-vendor, and current head/near-head keyword economics fail the hard $0.15 CPC cap; live Ads traffic expansion is blocked until sanitizer and CPC validation gates pass.",
+      "blocked_or_risk": "Current active PDP final URL source is clean, but head/near-head keyword economics fail the hard $0.15 CPC cap; live Ads traffic expansion is blocked until clean-route candidates pass max $0.15 CPC validation and reviewer gates.",
       "expert_strategy_standard": [
         "Source-backed standard: follow Google Ads Help for match types, search terms, negatives, Target ROAS readiness, Quality Score, ad quality, and account keyword prioritization; follow Pinterest Business for lower-funnel product creative and clickthrough consistency; follow OpenAI/Anthropic agent guidance for clear instructions, guardrails, evals, and simple accountable workflows.",
         "Day 1 rule: every day without sales growth, usable learning, or a sales-moving improvement is a failure signal that requires action.",
@@ -579,7 +579,7 @@
         "Hard cap: max CPC remains $0.15. Do not raise bids above this cap to force generic auction entry.",
         "Rejected: current head terms and close variants with first-page estimates around $0.65-$0.74; they do not support the 650% ROAS path at the owner CPC ceiling.",
         "Priority AU validation-only long tails: [mum daughter summer dresses australia], [mum daughter beach photo dresses australia], [mother daughter chiffon dresses australia], [mum daughter holiday photo dresses]. Reject [mummy and me dresses australia] as a country-modified head term unless future readback proves <= $0.15 auction entry and profitable intent.",
-        "Every candidate remains validation-only until landing sanitizer passes, CPC validation passes, reviewer approves, and after-state readback is planned.",
+        "Every candidate remains validation-only until route cleanliness passes, CPC validation passes, reviewer approves, and after-state readback is planned.",
         "Target economics remain about $10.77 CPA from $70 AOV at 650% ROAS; candidate rows are not scale-ready until real purchase/value evidence appears."
       ],
       "anti_cannibalization_rules": [

@@ -2,7 +2,7 @@
 
 Integration status: `GENERATED`
 
-Last generated: 2026-05-14 10:40
+Last generated: 2026-05-14 11:34
 
 Purpose: identify command-layer files that risk becoming side documents nobody uses.
 
@@ -41,7 +41,7 @@ No new `ops/marketing/` artifact counts as done unless it is either:
 | `ops/marketing/keyword_factory_015_cpc_criteria.md` | `PASS_INTEGRATED` | `true` | `11` | `true` | none |
 | `ops/marketing/keyword_scoring_rubric.md` | `PASS_INTEGRATED` | `true` | `14` | `true` | none |
 | `ops/marketing/keyword_strategy.md` | `PASS_INTEGRATED` | `true` | `13` | `true` | none |
-| `ops/marketing/keyword_universe.csv` | `PASS_INTEGRATED` | `true` | `14` | `true` | none |
+| `ops/marketing/keyword_universe.csv` | `PASS_INTEGRATED` | `true` | `15` | `true` | none |
 | `ops/marketing/memory_digest.md` | `PASS_CORE` | `true` | `2` | `false` | none |
 | `ops/marketing/migration_trace.md` | `PASS_ARCHIVE_REFERENCE` | `true` | `4` | `true` | none |
 | `ops/marketing/operator_cockpit.html` | `PASS_GENERATED` | `true` | `9` | `true` | generated cockpit |

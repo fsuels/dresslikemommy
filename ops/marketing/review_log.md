@@ -547,3 +547,40 @@ Evidence:
 Safest next sales-moving action:
 
 - Keep using `action_queue.md`, `current_marketing_state.md`, and `operator_cockpit.md` as the execution surfaces; do not let new strategy docs bypass them.
+
+## 2026-05-14 - Post-sanitizer landing and collection-route preflight
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Active GB/CA/AU Search PDP final URLs were read public-only with two header/cache variants.
+- Supplier/source-domain and URL-like brand attribute counts are now `0` on the current active PDP final URLs.
+- Top keyword-universe collection routes were preflighted before treating long-tail candidates as ready for live validation.
+- `keyword_universe.csv` row-level `live_action` holds were updated for routes that failed route cleanliness.
+- No live Google Ads, Shopify Admin, Shopify theme push, Merchant, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, keyword, feed, product, conversion, or destructive write occurred.
+
+Risks:
+
+- A clean current PDP final URL does not make collection-routed keyword rows upload-ready.
+- `/collections/matching-dresses` and `/collections/swimsuits` still expose raw Shopify product JSON supplier vendors.
+- `/collections/vacation` returns `404`.
+- `/collections/daddy-and-me` has Christmas pattern metadata hits that may be a paid-landing mismatch.
+- Authenticated `$0.15` CPC validation is still missing for clean-route rows.
+
+Required gates/fixes:
+
+- Validate only clean-route rows (`mommy-and-me`, `family-matching`, `pajamas`) in authenticated Google Ads/Keyword Planner at max `$0.15`.
+- Keep blocked routes held until repaired, rerouted, or excluded.
+- Do not edit Shopify product/vendor/source metadata without fresh explicit approval.
+- Do not upload/apply/add keywords, raise bids, change budgets/statuses, or add negatives until exact row scope, fresh readback, reviewer pass, and after-state readback plan exist.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-paid-landing-post-sanitizer-readback/PAID_LANDING_POST_SANITIZER_AND_COLLECTION_PREFLIGHT.md`
+- `ops/marketing/keyword_universe.csv`
+- `ops/marketing/action_queue.md`
+
+Safest next sales-moving action:
+
+- Run authenticated `$0.15` CPC/auction validation for clean-route GB/CA/AU `GREEN` rows only.

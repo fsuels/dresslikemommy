@@ -1,6 +1,6 @@
 # Marketing Decision Log
 
-Last updated: 2026-05-14 10:38 EDT
+Last updated: 2026-05-14 11:19 EDT
 
 | Date | Decision | Evidence | Follow-up |
 |---|---|---|---|
@@ -30,6 +30,8 @@ Last updated: 2026-05-14 10:38 EDT
 | 2026-05-14 | Add broad strict continuity integrity guard on top of the marketing integration audit | Owner asked for the combined fix after comparing other AI recommendations: canonical worklog presence, alternate-worklog quarantine, stale prompt-anchor protection, spend-authority agreement, cockpit freshness, and marketing audit pass. | Run `python3.13 ops/scripts/check_continuity_integrity.py --strict` before closing continuity, prompt, cockpit, spend-authority, worklog, or handoff changes. Alternate worklogs may only remain as `HISTORICAL_DO_NOT_USE` archives after comparison/migration. |
 | 2026-05-14 | Record `AUTOMATION_CAPABILITY_MISMATCH` for authenticated Merchant/Pinterest browser lanes in this automation runtime | Shell/repo writes/network/Playwright MCP are usable, but Chrome DevTools MCP is profile-locked, Computer Use interactive access is not granted, and shell-side Playwright is not installed. Merchant/Pinterest account readbacks that depend on authenticated Chrome surfaces are therefore not equivalent to a normal owner session here. | Continue repo-local/read-only work and queue exact authenticated follow-up steps instead of claiming account-surface parity |
 | 2026-05-14 | Keep Merchant Shopping capacity blocker open but narrow it to an authenticated paid-cohort intersection readback | Fresh diagnostics page showed `Over capacity for Shopping ads (outside of CSS program)` affecting `73.3K products (21%)`, but Standard Shopping still served `17` impressions on `2026-05-13`, so there is no proven total-serving outage. | Next step is an authenticated read-only Merchant product-level intersection against the live `780`-row `us_test_ready` / `paid_eligible` cohort; do not remove products, change scope, or request capacity by inference |
+| 2026-05-14 | Treat the current GB/CA/AU active PDP final URL sanitizer gate as passed, but keep live Search expansion blocked on `$0.15` validation | Public readback at 11:18 EDT checked GB/CA/AU active PDP final URLs across two header/cache variants and found `0` supplier/source-domain hits, `0` URL-like analytics brand attributes, and expected shipping/schema signals. | Do not upload/add/change keywords yet. Validate only clean-route `GREEN` rows in authenticated Google Ads/Keyword Planner at max `$0.15`, then run reviewer before any bounded action. |
+| 2026-05-14 | Hold keyword rows routed to dirty/broken collection pages | Collection preflight found `mommy-and-me`, `family-matching`, and `pajamas` clean; `matching-dresses` and `swimsuits` leak raw Shopify product JSON supplier vendor URLs; `vacation` is `404`; `daddy-and-me` has Christmas pattern metadata hits. | Updated `keyword_universe.csv` row-level `live_action` holds. Repair/reroute/exclude affected routes before any live Search traffic; Shopify product/vendor/metadata edits require fresh approval if needed. |
 
 ## Decision Rules
 

@@ -53,8 +53,9 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - Added Day 1 growth urgency: tomorrow's scorecard must answer sales and ROAS, and a zero-impression campaign after 24 hours now triggers same-day diagnosis and high-buyer-intent long-tail action planning.
 - Updated marketing operating docs so future agents update this cockpit before stopping or compacting.
 - Repaired active GB/CA/AU keyword strategy locally: the three generic exact keywords are now explicitly only starter controls, with GB English-UK, CA English-Canada/French-Canada-gated, and AU English-Australia long-tail intent maps saved as review-only candidates.
-- Ran fresh read-only GB/CA/AU Ads monitor: stale search-term filters were removed, keyword/RSA/final URL checks passed, Quality Score columns were visible, and current keywords show `Eligible (Limited)` below first-page estimates around `$0.65-$0.74`; owner hard `$0.15` CPC cap means those head terms and close variants are rejected as action rows. Live landing sanitizer still failed, so the bounded action packet is blocked/not uploadable.
-- Corrected the blocked GB/CA/AU packet: removed lazy close-head variants as proposed actions and replaced them with market-specific long-tail validation candidates that still require landing-clean and `$0.15` CPC validation before upload.
+- Ran fresh read-only GB/CA/AU Ads monitor: stale search-term filters were removed, keyword/RSA/final URL checks passed, Quality Score columns were visible, and current keywords show `Eligible (Limited)` below first-page estimates around `$0.65-$0.74`; owner hard `$0.15` CPC cap means those head terms and close variants are rejected as action rows.
+- Re-read the active GB/CA/AU PDP final URLs from public source after the sanitizer handoff: current PDP final URLs now have `0` supplier/source-domain hits and `0` URL-like brand attributes across two header/cache variants. Collection-route preflight found only `mommy-and-me`, `family-matching`, and `pajamas` clean; `matching-dresses`, `swimsuits`, `vacation`, and `daddy-and-me` rows are held.
+- Corrected the blocked GB/CA/AU packet and `keyword_universe.csv`: removed lazy close-head variants as proposed actions and replaced them with market-specific long-tail validation candidates that still require clean route proof and `$0.15` CPC validation before upload.
 - Added the `$0.15` CPC keyword factory criteria: build a big local universe fast, score it, then promote only validated market/landing/economics-safe batches into live packets.
 - Corrected the keyword factory to be US-first. US is the biggest market; GB/CA/AU are expansion Search repair lanes, not a replacement for US keyword intelligence.
 - Added the proactive action mandate: results over monitor loops. If a mistake, broken state, underperforming path, or clear improvement is visible, agents must fix it when safe/approved, or prepare the smallest exact approval packet and keep another safe lane moving.
@@ -80,7 +81,7 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - New local packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-capability-merchant-capacity-diagnosis/AUTOMATION_CAPABILITY_AND_MERCHANT_CAPACITY_DIAGNOSIS.md`.
 - `ops/marketing/spend_authorization.md` now records `APPROVED_ACTIVE` bounded authority from the owner message.
 - Local docs/prompts updated to require reviewer use before risky decisions.
-- Existing stopped-session local sanitizer patch remains in place and was not rewritten.
+- Current active PDP sanitizer readback passed; existing stopped-session local sanitizer patch remains in place and was not rewritten.
 - New keyword command files: `ops/marketing/keyword_strategy.md`, `ops/marketing/keyword_scoring_rubric.md`, and `ops/marketing/keyword_universe.csv`.
 - New integration guard: `ops/scripts/audit_marketing_command_integration.py` and generated report `ops/marketing/command_layer_integration_audit.md`.
 - New broad continuity guard: `ops/scripts/check_continuity_integrity.py`.
@@ -93,11 +94,11 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 
 ## Current Blockers
 
-- Active paid Search landing supplier/source URL leak is locally fixed but still requires approved live theme sync/readback before expansion; fresh 08:17 public GB/CA/AU source readback still fails on `detail.1688.com` in `data-analytics-vendor`.
+- Active paid Search PDP supplier/source URL leak is currently solved by public source readback for GB/CA/AU. Future collection-route expansion is still gated: `matching-dresses` and `swimsuits` leak raw Shopify product JSON supplier vendors, `vacation` is `404`, and `daddy-and-me` has Christmas pattern metadata hits.
 - Merchant US/es age_group needs a current exact all-row readback before closure or repair.
 - Merchant Shopping Ads capacity warning is current and account-level, but exact paid-cohort impact is still unresolved because the authenticated Merchant Chrome/account path is unavailable in this automation runtime.
 - Pinterest Ads Manager remains blocked by authenticated controllable access.
-- GB/CA/AU exact Search have fresh read-only Ads checks done: stale search-term filters are cleared, search terms are still empty, keyword/RSA/final URLs are enabled/country-qualified, and keyword UI shows auction-entry pressure. Live Ads action is blocked by the landing sanitizer failure and by the hard `$0.15` CPC gate for head/near-head terms. A local scored long-tail universe exists for validation, not upload.
+- GB/CA/AU exact Search have fresh read-only Ads checks done: stale search-term filters are cleared, search terms are still empty, keyword/RSA/final URLs are enabled/country-qualified, and keyword UI shows auction-entry pressure. Live Ads action is blocked by the hard `$0.15` CPC validation gate and route-level cleanliness for affected collection rows. A local scored long-tail universe exists for validation, not upload.
 - Standard Shopping has impressions but no clicks/cost/conversion evidence from the latest command-layer readback. US is still the primary market; keyword work applies through Shopping query/title/product/feed diagnostics and future US Search/Pinterest packets.
 - Bounded spend authority is active, but current campaign changes still need fresh readback and quality gates before any proactive live write.
 - Daily optimization ownership is now required: agents must monitor, diagnose, act inside approved caps when gates pass, and keep the dashboard current.
@@ -107,29 +108,29 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 
 ## Next 3 Tasks
 
-1. Get approval for scoped live theme sanitizer sync/readback, then prove GB/CA/AU final URL source/DOM has zero supplier/source URL hits.
+1. Run authenticated Google Ads/Keyword Planner validation for only clean-route GB/CA/AU `GREEN` rows at max `$0.15`, then prepare an exact bounded action row only if auction-entry feasibility passes.
 2. Use an authenticated Merchant session to intersect the live Shopping capacity warning against the `780`-row `us_test_ready` / `paid_eligible` cohort and to obtain a fresh exact US/es export/readback.
-3. Validate top `GREEN` rows from `keyword_universe.csv` against active products, clean landing routes, and Keyword Planner/keyword UI at max CPC `$0.15`; do not raise bids or upload close-head variants.
+3. Repair/reroute/exclude blocked collection routes before using affected keyword rows: `matching-dresses`, `swimsuits`, `vacation`, and `daddy-and-me`.
 
 ## Assumptions
 
-- The stopped-session supplier/source URL sanitizer patch is intentional and should be preserved.
+- The current active PDP supplier/source sanitizer readback passed; the stopped-session sanitizer patch is intentional and should be preserved.
 - The May 14 command-layer live reconciliation and paid-landing local handoff entries are current repo evidence, but live platform decisions still need fresh readbacks where noted.
 - The user wants agents to act proactively inside approved paid-media caps once quality gates pass, but out-of-scope writes still need fresh exact approval.
 - The current exact GB/CA/AU keyword set is a controlled starter hypothesis, not proof of the final smartest keywords; source-backed daily search-term and ROAS evidence must decide expansions, negatives, bid changes, or pauses.
 - 2026 source-backed best practice favors controlled high-intent tests until conversion value, landing quality, and search-term data justify broader automation or scale.
 - The owner wants aggressive AI-speed growth, which means faster daily evidence loops, long-tail ideation, bounded execution, and next-day sales/ROAS review inside guardrails; it does not mean unsafe broadening or unapproved external writes.
 - The owner expects proactive fixes and improvements, not bureaucracy. Local/read-only mistakes should be fixed immediately; currently approved live mistakes should be fixed with before/after readback; unapproved live fixes should become exact approval packets.
-- GB/CA/AU long-tail candidate rows are `review_only_not_uploaded`; they are not live-account instructions until fresh readback, reviewer, landing, `$0.15` CPC validation, and approval/bounded-authority gates pass.
-- The fresh monitor made the stale search-term filter problem better, not the traffic problem: filters are clear now, but no search terms exist and the live landing still blocks traffic expansion.
-- `keyword_universe.csv` is a local universe, not a live upload artifact; `GREEN` rows still need active-product, landing, `$0.15` CPC, reviewer, and after-state gates.
+- GB/CA/AU long-tail candidate rows are `review_only_not_uploaded`; they are not live-account instructions until fresh readback, reviewer, route-level landing proof, `$0.15` CPC validation, and approval/bounded-authority gates pass.
+- The fresh monitor made the stale search-term filter problem better, not the traffic problem: filters are clear now, but no search terms exist and auction-entry economics still block action until clean-route rows validate at `$0.15`.
+- `keyword_universe.csv` is a local universe, not a live upload artifact; `GREEN` rows still need active-product, route cleanliness, `$0.15` CPC, reviewer, and after-state gates.
 - If an artifact is not wired into `AGENTS.md`, an action surface, and continuity logs, it is not progress; it is a side-document risk.
 - If a prompt, packet, digest, or memory names an older anchor, resolve latest state from `ops/AGENT_WORKLOG.md` and the command layer instead.
 - If this automation runtime cannot use the authenticated Chrome/account path, treat Merchant/Pinterest account readbacks as capability-mismatched and hand off the exact authenticated next step instead of claiming parity.
 
 ## Risks / Approval Needed
 
-- Publishing the sanitizer to the live Shopify theme is an external write not automatically covered by paid-media spend authority.
+- Shopify product/vendor/source metadata or theme changes for blocked collection routes are external writes not automatically covered by paid-media spend authority.
 - Merchant feed/source/product-scope/product-group actions require fresh exact approval.
 - Pinterest object creation, campaign/ad group/product group changes, budget/bid/status changes, or catalog/source/tag/CAPI writes require approval and authenticated access.
 - Any spend/budget/bid/status/feed/product/conversion recommendation must pass the reviewer checklist and cite current evidence.
