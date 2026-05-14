@@ -36998,3 +36998,46 @@ Next best action:
 - Run authenticated read-only Standard Shopping item-level export for campaign `23802638621` with item ID, title, product group/custom label, impressions, clicks, cost, query/search-term where available, conversion value, and landing URL.
 - Join that export to `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-query-title-diagnosis/us_shopping_query_title_candidates.csv`.
 - Only if export proof shows a mismatch, prepare a narrow owner approval packet for Shopify/Merchant title/feed repair; do not mutate product/feed data from the local diagnosis alone.
+
+2026-05-14 - Automation US Shopping public PDP fit preflight
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-us-shopping-public-pdp-fit-preflight
+
+Why:
+- The highest-priority remaining P0 row is still authenticated Google Ads / Keyword Planner `$0.15` CPC validation for the GB/CA/AU 36-row packet, but authenticated account surfaces remain `AUTOMATION_CAPABILITY_MISMATCH` in this unattended runtime.
+- The next safe executable lane was US Standard Shopping query/title proof. The previous local diagnosis produced plausible product candidates, but authenticated item export should not waste time or future title/feed decisions on public-dirty or weak-fit PDP rows.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/run_us_shopping_public_pdp_fit_preflight.py`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/US_SHOPPING_PUBLIC_PDP_FIT_PREFLIGHT.md`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_public_pdp_fit_preflight_rows.csv`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_auth_export_public_clean_scope.csv`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_public_pdp_fit_preflight_summary.json`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `memory_digest.md`, `assumption_log.md`, `operator_cockpit.md`, and `campaign_explorer.json`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Public storefront preflight checked `24` US Shopping query/title candidate rows across `10` unique PDP handles and two public header variants.
+- `10/10` unique handles returned `200`.
+- `8/10` unique handles were source-clean.
+- `18/24` candidate rows are now in the public-clean authenticated export scope.
+- `5` candidate rows are held for public source/stale-copy issues.
+- `1` candidate row needs title-fit review.
+- This does not prove which items actually received impressions; authenticated item-level export remains required before any title/feed/product-group decision.
+
+Verification:
+- Repo write test passed.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/run_us_shopping_public_pdp_fit_preflight.py` completed and regenerated report/CSV/JSON outputs.
+- `python3.13 -m py_compile dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/run_us_shopping_public_pdp_fit_preflight.py` passed.
+- `python3.13 -m json.tool ops/marketing/campaign_explorer.json` passed after the campaign explorer update.
+
+Guardrails:
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/product-group write occurred.
+- No Merchant feed/source/product/title edit and no Shopify Admin product/title/feed-visible edit occurred.
+- No live Shopify theme push/sync/publish occurred.
+- No Pinterest, GA4/GTM, billing, product-scope, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Run authenticated read-only Standard Shopping item-level export for campaign `23802638621` with item ID, title, product group/custom label, impressions, clicks, cost, query/search-term where available, conversion value, and landing URL.
+- Join that export first to `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_auth_export_public_clean_scope.csv`.
+- Only if export proof shows a mismatch, prepare a narrow owner approval packet for Shopify/Merchant title/feed repair; do not mutate product/feed data from the public/local diagnosis alone.

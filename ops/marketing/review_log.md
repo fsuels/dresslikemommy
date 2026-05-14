@@ -714,3 +714,33 @@ Evidence:
 Safest next sales-moving action:
 
 - Authenticated item-level Shopping export, then title/feed approval packet only for proven mismatches.
+
+## 2026-05-14 - US Shopping public PDP fit preflight
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Public storefront readback only; no Google Ads, Merchant, Shopify Admin, live theme, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, product-group, conversion, or destructive write.
+- Candidate scope came from the existing `24`-row US Shopping query/title diagnosis.
+- Preflight checked `10` unique PDP handles across two public header variants and wrote an `18`-row public-clean scope for authenticated item export.
+
+Risks:
+
+- Public PDP fit does not prove which products or titles actually received Standard Shopping impressions.
+- Held candidate rows may still be viable after a separate public-source/title-fit repair, but should not drive title/feed repair decisions now.
+
+Required gates/fixes:
+
+- Run authenticated read-only item-level Shopping export for campaign `23802638621`.
+- Join item IDs/titles/performance first to `us_shopping_auth_export_public_clean_scope.csv`.
+- Prepare a narrow title/feed approval packet only if export proof shows a mismatch.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/US_SHOPPING_PUBLIC_PDP_FIT_PREFLIGHT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_public_pdp_fit_preflight_summary.json`
+
+Safest next sales-moving action:
+
+- Authenticated item-level Shopping export against the public-clean scope; no product/feed/title write until proof exists.
