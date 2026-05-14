@@ -55,6 +55,7 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - Repaired active GB/CA/AU keyword strategy locally: the three generic exact keywords are now explicitly only starter controls, with GB English-UK, CA English-Canada/French-Canada-gated, and AU English-Australia long-tail intent maps saved as review-only candidates.
 - Ran fresh read-only GB/CA/AU Ads monitor: stale search-term filters were removed, keyword/RSA/final URL checks passed, Quality Score columns were visible, and current keywords show `Eligible (Limited)` below first-page estimates around `$0.65-$0.74`; owner hard `$0.15` CPC cap means those head terms and close variants are rejected as action rows.
 - Re-read the active GB/CA/AU PDP final URLs from public source after the sanitizer handoff: current PDP final URLs now have `0` supplier/source-domain hits and `0` URL-like brand attributes across two header/cache variants. Collection-route preflight found only `mommy-and-me`, `family-matching`, and `pajamas` clean; `matching-dresses`, `swimsuits`, `vacation`, and `daddy-and-me` rows are held.
+- Rerouted GB/CA/AU non-swim keyword rows away from dirty/broken collection routes: matching-dress wedding-guest rows now use clean `mommy-and-me`; vacation/family/daddy rows now use clean `family-matching` or `mommy-and-me` where product fit is closer. `31` GB/CA/AU `GREEN` rows are now clean-route/CPC-validation-ready; `5` swimwear rows remain held.
 - Corrected the blocked GB/CA/AU packet and `keyword_universe.csv`: removed lazy close-head variants as proposed actions and replaced them with market-specific long-tail validation candidates that still require clean route proof and `$0.15` CPC validation before upload.
 - Added the `$0.15` CPC keyword factory criteria: build a big local universe fast, score it, then promote only validated market/landing/economics-safe batches into live packets.
 - Corrected the keyword factory to be US-first. US is the biggest market; GB/CA/AU are expansion Search repair lanes, not a replacement for US keyword intelligence.
@@ -94,11 +95,11 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 
 ## Current Blockers
 
-- Active paid Search PDP supplier/source URL leak is currently solved by public source readback for GB/CA/AU. Future collection-route expansion is still gated: `matching-dresses` and `swimsuits` leak raw Shopify product JSON supplier vendors, `vacation` is `404`, and `daddy-and-me` has Christmas pattern metadata hits.
+- Active paid Search PDP supplier/source URL leak is currently solved by public source readback for GB/CA/AU. Future collection-route expansion is partly unblocked: `matching-dresses`, `vacation`, and `daddy-and-me` GB/CA/AU rows were rerouted to clean collection routes; `swimsuits` still leaks raw Shopify product JSON supplier vendors and remains held.
 - Merchant US/es age_group needs a current exact all-row readback before closure or repair.
 - Merchant Shopping Ads capacity warning is current and account-level, but exact paid-cohort impact is still unresolved because the authenticated Merchant Chrome/account path is unavailable in this automation runtime.
 - Pinterest Ads Manager remains blocked by authenticated controllable access.
-- GB/CA/AU exact Search have fresh read-only Ads checks done: stale search-term filters are cleared, search terms are still empty, keyword/RSA/final URLs are enabled/country-qualified, and keyword UI shows auction-entry pressure. Live Ads action is blocked by the hard `$0.15` CPC validation gate and route-level cleanliness for affected collection rows. A local scored long-tail universe exists for validation, not upload.
+- GB/CA/AU exact Search have fresh read-only Ads checks done: stale search-term filters are cleared, search terms are still empty, keyword/RSA/final URLs are enabled/country-qualified, and keyword UI shows auction-entry pressure. Live Ads action is blocked by the hard `$0.15` CPC validation gate. A local scored long-tail universe exists for validation, not upload, with `31` GB/CA/AU `GREEN` rows now on clean routes.
 - Standard Shopping has impressions but no clicks/cost/conversion evidence from the latest command-layer readback. US is still the primary market; keyword work applies through Shopping query/title/product/feed diagnostics and future US Search/Pinterest packets.
 - Bounded spend authority is active, but current campaign changes still need fresh readback and quality gates before any proactive live write.
 - Daily optimization ownership is now required: agents must monitor, diagnose, act inside approved caps when gates pass, and keep the dashboard current.
@@ -108,9 +109,9 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 
 ## Next 3 Tasks
 
-1. Run authenticated Google Ads/Keyword Planner validation for only clean-route GB/CA/AU `GREEN` rows at max `$0.15`, then prepare an exact bounded action row only if auction-entry feasibility passes.
+1. Run authenticated Google Ads/Keyword Planner validation for the `31` clean-route GB/CA/AU `GREEN` rows at max `$0.15`, then prepare an exact bounded action row only if auction-entry feasibility passes.
 2. Use an authenticated Merchant session to intersect the live Shopping capacity warning against the `780`-row `us_test_ready` / `paid_eligible` cohort and to obtain a fresh exact US/es export/readback.
-3. Repair/reroute/exclude blocked collection routes before using affected keyword rows: `matching-dresses`, `swimsuits`, `vacation`, and `daddy-and-me`.
+3. Repair/reroute/exclude the remaining swimwear route before using swimwear keyword rows; `/collections/swimsuits` still leaks supplier vendor values through Shopify automatic product JSON.
 
 ## Assumptions
 

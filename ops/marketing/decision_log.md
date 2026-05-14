@@ -1,6 +1,6 @@
 # Marketing Decision Log
 
-Last updated: 2026-05-14 11:19 EDT
+Last updated: 2026-05-14 11:40 EDT
 
 | Date | Decision | Evidence | Follow-up |
 |---|---|---|---|
@@ -32,6 +32,7 @@ Last updated: 2026-05-14 11:19 EDT
 | 2026-05-14 | Keep Merchant Shopping capacity blocker open but narrow it to an authenticated paid-cohort intersection readback | Fresh diagnostics page showed `Over capacity for Shopping ads (outside of CSS program)` affecting `73.3K products (21%)`, but Standard Shopping still served `17` impressions on `2026-05-13`, so there is no proven total-serving outage. | Next step is an authenticated read-only Merchant product-level intersection against the live `780`-row `us_test_ready` / `paid_eligible` cohort; do not remove products, change scope, or request capacity by inference |
 | 2026-05-14 | Treat the current GB/CA/AU active PDP final URL sanitizer gate as passed, but keep live Search expansion blocked on `$0.15` validation | Public readback at 11:18 EDT checked GB/CA/AU active PDP final URLs across two header/cache variants and found `0` supplier/source-domain hits, `0` URL-like analytics brand attributes, and expected shipping/schema signals. | Do not upload/add/change keywords yet. Validate only clean-route `GREEN` rows in authenticated Google Ads/Keyword Planner at max `$0.15`, then run reviewer before any bounded action. |
 | 2026-05-14 | Hold keyword rows routed to dirty/broken collection pages | Collection preflight found `mommy-and-me`, `family-matching`, and `pajamas` clean; `matching-dresses` and `swimsuits` leak raw Shopify product JSON supplier vendor URLs; `vacation` is `404`; `daddy-and-me` has Christmas pattern metadata hits. | Updated `keyword_universe.csv` row-level `live_action` holds. Repair/reroute/exclude affected routes before any live Search traffic; Shopify product/vendor/metadata edits require fresh approval if needed. |
+| 2026-05-14 | Reroute GB/CA/AU non-swim keyword rows to clean collection routes and keep swimwear held | Public source inspection showed the dirty route supplier leak is Shopify automatic `window.ShopifyAnalytics.meta` product JSON, not our sanitized theme analytics attributes. Public readbacks show `/collections/mommy-and-me`, `/collections/family-matching`, and `/collections/pajamas` are clean across GB/CA/AU. CSV validation now shows `31` GB/CA/AU `GREEN` rows marked `cpc_validation_required`, `0` GB/CA/AU rows left on `vacation`, `matching-dresses`, or `daddy-and-me`, and `5` swimwear rows still held. | Next action is authenticated Google Ads/Keyword Planner `$0.15` CPC validation for the `31` clean-route rows only. Do not use swimwear rows until `/collections/swimsuits` is repaired, rerouted to a clean swim-specific route, or explicitly excluded. |
 
 ## Decision Rules
 

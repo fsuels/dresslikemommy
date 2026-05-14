@@ -36854,3 +36854,35 @@ Next best action:
 - Run authenticated Google Ads/Keyword Planner validation for clean-route GB/CA/AU `GREEN` rows only, at max `$0.15` CPC.
 - Repair, reroute, or exclude blocked collection routes before any live Search traffic uses them.
 - Continue Merchant/Pinterest authenticated access blockers in a session with usable authenticated account surfaces.
+
+2026-05-14 - Automation keyword route reroute CPC gate
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-keyword-route-reroute-cpc-gate
+
+Why:
+- The highest-priority remaining P0 queue row was authenticated Google Ads / Keyword Planner `$0.15` CPC validation, but the current automation runtime is already recorded as `AUTOMATION_CAPABILITY_MISMATCH` for authenticated account surfaces.
+- The next safe executable sales-moving lane was to reduce the route-cleanliness blocker that kept GB/CA/AU long-tail rows from reaching that authenticated CPC validation step.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-paid-landing-post-sanitizer-readback/GB_CA_AU_KEYWORD_ROUTE_REROUTE_REPORT.md`.
+- Updated `ops/marketing/keyword_universe.csv` so GB/CA/AU clean-route rows now explicitly say `route_clean_cpc_validation_required`.
+- Rerouted GB/CA/AU matching-dress wedding-guest rows from supplier-leaking `/collections/matching-dresses` to clean `/collections/mommy-and-me`.
+- Rerouted GB/CA/AU vacation/family/daddy rows from `404` or Christmas-metadata routes to clean product-relevant `/collections/family-matching` or `/collections/mommy-and-me`.
+- Left `5` GB/CA/AU swimwear rows held on `/collections/swimsuits`, because no clean swim-specific route exists yet and the route still leaks supplier vendor values through Shopify automatic product JSON.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `memory_digest.md`, `operator_cockpit.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md`.
+
+Readback / verification:
+- Diagnosed the dirty-route leak source as Shopify automatic `window.ShopifyAnalytics.meta` product JSON, not the already-sanitized theme `data-analytics-*` attributes.
+- Public route readback passed for `/collections/mommy-and-me`, `/collections/family-matching`, and `/collections/pajamas` across `GB`, `CA`, and `AU`: each returned `200` and `0` leak hits for supplier domains and URL-like analytics brand attributes.
+- CSV parse/count check passed: `105` rows, `77 GREEN`, `20 YELLOW`, `8 RED`.
+- GB/CA/AU post-reroute counts: `31` `GREEN` rows with `cpc_validation_required`, `5` swimwear rows still held, `0` GB/CA/AU rows left on `/collections/vacation`, `/collections/matching-dresses`, or `/collections/daddy-and-me`.
+
+Guardrails:
+- No Google Ads upload/apply/import, keyword/ad/negative/bid/budget/status/campaign write occurred.
+- No Shopify Admin product/vendor/source metadata edit and no live Shopify theme push/sync/publish occurred.
+- No Merchant, Pinterest, GA4/GTM, billing, feed, product-scope, product-group, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Run authenticated Google Ads / Keyword Planner validation for the `31` clean-route GB/CA/AU `GREEN` rows only, at max `$0.15` CPC.
+- Keep `5` swimwear rows held until `/collections/swimsuits` is repaired, rerouted to a clean swim-specific route, or explicitly excluded.
+- Continue Merchant/Pinterest authenticated access blockers in a session with usable authenticated account surfaces.

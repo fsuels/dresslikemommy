@@ -1,6 +1,6 @@
 # Marketing Safety Review Log
 
-Last updated: 2026-05-14 10:38 EDT
+Last updated: 2026-05-14 11:40 EDT
 
 Use this log for reviewer outcomes or simulated checklist runs. Keep entries short and tied to evidence.
 
@@ -584,3 +584,37 @@ Evidence:
 Safest next sales-moving action:
 
 - Run authenticated `$0.15` CPC/auction validation for clean-route GB/CA/AU `GREEN` rows only.
+
+## 2026-05-14 - GB/CA/AU keyword route reroute
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Repo-local `keyword_universe.csv` reroute only; no Google Ads, Shopify Admin, live theme, Merchant, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or destructive write.
+- Public source readbacks for `/collections/mommy-and-me`, `/collections/family-matching`, and `/collections/pajamas` across GB/CA/AU.
+- CSV parse/count validation after reroute.
+- Supplier leak source diagnosis: Shopify automatic `window.ShopifyAnalytics.meta` product JSON, not the sanitized theme `data-analytics-*` attributes.
+
+Risks:
+
+- Reroute improves route cleanliness but is not upload approval.
+- Some rerouted rows use broader clean routes, so active-product/product-fit review still matters before live action.
+- `/collections/swimsuits` remains supplier-leaking and no clean swim-specific route was proven.
+- Authenticated `$0.15` CPC validation is still missing because this automation runtime has an account-surface capability mismatch.
+
+Required gates/fixes:
+
+- Validate only the `31` clean-route GB/CA/AU `GREEN` rows in authenticated Google Ads/Keyword Planner at max `$0.15`.
+- Keep `5` swimwear rows held until a clean swim-specific route exists or product/vendor-source repair is approved and read back.
+- Do not upload/apply/add keywords, raise bids, change budgets/statuses, or add negatives until exact row scope, fresh readback, reviewer pass, and after-state readback plan exist.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-paid-landing-post-sanitizer-readback/GB_CA_AU_KEYWORD_ROUTE_REROUTE_REPORT.md`
+- `ops/marketing/keyword_universe.csv`
+- `ops/marketing/action_queue.md`
+
+Safest next sales-moving action:
+
+- Run authenticated `$0.15` CPC/auction validation for the `31` clean-route GB/CA/AU `GREEN` rows.
