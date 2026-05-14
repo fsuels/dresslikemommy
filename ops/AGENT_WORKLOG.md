@@ -36960,3 +36960,41 @@ Next best action:
 - Run authenticated Google Ads / Keyword Planner validation for `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/gb_ca_au_36_clean_route_cpc_validation_rows.csv` only, at max `$0.15` CPC.
 - Promote only rows that pass through a green-gated action-queue row with reviewer pass and after-state readback.
 - Continue Merchant/Pinterest authenticated access blockers in a session with usable authenticated account surfaces.
+
+2026-05-14 - Automation US Shopping query/title diagnosis
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-us-shopping-query-title-diagnosis
+
+Why:
+- The highest-priority remaining P0 row is still authenticated Google Ads / Keyword Planner `$0.15` CPC validation for the GB/CA/AU 36-row packet, but this unattended automation runtime remains `AUTOMATION_CAPABILITY_MISMATCH` for authenticated account surfaces.
+- The next safe sales-moving lane was US Standard Shopping, because US is the primary market and the current readback has impressions but no clicks, cost, purchases, or ROAS signal.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-query-title-diagnosis/US_STANDARD_SHOPPING_QUERY_TITLE_DIAGNOSIS.md`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-query-title-diagnosis/us_shopping_query_title_candidates.csv`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-query-title-diagnosis/us_shopping_query_title_summary.json`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-query-title-diagnosis/us_shopping_route_checks.csv`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `memory_digest.md`, `assumption_log.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Decision:
+- Current Standard Shopping visible terms `family pictures outfits`, `family same outfit`, and `mommy and me wedding guest dresses` had `0` clicks and `$0.00` cost, so no negative, product-group, bid, budget, status, product, feed, or title write is justified.
+- The local diagnosis maps those terms to paid-cohort candidate handles and defines the exact authenticated item-level export needed before any title/feed approval packet.
+- Public US route checks found `/collections/mommy-and-me`, `/collections/family-matching`, `/collections/pajamas`, `/collections/family-swimsuits`, and `/collections/daddy-and-me` clean. `/collections/vacation` remains `404`, and `/collections/matching-dresses` still has supplier hits, so both stay held.
+
+Readback / verification:
+- Repo write test passed.
+- Standard Shopping saved readbacks used: `17` impressions, `0` clicks, `$0.00` cost, `0.00` conversions/value for `2026-05-13`.
+- Paid cohort parse passed: `780` variant rows across `81` handles.
+- Keyword universe parse passed for this lane: `41` US `GREEN` rows and `29` US Shopping-ready rows.
+- Public route readback passed clean routes and preserved holds for broken/leaking routes.
+
+Guardrails:
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/product-group write occurred.
+- No Merchant feed/source/product/title edit and no Shopify Admin product/title/feed-visible edit occurred.
+- No Pinterest, GA4/GTM, billing, product-scope, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Run authenticated read-only Standard Shopping item-level export for campaign `23802638621` with item ID, title, product group/custom label, impressions, clicks, cost, query/search-term where available, conversion value, and landing URL.
+- Join that export to `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-query-title-diagnosis/us_shopping_query_title_candidates.csv`.
+- Only if export proof shows a mismatch, prepare a narrow owner approval packet for Shopify/Merchant title/feed repair; do not mutate product/feed data from the local diagnosis alone.

@@ -1,6 +1,6 @@
 # Marketing Assumption Log
 
-Last updated: 2026-05-14 11:59 EDT
+Last updated: 2026-05-14 12:43 EDT
 
 Use this file for important assumptions that affect paid-growth decisions, especially when evidence is repo-known, stale, sampled, or gated by approval/access.
 
@@ -24,6 +24,7 @@ Use this file for important assumptions that affect paid-growth decisions, espec
 | 2026-05-14 | This automation runtime is not account-surface equivalent to a normal owner session. | Shell/repo writes/network/Playwright MCP are usable, but Chrome DevTools MCP is profile-locked, Computer Use interactive access is denied, and shell-side Playwright is not installed. | An agent could overclaim Merchant/Pinterest readback completeness or close a blocker without the authenticated intersection proof. | Treat account-dependent Merchant/Pinterest follow-ups as `AUTOMATION_CAPABILITY_MISMATCH` until a usable authenticated Chrome/account path is restored. |
 | 2026-05-14 | Clean current PDP final URLs do not prove all future keyword collection routes are clean. | 11:18 public PDP readback passed, but 11:19 collection preflight found `matching-dresses` and `swimsuits` supplier JSON leaks, `vacation` `404`, and `daddy-and-me` Christmas pattern hits. | Live keyword rows could route paid traffic to supplier-leaking, broken, or seasonally mismatched pages. | Validate route cleanliness per candidate route before live use; keep affected `keyword_universe.csv` rows held until repaired, rerouted, or excluded. |
 | 2026-05-14 | Exact 31-row GB/CA/AU CPC validation packet is a handoff artifact, not upload authority. | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/GB_CA_AU_31_CLEAN_ROUTE_CPC_VALIDATION_PACKET.md`; no Google Ads API env keys and no `google.ads.googleads` package in this shell; authenticated GUI surfaces remain gated. | A future operator could mistake the packet for a Google Ads import list and bypass `$0.15` CPC validation. | Validate `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/gb_ca_au_31_clean_route_cpc_validation_rows.csv` in authenticated Google Ads/Keyword Planner; promote only passed rows through `action_queue.md` after reviewer pass and after-state plan. |
+| 2026-05-14 | US Standard Shopping query/title candidates are hypotheses until item-level export proves them. | `US_STANDARD_SHOPPING_QUERY_TITLE_DIAGNOSIS.md` maps zero-click visible terms to paid-cohort candidates, but the current saved readback does not expose which item IDs/titles received those impressions. | A future operator could edit product/feed titles or product groups based on plausible mapping instead of proof. | Run authenticated read-only item-level export for campaign `23802638621`, then join it to `us_shopping_query_title_candidates.csv`; only proven mismatches become an approval packet. |
 
 ## Add New Assumptions Like This
 

@@ -683,3 +683,34 @@ Evidence:
 Safest next sales-moving action:
 
 - Run authenticated `$0.15` CPC/auction validation for the 36-row packet, then promote only passed rows through the green-gated action queue.
+
+## 2026-05-14 - US Standard Shopping query/title diagnosis
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Repo-local Standard Shopping diagnosis only; no Google Ads, Merchant, Shopify Admin, live theme, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, product-group, conversion, or destructive write.
+- Current visible yesterday Shopping search terms have `0` clicks and `$0.00` cost, so no negative keyword or product-group action is justified.
+- Packet maps the three visible terms to paid-cohort candidates and keeps title/feed repair behind authenticated item-level export proof.
+- Public route checks passed for `/collections/mommy-and-me`, `/collections/family-matching`, `/collections/pajamas`, `/collections/family-swimsuits`, and `/collections/daddy-and-me`; `/collections/vacation` and `/collections/matching-dresses` stay held.
+
+Risks:
+
+- Candidate mappings are local hypotheses, not proof that those exact items received impressions.
+- Title/feed edits could mutate Shopify/Merchant production data and require fresh exact approval if later proven needed.
+
+Required gates/fixes:
+
+- Run authenticated read-only product-item export for campaign `23802638621`.
+- Join item IDs/titles/performance to `us_shopping_query_title_candidates.csv`.
+- Prepare a narrow title/feed approval packet only if export proof shows a mismatch.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-query-title-diagnosis/US_STANDARD_SHOPPING_QUERY_TITLE_DIAGNOSIS.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-query-title-diagnosis/us_shopping_query_title_summary.json`
+
+Safest next sales-moving action:
+
+- Authenticated item-level Shopping export, then title/feed approval packet only for proven mismatches.

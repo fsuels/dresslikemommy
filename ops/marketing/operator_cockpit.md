@@ -57,6 +57,7 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - Re-read the active GB/CA/AU PDP final URLs from public source after the sanitizer handoff: current PDP final URLs now have `0` supplier/source-domain hits and `0` URL-like brand attributes across two header/cache variants. Collection-route preflight found only `mommy-and-me`, `family-matching`, and `pajamas` clean; `matching-dresses`, `swimsuits`, `vacation`, and `daddy-and-me` rows are held.
 - Rerouted GB/CA/AU keyword rows away from dirty/broken collection routes: matching-dress wedding-guest rows now use clean `mommy-and-me`; vacation/family/daddy rows now use clean `family-matching` or `mommy-and-me`; swimwear rows now use clean `family-swimsuits`. `36` GB/CA/AU `GREEN` rows are now clean-route/CPC-validation-ready.
 - Prepared the exact authenticated CPC validation packet for clean-route GB/CA/AU long-tail rows: `36` rows (`GB=12`, `CA=12`, `AU=12`), `/collections/family-swimsuits` passed fresh GB/CA/AU public route readbacks with `200` and `0` supplier/url-brand hits, and all rows remain `NO_UPLOAD` until authenticated `$0.15` validation passes.
+- Built the US Standard Shopping query/title diagnosis packet: yesterday's Shopping terms had `0` clicks/cost, so no negatives or product-group edits are justified. The packet maps visible terms to paid-cohort candidates, checks US public collection routes, and defines the authenticated item-level export needed before any title/feed approval packet.
 - Corrected the blocked GB/CA/AU packet and `keyword_universe.csv`: removed lazy close-head variants as proposed actions and replaced them with market-specific long-tail validation candidates that still require clean route proof and `$0.15` CPC validation before upload.
 - Added the `$0.15` CPC keyword factory criteria: build a big local universe fast, score it, then promote only validated market/landing/economics-safe batches into live packets.
 - Corrected the keyword factory to be US-first. US is the biggest market; GB/CA/AU are expansion Search repair lanes, not a replacement for US keyword intelligence.
@@ -85,6 +86,7 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - Local docs/prompts updated to require reviewer use before risky decisions.
 - Current active PDP sanitizer readback passed; existing stopped-session local sanitizer patch remains in place and was not rewritten.
 - New keyword command files: `ops/marketing/keyword_strategy.md`, `ops/marketing/keyword_scoring_rubric.md`, and `ops/marketing/keyword_universe.csv`.
+- New US Shopping diagnosis packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-query-title-diagnosis/`.
 - New integration guard: `ops/scripts/audit_marketing_command_integration.py` and generated report `ops/marketing/command_layer_integration_audit.md`.
 - New broad continuity guard: `ops/scripts/check_continuity_integrity.py`.
 - `ops/AGENT_WORKLOG_utf8.md` is now explicitly `HISTORICAL_DO_NOT_USE`; unique historical session titles were compared and summarized in the canonical worklog.
@@ -102,6 +104,7 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - Pinterest Ads Manager remains blocked by authenticated controllable access.
 - GB/CA/AU exact Search have fresh read-only Ads checks done: stale search-term filters are cleared, search terms are still empty, keyword/RSA/final URLs are enabled/country-qualified, and keyword UI shows auction-entry pressure. Live Ads action is blocked by the hard `$0.15` CPC validation gate. The exact authenticated validation packet is ready at `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/gb_ca_au_36_clean_route_cpc_validation_rows.csv`, with `36` clean-route rows and no upload authority.
 - Standard Shopping has impressions but no clicks/cost/conversion evidence from the latest command-layer readback. US is still the primary market; keyword work applies through Shopping query/title/product/feed diagnostics and future US Search/Pinterest packets.
+- US Standard Shopping query/title proof is now the next read-only Shopping action: local candidate mapping is ready, but item-level product/title performance export is required before any title/feed/product-group decision.
 - Bounded spend authority is active, but current campaign changes still need fresh readback and quality gates before any proactive live write.
 - Daily optimization ownership is now required: agents must monitor, diagnose, act inside approved caps when gates pass, and keep the dashboard current.
 - Monitoring cannot be the deliverable. Every monitor/readback must end in `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`.
@@ -111,8 +114,8 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 ## Next 3 Tasks
 
 1. Run authenticated Google Ads/Keyword Planner validation for `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/gb_ca_au_36_clean_route_cpc_validation_rows.csv` at max `$0.15`, then prepare an exact bounded action row only if auction-entry feasibility passes.
-2. Use an authenticated Merchant session to intersect the live Shopping capacity warning against the `780`-row `us_test_ready` / `paid_eligible` cohort and to obtain a fresh exact US/es export/readback.
-3. Keep `/collections/swimsuits` excluded until repaired; current GB/CA/AU swimwear validation rows use clean `/collections/family-swimsuits`.
+2. Run authenticated read-only Standard Shopping item-level export for campaign `23802638621` and join it to `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-query-title-diagnosis/us_shopping_query_title_candidates.csv`.
+3. Use an authenticated Merchant session to intersect the live Shopping capacity warning against the `780`-row `us_test_ready` / `paid_eligible` cohort and to obtain a fresh exact US/es export/readback.
 
 ## Assumptions
 
@@ -126,6 +129,7 @@ Detailed source-backed standard lives in `ops/marketing/expert_growth_playbook_2
 - GB/CA/AU long-tail candidate rows are `review_only_not_uploaded`; the exact next validation scope is packetized at `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/GB_CA_AU_SWIM_ROUTE_UNBLOCK_AND_36_ROW_CPC_PACKET.md`, but it is not a live-account instruction until fresh Ads readback, reviewer, route-level landing proof, `$0.15` CPC validation, and approval/bounded-authority gates pass.
 - The fresh monitor made the stale search-term filter problem better, not the traffic problem: filters are clear now, but no search terms exist and auction-entry economics still block action until clean-route rows validate at `$0.15`.
 - `keyword_universe.csv` is a local universe, not a live upload artifact; `GREEN` rows still need active-product, route cleanliness, `$0.15` CPC, reviewer, and after-state gates.
+- US Shopping title/feed candidates are local hypotheses until an authenticated item-level export proves which product titles received impressions and whether a mismatch exists.
 - If an artifact is not wired into `AGENTS.md`, an action surface, and continuity logs, it is not progress; it is a side-document risk.
 - If a prompt, packet, digest, or memory names an older anchor, resolve latest state from `ops/AGENT_WORKLOG.md` and the command layer instead.
 - If this automation runtime cannot use the authenticated Chrome/account path, treat Merchant/Pinterest account readbacks as capability-mismatched and hand off the exact authenticated next step instead of claiming parity.
