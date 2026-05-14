@@ -1,6 +1,6 @@
 # Marketing Decision Log
 
-Last updated: 2026-05-14 11:59 EDT
+Last updated: 2026-05-14 12:19 EDT
 
 | Date | Decision | Evidence | Follow-up |
 |---|---|---|---|
@@ -35,6 +35,7 @@ Last updated: 2026-05-14 11:59 EDT
 | 2026-05-14 | Reroute GB/CA/AU non-swim keyword rows to clean collection routes and keep swimwear held | Public source inspection showed the dirty route supplier leak is Shopify automatic `window.ShopifyAnalytics.meta` product JSON, not our sanitized theme analytics attributes. Public readbacks show `/collections/mommy-and-me`, `/collections/family-matching`, and `/collections/pajamas` are clean across GB/CA/AU. CSV validation now shows `31` GB/CA/AU `GREEN` rows marked `cpc_validation_required`, `0` GB/CA/AU rows left on `vacation`, `matching-dresses`, or `daddy-and-me`, and `5` swimwear rows still held. | Next action is authenticated Google Ads/Keyword Planner `$0.15` CPC validation for the `31` clean-route rows only. Do not use swimwear rows until `/collections/swimsuits` is repaired, rerouted to a clean swim-specific route, or explicitly excluded. |
 
 | 2026-05-14 | Prepare exact GB/CA/AU 31-row CPC validation packet instead of probing blocked GUI/account paths | Highest queue row requires authenticated Google Ads/Keyword Planner validation, but this shell has no Google Ads env keys and no `google.ads.googleads` package; automation memory already records account-surface mismatch. Packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/GB_CA_AU_31_CLEAN_ROUTE_CPC_VALIDATION_PACKET.md` selects only clean-route rows and reconfirms `9/9` public route checks with `0` supplier/url-brand hits. | Next authenticated Ads session validates `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/gb_ca_au_31_clean_route_cpc_validation_rows.csv` at max `$0.15`; no upload/add/change action until exact pass rows, fresh readback, reviewer pass, and after-state plan exist. |
+| 2026-05-14 | Supersede the 31-row packet with a 36-row packet by rerouting swimwear to clean `/collections/family-swimsuits` | Public readback of `/collections/family-swimsuits` across GB/CA/AU and two header variants returned `200`, `0` supplier/url-brand hits, `0` stale reputation hits, family swim copy, and shipping signals. Rerouted the 5 previously held swimwear rows from leaking `/collections/swimsuits` to `/collections/family-swimsuits`, then generated `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/GB_CA_AU_SWIM_ROUTE_UNBLOCK_AND_36_ROW_CPC_PACKET.md`. | Next authenticated Ads session validates `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/gb_ca_au_36_clean_route_cpc_validation_rows.csv` at max `$0.15`; no upload/add/change action until exact pass rows, fresh readback, reviewer pass, and after-state plan exist. Keep `/collections/swimsuits` excluded until repaired. |
 
 ## Decision Rules
 

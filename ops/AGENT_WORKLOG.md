@@ -36921,3 +36921,42 @@ Next best action:
 - Run authenticated Google Ads / Keyword Planner validation for `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-packet/gb_ca_au_31_clean_route_cpc_validation_rows.csv` only, at max `$0.15` CPC.
 - Promote only rows that pass through a green-gated action-queue row with reviewer pass and after-state readback.
 - Continue Merchant/Pinterest authenticated access blockers in a session with usable authenticated account surfaces.
+
+2026-05-14 - Automation swim route unblock and 36-row CPC packet
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-automation-swim-route-unblock-36-row-cpc-packet
+
+Why:
+- The highest-priority P0 action remains authenticated Google Ads / Keyword Planner `$0.15` CPC validation, but this unattended automation runtime still has `AUTOMATION_CAPABILITY_MISMATCH` for authenticated account surfaces.
+- The next safe executable sales-moving lane was reducing the remaining route-cleanliness blocker: `5` GB/CA/AU swimwear rows were still held because `/collections/swimsuits` leaks supplier vendors through Shopify automatic product JSON.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/GB_CA_AU_SWIM_ROUTE_UNBLOCK_AND_36_ROW_CPC_PACKET.md`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/gb_ca_au_36_clean_route_cpc_validation_rows.csv`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/gb_ca_au_swim_route_unblock_summary.json`.
+- Added the local packet generator `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/generate_swim_route_unblock_packet.py`.
+- Updated `ops/marketing/keyword_universe.csv` so the `5` GB/CA/AU swimwear rows use clean `/collections/family-swimsuits` and require authenticated `$0.15` CPC validation.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Decision:
+- `/collections/family-swimsuits` is the clean swim-intent route for the current GB/CA/AU validation set.
+- The old `31`-row packet is superseded by the `36`-row packet: `GB=12`, `CA=12`, `AU=12`.
+- `/collections/swimsuits` remains excluded until repaired, because it still leaks supplier vendors through Shopify automatic product JSON.
+- Packet readiness is not upload authority. No row can move live until authenticated Keyword Planner/keyword UI validation proves auction-entry feasibility at max `$0.15`, fresh Ads readback exists, reviewer passes, exact action-queue scope is named, and after-state readback is planned.
+
+Readback / verification:
+- Repo write test passed.
+- Public source readback for `/collections/family-swimsuits` passed across `GB`, `CA`, and `AU` with two header variants: HTTP `200`, `0` supplier/url-brand hits, `0` stale reputation hits, family swim copy present, and shipping signal present.
+- CSV parse/count check passed: `105` rows, `77 GREEN`, `20 YELLOW`, `8 RED`; `36` GB/CA/AU `GREEN` rows now have `cpc_validation_required`; `0` GB/CA/AU swimwear rows remain blocked by supplier JSON.
+- Subagent read-only check independently confirmed `/collections/family-swimsuits` is the best route candidate and that product PDPs still need separate verification before traffic.
+
+Guardrails:
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/campaign write occurred.
+- No Shopify Admin product/vendor/source metadata edit and no live theme push/sync/publish occurred.
+- No Merchant, Pinterest, GA4/GTM, billing, feed, product-scope, product-group, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Run authenticated Google Ads / Keyword Planner validation for `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/gb_ca_au_36_clean_route_cpc_validation_rows.csv` only, at max `$0.15` CPC.
+- Promote only rows that pass through a green-gated action-queue row with reviewer pass and after-state readback.
+- Continue Merchant/Pinterest authenticated access blockers in a session with usable authenticated account surfaces.

@@ -650,3 +650,36 @@ Evidence:
 Safest next sales-moving action:
 
 - Run authenticated `$0.15` CPC/auction validation for the exact packet rows, then promote only passed rows through the green-gated action queue.
+
+## 2026-05-14 - GB/CA/AU swim-route unblock and 36-row CPC packet
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Repo-local keyword reroute and packet generation only; no Google Ads, Shopify Admin, live theme, Merchant, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, or destructive write.
+- Public source readback for `/collections/family-swimsuits` across GB/CA/AU and two header variants.
+- Exact scope now: `36` clean-route GB/CA/AU `GREEN` rows (`GB=12`, `CA=12`, `AU=12`) from `ops/marketing/keyword_universe.csv`.
+- `/collections/swimsuits` remains excluded because it still leaks supplier vendors through Shopify automatic product JSON.
+
+Risks:
+
+- Packet readiness is not CPC validation and not upload approval.
+- Some rows may still fail Keyword Planner/UI auction entry at `$0.15`, duplicate live intent, or show low-search-volume behavior.
+- Product PDPs under the swim collection were not individually approved for paid traffic in this run.
+
+Required gates/fixes:
+
+- Validate `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/gb_ca_au_36_clean_route_cpc_validation_rows.csv` in authenticated Google Ads/Keyword Planner at max `$0.15`.
+- Only rows that pass may become a small exact/phrase action row after fresh Ads readback, anti-cannibalization review, reviewer pass, and after-state readback plan.
+- Do not upload/apply/add keywords, raise bids, change budgets/statuses, or add negatives from this packet alone.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/GB_CA_AU_SWIM_ROUTE_UNBLOCK_AND_36_ROW_CPC_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-swim-route-unblock/gb_ca_au_swim_route_unblock_summary.json`
+- `ops/marketing/action_queue.md`
+
+Safest next sales-moving action:
+
+- Run authenticated `$0.15` CPC/auction validation for the 36-row packet, then promote only passed rows through the green-gated action queue.
