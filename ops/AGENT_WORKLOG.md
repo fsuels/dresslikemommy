@@ -38682,6 +38682,27 @@ Guardrails:
 Next best action:
 - Freshly read back the three imported exact groups after Pinterest resolves the update. Continue to final launch review only if usable product counts match exact active-clean scope and the review confirms max `$5/day`, max `$0.15` CPC, exact groups, and no excluded changes.
 
+2026-05-15 - Merchant Shopify prune latest closeout
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-shopify-prune-latest-closeout
+
+Why:
+- The latest user request is Merchant capacity cleanup before Canada/GB Shopping, so this anchor restores Merchant as the latest handoff after parallel Pinterest notes.
+
+Readback / decision:
+- Shopify `International` region cleanup is complete: `73` regions before, `21` after, exactly `52` approved non-priority regions removed, required active markets preserved, duplicate `CA` and `AU` preserved.
+- Fresh Merchant browser-RPC export immediately after cleanup still captured `351,007` rows.
+- After-export guard failed closed with `199,684` first-pass removal rows still present.
+- Target proof rows remain absent: `CA/en/CAD=0`, `CA/fr/CAD=0`, `GB/en/GBP=0`.
+- Canada/GB Shopping remains blocked. Do not repeat Shopify region-only cleanup.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/SHOPIFY_INTERNATIONAL_REGION_PRUNE_EXECUTION_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_POST_SHOPIFY_REGION_PRUNE_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/MERCHANT_SOURCE_ELIGIBILITY_BROWSER_RPC_EXPORT.md`
+
+Next best action:
+- Use Google & YouTube / Merchant Center publishing sync/control readback if available, or wait for propagation and re-export. Then rerun the after-export guard and proceed to Canada English/French plus GB English Shopping only after target rows exist.
+
 2026-05-15 - Merchant Shopify prune verified, Shopping blocked
 AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-shopify-prune-verified-shopping-blocked
 
@@ -38721,68 +38742,8 @@ Guardrails:
 Next best action:
 - Use Google & YouTube / Merchant Center publishing sync/control readback if available, or wait for propagation and re-export. Then rerun the after-export guard and proceed to Canada English/French plus GB English Shopping only after target rows exist.
 
-2026-05-15 - Merchant exact-control final closeout
-AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-exact-control-final-closeout
 
-Why:
-- The active user request was the Merchant exact-control path before Canada/GB Shopping work. This final anchor makes that lane the latest handoff after parallel Pinterest notes.
 
-Readback / decision:
-- Shopify `International` cleanup is already executed and read back: `73` regions before, `21` after, `52` approved first-pass non-priority regions removed, active priority markets preserved, duplicate `CA` and `AU` preserved.
-- Fresh Merchant browser-RPC all-products export still captured `351,007` rows.
-- The Merchant after-export guard failed closed with `199,684` first-pass removal rows still present and target priority expansion rows still absent: `CA/en/CAD=0`, `CA/fr/CAD=0`, `GB/en/GBP=0`.
-- Canada/GB Shopping remains blocked. Do not repeat a Shopify region-only prune.
-
-Evidence:
-- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/SHOPIFY_INTERNATIONAL_REGION_PRUNE_EXECUTION_REPORT.md`
-- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_CAPACITY_EXACT_CONTROL_RECONCILIATION.md`
-- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_POST_SHOPIFY_REGION_PRUNE_READBACK.md`
-- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/MERCHANT_SOURCE_ELIGIBILITY_BROWSER_RPC_EXPORT.md`
-
-Next best action:
-- Find the Google & YouTube / Merchant Center publishing sync or feed-group control that maps to `merchant_capacity_platform_preview_acceptance.csv`; re-export Merchant rows; rerun `build_merchant_capacity_execution_guard.py --after-export`; only then proceed to Canada English/French plus GB English Shopping.
-
-2026-05-15 - Merchant exact-control final closeout
-AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-exact-control-final-closeout
-
-Why:
-- The active user request was the Merchant exact-control path before Canada/GB Shopping work. This final anchor makes that lane the latest handoff after parallel Pinterest notes.
-
-Readback / decision:
-- Shopify `International` cleanup is already executed and read back: `73` regions before, `21` after, `52` approved first-pass non-priority regions removed, active priority markets preserved, duplicate `CA` and `AU` preserved.
-- Fresh Merchant browser-RPC all-products export still captured `351,007` rows.
-- The Merchant after-export guard failed closed with `199,684` first-pass removal rows still present and target priority expansion rows still absent: `CA/en/CAD=0`, `CA/fr/CAD=0`, `GB/en/GBP=0`.
-- Canada/GB Shopping remains blocked. Do not repeat a Shopify region-only prune.
-
-Evidence:
-- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/SHOPIFY_INTERNATIONAL_REGION_PRUNE_EXECUTION_REPORT.md`
-- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_CAPACITY_EXACT_CONTROL_RECONCILIATION.md`
-- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_POST_SHOPIFY_REGION_PRUNE_READBACK.md`
-- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/MERCHANT_SOURCE_ELIGIBILITY_BROWSER_RPC_EXPORT.md`
-
-Next best action:
-- Find the Google & YouTube / Merchant Center publishing sync or feed-group control that maps to `merchant_capacity_platform_preview_acceptance.csv`; re-export Merchant rows; rerun `build_merchant_capacity_execution_guard.py --after-export`; only then proceed to Canada English/French plus GB English Shopping.
-
-2026-05-15 - Merchant exact-control final closeout
-AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-exact-control-final-closeout
-
-Why:
-- The active user request was the Merchant exact-control path before Canada/GB Shopping work. This final anchor makes that lane the latest handoff after parallel Pinterest notes.
-
-Readback / decision:
-- Shopify `International` cleanup is already executed and read back: `73` regions before, `21` after, `52` approved first-pass non-priority regions removed, active priority markets preserved, duplicate `CA` and `AU` preserved.
-- Fresh Merchant browser-RPC all-products export still captured `351,007` rows.
-- The Merchant after-export guard failed closed with `199,684` first-pass removal rows still present and target priority expansion rows still absent: `CA/en/CAD=0`, `CA/fr/CAD=0`, `GB/en/GBP=0`.
-- Canada/GB Shopping remains blocked. Do not repeat a Shopify region-only prune.
-
-Evidence:
-- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/SHOPIFY_INTERNATIONAL_REGION_PRUNE_EXECUTION_REPORT.md`
-- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_CAPACITY_EXACT_CONTROL_RECONCILIATION.md`
-- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_POST_SHOPIFY_REGION_PRUNE_READBACK.md`
-- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/MERCHANT_SOURCE_ELIGIBILITY_BROWSER_RPC_EXPORT.md`
-
-Next best action:
-- Find the Google & YouTube / Merchant Center publishing sync or feed-group control that maps to `merchant_capacity_platform_preview_acceptance.csv`; re-export Merchant rows; rerun `build_merchant_capacity_execution_guard.py --after-export`; only then proceed to Canada English/French plus GB English Shopping.
 
 2026-05-15 - Merchant Shopify prune executed, Merchant after-export failed
 AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-shopify-prune-merchant-after-export-failed
@@ -38884,3 +38845,39 @@ Guardrails:
 
 Next best action:
 - Freshly read back the three imported exact groups after Pinterest resolves the update. Continue to final launch review only if usable product counts match exact active-clean scope and the review confirms max `$5/day`, max `$0.15` CPC, exact groups, and no excluded changes.
+
+2026-05-15 - Merchant exact-control final closeout
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-exact-control-final-closeout
+
+Why:
+- The active user request was the Merchant exact-control path before Canada/GB Shopping work. This final anchor makes that lane the latest handoff after parallel Pinterest notes.
+
+Readback / decision:
+- Shopify `International` cleanup is already executed and read back: `73` regions before, `21` after, `52` approved first-pass non-priority regions removed, active priority markets preserved, duplicate `CA` and `AU` preserved.
+- Fresh Merchant browser-RPC all-products export still captured `351,007` rows.
+- The Merchant after-export guard failed closed with `199,684` first-pass removal rows still present and target priority expansion rows still absent: `CA/en/CAD=0`, `CA/fr/CAD=0`, `GB/en/GBP=0`.
+- Canada/GB Shopping remains blocked. Do not repeat a Shopify region-only prune.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/SHOPIFY_INTERNATIONAL_REGION_PRUNE_EXECUTION_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_CAPACITY_EXACT_CONTROL_RECONCILIATION.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_POST_SHOPIFY_REGION_PRUNE_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/MERCHANT_SOURCE_ELIGIBILITY_BROWSER_RPC_EXPORT.md`
+
+Next best action:
+- Find the Google & YouTube / Merchant Center publishing sync or feed-group control that maps to `merchant_capacity_platform_preview_acceptance.csv`; re-export Merchant rows; rerun `build_merchant_capacity_execution_guard.py --after-export`; only then proceed to Canada English/French plus GB English Shopping.
+
+2026-05-15 - Merchant capacity latest closeout
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-capacity-latest-closeout
+
+Why:
+- Closeout anchor for the active Merchant capacity request after the Shopify Markets prune and fresh Merchant re-export.
+
+Readback / decision:
+- Shopify `International` cleanup is done: `73` regions before, `21` after, `52` approved first-pass non-priority regions removed, priority markets preserved, duplicate `CA` and `AU` preserved.
+- Fresh Merchant browser-RPC all-products export still captured `351,007` rows.
+- The Merchant after-export guard failed closed with `199,684` first-pass removal rows still present.
+- Canada English, Canada French, and GB English proof rows remain `0`, so Shopping remains blocked.
+
+Next best action:
+- Use Google & YouTube / Merchant Center publishing sync or feed-group controls if available, or wait for propagation and re-export. Then rerun `build_merchant_capacity_execution_guard.py --after-export` and proceed to Canada English/French plus GB English Shopping only after target rows exist.
