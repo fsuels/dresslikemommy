@@ -53,8 +53,11 @@ except Exception:  # pragma: no cover
 
 SHOP_DOMAIN_ENV = "SHOPIFY_ADMIN_SHOP_DOMAIN"
 ADMIN_TOKEN_ENV = "SHOPIFY_ADMIN_API_TOKEN"
+LEGACY_SHOP_DOMAIN_ENV = "SHOPIFY_STORE_DOMAIN"
+LEGACY_ADMIN_TOKEN_ENV = "SHOPIFY_ADMIN_ACCESS_TOKEN"
 ADMIN_API_VERSION_ENV = "SHOPIFY_ADMIN_API_VERSION"
 DEFAULT_API_VERSION = "2025-01"
+ADMIN_TOKEN_JSON = Path.home() / ".config/dresslikemommy/admin-api-token.json"
 
 URL_PATTERN = re.compile(r"https?://", re.IGNORECASE)
 SUPPLIER_BLOCK_HOSTS = (
@@ -70,19 +73,33 @@ def fatal(msg: str) -> "Exception":
     return SystemExit(f"FATAL: {msg}")
 
 
-def env_required(name: str) -> str:
-    v = os.environ.get(name)
-    if not v:
-        raise fatal(
-            f"missing required env var {name}. Source it from "
-            "~/.config/dresslikemommy/shopify-admin.env or admin-api-token.json."
-        )
-    return v
+def load_admin_token_json() -> dict:
+    if not ADMIN_TOKEN_JSON.exists():
+        return {}
+    try:
+        with ADMIN_TOKEN_JSON.open(encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as exc:  # pragma: no cover
+        raise fatal(f"cannot parse {ADMIN_TOKEN_JSON}: {exc}")
+
+
+def credential_value(primary_env: str, legacy_env: str, json_key: str) -> str:
+    value = os.environ.get(primary_env) or os.environ.get(legacy_env)
+    if value:
+        return value
+    data = load_admin_token_json()
+    value = data.get(json_key)
+    if value:
+        return str(value)
+    raise fatal(
+        f"missing required credential. Set {primary_env} or {legacy_env}, or provide "
+        f"{json_key!r} in ~/.config/dresslikemommy/admin-api-token.json."
+    )
 
 
 def admin_graphql(query: str, variables: dict | None = None) -> dict:
-    shop = env_required(SHOP_DOMAIN_ENV)
-    token = env_required(ADMIN_TOKEN_ENV)
+    shop = credential_value(SHOP_DOMAIN_ENV, LEGACY_SHOP_DOMAIN_ENV, "store_domain")
+    token = credential_value(ADMIN_TOKEN_ENV, LEGACY_ADMIN_TOKEN_ENV, "access_token")
     version = os.environ.get(ADMIN_API_VERSION_ENV, DEFAULT_API_VERSION)
     url = f"https://{shop}/admin/api/{version}/graphql.json"
     body = json.dumps({"query": query, "variables": variables or {}}).encode("utf-8")
@@ -241,15 +258,15 @@ def emit_grouped_rows(market: str, products: Iterable[dict]) -> list[dict]:
                 "sale_price": sale_price,
                 "brand": "Dress Like Mommy",
                 "condition": "new",
-                "google_product_category": "",
+                "google_product_category": "Apparel & Accessories > Clothing",
                 "product_type": product_type,
                 "gtin": safe(v.get("barcode")),
                 "mpn": safe(v.get("sku")),
-                "custom_label_0": "",
-                "custom_label_1": "",
-                "custom_label_2": "",
-                "custom_label_3": "",
-                "custom_label_4": "",
+                "custom_label_0": market,
+                "custom_label_1": product_type or "uncategorized",
+                "custom_label_2": "path_b_grouped",
+                "custom_label_3": "parent_image",
+                "custom_label_4": "no_live_upload_without_approval",
             }
             rows.append(row)
     return rows
@@ -338,7 +355,13 @@ def main() -> int:
         return 2
 
     with open(out_path, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=COLUMNS, delimiter="\t", extrasaction="ignore")
+        w = csv.DictWriter(
+            f,
+            fieldnames=COLUMNS,
+            delimiter="\t",
+            extrasaction="ignore",
+            lineterminator="\n",
+        )
         w.writeheader()
         for r in rows:
             w.writerow(r)

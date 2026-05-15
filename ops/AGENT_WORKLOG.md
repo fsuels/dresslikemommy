@@ -39069,5 +39069,72 @@ Next best action:
 - Owner approves the master phrase or a per-market phrase in `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/`; next operator applies the grouped-feed setting or Path B under approval, then captures per-market after-state readbacks before final Pinterest launch review.
 - US/es remains issue/capacity blocked despite row presence and source evidence.
 
+
+2026-05-15 - Pinterest Path B grouped feeds generated
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-path-b-grouped-feeds-generated
+
+Why:
+- The unattended paid-growth automation continued from the latest anchor with no `GREEN` rows available. The highest executable safe lane was the Pinterest all-markets feed grouping blocker: live launch remains unsafe while variants are submitted without `item_group_id`.
+- The previous packet had a Path B generator but no generated grouped feed artifacts. Generating them locally makes the fallback executable if the Shopify Pinterest channel lacks a parent-grouping toggle.
+
+What changed:
+- Patched `ops/scripts/generate_pinterest_feed_grouped.py` so it accepts the repo's canonical Shopify credential keys (`SHOPIFY_STORE_DOMAIN`, `SHOPIFY_ADMIN_ACCESS_TOKEN`) and the existing `admin-api-token.json` fallback, without printing or persisting credentials.
+- Generated grouped Path B TSV feeds and summary JSON files for `us`, `canada`, `united-kingdom`, `eu`, `australia`, and `international` under `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/feeds/`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/PATH_B_GROUPED_FEED_GENERATION_READBACK.md`.
+- Updated `ops/marketing/action_queue.md`, `ops/marketing/current_marketing_state.md`, `ops/marketing/daily_scorecard.md`, `ops/marketing/blocker_board.md`, `ops/marketing/decision_log.md`, `ops/marketing/review_log.md`, `ops/marketing/memory_digest.md`, `ops/marketing/operator_cockpit.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Each generated market feed has `6,969` rows, `326` unique parent `item_group_id` values, `0` missing `item_group_id`, and `0` supplier/source host hits.
+- `python3.13 ops/scripts/check_pinterest_feed_grouping.py --report-only --strict` now reports `6` generated Path B feeds PASS.
+- The upstream/live-equivalent snapshots still correctly remain expected FAIL: Pinterest exact import CSV has `30` duplicate-parent clusters without `item_group_id`, and two Merchant sanitized exports each have `69` market x language duplicate-parent buckets, worst `96x`.
+- Decision: Path B is now locally ready as a fallback, but it is not upload/import authority. Live channel grouping or Path B catalog upload/import still requires exact owner approval, 24h sync, after-state readback, and freshness-marker attest before strict guard mode can be considered solved.
+
+Verification:
+- Repo write test passed.
+- Generated all six market TSVs with `python3.13 ops/scripts/generate_pinterest_feed_grouped.py`.
+- Ran supplier/source host and missing-`item_group_id` validation across generated TSVs: all six markets returned `0` missing groups and `0` supplier/source host hits.
+- Ran `python3.13 ops/scripts/check_pinterest_feed_grouping.py --report-only --strict`: `9` snapshots scanned, `3` expected FAIL, `0` ERROR, with all six generated Path B snapshots PASS.
+
+Guardrails:
+- No Shopify channel Save/Sync/Publish, no Pinterest catalog/source/product-group/tag/CAPI/campaign/budget/bid/status/audience/billing write, no Merchant/Google Ads/GA4/GTM/theme/product data mutation, no freshness-marker attest, no credential persistence, and no Computer Use startup probing or permission repair occurred.
+
+Remaining blockers:
+- Owner approval is required for the master all-markets grouping phrase or a per-market phrase.
+- If the channel grouping toggle is unavailable, Path B upload/import requires separate exact owner approval and after-state readback.
+- Strict guard mode can pass only after per-market live after-state readbacks prove grouped rows and the freshness marker is attested.
+
+Next best action:
+- Owner approves the master/per-market channel grouping phrase; next operator applies the channel grouping setting if exposed, or requests separate exact approval to upload/import the generated Path B feeds, then captures 24h after-state readbacks before Pinterest launch review.
+
 Next best action:
 - Use Merchant Center or Google & YouTube publishing sync/control, or a delayed propagation export, to make the exact `merchant_capacity_platform_preview_acceptance.csv` non-target rows disappear; then rerun `build_merchant_capacity_execution_guard.py --after-export` on a fresh Merchant export. Do not repeat the saved-export intersection until a fresher export exists.
+
+---
+
+## 2026-05-15 — Vendor / brand auto-fix execution
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-vendor-brand-auto-fix-execution
+
+Session: Claude current session.
+Approval: owner-supplied phrase in current session authorizing (a) bulk Shopify Admin `productUpdate` to set `vendor="Dress Like Mommy"` on every active product where it is not already that exact value; (b) Shopify Flow workflow triggered on Product created/updated/duplicated; (c) Merchant Center account `124884876` Shopify Google & YouTube source feed rules A force `brand="Dress Like Mommy"`, B matching-set gender/age split, C `identifier_exists=no`.
+
+Executed live:
+- Action (a): 287 active products mutated via Shopify Admin GraphQL `productUpdate`. 0 userErrors. After-state re-query for `status:active AND NOT vendor:"Dress Like Mommy"` returned `0` rows. Catalog is now 100% `vendor = "Dress Like Mommy"`. One transient connector retry was handled in-session.
+
+Delivered as files (owner applies):
+- Action (b): `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/auto-vendor-dress-like-mommy.flow` — import once in Shopify Admin → Flow.
+- Action (c): `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/MERCHANT_CENTER_FEED_RULES.md` — exact rule specs for MC account `124884876` Shopify Google & YouTube source feed.
+
+Repo-side scripts (durable):
+- `ops/scripts/apply_vendor_backfill.py` — idempotent backfill driver.
+- `ops/scripts/verify_vendor_compliance.py` — read-only compliance verification.
+
+Compliance:
+- No supplier/source URLs written to repo/worklog/evidence; pre-mutation vendor classes recorded only as `URL_SUPPLIER_REDACTED` / `LOWERCASE_DOMAIN`.
+- Only the product `vendor` field was mutated; no title/description/price/variant/image/tag/metafield/status changes.
+- Write lane claimed and updated in `ops/AGENT_COORDINATION.md` row `Shopify vendor backfill + Flow auto-vendor + MC feed rules A/B/C` → `DONE_ACTION_A_LIVE_287_OF_287_BC_HANDOFF_FILES_DELIVERED`.
+
+Next best action:
+- Owner imports `auto-vendor-dress-like-mommy.flow` in Shopify Admin → Flow (≤60s) and clicks "Turn on workflow" so future drift is auto-corrected on Product created/updated/duplicated.
+- Owner applies feed rules A + B + C in Merchant Center `124884876` Shopify Google & YouTube source feed (≤3 min) using `MERCHANT_CENTER_FEED_RULES.md`.
+- After MC re-fetch (≤24h), run a fresh read-only Merchant Center readback on a sample of US offers to confirm `brand = "Dress Like Mommy"`, gender/age_group split, `identifier_exists = no`, while `item_group_id` and `image_link` remain unchanged.

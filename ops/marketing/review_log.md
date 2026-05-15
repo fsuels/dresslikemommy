@@ -1991,3 +1991,32 @@ Evidence:
 Safest next sales-moving action:
 
 - Use Merchant/Google publishing controls or a fresh propagation export to make the non-target duplicate rows disappear, then pass the guard before Canada/GB Shopping work.
+
+## 2026-05-15 - Pinterest Path B Grouped Feed Generation
+
+Reviewer verdict: `PASS_LOCAL_FALLBACK_READY__LIVE_UPLOAD_APPROVAL_REQUIRED`
+
+Checked:
+
+- Patched `ops/scripts/generate_pinterest_feed_grouped.py` to accept the repo's canonical Shopify credential keys without printing or persisting credentials.
+- Generated local Path B grouped TSVs for `us`, `canada`, `united-kingdom`, `eu`, `australia`, and `international`.
+- Each generated market feed has `6,969` rows, `326` unique parent groups, `0` missing `item_group_id`, and `0` supplier/source host hits.
+- `python3.13 ops/scripts/check_pinterest_feed_grouping.py --report-only --strict` reports all `6` generated feeds PASS and the `3` upstream/live-equivalent snapshots still expected FAIL / `0` ERROR.
+
+Risks:
+
+- The generated feeds are local fallback artifacts only; they are not proof that the live Shopify Pinterest channel or Pinterest catalog has changed.
+- Uploading/importing Path B would be a Pinterest catalog/source write and still requires separate exact owner approval plus after-state readback.
+
+Required gates/fixes:
+
+- Do not upload/import Path B, Save/Sync/Publish a channel setting, launch Pinterest, or attest the freshness marker without exact owner approval and post-sync readback.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/PATH_B_GROUPED_FEED_GENERATION_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/feeds/`
+
+Safest next sales-moving action:
+
+- If the channel grouping toggle is unavailable, get separate exact approval to upload/import generated Path B feeds, then read back per-market grouped catalog rows after sync before launch review.
