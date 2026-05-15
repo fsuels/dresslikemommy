@@ -277,6 +277,7 @@ def capture_rows(
     headers = safe_headers(request_template["headers"])
     rows: list[dict[str, Any]] = []
     seen_offsets: set[int] = set()
+    previous_signature = ""
     for page_index in range(max_pages):
         offset = page_index * page_size
         seen_offsets.add(offset)
@@ -286,6 +287,26 @@ def capture_rows(
             raise RuntimeError(f"Product-list RPC returned HTTP {response.status_code} at offset {offset}")
         payload = response.json()
         page_rows = [row for row in payload.get("1", []) if isinstance(row, dict)]
+        signature = "|".join(
+            [
+                clean(page_rows[0].get("1")) if page_rows else "",
+                clean(page_rows[-1].get("1")) if page_rows else "",
+                str(len(page_rows)),
+            ]
+        )
+        print(
+            f"captured Merchant product-list page offset={offset} rows={len(page_rows)} total={len(rows) + len(page_rows)}",
+            file=sys.stderr,
+            flush=True,
+        )
+        if signature and signature == previous_signature:
+            print(
+                f"stopping after repeated page signature at offset={offset}",
+                file=sys.stderr,
+                flush=True,
+            )
+            return rows
+        previous_signature = signature
         rows.extend(page_rows)
         if len(page_rows) < page_size:
             return rows
@@ -372,10 +393,6 @@ def build_outputs(args: argparse.Namespace) -> dict[str, Any]:
         "paid_cohort_input": str(args.input_eligibility),
         "paid_cohort_items_loaded": len(paid_by_item),
         "exports": {name: summarize_export(name, rows) for name, rows in exports.items()},
-        "global_feed_language_currency_counts": {
-            f"{row['feed_label']}|{row['language_code']}|{row['currency']}": count
-            for (row, count) in []
-        },
         "top_feed_language_currency_counts": dict(
             Counter(
                 f"{row['feed_label']}|{row['language_code']}|{row['currency']}"
@@ -448,7 +465,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--cdp-port", type=int, default=DEFAULT_CDP_PORT)
     parser.add_argument("--input-eligibility", type=Path, default=DEFAULT_ELIGIBILITY)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
-    parser.add_argument("--page-size", type=int, default=500)
+    parser.add_argument("--page-size", type=int, default=2000)
     parser.add_argument("--max-pages", type=int, default=1000)
     return parser.parse_args()
 

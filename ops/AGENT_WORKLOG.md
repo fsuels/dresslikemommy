@@ -38213,3 +38213,353 @@ Evidence:
 Next best action:
 - Get exact approval to create/expose Pinterest product groups from existing feed attributes only: `paid_eligible` + `us_test_ready`, split by Mommy & Me, Family Matching, Pajamas, and any active clean Daddy & Me/father-inclusive rows that pass the same gates, excluding the `9` held variants.
 - Then launch only after final review confirms max `$5/day`, max `$0.15` CPC, and exact product-group scope.
+
+2026-05-15 - Pinterest validation-only product-group scope stop
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-validation-only-product-group-scope-stop
+
+Why:
+- Owner approved entering `$1.00` daily budget only to satisfy Pinterest paused-draft validation for advertiser `549756244483`, with no launch, no enablement, no spend, no bid activation, and no catalog/source/tag/CAPI/feed/audience changes.
+- The next safe action was to continue from the authenticated product-group selector only until an exact scope decision could be made.
+
+What happened:
+- Existing Pinterest create-flow state showed product-group selector for `DLM_PIN_US_CATALOG_333_PAUSED_20260515`; selected groups read back as `0`.
+- Searched `DLM_PIN_US_SHOPPING`, `mommy_me`, and `family_matching`: no exact product groups found.
+- Searched `pajamas`, `Mommy`, and `Family Matching`: only broad groups were available, including `Pajamas` `252`, Mommy & Me `445/1,011`, Family Matching `1,011+`, and `All Products` `5,664`.
+
+Decision:
+- Stopped before `Add product groups`, Save, Continue, Review, Publish, Launch, or Enable.
+- The `$1.00` validation-only approval did not clear the exact product-group blocker and does not authorize saving broad groups.
+- Exact active-clean category groups remain required: Mommy & Me `201`, Family Matching `103`, and Pajamas `29`, with any Daddy & Me/father-inclusive rows only after active clean proof and exact approval.
+
+Guardrails:
+- No campaign/draft/ad group/ad/product group/catalog/source/tag/CAPI/feed/audience/budget/bid/status/spend write was saved from this follow-up.
+- No Pinterest campaign launched, published, enabled, or served.
+- No Shopify, Merchant, Google Ads, GA4/GTM, billing, live theme, product, feed, or source mutation occurred.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-paused-draft-product-group-scope-stop/PINTEREST_PAUSED_DRAFT_PRODUCT_GROUP_SCOPE_STOP.md`
+
+Next best action:
+- Continue Pinterest only through exact product-group creation/exposure approval from existing feed attributes, or if a future selector/readback proves exact Mommy & Me `201`, Family Matching `103`, and Pajamas `29` groups are already available.
+- Independent lane remains: authenticated `$0.15` CPC validation for the canonical GB/CA/AU packet after Google Ads API Basic Access approval.
+
+2026-05-15 - Merchant all-products source eligibility export
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-all-products-source-eligibility-export
+
+Why:
+- Owner asked to continue the Shopping read-only queue: prepare/verify the `US/es` no-write repair/classification packet from current issue rows, capture CA/GB/AU English all-products/source eligibility exports, and only rerun the GB/CA/AU `$0.15` CPC forecast harness/parser after Basic Access approval appears.
+- Prior latest Merchant anchor had the `US/es` classification packet ready and identified full all-products/source proof as the next safe lane.
+
+What changed:
+- Verified the existing `US/es` no-write repair/classification packet was already current: `1,453` issue rows, `354` unique items, `53` paid-cohort issue items, `3` paid-cohort attribute-repair candidates, and over-capacity affecting all `53` paid-cohort issue items.
+- Rechecked Basic Access via Outlook read-only search of `info@dresslikemommy.com`; no Google Ads API Basic Access approval email was found, so the GB/CA/AU CPC forecast harness/parser was not rerun.
+- Tried Merchant API/Content API read-only diagnostics; both returned `PERMISSION_DENIED` / insufficient OAuth scopes. ADC was unavailable, and `gcloud auth print-access-token` could not mint a Content API scope token from this runtime.
+- Used the authenticated browser/CDP read-only path to click the Merchant all-products ready snackbar `Download` button and captured `products_2026-05-15_05-37-44.zip`.
+- Parsed the all-products TSV locally. Total rows: `351,007`. `US/es`: `5,412` rows, `5,301` in-stock rows, `772` paid-cohort rows, `53` paid-cohort issue rows. CA/en, GB/en, and AU/en: `0` rows each, with no CAD/GBP/AUD feed labels or currencies.
+
+Decision:
+- `US/es` remains blocked. Row presence is real, but current issue/capacity evidence still blocks Shopping build or repair, and the all-products TSV lacks `source_id` plus approved/disapproved destination status.
+- CA/GB/AU English are not Shopping-build-ready from current Merchant feed evidence because no target rows appear in the all-products export.
+- No Merchant, Shopify Admin, Google Ads, Pinterest, GA4/GTM, billing, feed, product, source, campaign, product-group, conversion, bid, budget, status, or live theme write occurred.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-us-es-repair-classification/MERCHANT_US_ES_NO_WRITE_REPAIR_CLASSIFICATION_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-source-all-products-export-attempt/MERCHANT_ALL_PRODUCTS_SOURCE_ELIGIBILITY_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-source-all-products-export-attempt/merchant_all_products_source_eligibility_summary.json`
+
+Guardrails:
+- No Computer Use startup probe or permission repair occurred.
+- The Merchant API blocker is recorded as an authentication-scope mismatch for that lane, not a reason to stop other read-only work.
+- The all-products export is row-presence evidence only; it is not source-id, approval-status, repair, capacity, or campaign authority.
+
+Next best action:
+- Keep watching `info@dresslikemommy.com` for Basic Access approval; after approval, rerun `run_google_ads_api_cpc_forecast.py --customer-id 3990976848` and parse only real `PASS_015_CPC_GATE` rows.
+- For `US/es`, pursue only a narrow owner-approved source/repair/capacity packet after source/approval-status proof is sufficient.
+- For CA/GB/AU Shopping, first fix/feed-enable/export the markets or obtain authoritative Merchant proof target rows exist with expected country, language, currency, and approval state.
+
+2026-05-15 - Pinterest exact product-group unblock packet
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-exact-product-group-unblock
+
+Why:
+- The latest paid-growth blocker for Pinterest is no longer CPC, access, or budget validation. It is exact product-group availability: broad Pinterest groups would violate the refreshed `333` active-clean scope.
+- The unattended automation cannot ask for clicks or repair GUI permissions, so the safe sales-moving lane was to turn the blocker into the smallest exact approval packet for a future account-capable operator.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/build_pinterest_exact_product_group_unblock_packet.py`.
+- Generated `PINTEREST_EXACT_PRODUCT_GROUP_UNBLOCK_PACKET.md`, `pinterest_exact_product_group_unblock_summary.json`, `pinterest_exact_category_group_requirements.csv`, and `pinterest_father_inclusive_probe.csv`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Exact required Pinterest groups from the existing clean scope:
+  - Mommy & Me: `201` variants / `26` products.
+  - Family Matching: `103` variants / `7` products.
+  - Pajamas: `29` variants / `1` product.
+- Father-inclusive rows are proof-only for now: `43` variants across `4` products. Do not split or launch a separate Daddy & Me/father-inclusive group unless explicitly approved and the platform can expose it exactly.
+- All `333` clean-scope rows pass image, price, availability, shipping policy, return policy, and public PDP source-clean fields in the scope CSV.
+- Decision: do not save, publish, launch, or add broad Pinterest groups. Continue only after exact approval to create/expose product groups from existing feed attributes, excluding the `9` held variants, then final review max `$5/day`, max `$0.15` CPC, and exact scope.
+
+Verification:
+- Repo write test passed at automation startup.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/build_pinterest_exact_product_group_unblock_packet.py` passed and generated deterministic packet files.
+- Manual readback of generated markdown, CSV, and summary JSON matched the expected counts.
+
+Guardrails:
+- No Pinterest Create/Save/Submit/Publish/Launch/Enable click occurred.
+- No campaign, ad group, ad, product group, catalog/source/feed/tag/CAPI/audience, budget, bid, status, spend, billing, Shopify Admin, Merchant, Google Ads, GA4/GTM, product, conversion, credential, or live theme write occurred.
+- No Computer Use startup probe or permission repair occurred.
+
+Next best action:
+- Exact approval needed: `I approve creating/exposing exact Pinterest product groups for advertiser 549756244483 from existing feed attributes only: paid_eligible + us_test_ready split by Mommy & Me, Family Matching, Pajamas, and any active clean Daddy & Me/father-inclusive rows that pass the same gates, excluding the 9 held variants, with no catalog source/feed source/tag/CAPI/billing/Shopify product changes, then launch only if final review shows max $5/day and max $0.15 CPC.`
+- After approval, create/expose only exact groups, verify counts, then launch only after final review passes.
+
+2026-05-15 - Pinterest validation-only product-group scope stop closeout
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-validation-only-product-group-scope-stop
+
+Why:
+- A later `$1.00` paused-draft validation-only owner approval arrived after the exact product-group unblock packet was built.
+- This closeout restores the true latest Pinterest state: the exact product-group approval packet is still the correct next unblock, and the `$1.00` validation-only approval did not clear the product-group blocker or authorize broad groups.
+
+Current state:
+- Existing authenticated Pinterest create-flow/product-group selector remained controllable for advertiser `549756244483`.
+- Selected product groups read back as `0`.
+- Exact searches for `DLM_PIN_US_SHOPPING`, `mommy_me`, and `family_matching` found no exact groups.
+- `pajamas`, `Mommy`, and `Family Matching` searches exposed broad groups only: `Pajamas` `252`, Mommy & Me `445/1,011`, Family Matching `1,011+`, and `All Products` `5,664`.
+
+Decision:
+- Stop before `Add product groups`, Save, Continue, Review, Publish, Launch, or Enable.
+- Do not save a paused draft with broad groups.
+- The next safe Pinterest action remains exact product-group creation/exposure from existing feed attributes only, excluding the `9` held variants.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-paused-draft-product-group-scope-stop/PINTEREST_PAUSED_DRAFT_PRODUCT_GROUP_SCOPE_STOP.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/PINTEREST_EXACT_PRODUCT_GROUP_UNBLOCK_PACKET.md`
+
+Guardrails:
+- No Pinterest campaign, draft, ad group, ad, product group, catalog/source/feed/tag/CAPI/audience, budget, bid, status, spend, publish, launch, enablement, or billing write was saved from the validation-only follow-up.
+- No Shopify, Merchant, Google Ads, GA4/GTM, product, feed, source, conversion, credential, or live theme mutation occurred.
+
+Next best action:
+- Use the exact approval wording in the product-group unblock packet, then create/expose only exact groups and read back counts before any paused draft save or launch review.
+- Independent lane: after Google Ads API Basic Access approval, rerun the GB/CA/AU `$0.15` CPC forecast harness/parser.
+
+2026-05-15 - Merchant browser RPC source/status addendum
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-browser-rpc-source-status-addendum
+
+Why:
+- Owner explicitly asked to capture full Merchant all-products/source export evidence for `US/es` source `10627981690`, then CA/en, GB/en, and AU/en eligibility before any Merchant repair, capacity, Shopping campaign, feed/title, product-group, bid, budget, status, or conversion decision.
+- The parallel browser-downloaded TSV packet proved the `351,007` row all-products denominator but lacked `source_id` and approval-status columns, so source/status ambiguity remained for `US/es`.
+
+What changed:
+- Added `ops/scripts/export_merchant_center_source_eligibility_browser_rpc.py`, a read-only browser RPC exporter that uses the existing authenticated Merchant CDP session and never writes cookies, tokens, or request headers.
+- Captured `351,007` sanitized Merchant product-list rows through `UnifiedProductService/List`.
+- Wrote a browser RPC evidence packet at `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-source-eligibility-browser-rpc-export/`.
+- Confirmed `US/es` source `10627981690` has `5,412` rows, with `4,910` strict-approved raw product-list rows.
+- Confirmed CA/en, GB/en, and AU/en remain absent from the current all-products evidence: `0` English CAD/GBP/AUD rows.
+- Reconciled command-layer files so the TSV packet remains the full downloaded denominator and the browser RPC packet is treated as source/status addendum evidence, not repair/build authority.
+
+Decision:
+- `US/es` source row presence is now current and source-confirmed, but the lane remains blocked by issue-export and Shopping capacity evidence: `53` paid-cohort issue items, with over-capacity affecting all `53`.
+- CA/en, GB/en, and AU/en are not Shopping-build-ready from Merchant feed evidence because target rows are absent.
+- No Merchant repair, source/feed edit, capacity request, Shopping campaign, product-group, bid, budget, status, conversion, Shopify, Pinterest, Google Ads, billing, credential, or live theme write occurred.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-source-eligibility-browser-rpc-export/MERCHANT_SOURCE_ELIGIBILITY_BROWSER_RPC_EXPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-source-eligibility-browser-rpc-export/merchant_source_eligibility_browser_rpc_summary.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-source-all-products-export-attempt/MERCHANT_ALL_PRODUCTS_SOURCE_ELIGIBILITY_READBACK.md`
+
+Verification:
+- `wc -l` confirmed `351,008` lines in the sanitized all-products RPC CSV, `5,413` lines in the `US/es` source CSV, and header-only CA/GB/AU eligibility CSVs.
+- The export script emitted page-by-page progress through offset `350000` and stopped on the final `1007` row page.
+- No secret/cookie/header material was written by the exporter.
+
+Next best action:
+- Keep Shopping decisions blocked. For `US/es`, prepare only a narrow owner-approved repair/capacity/source packet after issue/capacity gates and reviewer pass. For CA/GB/AU, obtain feed/source availability proof before any Shopping campaign/product-group packet.
+
+2026-05-15 - Standard Shopping clicked title conversion packet
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-standard-shopping-clicked-title-conversion-packet
+
+Why:
+- The highest executable safe lane after Basic Access email watch stayed clean was US Shopping conversion quality from products that already received paid clicks and produced `$0.00` conversion value.
+- Prior readbacks proved the clicked PDPs were public/source-clean and had add-to-cart forms, so the next sales-moving question was whether shopper-facing message/title friction could be turned into a narrow approval packet.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-title-conversion-approval/build_clicked_title_conversion_packet.py`.
+- Generated `STANDARD_SHOPPING_CLICKED_TITLE_CONVERSION_APPROVAL_PACKET.md`, `standard_shopping_clicked_title_conversion_actions.csv`, and `standard_shopping_clicked_title_conversion_summary.json`.
+- Updated the paid-growth command layer: `action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Outlook Basic Access watch for `info@dresslikemommy.com` returned no Google/API approval results as of `06:06 EDT`, so the GB/CA/AU `$0.15` CPC gate remains blocked.
+- Clicked Shopping evidence remains `65` clicks / `$14.17` cost / `$0.00` conversion value across `13` unique clicked PDP handles.
+- Public title conversion pass found `12/13` clicked PDP visible H1s contain literal ellipses, covering `64` clicks / `$13.96` cost.
+- All checked pages still had add-to-cart form markup, customer-photo section markup, and hidden zero-review badge behavior.
+- Decision: no Shopping bid, budget, negative, status, product-group, feed-title, product-scope, conversion, billing, Merchant, Pinterest, or Google Ads write is justified. The next exact sales-moving action is owner approval for no-feed/no-campaign Shopify title/display-title cleanup on only the listed clicked PDPs, then before/after public readback.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-title-conversion-approval/STANDARD_SHOPPING_CLICKED_TITLE_CONVERSION_APPROVAL_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-title-conversion-approval/standard_shopping_clicked_title_conversion_summary.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-pdp-readback/STANDARD_SHOPPING_CLICKED_PDP_PUBLIC_READBACK.md`
+
+Verification:
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-title-conversion-approval/build_clicked_title_conversion_packet.py` passed and regenerated deterministic packet outputs.
+- Outlook search returned no Basic Access approval results.
+- `python3.13 ops/scripts/open_marketing_cockpit.py` rendered `ops/marketing/operator_cockpit.html`.
+
+Guardrails:
+- No Shopify Admin product/title/display-title edit occurred.
+- No Google Ads, Merchant, Pinterest, GA4/GTM, billing, credential, feed, product-group, bid, budget, status, conversion, product-scope, capacity, live theme, or campaign write occurred.
+- No Computer Use startup probe or permission repair occurred.
+
+Next best action:
+- If the owner approves the exact phrase in the packet, clean only the listed clicked PDP visible titles/display titles and verify before/after public H1/title/add-to-cart/price/source-clean/zero-review state.
+- In parallel, keep Basic Access watch and Merchant/feed eligibility blockers active; do not create live Shopping/Search/Pinterest rows until their gates pass.
+
+2026-05-15 - Pinterest exact product-group upload blocked, no launch
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-exact-product-group-upload-blocked-no-launch
+
+Why:
+- Owner approved the exact Pinterest product-group packet phrase for advertiser `549756244483`: create/expose only exact active-clean product groups, then launch only after final review confirms max `$5/day`, max `$0.15` CPC, and no source/feed/tag/CAPI/billing/Shopify changes.
+- The approved action needed to be attempted without falling back to broad groups.
+
+What happened:
+- Claimed the Pinterest exact product-group creation/exposure surface in `ops/AGENT_COORDINATION.md`.
+- Opened Pinterest Product Groups for catalog `3041764155561548387` / feed profile `3041760867124595727`.
+- Attempted UI group creation for `DLM_PIN_US_SHOPPING_MOMMY_ME_333` using existing feed attributes only: `paid_eligible`, `us_test_ready`, and `mommy_me`.
+- Stopped because Pinterest previewed `0 products selected` / `0 products in stock`, not the expected Mommy & Me `201`.
+- Generated fallback import CSV `pinterest_exact_product_group_item_id_import.csv` from the exact refreshed clean item IDs: Mommy & Me `201`, Family Matching `103`, Pajamas `29`.
+- Opened Pinterest bulk import dialog, but Chrome file upload failed with `Not allowed`; no import occurred.
+
+Decision:
+- No launch. No broad group save. No product-group creation counted as complete.
+- Next unblock is a file-upload-capable authenticated browser path, import of the exact item-ID CSV, and readback of counts `201/103/29` before any final launch review.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/PINTEREST_EXACT_PRODUCT_GROUP_ATTEMPT_STOP.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/pinterest_exact_product_group_item_id_import.csv`
+
+Guardrails:
+- No Pinterest campaign, draft, ad group, ad, product group, catalog/source/feed/tag/CAPI/audience, budget, bid, status, spend, publish, launch, enablement, or billing write was saved from this attempt.
+- No Shopify, Merchant, Google Ads, GA4/GTM, product, feed, source, conversion, credential, or live theme mutation occurred.
+
+Next best action:
+- Enable file upload for the controlled Chrome path or use another upload-capable authenticated path, then import and read back exact groups before final launch review.
+
+2026-05-15 - Standard Shopping title packet and Pinterest upload-blocked closeout
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-standard-shopping-title-packet-pinterest-upload-blocked-closeout
+
+Why:
+- A later Pinterest product-group upload-blocked entry was already present after the Standard Shopping title packet anchor, so this closeout preserves the true latest Pinterest state while adding the new Standard Shopping conversion-title packet to the handoff.
+
+Current state:
+- Pinterest exact product-group creation/exposure is approved in principle but still not executable from the current browser path: label-preview path returned `0 products selected`, and file upload for the exact item-ID CSV failed with `Not allowed`. No Pinterest group/campaign/draft launched or saved.
+- Standard Shopping US has `65` clicks / `$14.17` cost / `$0.00` conversion value. The clicked PDPs are source-clean and have add-to-cart, but the new title packet found `12/13` clicked visible H1s contain literal ellipses, covering `64` clicks / `$13.96` cost.
+- Basic Access email watch stayed clean as of `06:06 EDT`; no GB/CA/AU `$0.15` CPC pass rows exist.
+
+Decision:
+- Do not launch Pinterest or use broad groups. Next Pinterest unblock is a file-upload-capable authenticated path or equivalent exact-group path, then read back exact counts `201/103/29` before final review.
+- Do not change Shopping bids, budgets, product groups, feed titles, product scope, status, negatives, conversions, billing, Merchant, Pinterest, or Google Ads from the title packet. Next Shopping conversion-quality unblock is exact owner approval for no-feed/no-campaign Shopify title/display-title cleanup on the listed clicked PDPs, followed by public before/after readback.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/PINTEREST_EXACT_PRODUCT_GROUP_ATTEMPT_STOP.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-title-conversion-approval/STANDARD_SHOPPING_CLICKED_TITLE_CONVERSION_APPROVAL_PACKET.md`
+
+Next best action:
+- Pinterest: use an upload-capable authenticated path for `pinterest_exact_product_group_item_id_import.csv`, read back exact group counts, then final-review max `$5/day`, max `$0.15` CPC, and exact active-clean scope before launch.
+- Shopping: if the owner approves the exact phrase in `STANDARD_SHOPPING_CLICKED_TITLE_CONVERSION_APPROVAL_PACKET.md`, clean only the listed clicked PDP visible titles/display titles and verify public H1/title/add-to-cart/price/source-clean/zero-review state.
+- Google Ads Search: after Basic Access approval, rerun the GB/CA/AU `$0.15` CPC forecast harness/parser and promote only real pass rows through a fresh green action row.
+
+2026-05-15 - Merchant priority-market capacity fix packet
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-priority-market-capacity-fix
+
+Why:
+- Owner clarified that the priority markets are USA English and Spanish first, Canada English and French second, GB/England English third, and Europe later.
+- Owner also directed removing Asian, African, and South American coverage to open Merchant capacity, because the current capacity pressure is blocking advertising in main markets.
+
+What changed:
+- Built the local/read-only Merchant priority-market capacity fix packet from the current `351,007` row browser RPC all-products export.
+- Generated grouped capacity files under `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/`.
+- Updated the command layer to make this the active Merchant capacity cleanup lane: `action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, `operator_cockpit.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Current Merchant rows: USA English `5,491`, USA Spanish `5,412`, Canada English `0`, Canada French `0`, GB English `0`, Europe-later `134,932`, Asia/Middle East `129,112`, Africa `37,511`, South America `8,818`, non-US-USD `24,243`, Oceania/NZD `5,488`.
+- First-pass removal candidates total `199,684` rows: Asia/Middle East, Africa, South America, and non-US-USD groups.
+- The fix should remove market/feed-country publishing scope, not delete Shopify products.
+- Europe is not a first-pass removal target because the owner named Europe as a later priority.
+- Canada English/French and GB English remain absent in Merchant; after capacity cleanup they need fresh feed/source enablement proof and all-products export rows before Shopping builds.
+- Read-only Shopify Admin Markets readback found active `United States`, `Canada`, `United Kingdom`, `Eurozone`, `Australia`, and `International` markets. `International` has `73` regions and is the likely live cleanup surface, but no Shopify mutation occurred.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_PRIORITY_MARKET_CAPACITY_FIX_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/merchant_priority_market_capacity_fix_summary.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/merchant_capacity_removal_candidate_groups.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/shopify_markets_readback_sanitized.json`
+
+Guardrails:
+- No Merchant, Shopify Admin, Google Ads, Pinterest, GA4/GTM, billing, credential, feed, product, product-group, product-scope, bid, budget, status, conversion, capacity, or live theme write occurred.
+- Do not click Save/Apply/Sync/Upload in a live surface unless the exact platform preview/readback matches the removal candidate CSV and preserves USA English/Spanish plus Europe-later groups.
+
+Next best action:
+- Use an authenticated exact-control path to remove only the listed non-priority publishing groups, then capture a fresh all-products export and enable/prove Canada English/French plus GB English rows before any Shopping campaign/product-group decision.
+
+2026-05-15 - Merchant capacity execution guard
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-capacity-execution-guard
+
+Why:
+- The top remaining queue lane is Merchant priority-market capacity cleanup, but live execution still needs an exact authenticated platform control-surface preview before any Save/Apply/Sync/Upload.
+- The previous packet had the row math; this pass made the next live step mechanically checkable so a future operator can avoid removing the wrong markets.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/build_merchant_capacity_execution_guard.py`.
+- Generated `MERCHANT_PRIORITY_MARKET_CAPACITY_EXECUTION_GUARD.md`, `merchant_capacity_execution_guard_summary.json`, and `merchant_capacity_platform_preview_acceptance.csv`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Guard read the current `351,007` row sanitized Merchant RPC export plus `merchant_capacity_removal_candidate_groups.csv`.
+- It generated `41` exact preview rows, expected first-pass removal `199,684`, expected after-first-pass floor `151,323`, protected USA English `5,491`, protected USA Spanish `5,412`, and current CA/en, CA/fr, GB/en rows all `0`.
+- Decision: live cleanup may proceed only if the platform preview reconciles to `merchant_capacity_platform_preview_acceptance.csv`; after cleanup, rerun `build_merchant_capacity_execution_guard.py --after-export /path/to/fresh_export.csv` before Canada/GB Shopping work.
+
+Verification:
+- Repo write test passed at automation startup.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/build_merchant_capacity_execution_guard.py` passed.
+- A negative smoke run with the current before-export as `--after-export` failed as expected with `199,684` remaining removal rows; the guard outputs were then regenerated in preflight mode.
+
+Guardrails:
+- No Merchant, Shopify Admin, Google Ads, Pinterest, GA4/GTM, billing, credential, feed, product, product-group, product-scope, bid, budget, status, conversion, capacity, or live theme write occurred.
+- No Computer Use startup probe or permission repair occurred.
+
+Next best action:
+- Use an authenticated exact-control path to preview `merchant_capacity_platform_preview_acceptance.csv`, remove only matching non-priority publishing groups if the preview reconciles, capture a fresh Merchant export, and pass the after-export guard before enabling Canada English/French or GB English Shopping rows.
+
+2026-05-15 - Merchant Shopify region prune preview
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-shopify-region-prune-preview
+
+Why:
+- The top remaining paid-growth queue lane is Merchant priority-market capacity cleanup.
+- The feed-group guard already identified the Merchant row groups, but the likely Shopify Markets control surface needed a conservative region-level checklist before any live save/apply/sync.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/build_shopify_market_region_prune_preview.py`.
+- Generated `MERCHANT_SHOPIFY_MARKETS_REGION_PRUNE_PREVIEW.md`, `shopify_international_region_prune_preview.csv`, and `shopify_international_region_prune_summary.json`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Region preview reads the sanitized Shopify Markets readback only; no external system calls or writes occurred.
+- Active market handles present: `us`, `canada`, `united-kingdom`, `eu`, `australia`, and `international`.
+- `International` has `73` regions. The preview classifies `52` as high-confidence first-pass removal candidates: `33` Asia/Middle East, `14` Africa, and `5` South America.
+- `21` regions stay preserve/hold-review in the first pass, including duplicate `CA` and `AU`.
+- Live cleanup remains gated: if Shopify Markets is used, the authenticated preview must reconcile to `shopify_international_region_prune_preview.csv` and the feed-group guard before any Save/Apply/Sync.
+
+Verification:
+- Repo write test passed at automation startup.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/build_shopify_market_region_prune_preview.py` passed and generated deterministic CSV/JSON/report outputs.
+
+Guardrails:
+- No Merchant, Shopify Admin, Google Ads, Pinterest, GA4/GTM, billing, credential, feed, product, product-group, product-scope, bid, budget, status, conversion, capacity, or live theme write occurred.
+- Do not remove whole Shopify markets, delete products, remove Europe, remove duplicate `CA`/`AU`, or remove hold-review regions in the first pass.
+- No Computer Use startup probe or permission repair occurred.
+
+Next best action:
+- Use an authenticated exact-control path to preview both `merchant_capacity_platform_preview_acceptance.csv` and `shopify_international_region_prune_preview.csv`, remove only matching non-priority publishing scope if the preview reconciles, then rerun the execution guard with `--after-export` before enabling Canada English/French or GB English Shopping rows.

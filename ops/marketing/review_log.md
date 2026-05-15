@@ -1,8 +1,60 @@
 # Marketing Safety Review Log
 
-Last updated: 2026-05-15 05:35 EDT
+Last updated: 2026-05-15 05:53 EDT
 
 Use this log for reviewer outcomes or simulated checklist runs. Keep entries short and tied to evidence.
+
+## 2026-05-15 - Merchant browser RPC source/status addendum
+
+Reviewer verdict: `PASS_WITH_GATES_SOURCE_CONFIRMED_NO_REPAIR`
+
+Checked:
+
+- Browser RPC export was read-only and stored no cookies, tokens, or request headers.
+- The sanitized product-list snapshot captured `351,007` rows, matching the all-products denominator.
+- `US/es` source `10627981690` has `5,412` rows; `4,910` have strict-approved raw product-list status.
+- CA/en, GB/en, and AU/en still have `0` English CAD/GBP/AUD rows.
+
+Required gates/fixes:
+
+- Do not use raw product-list status to override current issue-export/capacity blockers.
+- Use the TSV packet's target paid-label count for paid-cohort sizing and the issue/classification packets for repair priority.
+- No Merchant repair, feed/source, campaign, product-group, bid, budget, status, capacity, or conversion action is justified without exact approval.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-source-eligibility-browser-rpc-export/MERCHANT_SOURCE_ELIGIBILITY_BROWSER_RPC_EXPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-source-eligibility-browser-rpc-export/merchant_source_eligibility_browser_rpc_summary.json`
+
+Safest next sales-moving action:
+
+- Keep Shopping decisions blocked; pursue either CA/GB/AU feed availability proof or a narrow owner-approved `US/es` repair/capacity/source packet.
+
+## 2026-05-15 - Merchant all-products source eligibility export
+
+Reviewer verdict: `PASS_WITH_GATES_NO_SHOPPING_BUILD`
+
+Checked:
+
+- Merchant all-products download was read-only; no upload, source sync, product edit, campaign, budget, bid, status, product-group, conversion, or billing write occurred.
+- `US/es` row presence is real (`5,412` rows / `772` paid-cohort rows), but current issue-export and capacity evidence still block Shopping build or repair authority.
+- CA/en, GB/en, and AU/en have `0` rows and no expected currency/feed-label proof in the current all-products export.
+- The TSV lacks `source_id` and approved/disapproved destination status, so decisions fail closed.
+
+Required gates/fixes:
+
+- Do not create Shopping campaigns, product groups, feed/title edits, product-scope changes, capacity requests, bids, budgets, statuses, or conversion changes from this export.
+- For CA/GB/AU, obtain feed/source availability proof before any Shopping build packet.
+- For `US/es`, use a narrow owner-approved repair/capacity/source packet only after source/approval proof is sufficient.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-source-all-products-export-attempt/MERCHANT_ALL_PRODUCTS_SOURCE_ELIGIBILITY_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-source-all-products-export-attempt/merchant_all_products_source_eligibility_summary.json`
+
+Safest next sales-moving action:
+
+- Route Shopping work to feed/source availability unblocks and conversion/landing analysis, while CPC forecast remains parked until Basic Access approval.
 
 ## 2026-05-15 - Pinterest live launch CPC and category-scope gate
 
@@ -1518,3 +1570,221 @@ Evidence:
 Safest next sales-moving action:
 
 - Run full source/all-products exports for `US/es`, CA/en, GB/en, and AU/en, then decide whether a narrow approval packet is valid.
+
+## 2026-05-15 - Pinterest `$1.00` validation-only product-group scope stop
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Owner approval allowed `$1.00` daily budget only for paused-draft validation, with no launch, no enablement, no spend, no bid activation, and no catalog/source/tag/CAPI/feed/audience changes.
+- The authenticated Pinterest selector had selected groups `0`.
+- Searches for `DLM_PIN_US_SHOPPING`, `mommy_me`, and `family_matching` returned no exact groups.
+- Searches for `pajamas`, `Mommy`, and `Family Matching` returned only broad groups: `Pajamas` `252`, Mommy & Me `445/1,011`, Family Matching `1,011+`, and `All Products` `5,664`.
+
+Risks:
+
+- Saving or adding any available broad group would exceed the approved `333` active-clean scope.
+- Creating/exposing exact product groups is likely a product-group/catalog-scope action and remains outside the validation-only approval.
+
+Required gates/fixes:
+
+- Do not click `Add product groups`, Save, Continue, Review, Publish, Launch, or Enable from this broad-group state.
+- Continue only after exact approval to create/expose product groups from existing feed attributes or after a selector readback proves exact `201/103/29` groups are already available.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-paused-draft-product-group-scope-stop/PINTEREST_PAUSED_DRAFT_PRODUCT_GROUP_SCOPE_STOP.md`
+
+Safest next sales-moving action:
+
+- Use the exact product-group approval packet, then continue the paused/unpublished draft only if final review shows exact scope and no launch/enablement/spend/bid activation.
+
+## 2026-05-15 - Pinterest exact product-group approval packet
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Packet derives groups only from the refreshed `333` public-clean scope CSV.
+- Exact required groups are Mommy & Me `201` variants / `26` products, Family Matching `103` / `7`, and Pajamas `29` / `1`.
+- Father-inclusive rows are isolated as proof-only: `43` variants across `4` products.
+- All `333` rows pass image, price, availability, shipping policy, return policy, and public PDP source-clean fields.
+
+Risks:
+
+- Product-group creation/exposure is a Pinterest object/catalog-scope mutation and needs exact approval.
+- Father-inclusive rows may overlap existing groups; do not create a separate group unless the owner explicitly approves and the platform can expose it exactly.
+
+Required gates/fixes:
+
+- Do not save, publish, launch, or enable broad groups.
+- Get exact approval to create/expose product groups from existing feed attributes only, excluding the `9` held variants.
+- Final review must reconfirm max `$5/day`, max `$0.15` CPC, and exact active-clean group counts.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/PINTEREST_EXACT_PRODUCT_GROUP_UNBLOCK_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/pinterest_exact_product_group_unblock_summary.json`
+
+Safest next sales-moving action:
+
+- Ask for the exact approval phrase in the packet, then create/expose exact groups and launch only after the final review passes.
+
+## 2026-05-15 - Pinterest exact product-group approved attempt stop
+
+Reviewer verdict: `BLOCK_NO_LAUNCH`
+
+Checked:
+
+- Current-session owner approval matched the exact product-group packet boundary.
+- The attempted UI label-filter path used existing feed attributes only: `paid_eligible`, `us_test_ready`, and `mommy_me`.
+- Pinterest preview returned `0 products selected`, so the expected Mommy & Me count `201` was not met.
+- Exact item-ID fallback import CSV was generated from the refreshed clean scope with `201/103/29` counts.
+- Chrome file upload failed before import with `Not allowed`.
+
+Risks:
+
+- Launching or saving broad groups would violate the active-clean `333` scope.
+- A zero-count label preview could mean Pinterest does not expose the custom-label filters on this surface, so readback counts are mandatory after any import.
+
+Required gates/fixes:
+
+- Use a file-upload-capable browser path.
+- Import the exact item-ID CSV only.
+- Read back exact groups before campaign save or launch review.
+- Final review must still confirm max `$5/day`, max `$0.15` CPC, exact group scope, and no source/feed/tag/CAPI/billing/Shopify changes.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/PINTEREST_EXACT_PRODUCT_GROUP_ATTEMPT_STOP.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/pinterest_exact_product_group_item_id_import.csv`
+
+Safest next sales-moving action:
+
+- Enable file upload for the controlled Chrome path or use another upload-capable authenticated path, then import and read back exact counts before final launch review.
+
+## 2026-05-15 - Standard Shopping clicked title conversion approval packet
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Public/read-only conversion analysis of the `13` unique clicked Standard Shopping PDP handles.
+- Source evidence: `65` clicks / `$14.17` cost / `$0.00` conversion value, `0` source-blocked clicked handles, and `0` feed-title repair candidates.
+- New packet found `12/13` clicked visible H1s contain literal ellipses, covering `64` clicks / `$13.96` cost.
+- Add-to-cart form, customer-photo section markup, and hidden zero-review badge behavior remained present in checked public source.
+
+Risks:
+
+- Shopify product title/display-title cleanup is customer-visible product data/presentation work and needs exact owner approval.
+- Do not let the packet become feed-title, product-group, bid, budget, negative, status, campaign, conversion, or Merchant/Pinterest authority.
+
+Required gates/fixes:
+
+- Owner approval must match the packet phrase before any Shopify title/display-title cleanup.
+- Before/after public readbacks must verify H1/title, add-to-cart, price, source-clean, and zero-review state.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-title-conversion-approval/STANDARD_SHOPPING_CLICKED_TITLE_CONVERSION_APPROVAL_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-title-conversion-approval/standard_shopping_clicked_title_conversion_summary.json`
+
+Safest next sales-moving action:
+
+- Ask for exact cleanup approval; otherwise keep observing and continue Merchant/feed eligibility work.
+
+## 2026-05-15 - Merchant priority-market capacity fix packet
+
+Reviewer verdict: `PASS_WITH_LIVE_READBACK_GATE`
+
+Checked:
+
+- Current Merchant all-products browser RPC export has `351,007` rows.
+- Owner priority order is USA English and Spanish first, Canada English/French second, GB English third, Europe later.
+- Current protected rows are USA English `5,491` and USA Spanish `5,412`.
+- Current missing priority rows are CA/en `0`, CA/fr `0`, and GB/en `0`.
+- First-pass non-priority removal candidates total `199,684` rows: Asia/Middle East `129,112`, Africa `37,511`, South America `8,818`, and non-US-USD `24,243`.
+
+Risks:
+
+- The cleanup must remove market/feed-country publishing scope, not Shopify products.
+- Removing Europe in the first pass would violate the owner priority order because Europe is later-priority, not removal-priority.
+- A live UI/API control that cannot preview the exact candidate groups is not safe to save.
+
+Required gates/fixes:
+
+- Read back the exact Merchant/Shopify/Google publishing control surface before any Save/Apply/Sync/Upload.
+- Preserve USA English, USA Spanish, future Canada English/French, future GB English, and Europe-later groups.
+- After cleanup, capture a fresh all-products export and prove total rows dropped before enabling/exporting Canada and GB rows.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_PRIORITY_MARKET_CAPACITY_FIX_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/merchant_priority_market_capacity_fix_summary.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/merchant_capacity_removal_candidate_groups.csv`
+
+Safest next sales-moving action:
+
+- Use an authenticated exact-control path to prune only the listed non-priority publishing groups, then re-export Merchant products and enable/prove Canada English/French and GB English rows.
+
+## 2026-05-15 - Merchant capacity execution guard
+
+Reviewer verdict: `PASS_WITH_LIVE_READBACK_GATE`
+
+Checked:
+
+- Guard script reads the current `351,007` row sanitized Merchant RPC export and the removal-candidate CSV.
+- Guard output defines `41` exact preview rows, expected first-pass removal `199,684`, expected after-first-pass floor `151,323`, protected USA English `5,491`, protected USA Spanish `5,412`, and current CA/en, CA/fr, GB/en rows all `0`.
+- The generated after-export mode fails closed unless all first-pass removal groups are gone and USA English/Spanish counts do not drop.
+
+Risks:
+
+- This still does not authorize Save/Apply/Sync/Upload; it only defines the live preview and after-export acceptance criteria.
+- A platform surface that cannot map to the CSV is not safe to mutate.
+
+Required gates/fixes:
+
+- Reconcile live preview to `merchant_capacity_platform_preview_acceptance.csv` before any save.
+- After cleanup, run `build_merchant_capacity_execution_guard.py --after-export` on the fresh export before enabling/building Canada or GB Shopping.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_PRIORITY_MARKET_CAPACITY_EXECUTION_GUARD.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/merchant_capacity_execution_guard_summary.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/merchant_capacity_platform_preview_acceptance.csv`
+
+Safest next sales-moving action:
+
+- Use an authenticated exact-control path to preview only the guard rows, then save only if USA English/Spanish and Europe-later groups are preserved.
+
+## 2026-05-15 - Shopify Markets region prune preview
+
+Reviewer verdict: `PASS_WITH_LIVE_READBACK_GATE`
+
+Checked:
+
+- Region preview reads only the sanitized Shopify Markets readback and makes no external calls.
+- It confirms active market handles include `us`, `canada`, `united-kingdom`, `eu`, `australia`, and `international`.
+- It classifies `52/73` `International` regions as first-pass removal candidates only when a live preview preserves priority markets, and keeps `21` regions in preserve/hold-review.
+- It explicitly blocks whole-market removal, product deletion, Europe removal, duplicate `CA`/`AU` removal, and any save when the live preview cannot reconcile to the guard files.
+
+Risks:
+
+- Region classification is an operator checklist, not proof that Shopify Markets is the exact control surface connected to Merchant row generation.
+- A live UI/API that cannot preview the exact region and feed-group effect is not safe to mutate.
+
+Required gates/fixes:
+
+- Reconcile authenticated preview to both `shopify_international_region_prune_preview.csv` and `merchant_capacity_platform_preview_acceptance.csv`.
+- After cleanup, capture a fresh Merchant export and run the after-export guard before Canada/GB Shopping work.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_SHOPIFY_MARKETS_REGION_PRUNE_PREVIEW.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/shopify_international_region_prune_preview.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/shopify_international_region_prune_summary.json`
+
+Safest next sales-moving action:
+
+- Use an authenticated exact-control path to preview `International` region removals and feed-group effects, then save only if the preview preserves priority markets and matches both guard files.

@@ -1,0 +1,63 @@
+{
+  "advertiser_id": "549756244483",
+  "campaign_name": "DLM_PIN_US_CATALOG_333_PAUSED_20260515",
+  "clean_scope_products": 30,
+  "clean_scope_rows": 333,
+  "exact_groups": [
+    {
+      "allowed_use": "catalog_sales_pin_clicks_custom_cpc_0_15_after_final_review",
+      "filter_custom_label_0": "paid_eligible",
+      "filter_custom_label_2": "mommy_me",
+      "filter_custom_label_4": "us_test_ready",
+      "product_group_key": "mommy_me",
+      "product_group_label": "Mommy & Me",
+      "products": 26,
+      "required_status": "exact_active_clean_only",
+      "variants": 201
+    },
+    {
+      "allowed_use": "catalog_sales_pin_clicks_custom_cpc_0_15_after_final_review",
+      "filter_custom_label_0": "paid_eligible",
+      "filter_custom_label_2": "family_matching",
+      "filter_custom_label_4": "us_test_ready",
+      "product_group_key": "family_matching",
+      "product_group_label": "Family Matching",
+      "products": 7,
+      "required_status": "exact_active_clean_only",
+      "variants": 103
+    },
+    {
+      "allowed_use": "catalog_sales_pin_clicks_custom_cpc_0_15_after_final_review",
+      "filter_custom_label_0": "paid_eligible",
+      "filter_custom_label_2": "pajamas",
+      "filter_custom_label_4": "us_test_ready",
+      "product_group_key": "pajamas",
+      "product_group_label": "Pajamas",
+      "products": 1,
+      "required_status": "exact_active_clean_only",
+      "variants": 29
+    }
+  ],
+  "external_write_status": "not_performed",
+  "father_inclusive_probe": {
+    "category_counts": {
+      "family_matching": 31,
+      "mommy_me": 12
+    },
+    "products": 4,
+    "status": "proof_only_do_not_create_separate_group_without_exact_owner_approval_and_platform_selector",
+    "variant_rows": 43
+  },
+  "generated_at": "2026-05-15T05:45:00-04:00",
+  "held_exclusion_rows": 9,
+  "mode": "repo_local_approval_packet_only_no_external_write",
+  "required_approval": "I approve creating/exposing exact Pinterest product groups for advertiser 549756244483 from existing feed attributes only: paid_eligible + us_test_ready split by Mommy & Me, Family Matching, Pajamas, and any active clean Daddy & Me/father-inclusive rows that pass the same gates, excluding the 9 held variants, with no catalog source/feed source/tag/CAPI/billing/Shopify product changes, then launch only if final review shows max $5/day and max $0.15 CPC.",
+  "row_quality_checks": {
+    "availability_pass_rows": 333,
+    "image_pass_rows": 333,
+    "pdp_pass_rows": 333,
+    "price_pass_rows": 333,
+    "return_policy_pass_rows": 333,
+    "shipping_policy_pass_rows": 333
+  }
+}
