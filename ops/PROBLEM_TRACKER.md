@@ -27,6 +27,53 @@ Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
 | `PROB-2026-05-12-ACTIVE-CAMPAIGN-COVERAGE-GOAL` | `P0` | `VALID_TOKEN__EXPLORER_ACCESS_BLOCKS_AUTH_CPC_NO_PASS_NO_GREEN` | Parent/orchestrator / next activation operator | Owner goal: working active Google Ads and Pinterest campaigns for every viable language/market | GB/CA/AU exact Search remain enabled/eligible at exact scope with filters cleared and keyword/RSA/final URL checks passed, but current head terms show below-first-page estimates around `$0.65-$0.74`, which fail the owner hard `$0.15` CPC cap. A 105-row local keyword universe exists with US first and GB/CA/AU localized rows; active PDP and clean collection route gates pass for the canonical exact 36-row packet. The 16:24 authenticated Keyword Planner attempt did not produce canonical pass rows because the plan exported US/Broad/Maximize-conversions aggregate/stats rows; parser summaries returned `0` `PASS_015_CPC_GATE`, so no `GREEN` action row exists. This run completed secure local API config and patched the harness for Google Ads API v24; manager `700-107-9966` is now linked under client `399-097-6848`, but the developer token has Explorer access only, so Google blocks the Keyword Planner forecast with `DEVELOPER_TOKEN_NOT_APPROVED`. | Google Ads and Pinterest have active, measured, read-back-clean campaigns for every owner-approved viable language/market, or each excluded market has an explicit owner decision and evidence-backed reason | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/google_ads_api_explorer_access_block_summary.json`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/GOOGLE_ADS_API_CONFIG_SETUP.md`, `ops/scripts/check_google_ads_api_config.py`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/GOOGLE_ADS_API_CPC_FORECAST_RETRY_HARNESS.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-authenticated-gb-ca-au-cpc-validation/AUTHENTICATED_GB_CA_AU_CPC_VALIDATION_ATTEMPT.md`, `ops/marketing/keyword_strategy.md`, `ops/marketing/keyword_scoring_rubric.md`, `ops/marketing/keyword_universe.csv`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-canonical-url-packet/GB_CA_AU_36_ROW_CPC_CANONICAL_URL_PACKET.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/CPC_015_LONG_TAIL_CORRECTION.md` |
 | `PROB-2026-05-12-RO-PDP-SHIPPING-COPY-FREE-WORDING` | `P2` | `SOLVED_LOCAL_READBACK_PASSED` | Codex parent/orchestrator 2026-05-12 | Local Romanian PDP purchase-confidence copy and English fallback in theme files | No further local action for this narrow copy issue. Do not deploy/publish separately without normal theme sync/deployment path | RO local PDP and relevant locale/snippet files have `0` hits for `Free standard shipping`, `Standard shipping is free`, or `Livrare standard gratuit`, and Theme Check has no offenses | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-measurement-safe-lanes/PAID_GROWTH_MEASUREMENT_SAFE_LANES_REPORT.md` |
 | `PROB-2026-05-15-PINTEREST-FEED-VARIANT-DUPLICATION` | `P1` | `PATH_B_GROUPED_FEEDS_GENERATED__LIVE_UPSTREAM_GUARD_FAIL_EXPECTED` | Codex automation current session / next paid-growth + Shopify channel operator | Shopify -> Pinterest sales-channel product feed for **every** active Shopify Market (`us`, `canada`, `united-kingdom`, `eu`, `australia`, `international`) and **every** product category (Family Matching, Dresses, Couples, Sweaters, plus any future types); Pinterest advertiser `549756244483`; Merchant Center mirror feed | Owner approves the master all-markets phrase or one per-market phrase from `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/`, then the operator applies the Shopify Pinterest channel grouping setting if exposed. If no grouping toggle exists, use the generated Path B feeds under separate exact approval from `feeds/pinterest_<market>.tsv`. After each market's 24h re-sync, capture after-state readback per `per_market_packets/<market>` checklist, then attest `FIX_LANDED_FRESHNESS_MARKER.txt` only when strict guard mode can pass. Do not touch Pinterest tag/CAPI/budget/bid/status/campaign/audience/billing, Shopify product data, or other sales channels without explicit approval | Every active Shopify Market emits Pinterest catalog rows where same-parent variants share `item_group_id` and `image_link` is the parent product featured image; per-market collapse from `~20x` variant inflation to one row per parent (or grouped rows); the automated guard `ops/scripts/check_pinterest_feed_grouping.py` runs in strict mode under `ops/scripts/check_continuity_integrity.py --strict` and returns PASS for every market; freshness marker file exists with per-market after-state readback summary; AGENTS.md and CLAUDE.md non-negotiable rule preserved byte-identical | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/PATH_B_GROUPED_FEED_GENERATION_READBACK.md`; generated feeds under `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/feeds/`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/CROSS_MARKET_VARIANT_DUPLICATION_DIAGNOSIS.md`; `MASTER_ALL_MARKETS_APPROVAL_PHRASE.md`; `per_market_packets/*.md`; `ops/scripts/check_pinterest_feed_grouping.py`; `ops/scripts/generate_pinterest_feed_grouped.py`; `ops/scripts/check_continuity_integrity.py` |
+| `PROB-2026-05-15-SHOPIFY-VENDOR-BRAND-DRIFT` | `P1` | `SHOPIFY_VENDOR_VERIFIED__FLOW_MC_RULES_OWNER_APPLY_PENDING` | Claude current session + Codex automation verification / next Shopify Merchant operator | Shopify active product `vendor`; Shopify Flow drift-prevention workflow; Merchant Center account `124884876` Shopify Google & YouTube source feed brand/gender/age/identifier rules | Owner imports and turns on `auto-vendor-dress-like-mommy.flow`, then applies Merchant Center feed rules A/B/C from `MERCHANT_CENTER_FEED_RULES.md`. After feed refetch, next operator runs read-only Merchant offer samples to confirm `brand`, `gender`, `age_group`, and `identifier_exists` while preserving `item_group_id` and `image_link` | Shopify active catalog has `0` products where `vendor != "Dress Like Mommy"`; future Shopify product create/update/duplicate events auto-correct vendor; Merchant offers read back brand/rules clean after refetch with no source/vendor URL exposure and no unintended feed-grouping/image changes | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/EXECUTION_REPORT.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/vendor_compliance_report.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/APPLY_ME.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/MERCHANT_CENTER_FEED_RULES.md`; `ops/scripts/verify_vendor_compliance.py` |
+
+### `PROB-2026-05-15-SHOPIFY-VENDOR-BRAND-DRIFT`
+
+Priority: `P1`
+
+Status: `SHOPIFY_VENDOR_VERIFIED__FLOW_MC_RULES_OWNER_APPLY_PENDING`
+
+Owner/session: Claude current session for approved live vendor backfill; Codex automation current session for durable script/packet repair and read-only verification.
+
+Surface: Shopify active product `vendor`; Shopify Flow drift-prevention workflow; Merchant Center account `124884876` Shopify Google & YouTube source feed brand/gender/age/identifier rules.
+
+Exact symptom:
+- Shopify active product vendors had drifted away from the single store brand, creating a risk that supplier/source-like or lowercase-domain values could propagate to Merchant/Pinterest brand surfaces.
+- Future product create/update/duplicate events could recreate the drift unless a Flow guard is installed.
+- Merchant Center brand/gender/age/identifier rules still need owner-side apply and readback after feed refetch.
+
+Business impact:
+- Wrong brand/vendor values weaken Shopping/Pinterest feed quality and can expose confusing source-like values in paid surfaces.
+- This blocks clean paid catalog expansion until the active catalog and future-drift guard are verified.
+
+Definition of fixed:
+- Shopify active catalog has `0` products where `vendor != "Dress Like Mommy"`.
+- Shopify Flow is imported and turned on for Product created/updated/duplicated events.
+- Merchant Center feed rules A/B/C are applied and post-refetch offer readbacks show `brand = Dress Like Mommy`, correct gender/age/identifier behavior, and unchanged `item_group_id`/`image_link`.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-15 prior current session | Owner-approved live Shopify Admin backfill | `287/287` non-compliant active products updated to `vendor="Dress Like Mommy"`; 0 userErrors; after-state filter returned 0 rows | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/EXECUTION_REPORT.md` |
+| 2026-05-15 10:18 EDT | Codex automation repaired durable scripts and Flow artifact, then ran read-only verifier | `326` active products checked; `0` non-compliant products; verdict `PASS` | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/vendor_compliance_report.json` |
+
+Failed or ruled-out paths:
+- Re-running a live Shopify product mutation in this automation was ruled out because the current run has no fresh exact live product-data approval and read-only verification already passed.
+- Applying Merchant Center rules from automation was ruled out because feed-rule Apply is an external Merchant write and remains owner-side approval/action gated.
+
+Current next action:
+- Owner imports and turns on `auto-vendor-dress-like-mommy.flow`.
+- Owner applies Merchant Center feed rules A/B/C from `MERCHANT_CENTER_FEED_RULES.md`.
+- After feed refetch, next operator performs read-only Merchant offer readback for brand/gender/age_group/identifier_exists while preserving `item_group_id` and `image_link`.
+
+Approval/credential/platform gates:
+- No additional Shopify product/vendor mutation, Merchant feed/source/rule apply, Pinterest, Google Ads, budget, bid, status, product-group, conversion, billing, or credential change is authorized by this tracker entry.
+
+Parallel work to continue:
+- Pinterest `item_group_id` grouping, Merchant capacity cleanup, Google Ads `$0.15` CPC validation, and US Shopping clicked-title cleanup remain separate lanes.
 
 ## Recently Solved
 

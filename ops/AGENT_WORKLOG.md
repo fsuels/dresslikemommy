@@ -39138,3 +39138,41 @@ Next best action:
 - Owner imports `auto-vendor-dress-like-mommy.flow` in Shopify Admin → Flow (≤60s) and clicks "Turn on workflow" so future drift is auto-corrected on Product created/updated/duplicated.
 - Owner applies feed rules A + B + C in Merchant Center `124884876` Shopify Google & YouTube source feed (≤3 min) using `MERCHANT_CENTER_FEED_RULES.md`.
 - After MC re-fetch (≤24h), run a fresh read-only Merchant Center readback on a sample of US offers to confirm `brand = "Dress Like Mommy"`, gender/age_group split, `identifier_exists = no`, while `item_group_id` and `image_link` remain unchanged.
+
+---
+
+## 2026-05-15 - Vendor / brand command-layer wiring
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-vendor-brand-command-layer-wiring
+
+Why:
+- Latest canonical worklog anchor was the vendor/brand auto-fix execution, but the paid-growth command layer did not yet fully expose that state as an actionable lane.
+- The automation had no fresh approval for live Shopify/Merchant writes, so the safe sales-moving work was durable packet/script repair, read-only verification, and command-layer wiring.
+
+What changed:
+- Patched `ops/scripts/apply_vendor_backfill.py` so it accepts the repo's canonical Shopify credential key `SHOPIFY_ADMIN_ACCESS_TOKEN`, still supports the legacy token key, and can use the existing local `admin-api-token.json` fallback.
+- Patched `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/auto-vendor-dress-like-mommy.flow` to remove supplier/source-domain examples from the repo artifact.
+- Updated the vendor packet report/checklist to point at the actual read-only verifier output instead of missing backfill log files.
+- Ran `ops/scripts/verify_vendor_compliance.py`: `326` active products checked, `0` non-compliant, verdict `PASS`; wrote `vendor_compliance_report.json`.
+- Wired the lane into `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `memory_digest.md`, `operator_cockpit.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Shopify active product vendor state is verified clean as of 2026-05-15 10:18 EDT.
+- The remaining work is not another live backfill. It is owner-side Flow import/turn-on, owner-side Merchant Center feed rules A/B/C apply, then read-only Merchant offer readback after feed refetch.
+- This does not solve or replace Pinterest `item_group_id` grouping; that remains a separate blocker.
+
+Verification:
+- `python3.13 -m py_compile ops/scripts/apply_vendor_backfill.py ops/scripts/verify_vendor_compliance.py`
+- `python3.13 ops/scripts/verify_vendor_compliance.py`
+- Scoped supplier/secret scan over the vendor packet and helper scripts returned no explicit supplier-domain or obvious token hits.
+
+Guardrails:
+- No live Shopify product mutation, Merchant feed/source/rule apply, Pinterest, Google Ads, GA4/GTM, budget, bid, status, product-group, conversion, billing, credential, or theme write occurred in this automation run.
+
+Remaining blockers:
+- Owner must import and turn on the Shopify Flow workflow.
+- Owner must apply Merchant Center feed rules A/B/C.
+- Merchant readback waits until the feed refetches after those owner-side actions.
+
+Next best action:
+- Owner completes the two short UI applies in `APPLY_ME.md`; next operator reads back Merchant offers after refetch and only then closes the brand hygiene blocker.

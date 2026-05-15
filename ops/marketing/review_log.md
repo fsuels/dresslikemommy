@@ -2020,3 +2020,34 @@ Evidence:
 Safest next sales-moving action:
 
 - If the channel grouping toggle is unavailable, get separate exact approval to upload/import generated Path B feeds, then read back per-market grouped catalog rows after sync before launch review.
+
+## 2026-05-15 - Vendor / Brand Drift Prevention Wiring
+
+Reviewer verdict: `PASS_SHOPIFY_VENDOR_VERIFIED__OWNER_APPLY_PENDING`
+
+Checked:
+
+- Patched `ops/scripts/apply_vendor_backfill.py` to use canonical Shopify credential keys and existing local token JSON fallback without printing or persisting credentials.
+- Patched the Shopify Flow import artifact to remove supplier/source-domain examples from the repo packet.
+- Ran the read-only verifier: `326` active products checked, `0` non-compliant products, verdict `PASS`.
+- Updated the command layer so the remaining work is explicit owner-side Flow import and Merchant Center feed rules apply, not another live Shopify backfill.
+
+Risks:
+
+- The Flow workflow is not live until the owner imports and turns it on.
+- Merchant Center brand/gender/age/identifier rules are not live until the owner applies them and the feed refetches.
+
+Required gates/fixes:
+
+- Do not run another live Shopify product mutation unless a fresh exact approval exists.
+- Do not apply Merchant feed rules, sync feeds, or change feed/product scope from automation without exact approval and after-state readback.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/vendor_compliance_report.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/EXECUTION_REPORT.md`
+- `ops/scripts/verify_vendor_compliance.py`
+
+Safest next sales-moving action:
+
+- Owner imports the Flow file and applies Merchant feed rules A/B/C; next operator reads back Merchant offers after refetch before unblocking brand hygiene for Shopping/Pinterest.

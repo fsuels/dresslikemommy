@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "name": "Auto-Vendor: Dress Like Mommy",
+  "description": "Force product vendor to 'Dress Like Mommy' whenever a product is created, updated, or duplicated and the vendor is anything else. Prevents supplier/source URLs or lowercase-domain strings from reaching Merchant Center, Pinterest, or any other sales channel as the brand value.",
+  "owner": "Dress Like Mommy operations",
+  "triggers": [
+    {
+      "type": "shopify/products/create",
+      "version": "1"
+    },
+    {
+      "type": "shopify/products/update",
+      "version": "1"
+    },
+    {
+      "type": "shopify/products/duplicate",
+      "version": "1"
+    }
+  ],
+  "steps": [
+    {
+      "id": "check_vendor",
+      "type": "condition",
+      "title": "If vendor is not 'Dress Like Mommy'",
+      "expression": "{{ product.vendor }} != \"Dress Like Mommy\"",
+      "branches": {
+        "true": "set_vendor",
+        "false": "end_noop"
+      }
+    },
+    {
+      "id": "set_vendor",
+      "type": "action",
+      "action": "shopify/productUpdate",
+      "title": "Set vendor to 'Dress Like Mommy'",
+      "inputs": {
+        "id": "{{ product.id }}",
+        "vendor": "Dress Like Mommy"
+      },
+      "next": "end_done"
+    },
+    {
+      "id": "end_done",
+      "type": "end",
+      "title": "Vendor corrected"
+    },
+    {
+      "id": "end_noop",
+      "type": "end",
+      "title": "Vendor already correct, no action"
+    }
+  ],
+  "notes": "If your Shopify Flow version does not support the 'shopify/productUpdate' action directly, use the equivalent built-in 'Update product' action and set the Vendor field to the literal string 'Dress Like Mommy'. The condition node uses Liquid; ensure it compares product.vendor to the literal 'Dress Like Mommy' (case-sensitive)."
+}
