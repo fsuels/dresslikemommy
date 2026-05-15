@@ -2,7 +2,7 @@
 
 Integration status: `GENERATED`
 
-Last generated: 2026-05-15 10:21
+Last generated: 2026-05-15 11:50
 
 Purpose: identify command-layer files that risk becoming side documents nobody uses.
 
@@ -47,7 +47,7 @@ No new `ops/marketing/` artifact counts as done unless it is either:
 | `ops/marketing/operator_cockpit.html` | `PASS_GENERATED` | `true` | `9` | `true` | generated cockpit |
 | `ops/marketing/operator_cockpit.md` | `PASS_CORE` | `true` | `5` | `true` | none |
 | `ops/marketing/prompt_log.md` | `PASS_CORE` | `true` | `2` | `false` | none |
-| `ops/marketing/review_log.md` | `PASS_CORE` | `true` | `3` | `false` | none |
+| `ops/marketing/review_log.md` | `PASS_CORE` | `true` | `4` | `false` | none |
 | `ops/marketing/reviewer_checklist.md` | `PASS_CORE` | `true` | `4` | `false` | none |
 | `ops/marketing/spend_authorization.md` | `PASS_CORE` | `true` | `12` | `true` | none |
 | `ops/marketing/team_registry.md` | `PASS_CORE` | `true` | `3` | `false` | none |

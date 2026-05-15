@@ -39176,3 +39176,178 @@ Remaining blockers:
 
 Next best action:
 - Owner completes the two short UI applies in `APPLY_ME.md`; next operator reads back Merchant offers after refetch and only then closes the brand hygiene blocker.
+
+---
+
+## 2026-05-15 - Standard Shopping purchase attribution readback
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-google-ads-purchase-attribution-readback
+
+Why:
+- Owner pasted an outside Google Ads critique saying Standard Shopping purchase conversion tracking was broken/missing, then a corrected critique claiming the active Purchase action was removed/misrouted.
+- The task required an independent evidence check before any optimization or conversion-goal repair, because changing Google Ads conversion goals is an excluded live measurement mutation without fresh exact approval.
+
+What changed:
+- Created `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-google-ads-purchase-attribution-readback/GOOGLE_ADS_PURCHASE_ATTRIBUTION_READBACK.md`.
+- Updated `ops/marketing/daily_scorecard.md`, `ops/marketing/current_marketing_state.md`, `ops/marketing/action_queue.md`, `ops/marketing/blocker_board.md`, `ops/marketing/decision_log.md`, `ops/marketing/review_log.md`, `ops/marketing/operator_cockpit.md`, and `ops/PROBLEM_TRACKER.md` so the command layer does not route the next agent into unnecessary conversion-action surgery.
+
+Readback / decision:
+- Current Google Ads conversion-action data shows `Google Shopping App Purchase` remains the primary/included purchase action and last received a request on `2026-05-11T21:47:18Z`.
+- Sanitized Shopify orders since `2026-04-29` show `13` non-cancelled non-test orders, `0` Google paid/CPC signals, and `4` Google organic/product-sync signals.
+- Verdict: `PURCHASE_TRACKING_HEALTHY__NO_PAID_GOOGLE_CPC_ORDERS_FOUND__DO_NOT_CHANGE_CONVERSION_GOALS`.
+- Treat Standard Shopping's zero conversion value as no paid-attributed purchases in the checked window, not as proof that purchase tracking is missing.
+
+Guardrails:
+- No Google Ads conversion-goal, account-goal, bid, budget, status, product-group, campaign, upload/import/apply, product-scope, Merchant, Shopify, GA4/GTM, Pinterest, billing, credential, product, feed, theme, or order/payment write occurred.
+- Do not restore/recreate/switch purchase actions or raise Shopping bids from the outside diagnosis.
+
+Next best action:
+- If owner approves the existing exact phrase in `STANDARD_SHOPPING_CLICKED_TITLE_CONVERSION_APPROVAL_PACKET.md`, clean only the listed clicked PDP visible titles/display titles and verify before/after public readbacks. If owner wants stronger measurement proof, prepare a separate controlled paid-test-purchase approval packet with owner-performed payment/order steps.
+
+---
+
+## 2026-05-15 - Shopify Custom Pixels (GA4 + Google Ads) local authoring
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-shopify-custom-pixels-ga4-google-ads-local-author
+
+Why:
+- GA4 showed `0` transactions / `$0.00` for `2026-05-14` while Shopify had real paid order `#9490` for `$158.91` that day; last-7-day GA4 `purchase` count was `3` vs ~`28` Shopify orders / 30d.
+- Primary Google Ads `Purchase` action is GA4-imported (`dresslikemommy.com - GA4 (web) purchase`), so the broken GA4 path also zeroed out Ads `Purchases` for the last `14` days (Begin checkout `1`, Add to cart `15`, Page views `0`).
+- Shopify Customer events -> Custom pixels tab was empty; all Google tracking was routed through the `Google & YouTube` App pixel, which is failing on the new Checkout Extensibility thank-you page.
+- Owner requested two self-owned Custom Pixel scripts plus install/verification/rollback docs to replace the broken path. Owner will perform Shopify Admin / Google Ads / GA4 Admin writes in a separate browser session.
+
+What changed (local-only):
+- Added `pixels/ga4-custom-pixel.js` - Shopify Custom Pixel using GA4 Measurement Protocol (Measurement ID `G-N4EQNK0MMB`); subscribes to `page_viewed`, `product_viewed`, `product_added_to_cart`, `checkout_started`, `checkout_completed`, `search_submitted`; persists client_id (from storefront `_ga` cookie via `browser.cookie` with `browser.localStorage` fallback) and 30-min rolling session_id; consent-gated on Shopify Custom Pixel privacy state; placeholder `__GA4_API_SECRET__`.
+- Added `pixels/google-ads-custom-pixel.js` - Shopify Custom Pixel firing a native Ads conversion on `checkout_completed` via direct beacon to `https://www.googleadservices.com/pagead/conversion/<AW_ID>/`; consent-gated on `marketingAllowed`; deduplicates via `oid`/`transaction_id` = Shopify order id; placeholders `__AW_CONVERSION_ID__`, `__AW_CONVERSION_LABEL__`.
+- Added `pixels/README.md` - explains sandbox constraints, why Measurement Protocol + direct beacon (not gtag.js), three-phase deduplication plan (install -> 48h validate -> pause GA4-imported once native is steady), and out-of-scope items (refunds, Enhanced Conversions, server-side GTM).
+- Added `docs/tracking-setup.md` - step-by-step runbook: create new Ads website conversion action (Purchase, every-conversion, 30-day click window, manual gtag), create GA4 MP API secret, install both Custom Pixels in Shopify, disable only the GA4 sub-toggle of the Google & YouTube app pixel (leaving Merchant feed intact), static checks + GA4 DebugView dry run + real test order + Tag Assistant verification, and a step-by-step rollback plan.
+- Added narrow local-only claim row to `ops/AGENT_COORDINATION.md`: `Shopify Custom Pixel local authoring for GA4 + Google Ads purchase tracking` / `ACTIVE_LOCAL_AUTHORING_NO_EXTERNAL_WRITES`.
+
+Readback / verification:
+- `node --check pixels/ga4-custom-pixel.js` -> OK.
+- `node --check pixels/google-ads-custom-pixel.js` -> OK.
+- `diff -q AGENTS.md CLAUDE.md` -> identical (CLAUDE.md byte-equality invariant preserved; no edits to either file).
+- Follow-up Codex runtime hardening pass ran `python3.13 ops/scripts/check_continuity_integrity.py --strict` successfully on 2026-05-15 11:46 EDT; latest anchor is `2026-05-15-shopify-custom-pixels-consent-runtime-hardening`.
+
+Decisions locked by owner (driving the code):
+- GA4 transport = Measurement Protocol only (sandbox-safe; gtag.js unreliable on Checkout Extensibility thank-you page).
+- Ads transport = direct gtag-equivalent conversion beacon (same reason).
+- Dedup plan = pause GA4-imported Ads action once native validates over ~48h; native becomes single source of truth.
+- Google & YouTube app pixel = disable only the GA4 sub-toggle; keep Merchant Center feed and any Ads sub-toggle as a transition belt-and-suspenders, then turn off after dedup validation.
+
+Guardrails:
+- No Shopify Admin paste/save/connect of these pixels in this session.
+- No Google Ads conversion-action create / status / bid / budget / goal change.
+- No GA4 Admin or Measurement Protocol secret creation.
+- No Shopify theme push / product / feed / discount / order / payment write.
+- No Merchant / Pinterest / GA4 / GTM / billing / credential write.
+- No toggling of the Google & YouTube app pixel.
+- No live test order placed.
+- No destructive git, no secrets written to any repo file, no vendor/source URLs.
+- Approach is sales-moving: produces ready-to-paste code that restores Ads attribution + GA4 revenue reporting once owner installs in the browser session.
+
+Next best action:
+- Owner follows the updated `docs/tracking-setup.md` top-to-bottom: create the Ads conversion action as Secondary for validation, create the GA4 Measurement Protocol API secret, paste/connect both pixels in Shopify Customer events, run the verification checklist, and promote/prune conversion paths only after validation readbacks.
+
+---
+
+## 2026-05-15 - Shopify Custom Pixels consent/runtime hardening
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-shopify-custom-pixels-consent-runtime-hardening
+
+Why:
+- Continued the paid-growth command layer from the latest anchor and found the local Custom Pixel artifacts needed one more hardening pass before owner install.
+- Current Shopify Web Pixels docs expose initial consent through `init.customerPrivacy` and live consent updates through `customerPrivacy.subscribe("visitorConsentCollected", ...)`, while Custom Pixel examples may expose that as `api.customerPrivacy`. The prior local Ads pixel only checked `analytics.customerPrivacy`, and the GA4 pixel subscribed to a non-canonical consent-update event.
+
+What changed:
+- Patched `pixels/ga4-custom-pixel.js` to support `customerPrivacy` and `api.customerPrivacy` consent updates, while retaining a legacy fallback.
+- Patched `pixels/ga4-custom-pixel.js` `add_to_cart` item mapping so Shopify `cartLine.merchandise.productVariant` maps into GA4 `items[]`.
+- Patched `pixels/google-ads-custom-pixel.js` to use the same Shopify consent runtime, cache consent updates, and normalize `oid` to the same bare numeric Shopify order ID used by GA4 `transaction_id`.
+- Updated `docs/tracking-setup.md` with the correct Customer privacy permission guidance for the GA4 and Ads pixels.
+- Updated the command layer: action queue, current state, daily scorecard, decision log, review log, problem tracker, and coordination registry now show the pixel lane as local-authoring complete but owner-install/readback pending.
+- Rendered the marketing cockpit locally.
+
+Verification:
+- `python3.13 ops/scripts/open_marketing_cockpit.py`
+- `node --check pixels/ga4-custom-pixel.js`
+- `node --check pixels/google-ads-custom-pixel.js`
+- Mocked Shopify Customer Events runtime check in Node: consent subscriptions present, `checkout_completed` subscriptions present, GA4 `add_to_cart` item mapping works, GA4 `purchase` sends bare numeric `transaction_id=9490`, and Ads conversion URL sends `oid=9490`.
+
+Guardrails:
+- No Shopify Admin pixel paste/save/connect, no GA4 API secret creation, no Google Ads conversion-action creation/status/goal change, no Google & YouTube toggle change, no order/payment/refund/cancel/test purchase, no Merchant/Pinterest/feed/product/theme/budget/bid/status write occurred.
+- The pixel artifacts are install-ready local code, not live tracking proof.
+
+Remaining blockers:
+- Owner must create the GA4 Measurement Protocol API secret and Ads conversion action ID/label, paste/connect both pixels in Shopify Customer events, and run DebugView / Tag Assistant / first real purchase verification.
+- Any real test order/payment/refund remains owner-performed.
+- Duplicate GA4-imported Ads conversion paths should not be pruned until the native pixel has about 48h of matching order/revenue evidence and exact approval/readbacks exist.
+
+Next best action:
+- Owner follows `docs/tracking-setup.md`; next operator reads back GA4/Ads/Shopify evidence after install and only then updates paid-growth measurement status.
+
+---
+
+## 2026-05-15 - Shopify Custom Pixels click-ID and dedup hardening
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-shopify-custom-pixels-click-id-dedup-hardening
+
+Why:
+- Browser-side review flagged the remaining install blockers before any real test order: Ads click IDs were not captured, the docs over-implied cross-action deduplication, and the install action should not double-count the main Google Ads `Conversions` column while native tracking validates.
+- Current Shopify Web Pixels docs confirm the consent approach already patched in the prior hardening pass: initial consent comes from `init.customerPrivacy`, and live updates come through `customerPrivacy.subscribe("visitorConsentCollected", ...)`.
+
+What changed:
+- Patched `pixels/google-ads-custom-pixel.js` to subscribe to `page_viewed`, capture consented `gclid`, `gbraid`, `wbraid`, and `gclsrc` from `event.context.window.location.href`, persist them in `browser.localStorage` for `90` days, and attach them to the `checkout_completed` conversion beacon.
+- Patched the Ads beacon to send both `oid` and `transaction_id` using the same bare numeric Shopify order ID as the GA4 `purchase.transaction_id`.
+- Updated `pixels/README.md` to document that the sandbox cannot read storefront `_gcl_aw` cookies, that URL click IDs are the expected v1 attribution source, and that Google Ads deduplication is per conversion action, not a guarantee across GA4-imported and native actions.
+- Updated `docs/tracking-setup.md` so the new native Ads action starts as Secondary for validation, then becomes Primary only after about `48h` of matching order/revenue evidence.
+- Updated command-layer state, action queue, review log, problem tracker, and coordination row with the corrected install posture.
+
+Verification:
+- `node --check pixels/ga4-custom-pixel.js`
+- `node --check pixels/google-ads-custom-pixel.js`
+- `python3.13 ops/scripts/check_continuity_integrity.py --strict`
+- `python3.13 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk`
+- `diff -q AGENTS.md CLAUDE.md`
+
+Guardrails:
+- No Shopify Admin pixel paste/save/connect, no GA4 API secret creation, no Google Ads conversion-action creation/status/goal change, no Google & YouTube app-pixel toggle, no order/payment/refund/cancel/test purchase, and no Merchant/Pinterest/feed/product/theme/budget/bid/status write occurred.
+- No secrets, tokens, or live IDs beyond owner-provided non-secret reference IDs were written.
+
+Remaining blockers:
+- Owner must create the GA4 Measurement Protocol API secret, create the Google Ads website conversion action ID/label, paste/connect both Custom Pixels in Shopify Customer events, and run DebugView / Tag Assistant / first real purchase verification.
+- Any real payment/order/refund remains owner-performed.
+- Native Ads promotion and GA4-imported conversion pruning remain approval/readback-gated after validation.
+
+Next best action:
+- Owner follows the updated `docs/tracking-setup.md` top-to-bottom; next operator records the GA4/Ads/Shopify readbacks before changing any conversion-goal status.
+
+---
+
+## 2026-05-15 - Shopify Custom Pixels secret-safe install correction
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-shopify-custom-pixels-secret-safe-install
+
+Why:
+- Continued the unattended paid-growth automation from the latest anchor and verified the Custom Pixel lane before owner install.
+- The install runbook still risked telling the owner to paste GA4/Ads secret/action values into tracked repo files. That would violate the repo's credential discipline even though the files themselves only contain placeholders.
+
+What changed:
+- Updated `docs/tracking-setup.md` so GA4 API secret and Google Ads conversion ID/label replacements happen only in Shopify's Custom Pixel editor or a non-repo temporary copy.
+- Updated `pixels/README.md` and the headers in `pixels/ga4-custom-pixel.js` and `pixels/google-ads-custom-pixel.js` to state tracked files remain templates and real values must never be committed.
+- Updated `ops/marketing/action_queue.md`, `ops/marketing/current_marketing_state.md`, `ops/marketing/daily_scorecard.md`, `ops/marketing/decision_log.md`, `ops/marketing/memory_digest.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md` with the secret-safe install gate.
+
+Verification:
+- `node --check pixels/ga4-custom-pixel.js`
+- `node --check pixels/google-ads-custom-pixel.js`
+- Mocked Shopify Customer Events runtime check in Node: GA4 subscriptions, add-to-cart item mapping, purchase `transaction_id=9490`, Ads click-ID persistence, and Ads conversion `oid=9490` passed.
+
+Guardrails:
+- No Shopify Admin pixel paste/save/connect, no GA4 API secret creation, no Google Ads conversion-action creation/status/goal change, no Google & YouTube toggle change, no order/payment/refund/cancel/test purchase, no Merchant/Pinterest/feed/product/theme/budget/bid/status write occurred.
+- No real GA4 API secret, Google Ads conversion ID, or conversion label was written to repo files.
+
+Remaining blockers:
+- Owner still needs to create the GA4 Measurement Protocol API secret and Ads conversion action ID/label, replace placeholders only in Shopify Customer events or a non-repo temporary copy, connect both pixels, and run DebugView / Tag Assistant / first real purchase verification.
+- Duplicate GA4-imported Ads conversion paths should not be pruned until the native pixel has about 48h of matching order/revenue evidence and exact approval/readbacks exist.
+
+Next best action:
+- Owner follows `docs/tracking-setup.md`; next operator reads back GA4/Ads/Shopify evidence after install and only then updates paid-growth measurement status.

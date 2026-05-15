@@ -2051,3 +2051,96 @@ Evidence:
 Safest next sales-moving action:
 
 - Owner imports the Flow file and applies Merchant feed rules A/B/C; next operator reads back Merchant offers after refetch before unblocking brand hygiene for Shopping/Pinterest.
+
+## 2026-05-15 - Standard Shopping Purchase Attribution Readback
+
+Reviewer verdict: `PASS_HOLD_CONVERSION_GOALS__NO_PAID_CPC_PURCHASES_FOUND`
+
+Checked:
+
+- Current Google Ads conversion-action data shows `Google Shopping App Purchase` is primary/included and last received request `2026-05-11T21:47:18Z`.
+- Historical/secondary purchase actions remain secondary/excluded or historical and are not proof that the active purchase action is removed.
+- Sanitized Shopify order attribution since `2026-04-29` shows `13` non-cancelled non-test orders, `0` Google paid/CPC signals, and `4` Google organic/product-sync signals.
+- The Standard Shopping row still has clicks/cost and `$0.00` primary conversion value, so the result should be treated as no paid-attributed purchases, not as proof of missing purchase tracking.
+
+Risks:
+
+- This was not a controlled paid test purchase, so it does not prove every paid-click attribution edge case.
+- Shopify order attribution and Google Ads reporting can disagree around organic product-sync journeys; do not convert organic/product-sync orders into paid ROAS.
+
+Required gates/fixes:
+
+- Do not change conversion goals, account-default goals, GA4/GTM setup, Shopify conversion integration, bids, budgets, product groups, or campaign status from this diagnosis.
+- If stronger proof is needed, prepare a separate controlled paid-test-purchase approval packet with owner-performed payment/order steps.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-google-ads-purchase-attribution-readback/GOOGLE_ADS_PURCHASE_ATTRIBUTION_READBACK.md`
+
+Safest next sales-moving action:
+
+- Keep purchase goals unchanged and use the clicked Standard Shopping title/display-title cleanup approval packet if the owner approves that narrow shopper-facing fix.
+
+## 2026-05-15 - Shopify Custom Pixel Runtime Hardening
+
+Reviewer verdict: `PASS_LOCAL_AUTHORING__OWNER_INSTALL_VERIFY_PENDING`
+
+Checked:
+
+- Official Shopify Web Pixels docs show initial consent through `init.customerPrivacy` and live consent updates through `customerPrivacy.subscribe("visitorConsentCollected", ...)`, with Custom Pixel examples also exposing `api.customerPrivacy`.
+- Patched `pixels/ga4-custom-pixel.js` and `pixels/google-ads-custom-pixel.js` to use those consent shapes, while retaining the legacy `customer_privacy_consent_preferences_updated` fallback.
+- Patched GA4 `add_to_cart` item mapping to accept Shopify `cartLine.merchandise.productVariant`, and patched the Ads pixel to normalize `oid` to the same bare numeric Shopify order ID used by GA4 `transaction_id`.
+- `node --check` passed for both pixel files.
+- Mocked Shopify Customer Events runtime check passed for consent subscription, event subscription, `add_to_cart` item mapping, GA4 `purchase`, and Ads conversion URL generation with `oid=9490`.
+
+Risks:
+
+- This is local code only. It does not prove Shopify, GA4, or Google Ads will accept the real install until the owner creates the API secret/action ID/label, connects both pixels, and runs live verification.
+- A real test order/payment/refund step is money-moving/order work and remains owner-performed, not automation-performed.
+
+Required gates/fixes:
+
+- Do not create Ads conversion actions, GA4 API secrets, connect Shopify Custom Pixels, toggle Google & YouTube app settings, place orders, refund orders, or pause GA4-imported actions without owner-side execution or fresh exact approval plus readback plan.
+- Keep real `__GA4_API_SECRET__`, `__AW_CONVERSION_ID__`, and `__AW_CONVERSION_LABEL__` values out of tracked files. Replace placeholders only in Shopify Customer events or a non-repo temporary copy.
+
+Evidence:
+
+- `pixels/ga4-custom-pixel.js`
+- `pixels/google-ads-custom-pixel.js`
+- `pixels/README.md`
+- `docs/tracking-setup.md`
+- Shopify Web Pixels `customerPrivacy` docs: https://shopify.dev/docs/api/web-pixels-api/standard-api/customerprivacy
+
+Safest next sales-moving action:
+
+- Owner follows `docs/tracking-setup.md` to create credentials/action IDs, connect both Custom Pixels, then verify DebugView, Tag Assistant, and the first real purchase before pruning duplicate GA4-imported Ads conversion paths.
+
+## 2026-05-15 - Shopify Custom Pixel Click-ID / Dedup Hardening
+
+Reviewer verdict: `PASS_LOCAL_AUTHORING__CLICK_IDS_AND_DEDUP_DOCS_HARDENED`
+
+Checked:
+
+- `pixels/google-ads-custom-pixel.js` now captures consented `gclid`, `gbraid`, `wbraid`, and `gclsrc` from Shopify `page_viewed` URLs and persists them in sandbox `browser.localStorage` for 90 days.
+- The Ads conversion beacon now includes `oid` and `transaction_id` with the same bare numeric Shopify order ID used by the GA4 pixel.
+- `pixels/README.md` and `docs/tracking-setup.md` now state that Google Ads deduplicates by order ID inside a single conversion action, not reliably across separate GA4-imported and native conversion actions.
+- Install docs now recommend creating the native Ads action as Secondary for validation, then promoting it only after about 48h of matching Shopify order/revenue evidence.
+
+Risks:
+
+- The direct Ads beacon is a v1 bridge. A future server-side Google Ads API upload is the cleaner path if enhanced conversions or user-provided-data matching become required.
+- If the buyer session does not include a real Google click ID URL parameter, the conversion can still fire but Ads attribution may be modeled or absent.
+
+Required gates/fixes:
+
+- No Shopify Admin paste/connect, GA4 secret creation, Ads conversion-action creation/status change, Google & YouTube toggle, order/payment/refund, or conversion-goal pruning by automation without fresh exact approval and readback plan.
+
+Evidence:
+
+- `pixels/google-ads-custom-pixel.js`
+- `pixels/README.md`
+- `docs/tracking-setup.md`
+
+Safest next sales-moving action:
+
+- Owner follows the updated runbook: create IDs/secrets, install both Custom Pixels, verify DebugView/Tag Assistant/test order, then promote native Ads only after validation.

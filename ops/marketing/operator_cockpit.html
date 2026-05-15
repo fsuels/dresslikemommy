@@ -510,7 +510,7 @@
       <div class="topbar">
         <div class="brand">
           <h1>Dress Like Mommy Marketing Cockpit</h1>
-          <p>One-screen operator view generated from the paid-growth command layer. Rendered 2026-05-15 10:21 EDT.</p>
+          <p>One-screen operator view generated from the paid-growth command layer. Rendered 2026-05-15 11:50 EDT.</p>
         </div>
         <div class="controls">
           <input class="search" id="search" type="search" placeholder="Search campaigns, blockers, tasks...">
@@ -1305,16 +1305,31 @@
             </article>
 
 
-            <article class="metric-card danger" data-status="CLICKED_TITLE_CLEANUP_PACKET_READY__OWNER_APPROVAL_REQUIRED">
+            <article class="metric-card danger" data-status="PURCHASE_ATTRIBUTION_READBACK_DONE__CLICKED_TITLE_CLEANUP_OWNER_APPROVAL_REQUIRED">
               <div class="metric-head">
                 <h3>Standard Shopping US</h3>
-                <span>CLICKED_TITLE_CLEANUP_PACKET_READY__OWNER_APPROVAL_REQUIRED</span>
+                <span>PURCHASE_ATTRIBUTION_READBACK_DONE__CLICKED_TITLE_CLEANUP_OWNER_APPROVAL_REQUIRED</span>
               </div>
               <dl class="metric-grid">
                 <div><dt>Spend</dt><dd>$14.17</dd></div>
                 <div><dt>Clicks</dt><dd>65</dd></div>
                 <div><dt>Impr.</dt><dd>3,484</dd></div>
                 <div><dt>Purchases</dt><dd>0.00</dd></div>
+                <div><dt>ROAS</dt><dd>n/a</dd></div>
+              </dl>
+            </article>
+
+
+            <article class="metric-card warn" data-status="LOCAL_AUTHORING_RUNTIME_HARDENED__OWNER_INSTALL_VERIFY_PENDING">
+              <div class="metric-head">
+                <h3>GA4 + Ads custom pixel install</h3>
+                <span>LOCAL_AUTHORING_RUNTIME_HARDENED__OWNER_INSTALL_VERIFY_PENDING</span>
+              </div>
+              <dl class="metric-grid">
+                <div><dt>Spend</dt><dd>n/a</dd></div>
+                <div><dt>Clicks</dt><dd>n/a</dd></div>
+                <div><dt>Impr.</dt><dd>n/a</dd></div>
+                <div><dt>Purchases</dt><dd>n/a</dd></div>
                 <div><dt>ROAS</dt><dd>n/a</dd></div>
               </dl>
             </article>
@@ -1442,6 +1457,17 @@
               </div>
               <h3>Continue Merchant priority-market capacity cleanup after Shopify Markets prune: preserve USA English/Spanish, prove Canada English/French and GB English rows, and block Shopping until Merchant after-export passes</h3>
               <p>Current-session owner approval allowed exact Shopify Markets / Google publishing cleanup. Executed bounded Shopify Admin Markets API prune only on market handle international: removed the 52 preview-matched Asia/Middle East, Africa, and South America region conditions; International dropped from 73 to 21 regions; separate us, canada, united-kingdom, eu, australia, and international markets remained active; duplicate CA and AU stayed in International; no products, Merchant feeds, Google Ads, Pinterest, budgets, bids, statuses, product groups, conversions, billing, or credentials changed. Fresh Merchant browser-RPC re-export immediately after prune still captured 351,007 rows; after-export guard failed with 199,684 remaining first-pass removal rows, and target rows stayed CA/en/CAD=0, CA/fr/CAD=0, GB/en/GBP=0. Local saved-export intersection now proves current Standard Shopping export IDs reconcile 767/767 to US/en Merchant rows, while the full 780 paid cohort is still duplicated across 51,033 non-target rows and Canada/GB/AU remain 0; Shopping build is therefore blocked. Next safe action is Google &amp; YouTube/Merchant publishing sync/control readback or wait-and-re-export until the guard passes and target rows exist</p>
+            </article>
+
+
+            <article class="queue-row warn" data-status="YELLOW">
+              <div class="row-top">
+                <span class="priority">P0</span>
+                <span class="pill">YELLOW</span>
+                <span class="owner">analytics_roas_operator + head_of_growth</span>
+              </div>
+              <h3>Install and verify self-owned Shopify Custom Pixels for GA4 purchase revenue and native Google Ads purchase conversion</h3>
+              <p>Repo-local authoring is complete and hardened against the Shopify Custom Pixel consent/runtime shape: GA4 pixel uses Measurement Protocol with G-N4EQNK0MMB, Ads pixel fires a native Ads conversion beacon, both use init.customerPrivacy plus customerPrivacy / api.customerPrivacy consent updates, and Ads now stores consented gclid/gbraid/wbraid landing URL parameters for 90 days. Owner-side writes remain required: create GA4 API secret, create the new Ads conversion action ID/label as Secondary for validation, keep real values out of the repo, replace placeholders only in Shopify Customer events or a non-repo temporary copy, connect both Custom Pixels, and run DebugView / Tag Assistant / real owner-performed test-order verification. No Shopify Admin, GA4 Admin, Google Ads conversion-action, Google &amp; YouTube toggle, order/payment/refund, theme, Merchant, Pinterest, budget, bid, status, product, feed, or conversion-goal write occurred in this automation pass.</p>
             </article>
 
 
@@ -1966,6 +1992,17 @@
               <div class="row-top">
                 <span class="priority">P1</span>
                 <span class="pill">DONE</span>
+                <span class="owner">analytics_roas_operator + google_ads_operator + head_of_growth</span>
+              </div>
+              <h3>Verify whether US Standard Shopping zero purchases are caused by broken purchase tracking before changing measurement</h3>
+              <p>Completed read-only. Current Google Ads readback shows Google Shopping App Purchase remains primary/included and last received request 2026-05-11T21:47:18Z; sanitized Shopify order attribution since 2026-04-29 shows 13 non-cancelled non-test orders, 0 Google paid/CPC signals, and 4 Google organic/product-sync signals. Verdict: do not recreate or switch conversion actions; the current evidence says no paid-attributed purchases, not missing purchase tracking. No Google Ads, Shopify, Merchant, GA4/GTM, bid, budget, product group, status, feed, product, conversion, or billing write occurred</p>
+            </article>
+
+
+            <article class="queue-row good" data-status="DONE">
+              <div class="row-top">
+                <span class="priority">P1</span>
+                <span class="pill">DONE</span>
                 <span class="owner">google_ads_operator + merchant_feed_operator + head_of_growth</span>
               </div>
               <h3>Build Google Shopping multilingual high-intent expansion queue so Shopping and non-English feed lanes move in parallel with the Basic Access wait</h3>
@@ -2208,10 +2245,10 @@
             <article class="blocker-card danger">
               <div class="row-top">
                 <span class="priority">P1</span>
-                <span class="pill">CLICKED_TITLE_CLEANUP_PACKET_READY__OWNER_APPROVAL_REQUIRED</span>
+                <span class="pill">PURCHASE_ATTRIBUTION_READBACK_DONE__CLICKED_TITLE_CLEANUP_OWNER_APPROVAL_REQUIRED</span>
               </div>
               <h3>US Standard Shopping query/title proof</h3>
-              <p>Exact owner approval can unlock a no-feed/no-campaign Shopify title/display-title cleanup only for the listed clicked PDPs, with before/after public H1/title/add-to-cart/price/source-clean/zero-review readback. Continue Shopping with Merchant/feed eligibility in parallel; if owner approves the swim-trunks theme fix, use US_SHOPPING_SEASONAL_RELATED_FILTER_LIVE_SYNC_APPROVAL_PACKET.md; otherwise keep held rows excluded.</p>
+              <p>Keep purchase goals unchanged. Exact owner approval can unlock a no-feed/no-campaign Shopify title/display-title cleanup only for the listed clicked PDPs, with before/after public H1/title/add-to-cart/price/source-clean/zero-review readback. Continue Shopping with Merchant/feed eligibility in parallel; if owner wants stronger measurement proof, prepare a separate controlled paid-test-purchase approval packet.</p>
             </article>
 
 
