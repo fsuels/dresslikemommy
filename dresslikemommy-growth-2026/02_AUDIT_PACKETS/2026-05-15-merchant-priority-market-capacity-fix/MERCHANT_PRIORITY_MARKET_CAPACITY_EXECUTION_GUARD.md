@@ -54,7 +54,7 @@ Run this guard again with `--after-export /path/to/fresh_export.csv` after the l
 cleanup. It will fail closed if any first-pass removal group remains or if USA
 English/Spanish row counts drop below the current before-state.
 
-No after-export was supplied; this run generated preflight acceptance criteria only.
+After-export validation: `FAILED`. Remaining removal rows: `199684`. Protected failures: `0`.
 
 ## Files
 

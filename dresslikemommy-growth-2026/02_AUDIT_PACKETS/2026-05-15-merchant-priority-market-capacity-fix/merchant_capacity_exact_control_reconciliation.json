@@ -1,0 +1,213 @@
+{
+  "active_market_handles_seen": [
+    "australia",
+    "canada",
+    "eu",
+    "international",
+    "united-kingdom",
+    "us"
+  ],
+  "after_export_guard": {
+    "after_priority_counts": {
+      "USA English": 5491,
+      "USA Spanish": 5412
+    },
+    "after_total_rows": 351007,
+    "passed": false,
+    "protected_failures": {},
+    "remaining_remove_groups": {
+      "AED_544866401|ar|AED": 5455,
+      "AED_544866401|en|AED": 5548,
+      "EGP_544866401|ar|EGP": 3826,
+      "EGP_544866401|en|EGP": 5087,
+      "HKD_544866401|en|HKD": 4298,
+      "IDR_544866401|en|IDR": 3504,
+      "ILS_544866401|en|ILS": 5549,
+      "ILS_544866401|iw|ILS": 5392,
+      "INR_544866401|en|INR": 5570,
+      "INR_544866401|hi|INR": 5455,
+      "JPY_544866401|en|JPY": 4446,
+      "JPY_544866401|ja|JPY": 4248,
+      "KRW_544866401|en|KRW": 3512,
+      "KRW_544866401|ko|KRW": 4023,
+      "KZT_544866401|en|KZT": 5077,
+      "KZT_544866401|ru|KZT": 5081,
+      "LBP_544866401|ar|LBP": 4620,
+      "LBP_544866401|en|LBP": 5086,
+      "LBP_544866401|fr|LBP": 5087,
+      "LKR_544866401|en|LKR": 5084,
+      "MAD_544866401|ar|MAD": 4052,
+      "MAD_544866401|en|MAD": 5086,
+      "MAD_544866401|fr|MAD": 5007,
+      "MUR_544866401|en|MUR": 5086,
+      "MYR_544866401|en|MYR": 5084,
+      "PEN_544866401|en|PEN": 3732,
+      "PEN_544866401|es|PEN": 5086,
+      "PHP_544866401|en|PHP": 5087,
+      "SAR_544866401|ar|SAR": 5598,
+      "SAR_544866401|en|SAR": 5522,
+      "SGD_544866401|en|SGD": 5537,
+      "THB_544866401|en|THB": 5086,
+      "TWD_544866401|en|TWD": 5077,
+      "USD_544866401|ar|USD": 4928,
+      "USD_544866401|en|USD": 3815,
+      "USD_544866401|es|USD": 5067,
+      "USD_544866401|fr|USD": 4964,
+      "USD_544866401|ru|USD": 5469,
+      "VND_544866401|en|VND": 5086,
+      "XOF_544866401|en|XOF": 5079,
+      "XOF_544866401|fr|XOF": 4288
+    },
+    "remaining_remove_rows": 199684
+  },
+  "after_export_guard_status": "FAILED",
+  "bucket_counts": {
+    "HOLD_REVIEW_NOT_FIRST_PASS": 19,
+    "PRESERVE_PRIORITY_OR_SEPARATE_MARKET": 2,
+    "REMOVE_AFRICA": 14,
+    "REMOVE_ASIA_MIDDLE_EAST": 33,
+    "REMOVE_SOUTH_AMERICA": 5
+  },
+  "external_write_status": "NOT_EXECUTED",
+  "generated_at": "2026-05-15T07:17:00-04:00",
+  "international_live_region_count": 21,
+  "merchant_feed_guard": {
+    "blocker": "Shopify marketUpdate can target market regions, but the Merchant guard requires exact feed_label/language/currency group preview and removal acceptance. No authenticated control surface in this run exposed those exact Merchant publishing groups or a dry-run preview for them.",
+    "enable_after_capacity_cleanup_rows": [
+      {
+        "currency": "CAD",
+        "expected_rows": "0_currently_absent",
+        "feed_label": "CA",
+        "language_code": "en"
+      },
+      {
+        "currency": "CAD",
+        "expected_rows": "0_currently_absent",
+        "feed_label": "CA",
+        "language_code": "fr"
+      },
+      {
+        "currency": "GBP",
+        "expected_rows": "0_currently_absent",
+        "feed_label": "GB",
+        "language_code": "en"
+      }
+    ],
+    "non_us_usd_remove_rows_without_country_exact_control": 5,
+    "protect_priority_group_rows": [
+      {
+        "currency": "USD",
+        "feed_label": "US",
+        "language_code": "en"
+      },
+      {
+        "currency": "USD",
+        "feed_label": "US",
+        "language_code": "es"
+      }
+    ],
+    "remove_exact_group_rows": 41,
+    "status": "BLOCKED_NO_EXACT_FEED_GROUP_CONTROL_PREVIEW"
+  },
+  "mode": "authenticated_readonly_exact_control_reconciliation",
+  "outputs": {
+    "live_region_readback_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/shopify_markets_live_exact_region_readback.csv",
+    "report_md": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_CAPACITY_EXACT_CONTROL_RECONCILIATION.md",
+    "summary_json": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/merchant_capacity_exact_control_reconciliation.json"
+  },
+  "overall_status": "SHOPIFY_REGION_SCOPE_PRUNED__MERCHANT_FEED_GROUP_GUARD_STILL_BLOCKED",
+  "region_guard": {
+    "candidate_remove_regions": 52,
+    "candidate_remove_regions_absent_live": [
+      "AC",
+      "AE",
+      "AM",
+      "AZ",
+      "BH",
+      "BN",
+      "BT",
+      "BW",
+      "CI",
+      "CL",
+      "CO",
+      "CV",
+      "EG",
+      "FK",
+      "GE",
+      "GS",
+      "HK",
+      "ID",
+      "IL",
+      "IN",
+      "IO",
+      "JO",
+      "JP",
+      "KG",
+      "KR",
+      "KW",
+      "KZ",
+      "LB",
+      "LK",
+      "MA",
+      "MN",
+      "MO",
+      "MU",
+      "MV",
+      "MY",
+      "OM",
+      "PE",
+      "PH",
+      "QA",
+      "SA",
+      "SC",
+      "SG",
+      "SH",
+      "ST",
+      "SZ",
+      "TA",
+      "TH",
+      "TN",
+      "TR",
+      "TW",
+      "VN",
+      "ZA"
+    ],
+    "candidate_remove_regions_still_live": 0,
+    "hold_region_count": 19,
+    "protected_region_codes": [
+      "AU",
+      "CA"
+    ],
+    "status": "LIVE_REGION_SCOPE_ALREADY_PRUNED_OUTSIDE_THIS_READBACK"
+  },
+  "shopify_admin_api_version": "2026-04",
+  "shopify_market_mutations_present": [
+    "customerEmailMarketingConsentUpdate",
+    "customerSmsMarketingConsentUpdate",
+    "marketCreate",
+    "marketDelete",
+    "marketLocalizationsRegister",
+    "marketLocalizationsRemove",
+    "marketUpdate",
+    "marketingActivitiesDeleteAllExternal",
+    "marketingActivityCreate",
+    "marketingActivityCreateExternal",
+    "marketingActivityDeleteExternal",
+    "marketingActivityUpdate",
+    "marketingActivityUpdateExternal",
+    "marketingActivityUpsertExternal",
+    "marketingEngagementCreate",
+    "marketingEngagementsDelete"
+  ],
+  "shopify_market_scopes_present": [
+    "read_marketing_events",
+    "read_marketing_integrated_campaigns",
+    "read_markets",
+    "read_markets_home",
+    "write_marketing_events",
+    "write_marketing_integrated_campaigns",
+    "write_markets",
+    "write_markets_home"
+  ],
+  "store_domain": "dresslikemommy-com.myshopify.com"
+}

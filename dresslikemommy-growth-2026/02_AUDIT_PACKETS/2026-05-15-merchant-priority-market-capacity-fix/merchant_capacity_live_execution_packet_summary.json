@@ -1,0 +1,23 @@
+{
+  "approval_phrase": "I approve the Merchant priority-market capacity cleanup execution: remove or disable from Google/Merchant publishing scope only the exact non-priority groups in merchant_capacity_platform_preview_acceptance.csv and, if Shopify Markets is the control surface, only the International regions marked remove in shopify_international_region_prune_preview.csv; preserve USA English, USA Spanish, Canada, United Kingdom, Eurozone, Australia, Europe-later groups, CA/AU duplicate hold rows, and all hold-review regions; do not delete products or change titles, prices, vendors, variants, feed labels, campaigns, product groups, bids, budgets, statuses, conversion settings, billing, or credentials; then capture a fresh Merchant all-products export and run the after-export guard.",
+  "current_canada_english_rows": 0,
+  "current_canada_french_rows": 0,
+  "current_gb_english_rows": 0,
+  "expected_after_first_pass_floor": 151323,
+  "expected_first_pass_removal_rows": 199684,
+  "hard_stops": [
+    "no Save/Apply/Sync/Upload if the authenticated preview cannot reconcile to both CSVs",
+    "no whole Shopify market removal",
+    "no product deletion or Shopify product data mutation",
+    "no Merchant capacity request, Shopping campaign, product-group, bid, budget, status, or conversion write",
+    "no Canada/GB Shopping build until fresh after-cleanup export rows exist"
+  ],
+  "merchant_exact_preview_rows": 46,
+  "merchant_remove_group_count": 41,
+  "mode": "local_readonly_no_external_writes",
+  "protected_usa_english_rows": 5491,
+  "protected_usa_spanish_rows": 5412,
+  "shopify_first_pass_remove_regions": 52,
+  "shopify_hold_or_preserve_regions": 21,
+  "shopify_international_regions": 73
+}

@@ -1,0 +1,7 @@
+phase,check,required_result
+approval,exact approval phrase is present in current session,approval phrase matches packet wording before live cleanup starts
+pre_save,Merchant/feed-country preview reconciles to merchant_capacity_platform_preview_acceptance.csv,41 exact remove rows selected or disabled from Google/Merchant publishing scope only
+pre_save,Shopify Markets preview reconciles to shopify_international_region_prune_preview.csv,52 International regions selected; no whole-market removal; CA/AU duplicates and hold-review rows untouched
+pre_save,priority groups preserved,USA English 5491 rows and USA Spanish 5412 rows remain enabled/unselected for removal
+pre_save,future priority markets are not overclaimed,Canada English/French and GB English remain not Shopping-build-ready until fresh export rows exist
+post_save,fresh Merchant all-products export captured after cleanup,after-export guard passes with 0 first-pass removal rows remaining and protected USA counts not reduced

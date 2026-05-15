@@ -1,0 +1,133 @@
+{
+  "cdp_port": 9222,
+  "exports": {
+    "au_en_eligibility": {
+      "currency_counts": {},
+      "export": "au_en_eligibility",
+      "feed_label_counts": {},
+      "language_counts": {},
+      "paid_cohort_rows": 0,
+      "paid_cohort_strict_approved_rows": 0,
+      "raw_aggregate_status_counts": {},
+      "raw_status_counts": {},
+      "rows": 0,
+      "source_counts": {},
+      "strict_approved_rows": 0
+    },
+    "ca_en_eligibility": {
+      "currency_counts": {},
+      "export": "ca_en_eligibility",
+      "feed_label_counts": {},
+      "language_counts": {},
+      "paid_cohort_rows": 0,
+      "paid_cohort_strict_approved_rows": 0,
+      "raw_aggregate_status_counts": {},
+      "raw_status_counts": {},
+      "rows": 0,
+      "source_counts": {},
+      "strict_approved_rows": 0
+    },
+    "gb_en_eligibility": {
+      "currency_counts": {},
+      "export": "gb_en_eligibility",
+      "feed_label_counts": {},
+      "language_counts": {},
+      "paid_cohort_rows": 0,
+      "paid_cohort_strict_approved_rows": 0,
+      "raw_aggregate_status_counts": {},
+      "raw_status_counts": {},
+      "rows": 0,
+      "source_counts": {},
+      "strict_approved_rows": 0
+    },
+    "us_es_source_10627981690": {
+      "currency_counts": {
+        "USD": 5412
+      },
+      "export": "us_es_source_10627981690",
+      "feed_label_counts": {
+        "US": 5412
+      },
+      "language_counts": {
+        "es": 5412
+      },
+      "paid_cohort_rows": 5158,
+      "paid_cohort_strict_approved_rows": 4770,
+      "raw_aggregate_status_counts": {
+        "2": 5301,
+        "5": 111
+      },
+      "raw_status_counts": {
+        "1": 97,
+        "3": 357,
+        "4": 4958
+      },
+      "rows": 5412,
+      "source_counts": {
+        "10627981690": 5412
+      },
+      "strict_approved_rows": 4910
+    }
+  },
+  "generated_at": "2026-05-15T07:13:29",
+  "global_rows_captured": 351007,
+  "guardrails_preserved": [
+    "no Merchant uploads",
+    "no source refresh or sync",
+    "no source/feed/product edits",
+    "no product-group, campaign, bid, budget, status, or conversion changes",
+    "cookies and request headers used only in memory and not written to disk"
+  ],
+  "merchant_center_account": "124884876",
+  "mode": "READ_ONLY_MERCHANT_CENTER_BROWSER_RPC_SOURCE_ELIGIBILITY_EXPORT",
+  "notes": [
+    "strict_approved is raw_status=4 and raw_aggregate_status=2 from Merchant Center product-list RPC.",
+    "CA/en, GB/en, and AU/en exports are selected by English language plus CAD/GBP/AUD currency from the current product-list rows.",
+    "US/es source export is selected by feed_label=US, language_code=es, and source_id=10627981690."
+  ],
+  "outputs": {
+    "all_products_sanitized": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/merchant_all_products_browser_rpc_sanitized.csv",
+    "au_en_eligibility": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/merchant_au_en_eligibility.csv",
+    "ca_en_eligibility": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/merchant_ca_en_eligibility.csv",
+    "gb_en_eligibility": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/merchant_gb_en_eligibility.csv",
+    "report": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/MERCHANT_SOURCE_ELIGIBILITY_BROWSER_RPC_EXPORT.md",
+    "summary": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/merchant_source_eligibility_browser_rpc_summary.json",
+    "us_es_source_10627981690": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/merchant_us_es_source_10627981690.csv"
+  },
+  "paid_cohort_input": "dresslikemommy-growth-2026/03_LOCAL_ANALYSIS/2026-04-28-variant-cost-50pct-post-sync_PAID_LABEL_FRESH_SHOPIFY_product_eligibility.csv",
+  "paid_cohort_items_loaded": 7324,
+  "source_page_title": "All products - Merchant Center",
+  "source_page_url": "https://merchants.google.com/mc/items?a=124884876&timePeriod=2026-04-18%2C2026-05-15&marketingMethod=1",
+  "top_feed_language_currency_counts": {
+    "AED_544866401|ar|AED": 5455,
+    "AED_544866401|en|AED": 5548,
+    "CHF_544800865|de|CHF": 5642,
+    "CHF_544800865|en|CHF": 5432,
+    "CHF_544800865|fr|CHF": 5560,
+    "CZK_544800865|cs|CZK": 5486,
+    "DKK_544800865|en|DKK": 5503,
+    "EUR_544800865|de|EUR": 5416,
+    "EUR_544800865|el|EUR": 5556,
+    "EUR_544800865|es|EUR": 5445,
+    "EUR_544800865|fi|EUR": 5434,
+    "EUR_544800865|fr|EUR": 5522,
+    "EUR_544800865|nl|EUR": 5497,
+    "EUR_544800865|no|EUR": 5456,
+    "EUR_544800865|pt|EUR": 5474,
+    "EUR_544800865|ru|EUR": 5512,
+    "ILS_544866401|en|ILS": 5549,
+    "ILS_544866401|iw|ILS": 5392,
+    "INR_544866401|en|INR": 5570,
+    "INR_544866401|hi|INR": 5455,
+    "NZD_544866401|en|NZD": 5488,
+    "RON_544800865|en|RON": 5457,
+    "RON_544800865|ro|RON": 5461,
+    "SAR_544866401|ar|SAR": 5598,
+    "SAR_544866401|en|SAR": 5522,
+    "SEK_544800865|sv|SEK": 5455,
+    "SGD_544866401|en|SGD": 5537,
+    "USD_544866401|ru|USD": 5469,
+    "US|en|USD": 5491,
+    "US|es|USD": 5412
+  }
+}

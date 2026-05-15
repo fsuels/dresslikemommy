@@ -327,6 +327,11 @@ def target_exports(rows: list[dict[str, str]]) -> dict[str, list[dict[str, str]]
             for row in rows
             if row["language_code"] == "en" and row["currency"] == "CAD"
         ],
+        "ca_fr_eligibility": [
+            row
+            for row in rows
+            if row["language_code"] == "fr" and row["currency"] == "CAD"
+        ],
         "gb_en_eligibility": [
             row
             for row in rows
@@ -409,7 +414,7 @@ def build_outputs(args: argparse.Namespace) -> dict[str, Any]:
         ],
         "notes": [
             "strict_approved is raw_status=4 and raw_aggregate_status=2 from Merchant Center product-list RPC.",
-            "CA/en, GB/en, and AU/en exports are selected by English language plus CAD/GBP/AUD currency from the current product-list rows.",
+            "CA/en, CA/fr, GB/en, and AU/en exports are selected by language plus CAD/GBP/AUD currency from the current product-list rows.",
             "US/es source export is selected by feed_label=US, language_code=es, and source_id=10627981690.",
         ],
     }
