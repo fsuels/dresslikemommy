@@ -1,0 +1,113 @@
+{
+  "ads_product_report": "/Users/fsuels/Downloads/Product report.csv",
+  "ads_product_report_mtime": "2026-05-15T05:04:18",
+  "api_attempt_status": {
+    "api_attempt_errors": [
+      {
+        "api": "Merchant API products.list",
+        "api_status": "PERMISSION_DENIED",
+        "endpoint": "https://merchantapi.googleapis.com/products/v1/accounts/124884876/products?pageSize=250",
+        "http_status": 403,
+        "message": "Request had insufficient authentication scopes."
+      },
+      {
+        "api": "Content API productstatuses.list",
+        "api_status": "PERMISSION_DENIED",
+        "endpoint": "https://shoppingcontent.googleapis.com/content/v2.1/124884876/productstatuses?maxResults=250",
+        "http_status": 403,
+        "message": "Request had insufficient authentication scopes."
+      }
+    ],
+    "api_source": "",
+    "merchant_evidence_rows": 0,
+    "token_source": "gcloud auth print-access-token"
+  },
+  "generated_at": "2026-05-15T05:19:57",
+  "issue_export": "/Users/fsuels/Downloads/product_issues_2026-05-15_05-10-59.csv",
+  "issue_export_mtime": "2026-05-15T05:14:16",
+  "issue_export_rows": 266318,
+  "market_summaries": [
+    {
+      "country": "United States",
+      "decision": "US/es is not Shopping-build-ready from this export; current issue rows include age_group and Shopping capacity blockers.",
+      "dynamic_remarketing_issue_rows": 359,
+      "free_listings_issue_rows": 370,
+      "issue_rows": 1453,
+      "language": "es",
+      "market": "US",
+      "next_action": "Classify exact source/product rows and prepare a no-write repair/approval packet for age_group/color/gender/image/page issues before any campaign or feed action.",
+      "paid_cohort_issue_items": 53,
+      "shopping_ads_disapproved_rows": 359,
+      "shopping_ads_issue_rows": 724,
+      "status_counts": "ELIGIBLE_LIMITED: 1422 | NOT_ELIGIBLE_OR_DISAPPROVED: 31",
+      "top_feed_labels": "US: 1453",
+      "top_issue_titles": "Over capacity for Shopping ads (outside of CSS program): 708 | Missing age group: 432 | Missing color: 202 | Missing gender: 86 | Product page unavailable: 12 | Missing size: 10 | Missing product image: 3",
+      "unique_issue_items": 354
+    },
+    {
+      "country": "Canada",
+      "decision": "No current issue-export rows surfaced for this country/language, but this is not full eligibility proof.",
+      "dynamic_remarketing_issue_rows": 0,
+      "free_listings_issue_rows": 0,
+      "issue_rows": 0,
+      "language": "en",
+      "market": "CA",
+      "next_action": "Capture a current all-products/source export proving feed label, country, currency, active approved count, and paid-cohort intersection before any Shopping build.",
+      "paid_cohort_issue_items": 0,
+      "shopping_ads_disapproved_rows": 0,
+      "shopping_ads_issue_rows": 0,
+      "status_counts": "",
+      "top_feed_labels": "",
+      "top_issue_titles": "",
+      "unique_issue_items": 0
+    },
+    {
+      "country": "United Kingdom",
+      "decision": "No current issue-export rows surfaced for this country/language, but this is not full eligibility proof.",
+      "dynamic_remarketing_issue_rows": 0,
+      "free_listings_issue_rows": 0,
+      "issue_rows": 0,
+      "language": "en",
+      "market": "GB",
+      "next_action": "Capture a current all-products/source export proving feed label, country, currency, active approved count, and paid-cohort intersection before any Shopping build.",
+      "paid_cohort_issue_items": 0,
+      "shopping_ads_disapproved_rows": 0,
+      "shopping_ads_issue_rows": 0,
+      "status_counts": "",
+      "top_feed_labels": "",
+      "top_issue_titles": "",
+      "unique_issue_items": 0
+    },
+    {
+      "country": "Australia",
+      "decision": "No current issue-export rows surfaced for this country/language, but this is not full eligibility proof.",
+      "dynamic_remarketing_issue_rows": 0,
+      "free_listings_issue_rows": 0,
+      "issue_rows": 0,
+      "language": "en",
+      "market": "AU",
+      "next_action": "Capture a current all-products/source export proving feed label, country, currency, active approved count, and paid-cohort intersection before any Shopping build.",
+      "paid_cohort_issue_items": 0,
+      "shopping_ads_disapproved_rows": 0,
+      "shopping_ads_issue_rows": 0,
+      "status_counts": "",
+      "top_feed_labels": "",
+      "top_issue_titles": "",
+      "unique_issue_items": 0
+    }
+  ],
+  "mode": "READ_ONLY_MERCHANT_SHOPPING_QUEUE_ISSUE_EXPORT_ANALYSIS",
+  "notes": [
+    "The current Merchant issue export does not include source_id, so source 10627981690 is represented by the US/es country/language/feed-label issue readback and the live source/detail tab, not by a source-specific all-product export.",
+    "Zero issue rows for CA/GB/AU means no issue-export rows surfaced for those country/language pairs; it does not prove active approved product counts.",
+    "No external writes occurred."
+  ],
+  "outputs": {
+    "issue_title_counts": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-readback/merchant_shopping_issue_title_counts.csv",
+    "market_summary": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-readback/merchant_shopping_market_language_summary.csv",
+    "report": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-readback/MERCHANT_SHOPPING_READONLY_QUEUE_READBACK.md",
+    "summary_json": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-readback/merchant_shopping_readonly_queue_summary.json",
+    "target_issue_rows": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-readback/merchant_shopping_target_issue_rows.csv"
+  },
+  "paid_cohort_rows": 780
+}

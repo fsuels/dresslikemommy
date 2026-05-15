@@ -79,6 +79,32 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(fh))
 
 
+def read_google_export_csv(path: Path) -> list[dict[str, str]]:
+    """Read Google Ads exports that may include title/date preamble rows."""
+    with path.open(newline="", encoding="utf-8-sig") as fh:
+        rows = list(csv.reader(fh))
+
+    header_index = 0
+    for idx, row in enumerate(rows):
+        normalized = {normalize_key(cell) for cell in row if cell}
+        if {"title", "item_id"} <= normalized:
+            header_index = idx
+            break
+
+    if header_index:
+        rows = rows[header_index:]
+
+    if not rows:
+        return []
+
+    fieldnames = rows[0]
+    return [
+        dict(zip(fieldnames, row))
+        for row in rows[1:]
+        if any((cell or "").strip() for cell in row)
+    ]
+
+
 def write_csv(path: Path, fieldnames: list[str], rows: list[dict[str, object]]) -> None:
     with path.open("w", newline="", encoding="utf-8") as fh:
         writer = csv.DictWriter(fh, fieldnames=fieldnames, lineterminator="\n")
@@ -97,6 +123,8 @@ def product_handle_from_url(value: str) -> str:
 
 
 def normalize_key(value: str) -> str:
+    if value is None:
+        return ""
     return re.sub(r"[^a-z0-9]+", "_", value.strip().lower()).strip("_")
 
 
@@ -111,7 +139,17 @@ def normalize_export_row(row: dict[str, str]) -> dict[str, str]:
             normalized.setdefault("product_title", normalized[key])
         if key in {"item_id_merchant_center", "offer_id", "id"}:
             normalized.setdefault("item_id", normalized[key])
+        if key in {"impr", "impr_", "imps"}:
+            normalized.setdefault("impressions", normalized[key])
     return normalized
+
+
+def title_join_key(value: str) -> str:
+    if not value:
+        return ""
+    base = re.split(r"\s+[A-Za-z0-9][A-Za-z0-9 -]*\s*/\s*", value, maxsplit=1)[0]
+    base = re.sub(r"\s+", " ", base.replace("| Dress Like Mommy", "")).strip().lower()
+    return re.sub(r"[^a-z0-9]+", " ", base).strip()
 
 
 def parse_number(value: str) -> float:
@@ -185,14 +223,18 @@ def create_template() -> None:
 
 
 def join_export(export_path: Path, public_rows: list[dict[str, str]], held_rows: list[dict[str, str]]) -> dict[str, object]:
-    raw_export = read_csv(export_path)
+    raw_export = read_google_export_csv(export_path)
     public_by_handle = defaultdict(list)
+    public_by_title = defaultdict(list)
     for row in public_rows:
         public_by_handle[row.get("candidate_handle", "")].append(row)
+        public_by_title[title_join_key(row.get("public_title", ""))].append(row)
 
     held_by_handle = defaultdict(list)
+    held_by_title = defaultdict(list)
     for row in held_rows:
         held_by_handle[row.get("candidate_handle", "")].append(row)
+        held_by_title[title_join_key(row.get("public_title", ""))].append(row)
 
     joined_rows: list[dict[str, object]] = []
     export_missing_join_key = 0
@@ -201,6 +243,8 @@ def join_export(export_path: Path, public_rows: list[dict[str, str]], held_rows:
     export_unmatched = 0
     proof_rows_with_impressions = 0
     likely_title_packet_candidates = 0
+    totals_by_public_decision = defaultdict(lambda: {"rows": 0, "impressions": 0.0, "clicks": 0.0, "cost": 0.0, "conversion_value": 0.0})
+    totals_by_join_decision = defaultdict(lambda: {"rows": 0, "impressions": 0.0, "clicks": 0.0, "cost": 0.0, "conversion_value": 0.0})
 
     for raw_row in raw_export:
         row = normalize_export_row(raw_row)
@@ -212,11 +256,19 @@ def join_export(export_path: Path, public_rows: list[dict[str, str]], held_rows:
         if not handle and row.get("candidate_handle"):
             handle = row["candidate_handle"]
 
+        title_key = title_join_key(row.get("product_title", ""))
+        title_public_matches = public_by_title.get(title_key, [])
+        title_held_matches = held_by_title.get(title_key, [])
+        if not handle and title_public_matches:
+            handle = title_public_matches[0].get("candidate_handle", "")
+        if not handle and title_held_matches:
+            handle = title_held_matches[0].get("candidate_handle", "")
+
         if not handle:
             export_missing_join_key += 1
 
-        public_matches = public_by_handle.get(handle, [])
-        held_matches = held_by_handle.get(handle, [])
+        public_matches = public_by_handle.get(handle, []) or title_public_matches
+        held_matches = held_by_handle.get(handle, []) or title_held_matches
 
         impressions = parse_number(row.get("impressions", ""))
         clicks = parse_number(row.get("clicks", ""))
@@ -253,6 +305,13 @@ def join_export(export_path: Path, public_rows: list[dict[str, str]], held_rows:
             matched_search_terms = []
             public_decision = "UNMATCHED"
             hold_reason = ""
+
+        for totals in (totals_by_public_decision[public_decision], totals_by_join_decision[decision]):
+            totals["rows"] += 1
+            totals["impressions"] += impressions
+            totals["clicks"] += clicks
+            totals["cost"] += cost
+            totals["conversion_value"] += conversion_value
 
         joined_rows.append(
             {
@@ -300,6 +359,8 @@ def join_export(export_path: Path, public_rows: list[dict[str, str]], held_rows:
         "export_unmatched": export_unmatched,
         "proof_rows_with_impressions": proof_rows_with_impressions,
         "likely_title_packet_candidates": likely_title_packet_candidates,
+        "totals_by_public_decision": dict(sorted(totals_by_public_decision.items())),
+        "totals_by_join_decision": dict(sorted(totals_by_join_decision.items())),
         "joined_decisions_csv": str(OUT_JOINED.relative_to(ROOT)),
     }
 
@@ -341,6 +402,8 @@ def render_report(summary: dict[str, object], export_summary: dict[str, object] 
     ]
 
     if export_summary:
+        public_totals = export_summary.get("totals_by_public_decision", {})
+        join_totals = export_summary.get("totals_by_join_decision", {})
         lines.extend(
             [
                 "## Optional Export Join Result",
@@ -352,6 +415,39 @@ def render_report(summary: dict[str, object], export_summary: dict[str, object] 
                 f"- Rows with impressions: `{export_summary['proof_rows_with_impressions']}`.",
                 f"- Review-only title/feed packet candidates: `{export_summary['likely_title_packet_candidates']}`.",
                 f"- Joined decision CSV: `{export_summary['joined_decisions_csv']}`.",
+                "",
+                "Performance by joined scope:",
+                "",
+                "| Scope | Rows | Impr. | Clicks | Cost | Conversion value |",
+                "|---|---:|---:|---:|---:|---:|",
+            ]
+        )
+        for scope in ["PUBLIC_CLEAN", "HELD_SCOPE", "UNMATCHED"]:
+            totals = public_totals.get(scope, {"rows": 0, "impressions": 0, "clicks": 0, "cost": 0, "conversion_value": 0})
+            lines.append(
+                f"| `{scope}` | `{totals['rows']:.0f}` | `{totals['impressions']:.0f}` | `{totals['clicks']:.0f}` | `${totals['cost']:.2f}` | `${totals['conversion_value']:.2f}` |"
+            )
+        lines.extend(
+            [
+                "",
+                "Decision totals:",
+                "",
+                "| Decision | Rows | Impr. | Clicks | Cost | Conversion value |",
+                "|---|---:|---:|---:|---:|---:|",
+            ]
+        )
+        for decision, totals in sorted(join_totals.items()):
+            lines.append(
+                f"| `{decision}` | `{totals['rows']:.0f}` | `{totals['impressions']:.0f}` | `{totals['clicks']:.0f}` | `${totals['cost']:.2f}` | `${totals['conversion_value']:.2f}` |"
+            )
+        lines.extend(
+            [
+                "",
+                "Export decision:",
+                "",
+                "- The authenticated export produced no narrow title/feed approval candidates.",
+                "- Held-scope matches had negligible exposure and no clicks, so they are not the current spend leak.",
+                "- Most export rows remain outside the public-clean query/title packet, so the next safe action is broader unmatched-row/query attribution review before any product/feed/product-group change.",
                 "",
             ]
         )
@@ -377,13 +473,13 @@ def render_report(summary: dict[str, object], export_summary: dict[str, object] 
             "",
             "## Next Action",
             "",
-            "Run the authenticated read-only product-item export in a Google Ads/Merchant-capable session, save it outside secrets-bearing paths, then run:",
+            "If no export has been joined yet, run the authenticated read-only product-item export in a Google Ads/Merchant-capable session, save it outside secrets-bearing paths, then run:",
             "",
             "```bash",
             f"python3.13 {Path(__file__).relative_to(ROOT)} --export-csv /path/to/authenticated-export.csv",
             "```",
             "",
-            "Only if the joined decision CSV identifies proven mismatches should the next operator prepare a narrow owner approval packet for Shopify/Merchant title/feed repair.",
+            "For this joined export, do not prepare a title/feed repair packet yet. First inspect unmatched item rows and query/product-group attribution because the clean/held packet did not surface a proven title mismatch and held rows are not spending.",
             "",
         ]
     )

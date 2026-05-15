@@ -1,0 +1,30 @@
+{
+  "action": "NO_WRITE_REPAIR_CLASSIFICATION_PACKET",
+  "generated_at": "2026-05-15T05:26:11",
+  "guardrails": [
+    "No Merchant upload, source sync, source edit, product edit, capacity request, campaign build, budget, bid, status, product-group, product-scope, title/feed, conversion, billing, Shopify Admin, Pinterest, or live theme write occurred.",
+    "Full all-products/source export is required before any repair/build decision because the issue export lacks source_id.",
+    "Owner approval is required before any feed/product/source/capacity action."
+  ],
+  "input_issue_rows": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-readback/merchant_shopping_target_issue_rows.csv",
+  "issue_rows": 1453,
+  "issue_titles": {
+    "Missing age group": 432,
+    "Missing color": 202,
+    "Missing gender": 86,
+    "Missing product image": 3,
+    "Missing size": 10,
+    "Over capacity for Shopping ads (outside of CSS program)": 708,
+    "Product page unavailable": 12
+  },
+  "language": "es",
+  "market": "US",
+  "outputs": {
+    "issue_scope_csv": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-us-es-repair-classification/merchant_us_es_repair_scope_by_issue.csv",
+    "paid_cohort_items_csv": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-us-es-repair-classification/merchant_us_es_paid_cohort_priority_items.csv",
+    "report": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-us-es-repair-classification/MERCHANT_US_ES_NO_WRITE_REPAIR_CLASSIFICATION_PACKET.md"
+  },
+  "paid_cohort_attribute_repair_candidates": 3,
+  "paid_cohort_issue_items": 53,
+  "unique_items": 354
+}

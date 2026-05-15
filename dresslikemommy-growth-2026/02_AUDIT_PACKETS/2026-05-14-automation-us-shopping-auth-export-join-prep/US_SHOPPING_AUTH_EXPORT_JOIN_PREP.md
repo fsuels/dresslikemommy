@@ -1,6 +1,6 @@
 # US Shopping Auth Export Join Prep
 
-Generated: `2026-05-14T18:04:07+00:00`
+Generated: `2026-05-15T09:07:34+00:00`
 
 ## Purpose
 
@@ -32,8 +32,36 @@ Generated: `2026-05-14T18:04:07+00:00`
 
 ## Optional Export Join Result
 
-- No authenticated export was supplied in this automation run.
-- This is expected in the unattended runtime because authenticated Google Ads/account surfaces are already gated as `AUTOMATION_CAPABILITY_MISMATCH`.
+- Export rows joined: `767`.
+- Public-clean matches: `85`.
+- Held-scope matches: `30`.
+- Unmatched rows: `652`.
+- Rows with impressions: `112`.
+- Review-only title/feed packet candidates: `0`.
+- Joined decision CSV: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/us_shopping_auth_export_joined_decisions.csv`.
+
+Performance by joined scope:
+
+| Scope | Rows | Impr. | Clicks | Cost | Conversion value |
+|---|---:|---:|---:|---:|---:|
+| `PUBLIC_CLEAN` | `85` | `1744` | `28` | `$5.94` | `$0.00` |
+| `HELD_SCOPE` | `30` | `2` | `0` | `$0.00` | `$0.00` |
+| `UNMATCHED` | `652` | `1738` | `37` | `$8.23` | `$0.00` |
+
+Decision totals:
+
+| Decision | Rows | Impr. | Clicks | Cost | Conversion value |
+|---|---:|---:|---:|---:|---:|
+| `HOLD_FROM_TITLE_FEED_DECISIONS_UNTIL_REPAIRED_OR_PROVEN_EXCEPTION` | `30` | `2` | `0` | `$0.00` | `$0.00` |
+| `ITEM_LEVEL_PROOF_PUBLIC_CLEAN_NO_TITLE_ACTION_YET` | `26` | `1744` | `28` | `$5.94` | `$0.00` |
+| `PUBLIC_CLEAN_MATCH_NO_IMPRESSION_PROOF` | `59` | `0` | `0` | `$0.00` | `$0.00` |
+| `UNMATCHED_TO_PUBLIC_CLEAN_SCOPE_REVIEW_BEFORE_USE` | `652` | `1738` | `37` | `$8.23` | `$0.00` |
+
+Export decision:
+
+- The authenticated export produced no narrow title/feed approval candidates.
+- Held-scope matches had negligible exposure and no clicks, so they are not the current spend leak.
+- Most export rows remain outside the public-clean query/title packet, so the next safe action is broader unmatched-row/query attribution review before any product/feed/product-group change.
 
 ## Guardrails
 
@@ -44,10 +72,10 @@ Generated: `2026-05-14T18:04:07+00:00`
 
 ## Next Action
 
-Run the authenticated read-only product-item export in a Google Ads/Merchant-capable session, save it outside secrets-bearing paths, then run:
+If no export has been joined yet, run the authenticated read-only product-item export in a Google Ads/Merchant-capable session, save it outside secrets-bearing paths, then run:
 
 ```bash
 python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/run_us_shopping_auth_export_join_prep.py --export-csv /path/to/authenticated-export.csv
 ```
 
-Only if the joined decision CSV identifies proven mismatches should the next operator prepare a narrow owner approval packet for Shopify/Merchant title/feed repair.
+For this joined export, do not prepare a title/feed repair packet yet. First inspect unmatched item rows and query/product-group attribution because the clean/held packet did not surface a proven title mismatch and held rows are not spending.

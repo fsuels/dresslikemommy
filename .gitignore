@@ -4,6 +4,9 @@ npm-debug.log*
 yarn.lock
 pnpm-lock.yaml
 .DS_Store
+__pycache__/
+*.pyc
+*.bak-*
 
 # Shopify CLI / temp
 .shopify-cli/
@@ -32,6 +35,7 @@ products_export_1 2_IMPORT_READY.csv
 
 # Oversized raw Merchant Center downloads (keep local; GitHub rejects blobs >100MB)
 dresslikemommy-growth-2026/02_AUDIT_PACKETS/*/downloads/products_*.zip
+dresslikemommy-growth-2026/02_AUDIT_PACKETS/**/products_*.zip
 
 # Ephemeral Shopify cost-sync audit folders — process output, not source of truth
 dresslikemommy-growth-2026/02_AUDIT_PACKETS/*SHOPIFY_COST_SYNC_*/

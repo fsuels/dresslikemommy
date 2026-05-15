@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-14T18:04:07+00:00",
+  "generated_at": "2026-05-15T09:07:34+00:00",
   "public_clean_scope": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-public-pdp-fit-preflight/us_shopping_auth_export_public_clean_scope.csv",
   "held_rows_scope": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-held-pdp-repair-packet/us_shopping_held_pdp_repair_rows.csv",
   "public_clean_rows": 18,
@@ -8,6 +8,69 @@
   "held_unique_handles": 3,
   "template_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/us_shopping_authenticated_item_export_template.csv",
   "scope_by_handle_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/us_shopping_public_clean_scope_by_handle.csv",
-  "export_join": null,
-  "status": "AUTH_EXPORT_TEMPLATE_READY"
+  "export_join": {
+    "export_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/google_ads_products_report_2026-04-18_to_2026-05-14.csv",
+    "export_rows": 767,
+    "export_missing_join_key": 652,
+    "export_public_clean_matches": 85,
+    "export_held_matches": 30,
+    "export_unmatched": 652,
+    "proof_rows_with_impressions": 112,
+    "likely_title_packet_candidates": 0,
+    "totals_by_public_decision": {
+      "HELD_SCOPE": {
+        "rows": 30,
+        "impressions": 2.0,
+        "clicks": 0.0,
+        "cost": 0.0,
+        "conversion_value": 0.0
+      },
+      "PUBLIC_CLEAN": {
+        "rows": 85,
+        "impressions": 1744.0,
+        "clicks": 28.0,
+        "cost": 5.9399999999999995,
+        "conversion_value": 0.0
+      },
+      "UNMATCHED": {
+        "rows": 652,
+        "impressions": 1738.0,
+        "clicks": 37.0,
+        "cost": 8.23,
+        "conversion_value": 0.0
+      }
+    },
+    "totals_by_join_decision": {
+      "HOLD_FROM_TITLE_FEED_DECISIONS_UNTIL_REPAIRED_OR_PROVEN_EXCEPTION": {
+        "rows": 30,
+        "impressions": 2.0,
+        "clicks": 0.0,
+        "cost": 0.0,
+        "conversion_value": 0.0
+      },
+      "ITEM_LEVEL_PROOF_PUBLIC_CLEAN_NO_TITLE_ACTION_YET": {
+        "rows": 26,
+        "impressions": 1744.0,
+        "clicks": 28.0,
+        "cost": 5.9399999999999995,
+        "conversion_value": 0.0
+      },
+      "PUBLIC_CLEAN_MATCH_NO_IMPRESSION_PROOF": {
+        "rows": 59,
+        "impressions": 0.0,
+        "clicks": 0.0,
+        "cost": 0.0,
+        "conversion_value": 0.0
+      },
+      "UNMATCHED_TO_PUBLIC_CLEAN_SCOPE_REVIEW_BEFORE_USE": {
+        "rows": 652,
+        "impressions": 1738.0,
+        "clicks": 37.0,
+        "cost": 8.23,
+        "conversion_value": 0.0
+      }
+    },
+    "joined_decisions_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/us_shopping_auth_export_joined_decisions.csv"
+  },
+  "status": "AUTH_EXPORT_JOIN_COMPLETED"
 }

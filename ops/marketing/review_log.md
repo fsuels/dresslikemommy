@@ -1,8 +1,110 @@
 # Marketing Safety Review Log
 
-Last updated: 2026-05-14 15:58 EDT
+Last updated: 2026-05-15 05:35 EDT
 
 Use this log for reviewer outcomes or simulated checklist runs. Keep entries short and tied to evidence.
+
+## 2026-05-15 - Pinterest live launch CPC and category-scope gate
+
+Reviewer verdict: `BLOCKED_NO_BROAD_PRODUCT_GROUP_LAUNCH`
+
+Checked:
+
+- Owner approved launch for advertiser `549756244483` using the refreshed `333` clean scope, max `$5/day`, and hard max `$0.15` CPC.
+- Live UI can enforce `$0.15` CPC only with `Pin clicks` optimization plus `Custom` bidding; ROAS optimization forces Pinterest Performance+ bidding and disables custom CPC.
+- Product-group selector did not expose exact `333` / custom-label groups; it exposed broad groups such as `All Products`, broad Family Matching, Mommy & Me, and Pajamas groups.
+
+Required gates/fixes:
+
+- Do not publish broad groups unless a current readback proves every included product is active, sellable, source-clean, and inside the approved scope.
+- Use exact category product groups: Mommy & Me `201`, Family Matching `103`, Pajamas `29`, and Daddy & Me/father-inclusive only after active clean feed proof.
+- If creating/exposing Pinterest product groups is required, get exact approval for that object mutation first.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-live-launch-cpc-scope-blocker/PINTEREST_LIVE_LAUNCH_CPC_SCOPE_BLOCKER.md`
+
+Safest next sales-moving action:
+
+- Create or expose exact active-clean Pinterest category product groups, then launch only with max `$5/day` and max `$0.15` CPC after final review.
+
+## 2026-05-15 - US Shopping item export and clicked PDP readback
+
+Reviewer verdict: `PASS_NO_LIVE_WRITE_ACTION`
+
+Checked:
+
+- Authenticated Standard Shopping product export was read-only and joined through the public-clean/held scope classifier.
+- Parser found `0` title/feed approval candidates.
+- Clicked-PDP public readback passed `26/26` fetches and found `0` source-blocked clicked handles.
+- Conversion value remained `$0.00`, so clicks are learning evidence but not ROAS proof.
+
+Required gates/fixes:
+
+- Do not change titles, feed attributes, product groups, bids, budgets, statuses, negatives, product scope, campaigns, or theme files from this evidence alone.
+- Continue with current Merchant `US/es` source export and CA/GB/AU English Shopping eligibility readbacks.
+- Convert only a proven narrow mismatch or clean product-expansion opportunity into an exact owner approval packet before any live write.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/US_SHOPPING_AUTH_EXPORT_JOIN_PREP.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-pdp-readback/STANDARD_SHOPPING_CLICKED_PDP_PUBLIC_READBACK.md`
+
+Safest next sales-moving action:
+
+- Run read-only Merchant/feed eligibility for `US/es`, then CA/GB/AU English Shopping, while Pinterest remains approval-gated and GB/CA/AU Search CPC remains Basic-Access gated.
+
+## 2026-05-14 - Authenticated GB/CA/AU CPC validation attempt
+
+Reviewer verdict: `BLOCKED_NO_PASS_ROWS`
+
+Checked:
+
+- Existing authenticated Google Ads access was used; no generic access blocker was opened.
+- Keyword Planner accepted the `72` exact/phrase inputs, but exported context stayed `United States`, `All languages`, `Broad`, `Maximize conversions`.
+- Parser consumed the real Google UTF-16/TSV exports and returned `0` `PASS_015_CPC_GATE` rows.
+
+Required gates/fixes:
+
+- Do not create a `GREEN` live action row.
+- Retry through Google Ads API KeywordPlan forecast or a UI path with explicit GB/CA/AU, exact/phrase, keyword-level max `$0.15` proof.
+- Do not upload/apply/add keywords, change bids/statuses/budgets, or add negatives from the invalid US/Broad export.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-authenticated-gb-ca-au-cpc-validation/AUTHENTICATED_GB_CA_AU_CPC_VALIDATION_ATTEMPT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-authenticated-gb-ca-au-cpc-validation/saved_keywords_stats_parser_summary.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-authenticated-gb-ca-au-cpc-validation/all_keywords_forecast_parser_summary.json`
+
+Safest next sales-moving action:
+
+- API-backed or correctly scoped UI-backed GB/CA/AU exact/phrase max `$0.15` forecast export; if still unavailable, continue Standard Shopping authenticated item export or Pinterest paused draft lane.
+
+## 2026-05-14 - P0 blocker board cleanup
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Solved account-access protocol and Pinterest access readback rows were not left as active P0 blockers.
+- The remaining P0 is an exact authenticated Google Ads / Keyword Planner validation gate, not live upload authority.
+- Pinterest remains no-write unless the approved paused draft spec and stop conditions are followed.
+
+Required gates/fixes:
+
+- Do not upload/apply/add keywords, change bids/statuses/budgets, or add negatives until authenticated `$0.15` CPC rows parse as `PASS_015_CPC_GATE` and a fresh `GREEN` action row exists.
+- Do not reopen generic account-access P0 blockers without completing `ops/ACCOUNT_ACCESS_PROTOCOL.md`.
+
+Evidence:
+
+- `ops/marketing/blocker_board.md`
+- `ops/marketing/action_queue.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-current-p0-blocker-fix/PINTEREST_EXISTING_DRAFT_CHECK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/GB_CA_AU_CPC_VALIDATION_DECISION_KIT.md`
+
+Safest next sales-moving action:
+
+- Authenticated `$0.15` CPC validation for the canonical 36-row GB/CA/AU packet.
 
 ## 2026-05-14 - Account access recovery protocol
 
@@ -400,7 +502,7 @@ Checked:
 
 Risks:
 
-- All active final URLs still expose `detail.1688.com` in `data-analytics-vendor`, which violates paid-landing and supplier/source guardrails.
+- All active final URLs still expose `[source-host-redacted]` in `data-analytics-vendor`, which violates paid-landing and supplier/source guardrails.
 - The active exact keywords are `Eligible (Limited)` because `$0.15` max CPC is below first-page estimates around `$0.65-$0.74`; raising bids into generic head terms would be risky without a clean landing and conversion-value proof.
 - Search terms are filter-clean now but still empty/no terms, so no negative action is justified.
 
@@ -1081,3 +1183,338 @@ Evidence:
 Safest next sales-moving action:
 
 - Use the rerouted US rows only as a future validation source after the authenticated Standard Shopping export or a separate US Search feasibility packet proves product/query fit.
+
+## 2026-05-14 - Google Ads API CPC forecast retry harness
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Repo-local read-only script/report only; no Google Ads, Merchant, Shopify Admin, live theme, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, product-group, conversion, credential, or destructive write.
+- Harness reads the existing canonical `72` exact/phrase validation rows and forecasts one keyword row at a time to avoid aggregate US/Broad UI export ambiguity.
+- Dry-run shows market geo targets `GB=2826`, `CA=2124`, `AU=2036`, English `1000`, Google Search only, and max CPC `150000` micros.
+- Live run fails closed before any API call when `GOOGLE_ADS_CUSTOMER_ID` is unset.
+
+Risks:
+
+- This is not authenticated CPC proof; it is a safer execution harness for the next account-capable shell.
+- Google Ads API credentials/customer access still need to be loaded outside this unattended runtime before forecast rows can be produced.
+
+Required gates/fixes:
+
+- Run the harness only as read-only forecast evidence in an account-capable shell.
+- Run the existing parser on `google_ads_api_cpc_forecast_rows.csv`.
+- Promote only real `PASS_015_CPC_GATE` rows through a fresh `GREEN` action-queue row with fresh Ads before-state readback, reviewer pass, anti-cannibalization check, and after-state readback plan.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/GOOGLE_ADS_API_CPC_FORECAST_RETRY_HARNESS.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/run_google_ads_api_cpc_forecast.py`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/google_ads_api_cpc_forecast_summary.json`
+
+Safest next sales-moving action:
+
+- Run the API harness in a credentialed Google Ads shell, then parse the output and create a green row only for pass rows.
+
+## 2026-05-15 - US active-product public proof
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Read-only Outlook Basic Access watch first; no approval found as of 04:05 EDT.
+- Public storefront active-product proof only; no Google Ads, Shopify Admin, Merchant, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, credential, or theme write.
+- Exact source scope was US `GREEN` keyword-universe rows already routed to clean collection pages.
+- Public readback checked `5` collection routes and sampled `51` product pages; `47` rows passed, `4` stayed held/review.
+
+Risks:
+
+- Public product proof is not item-level Shopping export proof and not CPC/search feasibility proof.
+- The family-swimsuits route sample still surfaced non-swim products, so those specific rows stay held/review until route/product fit is better or a swim-specific product proof is produced.
+
+Required gates/fixes:
+
+- Keep all rows local-only until authenticated `$0.15` CPC/search feasibility, anti-cannibalization review, fresh `GREEN` action row, and after-state readback exist.
+- Do not upload/add keywords, change bids/budgets/status, or edit Shopify product/vendor data from this packet.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-active-product-proof/US_ACTIVE_PRODUCT_PROOF_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-active-product-proof/us_active_product_proof_summary.json`
+
+Safest next sales-moving action:
+
+- Use only the `PUBLIC_ACTIVE_PRODUCT_PASS` rows as the source for a future small US Search validation packet after the GB/CA/AU P0 CPC gate clears or an account-capable US CPC path is available.
+
+## 2026-05-15 - US Search active-product validation packet
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Read-only Outlook Basic Access watch first; no approval found as of 04:27 EDT.
+- Repo-local/public storefront packet only; no Google Ads, Shopify Admin, Merchant, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, feed, product, conversion, credential, or theme write.
+- Exact source scope was `12` US `GREEN` rows with public-active product proof and canonical clean routes.
+- Public route readback checked `6` route/header fetches across `matching-outfits`, `mommy-and-me`, and `pajamas`; all returned `200`, `0` redirects, `0` supplier/url-brand hits, and `0` stale/trust hits.
+
+Risks:
+
+- This is a forecast input, not CPC/search-feasibility proof.
+- It does not replace authenticated Standard Shopping item-level export proof and does not prove live Search readiness.
+
+Required gates/fixes:
+
+- Keep all rows local-only until authenticated `$0.15` CPC/search feasibility, anti-cannibalization review, fresh `GREEN` action row, and after-state readback exist.
+- Do not upload/add keywords, change bids/budgets/status, or add negatives from this packet.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-us-search-active-product-validation-packet/US_SEARCH_ACTIVE_PRODUCT_VALIDATION_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-us-search-active-product-validation-packet/us_search_active_product_validation_summary.json`
+
+Safest next sales-moving action:
+
+- After Basic Access approval, validate the US matrix read-only at max `$0.15`; promote only real `PASS_015_CPC_GATE` rows through a fresh green row.
+
+## 2026-05-15 - Current Ads serving and search-term readback
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Read-only Outlook Basic Access watch first; no approval found as of 04:35 EDT.
+- Existing authenticated Google Ads UI readback only; no Google Ads, Shopping, Merchant, Shopify Admin, Pinterest, GA4/GTM, billing, campaign, budget, bid, status, keyword, negative, feed, product, conversion, credential, or theme write.
+- Enabled-campaign aggregate current view showed `6` impressions, `1` click, `$0.04` cost, and `0.00` conversions/value.
+- Visible GB exact Search row still showed `0` impressions/clicks/cost.
+- Cleared a stale search-term reporting filter and read the broader Apr 18-May 14 table: brand Search rows carried visible clicks/cost, while visible Standard Shopping rows remained `0` clicks and `$0.00` cost.
+
+Risks:
+
+- The current aggregate `1` click / `$0.04` signal is not campaign-attributed enough to justify optimization by itself.
+- Broader date-range brand Search clicks do not validate GB/CA/AU long-tail CPC feasibility and do not prove Shopping title/feed action.
+
+Required gates/fixes:
+
+- Keep the GB/CA/AU CPC gate blocked until Basic Access approval or a correctly scoped authenticated UI export produces real `PASS_015_CPC_GATE` rows.
+- Run authenticated Standard Shopping item-level export before any title/feed/product-group/negative decision.
+
+Evidence:
+
+- Google Ads UI read-only readback, 2026-05-15 04:35-04:39 EDT, client account `399-097-6848`.
+- `ops/marketing/action_queue.md`
+- `ops/marketing/daily_scorecard.md`
+
+Safest next sales-moving action:
+
+- Keep watching Basic Access and rerun the API forecast harness/parser after approval; independently run the authenticated Shopping item-level export when an export-capable session is available.
+
+## 2026-05-15 - Pinterest paused-draft scope refresh
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Public/read-only only: refreshed the already-approved Pinterest paused-draft scope before any object creation.
+- Checked `32` unique product pages and `32` image URLs from the prior `342`-row Pinterest scope.
+- Product pages passed `30/32`; image URLs passed `32/32`.
+- Held `9` variants across `2` Mommy & Me PDPs because public source still exposes `[source-host-redacted]` / `[source-host-redacted]` supplier domains.
+
+Risks:
+
+- The older `342`-row scope is no longer safe as a direct paused-draft prefill unless the `9` held variants are repaired.
+- This is not Pinterest write authority and does not solve tag/Event Quality or launch approval.
+
+Required gates/fixes:
+
+- Use `pinterest_paused_draft_refreshed_clean_scope.csv` (`333` variants) for the next paused-draft prefill.
+- Keep the held `9` variants excluded unless approved product/vendor cleanup passes public source readback.
+- Stop before any Pinterest budget, bid, enablement, launch, publish, audience, source, feed, tag, CAPI, or catalog mutation outside the paused spec.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-pinterest-paused-draft-scope-refresh/PINTEREST_PAUSED_DRAFT_SCOPE_REFRESH.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-pinterest-paused-draft-scope-refresh/pinterest_paused_draft_scope_refresh_summary.json`
+
+Safest next sales-moving action:
+
+- In an account-capable session, create only the paused/draft Pinterest shell from the restored advertiser tab using the refreshed `333`-variant scope, then read back before any live launch decision.
+
+## 2026-05-15 - Pinterest 333 paused draft build-ready packet and multilingual Shopping queue
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Built repo-local Pinterest paused/draft object packet from the refreshed `333` public-clean variants: `201` Mommy & Me, `103` Family Matching, `29` Pajamas.
+- Built repo-local Google Shopping multilingual queue covering `US/en`, `US/es`, `CA/en`, `GB/en`, `AU/en`, and later native-language concept lanes.
+- Confirmed both packets are no-write artifacts and do not create platform objects or mutate feeds/titles/product groups.
+
+Risks:
+
+- Pinterest "draft" creation is still an external account write even when paused; current-session approval is required before clicking Create/Save.
+- Multilingual Shopping can become unsafe if stale Merchant exports, concept copy, or storefront language assumptions are treated as feed/title proof.
+
+Required gates/fixes:
+
+- Pinterest requires the exact approval phrase in `PINTEREST_333_PAUSED_DRAFT_BUILD_READY.md`, plus before/after advertiser/status/spend readbacks and stop conditions.
+- Shopping requires authenticated read-only exports before any campaign/feed/title/product-group approval packet.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-pinterest-333-paused-draft-build-ready/PINTEREST_333_PAUSED_DRAFT_BUILD_READY.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-google-shopping-multilingual-expansion-queue/GOOGLE_SHOPPING_MULTILINGUAL_EXPANSION_QUEUE.md`
+
+Safest next sales-moving action:
+
+- If the owner approves, create only the Pinterest paused draft objects from the restored `549756244483` advertiser tab; in parallel, run the read-only Standard Shopping and Merchant language/country exports.
+
+## 2026-05-15 - Standard Shopping export join and clicked PDP readback
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Read-only Standard Shopping product export join for campaign `23802638621`; no Google Ads, Merchant, Shopify Admin, feed, title, product-group, bid, budget, status, conversion, Pinterest, GA4/GTM, billing, credential, or live theme write.
+- Joined `767` paid-cohort rows: `65` clicks, `$14.17` cost, `$0.00` conversion value, and `0` title/feed repair candidates.
+- Public-read back `27` clicked export rows across `13` unique product handles and `26` storefront fetches.
+- Result: `26/26` public fetches passed and `0` clicked handles were source-blocked.
+
+Risks:
+
+- Historical export date range is `Apr 18-May 14, 2026`, not a same-day ROAS result.
+- Clean clicked PDP source does not explain why clicks did not convert.
+- The held rows still require their separate repair/readback gates before paid expansion use.
+
+Required gates/fixes:
+
+- Do not edit titles, feed attributes, product groups, bids, budgets, statuses, negatives, or product scope from this packet alone.
+- Continue with current Merchant `US/es` source export and CA/GB/AU English eligibility readbacks before Shopping expansion.
+- Use clean clicked PDPs for conversion/landing/product-fit analysis only.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-pdp-readback/STANDARD_SHOPPING_CLICKED_PDP_PUBLIC_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/standard_shopping_products_export_summary.json`
+
+Safest next sales-moving action:
+
+- Run Merchant `US/es` source `10627981690` read-only export, then CA/GB/AU English country/feed eligibility readbacks; separately analyze clean clicked PDPs for conversion friction.
+
+## 2026-05-15 - 333 Pinterest scope and Basic Access watch refresh
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Outlook connector profile is `info@dresslikemommy.com`.
+- Targeted read-only searches through 05:08 EDT found no Google Ads API Basic Access approval.
+- The current Pinterest paused-draft path is the refreshed `333` clean-variant scope, not the older full `342` rows.
+
+Risks:
+
+- Running the CPC harness before Basic Access approval will repeat the Explorer-access blocker.
+- Reusing the older `342` Pinterest scope would reintroduce `9` variants from supplier-leaking public PDPs.
+
+Required gates/fixes:
+
+- Do not rerun the Google Ads API CPC harness until Basic Access approval is present.
+- Do not create Pinterest paused/draft objects without the exact approval phrase in `PINTEREST_333_PAUSED_DRAFT_BUILD_READY.md`.
+
+Evidence:
+
+- Outlook read-only searches, 2026-05-15 05:08 EDT.
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-pinterest-333-paused-draft-build-ready/PINTEREST_333_PAUSED_DRAFT_BUILD_READY.md`
+
+Safest next sales-moving action:
+
+- Keep watching `info@dresslikemommy.com`; use only the `333` Pinterest scope if the paused-draft approval phrase is given.
+
+## 2026-05-15 - Pinterest paused-draft UI attempt stopped on budget validation
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Current-session exact approval phrase was received for advertiser `549756244483` using the refreshed `333` scope, with no launch, no enablement, no spend, no budget/bid activation, no catalog/source/tag/CAPI/feed changes, and a required stop on out-of-scope writes.
+- Existing authenticated Pinterest Ads Manager tab was used.
+- Manual Catalog sales flow reached campaign name `DLM_PIN_US_CATALOG_333_PAUSED_20260515` and status `Paused`.
+- Draft actions exposed `Save as a new draft`, but Pinterest validation blocked save because budget was blank.
+
+Risks:
+
+- Pinterest UI requires a valid daily budget value before saving the paused draft.
+- Entering even the minimum `$1.00` daily budget is outside the current conservative no-budget/no-bid activation boundary unless explicitly approved for validation-only use.
+
+Required gates/fixes:
+
+- Do not retry the no-budget save path.
+- Continue only if the owner approves entering the minimum `$1.00` daily budget solely to satisfy paused-draft validation while keeping the campaign paused/unpublished/no-spend, or if a no-budget API/import route is found.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-paused-draft-budget-validation-stop/PINTEREST_PAUSED_DRAFT_BUDGET_VALIDATION_STOP.md`
+
+Safest next sales-moving action:
+
+- Get the narrow minimum-budget paused-draft approval packet or continue independent Shopping/Merchant read-only exports.
+
+## 2026-05-15 - Merchant Shopping issue-export readback
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Read-only/local analysis of current Merchant product-issues export and API attempt evidence.
+- `US/es` issue-export state for source-readiness lane: `1,453` rows, `354` unique items, `432` Missing age group rows, `708` over-capacity rows, and `53` paid-cohort issue items.
+- CA/GB/AU English country-language pairs have `0` rows in the current issue export.
+- Google Ads API Basic Access watch still found no approval, so the CPC forecast harness remains parked.
+
+Risks:
+
+- The issue export does not include `source_id`, so it is not a source-specific all-products export for `10627981690`.
+- CA/GB/AU `0` issue rows do not prove active approved product counts, feed label, currency, country availability, or paid-cohort eligibility.
+- Merchant API and Content API readbacks returned 403 insufficient authentication scopes.
+
+Required gates/fixes:
+
+- Do not create Shopping campaigns or mutate feeds, titles, product groups, product scope, bids, budgets, statuses, or conversion settings from issue-export evidence alone.
+- Build the `US/es` no-write repair/classification packet before any source/feed action.
+- Capture CA/GB/AU all-products/source exports before any Shopping expansion packet.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-readback/MERCHANT_SHOPPING_READONLY_QUEUE_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-readback/merchant_shopping_readonly_queue_summary.json`
+
+Safest next sales-moving action:
+
+- Prepare the smallest `US/es` repair/classification packet and obtain full CA/GB/AU English all-products/source eligibility exports; rerun the CPC harness only after Basic Access approval appears.
+
+## 2026-05-15 - Merchant US/es no-write repair classification packet
+
+Reviewer verdict: `PASS_WITH_GATES`
+
+Checked:
+
+- Local/read-only classification of the current Merchant `US/es` issue rows.
+- Output packet classifies `1,453` rows / `354` unique items / `53` paid-cohort issue items.
+- Paid-cohort attribute-repair candidates are limited to `3` unique items; over-capacity still affects all `53` paid-cohort issue items.
+
+Risks:
+
+- The issue export does not include `source_id` or full active approved-product proof.
+- Capacity, feed/source, product, title, and Shopping campaign changes are excluded surfaces without exact approval.
+
+Required gates/fixes:
+
+- Capture full source/all-products export for source `10627981690` before repair/build decisions.
+- Do not mutate Merchant feeds, source scope, products, titles, capacity, product groups, bids, budgets, statuses, campaigns, conversions, billing, Shopify Admin, or Pinterest from this packet alone.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-us-es-repair-classification/MERCHANT_US_ES_NO_WRITE_REPAIR_CLASSIFICATION_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-us-es-repair-classification/merchant_us_es_repair_classification_summary.json`
+
+Safest next sales-moving action:
+
+- Run full source/all-products exports for `US/es`, CA/en, GB/en, and AU/en, then decide whether a narrow approval packet is valid.

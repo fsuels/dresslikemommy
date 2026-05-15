@@ -264,7 +264,7 @@ Date: 2026-04-24
 AGENT_CONTINUITY_ANCHOR: 2026-04-24-cable-horse-family-matching-tops
 
 Changes applied (evidence-first)
-- Created and ran `ops/scripts/create-chrs-cable-horse-family-matching-tops.sh` for vendor URL `https://detail.1688.com/offer/1007389194841.html`.
+- Created and ran `ops/scripts/create-chrs-cable-horse-family-matching-tops.sh` for vendor URL `[source-url-redacted]
 - Published live Shopify product `cable-horse-family-matching-tops` (`gid://shopify/Product/7537007198305`) to Online Store, Google & YouTube, Facebook & Instagram, Pinterest, and TikTok.
 - Saved listing artifacts:
   - `ops/listings/cable-horse-family-matching-tops-listing.md`
@@ -11404,7 +11404,7 @@ Changes:
     - `224` active products published to `Google & YouTube`
   - Vendor/brand cleanup findings:
     - `395` products currently use URL-based vendor values
-    - URL breakdown: `378` `1688.com`, `13` `taobao.com`, `4` other URLs
+    - URL breakdown: `378` `[source-host-redacted]`, `13` `taobao.com`, `4` other URLs
     - `649` high-confidence cleanup rows in `brand_cleanup.csv`
       - `256` current `dresslikemommy.com` domain-variant rows
       - `393` supplier-URL rows with matching-assortment evidence and no detected third-party brand signal
@@ -16731,7 +16731,7 @@ Residual note:
 AGENT_CONTINUITY_ANCHOR
 
 What changed:
-- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for `https://detail.1688.com/offer/1034212252780.html`.
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for `[source-url-redacted]
 - Created a new live Shopify product: `powder-blue-mommy-and-me-set` / `gid://shopify/Product/7535944368225`.
 - Added an idempotent runner at `ops/scripts/create-pblu-powder-blue-mommy-and-me-set.sh` that:
   - declares a single `SIZE_CHART` JSON block
@@ -16789,7 +16789,7 @@ Residual note:
 AGENT_CONTINUITY_ANCHOR
 
 What changed:
-- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for `https://detail.1688.com/offer/895442481104.html?`.
+- Executed the canonical listing workflow from `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, and `ops/prompts/shopify-listing-from-1688.md` for `[source-url-redacted]
 - Created a new live Shopify product: `pastel-bloom-mommy-and-me-dresses` / `gid://shopify/Product/7536086089825`.
 - Added an idempotent runner at `ops/scripts/create-pblm-pastel-bloom-mommy-and-me-dresses.sh` that:
   - declares a single `SIZE_CHART` JSON block
@@ -17247,7 +17247,7 @@ What changed:
 - Copied the supplied product images into `uploads/pink-horizon-family-matching-set/` and uploaded them to the product media gallery.
 
 Why this was needed:
-- The user requested a new listing from `https://detail.1688.com/offer/1028758846873.html` using the canonical `ops/prompts/` Shopify listing workflow.
+- The user requested a new listing from `[source-url-redacted] using the canonical `ops/prompts/` Shopify listing workflow.
 - The product is a four-role family-matching look with girls/mothers in dresses and boys/fathers in shirts, so it needed the mixed-garment `Type` + `Size` option structure instead of the simpler `Size` + `Color` flow.
 - The direct 1688 page was captcha-blocked, so the attached chart and supplied product photos became the authoritative evidence source for the run.
 
@@ -17373,7 +17373,7 @@ What changed:
 - Copied the two supplied lifestyle images into `uploads/ivory-ruffle-mommy-and-me-dresses/` and uploaded them to the live product media gallery.
 
 Why this was needed:
-- The user requested a new mommy-and-me dress listing from `https://detail.1688.com/offer/1043178392944.html` using the canonical `ops/prompts/` Shopify listing workflow.
+- The user requested a new mommy-and-me dress listing from `[source-url-redacted] using the canonical `ops/prompts/` Shopify listing workflow.
 - The supplied chart and photos show a single-garment mother-daughter dress listing, so the honest option model is `Size` + `Color`.
 
 Key decisions / deviations to preserve on reruns:
@@ -17452,7 +17452,7 @@ What changed:
   - cropped shirt-only flat lay image that intentionally excludes the cargo shorts
 
 Why this was needed:
-- The user requested a new family-matching listing from `https://detail.1688.com/offer/1035252493819.html` using the canonical `ops/prompts/` Shopify listing workflow.
+- The user requested a new family-matching listing from `[source-url-redacted] using the canonical `ops/prompts/` Shopify listing workflow.
 - The supplied chart and photos show a mixed-garment family look, so the honest option model is `Type` + `Size` under `FamilySet` / `Outfit Sets`.
 
 Key decisions / deviations to preserve on reruns:
@@ -17523,7 +17523,7 @@ What changed:
   - family lifestyle image
 
 Why this was needed:
-- The user requested a new family-matching listing from `https://detail.1688.com/offer/1034690588459.html` using the canonical `ops/prompts/` Shopify listing workflow.
+- The user requested a new family-matching listing from `[source-url-redacted] using the canonical `ops/prompts/` Shopify listing workflow.
 - `PRIMARY_CATEGORY` was `Set`, `LISTING_MODE` was `Family Matching`, and `DESIGNS_TO_LIST` named the gray-green cargo shorts plus sun-protection shirt, so the honest product model is one coordinated set listing rather than separate component products.
 
 Key decisions / deviations to preserve on reruns:
@@ -17596,7 +17596,7 @@ What changed:
 - Staged and uploaded the three supplied lifestyle images to the live product media gallery.
 
 Why this was needed:
-- The user requested a new family-matching listing from `https://detail.1688.com/offer/1036106092808.html` using the canonical `ops/prompts/` Shopify listing workflow.
+- The user requested a new family-matching listing from `[source-url-redacted] using the canonical `ops/prompts/` Shopify listing workflow.
 - `PRIMARY_CATEGORY` was `Set`, `LISTING_MODE` was `Family Matching`, and `DESIGNS_TO_LIST` named the blue plaid shirt, the women's blue plaid top, and the three-layer white skirt, so the honest product model is a mixed-garment family-set listing with `Type / Size` options.
 
 Key decisions / deviations to preserve on reruns:
@@ -17686,7 +17686,7 @@ What changed:
   - `uploads/ivory-stripe-cargo-family-matching-set/01-family.png`
 
 Why this was needed:
-- The user requested a new family-matching listing from `https://detail.1688.com/offer/1042999501331.html` using the canonical `ops/prompts/` Shopify listing workflow.
+- The user requested a new family-matching listing from `[source-url-redacted] using the canonical `ops/prompts/` Shopify listing workflow.
 - `PRIMARY_CATEGORY` was `Set`, `LISTING_MODE` was `Family Matching`, and `DESIGNS_TO_LIST` named the gray-green cargo shorts, the irregular French shirt, and the irregular French dress, so the honest product model is a mixed-garment family-set listing with `Type / Size` options.
 
 Key decisions / deviations to preserve on reruns:
@@ -17836,7 +17836,7 @@ What changed:
   - `uploads/summer-sky-stripe-family-matching-set/01-family.png`
 
 Why this was needed:
-- The user requested a new family-matching listing from `https://detail.1688.com/offer/1040654335800.html` using the canonical `ops/prompts/` Shopify listing workflow.
+- The user requested a new family-matching listing from `[source-url-redacted] using the canonical `ops/prompts/` Shopify listing workflow.
 - `PRIMARY_CATEGORY` was `Set`, `LISTING_MODE` was `Family Matching`, and `DESIGNS_TO_LIST` explicitly named `shirt, dress`, so the honest product model is a mixed-garment family-set listing with `Type / Size` options.
 
 Key decisions / deviations to preserve on reruns:
@@ -17915,7 +17915,7 @@ Changes applied (evidence-first)
   - `uploads/blush-garden-mommy-and-me-swimsuits/02-detail.png`
 
 Key decisions / deviations documented
-- The direct 1688 page `https://detail.1688.com/offer/1039451116404.html` was captcha-blocked on 2026-04-23, so the attached size-chart image and supplied product photos were treated as the source of truth.
+- The direct 1688 page `[source-url-redacted] was captcha-blocked on 2026-04-23, so the attached size-chart image and supplied product photos were treated as the source of truth.
 - The canonical prompt's swimsuit taxonomy GID `gid://shopify/TaxonomyCategory/aa-1-13-15` no longer resolves in the live 2025-01 Admin API. Per the prompt's taxonomy guard, the run halted and corrected the taxonomy to the live leaf `gid://shopify/TaxonomyCategory/aa-1-20-17` (`Apparel & Accessories > Clothing > Swimwear > Swim Dresses`) before publishing.
 - The vendor chart is a fit-recommendation table, not a garment-measurement table. Unsupported size-table columns (`Skirt Length`, `Pant/Short`, `Hip`, `Garment Length`) were intentionally left as `-` rather than fabricated.
 - Child rows were mapped to the nearest canonical DLM size labels by height midpoint:
@@ -19198,7 +19198,7 @@ Listing decisions:
 
 Verification:
 - Passed:
-  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1047178396032.html'` (returned Alibaba anti-bot/captcha markup)
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' '[source-url-redacted]'` (returned Alibaba anti-bot/captcha markup)
   - `bash -n ops/scripts/create-bdsy-blue-daisy-family-matching-set.sh`
   - `./ops/scripts/create-bdsy-blue-daisy-family-matching-set.sh`
   - `./ops/scripts/create-bdsy-blue-daisy-family-matching-set.sh` idempotent rerun
@@ -19309,7 +19309,7 @@ Listing decisions:
 
 Verification:
 - Passed:
-  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1040210359853.html'` (returned Alibaba anti-bot/captcha markup)
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' '[source-url-redacted]'` (returned Alibaba anti-bot/captcha markup)
   - `bash -n ops/scripts/create-trgd-tropical-garden-family-matching-set.sh`
   - `./ops/scripts/create-trgd-tropical-garden-family-matching-set.sh`
   - `./ops/scripts/create-trgd-tropical-garden-family-matching-set.sh` idempotent rerun
@@ -19368,7 +19368,7 @@ Listing decisions:
 
 Verification:
 - Passed:
-  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1042309825160.html?'` (returned Alibaba anti-bot/captcha markup)
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' '[source-url-redacted]'` (returned Alibaba anti-bot/captcha markup)
   - `bash -n ops/scripts/create-idot-ivory-dot-mommy-and-me-dresses.sh`
   - `./ops/scripts/create-idot-ivory-dot-mommy-and-me-dresses.sh`
   - `./ops/scripts/create-idot-ivory-dot-mommy-and-me-dresses.sh` idempotent reruns
@@ -19429,7 +19429,7 @@ Listing decisions:
 
 Verification:
 - Passed:
-  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1039889504640.html'` (returned Alibaba anti-bot/captcha markup)
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' '[source-url-redacted]'` (returned Alibaba anti-bot/captcha markup)
   - `bash -n ops/scripts/create-emlf-emerald-leaf-family-matching-set.sh`
   - `./ops/scripts/create-emlf-emerald-leaf-family-matching-set.sh`
   - `./ops/scripts/create-emlf-emerald-leaf-family-matching-set.sh` idempotent rerun
@@ -19488,7 +19488,7 @@ Listing decisions:
 
 Verification:
 - Passed:
-  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1027490923984.html?'` (returned Alibaba anti-bot/captcha markup)
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' '[source-url-redacted]'` (returned Alibaba anti-bot/captcha markup)
   - `bash -n ops/scripts/create-odot-ocean-dot-family-matching-set.sh`
   - `ops/scripts/create-odot-ocean-dot-family-matching-set.sh`
   - `ops/scripts/create-odot-ocean-dot-family-matching-set.sh` idempotent rerun
@@ -19547,7 +19547,7 @@ Listing decisions:
 
 Verification:
 - Passed:
-  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1032794279712.html'` (returned Alibaba anti-bot/captcha markup)
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' '[source-url-redacted]'` (returned Alibaba anti-bot/captcha markup)
   - `bash -n ops/scripts/create-ttil-terracotta-tile-family-matching-set.sh`
   - `./ops/scripts/create-ttil-terracotta-tile-family-matching-set.sh`
   - `./ops/scripts/create-ttil-terracotta-tile-family-matching-set.sh` idempotent rerun
@@ -19621,7 +19621,7 @@ Listing decisions:
 
 Verification:
 - Passed:
-  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1046964144900.html'` (returned Alibaba anti-bot/captcha markup)
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' '[source-url-redacted]'` (returned Alibaba anti-bot/captcha markup)
   - `bash -n ops/scripts/create-gflr-garden-floral-family-matching-set.sh`
   - `./ops/scripts/create-gflr-garden-floral-family-matching-set.sh`
   - `./ops/scripts/create-gflr-garden-floral-family-matching-set.sh` idempotent rerun
@@ -19679,7 +19679,7 @@ Listing decisions:
 
 Verification:
 - Passed:
-  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1034249556745.html?'` (returned Alibaba anti-bot/captcha markup)
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' '[source-url-redacted]'` (returned Alibaba anti-bot/captcha markup)
   - `bash -n ops/scripts/create-ivln-ivory-linen-family-matching-set.sh`
   - `./ops/scripts/create-ivln-ivory-linen-family-matching-set.sh`
   - `./ops/scripts/create-ivln-ivory-linen-family-matching-set.sh` idempotent rerun
@@ -19739,7 +19739,7 @@ Listing decisions:
 
 Verification:
 - Passed:
-  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1036133456700.html'` (returned Alibaba anti-bot/captcha markup)
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' '[source-url-redacted]'` (returned Alibaba anti-bot/captcha markup)
   - `bash -n ops/scripts/create-nrfl-navy-red-floral-family-matching-set.sh`
   - `./ops/scripts/create-nrfl-navy-red-floral-family-matching-set.sh`
   - `./ops/scripts/create-nrfl-navy-red-floral-family-matching-set.sh` idempotent rerun
@@ -19852,7 +19852,7 @@ Listing decisions:
 
 Verification:
 - Passed:
-  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/813439102302.html'` (returned Alibaba anti-bot/captcha markup)
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' '[source-url-redacted]'` (returned Alibaba anti-bot/captcha markup)
   - `bash -n ops/scripts/create-iris-iris-bloom-family-matching-set.sh`
   - `./ops/scripts/create-iris-iris-bloom-family-matching-set.sh`
   - `./ops/scripts/create-iris-iris-bloom-family-matching-set.sh` idempotent rerun
@@ -19910,7 +19910,7 @@ Listing decisions:
 
 Verification:
 - Passed:
-  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/903638707785.html?'` (returned Alibaba anti-bot/captcha markup)
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' '[source-url-redacted]'` (returned Alibaba anti-bot/captcha markup)
   - `bash -n ops/scripts/create-bah-blue-apricot-heart-family-matching-tops.sh`
   - `./ops/scripts/create-bah-blue-apricot-heart-family-matching-tops.sh`
   - `./ops/scripts/create-bah-blue-apricot-heart-family-matching-tops.sh` idempotent rerun after media cleanup
@@ -20018,7 +20018,7 @@ Listing decisions:
 
 Verification:
 - Passed:
-  - `curl -L --max-time 20 -A 'Mozilla/5.0' 'https://detail.1688.com/offer/1043999310235.html'` (returned Alibaba anti-bot/captcha markup)
+  - `curl -L --max-time 20 -A 'Mozilla/5.0' '[source-url-redacted]'` (returned Alibaba anti-bot/captcha markup)
   - `bash -n ops/scripts/create-glpd-gray-leopard-mommy-and-me-swimsuits.sh`
   - `./ops/scripts/create-glpd-gray-leopard-mommy-and-me-swimsuits.sh`
   - `./ops/scripts/create-glpd-gray-leopard-mommy-and-me-swimsuits.sh` idempotent rerun
@@ -20360,7 +20360,7 @@ Residual note:
 AGENT_CONTINUITY_ANCHOR: 2026-04-24-picnic-plaid-family-matching-set
 
 What changed:
-- Created and published `picnic-plaid-family-matching-set` from vendor URL `https://detail.1688.com/offer/914314067847.html` using the attached product images and attached size-chart screenshot as authoritative evidence.
+- Created and published `picnic-plaid-family-matching-set` from vendor URL `[source-url-redacted] using the attached product images and attached size-chart screenshot as authoritative evidence.
 - Listing model:
   - Option 1: `Type` -> `Dress`, `Shirt`
   - Option 2: role-bearing `Size`
@@ -21195,7 +21195,7 @@ Residual note:
 AGENT_CONTINUITY_ANCHOR: 2026-04-25-red-gingham-mommy-set-live-listing
 
 Why:
-- User supplied a canonical 1688 listing request for `https://detail.1688.com/offer/1041874678820.html`, an attached size chart, and a product image.
+- User supplied a canonical 1688 listing request for `[source-url-redacted], an attached size chart, and a product image.
 
 What changed:
 - Read the canonical listing prompts before listing work:
@@ -21270,7 +21270,7 @@ Next best action:
 AGENT_CONTINUITY_ANCHOR: 2026-04-25-seaside-blue-family-matching-draft
 
 What changed:
-- Executed the canonical `ops/prompts/` Shopify listing workflow for `https://detail.1688.com/offer/806924360307.html`.
+- Executed the canonical `ops/prompts/` Shopify listing workflow for `[source-url-redacted]
 - Created Shopify draft product `Seaside Blue Family Matching Set — Dress & Shirt`.
 - Admin URL: `https://admin.shopify.com/store/dresslikemommy/products/7537367056481`.
 - Product GID: `gid://shopify/Product/7537367056481`.
@@ -21301,7 +21301,7 @@ Residual risks:
 AGENT_CONTINUITY_ANCHOR: 2026-04-25-seaside-blue-plaid-draft-listing
 
 Why:
-- User supplied a canonical 1688 listing request for `https://detail.1688.com/offer/816988376831.html`, attached product images, and attached size-chart screenshots.
+- User supplied a canonical 1688 listing request for `[source-url-redacted], attached product images, and attached size-chart screenshots.
 
 What changed:
 - Read the canonical listing prompts before listing work:
@@ -21344,7 +21344,7 @@ Residual risks:
 AGENT_CONTINUITY_ANCHOR: 2026-04-25-red-plaid-family-matching-tops-draft-listing
 
 Why:
-- User supplied a canonical 1688 listing request for `https://detail.1688.com/offer/885251894864.html`, attached a size-chart image, and attached two product photos.
+- User supplied a canonical 1688 listing request for `[source-url-redacted], attached a size-chart image, and attached two product photos.
 
 What changed:
 - Read the canonical listing prompts before listing work:
@@ -21393,7 +21393,7 @@ Residual risks:
 AGENT_CONTINUITY_ANCHOR: 2026-04-25-playful-graphic-family-matching-tops-draft-listing
 
 Why:
-- User supplied a canonical 1688 listing request for `https://detail.1688.com/offer/900909211573.html`, attached a size-chart image, and attached two product photos.
+- User supplied a canonical 1688 listing request for `[source-url-redacted], attached a size-chart image, and attached two product photos.
 
 What changed:
 - Read the canonical listing prompts before listing work:
@@ -21443,7 +21443,7 @@ Residual risks:
 AGENT_CONTINUITY_ANCHOR: 2026-04-25-denim-blue-family-matching-shirts-draft-listing
 
 Why:
-- User supplied a canonical 1688 listing request for `https://detail.1688.com/offer/824522939285.html`, attached a size-chart image, and attached two product photos.
+- User supplied a canonical 1688 listing request for `[source-url-redacted], attached a size-chart image, and attached two product photos.
 
 What changed:
 - Read the canonical listing prompts before listing work:
@@ -21491,7 +21491,7 @@ Residual risks:
 AGENT_CONTINUITY_ANCHOR: 2026-04-25-ivory-tiered-ruffle-draft-listing
 
 Why:
-- User supplied a canonical 1688 listing request for `https://detail.1688.com/offer/1042118425576.html`, attached a size-chart image, and attached two product photos.
+- User supplied a canonical 1688 listing request for `[source-url-redacted], attached a size-chart image, and attached two product photos.
 
 What changed:
 - Read the canonical listing prompts before listing work:
@@ -21538,7 +21538,7 @@ Residual risks:
 AGENT_CONTINUITY_ANCHOR: 2026-04-25-summer-plaid-family-matching-set-draft-listing
 
 Why:
-- User supplied a canonical 1688 listing request for `https://detail.1688.com/offer/1031073458269.html`, attached a size-chart image, and attached two product photos.
+- User supplied a canonical 1688 listing request for `[source-url-redacted], attached a size-chart image, and attached two product photos.
 
 What changed:
 - Read the canonical listing prompts before listing work:
@@ -21592,7 +21592,7 @@ Residual risks:
 AGENT_CONTINUITY_ANCHOR: 2026-04-25-geometric-blue-family-matching-set-draft-listing
 
 Why:
-- User supplied a canonical 1688 listing request for `https://detail.1688.com/offer/1040150618595.html`, attached a size-chart screenshot, and attached two product photos.
+- User supplied a canonical 1688 listing request for `[source-url-redacted], attached a size-chart screenshot, and attached two product photos.
 
 What changed:
 - Read the canonical listing prompts before listing work:
@@ -21650,7 +21650,7 @@ Residual risks:
 AGENT_CONTINUITY_ANCHOR: 2026-04-25-blue-stripe-family-matching-shirts-draft-listing
 
 Why:
-- User supplied a canonical 1688 listing request for `https://detail.1688.com/offer/824675471063.html`, attached a size-chart screenshot, and attached two product photos.
+- User supplied a canonical 1688 listing request for `[source-url-redacted], attached a size-chart screenshot, and attached two product photos.
 
 What changed:
 - Read the canonical listing prompts before listing work:
@@ -21708,7 +21708,7 @@ Residual risks:
 AGENT_CONTINUITY_ANCHOR: 2026-04-25-red-stripe-family-matching-tops-draft-listing
 
 Why:
-- User supplied a canonical 1688 listing request for `https://detail.1688.com/offer/1041045173122.html`, attached two product photos, and supplied `uploads/ivory-tiered-ruffle-mommy-and-me-dresses/source-size-chart.png` as the size-chart image.
+- User supplied a canonical 1688 listing request for `[source-url-redacted], attached two product photos, and supplied `uploads/ivory-tiered-ruffle-mommy-and-me-dresses/source-size-chart.png` as the size-chart image.
 
 What changed:
 - Read the canonical listing prompts before listing work:
@@ -22201,7 +22201,7 @@ Execution notes:
 - Admin URL: `https://admin.shopify.com/store/dresslikemommy/products/7537978572897`
 
 Verification:
-- `curl -L -I --max-time 15 https://detail.1688.com/offer/906619827474.html`
+- `curl -L -I --max-time 15 [source-url-redacted]
 - `bash -n ops/scripts/create-cbst-coastal-blue-stripe-family-matching-set.sh`
 - `git diff --check -- ops/scripts/create-cbst-coastal-blue-stripe-family-matching-set.sh ...`
 - `ops/scripts/create-cbst-coastal-blue-stripe-family-matching-set.sh`
@@ -27109,7 +27109,7 @@ Actions:
 - Updated Shopify product `gid://shopify/Product/7536990355553`:
   - status changed to `DRAFT`
   - sales-channel publications removed
-  - vendor URL tag corrected to `https://detail.1688.com/offer/1046962900946.html`
+  - vendor URL tag corrected to `[source-url-redacted]
   - baby romper variants added
   - unsupported old Mother 3XL and Mother 4XL variants removed because the attached adult chart stops at Mother 2XL
 
@@ -27821,7 +27821,7 @@ Residual / next best action:
 AGENT_CONTINUITY_ANCHOR: 2026-05-01-shopify-vendor-url-leak-cleanup-standard-shopping-hold
 
 Why:
-- Owner reported a serious paid-launch error: `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` had exposed or risked exposing a `1688.com` URL, so the owner paused the campaign.
+- Owner reported a serious paid-launch error: `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` had exposed or risked exposing a `[source-host-redacted]` URL, so the owner paused the campaign.
 - Supplier/source URLs must never appear in Dress Like Mommy paid surfaces or Shopify customer/feed-visible product data. Only `dresslikemommy.com` / Dress Like Mommy should appear.
 
 Deadline status:
@@ -27856,7 +27856,7 @@ Verification:
 
 Result:
 - Decision: `STANDARD_SHOPPING_OWNER_PAUSED_PENDING_VENDOR_URL_LEAK_READBACK`.
-- Live Shopify products are clean of `1688.com` / Alibaba / AliExpress URL leaks in tags, title, body, SEO, and scanned product metafields.
+- Live Shopify products are clean of `[source-host-redacted]` / Alibaba / AliExpress URL leaks in tags, title, body, SEO, and scanned product metafields.
 - Existing local paid cohort/feed artifacts are clean of supplier URL rows.
 - No Google Ads campaign was re-enabled; PMax, Remarketing, and Brand Search remain blocked/paused.
 
@@ -27944,7 +27944,7 @@ Actions:
 - Opened Merchant Center All products in the existing logged-in Chrome CDP session on port `9222`.
 - Re-ran live Shopify vendor URL leak scan.
 - Re-ran Merchant Center clean paid-label readback.
-- Ran live Merchant Center supplier-domain searches for `1688.com`, `detail.1688.com`, `alibaba.com`, and `aliexpress.com`.
+- Ran live Merchant Center supplier-domain searches for `[source-host-redacted]`, `[source-host-redacted]`, `alibaba.com`, and `aliexpress.com`.
 - Sampled `12` Merchant Center paid-cohort offer IDs from products that previously had supplier URL tags.
 - Opened a fresh Google Ads campaign table page for `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` and captured read-only text evidence.
 - Created packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reactivation-readback/`.
@@ -27953,8 +27953,8 @@ Results:
 - Shopify live scan: `803` products scanned, `0` vendor URL tags/title/body/SEO/scanned-metafield leaks.
 - Merchant Center clean paid-label readback: `PASS_CAMPAIGN_FILTER_LABELS_VISIBLE` and `PASS_ALL_EXPECTED_LABELS_VISIBLE`.
 - Merchant Center supplier-domain readback: `BLOCKED_SUPPLIER_URL_STILL_VISIBLE`.
-  - `1688.com` search returned `50` rows.
-  - `detail.1688.com` search returned `50` rows.
+  - `[source-host-redacted]` search returned `50` rows.
+  - `[source-host-redacted]` search returned `50` rows.
   - `alibaba.com` and `aliexpress.com` returned `0` rows.
   - The exact paid-cohort sample offers had `0` supplier-domain hits, but broader Merchant Center still has supplier-source search matches.
   - Returned supplier-match rows show non-paid/non-US feed labels and old labels such as `custom_label_4=0-25`, suggesting stale Merchant Center product data remains after Shopify cleanup.
@@ -27977,16 +27977,16 @@ Why:
 Actions:
 - Reused the live Merchant Center All products tab in the logged-in Chrome CDP session on port `9222`.
 - Re-ran read-only Merchant Center browser RPC supplier-domain searches:
-  - `1688.com`
-  - `detail.1688.com`
+  - `[source-host-redacted]`
+  - `[source-host-redacted]`
   - `alibaba.com`
   - `aliexpress.com`
 - Re-ran read-only Google Ads campaign table text capture for `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY`.
 
 Results:
 - Merchant Center supplier-domain gate: `BLOCKED_SUPPLIER_DOMAIN_SEARCH_ROWS_STILL_VISIBLE`.
-  - `1688.com`: `50` rows.
-  - `detail.1688.com`: `50` rows.
+  - `[source-host-redacted]`: `50` rows.
+  - `[source-host-redacted]`: `50` rows.
   - `alibaba.com`: `0` rows.
   - `aliexpress.com`: `0` rows.
 - Sample returned Merchant rows still show old non-paid/international-style labels such as `feed_label=EGP_544866401`, `language_code=ar`, `custom_label_4=0-25`, and `custom_label_0` blank.
@@ -28473,8 +28473,8 @@ Actions:
 - Ran fresh Shopify catalog publication audit: `803` total products, `334` active, `457` archived, `0` active catalog-only products not on Online Store, no archived products needing Google/market unpublish actions.
 - Ran final Shopify vendor/source URL leak scan: `803` products scanned, `0` bad vendor URL tags, `0` title/body/SEO/metafield vendor URL leaks.
 - Ran final Merchant Center supplier-domain gate:
-  - `1688.com`: `0` rows
-  - `detail.1688.com`: `0` rows
+  - `[source-host-redacted]`: `0` rows
+  - `[source-host-redacted]`: `0` rows
   - `alibaba.com`: `0` rows
   - `aliexpress.com`: `0` rows
 - Ran final Google Ads readback for Standard Shopping: campaign name visible, `Paused` visible, no supplier-domain text visible, and no enabled/eligible status text visible in the captured campaign-table body.
@@ -28518,8 +28518,8 @@ Why:
 
 Actions:
 - Reran the Merchant Center supplier-domain gate before enable:
-  - `1688.com`: `0` rows
-  - `detail.1688.com`: `0` rows
+  - `[source-host-redacted]`: `0` rows
+  - `[source-host-redacted]`: `0` rows
   - `alibaba.com`: `0` rows
   - `aliexpress.com`: `0` rows
 - Reran Google Ads pre-enable readback: campaign name visible, `Paused` visible, `$20.00/day` visible, and no supplier-domain text.
@@ -28638,7 +28638,7 @@ Current combined state:
 - Standard Shopping `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` / `23802638621` is enabled again at `$20.00/day` after exact owner approval and clean just-in-time readbacks.
 - Standard Shopping re-enable approval phrase was: `APPROVE RE-ENABLE DLM_US_STANDARD_SHOPPING_TEST_PAID_READY NOW WITH NO BUDGET, PRODUCT SCOPE, OR CONVERSION GOAL CHANGES`.
 - Standard Shopping readbacks:
-  - Merchant Center supplier-domain gates before and after enable: `0` rows for `1688.com`, `detail.1688.com`, `alibaba.com`, and `aliexpress.com`.
+  - Merchant Center supplier-domain gates before and after enable: `0` rows for `[source-host-redacted]`, `[source-host-redacted]`, `alibaba.com`, and `aliexpress.com`.
   - Google Ads final row: status icon `Enabled`, `$20.00/day`, campaign ID `23802638621`, no supplier-domain text.
   - Shopify active paid cohort: `780` paid rows across `81` active Online Store products and `780` available variants; `0` missing, inactive, unpublished/no-online-url, or unavailable rows.
 - Standard Shopping evidence packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-01-standard-shopping-reenable-approved/`.
@@ -28684,7 +28684,7 @@ Actions:
 - Found only one strict clean paid-ready T-shirt product suitable for a micro-test: Shopify product `7229259874401`, `42` variants, price `$17.99-$21.99`, unit cost `$9.00-$11.00`, all rows `paid_eligible` + `us_test_ready`, Online Store + Google/YouTube published, in stock, and cost present.
 - Rejected six shirt/T-shirt-like products from the PMax T-shirts scope because they were mixed with dresses, shorts, overalls, button-up shirts, or other non-T-shirt evidence.
 - Checked the old draft URL `https://www.dresslikemommy.com/collections/matching-t-shirts`; it returned HTTP `404`, so it is superseded.
-- Checked the repaired product URL `https://www.dresslikemommy.com/products/family-matching-t-shirt-set-with-colorful-heart-brushstroke-design`; it returned HTTP `200` and the sampled public HTML had `0` counts for `1688.com`, `detail.1688.com`, `alibaba.com`, and `aliexpress.com`.
+- Checked the repaired product URL `https://www.dresslikemommy.com/products/family-matching-t-shirt-set-with-colorful-heart-brushstroke-design`; it returned HTTP `200` and the sampled public HTML had `0` counts for `[source-host-redacted]`, `[source-host-redacted]`, `alibaba.com`, and `aliexpress.com`.
 - Generated claim-safe final copy, search-theme/audience/URL-control plan, activation checklist, clean cohort CSV, rejected mixed-scope CSV, product summary CSV, and machine-readable summary JSON.
 - Added a supersession note to the older PMax/Remarketing repair packet so future agents do not reuse the broken URL or old mixed scope.
 - Updated `AGENTS.md`, `ops/GOOGLE_ADS_CONTINUITY.md`, `ops/prompts/google-ads-continuation-prompt.md`, and `ops/AGENT_COORDINATION.md`.
@@ -30734,7 +30734,7 @@ Readbacks:
 - Variant count `21`; live SKUs matched derived SKUs.
 - Taxonomy resolved to `Apparel & Accessories > Clothing > Outfit Sets`.
 - Cost parity passed for all 21 variants.
-- Source URL guard passed: no `1688`, `Alibaba`, or `detail.1688.com` text in Shopify product fields, body, tags, SEO, verify JSON, or CSV.
+- Source URL guard passed: no `1688`, `Alibaba`, or `[source-host-redacted]` text in Shopify product fields, body, tags, SEO, verify JSON, or CSV.
 
 Commands / verification:
 - Read canonical prompts in order: `ops/prompts/START-HERE.md`, `ops/prompts/shopify-listing-master-prompt.md`, `ops/prompts/shopify-listing-from-1688.md`.
@@ -36198,11 +36198,11 @@ AGENT_CONTINUITY_ANCHOR: 2026-05-14-paid-landing-vendor-source-sanitizer-local
 
 Why:
 - Owner asked to continue the paid-growth command layer from the latest anchor and execute safe/read-only action queue rows. The P2 paid-landing/CRO review found a concrete public-source blocker on the active GB/CA/AU exact Search landing PDP.
-- The public landing did not show stale Christmas copy and did not show visible zero-review social proof, but it exposed a supplier URL in a related product analytics attribute: `data-analytics-vendor="https://detail.1688.com/offer/602107180663.html"`.
+- The public landing did not show stale Christmas copy and did not show visible zero-review social proof, but it exposed a supplier URL in a related product analytics attribute: `data-analytics-vendor="[source-url-redacted]"`.
 - Owner clarified that supplier/source URLs can never be customer-visible, that only active public products should be advertised, and that category/event optimization must be expert-level.
 
 What changed:
-- Patched local theme vendor/brand sanitizers so blank, URL-like, `1688.com`, `alibaba.com`, and `aliexpress.com` values normalize to `dresslikemommy.com` before storefront analytics/public brand surfaces render.
+- Patched local theme vendor/brand sanitizers so blank, URL-like, `[source-host-redacted]`, `alibaba.com`, and `aliexpress.com` values normalize to `dresslikemommy.com` before storefront analytics/public brand surfaces render.
 - Touched local theme files: `snippets/card-product.liquid`, `snippets/home-spotlight-card.liquid`, `sections/main-product.liquid`, `snippets/cart-drawer.liquid`, `sections/main-cart-items.liquid`, `sections/cart-notification-product.liquid`, `sections/predictive-search.liquid`, `assets/analytics.js`, and `assets/homepage-collection-card-images.js`.
 - Added evidence report `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/paid-landing-source-url-sanitizer/LOCAL_PAID_LANDING_VENDOR_SOURCE_URL_FIX_REPORT.md`.
 - Updated `ops/marketing/current_marketing_state.md`, `action_queue.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `prompt_log.md`, and `memory_digest.md`.
@@ -36212,7 +36212,7 @@ What changed:
 
 Readback:
 - Public/live GB/CA/AU source returned `200`, correct `GBP`/`CAD`/`AUD` presentment and country shipping signals, no Christmas/local-inventory/warehouse/retail-store copy, but the live supplier URL leak is real until theme sync/readback clears it.
-- Local `127.0.0.1:9292` GB/CA/AU source readback after the patch showed `0` hits for `detail.1688.com`, `1688.com`, `alibaba.com`, `aliexpress.com`, `data-analytics-vendor="https://`, and `data-item-brand="https://`; related cards emitted `data-analytics-vendor="dresslikemommy.com"`.
+- Local `127.0.0.1:9292` GB/CA/AU source readback after the patch showed `0` hits for `[source-host-redacted]`, `[source-host-redacted]`, `alibaba.com`, `aliexpress.com`, `data-analytics-vendor="https://`, and `data-item-brand="https://`; related cards emitted `data-analytics-vendor="dresslikemommy.com"`.
 - `node --check assets/analytics.js` passed.
 - `node --check assets/homepage-collection-card-images.js` passed.
 - `git diff --check` passed.
@@ -36507,7 +36507,7 @@ Readback:
 - Search-term pages had stale `Keyword: "human hair wigs"` filters at first; clicked only the visible filter-chip delete control and captured after-state with the stale filter absent on GB/CA/AU. No search terms are available after clearing.
 - Read-only RPC confirmed 3 exact keywords and 1 RSA enabled per market with country-qualified final URLs.
 - Keyword UI detail pages showed Quality Score / Exp. CTR / Ad relevance / Landing page experience columns and `Eligible (Limited)` / below-first-page-bid estimates around `$0.65-$0.74` while max CPC remains `$0.15`.
-- Public source readback of GB/CA/AU final URLs returned HTTP `200` and expected currency signals, but all three still exposed `detail.1688.com` in `data-analytics-vendor`.
+- Public source readback of GB/CA/AU final URLs returned HTTP `200` and expected currency signals, but all three still exposed `[source-host-redacted]` in `data-analytics-vendor`.
 - `python3.13 ops/scripts/render_marketing_cockpit.py`, JSON/CSV guards, and `git diff --check` were run after command-layer updates.
 
 Decision:
@@ -36826,7 +36826,7 @@ What changed:
 - Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
 
 Readback:
-- Active GB/CA/AU Search PDP final URLs now pass public source readback across two header/cache variants: `0` hits for `detail.1688.com`, `1688.com`, `alibaba.com`, `aliexpress.com`, `data-analytics-vendor="https://`, `data-item-brand="https://`, stale Christmas/local inventory/warehouse/retail-store text, with `Ships to` and `priceCurrency` present.
+- Active GB/CA/AU Search PDP final URLs now pass public source readback across two header/cache variants: `0` hits for `[source-host-redacted]`, `[source-host-redacted]`, `alibaba.com`, `aliexpress.com`, `data-analytics-vendor="https://`, `data-item-brand="https://`, stale Christmas/local inventory/warehouse/retail-store text, with `Ships to` and `priceCurrency` present.
 - Top collection-route preflight found `/collections/mommy-and-me`, `/collections/family-matching`, and `/collections/pajamas` clean for GB/CA/AU.
 - `/collections/matching-dresses` and `/collections/swimsuits` still expose raw Shopify product JSON supplier vendor URLs, `/collections/vacation` returns `404`, and `/collections/daddy-and-me` exposes Christmas pattern metadata on swim-trunks cards.
 
@@ -37503,3 +37503,713 @@ Next best action:
 - Run authenticated Google Ads / Keyword Planner validation for the clean canonical GB/CA/AU 36-row packet at max `$0.15`.
 - Run authenticated read-only Standard Shopping item-level export for campaign `23802638621`, then run the auth-export join script.
 - For future US Search, build a small validation packet from the rerouted rows only after active-product proof and `$0.15` CPC/search feasibility; keep original dirty raw collection routes excluded unless owner-approved product/vendor cleanup passes public readback.
+
+2026-05-14 - P0 blocker board cleanup
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-p0-blocker-board-cleanup
+
+Why:
+- Owner checked `operator_cockpit.html` and flagged the P0 blocker cards: false account-access blockers, restored Pinterest access, and GB/CA/AU CPC validation.
+- Two of those were solved/readback-passed and should not remain active P0 blockers; leaving them there creates false emergency noise.
+
+What changed:
+- Updated `ops/marketing/blocker_board.md` so the only active P0 blocker row is authenticated GB/CA/AU `$0.15` CPC validation.
+- Reclassified Pinterest access to a P1/YELLOW paused-draft execution gate because access is restored and no saved drafts exist.
+- Reclassified the false account-access blocker row to a P2 resolved guardrail and kept the protocol label/credential persistence warning.
+- Updated `ops/marketing/action_queue.md`, `operator_cockpit.md`, `daily_scorecard.md`, `current_marketing_state.md`, `decision_log.md`, `review_log.md`, and `memory_digest.md`.
+
+Readback / decision:
+- Do not treat `PROTOCOL_INSTALLED_NO_CREDENTIAL_PERSISTENCE` as an active P0 blocker; it is a resolved guardrail.
+- Do not treat `ACCESS_RESTORED_DRAFT_CHECK_DONE_NO_WRITE` as an active P0 blocker; it is a restored Pinterest access state with a P1/YELLOW paused-draft execution gate.
+- Keep authenticated Google Ads/Keyword Planner validation of the canonical 36-row GB/CA/AU packet as the only active P0 action gate.
+
+Guardrails:
+- No Google Ads, Pinterest, Merchant, Shopify Admin, GA4/GTM, billing, feed, product, conversion, budget, bid, status, keyword, or credential write occurred.
+- No credential was entered or persisted.
+- No live keyword/bid/status/negative action is authorized until authenticated `$0.15` CPC validation produces pass rows and a fresh `GREEN` action row.
+
+Next best action:
+- Run authenticated Google Ads / Keyword Planner validation for the clean canonical GB/CA/AU 36-row packet at max `$0.15`, export the rows, and run the patched parser.
+
+2026-05-14 - Authenticated GB/CA/AU CPC validation attempt
+AGENT_CONTINUITY_ANCHOR: 2026-05-14-auth-gb-ca-au-cpc-attempt-no-pass
+
+Why:
+- Owner requested authenticated Google Ads / Keyword Planner validation for the canonical 36-row GB/CA/AU packet at max `$0.15`, exported rows, parser run, and promotion only for real `PASS_015_CPC_GATE` rows.
+
+What changed:
+- Used the account-access ladder and found an existing authenticated Google Ads Chrome session for `399-097-6848 dresslikemommy.com`.
+- Created/saved authenticated Keyword Planner evidence under `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-authenticated-gb-ca-au-cpc-validation/`.
+- Patched `validate_keyword_planner_forecast_export.py` to parse real Google UTF-16/TSV exports and require canonical matrix matching before `PASS_015_CPC_GATE`.
+- Updated `ops/marketing/action_queue.md`, `blocker_board.md`, `current_marketing_state.md`, `daily_scorecard.md`, `decision_log.md`, `review_log.md`, `memory_digest.md`, `operator_cockpit.md`, `operator_cockpit.html`, and `ops/PROBLEM_TRACKER.md`.
+
+Readback / decision:
+- Keyword Planner accepted the `72` exact/phrase inputs but the export context stayed `United States`, `All languages`, `Broad`, `Maximize conversions`.
+- Forecast export showed aggregate `Avg. CPC $4.18`, not max `$0.15` GB/CA/AU keyword-level proof.
+- Parser results: forecast export `8` rows / `0` pass; saved-keyword stats export `37` rows / `0` pass. All rows were `MISSING_REQUIRED_FORECAST_DATA`.
+- No fresh `GREEN` action row was created.
+
+Guardrails:
+- No upload/apply/add keyword/bid/status/budget/negative action occurred.
+- No campaign/ad group/ad/feed/product/conversion/billing/credential/Shopify/Merchant/Pinterest/GA4/GTM write occurred.
+- The created Keyword Planner plan is evidence of authenticated validation attempt only, not live campaign authority.
+
+Next best action:
+- Retry through Google Ads API KeywordPlan forecast or a UI path that explicitly reads back GB/CA/AU, exact/phrase, and max CPC `$0.15` keyword-level rows before any live action row.
+
+2026-05-15 - Google Ads API config ready, manager link permission gate
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-google-ads-api-config-ready-manager-link-gate
+
+Why:
+- Owner needed help completing the local Google Ads API terminal prompts from the downloaded OAuth Desktop JSON and newly created manager account API Center token.
+- The active P0 required an authenticated read-only API/Keyword Planner validation path for the canonical GB/CA/AU `$0.15` exact/phrase packet.
+
+What changed:
+- Created the secure local Google Ads API config outside the repo at `/Users/fsuels/.config/dresslikemommy/google-ads-api/google-ads.yaml`; no secrets were written to repo docs or chat.
+- Verified `python3.13 ops/scripts/check_google_ads_api_config.py` returns `ready: true`.
+- Patched `ops/scripts/setup_google_ads_api_config.py` to quote YAML string values so numeric-looking customer IDs stay strings.
+- Patched `run_google_ads_api_cpc_forecast.py` for Google Ads API v24 forecast fields.
+- Added `google_ads_api_config_ready_permission_denied_summary.json` and updated blocker/problem docs.
+
+Readback / decision:
+- The read-only API retry reached Google Ads API, proving the developer token/OAuth config is operational.
+- Google Ads returned `USER_PERMISSION_DENIED` for target customer `399-097-6848` through manager `700-107-9966`, request id `bm-c1Y9M-78ZVmM-dSo-6A`.
+- The remaining blocker is account linkage/accepted access, not local config.
+- No `PASS_015_CPC_GATE` rows exist and no `GREEN` action row is valid.
+
+Guardrails:
+- No campaign, budget, bid, keyword, negative, status, billing, feed, product, conversion, Shopify, Merchant, Pinterest, or live-spend write occurred.
+- OAuth/developer-token secrets remain outside the repo.
+
+Next best action:
+- In Google Ads Manager account `700-107-9966`, link client account `399-097-6848` and accept the link from the client account, or regenerate OAuth from a user with accepted access to `399-097-6848`; then rerun the read-only forecast harness and parser.
+
+2026-05-15 - Google Ads API corrected token, Explorer access gate
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-google-ads-api-corrected-token-explorer-access-gate
+
+Why:
+- Owner corrected the local Google Ads developer token and asked Codex to check it.
+- The active task was to link manager `700-107-9966` to client `399-097-6848`, accept the link, then rerun the GB/CA/AU CPC forecast harness/parser.
+
+What changed:
+- Verified the secure local config at `/Users/fsuels/.config/dresslikemommy/google-ads-api/google-ads.yaml` without printing secrets.
+- Added `google_ads_api_explorer_access_block_summary.json`.
+- Updated `GOOGLE_ADS_API_CONFIG_SETUP.md`, `ops/marketing/blocker_board.md`, `ops/marketing/action_queue.md`, `ops/marketing/current_marketing_state.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- `python3.13 ops/scripts/check_google_ads_api_config.py` returned `ready: true`.
+- Live API probe succeeded: both `700-107-9966` and `399-097-6848` are visible to the OAuth user.
+- API manager-client link mutation was blocked by `DEVELOPER_TOKEN_NOT_APPROVED` / Explorer access only, request id `T1TBLLimCH2ARumQ9cI_Zw`.
+- Direct client forecast without manager login header was also blocked by `DEVELOPER_TOKEN_NOT_APPROVED`, request id `bZU3-gKkdb1_Uos0ZTZ5rw`.
+- UI readback for manager `700-107-9966` shows it is still at `Confirm your business information` with `Account display name` required; final setup is a persistent account action and needs exact owner action-time approval before clicking.
+- No `PASS_015_CPC_GATE` rows exist and no `GREEN` live action row is valid.
+
+Guardrails:
+- No campaign, budget, bid, status, keyword, negative, ad, feed, product, conversion, billing, Shopify, Merchant, Pinterest, or spend write occurred.
+- No secrets were printed or written to the repo.
+
+Next best action:
+- Either apply for Basic/Standard Google Ads API access for the manager developer token, or approve completing the manager-account UI setup so the UI link path can be retried. After link/access is complete, rerun the forecast harness and parser before any live keyword/bid/status/negative action.
+
+2026-05-15 - Google Ads manager link passed, Explorer access blocks forecast
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-google-ads-api-explorer-access-blocks-forecast
+
+Why:
+- Owner showed the Google Ads client account Managers tab with `Dress Like Mommy Manager 700-107-9966` linked to `399-097-6848` on May 15, 2026, then asked to rerun the read-only forecast harness.
+
+What changed:
+- Reran `python3.13 ops/scripts/check_google_ads_api_config.py`; secure local config remains `ready: true`.
+- Reran the read-only Google Ads API forecast harness against customer `3990976848`.
+- Added `google_ads_api_manager_link_passed_explorer_blocked_summary.json`.
+- Updated the P0 blocker from manager-link/setup-required to Explorer-access-blocked.
+
+Readback / decision:
+- The previous manager-link permission gate is cleared by UI readback.
+- Google Ads API now returns `DEVELOPER_TOKEN_NOT_APPROVED` with message `This method is not allowed for use with explorer access. Please apply for basic or standard access.`
+- Request id: `5OLwm8-FBxHRa_WBCNwmVw`.
+- No `PASS_015_CPC_GATE` rows exist and no `GREEN` action row is valid.
+
+Guardrails:
+- No campaign, budget, bid, keyword, negative, status, billing, feed, product, conversion, Shopify, Merchant, Pinterest, or live-spend write occurred.
+
+Next best action:
+- Apply for Basic Access in Google Ads API Center for manager `700-107-9966`, using permissible use `Researching keywords and recommendations`, then rerun the read-only forecast harness and parser.
+
+2026-05-15 - Google Ads API Basic Access application submitted
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-google-ads-api-basic-access-submitted
+
+Why:
+- Owner asked Codex to apply for Basic Access in Google Ads API Center for manager `700-107-9966` with permissible use `Researching keywords and recommendations`.
+
+What changed:
+- Opened API Center for `Dress Like Mommy Manager 700-107-9966` and expanded Access level.
+- Prepared `dress_like_mommy_google_ads_api_basic_access_design.rtf` for the Google Ads API Token Application.
+- Filled and submitted the Basic Access application using `info@dresslikemommy.com`, MCC `700-107-9966`, company type `Advertiser`, internal-only tool users, no external/public/client tool, no app conversion tracking or remarketing API, and selected `Keyword Planning Services`.
+- Added `google_ads_api_basic_access_application_submitted_summary.json` and updated the command layer.
+
+Readback / decision:
+- Google confirmation page showed `Your email has been sent` and `The Google Ads API Compliance team has received your ticket.`
+- Google review timing shown: applications are typically reviewed within three business days, with some complex reviews taking longer.
+- Do not resubmit unless Google requests changes.
+- No `PASS_015_CPC_GATE` rows exist and no `GREEN` action row is valid.
+
+Guardrails:
+- No campaign, budget, bid, keyword, negative, status, billing, feed, product, conversion, Shopify, Merchant, Pinterest, or live-spend write occurred.
+- No secrets were written to the repo.
+
+Next best action:
+- Wait for Google Basic Access approval, then rerun `/tmp/dlm-google-ads-api-venv/bin/python dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/run_google_ads_api_cpc_forecast.py --customer-id 3990976848` and the decision-kit parser.
+
+2026-05-15 - Google Ads API Basic Access email watch pinned
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-google-ads-api-basic-access-email-watch
+
+Why:
+- Owner asked where Google will reply for the Basic Access application and asked Codex to keep track so the approval is not forgotten.
+
+What changed:
+- Updated the P0 blocker, problem tracker, action queue, and API setup note to watch `info@dresslikemommy.com` because it was the submitted API contact email.
+- Also pinned `testhqfinds@gmail.com` as a secondary watch surface because it is the Google Ads login/account context visible in manager/client readbacks.
+
+Decision:
+- Use approved mailbox connector access when available; do not ask the owner to paste email contents, passwords, OAuth secrets, or developer tokens into chat.
+- Search for Google API Compliance, Google Ads API Basic Access, developer token, or Basic Access approval messages.
+- After approval, rerun the read-only forecast harness and parser; until then, no `PASS_015_CPC_GATE` rows exist and no `GREEN` action row is valid.
+
+2026-05-15 - Basic Access mailbox check, Gmail connector stalled
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-google-ads-api-mailbox-check-gmail-stalled
+
+Why:
+- Owner clarified `info@dresslikemommy.com` is a Microsoft 365 mailbox and reported the `testhqfinds@gmail.com` Gmail connector flow is not completing.
+
+What changed:
+- Confirmed Outlook connector profile is `info@dresslikemommy.com`.
+- Ran read-only Outlook searches for `Google Ads API`, `API Compliance`, `Basic Access`, `developer token`, `new_token_application`, `Google Ads`, and `Google` on/after 2026-05-15; no Basic Access approval email was found.
+- Updated blocker board, problem tracker, and action queue to mark `testhqfinds@gmail.com` as not connected because the Gmail OAuth connector flow stalled.
+
+Decision:
+- Do not rely on Gmail connector access until a future session proves it completed or a logged-in Gmail UI readback is available.
+- Continue watching `info@dresslikemommy.com` through Outlook; retry Gmail later only if the connector flow can complete.
+- Do not rerun the forecast harness until Basic Access approval is found or API Center status changes from Explorer Access.
+
+2026-05-15 - Basic Access watch plus US active-product proof
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-basic-access-watch-us-active-product-proof
+
+Why:
+- The automation resumed from the latest paid-growth command layer with no automation memory file present and an already-dirty worktree.
+- The highest remaining P0 row was a read-only Basic Access email watch for the Google Ads API CPC validation gate.
+- When the email watch found no approval, the next safe sales-moving lane was public active-product proof for rerouted US keyword rows, so future US Search validation is not blocked by route-cleanliness-only ambiguity.
+
+What changed:
+- Refreshed `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-active-product-proof/US_ACTIVE_PRODUCT_PROOF_PACKET.md`.
+- Refreshed `us_active_product_route_readback.csv`, `us_active_product_sample_rows.csv`, and `us_active_product_proof_summary.json`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Outlook searches of `info@dresslikemommy.com` found no Basic Access approval as of `2026-05-15 04:05 EDT` for `Google Ads API`, `API Compliance`, `Basic Access`, `developer token`, `new_token_application`, or `Google`.
+- Public active-product proof checked `5` clean US collection routes and sampled `51` public product pages.
+- Result: `47` `PUBLIC_ACTIVE_PRODUCT_PASS` rows and `4` `HOLD_FOR_REVIEW_OR_REPAIR` rows.
+- This completes the public active-product proof prerequisite for future US Search candidates, but it is not authenticated `$0.15` CPC/search feasibility and not live keyword authority.
+
+Verification:
+- Repo write test passed.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-active-product-proof/build_us_active_product_proof.py` completed.
+- `python3.13 -m py_compile dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-active-product-proof/build_us_active_product_proof.py` passed.
+- `python3.13 -m json.tool dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-active-product-proof/us_active_product_proof_summary.json` passed.
+- CSV parse checks passed for `us_active_product_route_readback.csv` and `us_active_product_sample_rows.csv`.
+
+Guardrails:
+- No Google Ads upload/apply/import/add keyword/bid/budget/status/negative/campaign write occurred.
+- No Shopify Admin product/vendor/source metadata edit and no live theme push/sync/publish occurred.
+- No Merchant, Pinterest, GA4/GTM, billing, feed, product-scope, product-group, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Next best action:
+- Wait for Google Basic Access approval for manager `700-107-9966`, then rerun the read-only API CPC forecast harness and parser for the canonical GB/CA/AU `36`-row packet.
+- For future US Search, build a small validation packet only from `PUBLIC_ACTIVE_PRODUCT_PASS` rows after authenticated `$0.15` CPC/search feasibility is available.
+- Run authenticated read-only Standard Shopping item-level export for campaign `23802638621`, then run the export join prep before any title/feed/product-group decision.
+
+2026-05-15 - Basic Access watch and current Ads serving signal
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-basic-access-watch-current-ads-serving-signal
+
+Why:
+- The latest paid-growth command layer had no `GREEN` rows, so the highest safe row was the Basic Access approval watch plus read-only Google Ads evidence gathering while all external writes remained current-session unapproved.
+- Current-session instruction explicitly disallowed external writes unless approved during this session.
+
+What changed:
+- Rechecked `info@dresslikemommy.com` through Outlook for Google Ads API / API Compliance / Basic Access / developer token / new token application / Google Ads / Ads API / Google; no Basic Access approval was found as of 04:35 EDT.
+- Used the existing authenticated Google Ads UI for client `399-097-6848` read-only.
+- Cleared a stale `Search term contains png, printable, + 9 more` reporting filter on the Search terms page.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Enabled-campaign aggregate current view showed `6` impressions, `1` click, `$0.04` cost, and `0.00` conversions/value.
+- The visible GB exact Search row still showed `0` impressions, `0` clicks, and `$0.00` cost.
+- After clearing the stale search-term filter, broader Apr 18-May 14 visible clicks/cost were brand Search terms: `dress like mommy` (`23` impressions / `18` clicks / `$2.07`) and `dresslikemommy` (`3` impressions / `2` clicks / `$0.14`).
+- Visible Standard Shopping rows, including Amazon/family matching and baby/mom/dad matching terms, still showed `0` clicks and `$0.00` cost.
+- This is monitor evidence only. It does not create a `GREEN` GB/CA/AU CPC action row, does not justify Shopping title/feed/product-group/negative writes, and does not change the Basic Access gate.
+
+Guardrails:
+- No Google Ads campaign, keyword, negative, bid, budget, status, feed, product, conversion, billing, or spend write occurred.
+- No Shopify Admin, live theme, Merchant, Pinterest, GA4/GTM, product/feed/title, credential, or destructive filesystem write occurred.
+- No Save, Apply, Upload, Enable, Pause, Remove, Delete, Sync, or Submit action was taken in external systems.
+
+Next best action:
+- Watch for Google Basic Access approval at `info@dresslikemommy.com`; after approval, rerun the read-only API forecast harness and parser for the canonical GB/CA/AU `36`-row packet.
+- Run the authenticated read-only Standard Shopping item-level export and join prep before any title/feed/product-group decision.
+
+2026-05-15 - Pinterest 333 build-ready and Shopping multilingual queue
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-333-build-ready-shopping-multilingual-queue
+
+Why:
+- Owner correctly pushed that waiting up to two days for Google Ads API Basic Access is not a growth plan and that Pinterest still had zero ad objects.
+- Owner also asked why the work was only Search keywords and called out Google Shopping for other languages.
+- Current-session guardrail still says no external writes unless explicitly approved in this session, so the safe action was to make the next Pinterest and Shopping moves exact, approval-ready, and executable without inventing authority.
+
+What changed:
+- Created `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-pinterest-333-paused-draft-build-ready/PINTEREST_333_PAUSED_DRAFT_BUILD_READY.md`.
+- Created `pinterest_333_paused_draft_build_spec.json` and `pinterest_333_paused_draft_product_groups.csv`.
+- Created `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-google-shopping-multilingual-expansion-queue/GOOGLE_SHOPPING_MULTILINGUAL_EXPANSION_QUEUE.md`.
+- Created `google_shopping_multilingual_high_intent_queue.csv`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, and `memory_digest.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Pinterest clean prefill scope is now `333` variants: `201` Mommy & Me, `103` Family Matching, and `29` Pajamas.
+- Build-ready Pinterest object names are prepared, including `DLM_PIN_US_CATALOG_333_PAUSED_20260515`.
+- Current-session approval phrase required before creating Pinterest paused draft objects:
+  `I approve creating Pinterest paused draft objects for advertiser 549756244483 using the 333-row refreshed scope, with no launch, no enablement, no spend, no budget/bid activation, no catalog/source/tag/CAPI/feed changes, and stop if Pinterest requires any out-of-scope write.`
+- Shopping expansion queue now prioritizes `US/en` Standard Shopping export/join, `US/es` Merchant source `10627981690` exact export, and CA/GB/AU English Shopping country/feed eligibility readbacks.
+
+Guardrails:
+- No Pinterest campaign, draft, ad group, product group, catalog/source/tag/CAPI/audience, budget, bid, status, launch, spend, Shopify Admin, Merchant, Google Ads, feed, product, conversion, or theme write occurred.
+- No Google Shopping campaign, feed/title/product-group, product-scope, bid, budget, status, conversion, or Merchant source write occurred.
+
+Next best action:
+- If owner gives the exact Pinterest approval phrase above, create only paused/draft Pinterest objects from advertiser `549756244483`, then read back draft/paused status and `$0.00` spend.
+- In parallel, run read-only Shopping exports: Standard Shopping item export for campaign `23802638621`, Merchant `US/es` source `10627981690`, and CA/GB/AU country/feed eligibility.
+
+2026-05-15 - Pinterest paused-draft scope refresh
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-paused-draft-scope-refresh
+
+Why:
+- The unattended automation resumed from the latest paid-growth command layer with no automation memory file present.
+- The highest safe row, Basic Access mailbox watch, found no approval, and Pinterest object creation remained external-write gated in the current session.
+- The next sales-moving local/read-only lane was to refresh the Pinterest paused-draft product/image scope before any future Ads Manager draft creation.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-pinterest-paused-draft-scope-refresh/build_pinterest_paused_draft_scope_refresh.py`.
+- Generated `PINTEREST_PAUSED_DRAFT_SCOPE_REFRESH.md`, `pinterest_paused_draft_scope_refresh_summary.json`, public product/image readback CSVs, `pinterest_paused_draft_refreshed_clean_scope.csv`, and `pinterest_paused_draft_refreshed_public_exclusions.csv`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, `operator_cockpit.md`, and regenerated `operator_cockpit.html`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Outlook searches of `info@dresslikemommy.com` found no Basic Access approval for `Google Ads API`, `API Compliance`, `Basic Access`, `developer token`, `new_token_application`, `Google Ads`, or `Google` on/after 2026-05-15.
+- Pinterest public scope refresh checked `32` unique product pages and `32` image URLs from the prior `342`-variant scope.
+- Images passed `32/32`; product pages passed `30/32`.
+- Held `2` source-leaking Mommy & Me PDPs and their `9` variants for public supplier/source-domain leakage.
+- The next Pinterest paused-draft prefill scope is `333` variants: `family_matching=103`, `mommy_me=201`, `pajamas=29`.
+- The older full `342`-row scope should not be used directly unless the `9` held variants are repaired and public-read back clean.
+
+Verification:
+- Repo write test passed.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-pinterest-paused-draft-scope-refresh/build_pinterest_paused_draft_scope_refresh.py` completed.
+- `python3.13 -m py_compile dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-pinterest-paused-draft-scope-refresh/build_pinterest_paused_draft_scope_refresh.py` passed.
+- `python3.13 -m json.tool dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-pinterest-paused-draft-scope-refresh/pinterest_paused_draft_scope_refresh_summary.json` passed.
+- CSV parse checks passed for `pinterest_paused_draft_public_product_readback.csv`, `pinterest_paused_draft_image_readback.csv`, `pinterest_paused_draft_refreshed_clean_scope.csv`, and `pinterest_paused_draft_refreshed_public_exclusions.csv`.
+- `python3.13 ops/scripts/render_marketing_cockpit.py` regenerated the cockpit.
+
+Guardrails:
+- No Pinterest campaign, draft, ad group, ad, product group, catalog, source, tag, CAPI, audience, budget, bid, status, launch, spend, or account write occurred.
+- No Shopify Admin product/vendor/source metadata edit, live theme push, Google Ads, Merchant, GA4/GTM, feed, product, conversion, billing, credential, or destructive filesystem write occurred.
+- No Computer Use startup probe or permission repair occurred.
+
+Next best action:
+- Watch for Google Basic Access approval at `info@dresslikemommy.com`; after approval, rerun the read-only API forecast harness and parser for the canonical GB/CA/AU `36`-row packet.
+- In an account-capable Pinterest session, create only the paused/draft shell from the restored advertiser tab using `pinterest_paused_draft_refreshed_clean_scope.csv`, then read back before any live launch decision.
+- Keep the `9` held Pinterest variants excluded unless owner-approved product/vendor source cleanup passes public source readback.
+
+2026-05-15 - Pinterest 333 build-ready and Shopping multilingual queue closeout
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-333-build-ready-shopping-multilingual-queue-closeout
+
+Why:
+- The previous scope-refresh anchor was still physically after the new build-ready entry in the canonical worklog, so continuity resolution would otherwise keep pointing future agents to the older state.
+
+What changed:
+- Confirmed the newer state: Pinterest is no longer only scope-refreshed; it is build-ready from the `333` public-clean variants with exact paused/draft object names and current-session approval phrase.
+- Confirmed the newer Shopping state: Google Shopping multilingual expansion is queued for read-only exports across `US/en`, `US/es`, `CA/en`, `GB/en`, and `AU/en`.
+
+Readback / decision:
+- Latest practical continuation anchor is this closeout anchor, not `2026-05-15-pinterest-paused-draft-scope-refresh`.
+- No external write occurred after the scope refresh.
+
+Next best action:
+- If owner gives the exact Pinterest approval phrase, create only paused/draft Pinterest objects from advertiser `549756244483` and read back no serving/no spend.
+- Otherwise, run the Shopping read-only export queue while Google Ads API Basic Access remains pending.
+
+2026-05-15 - Pinterest 333 scope and Basic Access watch refresh
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-333-scope-basic-access-watch-refresh
+
+Why:
+- Owner directed the next Pinterest paused draft to use the refreshed `333`-variant public-clean scope and to keep watching `info@dresslikemommy.com` before rerunning the Google Ads API CPC harness.
+- This was a read-only/local continuity refresh; no external write approval phrase was provided.
+
+What changed:
+- Rechecked Outlook profile and confirmed the connected mailbox is `info@dresslikemommy.com`.
+- Searched for Google Ads API Basic Access approval signals through 05:08 EDT: `Google Ads API`, `API Compliance`, `Basic Access`, `developer token`, `new_token_application`, `Google Ads`, `Ads API`, `Google`, `access`, and `approval`.
+- Found no approval email; the CPC forecast harness remains parked until Basic Access approval or equivalent API Center approval readback exists.
+- Updated the paid-growth command layer, review/decision/memory logs, problem tracker, coordination registry, cockpit source, and automation memory to keep the `333` Pinterest scope authoritative.
+
+Readback / decision:
+- Pinterest paused-draft scope remains `333` clean variants: `201` Mommy & Me, `103` Family Matching, and `29` Pajamas.
+- The older full `342` scope stays retired for direct paused-draft prefill because `9` variants across `2` public PDPs are held for supplier/source-domain leakage.
+- No Google Ads API harness run occurred because Basic Access approval was not found.
+
+Guardrails:
+- No Pinterest campaign, draft, ad group, product group, catalog/source/tag/CAPI/audience, budget, bid, status, launch, spend, Shopify Admin, Merchant, Google Ads, feed, product, conversion, or theme write occurred.
+- No mailbox mutation, credential write, billing change, Computer Use startup probe, or permission repair occurred.
+
+Next best action:
+- If the exact approval phrase in `PINTEREST_333_PAUSED_DRAFT_BUILD_READY.md` is given, create only paused/draft Pinterest objects from advertiser `549756244483` using the refreshed `333` scope and read back no serving/no spend.
+- Keep watching `info@dresslikemommy.com`; after Google Ads API Basic Access approval, rerun the read-only CPC forecast harness/parser for the canonical GB/CA/AU `36`-row packet.
+
+2026-05-15 - US Shopping item export joined and clicked PDPs clean
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-us-shopping-item-export-clicked-pdp-clean
+
+Why:
+- Owner asked for faster sales-moving growth and specifically pushed for Shopping and other-language traffic, not only Search keyword work.
+- The Pinterest phrase supplied in the chat was not the exact approval phrase in the packet, so external Pinterest object creation remained unapproved.
+- The next safe read-only lane was the existing authenticated Google Ads Standard Shopping product export and clicked-PDP public readback.
+
+What changed:
+- Copied the Google Ads product export into `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/google_ads_products_report_2026-04-18_to_2026-05-14.csv`.
+- Patched `run_us_shopping_auth_export_join_prep.py` so it handles Google Ads export preamble rows, missing keys, title-based joins, `Impr.` headers, and joined performance totals.
+- Regenerated `US_SHOPPING_AUTH_EXPORT_JOIN_PREP.md`, `us_shopping_auth_export_join_prep_summary.json`, and `us_shopping_auth_export_joined_decisions.csv`.
+- Added/confirmed the clicked-PDP public readback packet at `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-pdp-readback/STANDARD_SHOPPING_CLICKED_PDP_PUBLIC_READBACK.md`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `assumption_log.md`, and `memory_digest.md`.
+
+Readback / decision:
+- Standard Shopping product export for campaign `23802638621`, date range `Apr 18-May 14, 2026`, joined `767` product rows.
+- Joined result: `85` public-clean matches with `1,744` impressions, `28` clicks, `$5.94` cost, and `$0.00` conversion value; `30` held-scope matches with `2` impressions, `0` clicks, `$0.00` cost; `652` unmatched rows with `1,738` impressions, `37` clicks, `$8.23` cost.
+- Parser found `0` title/feed approval candidates.
+- Clicked-PDP public readback checked `27` clicked export rows across `13` unique handles / `26` public fetches; `26/26` passed and `0` clicked handles were source-blocked.
+- This closes the repeat `US/en` item-export lane. It does not justify a Shopping write because conversion value is still `$0.00`.
+
+Guardrails:
+- No Pinterest campaign/draft/object creation occurred because the current-session message did not include the exact approval phrase.
+- No Google Ads upload/apply/import, campaign, keyword, negative, bid, budget, status, product-group, conversion, feed, product, title, Shopify Admin, Merchant, GA4/GTM, billing, credential, source/tag/CAPI, or live theme write occurred.
+
+Next best action:
+- If owner gives the exact Pinterest approval phrase from `PINTEREST_333_PAUSED_DRAFT_BUILD_READY.md`, create only paused/draft Pinterest objects and read back no serving/no spend.
+- Otherwise continue the Shopping read-only queue with Merchant `US/es` source `10627981690`, then CA/GB/AU English Shopping country/feed eligibility.
+- Keep GB/CA/AU CPC validation blocked until Basic Access or a correctly scoped UI path produces real `$0.15` pass rows.
+
+2026-05-15 - Standard Shopping clicked PDP readback
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-standard-shopping-clicked-pdp-readback
+
+Why:
+- The unattended paid-growth automation resumed from the latest command layer.
+- The highest P0 row, Google Ads API Basic Access watch, found no approval in `info@dresslikemommy.com` as of 05:06 EDT.
+- The next sales-moving safe lane was to close the pending `US/en` Standard Shopping export/join loop and public-readback actual clicked PDPs so Shopping work does not repeat the same export.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-pdp-readback/`.
+- Added `build_standard_shopping_clicked_pdp_readback.py`.
+- Generated `STANDARD_SHOPPING_CLICKED_PDP_PUBLIC_READBACK.md`, `standard_shopping_clicked_pdp_public_readback.csv`, and `standard_shopping_clicked_pdp_public_readback_summary.json`.
+- Re-ran the Standard Shopping export join against `standard_shopping_products_normalized_for_join.csv`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Outlook list readback for `info@dresslikemommy.com` on/after 2026-05-15 found no Google Ads API Basic Access approval email; only unrelated messages were present.
+- Standard Shopping export join result: `767` paid-cohort rows, `112` rows with impressions, `65` clicks, `$14.17` cost, `$0.00` conversion value, `85` public-clean matches, `30` held matches, `652` unmatched rows, and `0` title/feed repair candidates.
+- Clicked PDP public readback result: `27` clicked export rows, `13` unique handles, `26` public fetches, `26/26` passed, and `0` source-blocked clicked handles.
+- Decision: do not edit titles, feed attributes, product groups, bids, budgets, statuses, negatives, or product scope from this evidence. The US/en export lane is closed until fresher data is needed; next Shopping movement is Merchant/feed eligibility plus conversion/landing analysis for clean clicked products.
+
+Verification:
+- Repo write test passed.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/run_us_shopping_auth_export_join_prep.py --export-csv dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/standard_shopping_products_normalized_for_join.csv` passed.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-pdp-readback/build_standard_shopping_clicked_pdp_readback.py` passed.
+- `python3.13 -m py_compile dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-pdp-readback/build_standard_shopping_clicked_pdp_readback.py` passed.
+- `python3.13 -m json.tool dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-pdp-readback/standard_shopping_clicked_pdp_public_readback_summary.json` passed.
+- CSV parse checks passed for `standard_shopping_clicked_pdp_public_readback.csv` and `us_shopping_auth_export_joined_decisions.csv`.
+
+Guardrails:
+- No Google Ads campaign, keyword, negative, bid, budget, status, feed, product, conversion, billing, or spend write occurred.
+- No Shopify Admin product/vendor/source metadata edit and no live theme push/sync/publish occurred.
+- No Merchant, Pinterest, GA4/GTM, feed, product-scope, product-group, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probe or permission repair occurred.
+
+Next best action:
+- Watch for Google Basic Access approval at `info@dresslikemommy.com`; after approval, rerun the read-only API forecast harness and parser for the canonical GB/CA/AU `36`-row packet.
+- Continue the Shopping read-only queue with current exact Merchant `US/es` source `10627981690`, then CA/GB/AU English feed/country eligibility readbacks.
+- Use the clean clicked PDP set for conversion/landing/product-fit analysis before any owner-approved title/feed/product-group packet.
+
+2026-05-15 - Pinterest paused draft budget validation stop
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-paused-draft-budget-validation-stop
+
+Why:
+- Owner gave the exact Pinterest paused-draft approval phrase for advertiser `549756244483`, refreshed `333` scope, no launch, no enablement, no spend, no budget/bid activation, no catalog/source/tag/CAPI/feed changes, and stop on out-of-scope writes.
+- The user wants real Pinterest progress, but the current approval boundary still forbids budget/bid activation.
+
+What changed:
+- Continued from the existing authenticated Pinterest Ads Manager tab for advertiser `549756244483`.
+- Confirmed the before-state context from the existing reporting/draft readbacks: account/domain `Dress Like Mommy | Matching Family Outfits` / `dresslikemommy.com`, `0 campaigns`, `0 currently being served`, `$0.00` spend, `0` impressions, and no saved campaign drafts.
+- Entered Create campaign, switched from Pinterest Performance+ to manual, selected `Catalog sales`, set campaign name `DLM_PIN_US_CATALOG_333_PAUSED_20260515`, and set campaign status `Paused`.
+- Opened Draft actions; Pinterest exposed `Save as a new draft` and `Load existing draft`.
+- Stopped before saving when Pinterest showed `Enter a valid currency value to continue` and `Daily budgets must be $1.00 or more`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-paused-draft-budget-validation-stop/PINTEREST_PAUSED_DRAFT_BUDGET_VALIDATION_STOP.md`.
+- Updated the paid-growth command layer, problem tracker, coordination registry, cockpit source, decision/review/assumption/memory logs, and this worklog.
+
+Readback / decision:
+- Pinterest UI requires a valid daily budget of at least `$1.00` before saving the paused catalog draft.
+- No Pinterest draft/object was saved.
+- Do not retry the no-budget UI save path.
+
+Guardrails:
+- No Save/Continue/Review/Publish/Launch/Enable action occurred.
+- No Pinterest campaign, draft, ad group, ad, product group, catalog, source, tag, CAPI, feed, audience, budget, bid, status, launch, spend, or serving write occurred.
+- No Google Ads, Merchant, Shopify Admin, GA4/GTM, billing, credential, feed, product, conversion, or theme write occurred.
+
+Next best action:
+- If the owner wants the Pinterest UI path completed, get exact approval to enter the minimum `$1.00` daily budget solely to satisfy paused-draft validation while keeping the campaign paused/unpublished/no-spend and with after-state readback.
+- Alternative: find a Pinterest API/import/draft path that can save the paused draft without a budget value.
+- Continue independent read-only Shopping/Merchant export lanes while this budget-validation gate is unresolved.
+
+2026-05-15 - Merchant Shopping issue-export readback
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-shopping-issue-export-readback
+
+Why:
+- Owner directed the Shopping read-only queue to continue with Merchant `US/es` source `10627981690`, then CA/GB/AU English feed/country eligibility, while continuing Basic Access watch before the GB/CA/AU `$0.15` CPC harness retry.
+- Basic Access watch found no approval in the business mailbox through 05:20 EDT, so rerunning the Google Ads API CPC harness would still repeat the known access blocker.
+- Merchant API and Content API all-product/status readbacks returned 403 insufficient authentication scopes; Chrome DevTools MCP page listing was profile-locked in this automation runtime, so the safe executable path was local analysis of the current Merchant product-issues export plus existing live source/detail tab context.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-readback/`.
+- Added `build_merchant_shopping_readonly_queue_readback.py`.
+- Generated `MERCHANT_SHOPPING_READONLY_QUEUE_READBACK.md`, `merchant_shopping_readonly_queue_summary.json`, `merchant_shopping_market_language_summary.csv`, `merchant_shopping_issue_title_counts.csv`, and `merchant_shopping_target_issue_rows.csv`.
+- Updated `ops/marketing/action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Current Merchant product-issues export: `/Users/fsuels/Downloads/product_issues_2026-05-15_05-10-59.csv`, modified `2026-05-15 05:14:16 EDT`, `266,318` issue rows.
+- `US/es` / United States / feed label `US`: `1,453` issue rows, `354` unique items, `1,422` `ELIGIBLE_LIMITED`, `31` `NOT_ELIGIBLE_OR_DISAPPROVED`, `724` Shopping ads issue rows, `359` Shopping ads disapproved rows, and `53` paid-cohort issue items.
+- `US/es` top issue rows: `708` `Over capacity for Shopping ads (outside of CSS program)`, `432` `Missing age group`, `202` `Missing color`, `86` `Missing gender`, `12` `Product page unavailable`, `10` `Missing size`, and `3` `Missing product image`.
+- CA/en, GB/en, and AU/en each have `0` current issue-export rows. This clears only the current issue-export blocker; it does not prove active approved product counts, source eligibility, country/currency availability, or paid-cohort intersection.
+- Decision: hold `US/es` Shopping build and prepare a no-write repair/classification packet. For CA/GB/AU, capture full all-products/source exports before any Shopping campaign/feed/product-group packet.
+
+Capability blockers recorded:
+- `AUTOMATION_CAPABILITY_MISMATCH`: Merchant API `products.list` and Content API `productstatuses.list` returned HTTP 403 `PERMISSION_DENIED` / `Request had insufficient authentication scopes.`
+- `AUTOMATION_CAPABILITY_MISMATCH`: Chrome DevTools MCP `list_pages` returned the browser-profile lock message for `/Users/fsuels/.cache/chrome-devtools-mcp/chrome-profile`.
+- No Computer Use startup probe or permission repair occurred.
+
+Verification:
+- `python3.13 ops/scripts/export_merchant_center_api_diagnostics.py --output-dir dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-api-attempt` produced the 403 scope evidence.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-readback/build_merchant_shopping_readonly_queue_readback.py` passed.
+- `python3.13 -m py_compile dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-readback/build_merchant_shopping_readonly_queue_readback.py` passed.
+
+Guardrails:
+- No Merchant upload, source sync/edit, feed/product/title/product-group/product-scope, Google Ads campaign, keyword, negative, bid, budget, status, conversion, Shopify Admin product/vendor/source, live theme, Pinterest, GA4/GTM, billing, credential, or spend write occurred.
+
+Next best action:
+- Prepare the smallest exact `US/es` no-write repair/classification packet from the current issue-export rows and source `10627981690`.
+- Capture full CA/GB/AU English all-products/source eligibility exports proving feed label, country, currency, active approved counts, and paid-cohort intersection.
+- Continue watching `info@dresslikemommy.com`; after Basic Access approval, rerun `run_google_ads_api_cpc_forecast.py --customer-id 3990976848` and parse only real `PASS_015_CPC_GATE` rows.
+
+2026-05-15 - Shopping read-only export queue executed
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-shopping-readonly-export-queue-run
+
+Why:
+- Owner asked to run the queued read-only Shopping exports next: Standard Shopping item export, Merchant `US/es` source `10627981690`, then CA/GB/AU Shopping eligibility.
+- This lane is sales-moving only if it converts stale Shopping uncertainty into current no-write decisions and exact next unblock actions.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/SHOPPING_READONLY_EXPORT_QUEUE_REPORT.md`.
+- Saved the authenticated Google Ads Products export for Standard Shopping campaign `23802638621`, normalized it, and joined it to the existing US Shopping public-clean/held scope.
+- Ran read-only Merchant API diagnostics, Merchant diagnostics browser export attempts, signed URL capture attempts, source/detail samples for `US/es` source `10627981690`, and CA/GB/AU country-filter text diagnostics.
+- Reconciled the current Merchant issue-export readback from `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-readback/MERCHANT_SHOPPING_READONLY_QUEUE_READBACK.md` with the source/detail sample packet so the current blocker is not underreported.
+
+Readback / decision:
+- Standard Shopping export: `767` paid-cohort rows for `Apr 18-May 14, 2026`, `112` rows with impressions, `65` clicks, `$14.17` cost, `$0.00` conversion value, `85` public-clean matches, `30` held matches, `652` unmatched rows, and `0` title/feed repair candidates.
+- Current Merchant issue export: `US/es` has `1,453` issue rows / `354` unique items / `53` paid-cohort issue items, led by `708` over-capacity rows, `432` Missing age group rows, `202` Missing color rows, and `86` Missing gender rows. This means `US/es` is not Shopping-build-ready.
+- Source `10627981690` sample/detail readback found two target `US` / `es` rows with effective age_group and no Missing age_group reproduced on those samples, but the current issue export lacks `source_id`, so full source/all-products proof remains required.
+- CA/en, GB/en, and AU/en had `0` current issue-export rows. That clears visible issue-export blockers only; it does not prove active approved product counts, feed/source availability, country/currency compatibility, or paid-cohort intersection.
+- Merchant API and Content API read-only attempts returned insufficient OAuth scopes; Chrome signed download path for the current packet was blocked before a CSV could be captured.
+
+Guardrails:
+- No Google Ads upload/apply/import, campaign, keyword, negative, bid, budget, status, product-group, product-scope, conversion, billing, or spend write occurred.
+- No Merchant upload, source sync/refresh, source edit, product edit, capacity request, feed/title/product change, Shopify Admin product edit, Pinterest, GA4/GTM, credential, mailbox mutation, or live theme write occurred.
+
+Next best action:
+- Build a no-write `US/es` issue classification/repair approval packet from the current issue export, then capture a full current Merchant all-products/source export for source `10627981690` and CA/GB/AU English eligibility before any repair/build decision.
+- Use clean Standard Shopping clicked products for landing/conversion analysis, not title/feed/product-group changes, unless a later exact item-level readback proves a narrow mismatch.
+
+2026-05-15 - Pinterest live launch CPC scope blocker
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-live-launch-cpc-scope-blocker
+
+Why:
+- Owner approved live Pinterest catalog sales ads for advertiser `549756244483` using the refreshed `333` scope, max `$5/day`, hard max `$0.15` CPC, no catalog/source/tag/CAPI/feed/billing changes, and stop outside scope.
+- Owner challenged whether the `333` scope was actually smart and whether category splits such as Family Matching, Mommy & Me, and Daddy & Me should be used.
+
+What happened:
+- Continued in the authenticated Pinterest Ads Manager create flow for advertiser `549756244483`.
+- Entered daily budget `$5.00`.
+- Verified ROAS optimization forces Pinterest Performance+ bidding and disables `Custom`, so it cannot enforce the owner's `$0.15` CPC cap.
+- Switched optimization to `Pin clicks`, selected `Custom` bidding, and entered max CPC `$0.15`.
+- Switched the product selector to feed profile `3041760867124595727`, then searched for exact `333` / custom-label groups.
+- Stopped before publish because exact `DLM_PIN_US_SHOPPING*`, `mommy_me`, and `family_matching` groups were not selectable. The UI exposed broad groups instead, including `All Products` `5,664`, broad Family Matching `1,011+`, Mommy & Me `445/1,011`, and Pajamas `252`.
+
+Decision:
+- Do not launch broad product groups just to make ads live. Broad groups would violate the refreshed `333` active-clean scope, the supplier-source exclusion gate, and the owner's non-lazy setup requirement.
+- The smart Pinterest structure is exact category product groups from the active-clean whitelist: Mommy & Me `201`, Family Matching `103`, Pajamas `29`, and Daddy & Me/father-inclusive only after current active clean feed proof.
+- At `$5/day`, category split should stay small and high-intent; do not over-split into many tiny ad groups unless each group is exact and reportable.
+
+Guardrails:
+- No Publish/Launch/Enable action occurred.
+- No Pinterest campaign, ad group, ad, product group, catalog source, tag, CAPI, feed, billing, Shopify product, Merchant, Google Ads, GA4/GTM, credential, or spend write occurred.
+- No broad `All Products`, broad Family Matching, broad Mommy & Me, broad Daddy & Me, or broad Pajamas product group was launched.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-live-launch-cpc-scope-blocker/PINTEREST_LIVE_LAUNCH_CPC_SCOPE_BLOCKER.md`
+
+Next best action:
+- Create or expose exact Pinterest product groups from existing feed attributes only if explicitly approved: `paid_eligible` + `us_test_ready`, split by Mommy & Me, Family Matching, Pajamas, and optional Daddy & Me/father-inclusive after active clean proof, excluding the `9` held variants.
+- Then launch only after final review confirms max `$5/day`, max `$0.15` CPC, no catalog/source/feed/tag/CAPI/billing/Shopify product changes, and exact product group scope.
+
+2026-05-15 - Merchant Shopping issue-export readback closeout
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-shopping-issue-export-readback-closeout
+
+Why:
+- The detailed Merchant Shopping issue-export readback entry above was created before the broader Shopping queue anchor in file order, so this closeout makes the latest runnable handoff explicit.
+
+Current state:
+- Basic Access watch remains pending through 05:20 EDT; do not rerun the GB/CA/AU CPC API harness until approval is visible.
+- `US/es` Shopping remains blocked by the current Merchant issue export: `1,453` issue rows, `354` unique items, `432` Missing age group rows, `708` over-capacity rows, and `53` paid-cohort issue items.
+- CA/en, GB/en, and AU/en each have `0` current issue-export rows, but this is not full Shopping eligibility proof.
+- Merchant API all-product/status readbacks are scope-blocked with 403 insufficient authentication scopes; Chrome DevTools MCP is profile-locked in this automation runtime.
+
+Next best action:
+- Build a no-write `US/es` issue classification/repair packet from `merchant_shopping_target_issue_rows.csv`.
+- Capture full CA/GB/AU English all-products/source exports proving feed label, country, currency, active approved counts, and paid-cohort intersection.
+- After Basic Access approval, rerun `run_google_ads_api_cpc_forecast.py --customer-id 3990976848` and parse only real `PASS_015_CPC_GATE` rows.
+
+2026-05-15 - Pinterest budget validation closeout
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-budget-validation-closeout
+
+Why:
+- The latest user-approved external action was the Pinterest paused-draft attempt, and its blocker must be the latest continuation state even though a prior Merchant closeout sits later in the file.
+- This closeout prevents the next agent from treating `PINTEREST_333_PAUSED_DRAFT_BUILD_READY.md` as still unattempted approval-ready work.
+
+Current state:
+- Pinterest advertiser `549756244483` access is restored and controllable in the existing authenticated Ads Manager tab.
+- Refreshed Pinterest prefill scope remains `333` public-clean variants with the `9` supplier-leaking variants excluded.
+- Current-session approval phrase was given and the UI attempt reached manual Catalog sales, campaign name `DLM_PIN_US_CATALOG_333_PAUSED_20260515`, and status `Paused`.
+- Pinterest blocked draft save with `Enter a valid currency value to continue` and `Daily budgets must be $1.00 or more`.
+- No Pinterest draft/object was saved; no spend, serving, launch, enablement, campaign, ad group, ad, product group, catalog, source, tag, CAPI, feed, audience, budget, bid, or status write occurred.
+
+Next best action:
+- Do not retry the no-budget Pinterest UI save path.
+- To continue in UI, get the exact approval phrase allowing a `$1.00` daily budget only to satisfy paused-draft validation while paused/unpublished/no-spend, then save/read back the paused draft and stop before launch.
+- Alternative: find a Pinterest API/import/draft path that can save the paused draft without a budget value.
+- Independent lanes still available: build the no-write `US/es` Merchant issue classification/repair packet and capture full CA/GB/AU English all-products/source exports.
+2026-05-15 - Merchant US/es no-write repair classification
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-us-es-repair-classification
+
+Why:
+- The highest remaining executable queue lane after the Merchant issue-export pass was to turn the current `US/es` issue rows into a no-write repair/classification packet before any Merchant/source/feed/product decision.
+- This keeps Shopping multilingual work moving without mutating Merchant, Shopify, Google Ads, Pinterest, product feeds, budgets, bids, statuses, product groups, conversion settings, billing, or live themes.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-us-es-repair-classification/build_merchant_us_es_repair_classification_packet.py`.
+- Generated `MERCHANT_US_ES_NO_WRITE_REPAIR_CLASSIFICATION_PACKET.md`, `merchant_us_es_repair_scope_by_issue.csv`, `merchant_us_es_paid_cohort_priority_items.csv`, and `merchant_us_es_repair_classification_summary.json`.
+- Updated the paid-growth command layer: `action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, `memory_digest.md`, and `operator_cockpit.md`.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Current `US/es` issue classification: `1,453` rows, `354` unique items, and `53` paid-cohort issue items.
+- Paid-cohort attribute-repair exposure is narrow: `3` unique paid-cohort items across age_group/color/gender.
+- Capacity remains the larger gate: over-capacity affects all `53` paid-cohort issue items.
+- Decision: do not repair from the issue export or classification packet alone. The next action is a full source/all-products export for source `10627981690`, then CA/GB/AU English feed/country eligibility exports before any Shopping build or repair decision.
+
+Verification:
+- Repo write test passed.
+- `python3.13 ops/scripts/open_marketing_cockpit.py` rendered/opened the cockpit source HTML.
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-us-es-repair-classification/build_merchant_us_es_repair_classification_packet.py` passed.
+- Manual readback of generated summary/report/CSVs matched expected counts.
+
+Guardrails:
+- No Merchant upload, source sync/refresh, source edit, product edit, capacity request, feed/title/product change, product-scope change, product-group change, campaign, bid, budget, status, conversion, billing, Shopify Admin, Pinterest, Google Ads, GA4/GTM, or live theme write occurred.
+- No Computer Use startup probe or permission repair occurred.
+
+Next best action:
+- Capture the full current Merchant all-products/source export for `US/es` source `10627981690`, then CA/en, GB/en, and AU/en eligibility exports. Only after current source/product proof should a narrow owner-approved repair, capacity, or Shopping build packet be prepared.
+
+2026-05-15 - Global memory split and project mirror slim-down
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-global-memory-split-and-project-mirror-slim-down
+
+Why:
+- Cross-project rules (verification mandate, secrets/PII discipline, destructive-command guardrails, financial-actions hard stop, citations format, adversarial-input handling, determinism preferences, output discipline, self-eval checklist, tool-tier hierarchy, plan-before-act threshold, reasoning-effort and tool-preamble dial, stop conditions, quick-reference done table) were duplicated inside the project `CLAUDE.md`/`AGENTS.md` mirror.
+- Duplication drifts: a future edit in one place would not propagate to the other and one of the two agents (Claude or Codex) would run on stale guidance.
+- Goal: maintain shared rules once in user-scope global guides, keep project `CLAUDE.md` ≡ `AGENTS.md` byte-for-byte and dresslikemommy-specific only, and preserve a short non-negotiables block at the top of the project file so an agent without home-directory access still sees the three highest-cost rules.
+
+What changed:
+- Rewrote `~/.codex/AGENTS.md`: Part 1 preserves the existing Codex autonomy/execution/engineering/quality posture verbatim; Part 2 appends the shared 18-section agent guide (tool-tier hierarchy, plan-before-act, verification, context hygiene, secrets/PII, destructive guardrails, cost/latency, honest uncertainty, stop conditions, output discipline, project-level expectations, reasoning effort and tool preambles, adversarial input, determinism, self-eval, financial hard stop, citations, done table).
+- Created `~/.claude/CLAUDE.md` with the same 18-section guide adapted for Claude (no Part-1 autonomy section because Cowork mode has different defaults).
+- Slimmed `dresslikemommy/CLAUDE.md` and `dresslikemommy/AGENTS.md` to a 135-line file containing only dresslikemommy-specific rules plus a Non-Negotiables block restating the three rules where a slip causes real damage: no destructive git, no credentials in repo files, no money-moving actions. Wrote one canonical content string to both paths to maintain the byte-for-byte mirror.
+- Added a Global Guides section to the slimmed project file pointing agents to `~/.codex/AGENTS.md` and `~/.claude/CLAUDE.md` and explaining what each carries.
+- Kept all dresslikemommy-specific sections intact: Start Here boot sequence, Paid-Growth Session Start command, Project Operating Model (no-AI-UI-on-storefront and external-write approval gating), Memory And Continuity (worklog, problem tracker, coordination registry, marketing folder, continuity script command), Problem Handling project-specific tempo, Coordination And External Systems project-specific, all Paid-Growth Guardrails and Write Boundaries, Shopify And Credentials, Shopify Theme And GitHub Sync, Sourcing And Listing, Final Response Format.
+- Saved a viewable copy of the Claude global at `dresslikemommy/GLOBAL_CLAUDE_MEMORY.md` so the workspace folder has a browsable mirror.
+
+Readback / decision:
+- Project `CLAUDE.md` and `AGENTS.md` are byte-for-byte identical: md5 `c76d61bb56a805032f150657b4a8b2a7`, 135 lines each.
+- Every marketing filename previously referenced from the root project file is still referenced with the same count: `current_marketing_state.md` 1, `spend_authorization.md` 1, `operator_cockpit.html` 1, `expert_growth_playbook_2026.md` 2. The marketing integration audit's reference-surface scan cannot regress from this change.
+- Six of seven continuity checks ran in the sandbox and all PASS: `canonical_worklog` (37946 lines; latest prior anchor `2026-05-15-standard-shopping-clicked-pdp-readback`), `alternate_worklogs`, `prompt_anchor_policy`, `spend_authority_agreement` (`APPROVED_ACTIVE`), `cockpit_freshness`, `agent_bootstrap_parity`. The seventh check (`marketing_integration_audit`) shells out to `python3.13` which the sandbox does not have; it must be run on the host machine before this anchor is treated as fully verified.
+
+Verification:
+- `diff -q dresslikemommy/CLAUDE.md dresslikemommy/AGENTS.md` returned no differences.
+- `md5sum` matched on both files.
+- Loaded the continuity script's check functions directly via Python in the sandbox and ran the six host-Python-independent checks; all returned `ok=True`.
+- Marketing-filename mention counts compared between `.bak-2026-05-15_091220` and the new file are equal.
+- Still owed on the host: `python3.13 ops/scripts/check_continuity_integrity.py --strict` to confirm `marketing_integration_audit` also passes.
+
+Guardrails:
+- No external-system write occurred. No Google Ads, Merchant, Shopify Admin, Pinterest, GA4/GTM, billing, credential, or live theme mutation.
+- Backups created: `~/.codex/AGENTS.md.bak-2026-05-15`, `dresslikemommy/CLAUDE.md.bak-2026-05-15_091220`, `dresslikemommy/AGENTS.md.bak-2026-05-15_091220`. Rollback path: `cp <file>.bak-* <file>` for each.
+- The `AGENTS.md` ≡ `CLAUDE.md` mirror constraint is preserved; the continuity-check `agent_bootstrap_parity` test passes.
+
+Next best action:
+- Run `python3.13 ops/scripts/check_continuity_integrity.py --strict` on the host machine to confirm all seven checks pass, including `marketing_integration_audit`.
+- After a clean run, delete the three `.bak-2026-05-15*` files: `rm ~/.codex/AGENTS.md.bak-2026-05-15 dresslikemommy/CLAUDE.md.bak-2026-05-15_091220 dresslikemommy/AGENTS.md.bak-2026-05-15_091220`.
+- Independent lanes still available from the prior anchor: capture the full current Merchant all-products/source export for `US/es` source `10627981690`, then CA/en, GB/en, and AU/en eligibility exports. After Basic Access approval, rerun `run_google_ads_api_cpc_forecast.py --customer-id 3990976848`.
+
+2026-05-15 - Pinterest exact category product-group closeout
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-exact-category-product-group-closeout
+
+Why:
+- A later global-memory anchor landed after the Pinterest live-launch attempt in the canonical worklog, so the paid-growth handoff needed a final anchor that restores the current executable Pinterest state as latest.
+- Owner asked whether the smartest Pinterest setup should at least divide by Family Matching, Mommy & Me, and Daddy & Me.
+
+Current state:
+- Pinterest advertiser `549756244483` is authenticated/controllable from the existing Ads Manager tab.
+- Live launch approval was received for refreshed `333` scope, max `$5/day`, hard max `$0.15` CPC, no catalog/source/tag/CAPI/feed/billing changes, and stop outside scope.
+- The UI can enforce max `$0.15` CPC with `Catalog sales` + `Pin clicks` + `Custom` bidding. It cannot enforce that cap under ROAS optimization because Pinterest Performance+ bidding disables `Custom`.
+- The launch stopped before publish because exact `333` product groups were not selectable. Broad groups were visible instead, including `All Products` `5,664`, broad Family Matching `1,011+`, Mommy & Me `445/1,011`, and Pajamas `252`.
+
+Decision:
+- Yes, category split is the smart strategy, but only exact category groups from the active-clean whitelist are acceptable.
+- Minimum exact launch groups: Mommy & Me `201`, Family Matching `103`, Pajamas `29`.
+- Daddy & Me/father-inclusive should be added only after current active clean feed proof; do not use a broad Daddy & Me group by assumption.
+- Do not launch broad category groups unless a current readback proves every included product is active, sellable, source-clean, and inside the approved scope.
+
+Guardrails:
+- No Pinterest campaign launched.
+- No spend/serving started.
+- No product-group/catalog/source/feed/tag/CAPI/billing/Shopify product mutation occurred.
+- Chrome tab was finalized as a handoff after the stop.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-live-launch-cpc-scope-blocker/PINTEREST_LIVE_LAUNCH_CPC_SCOPE_BLOCKER.md`
+
+Next best action:
+- Get exact approval to create/expose Pinterest product groups from existing feed attributes only: `paid_eligible` + `us_test_ready`, split by Mommy & Me, Family Matching, Pajamas, and any active clean Daddy & Me/father-inclusive rows that pass the same gates, excluding the `9` held variants.
+- Then launch only after final review confirms max `$5/day`, max `$0.15` CPC, and exact product-group scope.

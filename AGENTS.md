@@ -2,7 +2,24 @@
 
 Scope: this file applies to the whole repository. It is the short agent bootstrap. Detailed, changing state lives in `ops/` and `ops/marketing/`, not here.
 
-This same bootstrap lives in both `AGENTS.md` and `CLAUDE.md`. Keep the two files byte-for-byte identical; do not maintain separate Claude-only instructions.
+This same bootstrap lives in both `AGENTS.md` and `CLAUDE.md`. Keep the two files byte-for-byte identical; do not maintain separate Claude-only or Codex-only instructions. The continuity check `python3.13 ops/scripts/check_continuity_integrity.py --strict` enforces this.
+
+## Global Guides
+
+This project file extends two user-scope global guides — read them first if available:
+
+- `~/.codex/AGENTS.md` — Codex global (autonomy posture plus shared 18-section agent guide).
+- `~/.claude/CLAUDE.md` — Claude global (shared 18-section agent guide).
+
+Global guides carry: verification mandate, secrets/PII discipline, destructive-command guardrails, financial-actions hard stop, adversarial-input handling, citations format, determinism preferences, output discipline, and the self-eval checklist. This file carries only dresslikemommy-specific rules plus a short non-negotiables block so an agent without home-directory access still sees the most dangerous rules.
+
+## Non-Negotiables
+
+Even if the global guides are not loaded, these three rules always apply on this repo:
+
+- Never run destructive git commands (`git reset --hard`, `git clean -fd`, `git checkout --`, `git push --force`, `git push -f`) unless the current turn explicitly requests them by name. Preserve unrelated worktree changes.
+- Never write credentials, tokens, or vendor/source URLs into any repo file, commit, log, worklog, theme file, prompt, evidence snippet, or external-system-visible field. Credentials live only in `~/.config/dresslikemommy/`.
+- Never execute trades, place orders, send money, charge cards, initiate transfers, or change billing on the user's behalf. Prepare the action and ask the user to perform it.
 
 ## Start Here
 
@@ -25,14 +42,12 @@ python3.13 ops/scripts/open_marketing_cockpit.py
 
 This opens `ops/marketing/operator_cockpit.html` locally for the human. It is a local dashboard action only; it does not create live external writes.
 
-## Operating Model
+## Project Operating Model
 
-- Be an end-to-end agent: inspect, plan briefly, edit, run commands, verify, iterate, and report.
-- Evidence first. Base findings on repo files, readbacks, and saved artifacts. Do not invent current platform state.
-- Use the smallest effective change consistent with the repo's Shopify/Dawn patterns.
-- Prefer existing scripts, package managers, helpers, and local conventions.
-- Do not modify secrets, credentials, billing, auth providers, deployment config, infrastructure, production data, or destructive filesystem state unless the task explicitly requires it and the current session has the needed approval.
+The general operating model (evidence-first, smallest effective change, prefer existing scripts, verify before declaring done) lives in the global guides. The dresslikemommy-specific additions are:
+
 - No AI UI or backend agent surface belongs on the live Shopify storefront. Agent tooling is developer/operator-side only.
+- Do not modify secrets, credentials, billing, auth providers, deployment config, infrastructure, production data, or destructive filesystem state unless the task explicitly requires it and the current session has the needed approval. (This restates the global rule because external-write approval gating is core to how this repo operates.)
 
 ## Memory And Continuity
 
@@ -40,18 +55,18 @@ This opens `ops/marketing/operator_cockpit.html` locally for the human. It is a 
 - `ops/PROBLEM_TRACKER.md` is the active problem ledger. A real issue stays live until fixed, disproven, superseded by a safer path, or gated with the exact next unblock action.
 - `ops/AGENT_COORDINATION.md` is the active write-claim and lock registry. Do not clear or override another agent's claim unless the owner explicitly transfers or clears it.
 - `ops/marketing/` is the paid-growth daily command layer. Treat it as the compact execution state for marketing decisions; keep older `ops/` files as historical memory and evidence.
-- Do not rely on Codex memory or chat history as authority when checked-in repo docs can answer the question.
+- Do not rely on Codex or Claude chat history as authority when checked-in repo docs can answer the question.
 - For paid-growth handoffs, use the single canonical prompt in `ops/prompts/paid-growth-ai-army-continuation-prompt.md`; packet prompts may point back to it but must not become competing operating prompts.
 - Run `python3.13 ops/scripts/check_continuity_integrity.py --strict` before closing continuity, paid-growth command-layer, prompt, cockpit, spend-authority, worklog, or handoff changes. The check must pass; if it fails, fix the canonical files rather than creating another side document.
 
-## Problem Handling
+## Problem Handling (project-specific tempo)
 
-- Problem found means solve now inside the approved scope, or route around it while other safe lanes continue.
-- Do not write passive "blocked" notes and stop. Try the safest direct path, try or rule out one grounded alternate path, document evidence and the next unblock action, then continue independent work.
-- Every touched problem entry needs status, owner/session, surface, symptom, business impact, fixed criteria, attempt log, failed paths, gates, next action, and parallel work to continue.
+The general problem-handling stance (don't write passive "blocked" notes; try the safest direct path then a grounded alternate; document evidence and next unblock action; continue independent work) lives in the global guides under stop conditions. The dresslikemommy-specific additions:
+
+- Every touched problem entry in `ops/PROBLEM_TRACKER.md` needs status, owner/session, surface, symptom, business impact, fixed criteria, attempt log, failed paths, gates, next action, and parallel work to continue.
 - Results/action mandate: when you see a mistake, broken state, underperforming path, or clear improvement, take proactive action immediately. If it is local/read-only or inside current approval, fix it and verify. If it requires unapproved live external writes, prepare the smallest exact approval packet and keep other safe sales-moving work going. Monitoring is only useful when it produces a fix, bounded action, optimization decision, or exact unblock step.
 
-## Coordination And External Systems
+## Coordination And External Systems (project-specific)
 
 - One writer per campaign/feed/product cohort/theme area/account surface.
 - Read-only audits may run in parallel. Writes require a narrow active claim in `ops/AGENT_COORDINATION.md`.
@@ -99,7 +114,6 @@ Read-only monitoring, local packet creation, paused/review-only artifacts, and s
 - Theme work should be minimal and Dawn-compatible. Avoid server code in Liquid; use app proxies for backend needs.
 - Run narrow JS/Liquid/theme checks for touched areas and review the diff for scope creep.
 - `AGENTS.md` and `CLAUDE.md` intentionally mirror each other. Follow current user instructions for sync/push requests and preserve unrelated worktree changes.
-- Never use destructive git commands such as `git reset --hard` or `git checkout --` unless explicitly requested.
 
 ## Sourcing And Listing
 

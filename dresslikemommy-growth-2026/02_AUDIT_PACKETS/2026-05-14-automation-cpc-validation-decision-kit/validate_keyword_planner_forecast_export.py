@@ -47,12 +47,48 @@ def parse_money(value: str) -> float | None:
 
 
 def read_csv_normalized(path: Path) -> list[dict[str, str]]:
-    with path.open(newline="", encoding="utf-8-sig") as handle:
-        reader = csv.DictReader(handle)
-        if not reader.fieldnames:
-            return []
-        field_map = {field: normalize_header(field) for field in reader.fieldnames}
-        return [{field_map[key]: value for key, value in row.items()} for row in reader]
+    raw = path.read_bytes()
+    text = ""
+    for encoding in ("utf-8-sig", "utf-16", "utf-16le", "utf-16be"):
+        try:
+            text = raw.decode(encoding)
+            break
+        except UnicodeDecodeError:
+            continue
+    if not text:
+        text = raw.decode("utf-8", errors="replace")
+
+    lines = [line for line in text.splitlines() if line.strip()]
+    if not lines:
+        return []
+
+    header_index = 0
+    for index, line in enumerate(lines):
+        normalized = normalize_header(line)
+        if "keyword" in normalized and (
+            "estimated_average_cpc" in normalized
+            or "top_of_page_bid" in normalized
+            or "avg_cpc" in normalized
+        ):
+            header_index = index
+            break
+
+    sample = "\n".join(lines[header_index : header_index + 5])
+    delimiter = "\t" if sample.count("\t") > sample.count(",") else ","
+    reader = csv.DictReader(lines[header_index:], delimiter=delimiter)
+    if not reader.fieldnames:
+        return []
+    field_map = {field: normalize_header(field or "") for field in reader.fieldnames}
+    rows: list[dict[str, str]] = []
+    for row in reader:
+        normalized_row = {}
+        for key, value in row.items():
+            normalized_key = field_map.get(key, normalize_header(key or ""))
+            if not normalized_key:
+                continue
+            normalized_row[normalized_key] = (value or "").strip()
+        rows.append(normalized_row)
+    return rows
 
 
 def row_value(row: dict[str, str], *names: str) -> str:
@@ -61,6 +97,25 @@ def row_value(row: dict[str, str], *names: str) -> str:
         if key in row and row[key].strip():
             return row[key].strip()
     return ""
+
+
+def normalize_market(value: str) -> str:
+    cleaned = value.strip().lower()
+    aliases = {
+        "australia": "AU",
+        "au": "AU",
+        "canada": "CA",
+        "ca": "CA",
+        "united kingdom": "GB",
+        "uk": "GB",
+        "gb": "GB",
+        "great britain": "GB",
+        "united states": "US",
+        "united states of america": "US",
+        "us": "US",
+        "usa": "US",
+    }
+    return aliases.get(cleaned, value.strip().upper())
 
 
 def load_source_matrix() -> dict[tuple[str, str, str], dict[str, str]]:
@@ -74,6 +129,9 @@ def load_source_matrix() -> dict[tuple[str, str, str], dict[str, str]]:
 
 
 def classify(row: dict[str, str], source: dict[str, str] | None) -> tuple[str, str]:
+    if source is None:
+        return "MISSING_REQUIRED_FORECAST_DATA", "row did not match the canonical validation matrix"
+
     policy = row_value(row, "policy_status", "policy", "status")
     auction = row_value(row, "auction_status", "auction", "keyword_status")
     policy_text = f"{policy} {auction}".lower()
@@ -99,8 +157,6 @@ def classify(row: dict[str, str], source: dict[str, str] | None) -> tuple[str, s
     if clicks == 0 and impressions == 0:
         return "LOW_VOLUME_OR_NO_AUCTION", "forecast has zero clicks and zero impressions"
 
-    if source is None:
-        return "MISSING_REQUIRED_FORECAST_DATA", "row did not match the canonical validation matrix"
     return "PASS_015_CPC_GATE", "all supplied CPC values are at or below the hard gate"
 
 
@@ -115,7 +171,7 @@ def main() -> None:
     forecast_rows = read_csv_normalized(args.forecast_csv)
     decisions: list[dict[str, str]] = []
     for row in forecast_rows:
-        market = row_value(row, "market", "country").upper()
+        market = normalize_market(row_value(row, "market", "country", "location"))
         keyword = normalize_keyword(row_value(row, "keyword", "search_term"))
         match_type = row_value(row, "match_type", "match type").lower() or "exact"
         source = source_matrix.get((market, keyword, match_type))

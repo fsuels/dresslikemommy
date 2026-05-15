@@ -1,0 +1,29 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0 Arial;}}
+\fs24
+\b Dress Like Mommy Google Ads API Basic Access Design Document\b0\par
+\par
+\b Company and account context\b0\par
+Dress Like Mommy is a Shopify ecommerce store at https://dresslikemommy.com. The Google Ads API access requested here is for our own Google Ads accounts only. We do not manage third-party client accounts and we do not provide a public or client-facing API tool.\par
+\par
+\b Purpose of API access\b0\par
+The immediate purpose is internal keyword research and recommendation validation. We need Basic Access so a local operator script can use Google Ads Keyword Planning services to forecast GB, CA, and AU exact/phrase keyword rows at a max CPC threshold before any human-approved paid-search action is considered.\par
+\par
+\b Tool users\b0\par
+Only internal Dress Like Mommy operators and approved contractors working for the business will use the tool. There is no external user interface and no general-public or client access.\par
+\par
+\b Tool architecture\b0\par
+The tool is a local Python command-line script using the official Google Ads Python client library. Credentials are stored outside the source repository in the local operator config path. The script reads a local CSV of candidate keywords, markets, match types, geo targets, language targets, and CPC constraints. It calls KeywordPlanIdeaService GenerateKeywordForecastMetrics and writes local CSV and JSON evidence files for review.\par
+\par
+\b API services and capabilities\b0\par
+The requested capability is Keyword Planning Services for researching keywords and recommendations. The tool may also perform read-only reporting/readback checks in the future to verify account, campaign, or keyword state. The current implementation does not call mutate services and does not create, update, remove, enable, pause, or upload Google Ads objects.\par
+\par
+\b Safety controls\b0\par
+The tool is intentionally read-only for the forecast workflow. It does not create campaigns, change budgets, change bids, change keyword status, add negatives, alter billing, alter conversion settings, alter product feeds, or mutate customer data. Any future live Google Ads write would require separate owner approval, before-state readback, after-state readback, and a separate implementation path.\par
+\par
+\b Data handling\b0\par
+Inputs are local keyword and market rows for Dress Like Mommy. Outputs are local CSV and JSON forecast evidence used for business decision support. Secrets are not written into the repository, prompts, worklogs, or evidence files. Developer token, OAuth client secret, and refresh token are kept in a local configuration file outside the repository.\par
+\par
+\b Requested access level\b0\par
+Basic Access is requested because Explorer Access blocks Keyword Planning forecast methods. The requested use is limited to researching keywords and recommendations for our own ecommerce advertising account.\par
+}

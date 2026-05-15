@@ -1,0 +1,955 @@
+{
+  "decision": "US_ES_SOURCE_10627981690_TARGET_ROWS_VISIBLE_BUT_DETAIL_MISSING_AGE_GROUP_NOT_REPRODUCED",
+  "generated_at": "2026-05-15T05:17:23-04:00",
+  "guardrails_preserved": [
+    "no Merchant uploads",
+    "no source sync or refresh clicks",
+    "no source edits",
+    "no Shopify product-data edits",
+    "no Ads, Pinterest, GA4, theme, budget, bid, status, product-scope, feed-label, product-group, or conversion-goal changes"
+  ],
+  "lane": "Merchant US/es source/detail readback",
+  "local_sample_metadata": {
+    "paid_cohort_age_group_rows": {
+      "shopify_US_7227254276193_41871113158753": {
+        "confidence": "high",
+        "derived_age_group": "toddler",
+        "handle": "mommy-and-me-matching-yellow-sleeveless-maxi-dress-vibrant-summer-beach-dress-for-mother-daughter",
+        "merchant_center_item_id": "shopify_US_7227254276193_41871113158753",
+        "product_id": "7227254276193",
+        "product_type_for_ads": "swimsuits",
+        "role": "child",
+        "shopify_item_id": "shopify_7227254276193_41871113158753",
+        "source_size": "Child 2 Years",
+        "title": "Matching Yellow Sleeveless Maxi Dress Vibrant Summe... | DLM",
+        "variant_id": "41871113158753",
+        "variant_title": "Child 2 Years / Yellow"
+      },
+      "shopify_US_7227379023969_41871522431073": {
+        "confidence": "high",
+        "derived_age_group": "adult",
+        "handle": "elegant-matching-family-outfits-light-blue-halter-dresses-casual-t-shirt-set-for-summer",
+        "merchant_center_item_id": "shopify_US_7227379023969_41871522431073",
+        "product_id": "7227379023969",
+        "product_type_for_ads": "daddy_me",
+        "role": "father",
+        "shopify_item_id": "shopify_7227379023969_41871522431073",
+        "source_size": "Father L",
+        "title": "Elegant Outfits Light Blue Halter Dresses & Casual ... | DLM",
+        "variant_id": "41871522431073",
+        "variant_title": "Father L / blue"
+      },
+      "shopify_US_7227630649441_41872775020641": {
+        "confidence": "high",
+        "derived_age_group": "kids",
+        "handle": "mother-daughter-matching-summer-dresses-vibrant-printed-sleeveless-maxi-dresses",
+        "merchant_center_item_id": "shopify_US_7227630649441_41872775020641",
+        "product_id": "7227630649441",
+        "product_type_for_ads": "mommy_me",
+        "role": "mother",
+        "shopify_item_id": "shopify_7227630649441_41872775020641",
+        "source_size": "Child 6-7 Years",
+        "title": "Mother-Daughter Matching Summer Dresses Vibrant Pri... | DLM",
+        "variant_id": "41872775020641",
+        "variant_title": "Child 6-7 Years / Black"
+      }
+    },
+    "us_es_sample_rows": {
+      "shopify_US_7227379023969_41871522431073": {
+        "click_potential": "Low",
+        "country": "United States",
+        "feed_label": "US",
+        "first_seen_traffic_type": "Shopping ads",
+        "issue_severity": "SEVERITY_DEMOTED",
+        "item_id": "shopify_US_7227379023969_41871522431073",
+        "item_status": "ELIGIBLE_LIMITED",
+        "language": "es",
+        "paid_role": "father",
+        "product_type_for_ads": "daddy_me",
+        "review_age_group": "adult",
+        "title": "Conjuntos a Juego para la Familia - Azul | Viste Como Mam\u00e1 Padre L / azul"
+      },
+      "shopify_US_7227630649441_41872775020641": {
+        "click_potential": "Low",
+        "country": "United States",
+        "feed_label": "US",
+        "first_seen_traffic_type": "Free listings",
+        "issue_severity": "SEVERITY_DEMOTED",
+        "item_id": "shopify_US_7227630649441_41872775020641",
+        "item_status": "ELIGIBLE_LIMITED",
+        "language": "es",
+        "paid_role": "mother",
+        "product_type_for_ads": "mommy_me",
+        "review_age_group": "kids",
+        "title": "Vestidos Maxi para Mam\u00e1 y Beb\u00e9 - Estampado Floral | Viste Como Mam\u00e1 Ni\u00f1o de 6 a 7 a\u00f1os / Negro"
+      }
+    }
+  },
+  "merchant_center_account": "124884876",
+  "mode": "READ_ONLY_LIVE_MERCHANT_CENTER_BROWSER_RPC",
+  "problem_id": "PROB-2026-05-08-MERCHANT-US-ES-AGE-GROUP",
+  "product_detail_readback": [
+    {
+      "expected_age_group": "kids",
+      "offer_id": "shopify_US_7227630649441_41872775020641",
+      "page": {
+        "has_missing_age_group_text": false,
+        "has_missing_local_inventory_text": false,
+        "screenshot": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/merchant-us-es-source-10627981690-readback/raw/shopify_US_7227630649441_41872775020641_detail.png",
+        "text_excerpt": "Skip to main content menu search help_outline Dresslikemommy 124884876 arrow_drop_down Overview Notifications Products & store Products Shipping and returns Store quality Reviews Creative content Product Studio Video assets Marketing Ad campaigns Promotions Automated discounts Marketing methods Analytics Summary Products Pricing Online store Custom reports Settings General Business info Data sources Add-ons Access and services arrow_back Product details Product details Needs attention (0) Shipping calculator Traffic All looks good with your product Privacy Policy \u00b7 Terms of Service \u00b7 Program Policies Ready to download Press F6 to access notification buttons. Ready to download Download close",
+        "text_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/merchant-us-es-source-10627981690-readback/raw/shopify_US_7227630649441_41872775020641_detail_text.txt",
+        "title": "Product details - Merchant Center",
+        "url": "https://merchants.google.com/mc/items/details?a=124884876&offerId=shopify_US_7227630649441_41872775020641&language=es&channel=0&feedLabel=US&tab=needsattention#DLM-MERCHANT-US-ES-READONLY-20260515-DETAIL"
+      },
+      "rpc": {
+        "HeraItemIssuesService.ListItemIssues": {
+          "parsed": {
+            "age_group_attrs": [],
+            "attributes_sample": [],
+            "body_length": 2,
+            "custom_label_0": "",
+            "custom_label_1": "",
+            "custom_label_2": "",
+            "custom_label_3": "",
+            "custom_label_4": "",
+            "has_age_group_attr": false,
+            "has_missing_age_group_text": false,
+            "has_missing_local_inventory_text": false,
+            "issue_titles": [],
+            "linkage_key": "",
+            "parse_error": "",
+            "product_link": "",
+            "product_title": "",
+            "source_id": ""
+          },
+          "request": {
+            "post_ar": {
+              "1": "US",
+              "2": "es",
+              "3": "shopify_US_7227630649441_41872775020641",
+              "6": [
+                1
+              ]
+            },
+            "service_url": "https://merchants.google.com/mc_products/_/rpc/HeraItemIssuesService/ListItemIssues"
+          },
+          "status": 200
+        },
+        "OfferInventoryService.Get": {
+          "parsed": {
+            "age_group_attrs": [
+              {
+                "name": "n:age_group",
+                "timestamp_token": "1778311312967528",
+                "value": "kids"
+              }
+            ],
+            "attributes_sample": [
+              {
+                "name": "n:cost_of_goods_sold",
+                "timestamp_token": "1778311312967528",
+                "value": "8.50 USD"
+              },
+              {
+                "name": "n:merchant_item_id",
+                "timestamp_token": "1778311312967528",
+                "value": "gid://shopify/ProductVariant/41872775020641"
+              },
+              {
+                "name": "n:product_detail",
+                "timestamp_token": "1778311312967528",
+                "value": ""
+              },
+              {
+                "name": "n:product_detail_section_name",
+                "timestamp_token": "",
+                "value": "Variant"
+              },
+              {
+                "name": "n:product_detail_attribute_name",
+                "timestamp_token": "",
+                "value": "tama\u00f1o"
+              },
+              {
+                "name": "n:product_detail_attribute_value",
+                "timestamp_token": "",
+                "value": "Ni\u00f1o de 6 a 7 a\u00f1os"
+              },
+              {
+                "name": "n:product_detail",
+                "timestamp_token": "1778311312967528",
+                "value": ""
+              },
+              {
+                "name": "n:product_detail_section_name",
+                "timestamp_token": "",
+                "value": "Variant"
+              },
+              {
+                "name": "n:product_detail_attribute_name",
+                "timestamp_token": "",
+                "value": "color"
+              },
+              {
+                "name": "n:product_detail_attribute_value",
+                "timestamp_token": "",
+                "value": "Negro"
+              },
+              {
+                "name": "n:sell_on_google_quantity",
+                "timestamp_token": "1778311312967528",
+                "value": "882"
+              },
+              {
+                "name": "n:sku",
+                "timestamp_token": "1778311312967528",
+                "value": "5144102138480-01"
+              },
+              {
+                "name": "n:additional_image_link",
+                "timestamp_token": "1778311312967528",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_10_26539f1b-be24-4a95-8c35-fe4437376c70.png?v=1771562149"
+              },
+              {
+                "name": "n:additional_image_link",
+                "timestamp_token": "1778311312967528",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_8_83ad9718-c743-4bc8-b89d-4c9aaea58116.png?v=1771562149"
+              },
+              {
+                "name": "n:additional_image_link",
+                "timestamp_token": "1778311312967528",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_9_e27823a3-b934-4c58-a661-90f598994992.png?v=1771562130"
+              },
+              {
+                "name": "n:additional_image_link",
+                "timestamp_token": "1778311312967528",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_16.png?v=1771562341"
+              },
+              {
+                "name": "n:additional_image_link",
+                "timestamp_token": "1778311312967528",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_17.png?v=1771562341"
+              },
+              {
+                "name": "n:additional_image_link",
+                "timestamp_token": "1778311312967528",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_18.png?v=1771562341"
+              },
+              {
+                "name": "n:additional_image_link",
+                "timestamp_token": "1778311312967528",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_11.png?v=1771562341"
+              },
+              {
+                "name": "n:additional_image_link",
+                "timestamp_token": "1778311312967528",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/lemon-print-matching-dresses-mother-and-daughter.jpg?v=1771562341"
+              },
+              {
+                "name": "n:additional_image_link",
+                "timestamp_token": "1778311312967528",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/yellow-tropical-matching-dresses-mom-and-daughter.jpg?v=1771562341"
+              },
+              {
+                "name": "n:age_group",
+                "timestamp_token": "1778311312967528",
+                "value": "kids"
+              },
+              {
+                "name": "n:availability",
+                "timestamp_token": "1778311312967528",
+                "value": "in stock"
+              },
+              {
+                "name": "n:brand",
+                "timestamp_token": "1778311312967528",
+                "value": "dresslikemommy.com"
+              },
+              {
+                "name": "n:color",
+                "timestamp_token": "1778311312967528",
+                "value": "Negro"
+              },
+              {
+                "name": "n:cost_of_goods_sold",
+                "timestamp_token": "1778311312967528",
+                "value": "8.50 USD"
+              },
+              {
+                "name": "n:description",
+                "timestamp_token": "1778311312967528",
+                "value": "Compra vestidos maxi para mam\u00e1 y ni\u00f1a con estampado floral. Perfectos para fotos familiares, fiestas y momentos de combinaci\u00f3n diaria. Compra ahora en Dress Like Mommy. Env\u00edo gratis + devoluciones en 30 d\u00edas."
+              },
+              {
+                "name": "n:gender",
+                "timestamp_token": "1778311312967528",
+                "value": "female"
+              },
+              {
+                "name": "n:id",
+                "timestamp_token": "1778311312967528",
+                "value": "shopify_US_7227630649441_41872775020641"
+              },
+              {
+                "name": "n:image_link",
+                "timestamp_token": "1778311312967528",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/black-tropical-matching-dresses-mom-and-daughter.jpg?v=1771562341"
+              },
+              {
+                "name": "n:item_group_id",
+                "timestamp_token": "1778311312967528",
+                "value": "shopify_US_7227630649441"
+              },
+              {
+                "name": "n:link",
+                "timestamp_token": "1778311312967528",
+                "value": "https://www.dresslikemommy.com/es/products/mother-daughter-matching-summer-dresses-vibrant-printed-sleeveless-maxi-dresses?variant=41872775020641&country=US&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic"
+              },
+              {
+                "name": "n:merchant_item_id",
+                "timestamp_token": "1778311312967528",
+                "value": "gid://shopify/ProductVariant/41872775020641"
+              },
+              {
+                "name": "n:price",
+                "timestamp_token": "1778311312967528",
+                "value": "16.99 USD"
+              },
+              {
+                "name": "n:product_detail",
+                "timestamp_token": "1778311312967528",
+                "value": ""
+              },
+              {
+                "name": "n:product_detail_section_name",
+                "timestamp_token": "",
+                "value": "Variant"
+              },
+              {
+                "name": "n:product_detail_attribute_name",
+                "timestamp_token": "",
+                "value": "tama\u00f1o"
+              },
+              {
+                "name": "n:product_detail_attribute_value",
+                "timestamp_token": "",
+                "value": "Ni\u00f1o de 6 a 7 a\u00f1os"
+              },
+              {
+                "name": "n:product_detail",
+                "timestamp_token": "1778311312967528",
+                "value": ""
+              },
+              {
+                "name": "n:product_detail_section_name",
+                "timestamp_token": "",
+                "value": "Variant"
+              },
+              {
+                "name": "n:product_detail_attribute_name",
+                "timestamp_token": "",
+                "value": "color"
+              },
+              {
+                "name": "n:product_detail_attribute_value",
+                "timestamp_token": "",
+                "value": "Negro"
+              },
+              {
+                "name": "n:product_type",
+                "timestamp_token": "1778311312967528",
+                "value": "Vestidos"
+              },
+              {
+                "name": "n:sell_on_google_quantity",
+                "timestamp_token": "1778311312967528",
+                "value": "882"
+              },
+              {
+                "name": "n:shipping_weight",
+                "timestamp_token": "1778311312967528",
+                "value": ""
+              },
+              {
+                "name": "n:size",
+                "timestamp_token": "1778311312967528",
+                "value": "Ni\u00f1o de 6 a 7 a\u00f1os"
+              },
+              {
+                "name": "n:sku",
+                "timestamp_token": "1778311312967528",
+                "value": "5144102138480-01"
+              },
+              {
+                "name": "n:title",
+                "timestamp_token": "1778311312967528",
+                "value": "Vestidos Maxi para Mam\u00e1 y Beb\u00e9 - Estampado Floral | Viste Como Mam\u00e1 Ni\u00f1o de 6 a 7 a\u00f1os / Negro"
+              }
+            ],
+            "body_length": 11478,
+            "custom_label_0": "",
+            "custom_label_1": "",
+            "custom_label_2": "",
+            "custom_label_3": "",
+            "custom_label_4": "",
+            "has_age_group_attr": true,
+            "has_missing_age_group_text": false,
+            "has_missing_local_inventory_text": false,
+            "issue_titles": [],
+            "linkage_key": "cds|L|124884876|US|es|shopify_US_7227630649441_41872775020641",
+            "parse_error": "",
+            "product_link": "https://www.dresslikemommy.com/es/products/mother-daughter-matching-summer-dresses-vibrant-printed-sleeveless-maxi-dresses?variant=41872775020641&country=US&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic",
+            "product_title": "Vestidos Maxi para Mam\u00e1 y Beb\u00e9 - Estampado Floral | Viste Como Mam\u00e1 Ni\u00f1o de 6 a 7 a\u00f1os / Negro",
+            "source_id": "10627981690"
+          },
+          "request": {
+            "post_ar": {
+              "1": {
+                "1": "shopify_US_7227630649441_41872775020641",
+                "2": 0,
+                "4": "es",
+                "6": "US"
+              },
+              "2": true
+            },
+            "service_url": "https://merchants.google.com/mc_products/_/rpc/OfferInventoryService/Get"
+          },
+          "status": 200
+        }
+      },
+      "url": "https://merchants.google.com/mc/items/details?a=124884876&offerId=shopify_US_7227630649441_41872775020641&language=es&channel=0&feedLabel=US&tab=needsattention#DLM-MERCHANT-US-ES-READONLY-20260515-DETAIL",
+      "why": "First sampled US/es exact-export affected row; issue also appears under Free listings."
+    },
+    {
+      "expected_age_group": "adult",
+      "offer_id": "shopify_US_7227379023969_41871522431073",
+      "page": {
+        "has_missing_age_group_text": false,
+        "has_missing_local_inventory_text": false,
+        "screenshot": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/merchant-us-es-source-10627981690-readback/raw/shopify_US_7227379023969_41871522431073_detail.png",
+        "text_excerpt": "Skip to main content menu search help_outline Dresslikemommy 124884876 arrow_drop_down Overview Notifications Products & store Products Shipping and returns Store quality Reviews Creative content Product Studio Video assets Marketing Ad campaigns Promotions Automated discounts Marketing methods Analytics Summary Products Pricing Online store Custom reports Settings General Business info Data sources Add-ons Access and services arrow_back Product details Product details Needs attention (0) Shipping calculator Traffic All looks good with your product Privacy Policy \u00b7 Terms of Service \u00b7 Program Policies Ready to download Press F6 to access notification buttons. Ready to download Download close",
+        "text_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/merchant-us-es-source-10627981690-readback/raw/shopify_US_7227379023969_41871522431073_detail_text.txt",
+        "title": "Product details - Merchant Center",
+        "url": "https://merchants.google.com/mc/items/details?a=124884876&offerId=shopify_US_7227379023969_41871522431073&language=es&channel=0&feedLabel=US&tab=needsattention#DLM-MERCHANT-US-ES-READONLY-20260515-DETAIL"
+      },
+      "rpc": {
+        "HeraItemIssuesService.ListItemIssues": {
+          "parsed": {
+            "age_group_attrs": [],
+            "attributes_sample": [],
+            "body_length": 2,
+            "custom_label_0": "",
+            "custom_label_1": "",
+            "custom_label_2": "",
+            "custom_label_3": "",
+            "custom_label_4": "",
+            "has_age_group_attr": false,
+            "has_missing_age_group_text": false,
+            "has_missing_local_inventory_text": false,
+            "issue_titles": [],
+            "linkage_key": "",
+            "parse_error": "",
+            "product_link": "",
+            "product_title": "",
+            "source_id": ""
+          },
+          "request": {
+            "post_ar": {
+              "1": "US",
+              "2": "es",
+              "3": "shopify_US_7227379023969_41871522431073",
+              "6": [
+                1
+              ]
+            },
+            "service_url": "https://merchants.google.com/mc_products/_/rpc/HeraItemIssuesService/ListItemIssues"
+          },
+          "status": 200
+        },
+        "OfferInventoryService.Get": {
+          "parsed": {
+            "age_group_attrs": [
+              {
+                "name": "n:age_group",
+                "timestamp_token": "1778311309575073",
+                "value": "adult"
+              }
+            ],
+            "attributes_sample": [
+              {
+                "name": "n:cost_of_goods_sold",
+                "timestamp_token": "1778311309575073",
+                "value": "12.50 USD"
+              },
+              {
+                "name": "n:merchant_item_id",
+                "timestamp_token": "1778311309575073",
+                "value": "gid://shopify/ProductVariant/41871522431073"
+              },
+              {
+                "name": "n:product_detail",
+                "timestamp_token": "1778311309575073",
+                "value": ""
+              },
+              {
+                "name": "n:product_detail_section_name",
+                "timestamp_token": "",
+                "value": "Variant"
+              },
+              {
+                "name": "n:product_detail_attribute_name",
+                "timestamp_token": "",
+                "value": "tama\u00f1o"
+              },
+              {
+                "name": "n:product_detail_attribute_value",
+                "timestamp_token": "",
+                "value": "Padre L"
+              },
+              {
+                "name": "n:product_detail",
+                "timestamp_token": "1778311309575073",
+                "value": ""
+              },
+              {
+                "name": "n:product_detail_section_name",
+                "timestamp_token": "",
+                "value": "Variant"
+              },
+              {
+                "name": "n:product_detail_attribute_name",
+                "timestamp_token": "",
+                "value": "color"
+              },
+              {
+                "name": "n:product_detail_attribute_value",
+                "timestamp_token": "",
+                "value": "azul"
+              },
+              {
+                "name": "n:sell_on_google_quantity",
+                "timestamp_token": "1778311309575073",
+                "value": "55"
+              },
+              {
+                "name": "n:sku",
+                "timestamp_token": "1778311309575073",
+                "value": "5672249086502-01"
+              },
+              {
+                "name": "n:additional_image_link",
+                "timestamp_token": "1778311309575073",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_44_0e028ffb-5d6c-4fc0-8d3e-8ec228f0ef5e.png?v=1772570393"
+              },
+              {
+                "name": "n:additional_image_link",
+                "timestamp_token": "1778311309575073",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_43_aae9dd04-8e90-48f4-a5f9-9c34b8435821.png?v=1772570393"
+              },
+              {
+                "name": "n:additional_image_link",
+                "timestamp_token": "1778311309575073",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_42_6929e65c-eec9-4443-90a2-5b9719c2744b.png?v=1772570357"
+              },
+              {
+                "name": "n:age_group",
+                "timestamp_token": "1778311309575073",
+                "value": "adult"
+              },
+              {
+                "name": "n:availability",
+                "timestamp_token": "1778311309575073",
+                "value": "in stock"
+              },
+              {
+                "name": "n:brand",
+                "timestamp_token": "1778311309575073",
+                "value": "dresslikemommy.com"
+              },
+              {
+                "name": "n:color",
+                "timestamp_token": "1778311309575073",
+                "value": "azul"
+              },
+              {
+                "name": "n:cost_of_goods_sold",
+                "timestamp_token": "1778311309575073",
+                "value": "12.50 USD"
+              },
+              {
+                "name": "n:description",
+                "timestamp_token": "1778311309575073",
+                "value": "Compra conjuntos a juego para padres e hijos con azul. Perfectos para looks coordinados f\u00e1cilmente, vacaciones y fotos familiares. Compra ahora en Dress Like Mommy. Env\u00edo gratis + devoluciones en 30 d\u00edas."
+              },
+              {
+                "name": "n:gender",
+                "timestamp_token": "1778311309575073",
+                "value": "unisex"
+              },
+              {
+                "name": "n:id",
+                "timestamp_token": "1778311309575073",
+                "value": "shopify_US_7227379023969_41871522431073"
+              },
+              {
+                "name": "n:image_link",
+                "timestamp_token": "1778311309575073",
+                "value": "https://cdn.shopify.com/s/files/1/1557/1635/files/family_summer_outfits.jpg?v=1772570357"
+              },
+              {
+                "name": "n:item_group_id",
+                "timestamp_token": "1778311309575073",
+                "value": "shopify_US_7227379023969"
+              },
+              {
+                "name": "n:link",
+                "timestamp_token": "1778311309575073",
+                "value": "https://www.dresslikemommy.com/es/products/elegant-matching-family-outfits-light-blue-halter-dresses-casual-t-shirt-set-for-summer?variant=41871522431073&country=US&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic"
+              },
+              {
+                "name": "n:merchant_item_id",
+                "timestamp_token": "1778311309575073",
+                "value": "gid://shopify/ProductVariant/41871522431073"
+              },
+              {
+                "name": "n:price",
+                "timestamp_token": "1778311309575073",
+                "value": "24.99 USD"
+              },
+              {
+                "name": "n:product_detail",
+                "timestamp_token": "1778311309575073",
+                "value": ""
+              },
+              {
+                "name": "n:product_detail_section_name",
+                "timestamp_token": "",
+                "value": "Variant"
+              },
+              {
+                "name": "n:product_detail_attribute_name",
+                "timestamp_token": "",
+                "value": "tama\u00f1o"
+              },
+              {
+                "name": "n:product_detail_attribute_value",
+                "timestamp_token": "",
+                "value": "Padre L"
+              },
+              {
+                "name": "n:product_detail",
+                "timestamp_token": "1778311309575073",
+                "value": ""
+              },
+              {
+                "name": "n:product_detail_section_name",
+                "timestamp_token": "",
+                "value": "Variant"
+              },
+              {
+                "name": "n:product_detail_attribute_name",
+                "timestamp_token": "",
+                "value": "color"
+              },
+              {
+                "name": "n:product_detail_attribute_value",
+                "timestamp_token": "",
+                "value": "azul"
+              },
+              {
+                "name": "n:product_type",
+                "timestamp_token": "1778311309575073",
+                "value": "Conjuntos"
+              },
+              {
+                "name": "n:sell_on_google_quantity",
+                "timestamp_token": "1778311309575073",
+                "value": "55"
+              },
+              {
+                "name": "n:shipping_weight",
+                "timestamp_token": "1778311309575073",
+                "value": ""
+              },
+              {
+                "name": "n:size",
+                "timestamp_token": "1778311309575073",
+                "value": "Padre L"
+              },
+              {
+                "name": "n:sku",
+                "timestamp_token": "1778311309575073",
+                "value": "5672249086502-01"
+              },
+              {
+                "name": "n:title",
+                "timestamp_token": "1778311309575073",
+                "value": "Conjuntos a Juego para la Familia - Azul | Viste Como Mam\u00e1 Padre L / azul"
+              }
+            ],
+            "body_length": 8092,
+            "custom_label_0": "",
+            "custom_label_1": "",
+            "custom_label_2": "",
+            "custom_label_3": "",
+            "custom_label_4": "",
+            "has_age_group_attr": true,
+            "has_missing_age_group_text": false,
+            "has_missing_local_inventory_text": false,
+            "issue_titles": [],
+            "linkage_key": "cds|L|124884876|US|es|shopify_US_7227379023969_41871522431073",
+            "parse_error": "",
+            "product_link": "https://www.dresslikemommy.com/es/products/elegant-matching-family-outfits-light-blue-halter-dresses-casual-t-shirt-set-for-summer?variant=41871522431073&country=US&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic",
+            "product_title": "Conjuntos a Juego para la Familia - Azul | Viste Como Mam\u00e1 Padre L / azul",
+            "source_id": "10627981690"
+          },
+          "request": {
+            "post_ar": {
+              "1": {
+                "1": "shopify_US_7227379023969_41871522431073",
+                "2": 0,
+                "4": "es",
+                "6": "US"
+              },
+              "2": true
+            },
+            "service_url": "https://merchants.google.com/mc_products/_/rpc/OfferInventoryService/Get"
+          },
+          "status": 200
+        }
+      },
+      "url": "https://merchants.google.com/mc/items/details?a=124884876&offerId=shopify_US_7227379023969_41871522431073&language=es&channel=0&feedLabel=US&tab=needsattention#DLM-MERCHANT-US-ES-READONLY-20260515-DETAIL",
+      "why": "Sampled US/es exact-export affected row with Shopping ads traffic type."
+    },
+    {
+      "expected_age_group": "toddler",
+      "offer_id": "shopify_US_7227254276193_41871113158753",
+      "page": {
+        "has_missing_age_group_text": false,
+        "has_missing_local_inventory_text": false,
+        "screenshot": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/merchant-us-es-source-10627981690-readback/raw/shopify_US_7227254276193_41871113158753_detail.png",
+        "text_excerpt": "Skip to main content menu search help_outline Dresslikemommy 124884876 arrow_drop_down Overview Notifications Products & store Products Shipping and returns Store quality Reviews Creative content Product Studio Video assets Marketing Ad campaigns Promotions Automated discounts Marketing methods Analytics Summary Products Pricing Online store Custom reports Settings General Business info Data sources Add-ons Access and services arrow_back Product details Ready to download Press F6 to access notification buttons. Ready to download Download close",
+        "text_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/merchant-us-es-source-10627981690-readback/raw/shopify_US_7227254276193_41871113158753_detail_text.txt",
+        "title": "Product details - Merchant Center",
+        "url": "https://merchants.google.com/mc/items/details?a=124884876&offerId=shopify_US_7227254276193_41871113158753&language=es&channel=0&feedLabel=US&tab=needsattention#DLM-MERCHANT-US-ES-READONLY-20260515-DETAIL"
+      },
+      "rpc": {
+        "OfferInventoryService.Get": {
+          "parsed": {
+            "age_group_attrs": [],
+            "attributes_sample": [],
+            "body_length": 15,
+            "custom_label_0": "",
+            "custom_label_1": "",
+            "custom_label_2": "",
+            "custom_label_3": "",
+            "custom_label_4": "",
+            "has_age_group_attr": false,
+            "has_missing_age_group_text": false,
+            "has_missing_local_inventory_text": false,
+            "issue_titles": [],
+            "linkage_key": "",
+            "parse_error": "",
+            "product_link": "",
+            "product_title": "",
+            "source_id": ""
+          },
+          "request": {
+            "post_ar": {
+              "1": {
+                "1": "shopify_US_7227254276193_41871113158753",
+                "2": 0,
+                "4": "es",
+                "6": "US"
+              },
+              "2": true
+            },
+            "service_url": "https://merchants.google.com/mc_products/_/rpc/OfferInventoryService/Get"
+          },
+          "status": 404
+        }
+      },
+      "url": "https://merchants.google.com/mc/items/details?a=124884876&offerId=shopify_US_7227254276193_41871113158753&language=es&channel=0&feedLabel=US&tab=needsattention#DLM-MERCHANT-US-ES-READONLY-20260515-DETAIL",
+      "why": "Previously used US/en cleared sample that also exposes the US/es source row in product-list RPC."
+    }
+  ],
+  "product_list_readback": {
+    "mode": "READ_ONLY_UNIFIED_PRODUCT_LIST_RPC",
+    "notes": [
+      "Captured one current product-list RPC from a temporary Merchant target.",
+      "Cookies and request headers were used only in memory and are not written to disk."
+    ],
+    "queries": [
+      "shopify_US_7227630649441_41872775020641",
+      "shopify_US_7227379023969_41871522431073",
+      "shopify_US_7227254276193_41871113158753"
+    ],
+    "results": [
+      {
+        "body_length": 797,
+        "parse_error": "",
+        "query": "shopify_US_7227630649441_41872775020641",
+        "row_count": 1,
+        "rows": [
+          {
+            "custom_label_0": "",
+            "custom_label_1": "",
+            "custom_label_2": "",
+            "custom_label_3": "",
+            "custom_label_4": "",
+            "feed_label": "US",
+            "language_code": "es",
+            "last_updated_timestamp_seconds": "1778311312",
+            "last_updated_utc": "2026-05-09T07:21:52+00:00",
+            "merchant_center_item_id": "shopify_US_7227630649441_41872775020641",
+            "raw_aggregate_status": "2",
+            "raw_status": "4",
+            "source_id": "10627981690",
+            "source_name": "Shopify App API",
+            "title": "Vestidos Maxi para Mam\u00e1 y Beb\u00e9 - Estampado Floral | Viste Como Mam\u00e1 Ni\u00f1o de 6 a 7 a\u00f1os / Negro"
+          }
+        ],
+        "status": 200,
+        "target_source_rows": [
+          {
+            "custom_label_0": "",
+            "custom_label_1": "",
+            "custom_label_2": "",
+            "custom_label_3": "",
+            "custom_label_4": "",
+            "feed_label": "US",
+            "language_code": "es",
+            "last_updated_timestamp_seconds": "1778311312",
+            "last_updated_utc": "2026-05-09T07:21:52+00:00",
+            "merchant_center_item_id": "shopify_US_7227630649441_41872775020641",
+            "raw_aggregate_status": "2",
+            "raw_status": "4",
+            "source_id": "10627981690",
+            "source_name": "Shopify App API",
+            "title": "Vestidos Maxi para Mam\u00e1 y Beb\u00e9 - Estampado Floral | Viste Como Mam\u00e1 Ni\u00f1o de 6 a 7 a\u00f1os / Negro"
+          }
+        ]
+      },
+      {
+        "body_length": 756,
+        "parse_error": "",
+        "query": "shopify_US_7227379023969_41871522431073",
+        "row_count": 1,
+        "rows": [
+          {
+            "custom_label_0": "",
+            "custom_label_1": "",
+            "custom_label_2": "",
+            "custom_label_3": "",
+            "custom_label_4": "",
+            "feed_label": "US",
+            "language_code": "es",
+            "last_updated_timestamp_seconds": "1778311309",
+            "last_updated_utc": "2026-05-09T07:21:49+00:00",
+            "merchant_center_item_id": "shopify_US_7227379023969_41871522431073",
+            "raw_aggregate_status": "2",
+            "raw_status": "4",
+            "source_id": "10627981690",
+            "source_name": "Shopify App API",
+            "title": "Conjuntos a Juego para la Familia - Azul | Viste Como Mam\u00e1 Padre L / azul"
+          }
+        ],
+        "status": 200,
+        "target_source_rows": [
+          {
+            "custom_label_0": "",
+            "custom_label_1": "",
+            "custom_label_2": "",
+            "custom_label_3": "",
+            "custom_label_4": "",
+            "feed_label": "US",
+            "language_code": "es",
+            "last_updated_timestamp_seconds": "1778311309",
+            "last_updated_utc": "2026-05-09T07:21:49+00:00",
+            "merchant_center_item_id": "shopify_US_7227379023969_41871522431073",
+            "raw_aggregate_status": "2",
+            "raw_status": "4",
+            "source_id": "10627981690",
+            "source_name": "Shopify App API",
+            "title": "Conjuntos a Juego para la Familia - Azul | Viste Como Mam\u00e1 Padre L / azul"
+          }
+        ]
+      },
+      {
+        "body_length": 883,
+        "parse_error": "",
+        "query": "shopify_US_7227254276193_41871113158753",
+        "row_count": 1,
+        "rows": [
+          {
+            "custom_label_0": "",
+            "custom_label_1": "",
+            "custom_label_2": "",
+            "custom_label_3": "",
+            "custom_label_4": "",
+            "feed_label": "USD_544866401",
+            "language_code": "en",
+            "last_updated_timestamp_seconds": "1778768578",
+            "last_updated_utc": "2026-05-14T14:22:58+00:00",
+            "merchant_center_item_id": "shopify_US_7227254276193_41871113158753",
+            "raw_aggregate_status": "2",
+            "raw_status": "4",
+            "source_id": "10652245993",
+            "source_name": "Shopify App API",
+            "title": "Mommy and Me Maxi Dresses - Yellow | Dress Like Mommy Child 2 Years / Yellow"
+          }
+        ],
+        "status": 200,
+        "target_source_rows": []
+      }
+    ]
+  },
+  "samples": [
+    {
+      "expected_age_group": "kids",
+      "offer_id": "shopify_US_7227630649441_41872775020641",
+      "why": "First sampled US/es exact-export affected row; issue also appears under Free listings."
+    },
+    {
+      "expected_age_group": "adult",
+      "offer_id": "shopify_US_7227379023969_41871522431073",
+      "why": "Sampled US/es exact-export affected row with Shopping ads traffic type."
+    },
+    {
+      "expected_age_group": "toddler",
+      "offer_id": "shopify_US_7227254276193_41871113158753",
+      "why": "Previously used US/en cleared sample that also exposes the US/es source row in product-list RPC."
+    }
+  ],
+  "source_detail_readback": [
+    {
+      "contains_feed_label_us": false,
+      "contains_needs_update": false,
+      "contains_shopify_app_api": false,
+      "contains_spanish": true,
+      "contains_united_states": false,
+      "final_url": "https://merchants.google.com/mc/products/sources/joindetails?a=124884876&joinFeedId=10627981690&tab=settings",
+      "page_title": "- Merchant Center",
+      "screenshot": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/merchant-us-es-source-10627981690-readback/raw/source_10627981690_processing.png",
+      "tab": "processing",
+      "text_excerpt": "Skip to main content menu search help_outline Dresslikemommy 124884876 arrow_drop_down Overview Notifications Products & store Products Shipping and returns Store quality Reviews Creative content Product Studio Video assets Marketing Ad campaigns Promotions Automated discounts Marketing methods Analytics Summary Products Pricing Online store Custom reports Settings General Business info Data sources Add-ons Access and services arrow_back Ready to download Press F6 to access notification buttons. Ready to download Download close",
+      "text_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/merchant-us-es-source-10627981690-readback/raw/source_10627981690_processing.txt",
+      "url": "https://merchants.google.com/mc/products/sources/joindetails?a=124884876&joinFeedId=10627981690&tab=processing#DLM-MERCHANT-US-ES-READONLY-20260515-SOURCE-processing"
+    },
+    {
+      "contains_feed_label_us": false,
+      "contains_needs_update": false,
+      "contains_shopify_app_api": false,
+      "contains_spanish": true,
+      "contains_united_states": false,
+      "final_url": "https://merchants.google.com/mc/products/sources/joindetails?a=124884876&joinFeedId=10627981690&tab=settings#DLM-MERCHANT-US-ES-READONLY-20260515-SOURCE-settings",
+      "page_title": "Supplemental feed details page - Merchant Center",
+      "screenshot": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/merchant-us-es-source-10627981690-readback/raw/source_10627981690_settings.png",
+      "tab": "settings",
+      "text_excerpt": "Skip to main content menu search help_outline Dresslikemommy 124884876 arrow_drop_down Overview Notifications Products & store Products Shipping and returns Store quality Reviews Creative content Product Studio Video assets Marketing Ad campaigns Promotions Automated discounts Marketing methods Analytics Summary Products Pricing Online store Custom reports Settings General Business info Data sources Add-ons Access and services arrow_back Supplemental feed details page Ready to download Press F6 to access notification buttons. Ready to download Download close",
+      "text_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/merchant-us-es-source-10627981690-readback/raw/source_10627981690_settings.txt",
+      "url": "https://merchants.google.com/mc/products/sources/joindetails?a=124884876&joinFeedId=10627981690&tab=settings#DLM-MERCHANT-US-ES-READONLY-20260515-SOURCE-settings"
+    }
+  ],
+  "source_id": "10627981690"
+}
