@@ -1,8 +1,37 @@
 # Marketing Safety Review Log
 
-Last updated: 2026-05-15 07:15 EDT
+Last updated: 2026-05-15 09:45 EDT
 
 Use this log for reviewer outcomes or simulated checklist runs. Keep entries short and tied to evidence.
+
+## 2026-05-15 - Pinterest feed grouping guard readback
+
+Reviewer verdict: `FAIL_EXPECTED_APPROVAL_REQUIRED_NO_LAUNCH`
+
+Checked:
+
+- `check_pinterest_feed_grouping.py --report-only --strict` scanned `3` current snapshots.
+- The result is `3` expected FAIL snapshots and `0` ERROR snapshots.
+- The Pinterest exact item-ID import still exposes `30` duplicate-parent clusters without `item_group_id`.
+- Two Merchant sanitized exports still show `69` duplicate market x language buckets each, worst `96x`.
+- `FIX_LANDED_FRESHNESS_MARKER.txt` is placeholder-only and does not contain the attest phrase.
+
+Required gates/fixes:
+
+- Do not launch Pinterest, save broad product groups, or mark the feed fixed from filter payload counts alone.
+- Owner approval is required for the master all-markets grouping phrase or per-market phrases.
+- If the Shopify Pinterest channel UI lacks the grouping toggle, use Path B grouped TSV generation/import only under separate exact approval.
+- Strict guard mode can be attested only after per-market 24h re-sync and clean after-state readbacks.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/AUTOMATION_FEED_GROUPING_QUEUE_WIRING_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/CROSS_MARKET_VARIANT_DUPLICATION_DIAGNOSIS.md`
+- `ops/scripts/check_pinterest_feed_grouping.py`
+
+Safest next sales-moving action:
+
+- Apply the owner-approved all-markets grouping fix, then read back grouped per-market catalog output before final Pinterest launch review.
 
 ## 2026-05-15 - Merchant post-prune after-export guard
 
@@ -1931,3 +1960,34 @@ Evidence:
 Safest next sales-moving action:
 
 - Trigger/read back the Google & YouTube/Merchant publishing path if available, or rerun the Merchant export after propagation, then pass the guard before any Shopping build.
+
+## 2026-05-15 - Merchant Post-Prune Paid-Cohort Intersection
+
+Reviewer verdict: `PASS_WITH_HOLD_DECISION`
+
+Checked:
+
+- Local/read-only join used saved Merchant post-prune browser-RPC export, exact `780` paid cohort source, and saved Google Ads Standard Shopping product export.
+- No external account write, feed edit, product edit, campaign edit, bid, budget, status, conversion, billing, credential, or destructive action occurred.
+- Current Standard Shopping export IDs reconcile `767/767` to current US/en Merchant rows.
+- Canada English, Canada French, GB English, and AU English remain `0` paid-cohort IDs in the saved Merchant export.
+- Non-target groups still contain `51,033` duplicate paid-cohort rows across all `780` paid-cohort IDs.
+
+Risks:
+
+- The join is from saved exports, not a fresh account-surface readback after propagation.
+- It cannot prove Canada/GB Shopping readiness because those target rows are still absent.
+
+Required gates/fixes:
+
+- Do not create Shopping campaigns, product groups, feed/title changes, or scope changes from this intersection.
+- Continue only through Google & YouTube/Merchant publishing sync/control readback or delayed re-export, then rerun the after-export guard.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-merchant-post-prune-paid-cohort-intersection/MERCHANT_POST_PRUNE_PAID_COHORT_INTERSECTION.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-merchant-post-prune-paid-cohort-intersection/merchant_post_prune_paid_cohort_intersection_summary.json`
+
+Safest next sales-moving action:
+
+- Use Merchant/Google publishing controls or a fresh propagation export to make the non-target duplicate rows disappear, then pass the guard before Canada/GB Shopping work.

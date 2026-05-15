@@ -15,11 +15,12 @@ Global guides carry: verification mandate, secrets/PII discipline, destructive-c
 
 ## Non-Negotiables
 
-Even if the global guides are not loaded, these three rules always apply on this repo:
+Even if the global guides are not loaded, these four rules always apply on this repo:
 
 - Never run destructive git commands (`git reset --hard`, `git clean -fd`, `git checkout --`, `git push --force`, `git push -f`) unless the current turn explicitly requests them by name. Preserve unrelated worktree changes.
 - Never write credentials, tokens, or vendor/source URLs into any repo file, commit, log, worklog, theme file, prompt, evidence snippet, or external-system-visible field. Credentials live only in `~/.config/dresslikemommy/`.
 - Never execute trades, place orders, send money, charge cards, initiate transfers, or change billing on the user's behalf. Prepare the action and ask the user to perform it.
+- Never approve or apply a Shopify -> Pinterest (or any Pinterest catalog) feed configuration that submits per-variant rows without `item_group_id` grouping. Every active Shopify Market (`us`, `canada`, `united-kingdom`, `eu`, `australia`, `international`) and every product category must ship feed rows where same-parent variants share `item_group_id` and `image_link` is the parent product's featured image. The automated guard `ops/scripts/check_pinterest_feed_grouping.py` is wired into `ops/scripts/check_continuity_integrity.py --strict` and must remain wired. See `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/`.
 
 ## Start Here
 

@@ -1,0 +1,70 @@
+{
+  "anchor": "2026-05-15-pinterest-variant-duplication-feed-fix",
+  "generated": "2026-05-15",
+  "mode": "repo_local_diagnostic_and_approval_packet_only",
+  "live_writes_made": false,
+  "owner_symptom": {
+    "surface": "Pinterest catalog UI -> Dresses product group",
+    "observed": 157,
+    "expected_after_fix": "approximately 14 to 25 parent products",
+    "example_duplicate_variants": [
+      "43831323066465 (120cm / Purple)",
+      "43831323197537 (S / Purple)"
+    ]
+  },
+  "feed_source": {
+    "channel": "Shopify Pinterest sales channel",
+    "merchant_source_label": "Shopify App API",
+    "advertiser_id": "549756244483",
+    "item_id_pattern": "shopify_US_<parent_product_id>_<variant_id>"
+  },
+  "active_clean_scope_analysis": {
+    "source_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/pinterest_exact_product_group_item_id_import.csv",
+    "total_variant_rows_submitted": 333,
+    "unique_parent_products": 30,
+    "average_variants_per_parent": 11.1,
+    "worst_offenders": [
+      {"parent_product_id": "7229259874401", "variants_as_items": 42, "group": "family_matching"},
+      {"parent_product_id": "7227270791265", "variants_as_items": 32, "group": "mommy_me"},
+      {"parent_product_id": "7228788867169", "variants_as_items": 29, "group": "pajamas"},
+      {"parent_product_id": "7227630649441", "variants_as_items": 22, "group": "mommy_me"}
+    ]
+  },
+  "root_cause": "Shopify Pinterest channel is submitting one row per variant with no item_group_id grouping, so Pinterest treats every variant as a separate catalog item.",
+  "fix_paths": {
+    "A": "Toggle Shopify Pinterest sales-channel variant-submission setting to group by item_group_id (fastest, reversible).",
+    "B": "Generate custom Shopify Admin GraphQL feed with item_group_id and parent-image rules; upload to Pinterest as a separate source."
+  },
+  "recommended_path": "A",
+  "expected_after_24h_resync": {
+    "dresses_group_entries": "approximately 14 to 25",
+    "active_clean_us_scope_items": 30,
+    "hero_image_source": "product featured image",
+    "additional_image_link": "variant images"
+  },
+  "approval_required": true,
+  "exact_approval_phrase": "I approve toggling the Shopify Pinterest sales-channel feed to group variants under a single parent product via item_group_id for advertiser 549756244483, with no Shopify product/title/price/inventory/vendor/type/policy edits, no Pinterest campaign/budget/bid/status/audience/tag/CAPI/billing changes, and no edits to other sales channels. After the 24-hour Pinterest re-sync, capture the after-state readback and only then consider promoting/launching.",
+  "stop_conditions": [
+    "Setting label missing -> escalate to Path B",
+    "Re-authentication or scope prompt",
+    "Currency/market/region change request",
+    "Billing prompt",
+    "Other-channel impact warning",
+    "New severity-1 disapprovals after re-sync"
+  ],
+  "non_changes": [
+    "Pinterest tag",
+    "Pinterest CAPI",
+    "Pinterest conversion goals",
+    "Pinterest budget/bid/status/campaign/audience",
+    "Pinterest billing/account",
+    "Shopify product data / pricing / inventory / policies / theme",
+    "Merchant Center / Google Ads / Facebook / TikTok catalogs"
+  ],
+  "guardrails_preserved": {
+    "no_vendor_or_source_urls_in_customer_visible_fields": true,
+    "no_destructive_filesystem_actions": true,
+    "no_credentials_persisted_in_repo": true,
+    "no_financial_actions_executed": true
+  }
+}

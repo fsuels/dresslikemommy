@@ -24,6 +24,14 @@ CANONICAL_WORKLOG = OPS / "AGENT_WORKLOG.md"
 CANONICAL_PROMPT = OPS / "prompts" / "paid-growth-ai-army-continuation-prompt.md"
 ALT_WORKLOG_GLOB = "AGENT_WORKLOG*.md"
 INTEGRATION_AUDIT = OPS / "scripts" / "audit_marketing_command_integration.py"
+PINTEREST_FEED_GROUPING_CHECK = OPS / "scripts" / "check_pinterest_feed_grouping.py"
+PINTEREST_FEED_GROUPING_FRESHNESS_MARKER = (
+    ROOT
+    / "dresslikemommy-growth-2026"
+    / "02_AUDIT_PACKETS"
+    / "2026-05-15-pinterest-feed-grouping-all-markets-fix"
+    / "FIX_LANDED_FRESHNESS_MARKER.txt"
+)
 
 COCKPIT_HTML = MARKETING / "operator_cockpit.html"
 COCKPIT_SOURCES = [
@@ -227,6 +235,90 @@ def check_marketing_integration_audit() -> CheckResult:
     return CheckResult("marketing_integration_audit", True, "marketing integration audit reports 0 side-document risks")
 
 
+def check_pinterest_feed_grouping() -> CheckResult:
+    """Wire the Pinterest feed grouping guardrail into continuity.
+
+    Behavior:
+    - If the freshness marker file does NOT exist, the fix is still in
+      progress: run the guardrail in report-only mode and PASS as long as
+      it produces output without errors. This prevents false-alarming on
+      the current per-variant feed snapshots while the channel toggle is
+      being approved/applied.
+    - If the freshness marker DOES exist, run the guardrail in strict
+      mode: any per-variant regression FAILS continuity.
+
+    To flip the gate to strict, an agent must create the marker file
+    after capturing a clean after-state readback per market. The marker
+    is a tiny text file with the marker date and the per-market readback
+    summary; creating it is itself an attested action.
+    """
+    if not PINTEREST_FEED_GROUPING_CHECK.exists():
+        return CheckResult(
+            "pinterest_feed_grouping",
+            False,
+            f"missing {rel(PINTEREST_FEED_GROUPING_CHECK)}",
+        )
+    strict_mode = False
+    if PINTEREST_FEED_GROUPING_FRESHNESS_MARKER.exists():
+        try:
+            marker_text = PINTEREST_FEED_GROUPING_FRESHNESS_MARKER.read_text(encoding="utf-8")
+        except Exception:
+            marker_text = ""
+        # Only flip to strict mode if the marker contains the explicit attest
+        # phrase as the FIRST non-blank non-comment line. A test-only or
+        # accidental file does not flip the gate; this prevents accidental
+        # strictification from leftover smoke-test artifacts or from
+        # documentation inside the marker that merely mentions the phrase.
+        ATTEST_PHRASE = "FIX_LANDED_ATTEST: per-market after-state readback complete"
+        for raw in marker_text.splitlines():
+            line = raw.strip()
+            if not line or line.startswith("#"):
+                continue
+            if line == ATTEST_PHRASE or line.startswith(ATTEST_PHRASE):
+                strict_mode = True
+            break
+    cmd = ["python3.13", str(PINTEREST_FEED_GROUPING_CHECK)]
+    if strict_mode:
+        cmd.append("--strict")
+    else:
+        cmd.extend(["--report-only", "--strict"])
+    proc = subprocess.run(
+        cmd,
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        timeout=120,
+        check=False,
+    )
+    if proc.returncode == 2:
+        return CheckResult(
+            "pinterest_feed_grouping",
+            False,
+            f"guardrail script ERROR rc=2: {proc.stderr[-200:] or proc.stdout[-200:]}",
+        )
+    if strict_mode and proc.returncode != 0:
+        tail = "\n".join((proc.stdout + proc.stderr).splitlines()[-8:])
+        return CheckResult(
+            "pinterest_feed_grouping",
+            False,
+            f"strict-mode regression detected after fix landed: {tail}",
+        )
+    # In fix-in-progress mode the guardrail returns 0 even with FAIL findings.
+    fails = re.findall(r"^- FAIL", proc.stdout, re.MULTILINE)
+    if strict_mode:
+        return CheckResult(
+            "pinterest_feed_grouping",
+            True,
+            "strict guardrail PASS after fix landed",
+        )
+    return CheckResult(
+        "pinterest_feed_grouping",
+        True,
+        f"fix-in-progress mode (no freshness marker yet); guardrail reports {len(fails)} FAIL snapshot(s) to remediate",
+    )
+
+
 def check_agent_bootstrap_parity() -> CheckResult:
     agents = ROOT / "AGENTS.md"
     claude = ROOT / "CLAUDE.md"
@@ -246,6 +338,7 @@ def run_checks() -> list[CheckResult]:
         check_spend_authority_agreement(),
         check_cockpit_freshness(),
         check_marketing_integration_audit(),
+        check_pinterest_feed_grouping(),
         check_agent_bootstrap_parity(),
     ]
 

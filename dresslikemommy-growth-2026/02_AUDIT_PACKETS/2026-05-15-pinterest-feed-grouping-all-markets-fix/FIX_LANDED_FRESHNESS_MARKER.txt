@@ -1,0 +1,37 @@
+# Pinterest Feed Grouping — Freshness Marker (NOT YET ATTESTED)
+
+Status: PLACEHOLDER. The fix has NOT yet landed in any market.
+
+This file exists only because a smoke-test of the continuity wiring created
+it on 2026-05-15. It does NOT contain the attest phrase required by
+ops/scripts/check_continuity_integrity.py, so the guardrail remains in
+fix-in-progress mode and continuity stays green.
+
+To flip the guardrail to strict mode (so any future per-variant regression
+fails `python3.13 ops/scripts/check_continuity_integrity.py --strict`), an
+agent must, AFTER the owner has approved the fix per market and AFTER the
+24-hour Pinterest re-sync has produced a clean per-market after-state
+readback, replace the contents of this file with:
+
+    FIX_LANDED_ATTEST: per-market after-state readback complete
+
+followed by per-market after-state summaries. The attest phrase MUST appear
+verbatim somewhere in the file body. Until that exact phrase is present,
+the guardrail stays in fix-in-progress mode.
+
+Per-market readback summaries should be appended below the attest line in
+this format:
+
+    market: us
+    readback_date: 2026-05-XX
+    pinterest_catalog_items_before: <n>
+    pinterest_catalog_items_after: <n>
+    dresses_group_entries_before: <n>
+    dresses_group_entries_after: <n>
+    item_group_id_present_on_every_row: true
+    new_severity_1_disapprovals: 0
+
+Repeat for canada, united-kingdom, eu, australia, international.
+
+Until then, this placeholder is intentionally kept so that nobody recreates
+the marker file with a generic body and accidentally thinks the fix is done.

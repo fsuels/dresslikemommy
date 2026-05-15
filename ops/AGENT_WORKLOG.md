@@ -38881,3 +38881,193 @@ Readback / decision:
 
 Next best action:
 - Use Google & YouTube / Merchant Center publishing sync or feed-group controls if available, or wait for propagation and re-export. Then rerun `build_merchant_capacity_execution_guard.py --after-export` and proceed to Canada English/French plus GB English Shopping only after target rows exist.
+
+
+
+
+2026-05-15 - Pinterest variant duplication feed-fix diagnosis and approval packet
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-variant-duplication-feed-fix
+
+Why:
+- Owner reported the Pinterest catalog "Dresses" group showing 157 entries that are size variants of a much smaller set of parent products, with mixed/wrong hero images. Owner explicitly framed this as a feed-level (not Pinterest-side) issue caused by missing item_group_id grouping in the Shopify -> Pinterest feed.
+
+What changed:
+- Added repo-local diagnosis and approval packet under `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-variant-duplication-feed-fix/`:
+  - `PINTEREST_VARIANT_DUPLICATION_DIAGNOSIS.md`
+  - `PINTEREST_FEED_GROUPING_APPROVAL_PACKET.md`
+  - `pinterest_variant_duplication_summary.json`
+- No Shopify, Pinterest, Merchant, Google Ads, GA4/GTM, theme, billing, product, feed, source, tag, CAPI, audience, campaign, or budget write happened.
+
+Readback / decision:
+- Feed source confirmed as Shopify Pinterest sales channel (Merchant US/en source label `Shopify App API`) for advertiser `549756244483`, item-ID pattern `shopify_US_<parent>_<variant>`.
+- Quantified the duplication using the existing approved 333-variant active-clean US scope CSV (`pinterest_exact_product_group_item_id_import.csv`):
+  - 333 variant rows -> 30 unique parent products -> avg 11.1 variants per parent.
+  - Worst offenders: parent `7229259874401` (42 rows), `7227270791265` (32 rows), `7228788867169` (29 rows), `7227630649441` (22 rows).
+- Recommended Path A: toggle Shopify Pinterest sales-channel variant-submission to group by `item_group_id` and pin `image_link` to product featured image. Reversible, no live write to Pinterest, no spend, no campaign/account change.
+- Fallback Path B: custom Shopify Admin GraphQL feed uploaded as a separate Pinterest source with explicit `item_group_id` and parent-image rules.
+- Provided one exact approval phrase the owner must paste back before any live save in Shopify Admin.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-variant-duplication-feed-fix/PINTEREST_VARIANT_DUPLICATION_DIAGNOSIS.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-variant-duplication-feed-fix/PINTEREST_FEED_GROUPING_APPROVAL_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-variant-duplication-feed-fix/pinterest_variant_duplication_summary.json`
+
+Verification:
+- Counted variant rows per parent from the prior packet CSV via Python; numbers reproducible.
+- No external API call, no credential load, no live UI action.
+
+Guardrails:
+- No Shopify Admin product/page/policy/translation/discount writes, no theme push, no Pinterest/Merchant/Google Ads/GA4/GTM writes, no spend/billing/credentials change, no destructive filesystem action.
+- No vendor/source URLs written anywhere customer-visible or feed-visible; this packet stays in local operator evidence.
+- Existing paid-growth guardrails preserved: Pinterest still has `0` active campaigns, advertiser `549756244483` unchanged, Event Quality unchanged.
+- Path A is reversible by re-selecting the original variant-submission option captured in the before-state screenshot.
+
+Remaining blockers:
+- Live save in Shopify Pinterest channel settings requires the owner to paste the exact approval phrase given in `PINTEREST_FEED_GROUPING_APPROVAL_PACKET.md`.
+- If the named UI option is missing in the channel app, escalate to Path B with a separate exact approval gate.
+
+Next best action:
+- Owner reviews `PINTEREST_FEED_GROUPING_APPROVAL_PACKET.md`, captures the before-state readback (catalog count, "Dresses" group entry count, sample item-ID, current settings screenshot), then either pastes the exact approval phrase to proceed with Path A or asks for Path B build.
+
+
+
+
+2026-05-15 - Pinterest feed grouping all-markets all-categories fix kit + automated guardrail
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-pinterest-feed-grouping-all-markets-fix
+
+Why:
+- Owner upgraded the prior Dresses-only fix request to "every category, every market, expert level, never have same mistake". The variant-as-product duplication is structural across every market (`us`, `canada`, `united-kingdom`, `eu`, `australia`, `international`) and every product category, not Dresses-only. A documentation-only guardrail is insufficient; the mistake must be automatically detectable on future continuity runs.
+
+What changed:
+- Added repo-local all-markets fix kit under `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/`:
+  - `CROSS_MARKET_VARIANT_DUPLICATION_DIAGNOSIS.md` (cross-market quantified evidence).
+  - `MASTER_ALL_MARKETS_APPROVAL_PHRASE.md` (single phrase to fix every market).
+  - `per_market_packets/01_US_*.md`, `02_CANADA_*.md`, `03_UNITED_KINGDOM_*.md`, `04_EU_*.md`, `05_AUSTRALIA_*.md`, `06_INTERNATIONAL_*.md` (6 per-market approval packets with their own exact phrases, ordered by owner priority).
+- Added `ops/scripts/generate_pinterest_feed_grouped.py` — Path B fallback: read-only Shopify Admin GraphQL feed generator that emits a Pinterest-compatible TSV with `item_group_id` on every row, `image_link = product.featuredImage.url`, vendor/supplier-URL leakage blocked, and an internal self-check that aborts if any row lacks `item_group_id`.
+- Added `ops/scripts/check_pinterest_feed_grouping.py` — automated guardrail that scans every Pinterest feed snapshot, Pinterest import CSV, and Merchant Center sanitized export in the repo, and fails closed if it detects per-variant submission without `item_group_id` in any market x language bucket.
+- Wired the guardrail into `ops/scripts/check_continuity_integrity.py` as a new `check_pinterest_feed_grouping` check. It runs in fix-in-progress mode until `FIX_LANDED_FRESHNESS_MARKER.txt` is created in the packet folder, then flips to strict.
+- Added a fourth Non-Negotiable rule to AGENTS.md and CLAUDE.md (kept byte-identical) forbidding per-variant Pinterest feed submission and pointing to the guardrail script.
+- Upgraded the existing `PROB-2026-05-15-PINTEREST-FEED-VARIANT-DUPLICATION` tracker row from Dresses-only to all-markets/all-categories with guardrail-and-marker fixed criteria.
+
+Readback / decision:
+- Quantified the cross-market scope from `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/merchant_all_products_browser_rpc_sanitized.csv`:
+  - 351,007 total variant rows across all markets x languages.
+  - 311 unique parent products globally.
+  - Average ~20.7 variants per parent (collapse factor identical across every market x language bucket).
+- Confirmed item-ID pattern `shopify_<MARKET>_<parent>_<variant>` and `0` unparsed item IDs across the full export, meaning the bug is structural to the channel emission, not market-specific.
+- Confirmed active Shopify Markets from `merchant_capacity_exact_control_reconciliation.json` -> `active_market_handles_seen` = [`australia`, `canada`, `eu`, `international`, `united-kingdom`, `us`].
+- Confirmed product types from `ops/feed-engineering/2026-03-29-phase-3d-product-type-sync/` evidence files: Family Matching, Dresses, Couples, Sweaters; the fix is structural so any future types are covered automatically.
+- Smoke-tested the guardrail against current repo evidence: it correctly reports `3 FAIL` snapshots (one Pinterest import CSV with 30 duplicate-parent clusters and no item_group_id column, two Merchant sanitized exports with 69 market x language buckets each showing per-parent duplication, worst 96x).
+- Strict continuity check still passes (`CONTINUITY_OK`) because the guardrail runs in fix-in-progress mode until the freshness marker is created.
+- No Shopify, Pinterest, Merchant, Google Ads, GA4/GTM, theme, billing, product, feed, source, tag, CAPI, audience, campaign, or budget write happened in this session.
+
+Verification:
+- `python3.13 -m py_compile ops/scripts/check_pinterest_feed_grouping.py ops/scripts/generate_pinterest_feed_grouped.py ops/scripts/check_continuity_integrity.py` passed.
+- `python3.13 ops/scripts/check_pinterest_feed_grouping.py --report-only --strict` exited 0 with expected FAIL lines for the three current snapshots.
+- `python3.13 ops/scripts/check_continuity_integrity.py --strict` exited 0 with `pinterest_feed_grouping` PASS in fix-in-progress mode.
+- `cmp AGENTS.md CLAUDE.md` confirms byte-identical parity after the new Non-Negotiable was added to both.
+
+Guardrails:
+- No live Shopify Admin product/title/price/inventory/vendor/type/policy edit, no theme push, no Pinterest/Merchant/Google Ads/GA4/GTM write, no spend/billing/credentials change, no destructive filesystem action.
+- No vendor/source URLs written to customer-visible or feed-visible fields. The Path B generator explicitly strips any value containing `http(s)://` from feed columns and blocks supplier hosts.
+- AGENTS.md and CLAUDE.md byte-for-byte parity preserved.
+- Existing paid-growth gates remain untouched: Pinterest advertiser `549756244483` still `0` active campaigns, Event Quality unchanged, no Shopping/Pinterest live writes pending.
+- Path A (Shopify channel toggle) is reversible. Path B is read-only generation; upload requires a separate explicit approval.
+
+Remaining blockers:
+- Live Shopify Pinterest channel save still requires the owner to paste either the master phrase from `MASTER_ALL_MARKETS_APPROVAL_PHRASE.md` or per-market phrases from `per_market_packets/`.
+- After each market's after-state readback passes, the freshness marker file must be created so the guardrail flips to strict mode and any future regression fails the continuity gate.
+- If a market's channel UI does not expose the parent-grouping toggle, Path B must be approved separately and uploaded as a distinct Pinterest catalog source for that market.
+
+Next best action:
+- Owner reviews `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/CROSS_MARKET_VARIANT_DUPLICATION_DIAGNOSIS.md` and either pastes the master phrase to authorize all markets in one shot, or starts with the US per-market packet and proceeds CA -> GB -> EU -> AU -> International. After each market's 24h re-sync and clean after-state readback, create `FIX_LANDED_FRESHNESS_MARKER.txt` in the packet folder so the automated guardrail switches to strict.
+
+
+
+
+2026-05-15 - Merchant post-prune paid-cohort intersection
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-merchant-post-prune-paid-cohort-intersection
+
+Why:
+- The automation queue had no `GREEN` rows, and the top executable Merchant lane needed product-level paid-cohort intersection evidence after the Shopify `International` region prune and failed Merchant after-export guard.
+- The user specifically directed the automation to keep moving safe local/read-only lanes instead of rechecking permissions or stopping on account/GUI blockers.
+
+What changed:
+- Added a local/read-only saved-export intersection packet:
+  `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-merchant-post-prune-paid-cohort-intersection/`.
+- Added `build_merchant_post_prune_paid_cohort_intersection.py`, which joins:
+  - the saved post-prune Merchant browser-RPC export,
+  - the exact `780` paid cohort source,
+  - and the saved Google Ads Standard Shopping product export.
+- Generated:
+  - `MERCHANT_POST_PRUNE_PAID_COHORT_INTERSECTION.md`
+  - `merchant_post_prune_paid_cohort_intersection_summary.json`
+  - `merchant_post_prune_paid_cohort_by_market.csv`
+  - `merchant_post_prune_top_non_target_paid_cohort_groups.csv`
+  - `merchant_post_prune_us_en_paid_cohort_gaps.csv`
+- Updated `ops/marketing/action_queue.md`, `ops/marketing/current_marketing_state.md`, `ops/marketing/daily_scorecard.md`, `ops/marketing/blocker_board.md`, `ops/marketing/decision_log.md`, `ops/marketing/review_log.md`, `ops/marketing/memory_digest.md`, `ops/marketing/operator_cockpit.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Exact paid cohort source has `780` item IDs; all `780` still appear somewhere in the Merchant post-prune export.
+- Current US/en/USD Merchant rows contain `767` paid-cohort IDs.
+- Current Standard Shopping export has `767` product IDs, and all `767` map to current US/en/USD Merchant rows.
+- The exact paid cohort still has `13` IDs absent from current US/en/USD Merchant rows; keep those out of new live scope until a fresh row-level readback exists.
+- US/es/USD has `772` paid-cohort IDs, but remains blocked by current issue/capacity evidence.
+- CA/en/CAD, CA/fr/CAD, GB/en/GBP, and AU/en/AUD still have `0` paid-cohort IDs in the post-prune Merchant export.
+- Non-target market/language/currency groups still contain `51,033` duplicate paid-cohort rows spanning all `780` paid-cohort IDs.
+- Decision: the saved-export paid-cohort intersection gap is closed, but this is not Shopping expansion authority. Merchant capacity remains blocked until Merchant/Google publishing-scope controls or propagation remove the duplicate non-target rows and the after-export guard passes.
+
+Verification:
+- `python3.13 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-merchant-post-prune-paid-cohort-intersection/build_merchant_post_prune_paid_cohort_intersection.py` passed and regenerated the packet outputs.
+
+Guardrails:
+- No Google Ads, Merchant, Shopify, Pinterest, GA4/GTM, feed, product, campaign, product-group, bid, budget, status, conversion, billing, credential, or live theme write occurred.
+- No product removals, capacity request, or source/feed mutation occurred.
+- No Computer Use startup probing or permission repair occurred.
+
+Remaining blockers:
+- Merchant capacity after-export guard still fails from the post-prune export.
+- CA/en, CA/fr, GB/en, and AU/en Merchant rows remain `0`, so Canada/GB/AU Shopping remains blocked.
+
+
+
+2026-05-15 - Automation Pinterest feed grouping guard queue wiring
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-automation-pinterest-feed-grouping-guard-queue-wiring
+
+Why:
+- The unattended paid-growth automation started from the latest anchor and found no `GREEN` row. The top P0 Merchant lane remained gated on Google & YouTube/Merchant publishing controls or a delayed fresh export, and a newer worklog anchor had introduced an all-markets Pinterest feed grouping blocker that was not yet fully reflected in the daily command layer.
+- Pinterest launch work cannot safely proceed if the catalog still submits size/color variants as separate products without parent grouping.
+
+What changed:
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/AUTOMATION_FEED_GROUPING_QUEUE_WIRING_READBACK.md`.
+- Updated `ops/marketing/action_queue.md`, `ops/marketing/current_marketing_state.md`, `ops/marketing/daily_scorecard.md`, `ops/marketing/blocker_board.md`, `ops/marketing/decision_log.md`, `ops/marketing/review_log.md`, `ops/marketing/memory_digest.md`, `ops/marketing/operator_cockpit.md`, `ops/PROBLEM_TRACKER.md`, and `ops/AGENT_COORDINATION.md`.
+
+Readback / decision:
+- Ran `python3.13 ops/scripts/check_pinterest_feed_grouping.py --report-only --strict`.
+- Expected fix-in-progress result: `3` snapshots scanned, `3` FAIL, `0` ERROR.
+- Current failures are:
+  - Pinterest exact product-group import CSV: `30` duplicate-parent clusters without `item_group_id`.
+  - Merchant post-prune sanitized export: `69` duplicate market x language buckets, worst `96x`.
+  - Merchant source-eligibility sanitized export: `69` duplicate market x language buckets, worst `96x`.
+- The freshness marker is placeholder-only and does not contain the required attest phrase, so strict guard mode is not considered landed.
+- Decision: Pinterest is blocked not only by zero imported group product counts, but by a structural feed grouping issue across every active market/category. Launch stays blocked until owner-approved channel grouping or Path B grouped TSV passes per-market after-state readback.
+
+Verification:
+- `python3.13 ops/scripts/check_pinterest_feed_grouping.py --report-only --strict` exited `0` in report-only mode with the expected `3` FAIL / `0` ERROR output.
+
+Guardrails:
+- No Shopify, Pinterest, Merchant, Google Ads, GA4/GTM, theme, billing, product, feed, source, tag, CAPI, audience, campaign, budget, bid, status, conversion, credential, or destructive filesystem write occurred.
+- No Computer Use startup probing or permission repair occurred.
+- No freshness-marker attest was written.
+
+Remaining blockers:
+- Owner approval is required for the master all-markets grouping phrase or per-market phrase.
+- Path B grouped TSV upload/import requires a separate exact approval if the Shopify Pinterest channel UI lacks the grouping toggle.
+- Strict guard mode can pass only after per-market 24h sync and after-state readback prove grouped rows.
+
+Next best action:
+- Owner approves the master phrase or a per-market phrase in `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/`; next operator applies the grouped-feed setting or Path B under approval, then captures per-market after-state readbacks before final Pinterest launch review.
+- US/es remains issue/capacity blocked despite row presence and source evidence.
+
+Next best action:
+- Use Merchant Center or Google & YouTube publishing sync/control, or a delayed propagation export, to make the exact `merchant_capacity_platform_preview_acceptance.csv` non-target rows disappear; then rerun `build_merchant_capacity_execution_guard.py --after-export` on a fresh Merchant export. Do not repeat the saved-export intersection until a fresher export exists.
