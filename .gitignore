@@ -29,9 +29,17 @@ dashboard-images-fixed.png
 .env.*
 .shopify-admin.env
 
+# Substituted Shopify Custom Pixel files (contain GA4 MP secret + Ads conversion label)
+pixels/.dist/
+pixels/*.substituted.js
+
 # Local catalog exports (keep local; do not sync to GitHub by default)
 products_export_1 2.csv
 products_export_1 2_IMPORT_READY.csv
+
+# Large generated feed bodies are published to their delivery surface; keep
+# repo evidence to summaries, hashes, and readbacks.
+dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/feeds/pinterest_unified_all_markets.tsv
 
 # Oversized raw Merchant Center downloads (keep local; GitHub rejects blobs >100MB)
 dresslikemommy-growth-2026/02_AUDIT_PACKETS/*/downloads/products_*.zip

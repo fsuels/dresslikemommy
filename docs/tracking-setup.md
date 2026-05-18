@@ -1,8 +1,8 @@
 # Tracking Setup — GA4 + Google Ads via Shopify Custom Pixels
 
-**Owner:** Frank (suelsferro@hotmail.com)
+**Owner:** Frank ([owner email redacted])
 **Store:** [www.dresslikemommy.com](https://www.dresslikemommy.com) (handle `dresslikemommy-com`)
-**Last updated:** 2026-05-15
+**Last updated:** 2026-05-17
 **Why this exists:** Shopify's `Google & YouTube` App pixel is not firing `purchase` events into GA4 on the new Checkout Extensibility thank-you page. GA4 showed 0 transactions for 2026-05-14 against a real Shopify order #9490 ($158.91), and last-7-day GA4 purchases (3) are off by ~10x vs Shopify (≈28 orders / 30d). Because the primary Google Ads Purchase conversion is GA4-imported, Ads conversion data is also empty. We are replacing the broken path with two self-owned Shopify Custom Pixels.
 
 This doc is the install runbook the browser session will follow. Read it top-to-bottom before clicking anything.
@@ -11,7 +11,7 @@ This doc is the install runbook the browser session will follow. Read it top-to-
 
 The four operating-mode choices have been made and the code in `pixels/` reflects them. Do not change these mid-install:
 
-- **GA4 transport:** Measurement Protocol (server-side POST). gtag.js is unreliable inside the Shopify pixel sandbox; MP works.
+- **GA4 transport:** Measurement Protocol payloads sent from the Shopify pixel sandbox by `navigator.sendBeacon(...)`, with `fetch(..., { mode: "no-cors" })` fallback. Do not use ordinary JSON `fetch()` from the browser sandbox; GA4's MP endpoint blocks the CORS preflight before events arrive. gtag.js is unreliable inside the Shopify pixel sandbox; the controlled MP payload is the repair path.
 - **Ads transport:** Direct conversion beacon to `googleadservices.com/pagead/conversion/<AW_ID>/`, using the legacy image-pixel URL shape. Avoids the gtag script-load failure mode in the sandbox. The pixel also captures `gclid`, `gbraid`, and `wbraid` from consented page URLs and persists them for 90 days in the Shopify pixel sandbox.
 - **Deduplication:** Use the same bare numeric Shopify order ID in GA4 `transaction_id` and Ads `oid`/`transaction_id`. Google Ads deduplicates duplicate fires inside one conversion action, but not reliably across two separate actions, so the GA4-imported action must move to Secondary or Paused once the native action validates. (Detail in `pixels/README.md`.)
 - **Google & YouTube app pixel:** Disable only the GA4 portion if the app exposes it as a separate toggle. Keep the Merchant Center product feed intact. If GA4 cannot be cleanly separated, document the tradeoff and keep G&YT GA4 on with `transaction_id` dedup as a fallback.
@@ -101,12 +101,27 @@ We want to remove the duplicate GA4 path without breaking the Merchant Center pr
 
 Before placing a test order, do the static checks. Then place one real test order.
 
+### 6a-urgent. Native Ads Customer Events diagnostic/fix gate
+
+After order `#9494`, Google Ads still showed no native action entries even though the action configuration was correct. Before another paid test, use the approval packet below to update only the native Ads custom pixel:
+
+`dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-google-ads-native-customer-events-diagnostic-fix/SHOPIFY_CUSTOMER_EVENTS_NATIVE_ADS_DIAGNOSTIC_FIX_PACKET.md`
+
+The prepared Ads pixel now logs three sanitized checkpoints:
+
+- `checkout_completed received`
+- the consent decision and reason
+- the conversion attempt with `value`, `currency`, `oid`, and `transaction_id`
+
+The logs are intentionally redacted: do not paste raw conversion labels, full conversion URLs, click IDs, checkout tokens, email, phone, or address into repo notes.
+
 ### 6a. Static checks (no money moved)
 
 - [ ] In the Shopify GA4 Custom Pixel editor, `GA4_API_SECRET` is not the placeholder.
 - [ ] In the Shopify Google Ads Custom Pixel editor, neither `AW_CONVERSION_ID` nor `AW_CONVERSION_LABEL` is the placeholder.
 - [ ] Shopify → Customer events → both Custom pixels show **Connected**.
 - [ ] Google Ads → Goals → Conversions → the new `Purchase — Shopify Custom Pixel (native)` action exists with status `Unverified` (will flip to `Recording conversions` after the first real fire) and `Include in "Conversions"` is **No** until validation is complete.
+- [ ] Storefront DevTools console on a product page shows `[DLM GA4 Pixel] dispatch page_view` / `view_item` and does **not** show `Access to fetch at 'https://www.google-analytics.com/mp/collect...' has been blocked by CORS policy` or `[DLM GA4 Pixel] dispatch failed`.
 
 ### 6b. GA4 DebugView dry run (no order)
 

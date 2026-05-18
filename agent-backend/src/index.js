@@ -2,20 +2,42 @@ import express from 'express';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 import crypto from 'crypto';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const PORT = process.env.PORT || 3000;
 const STORE_DOMAIN = process.env.SHOPIFY_STORE_DOMAIN; // e.g. dresslikemommy.myshopify.com
 const SF_TOKEN = process.env.SHOPIFY_STOREFRONT_TOKEN; // Storefront API public token
 const APP_PROXY_SECRET = process.env.SHOPIFY_APP_PROXY_SECRET; // TODO: verify signature
+const DEFAULT_PINTEREST_FEED_PATH = path.join(
+  REPO_ROOT,
+  'dresslikemommy-growth-2026',
+  '02_AUDIT_PACKETS',
+  '2026-05-15-pinterest-feed-grouping-all-markets-fix',
+  'feeds',
+  'pinterest_unified_all_markets.tsv'
+);
+const PINTEREST_FEED_SHA256 =
+  process.env.PINTEREST_FEED_SHA256 ||
+  '8aefb9cf4057497e4f56df36c2157b44c913e049fb1ecb2f75f505f1eb5470d7';
 
 function isDev() { return process.env.NODE_ENV !== 'production'; }
 
 function respondError(res, code, msg) { return res.status(code).json({ error: msg }); }
+
+function pinterestFeedPath() {
+  const configured = process.env.PINTEREST_FEED_TSV_PATH || DEFAULT_PINTEREST_FEED_PATH;
+  return path.isAbsolute(configured) ? configured : path.resolve(REPO_ROOT, configured);
+}
 
 // TODO: Implement App Proxy signature verification
 function verifyAppProxy(req) {
@@ -35,6 +57,38 @@ function verifyAppProxy(req) {
   } catch(e) {
     return false;
   }
+}
+
+async function sendPinterestFeed(req, res) {
+  if (req.method !== 'GET') {
+    res.set('Allow', 'GET');
+    return respondError(res, 405, 'method_not_allowed');
+  }
+  if (!verifyAppProxy(req)) return respondError(res, 401, 'unauthorized');
+
+  const feedPath = pinterestFeedPath();
+  let stat;
+  try {
+    stat = await fs.promises.stat(feedPath);
+  } catch (e) {
+    return respondError(res, 503, 'feed_unavailable');
+  }
+  if (!stat.isFile()) return respondError(res, 503, 'feed_unavailable');
+
+  res.set({
+    'Content-Type': 'text/tab-separated-values; charset=utf-8',
+    'Cache-Control': 'public, max-age=86400',
+    'Content-Length': String(stat.size),
+    'X-Content-Type-Options': 'nosniff',
+    'X-DLM-Feed-SHA256': PINTEREST_FEED_SHA256,
+  });
+
+  const stream = fs.createReadStream(feedPath);
+  stream.on('error', () => {
+    if (!res.headersSent) respondError(res, 500, 'feed_stream_error');
+    else res.destroy();
+  });
+  stream.pipe(res);
 }
 
 async function storefront(query, variables={}) {
@@ -133,6 +187,8 @@ app.post(['/apps/agent/chat','/agent/chat'], async (req, res) => {
     respondError(res, 500, 'server_error');
   }
 });
+
+app.all(['/apps/pinterest-feed.tsv', '/apps/:proxyHandle/pinterest-feed.tsv', '/pinterest-feed.tsv'], sendPinterestFeed);
 
 app.get('/health', (req,res)=>res.json({ok:true}));
 

@@ -24370,7 +24370,7 @@ AGENT_CONTINUITY_ANCHOR: 2026-04-28-merchant-browser-rpc-clean-subset-rerun
 What happened:
 - User asked to refresh Merchant Center/Content API auth or export current Merchant Center diagnostics manually, then rerun the clean-subset builder.
 - Tried the official API route first:
-  - Existing `gcloud auth print-access-token` token for `testhqfinds@gmail.com` still lacks Merchant/Content scopes.
+  - Existing `gcloud auth print-access-token` token for `[test Gmail profile redacted]` still lacks Merchant/Content scopes.
   - `python3 ops/scripts/export_merchant_center_api_diagnostics.py || true` still returned `403 PERMISSION_DENIED` / insufficient authentication scopes for both Merchant API `products.list` and legacy Content API `productstatuses.list`.
   - `gcloud auth application-default login --scopes=https://www.googleapis.com/auth/content,...` opened Google OAuth, but Google blocked the default gcloud OAuth client for the sensitive Content scope with `This app is blocked`.
 - Used the already logged-in Merchant Center browser context on CDP port `9222` as the manual read-only fallback.
@@ -37667,7 +37667,7 @@ Why:
 
 What changed:
 - Updated the P0 blocker, problem tracker, action queue, and API setup note to watch `info@dresslikemommy.com` because it was the submitted API contact email.
-- Also pinned `testhqfinds@gmail.com` as a secondary watch surface because it is the Google Ads login/account context visible in manager/client readbacks.
+- Also pinned `[test Gmail profile redacted]` as a secondary watch surface because it is the Google Ads login/account context visible in manager/client readbacks.
 
 Decision:
 - Use approved mailbox connector access when available; do not ask the owner to paste email contents, passwords, OAuth secrets, or developer tokens into chat.
@@ -37678,12 +37678,12 @@ Decision:
 AGENT_CONTINUITY_ANCHOR: 2026-05-15-google-ads-api-mailbox-check-gmail-stalled
 
 Why:
-- Owner clarified `info@dresslikemommy.com` is a Microsoft 365 mailbox and reported the `testhqfinds@gmail.com` Gmail connector flow is not completing.
+- Owner clarified `info@dresslikemommy.com` is a Microsoft 365 mailbox and reported the `[test Gmail profile redacted]` Gmail connector flow is not completing.
 
 What changed:
 - Confirmed Outlook connector profile is `info@dresslikemommy.com`.
 - Ran read-only Outlook searches for `Google Ads API`, `API Compliance`, `Basic Access`, `developer token`, `new_token_application`, `Google Ads`, and `Google` on/after 2026-05-15; no Basic Access approval email was found.
-- Updated blocker board, problem tracker, and action queue to mark `testhqfinds@gmail.com` as not connected because the Gmail OAuth connector flow stalled.
+- Updated blocker board, problem tracker, and action queue to mark `[test Gmail profile redacted]` as not connected because the Gmail OAuth connector flow stalled.
 
 Decision:
 - Do not rely on Gmail connector access until a future session proves it completed or a logged-in Gmail UI readback is available.
@@ -39351,3 +39351,595 @@ Remaining blockers:
 
 Next best action:
 - Owner follows `docs/tracking-setup.md`; next operator reads back GA4/Ads/Shopify evidence after install and only then updates paid-growth measurement status.
+
+---
+
+## 2026-05-15 - Shopify Custom Pixels addendum: browser-Claude review fixes
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-15-shopify-custom-pixels-browser-claude-review-fixes
+
+Why:
+- Browser-Claude session reviewed `pixels/ga4-custom-pixel.js` and `pixels/google-ads-custom-pixel.js` before installing them in Shopify Customer events and raised seven targeted questions (Q1-Q7) that, if left wrong, would have silently dropped events or broken cross-system dedup.
+
+What changed (local-only):
+- Q1 (consent surface): Both pixels now seed their consent cache from `init.customerPrivacy` (the snapshot Shopify hands the pixel at load) and subscribe to live updates via `customerPrivacy.subscribe("visitorConsentCollected", ...)` with a fallback to the legacy `analytics.subscribe("customer_privacy_consent_preferences_updated", ...)` event. The earlier `analytics.customerPrivacy` reference would have read `undefined` and dropped every event silently.
+- Q2 (client_id source): GA4 pixel and `pixels/README.md` now state explicitly that `browser.cookie.get('_ga')` reads the sandbox origin, not the storefront origin, so in practice the `_ga` match path is best-effort and the stable `dlm_ga4_client_id` UUID in `browser.localStorage` is the expected source. Reports still attribute correctly because the UUID is per-browser stable.
+- Q3 (Google click IDs / GCLID attribution): Ads pixel now subscribes to `page_viewed`, parses `gclid`, `gbraid`, `wbraid`, and `gclsrc` out of `event.context.window.location.href`, and persists them to `browser.localStorage` with a 90-day TTL keyed `dlm_google_ads_click_ids`. On `checkout_completed` it loads any non-expired click IDs and appends them to the legacy image-pixel conversion URL together with the existing `value`, `currency`, `oid`/`transaction_id`. Fetch is `mode: "no-cors"`, `credentials: "include"`, `keepalive: true`.
+- Q4 (items[] mapping): Confirmed `item_id` uses `variant.id` primary with `variant.sku` fallback then `product.id`, plus `item_name`, `price`, `quantity`, `item_variant`, `item_brand`, `item_category`, and `item_sku`. `buildItemsFromLines` also tolerates the `cartLine.merchandise.productVariant` shape used by `product_added_to_cart`.
+- Q5 (transaction_id form): Added `bareOrderId(...)` to both pixels which strips `gid://shopify/Order/` and returns the trailing numeric segment. GA4 `purchase.transaction_id` and the Ads `oid` / `transaction_id` query parameters now share that bare numeric form so cross-system dedup is consistent with how the GA4-imported Ads conversion already keys orders.
+- Q6 (integrity script interpreter): `ops/scripts/check_continuity_integrity.py` no longer hardcodes `python3.13`. It now requires Python >= 3.10 with an explicit `sys.version_info` guard, and reuses `sys.executable` (exported as `PYTHON_BIN`) for the two subprocess calls into `audit_marketing_command_integration.py` and `check_pinterest_feed_grouping.py`. Verified by running `python3 ops/scripts/check_continuity_integrity.py --strict` under sandbox Python 3.10.12: marketing integration audit reports `0` side-document risks, AGENTS.md/CLAUDE.md byte-identical, Pinterest feed grouping in fix-in-progress mode. The only remaining FAIL is `cockpit_freshness` (`ops/marketing/operator_cockpit.html` is older than `operator_cockpit.md`, `current_marketing_state.md`, `action_queue.md`, `daily_scorecard.md`, `blocker_board.md`, `memory_digest.md`); this pre-exists the addendum session and was inherited from the earlier `ec63c92 Harden custom pixel tracking handoff` commit. Re-rendering the cockpit is a separate write claim and outside the scope of these review-fix questions.
+- Q7 (refunds): GA4 pixel and `pixels/README.md` both carry an explicit `TODO (v2 - out of scope here)` block describing the future server-side `orders/refunded` -> Measurement Protocol `refund` event so this does not get forgotten.
+
+Readback / verification:
+- `node --check pixels/ga4-custom-pixel.js` -> OK.
+- `node --check pixels/google-ads-custom-pixel.js` -> OK.
+- `python3 -c "import ast; ast.parse(open('ops/scripts/check_continuity_integrity.py').read())"` -> OK.
+- `diff -q AGENTS.md CLAUDE.md` -> identical (CLAUDE.md byte-equality invariant preserved).
+- `python3 ops/scripts/check_continuity_integrity.py --strict` -> 7 PASS / 1 FAIL (`cockpit_freshness` pre-existing), interpreter loosening confirmed working under Python 3.10.12.
+
+Guardrails (addendum-session-only):
+- No Shopify Admin paste/save/connect, Google Ads conversion-action create, GA4 Admin write, theme push, Merchant / Pinterest / GA4 / GTM / billing write, or test order in this session.
+- No secrets, conversion IDs, conversion labels, or vendor/source URLs written to any repo file.
+- No destructive git, no force push, no clearing of other agents' coordination claims.
+
+Next best action:
+- Browser-Claude session proceeds with the install order in `docs/tracking-setup.md`: create the new Google Ads website conversion action, create the GA4 Measurement Protocol API secret, paste both pixels into Shopify Customer events (substituting placeholders only in the Shopify editor, not in the repo), disable the GA4 sub-toggle on the Google & YouTube app pixel, then run the verification checklist with one real low-value test order.
+
+---
+
+## 2026-05-17 - GA4 Custom Pixel CORS transport fix after conversion audit
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-17-ga4-custom-pixel-cors-transport-fix
+
+Why:
+- User asked to look for mistakes that could be affecting conversion.
+- Public browser readbacks on `https://www.dresslikemommy.com/collections/mommy-and-me` and `https://www.dresslikemommy.com/products/golden-daisy-mommy-and-me-set` found the installed GA4 Custom Pixel subscribed and attempted `page_view` / `view_item`, but each Measurement Protocol request was blocked by browser CORS from the Shopify sandbox and logged `[DLM GA4 Pixel] dispatch failed`.
+- This affects conversion measurement and paid-growth decisions because GA4/GA4-imported Google Ads purchase/event evidence can still be missing even though the pixel is connected.
+
+What changed:
+- Patched `pixels/ga4-custom-pixel.js` so production Measurement Protocol dispatch uses `navigator.sendBeacon(...)` with a `fetch(..., { mode: "no-cors" })` fallback instead of ordinary JSON `fetch()` from the browser sandbox.
+- Updated `pixels/README.md` and `docs/tracking-setup.md` to document that normal JSON fetch is a CORS failure mode and to require a storefront console readback with no GA4 MP CORS errors before relying on the install.
+- Updated `ops/PROBLEM_TRACKER.md` and `ops/AGENT_COORDINATION.md` with the live CORS failure, local fix status, and owner-side live pixel update gate.
+
+Verification:
+- Public browser readback before patch confirmed the live failure on collection and PDP pages.
+- Public source readback checked home, priority collections, known dirty collection routes, and sampled PDPs: current supplier/source-domain and URL-brand hits were `0`; `/collections/vacation` still returns `404` and should remain excluded from paid traffic.
+- `node --check pixels/ga4-custom-pixel.js`
+- `node --check pixels/google-ads-custom-pixel.js`
+
+Guardrails:
+- No Shopify Admin Custom Pixel paste/save/connect occurred.
+- No real GA4 API secret, Google Ads conversion ID, or conversion label was written to repo files.
+- No GA4 Admin, Google Ads conversion-action/status/goal, Google & YouTube toggle, order/payment/refund/cancel/test purchase, Merchant, Pinterest, feed/product, budget/bid/status, or theme write occurred.
+
+Remaining blockers:
+- Owner must update the live Shopify GA4 Custom Pixel from the patched template, replacing the GA4 API secret only in Shopify's editor or a non-repo temporary copy.
+- After update, verify a product-page console readback has no GA4 MP CORS failure, then continue DebugView / Tag Assistant / first real purchase validation.
+- `/collections/vacation` remains a live `404`; do not use it for paid traffic.
+
+Next best action:
+- Owner updates the live GA4 Custom Pixel code from `pixels/ga4-custom-pixel.js`, then the next operator runs a public browser readback and records whether `page_view` / `view_item` dispatch without CORS failures.
+
+---
+
+## 2026-05-17 - Google Ads native Custom Pixel live install readback
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-17-google-ads-native-custom-pixel-network-gate
+
+Why:
+- User reported that the Shopify Custom Pixel changes were not being read correctly by Google Ads, and Google Ads troubleshooting did not capture a completed test purchase.
+- The requested next action was to inspect the live `DLM Google Ads native conv` Shopify Customer Event code, confirm real ID/label values, then run a controlled thank-you-page Network check for `googleadservices.com/pagead/conversion/...`.
+
+What changed:
+- Updated `ops/PROBLEM_TRACKER.md` with the current live readback and the exact next network gate.
+- No pixel code, theme code, Shopify Admin setting, Google Ads setting, campaign, feed, product, order, payment, refund, or billing state was changed.
+
+Readback / verification:
+- Authenticated Atlas Shopify Admin reached `Settings -> Customer events -> Custom pixels`; `DLM GA4 Measurement Protocol` and `DLM Google Ads native conv` both showed `Connected`.
+- Live `DLM Google Ads native conv` detail page visibly showed real Google Ads ID/label constants rather than placeholders. The values were not written to repo files or worklog text.
+- Public storefront Web Pixels config showed both custom pixels present, including the Google Ads native custom pixel.
+- Chrome CDP no-new-charge replay of the latest May 16 thank-you URL redirected to storefront home and emitted one `googleadservices.com/pagead/conversion/...` request. That request did not match the native custom-pixel purchase action and lacked `value`, `currency`, `oid`, and `transaction_id`, so it cannot be used as purchase-pixel proof.
+
+Guardrails:
+- No Shopify Save/Apply/Connect/Disconnect, Google Ads conversion-action/goal/status write, GA4/GTM setting write, Google & YouTube toggle change, Merchant/Pinterest/feed/product/campaign/budget/bid/status write, order/payment/refund/cancel, or billing action occurred.
+- Any real payment/order/refund remains owner-performed.
+- Real conversion label and checkout token stayed out of tracked files.
+
+Next best action:
+- Owner performs one fresh controlled checkout while the operator has DevTools Network armed before final thank-you navigation. If the native `googleadservices.com/pagead/conversion/...` purchase request with `value`, `currency`, `oid`, and `transaction_id` is absent, debug Shopify pixel code/consent/event delivery. If present, debug Google Ads diagnostics/attribution/readback timing.
+
+---
+
+## 2026-05-17 - No-charge native Ads pixel diagnostics
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-17-no-charge-native-ads-pixel-diagnostics
+
+Why:
+- Owner is away from the computer and asked Codex to run every no-charge diagnostic available because a real payment/order cannot be owner-performed right now.
+
+What changed:
+- Updated `ops/PROBLEM_TRACKER.md` with the no-charge diagnostic results.
+- No pixel code, theme code, Shopify Admin setting, Google Ads setting, campaign, feed, product, order, payment, refund, cancelation, or billing state was changed.
+
+Readback / verification:
+- Shopify's current testing guidance says Pixel Helper/Test mode can show custom-pixel events in real time, but testing `checkout_completed` still requires completing checkout.
+- Current screen capture went black while Atlas remained on the live native pixel detail URL, so the Shopify Admin Test button could not be safely used visually.
+- Public storefront source readback showed `10` Web Pixels configs, including custom pixels `111181921` (`DLM GA4 Measurement Protocol`) and `111214689` (`DLM Google Ads native conv`).
+- Chrome CDP PDP probe loaded Golden Daisy with a synthetic Google click ID. Web Pixel config/script was present. Generic Google tag conversion/pagead requests occurred, but `0` matched the native purchase action.
+- Chrome CDP checkout-entry probe added one available Golden Daisy variant to cart and reached checkout without payment. Generic Google tag conversion/pagead requests occurred, but `0` matched the native purchase action.
+- Non-repo installed-pixel mock runtime still passed: subscribed to `page_viewed` and `checkout_completed`, stored the synthetic click ID, and built the native conversion request with `value`, `currency_code`, `oid`, `transaction_id`, `gclid`, `mode: no-cors`, `credentials: include`, and `keepalive: true`.
+
+Interpretation:
+- No-charge diagnostics do not show a premature native purchase fire, and they confirm generic `googleadservices.com/pagead/conversion/...` traffic is present from other Google tags before purchase. Therefore, future testing must match the native action and purchase fields, not just the domain.
+- The only remaining decisive proof is still a fresh owner-performed checkout completion with Network armed before thank-you navigation.
+
+Guardrails:
+- No Save/Apply/Connect/Disconnect, payment, Pay Now, order, refund, cancel, Google Ads conversion/goal/status write, GA4/GTM setting write, Google & YouTube toggle change, Merchant/Pinterest/feed/product/campaign/budget/bid/status write, or billing action occurred.
+- Real conversion label and checkout tokens stayed out of tracked files.
+
+Next best action:
+- When owner can perform the payment/order step, keep DevTools Network open before final checkout completion and verify the native purchase request shape. If the native request is absent, debug Shopify Custom Pixel code/consent/event delivery; if present, debug Google Ads diagnostics/attribution/readback timing.
+
+---
+
+## 2026-05-17 - Prepared owner-payment checkout and Ads goal readback
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-17-prepared-checkout-ads-goal-readback
+
+Why:
+- Owner asked Codex to add `https://www.dresslikemommy.com/products/matching-mommy-me-two-piece-swimsuit` to cart, get checkout ready, and make sure Google Ads Goals can read the primary custom-pixel purchase conversion correctly.
+
+What changed:
+- Prepared the active Atlas browser tab on a live checkout page for owner completion.
+- Updated `ops/PROBLEM_TRACKER.md` with the checkout-ready state and Google Ads goal readback.
+- No order, payment, refund, cancelation, Shopify setting/product write, Google Ads setting/conversion write, campaign/feed/budget/bid/status change, or billing action occurred.
+
+Checkout prepared:
+- Product: `Matching Mommy & Me Two Piece Swimsuit`.
+- Variant: `Child 2-3 years / Black`.
+- Quantity: `1`.
+- Total shown in checkout readback: `$15.99`.
+- Atlas active tab title/URL readback: `Checkout - Dress Like Mommy` on a redacted `/checkouts/cn/<token>/en-us` URL with synthetic Google click-id parameters.
+- Separate read-only Chrome CDP readback of the same checkout URL confirmed product, variant, payment step, and `$15.99` total.
+- Chrome CDP saw `0` native purchase conversion requests before payment, so the native conversion has not fired prematurely.
+
+Google Ads readback:
+- Google Ads API v21 read-only query for customer `399-097-6848` confirmed conversion action `7612074463`, `Purchase - Shopify Custom Pixel native`, is `ENABLED`, `WEBPAGE`, `PURCHASE`, `primaryForGoal: true`, and `includeInConversionsMetric: true`.
+- Counting type is `MANY_PER_CLICK`; attribution model is data-driven; click-through lookback is `30` days and view-through lookback is `1` day.
+- Customer conversion goal `PURCHASE~WEBSITE` is `biddable: true`.
+- The action's tag snippets match the installed custom-pixel ID/label pair. Real label and checkout token were not written to tracked files.
+
+Guardrails:
+- No Pay Now / payment / order / refund / cancel action occurred.
+- No Shopify Admin Save/Apply/Connect/Disconnect, Google Ads goal/conversion/status write, GA4/GTM setting write, Google & YouTube toggle change, Merchant/Pinterest/feed/product/campaign/budget/bid/status write, or billing action occurred.
+
+Next best action:
+- Owner completes payment in the prepared Atlas checkout when home, then tells Codex immediately. The next operator should use the resulting thank-you/order-status URL plus Google Ads/Tag Assistant/Network readbacks to verify the native purchase request with `value`, `currency`, `oid`, and `transaction_id`.
+
+---
+
+## 2026-05-17 - Pinterest Gate B-1 unified feed completed locally
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-17-pinterest-gate-b1-unified-feed
+
+Why:
+- Owner approved Gate B-1 from the Path B Pinterest feed-grouping plan: build and verify the unified grouped feed locally, but stop before Shopify app-proxy deployment or Pinterest catalog-source changes.
+- Path A remains unavailable in the current Shopify Pinterest channel UI, so Path B is the primary fix path for variant grouping and parent featured image behavior.
+
+What changed:
+- Added `ops/scripts/build_pinterest_unified_feed.py`.
+- Regenerated the six per-market Path B grouped TSV feeds using read-only Shopify Admin GraphQL through `ops/scripts/generate_pinterest_feed_grouped.py`.
+- Created `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B1_UNIFIED_FEED_READBACK.md`.
+- Created local unified feed artifacts:
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/feeds/pinterest_unified_all_markets.tsv`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/feeds/pinterest_unified_all_markets.summary.json`
+  - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/feeds/pinterest_unified_all_markets.sha256`
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B2_B3_APPROVAL_PACKET.md` with exact approval phrases and stop conditions for the next two live-gated steps.
+- Updated `PATH_B_PRIMARY_FIX_PLAN.md`, `ops/marketing/current_marketing_state.md`, `ops/marketing/action_queue.md`, `ops/marketing/blocker_board.md`, `ops/marketing/review_log.md`, and `ops/PROBLEM_TRACKER.md`.
+
+Readback / verification:
+- `python3.13 ops/scripts/build_pinterest_unified_feed.py` completed. Each market regenerated with `6,969` rows and `326` unique parent groups.
+- Unified feed result: `41,814` rows, `41,814` unique item IDs, `0` duplicate item IDs, `0` missing `item_group_id`, `0` missing `image_link`, `0` parent-image drift groups, and `0` supplier/source host hits.
+- Unified feed SHA-256: `8aefb9cf4057497e4f56df36c2157b44c913e049fb1ecb2f75f505f1eb5470d7`.
+- `python3.13 -m py_compile ops/scripts/build_pinterest_unified_feed.py ops/scripts/generate_pinterest_feed_grouped.py ops/scripts/check_pinterest_feed_grouping.py` passed.
+- `python3.13 ops/scripts/check_pinterest_feed_grouping.py --report-only --strict` returned `10` snapshots scanned, `3` expected FAIL, `0` ERROR. The `7` generated Path B snapshots PASS (`6` per-market plus unified); the `3` upstream/live-equivalent snapshots still fail as expected.
+- `python3.13 ops/scripts/check_continuity_integrity.py --strict` returned `CONTINUITY_OK` with Pinterest feed grouping still in fix-in-progress mode.
+
+Guardrails:
+- No Shopify app-proxy deploy, Shopify Admin Save/Publish/Sync, Pinterest catalog/source/product-group/campaign/budget/bid/status/tag/CAPI/audience/billing write, Merchant/Google Ads/GA4/GTM write, theme push, product-data mutation, order/payment/refund/cancel, credential persistence, or destructive filesystem action occurred.
+- `FIX_LANDED_FRESHNESS_MARKER.txt` remains un-attested; do not flip strict solved mode until live after-state readback proves grouped catalog rows.
+
+Next best action:
+- Use `GATE_B2_B3_APPROVAL_PACKET.md` if the owner wants to proceed. Do not deploy the proxy, expose a feed URL, configure Pinterest catalog source, pause legacy feeds, or launch Pinterest without fresh exact approval and after-state readback.
+
+---
+
+## 2026-05-17 - Pinterest Gate B-2 local endpoint implemented
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-17-pinterest-gate-b2-local-endpoint
+
+Why:
+- Owner said "Do it" after the Gate B-2/Gate B-3 approval packet. This session advanced Gate B-2 only and kept Gate B-3 closed.
+- The repo has an existing `agent-backend` Express app with app-proxy route patterns, but no checked-in deployment target config for Render, Vercel, Cloud Run, Fly, Docker, Procfile, or similar.
+
+What changed:
+- Added a GET-only Pinterest feed endpoint to `agent-backend/src/index.js`:
+  - `/apps/pinterest-feed.tsv`
+  - `/apps/:proxyHandle/pinterest-feed.tsv`
+  - `/pinterest-feed.tsv`
+- The endpoint streams the verified Gate B-1 unified TSV, sets `Content-Type: text/tab-separated-values; charset=utf-8`, `Cache-Control: public, max-age=86400`, `Content-Length`, `X-Content-Type-Options: nosniff`, and `X-DLM-Feed-SHA256`.
+- Non-GET methods return `405 Method Not Allowed` with `Allow: GET`.
+- Updated `agent-backend/README.md`.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B2_LOCAL_ENDPOINT_READBACK.md`.
+
+Readback / verification:
+- `node --check agent-backend/src/index.js` passed.
+- Local server started with `PORT=3127 NODE_ENV=development node src/index.js`.
+- `GET http://127.0.0.1:3127/apps/pinterest-feed.tsv` returned `200`, `Content-Type: text/tab-separated-values; charset=utf-8`, `Cache-Control: public, max-age=86400`, `Content-Length: 151559047`, `X-DLM-Feed-SHA256: 8aefb9cf4057497e4f56df36c2157b44c913e049fb1ecb2f75f505f1eb5470d7`, `41,814` rows, and matching SHA-256.
+- `POST http://127.0.0.1:3127/apps/pinterest-feed.tsv` returned `405 Method Not Allowed` with `Allow: GET`.
+- `GET http://127.0.0.1:3127/health` returned `{"ok":true}`.
+
+Guardrails:
+- No Shopify app-proxy deploy, Shopify Admin Save/Publish/Sync, Pinterest catalog/source/product-group/campaign/budget/bid/status/tag/CAPI/audience/billing write, Merchant/Google Ads/GA4/GTM write, theme push, product-data mutation, order/payment/refund/cancel, credential persistence, or destructive filesystem action occurred.
+- Gate B-3 remains closed. Do not configure Pinterest catalog source or pause legacy feeds until the public hosted URL exists and passes readback.
+
+Next best action:
+- Identify the hosting/deployment target for `agent-backend`, then approve the deploy/readback phrase in `GATE_B2_LOCAL_ENDPOINT_READBACK.md`. After public URL verification, request separate Gate B-3 approval for Pinterest catalog-source configuration.
+
+---
+
+## 2026-05-17 - Owner-paid checkout measurement follow-up
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-17-owner-paid-checkout-measurement-followup
+
+Why:
+- Owner completed the prepared payment in Atlas and asked for verification that Google Ads can read the primary custom-pixel purchase conversion correctly.
+- The decisive proof remains the native Google Ads purchase request on the actual Shopify thank-you/order-status page, not generic Google tag page-view traffic.
+
+What changed:
+- Updated `ops/PROBLEM_TRACKER.md` for `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT`.
+- Temporarily attempted the Atlas JavaScript-from-Apple-Events preference path, confirmed it did not unlock script execution, and restored the preference keys to their prior absent state.
+- Restarted the Codex Computer Use helper once following the local recovery guide; the bridge still returned `Transport closed`.
+
+Readback / verification:
+- Atlas active tab is still `Thank you for your purchase! - Dress Like Mommy - Checkout` on a redacted Shopify `/thank-you` order-status URL.
+- Shopify Admin read-only GraphQL confirmed owner-paid order `#9494`: `PAID`, `UNFULFILLED`, processed `2026-05-17T23:53:25Z`, total `$15.99 USD`, product `Matching Mommy & Me Two Piece Swimsuit`, variant `Child 2-3 years / Black`, quantity `1`.
+- Google Ads API v21 readback still confirms native conversion action `7612074463` (`Purchase - Shopify Custom Pixel native`) is `ENABLED`, `WEBPAGE`, `PURCHASE`, `primaryForGoal: true`, and `includeInConversionsMetric: true`.
+- Immediate Google Ads API metrics for that native action returned `0` rows for `2026-05-17` and the last 7 days. This is not final proof of failure because Ads diagnostics/conversion reporting can lag, and the checkout used a synthetic click ID rather than a real ad click.
+- Google Ads UI Webpages read-only scrape loaded the native action and showed no entries for the visible date range ending `2026-05-16`, which does not include the fresh order day.
+- Chrome CDP replay of the same redacted thank-you URL in the separate Chrome profile redirected to the storefront home. It emitted generic Google Ads page-view conversion requests, including the Ads ID, but none matched the installed native action label and none included `value`, `currency`, `oid`, or `transaction_id`; that replay is not purchase proof.
+- The actual Atlas thank-you-page resource list could not be read: Atlas blocks JavaScript from Apple Events, local screen capture is black, and Computer Use returned `timeoutReached` / `Transport closed` after helper restart.
+- A local runtime simulation of the installed non-repo Ads pixel with order `#9494` built the expected native request shape with `value=15.99`, `currency=USD`, bare order ID as `oid` and `transaction_id`, `mode: no-cors`, `credentials: include`, and `keepalive: true`.
+
+Guardrails:
+- No Shopify Admin Save/Apply/Connect/Disconnect, Shopify Customer Events edit, Google Ads setting/conversion write, GA4/GTM setting write, Merchant/Pinterest/feed/product/campaign/budget/bid/status write, order/refund/cancel, billing, credential persistence, or destructive filesystem action occurred.
+- The owner performed the payment. Automation did not click Pay Now, place the order, refund, or cancel.
+
+Next best action:
+- Recheck Google Ads native action diagnostics/metrics after reporting delay for order-day evidence. If still empty, regain live Atlas thank-you-page inspection and look specifically for the installed native action request with `value`, `currency`, `oid`, and `transaction_id`.
+- If the native request/diagnostic remains absent, prepare the smallest owner-approved Shopify Customer Events fix focused on consent and `checkout_completed` delivery/execution. If it appears, treat the issue as Google Ads attribution/readback timing rather than Shopify pixel code.
+
+---
+
+## 2026-05-17 - Google Ads native action delayed recheck
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-17-google-ads-native-action-delayed-recheck
+
+Why:
+- Owner asked to recheck Google Ads native action diagnostics/metrics after reporting delay and, if still empty, move the fix path to Shopify Customer Events consent / `checkout_completed` delivery / installed-code execution.
+
+What changed:
+- Updated `ops/PROBLEM_TRACKER.md` status for `PROB-2026-05-10-NON-US-PURCHASE-CURRENCY-MEASUREMENT` to `ADS_RECHECK_EMPTY__SHOPIFY_CUSTOMER_EVENTS_FIX_PATH`.
+- No live Ads, Shopify, GA4, GTM, Merchant, Pinterest, order, refund, cancel, billing, product, feed, campaign, budget, bid, or status write occurred.
+
+Readback / verification:
+- Google Ads API v21 read-only action config still confirms native conversion action `7612074463`, `Purchase - Shopify Custom Pixel native`, is `ENABLED`, `WEBPAGE`, `PURCHASE`, `primaryForGoal: true`, and `includeInConversionsMetric: true`.
+- Native action metrics returned `0` rows for `2026-05-17` through `2026-05-18`.
+- Broader purchase-action metrics for `2026-05-17` through `2026-05-18` also returned `0` rows.
+- Google Ads UI Webpages/Diagnostics read-only CDP scrape for the native action still showed `You don't have any entries yet` and no diagnostic entry beyond the Shopify conversions prompt.
+- Shopify's current pixel docs confirm pixels can run on checkout/thank-you/order-status surfaces, but consent-gated pixels run only when required permissions are present. Shopify's Web Pixels customer privacy API exposes `init.customerPrivacy` and `api.customerPrivacy.subscribe('visitorConsentCollected', ...)`, so these are the right first Customer Events diagnostics.
+
+Interpretation:
+- The Google Ads goal/action setup is still correct. The confirmed paid Shopify order plus empty native Ads readback now makes Shopify Customer Events execution/delivery the next valid repair lane.
+- The separate-browser order-status replay remains ruled out as proof because it redirects to storefront home and only produces generic Google tag page-view traffic.
+
+Next best action:
+- Prepare the smallest owner-approved Shopify Customer Events diagnostic/fix for the native Ads Custom Pixel: prove `checkout_completed` is received, log/read consent safely without secrets, and confirm the installed code calls the native `googleadservices.com/pagead/conversion/...` request with `value`, `currency`, `oid`, and `transaction_id` on thank-you/order-status.
+
+---
+
+## 2026-05-18 - Native Ads Customer Events diagnostic fix prepared
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-18-native-ads-customer-events-diagnostic-fix-prepared
+
+Why:
+- Google Ads native action metrics and UI diagnostics remained empty after the owner-paid order `#9494`, while the Google Ads action configuration remained correct.
+- The next repair lane is Shopify Customer Events execution: confirm `checkout_completed` delivery, consent decision, and native request dispatch.
+
+What changed:
+- Patched `pixels/google-ads-custom-pixel.js` with a diagnostic/fix build for the next owner-approved Shopify Customer Events paste.
+- Updated `pixels/README.md` and `docs/tracking-setup.md` to point to the diagnostic/fix gate.
+- Added `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-google-ads-native-customer-events-diagnostic-fix/SHOPIFY_CUSTOMER_EVENTS_NATIVE_ADS_DIAGNOSTIC_FIX_PACKET.md`.
+- Updated `ops/PROBLEM_TRACKER.md` status to `SHOPIFY_CUSTOMER_EVENTS_DIAGNOSTIC_FIX_PREPARED__OWNER_APPROVAL_REQUIRED`.
+
+Prepared behavior:
+- Logs `checkout_completed received` before the consent gate.
+- Logs `consentAllowed`, `consentReason`, and privacy flags.
+- Trusts Shopify's pixel-level permission gate only when `init.customerPrivacy` / `api.customerPrivacy` is unavailable or has unknown flags.
+- Keeps explicit `marketingAllowed: false` blocking.
+- Logs a sanitized conversion attempt without printing the conversion label, full URL, click IDs, checkout token, email, phone, or address.
+- Fires the no-CORS keepalive fetch and an image backup beacon with the same `oid` / `transaction_id` so Google Ads can dedupe duplicate same-action fires by order ID.
+
+Readback / verification:
+- `node --check pixels/google-ads-custom-pixel.js` passed.
+- Local Node mock runtime passed:
+  - subscribed to `page_viewed` and `checkout_completed`
+  - logged `checkout_completed received`
+  - emitted fetch and image beacon requests to `/pagead/conversion/<AW_ID>/`
+  - carried `value=15.99`, `currency=USD`, `oid`, `transaction_id`, and stored click ID
+  - did not leak the mock label, checkout token, or click ID in diagnostic logs
+- Consent mock passed:
+  - missing privacy object -> allowed with `privacy_unavailable_trusting_shopify_permission_gate`
+  - explicit marketing/analytics denial -> blocked
+  - analytics-only fallback -> allowed
+
+Guardrails:
+- No live Shopify Customer Events edit, Shopify Admin Save/Apply/Connect/Disconnect, Google Ads setting/conversion write, GA4/GTM setting write, Merchant/Pinterest/feed/product/campaign/budget/bid/status write, order/refund/cancel, billing action, credential persistence, or destructive filesystem action occurred.
+- Real Ads ID/label values remain out of tracked files.
+
+Next best action:
+- Ask owner for the exact approval phrase in `SHOPIFY_CUSTOMER_EVENTS_NATIVE_ADS_DIAGNOSTIC_FIX_PACKET.md`. After approval, update only the Shopify Customer Events custom pixel named `DLM Google Ads native conv`, then run Pixel Helper/Test and the controlled owner-performed order-status/purchase validation.
+
+---
+
+## 2026-05-18 - Pinterest Gate B-2 Cloudflare Worker readiness
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-18-pinterest-gate-b2-cloudflare-worker-ready
+
+Why:
+- Owner asked which hosting option is free and then approved preparing the recommended path.
+- The production answer is not a local Mac and not a public Shopify App Store app: use Cloudflare R2/Worker with Shopify App Proxy in front, then keep Pinterest catalog configuration as a separate Gate B-3 approval.
+
+What changed:
+- Added `ops/cloudflare/pinterest-feed-worker/` with Worker code, Wrangler config template, README, and Node tests.
+- Added `GATE_B2_CLOUDFLARE_WORKER_READINESS.md`.
+- Updated the Gate B-2/B-3 packet, local endpoint readback, `agent-backend/README.md`, problem tracker, marketing action queue, blocker board, and current marketing state to mark Cloudflare R2/Worker as the preferred Gate B-2 hosting path.
+
+Readback / verification:
+- `node --check ops/cloudflare/pinterest-feed-worker/src/worker.js` passed.
+- `cd ops/cloudflare/pinterest-feed-worker && npm test` passed with `4` tests.
+- `cd ops/cloudflare/pinterest-feed-worker && npm audit --audit-level=moderate` passed with `0` vulnerabilities.
+- Worker tests cover successful TSV headers, non-GET `405`, optional Shopify app-proxy signature pass, and signature-required fail-closed behavior.
+
+Guardrails:
+- No Cloudflare login, R2 bucket creation, R2 upload, Worker deploy, Shopify app-proxy configuration, Pinterest catalog/source/feed/product-group/campaign/budget/bid/status/tag/CAPI/audience/billing write, Merchant/Google Ads/GA4/GTM write, product mutation, credential persistence, billing action, or destructive filesystem action occurred.
+- Gate B-3 remains closed until the public Shopify app-proxy URL exists and passes readback.
+
+Next best action:
+- Owner/operator deploys the Cloudflare R2/Worker path, uploads the verified TSV, configures Shopify App Proxy to the Worker URL, and captures public readback. Only after that should Gate B-3 be considered.
+
+---
+
+## 2026-05-18 - Pinterest Gate B-2 deploy attempt blocked on auth/app config
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-18-pinterest-gate-b2-deploy-blocked-auth-app-config
+
+Why:
+- Owner explicitly requested Gate B-2 deploy: Cloudflare R2/Worker upload/deploy, Shopify App Proxy configuration, then public URL readback. Gate B-3 remained closed.
+
+What changed:
+- Added `GATE_B2_DEPLOY_ATTEMPT_BLOCKED_AUTH_READBACK.md`.
+- Updated the problem tracker and marketing command layer with the real blocker: Cloudflare auth/token plus Shopify app config are required before deploy can proceed.
+
+Readback / verification:
+- Verified the local unified TSV: SHA-256 `8aefb9cf4057497e4f56df36c2157b44c913e049fb1ecb2f75f505f1eb5470d7`; `41,815` lines = one header plus `41,814` rows; size `145M`.
+- `npx wrangler@4.86.0 whoami` reported not authenticated.
+- No `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, or local Wrangler auth token was available.
+- Default `npx wrangler@4.86.0 login` requested broad unrelated OAuth scopes, so it was stopped.
+- `shopify app info` reported no app TOML file in the repo, so there is no Shopify app config to apply the app proxy from this workspace.
+- `npx wrangler@4.86.0 deploy --dry-run --config wrangler.local-check.toml` passed with the expected R2 binding and env vars.
+
+Guardrails:
+- No Cloudflare resource, R2 bucket, R2 object upload, Worker deploy, Shopify app-proxy configuration, Pinterest catalog/source/feed/product-group/campaign/budget/bid/status/tag/CAPI/audience/billing write, Merchant/Google Ads/GA4/GTM write, product mutation, credential persistence, billing action, or destructive filesystem action occurred.
+- Gate B-3 remains closed.
+
+Next best action:
+- Provide a narrowly scoped Cloudflare API token/account ID outside the repo and identify/provide the Shopify app config or installed app that owns the app proxy, then rerun Gate B-2 deploy/readback.
+
+---
+
+## 2026-05-18 - Native Ads custom pixel purchase request proven closeout
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-18-native-ads-custom-pixel-purchase-request-proven-closeout
+
+Why:
+- Owner completed the Chrome-profile checkout validation after Network capture was armed.
+- The session needed a bottom-of-worklog anchor so future agents resume from the proven measurement state, not an older Cloudflare/Pinterest blocker.
+
+What changed:
+- Recorded sanitized validation state only.
+- No code, setting, product, theme, app pixel, Ads/GA4/GTM/Merchant/Pinterest/feed/campaign/budget/bid/status, billing, order, refund, or cancelation change occurred in this closeout.
+
+Readback / verification:
+- Chrome CDP reached the thank-you/order-status URL after owner-performed payment.
+- Shopify custom pixel sandbox iframe `web-pixel-111214689@2` recorded the native Ads conversion request to `www.googleadservices.com/pagead/conversion/853411529/`.
+- The native custom-pixel request included `value=19.99`, `currency=USD`, `oid`, and `transaction_id`.
+- This proves Shopify Customer Events delivered `checkout_completed`, consent allowed dispatch, and the installed native Ads custom pixel sent the purchase request.
+
+Guardrails:
+- Automation did not click Pay, place/refund/cancel an order, change billing, or mutate any unapproved Shopify/Ads/GA4/GTM/Merchant/Pinterest/feed/campaign/budget/bid/status state.
+- Checkout URL/token, customer PII, payment details, and conversion label were not recorded.
+
+Next best action:
+- Recheck Google Ads native action diagnostics/metrics after the normal reporting delay. If still absent, treat the remaining issue as Google Ads diagnostics/attribution/readback timing rather than Shopify custom-pixel dispatch.
+
+---
+
+## 2026-05-18 - Pinterest Gate B-2 Cloudflare auth valid, R2 enablement blocked
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-18-pinterest-gate-b2-r2-enable-required
+
+Why:
+- Owner added Cloudflare values to `~/.config/dresslikemommy/cloudflare.env` and asked to check again.
+
+What changed:
+- Updated `GATE_B2_DEPLOY_ATTEMPT_BLOCKED_AUTH_READBACK.md`, `ops/PROBLEM_TRACKER.md`, and marketing command-layer files to reflect the new blocker state.
+
+Readback / verification:
+- `~/.config/dresslikemommy/cloudflare.env` exists and contains non-placeholder-shaped `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+- Loaded the env file only in-shell; no token was printed or written to repo.
+- `npx wrangler@4.86.0 whoami` authenticated as `[owner email redacted]` for account `[cloudflare account id redacted]`.
+- `npx wrangler@4.86.0 r2 bucket list` failed before writes with Cloudflare API `code: 10042`: `Please enable R2 through the Cloudflare Dashboard`.
+
+Guardrails:
+- No R2 bucket, R2 object upload, Worker deploy, Shopify app-proxy configuration, Pinterest catalog/source/feed/product-group/campaign/budget/bid/status/tag/CAPI/audience/billing write, Merchant/Google Ads/GA4/GTM write, product mutation, credential persistence, billing action, or destructive filesystem action occurred.
+- Gate B-3 remains closed.
+
+Next best action:
+- Owner enables R2 in Cloudflare Dashboard for account `[cloudflare account id redacted]`. If Cloudflare asks for a billing/payment method, owner must complete or decline that directly. After R2 is enabled, rerun Gate B-2 deploy/readback.
+
+---
+
+## 2026-05-18 - Native Ads Customer Events diagnostic fix installed
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-18-native-ads-customer-events-live-diagnostic-fix-installed
+
+Why:
+- Owner approved updating only Shopify Customer Events custom pixel `DLM Google Ads native conv` with the prepared diagnostic/fix code.
+- Google Ads native purchase action remained empty after the owner-paid test order, so the next valid repair path was proving `checkout_completed` delivery, consent decision, and native request dispatch from the custom pixel.
+
+What changed:
+- Reworked `pixels/google-ads-custom-pixel.js` into a Shopify-validator-safe ES5-style build after Shopify rejected the modern syntax version in the editor.
+- Regenerated the non-repo install copy at `/Users/fsuels/.config/dresslikemommy/pixels/google-ads-custom-pixel.install.js` with the existing real Ads constants preserved outside the repo.
+- Updated only Shopify Customer Events custom pixel `DLM Google Ads native conv` / custom pixel `111214689`.
+- Updated `ops/PROBLEM_TRACKER.md` status to `SHOPIFY_CUSTOMER_EVENTS_NATIVE_ADS_FIX_INSTALLED__PURCHASE_VALIDATION_PENDING`.
+
+Readback / verification:
+- `node --check pixels/google-ads-custom-pixel.js` passed.
+- `node --check /Users/fsuels/.config/dresslikemommy/pixels/google-ads-custom-pixel.install.js` passed.
+- Shopify live editor showed `Pixel saved`.
+- Chrome CDP reload readback proved the persisted Shopify editor document hash matched the non-repo ES5 install copy, the code error banner was gone, and the pixel remained connected.
+- Local mock runtime passed: subscribed to `page_viewed` and `checkout_completed`, stored a synthetic click ID, emitted one fetch plus one image backup beacon, carried `value=15.99`, `currency=USD`, `oid`, and `transaction_id`, and did not leak the synthetic checkout token or click ID in logs.
+
+Guardrails:
+- No Shopify setting/product/theme/app pixel other than the named custom pixel, Google Ads setting, GA4/GTM setting, Merchant/Pinterest/feed/campaign/budget/bid/status, billing, order, refund, or cancelation state was changed.
+- Real Ads ID/label values remain outside tracked files.
+
+Next best action:
+- Run Shopify Pixel Helper/Test for `DLM Google Ads native conv` if the authenticated UI remains available.
+- The decisive proof still requires the next owner-performed completed checkout/order-status validation with DevTools Network armed for the native `googleadservices.com/pagead/conversion/...` request carrying `value`, `currency`, `oid`, and `transaction_id`.
+
+---
+
+## 2026-05-18 - Native Ads custom pixel purchase request proven
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-18-native-ads-custom-pixel-purchase-request-proven
+
+Why:
+- Owner requested the next checkout/order-status validation with DevTools Network armed.
+- The previous blocker was whether Shopify Customer Events actually delivered `checkout_completed` and whether the installed native Ads custom pixel dispatched the Google Ads request.
+
+What changed:
+- Updated `ops/PROBLEM_TRACKER.md` status to `NATIVE_ADS_CUSTOM_PIXEL_PURCHASE_REQUEST_PROVEN__ADS_READBACK_PENDING`.
+- No code, settings, products, theme, app pixels, Ads/GA4/GTM/Merchant/Pinterest/feed/campaign/budget/bid/status, billing, order, refund, or cancelation state was changed by automation in this validation step.
+
+Readback / verification:
+- Chrome CDP Network was armed on the active checkout tab before owner completed payment.
+- Page reached the thank-you/order-status URL after owner-performed payment.
+- Page-level capture saw Google Ads conversion traffic on the thank-you page.
+- Separate CDP inspection of Shopify custom-pixel sandbox iframe `web-pixel-111214689@2` proved the native custom pixel sent a `www.googleadservices.com/pagead/conversion/853411529/` request with `value=19.99`, `currency=USD`, `oid`, and `transaction_id`.
+- This proves Shopify Customer Events delivered `checkout_completed`, consent allowed dispatch, and the installed custom pixel sent the native Ads purchase request.
+
+Guardrails:
+- Automation did not click Pay, place an order, refund, cancel, change billing, change Shopify settings beyond the previously approved named pixel install, or change any Ads/GA4/GTM/Merchant/Pinterest/feed/campaign/budget/bid/status state.
+- Checkout URL/token, customer PII, payment details, and conversion label were not recorded in the worklog.
+
+Next best action:
+- Recheck Google Ads native action diagnostics/metrics after the normal reporting delay. If Google Ads still does not show the purchase, treat the remaining issue as Google Ads diagnostics/attribution/readback timing rather than Shopify custom-pixel dispatch.
+
+---
+
+## 2026-05-18 - Pinterest Gate B-2 R2 enablement current blocker refresh
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-18-pinterest-gate-b2-r2-enable-current-blocker
+
+Why:
+- Owner asked whether Cloudflare env setup fixed the Gate B-2 deploy blocker.
+
+What changed:
+- Reconfirmed the current Cloudflare state and updated `GATE_B2_DEPLOY_ATTEMPT_BLOCKED_AUTH_READBACK.md`, `ops/PROBLEM_TRACKER.md`, and marketing command-layer files.
+
+Readback / verification:
+- Cloudflare token/account env file is present and valid.
+- `npx wrangler@4.86.0 whoami` authenticates as `[owner email redacted]` on account `[cloudflare account id redacted]`.
+- `npx wrangler@4.86.0 r2 bucket list` fails before writes with Cloudflare API `code: 10042`: R2 must be enabled in Cloudflare Dashboard.
+- Marketing integration audit passed with `0` side-document risks.
+- Cockpit was re-rendered.
+
+Guardrails:
+- No R2 bucket, R2 object upload, Worker deploy, Shopify app-proxy configuration, Pinterest catalog/source/feed/product-group/campaign/budget/bid/status/tag/CAPI/audience/billing write, Merchant/Google Ads/GA4/GTM write, product mutation, credential persistence, billing action, or destructive filesystem action occurred.
+- Gate B-3 remains closed.
+
+Next best action:
+- Owner enables R2 in Cloudflare Dashboard for account `[cloudflare account id redacted]`. If Cloudflare asks for a billing/payment method, owner must complete or decline that directly. After R2 is enabled, rerun Gate B-2 deploy/readback.
+
+---
+
+## 2026-05-18 - Pinterest Gate B-2 Cloudflare direct URL deployed
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-18-pinterest-gate-b2-cloudflare-direct-url-verified
+
+Why:
+- Owner enabled R2 and asked to continue Gate B-2 deployment.
+
+What changed:
+- Created Cloudflare R2 bucket `dlm-pinterest-feeds`.
+- Uploaded `pinterest/pinterest_unified_all_markets.tsv` to remote R2.
+- Registered Cloudflare workers.dev account subdomain `dresslikemommy`.
+- Deployed Worker `dlm-pinterest-feed-worker`.
+- Added `GATE_B2_CLOUDFLARE_DEPLOY_READBACK.md`.
+- Updated Worker README/config example and marketing command-layer files.
+
+Readback / verification:
+- Direct Worker URL: `https://dlm-pinterest-feed-worker.dresslikemommy.workers.dev/pinterest-feed.tsv`.
+- Health check returned `200 {"ok":true}` after workers.dev TLS propagation settled.
+- Public feed readback returned `200`, `Content-Type: text/tab-separated-values; charset=utf-8`, `Content-Length: 151559047`, `X-DLM-Feed-Rows: 41814`, and `X-DLM-Feed-SHA256: 8aefb9cf4057497e4f56df36c2157b44c913e049fb1ecb2f75f505f1eb5470d7`.
+- Downloaded body SHA-256 matched Gate B-1: `8aefb9cf4057497e4f56df36c2157b44c913e049fb1ecb2f75f505f1eb5470d7`.
+- Parsed body: `41,814` rows, `41,814` unique IDs, `0` duplicate IDs, `0` missing required columns, `0` missing `item_group_id`, `0` missing `image_link`, `0` supplier/source host hits.
+- POST method guard returned `405` with `Allow: GET`.
+- Remote R2 object SHA readback matched via `wrangler r2 object get --remote --pipe | shasum -a 256`.
+
+Guardrails:
+- No Shopify App Proxy configuration occurred because this repo has no `shopify.app.toml` or identified installed app-proxy owner.
+- No Pinterest catalog/source/feed/product-group/campaign/budget/bid/status/tag/CAPI/audience/billing write, Merchant/Google Ads/GA4/GTM write, Shopify product mutation, credential persistence, billing action, or destructive filesystem action occurred.
+- Gate B-3 remains closed unless owner explicitly approves using the verified direct Cloudflare Worker URL as the Pinterest catalog source.
+
+Next best action:
+- Either identify/provide the Shopify app config that owns the app proxy, or approve Gate B-3 using the verified Cloudflare Worker URL directly.
+
+---
+
+## 2026-05-18 - Native Ads custom pixel purchase request proven final handoff
+
+AGENT_CONTINUITY_ANCHOR: 2026-05-18-native-ads-custom-pixel-purchase-request-proven-final-handoff
+
+Why:
+- Owner completed the controlled checkout after DevTools Network was armed on the active checkout tab.
+- The active question was whether the approved Shopify Customer Events custom pixel actually received `checkout_completed` and sent the native Google Ads purchase request.
+
+What changed:
+- No live system was changed in this validation step.
+- Durable tracking remains marked `NATIVE_ADS_CUSTOM_PIXEL_PURCHASE_REQUEST_PROVEN__ADS_READBACK_PENDING`.
+
+Readback / verification:
+- The checkout reached the thank-you/order-status page after owner-performed payment.
+- Page-level Network saw Google Ads conversion traffic on the thank-you page.
+- CDP inspection of the Shopify custom-pixel sandbox iframe `web-pixel-111214689@2` proved the native custom pixel sent a `googleadservices.com/pagead/conversion/...` request with `value=19.99`, `currency=USD`, `oid`, and `transaction_id`.
+- This proves Shopify Customer Events delivered `checkout_completed`, consent allowed dispatch, and the installed custom pixel sent the native Ads purchase request.
+
+Guardrails:
+- Automation did not click Pay, place an order, refund, cancel, change billing, change Shopify settings, or change Ads/GA4/GTM/Merchant/Pinterest/feed/campaign/budget/bid/status state during this validation step.
+- Checkout URL/token, customer PII, payment details, and conversion label were not recorded in this handoff.
+
+Next best action:
+- Recheck Google Ads native action diagnostics/metrics after the normal reporting delay. If Google Ads still does not show the purchase, treat the remaining issue as Google Ads diagnostics/attribution/readback timing rather than Shopify custom-pixel dispatch.

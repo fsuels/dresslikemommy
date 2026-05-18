@@ -19,15 +19,29 @@ The Custom Pixel sandbox:
 
 - Cannot access `window.dataLayer`, the parent storefront DOM, or first-party storefront cookies directly. It exposes only `browser.cookie` and `browser.localStorage` (both promise-based).
 - Has a strict CSP that often blocks 3rd-party script loaders in practice — gtag.js is the canonical example of a script that "sometimes works" inside the sandbox depending on the Shopify build and the consent-mode shim.
-- Survives best when the pixel uses plain `fetch()` to known endpoints.
+- Survives best when the pixel uses beacon / no-CORS requests to known endpoints.
 
-So `ga4-custom-pixel.js` constructs the GA4 Measurement Protocol payload itself and POSTs it. We persist a client ID and rolling session ID via `browser.localStorage` so GA4 can stitch the pixel's own events across visits. The sandbox usually cannot read the storefront `_ga` cookie, so do not expect the GA4 client ID to match older theme/app-tag sessions.
+So `ga4-custom-pixel.js` constructs the GA4 Measurement Protocol payload itself and POSTs it with `navigator.sendBeacon(...)`, falling back to `fetch(..., { mode: "no-cors" })`. Do not change this to a normal JSON `fetch()`: the Shopify sandbox has an opaque/null origin, and GA4's MP endpoint does not allow the browser preflight, so ordinary JSON fetches fail before GA4 receives the event. We persist a client ID and rolling session ID via `browser.localStorage` so GA4 can stitch the pixel's own events across visits. The sandbox usually cannot read the storefront `_ga` cookie, so do not expect the GA4 client ID to match older theme/app-tag sessions.
 
 ## Why a direct conversion beacon for Google Ads (not gtag.js either)
 
-Same sandbox constraint. The legacy image-pixel form of the Ads conversion request is a GET to `googleadservices.com/pagead/conversion/<AW_ID>/?label=...&value=...&oid=...`. `google-ads-custom-pixel.js` builds that URL directly and fires it with `fetch(..., { mode: "no-cors", credentials: "include", keepalive: true })`.
+Same sandbox constraint. The legacy image-pixel form of the Ads conversion request is a GET to `googleadservices.com/pagead/conversion/<AW_ID>/?label=...&value=...&oid=...`. `google-ads-custom-pixel.js` builds that URL directly and fires it with `fetch(..., { mode: "no-cors", credentials: "include", keepalive: true })`. The current template also starts an image backup beacon with the same `oid` / `transaction_id` so a sandbox transport miss is easier to detect and Google Ads can dedupe duplicate same-action fires by order ID.
 
 Because the sandbox cannot read the storefront `_gcl_aw` linker cookie, the pixel captures `gclid`, `gbraid`, and `wbraid` from consented `page_viewed` URLs and stores them in `browser.localStorage` for 90 days. If the buyer arrived from a Google ad URL, those click IDs are attached to the purchase beacon. If no click ID exists, the conversion still fires with value/currency/order ID, but Ads attribution may be modeled or absent. This is a v1 bridge, not the full Google Ads API upload path.
+
+## Native Ads diagnostic mode
+
+The native Ads template intentionally leaves sanitized diagnostic logging on. The logs are there because a completed Shopify order did not appear in the native Google Ads action after delayed API/UI readback, so the next live Customer Events edit must prove three separate gates:
+
+1. `checkout_completed` was received by the custom pixel.
+2. Shopify Customer Privacy allowed the conversion to fire.
+3. The pixel attempted `googleadservices.com/pagead/conversion/<AW_ID>/` with `value`, `currency`, `oid`, and `transaction_id`.
+
+The diagnostic logs do not print the conversion label, full conversion URL, click IDs, checkout token, email, phone, or address. If `init.customerPrivacy` / `api.customerPrivacy` is unavailable or has unknown flags, the template trusts Shopify's pixel-level permission gate rather than silently dropping the purchase. Explicit `marketingAllowed: false` still blocks firing.
+
+The live-edit approval packet is:
+
+`dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-google-ads-native-customer-events-diagnostic-fix/SHOPIFY_CUSTOMER_EVENTS_NATIVE_ADS_DIAGNOSTIC_FIX_PACKET.md`
 
 ## Deduplication strategy
 

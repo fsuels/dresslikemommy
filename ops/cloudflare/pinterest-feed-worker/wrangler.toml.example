@@ -1,0 +1,22 @@
+name = "dlm-pinterest-feed-worker"
+main = "src/worker.js"
+compatibility_date = "2026-05-17"
+workers_dev = true
+
+[vars]
+FEED_OBJECT_KEY = "pinterest/pinterest_unified_all_markets.tsv"
+FEED_SHA256 = "8aefb9cf4057497e4f56df36c2157b44c913e049fb1ecb2f75f505f1eb5470d7"
+FEED_ROW_COUNT = "41814"
+# Public feed mode is required until the Shopify app-proxy owner/config exists.
+# Switch to "true" only after SHOPIFY_APP_PROXY_SECRET is set in Worker secrets
+# and the Shopify-proxied URL has been verified.
+REQUIRE_SHOPIFY_PROXY_SIGNATURE = "false"
+
+[[r2_buckets]]
+binding = "PINTEREST_FEED_BUCKET"
+bucket_name = "dlm-pinterest-feeds"
+
+# Optional production custom domain. Leave commented until the Cloudflare zone is ready.
+# [[routes]]
+# pattern = "feed.dresslikemommy.com"
+# custom_domain = true

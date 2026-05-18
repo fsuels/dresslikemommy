@@ -33,11 +33,13 @@
  *   it is the exact failure mode that produced "0 GA4 transactions yesterday"
  *   for store dresslikemommy.com on 2026-05-14.
  *
- *   GA4 Measurement Protocol (server-side HTTP POST) is the supported,
- *   sandbox-safe path. We construct the event payload from the Shopify
- *   Customer Events `event.data` object and POST to
- *   https://www.google-analytics.com/mp/collect with the property's API
- *   secret.
+ *   GA4 Measurement Protocol is the controllable payload path, but from a
+ *   browser sandbox it must be sent as a beacon / no-CORS POST. A normal
+ *   `fetch()` with `Content-Type: application/json` triggers a CORS preflight
+ *   against google-analytics.com and is blocked before GA4 can record it.
+ *   We construct the event payload from Shopify Customer Events `event.data`
+ *   and send it to https://www.google-analytics.com/mp/collect with the
+ *   property's API secret.
  *
  * CLIENT ID — IMPORTANT EXPECTATION:
  *   `browser.cookie.get('_ga')` reads cookies on the SANDBOX origin, not the
@@ -89,9 +91,9 @@
  *     console (the sandbox supports console.log).
  *   - To force DebugView mode for a session, set DLM_FORCE_DEBUG_VIEW = true,
  *     Save, walk the funnel, then set back to false.
- *   - To validate payload shape during install without sending real data,
- *     set DLM_USE_MP_VALIDATION = true; the pixel will POST to
- *     /debug/mp/collect and log the validation response body.
+ *   - To validate payload shape outside the browser sandbox, POST a captured
+ *     payload to /debug/mp/collect from a server/local shell. Browser-side
+ *     validation may be blocked by the same CORS rules as collect.
  * ========================================================================== */
 
 /* eslint-disable no-undef */
@@ -356,20 +358,42 @@ function installPixel() {
 
       console.log("[DLM GA4 Pixel] dispatch", eventName, params);
 
-      // keepalive ensures the request survives navigations on the thank-you
-      // page — essential for the `purchase` event.
-      const res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-        keepalive: true
-      });
+      const payload = JSON.stringify(body);
 
       if (DLM_USE_MP_VALIDATION) {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: payload,
+          keepalive: true
+        });
         const text = await res.text();
         console.log("[DLM GA4 Pixel] MP validation response", res.status, text);
-      } else if (!res.ok) {
-        console.warn("[DLM GA4 Pixel] non-2xx from MP:", res.status);
+        return;
+      }
+
+      // Shopify Custom Pixels run from an opaque/null-origin sandbox. GA4 MP
+      // does not return CORS headers for browser preflights, so production
+      // dispatch must avoid non-safelisted request headers and must not try to
+      // read the response. Prefer sendBeacon for checkout navigation survival;
+      // fall back to no-cors fetch when the sandbox does not expose it.
+      let beaconQueued = false;
+      try {
+        if (typeof navigator !== "undefined" && navigator.sendBeacon) {
+          const blob = new Blob([payload], { type: "text/plain;charset=UTF-8" });
+          beaconQueued = navigator.sendBeacon(url, blob);
+        }
+      } catch (_) { beaconQueued = false; }
+
+      if (!beaconQueued) {
+        await fetch(url, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=UTF-8" },
+          body: payload,
+          keepalive: true,
+          credentials: "omit"
+        });
       }
     } catch (err) {
       console.warn("[DLM GA4 Pixel] dispatch failed", eventName, err);

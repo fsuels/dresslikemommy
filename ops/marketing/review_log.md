@@ -2021,6 +2021,76 @@ Safest next sales-moving action:
 
 - If the channel grouping toggle is unavailable, get separate exact approval to upload/import generated Path B feeds, then read back per-market grouped catalog rows after sync before launch review.
 
+## 2026-05-17 - Pinterest Gate B-1 Unified Feed
+
+Reviewer verdict: `PASS_GATE_B1_LOCAL_UNIFIED_FEED_READY__LIVE_WRITE_STILL_GATED`
+
+Checked:
+
+- Added `ops/scripts/build_pinterest_unified_feed.py`.
+- Regenerated grouped Path B feeds for `us`, `canada`, `united-kingdom`, `eu`, `australia`, and `international`.
+- Built `feeds/pinterest_unified_all_markets.tsv` with `41,814` rows and SHA-256 `8aefb9cf4057497e4f56df36c2157b44c913e049fb1ecb2f75f505f1eb5470d7`.
+- Unified summary shows `41,814` unique item IDs, `0` duplicate item IDs, `0` missing `item_group_id`, `0` missing `image_link`, `0` parent-image drift groups, and `0` supplier/source host hits.
+- `python3.13 ops/scripts/check_pinterest_feed_grouping.py --report-only --strict` reports `7` generated Path B feeds PASS and the `3` upstream/live-equivalent snapshots still expected FAIL / `0` ERROR.
+- `python3.13 ops/scripts/check_continuity_integrity.py --strict` returns `CONTINUITY_OK` with Pinterest feed grouping still in fix-in-progress mode.
+
+Risks:
+
+- This is local evidence only. It is not a Shopify app-proxy deploy, Pinterest catalog source change, legacy-feed pause, campaign launch, or proof that the live catalog is grouped.
+- `eu` and `international` are aggregate Shopify Markets, so their unified-feed `country` audit column is intentionally blank until Gate B-3 decides exact Pinterest source mapping.
+
+Required gates/fixes:
+
+- Gate B-2 requires fresh exact approval before deploying or exposing any Shopify app-proxy/file-hosting URL.
+- Gate B-3 requires fresh exact approval before configuring Pinterest catalog source or pausing legacy feeds.
+- Do not attest `FIX_LANDED_FRESHNESS_MARKER.txt` until live after-state readback proves grouped products.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B1_UNIFIED_FEED_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B2_B3_APPROVAL_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/feeds/pinterest_unified_all_markets.summary.json`
+- `ops/scripts/build_pinterest_unified_feed.py`
+
+Safest next sales-moving action:
+
+- Prepare the Gate B-2 approval packet for the minimal Shopify app-proxy/file-hosting implementation. Stop before deploy/save/public URL exposure until the owner approves that exact gate.
+
+## 2026-05-17 - Pinterest Gate B-2 Local Endpoint
+
+Reviewer verdict: `PASS_LOCAL_ENDPOINT_READY__DEPLOY_TARGET_REQUIRED__GATE_B3_CLOSED`
+
+Checked:
+
+- Inspected repo hosting surfaces and found existing `agent-backend` Express app but no checked-in deployment target config.
+- Added GET-only feed routes in `agent-backend/src/index.js`.
+- Updated `agent-backend/README.md`.
+- Added `GATE_B2_LOCAL_ENDPOINT_READBACK.md`.
+- Local endpoint serves the Gate B-1 unified TSV with `Content-Type: text/tab-separated-values; charset=utf-8`, one-day cache, content length, and `X-DLM-Feed-SHA256`.
+- Local readback returned `200`, `41,814` rows, and matching SHA-256.
+- POST method guard returned `405 Method Not Allowed`.
+
+Risks:
+
+- This is not a public Shopify app-proxy URL. Without a hosting target, Pinterest cannot fetch it.
+- Gate B-3 is still not approved or executed.
+
+Required gates/fixes:
+
+- Identify/deploy `agent-backend` hosting target under exact approval.
+- Configure Shopify app proxy only after deploy target is known.
+- Do not configure Pinterest catalog source until public URL readback passes.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B2_LOCAL_ENDPOINT_READBACK.md`
+- `agent-backend/src/index.js`
+- `agent-backend/README.md`
+
+Safest next sales-moving action:
+
+- Choose or confirm the hosting target for `agent-backend`, then deploy/read back the endpoint. Gate B-3 remains a separate approval after public URL proof.
+
 ## 2026-05-15 - Vendor / Brand Drift Prevention Wiring
 
 Reviewer verdict: `PASS_SHOPIFY_VENDOR_VERIFIED__OWNER_APPLY_PENDING`
@@ -2144,3 +2214,163 @@ Evidence:
 Safest next sales-moving action:
 
 - Owner follows the updated runbook: create IDs/secrets, install both Custom Pixels, verify DebugView/Tag Assistant/test order, then promote native Ads only after validation.
+
+## 2026-05-15 - Basic Access Watch Refresh 11:53
+
+Reviewer verdict: `PASS_READ_ONLY_NO_GREEN_ROW`
+
+Checked:
+
+- Outlook connector search of `info@dresslikemommy.com` found no May 15 Basic Access approval matches for `Google Ads API`, `API Compliance`, `developer token`, or `Google Ads`.
+- The Google Ads API CPC forecast harness was not rerun because it would repeat the known Explorer-access blocker without approval.
+- Command-layer gates still require real `PASS_015_CPC_GATE` rows before any keyword, bid, budget, status, negative, or upload action.
+
+Risks:
+
+- `[test Gmail profile redacted]` remains unconnected because the Gmail connector OAuth flow previously stalled.
+- Google may still reply later within the typical review window, so this is a current negative readback, not final denial.
+
+Required gates/fixes:
+
+- Do not resubmit Basic Access unless Google requests changes.
+- Do not rerun the CPC harness until a Basic Access approval email or equivalent API Center approval readback appears.
+
+Evidence:
+
+- Outlook read-only searches, 2026-05-15 11:53 EDT.
+- `ops/PROBLEM_TRACKER.md`
+- `ops/marketing/blocker_board.md`
+
+Safest next sales-moving action:
+
+- Keep the Basic Access watch active and continue Merchant/Pinterest safe lanes that do not require new external writes.
+
+## 2026-05-18 - Pinterest Gate B-2 Cloudflare Worker Readiness
+
+Reviewer verdict: `PASS_LOCAL_READINESS__NO_LIVE_WRITES__B3_STILL_CLOSED`
+
+Checked:
+
+- `ops/cloudflare/pinterest-feed-worker/src/worker.js` is feed-only: GET TSV response, R2 object read, audit headers, non-GET `405`, optional Shopify app-proxy signature verification.
+- `wrangler.toml.example` contains placeholders and no credentials.
+- `package.json` pins Wrangler `4.86.0`, and `npm audit --audit-level=moderate` reports `0` vulnerabilities.
+- `README.md` keeps Cloudflare deploy/upload and Shopify app-proxy configuration as owner/operator live-write steps.
+- `GATE_B2_CLOUDFLARE_WORKER_READINESS.md` explicitly states no Cloudflare, Shopify, Pinterest, Merchant, Ads, GA4/GTM, billing, credential, product, campaign, or feed write occurred.
+
+Risks:
+
+- Cloudflare account setup may still require an owner payment method or plan decision.
+- Public URL readback is not done because no deploy occurred.
+- Shopify app-proxy signature verification must be tested against the real Shopify-proxied URL during deployment.
+
+Required gates/fixes:
+
+- Do not configure Pinterest Catalogs, pause legacy feeds, or attest the freshness marker until the public Shopify URL returns the verified TSV with matching SHA and row count.
+- Stop if Cloudflare or Shopify requests billing/plan/scopes beyond the approved feed-only path.
+
+Evidence:
+
+- `ops/cloudflare/pinterest-feed-worker/`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B2_CLOUDFLARE_WORKER_READINESS.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B2_B3_APPROVAL_PACKET.md`
+
+Safest next sales-moving action:
+
+- Deploy the Cloudflare R2/Worker path and configure Shopify App Proxy under exact Gate B-2 approval, then capture public readback before requesting Gate B-3.
+
+## 2026-05-18 - Pinterest Gate B-2 Deploy Attempt
+
+Reviewer verdict: `BLOCKED_AUTH_APP_CONFIG__DRY_RUN_PASS__NO_LIVE_WRITES`
+
+Checked:
+
+- The feed SHA, row count, and file size were verified before deploy attempt.
+- Cloudflare CLI is not authenticated in this shell.
+- Default Wrangler OAuth asks for broad unrelated scopes and was stopped.
+- No Cloudflare token/account ID was available in the shell or local config.
+- Shopify CLI is installed, but no app TOML/config exists in this repo for `shopify app info`.
+- Worker dry-run passed against the local config and expected R2/env bindings.
+
+Risks:
+
+- A broad Wrangler OAuth login would over-authorize this feed-only task.
+- Without a Shopify app config or identified installed app, app-proxy configuration cannot be applied safely.
+
+Required gates/fixes:
+
+- Use a narrowly scoped Cloudflare API token and account ID, kept out of repo files.
+- Identify the Shopify app/proxy owner before making app-proxy changes.
+- Do not configure Pinterest Catalogs until the public Shopify app-proxy URL passes Gate B-2 readback.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B2_DEPLOY_ATTEMPT_BLOCKED_AUTH_READBACK.md`
+- `ops/cloudflare/pinterest-feed-worker/`
+- `ops/PROBLEM_TRACKER.md`
+
+Safest next sales-moving action:
+
+- Owner provides Cloudflare token/account ID and Shopify app-proxy owner/config, then Gate B-2 deploy/readback can continue without touching Pinterest.
+
+## 2026-05-18 - Pinterest Gate B-2 R2 Enablement Blocker
+
+Reviewer verdict: `AUTH_VALID__R2_ENABLE_REQUIRED__NO_LIVE_WRITES`
+
+Checked:
+
+- `~/.config/dresslikemommy/cloudflare.env` is present and was loaded without exposing the token.
+- Wrangler authenticated successfully with the Cloudflare token.
+- R2 list failed with Cloudflare API `code: 10042`, requiring R2 enablement in Cloudflare Dashboard.
+- No Cloudflare bucket/object/deploy write occurred.
+
+Risks:
+
+- R2 enablement may prompt for payment method or billing terms. Automation must not complete financial/billing steps.
+- Shopify App Proxy still needs an app config or identified installed app owner before the storefront URL can be configured.
+
+Required gates/fixes:
+
+- Owner enables R2 in Cloudflare Dashboard.
+- Owner handles any billing/payment prompt directly.
+- Shopify app-proxy owner/config still required before public Shopify URL readback.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B2_DEPLOY_ATTEMPT_BLOCKED_AUTH_READBACK.md`
+- `ops/PROBLEM_TRACKER.md`
+
+Safest next sales-moving action:
+
+- After R2 is enabled, rerun `npx wrangler@4.86.0 r2 bucket list` from the Worker package with the env file loaded, then continue Gate B-2 deploy/readback.
+
+## 2026-05-18 - Pinterest Gate B-2 Cloudflare Direct URL
+
+Reviewer verdict: `PASS_DIRECT_CLOUDFLARE_URL_VERIFIED__SHOPIFY_PROXY_PENDING__B3_CLOSED`
+
+Checked:
+
+- Remote R2 bucket/object exists and object SHA matches Gate B-1.
+- Worker `dlm-pinterest-feed-worker` deployed on `dresslikemommy.workers.dev`.
+- Public feed URL returns `200`, TSV content type, expected content length, expected row-count/SHA headers, and body SHA match.
+- Parsed public body has `41,814` rows, `41,814` unique IDs, no missing `item_group_id`, no missing `image_link`, and no supplier/source host hits.
+- POST method guard returns `405` with `Allow: GET`.
+
+Risks:
+
+- Shopify App Proxy remains unconfigured because no app config/app owner is present in the repo.
+- Current Worker URL is public by design; if Shopify App Proxy signing is required later, set `SHOPIFY_APP_PROXY_SECRET` and switch `REQUIRE_SHOPIFY_PROXY_SIGNATURE` to `true` after proxy readback.
+
+Required gates/fixes:
+
+- Do not configure Pinterest Catalogs until owner approves Gate B-3 for either the verified direct Worker URL or a later Shopify-proxied URL.
+- Do not pause/remove legacy feeds until the new source ingests cleanly and grouped catalog readback passes.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B2_CLOUDFLARE_DEPLOY_READBACK.md`
+- `ops/cloudflare/pinterest-feed-worker/`
+- `ops/PROBLEM_TRACKER.md`
+
+Safest next sales-moving action:
+
+- Ask owner whether Gate B-3 should use the verified direct Cloudflare URL, or whether to stop and first create/link a Shopify app proxy.

@@ -16,6 +16,24 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
+# Minimum supported Python. Lets the script run under whatever python3 the
+# caller has (python3, python3.10, python3.13, etc.) instead of hard-coding a
+# single binary name. We still require >= 3.10 for f-strings/dataclass syntax
+# already used below.
+MIN_PYTHON = (3, 10)
+if sys.version_info < MIN_PYTHON:
+    sys.stderr.write(
+        f"check_continuity_integrity.py requires Python "
+        f">= {MIN_PYTHON[0]}.{MIN_PYTHON[1]}; got {sys.version.split()[0]}\n"
+    )
+    sys.exit(2)
+
+# Use the same interpreter that started this script for all subprocess Python
+# calls — avoids hard-coding `python3.13` on systems that only ship `python3`
+# (e.g. Linux sandboxes used by browser-based agents).
+PYTHON_BIN = sys.executable or "python3"
+
+
 ROOT = Path(__file__).resolve().parents[2]
 OPS = ROOT / "ops"
 MARKETING = OPS / "marketing"
@@ -216,7 +234,7 @@ def check_marketing_integration_audit() -> CheckResult:
     if not INTEGRATION_AUDIT.exists():
         return CheckResult("marketing_integration_audit", False, f"missing {rel(INTEGRATION_AUDIT)}")
     proc = subprocess.run(
-        ["python3.13", str(INTEGRATION_AUDIT), "--fail-on-risk"],
+        [PYTHON_BIN, str(INTEGRATION_AUDIT), "--fail-on-risk"],
         cwd=ROOT,
         text=True,
         stdout=subprocess.PIPE,
@@ -277,7 +295,7 @@ def check_pinterest_feed_grouping() -> CheckResult:
             if line == ATTEST_PHRASE or line.startswith(ATTEST_PHRASE):
                 strict_mode = True
             break
-    cmd = ["python3.13", str(PINTEREST_FEED_GROUPING_CHECK)]
+    cmd = [PYTHON_BIN, str(PINTEREST_FEED_GROUPING_CHECK)]
     if strict_mode:
         cmd.append("--strict")
     else:
