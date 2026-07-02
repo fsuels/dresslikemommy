@@ -23,6 +23,7 @@
 {%- endcomment -%}
 
 {%- liquid
+  assign rsp_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase
   assign rsp_rating_count_raw = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count
   assign rsp_rating_count = rsp_rating_count_raw | plus: 0
 
@@ -73,15 +74,22 @@
     assign rsp_badge_label = 'New arrival'
   endif
 
+  assign rsp_default_social_proof = 'Family matching styles loved by moms for vacations, birthdays, and photos.'
   assign rsp_social_proof = social_proof_text | default: blank
+  if rsp_locale_root != 'en' and rsp_social_proof == rsp_default_social_proof
+    assign rsp_localized_social_proof = 'products.product.social_proof.line' | t
+    unless rsp_localized_social_proof == blank or rsp_localized_social_proof contains 'translation missing'
+      assign rsp_social_proof = rsp_localized_social_proof
+    endunless
+  endif
   if rsp_social_proof == blank
     assign rsp_social_proof = 'products.product.social_proof.line' | t
     if rsp_social_proof == blank or rsp_social_proof contains 'translation missing'
-      assign rsp_social_proof = 'Family matching styles loved by moms for vacations, birthdays, and photos.'
+      assign rsp_social_proof = rsp_default_social_proof
     endif
   endif
 
-  if product.handle == 'golden-daisy-mommy-and-me-set'
+  if product.handle == 'golden-daisy-mommy-and-me-set' and rsp_locale_root == 'en'
     assign rsp_social_proof = 'A sunny mom-and-daughter look for vacations, picnics, and family photos.'
   endif
 -%}

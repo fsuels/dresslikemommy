@@ -27,6 +27,7 @@
 {%- endcomment -%}
 
 {%- liquid
+  assign dpm_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase
   assign dpm_root_url = routes.root_url | default: '/'
   assign dpm_root_url_last = dpm_root_url | slice: -1
   if dpm_root_url_last == '/'
@@ -35,6 +36,40 @@
   else
     assign dpm_refund_url = dpm_root_url | append: '/policies/refund-policy'
     assign dpm_privacy_url = dpm_root_url | append: '/policies/privacy-policy'
+  endif
+
+  assign dpm_close_label = 'Close'
+  assign dpm_return_title = '30-day returns & exchanges'
+  assign dpm_return_line_1 = 'Return or exchange within <strong>30 days of delivery</strong>.'
+  assign dpm_return_line_2 = 'Items must be <strong>unworn, unwashed, and have tags attached</strong>.'
+  assign dpm_return_line_3 = 'Final-sale, swimwear, intimate, gift card, or late-return items may be excluded.'
+  assign dpm_return_line_4 = 'Damaged or defective item? Contact support within <strong>7 days with photos</strong>.'
+  assign dpm_return_line_5 = 'Return shipping is customer-paid unless the item arrived damaged or defective.'
+  assign dpm_return_full_link = 'Open full return policy in a new tab'
+  assign dpm_privacy_title = 'Privacy & secure checkout'
+  assign dpm_privacy_line_1 = 'Checkout is <strong>encrypted</strong>.'
+  assign dpm_privacy_line_2 = 'Payments are processed securely by Shopify and our payment providers.'
+  assign dpm_privacy_line_3 = 'Dress Like Mommy <strong>does not store your full card number</strong>.'
+  assign dpm_privacy_line_4 = 'Personal data is used to process orders, shipping, support, fraud prevention, and consent-based marketing.'
+  assign dpm_privacy_line_5 = 'We <strong>do not sell</strong> your personal information.'
+  assign dpm_privacy_full_link = 'Open full privacy policy in a new tab'
+
+  if dpm_locale_root == 'es'
+    assign dpm_close_label = 'Cerrar'
+    assign dpm_return_title = 'Devoluciones y cambios en 30 días'
+    assign dpm_return_line_1 = 'Puedes devolver o cambiar dentro de los <strong>30 días posteriores a la entrega</strong>.'
+    assign dpm_return_line_2 = 'Los artículos deben estar <strong>sin usar, sin lavar y con las etiquetas puestas</strong>.'
+    assign dpm_return_line_3 = 'Los artículos de venta final, trajes de baño, ropa íntima, tarjetas de regalo o devoluciones tardías pueden quedar excluidos.'
+    assign dpm_return_line_4 = '¿Artículo dañado o defectuoso? Contacta a soporte dentro de <strong>7 días con fotos</strong>.'
+    assign dpm_return_line_5 = 'El envío de devolución corre por cuenta del cliente, excepto si el artículo llegó dañado o defectuoso.'
+    assign dpm_return_full_link = 'Abrir la política completa de devoluciones en una nueva pestaña'
+    assign dpm_privacy_title = 'Privacidad y pago seguro'
+    assign dpm_privacy_line_1 = 'El pago está <strong>cifrado</strong>.'
+    assign dpm_privacy_line_2 = 'Los pagos se procesan de forma segura a través de Shopify y nuestros proveedores de pago.'
+    assign dpm_privacy_line_3 = 'Dress Like Mommy <strong>no guarda el número completo de tu tarjeta</strong>.'
+    assign dpm_privacy_line_4 = 'Los datos personales se usan para procesar pedidos, envíos, soporte, prevención de fraude y marketing con consentimiento.'
+    assign dpm_privacy_line_5 = '<strong>No vendemos</strong> tu información personal.'
+    assign dpm_privacy_full_link = 'Abrir la política completa de privacidad en una nueva pestaña'
   endif
 -%}
 
@@ -183,23 +218,23 @@
   <div class="dlm-policy-modal__backdrop" data-policy-modal-close></div>
   <div class="dlm-policy-modal__dialog" tabindex="-1">
     <div class="dlm-policy-modal__header">
-      <h2 id="DlmPolicyModalTitle-return" class="dlm-policy-modal__title">30-day returns &amp; exchanges</h2>
+      <h2 id="DlmPolicyModalTitle-return" class="dlm-policy-modal__title">{{ dpm_return_title }}</h2>
       <button
         type="button"
         class="dlm-policy-modal__close"
         data-policy-modal-close
-        aria-label="Close"
+        aria-label="{{ dpm_close_label | escape }}"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
     <div class="dlm-policy-modal__body">
       <ul>
-        <li>Return or exchange within <strong>30 days of delivery</strong>.</li>
-        <li>Items must be <strong>unworn, unwashed, and have tags attached</strong>.</li>
-        <li>Final-sale, swimwear, intimate, gift card, or late-return items may be excluded.</li>
-        <li>Damaged or defective item? Contact support within <strong>7 days with photos</strong>.</li>
-        <li>Return shipping is customer-paid unless the item arrived damaged or defective.</li>
+        <li>{{ dpm_return_line_1 }}</li>
+        <li>{{ dpm_return_line_2 }}</li>
+        <li>{{ dpm_return_line_3 }}</li>
+        <li>{{ dpm_return_line_4 }}</li>
+        <li>{{ dpm_return_line_5 }}</li>
       </ul>
     </div>
     <div class="dlm-policy-modal__footer">
@@ -209,7 +244,7 @@
         target="_blank"
         rel="noopener"
       >
-        Open full return policy in a new tab
+        {{ dpm_return_full_link }}
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       </a>
     </div>
@@ -229,23 +264,23 @@
   <div class="dlm-policy-modal__backdrop" data-policy-modal-close></div>
   <div class="dlm-policy-modal__dialog" tabindex="-1">
     <div class="dlm-policy-modal__header">
-      <h2 id="DlmPolicyModalTitle-privacy" class="dlm-policy-modal__title">Privacy &amp; secure checkout</h2>
+      <h2 id="DlmPolicyModalTitle-privacy" class="dlm-policy-modal__title">{{ dpm_privacy_title }}</h2>
       <button
         type="button"
         class="dlm-policy-modal__close"
         data-policy-modal-close
-        aria-label="Close"
+        aria-label="{{ dpm_close_label | escape }}"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
     <div class="dlm-policy-modal__body">
       <ul>
-        <li>Checkout is <strong>encrypted</strong>.</li>
-        <li>Payments are processed securely by Shopify and our payment providers.</li>
-        <li>Dress Like Mommy <strong>does not store your full card number</strong>.</li>
-        <li>Personal data is used to process orders, shipping, support, fraud prevention, and consent-based marketing.</li>
-        <li>We <strong>do not sell</strong> your personal information.</li>
+        <li>{{ dpm_privacy_line_1 }}</li>
+        <li>{{ dpm_privacy_line_2 }}</li>
+        <li>{{ dpm_privacy_line_3 }}</li>
+        <li>{{ dpm_privacy_line_4 }}</li>
+        <li>{{ dpm_privacy_line_5 }}</li>
       </ul>
     </div>
     <div class="dlm-policy-modal__footer">
@@ -255,7 +290,7 @@
         target="_blank"
         rel="noopener"
       >
-        Open full privacy policy in a new tab
+        {{ dpm_privacy_full_link }}
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       </a>
     </div>

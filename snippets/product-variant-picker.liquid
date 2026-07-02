@@ -1,5 +1,6 @@
 {%- unless product.has_only_default_variant -%}
   {%- liquid
+    assign variant_picker_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase
     assign size_guide_summary_label = 'products.product.size_guide.guide_and_fit' | t
     assign has_type_or_style_option = false
     assign selected_type_value = blank
@@ -217,16 +218,30 @@
         endif
         assign step_phrase = blank
         if show_step_heading
-          if option_name_downcased contains 'family' or option_name_downcased contains 'who' or option_name_downcased contains 'wearer'
-            assign step_phrase = 'Who is this for?'
-          elsif is_size_option
-            assign step_phrase = 'Choose size'
-          elsif is_color_option
-            assign step_phrase = 'Choose color'
-          elsif has_type_or_style_option and option_name_downcased contains 'type' or option_name_downcased contains 'style' or option_name_downcased contains 'piece'
-            assign step_phrase = 'Choose piece'
+          if variant_picker_locale_root == 'es'
+            if option_name_downcased contains 'family' or option_name_downcased contains 'who' or option_name_downcased contains 'wearer'
+              assign step_phrase = '¿Para quién es?'
+            elsif is_size_option
+              assign step_phrase = 'Elegir talla'
+            elsif is_color_option
+              assign step_phrase = 'Elegir color'
+            elsif has_type_or_style_option and option_name_downcased contains 'type' or option_name_downcased contains 'style' or option_name_downcased contains 'piece' or option_name_downcased contains 'tipo' or option_name_downcased contains 'estilo'
+              assign step_phrase = 'Elegir prenda'
+            else
+              assign step_phrase = 'Elegir ' | append: option_label | downcase
+            endif
           else
-            assign step_phrase = 'Choose ' | append: option_label | downcase
+            if option_name_downcased contains 'family' or option_name_downcased contains 'who' or option_name_downcased contains 'wearer'
+              assign step_phrase = 'Who is this for?'
+            elsif is_size_option
+              assign step_phrase = 'Choose size'
+            elsif is_color_option
+              assign step_phrase = 'Choose color'
+            elsif has_type_or_style_option and option_name_downcased contains 'type' or option_name_downcased contains 'style' or option_name_downcased contains 'piece'
+              assign step_phrase = 'Choose piece'
+            else
+              assign step_phrase = 'Choose ' | append: option_label | downcase
+            endif
           endif
         endif
       -%}
