@@ -209,12 +209,21 @@
         {%- endcomment -%}
 
         {%- if journal_blog != blank and section.settings.show_journal_link -%}
+          {%- liquid
+            assign footer_journal_label = section.settings.journal_link_label | default: 'Style Journal'
+            assign footer_journal_summary = 'Family fashion tips, matching outfit ideas, and seasonal style guides.'
+            assign footer_journal_cta_prefix = 'Read the '
+            if footer_locale contains 'es'
+              assign footer_journal_summary = 'Consejos de moda familiar, ideas de conjuntos a juego y guías de estilo de temporada.'
+              assign footer_journal_cta_prefix = 'Leer el '
+            endif
+          -%}
           <div class="footer-block grid__item footer-block--journal{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-            <h2 class="footer-block__heading inline-richtext">{{ section.settings.journal_link_label | default: 'Style Journal' }}</h2>
+            <h2 class="footer-block__heading inline-richtext">{{ footer_journal_label }}</h2>
             <div class="footer-block__details-content rte">
-              <p>Family fashion tips, matching outfit ideas, and seasonal style guides.</p>
+              <p>{{ footer_journal_summary }}</p>
               <a href="{{ journal_blog.url }}" class="link link--text list-menu__item list-menu__item--link">
-                Read the {{ section.settings.journal_link_label | default: 'Style Journal' }} &rarr;
+                {{ footer_journal_cta_prefix }}{{ footer_journal_label }} &rarr;
               </a>
             </div>
           </div>

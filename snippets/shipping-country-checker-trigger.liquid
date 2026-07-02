@@ -3,6 +3,18 @@
   assign available_countries = localization.available_countries
   assign country_count = available_countries.size
   assign current_country = localization.country.name | default: ''
+  assign cart_country_label = 'products.shipping_country.trust_ships_to' | t: country: current_country
+  if cart_country_label == blank or cart_country_label contains 'translation missing'
+    assign cart_country_label = 'Ships to ' | append: current_country
+  endif
+  assign cart_checker_label = 'products.shipping_country.checker_trigger' | t
+  if cart_checker_label == blank or cart_checker_label contains 'translation missing'
+    assign cart_checker_label = 'Check shipping country'
+  endif
+  assign cart_checker_meta = 'products.shipping_country.checker_trigger_meta' | t: count: country_count
+  if cart_checker_meta == blank or cart_checker_meta contains 'translation missing'
+    assign cart_checker_meta = country_count | append: ' countries'
+  endif
 -%}
 
 {%- if country_count > 0 -%}
@@ -15,16 +27,16 @@
   >
     <span class="shipping-country-checker-trigger__label">
       {%- if checker_context == 'cart' and current_country != blank -%}
-        Ships to {{ current_country }}
+        {{ cart_country_label }}
       {%- elsif checker_context == 'cart' -%}
-        Check shipping country
+        {{ cart_checker_label }}
       {%- else -%}
         {{ 'products.shipping_country.checker_trigger' | t }}
       {%- endif -%}
     </span>
     <span class="shipping-country-checker-trigger__meta">
       {%- if checker_context == 'cart' -%}
-        {{ country_count }} countries
+        {{ cart_checker_meta }}
       {%- elsif current_country != blank -%}
         {{ 'products.shipping_country.checker_trigger_meta_country' | t: country: current_country, count: country_count }}
       {%- else -%}
