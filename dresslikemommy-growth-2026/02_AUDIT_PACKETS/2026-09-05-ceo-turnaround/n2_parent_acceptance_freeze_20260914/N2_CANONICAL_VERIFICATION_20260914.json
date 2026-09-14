@@ -1,0 +1,95 @@
+{
+  "as_of_utc": "2026-09-14T20:40:12.133705+00:00",
+  "anchor": "2026-09-14-pinterest-first-wake-n2-scheduled",
+  "classification": "VERIFIED_SCOPE_AND_CONTINUITY_NOT_BUSINESS_OUTCOMES",
+  "canonical_preservation": [
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "passed": true,
+      "method": "Inverse exact-region replacement hash",
+      "later_peer_append_bytes_preserved": 0,
+      "current_sha256": "0875e948602d7322182fc3591f5f88164a5f7e7fa1163201209f0de77f30cf5f"
+    },
+    {
+      "path": "ops/marketing/daily_scorecard.md",
+      "passed": true,
+      "method": "Inverse exact-region replacement hash",
+      "later_peer_append_bytes_preserved": 0,
+      "current_sha256": "dd2946ff34ceba7247166e6b5146566e71d1de591644a76d5187d5934ff1076c"
+    },
+    {
+      "path": "ops/marketing/operator_cockpit.md",
+      "passed": true,
+      "method": "Inverse exact-region replacement hash",
+      "later_peer_append_bytes_preserved": 0,
+      "current_sha256": "842dec8a26720b22f250ee284c0c401e5beb7f1a55a72d2ae124e6d4ffe0b757"
+    },
+    {
+      "path": "ops/marketing/action_queue.md",
+      "passed": true,
+      "method": "Inverse exact-region replacement hash",
+      "later_peer_append_bytes_preserved": 0,
+      "current_sha256": "0b1613d93d6e48154506f552b2d24ae3213449c0d0e1331c820ee1683f473bd6"
+    },
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "passed": true,
+      "method": "Inverse exact-region replacement hash",
+      "later_peer_append_bytes_preserved": 0,
+      "current_sha256": "62595c22750f634d2d19652f73c3c0183cee6b53328990c670c702dddc5ca8e5"
+    },
+    {
+      "path": "ops/marketing/decision_log.md",
+      "passed": true,
+      "method": "Exact pre-append prefix hash; later peer append preserved",
+      "later_peer_append_bytes_preserved": 0,
+      "current_sha256": "b90a32c2de5daf6c9e0fde371c4414ae3a53dd7c136b42835639b6834a28e495"
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "passed": true,
+      "method": "Exact pre-append prefix hash; later peer append preserved",
+      "later_peer_append_bytes_preserved": 2336,
+      "current_sha256": "ba067bc2820febddc69e5ec5200b38a637498a400ee3708349eb9644792568e0"
+    }
+  ],
+  "owner_action_hash_preserved": true,
+  "paid_control_preserved": true,
+  "independent_pre_submit": "42/42 PASS_WITH_LIMITS",
+  "independent_after_submit": "46/46 PASS_WITH_LIMITS",
+  "register_preservation": "11/11 other rows unchanged",
+  "checks": [
+    {
+      "check": "render_marketing_cockpit.py",
+      "status": "PASS"
+    },
+    {
+      "check": "audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "status": "PASS",
+      "integrated": 25,
+      "tracked": 25,
+      "risks": 0
+    },
+    {
+      "check": "check_continuity_integrity.py --strict",
+      "status": "PASS",
+      "result": "CONTINUITY_OK; repeat after final own coordination edit passed"
+    },
+    {
+      "check": "git diff --check",
+      "status": "PASS"
+    }
+  ],
+  "interpreter_note": "Unversioned requested python3.13 command unavailable; same scripts completed using configured bundled Python runtime. Initial command resolution failures were not script-test failures.",
+  "runtime_interpreter": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "external_after_state": "One N2 scheduled record3858290826238337152 verified; queue6; no paid/tracking/Shopify mutations",
+  "limitations": [
+    "Native Pin timezone not exposed",
+    "Alt and ad-only saved-detail fields not exposed; verified before submit",
+    "Actual publication and business outcomes pending",
+    "Native UI replay is root-only; independent verifier reviewed source receipts"
+  ],
+  "canonical_interval": "Released; later unrelated local-synchronization worklog append preserved",
+  "next_owned_action": "Verify P2 afterSep15 12:30PM native label; continue daily source-qualified operation",
+  "continuation_prompt": "ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+}

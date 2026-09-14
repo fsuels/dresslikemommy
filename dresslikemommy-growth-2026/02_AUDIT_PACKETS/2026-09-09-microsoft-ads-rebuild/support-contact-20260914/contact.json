@@ -1,6 +1,6 @@
 {
   "schema": "dlm.microsoft.support_contact.v1",
-  "classification": "HUMAN_SUPPORT_DIAGNOSTIC_DELIVERED",
+  "classification": "HUMAN_SUPPORT_INVESTIGATION_OPEN",
   "recorded_at_utc": "2026-09-14T20:22:17.103663+00:00",
   "root_thread_id": "01a08703-644f-7940-8f67-9a2fa63722bb",
   "owning_task": "TA-15",
@@ -55,8 +55,8 @@
   "receipt_observed_at_utc": "2026-09-14T20:27:19.301536+00:00",
   "human_case_id": null,
   "human_connected": true,
-  "current_stage": "Human support investigating; case number requested, not yet returned",
-  "updated_at_utc": "2026-09-14T20:32:32.997090+00:00",
+  "current_stage": "Support stated app should automatically bridge consent; root requested escalation of conflict with dated trace. No case ID or supported correction received yet.",
+  "updated_at_utc": "2026-09-14T20:51:03.115674+00:00",
   "human_agent": "Alexandra May (Alex), Microsoft Advertising Support",
   "human_connection_receipt": "Native connected status, support agent identity and greeting observed at Sep14 4:26PM; root acknowledged at approximately 4:30PM.",
   "full_report_delivery": {
@@ -66,5 +66,19 @@
     "receipt": "Each of Diagnostic 1/7 through 7/7 appeared as chat text after Send and composer cleared; final parts displayed Sep14 4:31PM",
     "attachments_uploaded": 0,
     "case_number_requested": true
-  }
+  },
+  "human_report_acknowledged": true,
+  "followup_contact_preference": "Agent asked to confirm existing masked account contact details. Root did not confirm preferences or request a call; requested continuation in authenticated chat and case number. Support accepted continuing in chat.",
+  "support_reported_expected_behavior": {
+    "source": "Alexandra May, native Microsoft Advertising support chat, Sep14 4:48PM",
+    "statement": "Microsoft Channel app automatically bridges Shopify Customer Privacy to the standard UET sender and supports consent mode; merchant manual bridge is not needed.",
+    "evidence_class": "SUPPORT_REPORTED_EXPECTED_BEHAVIOR_NOT_LIVE_REPAIR_PROOF",
+    "conflict": "September12 standard pageLoad omitted asc while Shopify denied analytics and marketing. Exact isolated app purchase behavior remains unproved."
+  },
+  "escalation_requested": {
+    "target": "Shopify Channel integration team",
+    "scope": "Investigate standard sender discrepancy for dated app version and propose supported correction; provide case reference, owner or queue, next response time.",
+    "confirmed": false
+  },
+  "production_fix_verified": false
 }

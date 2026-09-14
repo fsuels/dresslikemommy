@@ -51574,11 +51574,36 @@ One Owner Action remains the current owner Admin publication of verified theme13
 AGENT_CONTINUITY_ANCHOR: 2026-09-14-project-main-local-synchronization
 
 - task_entities: local Git main; fsuels/dresslikemommy origin/main; reviewed theme137888792673; active GitHub-connected theme133290917985
-- task_stage: BUILD
-- next_action_id: LOCAL_MAIN_SYNC_AND_REMOTE_CONNECTION_GATE
+- task_stage: VERIFY
+- next_action_id: ISOLATED_NON_THEME_MAIN_SYNC
 
 Current user explicitly requested all local project changes and completed UX fixes in the latest Git main. Local checkout started at8abff26; fresh origin/main cc62620 adds four commits, including the agent-harness bootstrap. Independent source comparison verified all527 reviewed source hashes and recommended60 byte copies while preserving7 additional local fixes. Root performed exactly that integration:520 reviewed-exact files plus7 local enhancements,22configuration/template files and58unappliedV8 files preserved. Independent final review PASS, SHA394a6ec02c2e373dfa383ccb178929c6ff5bd57cefdaef900b184e694df0b1f2. Before-files remain in a private local backup; rollback ref codex/main-before-sync-20260914-2024 preserves the initial commit.
 
-81 source syntax checks,30 reviewed-source regressions,14 Pinterest Worker tests and git diff --check passed. Current Liquid validation flags3 pre-existing complexity limits in byte-identical reviewed footer/main-product/jsonld-seo files; no rule disabled or speculative refactor added. Broader ops unittest discovery attempted74 tests:2 outdated current-state assertions and9 missing-dependency imports remain failures; the Git sync did not edit those tested implementations. Existing paid authority, source receipts and platform owners remain unchanged. Runtime caches and private source records stay local; sensitive supplier URL values are excluded from public Git staging while originals stay on disk.
+81 source syntax checks,30 reviewed-source regressions,14 Pinterest Worker tests and root-theme git diff --check passed. The complete staged archive has existing/imported whitespace failures in531files; source snapshots were preserved. Current Liquid validation flags3 pre-existing complexity limits in byte-identical reviewed footer/main-product/jsonld-seo files; no rule disabled or speculative refactor added. Broader ops unittest discovery attempted74 tests:2 outdated current-state assertions and9 missing-dependency imports remain failures; the Git sync did not edit those tested implementations. Existing paid authority, source receipts and platform owners remain unchanged. Runtime caches and private source records stay local; sensitive supplier URL values are excluded from public Git staging while originals stay on disk.
 
 Current Admin read explicitly shows active theme133290917985 connected to github.com/fsuels/dresslikemommy/tree/main, and137888792673 remains a draft. Therefore remote theme push is a live write and cannot serve as a workaround for the connector's required owner-Admin publication step. Complete local commit/merge and fresh connection read before reporting the exact remaining dependency. No remote push, Shopify save/upload/publication, paid/account change or order occurred. Source and validation evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-14-project-main-sync/.
+
+Local source snapshot9ee5c13 and mergec126eaa now preserve all four newer origin/main commits. Independent merge review PASS (10927bf791bf1e622f1c40542f1422ce5b8ad6d7fe2e200c661cee479be1c649). All58V8 files remain unchanged locally;57 are committed and one private historical worklog copy remains excluded. Fresh Admin still shows active133290917985 linked to main and137888792673 Draft. A bounded non-theme-only GitHub sync is now being prepared under the existing user authorization: every Shopify theme directory and deployment configuration must equal fresh origin/main exactly, with independent candidate review before push. Official Shopify GitHub repository-structure documentation says other folders are ignored; the existing workflow is unchanged and has no push trigger/deployment. No theme release is included in that independent sync.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-x-publisher-proposal-and-n2-receipt
+
+- task_entities: TA-24; TA-25; @dresslikemommy; N2 scheduled3858290826238337152
+- task_stage: VERIFY / HANDOFF
+- X outcome: The X owner completed an independently reviewed X-only Buffer Free connection proposal (10/10 PASS_WITH_LIMITS), replacing an unspecified publisher search with a concrete conditional option. This is not an approved or connected service: actual Free-plan eligibility, identity, permission scope and supported API retrieval remain untested. The exact new third-party setup decision is already with the owner in the existing X task; do not repeat its question or start setup from this handoff. X goal remains BLOCKED and the existing 09:00/16:00 heartbeat ACTIVE. Preserve seven historical native submissions/current pending count UNKNOWN, R002 publication UNVERIFIED, 3–4 originals/week and at most one R010/R011 at a justified checkpoint. Known rolling effort is 80.33 minutes and known calendar-week effort51.54; earlier gaps prevent full cap certification. September19/26/October12, the expected September15 09:00 check and all other cohort clocks remain unchanged.
+- Pinterest source acceptance: N2 saved once forSeptember27 02:00PM native label; timezone unexposed. Queue6; priorP2–P6 and11other register rows preserved. Actual publication/publicPinID unknown; no N2 outcome clock starts. First actual daily wake20:00:49.119UTC accepted separately from future run claims. Parent preserves the owner-completed N2 canonical interval, which was explicitly released.
+- Source qualification: Evidence: x_publishing_proposal_freeze_20260914/PLAN.md and INDEPENDENT_REVIEW.json; x_n2_parent_acceptance_20260914.json. Anchor 2026-09-14-ceo-x-publisher-proposal-and-n2-receipt. Removing only later review metadata from N2_NATIVE_EXECUTION reconstructs the exact input of its46-check independent review; no native replay.
+- source_live_evidence_as_of: X proposal20:24–20:34UTC and review20:30:57UTC; Pinterest saved receipt20:35:22UTC/canonical release20:40:12UTC
+- live_state_mode: STALE_READBACK_REQUIRED for full paid; only named saved-source results verified
+- effective_approval_policy: FRESH_ACTION_TIME_APPROVAL_REQUIRED for new X setup; prior organic scope does not create new third-party setup approval
+- approved_external_scope: NONE standing paid; no Buffer setup or publication authorized by this parent closeout
+- autonomous_action_ready: false
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: Exact owner setup decision and supported authenticated identity/Free-plan/permission/retrieval evidence; actual N2 publication receipt
+- if_evidence_supports_recommendation: Existing sole owner executes only the exact authorized supported connection; preserve unknown native items and current publication gates
+- if_evidence_opposes_recommendation: Hold new setup and use an existing supported publisher if independently identified; no charges, replay or unsupported website automation
+- material_decision: Conditional source-owner proposal; root factual acceptance does not approve execution
+- independent_verifier: /root/x_independent_review and /root/daily_operator_review
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Root scope: Shared factual records only; no owner redispatch, account mutation, order reread, goal/schedule/paid change or repeated owner question.
+- One Owner Action: Existing Shopify Admin publication of reviewed theme137888792673; preserve MAIN133290917985 rollback and UX ownership.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; preserve sole channel owners and separate clocks.

@@ -1,0 +1,84 @@
+{
+  "status": "MINIMUM_COMPLETE_SCOPE_SET_NOT_PROVEN",
+  "inspectedQueryFile": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/queries.js",
+  "requestedOperations": [
+    {
+      "operation": "MerchantFeedIdentity",
+      "fields": "shop id/name/currencyCode/primaryDomain; shopLocales locale/primary/published; productsCount status:active",
+      "savedValidatorScopes": [
+        "read_locales",
+        "read_markets_home",
+        "read_products"
+      ],
+      "assessment": "read_products and locale read access are indicated; saved output does not explain whether read_locales/read_markets_home are alternatives."
+    },
+    {
+      "operation": "MerchantFeedMarketContext",
+      "fields": "marketsResolvedValues country signal; currencyCode; catalogs id/status/publication id; catalog markets id/name/status",
+      "savedValidatorScopes": [
+        "read_markets",
+        "write_markets",
+        "read_products"
+      ],
+      "assessment": "Read market and catalog access is needed. The appearance of write_markets in a query validator is not authority or proof that a write scope must be granted."
+    },
+    {
+      "operation": "MerchantFeedProducts",
+      "fields": "Product facts, publication/buyer visibility, variantsCount, featured MediaImage, category, locale/market translations, product metafields and referenced Metaobject displayName",
+      "savedValidatorScopes": [
+        "read_products",
+        "read_publications",
+        "read_files",
+        "read_themes",
+        "read_orders",
+        "read_draft_orders",
+        "read_images",
+        "read_quick_sale",
+        "read_metaobjects"
+      ],
+      "assessment": "Product, publication and metaobject read families are indicated. Broad media-related alternatives are not a proven conjunction/minimum."
+    },
+    {
+      "operation": "MerchantFeedVariants",
+      "fields": "Variant id/availableForSale/barcode/selectedOptions; contextualPricing country money; MediaImage; variant metafields",
+      "savedValidatorScopes": [
+        "read_products",
+        "read_files",
+        "read_themes",
+        "read_orders",
+        "read_draft_orders",
+        "read_images",
+        "read_quick_sale"
+      ],
+      "assessment": "Product variant and product-image read access is indicated. Collector does not request order, draft-order, theme, customer or payment records."
+    },
+    {
+      "operation": "MerchantFeedManifest",
+      "fields": "Active product id/status/updatedAt/variantsCount and publication/buyer visibility",
+      "savedValidatorScopes": [
+        "read_products",
+        "read_publications"
+      ],
+      "assessment": "Saved validator explicitly identifies these two read families."
+    }
+  ],
+  "leastPrivilegeCandidateForSeparateValidation": [
+    "read_products",
+    "read_publications",
+    "read_metaobjects",
+    "read_locales",
+    "read_markets"
+  ],
+  "candidateIsNotCertifiedMinimum": true,
+  "translationScopeUncertainty": "Product.translations is queried directly. The saved validator lists do not separately identify read_translations. Neither necessity nor sufficiency of adding or omitting that scope is proved here.",
+  "prohibitedInference": "Do not grant customer/order/billing or write scopes merely because a query validator prints an aggregated list; do not describe the existing credential as read-only because the collector uses only queries.",
+  "exactNextProof": "Verify field-level primary Shopify scope documentation and run every existing collector operation, including translated market context, with the newly approved narrowly scoped credential. Record actual granted scopes and successful complete-source readback without exposing credential material.",
+  "noCredentialsInspected": true,
+  "noExternalCalls": true,
+  "sources": [
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-build/automation_skill_validation.json",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-build/automation_query_validation.json",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-build/query_validation_receipts.json",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/market_matrix_refresh_2005/schema_validation.json"
+  ]
+}
