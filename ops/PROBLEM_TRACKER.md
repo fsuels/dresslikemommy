@@ -182,6 +182,8 @@ September12 current receipt preservesPaused/27editorlines and the normalSave/ide
 - Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/AUDIT.md, final-release-manifest.json, final-release-readback.json, final-release-rollback.json, browser-verification.json and final-checks.json. Anchor2026-09-10-storefront-localized-pdp-v6-preview-verified.
 - V6 exact source/buyer/test evidence: 2026-09-10-storefront-ux-pagespeed/localized-pdp-v6/READBACK.md; after.json; browser-after.json; selected-guide-recheck.json. All527 candidate files match uploaded source and the complete checked copy.
 
+- September14 Git synchronization: all527reviewed/integrated theme files are committed on local main, preserving22configuration/template files and7additional local improvements. Verified remote commit60ec4959 synchronizes6804non-theme paths with every Shopify theme/configuration/workflow entry unchanged. The72pending root-theme changes remain gated by owner publication of137888792673; GitHub-main connection to active133290917985 must not be used to bypass the connector restriction. No new PageSpeed or MAIN buyer acceptance is claimed. Evidence:2026-09-14-project-main-sync/SYNC_REPORT.md.
+
 ## PROB-2026-09-10-TOGETHER-HEART-DERIVED-SIZING
 
 - Priority P1; status IMPLEMENTED_SOURCE_AND_RECURRENCE__THEME_PREVIEW_VERIFIED__PUBLISHED_ACCEPTANCE_PENDING. Product7672336646241/together-heart-family-matching-sweaters; root01a08223 exact product writer complete.
